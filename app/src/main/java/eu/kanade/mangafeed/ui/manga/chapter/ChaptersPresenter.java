@@ -1,6 +1,7 @@
 package eu.kanade.mangafeed.ui.manga.chapter;
 
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 
 import java.io.File;
 import java.util.List;
@@ -29,13 +30,19 @@ import rx.schedulers.Schedulers;
 
 public class ChaptersPresenter extends BasePresenter<ChaptersFragment> {
 
-    @Inject DatabaseHelper db;
-    @Inject SourceManager sourceManager;
-    @Inject PreferencesHelper preferences;
-    @Inject DownloadManager downloadManager;
+    @Inject
+    DatabaseHelper db;
+    @Inject
+    SourceManager sourceManager;
+    @Inject
+    PreferencesHelper preferences;
+    @Inject
+    DownloadManager downloadManager;
 
     private Manga manga;
     private Source source;
+    private boolean sortOrderAToZ = true;
+    private boolean onlyUnread = true;
 
     private static final int DB_CHAPTERS = 1;
     private static final int ONLINE_CHAPTERS = 2;
@@ -52,7 +59,7 @@ public class ChaptersPresenter extends BasePresenter<ChaptersFragment> {
                 this::getDbChaptersObs,
                 (view, chapters) -> {
                     view.onNextChapters(chapters);
-                    EventBus.getDefault().postSticky( new ChapterCountEvent(chapters.size()) );
+                    EventBus.getDefault().postSticky(new ChapterCountEvent(chapters.size()));
                 }
         );
 
@@ -102,7 +109,7 @@ public class ChaptersPresenter extends BasePresenter<ChaptersFragment> {
     }
 
     private Observable<List<Chapter>> getDbChaptersObs() {
-        return db.getChapters(manga.id).createObservable()
+        return db.getChapters(manga.id, sortOrderAToZ, onlyUnread).createObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
@@ -146,7 +153,7 @@ public class ChaptersPresenter extends BasePresenter<ChaptersFragment> {
 
     public void deleteChapters(Observable<Chapter> selectedChapters) {
         deleteSubscription = selectedChapters
-                .doOnCompleted( () -> remove(deleteSubscription) )
+                .doOnCompleted(() -> remove(deleteSubscription))
                 .subscribe(chapter -> {
                     downloadManager.deleteChapter(source, manga, chapter);
                     chapter.downloaded = Chapter.NOT_DOWNLOADED;
@@ -164,4 +171,27 @@ public class ChaptersPresenter extends BasePresenter<ChaptersFragment> {
         }
     }
 
+    public void initSortIcon() {
+        if (getView() != null) {
+            getView().setSortIcon(sortOrderAToZ);//TODO do we need save order for manga?
+        }
+    }
+
+    public void initReadCb(){
+        if (getView() != null) {
+            getView().setReadFilter(onlyUnread);//TODO do we need save filter for manga?
+        }
+    }
+
+    public void revertSortOrder() {
+        sortOrderAToZ = !sortOrderAToZ;
+        initSortIcon();
+        start(DB_CHAPTERS);
+    }
+
+    public void setReadFilter(boolean onlyUnread) {
+        this.onlyUnread = onlyUnread;
+        initReadCb();
+        start(DB_CHAPTERS);
+    }
 }

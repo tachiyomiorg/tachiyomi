@@ -1,85 +1,57 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="alertDialogTheme">@style/AlertDialogStyle</item>
-        <item name="android:itemTextAppearance">@style/OptionsMenuTextColor</item>
-        <item name="android:textColorPrimary">@color/black_87pc</item>
-        <item name="android:textColor">@color/black_87pc</item>
-        <item name="colorControlNormal">@color/white</item>
-        <item name="windowActionModeOverlay">true</item>
-        <item name="actionModeStyle">@style/Widget.ActionMode</item>
-        <item name="selectableItemBackground">@drawable/selector_chapter_light</item>
-    </style>
+    <style name="AppTheme" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/colorPrimary</item>
 
-    <style name="AppTheme.NoActionBar" parent="AppTheme">
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-    </style>
-
-    <style name="AppTheme.ActionBar" parent="AppTheme">
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="drawerArrowStyle">@style/HamburgerIconStyle</item>
-        <item name="android:itemTextAppearance">@style/OptionsMenuTextColor</item>
-    </style>
-    
-    <style name="Widget.ActionMode" parent="@style/Widget.AppCompat.ActionMode">
-        <item name="background">@color/primary</item>
-    </style>
-    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowTitleStyle">@style/DialogTitleText</item>
-        <item name="colorAccent">@color/primary</item>
-    </style>
-
-    <style name="DialogTitleText">
-        <item name="android:textColor">@color/black_87pc</item>
-        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
-    </style>
-
-    <style name="HamburgerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="color">@color/icons</item>
-    </style>
-
-    <style name="OptionsMenuTextColor" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
-        <item name="android:textColor">@android:color/black</item>
-    </style>
-
-    <style name="TitleTextStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/primary</item>
-        <item name="android:textSize">@dimen/text_body</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="CardButtonTextStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">16dp</item>
-        <item name="android:textSize">@dimen/text_small_body</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:background">@drawable/touchable_background_white</item>
-    </style>
-
-    <style name="ErrorTextStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">4dp</item>
-        <item name="android:layout_marginRight">4dp</item>
-        <item name="android:textColor">@android:color/holo_red_light</item>
-        <item name="android:textSize">@dimen/text_small_body</item>
-        <item name="android:visibility">invisible</item>
-    </style>
-
-    <style name="EmptyListTextStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_centerInParent">true</item>
+        <item name="android:background">@color/white</item>
         <item name="android:textColor">@color/primary_text</item>
-        <item name="android:textSize">@dimen/text_small_body</item>
-        <item name="android:visibility">gone</item>
+
+    </style>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
+
+    </style>
+
+    <style name="ThemeOverlay.AppTheme.Dark" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="windowActionModeOverlay">true</item>
+    </style>
+
+    <style name="AppTheme.Popup" parent="@style/ThemeOverlay.AppTheme.Dark">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme.ActionBar" parent="@style/ThemeOverlay.AppTheme.Dark">
+        <item name="android:actionModeBackground">@color/colorPrimarySuperDark</item>
+        <item name="actionModeBackground">@color/colorPrimarySuperDark</item>
+    </style>
+    <style name="AppTheme.TabLayout" parent="@style/ThemeOverlay.AppTheme.Dark">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme.GridView" parent="AppTheme">
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:gravity">top|left</item>
+        <item name="android:smoothScrollbar">true</item>
+        <item name="android:cacheColorHint">#00000000</item>
+        <item name="android:fastScrollEnabled">true</item>
+        <item name="android:horizontalSpacing">0dp</item>
+        <item name="android:verticalSpacing">0dp</item>
+        <item name="android:numColumns">auto_fit</item>
+        <item name="android:stretchMode">columnWidth</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:background">#e5e5e5</item>
     </style>
 
     <style name="manga_detail_label">
@@ -91,6 +63,7 @@
         <item name="android:singleLine">true</item>
         <item name="android:textIsSelectable">false</item>
     </style>
+
     <style name="manga_detail_text">
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">normal</item>
@@ -99,14 +72,17 @@
         <item name="android:singleLine">true</item>
         <item name="android:textIsSelectable">false</item>
     </style>
+
     <style name="reader_settings_popup_animation">
         <item name="android:windowEnterAnimation">@anim/enter_from_right</item>
         <item name="android:windowExitAnimation">@anim/exit_to_right</item>
     </style>
+
     <style name="reader_brightness_popup_animation">
         <item name="android:windowEnterAnimation">@anim/enter_from_left</item>
         <item name="android:windowExitAnimation">@anim/exit_to_left</item>
     </style>
+
     <style name="grey_text">
         <item name="android:textColor">#e0e0e0</item>
     </style>

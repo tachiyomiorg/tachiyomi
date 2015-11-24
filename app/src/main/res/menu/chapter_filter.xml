@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_sort_up"
+        android:title="@string/action_sort_up"
+        android:icon="@drawable/ic_expand_less_white_36dp"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_sort_down"
+        android:title="@string/action_sort_down"
+        android:icon="@drawable/ic_expand_more_white_36dp"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_show_unread"
+        android:checkable="true"
+        android:title="@string/action_show_unread"
+        android:text="@string/action_show_unread"
+        app:actionViewClass="android.widget.CheckBox"
+        app:showAsAction="ifRoom|withText" />
+</menu>

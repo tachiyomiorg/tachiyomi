@@ -1,53 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:background="?attr/selectableItemBackground">
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:padding="6dip"
+    android:background="@drawable/selector_chapter_light">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/chapter_download_image"
-        tools:src="@mipmap/ic_launcher"/>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/chapter_download_image"
+        android:layout_toStartOf="@+id/chapter_download_image">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/chapter_title"
-            tools:text="Chapter 32"
-            android:layout_weight="1"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/chapter_pages"
-            tools:text="Pages: 45"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="12sp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textSize="12sp"
+            tools:text="Pages: 45" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/chapter_date"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textSize="12sp"
+            tools:text="22/02/2016"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
 
 
     <TextView
+        android:id="@+id/chapter_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:gravity="center_vertical"
+        android:textSize="20sp"
+        tools:text="Title"
+        android:layout_toLeftOf="@+id/chapter_download_image"
+        android:layout_toStartOf="@+id/chapter_download_image" />
+
+    <ImageView
+        android:id="@+id/chapter_download_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/chapter_date"
-        tools:text="22/02/2016"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="2dp"
-        android:textSize="12sp"
-        android:paddingRight="5dp"/>
-</LinearLayout>
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        tools:src="@drawable/ic_file_download_black_48dp"
+        />
+
+
+</RelativeLayout>

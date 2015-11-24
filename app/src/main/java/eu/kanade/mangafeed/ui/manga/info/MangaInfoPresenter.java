@@ -13,7 +13,8 @@ import rx.Observable;
 
 public class MangaInfoPresenter extends BasePresenter<MangaInfoFragment> {
 
-    @Inject DatabaseHelper db;
+    @Inject
+    DatabaseHelper db;
 
     private Manga manga;
     private int count = -1;
@@ -60,9 +61,9 @@ public class MangaInfoPresenter extends BasePresenter<MangaInfoFragment> {
         }
     }
 
-    public void initFavoriteIcon() {
+    public void initFavoriteText() {
         if (getView() != null)
-            getView().setFavoriteIcon(manga.favorite);
+            getView().setFavoriteText(manga.favorite);
     }
 
     public void toggleFavorite() {

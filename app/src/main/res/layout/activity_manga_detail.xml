@@ -1,18 +1,16 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="eu.kanade.mangafeed.ui.manga.MangaActivity"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="eu.kanade.mangafeed.ui.manga.MangaActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:theme="@style/AppTheme.ActionBar">
 
         <include
             android:id="@+id/toolbar"
@@ -22,8 +20,9 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="@android:color/white"
-            app:tabGravity="fill" />
+            android:theme="@style/AppTheme.TabLayout"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/accent" />
 
     </android.support.design.widget.AppBarLayout>
 

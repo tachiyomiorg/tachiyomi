@@ -17,8 +17,9 @@
     <string name="action_mark_as_unread">Mark as unread</string>
     <string name="action_download">Download</string>
     <string name="action_delete">Delete</string>
-    <string name="action_favorite">Add to favorites</string>
-    <string name="action_remove_favorite">Remove from favorites</string>
+    <string name="action_sort_up">Sort up</string>
+    <string name="action_sort_down">Sort down</string>
+    <string name="action_show_unread">Show unread</string>
 
     <!-- Preferences -->
       <!-- Subsections -->
@@ -70,10 +71,13 @@
     <string name="artist">Artist</string>
     <string name="status">Status</string>
     <string name="description">Description</string>
+    <string name="add_to_library">Add to library</string>
+    <string name="remove_from_library">Remove from library</string>
 
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapters</string>
-    <string name="selected_chapters_title">Selected chapters: %1$d</string>
+    <string name="selected_chapters_title">Selected: %1$d</string>
+    <string name="manga_chapter_no_title">No title</string>
 
     <!-- Reader activity -->
     <string name="downloading">Downloading…</string>

@@ -1,22 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#607D8B</color>
-    <color name="primary_dark">#455A64</color>
-    <color name="primary_light">#CFD8DC</color>
-    <color name="accent">#009688</color>
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#727272</color>
-    <color name="icons">#FFFFFF</color>
-    <color name="divider">#B6B6B6</color>
+    <color name="colorAccent">#FFEA00</color>
+    <color name="colorPrimary">#607D8B</color>
+    <color name="colorPrimaryDark">#455A64</color>
+    <color name="colorPrimarySuperDark">#263238</color>
+    <color name="colorPrimaryLight">#CFD8DC</color>
+
+    <color name="colorBackgroundLight">#ECEFF1</color>
+
+    <color name="primary">@color/colorPrimary</color>
+    <color name="primary_dark">@color/colorPrimaryDark</color>
+    <color name="primary_light">@color/colorPrimaryLight</color>
+
+    <color name="divider">#CFD8DC</color>
+
     <color name="white">#FFFFFF</color>
+    <color name="primary_text">#DD000000</color>
+    <color name="secondary_text">#8B000000</color>
+    <color name="hint_text">#64000000</color>
+
+    <color name="icons">#FFFFFF</color>
+
+
+    <color name="list_choice_pressed_bg_light">@color/colorPrimaryLight</color>
+
     <color name="super_light_grey">#FAFAFA</color>
     <color name="line_grey">#D7D7D7</color>
     <color name="light_grey">#D4D4D4</color>
     <color name="bg_light_grey">#E9E9E9</color>
-    <color name="black_87pc">#DD000000</color>
     <color name="library_text_background">#E8E8E8</color>
-    <color name="chapter_read_text">#909090</color>
-    <color name="list_choice_pressed_bg_light">#607D8B</color>
     <color name="page_number_background">#AAE9E9E9</color>
     <color name="reader_menu_background">#333333</color>
 </resources>

@@ -7,6 +7,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.util.Objects;
+
 import eu.kanade.mangafeed.R;
 import eu.kanade.mangafeed.data.database.models.Manga;
 import uk.co.ribot.easyadapter.ItemViewHolder;
@@ -17,11 +19,14 @@ import uk.co.ribot.easyadapter.annotations.ViewId;
 @LayoutId(R.layout.item_catalogue)
 public class CatalogueHolder extends ItemViewHolder<Manga> {
 
-    @ViewId(R.id.catalogue_title)
+    @ViewId(R.id.title)
     TextView title;
 
-    @ViewId(R.id.catalogue_thumbnail)
-    ImageView image;
+    @ViewId(R.id.author)
+    TextView author;
+
+    @ViewId(R.id.thumbnail)
+    ImageView thumbnail;
 
     public CatalogueHolder(View view) {
         super(view);
@@ -30,15 +35,16 @@ public class CatalogueHolder extends ItemViewHolder<Manga> {
     @Override
     public void onSetValues(Manga manga, PositionInfo positionInfo) {
         title.setText(manga.title);
+        author.setText(manga.author);
 
         if (manga.thumbnail_url != null) {
             Glide.with(getContext())
                     .load(manga.thumbnail_url)
                     .diskCacheStrategy(DiskCacheStrategy.RESULT)
                     .centerCrop()
-                    .into(image);
+                    .into(thumbnail);
         } else {
-            image.setImageResource(android.R.color.transparent);
+            thumbnail.setImageResource(android.R.color.transparent);
         }
     }
 }

@@ -156,14 +156,23 @@ public class DatabaseHelper {
                 .prepare();
     }
 
-    public PreparedGetListOfObjects<Chapter> getChapters(long manga_id) {
+    public PreparedGetListOfObjects<Chapter> getChapters(long manga_id, boolean sortAToZ, boolean onlyUnread) {
+        Query.CompleteBuilder query = Query.builder()
+                .table(ChaptersTable.TABLE)
+
+                .orderBy(ChaptersTable.COLUMN_CHAPTER_NUMBER + (sortAToZ ? " ASC" : " DESC"));
+
+        if (onlyUnread) {
+            query = query.where(ChaptersTable.COLUMN_MANGA_ID + "=? AND " + ChaptersTable.COLUMN_READ + "=?")
+                    .whereArgs(manga_id, 0);
+        } else {
+            query = query.where(ChaptersTable.COLUMN_MANGA_ID + "=?")
+                    .whereArgs(manga_id);
+        }
+
         return db.get()
                 .listOfObjects(Chapter.class)
-                .withQuery(Query.builder()
-                        .table(ChaptersTable.TABLE)
-                        .where(ChaptersTable.COLUMN_MANGA_ID + "=?")
-                        .whereArgs(manga_id)
-                        .build())
+                .withQuery(query.build())
                 .prepare();
     }
 
@@ -236,7 +245,7 @@ public class DatabaseHelper {
                         .filter(c -> !chapters.contains(c))
                         .toList()
                         .flatMap(deletedChapters -> deleteChapters(deletedChapters).createObservable())
-                        .map( d -> d.results().size() ));
+                        .map(d -> d.results().size()));
 
         return Observable.zip(newChaptersObs, deletedChaptersObs,
                 (insertions, deletions) -> new PostResult(0, insertions, deletions)

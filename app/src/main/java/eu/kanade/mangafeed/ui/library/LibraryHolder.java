@@ -7,6 +7,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.util.Objects;
+
 import eu.kanade.mangafeed.R;
 import eu.kanade.mangafeed.data.database.models.Manga;
 import uk.co.ribot.easyadapter.ItemViewHolder;
@@ -15,30 +17,35 @@ import uk.co.ribot.easyadapter.annotations.LayoutId;
 import uk.co.ribot.easyadapter.annotations.ViewId;
 
 
-@LayoutId(R.layout.item_library)
+@LayoutId(R.layout.item_catalogue)
 public class LibraryHolder extends ItemViewHolder<Manga> {
 
-    @ViewId(R.id.thumbnailImage)
-    ImageView mThumbImage;
+    @ViewId(R.id.thumbnail)
+    ImageView thumbnail;
 
-    @ViewId(R.id.titleText)
-    TextView mTitleText;
+    @ViewId(R.id.title)
+    TextView title;
+
+    @ViewId(R.id.author)
+    TextView author;
 
     @ViewId(R.id.unreadText)
-    TextView mUnreadText;
+    TextView unreadText;
 
     public LibraryHolder(View view) {
         super(view);
     }
 
     public void onSetValues(Manga manga, PositionInfo positionInfo) {
-        mTitleText.setText(manga.title);
+        title.setText(manga.title);
+        author.setText(manga.author);
+
         if (manga.unread > 0) {
-            mUnreadText.setVisibility(View.VISIBLE);
-            mUnreadText.setText(Integer.toString(manga.unread));
+            unreadText.setVisibility(View.VISIBLE);
+            unreadText.setText(Integer.toString(manga.unread));
         }
         else {
-            mUnreadText.setVisibility(View.GONE);
+            unreadText.setVisibility(View.GONE);
         }
 
         String thumbnail;
@@ -51,7 +58,7 @@ public class LibraryHolder extends ItemViewHolder<Manga> {
                 .load(thumbnail)
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
                 .centerCrop()
-                .into(mThumbImage);
+                .into(this.thumbnail);
     }
 
 }

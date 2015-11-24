@@ -1,12 +1,18 @@
 package eu.kanade.mangafeed.ui.manga.chapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,6 +27,9 @@ public class ChaptersHolder extends RecyclerView.ViewHolder implements
     @Bind(R.id.chapter_title) TextView title;
     @Bind(R.id.chapter_download_image) ImageView download_icon;
     @Bind(R.id.chapter_pages) TextView pages;
+    @Bind(R.id.chapter_date) TextView date;
+
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public ChaptersHolder(View view) {
         super(view);
@@ -38,11 +47,10 @@ public class ChaptersHolder extends RecyclerView.ViewHolder implements
     public void onSetValues(Context context, Chapter chapter) {
         title.setText(chapter.name);
 
-
         if (chapter.read) {
-            title.setTextColor(ContextCompat.getColor(context, R.color.chapter_read_text));
+            title.setTextColor(ContextCompat.getColor(context, R.color.hint_text));
         } else {
-            title.setTextColor(Color.BLACK);
+            title.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
         }
 
         if (chapter.last_page_read > 0 && !chapter.read) {
@@ -59,6 +67,7 @@ public class ChaptersHolder extends RecyclerView.ViewHolder implements
         else if (chapter.downloaded == Chapter.NOT_DOWNLOADED)
             download_icon.setImageResource(R.drawable.ic_file_download_black_36dp);
 
+        date.setText(sdf.format(new Date(chapter.date_fetch)));
         toggleActivation();
     }
 

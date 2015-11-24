@@ -15,7 +15,7 @@
         android:padding="4dp"
         android:layout_gravity="bottom|left"
         android:background="@color/page_number_background"
-        android:textColor="@color/black_87pc"
+        android:textColor="@color/primary_text"
         android:textSize="12sp"
         android:id="@+id/page_number"/>
 

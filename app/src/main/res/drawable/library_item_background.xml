@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:exitFadeDuration="@android:integer/config_shortAnimTime">>
-    <item android:drawable="@color/line_grey" android:state_pressed="true"/>
-    <item android:drawable="@color/line_grey" android:state_selected="true"/>
-    <item android:drawable="@color/line_grey" android:state_activated="true"/>
-    <item android:drawable="@color/library_text_background"/>
-
-</selector>

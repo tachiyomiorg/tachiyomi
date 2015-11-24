@@ -1,22 +1,13 @@
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <GridView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/gridView"
-        android:padding="10dp"
-        android:clipToPadding="false"
-        android:verticalSpacing="8dp"
-        android:horizontalSpacing="8dp"
-        android:columnWidth="96dp"
-        android:numColumns="auto_fit"
-        android:stretchMode="columnWidth"
-        android:fastScrollEnabled="true"
+        style="@style/AppTheme.GridView"
         android:choiceMode="multipleChoiceModal"
-        tools:listitem="@layout/item_library" />
+        android:numColumns="2"
+        tools:listitem="@layout/item_catalogue" />
 
 </FrameLayout>

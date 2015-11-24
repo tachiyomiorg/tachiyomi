@@ -1,10 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MangaDetailActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MangaDetailActivity">
+    <!--I am not sure wee need it, so for a while it will be not visible-->
     <item
         android:id="@+id/action_refresh"
-        android:title="@string/action_refresh"
         android:icon="@drawable/ic_action_refresh"
         android:orderInCategory="1"
+        android:title="@string/action_refresh"
+        android:visible="false"
         app:showAsAction="ifRoom" />
 </menu>
