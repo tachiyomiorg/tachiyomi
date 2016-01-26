@@ -22,7 +22,7 @@ import eu.kanade.tachiyomi.util.DiskUtils;
 
 /**
  * Class used to create cover cache
- * Makes us of Glide(which can avoid repeating requests) for saving the file.
+ * Makes use of Glide(which can avoid repeating requests) for saving the file.
  * It is not necessary to load the images to the cache.
  * Names of files are created with the md5 of the thumbnailURL
  */

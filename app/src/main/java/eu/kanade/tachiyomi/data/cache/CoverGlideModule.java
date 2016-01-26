@@ -24,6 +24,6 @@ public class CoverGlideModule implements GlideModule {
 
     @Override
     public void registerComponents(Context context, Glide glide) {
-        //TODO empty class?
+        // Nothing to see here!
     }
 }
