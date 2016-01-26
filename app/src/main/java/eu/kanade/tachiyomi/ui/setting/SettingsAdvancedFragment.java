@@ -71,7 +71,7 @@ public class SettingsAdvancedFragment extends SettingsNestedFragment {
 
         subscriptions.add(Observable.defer(() -> Observable.from(files))
                 .concatMap(file -> {
-                    if (chapterCache.remove(file.getName())) {
+                    if (chapterCache.removeFileFromCache(file.getName())) {
                         deletedFiles.incrementAndGet();
                     }
                     return Observable.just(file);
