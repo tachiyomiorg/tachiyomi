@@ -21,6 +21,12 @@ import okio.BufferedSink;
 import okio.Okio;
 import rx.Observable;
 
+/**
+ * Class used to create chapter cache
+ * For each image in a chapter a file is created
+ * For each chapter a Json list is created and converted to a file.
+ * The files are in format *md5key*.0
+ */
 public class ChapterCache {
 
     /** Name of cache directory. */
@@ -69,18 +75,19 @@ public class ChapterCache {
     }
 
     /**
-     * Remove Chapter from cache.
-     * @param file name of chapter file.
-     * @return false if file is journal or error else returns true.
+     * Remove file from cache.
+     * @param file name of chapter file md5.o.
+     * @return false if file is journal or error else returns status of deletion.
      */
-    public boolean remove(String file) {
+    public boolean removeFileFromCache(String file) {
         // Make sure we don't delete the journal file (keeps track of cache).
         if (file.equals("journal") || file.startsWith("journal."))
             return false;
 
         try {
-            // Take dot(.) substring to avoid conflicts.
+            // Take dot(.) substring to get filename without the .0 at the end.
             String key = file.substring(0, file.lastIndexOf("."));
+            // Remove file from cache.
             return diskCache.remove(key);
         } catch (IOException e) {
             return false;
@@ -112,7 +119,7 @@ public class ChapterCache {
     }
 
     /**
-     * Get page urls from cache.
+     * Get page objects from cache.
      * @param chapterUrl the url of the chapter.
      * @return list of chapter pages.
      */
