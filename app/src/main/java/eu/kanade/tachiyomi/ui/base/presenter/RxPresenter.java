@@ -61,7 +61,7 @@ public class RxPresenter<View> extends Presenter<View> {
      * Removes and unsubscribes a subscription that has been registered with {@link #add} previously.
      * See {@link SubscriptionList#remove(Subscription)} for details.
      *
-     * @param subscription a subscription to removeFileFromCache.
+     * @param subscription a subscription to remove.
      */
     public void remove(Subscription subscription) {
         subscriptions.remove(subscription);

@@ -607,9 +607,9 @@ public class VerticalViewPagerImpl extends ViewGroup {
      * Add a listener that will be invoked whenever the page changes or is incrementally
      * scrolled. See {@link OnPageChangeListener}.
      *
-     * <p>Components that add a listener should take care to removeFileFromCache it when finished.
+     * <p>Components that add a listener should take care to remove it when finished.
      * Other components that take ownership of a view may call {@link #clearOnPageChangeListeners()}
-     * to removeFileFromCache all attached listeners.</p>
+     * to remove all attached listeners.</p>
      *
      * @param listener listener to add
      */
@@ -624,7 +624,7 @@ public class VerticalViewPagerImpl extends ViewGroup {
      * Remove a listener that was previously added via
      * {@link #addOnPageChangeListener(OnPageChangeListener)}.
      *
-     * @param listener listener to removeFileFromCache
+     * @param listener listener to remove
      */
     public void removeOnPageChangeListener(OnPageChangeListener listener) {
         if (mOnPageChangeListeners != null) {
