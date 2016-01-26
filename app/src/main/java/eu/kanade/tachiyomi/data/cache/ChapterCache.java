@@ -32,7 +32,7 @@ public class ChapterCache {
     /** Name of cache directory. */
     private static final String PARAMETER_CACHE_DIRECTORY = "chapter_disk_cache";
 
-    /** Application version. */
+    /** Application cache version. */
     private static final int PARAMETER_APP_VERSION = 1;
 
     /** The number of values per cache entry. Must be positive. */
@@ -55,7 +55,6 @@ public class ChapterCache {
      * @param context application environment interface.
      */
     public ChapterCache(Context context) {
-        // Set context.
         this.context = context;
 
         // Initialize Json handler.
