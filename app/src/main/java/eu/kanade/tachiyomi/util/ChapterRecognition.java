@@ -55,7 +55,7 @@ public class ChapterRecognition {
         // This can lead to issues if two numbers are separated by an space
         name = name.replaceAll("\\s+", "");
 
-        // Try to remove the manga name from the chapter, and try again
+        // Try to removeFileFromCache the manga name from the chapter, and try again
         String mangaName = replaceIrrelevantCharacters(manga.title);
         String nameWithoutManga = difference(mangaName, name);
         if (!nameWithoutManga.isEmpty()) {
