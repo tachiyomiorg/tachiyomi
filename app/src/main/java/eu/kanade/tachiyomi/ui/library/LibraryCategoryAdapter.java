@@ -52,7 +52,7 @@ public class LibraryCategoryAdapter extends FlexibleAdapter<LibraryHolder, Manga
 
     @Override
     public LibraryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(fragment.getActivity()).inflate(R.layout.item_catalogue, parent, false);
+        View v = LayoutInflater.from(fragment.getActivity()).inflate(R.layout.item_catalogue_grid, parent, false);
         return new LibraryHolder(v, this, fragment);
     }
 
@@ -67,7 +67,7 @@ public class LibraryCategoryAdapter extends FlexibleAdapter<LibraryHolder, Manga
     }
 
     public int getCoverHeight() {
-        return fragment.recycler.getItemWidth() / 9 * 12;
+        return fragment.recycler.getItemWidth() / 3 * 4;
     }
 
     @Override

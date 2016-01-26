@@ -8,6 +8,6 @@
         android:id="@+id/library_mangas"
         style="@style/AppTheme.GridView"
         android:columnWidth="140dp"
-        tools:listitem="@layout/item_catalogue" />
+        tools:listitem="@layout/item_catalogue_grid" />
 
 </FrameLayout>

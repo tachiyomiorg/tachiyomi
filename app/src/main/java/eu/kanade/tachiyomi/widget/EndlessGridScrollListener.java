@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 
 import rx.functions.Action0;
 
-public class EndlessRecyclerScrollListener extends RecyclerView.OnScrollListener {
+public class EndlessGridScrollListener extends RecyclerView.OnScrollListener {
 
     private int previousTotal = 0; // The total number of items in the dataset after the last load
     private boolean loading = true; // True if we are still waiting for the last set of data to load.
@@ -16,7 +16,7 @@ public class EndlessRecyclerScrollListener extends RecyclerView.OnScrollListener
 
     private Action0 requestNext;
 
-    public EndlessRecyclerScrollListener(GridLayoutManager layoutManager, Action0 requestNext) {
+    public EndlessGridScrollListener(GridLayoutManager layoutManager, Action0 requestNext) {
         this.layoutManager = layoutManager;
         this.requestNext = requestNext;
     }

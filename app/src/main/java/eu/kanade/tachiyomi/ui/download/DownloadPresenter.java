@@ -90,6 +90,7 @@ public class DownloadPresenter extends BasePresenter<DownloadFragment> {
                 .flatMap(tick -> Observable.from(download.pages)
                         .map(Page::getProgress)
                         .reduce((x, y) -> x + y))
+                .onBackpressureLatest()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(progress -> {
                     if (download.totalProgress != progress) {

@@ -6,9 +6,9 @@ version = '3.4.1'
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     compile "com.android.support:support-annotations:23.1.1"
-    compile 'rapid.decoder:library:0.3.0'
-    compile 'rapid.decoder:jpeg-decoder:0.3.0'
-    compile 'rapid.decoder:png-decoder:0.3.0'
+    compile 'com.github.suckgamony.RapidDecoder:library:7cdfca4'
+    compile 'com.github.suckgamony.RapidDecoder:jpeg-decoder:7cdfca4'
+    compile 'com.github.suckgamony.RapidDecoder:png-decoder:7cdfca4'
 }
 
 android {

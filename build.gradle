@@ -21,7 +21,5 @@ allprojects {
         jcenter()
         maven { url "https://clojars.org/repo/" }
         maven { url "https://jitpack.io" }
-        maven { url 'http://dl.bintray.com/amulyakhare/maven' }
-        maven { url 'https://github.com/suckgamony/RapidDecoder/raw/master/repository' }
     }
 }

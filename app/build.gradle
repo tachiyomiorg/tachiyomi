@@ -39,8 +39,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 23
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode 2
-        versionName "0.1.1"
+        versionCode 3
+        versionName "0.1.2"
 
         buildConfigField "String", "COMMIT_COUNT", "\"${getCommitCount()}\""
         buildConfigField "String", "COMMIT_SHA", "\"${getGitSha()}\""
@@ -73,6 +73,7 @@ android {
 
     lintOptions {
         abortOnError false
+        checkReleaseBuilds false
     }
 
 }
@@ -93,6 +94,7 @@ dependencies {
     compile "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
     compile "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
     compile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
+    compile "com.android.support:percent:$SUPPORT_LIBRARY_VERSION"
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.7.2'
     compile 'com.squareup.okhttp:okhttp:2.7.2'
     compile 'com.squareup.okio:okio:1.6.0'
@@ -116,7 +118,7 @@ dependencies {
     compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
     compile 'eu.davidea:flexible-adapter:4.2.0'
     compile 'com.nononsenseapps:filepicker:2.5.1'
-    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    compile 'com.github.amulyakhare:TextDrawable:558677e'
     compile 'com.github.pwittchen:reactivenetwork:0.1.5'
 
     compile "com.google.dagger:dagger:$DAGGER_VERSION"

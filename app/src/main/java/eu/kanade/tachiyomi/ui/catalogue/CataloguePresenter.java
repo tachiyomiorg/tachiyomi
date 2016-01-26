@@ -42,6 +42,8 @@ public class CataloguePresenter extends BasePresenter<CatalogueFragment> {
 
     private PublishSubject<List<Manga>> mangaDetailSubject;
 
+    private boolean isListMode;
+
     private static final int GET_MANGA_LIST = 1;
     private static final int GET_MANGA_DETAIL = 2;
     private static final int GET_MANGA_PAGE = 3;
@@ -72,12 +74,14 @@ public class CataloguePresenter extends BasePresenter<CatalogueFragment> {
                         .observeOn(Schedulers.io())
                         .flatMap(Observable::from)
                         .filter(manga -> !manga.initialized)
-                        .window(3)
-                        .concatMap(pack -> pack.concatMap(this::getMangaDetails))
+                        .concatMap(this::getMangaDetails)
                         .onBackpressureBuffer()
                         .observeOn(AndroidSchedulers.mainThread()),
                 CatalogueFragment::updateImage,
                 (view, error) -> Timber.e(error.getMessage()));
+
+        add(prefs.catalogueAsList().asObservable()
+                .subscribe(this::setDisplayMode));
     }
 
     private void onProcessRestart() {
@@ -85,6 +89,15 @@ public class CataloguePresenter extends BasePresenter<CatalogueFragment> {
         stop(GET_MANGA_LIST);
         stop(GET_MANGA_DETAIL);
         stop(GET_MANGA_PAGE);
+    }
+
+    private void setDisplayMode(boolean asList) {
+        this.isListMode = asList;
+        if (asList) {
+            stop(GET_MANGA_DETAIL);
+        } else {
+            start(GET_MANGA_DETAIL);
+        }
     }
 
     public void startRequesting(Source source) {
@@ -98,7 +111,9 @@ public class CataloguePresenter extends BasePresenter<CatalogueFragment> {
         stop(GET_MANGA_PAGE);
         lastMangasPage = null;
 
-        start(GET_MANGA_DETAIL);
+        if (!isListMode) {
+            start(GET_MANGA_DETAIL);
+        }
         start(GET_MANGA_LIST);
         start(GET_MANGA_PAGE);
     }
@@ -124,10 +139,7 @@ public class CataloguePresenter extends BasePresenter<CatalogueFragment> {
                 .flatMap(mangasPage -> Observable.from(mangasPage.mangas))
                 .map(this::networkToLocalManga)
                 .toList()
-                .doOnNext(mangas -> {
-                    if (mangaDetailSubject != null)
-                        mangaDetailSubject.onNext(mangas);
-                })
+                .doOnNext(this::initializeMangas)
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
@@ -141,19 +153,18 @@ public class CataloguePresenter extends BasePresenter<CatalogueFragment> {
         return localManga;
     }
 
+    public void initializeMangas(List<Manga> mangas) {
+        mangaDetailSubject.onNext(mangas);
+    }
+
     private Observable<Manga> getMangaDetails(final Manga manga) {
         return source.pullMangaFromNetwork(manga.url)
-                .subscribeOn(Schedulers.io())
                 .flatMap(networkManga -> {
                     manga.copyFrom(networkManga);
                     db.insertManga(manga).executeAsBlocking();
                     return Observable.just(manga);
                 })
                 .onErrorResumeNext(error -> Observable.just(manga));
-    }
-
-    public Manga getDbManga(long id) {
-        return db.getManga(id).executeAsBlocking();
     }
 
     public Source getSource() {
@@ -181,4 +192,13 @@ public class CataloguePresenter extends BasePresenter<CatalogueFragment> {
         manga.favorite = !manga.favorite;
         db.insertManga(manga).executeAsBlocking();
     }
+
+    public boolean isListMode() {
+        return isListMode;
+    }
+
+    public void swapDisplayMode() {
+        prefs.catalogueAsList().set(!isListMode);
+    }
+
 }
