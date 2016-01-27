@@ -129,6 +129,8 @@ dependencies {
     compile('com.mikepenz:materialdrawer:4.6.4@aar') {
         transitive = true
     }
+    compile 'com.mikepenz:google-material-typeface:2.1.0.1.original@aar'
+
     compile('com.github.afollestad.material-dialogs:core:0.8.5.3@aar') {
         transitive = true
     }
