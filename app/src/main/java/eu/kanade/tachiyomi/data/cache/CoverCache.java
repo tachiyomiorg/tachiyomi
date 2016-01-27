@@ -87,7 +87,7 @@ public class CoverCache {
     private void save(String thumbnailUrl, LazyHeaders headers, ImageView imageView) {
 
         // Check if url is empty.
-        if (thumbnailUrl == null || TextUtils.isEmpty(thumbnailUrl))
+        if (TextUtils.isEmpty(thumbnailUrl))
             // Do not try and create the string. Instead... only try to realize the truth. There is no string.
             return;
 
@@ -171,7 +171,7 @@ public class CoverCache {
      */
     public boolean deleteCoverFromCache(String thumbnailUrl) {
         // Check if url is empty.
-        if (thumbnailUrl == null || TextUtils.isEmpty(thumbnailUrl))
+        if (TextUtils.isEmpty(thumbnailUrl))
             return false;
 
         // Remove file.
@@ -238,7 +238,7 @@ public class CoverCache {
      */
     public void loadFromNetwork(ImageView imageView, String thumbnailUrl, LazyHeaders headers) {
         // Check if url is empty.
-        if (thumbnailUrl == null || TextUtils.isEmpty(thumbnailUrl))
+        if (TextUtils.isEmpty(thumbnailUrl))
             return;
 
         GlideUrl url = new GlideUrl(thumbnailUrl, headers);
