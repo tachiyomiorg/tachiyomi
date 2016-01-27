@@ -75,7 +75,7 @@ public class ChapterCache {
 
     /**
      * Remove file from cache.
-     * @param file name of chapter file md5.o.
+     * @param file name of chapter file md5.0.
      * @return false if file is journal or error else returns status of deletion.
      */
     public boolean removeFileFromCache(String file) {
