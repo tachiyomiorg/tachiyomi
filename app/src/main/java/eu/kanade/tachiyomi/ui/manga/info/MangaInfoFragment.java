@@ -88,7 +88,7 @@ public class MangaInfoFragment extends BaseRxFragment<MangaInfoPresenter> {
         LazyHeaders headers = getPresenter().source.getGlideHeaders();
         if (manga.thumbnail_url != null && cover.getDrawable() == null) {
             if (manga.favorite) {
-                coverCache.saveAndLoadFromCache(cover, manga.thumbnail_url, headers);
+                coverCache.saveOrLoadFromCache(cover, manga.thumbnail_url, headers);
             } else {
                 coverCache.loadFromNetwork(cover, manga.thumbnail_url, headers);
             }
