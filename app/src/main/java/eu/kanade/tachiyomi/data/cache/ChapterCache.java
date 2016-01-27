@@ -69,7 +69,7 @@ public class ChapterCache {
                     PARAMETER_CACHE_SIZE
             );
         } catch (IOException e) {
-            // Do Nothing. TODO error handling?
+            // Do Nothing. TODO error handling.
         }
     }
 

@@ -28,17 +28,24 @@ import eu.kanade.tachiyomi.util.DiskUtils;
  */
 public class CoverCache {
 
-    /** Name of cache directory. */
+    /**
+     * Name of cache directory.
+     */
     private static final String PARAMETER_CACHE_DIRECTORY = "cover_disk_cache";
 
-    /** Interface to global information about an application environment. */
+    /**
+     * Interface to global information about an application environment.
+     */
     private final Context context;
 
-    /** Cache class used for cache management. */
+    /**
+     * Cache class used for cache management.
+     */
     private final File cacheDir;
 
     /**
      * Constructor of CoverCache.
+     *
      * @param context application environment interface.
      */
     public CoverCache(Context context) {
@@ -53,18 +60,18 @@ public class CoverCache {
 
     /**
      * Check if cache dir exist if not create directory.
-     * @return true if cache dir exist or is created.
+     *
+     * @return true if cache dir does exist and is created.
      */
     private boolean createCacheDir() {
-        // TODO return value never used.
         return !cacheDir.exists() && cacheDir.mkdirs();
     }
 
     /**
      * Download the cover with Glide (it can avoid repeating requests) and save the file.
-     * TODO maybe remove and update the call made to this method with ,null?
+     *
      * @param thumbnailUrl url of thumbnail.
-     * @param headers headers included in Glide request.
+     * @param headers      headers included in Glide request.
      */
     public void save(String thumbnailUrl, LazyHeaders headers) {
         save(thumbnailUrl, headers, null);
@@ -72,14 +79,15 @@ public class CoverCache {
 
     /**
      * Download the cover with Glide (it can avoid repeating requests) and save the file.
+     *
      * @param thumbnailUrl url of thumbnail.
-     * @param headers  headers included in Glide request.
-     * @param imageView imageView where picture should be displayed.
+     * @param headers      headers included in Glide request.
+     * @param imageView    imageView where picture should be displayed.
      */
     private void save(String thumbnailUrl, LazyHeaders headers, ImageView imageView) {
 
         // Check if url is empty.
-        if (TextUtils.isEmpty(thumbnailUrl))
+        if (thumbnailUrl == null || TextUtils.isEmpty(thumbnailUrl))
             // Do not try and create the string. Instead... only try to realize the truth. There is no string.
             return;
 
@@ -92,7 +100,7 @@ public class CoverCache {
                     public void onResourceReady(File resource, GlideAnimation<? super File> anim) {
                         try {
                             // Copy the cover from Glide's cache to local cache.
-                            add(thumbnailUrl, resource);
+                            copyToLocalCache(thumbnailUrl, resource);
 
                             // Check if imageView isn't null and show picture in imageView.
                             if (imageView != null) {
@@ -108,17 +116,18 @@ public class CoverCache {
 
     /**
      * Copy the cover from Glide's cache to local cache.
-     * //TODO rename add => copyToLocalCache?
+     *
      * @param thumbnailUrl url of thumbnail.
-     * @param source the cover image.
+     * @param source       the cover image.
      * @throws IOException TODO not returned atm?
      */
-    private void add(String thumbnailUrl, File source) throws IOException {
-        // Create cache directory. TODO is this needed. Already called in constructor.
+    private void copyToLocalCache(String thumbnailUrl, File source) throws IOException {
+        // Create cache directory and check if directory exist
         createCacheDir();
 
         // Create destination file.
         File dest = new File(cacheDir, DiskUtils.hashKeyForDisk(thumbnailUrl));
+
 
         // Check if file already exists, if true delete it.
         if (dest.exists())
@@ -143,25 +152,26 @@ public class CoverCache {
         }
     }
 
+
     /**
      * Returns the cover from cache.
-     * TODO rename get => getCoverFromCache
+     *
      * @param thumbnailUrl the thumbnail url.
      * @return cover image.
      */
-    private File get(String thumbnailUrl) {
+    private File getCoverFromCache(String thumbnailUrl) {
         return new File(cacheDir, DiskUtils.hashKeyForDisk(thumbnailUrl));
     }
 
     /**
      * Delete the cover file from the cache.
-     * TODO rename delete => deleteCoverFromCache.
+     *
      * @param thumbnailUrl the thumbnail url.
      * @return status of deletion.
      */
-    public boolean delete(String thumbnailUrl) {
+    public boolean deleteCoverFromCache(String thumbnailUrl) {
         // Check if url is empty.
-        if (TextUtils.isEmpty(thumbnailUrl))
+        if (thumbnailUrl == null || TextUtils.isEmpty(thumbnailUrl))
             return false;
 
         // Remove file.
@@ -171,13 +181,14 @@ public class CoverCache {
 
     /**
      * Save or load the image from cache
-     * @param imageView imageView where picture should be displayed.
+     *
+     * @param imageView    imageView where picture should be displayed.
      * @param thumbnailUrl the thumbnail url.
-     * @param headers headers included in Glide request.
+     * @param headers      headers included in Glide request.
      */
     public void saveOrLoadFromCache(ImageView imageView, String thumbnailUrl, LazyHeaders headers) {
         // If file exist load it otherwise save it.
-        File localCover = get(thumbnailUrl);
+        File localCover = getCoverFromCache(thumbnailUrl);
         if (localCover.exists()) {
             loadFromCache(imageView, localCover);
         } else {
@@ -188,13 +199,14 @@ public class CoverCache {
     /**
      * If the image is already in our cache, use it. If not, load it with glide.
      * TODO not used atm.
-     * @param imageView imageView where picture should be displayed.
+     *
+     * @param imageView    imageView where picture should be displayed.
      * @param thumbnailUrl url of thumbnail.
-     * @param headers headers included in Glide request.
+     * @param headers      headers included in Glide request.
      */
     public void loadFromCacheOrNetwork(ImageView imageView, String thumbnailUrl, LazyHeaders headers) {
         // If localCover exist load it  from cache otherwise load it from network.
-        File localCover = get(thumbnailUrl);
+        File localCover = getCoverFromCache(thumbnailUrl);
         if (localCover.exists()) {
             loadFromCache(imageView, localCover);
         } else {
@@ -203,9 +215,10 @@ public class CoverCache {
     }
 
     /**
-     *  Helper method to load the cover from the cache directory into the specified image view.
+     * Helper method to load the cover from the cache directory into the specified image view.
+     *
      * @param imageView imageView where picture should be displayed.
-     * @param file file to load. Must exist!.
+     * @param file      file to load. Must exist!.
      */
     private void loadFromCache(ImageView imageView, File file) {
         Glide.with(context)
@@ -218,11 +231,16 @@ public class CoverCache {
     /**
      * Helper method to load the cover from network into the specified image view.
      * It does NOT save the image in cache!
-     * @param imageView imageView where picture should be displayed.
+     *
+     * @param imageView    imageView where picture should be displayed.
      * @param thumbnailUrl url of thumbnail.
-     * @param headers headers included in Glide request.
+     * @param headers      headers included in Glide request.
      */
     public void loadFromNetwork(ImageView imageView, String thumbnailUrl, LazyHeaders headers) {
+        // Check if url is empty.
+        if (thumbnailUrl == null || TextUtils.isEmpty(thumbnailUrl))
+            return;
+
         GlideUrl url = new GlideUrl(thumbnailUrl, headers);
         Glide.with(context)
                 .load(url)
