@@ -11,17 +11,28 @@
         android:id="@+id/progress"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center_vertical|center_horizontal"
         android:visibility="gone"/>
 
-    <eu.kanade.tachiyomi.widget.AutofitRecyclerView
-        android:id="@+id/recycler"
-        style="@style/AppTheme.GridView"
+    <ViewSwitcher
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:columnWidth="140dp"
-        tools:listitem="@layout/item_catalogue" />
+        android:id="@+id/switcher">
+
+        <eu.kanade.tachiyomi.widget.AutofitRecyclerView
+            android:id="@+id/catalogue_grid"
+            style="@style/AppTheme.GridView"
+            android:columnWidth="140dp"
+            tools:listitem="@layout/item_catalogue_grid" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/catalogue_list"/>
+
+    </ViewSwitcher>
 
     <ProgressBar
         android:id="@+id/progress_grid"

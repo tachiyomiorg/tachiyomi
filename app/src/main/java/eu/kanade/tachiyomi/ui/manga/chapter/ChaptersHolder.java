@@ -7,6 +7,8 @@ import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,14 +16,12 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import eu.kanade.tachiyomi.R;
 import eu.kanade.tachiyomi.data.database.models.Chapter;
+import eu.kanade.tachiyomi.data.database.models.Manga;
 import eu.kanade.tachiyomi.data.download.model.Download;
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder;
 import rx.Observable;
 
 public class ChaptersHolder extends FlexibleViewHolder {
-
-    private final ChaptersAdapter adapter;
-    private Chapter item;
 
     @Bind(R.id.chapter_title) TextView title;
     @Bind(R.id.download_text) TextView downloadText;
@@ -29,25 +29,48 @@ public class ChaptersHolder extends FlexibleViewHolder {
     @Bind(R.id.chapter_pages) TextView pages;
     @Bind(R.id.chapter_date) TextView date;
 
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    private Context context;
+
+    private final ChaptersAdapter adapter;
+    private Chapter item;
+
+    private final int readColor;
+    private final int unreadColor;
+
+    private final DecimalFormat decimalFormat;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public ChaptersHolder(View view, ChaptersAdapter adapter, OnListItemClickListener listener) {
         super(view, adapter, listener);
         this.adapter = adapter;
+        context = view.getContext();
         ButterKnife.bind(this, view);
+
+        readColor = ContextCompat.getColor(view.getContext(), R.color.hint_text);
+        unreadColor = ContextCompat.getColor(view.getContext(), R.color.primary_text);
+
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setDecimalSeparator('.');
+        decimalFormat = new DecimalFormat("#.###", symbols);
 
         chapterMenu.setOnClickListener(v -> v.post(() -> showPopupMenu(v)));
     }
 
-    public void onSetValues(Context context, Chapter chapter) {
+    public void onSetValues(Chapter chapter, Manga manga) {
         this.item = chapter;
-        title.setText(chapter.name);
-
-        if (chapter.read) {
-            title.setTextColor(ContextCompat.getColor(context, R.color.hint_text));
-        } else {
-            title.setTextColor(ContextCompat.getColor(context, R.color.primary_text));
+        String name;
+        switch (manga.getDisplayMode()) {
+            case Manga.DISPLAY_NAME:
+            default:
+                name = chapter.name;
+                break;
+            case Manga.DISPLAY_NUMBER:
+                String formattedNumber = decimalFormat.format(chapter.chapter_number);
+                name = context.getString(R.string.display_mode_chapter, formattedNumber);
+                break;
         }
+        title.setText(name);
+        title.setTextColor(chapter.read ? readColor : unreadColor);
 
         if (!chapter.read && chapter.last_page_read > 0) {
             pages.setText(context.getString(R.string.chapter_progress, chapter.last_page_read + 1));

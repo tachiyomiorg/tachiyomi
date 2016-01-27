@@ -164,6 +164,10 @@ public class ReaderActivity extends BaseRxActivity<ReaderPresenter> {
     }
 
     public void onChapterReady(List<Page> pages, Manga manga, Chapter chapter, int currentPage) {
+        if (currentPage == -1) {
+            currentPage = pages.size() - 1;
+        }
+
         if (viewer == null) {
             viewer = createViewer(manga);
             getSupportFragmentManager().beginTransaction().replace(R.id.reader, viewer).commit();

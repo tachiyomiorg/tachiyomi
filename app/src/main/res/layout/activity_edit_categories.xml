@@ -23,6 +23,7 @@
         android:layout_gravity="bottom|right"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_action_add_18dp"
+        app:backgroundTint="@color/colorPrimary"
         app:layout_anchor="@id/categories_list"
         app:layout_anchorGravity="bottom|right|end"
         app:layout_behavior="eu.kanade.tachiyomi.ui.base.fab.ScrollAwareFABBehavior"/>

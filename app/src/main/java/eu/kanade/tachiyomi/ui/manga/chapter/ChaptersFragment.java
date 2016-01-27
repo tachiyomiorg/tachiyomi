@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import eu.kanade.tachiyomi.R;
 import eu.kanade.tachiyomi.data.database.models.Chapter;
+import eu.kanade.tachiyomi.data.database.models.Manga;
 import eu.kanade.tachiyomi.data.download.DownloadService;
 import eu.kanade.tachiyomi.data.download.model.Download;
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder;
@@ -62,6 +64,12 @@ public class ChaptersFragment extends BaseRxFragment<ChaptersPresenter> implemen
     }
 
     @Override
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -71,26 +79,14 @@ public class ChaptersFragment extends BaseRxFragment<ChaptersPresenter> implemen
         // Init RecyclerView and adapter
         linearLayout = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayout);
-        recyclerView.addItemDecoration(new DividerItemDecoration(ContextCompat.getDrawable(getContext(), R.drawable.line_divider)));
+        recyclerView.addItemDecoration(new DividerItemDecoration(
+                ContextCompat.getDrawable(getContext(), R.drawable.line_divider)));
         recyclerView.setHasFixedSize(true);
         adapter = new ChaptersAdapter(this);
         recyclerView.setAdapter(adapter);
 
-        // Set initial values
-        setReadFilter();
-        setDownloadedFilter();
-        setSortIcon();
-
-        // Init listeners
         swipeRefresh.setOnRefreshListener(this::fetchChapters);
-        readCb.setOnCheckedChangeListener((arg, isChecked) ->
-                getPresenter().setReadFilter(isChecked));
-        downloadedCb.setOnCheckedChangeListener((v, isChecked) ->
-                getPresenter().setDownloadedFilter(isChecked));
-        sortBtn.setOnClickListener(v -> {
-            getPresenter().revertSortOrder();
-            setSortIcon();
-        });
+
         nextUnreadBtn.setOnClickListener(v -> {
             Chapter chapter = getPresenter().getNextUnreadChapter();
             if (chapter != null) {
@@ -104,15 +100,40 @@ public class ChaptersFragment extends BaseRxFragment<ChaptersPresenter> implemen
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        observeChapterDownloadProgress();
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.chapters, menu);
     }
 
     @Override
-    public void onPause() {
-        unsubscribeChapterDownloadProgress();
-        super.onPause();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_display_mode:
+                showDisplayModeDialog();
+                return true;
+        }
+        return false;
+    }
+
+    public void onNextManga(Manga manga) {
+        // Remove listeners before setting the values
+        readCb.setOnCheckedChangeListener(null);
+        downloadedCb.setOnCheckedChangeListener(null);
+        sortBtn.setOnClickListener(null);
+
+        // Set initial values
+        setReadFilter();
+        setDownloadedFilter();
+        setSortIcon();
+
+        // Init listeners
+        readCb.setOnCheckedChangeListener((arg, isChecked) ->
+                getPresenter().setReadFilter(isChecked));
+        downloadedCb.setOnCheckedChangeListener((v, isChecked) ->
+                getPresenter().setDownloadedFilter(isChecked));
+        sortBtn.setOnClickListener(v -> {
+            getPresenter().revertSortOrder();
+            setSortIcon();
+        });
     }
 
     public void onNextChapters(List<Chapter> chapters) {
@@ -158,6 +179,29 @@ public class ChaptersFragment extends BaseRxFragment<ChaptersPresenter> implemen
         startActivity(intent);
     }
 
+    private void showDisplayModeDialog() {
+        final Manga manga = getPresenter().getManga();
+        if (manga == null)
+            return;
+
+        // Get available modes, ids and the selected mode
+        String[] modes = {getString(R.string.show_title), getString(R.string.show_chapter_number)};
+        int[] ids = {Manga.DISPLAY_NAME, Manga.DISPLAY_NUMBER};
+        int selectedIndex = manga.getDisplayMode() == Manga.DISPLAY_NAME ? 0 : 1;
+
+        new MaterialDialog.Builder(getActivity())
+                .items(modes)
+                .itemsIds(ids)
+                .itemsCallbackSingleChoice(selectedIndex, (dialog, itemView, which, text) -> {
+                    // Save the new display mode
+                    getPresenter().setDisplayMode(itemView.getId());
+                    // Refresh ui
+                    adapter.notifyDataSetChanged();
+                    return true;
+                })
+                .show();
+    }
+
     private void observeChapterDownloadProgress() {
         downloadProgressSubscription = getPresenter().getDownloadProgressObs()
                 .subscribe(this::onDownloadProgressChange,
@@ -175,10 +219,10 @@ public class ChaptersFragment extends BaseRxFragment<ChaptersPresenter> implemen
             holder.onProgressChange(getContext(), download.downloadedImages, download.pages.size());
     }
 
-    public void onChapterStatusChange(Chapter chapter) {
-        ChaptersHolder holder = getHolder(chapter);
+    public void onChapterStatusChange(Download download) {
+        ChaptersHolder holder = getHolder(download.chapter);
         if (holder != null)
-            holder.onStatusChange(chapter.status);
+            holder.onStatusChange(download.getStatus());
     }
 
     @Nullable

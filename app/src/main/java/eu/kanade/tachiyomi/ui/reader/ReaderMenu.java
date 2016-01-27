@@ -70,7 +70,7 @@ public class ReaderMenu {
         bottomMenu.setOnTouchListener((v, event) -> true);
 
         seekBar.setOnSeekBarChangeListener(new PageSeekBarChangeListener());
-        decimalFormat = new DecimalFormat("#.##");
+        decimalFormat = new DecimalFormat("#.###");
         inverted = false;
 
         initializeOptions();

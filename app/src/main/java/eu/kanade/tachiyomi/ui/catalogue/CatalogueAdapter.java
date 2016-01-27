@@ -31,6 +31,10 @@ public class CatalogueAdapter extends FlexibleAdapter<CatalogueHolder, Manga> {
         notifyDataSetChanged();
     }
 
+    public List<Manga> getItems() {
+        return mItems;
+    }
+
     @Override
     public long getItemId(int position) {
         return mItems.get(position).id;
@@ -44,8 +48,13 @@ public class CatalogueAdapter extends FlexibleAdapter<CatalogueHolder, Manga> {
     @Override
     public CatalogueHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = fragment.getActivity().getLayoutInflater();
-        View v = inflater.inflate(R.layout.item_catalogue, parent, false);
-        return new CatalogueHolder(v, this, fragment);
+        if (parent.getId() == R.id.catalogue_grid) {
+            View v = inflater.inflate(R.layout.item_catalogue_grid, parent, false);
+            return new CatalogueGridHolder(v, this, fragment);
+        } else {
+            View v = inflater.inflate(R.layout.item_catalogue_list, parent, false);
+            return new CatalogueListHolder(v, this, fragment);
+        }
     }
 
     @Override

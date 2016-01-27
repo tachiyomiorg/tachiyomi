@@ -35,4 +35,6 @@
 
     <string name="pref_version">pref_version</string>
     <string name="pref_build_time">pref_build_time</string>
+
+    <string name="pref_display_catalogue_as_list">pref_display_catalogue_as_list</string>
 </resources>

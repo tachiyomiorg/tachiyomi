@@ -18,6 +18,7 @@ import eu.kanade.tachiyomi.data.source.SourceManager;
 import eu.kanade.tachiyomi.data.source.base.Source;
 import eu.kanade.tachiyomi.event.ChapterCountEvent;
 import eu.kanade.tachiyomi.event.DownloadChaptersEvent;
+import eu.kanade.tachiyomi.event.MangaEvent;
 import eu.kanade.tachiyomi.event.ReaderEvent;
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter;
 import eu.kanade.tachiyomi.util.EventBusHook;
@@ -38,16 +39,16 @@ public class ChaptersPresenter extends BasePresenter<ChaptersFragment> {
     private Manga manga;
     private Source source;
     private List<Chapter> chapters;
-    private boolean sortOrderAToZ = true;
     private boolean onlyUnread = true;
     private boolean onlyDownloaded;
     @State boolean hasRequested;
 
     private PublishSubject<List<Chapter>> chaptersSubject;
 
-    private static final int DB_CHAPTERS = 1;
-    private static final int FETCH_CHAPTERS = 2;
-    private static final int CHAPTER_STATUS_CHANGES = 3;
+    private static final int GET_MANGA = 1;
+    private static final int DB_CHAPTERS = 2;
+    private static final int FETCH_CHAPTERS = 3;
+    private static final int CHAPTER_STATUS_CHANGES = 4;
 
     @Override
     protected void onCreate(Bundle savedState) {
@@ -58,6 +59,10 @@ public class ChaptersPresenter extends BasePresenter<ChaptersFragment> {
         }
 
         chaptersSubject = PublishSubject.create();
+
+        restartableLatestCache(GET_MANGA,
+                () -> Observable.just(manga),
+                ChaptersFragment::onNextManga);
 
         restartableLatestCache(DB_CHAPTERS,
                 this::getDbChaptersObs,
@@ -70,13 +75,14 @@ public class ChaptersPresenter extends BasePresenter<ChaptersFragment> {
 
         restartableLatestCache(CHAPTER_STATUS_CHANGES,
                 this::getChapterStatusObs,
-                (view, download) -> view.onChapterStatusChange(download.chapter),
+                (view, download) -> view.onChapterStatusChange(download),
                 (view, error) -> Timber.e(error.getCause(), error.getMessage()));
 
         registerForStickyEvents();
     }
 
     private void onProcessRestart() {
+        stop(GET_MANGA);
         stop(DB_CHAPTERS);
         stop(FETCH_CHAPTERS);
         stop(CHAPTER_STATUS_CHANGES);
@@ -90,10 +96,11 @@ public class ChaptersPresenter extends BasePresenter<ChaptersFragment> {
     }
 
     @EventBusHook
-    public void onEventMainThread(Manga manga) {
-        this.manga = manga;
+    public void onEventMainThread(MangaEvent event) {
+        this.manga = event.manga;
+        start(GET_MANGA);
 
-        if (!isSubscribed(DB_CHAPTERS)) {
+        if (isUnsubscribed(DB_CHAPTERS)) {
             source = sourceManager.get(manga.source);
             start(DB_CHAPTERS);
 
@@ -141,7 +148,7 @@ public class ChaptersPresenter extends BasePresenter<ChaptersFragment> {
         if (onlyDownloaded) {
             observable = observable.filter(chapter -> chapter.status == Download.DOWNLOADED);
         }
-        return observable.toSortedList((chapter, chapter2) -> sortOrderAToZ ?
+        return observable.toSortedList((chapter, chapter2) -> getSortOrder() ?
                 Float.compare(chapter2.chapter_number, chapter.chapter_number) :
                 Float.compare(chapter.chapter_number, chapter2.chapter_number));
     }
@@ -241,8 +248,8 @@ public class ChaptersPresenter extends BasePresenter<ChaptersFragment> {
     }
 
     public void revertSortOrder() {
-        //TODO manga.chapter_order
-        sortOrderAToZ = !sortOrderAToZ;
+        manga.setChapterOrder(getSortOrder() ? Manga.SORT_ZA : Manga.SORT_AZ);
+        db.insertManga(manga).executeAsBlocking();
         refreshChapters();
     }
 
@@ -257,8 +264,13 @@ public class ChaptersPresenter extends BasePresenter<ChaptersFragment> {
         refreshChapters();
     }
 
+    public void setDisplayMode(int mode) {
+        manga.setDisplayMode(mode);
+        db.insertManga(manga).executeAsBlocking();
+    }
+
     public boolean getSortOrder() {
-        return sortOrderAToZ;
+        return manga.sortChaptersAZ();
     }
 
     public boolean getReadFilter() {

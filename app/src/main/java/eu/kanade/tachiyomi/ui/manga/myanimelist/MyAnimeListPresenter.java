@@ -12,6 +12,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga;
 import eu.kanade.tachiyomi.data.database.models.MangaSync;
 import eu.kanade.tachiyomi.data.mangasync.MangaSyncManager;
 import eu.kanade.tachiyomi.data.mangasync.services.MyAnimeList;
+import eu.kanade.tachiyomi.event.MangaEvent;
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter;
 import eu.kanade.tachiyomi.util.EventBusHook;
 import eu.kanade.tachiyomi.util.ToastUtil;
@@ -102,8 +103,8 @@ public class MyAnimeListPresenter extends BasePresenter<MyAnimeListFragment> {
     }
 
     @EventBusHook
-    public void onEventMainThread(Manga manga) {
-        this.manga = manga;
+    public void onEventMainThread(MangaEvent event) {
+        this.manga = event.manga;
         start(GET_MANGA_SYNC);
     }
 

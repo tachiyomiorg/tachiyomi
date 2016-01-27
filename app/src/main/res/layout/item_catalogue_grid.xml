@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/selector_chapter_light">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_background">
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:id="@+id/image_container">
+
+            <ImageView
+                android:id="@+id/thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                tools:background="@color/md_red_100"
+                tools:src="@mipmap/ic_launcher"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_heightPercent="50%"
+                android:layout_gravity="bottom"
+                android:background="@drawable/gradient_shape"/>
+
+        </android.support.percent.PercentFrameLayout>
+
+        <TextView
+            android:id="@+id/unreadText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="@color/manga_unread_bg"
+            android:paddingBottom="1dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="1dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/favorite_sticker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/image_container"
+            android:layout_alignRight="@+id/image_container"
+            android:layout_alignTop="@+id/image_container"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_action_favorite_blue"
+            android:visibility="invisible"/>
+
+        <eu.kanade.tachiyomi.widget.PTSansTextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:typeface="ptsansNarrowBold"
+            android:lineSpacingExtra="-4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowColor="@color/primary_text"
+            android:shadowRadius="4"
+            android:layout_alignBottom="@+id/image_container"
+            tools:text="Sample name"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

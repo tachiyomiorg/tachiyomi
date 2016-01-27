@@ -38,6 +38,7 @@
     <string name="action_previous_chapter">Previous chapter</string>
     <string name="action_next_chapter">Next chapter</string>
     <string name="action_retry">Retry</string>
+    <string name="action_display_mode">Change display mode</string>
 
 
     <!-- Buttons -->
@@ -143,6 +144,7 @@
     <string name="author">Author</string>
     <string name="chapters">Chapters</string>
     <string name="genres">Genres</string>
+    <string name="source">Source</string>
     <string name="artist">Artist</string>
     <string name="description">Description</string>
     <string name="status">Status</string>
@@ -155,12 +157,15 @@
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapters</string>
     <string name="manga_chapter_no_title">No title</string>
+    <string name="display_mode_chapter">Chapter %1$s</string>
     <string name="chapter_downloaded">Downloaded</string>
     <string name="chapter_queued">Queued</string>
     <string name="chapter_downloading">Downloading</string>
     <string name="chapter_downloading_progress">Downloading (%1$d/%2$d)</string>
     <string name="chapter_error">Error</string>
     <string name="fetch_chapters_error">Error while fetching chapters</string>
+    <string name="show_title">Show title</string>
+    <string name="show_chapter_number">Show chapter number</string>
 
     <!-- MyAnimeList fragment -->
     <string name="reading">Reading</string>
