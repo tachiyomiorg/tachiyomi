@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import eu.kanade.tachiyomi.data.database.models.Chapter;
 import eu.kanade.tachiyomi.data.database.models.Manga;
@@ -26,8 +28,6 @@ import eu.kanade.tachiyomi.data.source.base.Source;
 import eu.kanade.tachiyomi.data.source.model.Page;
 import eu.kanade.tachiyomi.event.DownloadChaptersEvent;
 import eu.kanade.tachiyomi.util.DiskUtils;
-import eu.kanade.tachiyomi.util.DynamicConcurrentMergeOperator;
-import eu.kanade.tachiyomi.util.UrlUtil;
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -47,11 +47,10 @@ public class DownloadManager {
     private BehaviorSubject<Boolean> runningSubject;
     private Subscription downloadsSubscription;
 
-    private BehaviorSubject<Integer> threadsSubject;
-    private Subscription threadsSubscription;
-
     private DownloadQueue queue;
     private volatile boolean isRunning;
+
+    private ExecutorService threadPool;
 
     public static final String PAGE_LIST_FILE = "index.json";
 
@@ -65,20 +64,17 @@ public class DownloadManager {
 
         downloadsQueueSubject = PublishSubject.create();
         runningSubject = BehaviorSubject.create();
-        threadsSubject = BehaviorSubject.create();
     }
 
     private void initializeSubscriptions() {
         if (downloadsSubscription != null && !downloadsSubscription.isUnsubscribed())
             downloadsSubscription.unsubscribe();
 
-        threadsSubscription = preferences.downloadThreads().asObservable()
-                .subscribe(threadsSubject::onNext);
+        threadPool = Executors.newFixedThreadPool(preferences.downloadThreads());
 
         downloadsSubscription = downloadsQueueSubject
                 .flatMap(Observable::from)
-                .lift(new DynamicConcurrentMergeOperator<>(this::downloadChapter, threadsSubject))
-                .onBackpressureBuffer()
+                .flatMap(c -> downloadChapter(c).subscribeOn(Schedulers.from(threadPool)))
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(download -> areAllDownloadsFinished())
                 .subscribe(finished -> {
@@ -104,10 +100,9 @@ public class DownloadManager {
             downloadsSubscription = null;
         }
 
-        if (threadsSubscription != null && !threadsSubscription.isUnsubscribed()) {
-            threadsSubscription.unsubscribe();
+        if (threadPool != null && !threadPool.isShutdown()) {
+            threadPool.shutdown();
         }
-
     }
 
     // Create a download object for every chapter in the event and add them to the downloads queue
@@ -212,8 +207,7 @@ public class DownloadManager {
                 .onErrorResumeNext(error -> {
                     download.setStatus(Download.ERROR);
                     return Observable.just(download);
-                }))
-                .subscribeOn(Schedulers.io());
+                }));
     }
 
     // Get the image from the filesystem if it exists or download from network
@@ -285,15 +279,6 @@ public class DownloadManager {
     // Get the filename for an image given the page
     private String getImageFilename(Page page) {
         String url = page.getImageUrl();
-        int number = page.getPageNumber() + 1;
-        // Try to preserve file extension
-        if (UrlUtil.isJpg(url)) {
-            return number + ".jpg";
-        } else if (UrlUtil.isPng(url)) {
-            return number + ".png";
-        } else if (UrlUtil.isGif(url)) {
-            return number + ".gif";
-        }
         return Uri.parse(url).getLastPathSegment().replaceAll("[^\\sa-zA-Z0-9.-]", "_");
     }
 

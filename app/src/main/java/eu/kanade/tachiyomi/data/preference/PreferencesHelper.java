@@ -116,10 +116,6 @@ public class PreferencesHelper {
         return rxPrefs.getInteger(getKey(R.string.pref_reader_theme_key), 0);
     }
 
-    public Preference<Boolean> catalogueAsList() {
-        return rxPrefs.getBoolean(getKey(R.string.pref_display_catalogue_as_list), false);
-    }
-
     public String getSourceUsername(Source source) {
         return prefs.getString(SOURCE_ACCOUNT_USERNAME + source.getId(), "");
     }
@@ -159,8 +155,8 @@ public class PreferencesHelper {
         prefs.edit().putString(getKey(R.string.pref_download_directory_key), path).apply();
     }
 
-    public Preference<Integer> downloadThreads() {
-        return rxPrefs.getInteger(getKey(R.string.pref_download_slots_key), 1);
+    public int downloadThreads() {
+        return prefs.getInt(getKey(R.string.pref_download_slots_key), 1);
     }
 
     public boolean downloadOnlyOverWifi() {

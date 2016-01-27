@@ -10,7 +10,6 @@ import java.util.List;
 import eu.davidea.flexibleadapter.FlexibleAdapter;
 import eu.kanade.tachiyomi.R;
 import eu.kanade.tachiyomi.data.database.models.Chapter;
-import eu.kanade.tachiyomi.data.database.models.Manga;
 
 public class ChaptersAdapter extends FlexibleAdapter<ChaptersHolder, Chapter> {
 
@@ -34,8 +33,7 @@ public class ChaptersAdapter extends FlexibleAdapter<ChaptersHolder, Chapter> {
     @Override
     public void onBindViewHolder(ChaptersHolder holder, int position) {
         final Chapter chapter = getItem(position);
-        final Manga manga = fragment.getPresenter().getManga();
-        holder.onSetValues(chapter, manga);
+        holder.onSetValues(fragment.getActivity(), chapter);
 
         //When user scrolls this bind the correct selection status
         holder.itemView.setActivated(isSelected(position));

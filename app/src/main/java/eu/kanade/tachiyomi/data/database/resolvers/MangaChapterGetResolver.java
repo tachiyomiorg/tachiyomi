@@ -49,7 +49,6 @@ public class MangaChapterGetResolver extends DefaultGetResolver<MangaChapter> {
     public MangaChapter mapFromCursor(@NonNull Cursor cursor) {
         final Manga manga = mangaGetResolver.mapFromCursor(cursor);
         final Chapter chapter = chapterGetResolver.mapFromCursor(cursor);
-        manga.id = chapter.manga_id;
 
         return new MangaChapter(manga, chapter);
     }

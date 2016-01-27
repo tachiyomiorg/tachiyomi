@@ -58,7 +58,7 @@ public class LibraryPresenter extends BasePresenter<LibraryFragment> {
     @Override
     protected void onTakeView(LibraryFragment libraryFragment) {
         super.onTakeView(libraryFragment);
-        if (isUnsubscribed(GET_LIBRARY)) {
+        if (!isSubscribed(GET_LIBRARY)) {
             start(GET_LIBRARY);
         }
     }

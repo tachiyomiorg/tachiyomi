@@ -154,31 +154,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignBaseline="@id/manga_status_label"
-                            android:layout_toRightOf="@id/manga_status_label"
-                            android:ellipsize="end"
-                            android:focusable="false"
-                            android:focusableInTouchMode="false"
-                            android:maxLines="1"
-                            android:singleLine="true" />
-
-                        <TextView
-                            android:id="@+id/manga_source_label"
-                            style="@style/manga_detail_label"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true"
-                            android:layout_below="@id/manga_status_label"
-                            android:focusable="false"
-                            android:focusableInTouchMode="false"
-                            android:text="@string/source" />
-
-                        <TextView
-                            android:id="@+id/manga_source"
-                            style="@style/manga_detail_text"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_alignBaseline="@id/manga_source_label"
-                            android:layout_toRightOf="@id/manga_source_label"
+                            android:layout_toRightOf="@id/manga_chapters_label"
                             android:ellipsize="end"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
@@ -191,7 +167,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
-                            android:layout_below="@id/manga_source_label"
+                            android:layout_below="@id/manga_status_label"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
                             android:text="@string/genres" />

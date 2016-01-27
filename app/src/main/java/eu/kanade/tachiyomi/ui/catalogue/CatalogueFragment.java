@@ -4,10 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -17,12 +14,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.ViewSwitcher;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -36,13 +30,11 @@ import eu.kanade.tachiyomi.data.database.models.Manga;
 import eu.kanade.tachiyomi.data.source.base.Source;
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder;
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment;
-import eu.kanade.tachiyomi.ui.decoration.DividerItemDecoration;
 import eu.kanade.tachiyomi.ui.main.MainActivity;
 import eu.kanade.tachiyomi.ui.manga.MangaActivity;
 import eu.kanade.tachiyomi.util.ToastUtil;
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView;
-import eu.kanade.tachiyomi.widget.EndlessGridScrollListener;
-import eu.kanade.tachiyomi.widget.EndlessListScrollListener;
+import eu.kanade.tachiyomi.widget.EndlessRecyclerScrollListener;
 import icepick.State;
 import nucleus.factory.RequiresPresenter;
 import rx.Subscription;
@@ -53,17 +45,14 @@ import rx.subjects.PublishSubject;
 public class CatalogueFragment extends BaseRxFragment<CataloguePresenter>
         implements FlexibleViewHolder.OnListItemClickListener {
 
-    @Bind(R.id.switcher) ViewSwitcher switcher;
-    @Bind(R.id.catalogue_grid) AutofitRecyclerView catalogueGrid;
-    @Bind(R.id.catalogue_list) RecyclerView catalogueList;
+    @Bind(R.id.recycler) AutofitRecyclerView recycler;
     @Bind(R.id.progress) ProgressBar progress;
     @Bind(R.id.progress_grid) ProgressBar progressGrid;
 
     private Toolbar toolbar;
     private Spinner spinner;
     private CatalogueAdapter adapter;
-    private EndlessGridScrollListener gridScrollListener;
-    private EndlessListScrollListener listScrollListener;
+    private EndlessRecyclerScrollListener scrollListener;
 
     @State String query = "";
     @State int selectedIndex = -1;
@@ -71,9 +60,6 @@ public class CatalogueFragment extends BaseRxFragment<CataloguePresenter>
 
     private PublishSubject<String> queryDebouncerSubject;
     private Subscription queryDebouncerSubscription;
-
-    private MenuItem displayMode;
-    private MenuItem searchItem;
 
     public static CatalogueFragment newInstance() {
         return new CatalogueFragment();
@@ -91,32 +77,13 @@ public class CatalogueFragment extends BaseRxFragment<CataloguePresenter>
         View view = inflater.inflate(R.layout.fragment_catalogue, container, false);
         ButterKnife.bind(this, view);
 
-        // Initialize adapter, scroll listener and recycler views
+        // Initialize adapter and scroll listener
+        GridLayoutManager layoutManager = (GridLayoutManager) recycler.getLayoutManager();
         adapter = new CatalogueAdapter(this);
-
-        GridLayoutManager glm = (GridLayoutManager) catalogueGrid.getLayoutManager();
-        gridScrollListener = new EndlessGridScrollListener(glm, this::requestNextPage);
-        catalogueGrid.setHasFixedSize(true);
-        catalogueGrid.setAdapter(adapter);
-        catalogueGrid.addOnScrollListener(gridScrollListener);
-
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        listScrollListener = new EndlessListScrollListener(llm, this::requestNextPage);
-        catalogueList.setHasFixedSize(true);
-        catalogueList.setAdapter(adapter);
-        catalogueList.setLayoutManager(llm);
-        catalogueList.addOnScrollListener(listScrollListener);
-        catalogueList.addItemDecoration(new DividerItemDecoration(
-                ContextCompat.getDrawable(getContext(), R.drawable.line_divider)));
-
-        if (getPresenter().isListMode()) {
-            switcher.showNext();
-        }
-
-        Animation inAnim = AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in);
-        Animation outAnim = AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_out);
-        switcher.setInAnimation(inAnim);
-        switcher.setOutAnimation(outAnim);
+        scrollListener = new EndlessRecyclerScrollListener(layoutManager, this::requestNextPage);
+        recycler.setHasFixedSize(true);
+        recycler.setAdapter(adapter);
+        recycler.addOnScrollListener(scrollListener);
 
         // Create toolbar spinner
         Context themedContext = getBaseActivity().getSupportActionBar() != null ?
@@ -142,8 +109,7 @@ public class CatalogueFragment extends BaseRxFragment<CataloguePresenter>
                     } else {
                         selectedIndex = position;
                         showProgressBar();
-                        glm.scrollToPositionWithOffset(0, 0);
-                        llm.scrollToPositionWithOffset(0, 0);
+                        recycler.setAdapter(adapter);
                         getPresenter().startRequesting(source);
                     }
                 }
@@ -165,7 +131,7 @@ public class CatalogueFragment extends BaseRxFragment<CataloguePresenter>
         inflater.inflate(R.menu.catalogue_list, menu);
 
         // Initialize search menu
-        searchItem = menu.findItem(R.id.action_search);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) searchItem.getActionView();
 
         if (!TextUtils.isEmpty(query)) {
@@ -186,22 +152,6 @@ public class CatalogueFragment extends BaseRxFragment<CataloguePresenter>
                 return true;
             }
         });
-
-        // Show next display mode
-        displayMode = menu.findItem(R.id.action_display_mode);
-        int icon = getPresenter().isListMode() ?
-                R.drawable.ic_view_module_white_24dp : R.drawable.ic_view_list_white_24dp;
-        displayMode.setIcon(icon);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_display_mode:
-                swapDisplayMode();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -218,9 +168,6 @@ public class CatalogueFragment extends BaseRxFragment<CataloguePresenter>
 
     @Override
     public void onDestroyView() {
-        if (searchItem != null && searchItem.isActionViewExpanded()) {
-            searchItem.collapseActionView();
-        }
         toolbar.removeView(spinner);
         super.onDestroyView();
     }
@@ -247,13 +194,11 @@ public class CatalogueFragment extends BaseRxFragment<CataloguePresenter>
 
     private void restartRequest(String newQuery) {
         // If text didn't change, do nothing
-        if (query.equals(newQuery) || getPresenter().getSource() == null)
-            return;
+        if (query.equals(newQuery)) return;
 
         query = newQuery;
         showProgressBar();
-        catalogueGrid.getLayoutManager().scrollToPosition(0);
-        catalogueList.getLayoutManager().scrollToPosition(0);
+        recycler.getLayoutManager().scrollToPosition(0);
 
         getPresenter().restartRequest(query);
     }
@@ -269,8 +214,7 @@ public class CatalogueFragment extends BaseRxFragment<CataloguePresenter>
         hideProgressBar();
         if (page == 0) {
             adapter.clear();
-            gridScrollListener.resetScroll();
-            listScrollListener.resetScroll();
+            scrollListener.resetScroll();
         }
         adapter.addItems(mangas);
     }
@@ -280,28 +224,15 @@ public class CatalogueFragment extends BaseRxFragment<CataloguePresenter>
     }
 
     public void updateImage(Manga manga) {
-        CatalogueGridHolder holder = getHolder(manga);
+        CatalogueHolder holder = getHolder(manga);
         if (holder != null) {
             holder.setImage(manga, getPresenter());
         }
     }
 
-    public void swapDisplayMode() {
-        getPresenter().swapDisplayMode();
-        boolean isListMode = getPresenter().isListMode();
-        int icon = isListMode ?
-                R.drawable.ic_view_module_white_24dp : R.drawable.ic_view_list_white_24dp;
-        displayMode.setIcon(icon);
-        switcher.showNext();
-        if (!isListMode) {
-            // Initialize mangas if going to grid view
-            getPresenter().initializeMangas(adapter.getItems());
-        }
-    }
-
     @Nullable
-    private CatalogueGridHolder getHolder(Manga manga) {
-        return (CatalogueGridHolder) catalogueGrid.findViewHolderForItemId(manga.id);
+    private CatalogueHolder getHolder(Manga manga) {
+        return (CatalogueHolder) recycler.findViewHolderForItemId(manga.id);
     }
 
     private void showProgressBar() {
@@ -330,8 +261,9 @@ public class CatalogueFragment extends BaseRxFragment<CataloguePresenter>
     @Override
     public void onListItemLongClick(int position) {
         final Manga selectedManga = adapter.getItem(position);
+        final Manga dbManga = getPresenter().getDbManga(selectedManga.id);
 
-        int textRes = selectedManga.favorite ? R.string.remove_from_library : R.string.add_to_library;
+        int textRes = dbManga.favorite ? R.string.remove_from_library : R.string.add_to_library;
 
         new MaterialDialog.Builder(getActivity())
                 .items(getString(textRes))
@@ -339,7 +271,6 @@ public class CatalogueFragment extends BaseRxFragment<CataloguePresenter>
                     switch (which) {
                         case 0:
                             getPresenter().changeMangaFavorite(selectedManga);
-                            adapter.notifyItemChanged(position);
                             break;
                     }
                 })

@@ -16,7 +16,6 @@ import butterknife.ButterKnife;
 import eu.kanade.tachiyomi.R;
 import eu.kanade.tachiyomi.data.cache.CoverCache;
 import eu.kanade.tachiyomi.data.database.models.Manga;
-import eu.kanade.tachiyomi.data.source.base.Source;
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment;
 import nucleus.factory.RequiresPresenter;
 
@@ -30,7 +29,6 @@ public class MangaInfoFragment extends BaseRxFragment<MangaInfoPresenter> {
     @Bind(R.id.manga_chapters) TextView chapterCount;
     @Bind(R.id.manga_genres) TextView genres;
     @Bind(R.id.manga_status) TextView status;
-    @Bind(R.id.manga_source) TextView source;
     @Bind(R.id.manga_summary) TextView description;
     @Bind(R.id.manga_cover) ImageView cover;
 
@@ -62,22 +60,18 @@ public class MangaInfoFragment extends BaseRxFragment<MangaInfoPresenter> {
         return view;
     }
 
-    public void onNextManga(Manga manga, Source source) {
+    public void onNextManga(Manga manga) {
         if (manga.initialized) {
-            setMangaInfo(manga, source);
+            setMangaInfo(manga);
         } else {
             // Initialize manga
             fetchMangaFromSource();
         }
     }
 
-    private void setMangaInfo(Manga manga, Source mangaSource) {
+    private void setMangaInfo(Manga manga) {
         artist.setText(manga.artist);
         author.setText(manga.author);
-
-        if (mangaSource != null) {
-            source.setText(mangaSource.getName());
-        }
         genres.setText(manga.genre);
         status.setText(manga.getStatus(getActivity()));
         description.setText(manga.description);
@@ -88,7 +82,7 @@ public class MangaInfoFragment extends BaseRxFragment<MangaInfoPresenter> {
         LazyHeaders headers = getPresenter().source.getGlideHeaders();
         if (manga.thumbnail_url != null && cover.getDrawable() == null) {
             if (manga.favorite) {
-                coverCache.saveOrLoadFromCache(cover, manga.thumbnail_url, headers);
+                coverCache.saveAndLoadFromCache(cover, manga.thumbnail_url, headers);
             } else {
                 coverCache.loadFromNetwork(cover, manga.thumbnail_url, headers);
             }

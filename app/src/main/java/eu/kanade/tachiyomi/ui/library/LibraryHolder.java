@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.ui.library;
 
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +17,6 @@ import static android.widget.RelativeLayout.LayoutParams;
 
 public class LibraryHolder extends FlexibleViewHolder {
 
-    @Bind(R.id.image_container) FrameLayout container;
     @Bind(R.id.thumbnail) ImageView thumbnail;
     @Bind(R.id.title) TextView title;
     @Bind(R.id.unreadText) TextView unreadText;
@@ -26,7 +24,7 @@ public class LibraryHolder extends FlexibleViewHolder {
     public LibraryHolder(View view, LibraryCategoryAdapter adapter, OnListItemClickListener listener) {
         super(view, adapter, listener);
         ButterKnife.bind(this, view);
-        container.setLayoutParams(new LayoutParams(MATCH_PARENT, adapter.getCoverHeight()));
+        thumbnail.setLayoutParams(new LayoutParams(MATCH_PARENT, adapter.getCoverHeight()));
     }
 
     public void onSetValues(Manga manga, LibraryPresenter presenter) {
@@ -44,7 +42,7 @@ public class LibraryHolder extends FlexibleViewHolder {
 
     private void loadCover(Manga manga, Source source, CoverCache coverCache) {
         if (manga.thumbnail_url != null) {
-            coverCache.saveOrLoadFromCache(thumbnail, manga.thumbnail_url, source.getGlideHeaders());
+            coverCache.saveAndLoadFromCache(thumbnail, manga.thumbnail_url, source.getGlideHeaders());
         } else {
             thumbnail.setImageResource(android.R.color.transparent);
         }

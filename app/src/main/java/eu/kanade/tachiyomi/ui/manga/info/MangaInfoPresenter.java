@@ -10,7 +10,6 @@ import eu.kanade.tachiyomi.data.database.models.Manga;
 import eu.kanade.tachiyomi.data.source.SourceManager;
 import eu.kanade.tachiyomi.data.source.base.Source;
 import eu.kanade.tachiyomi.event.ChapterCountEvent;
-import eu.kanade.tachiyomi.event.MangaEvent;
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter;
 import eu.kanade.tachiyomi.util.EventBusHook;
 import rx.Observable;
@@ -19,18 +18,19 @@ import rx.schedulers.Schedulers;
 
 public class MangaInfoPresenter extends BasePresenter<MangaInfoFragment> {
 
+    @Inject DatabaseHelper db;
+    @Inject SourceManager sourceManager;
+    @Inject CoverCache coverCache;
+
+    private Manga manga;
+    protected Source source;
+    private int count = -1;
+
+    private boolean isFetching;
+
     private static final int GET_MANGA = 1;
     private static final int GET_CHAPTER_COUNT = 2;
     private static final int FETCH_MANGA_INFO = 3;
-    protected Source source;
-    @Inject
-    DatabaseHelper db;
-    @Inject
-    SourceManager sourceManager;
-    @Inject
-    CoverCache coverCache;
-    private Manga manga;
-    private int count = -1;
 
     @Override
     protected void onCreate(Bundle savedState) {
@@ -42,7 +42,7 @@ public class MangaInfoPresenter extends BasePresenter<MangaInfoFragment> {
 
         restartableLatestCache(GET_MANGA,
                 () -> Observable.just(manga),
-                (view, manga) -> view.onNextManga(manga, source));
+                MangaInfoFragment::onNextManga);
 
         restartableLatestCache(GET_CHAPTER_COUNT,
                 () -> Observable.just(count),
@@ -69,10 +69,10 @@ public class MangaInfoPresenter extends BasePresenter<MangaInfoFragment> {
     }
 
     @EventBusHook
-    public void onEventMainThread(MangaEvent event) {
-        this.manga = event.manga;
+    public void onEventMainThread(Manga manga) {
+        this.manga = manga;
         source = sourceManager.get(manga.source);
-        refreshManga();
+        start(GET_MANGA);
     }
 
     @EventBusHook
@@ -84,7 +84,8 @@ public class MangaInfoPresenter extends BasePresenter<MangaInfoFragment> {
     }
 
     public void fetchMangaFromSource() {
-        if (isUnsubscribed(FETCH_MANGA_INFO)) {
+        if (!isFetching) {
+            isFetching = true;
             start(FETCH_MANGA_INFO);
         }
     }
@@ -96,29 +97,23 @@ public class MangaInfoPresenter extends BasePresenter<MangaInfoFragment> {
                     db.insertManga(manga).executeAsBlocking();
                     return Observable.just(manga);
                 })
+                .finallyDo(() -> isFetching = false)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(manga -> refreshManga());
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     public void toggleFavorite() {
         manga.favorite = !manga.favorite;
         onMangaFavoriteChange(manga.favorite);
         db.insertManga(manga).executeAsBlocking();
-        refreshManga();
     }
 
     private void onMangaFavoriteChange(boolean isFavorite) {
         if (isFavorite) {
             coverCache.save(manga.thumbnail_url, source.getGlideHeaders());
         } else {
-            coverCache.deleteCoverFromCache(manga.thumbnail_url);
+            coverCache.delete(manga.thumbnail_url);
         }
-    }
-
-    // Used to refresh the view
-    private void refreshManga() {
-        start(GET_MANGA);
     }
 
 }

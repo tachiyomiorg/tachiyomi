@@ -14,7 +14,6 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import de.greenrobot.event.EventBus;
 import eu.kanade.tachiyomi.App;
 import eu.kanade.tachiyomi.R;
 import eu.kanade.tachiyomi.data.database.models.Manga;
@@ -31,21 +30,21 @@ public class MangaActivity extends BaseRxActivity<MangaPresenter> {
 
     @Bind(R.id.toolbar) Toolbar toolbar;
     @Bind(R.id.tabs) TabLayout tabs;
-    @Bind(R.id.view_pager) ViewPager viewPager;
+    @Bind(R.id.view_pager) ViewPager view_pager;
 
     @Inject PreferencesHelper preferences;
     @Inject MangaSyncManager mangaSyncManager;
 
     private MangaDetailAdapter adapter;
-    private boolean isOnline;
+    private long manga_id;
+    private boolean is_online;
 
+    public final static String MANGA_ID = "manga_id";
     public final static String MANGA_ONLINE = "manga_online";
 
     public static Intent newIntent(Context context, Manga manga) {
         Intent intent = new Intent(context, MangaActivity.class);
-        if (manga != null) {
-            EventBus.getDefault().postSticky(manga);
-        }
+        intent.putExtra(MANGA_ID, manga.id);
         return intent;
     }
 
@@ -60,19 +59,23 @@ public class MangaActivity extends BaseRxActivity<MangaPresenter> {
 
         Intent intent = getIntent();
 
-        isOnline = intent.getBooleanExtra(MANGA_ONLINE, false);
+        manga_id = intent.getLongExtra(MANGA_ID, -1);
+        is_online = intent.getBooleanExtra(MANGA_ONLINE, false);
 
         setupViewPager();
+
+        if (savedState == null)
+            getPresenter().queryManga(manga_id);
     }
 
     private void setupViewPager() {
         adapter = new MangaDetailAdapter(getSupportFragmentManager(), this);
 
-        viewPager.setAdapter(adapter);
-        tabs.setupWithViewPager(viewPager);
+        view_pager.setAdapter(adapter);
+        tabs.setupWithViewPager(view_pager);
 
-        if (!isOnline)
-            viewPager.setCurrentItem(MangaDetailAdapter.CHAPTERS_FRAGMENT);
+        if (!is_online)
+            view_pager.setCurrentItem(MangaDetailAdapter.CHAPTERS_FRAGMENT);
     }
 
     public void setManga(Manga manga) {
@@ -80,7 +83,7 @@ public class MangaActivity extends BaseRxActivity<MangaPresenter> {
     }
 
     public boolean isCatalogueManga() {
-        return isOnline;
+        return is_online;
     }
 
     class MangaDetailAdapter extends FragmentPagerAdapter {
@@ -101,7 +104,7 @@ public class MangaActivity extends BaseRxActivity<MangaPresenter> {
             };
 
             pageCount = 2;
-            if (!isOnline && mangaSyncManager.getMyAnimeList().isLogged())
+            if (!is_online && mangaSyncManager.getMyAnimeList().isLogged())
                 pageCount++;
         }
 

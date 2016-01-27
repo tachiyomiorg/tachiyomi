@@ -215,12 +215,8 @@ public class ReaderPresenter extends BasePresenter<ReaderActivity> {
                 .doOnNext(mangaSync -> this.mangaSyncList = mangaSync);
     }
 
-    private void loadChapter(Chapter chapter) {
-        loadChapter(chapter, 0);
-    }
-
     // Loads the given chapter
-    private void loadChapter(Chapter chapter, int requestedPage) {
+    private void loadChapter(Chapter chapter) {
         // Before loading the chapter, stop preloading (if it's working) and save current progress
         stopPreloadingNextChapter();
 
@@ -231,7 +227,7 @@ public class ReaderPresenter extends BasePresenter<ReaderActivity> {
         if (!chapter.read && chapter.last_page_read != 0)
             currentPage = chapter.last_page_read;
         else
-            currentPage = requestedPage;
+            currentPage = 0;
 
         // Reset next and previous chapter. They have to be fetched again
         nextChapter = null;
@@ -316,7 +312,7 @@ public class ReaderPresenter extends BasePresenter<ReaderActivity> {
     public boolean loadNextChapter() {
         if (hasNextChapter()) {
             onChapterLeft();
-            loadChapter(nextChapter, 0);
+            loadChapter(nextChapter);
             return true;
         }
         return false;
@@ -325,7 +321,7 @@ public class ReaderPresenter extends BasePresenter<ReaderActivity> {
     public boolean loadPreviousChapter() {
         if (hasPreviousChapter()) {
             onChapterLeft();
-            loadChapter(previousChapter, -1);
+            loadChapter(previousChapter);
             return true;
         }
         return false;
@@ -346,7 +342,7 @@ public class ReaderPresenter extends BasePresenter<ReaderActivity> {
     }
 
     private void stopPreloadingNextChapter() {
-        if (!isUnsubscribed(PRELOAD_NEXT_CHAPTER)) {
+        if (isSubscribed(PRELOAD_NEXT_CHAPTER)) {
             stop(PRELOAD_NEXT_CHAPTER);
             if (nextChapterPageList != null)
                 source.savePageList(nextChapter.url, nextChapterPageList);
