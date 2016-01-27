@@ -29,11 +29,9 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.appbar) AppBarLayout appBar;
     @Bind(R.id.toolbar) Toolbar toolbar;
     @Bind(R.id.drawer_container) FrameLayout container;
-
+    @State int selectedItem;
     private Drawer drawer;
     private FragmentStack fragmentStack;
-
-    @State int selectedItem;
 
     @Override
     protected void onCreate(Bundle savedState) {
@@ -53,7 +51,7 @@ public class MainActivity extends BaseActivity {
         fragmentStack = new FragmentStack(this, getSupportFragmentManager(), R.id.content_layout,
                 fragment -> {
                     if (fragment instanceof ViewWithPresenter)
-                        ((ViewWithPresenter)fragment).getPresenter().destroy();
+                        ((ViewWithPresenter) fragment).getPresenter().destroy();
                 });
 
         drawer = new DrawerBuilder()
