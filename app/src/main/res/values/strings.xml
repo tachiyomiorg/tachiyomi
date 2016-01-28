@@ -203,5 +203,9 @@
     <string name="notification_no_new_chapters">No new chapters found</string>
     <string name="notification_new_chapters">Found new chapters for:</string>
     <string name="notification_manga_update_failed">Failed updating manga:</string>
+    <string name="notification_first_add_to_library">Please add the mange to your library before doing this</string>
+
+    <!-- File Picker Titles -->
+    <string name="file_select_cover">Select cover image</string>
 
 </resources>

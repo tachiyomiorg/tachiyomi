@@ -129,11 +129,14 @@ dependencies {
     compile('com.mikepenz:materialdrawer:4.6.4@aar') {
         transitive = true
     }
+
+    //Google material icons SVG.
     compile 'com.mikepenz:google-material-typeface:2.1.0.1.original@aar'
 
     compile('com.github.afollestad.material-dialogs:core:0.8.5.3@aar') {
         transitive = true
     }
+
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:2.3.0'

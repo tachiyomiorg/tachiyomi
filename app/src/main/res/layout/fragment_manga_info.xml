@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context="eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment">
 
 
     <!-- It seems I have to wrap everything in SwipeRefreshLayout because it always take the entire height
@@ -16,8 +17,8 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -50,7 +51,7 @@
                             android:focusable="false"
                             android:focusableInTouchMode="false"
                             android:scaleType="fitXY"
-                            android:visibility="visible" />
+                            android:visibility="visible"/>
 
                     </RelativeLayout>
 
@@ -72,7 +73,7 @@
                             android:layout_marginTop="5dp"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
-                            android:text="@string/author" />
+                            android:text="@string/author"/>
 
                         <TextView
                             android:id="@+id/manga_author"
@@ -85,7 +86,7 @@
                             android:focusable="false"
                             android:focusableInTouchMode="false"
                             android:maxLines="1"
-                            android:singleLine="true" />
+                            android:singleLine="true"/>
 
                         <TextView
                             android:id="@+id/manga_artist_label"
@@ -97,7 +98,7 @@
                             android:layout_below="@id/manga_author_label"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
-                            android:text="@string/artist" />
+                            android:text="@string/artist"/>
 
                         <TextView
                             android:id="@+id/manga_artist"
@@ -110,7 +111,7 @@
                             android:focusable="false"
                             android:focusableInTouchMode="false"
                             android:maxLines="1"
-                            android:singleLine="true" />
+                            android:singleLine="true"/>
 
                         <TextView
                             android:id="@+id/manga_chapters_label"
@@ -121,7 +122,7 @@
                             android:layout_below="@id/manga_artist_label"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
-                            android:text="@string/chapters" />
+                            android:text="@string/chapters"/>
 
                         <TextView
                             android:id="@+id/manga_chapters"
@@ -134,7 +135,7 @@
                             android:focusable="false"
                             android:focusableInTouchMode="false"
                             android:maxLines="1"
-                            android:singleLine="true" />
+                            android:singleLine="true"/>
 
                         <TextView
                             android:id="@+id/manga_status_label"
@@ -146,7 +147,7 @@
                             android:layout_below="@id/manga_chapters_label"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
-                            android:text="@string/status" />
+                            android:text="@string/status"/>
 
                         <TextView
                             android:id="@+id/manga_status"
@@ -159,7 +160,7 @@
                             android:focusable="false"
                             android:focusableInTouchMode="false"
                             android:maxLines="1"
-                            android:singleLine="true" />
+                            android:singleLine="true"/>
 
                         <TextView
                             android:id="@+id/manga_source_label"
@@ -170,7 +171,7 @@
                             android:layout_below="@id/manga_status_label"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
-                            android:text="@string/source" />
+                            android:text="@string/source"/>
 
                         <TextView
                             android:id="@+id/manga_source"
@@ -183,7 +184,7 @@
                             android:focusable="false"
                             android:focusableInTouchMode="false"
                             android:maxLines="1"
-                            android:singleLine="true" />
+                            android:singleLine="true"/>
 
                         <TextView
                             android:id="@+id/manga_genres_label"
@@ -194,7 +195,7 @@
                             android:layout_below="@id/manga_source_label"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
-                            android:text="@string/genres" />
+                            android:text="@string/genres"/>
 
                         <TextView
                             android:id="@+id/manga_genres"
@@ -204,7 +205,7 @@
                             android:layout_below="@id/manga_genres_label"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
-                            android:singleLine="false" />
+                            android:singleLine="false"/>
 
 
                     </RelativeLayout>
@@ -221,7 +222,7 @@
                         android:id="@+id/action_favorite"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/add_to_library" />
+                        android:text="@string/add_to_library"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -238,19 +239,20 @@
                         android:focusable="false"
                         android:focusableInTouchMode="false"
                         android:singleLine="false"
-                        android:text="@string/description" />
+                        android:text="@string/description"/>
 
 
-                        <TextView
-                            android:id="@+id/manga_summary"
-                            style="@style/manga_detail_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:focusable="false"
-                            android:focusableInTouchMode="false"
-                            android:singleLine="false" />
-                    
+                    <TextView
+                        android:id="@+id/manga_summary"
+                        style="@style/manga_detail_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:singleLine="false"/>
+
                 </LinearLayout>
+
 
             </LinearLayout>
 
@@ -258,4 +260,24 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:gravity="bottom">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="@dimen/fab_margin"
+            app:backgroundTint="@color/colorPrimary"
+            app:layout_anchor="@id/categories_list"
+            app:layout_anchorGravity="bottom|right|end"
+            app:layout_behavior="eu.kanade.tachiyomi.ui.base.fab.ScrollAwareFABBehavior"/>
+
+    </LinearLayout>
+</RelativeLayout>

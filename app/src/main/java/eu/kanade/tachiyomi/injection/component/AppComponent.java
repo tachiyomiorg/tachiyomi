@@ -59,7 +59,6 @@ public interface AppComponent {
     void inject(LibraryUpdateService libraryUpdateService);
     void inject(DownloadService downloadService);
     void inject(UpdateMangaSyncService updateMangaSyncService);
-
     Application application();
 
 }

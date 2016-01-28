@@ -11,6 +11,7 @@
     <color name="primary">@color/colorPrimary</color>
     <color name="primary_dark">@color/colorPrimaryDark</color>
     <color name="primary_light">@color/colorPrimaryLight</color>
+    <color name="color_ripple">#E9F1FF</color>
 
     <color name="divider">@color/md_light_dividers</color>
 
