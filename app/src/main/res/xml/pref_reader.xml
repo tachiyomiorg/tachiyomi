@@ -18,6 +18,14 @@
         android:defaultValue="true" />
 
     <eu.kanade.tachiyomi.widget.preference.IntListPreference
+        android:title="Image fit"
+        android:key="@string/pref_default_fit_key"
+        android:entries="@array/fit_mode"
+        android:entryValues="@array/fit_mode_values"
+        android:defaultValue="3"
+        android:summary="%s"/>
+
+    <eu.kanade.tachiyomi.widget.preference.IntListPreference
         android:title="@string/pref_viewer_type"
         android:key="@string/pref_default_viewer_key"
         android:entries="@array/viewers"

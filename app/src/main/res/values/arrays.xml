@@ -14,6 +14,17 @@
         <item>4</item>
     </string-array>
 
+    <string-array name="fit_mode">
+        <item>@string/fit_to_width</item>
+        <item>@string/fit_to_height</item>
+        <item>@string/smart_fit</item>
+    </string-array>
+    <string-array name="fit_mode_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
     <string-array name="viewers_selector">
         <item>@string/default_viewer</item>
         <item>@string/left_to_right_viewer</item>

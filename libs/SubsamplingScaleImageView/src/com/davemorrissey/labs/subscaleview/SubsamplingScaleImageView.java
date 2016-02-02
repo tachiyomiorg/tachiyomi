@@ -126,6 +126,16 @@ public class SubsamplingScaleImageView extends View {
 
     private static final List<Integer> VALID_SCALE_TYPES = Arrays.asList(SCALE_TYPE_CENTER_CROP, SCALE_TYPE_CENTER_INSIDE, SCALE_TYPE_CUSTOM);
 
+    /* Scaling types for SCALE_TYPE_CENTER_INSIDE: */
+    /** Scale the image to fit screen width, then move to the start of the image*/
+    public static final int SCALE_TO_WIDTH=1;
+    /** Scale the image to fit screen height, then move to the start of the image*/
+    public static final int SCALE_TO_HEIGHT=2;
+    /** Scale the image to fit the smaller screen dimension, then center the image */
+    public static final int SCALE_SMART=3;
+
+    private static final List<Integer> VALID_INT_SCALE_TYPES = Arrays.asList(SCALE_TO_WIDTH, SCALE_TO_HEIGHT, SCALE_SMART);
+
     // Bitmap (preview or full image)
     private Bitmap bitmap;
 
@@ -164,6 +174,8 @@ public class SubsamplingScaleImageView extends View {
 
     // Minimum scale type
     private int minimumScaleType = SCALE_TYPE_CENTER_INSIDE;
+
+    private int internalScaleType = SCALE_TO_WIDTH;
 
     // Whether to use the thread pool executor to load tiles
     private boolean parallelLoadingEnabled;
@@ -1269,8 +1281,9 @@ public class SubsamplingScaleImageView extends View {
      * @param sat The scale we want and the translation we're aiming for. The values are adjusted to be valid.
      */
     private void fitToBounds(boolean center, ScaleAndTranslate sat) {
+
         if (panLimit == PAN_LIMIT_OUTSIDE && isReady()) {
-            center = false;
+           center = false;
         }
 
         PointF vTranslate = sat.vTranslate;
@@ -1331,7 +1344,7 @@ public class SubsamplingScaleImageView extends View {
         fitToBounds(center, satTemp);
         scale = satTemp.scale;
         vTranslate.set(satTemp.vTranslate);
-        if (init) {
+        if (init && center && internalScaleType!=SCALE_TO_WIDTH) {
             vTranslate.set(vTranslateForSCenter(sWidth()/2, sHeight()/2, scale));
         }
     }
@@ -1704,7 +1717,7 @@ public class SubsamplingScaleImageView extends View {
             try {
                 Field executorField = AsyncTask.class.getField("THREAD_POOL_EXECUTOR");
                 Executor executor = (Executor)executorField.get(null);
-                Method executeMethod = AsyncTask.class.getMethod("executeOnExecutor", new Class[] { Executor.class, Object[].class });
+                Method executeMethod = AsyncTask.class.getMethod("executeOnExecutor", Executor.class, Object[].class);
                 executeMethod.invoke(asyncTask, executor, null);
                 return;
             } catch (Exception e) {
@@ -1958,10 +1971,10 @@ public class SubsamplingScaleImageView extends View {
      */
     private Rect sourceToViewRect(Rect sRect, Rect vTarget) {
         vTarget.set(
-            (int)sourceToViewX(sRect.left),
-            (int)sourceToViewY(sRect.top),
-            (int)sourceToViewX(sRect.right),
-            (int)sourceToViewY(sRect.bottom)
+                (int) sourceToViewX(sRect.left),
+                (int) sourceToViewY(sRect.top),
+                (int) sourceToViewX(sRect.right),
+                (int) sourceToViewY(sRect.bottom)
         );
         return vTarget;
     }
@@ -2008,7 +2021,14 @@ public class SubsamplingScaleImageView extends View {
         } else if (minimumScaleType == SCALE_TYPE_CUSTOM && minScale > 0) {
             return minScale;
         } else {
-            return Math.min((getWidth() - hPadding) / (float) sWidth(), (getHeight() - vPadding) / (float) sHeight());
+            float widthScale = (getWidth() - hPadding) / (float) sWidth();
+            float heightScale = (getHeight() - vPadding) / (float) sHeight();
+
+            switch(internalScaleType){
+                case SCALE_TO_WIDTH:  return widthScale;
+                case SCALE_TO_HEIGHT: return heightScale;
+                default:return Math.min(widthScale,heightScale);
+            }
         }
     }
 
@@ -2146,6 +2166,16 @@ public class SubsamplingScaleImageView extends View {
             throw new IllegalArgumentException("Invalid scale type: " + scaleType);
         }
         this.minimumScaleType = scaleType;
+        if (isReady()) {
+            fitToBounds(true);
+            invalidate();
+        }
+    }
+    public final void setInternalScaleType(int scaleType) {
+        if (!VALID_INT_SCALE_TYPES.contains(scaleType)) {
+            throw new IllegalArgumentException("Invalid scale type: " + scaleType);
+        }
+        this.internalScaleType = scaleType;
         if (isReady()) {
             fitToBounds(true);
             invalidate();
@@ -2670,7 +2700,7 @@ public class SubsamplingScaleImageView extends View {
      * these events are triggered if the activity is paused, the image is swapped, or in other cases
      * where the view's internal state gets wiped or draw events stop.
      */
-    public static interface OnAnimationEventListener {
+    public interface OnAnimationEventListener {
 
         /**
          * The animation has completed, having reached its endpoint.
@@ -2703,7 +2733,7 @@ public class SubsamplingScaleImageView extends View {
     /**
      * An event listener, allowing subclasses and activities to be notified of significant events.
      */
-    public static interface OnImageEventListener {
+    public interface OnImageEventListener {
 
         /**
          * Called when the dimensions of the image and view are known, and either a preview image,
