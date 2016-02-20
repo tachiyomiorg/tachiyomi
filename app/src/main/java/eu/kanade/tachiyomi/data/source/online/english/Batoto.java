@@ -39,7 +39,7 @@ import rx.Observable;
 
 public class Batoto extends LoginSource {
 
-    public static final String NAME = "Batoto (EN)";
+    public static final String NAME = "(EN) Batoto";
     public static final String BASE_URL = "http://bato.to";
     public static final String POPULAR_MANGAS_URL = BASE_URL + "/search_ajax?order_cond=views&order=desc&p=%d";
     public static final String SEARCH_URL = BASE_URL + "/search_ajax?name=%s&p=%s";

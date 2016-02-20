@@ -30,7 +30,7 @@ import rx.Observable;
 
 public class Mintmanga extends Source {
 
-    public static final String NAME = "MintManga (RU)";
+    public static final String NAME = "(RU) MintManga";
     public static final String BASE_URL = "http://mintmanga.com";
     public static final String POPULAR_MANGAS_URL = BASE_URL + "/list?sortType=rate%s";
     public static final String SEARCH_URL = BASE_URL + "/search?q=%s";

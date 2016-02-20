@@ -29,7 +29,7 @@ import rx.Observable;
 
 public class Kissmanga extends Source {
 
-    public static final String NAME = "Kissmanga (EN)";
+    public static final String NAME = "(EN) Kissmanga";
     public static final String HOST = "kissmanga.com";
     public static final String IP = "93.174.95.110";
     public static final String BASE_URL = "http://" + IP;

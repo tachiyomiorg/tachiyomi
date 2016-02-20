@@ -25,7 +25,7 @@ import eu.kanade.tachiyomi.util.Parser;
 
 public class Mangafox extends Source {
 
-    public static final String NAME = "Mangafox (EN)";
+    public static final String NAME = "(EN) Mangafox";
     public static final String BASE_URL = "http://mangafox.me";
     public static final String POPULAR_MANGAS_URL = BASE_URL + "/directory/%s";
     public static final String SEARCH_URL =

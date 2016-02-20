@@ -30,7 +30,7 @@ import rx.Observable;
 
 public class Readmanga extends Source {
 
-    public static final String NAME = "ReadManga (RU)";
+    public static final String NAME = "(RU) ReadManga";
     public static final String BASE_URL = "http://readmanga.me";
     public static final String POPULAR_MANGAS_URL = BASE_URL + "/list?sortType=rate%s";
     public static final String SEARCH_URL = BASE_URL + "/search?q=%s";
