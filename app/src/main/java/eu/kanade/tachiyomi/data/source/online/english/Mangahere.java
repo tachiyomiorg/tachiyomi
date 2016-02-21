@@ -25,7 +25,7 @@ import eu.kanade.tachiyomi.util.Parser;
 
 public class Mangahere extends Source {
 
-    public static final String NAME = "Mangahere (EN)";
+    public static final String NAME = "(EN) Mangahere";
     public static final String BASE_URL = "http://www.mangahere.co";
     public static final String POPULAR_MANGAS_URL = BASE_URL + "/directory/%s";
     public static final String SEARCH_URL = BASE_URL + "/search.php?name=%s&page=%s&sort=views&order=za";

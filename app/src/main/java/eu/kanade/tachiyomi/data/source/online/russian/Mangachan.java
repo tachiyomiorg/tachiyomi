@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.data.source.online.english;
+package eu.kanade.tachiyomi.data.source.online.russian;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -21,17 +21,21 @@ import eu.kanade.tachiyomi.data.database.models.Manga;
 import eu.kanade.tachiyomi.data.source.SourceManager;
 import eu.kanade.tachiyomi.data.source.base.Source;
 import eu.kanade.tachiyomi.data.source.model.MangasPage;
+import eu.kanade.tachiyomi.data.source.model.Page;
 import eu.kanade.tachiyomi.util.Parser;
+import rx.Observable;
 
-public class Mangafox extends Source {
+import java.util.regex.*;
 
-    public static final String NAME = "(EN) Mangafox";
-    public static final String BASE_URL = "http://mangafox.me";
-    public static final String POPULAR_MANGAS_URL = BASE_URL + "/directory/%s";
+public class Mangachan extends Source {
+
+    public static final String NAME = "(RU) Mangachan";
+    public static final String BASE_URL = "http://mangachan.ru";
+    public static final String POPULAR_MANGAS_URL = BASE_URL + "/mostfavorites";
     public static final String SEARCH_URL =
-            BASE_URL + "/search.php?name_method=cw&advopts=1&order=za&sort=views&name=%s&page=%s";
+            BASE_URL + "/?do=search&subaction=search&story=%s&search_start=%s";
 
-    public Mangafox(Context context) {
+    public Mangachan(Context context) {
         super(context);
     }
 
@@ -42,7 +46,7 @@ public class Mangafox extends Source {
 
     @Override
     public int getId() {
-        return SourceManager.MANGAFOX;
+        return SourceManager.MANGACHAN;
     }
 
     @Override
@@ -64,7 +68,7 @@ public class Mangafox extends Source {
     protected List<Manga> parsePopularMangasFromHtml(Document parsedHtml) {
         List<Manga> mangaList = new ArrayList<>();
 
-        for (Element currentHtmlBlock : parsedHtml.select("div#mangalist > ul.list > li")) {
+        for (Element currentHtmlBlock : parsedHtml.select("div#content > div.content_row")) {
             Manga currentManga = constructPopularMangaFromHtmlBlock(currentHtmlBlock);
             mangaList.add(currentManga);
         }
@@ -75,7 +79,7 @@ public class Mangafox extends Source {
         Manga manga = new Manga();
         manga.source = getId();
 
-        Element urlElement = Parser.element(htmlBlock, "a.title");
+        Element urlElement = Parser.element(htmlBlock, "a.title_link");
         if (urlElement != null) {
             manga.setUrl(urlElement.attr("href"));
             manga.title = urlElement.text();
@@ -85,7 +89,7 @@ public class Mangafox extends Source {
 
     @Override
     protected String parseNextPopularMangasUrl(Document parsedHtml, MangasPage page) {
-        Element next = Parser.element(parsedHtml, "a:has(span.next)");
+        Element next = parsedHtml.select("a:contains(Вперед)").get(0);
         return next != null ? String.format(POPULAR_MANGAS_URL, next.attr("href")) : null;
     }
 
@@ -93,7 +97,7 @@ public class Mangafox extends Source {
     protected List<Manga> parseSearchFromHtml(Document parsedHtml) {
         List<Manga> mangaList = new ArrayList<>();
 
-        for (Element currentHtmlBlock : parsedHtml.select("table#listing > tbody > tr:gt(0)")) {
+        for (Element currentHtmlBlock : parsedHtml.select("div#dle-content > div.content_row")) {
             Manga currentManga = constructSearchMangaFromHtmlBlock(currentHtmlBlock);
             mangaList.add(currentManga);
         }
@@ -104,7 +108,7 @@ public class Mangafox extends Source {
         Manga mangaFromHtmlBlock = new Manga();
         mangaFromHtmlBlock.source = getId();
 
-        Element urlElement = Parser.element(htmlBlock, "a.series_preview");
+        Element urlElement = Parser.element(htmlBlock, "h2 > a");
         if (urlElement != null) {
             mangaFromHtmlBlock.setUrl(urlElement.attr("href"));
             mangaFromHtmlBlock.title = urlElement.text();
@@ -114,35 +118,39 @@ public class Mangafox extends Source {
 
     @Override
     protected String parseNextSearchUrl(Document parsedHtml, MangasPage page, String query) {
-        Element next = Parser.element(parsedHtml, "a:has(span.next)");
-        return next != null ? BASE_URL + next.attr("href") : null;
+        Element link = parsedHtml.select("a:contains(Далее)").first();
+        if (link == null) {
+            return null;
+        } else {
+            String onclick_str = link.attr("onclick");
+            String page_number = onclick_str.substring(23, onclick_str.indexOf("); return(false)"));
+            return String.format(SEARCH_URL, query, page_number);
+        }
     }
 
     @Override
     protected Manga parseHtmlToManga(String mangaUrl, String unparsedHtml) {
         Document parsedDocument = Jsoup.parse(unparsedHtml);
 
-        Element infoElement = parsedDocument.select("div#title").first();
-        Element rowElement = infoElement.select("table > tbody > tr:eq(1)").first();
-        Element sideInfoElement = parsedDocument.select("#series_info").first();
+        Element infoElement = parsedDocument.select("table.mangatitle").first();
+        String image_url = parsedDocument.select("img#cover").first().attr("src");
 
         Manga manga = Manga.create(mangaUrl);
-        manga.author = Parser.text(rowElement, "td:eq(1)");
-        manga.artist = Parser.text(rowElement, "td:eq(2)");
-        manga.description = Parser.text(infoElement, "p.summary");
-        manga.genre = Parser.text(rowElement, "td:eq(3)");
-        manga.thumbnail_url = Parser.src(sideInfoElement, "div.cover > img");
-        manga.status = parseStatus(Parser.text(sideInfoElement, ".data"));
+        manga.author = Parser.text(infoElement, "tr:eq(2) span:eq(0)");
+        manga.description = Parser.text(parsedDocument, "div#description");
+        manga.genre = Parser.text(infoElement, "tr:eq(5) span:eq(0)");
+        manga.thumbnail_url = BASE_URL + image_url;
+        manga.status = parseStatus(Parser.text(infoElement, "tr:eq(4)"));
 
         manga.initialized = true;
         return manga;
     }
 
     private int parseStatus(String status) {
-        if (status.contains("Ongoing")) {
+        if (status.contains("перевод продолжается")) {
             return Manga.ONGOING;
         }
-        if (status.contains("Completed")) {
+        if (status.contains("перевод завершен") || status.contains("Сингл")) {
             return Manga.COMPLETED;
         }
         return Manga.UNKNOWN;
@@ -154,7 +162,7 @@ public class Mangafox extends Source {
 
         List<Chapter> chapterList = new ArrayList<>();
 
-        for (Element chapterElement : parsedDocument.select("div#chapters li div")) {
+        for (Element chapterElement : parsedDocument.select("table.table_cha tr:gt(1)")) {
             Chapter currentChapter = constructChapterFromHtmlBlock(chapterElement);
             chapterList.add(currentChapter);
         }
@@ -164,8 +172,8 @@ public class Mangafox extends Source {
     private Chapter constructChapterFromHtmlBlock(Element chapterElement) {
         Chapter chapter = Chapter.create();
 
-        Element urlElement = chapterElement.select("a.tips").first();
-        Element dateElement = chapterElement.select("span.date").first();
+        Element urlElement = chapterElement.select("div.manga a").first();
+        Element dateElement = chapterElement.select("div.date").first();
 
         if (urlElement != null) {
             chapter.setUrl(urlElement.attr("href"));
@@ -180,66 +188,63 @@ public class Mangafox extends Source {
     private long parseUpdateFromElement(Element updateElement) {
         String updatedDateAsString = updateElement.text();
 
-        if (updatedDateAsString.contains("Today")) {
-            Calendar today = Calendar.getInstance();
-            today.set(Calendar.HOUR_OF_DAY, 0);
-            today.set(Calendar.MINUTE, 0);
-            today.set(Calendar.SECOND, 0);
-            today.set(Calendar.MILLISECOND, 0);
+        try {
+            Date specificDate = new SimpleDateFormat("yyyy-MM-d", Locale.ENGLISH).parse(updatedDateAsString);
 
-            try {
-                Date withoutDay = new SimpleDateFormat("h:mm a", Locale.ENGLISH).parse(updatedDateAsString.replace("Today", ""));
-                return today.getTimeInMillis() + withoutDay.getTime();
-            } catch (ParseException e) {
-                return today.getTimeInMillis();
-            }
-        } else if (updatedDateAsString.contains("Yesterday")) {
-            Calendar yesterday = Calendar.getInstance();
-            yesterday.add(Calendar.DATE, -1);
-            yesterday.set(Calendar.HOUR_OF_DAY, 0);
-            yesterday.set(Calendar.MINUTE, 0);
-            yesterday.set(Calendar.SECOND, 0);
-            yesterday.set(Calendar.MILLISECOND, 0);
-
-            try {
-                Date withoutDay = new SimpleDateFormat("h:mm a", Locale.ENGLISH).parse(updatedDateAsString.replace("Yesterday", ""));
-                return yesterday.getTimeInMillis() + withoutDay.getTime();
-            } catch (ParseException e) {
-                return yesterday.getTimeInMillis();
-            }
-        } else {
-            try {
-                Date specificDate = new SimpleDateFormat("MMM d, yyyy", Locale.ENGLISH).parse(updatedDateAsString);
-
-                return specificDate.getTime();
-            } catch (ParseException e) {
-                // Do Nothing.
-            }
+            return specificDate.getTime();
+        } catch (ParseException e) {
+            // Do Nothing.
         }
 
         return 0;
     }
 
+    // Return List of IMAGE URLS, NOT pages
+    // to get page url need to parse [div style="height:155px;background-color:#ccc;"] > a
+    // and on the page get the same urls but take only first one
     @Override
     protected List<String> parseHtmlToPageUrls(String unparsedHtml) {
-        Document parsedDocument = Jsoup.parse(unparsedHtml);
 
-        List<String> pageUrlList = new ArrayList<>();
+        List<String> imageUrlList = new ArrayList<>();
 
-        Elements pageUrlElements = parsedDocument.select("select.m").first().select("option:not([value=0])");
-        String baseUrl = parsedDocument.select("div#series a").first().attr("href").replace("1.html", "");
-        for (Element pageUrlElement : pageUrlElements) {
-            pageUrlList.add(baseUrl + pageUrlElement.attr("value") + ".html");
+        Pattern pattern = Pattern.compile("(?<=\"fullimg\":\\[).+(?=])");
+        Matcher matcher = pattern.matcher(unparsedHtml);
+
+        if (matcher.find()) {
+            String str_urls = matcher.group(0);
+            str_urls = str_urls.replace("\"", "");
+            str_urls = str_urls.replaceAll("im.?\\.", "");
+
+            /* for webp format
+            //in web browser site returns webp format of images
+            //dunno what's the difference
+            str_urls = str_urls.replace("manganew", "manganew_webp");
+            str_urls = str_urls.replace("jpg", "webp");
+            */
+
+            String[] urls = str_urls.split(",");
+            imageUrlList = Arrays.asList(urls);
         }
 
-        return pageUrlList;
+        return imageUrlList;
+    }
+
+    // image_url == page_url
+    @Override
+    public Observable<Page> getImageUrlFromPage(final Page page) {
+        page.setImageUrl(page.getUrl());
+        return Observable.just(page);
+    }
+
+    // image_url == page_url
+    @Override
+    protected List<Page> parseFirstPage(List<Page> pages, String unparsedHtml) {
+        pages.get(0).setImageUrl(pages.get(0).getUrl());
+        return pages;
     }
 
     @Override
     protected String parseHtmlToImageUrl(String unparsedHtml) {
-        Document parsedDocument = Jsoup.parse(unparsedHtml);
-
-        Element imageElement = parsedDocument.getElementById("image");
-        return imageElement.attr("src");
+        return null;
     }
 }
