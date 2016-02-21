@@ -31,7 +31,7 @@ public class Mangachan extends Source {
 
     public static final String NAME = "(RU) Mangachan";
     public static final String BASE_URL = "http://mangachan.ru";
-    public static final String POPULAR_MANGAS_URL = BASE_URL + "/mostfavorites/%s";
+    public static final String POPULAR_MANGAS_URL = BASE_URL + "/mostfavorites";
     public static final String SEARCH_URL =
             BASE_URL + "/?do=search&subaction=search&story=%s&search_start=%s";
 

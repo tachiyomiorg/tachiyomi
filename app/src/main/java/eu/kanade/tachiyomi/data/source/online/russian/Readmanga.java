@@ -32,7 +32,7 @@ public class Readmanga extends Source {
 
     public static final String NAME = "(RU) ReadManga";
     public static final String BASE_URL = "http://readmanga.me";
-    public static final String POPULAR_MANGAS_URL = BASE_URL + "/list?sortType=rate%s";
+    public static final String POPULAR_MANGAS_URL = BASE_URL + "/list?sortType=rate";
     public static final String SEARCH_URL = BASE_URL + "/search?q=%s";
 
     public Readmanga(Context context) {
@@ -116,11 +116,9 @@ public class Readmanga extends Source {
         return mangaFromHtmlBlock;
     }
 
-    // it loads 200 results. so no need in next search url
+    // loads 200 results. so no need in next search url
     @Override
     protected String parseNextSearchUrl(Document parsedHtml, MangasPage page, String query) {
-        //Element next = Parser.element(parsedHtml, "a:has(span.next)");
-        //return next != null ? BASE_URL + next.attr("href") : null;
         return null;
     }
 
@@ -132,11 +130,15 @@ public class Readmanga extends Source {
         Element infoElement = mainElement.select("div.subject-meta").first();
 
         Manga manga = Manga.create(mangaUrl);
-        manga.author = Parser.text(infoElement, "p:eq(6)").replace("Автор : ", "");
-        manga.description = Parser.text(mainElement, "div.manga-description");
-        manga.genre = Parser.text(infoElement, "p:eq(4)").replace("Жанры : ", "");
+        if (Parser.text(infoElement, "p:eq(1)").equals("Сингл")) {
+            manga.status = Manga.COMPLETED;
+        } else {
+            manga.status = parseStatus(Parser.text(infoElement, "p:eq(3)"));
+        }
+        manga.author = Parser.text(infoElement, "span.elem_author ");
+        manga.genre = Parser.allText(infoElement, "span.elem_genre ").replaceAll(" ,", ",");
         manga.thumbnail_url = Parser.src(mainElement, "div.picture-fotorama > img:eq(0)");
-        manga.status = parseStatus(Parser.text(infoElement, "p:eq(3)")); //+
+        manga.description = Parser.text(mainElement, "div.manga-description");
         manga.initialized = true;
         return manga;
     }
@@ -171,7 +173,7 @@ public class Readmanga extends Source {
         Element dateElement = chapterElement.select("td").last();
 
         if (urlElement != null) {
-            chapter.setUrl(urlElement.attr("href"));
+            chapter.setUrl(urlElement.attr("href") + "?mature=1");
             chapter.name = urlElement.text();
         }
         if (dateElement != null) {
