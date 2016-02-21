@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import eu.kanade.tachiyomi.data.database.models.Chapter;
 import eu.kanade.tachiyomi.data.database.models.Manga;
+import eu.kanade.tachiyomi.data.source.SourceManager;
 
 public class ChapterRecognition {
 
@@ -29,6 +30,20 @@ public class ChapterRecognition {
 
         String name = chapter.name.toLowerCase();
         Matcher matcher;
+
+        // for readmanga and mintmanga get chapter number from url
+        // url example: /fairytail/vol55/464?mature=1
+        // chapter_number = 55.464
+        if (manga.source == SourceManager.READMANGA || manga.source == SourceManager.MINTMANGA) {
+            try {
+                String[] url_parts = chapter.url.replace("?mature=1", "").split("/");
+                String vol_number = url_parts[url_parts.length - 2].replace("vol", "");
+                String chapter_number = url_parts[url_parts.length - 1];
+                chapter.chapter_number = Float.parseFloat(vol_number + "." + chapter_number);
+                return;
+            } catch (Exception e) {
+            }
+        }
 
         // Safest option, the chapter has a token prepended and nothing at the end of the number
         matcher = cleanWithToken.matcher(name);
@@ -60,7 +75,7 @@ public class ChapterRecognition {
         matcher = uncleanNumber.matcher(name);
         occurrences = getAllOccurrences(matcher);
         if (occurrences.size() == 1) {
-            chapter.chapter_number =  occurrences.get(0);
+            chapter.chapter_number = occurrences.get(0);
             return;
         }
 
@@ -68,7 +83,7 @@ public class ChapterRecognition {
         matcher = withColon.matcher(name);
         occurrences = getAllOccurrences(matcher);
         if (occurrences.size() == 1) {
-            chapter.chapter_number =  occurrences.get(0);
+            chapter.chapter_number = occurrences.get(0);
             return;
         }
 
@@ -76,7 +91,7 @@ public class ChapterRecognition {
         matcher = cleanNumber.matcher(name);
         occurrences = getAllOccurrences(matcher);
         if (occurrences.size() == 1) {
-            chapter.chapter_number =  occurrences.get(0);
+            chapter.chapter_number = occurrences.get(0);
             return;
         }
 
@@ -90,7 +105,7 @@ public class ChapterRecognition {
             matcher = uncleanNumber.matcher(nameWithoutManga);
             occurrences = getAllOccurrences(matcher);
             if (occurrences.size() == 1) {
-                chapter.chapter_number =  occurrences.get(0);
+                chapter.chapter_number = occurrences.get(0);
                 return;
             }
         }
@@ -142,7 +157,7 @@ public class ChapterRecognition {
      */
     private static float parseAlphaPostFix(String postfix) {
         char alpha = postfix.charAt(0);
-        return Float.parseFloat("0." + Integer.toString((int)alpha - 96));
+        return Float.parseFloat("0." + Integer.toString((int) alpha - 96));
     }
 
     public static List<Float> getAllOccurrences(Matcher matcher) {
@@ -180,6 +195,7 @@ public class ChapterRecognition {
         }
         return str2.substring(at);
     }
+
     public static int indexOfDifference(String str1, String str2) {
         if (str1 == str2) {
             return -1;
