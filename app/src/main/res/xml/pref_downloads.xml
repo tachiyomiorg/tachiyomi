@@ -10,6 +10,10 @@
         android:key="@string/pref_download_only_over_wifi_key"
         android:defaultValue="true"/>
 
+    <SwitchPreference android:title="@string/pref_delete_after_reading"
+                      android:key="@string/pref_delete_after_reading_key"
+                      android:defaultValue="false" />
+
     <eu.kanade.tachiyomi.widget.preference.IntListPreference
         android:title="@string/pref_download_slots"
         android:key="@string/pref_download_slots_key"

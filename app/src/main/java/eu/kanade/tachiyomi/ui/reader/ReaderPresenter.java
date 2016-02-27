@@ -82,8 +82,9 @@ public class ReaderPresenter extends BasePresenter<ReaderActivity> {
                 (view, pair) -> view.onAdjacentChapters(pair.first, pair.second));
 
         startable(PRELOAD_NEXT_CHAPTER, this::getPreloadNextChapterObservable,
-            next -> {},
-            error -> Timber.e("Error preloading chapter"));
+                next -> {
+                },
+                error -> Timber.e("Error preloading chapter"));
 
 
         restartable(GET_MANGA_SYNC, () -> getMangaSyncObservable().subscribe());
@@ -324,6 +325,16 @@ public class ReaderPresenter extends BasePresenter<ReaderActivity> {
         // Save current progress of the chapter. Mark as read if the chapter is finished
         if (activePage.isLastPage()) {
             activeChapter.read = true;
+
+            // Check if user want to delete manga after reading it.
+            if (prefs.deleteChapterAfterReading()) {
+                // Check if the chapter is downloaded.
+                if (activeChapter.isDownloaded()) {
+                    // Delete chapter.
+                    Observable<Chapter> chapterObservable = Observable.just(activeChapter);
+                    onDelete(chapterObservable, manga);
+                }
+            }
         }
         db.insertChapter(activeChapter).asRxObservable().subscribe();
     }
@@ -336,7 +347,7 @@ public class ReaderPresenter extends BasePresenter<ReaderActivity> {
         // If the current chapter has been read, we check with this one
         if (activeChapter.read)
             lastChapterReadLocal = (int) Math.floor(activeChapter.chapter_number);
-        // If not, we check if the previous chapter has been read
+            // If not, we check if the previous chapter has been read
         else if (previousChapter != null && previousChapter.read)
             lastChapterReadLocal = (int) Math.floor(previousChapter.chapter_number);
 
@@ -405,6 +416,55 @@ public class ReaderPresenter extends BasePresenter<ReaderActivity> {
             if (nextChapter.getPages() != null)
                 source.savePageList(nextChapter.url, nextChapter.getPages());
         }
+    }
+
+    /**
+     * Start deleting chapter
+     *
+     * @param chapters selected chapters
+     * @param manga    manga that belongs to chapter
+     * @return success of deletion.
+     */
+    protected boolean onDelete(Observable<Chapter> chapters, Manga manga) {
+        Observable<Chapter> observable = chapters
+                .concatMap(chapter -> {
+                    deleteChapter(chapter, manga);
+                    return Observable.just(chapter);
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(chapter -> {
+                    chapter.status = Download.NOT_DOWNLOADED;
+                });
+
+        deleteChapters(observable);
+
+        return true;
+    }
+
+    /**
+     * Delete selected chapter
+     *
+     * @param chapter chapter that is selected
+     * @param manga   manga that belongs to chapter
+     */
+    public void deleteChapter(Chapter chapter, Manga manga) {
+        Source source = sourceManager.get(manga.source);
+        downloadManager.deleteChapter(source, manga, chapter);
+    }
+
+    /**
+     * Delete selected chapter observable
+     *
+     * @param selectedChapters chapter that are selected
+     */
+    public void deleteChapters(Observable<Chapter> selectedChapters) {
+        add(selectedChapters
+                .subscribe(chapter -> {
+                    downloadManager.getQueue().remove(chapter);
+                }, error -> {
+                    Timber.e(error.getMessage());
+                }));
     }
 
     public void updateMangaViewer(int viewer) {

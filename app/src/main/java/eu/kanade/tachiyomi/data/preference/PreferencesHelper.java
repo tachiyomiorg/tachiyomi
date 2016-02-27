@@ -185,6 +185,14 @@ public class PreferencesHelper {
         return prefs.getBoolean(getKey(R.string.pref_download_only_over_wifi_key), true);
     }
 
+    /**
+     * Returns preference of deletion after reading chapter
+     * @return preference of deletion
+     */
+    public boolean deleteChapterAfterReading() {
+        return prefs.getBoolean(getKey(R.string.pref_delete_after_reading_key), false);
+    }
+
     public static int getLibraryUpdateInterval(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getInt(
                 context.getString(R.string.pref_library_update_interval_key), 0);
