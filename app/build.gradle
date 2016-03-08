@@ -154,10 +154,6 @@ dependencies {
     apt "com.pushtorefresh.storio:sqlite-annotations-processor:$STORIO_VERSION"
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
-    compile('com.mikepenz:materialdrawer:4.6.4@aar') {
-        transitive = true
-    }
-
     compile('com.github.afollestad.material-dialogs:core:0.8.5.6@aar') {
         transitive = true
     }

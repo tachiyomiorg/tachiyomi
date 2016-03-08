@@ -256,4 +256,9 @@
     <string name="description_backdrop">Backdrop image of selected manga</string>
     <string name="description_cover">Cover of selected manga</string>
 
+    <!-- Information Text -->
+    <string name="information_no_downloads">No Downloads</string>
+    <string name="information_no_recent">No Recent Chapters</string>
+    <string name="information_empty_library">Empty Library</string>
+
 </resources>

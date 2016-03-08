@@ -1,16 +1,16 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="margin_top">16dp</dimen>
-    <dimen name="margin_bottom">16dp</dimen>
-    <dimen name="margin_left">16dp</dimen>
-    <dimen name="margin_right">16dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">0dp</dimen>
+    <dimen name="activity_vertical_margin">0dp</dimen>
+    <dimen name="margin_top">0dp</dimen>
+    <dimen name="margin_bottom">0dp</dimen>
+    <dimen name="margin_left">0dp</dimen>
+    <dimen name="margin_right">0dp</dimen>
+    <dimen name="fab_margin">0dp</dimen>
     <dimen name="fab_size">56dp</dimen>
 
-    <dimen name="dialog_content_padding">24dp</dimen>
-    <dimen name="dialog_margin_top_content">20dp</dimen>
+    <dimen name="dialog_content_padding">0dp</dimen>
+    <dimen name="dialog_margin_top_content">0dp</dimen>
 
     <dimen name="text_headline">24sp</dimen>
     <dimen name="text_large_title">22sp</dimen>
@@ -18,5 +18,9 @@
     <dimen name="text_large_body">18sp</dimen>
     <dimen name="text_body">16sp</dimen>
     <dimen name="text_small_body">14sp</dimen>
+
+
+    <!--Nav header-->
+    <dimen name="navigation_drawer_header_margin">16dp</dimen>
 
 </resources>

@@ -49,17 +49,17 @@
             android:visibility="gone"/>
 
 
-        <com.mikepenz.iconics.view.IconicsImageView
-            android:id="@+id/favorite_sticker"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignEnd="@+id/image_container"
-            android:layout_alignRight="@+id/image_container"
-            android:layout_alignTop="@+id/image_container"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:visibility="invisible"/>
+        <!--<com.mikepenz.iconics.view.IconicsImageView-->
+            <!--android:id="@+id/favorite_sticker"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp"-->
+            <!--android:layout_alignEnd="@+id/image_container"-->
+            <!--android:layout_alignRight="@+id/image_container"-->
+            <!--android:layout_alignTop="@+id/image_container"-->
+            <!--android:layout_marginEnd="5dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:visibility="invisible"/>-->
 
         <eu.kanade.tachiyomi.widget.PTSansTextView
             android:id="@+id/title"

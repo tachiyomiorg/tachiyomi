@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="nav_drawer_library" type="id">nav_drawer_library</item>
-    <item name="nav_drawer_recent_updates" type="id">nav_drawer_recent_updates</item>
-    <item name="nav_drawer_catalogues" type="id">nav_drawer_catalogues</item>
-    <item name="nav_drawer_settings" type="id">nav_drawer_settings</item>
-    <item name="nav_drawer_downloads" type="id">nav_drawer_downloads</item>
-</resources>

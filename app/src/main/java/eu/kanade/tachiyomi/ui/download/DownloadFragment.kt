@@ -7,6 +7,9 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
+import eu.kanade.tachiyomi.ui.main.MainActivity
+import eu.kanade.tachiyomi.util.setInformationDrawable
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_download_queue.*
 import nucleus.factory.RequiresPresenter
 import rx.Subscription
@@ -73,6 +76,9 @@ class DownloadFragment : BaseRxFragment<DownloadPresenter>() {
     override fun onViewCreated(view: View, savedState: Bundle?) {
         setToolbarTitle(R.string.label_download_queue)
 
+        // Check if download queue is empty and update information accordingly.
+        setInformationView()
+
         // Initialize adapter.
         adapter = DownloadAdapter(activity)
         recycler.adapter = adapter
@@ -138,6 +144,9 @@ class DownloadFragment : BaseRxFragment<DownloadPresenter>() {
         startButton?.isVisible = !running && !presenter.downloadQueue.isEmpty()
         pauseButton?.isVisible = running
         clearButton?.isVisible = running
+
+        // Check if download queue is empty and update information accordingly.
+        setInformationView()
     }
 
     /**
@@ -175,6 +184,16 @@ class DownloadFragment : BaseRxFragment<DownloadPresenter>() {
      */
     private fun getHolder(download: Download): DownloadHolder? {
         return recycler.findViewHolderForItemId(download.chapter.id) as? DownloadHolder
+    }
+
+    /**
+     * Set information view when queue is empty
+     */
+    private fun setInformationView() {
+        if (presenter.downloadQueue.isEmpty()) {
+            ( activity as MainActivity).image_view.setInformationDrawable(R.drawable.ic_file_download_grey_128dp)
+            ( activity as MainActivity).text_label.text = getString(R.string.information_no_downloads)
+        }
     }
 
 }
