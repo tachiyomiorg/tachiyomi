@@ -15,7 +15,10 @@ import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.decoration.DividerItemDecoration
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
+import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
+import eu.kanade.tachiyomi.util.setInformationDrawable
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_recent_chapters.*
 import nucleus.factory.RequiresPresenter
 import rx.Observable
@@ -75,6 +78,11 @@ class RecentChaptersFragment : BaseRxFragment<RecentChaptersPresenter>(), Flexib
 
         // Update toolbar text
         setToolbarTitle(R.string.label_recent_updates)
+
+        // Check if recent chapters is empty and update information accordingly.
+        (activity as MainActivity).image_view.setInformationDrawable(R.drawable.ic_history_grey_128dp)
+        (activity as MainActivity).text_label.text = getString(R.string.information_no_recent)
+        (activity as MainActivity).information_layout.bringToFront()
     }
 
     /**
@@ -121,6 +129,10 @@ class RecentChaptersFragment : BaseRxFragment<RecentChaptersPresenter>(), Flexib
      * @param chapters list of chapters
      */
     fun onNextMangaChapters(chapters: List<Any>) {
+        if (!chapters.isEmpty()) {
+            ( activity as MainActivity).image_view.setInformationDrawable(null)
+            ( activity as MainActivity).text_label.text = ""
+        }
         adapter.setItems(chapters)
     }
 

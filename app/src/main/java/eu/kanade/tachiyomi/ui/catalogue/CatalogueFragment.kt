@@ -97,7 +97,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
      * Property to get the toolbar from the containing activity.
      */
     private val toolbar: Toolbar
-        get() = (activity as MainActivity).toolbar
+        get() = (activity as MainActivity).getToolbar()
 
     companion object {
 
