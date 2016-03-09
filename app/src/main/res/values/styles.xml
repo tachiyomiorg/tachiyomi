@@ -11,6 +11,10 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
     </style>
 
+    <style name="AppTheme.BrandedLaunch" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/branded_logo</item>
+    </style>
+
     <style name="AppTheme.ActionBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:spinnerItemStyle">@style/ActionBarSpinner</item>
         <item name="android:spinnerDropDownItemStyle">@style/ActionBarSpinnerItem</item>

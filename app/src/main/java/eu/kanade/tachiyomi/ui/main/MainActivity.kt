@@ -2,11 +2,9 @@ package eu.kanade.tachiyomi.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.DrawerLayout
-import android.support.v7.widget.Toolbar
 import com.mikepenz.materialdrawer.AccountHeaderBuilder
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.DrawerBuilder
@@ -21,22 +19,23 @@ import eu.kanade.tachiyomi.ui.library.LibraryFragment
 import eu.kanade.tachiyomi.ui.recent.RecentChaptersFragment
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity
 import eu.kanade.tachiyomi.util.setInformationDrawable
-import icepick.State
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import nucleus.view.ViewWithPresenter
 
 class MainActivity : BaseActivity() {
     var prevIdentifier = -1L
-    var drawer: Drawer? = null
-    private var fragmentStack: FragmentStack? = null
 
-    @State
-    var selectedItem: Long? = 0
+    lateinit var drawer: Drawer
+
+    lateinit var fragmentStack: FragmentStack
+
+    val KEY_SELECTED_ITEM = "0x00000001"
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreate(savedState: Bundle?) {
+        setTheme(R.style.AppTheme);
+        super.onCreate(savedState)
 
         // Do not let the launcher create a new activity
         if (intent.flags and Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT != 0) {
@@ -60,7 +59,7 @@ class MainActivity : BaseActivity() {
                 .withActivity(this)
                 .withTranslucentStatusBar(true)
                 .withHeaderBackground(R.drawable.header)
-                .withSavedInstance(savedInstanceState)
+                .withSavedInstance(savedState)
                 .build();
 
         drawer = DrawerBuilder()
@@ -69,7 +68,7 @@ class MainActivity : BaseActivity() {
                 .withAccountHeader(headerResult) //set the AccountHeader we created earlier for the header
                 .withActionBarDrawerToggleAnimated(true)
                 .withOnDrawerNavigationListener { view ->
-                    if ((fragmentStack as FragmentStack).size() > 1) {
+                    if (fragmentStack.size() > 1) {
                         onBackPressed()
                     }
                     false
@@ -106,73 +105,59 @@ class MainActivity : BaseActivity() {
                         }
                         prevIdentifier = identifier
 
-                        drawer?.let {
                             // Make information view invisible
                             image_view.setInformationDrawable(null)
                             text_label.text = ""
 
-                            if (identifier == R.id.nav_drawer_library.toLong()) {
-                                it.updateIcon(identifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_book_blue_24dp)))
-                                setFragment(LibraryFragment.newInstance())
-                            } else if (identifier == R.id.nav_drawer_recent_updates.toLong()) {
-                                it.updateIcon(identifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_history_blue_24dp)))
-                                setFragment(RecentChaptersFragment.newInstance())
-                            } else if (identifier == R.id.nav_drawer_catalogues.toLong()) {
-                                it.updateIcon(identifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_explore_blue_24dp)))
-                                setFragment(CatalogueFragment.newInstance())
-                            } else if (identifier == R.id.nav_drawer_downloads.toLong()) {
-                                it.updateIcon(identifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_file_download_blue_24dp)));
-                                setFragment(DownloadFragment.newInstance());
-                            } else if (identifier == R.id.nav_drawer_settings.toLong()) {
-                                startActivity(Intent(this, SettingsActivity::class.java))
-                            }
-                        }
+                        setIconToBlue(identifier)
                     }
                     false
 
                 }
-                .withSavedInstance(savedInstanceState)
+                .withSavedInstance(savedState)
                 .build()
 
-        if (savedInstanceState != null) {
+        if (savedState != null) {
             // Recover icon state after rotation
-            if ((fragmentStack as FragmentStack).size() > 1) {
+            if (fragmentStack.size() > 1) {
                 showBackArrow()
             }
 
             // Set saved selection
-            drawer?.setSelection(selectedItem as Long, false)
+            var identifier = savedState.getLong(KEY_SELECTED_ITEM)
+            drawer.setSelection(identifier, false)
+            setIconToBlue(identifier)
         } else {
             // Set default selection
-            drawer?.setSelection(R.id.nav_drawer_library.toLong())
+            drawer.setSelection(R.id.nav_drawer_library.toLong())
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        selectedItem = drawer?.currentSelection as Long
         super.onSaveInstanceState(outState)
+        outState.putLong(KEY_SELECTED_ITEM, drawer.currentSelection)
     }
 
     override fun onBackPressed() {
-        if (!(fragmentStack?.pop() as Boolean)) {
+        if (!fragmentStack.pop()) {
             super.onBackPressed()
-        } else if (fragmentStack?.size() == 1) {
+        } else if (fragmentStack.size() == 1) {
             showHamburgerIcon()
-            drawer?.actionBarDrawerToggle?.syncState()
+            drawer.actionBarDrawerToggle?.syncState()
         }
     }
 
     private fun showHamburgerIcon() {
         if (supportActionBar != null) {
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-            drawer?.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true
-            drawer?.drawerLayout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            drawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = true
+            drawer.drawerLayout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         }
     }
 
 
     fun setFragment(fragment: Fragment) {
-        fragmentStack?.replace(fragment)
+        fragmentStack.replace(fragment)
     }
 
     private fun setIconBackToGrey(prevIdentifier: Long, identifier: Long) {
@@ -180,36 +165,43 @@ class MainActivity : BaseActivity() {
         if (identifier == R.id.nav_drawer_settings.toLong())
             return
 
-        drawer?.let {
             if (prevIdentifier == R.id.nav_drawer_library.toLong()) {
-                it.updateIcon(prevIdentifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_book_grey_24dp)))
+                drawer.updateIcon(prevIdentifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_book_grey_24dp)))
             } else if (prevIdentifier == R.id.nav_drawer_recent_updates.toLong()) {
-                it.updateIcon(prevIdentifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_history_grey_24dp)))
+                drawer.updateIcon(prevIdentifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_history_grey_24dp)))
             } else if (prevIdentifier == R.id.nav_drawer_catalogues.toLong()) {
-                it.updateIcon(prevIdentifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_explore_grey_24dp)))
+                drawer.updateIcon(prevIdentifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_explore_grey_24dp)))
             } else if (prevIdentifier == R.id.nav_drawer_downloads.toLong()) {
-                it.updateIcon(prevIdentifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_file_download_grey_24dp)))
-            }
+                drawer.updateIcon(prevIdentifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_file_download_grey_24dp)))
+
         }
 
     }
 
-    fun getToolbar(): Toolbar {
-        return toolbar
+    private fun setIconToBlue(identifier: Long) {
+        if (identifier == R.id.nav_drawer_library.toLong()) {
+            drawer.updateIcon(identifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_book_blue_24dp)))
+            setFragment(LibraryFragment.newInstance())
+        } else if (identifier == R.id.nav_drawer_recent_updates.toLong()) {
+            drawer.updateIcon(identifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_history_blue_24dp)))
+            setFragment(RecentChaptersFragment.newInstance())
+        } else if (identifier == R.id.nav_drawer_catalogues.toLong()) {
+            drawer.updateIcon(identifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_explore_blue_24dp)))
+            setFragment(CatalogueFragment.newInstance())
+        } else if (identifier == R.id.nav_drawer_downloads.toLong()) {
+            drawer.updateIcon(identifier, ImageHolder(ContextCompat.getDrawable(this, R.drawable.ic_file_download_blue_24dp)));
+            setFragment(DownloadFragment.newInstance());
+        } else if (identifier == R.id.nav_drawer_settings.toLong()) {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
     }
 
-    /**
-     * TODO
-     */
-    fun getAppBar(): AppBarLayout? {
-        return appbar
-    }
 
     private fun showBackArrow() {
         if (supportActionBar != null) {
-            drawer?.actionBarDrawerToggle?.isDrawerIndicatorEnabled = false
+            drawer.actionBarDrawerToggle?.isDrawerIndicatorEnabled = false
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-            drawer?.drawerLayout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            drawer.drawerLayout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         }
     }
 }

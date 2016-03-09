@@ -129,7 +129,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
         setToolbarTitle(getString(R.string.label_library))
         ButterKnife.bind(this, view)
 
-        appBar = (activity as MainActivity).getAppBar() as AppBarLayout
+        appBar = (activity as MainActivity).appbar
         tabs = appBar.inflate(R.layout.library_tab_layout) as TabLayout
 
         // Workaround to prevent: Tab belongs to a different TabLayout.

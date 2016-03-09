@@ -24,6 +24,7 @@ import eu.kanade.tachiyomi.util.ToastUtil
 import eu.kanade.tachiyomi.widget.EndlessGridScrollListener
 import eu.kanade.tachiyomi.widget.EndlessListScrollListener
 import kotlinx.android.synthetic.main.fragment_catalogue.*
+import kotlinx.android.synthetic.main.toolbar.*
 import nucleus.factory.RequiresPresenter
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -97,7 +98,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
      * Property to get the toolbar from the containing activity.
      */
     private val toolbar: Toolbar
-        get() = (activity as MainActivity).getToolbar()
+        get() = (activity as MainActivity).toolbar
 
     companion object {
 
