@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.main
 
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -11,6 +12,7 @@ import com.mikepenz.materialdrawer.DrawerBuilder
 import com.mikepenz.materialdrawer.holder.ImageHolder
 import com.mikepenz.materialdrawer.model.DividerDrawerItem
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment
@@ -55,10 +57,15 @@ class MainActivity : BaseActivity() {
                 fragment.presenter.destroy()
         }
 
+        var profile = ProfileDrawerItem().withIcon(ContextCompat.getDrawable(baseContext, R.drawable.test)).withIdentifier(100);
+
         var headerResult = AccountHeaderBuilder()
                 .withActivity(this)
                 .withTranslucentStatusBar(true)
-                .withHeaderBackground(R.drawable.header)
+                .addProfiles(profile)
+                .withSelectionListEnabled(false)
+                .withProfileImagesClickable(false)
+                .withHeaderBackground(ColorDrawable(resources.getColor(R.color.primary, theme)))
                 .withSavedInstance(savedState)
                 .build();
 
