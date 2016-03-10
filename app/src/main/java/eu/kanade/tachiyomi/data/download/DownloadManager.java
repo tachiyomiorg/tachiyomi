@@ -379,11 +379,11 @@ public class DownloadManager {
     }
 
     public File getAbsoluteMangaDirectory(Source source, Manga manga) {
-        String chapterRelativePath = source.getName() +
+        String mangaRelativePath = source.getVisibleName() +
                 File.separator +
                 manga.title.replaceAll("[^\\sa-zA-Z0-9.-]", "_");
 
-        return new File(preferences.getDownloadsDirectory(), chapterRelativePath);
+        return new File(preferences.getDownloadsDirectory(), mangaRelativePath);
     }
 
     // Get the absolute path to the chapter directory

@@ -1,8 +1,6 @@
 package eu.kanade.tachiyomi.widget.preference
 
-import android.content.DialogInterface
 import android.os.Bundle
-import android.support.v7.preference.Preference
 import android.view.View
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.source.base.Source
@@ -16,10 +14,10 @@ class SourceLoginDialog : LoginDialogPreference() {
 
     companion object {
 
-        fun newInstance(preference: Preference): LoginDialogPreference {
+        fun newInstance(source: Source): LoginDialogPreference {
             val fragment = SourceLoginDialog()
             val bundle = Bundle(1)
-            bundle.putString("key", preference.key)
+            bundle.putInt("key", source.id)
             fragment.arguments = bundle
             return fragment
         }
@@ -30,12 +28,12 @@ class SourceLoginDialog : LoginDialogPreference() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val sourceId = Integer.parseInt(arguments.getString("key"))
+        val sourceId = arguments.getInt("key")
         source = (activity as SettingsActivity).sourceManager.get(sourceId)!!
     }
 
     override fun setCredentialsOnView(view: View) = with(view) {
-        accounts_login.text = getString(R.string.accounts_login_title, source.name)
+        title.text = getString(R.string.login_title, source.visibleName)
         username.setText(preferences.getSourceUsername(source))
         password.setText(preferences.getSourcePassword(source))
     }
@@ -58,8 +56,6 @@ class SourceLoginDialog : LoginDialogPreference() {
                                     username.text.toString(),
                                     password.text.toString())
 
-                            // Simulate a positive button click and dismiss the dialog
-                            onClick(dialog, DialogInterface.BUTTON_POSITIVE)
                             dialog.dismiss()
                             context.toast(R.string.login_success)
                         } else {

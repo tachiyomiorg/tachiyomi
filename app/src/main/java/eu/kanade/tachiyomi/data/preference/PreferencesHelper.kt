@@ -11,9 +11,7 @@ import eu.kanade.tachiyomi.data.source.base.Source
 import java.io.File
 import java.io.IOException
 
-fun <T> Preference<T>.getOrDefault(): T {
-    return get() ?: defaultValue()!!
-}
+fun <T> Preference<T>.getOrDefault(): T = get() ?: defaultValue()!!
 
 class PreferencesHelper(private val context: Context) {
 
@@ -138,6 +136,10 @@ class PreferencesHelper(private val context: Context) {
 
     fun catalogueAsList(): Preference<Boolean> {
         return rxPrefs.getBoolean(getKey(R.string.pref_display_catalogue_as_list), false)
+    }
+
+    fun enabledLanguages(): Preference<MutableSet<String>> {
+        return rxPrefs.getStringSet(getKey(R.string.pref_source_languages), setOf("EN"))
     }
 
     fun getSourceUsername(source: Source): String {

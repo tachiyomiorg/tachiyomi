@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orderingFromXml="true">
+
+    <MultiSelectListPreference
+        android:key="@string/pref_source_languages"
+        android:title="@string/languages"
+        android:summary="@string/languages_summary"/>
+
+    <PreferenceCategory
+        android:key="pref_sources"
+        android:persistent="false"
+        android:title="@string/accounts"/>
+
+</android.support.v7.preference.PreferenceScreen>

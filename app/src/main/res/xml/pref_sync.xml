@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orderingFromXml="true">
+
+    <SwitchPreferenceCompat
+        android:key="@string/pref_auto_update_manga_sync_key"
+        android:title="@string/pref_auto_update_manga_sync"
+        android:defaultValue="true"/>
+
+    <SwitchPreferenceCompat
+        android:key="@string/pref_ask_update_manga_sync_key"
+        android:title="@string/pref_ask_update_manga_sync"
+        android:defaultValue="false"
+        android:dependency="@string/pref_auto_update_manga_sync_key"/>
+
+    <PreferenceCategory
+        android:key="pref_category_manga_sync_accounts"
+        android:title="@string/services"
+        android:persistent="false"/>
+
+</android.support.v7.preference.PreferenceScreen>

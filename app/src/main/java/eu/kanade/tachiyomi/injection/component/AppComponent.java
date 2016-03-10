@@ -24,7 +24,6 @@ import eu.kanade.tachiyomi.ui.manga.info.MangaInfoPresenter;
 import eu.kanade.tachiyomi.ui.manga.myanimelist.MyAnimeListPresenter;
 import eu.kanade.tachiyomi.ui.reader.ReaderPresenter;
 import eu.kanade.tachiyomi.ui.recent.RecentChaptersPresenter;
-import eu.kanade.tachiyomi.ui.setting.SettingsAccountsFragment;
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity;
 
 @Singleton
@@ -48,8 +47,6 @@ public interface AppComponent {
     void inject(RecentChaptersPresenter recentChaptersPresenter);
 
     void inject(MangaActivity mangaActivity);
-    void inject(SettingsAccountsFragment settingsAccountsFragment);
-
     void inject(SettingsActivity settingsActivity);
 
     void inject(Source source);

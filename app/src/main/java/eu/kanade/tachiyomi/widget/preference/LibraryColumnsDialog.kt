@@ -1,15 +1,15 @@
 package eu.kanade.tachiyomi.widget.preference
 
 import android.os.Bundle
+import android.support.v14.preference.PreferenceDialogFragment
 import android.support.v7.preference.Preference
-import android.support.v7.preference.PreferenceDialogFragmentCompat
 import android.view.View
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity
 import kotlinx.android.synthetic.main.pref_library_columns.view.*
 
-class LibraryColumnsDialog : PreferenceDialogFragmentCompat() {
+class LibraryColumnsDialog : PreferenceDialogFragment() {
 
     companion object {
 

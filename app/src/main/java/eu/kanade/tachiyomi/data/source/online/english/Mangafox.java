@@ -18,13 +18,15 @@ import java.util.Locale;
 
 import eu.kanade.tachiyomi.data.database.models.Chapter;
 import eu.kanade.tachiyomi.data.database.models.Manga;
+import eu.kanade.tachiyomi.data.source.Language;
+import eu.kanade.tachiyomi.data.source.LanguageKt;
 import eu.kanade.tachiyomi.data.source.base.Source;
 import eu.kanade.tachiyomi.data.source.model.MangasPage;
 import eu.kanade.tachiyomi.util.Parser;
 
 public class Mangafox extends Source {
 
-    public static final String NAME = "Mangafox (EN)";
+    public static final String NAME = "Mangafox";
     public static final String BASE_URL = "http://mangafox.me";
     public static final String POPULAR_MANGAS_URL = BASE_URL + "/directory/%s";
     public static final String SEARCH_URL =
@@ -42,6 +44,10 @@ public class Mangafox extends Source {
     @Override
     public String getBaseUrl() {
         return BASE_URL;
+    }
+
+    public Language getLang() {
+        return LanguageKt.getEN();
     }
 
     @Override

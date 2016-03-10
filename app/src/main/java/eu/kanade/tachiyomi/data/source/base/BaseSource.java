@@ -6,6 +6,7 @@ import java.util.List;
 
 import eu.kanade.tachiyomi.data.database.models.Chapter;
 import eu.kanade.tachiyomi.data.database.models.Manga;
+import eu.kanade.tachiyomi.data.source.Language;
 import eu.kanade.tachiyomi.data.source.model.MangasPage;
 import okhttp3.Headers;
 import okhttp3.Response;
@@ -24,8 +25,15 @@ public abstract class BaseSource {
         this.id = id;
     }
 
+    public abstract Language getLang();
+
     // Name of the source to display
     public abstract String getName();
+
+    // Name of the source to display with the language
+    public String getVisibleName() {
+        return getName() + " (" + getLang().getCode() + ")";
+    }
 
     // Base url of the source, like: http://example.com
     public abstract String getBaseUrl();
@@ -86,6 +94,6 @@ public abstract class BaseSource {
 
     @Override
     public String toString() {
-        return getName();
+        return getVisibleName();
     }
 }

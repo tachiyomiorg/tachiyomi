@@ -63,8 +63,9 @@
       <!-- Subsections -->
     <string name="pref_category_general">General</string>
     <string name="pref_category_reader">Reader</string>
-    <string name="pref_category_accounts">Accounts</string>
     <string name="pref_category_downloads">Downloads</string>
+    <string name="pref_category_sources">Sources</string>
+    <string name="pref_category_sync">Sync</string>
     <string name="pref_category_advanced">Advanced</string>
     <string name="pref_category_about">About</string>
 
@@ -124,12 +125,19 @@
     <string name="rotation_force_portrait">Force portrait</string>
     <string name="rotation_force_landscape">Force landscape</string>
 
-
       <!-- Downloads section -->
     <string name="pref_download_directory">Downloads directory</string>
     <string name="pref_download_slots">Simultaneous downloads</string>
     <string name="pref_download_only_over_wifi">Only download over Wi-Fi</string>
     <string name="custom_dir">Custom directory</string>
+
+      <!-- Sources section -->
+    <string name="languages">Languages</string>
+    <string name="languages_summary">Select the languages to show sources from</string>
+    <string name="accounts">Accounts</string>
+
+      <!-- Sync section -->
+    <string name="services">Services</string>
 
       <!-- Advanced section -->
     <string name="pref_clear_chapter_cache">Clear chapter cache</string>
@@ -150,7 +158,7 @@
 
 
     <!-- Login dialog -->
-    <string name="accounts_login_title">Login for %1$s</string>
+    <string name="login_title">Login for %1$s</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="show_password">Show password</string>

@@ -21,15 +21,4 @@
         android:title="@string/pref_update_only_non_completed"
         android:defaultValue="false"/>
 
-    <SwitchPreferenceCompat
-        android:key="@string/pref_auto_update_manga_sync_key"
-        android:title="@string/pref_auto_update_manga_sync"
-        android:defaultValue="true"/>
-
-    <SwitchPreferenceCompat
-        android:key="@string/pref_ask_update_manga_sync_key"
-        android:title="@string/pref_ask_update_manga_sync"
-        android:defaultValue="false"
-        android:dependency="@string/pref_auto_update_manga_sync_key"/>
-
 </android.support.v7.preference.PreferenceScreen>

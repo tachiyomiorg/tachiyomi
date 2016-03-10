@@ -18,6 +18,8 @@ import java.util.regex.Pattern;
 import eu.kanade.tachiyomi.data.database.models.Chapter;
 import eu.kanade.tachiyomi.data.database.models.Manga;
 import eu.kanade.tachiyomi.data.network.ReqKt;
+import eu.kanade.tachiyomi.data.source.Language;
+import eu.kanade.tachiyomi.data.source.LanguageKt;
 import eu.kanade.tachiyomi.data.source.base.Source;
 import eu.kanade.tachiyomi.data.source.model.MangasPage;
 import eu.kanade.tachiyomi.data.source.model.Page;
@@ -28,7 +30,7 @@ import okhttp3.Request;
 
 public class Kissmanga extends Source {
 
-    public static final String NAME = "Kissmanga (EN)";
+    public static final String NAME = "Kissmanga";
     public static final String HOST = "kissmanga.com";
     public static final String IP = "93.174.95.110";
     public static final String BASE_URL = "http://" + IP;
@@ -54,6 +56,10 @@ public class Kissmanga extends Source {
     @Override
     public String getBaseUrl() {
         return BASE_URL;
+    }
+
+    public Language getLang() {
+        return LanguageKt.getEN();
     }
 
     @Override

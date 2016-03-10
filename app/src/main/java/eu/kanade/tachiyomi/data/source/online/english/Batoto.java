@@ -28,6 +28,8 @@ import java.util.regex.Pattern;
 import eu.kanade.tachiyomi.data.database.models.Chapter;
 import eu.kanade.tachiyomi.data.database.models.Manga;
 import eu.kanade.tachiyomi.data.network.ReqKt;
+import eu.kanade.tachiyomi.data.source.Language;
+import eu.kanade.tachiyomi.data.source.LanguageKt;
 import eu.kanade.tachiyomi.data.source.base.LoginSource;
 import eu.kanade.tachiyomi.data.source.model.MangasPage;
 import eu.kanade.tachiyomi.data.source.model.Page;
@@ -40,7 +42,7 @@ import rx.Observable;
 
 public class Batoto extends LoginSource {
 
-    public static final String NAME = "Batoto (EN)";
+    public static final String NAME = "Batoto";
     public static final String BASE_URL = "http://bato.to";
     public static final String POPULAR_MANGAS_URL = BASE_URL + "/search_ajax?order_cond=views&order=desc&p=%s";
     public static final String SEARCH_URL = BASE_URL + "/search_ajax?name=%s&p=%s";
@@ -77,6 +79,10 @@ public class Batoto extends LoginSource {
     @Override
     public String getBaseUrl() {
         return BASE_URL;
+    }
+
+    public Language getLang() {
+        return LanguageKt.getEN();
     }
 
     @Override

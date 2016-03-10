@@ -2,10 +2,11 @@
 <resources>
     <string name="pref_category_general_key">pref_category_general_key</string>
     <string name="pref_category_reader_key">pref_category_reader_key</string>
-    <string name="pref_category_accounts_key">pref_category_accounts_key</string>
+    <string name="pref_category_sync_key">pref_category_sync_key</string>
     <string name="pref_category_downloads_key">pref_category_downloads_key</string>
     <string name="pref_category_advanced_key">pref_category_advanced_key</string>
     <string name="pref_category_about_key">pref_category_about_key</string>
+    <string name="pref_category_sources_key">pref_category_sources_key</string>
 
     <string name="pref_library_columns_dialog_key">pref_library_columns_dialog_key</string>
     <string name="pref_library_columns_portrait_key">pref_library_columns_portrait_key</string>
@@ -34,6 +35,8 @@
     <string name="pref_download_directory_key">pref_download_directory_key</string>
     <string name="pref_download_slots_key">pref_download_slots_key</string>
     <string name="pref_download_only_over_wifi_key">pref_download_only_over_wifi_key</string>
+
+    <string name="pref_source_languages">pref_source_languages</string>
 
     <string name="pref_clear_chapter_cache_key">pref_clear_chapter_cache_key</string>
     <string name="pref_clear_database_key">pref_clear_database_key</string>

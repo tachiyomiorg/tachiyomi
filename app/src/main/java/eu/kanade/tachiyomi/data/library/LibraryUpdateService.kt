@@ -269,7 +269,7 @@ class LibraryUpdateService : Service() {
      */
     private fun showNotification(title: String, body: String) {
         val n = notification() {
-            setSmallIcon(R.drawable.ic_refresh_white_24dp)
+            setSmallIcon(R.drawable.ic_refresh_white_24dp_img)
             setContentTitle(title)
             setContentText(body)
         }
@@ -284,11 +284,11 @@ class LibraryUpdateService : Service() {
      */
     private fun showProgressNotification(manga: Manga, current: Int, total: Int, cancelIntent: PendingIntent) {
         val n = notification() {
-            setSmallIcon(R.drawable.ic_refresh_white_24dp)
+            setSmallIcon(R.drawable.ic_refresh_white_24dp_img)
             setContentTitle(manga.title)
             setProgress(total, current, false)
             setOngoing(true)
-            addAction(R.drawable.ic_clear_black_24dp, getString(R.string.action_cancel), cancelIntent)
+            addAction(R.drawable.ic_clear_grey_24dp_img, getString(R.string.action_cancel), cancelIntent)
         }
         notificationManager.notify(UPDATE_NOTIFICATION_ID, n)
     }
@@ -303,7 +303,7 @@ class LibraryUpdateService : Service() {
         val body = getUpdatedMangasBody(updates, failed)
 
         val n = notification() {
-            setSmallIcon(R.drawable.ic_refresh_white_24dp)
+            setSmallIcon(R.drawable.ic_refresh_white_24dp_img)
             setContentTitle(title)
             setStyle(NotificationCompat.BigTextStyle().bigText(body))
             setContentIntent(notificationIntent)

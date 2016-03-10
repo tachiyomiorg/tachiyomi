@@ -11,7 +11,6 @@ import java.util.*
 open class SourceManager(private val context: Context) {
 
     val sourcesMap: HashMap<Int, Source>
-    val sources: List<Source>
 
     val BATOTO = 1
     val MANGAHERE = 2
@@ -22,7 +21,6 @@ open class SourceManager(private val context: Context) {
 
     init {
         sourcesMap = createSourcesMap()
-        sources = ArrayList(sourcesMap.values).sortedBy { it.name }
     }
 
     open fun get(sourceKey: Int): Source? {
@@ -48,5 +46,7 @@ open class SourceManager(private val context: Context) {
         }
         return map
     }
+
+    fun getSources(): List<Source> = ArrayList(sourcesMap.values)
 
 }

@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.ui.setting
 
 import android.os.Bundle
-import android.support.v7.preference.PreferenceFragmentCompat
+import android.support.v14.preference.PreferenceFragment
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
@@ -28,19 +28,19 @@ class SettingsActivity : BaseActivity() {
         setupToolbar(toolbar)
 
         if (savedState == null) {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.settings_content,SettingsMainFragment())
+            fragmentManager.beginTransaction()
+                    .replace(R.id.settings_content, SettingsMainFragment())
                     .commit()
         }
     }
 
     override fun onBackPressed() {
-        if (!supportFragmentManager.popBackStackImmediate()) {
+        if (!fragmentManager.popBackStackImmediate()) {
             super.onBackPressed()
         }
     }
 
-    class SettingsMainFragment : PreferenceFragmentCompat() {
+    class SettingsMainFragment : PreferenceFragment() {
 
         override fun onCreatePreferences(savedState: Bundle?, s: String?) {
             addPreferencesFromResource(R.xml.pref_main)
@@ -57,8 +57,12 @@ class SettingsActivity : BaseActivity() {
                 SettingsDownloadsFragment.newInstance(R.xml.pref_downloads, R.string.pref_category_downloads)
             }
 
-            registerSubpreference(R.string.pref_category_accounts_key) {
-                SettingsAccountsFragment.newInstance(R.xml.pref_accounts, R.string.pref_category_accounts)
+            registerSubpreference(R.string.pref_category_sources_key) {
+                SettingsSourcesFragment.newInstance(R.xml.pref_sources, R.string.pref_category_sources)
+            }
+
+            registerSubpreference(R.string.pref_category_sync_key) {
+                SettingsSyncFragment.newInstance(R.xml.pref_sync, R.string.pref_category_sync)
             }
 
             registerSubpreference(R.string.pref_category_advanced_key) {
@@ -75,7 +79,7 @@ class SettingsActivity : BaseActivity() {
             (activity as BaseActivity).setToolbarTitle(getString(R.string.label_settings))
         }
 
-        private fun registerSubpreference(preferenceResource: Int, func: () -> PreferenceFragmentCompat) {
+        private fun registerSubpreference(preferenceResource: Int, func: () -> PreferenceFragment) {
             findPreference(getString(preferenceResource)).setOnPreferenceClickListener {
                 val fragment = func()
                 fragmentManager.beginTransaction()

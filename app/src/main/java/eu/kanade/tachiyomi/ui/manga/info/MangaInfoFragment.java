@@ -143,7 +143,7 @@ public class MangaInfoFragment extends BaseRxFragment<MangaInfoPresenter> {
 
         // If manga source is known update source TextView.
         if (mangaSource != null) {
-            source.setText(mangaSource.getName());
+            source.setText(mangaSource.getVisibleName());
         }
 
         // Update genres TextView.

@@ -169,7 +169,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
         val themedContext = baseActivity.supportActionBar?.themedContext ?: activity
 
         val spinnerAdapter = ArrayAdapter(themedContext,
-                android.R.layout.simple_spinner_item, presenter.getEnabledSources())
+                android.R.layout.simple_spinner_item, presenter.sources)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         val onItemSelected = object : AdapterView.OnItemSelectedListener {
@@ -354,8 +354,12 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
      */
     fun onAddPageError(error: Throwable) {
         hideProgressBar()
-        ToastUtil.showShort(context, error.message)
         Timber.e(error, error.message)
+
+        baseActivity.snack(error.message, R.string.action_retry, {
+            showProgressBar()
+            presenter.retryRequest()
+        })
     }
 
     /**

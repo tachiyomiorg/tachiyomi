@@ -1,10 +1,10 @@
 package eu.kanade.tachiyomi.ui.setting
 
 import android.os.Bundle
-import android.support.v7.preference.PreferenceFragmentCompat
+import android.support.v14.preference.PreferenceFragment
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 
-open class SettingsNestedFragment : PreferenceFragmentCompat() {
+open class SettingsNestedFragment : PreferenceFragment() {
 
     companion object {
 

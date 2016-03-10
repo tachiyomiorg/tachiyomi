@@ -9,8 +9,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/accounts_login_title"
-        android:id="@+id/accounts_login"
+        android:text="@string/login_title"
+        android:id="@+id/title"
         android:textStyle="bold"
         android:textSize="16sp"
         android:layout_gravity="center_horizontal" />
