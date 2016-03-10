@@ -22,7 +22,9 @@ import eu.kanade.tachiyomi.ui.category.CategoryActivity
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.ToastUtil
 import eu.kanade.tachiyomi.util.inflate
+import eu.kanade.tachiyomi.util.setInformationDrawable
 import eu.kanade.tachiyomi.util.toast
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_library.*
 import nucleus.factory.RequiresPresenter
 import org.greenrobot.eventbus.EventBus
@@ -127,7 +129,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
         setToolbarTitle(getString(R.string.label_library))
         ButterKnife.bind(this, view)
 
-        appBar = (activity as MainActivity).appBar
+        appBar = (activity as MainActivity).appbar
         tabs = appBar.inflate(R.layout.library_tab_layout) as TabLayout
 
         // Workaround to prevent: Tab belongs to a different TabLayout.
@@ -260,6 +262,15 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
      * @param mangaMap a map containing the manga for each category.
      */
     fun onNextLibraryUpdate(categories: List<Category>, mangaMap: Map<Int, List<Manga>>) {
+        // Check if library is empty and update information accordingly.
+        if (mangaMap.isEmpty()) {
+            (activity as MainActivity).image_view.setInformationDrawable(R.drawable.ic_book_grey_128dp)
+            (activity as MainActivity).text_label.text = getString(R.string.information_empty_library)
+        } else {
+            ( activity as MainActivity).image_view.setInformationDrawable(null)
+            ( activity as MainActivity).text_label.text = ""
+        }
+
         // Get the current active category.
         val activeCat = if (adapter.categories != null) view_pager.currentItem else activeCategory
 

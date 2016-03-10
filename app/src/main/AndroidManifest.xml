@@ -17,7 +17,8 @@
         android:hardwareAccelerated="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".ui.main.MainActivity">
+            android:name=".ui.main.MainActivity"
+            android:theme="@style/AppTheme.BrandedLaunch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
