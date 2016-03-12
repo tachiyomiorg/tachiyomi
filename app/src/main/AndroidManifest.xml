@@ -15,10 +15,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:hardwareAccelerated="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/Theme.Tachiyomi" >
         <activity
             android:name=".ui.main.MainActivity"
-            android:theme="@style/AppTheme.BrandedLaunch">
+            android:theme="@style/Theme.BrandedLaunch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

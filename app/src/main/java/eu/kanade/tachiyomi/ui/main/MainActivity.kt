@@ -6,13 +6,15 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.view.MenuItem
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment
 import eu.kanade.tachiyomi.ui.download.DownloadFragment
 import eu.kanade.tachiyomi.ui.library.LibraryFragment
 import eu.kanade.tachiyomi.ui.recent.RecentChaptersFragment
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity
-import eu.kanade.tachiyomi.util.setInformationDrawable
+import eu.kanade.tachiyomi.util.setDrawableCompat
+import eu.kanade.tachiyomi.util.setTheme
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import nucleus.view.ViewWithPresenter
@@ -22,7 +24,7 @@ class MainActivity : BaseActivity() {
 
 
     override fun onCreate(savedState: Bundle?) {
-        setTheme(R.style.AppTheme);
+        this.setTheme()
         super.onCreate(savedState)
 
         // Do not let the launcher create a new activity
@@ -48,7 +50,7 @@ class MainActivity : BaseActivity() {
         nav_view.setNavigationItemSelectedListener(
                 { menuItem ->
                     // Make information view invisible
-                    image_view.setInformationDrawable(null)
+                    image_view.setDrawableCompat(null)
                     text_label.text = ""
 
                     when (menuItem.itemId) {
@@ -83,6 +85,8 @@ class MainActivity : BaseActivity() {
 
         setFragment(LibraryFragment.newInstance())
     }
+
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

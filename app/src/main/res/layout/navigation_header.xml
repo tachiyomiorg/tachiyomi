@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        android:background="@drawable/header" />
+        android:src="@drawable/header" />
 
     <ImageView
         android:layout_marginLeft="16dp"
@@ -17,7 +17,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/test" />
+        android:src="@drawable/test"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,16 +34,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center_vertical"
-            android:text="Desarrollador Android"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+            android:text="John Doe"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center_vertical"
-            android:text="thedahnark@gmail.com"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            android:text="email@email.com"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

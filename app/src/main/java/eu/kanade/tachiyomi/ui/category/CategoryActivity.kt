@@ -12,7 +12,9 @@ import android.view.MenuItem
 import com.afollestad.materialdialogs.MaterialDialog
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.util.setTheme
 import eu.kanade.tachiyomi.data.database.models.Category
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseRxActivity
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.adapter.OnStartDragListener
@@ -57,6 +59,7 @@ class CategoryActivity : BaseRxActivity<CategoryPresenter>(), ActionMode.Callbac
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        this.setTheme()
         super.onCreate(savedInstanceState)
 
         // Inflate activity_edit_categories.xml.

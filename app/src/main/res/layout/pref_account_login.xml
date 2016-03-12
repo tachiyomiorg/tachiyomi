@@ -17,7 +17,7 @@
     <View android:id="@+id/titleDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/line_grey"
+        android:background="@color/dividerLight"
         android:layout_marginTop="6dp"
         android:layout_marginBottom="24dp"/>
 

@@ -22,6 +22,16 @@
         <item>@string/webtoon_viewer</item>
     </string-array>
 
+    <string-array name="themes_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="themes">
+        <item>"Light Theme"</item>
+        <item>"Dark Theme"</item>
+    </string-array>
+
     <string-array name="download_slots">
         <item>1</item>
         <item>2</item>

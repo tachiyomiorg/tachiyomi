@@ -1,10 +1,15 @@
 package eu.kanade.tachiyomi.ui.setting
 
+import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.TaskStackBuilder
 import android.support.v7.preference.Preference
 import android.view.View
+import android.widget.Toast
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.library.LibraryUpdateAlarm
+import eu.kanade.tachiyomi.ui.main.MainActivity
+import eu.kanade.tachiyomi.util.ToastUtil
 import eu.kanade.tachiyomi.widget.preference.IntListPreference
 import eu.kanade.tachiyomi.widget.preference.LibraryColumnsDialog
 import eu.kanade.tachiyomi.widget.preference.SimpleDialogPreference
@@ -29,11 +34,24 @@ class SettingsGeneralFragment : SettingsNestedFragment() {
         findPreference(getString(R.string.pref_library_update_interval_key)) as IntListPreference
     }
 
+    val themePreference by lazy {
+        findPreference(getString(R.string.pref_theme_key)) as IntListPreference
+    }
+
     var columnsSubscription: Subscription? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         updateInterval.setOnPreferenceChangeListener { preference, newValue ->
             LibraryUpdateAlarm.startAlarm(activity, (newValue as String).toInt())
+            true
+        }
+
+        themePreference.setOnPreferenceChangeListener { preference, newValue ->
+            // Rebuild activity's to apply themes.
+            TaskStackBuilder.create(activity)
+                    .addNextIntent(Intent(activity, MainActivity::class.java))
+                    .addNextIntent(activity.intent)
+                    .startActivities()
             true
         }
     }

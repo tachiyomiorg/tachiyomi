@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base Themes -->
+    <style name="Theme" />
+
+    <!-- Light Themes -->
+    <style name="Theme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+    <style name="Theme.Tachiyomi" parent="Theme.Base">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/textColorPrimaryLight</item>
+        <item name="android:textColorSecondary">@color/textColorSecondaryLight</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorPrimaryDark</item>
+        <item name="android:textColorSecondaryInverse">@color/textColorSecondaryDark</item>
+        <item name="android:colorBackground">@color/backgroundLight</item>
+        <item name="android:listSelector">@color/colorAccent</item>
+
+        <!-- Themes -->
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeBackground">?colorPrimaryDark</item>
+        <item name="actionBarTheme">@style/Theme.ActionBar</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+
+        <!-- Custom Attributes-->
+        <item name="selectable_list_drawable">@drawable/selector_item_edit_categories_light</item>
+    </style>
+
+    <!-- Dark Themes-->
+    <style name="Theme.Base.Dark" parent="Theme.AppCompat.NoActionBar">
+    </style>
+
+    <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/textColorPrimaryDark</item>
+        <item name="android:textColorSecondary">@color/textColorSecondaryDark</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorPrimaryLight</item>
+        <item name="android:textColorSecondaryInverse">@color/textColorSecondaryLight</item>
+        <item name="android:colorBackground">@color/backgroundDark</item>
+        <item name="android:listSelector">@color/colorAccent</item>
+
+        <!-- Themes -->
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeBackground">?colorPrimaryDark</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+
+        <!-- Custom Attributes-->
+        <item name="selectable_list_drawable">@drawable/selector_item_edit_categories_dark</item>
+    </style>
+
+
+    <!-- Launch Screen -->
+    <style name="Theme.BrandedLaunch">
+        <item name="android:windowBackground">@drawable/branded_logo</item>
+    </style>
+
+
+</resources>

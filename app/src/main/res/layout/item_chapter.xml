@@ -51,7 +51,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:textAllCaps="true"
-                android:textColor="@color/accent_text"
+                android:textColor="?android:attr/textColorSecondary"
                 android:textSize="12sp"/>
         </RelativeLayout>
 

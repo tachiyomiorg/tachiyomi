@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/chapter_list"
+            android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
@@ -41,7 +41,7 @@
         android:theme="@style/AppTheme.Popup">
 
         <ImageView
-            android:id="@+id/action_sort"
+            android:id="@+id/sort_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -52,9 +52,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toEndOf="@+id/action_sort"
-            android:layout_toLeftOf="@+id/action_next_unread"
-            android:layout_toRightOf="@+id/action_sort"
+            android:layout_toEndOf="@+id/sort_btn"
+            android:layout_toLeftOf="@+id/next_unread_btn"
+            android:layout_toRightOf="@+id/sort_btn"
             android:gravity="center_vertical">
 
             <View
@@ -64,7 +64,7 @@
                 android:background="@color/white"/>
 
             <CheckBox
-                android:id="@+id/action_show_unread"
+                android:id="@+id/show_unread"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -73,7 +73,7 @@
                 android:title="@string/action_show_unread"/>
 
             <CheckBox
-                android:id="@+id/action_show_downloaded"
+                android:id="@+id/show_downloaded"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -90,7 +90,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/action_next_unread"
+            android:id="@+id/next_unread_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"

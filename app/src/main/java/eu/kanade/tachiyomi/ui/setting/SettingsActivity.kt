@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.setting
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v14.preference.PreferenceFragment
 import eu.kanade.tachiyomi.R
@@ -9,7 +10,9 @@ import eu.kanade.tachiyomi.data.mangasync.MangaSyncManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
+import eu.kanade.tachiyomi.ui.main.MainActivity
 import kotlinx.android.synthetic.main.toolbar.*
+import eu.kanade.tachiyomi.util.setTheme
 import javax.inject.Inject
 
 class SettingsActivity : BaseActivity() {
@@ -21,6 +24,7 @@ class SettingsActivity : BaseActivity() {
     @Inject lateinit var syncManager: MangaSyncManager
 
     override fun onCreate(savedState: Bundle?) {
+        setTheme()
         super.onCreate(savedState)
         setContentView(R.layout.activity_preferences)
         applicationComponent.inject(this)

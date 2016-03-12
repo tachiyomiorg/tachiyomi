@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.data.preference
 import android.content.Context
 import android.os.Environment
 import android.preference.PreferenceManager
+import android.support.annotation.StyleRes
 import com.f2prateek.rx.preferences.Preference
 import com.f2prateek.rx.preferences.RxSharedPreferences
 import eu.kanade.tachiyomi.R
@@ -186,6 +187,10 @@ class PreferencesHelper(private val context: Context) {
 
     fun libraryUpdateInterval(): Preference<Int> {
         return rxPrefs.getInteger(getKey(R.string.pref_library_update_interval_key), 0)
+    }
+
+    fun getTheme(): Preference<Int> {
+        return rxPrefs.getInteger(getKey(R.string.pref_theme_key), R.style.Theme_Tachiyomi)
     }
 
     fun filterDownloaded(): Preference<Boolean> {

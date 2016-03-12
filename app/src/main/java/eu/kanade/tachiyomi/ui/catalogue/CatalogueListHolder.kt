@@ -4,6 +4,7 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.util.getResourceColor
 import kotlinx.android.synthetic.main.item_catalogue_list.view.*
 
 /**
@@ -18,8 +19,8 @@ import kotlinx.android.synthetic.main.item_catalogue_list.view.*
 class CatalogueListHolder(private val view: View, adapter: CatalogueAdapter, listener: OnListItemClickListener) :
         CatalogueHolder(view, adapter, listener) {
 
-    private val favoriteColor = ContextCompat.getColor(view.context, R.color.hint_text)
-    private val unfavoriteColor = ContextCompat.getColor(view.context, R.color.primary_text)
+    private val favoriteColor = view.context.theme.getResourceColor(android.R.attr.textColorHint)
+    private val unfavoriteColor =  view.context.theme.getResourceColor(android.R.attr.textColorPrimary)
 
     /**
      * Method called from [CatalogueAdapter.onBindViewHolder]. It updates the data for this

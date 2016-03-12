@@ -20,7 +20,7 @@ import eu.kanade.tachiyomi.ui.base.decoration.DividerItemDecoration
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
-import eu.kanade.tachiyomi.util.ToastUtil
+import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.EndlessGridScrollListener
 import eu.kanade.tachiyomi.widget.EndlessListScrollListener
 import kotlinx.android.synthetic.main.fragment_catalogue.*
@@ -179,7 +179,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
                     // Set previous selection if it's not a valid source and notify the user
                     if (!presenter.isValidSource(source)) {
                         spinner.setSelection(presenter.findFirstValidSource())
-                        ToastUtil.showShort(activity, R.string.source_requires_login)
+                        context.toast(R.string.source_requires_login)
                     } else {
                         selectedIndex = position
                         presenter.setEnabledSource(selectedIndex)
@@ -431,7 +431,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
         val selectedManga = adapter.getItem(position)
 
         val intent = MangaActivity.newIntent(activity, selectedManga)
-        intent.putExtra(MangaActivity.MANGA_ONLINE, true)
+        intent.putExtra(MangaActivity.FROM_CATALOGUE, true)
         startActivity(intent)
         return false
     }

@@ -15,6 +15,7 @@
     <string name="pref_update_only_non_completed_key">pref_update_only_non_completed_key</string>
     <string name="pref_auto_update_manga_sync_key">pref_auto_update_manga_sync_key</string>
     <string name="pref_ask_update_manga_sync_key">pref_ask_update_manga_sync_key</string>
+    <string name="pref_theme_key">pref_theme_key</string>
 
     <string name="pref_default_viewer_key">pref_default_viewer_key</string>
     <string name="pref_image_scale_type_key">pref_image_scale_type_key</string>

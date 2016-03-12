@@ -48,7 +48,7 @@
         android:dividerHeight="0dp"
         android:clipToPadding="false"
         android:choiceMode="singleChoice"
-        android:listSelector="@color/list_choice_pressed_bg_light"
+        android:listSelector="@color/dividerLight"
         android:visibility="gone"/>
 
 </LinearLayout>

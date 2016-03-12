@@ -5,10 +5,10 @@
     android:id="@+id/tabs"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:theme="@style/AppTheme.Overlay.Dark"
     android:background="@color/colorPrimary"
     android:visibility="gone"
+    android:theme="@style/AppTheme.Tab"
+    app:tabIndicatorColor="@android:color/white"
     app:tabGravity="center"
     app:tabMode="scrollable"
-    app:tabMinWidth="75dp"
-    app:tabIndicatorColor="@color/white"/>
+    app:tabMinWidth="75dp"/>
