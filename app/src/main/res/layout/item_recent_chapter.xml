@@ -31,7 +31,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:textAllCaps="true"
-                android:textColor="@color/accent_text"
                 android:textSize="12sp"/>
         </RelativeLayout>
 
@@ -51,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/TextAppearance.Medium"
                 tools:text="My manga"/>
 
             <TextView
@@ -60,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textAppearance="@style/TextAppearance.Small"
                 tools:text="Title"/>
 
         </LinearLayout>
@@ -82,7 +81,7 @@
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
         android:paddingLeft="?android:attr/listPreferredItemPaddingLeft">
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/chapterMenu"
             android:layout_width="24dp"
             android:layout_height="24dp"

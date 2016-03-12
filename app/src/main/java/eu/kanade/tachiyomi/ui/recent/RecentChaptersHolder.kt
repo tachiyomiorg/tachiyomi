@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.ui.recent
 
-import android.support.v4.content.ContextCompat
+import android.content.Context
 import android.view.View
 import android.widget.PopupMenu
 import eu.kanade.tachiyomi.R
@@ -8,6 +8,7 @@ import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.MangaChapter
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
+import eu.kanade.tachiyomi.util.getResourceColor
 import kotlinx.android.synthetic.main.item_recent_chapter.view.*
 import rx.Observable
 
@@ -26,12 +27,12 @@ class RecentChaptersHolder(view: View, private val adapter: RecentChaptersAdapte
     /**
      * Color of read chapter
      */
-    private val readColor = ContextCompat.getColor(view.context, R.color.hint_text)
+    private var readColor = view.context.theme.getResourceColor(android.R.attr.textColorHint)
 
     /**
      * Color of unread chapter
      */
-    private val unreadColor = ContextCompat.getColor(view.context, R.color.primary_text)
+    private var unreadColor  = view.context.theme.getResourceColor(android.R.attr.textColorPrimary)
 
     /**
      * Object containing chapter information
@@ -41,6 +42,7 @@ class RecentChaptersHolder(view: View, private val adapter: RecentChaptersAdapte
     init {
         //Set OnClickListener for download menu
         itemView.chapterMenu.setOnClickListener { v -> v.post({ showPopupMenu(v) }) }
+
     }
 
     /**

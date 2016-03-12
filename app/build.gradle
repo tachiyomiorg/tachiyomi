@@ -100,7 +100,7 @@ apt {
 }
 
 dependencies {
-    final SUPPORT_LIBRARY_VERSION = '23.2.0'
+    final SUPPORT_LIBRARY_VERSION = '23.2.1'
     final DAGGER_VERSION = '2.0.2'
     final OKHTTP_VERSION = '3.2.0'
     final RETROFIT_VERSION = '2.0.0-beta4'

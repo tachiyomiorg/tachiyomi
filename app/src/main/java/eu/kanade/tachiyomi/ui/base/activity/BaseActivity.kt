@@ -66,14 +66,14 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun snack(text: String?, duration: Int = Snackbar.LENGTH_LONG) {
-        val snack = Snackbar.make(findViewById(android.R.id.content), text ?: getString(R.string.unknown_error), duration)
+        val snack = Snackbar.make(findViewById(android.R.id.content)!!, text ?: getString(R.string.unknown_error), duration)
         val textView = snack.view.findViewById(android.support.design.R.id.snackbar_text) as TextView
         textView.setTextColor(Color.WHITE)
         snack.show()
     }
 
     fun snack(text: String?, actionRes: Int, actionFunc: () -> Unit,
-              duration: Int = Snackbar.LENGTH_LONG, view: View = findViewById(android.R.id.content)) {
+              duration: Int = Snackbar.LENGTH_LONG, view: View = findViewById(android.R.id.content)!!) {
 
         val snack = Snackbar.make(view, text ?: getString(R.string.unknown_error), duration)
                 .setAction(actionRes, { actionFunc() })

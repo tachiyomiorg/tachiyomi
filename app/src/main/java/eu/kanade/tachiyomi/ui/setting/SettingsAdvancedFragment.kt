@@ -7,7 +7,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
-import eu.kanade.tachiyomi.util.ToastUtil
+import eu.kanade.tachiyomi.util.toast
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -74,10 +74,10 @@ class SettingsAdvancedFragment : SettingsNestedFragment() {
                     dialog.incrementProgress(1)
                 }, {
                     dialog.dismiss()
-                    ToastUtil.showShort(activity, getString(R.string.cache_delete_error))
+                    context.toast(R.string.cache_delete_error)
                 }, {
                     dialog.dismiss()
-                    ToastUtil.showShort(activity, getString(R.string.cache_deleted, deletedFiles.get()))
+                    context.toast(getString(R.string.cache_deleted, deletedFiles.get()))
                     preference.summary = getString(R.string.used_cache, chapterCache.readableSize)
                 })
     }

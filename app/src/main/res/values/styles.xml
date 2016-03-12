@@ -1,61 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
-    <style name="AppTheme" parent="AppTheme.Base">
-        </style>
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="alertDialogTheme">@style/AlertDialogStyle</item>
-        <item name="android:textColor">@color/primary_text</item>
-        <item name="windowActionModeOverlay">true</item>
-        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/colorPrimaryDark</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-    </style>
-
-    <style name="AppTheme.BrandedLaunch" parent="AppTheme">
-        <item name="android:windowBackground">@drawable/branded_logo</item>
-    </style>
-
-    <style name="AppTheme.ActionBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:spinnerItemStyle">@style/ActionBarSpinner</item>
-        <item name="android:spinnerDropDownItemStyle">@style/ActionBarSpinnerItem</item>
-        <item name="actionModeBackground">@color/colorPrimarySuperDark</item>
-        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    <!-- Toolbar Style -->
+    <style name="Theme.ActionBar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.Overlay.Dark" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="colorAccent">@color/white</item>
+    <style name="Theme.ActionBar.Dark" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <!-- Tab Theme-->
+    <style name="AppTheme.Tab" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <!-- Navigation Drawer-->
+    <style name="Theme.NavigationDrawer">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <!-- Text Values -->
+    <style name="TextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">sans-serif</item>
+    </style>
+
+    <style name="TextAppearance.Medium">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.Small">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- CheckBox-->
+    <style name="TextAppearance.Light">
+        <item name="android:textColor">@color/textColorPrimaryLight</item>
+    </style>
+
+    <style name="TextAppearance.Dark">
+        <item name="android:textColor">@color/textColorPrimaryDark</item>
+    </style>
+
+
+    <style name="Theme.CheckBox"/>
+
+    <style name="AppTheme.CheckBox.Light" parent="TextAppearance.Light">
+        <item name="buttonTint">@color/md_white_1000</item>
     </style>
 
     <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowTitleStyle">@style/DialogTitleText</item>
-        <item name="colorAccent">@color/primary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
     <style name="DialogTitleText">
-        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
     </style>
 
-    <style name="ActionBarSpinner" parent="@style/Widget.AppCompat.TextView.SpinnerItem">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textColorHint">@color/hint_foreground_material_dark</item>
-    </style>
+    <!--<style name="ActionBarSpinner" parent="@style/Widget.AppCompat.TextView.SpinnerItem">-->
+        <!--<item name="android:textColor">@color/white</item>-->
+        <!--<item name="android:textColorHint">@color/hint_foreground_material_dark</item>-->
+    <!--</style>-->
 
-    <style name="ActionBarSpinnerItem" parent="@style/Widget.AppCompat.DropDownItem.Spinner">
-        <item name="android:background">@color/background_material_light</item>
-    </style>
+    <!--<style name="ActionBarSpinnerItem" parent="@style/Widget.AppCompat.DropDownItem.Spinner">-->
+        <!--<item name="android:background">@color/background_material_light</item>-->
+    <!--</style>-->
 
-    <style name="AppTheme.Popup" parent="@style/AppTheme.Overlay.Dark">
-        <item name="colorAccent">@color/white</item>
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
-
-    <style name="AppTheme.GridView" parent="AppTheme">
+    <style name="Theme.GridView" parent="Theme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:padding">5dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -80,7 +88,7 @@
 
         <item name="alertDialogTheme">@style/FilePickerAlertDialogTheme</item>
 
-        <item name="nnf_toolbarTheme">@style/AppTheme.Overlay.Dark</item>
+        <item name="nnf_toolbarTheme">?attr/actionBarTheme</item>
     </style>
 
     <style name="FilePickerAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -115,11 +123,6 @@
         <item name="android:windowExitAnimation">@anim/exit_to_left</item>
     </style>
 
-    <style name="reader_menu_settings_item">
-        <item name="android:textColor">@color/md_grey_300</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">36dp</item>
-        <item name="android:gravity">center</item>
-    </style>
+
 
 </resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--===========-->
+    <!-- Main Theme-->
+    <!--===========-->
+    <style name="Theme.Tachiyomi" parent="Theme.Base">
+        <!-- Attributes specific for SDK 21 and up  -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/md_statusbar_translucent</item>
+    </style>
+
+    <!--============-->
+    <!-- Dark Theme -->
+    <!--============-->
+    <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
+        <!-- Attributes specific for SDK 21 and up  -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/md_statusbar_translucent</item>
+    </style>
+</resources>

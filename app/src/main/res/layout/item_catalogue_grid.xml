@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/selector_chapter_light">
+    android:background="@drawable/selector_item_edit_categories_light">
+
+    <!--android:background="?attr/selectable_list_drawable"-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,7 +23,7 @@
                 android:id="@+id/thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
+                android:background="@color/md_white_1000"
                 tools:background="@color/md_red_100"
                 tools:src="@mipmap/ic_launcher"/>
 
@@ -39,12 +41,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:background="@color/manga_unread_bg"
+            android:background="?android:attr/colorBackground"
             android:paddingBottom="1dp"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
             android:paddingTop="1dp"
-            android:textColor="@color/white"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="12sp"
             android:visibility="gone"/>
 
@@ -71,11 +73,11 @@
             android:lineSpacingExtra="-4dp"
             android:maxLines="2"
             android:padding="8dp"
-            android:shadowColor="@color/primary_text"
+            android:shadowColor="?android:attr/textColorPrimary"
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="4"
-            android:textColor="@color/white"
+            android:textColor="@color/md_white_1000"
             android:textSize="14sp"
             app:typeface="ptsansNarrowBold"
             tools:text="Sample name"/>

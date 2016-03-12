@@ -35,7 +35,7 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_below="@id/myanimelist_title_layout"
-        android:background="@color/list_choice_pressed_bg_light" />
+        android:background="@color/dividerLight" />
 
     <RelativeLayout
         android:id="@+id/myanimelist_status_layout"
@@ -68,7 +68,7 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_below="@id/myanimelist_status_layout"
-        android:background="@color/list_choice_pressed_bg_light" />
+        android:background="@color/dividerLight" />
 
     <RelativeLayout
         android:id="@+id/myanimelist_chapters_layout"
@@ -101,7 +101,7 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_below="@id/myanimelist_chapters_layout"
-        android:background="@color/list_choice_pressed_bg_light" />
+        android:background="@color/dividerLight" />
 
     <RelativeLayout
         android:id="@+id/myanimelist_score_layout"

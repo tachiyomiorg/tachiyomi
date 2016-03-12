@@ -7,7 +7,6 @@ import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.updater.GithubUpdateChecker
 import eu.kanade.tachiyomi.data.updater.UpdateDownloader
-import eu.kanade.tachiyomi.util.ToastUtil
 import eu.kanade.tachiyomi.util.toast
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -109,7 +108,7 @@ class SettingsAboutFragment : SettingsNestedFragment() {
                                     UpdateDownloader(activity.applicationContext).execute(downloadLink)
                                 }.show()
                     } else {
-                        ToastUtil.showShort(activity, getString(R.string.update_check_no_new_updates))
+                        context.toast(R.string.update_check_no_new_updates)
                     }
                 }, {
                     it.printStackTrace()

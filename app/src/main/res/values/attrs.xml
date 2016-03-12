@@ -16,4 +16,7 @@
         <attr name="min" format="integer"/>
         <attr name="max" format="integer"/>
     </declare-styleable>
+
+
+    <attr name="selectable_list_drawable" format="reference|integer" />
 </resources>

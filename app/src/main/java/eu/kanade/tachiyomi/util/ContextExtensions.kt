@@ -7,6 +7,8 @@ import android.content.Context
 import android.support.annotation.StringRes
 import android.support.v4.app.NotificationCompat
 import android.widget.Toast
+import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 
 /**
  * Display a toast in this context.
@@ -15,6 +17,15 @@ import android.widget.Toast
  */
 fun Context.toast(@StringRes resource: Int, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, resource, duration).show()
+}
+
+/**
+ * Display a toast in this context.
+ * @param text the text to display.
+ * @param duration the duration of the toast. Defaults to short.
+ */
+fun Context.toast(text: String?, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, text, duration).show()
 }
 
 /**
@@ -31,7 +42,7 @@ inline fun Context.notification(func: NotificationCompat.Builder.() -> Unit): No
 /**
  * Property to get the notification manager from the context.
  */
-val Context.notificationManager : NotificationManager
+val Context.notificationManager: NotificationManager
     get() = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
 /**
@@ -40,3 +51,12 @@ val Context.notificationManager : NotificationManager
  */
 val Context.alarmManager: AlarmManager
     get() = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+fun Context.setTheme() {
+    var a = PreferencesHelper(this).getTheme().get()
+    when (a) {
+        1 -> this.setTheme(R.style.Theme_Tachiyomi)
+        2 -> this.setTheme(R.style.Theme_Tachiyomi_Dark)
+        else -> this.setTheme(R.style.Theme_Tachiyomi)
+    }
+}
