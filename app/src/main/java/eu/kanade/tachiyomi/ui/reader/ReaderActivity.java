@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -84,6 +85,7 @@ public class ReaderActivity extends BaseRxActivity<ReaderPresenter> {
             readerMenu.show(false);
 
         initializeSettings();
+
 
         maxBitmapSize = GLUtil.getMaxTextureSize();
     }
@@ -393,12 +395,12 @@ public class ReaderActivity extends BaseRxActivity<ReaderPresenter> {
         View rootView = getWindow().getDecorView().getRootView();
         if (theme == BLACK_THEME) {
             rootView.setBackgroundColor(Color.BLACK);
-            pageNumber.setTextColor(ContextCompat.getColor(this, R.color.light_grey));
-            pageNumber.setBackgroundColor(ContextCompat.getColor(this, R.color.page_number_background_black));
+            pageNumber.setTextColor(ContextCompat.getColor(this, R.color.textColorPrimaryDark));
+            pageNumber.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundDark));
         } else {
             rootView.setBackgroundColor(Color.WHITE);
-            pageNumber.setTextColor(ContextCompat.getColor(this, R.color.primary_text));
-            pageNumber.setBackgroundColor(ContextCompat.getColor(this, R.color.page_number_background));
+            pageNumber.setTextColor(ContextCompat.getColor(this, R.color.textColorPrimaryLight));
+            pageNumber.setBackgroundColor(ContextCompat.getColor(this, R.color.backgroundLight));
         }
     }
 

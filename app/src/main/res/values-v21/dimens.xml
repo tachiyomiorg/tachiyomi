@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Nav header-->
+    <dimen name="navigation_drawer_header_margin">41dp</dimen>
+</resources>

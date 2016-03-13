@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:padding="4dp"
         android:layout_gravity="bottom|left"
-        android:background="@color/page_number_background"
-        android:textColor="@color/primary_text"
+        android:background="?android:attr/colorBackground"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="12sp"
         android:id="@+id/page_number"/>
 

@@ -4,10 +4,10 @@
     android:color="?android:attr/colorControlHighlight">
 
     <item android:id="@android:id/mask"
-        android:drawable="@color/list_choice_pressed_bg_light" />
+        android:drawable="@color/dividerLight" />
     <item>
         <selector>
-            <item android:state_activated="true" android:drawable="@color/list_choice_pressed_bg_light"/>
+            <item android:state_activated="true" android:drawable="@color/dividerLight"/>
         </selector>
     </item>
 

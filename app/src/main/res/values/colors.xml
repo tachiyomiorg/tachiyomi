@@ -1,36 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorAccent">@color/md_blue_A400</color>
+
+    <!-- Application Colors -->
     <color name="colorPrimary">#54759e</color>
     <color name="colorPrimaryDark">#435e7e</color>
-    <color name="colorPrimarySuperDark">@color/md_blue_grey_900</color>
-    <color name="colorPrimaryLight">@color/md_blue_grey_100</color>
+    <color name="colorAccent">@color/md_blue_400</color>
 
-    <color name="colorBackgroundLight">@color/md_blue_grey_50</color>
+    <!-- Light Theme -->
+    <color name="textColorPrimaryLight">@color/md_black_1000_87</color>
+    <color name="textColorSecondaryLight">@color/md_black_1000_54</color>
+    <color name="textColorHintLight">@color/md_black_1000_38</color>
+    <color name="dividerLight">@color/md_white_1000_12</color>
 
-    <color name="primary">@color/colorPrimary</color>
-    <color name="primary_dark">@color/colorPrimaryDark</color>
-    <color name="primary_light">@color/colorPrimaryLight</color>
-    <color name="color_ripple">#E9F1FF</color>
+    <color name="statusBarLight">@color/md_grey_300</color>
+    <color name="appBarLight">@color/md_grey_100</color>
+    <color name="backgroundLight">@color/md_grey_50</color>
+    <color name="dialogLight">@color/md_white_1000</color>
 
-    <color name="divider">@color/md_light_dividers</color>
+    <color name="selectorColorLight">@color/md_blue_400_38</color>
 
-    <color name="white">@color/md_white_1000</color>
-    <color name="primary_text">@color/md_light_primary_text</color>
-    <color name="secondary_text">@color/md_light_secondary</color>
-    <color name="hint_text">@color/md_light_disabled</color>
-    <color name="accent_text">@color/md_green_900</color>
+    <!-- Dark Theme -->
+    <color name="textColorPrimaryDark">@color/md_white_1000</color>
+    <color name="textColorSecondaryDark">@color/md_white_1000_70</color>
+    <color name="textColorHintDark">@color/md_white_1000_50</color>
+    <color name="dividerDark">@color/md_black_1000_12</color>
 
-    <color name="list_choice_pressed_bg_light">@color/colorPrimaryLight</color>
+    <color name="statusBarDark">@color/md_black_1000</color>
+    <color name="appBarDark">@color/md_grey_900</color>
+    <color name="backgroundDark">#303030</color>
+    <color name="dialogDark">@color/md_grey_800</color>
 
-    <color name="manga_unread_bg">@color/colorAccent</color>
-    <color name="manga_cover_title_background">#55333333</color>
+    <color name="selectorColorDark">@color/md_blue_400_50</color>
 
-    <color name="super_light_grey">@color/md_grey_50</color>
-    <color name="line_grey">@color/md_light_dividers</color>
-    <color name="light_grey">@color/md_grey_300</color>
-    <color name="page_number_background">#AAE9E9E9</color>
-    <color name="page_number_background_black">#99252525</color>
-    <color name="reader_menu_background">@color/colorPrimarySuperDark</color>
+    <!-- Text Colors -->
+    <color name="md_black_1000_87">#DE000000</color>
+    <color name="md_black_1000_54">#8A000000</color>
+    <color name="md_black_1000_38">#61000000</color>
+    <color name="md_black_1000_12">#1F000000</color>
+
+    <color name="md_white_1000">#FFFFFFFF</color>
+    <color name="md_white_1000_70">#B3FFFFFF</color>
+    <color name="md_white_1000_50">#80FFFFFF</color>
+    <color name="md_white_1000_12">#1FFFFFFF</color>
+
+    <!-- Material Design Colors -->
+    <color name="md_black_1000">#000000</color>
+
+    <color name="md_grey_50">#FAFAFA</color>
+    <color name="md_grey_100">#F5F5F5</color>
+    <color name="md_grey_300">#E0E0E0</color>
+    <color name="md_grey_800">#424242</color>
+    <color name="md_grey_900">#212121</color>
+
+    <color name="md_blue_400">#42A5F5</color>
+    <color name="md_blue_400_50">#8042A5F5</color>
+    <color name="md_blue_400_38">#6142A5F5</color>
+
+    <color name="md_red_100">#FFCDD2</color>
+
+    <color name="md_statusbar_translucent">#4000</color>
 
 </resources>

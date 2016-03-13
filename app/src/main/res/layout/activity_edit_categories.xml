@@ -15,8 +15,8 @@
         android:layout_marginTop="?attr/actionBarSize"
         android:id="@+id/recycler"
         android:choiceMode="multipleChoice"
-        android:listSelector="@color/list_choice_pressed_bg_light"
-        tools:listitem="@layout/item_edit_categories"/>
+        tools:listitem="@layout/item_edit_categories"
+    />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -26,7 +26,6 @@
         android:layout_margin="@dimen/fab_margin"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/ic_add_white_24dp"
-        app:backgroundTint="@color/colorPrimary"
         app:layout_anchor="@id/recycler"
         app:layout_anchorGravity="bottom|right|end"
         app:layout_behavior="eu.kanade.tachiyomi.ui.base.fab.FABAnimationUpDown"/>

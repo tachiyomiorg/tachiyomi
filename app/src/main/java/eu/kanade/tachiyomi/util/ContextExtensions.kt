@@ -7,6 +7,8 @@ import android.content.Context
 import android.support.annotation.StringRes
 import android.support.v4.app.NotificationCompat
 import android.widget.Toast
+import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 
 /**
  * Display a toast in this context.
@@ -49,3 +51,12 @@ val Context.notificationManager : NotificationManager
  */
 val Context.alarmManager: AlarmManager
     get() = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+fun Context.setTheme()
+{
+    when (PreferencesHelper(this).getTheme().get())
+    {
+        1 ->        this.setTheme(R.style.Theme_Tachiyomi)
+        2 ->        this.setTheme(R.style.Theme_Tachiyomi_Dark)
+    }
+}

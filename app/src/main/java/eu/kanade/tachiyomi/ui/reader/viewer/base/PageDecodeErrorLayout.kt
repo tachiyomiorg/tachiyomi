@@ -17,8 +17,8 @@ import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 
 class PageDecodeErrorLayout(context: Context) : LinearLayout(context) {
 
-    private val lightGreyColor = ContextCompat.getColor(context, R.color.light_grey)
-    private val blackColor = ContextCompat.getColor(context, R.color.primary_text)
+    private val lightGreyColor = ContextCompat.getColor(context, android.R.attr.textColorHint)
+    private val blackColor = ContextCompat.getColor(context, android.R.attr.textColorPrimary)
 
     init {
         orientation = LinearLayout.VERTICAL

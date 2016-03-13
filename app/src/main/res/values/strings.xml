@@ -86,6 +86,8 @@
     <string name="update_48hour">Every 2 days</string>
     <string name="pref_auto_update_manga_sync">Sync chapters after reading</string>
     <string name="pref_ask_update_manga_sync">Confirm before updating</string>
+    <string name="pref_theme">Application Theme</string>
+
 
       <!-- Reader section -->
     <string name="pref_hide_status_bar">Hide status bar</string>
@@ -96,8 +98,8 @@
     <string name="pref_seamless_mode">Seamless chapter transitions</string>
     <string name="pref_keep_screen_on">Keep screen on</string>
     <string name="pref_reader_theme">Background color</string>
-    <string name="white_theme">White</string>
-    <string name="black_theme">Black</string>
+    <string name="white_theme">Main Theme</string>
+    <string name="black_theme">Dark Theme</string>
     <string name="pref_viewer_type">Default viewer</string>
     <string name="default_viewer">Default</string>
     <string name="left_to_right_viewer">Left to right</string>
@@ -255,5 +257,10 @@
     <!--Content Description-->
     <string name="description_backdrop">Backdrop image of selected manga</string>
     <string name="description_cover">Cover of selected manga</string>
+
+    <!-- Information Text -->
+    <string name="information_no_downloads">No Downloads</string>
+    <string name="information_no_recent">No Recent Chapters</string>
+    <string name="information_empty_library">Empty Library</string>
 
 </resources>

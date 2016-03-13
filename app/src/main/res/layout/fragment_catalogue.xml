@@ -23,7 +23,7 @@
 
         <eu.kanade.tachiyomi.widget.AutofitRecyclerView
             android:id="@+id/catalogue_grid"
-            style="@style/AppTheme.GridView"
+            style="@style/Theme.GridView"
             android:columnWidth="140dp"
             tools:listitem="@layout/item_catalogue_grid" />
 

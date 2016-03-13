@@ -74,12 +74,12 @@ class PagerReaderFragment : BaseFragment() {
     /**
      * Text color for black theme.
      */
-    private val lightGreyColor by lazy { ContextCompat.getColor(context, R.color.light_grey) }
+    private val lightGreyColor by lazy { ContextCompat.getColor(context, android.R.attr.textColorHint) }
 
     /**
      * Text color for white theme.
      */
-    private val blackColor by lazy { ContextCompat.getColor(context, R.color.primary_text) }
+    private val blackColor by lazy { ContextCompat.getColor(context, android.R.attr.textColorPrimary) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedState: Bundle?): View? {
         return inflater.inflate(R.layout.item_pager_reader, container, false)

@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:descendantFocusability="blocksDescendants"
-        android:background="@color/white"
         tools:listitem="@layout/item_recent_chapter">
 
     </android.support.v7.widget.RecyclerView>

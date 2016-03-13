@@ -24,6 +24,7 @@ import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.EndlessGridScrollListener
 import eu.kanade.tachiyomi.widget.EndlessListScrollListener
 import kotlinx.android.synthetic.main.fragment_catalogue.*
+import kotlinx.android.synthetic.main.toolbar.*
 import nucleus.factory.RequiresPresenter
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
