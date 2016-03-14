@@ -263,4 +263,8 @@
     <string name="information_no_recent">No Recent Chapters</string>
     <string name="information_empty_library">Empty Library</string>
 
+    <!-- String Fonts -->
+    <string name="font_roboto_medium">sans-serif</string>
+    <string name="font_roboto_regular">sans-serif</string>
+
 </resources>

@@ -1,7 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:gravity="center">
 
     <FrameLayout
         android:id="@+id/reader"
@@ -10,14 +10,13 @@
     </FrameLayout>
 
     <TextView
+        android:id="@+id/page_number"
+        style="@style/TextAppearance.Regular.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="4dp"
-        android:layout_gravity="bottom|left"
+        android:layout_gravity="bottom|start"
         android:background="?android:attr/colorBackground"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="12sp"
-        android:id="@+id/page_number"/>
+        android:padding="4dp"/>
 
     <include layout="@layout/reader_menu"/>
 

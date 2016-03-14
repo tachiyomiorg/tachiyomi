@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- String Fonts -->
+    <string name="font_roboto_medium">sans-serif-medium</string>
+    <string name="font_roboto_regular">sans-serif-regular</string>
+
+</resources>

@@ -19,4 +19,5 @@
 
 
     <attr name="selectable_list_drawable" format="reference|integer" />
+    <attr name="divider_drawable" format="reference|integer" />
 </resources>

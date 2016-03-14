@@ -11,7 +11,9 @@ import android.widget.ImageView
  */
 fun ImageView.setDrawableCompat(@DrawableRes drawable: Int?) {
     if (drawable != null) {
-        setImageDrawable(ContextCompat.getDrawable(context, drawable))
+        var drawable = ContextCompat.getDrawable(context, drawable)
+        drawable.setTint(this.context.theme.getResourceColor(android.R.attr.textColorHint))
+        setImageDrawable(drawable)
     } else {
         setImageResource(android.R.color.transparent)
     }

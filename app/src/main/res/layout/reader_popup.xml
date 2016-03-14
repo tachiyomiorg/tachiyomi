@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="?colorPrimary"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:background="?attr/colorPrimary"
               android:orientation="vertical"
               android:paddingBottom="5dp"
               android:paddingLeft="5dp"
@@ -20,7 +21,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/colorAccent"
-            android:textSize="16sp"/>
+            style="@style/TextAppearance.Regular.SubHeading"/>
 
         <TextView
             android:id="@+id/image_decoder"
@@ -28,7 +29,7 @@
             android:layout_height="36dp"
             android:gravity="center"
             android:text="@string/pref_image_decoder"
-            style="@style/TextAppearance.Light"/>
+            style="@style/TextAppearance.Regular.Body1.Light"/>
 
     </LinearLayout>
 
@@ -38,7 +39,7 @@
         android:layout_height="36dp"
         android:gravity="center"
         android:text="@string/pref_reader_theme"
-        style="@style/AppTheme.CheckBox.Light"/>
+        style="@style/Theme.Widget.CheckBox.Light"/>
 
     <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/enable_transitions"
@@ -46,7 +47,7 @@
         android:layout_height="36dp"
         android:gravity="center"
         android:text="@string/pref_enable_transitions"
-        style="@style/AppTheme.CheckBox.Light"/>
+        style="@style/Theme.Widget.CheckBox.Light"/>
 
     <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/show_page_number"
@@ -54,7 +55,7 @@
         android:layout_height="36dp"
         android:gravity="center"
         android:text="@string/pref_show_page_number"
-        style="@style/AppTheme.CheckBox.Light"/>
+        style="@style/Theme.Widget.CheckBox.Light"/>
 
     <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/hide_status_bar"
@@ -62,7 +63,7 @@
         android:layout_height="36dp"
         android:gravity="center"
         android:text="@string/pref_hide_status_bar"
-        style="@style/AppTheme.CheckBox.Light"/>
+        style="@style/Theme.Widget.CheckBox.Light"/>
 
     <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/keep_screen_on"
@@ -70,7 +71,7 @@
         android:layout_height="36dp"
         android:gravity="center"
         android:text="@string/pref_keep_screen_on"
-        style="@style/AppTheme.CheckBox.Light"/>
+        style="@style/Theme.Widget.CheckBox.Light"/>
 
     <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/custom_brightness"
@@ -78,11 +79,12 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/pref_custom_brightness"
-        style="@style/AppTheme.CheckBox.Light"/>
+        style="@style/Theme.Widget.CheckBox.Light"/>
 
     <SeekBar
         android:id="@+id/brightness_seekbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.Regular.Body1.Light"/>
 
 </LinearLayout>

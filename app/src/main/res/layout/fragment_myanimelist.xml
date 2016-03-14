@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/swipe_refresh"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/swipe_refresh"
-    android:paddingTop="@dimen/margin_top"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/margin_bottom"
+    android:paddingLeft="@dimen/margin_left"
     android:paddingRight="@dimen/margin_right"
-    android:paddingLeft="@dimen/margin_left">
+    android:paddingTop="@dimen/margin_top">
 
     <ScrollView
         android:layout_width="match_parent"

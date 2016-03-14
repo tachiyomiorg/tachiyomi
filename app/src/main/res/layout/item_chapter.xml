@@ -4,7 +4,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="?android:attr/listPreferredItemHeight"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@drawable/selector_chapter_light">
+                android:background="?attr/selectable_list_drawable">
 
 
     <RelativeLayout
@@ -31,7 +31,7 @@
                 android:layout_centerHorizontal="true"
                 android:ellipsize="marquee"
                 android:singleLine="true"
-                android:textSize="12sp"
+                style="@style/TextAppearance.Regular.Caption.Hint"
                 tools:text="Pages: 45"/>
 
             <TextView
@@ -40,7 +40,7 @@
                 android:layout_height="fill_parent"
                 android:ellipsize="marquee"
                 android:singleLine="true"
-                android:textSize="12sp"
+                style="@style/TextAppearance.Regular.Body1"
                 tools:text="22/02/2016"/>
 
             <TextView
@@ -51,8 +51,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:textAllCaps="true"
-                android:textColor="?android:attr/textColorSecondary"
-                android:textSize="12sp"/>
+                style="@style/TextAppearance.Regular.Caption.Hint"/>
         </RelativeLayout>
 
         <TextView
@@ -70,7 +69,7 @@
             android:ellipsize="middle"
             android:gravity="center_vertical"
             android:maxLines="1"
-            android:textSize="17sp"
+            style="@style/TextAppearance.Regular.SubHeading"
             tools:text="Title"/>
 
 
@@ -88,14 +87,14 @@
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:paddingRight="?android:attr/listPreferredItemPaddingRight">
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentEnd="false"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:background="?android:selectableItemBackground"
-            app:srcCompat="@drawable/ic_more_horiz_black_24dp"/>
+            app:srcCompat="@drawable/ic_more_horiz_black_24dp"
+            android:tint="?android:attr/textColorPrimary"/>
 
     </RelativeLayout>
 

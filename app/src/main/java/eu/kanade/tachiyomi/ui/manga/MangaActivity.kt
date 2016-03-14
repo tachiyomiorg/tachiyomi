@@ -17,6 +17,7 @@ import eu.kanade.tachiyomi.ui.base.activity.BaseRxActivity
 import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersFragment
 import eu.kanade.tachiyomi.ui.manga.info.MangaInfoFragment
 import eu.kanade.tachiyomi.ui.manga.myanimelist.MyAnimeListFragment
+import eu.kanade.tachiyomi.util.setTheme
 import kotlinx.android.synthetic.main.activity_manga.*
 import kotlinx.android.synthetic.main.tab_layout.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -48,6 +49,7 @@ class MangaActivity : BaseRxActivity<MangaPresenter>() {
         private set
 
     override fun onCreate(savedState: Bundle?) {
+        this.setTheme()
         super.onCreate(savedState)
         setContentView(R.layout.activity_manga)
 

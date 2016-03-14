@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
     <eu.kanade.tachiyomi.widget.AutofitRecyclerView
         android:id="@+id/recycler"
-        style="@style/Theme.GridView"
+        style="@style/Theme.Widget.GridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:columnWidth="140dp"
-        tools:listitem="@layout/item_catalogue_grid" />
+        tools:listitem="@layout/item_catalogue_grid"/>
 
 </FrameLayout>

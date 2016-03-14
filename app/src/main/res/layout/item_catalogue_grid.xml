@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/selector_item_edit_categories_light">
+    android:background="?attr/selectable_list_drawable">
 
     <!--android:background="?attr/selectable_list_drawable"-->
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/card_background">
+        android:layout_margin="5dp">
 
         <android.support.percent.PercentFrameLayout
             android:id="@+id/image_container"
@@ -23,8 +23,8 @@
                 android:id="@+id/thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/md_white_1000"
-                tools:background="@color/md_red_100"
+                android:background="?android:attr/colorBackground"
+                tools:background="?android:attr/colorBackground"
                 tools:src="@mipmap/ic_launcher"/>
 
             <View
@@ -34,37 +34,38 @@
                 android:background="@drawable/gradient_shape"
                 app:layout_heightPercent="50%"/>
 
+
         </android.support.percent.PercentFrameLayout>
 
         <TextView
             android:id="@+id/unreadText"
+            style="@style/TextAppearance.Regular.Caption.Light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:background="?android:attr/colorBackground"
+            android:background="?attr/colorAccent"
             android:paddingBottom="1dp"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
             android:paddingTop="1dp"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="12sp"
             android:visibility="gone"/>
 
 
         <!--<com.mikepenz.iconics.view.IconicsImageView-->
-            <!--android:id="@+id/favorite_sticker"-->
-            <!--android:layout_width="24dp"-->
-            <!--android:layout_height="24dp"-->
-            <!--android:layout_alignEnd="@+id/image_container"-->
-            <!--android:layout_alignRight="@+id/image_container"-->
-            <!--android:layout_alignTop="@+id/image_container"-->
-            <!--android:layout_marginEnd="5dp"-->
-            <!--android:layout_marginRight="5dp"-->
-            <!--android:layout_marginTop="5dp"-->
-            <!--android:visibility="invisible"/>-->
+        <!--android:id="@+id/favorite_sticker"-->
+        <!--android:layout_width="24dp"-->
+        <!--android:layout_height="24dp"-->
+        <!--android:layout_alignEnd="@+id/image_container"-->
+        <!--android:layout_alignRight="@+id/image_container"-->
+        <!--android:layout_alignTop="@+id/image_container"-->
+        <!--android:layout_marginEnd="5dp"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:visibility="invisible"/>-->
 
-        <eu.kanade.tachiyomi.widget.PTSansTextView
+        <TextView
             android:id="@+id/title"
+            style="@style/TextAppearance.Regular.Body1.Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/image_container"
@@ -77,9 +78,6 @@
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="4"
-            android:textColor="@color/md_white_1000"
-            android:textSize="14sp"
-            app:typeface="ptsansNarrowBold"
             tools:text="Sample name"/>
 
     </RelativeLayout>

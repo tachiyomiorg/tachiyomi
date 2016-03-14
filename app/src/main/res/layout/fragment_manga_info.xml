@@ -67,17 +67,24 @@
 
                                     <TextView
                                         android:id="@+id/manga_author_label"
-                                        style="@style/manga_detail_label"
+                                        style="@style/TextAppearance.Regular.Body1.Bold"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:paddingRight="10dp"
+                                        android:singleLine="true"
                                         android:text="@string/manga_info_author_label"
+                                        android:textIsSelectable="false"
                                         />
 
                                     <TextView
                                         android:id="@+id/manga_author"
-                                        style="@style/manga_detail_text"
+                                        style="@style/TextAppearance.Regular.Body1.Secondary"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:singleLine="true"
+                                        android:textIsSelectable="false"
                                         />
                                 </LinearLayout>
 
@@ -90,17 +97,24 @@
 
                                     <TextView
                                         android:id="@+id/manga_artist_label"
-                                        style="@style/manga_detail_label"
+                                        style="@style/TextAppearance.Regular.Body1.Bold"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:paddingRight="10dp"
+                                        android:singleLine="true"
                                         android:text="@string/manga_info_artist_label"
+                                        android:textIsSelectable="false"
                                         />
 
                                     <TextView
                                         android:id="@+id/manga_artist"
-                                        style="@style/manga_detail_text"
+                                        style="@style/TextAppearance.Regular.Body1.Secondary"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:singleLine="true"
+                                        android:textIsSelectable="false"
                                         />
                                 </LinearLayout>
 
@@ -113,17 +127,24 @@
 
                                     <TextView
                                         android:id="@+id/manga_chapters_label"
-                                        style="@style/manga_detail_label"
+                                        style="@style/TextAppearance.Regular.Body1.Bold"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:paddingRight="10dp"
+                                        android:singleLine="true"
                                         android:text="@string/manga_info_chapters_label"
+                                        android:textIsSelectable="false"
                                         />
 
                                     <TextView
                                         android:id="@+id/manga_chapters"
-                                        style="@style/manga_detail_text"
+                                        style="@style/TextAppearance.Regular.Body1.Secondary"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:singleLine="true"
+                                        android:textIsSelectable="false"
                                         />
                                 </LinearLayout>
 
@@ -136,17 +157,24 @@
 
                                     <TextView
                                         android:id="@+id/manga_status_label"
-                                        style="@style/manga_detail_label"
+                                        style="@style/TextAppearance.Regular.Body1.Bold"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:paddingRight="10dp"
+                                        android:singleLine="true"
                                         android:text="@string/manga_info_status_label"
+                                        android:textIsSelectable="false"
                                         />
 
                                     <TextView
                                         android:id="@+id/manga_status"
-                                        style="@style/manga_detail_text"
+                                        style="@style/TextAppearance.Regular.Body1.Secondary"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:singleLine="true"
+                                        android:textIsSelectable="false"
                                         />
                                 </LinearLayout>
 
@@ -159,17 +187,24 @@
 
                                     <TextView
                                         android:id="@+id/manga_source_label"
-                                        style="@style/manga_detail_label"
+                                        style="@style/TextAppearance.Regular.Body1.Bold"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:paddingRight="10dp"
+                                        android:singleLine="true"
                                         android:text="@string/manga_info_source_label"
+                                        android:textIsSelectable="false"
                                         />
 
                                     <TextView
                                         android:id="@+id/manga_source"
-                                        style="@style/manga_detail_text"
+                                        style="@style/TextAppearance.Regular.Body1.Secondary"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:singleLine="true"
+                                        android:textIsSelectable="false"
                                         />
                                 </LinearLayout>
 
@@ -182,18 +217,24 @@
 
                                     <TextView
                                         android:id="@+id/manga_genres_label"
-                                        style="@style/manga_detail_label"
+                                        style="@style/TextAppearance.Regular.Body1.Bold"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:paddingRight="10dp"
+                                        android:singleLine="true"
                                         android:text="@string/manga_info_genres_label"
+                                        android:textIsSelectable="false"
                                         />
 
                                     <TextView
                                         android:id="@+id/manga_genres"
-                                        style="@style/manga_detail_text"
+                                        style="@style/TextAppearance.Regular.Body1.Secondary"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:ellipsize="end"
                                         android:singleLine="false"
+                                        android:textIsSelectable="false"
                                         />
                                 </LinearLayout>
                             </RelativeLayout>
@@ -218,17 +259,23 @@
 
                     <TextView
                         android:id="@+id/manga_summary_label"
-                        style="@style/manga_detail_label"
+                        style="@style/TextAppearance.Regular.Body1.Bold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/description"/>
+                        android:ellipsize="end"
+                        android:paddingRight="10dp"
+                        android:singleLine="true"
+                        android:text="@string/description"
+                        android:textIsSelectable="false"/>
 
                     <TextView
                         android:id="@+id/manga_summary"
-                        style="@style/manga_detail_text"
+                        style="@style/TextAppearance.Regular.Body1.Secondary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:ellipsize="end"
                         android:singleLine="false"
+                        android:textIsSelectable="false"
                         />
                 </LinearLayout>
 
@@ -241,12 +288,11 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_favorite"
-        android:layout_width="@dimen/fab_size"
-        android:layout_height="@dimen/fab_size"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_bookmark_border_white_24dp"
-        app:backgroundTint="@color/colorPrimary"
+        style="@style/Theme.Widget.FAB"
+        android:layout_gravity=""
         app:layout_anchor="@id/top_view"
-        app:layout_anchorGravity="bottom|right|end"/>
+        app:layout_anchorGravity="bottom|right|end"
+        app:layout_behavior=""
+        app:srcCompat="@drawable/ic_bookmark_border_white_24dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

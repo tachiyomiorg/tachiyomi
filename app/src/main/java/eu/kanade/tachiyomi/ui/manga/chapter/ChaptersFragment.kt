@@ -17,6 +17,7 @@ import eu.kanade.tachiyomi.ui.base.decoration.DividerItemDecoration
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
+import eu.kanade.tachiyomi.util.getResourceDrawable
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.fragment_manga_chapters.*
 import nucleus.factory.RequiresPresenter
@@ -65,7 +66,7 @@ class ChaptersFragment : BaseRxFragment<ChaptersPresenter>(), ActionMode.Callbac
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(activity)
         recycler.addItemDecoration(DividerItemDecoration(
-                ContextCompat.getDrawable(context, R.drawable.line_divider)))
+                context.theme.getResourceDrawable(R.attr.divider_drawable)))
         recycler.setHasFixedSize(true)
 
         swipe_refresh.setOnRefreshListener { fetchChapters() }

@@ -9,7 +9,7 @@
         android:id="@+id/myanimelist_title_layout"
         android:layout_width="match_parent"
         android:layout_height="?android:listPreferredItemHeightSmall"
-        android:background="?attr/selectableItemBackground"
+        android:background="?attr/selectable_list_drawable"
         android:clickable="true"
         android:paddingLeft="?android:listPreferredItemPaddingLeft"
         android:paddingRight="?android:listPreferredItemPaddingRight">
@@ -18,7 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="Title"/>
+            android:text="Title"
+            style="@style/TextAppearance.Regular.Body1"/>
 
         <TextView
             android:id="@+id/myanimelist_title"
@@ -26,7 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="Edit..."/>
+            android:text="Edit"
+            style="@style/TextAppearance.Medium.Button"/>
 
     </RelativeLayout>
 
@@ -35,23 +37,25 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_below="@id/myanimelist_title_layout"
-        android:background="@color/dividerLight" />
+        android:background="?android:attr/divider" />
 
     <RelativeLayout
         android:id="@+id/myanimelist_status_layout"
         android:layout_width="match_parent"
         android:layout_height="?android:listPreferredItemHeightSmall"
         android:layout_below="@id/divider1"
-        android:background="?attr/selectableItemBackground"
+        android:background="?attr/selectable_list_drawable"
         android:clickable="true"
         android:paddingLeft="?android:listPreferredItemPaddingLeft"
-        android:paddingRight="?android:listPreferredItemPaddingRight">
+        android:paddingRight="?android:listPreferredItemPaddingRight"
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="Status"/>
+            android:text="Status"
+            style="@style/TextAppearance.Regular.Body1"/>
 
         <TextView
             android:id="@+id/myanimelist_status"
@@ -59,7 +63,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            tools:text="Reading"/>
+            tools:text="Reading"
+            style="@style/TextAppearance.Regular.Body1.Secondary"/>
 
     </RelativeLayout>
 
@@ -68,14 +73,14 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_below="@id/myanimelist_status_layout"
-        android:background="@color/dividerLight" />
+        android:background="?android:attr/divider" />
 
     <RelativeLayout
         android:id="@+id/myanimelist_chapters_layout"
         android:layout_width="match_parent"
         android:layout_height="?android:listPreferredItemHeightSmall"
         android:layout_below="@id/divider2"
-        android:background="?attr/selectableItemBackground"
+        android:background="?attr/selectable_list_drawable"
         android:clickable="true"
         android:paddingLeft="?android:listPreferredItemPaddingLeft"
         android:paddingRight="?android:listPreferredItemPaddingRight">
@@ -84,7 +89,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="Chapters"/>
+            android:text="Chapters"
+            style="@style/TextAppearance.Regular.Body1"/>
 
         <TextView
             android:id="@+id/myanimelist_chapters"
@@ -92,7 +98,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            tools:text="12/24"/>
+            tools:text="12/24"
+            style="@style/TextAppearance.Regular.Body1.Secondary"/>
 
     </RelativeLayout>
 
@@ -101,14 +108,14 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:layout_below="@id/myanimelist_chapters_layout"
-        android:background="@color/dividerLight" />
+        android:background="?android:attr/divider" />
 
     <RelativeLayout
         android:id="@+id/myanimelist_score_layout"
         android:layout_width="match_parent"
         android:layout_height="?android:listPreferredItemHeightSmall"
         android:layout_below="@id/divider3"
-        android:background="?attr/selectableItemBackground"
+        android:background="?attr/selectable_list_drawable"
         android:clickable="true"
         android:paddingLeft="?android:listPreferredItemPaddingLeft"
         android:paddingRight="?android:listPreferredItemPaddingRight">
@@ -117,7 +124,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="@string/score"/>
+            android:text="@string/score"
+            style="@style/TextAppearance.Regular.Body1"/>
 
         <TextView
             android:id="@+id/myanimelist_score"
@@ -125,7 +133,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            tools:text="10"/>
+            tools:text="10"
+            style="@style/TextAppearance.Regular.Body1.Secondary"/>
 
     </RelativeLayout>
 

@@ -1,31 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:gravity="center"
+        android:orientation="horizontal"
         android:paddingLeft="@dimen/margin_left"
-        android:paddingRight="@dimen/margin_right"
-        android:orientation="horizontal">
+        android:paddingRight="@dimen/margin_right">
 
         <EditText
+            android:id="@+id/myanimelist_search_field"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/myanimelist_search_field"
-            android:hint="@string/title_hint" />
-
-        <!--
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_clear_grey600_24dp"/>
-        -->
+            android:hint="@string/title_hint"/>
 
     </LinearLayout>
 
@@ -34,21 +27,21 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:paddingTop="32dp"
-        android:paddingBottom="32dp"
         android:layout_gravity="center_vertical|center_horizontal"
+        android:paddingBottom="32dp"
+        android:paddingTop="32dp"
         android:visibility="gone"/>
 
     <ListView
+        android:id="@+id/myanimelist_search_results"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/myanimelist_search_results"
-        android:scrollbarStyle="outsideOverlay"
+        android:choiceMode="singleChoice"
+        android:clipToPadding="false"
         android:divider="@null"
         android:dividerHeight="0dp"
-        android:clipToPadding="false"
-        android:choiceMode="singleChoice"
-        android:listSelector="@color/dividerLight"
+        android:listSelector="?attr/selectable_list_drawable"
+        android:scrollbarStyle="outsideOverlay"
         android:visibility="gone"/>
 
 </LinearLayout>

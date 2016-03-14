@@ -2,9 +2,9 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center">
 
     <include layout="@layout/toolbar"/>
@@ -20,14 +20,8 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_height="@dimen/fab_size"
-        android:layout_width="@dimen/fab_size"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/ic_add_white_24dp"
         app:layout_anchor="@id/recycler"
-        app:layout_anchorGravity="bottom|right|end"
-        app:layout_behavior="eu.kanade.tachiyomi.ui.base.fab.FABAnimationUpDown"/>
+        app:srcCompat="@drawable/ic_add_white_24dp"
+        style="@style/Theme.Widget.FAB"/>
 
 </android.support.design.widget.CoordinatorLayout>

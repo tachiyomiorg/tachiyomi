@@ -261,7 +261,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     fun onNextLibraryUpdate(categories: List<Category>, mangaMap: Map<Int, List<Manga>>) {
         // Check if library is empty and update information accordingly.
         if (mangaMap.isEmpty()) {
-            (activity as MainActivity).image_view.setDrawableCompat(R.drawable.ic_book_grey_128dp)
+            (activity as MainActivity).image_view.setDrawableCompat(R.drawable.ic_book_black_128dp)
             (activity as MainActivity).text_label.text = getString(R.string.information_empty_library)
         } else {
             ( activity as MainActivity).image_view.setDrawableCompat(null)

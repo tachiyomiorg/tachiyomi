@@ -47,8 +47,7 @@
         android:layout_centerInParent="true"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        android:textColor="?android:attr/textColorPrimary"
+        android:textAppearance="@style/TextAppearance.Regular.SubHeading"
         tools:text="Title"/>
 
 </RelativeLayout>

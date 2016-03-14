@@ -7,6 +7,7 @@
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/md_statusbar_translucent</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
     </style>
 
     <!--============-->
@@ -16,5 +17,6 @@
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/md_statusbar_translucent</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
     </style>
 </resources>

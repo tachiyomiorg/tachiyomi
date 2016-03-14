@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
 
-                <ImageView
+                <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/image_view"
                     android:layout_width="128dp"
                     android:layout_height="128dp"
@@ -42,18 +42,16 @@
 
                 <TextView
                     android:id="@+id/text_label"
+                    style="@style/TextAppearance.Regular.Caption.Hint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/image_view"
-                    android:layout_centerHorizontal="true"
-                    android:alpha=".87"
-                    android:textSize="24sp"/>
+                    android:layout_centerHorizontal="true"/>
 
             </RelativeLayout>
 
         </FrameLayout>
     </RelativeLayout>
-
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"

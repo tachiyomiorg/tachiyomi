@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:id="@+id/nnf_item_container"
+              xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/nnf_item_container"
               android:layout_width="match_parent"
               android:layout_height="?android:listPreferredItemHeight"
               android:background="?selectableItemBackground"
@@ -21,7 +21,7 @@
         android:src="@drawable/nnf_ic_file_folder"
         android:tint="?attr/colorAccent"
         android:visibility="visible"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"/>
 
     <TextView
         android:id="@android:id/text1"
@@ -33,5 +33,5 @@
         android:maxLines="1"
         android:padding="8dp"
         android:singleLine="true"
-        android:text="@string/nnf_name" />
+        android:text="@string/nnf_name"/>
 </LinearLayout>

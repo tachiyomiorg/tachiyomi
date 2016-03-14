@@ -191,7 +191,7 @@ class DownloadFragment : BaseRxFragment<DownloadPresenter>() {
      */
     private fun setInformationView() {
         if (presenter.downloadQueue.isEmpty()) {
-            ( activity as MainActivity).image_view.setDrawableCompat(R.drawable.ic_file_download_grey_128dp)
+            ( activity as MainActivity).image_view.setDrawableCompat(R.drawable.ic_file_download_black_128dp)
             ( activity as MainActivity).text_label.text = getString(R.string.information_no_downloads)
         }
     }

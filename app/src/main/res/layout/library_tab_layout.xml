@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     android:visibility="gone"
-    android:theme="@style/AppTheme.Tab"
+    android:theme="@style/Theme.ActionBar.Tab"
     app:tabIndicatorColor="@android:color/white"
     app:tabGravity="center"
     app:tabMode="scrollable"

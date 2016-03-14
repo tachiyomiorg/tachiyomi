@@ -17,6 +17,7 @@ import eu.kanade.tachiyomi.ui.base.decoration.DividerItemDecoration
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
+import eu.kanade.tachiyomi.util.getResourceDrawable
 import eu.kanade.tachiyomi.util.setDrawableCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_recent_chapters.*
@@ -70,8 +71,7 @@ class RecentChaptersFragment : BaseRxFragment<RecentChaptersPresenter>(), Flexib
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         // Init RecyclerView and adapter
         recycler.layoutManager = LinearLayoutManager(activity)
-        recycler.addItemDecoration(DividerItemDecoration(ContextCompat.getDrawable(
-                context, R.drawable.line_divider)))
+        recycler.addItemDecoration(DividerItemDecoration(context.theme.getResourceDrawable(R.attr.divider_drawable)))
         recycler.setHasFixedSize(true)
         adapter = RecentChaptersAdapter(this)
         recycler.adapter = adapter
@@ -80,7 +80,7 @@ class RecentChaptersFragment : BaseRxFragment<RecentChaptersPresenter>(), Flexib
         setToolbarTitle(R.string.label_recent_updates)
 
         // Check if recent chapters is empty and update information accordingly.
-        (activity as MainActivity).image_view.setDrawableCompat(R.drawable.ic_history_grey_128dp)
+        (activity as MainActivity).image_view.setDrawableCompat(R.drawable.ic_history_black_128dp)
         (activity as MainActivity).text_label.text = getString(R.string.information_no_recent)
         (activity as MainActivity).information_layout.bringToFront()
     }
