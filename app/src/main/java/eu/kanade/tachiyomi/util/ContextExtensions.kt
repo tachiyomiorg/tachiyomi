@@ -53,8 +53,8 @@ val Context.alarmManager: AlarmManager
     get() = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
 fun Context.setTheme() {
-    var a = PreferencesHelper(this).getTheme().get()
-    when (a) {
+    var drawable = PreferencesHelper(this).getTheme().get()
+    when (drawable) {
         1 -> this.setTheme(R.style.Theme_Tachiyomi)
         2 -> this.setTheme(R.style.Theme_Tachiyomi_Dark)
         else -> this.setTheme(R.style.Theme_Tachiyomi)
