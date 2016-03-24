@@ -101,6 +101,7 @@ public class LibraryUpdateAlarmTest {
     @Test
     public void testLibraryUpdateServiceIsStartedWhenUpdateIntentIsReceived() {
         Intent intent = new Intent(context, LibraryUpdateService.class);
+        intent.putExtra("is_forced", false);
         assertThat(app.getNextStartedService()).isNotEqualTo(intent);
 
         LibraryUpdateAlarm alarm = new LibraryUpdateAlarm();

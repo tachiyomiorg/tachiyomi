@@ -13,6 +13,7 @@
     <string name="pref_library_columns_landscape_key">pref_library_columns_landscape_key</string>
     <string name="pref_library_update_interval_key">pref_library_update_interval_key</string>
     <string name="pref_update_only_non_completed_key">pref_update_only_non_completed_key</string>
+    <string name="pref_update_only_when_charging_key">pref_update_only_when_charging_key</string>
     <string name="pref_auto_update_manga_sync_key">pref_auto_update_manga_sync_key</string>
     <string name="pref_ask_update_manga_sync_key">pref_ask_update_manga_sync_key</string>
     <string name="pref_theme_key">pref_theme_key</string>
@@ -30,8 +31,8 @@
     <string name="pref_reader_theme_key">pref_reader_theme_key</string>
     <string name="pref_image_decoder_key">pref_image_decoder_key</string>
     <string name="pref_seamless_mode_key">pref_seamless_mode_key</string>
-    <string name="pref_filter_downloaded">pref_filter_downloaded</string>
-    <string name="pref_filter_unread">pref_filter_unread</string>
+    <string name="pref_filter_downloaded_key">pref_filter_downloaded_key</string>
+    <string name="pref_filter_unread_key">pref_filter_unread_key</string>
 
     <string name="pref_download_directory_key">pref_download_directory_key</string>
     <string name="pref_download_slots_key">pref_download_slots_key</string>

@@ -17,7 +17,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.source.SourceManager
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.AndroidComponentUtil
-import eu.kanade.tachiyomi.util.NetworkUtil
+import eu.kanade.tachiyomi.util.DeviceUtil
 import eu.kanade.tachiyomi.util.notification
 import eu.kanade.tachiyomi.util.notificationManager
 import rx.Observable
@@ -28,13 +28,19 @@ import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 import javax.inject.Inject
 
+// Intent key for forced library update
+val UPDATE_IS_FORCED = "is_forced"
+
 /**
  * Get the start intent for [LibraryUpdateService].
  * @param context the application context.
+ * @param isForced true when forcing library update
  * @return the intent of the service.
  */
-fun getIntent(context: Context): Intent {
-    return Intent(context, LibraryUpdateService::class.java)
+fun getIntent(context: Context, isForced: Boolean = false): Intent {
+    return Intent(context, LibraryUpdateService::class.java).apply {
+        putExtra(UPDATE_IS_FORCED, isForced)
+    }
 }
 
 /**
@@ -67,6 +73,7 @@ class LibraryUpdateService : Service() {
     // Subscription where the update is done.
     private var subscription: Subscription? = null
 
+
     companion object {
         val UPDATE_NOTIFICATION_ID = 1
 
@@ -76,9 +83,9 @@ class LibraryUpdateService : Service() {
          * @param context the application context.
          */
         @JvmStatic
-        fun start(context: Context) {
+        fun start(context: Context, isForced: Boolean = false) {
             if (!isRunning(context)) {
-                context.startService(getIntent(context))
+                context.startService(getIntent(context, isForced))
             }
         }
 
@@ -116,6 +123,7 @@ class LibraryUpdateService : Service() {
         return null
     }
 
+
     /**
      * Method called when the service receives an intent. In this case, the content of the intent
      * is irrelevant, because everything required is fetched in [updateLibrary].
@@ -127,9 +135,23 @@ class LibraryUpdateService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         // If there's no network available, set a component to start this service again when
         // a connection is available.
-        if (!NetworkUtil.isNetworkConnected(this)) {
+        if (!DeviceUtil.isNetworkConnected(this)) {
             Timber.i("Sync canceled, connection not available")
+            showWarningNotification(getString(R.string.notification_no_connection_title),
+                    getString(R.string.notification_no_connection_body))
             AndroidComponentUtil.toggleComponent(this, SyncOnConnectionAvailable::class.java, true)
+            stopSelf(startId)
+            return Service.START_NOT_STICKY
+        }
+
+        // If user doesn't want to update while phone is not charging, cancel sync
+        else if (preferences.updateOnlyWhenCharging() && !(intent?.getBooleanExtra(UPDATE_IS_FORCED, false) ?: false) && !DeviceUtil.isPowerConnected(this)) {
+            Timber.i("Sync canceled, not connected to ac power")
+            // Create force library update intent
+            val forceIntent = getLibraryUpdateReceiverIntent(LibraryUpdateReceiver.FORCE_LIBRARY_UPDATE)
+            // Show warning
+            showWarningNotification(getString(R.string.notification_not_connected_to_ac_title),
+                    getString(R.string.notification_not_connected_to_ac_body), forceIntent)
             stopSelf(startId)
             return Service.START_NOT_STICKY
         }
@@ -146,9 +168,18 @@ class LibraryUpdateService : Service() {
                             stopSelf(startId)
                         }, {
                             stopSelf(startId)
-                        })
+                })
 
         return Service.START_STICKY
+    }
+
+    /**
+     * Creates a PendingIntent for LibraryUpdate broadcast class
+     * @param action id of action
+     */
+    fun getLibraryUpdateReceiverIntent(action: String): PendingIntent {
+        return PendingIntent.getBroadcast(this, 0,
+                Intent(this, LibraryUpdateReceiver::class.java).apply { this.action = action }, 0)
     }
 
     /**
@@ -164,8 +195,7 @@ class LibraryUpdateService : Service() {
         val newUpdates = ArrayList<Manga>()
         val failedUpdates = ArrayList<Manga>()
 
-        val cancelIntent = PendingIntent.getBroadcast(this, 0,
-                Intent(this, CancelUpdateReceiver::class.java), 0)
+        val cancelIntent = getLibraryUpdateReceiverIntent(LibraryUpdateReceiver.CANCEL_LIBRARY_UPDATE)
 
         // Get the manga list that is going to be updated.
         val allLibraryMangas = db.getFavoriteMangas().executeAsBlocking()
@@ -179,16 +209,17 @@ class LibraryUpdateService : Service() {
                 // Notify manga that will update.
                 .doOnNext { showProgressNotification(it, count.andIncrement, toUpdate.size, cancelIntent) }
                 // Update the chapters of the manga.
-                .concatMap { manga -> updateManga(manga)
-                        // If there's any error, return empty update and continue.
-                        .onErrorReturn {
-                            failedUpdates.add(manga)
-                            Pair(0, 0)
-                        }
-                        // Filter out mangas without new chapters (or failed).
-                        .filter { pair -> pair.first > 0 }
-                        // Convert to the manga that contains new chapters.
-                        .map { manga }
+                .concatMap { manga ->
+                    updateManga(manga)
+                            // If there's any error, return empty update and continue.
+                            .onErrorReturn {
+                                failedUpdates.add(manga)
+                                Pair(0, 0)
+                            }
+                            // Filter out mangas without new chapters (or failed).
+                            .filter { pair -> pair.first > 0 }
+                            // Convert to the manga that contains new chapters.
+                            .map { manga }
                 }
                 // Add manga with new chapters to the list.
                 .doOnNext { newUpdates.add(it) }
@@ -288,7 +319,27 @@ class LibraryUpdateService : Service() {
             setContentTitle(manga.title)
             setProgress(total, current, false)
             setOngoing(true)
-            addAction(R.drawable.ic_clear_grey_24dp_img, getString(R.string.action_cancel), cancelIntent)
+            addAction(R.drawable.ic_clear_grey_24dp_img, getString(android.R.string.cancel), cancelIntent)
+        }
+        notificationManager.notify(UPDATE_NOTIFICATION_ID, n)
+    }
+
+    /**
+     * Show warning message when library can't be updated
+     * @param warningTitle title of warning
+     * @param warningBody warning information
+     * @param pendingIntent Intent called when action clicked
+     */
+    private fun showWarningNotification(warningTitle: String, warningBody: String, pendingIntent: PendingIntent? = null) {
+        val n = notification() {
+            setSmallIcon(R.drawable.ic_warning_white_24dp_img)
+            setContentTitle(warningTitle)
+            setStyle(NotificationCompat.BigTextStyle().bigText(warningBody))
+            setContentIntent(notificationIntent)
+            if (pendingIntent != null) {
+                addAction(R.drawable.ic_refresh_grey_24dp_img, getString(R.string.action_force), pendingIntent)
+            }
+            setAutoCancel(true)
         }
         notificationManager.notify(UPDATE_NOTIFICATION_ID, n)
     }
@@ -341,23 +392,37 @@ class LibraryUpdateService : Service() {
          * @param intent the intent received.
          */
         override fun onReceive(context: Context, intent: Intent) {
-            if (NetworkUtil.isNetworkConnected(context)) {
+            if (DeviceUtil.isNetworkConnected(context)) {
                 AndroidComponentUtil.toggleComponent(context, this.javaClass, false)
                 context.startService(getIntent(context))
             }
         }
     }
 
-    class CancelUpdateReceiver : BroadcastReceiver() {
+    /**
+     * Class that triggers the library to update.
+     */
+    class LibraryUpdateReceiver : BroadcastReceiver() {
+        companion object {
+            // Cancel library update action
+            val CANCEL_LIBRARY_UPDATE = "eu.kanade.CANCEL_LIBRARY_UPDATE"
+            // Force library update
+            val FORCE_LIBRARY_UPDATE = "eu.kanade.FORCE_LIBRARY_UPDATE"
+        }
 
         /**
-         * Method called when user stops the update.
+         * Method called when user wants a library update.
          * @param context the application context.
          * @param intent the intent received.
          */
         override fun onReceive(context: Context, intent: Intent) {
-            LibraryUpdateService.stop(context)
-            context.notificationManager.cancel(UPDATE_NOTIFICATION_ID)
+            when (intent.action) {
+                CANCEL_LIBRARY_UPDATE -> {
+                    LibraryUpdateService.stop(context)
+                    context.notificationManager.cancel(UPDATE_NOTIFICATION_ID)
+                }
+                FORCE_LIBRARY_UPDATE -> LibraryUpdateService.start(context, true)
+            }
         }
     }
 

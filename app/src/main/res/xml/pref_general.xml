@@ -3,30 +3,35 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <eu.kanade.tachiyomi.widget.preference.SimpleDialogPreference
+        android:dialogLayout="@layout/pref_library_columns"
         android:key="@string/pref_library_columns_dialog_key"
         android:persistent="false"
-        android:title="@string/pref_library_columns"
-        android:dialogLayout="@layout/pref_library_columns"/>
+        android:title="@string/pref_library_columns"/>
 
     <eu.kanade.tachiyomi.widget.preference.IntListPreference
-        android:key="@string/pref_library_update_interval_key"
-        android:title="@string/pref_library_update_interval"
+        android:defaultValue="0"
         android:entries="@array/library_update_interval"
         android:entryValues="@array/library_update_interval_values"
-        android:defaultValue="0"
-        android:summary="%s"/>
+        android:key="@string/pref_library_update_interval_key"
+        android:summary="%s"
+        android:title="@string/pref_library_update_interval"/>
 
     <eu.kanade.tachiyomi.widget.preference.IntListPreference
-        android:title="@string/pref_theme"
-        android:key="@string/pref_theme_key"
+        android:defaultValue="1"
         android:entries="@array/themes"
         android:entryValues="@array/themes_values"
-        android:defaultValue="1"
-        android:summary="%s"/>
+        android:key="@string/pref_theme_key"
+        android:summary="%s"
+        android:title="@string/pref_theme"/>
 
     <SwitchPreferenceCompat
+        android:defaultValue="false"
         android:key="@string/pref_update_only_non_completed_key"
-        android:title="@string/pref_update_only_non_completed"
-        android:defaultValue="false"/>
+        android:title="@string/pref_update_only_non_completed"/>
+
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="@string/pref_update_only_when_charging_key"
+        android:title="@string/pref_update_only_when_charging"/>
 
 </android.support.v7.preference.PreferenceScreen>

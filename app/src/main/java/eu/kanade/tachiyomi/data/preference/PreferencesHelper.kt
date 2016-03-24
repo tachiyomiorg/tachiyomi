@@ -197,16 +197,20 @@ class PreferencesHelper(private val context: Context) {
         return prefs.getBoolean(getKey(R.string.pref_remove_after_marked_as_read_key), false)
     }
 
+    fun updateOnlyWhenCharging(): Boolean {
+        return prefs.getBoolean(getKey(R.string.pref_update_only_when_charging_key), false)
+    }
+
     fun libraryUpdateInterval(): Preference<Int> {
         return rxPrefs.getInteger(getKey(R.string.pref_library_update_interval_key), 0)
     }
 
     fun filterDownloaded(): Preference<Boolean> {
-        return rxPrefs.getBoolean(getKey(R.string.pref_filter_downloaded), false)
+        return rxPrefs.getBoolean(getKey(R.string.pref_filter_downloaded_key), false)
     }
 
     fun filterUnread(): Preference<Boolean> {
-        return rxPrefs.getBoolean(getKey(R.string.pref_filter_unread), false)
+        return rxPrefs.getBoolean(getKey(R.string.pref_filter_unread_key), false)
     }
 
 }

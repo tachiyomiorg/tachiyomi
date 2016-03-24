@@ -207,7 +207,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
                 // Apply filter
                 onFilterCheckboxChanged()
             }
-            R.id.action_refresh -> LibraryUpdateService.start(activity)
+            R.id.action_refresh -> LibraryUpdateService.start(activity, true) // Force refresh
             R.id.action_edit_categories -> {
                 val intent = CategoryActivity.newIntent(activity)
                 startActivity(intent)

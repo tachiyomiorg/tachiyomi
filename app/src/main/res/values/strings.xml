@@ -50,6 +50,7 @@
     <string name="action_display_mode">Change display mode</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_sort">Sort</string>
+    <string name="action_force">Force refresh</string>
 
     <!-- Operations -->
     <string name="deleting">Deleting…</string>
@@ -72,6 +73,7 @@
     <string name="default_columns">Default</string>
     <string name="pref_library_update_interval">Library update frequency</string>
     <string name="pref_update_only_non_completed">Only update incomplete manga</string>
+    <string name="pref_update_only_when_charging">Only update when charging</string>
     <string name="update_never">Manual</string>
     <string name="update_1hour">Hourly</string>
     <string name="update_2hour">Every 2 hours</string>
@@ -256,6 +258,10 @@
     <string name="notification_new_chapters">New chapters found for:</string>
     <string name="notification_manga_update_failed">Failed to update manga:</string>
     <string name="notification_first_add_to_library">Please add the manga to your library before doing this</string>
+    <string name="notification_not_connected_to_ac_title">Sync canceled</string>
+    <string name="notification_not_connected_to_ac_body">Not connected to AC power</string>
+    <string name="notification_no_connection_title">Sync canceled</string>
+    <string name="notification_no_connection_body">Connection not available</string>
 
     <!-- File Picker Titles -->
     <string name="file_select_cover">Select cover image</string>
