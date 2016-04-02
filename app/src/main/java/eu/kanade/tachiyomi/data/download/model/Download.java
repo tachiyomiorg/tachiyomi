@@ -5,12 +5,12 @@ import java.util.List;
 
 import eu.kanade.tachiyomi.data.database.models.Chapter;
 import eu.kanade.tachiyomi.data.database.models.Manga;
-import eu.kanade.tachiyomi.data.source.base.Source;
+import eu.kanade.tachiyomi.data.source.base.OnlineSource;
 import eu.kanade.tachiyomi.data.source.model.Page;
 import rx.subjects.PublishSubject;
 
 public class Download {
-    public Source source;
+    public OnlineSource source;
     public Manga manga;
     public Chapter chapter;
     public List<Page> pages;
@@ -29,7 +29,7 @@ public class Download {
     public static final int ERROR = 4;
 
 
-    public Download(Source source, Manga manga, Chapter chapter) {
+    public Download(OnlineSource source, Manga manga, Chapter chapter) {
         this.source = source;
         this.manga = manga;
         this.chapter = chapter;

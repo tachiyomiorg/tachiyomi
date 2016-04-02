@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package eu.kanade.tachiyomi.data.source.newbase
+package eu.kanade.tachiyomi.data.source.base
 
 import eu.kanade.tachiyomi.data.database.models.Manga
 import org.jsoup.nodes.Document
@@ -11,9 +11,9 @@ import java.util.*
 
 fun toMap(map: Any?) = map as? Map<String, Any?>
 
-class YamlSource(private val map: Map<String, Any?>) {
+class YamlSourceNode(private val map: Map<String, Any?>) {
 
-    val id: Int by map
+    val id: Any by map
 
     val name: String by map
 
@@ -176,7 +176,7 @@ class PagesNode(private val map: Map<String, Any?>) {
         get() = map["pages_css"] as? String
 
     val pages_attr: String?
-        get() = map["attr"] as? String ?: "value"
+        get() = map["pages_attr"] as? String ?: "value"
 
     val replace: String?
         get() = map["url_replace"] as? String

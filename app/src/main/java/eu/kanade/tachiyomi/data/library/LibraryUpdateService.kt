@@ -18,6 +18,7 @@ import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.source.SourceManager
+import eu.kanade.tachiyomi.data.source.base.OnlineSource
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.*
 import rx.Observable
@@ -288,7 +289,7 @@ class LibraryUpdateService : Service() {
      * @return a pair of the inserted and removed chapters.
      */
     fun updateManga(manga: Manga): Observable<Pair<Int, Int>> {
-        val source = sourceManager.get(manga.source)
+        val source = sourceManager.get(manga.source) as? OnlineSource ?: return Observable.empty()
         return source!!
                 .pullChaptersFromNetwork(manga.url)
                 .map { syncChaptersWithSource(db, it, manga, source) }

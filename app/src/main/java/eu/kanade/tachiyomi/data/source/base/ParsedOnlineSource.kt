@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.data.source.newbase
+package eu.kanade.tachiyomi.data.source.base
 
 import android.content.Context
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -37,7 +37,7 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
 
     abstract fun getNextPopularPageSelector(): String?
 
-    override fun parseSearchFromHtml(html: String, page: MangasPage) {
+    override fun parseSearchFromHtml(html: String, page: MangasPage, query: String) {
         val document = Jsoup.parse(html)
         for (element in document.select(getSearchMangaSelector())) {
             Manga().apply {
@@ -72,7 +72,10 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
         val document = Jsoup.parse(html)
 
         for (element in document.select(getChapterListSelector())) {
-            constructChapterFromElement(element, Chapter.create())
+            Chapter.create().apply {
+                constructChapterFromElement(element, this)
+                chapters.add(this)
+            }
         }
     }
 

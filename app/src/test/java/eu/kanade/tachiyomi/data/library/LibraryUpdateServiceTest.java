@@ -17,6 +17,7 @@ import eu.kanade.tachiyomi.BuildConfig;
 import eu.kanade.tachiyomi.CustomRobolectricGradleTestRunner;
 import eu.kanade.tachiyomi.data.database.models.Chapter;
 import eu.kanade.tachiyomi.data.database.models.Manga;
+import eu.kanade.tachiyomi.data.source.base.OnlineSource;
 import eu.kanade.tachiyomi.data.source.base.Source;
 import rx.Observable;
 
@@ -32,14 +33,14 @@ public class LibraryUpdateServiceTest {
     ShadowApplication app;
     Context context;
     LibraryUpdateService service;
-    Source source;
+    OnlineSource source;
 
     @Before
     public void setup() {
         app = ShadowApplication.getInstance();
         context = app.getApplicationContext();
         service = Robolectric.setupService(LibraryUpdateService.class);
-        source = mock(Source.class);
+        source = mock(OnlineSource.class);
         when(service.sourceManager.get(anyInt())).thenReturn(source);
     }
 
@@ -62,7 +63,7 @@ public class LibraryUpdateServiceTest {
 
         List<Chapter> sourceChapters = createChapters("/chapter1", "/chapter2");
 
-        when(source.pullChaptersFromNetwork(manga.url)).thenReturn(Observable.just(sourceChapters));
+        when(source.fetchChapters(manga)).thenReturn(Observable.just(sourceChapters));
 
         service.updateManga(manga).subscribe();
 
@@ -79,9 +80,9 @@ public class LibraryUpdateServiceTest {
         List<Chapter> chapters3 = createChapters("/achapter1", "/achapter2");
 
         // One of the updates will fail
-        when(source.pullChaptersFromNetwork("/manga1")).thenReturn(Observable.just(chapters));
-        when(source.pullChaptersFromNetwork("/manga2")).thenReturn(Observable.<List<Chapter>>error(new Exception()));
-        when(source.pullChaptersFromNetwork("/manga3")).thenReturn(Observable.just(chapters3));
+        when(source.fetchChapters("/manga1")).thenReturn(Observable.just(chapters));
+        when(source.fetchChapters("/manga2")).thenReturn(Observable.<List<Chapter>>error(new Exception()));
+        when(source.fetchChapters("/manga3")).thenReturn(Observable.just(chapters3));
 
         service.updateMangaList(service.getMangaToUpdate(null)).subscribe();
 

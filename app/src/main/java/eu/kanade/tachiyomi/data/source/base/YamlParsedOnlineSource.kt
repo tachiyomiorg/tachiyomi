@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.data.source.newbase
+package eu.kanade.tachiyomi.data.source.base
 
 import android.content.Context
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -20,7 +20,7 @@ import java.util.*
 class YamlParsedOnlineSource(context: Context, stream: InputStream) : OnlineSource(context) {
 
     @Suppress("UNCHECKED_CAST")
-    val map = YamlSource((Yaml().load(stream) as Map<String, Any?>).withDefault { null })
+    val map = YamlSourceNode((Yaml().load(stream) as Map<String, Any?>).withDefault { null })
 
     override val name: String
         get() = map.name
@@ -33,8 +33,8 @@ class YamlParsedOnlineSource(context: Context, stream: InputStream) : OnlineSour
         getLanguages().find { code == it.code }!!
     }
 
-    init {
-        id = map.id
+    override val id = map.id.let {
+        if (it is Int) it else (lang.code.hashCode() + 31 * it.hashCode()) and 0x7fffffff
     }
 
     override fun popularMangaRequest(page: MangasPage): Request {
@@ -70,7 +70,7 @@ class YamlParsedOnlineSource(context: Context, stream: InputStream) : OnlineSour
     }
 
     // Not needed
-    override fun getInitialPopularMangasUrl() = ""
+    override fun getInitialPopularMangaUrl() = ""
 
     override fun getInitialSearchUrl(query: String) = ""
 
@@ -84,7 +84,7 @@ class YamlParsedOnlineSource(context: Context, stream: InputStream) : OnlineSour
         }
     }
 
-    override fun parseSearchFromHtml(html: String, page: MangasPage) {
+    override fun parseSearchFromHtml(html: String, page: MangasPage, query: String) {
         val document = Jsoup.parse(html)
         for (element in document.select(map.search.manga_css)) {
             Manga().apply {

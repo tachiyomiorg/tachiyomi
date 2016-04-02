@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.source.base.OnlineSource
 import eu.kanade.tachiyomi.data.source.base.Source
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.util.toast
@@ -95,7 +96,7 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
 
         // If manga source is known update source TextView.
         if (source != null) {
-            manga_source.text = source.visibleName
+            manga_source.text = source.toString()
         }
 
         // Update genres TextView.
@@ -140,7 +141,8 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
      */
     fun openInBrowser() {
         try {
-            val url = presenter.source.baseUrl + presenter.manga.url
+            val source = presenter.source as? OnlineSource ?: return
+            val url = source.baseUrl + presenter.manga.url
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
         } catch (e: Exception) {
             context.toast(e.message)

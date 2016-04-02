@@ -42,11 +42,11 @@ class SettingsSourcesFragment : SettingsNestedFragment() {
                 .subscribe { languages ->
                     sourcesPref.removeAll()
 
-                    val enabledSources = settingsActivity.sourceManager.getSources()
+                    val enabledSources = settingsActivity.sourceManager.getOnlineSources()
                             .filter { it.lang.code in languages }
 
                     for (source in enabledSources) {
-                        if (source.isLoginRequired) {
+                        if (source.isLoginRequired()) {
                             val pref = createSource(source)
                             sourcesPref.addPreference(pref)
                         }
@@ -65,7 +65,7 @@ class SettingsSourcesFragment : SettingsNestedFragment() {
     fun createSource(source: Source): Preference {
         return LoginPreference(preferenceManager.context).apply {
             key = preferences.keys.sourceUsername(source.id)
-            title = source.visibleName
+            title = source.toString()
 
             setOnPreferenceClickListener {
                 val fragment = SourceLoginDialog.newInstance(source)

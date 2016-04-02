@@ -99,7 +99,7 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
      * @return manga information.
      */
     private fun fetchMangaObs(): Observable<Manga> {
-        return source.pullMangaFromNetwork(manga.url)
+        return source.fetchMangaDetails(manga)
                 .flatMap { networkManga ->
                     manga.copyFrom(networkManga)
                     db.insertManga(manga).executeAsBlocking()

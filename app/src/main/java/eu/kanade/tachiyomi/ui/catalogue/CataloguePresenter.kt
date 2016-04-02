@@ -8,6 +8,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.EN
 import eu.kanade.tachiyomi.data.source.SourceManager
+import eu.kanade.tachiyomi.data.source.base.OnlineSource
 import eu.kanade.tachiyomi.data.source.base.Source
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
@@ -52,7 +53,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     /**
      * Active source.
      */
-    lateinit var source: Source
+    lateinit var source: OnlineSource
         private set
 
     /**
@@ -163,7 +164,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      *
      * @param source the new active source.
      */
-    fun setActiveSource(source: Source) {
+    fun setActiveSource(source: OnlineSource) {
         prefs.lastUsedCatalogueSource().set(source.id)
         this.source = source
         restartPager()
@@ -222,9 +223,9 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         }
 
         val observable = if (query.isEmpty())
-            source.pullPopularMangasFromNetwork(nextMangasPage)
+            source.fetchPopularManga(nextMangasPage)
         else
-            source.searchMangasFromNetwork(nextMangasPage, query)
+            source.searchManga(nextMangasPage, query)
 
         return observable.subscribeOn(Schedulers.io())
                 .doOnNext { lastMangasPage = it }
@@ -268,7 +269,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      * @return an observable of the manga to initialize
      */
     private fun getMangaDetailsObservable(manga: Manga): Observable<Manga> {
-        return source.pullMangaFromNetwork(manga.url)
+        return source.fetchMangaDetails(manga)
                 .flatMap { networkManga ->
                     manga.copyFrom(networkManga)
                     db.insertManga(manga).executeAsBlocking()
@@ -282,13 +283,13 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      *
      * @return a source.
      */
-    fun getLastUsedSource(): Source {
+    fun getLastUsedSource(): OnlineSource {
         val id = prefs.lastUsedCatalogueSource().get() ?: -1
         val source = sourceManager.get(id)
         if (!isValidSource(source)) {
             return findFirstValidSource()
         }
-        return source!!
+        return source as OnlineSource
     }
 
     /**
@@ -298,10 +299,10 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      * @return true if the source is valid, false otherwise.
      */
     fun isValidSource(source: Source?): Boolean {
-        if (source == null) return false
+        if (source == null || source !is OnlineSource) return false
 
         return with(source) {
-            if (!isLoginRequired || isLogged) {
+            if (!isLoginRequired() || isLogged()) {
                 true
             } else {
                 prefs.sourceUsername(this) != "" && prefs.sourcePassword(this) != ""
@@ -314,14 +315,14 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      *
      * @return the index of the first valid source.
      */
-    fun findFirstValidSource(): Source {
-        return sources.find { isValidSource(it) }!!
+    fun findFirstValidSource(): OnlineSource {
+        return sources.first { isValidSource(it) }
     }
 
     /**
      * Returns a list of enabled sources ordered by language and name.
      */
-    private fun getEnabledSources(): List<Source> {
+    private fun getEnabledSources(): List<OnlineSource> {
         val languages = prefs.enabledLanguages().getOrDefault()
 
         // Ensure at least one language
@@ -329,7 +330,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
             languages.add(EN.code)
         }
 
-        return sourceManager.getSources()
+        return sourceManager.getOnlineSources()
                 .filter { it.lang.code in languages }
                 .sortedBy { "(${it.lang.code}) ${it.name}" }
     }

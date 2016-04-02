@@ -1,43 +1,48 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
 import android.content.Context
+import android.net.Uri
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.get
 import eu.kanade.tachiyomi.data.network.post
 import eu.kanade.tachiyomi.data.source.EN
-import eu.kanade.tachiyomi.data.source.base.Source
+import eu.kanade.tachiyomi.data.source.Language
+import eu.kanade.tachiyomi.data.source.base.ParsedOnlineSource
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.util.Parser
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.jsoup.Jsoup
+import okhttp3.Response
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
-import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
 import java.util.regex.Pattern
 
-class Kissmanga(context: Context) : Source(context) {
+class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(context) {
 
-    override fun getName() = NAME
+    override val name = "Kissmanga"
 
-    override fun getBaseUrl() = BASE_URL
+    val IP = "93.174.95.110"
 
-    override fun getLang() = EN
+    override val baseUrl = "http://kissmanga.com"
 
-    override val networkClient: OkHttpClient
-        get() = networkService.cloudflareClient
+    override val lang: Language get() = EN
 
-    override fun getInitialPopularMangasUrl(): String {
-        return String.format(POPULAR_MANGAS_URL, 1)
-    }
+    override val client: OkHttpClient get() = networkService.cloudflareClient
 
-    override fun getInitialSearchUrl(query: String): String {
-        return SEARCH_URL
+    override fun headersBuilder() = super.headersBuilder().add("Host", "kissmanga.com")
+
+    override fun getInitialPopularMangaUrl() = "$baseUrl/MangaList/MostPopular"
+
+    override fun getPopularMangaSelector() = "table.listing tr:gt(1)"
+
+    override fun constructPopularMangaFromElement(element: Element, manga: Manga) {
+        element.select("td a:eq(0)").first().let {
+            manga.setUrl(it.attr("href"))
+            manga.title = it.text()
+        }
     }
 
     override fun searchMangaRequest(page: MangasPage, query: String): Request {
@@ -45,156 +50,79 @@ class Kissmanga(context: Context) : Source(context) {
             page.url = getInitialSearchUrl(query)
         }
 
-        val form = FormBody.Builder()
-        form.add("authorArtist", "")
-        form.add("mangaName", query)
-        form.add("status", "")
-        form.add("genres", "")
+        val form = FormBody.Builder().apply {
+            add("authorArtist", "")
+            add("mangaName", query)
+            add("status", "")
+            add("genres", "")
+        }.build()
 
-        return post(page.url, requestHeaders, form.build())
+        return post(page.url, headers, form)
     }
 
-    override fun pageListRequest(chapterUrl: String): Request {
-        return post(baseUrl + chapterUrl, requestHeaders)
+    override fun getNextPopularPageSelector() = "li > a:contains(› Next)"
+
+    override fun getSearchMangaSelector() = getPopularMangaSelector()
+
+    override fun constructSearchMangaFromElement(element: Element, manga: Manga) {
+        constructPopularMangaFromElement(element, manga)
     }
 
-    override fun imageRequest(page: Page): Request {
-        return get(page.imageUrl)
-    }
+    override fun getNextSearchPageSelector() = null
 
-    override fun parsePopularMangasFromHtml(parsedHtml: Document): List<Manga> {
-        val mangaList = ArrayList<Manga>()
+    override fun getInitialSearchUrl(query: String) = "$baseUrl/AdvanceSearch"
 
-        for (currentHtmlBlock in parsedHtml.select("table.listing tr:gt(1)")) {
-            val manga = constructPopularMangaFromHtml(currentHtmlBlock)
-            mangaList.add(manga)
+    override fun constructMangaFromDocument(document: Document, manga: Manga) {
+        val infoElement = document.select("div.barContent").first()
+
+        manga.author = infoElement.select("p:has(span:contains(Author:)) > a").first()?.text()
+        manga.genre = infoElement.select("p:has(span:contains(Genres:)) > *:gt(0)").text()
+        manga.description = infoElement.select("p:has(span:contains(Summary:)) ~ p").text()
+        manga.status = parseStatus(infoElement.select("p:has(span:contains(Status:))").first()?.text())
+        manga.thumbnail_url = document.select(".rightBox:eq(0) img").first()?.attr("src")?.let {
+            Uri.parse(it).buildUpon().authority(IP).toString();
         }
-
-        return mangaList
     }
 
-    private fun constructPopularMangaFromHtml(htmlBlock: Element): Manga {
-        val manga = Manga()
-        manga.source = id
-
-        val urlElement = Parser.element(htmlBlock, "td a:eq(0)")
-
-        if (urlElement != null) {
-            manga.setUrl(urlElement.attr("href"))
-            manga.title = urlElement.text()
-        }
-
-        return manga
-    }
-
-    override fun parseNextPopularMangasUrl(parsedHtml: Document, page: MangasPage): String? {
-        val path = Parser.href(parsedHtml, "li > a:contains(› Next)")
-        return if (path != null) BASE_URL + path else null
-    }
-
-    override fun parseSearchFromHtml(parsedHtml: Document): List<Manga> {
-        return parsePopularMangasFromHtml(parsedHtml)
-    }
-
-    override fun parseNextSearchUrl(parsedHtml: Document, page: MangasPage, query: String): String? {
-        return null
-    }
-
-    override fun parseHtmlToManga(mangaUrl: String, unparsedHtml: String): Manga {
-        val parsedDocument = Jsoup.parse(unparsedHtml)
-        val infoElement = parsedDocument.select("div.barContent").first()
-
-        val manga = Manga.create(mangaUrl)
-        manga.title = Parser.text(infoElement, "a.bigChar")
-        manga.author = Parser.text(infoElement, "p:has(span:contains(Author:)) > a")
-        manga.genre = Parser.allText(infoElement, "p:has(span:contains(Genres:)) > *:gt(0)")
-        manga.description = Parser.allText(infoElement, "p:has(span:contains(Summary:)) ~ p")
-        manga.status = parseStatus(Parser.text(infoElement, "p:has(span:contains(Status:))")!!)
-
-        val thumbnail = Parser.src(parsedDocument, ".rightBox:eq(0) img")
-        if (thumbnail != null) {
-            manga.thumbnail_url = thumbnail
-        }
-
-        manga.initialized = true
-        return manga
-    }
-
-    private fun parseStatus(status: String): Int {
-        if (status.contains("Ongoing")) {
-            return Manga.ONGOING
-        }
-        if (status.contains("Completed")) {
-            return Manga.COMPLETED
+    fun parseStatus(status: String?): Int {
+        if (status != null) {
+            when {
+                status.contains("Ongoing") -> return Manga.ONGOING
+                status.contains("Completed") -> return Manga.COMPLETED
+            }
         }
         return Manga.UNKNOWN
     }
 
-    override fun parseHtmlToChapters(unparsedHtml: String): List<Chapter> {
-        val parsedDocument = Jsoup.parse(unparsedHtml)
-        val chapterList = ArrayList<Chapter>()
+    override fun getChapterListSelector() = "table.listing tr:gt(1)"
 
-        for (chapterElement in parsedDocument.select("table.listing tr:gt(1)")) {
-            val chapter = constructChapterFromHtmlBlock(chapterElement)
-            chapterList.add(chapter)
-        }
+    override fun constructChapterFromElement(element: Element, chapter: Chapter) {
+        val urlElement = element.select("a").first()
 
-        return chapterList
+        chapter.setUrl(urlElement.attr("href"))
+        chapter.name = urlElement.text()
+        chapter.date_upload = element.select("td:eq(1)").first()?.text()?.let {
+            SimpleDateFormat("MM/dd/yyyy").parse(it).time
+        } ?: 0
     }
 
-    private fun constructChapterFromHtmlBlock(chapterElement: Element): Chapter {
-        val chapter = Chapter.create()
+    override fun pageListRequest(chapter: Chapter) = post(baseUrl + chapter.url, headers)
 
-        val urlElement = Parser.element(chapterElement, "a")
-        val date = Parser.text(chapterElement, "td:eq(1)")
-
-        if (urlElement != null) {
-            chapter.setUrl(urlElement.attr("href"))
-            chapter.name = urlElement.text()
-        }
-        if (date != null) {
-            try {
-                chapter.date_upload = SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH).parse(date).time
-            } catch (e: ParseException) { /* Ignore */
-            }
-
-        }
-        return chapter
-    }
-
-    override fun parseHtmlToPageUrls(unparsedHtml: String): List<String> {
-        val parsedDocument = Jsoup.parse(unparsedHtml)
-        val pageUrlList = ArrayList<String>()
-
-        val numImages = parsedDocument.select("#divImage img").size
-
-        for (i in 0..numImages - 1) {
-            pageUrlList.add("")
-        }
-        return pageUrlList
-    }
-
-    override fun parseFirstPage(pages: List<Page>, unparsedHtml: String): List<Page> {
+    override fun parseHtmlToPages(response: Response, html: String, pages: MutableList<Page>) {
         val p = Pattern.compile("lstImages.push\\(\"(.+?)\"")
-        val m = p.matcher(unparsedHtml)
+        val m = p.matcher(html)
 
         var i = 0
         while (m.find()) {
-            pages[i++].imageUrl = m.group(1)
+            pages.add(Page(i++, "", m.group(1)))
         }
-        return pages
     }
 
-    override fun parseHtmlToImageUrl(unparsedHtml: String): String? {
-        return null
-    }
+    // Not used
+    override fun parseDocumentToPages(document: Document, pages: MutableList<Page>) {}
 
-    companion object {
+    override fun imageUrlRequest(page: Page) = get(page.url)
 
-        val NAME = "Kissmanga"
-        val BASE_URL = "http://kissmanga.com"
-        val POPULAR_MANGAS_URL = BASE_URL + "/MangaList/MostPopular?page=%s"
-        val SEARCH_URL = BASE_URL + "/AdvanceSearch"
-    }
+    override fun parseDocumentToImageUrl(document: Document) = ""
 
 }

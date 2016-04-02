@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.data.source.newbase
+package eu.kanade.tachiyomi.data.source.base
 
 import android.content.Context
 import com.bumptech.glide.load.model.LazyHeaders
@@ -8,17 +8,25 @@ import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.NetworkHelper
 import eu.kanade.tachiyomi.data.network.get
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.source.Language
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import okhttp3.Headers
+import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import rx.Observable
 import javax.inject.Inject
 
 @Suppress("unused")
-abstract class OnlineSource(context: Context) : SourceKt() {
+abstract class OnlineSource(context: Context) : Source {
+
+    @Inject lateinit var networkService: NetworkHelper
+
+    @Inject lateinit var chapterCache: ChapterCache
+
+    @Inject lateinit var preferences: PreferencesHelper
 
     abstract val baseUrl: String
 
@@ -26,11 +34,8 @@ abstract class OnlineSource(context: Context) : SourceKt() {
 
     val headers by lazy { headersBuilder().build() }
 
-    val glideHeaders by lazy { glideHeadersBuilder().build() }
-
-    @Inject lateinit var networkService: NetworkHelper
-
-    @Inject lateinit var chapterCache: ChapterCache
+    open val client: OkHttpClient
+        get() = networkService.defaultClient
 
     init {
         App.get(context).component.inject(this)
@@ -48,21 +53,30 @@ abstract class OnlineSource(context: Context) : SourceKt() {
         }
     }
 
+    override fun toString() = "$name (${lang.code})"
+
     // Login source
-    fun isLoginRequired() = false
+
+    open fun isLoginRequired() = false
+
+    open fun isLogged(): Boolean = throw Exception("Not implemented")
+
+    open fun login(username: String, password: String): Observable<Boolean> = throw Exception("Not implemented")
+
+    open fun isAuthenticationSuccessful(response: Response): Boolean = throw Exception("Not implemented")
 
     // Popular manga
 
-    abstract fun getInitialPopularMangasUrl(): String
+    abstract fun getInitialPopularMangaUrl(): String
 
     open fun popularMangaRequest(page: MangasPage): Request {
         if (page.page == 1) {
-            page.url = getInitialPopularMangasUrl()
+            page.url = getInitialPopularMangaUrl()
         }
         return get(page.url, headers)
     }
 
-    open fun fetchPopularManga(page: MangasPage) = networkService.requestBody(popularMangaRequest(page), true)
+    open fun fetchPopularManga(page: MangasPage) = networkService.requestBody(popularMangaRequest(page), client)
             .map { html ->
                 page.apply {
                     mangas = mutableListOf<Manga>()
@@ -83,15 +97,15 @@ abstract class OnlineSource(context: Context) : SourceKt() {
         return get(page.url, headers)
     }
 
-    open fun searchManga(page: MangasPage, query: String) = networkService.requestBody(searchMangaRequest(page, query), true)
+    open fun searchManga(page: MangasPage, query: String) = networkService.requestBody(searchMangaRequest(page, query), client)
             .map { html ->
                 page.apply {
                     mangas = mutableListOf<Manga>()
-                    parseSearchFromHtml(html, this)
+                    parseSearchFromHtml(html, this, query)
                 }
             }
 
-    abstract fun parseSearchFromHtml(html: String, page: MangasPage)
+    abstract fun parseSearchFromHtml(html: String, page: MangasPage, query: String)
 
     // Manga details
 
@@ -196,7 +210,7 @@ abstract class OnlineSource(context: Context) : SourceKt() {
         page.status = Page.DOWNLOAD_IMAGE
         return imageResponse(page)
                 .map { response ->
-                    page.apply { chapterCache.putImageToCache(imageUrl, response) }
+                    page.apply { chapterCache.putImageToCache(imageUrl, response, preferences.reencodeImage()) }
                 }
     }
 

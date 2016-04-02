@@ -1,16 +1,17 @@
 package eu.kanade.tachiyomi.data.source
 
 import android.content.Context
+import android.os.Environment
+import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.source.base.OnlineSource
 import eu.kanade.tachiyomi.data.source.base.Source
-import eu.kanade.tachiyomi.data.source.online.english.*
-import eu.kanade.tachiyomi.data.source.online.russian.Mangachan
-import eu.kanade.tachiyomi.data.source.online.russian.Mintmanga
-import eu.kanade.tachiyomi.data.source.online.russian.Readmanga
-import java.util.*
+import eu.kanade.tachiyomi.data.source.base.YamlParsedOnlineSource
+import eu.kanade.tachiyomi.data.source.online.english.Batoto
+import eu.kanade.tachiyomi.data.source.online.english.Kissmanga
+import timber.log.Timber
+import java.io.File
 
 open class SourceManager(private val context: Context) {
-
-    val sourcesMap: HashMap<Int, Source>
 
     val BATOTO = 1
     val MANGAHERE = 2
@@ -23,38 +24,37 @@ open class SourceManager(private val context: Context) {
 
     val LAST_SOURCE = 8
 
-    init {
-        sourcesMap = createSourcesMap()
-    }
+    val sourcesMap = createSources()
 
     open fun get(sourceKey: Int): Source? {
         return sourcesMap[sourceKey]
     }
 
-    private fun createSource(sourceKey: Int): Source? = when (sourceKey) {
-        BATOTO -> Batoto(context)
-        MANGAHERE -> Mangahere(context)
-        MANGAFOX -> Mangafox(context)
-        KISSMANGA -> Kissmanga(context)
-        READMANGA -> Readmanga(context)
-        MINTMANGA -> Mintmanga(context)
-        MANGACHAN -> Mangachan(context)
-        READMANGATODAY -> ReadMangaToday(context)
+    private fun createSource(id: Int): Source? = when (id) {
+        BATOTO -> Batoto(context, id)
+        KISSMANGA -> Kissmanga(context, id)
         else -> null
     }
 
-    private fun createSourcesMap(): HashMap<Int, Source> {
-        val map = HashMap<Int, Source>()
+    fun getOnlineSources() = sourcesMap.values.filterIsInstance(OnlineSource::class.java)
+
+    fun createSources(): Map<Int, Source> = hashMapOf<Int, Source>().apply {
         for (i in 1..LAST_SOURCE) {
-            val source = createSource(i)
-            if (source != null) {
-                source.id = i
-                map.put(i, source)
+            createSource(i)?.let { put(i, it) }
+        }
+
+        val parsersDir = File(Environment.getExternalStorageDirectory().absolutePath +
+                File.separator + context.getString(R.string.app_name), "parsers")
+
+        if (parsersDir.exists()) {
+            for (file in parsersDir.listFiles { file, filename -> filename.endsWith(".yml") }) {
+                try {
+                    YamlParsedOnlineSource(context, file.inputStream()).let { put(it.id, it) }
+                } catch (e: Exception) {
+                    Timber.e("Error loading source from file. Bad format?")
+                }
             }
         }
-        return map
     }
-
-    fun getSources(): List<Source> = ArrayList(sourcesMap.values)
 
 }

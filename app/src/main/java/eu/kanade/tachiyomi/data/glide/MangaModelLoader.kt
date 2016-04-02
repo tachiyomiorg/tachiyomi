@@ -9,6 +9,7 @@ import eu.kanade.tachiyomi.App
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.SourceManager
+import eu.kanade.tachiyomi.data.source.base.OnlineSource
 import java.io.File
 import java.io.InputStream
 import javax.inject.Inject
@@ -103,12 +104,11 @@ class MangaModelLoader(context: Context) : StreamModelLoader<Manga> {
      *
      * @param manga the model.
      */
-    fun getHeaders(manga: Manga): LazyHeaders {
+    fun getHeaders(manga: Manga): Headers {
+        val source = sourceManager.get(manga.source) as? OnlineSource ?: return LazyHeaders.DEFAULT
         return cachedHeaders.getOrPut(manga.source) {
-            val source = sourceManager.get(manga.source)!!
-
             LazyHeaders.Builder().apply {
-                for ((key, value) in source.requestHeaders.toMultimap()) {
+                for ((key, value) in source.headers.toMultimap()) {
                     addHeader(key, value[0])
                 }
             }.build()

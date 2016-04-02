@@ -13,6 +13,7 @@ import eu.kanade.tachiyomi.data.download.model.DownloadQueue
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.SourceManager
+import eu.kanade.tachiyomi.data.source.base.OnlineSource
 import eu.kanade.tachiyomi.data.source.base.Source
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.util.DiskUtils
@@ -108,7 +109,7 @@ class DownloadManager(private val context: Context, private val sourceManager: S
 
     // Create a download object for every chapter and add them to the downloads queue
     fun downloadChapters(manga: Manga, chapters: List<Chapter>) {
-        val source = sourceManager.get(manga.source)
+        val source = sourceManager.get(manga.source) as? OnlineSource ?: return
 
         // Used to avoid downloading chapters with the same name
         val addedChapters = ArrayList<String>()
@@ -182,8 +183,8 @@ class DownloadManager(private val context: Context, private val sourceManager: S
         DiskUtils.createDirectory(download.directory)
 
         val pageListObservable = if (download.pages == null)
-        // Pull page list from network and add them to download object
-            download.source.pullPageListFromNetwork(download.chapter.url)
+            // Pull page list from network and add them to download object
+            download.source.fetchPageListFromNetwork(download.chapter)
                     .doOnNext { pages ->
                         download.pages = pages
                         savePageList(download)
@@ -199,7 +200,7 @@ class DownloadManager(private val context: Context, private val sourceManager: S
                         download.status = Download.DOWNLOADING
                     }
                     // Get all the URLs to the source images, fetch pages if necessary
-                    .flatMap { download.source.getAllImageUrlsFromPageList(it) }
+                    .flatMap { download.source.fetchAllImageUrlsFromPageList(it) }
                     // Start downloading images, consider we can have downloaded images already
                     .concatMap { page -> getOrDownloadImage(page, download) }
                     // Do when page is downloaded.
@@ -251,9 +252,9 @@ class DownloadManager(private val context: Context, private val sourceManager: S
     }
 
     // Save image on disk
-    private fun downloadImage(page: Page, source: Source, directory: File, filename: String): Observable<Page> {
+    private fun downloadImage(page: Page, source: OnlineSource, directory: File, filename: String): Observable<Page> {
         page.status = Page.DOWNLOAD_IMAGE
-        return source.getImageProgressResponse(page)
+        return source.imageResponse(page)
                 .flatMap {
                     try {
                         val file = File(directory, filename)
@@ -376,7 +377,7 @@ class DownloadManager(private val context: Context, private val sourceManager: S
     }
 
     fun getAbsoluteMangaDirectory(source: Source, manga: Manga): File {
-        val mangaRelativePath = source.visibleName +
+        val mangaRelativePath = source.toString() +
                 File.separator +
                 manga.title.replace("[^\\sa-zA-Z0-9.-]".toRegex(), "_")
 
