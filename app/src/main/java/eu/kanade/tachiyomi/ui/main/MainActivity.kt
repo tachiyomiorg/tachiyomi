@@ -5,9 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
 import android.view.MenuItem
-import android.view.View
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.backup.BackupFragment
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
@@ -40,19 +38,9 @@ class MainActivity : BaseActivity() {
         setupToolbar(toolbar, backNavigation = false)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)
 
-        drawer.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
-            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-                if (Build.VERSION.SDK_INT >= 21) {
-                    window.statusBarColor = theme.getResourceColor(R.attr.status_bar_trans)
-                }
-            }
-
-            override fun onDrawerClosed(drawerView: View) {
-                if (Build.VERSION.SDK_INT >= 21) {
-                    window.statusBarColor = theme.getResourceColor(R.attr.colorPrimaryDark)
-                }
-            }
-        })
+        if (Build.VERSION.SDK_INT >= 21) {
+            window.statusBarColor = android.R.color.transparent;
+        }
 
         // Set behavior of Navigation drawer
         nav_view.setNavigationItemSelectedListener { item ->

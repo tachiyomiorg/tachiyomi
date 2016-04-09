@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorPrimary"
         android:scaleType="centerCrop"/>
 
     <ImageView
@@ -18,37 +18,5 @@
         android:layout_marginTop="@dimen/navigation_drawer_header_margin"
         android:scaleType="centerCrop"
         android:src="@drawable/icon"/>
-
-    <!--
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_gravity="left|bottom"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingBottom="8dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center_vertical"
-            android:text="John Doe"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:visibility="gone"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center_vertical"
-            android:text="email@email.com"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:visibility="gone"/>
-
-    </LinearLayout>
-    -->
 
 </FrameLayout>

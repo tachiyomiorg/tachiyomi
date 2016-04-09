@@ -1,7 +1,10 @@
 package eu.kanade.tachiyomi.util
 
+import android.graphics.Color
 import android.graphics.Point
+import android.support.design.widget.Snackbar
 import android.view.View
+import android.widget.TextView
 
 /**
  * Returns coordinates of view.
@@ -9,11 +12,19 @@ import android.view.View
  *
  * @return coordinates of view
  */
-fun View.getCoordinates(): Point
-{
-    var cx = (this.left + this.right) / 2;
-    var cy = (this.top + this.bottom) / 2;
+fun View.getCoordinates() = Point((left + right) / 2, (top + bottom) / 2)
 
-    return Point(cx, cy)
+/**
+ * Shows a snackbar in this view.
+ *
+ * @param message the message to show.
+ * @param length the duration of the snack.
+ * @param f a function to execute in the snack, allowing for example to define a custom action.
+ */
+inline fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit) {
+    val snack = Snackbar.make(this, message, length)
+    val textView = snack.view.findViewById(android.support.design.R.id.snackbar_text) as TextView
+    textView.setTextColor(Color.WHITE)
+    snack.f()
+    snack.show()
 }
-

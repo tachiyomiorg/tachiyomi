@@ -20,6 +20,7 @@ import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.util.getResourceDrawable
+import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.EndlessGridScrollListener
 import eu.kanade.tachiyomi.widget.EndlessListScrollListener
@@ -355,10 +356,12 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
         hideProgressBar()
         Timber.e(error, error.message)
 
-        baseActivity.snack(error.message, R.string.action_retry, {
-            showProgressBar()
-            presenter.retryRequest()
-        })
+        catalogue_view.snack(error.message ?: "") {
+            setAction(R.string.action_retry) {
+                showProgressBar()
+                presenter.retryRequest()
+            }
+        }
     }
 
     /**

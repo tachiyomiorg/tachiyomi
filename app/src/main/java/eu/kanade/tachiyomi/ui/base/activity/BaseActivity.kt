@@ -42,25 +42,15 @@ open class BaseActivity : AppCompatActivity() {
         supportActionBar?.subtitle = getString(titleResource)
     }
 
-    fun snack(text: String?, duration: Int = Snackbar.LENGTH_LONG) {
-        val snack = Snackbar.make(findViewById(android.R.id.content)!!, text ?: getString(R.string.unknown_error), duration)
-        val textView = snack.view.findViewById(android.support.design.R.id.snackbar_text) as TextView
-        textView.setTextColor(Color.WHITE)
-        snack.show()
-    }
-
-    fun snack(text: String?, actionRes: Int, actionFunc: () -> Unit,
-              duration: Int = Snackbar.LENGTH_LONG, view: View = findViewById(android.R.id.content)!!) {
-
-        val snack = Snackbar.make(view, text ?: getString(R.string.unknown_error), duration)
-                .setAction(actionRes, { actionFunc() })
-
-        val textView = snack.view.findViewById(android.support.design.R.id.snackbar_text) as TextView
-        textView.setTextColor(Color.WHITE)
-        snack.show()
-    }
-
     protected val app: App
         get() = App.get(this)
+
+    inline fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit) {
+        val snack = Snackbar.make(this, message, length)
+        val textView = snack.view.findViewById(android.support.design.R.id.snackbar_text) as TextView
+        textView.setTextColor(Color.WHITE)
+        snack.f()
+        snack.show()
+    }
 
 }

@@ -26,6 +26,7 @@
 
     <style name="Theme.Widget.NavigationView.Dark">
         <item name="colorControlHighlight">@color/md_grey_900</item>
+        <item name="colorPrimary">@color/colorAccent</item>
     </style>
 
     <!--===============-->
