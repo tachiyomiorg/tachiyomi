@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager.horizontal
 
 import android.content.Context
-import android.support.v4.view.ViewPager
 import android.view.MotionEvent
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.OnChapterBoundariesOutListener
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.Pager
@@ -10,7 +9,7 @@ import rx.functions.Action1
 /**
  * Implementation of a [ViewPager] to add custom behavior on touch events.
  */
-class HorizontalPager(context: Context) : ViewPager(context), Pager {
+class HorizontalPager(context: Context) : HorizontalViewPagerImpl(context), Pager {
 
     companion object {
 
@@ -76,7 +75,7 @@ class HorizontalPager(context: Context) : ViewPager(context), Pager {
     }
 
     override fun setOnPageChangeListener(func: Action1<Int>) {
-        addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+        addOnPageChangeListener(object : HorizontalViewPagerImpl.SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
                 func.call(position)
             }
