@@ -69,8 +69,8 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
                 { view, error -> Timber.e(error.cause, error.message) })
 
         manga = SharedData.get(MangaEvent::class.java)?.manga ?: return
-        add(Observable.just(manga)
-                .subscribeLatestCache({ view, manga -> view.onNextManga(manga) }))
+        Observable.just(manga)
+                .subscribeLatestCache({ view, manga -> view.onNextManga(manga) })
 
         source = sourceManager.get(manga.source)!!
         start(DB_CHAPTERS)

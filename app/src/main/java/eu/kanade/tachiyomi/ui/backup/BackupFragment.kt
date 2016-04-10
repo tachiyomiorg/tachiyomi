@@ -32,7 +32,7 @@ class BackupFragment : BaseRxFragment<BackupPresenter>() {
         return inflater.inflate(R.layout.fragment_backup, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedState: Bundle?) {
+    override fun onViewCreated(view: View, savedState: Bundle?) {
         backup_button.setOnClickListener {
             val today = SimpleDateFormat("yyyy-MM-dd").format(Date())
             val file = File(activity.externalCacheDir, "tachiyomi-$today.json")
@@ -55,12 +55,14 @@ class BackupFragment : BaseRxFragment<BackupPresenter>() {
 
     /**
      * Called from the presenter when the backup is completed.
+     *
+     * @param file the file where the backup is saved.
      */
-    fun onBackupCompleted() {
+    fun onBackupCompleted(file: File) {
         dismissBackupDialog()
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + presenter.backupFile))
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + file))
         startActivity(Intent.createChooser(intent, ""))
     }
 

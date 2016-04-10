@@ -5,6 +5,7 @@ import eu.kanade.tachiyomi.data.backup.BackupManager
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import rx.Observable
+import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import java.io.File
@@ -27,39 +28,18 @@ class BackupPresenter : BasePresenter<BackupFragment>() {
     private lateinit var backupManager: BackupManager
 
     /**
-     * File where the backup is saved.
+     * Subscription where the backup is restored.
      */
-    var backupFile: File? = null
-        private set
+    private var restoreSubscription: Subscription? = null
 
     /**
-     * Stream to restore a backup.
+     * Subscription where the backup is created.
      */
-    private var restoreStream: InputStream? = null
-
-    /**
-     * Id of the restartable that creates a backup.
-     */
-    private val CREATE_BACKUP = 1
-
-    /**
-     * Id of the restartable that restores a backup.
-     */
-    private val RESTORE_BACKUP = 2
+    private var backupSubscription: Subscription? = null
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
         backupManager = BackupManager(db)
-
-        startableFirst(CREATE_BACKUP,
-                { getBackupObservable() },
-                { view, next -> view.onBackupCompleted() },
-                { view, error -> view.onBackupError(error) })
-
-        startableFirst(RESTORE_BACKUP,
-                { getRestoreObservable() },
-                { view, next -> view.onRestoreCompleted() },
-                { view, error -> view.onRestoreError(error) })
     }
 
     /**
@@ -68,9 +48,13 @@ class BackupPresenter : BasePresenter<BackupFragment>() {
      * @param file the path where the file will be saved.
      */
     fun createBackup(file: File) {
-        if (isUnsubscribed(CREATE_BACKUP)) {
-            backupFile = file
-            start(CREATE_BACKUP)
+        if (isUnsubscribed(backupSubscription)) {
+            backupSubscription = getBackupObservable(file)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeFirst(
+                            { view, result -> view.onBackupCompleted(file) },
+                            { view, error -> view.onBackupError(error) })
         }
     }
 
@@ -80,30 +64,30 @@ class BackupPresenter : BasePresenter<BackupFragment>() {
      * @param stream the input stream of the backup file.
      */
     fun restoreBackup(stream: InputStream) {
-        if (isUnsubscribed(RESTORE_BACKUP)) {
-            restoreStream = stream
-            start(RESTORE_BACKUP)
+        if (isUnsubscribed(restoreSubscription)) {
+            restoreSubscription = getRestoreObservable(stream)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeFirst(
+                            { view, result -> view.onRestoreCompleted() },
+                            { view, error -> view.onRestoreError(error) })
         }
     }
 
     /**
      * Returns the observable to save a backup.
      */
-    private fun getBackupObservable(): Observable<Boolean> {
-        return Observable.fromCallable {
-            backupManager.backupToFile(backupFile!!)
-            true
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+    private fun getBackupObservable(file: File) = Observable.fromCallable {
+        backupManager.backupToFile(file)
+        true
     }
 
     /**
      * Returns the observable to restore a backup.
      */
-    private fun getRestoreObservable(): Observable<Boolean> {
-        return Observable.fromCallable {
-            backupManager.restoreFromStream(restoreStream!!)
-            true
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+    private fun getRestoreObservable(stream: InputStream) = Observable.fromCallable {
+        backupManager.restoreFromStream(stream)
+        true
     }
 
 }

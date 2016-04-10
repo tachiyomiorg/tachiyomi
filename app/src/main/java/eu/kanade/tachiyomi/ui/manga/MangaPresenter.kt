@@ -49,8 +49,8 @@ class MangaPresenter : BasePresenter<MangaActivity>() {
         // Prepare a subject to communicate the chapters and info presenters for the chapter count.
         SharedData.put(ChapterCountEvent())
 
-        add(Observable.just(manga)
-                .subscribeLatestCache({ view, manga -> view.onSetManga(manga) }))
+        Observable.just(manga)
+                .subscribeLatestCache({ view, manga -> view.onSetManga(manga) })
     }
 
     override fun onDestroy() {

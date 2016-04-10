@@ -79,9 +79,9 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
 
         // Update chapter count
         SharedData.get(ChapterCountEvent::class.java)?.let {
-            add(it.observable
+            it.observable
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeLatestCache({ view, count -> view.setChapterCount(count) }))
+                    .subscribeLatestCache({ view, count -> view.setChapterCount(count) })
         }
     }
 
