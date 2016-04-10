@@ -1948,14 +1948,17 @@ public class VerticalViewPagerImpl extends ViewGroup {
                             mInitialMotionY - mTouchSlop;
                     mLastMotionX = x;
                     setScrollingCacheEnabled(true);
-                } else if (xDiff > mTouchSlop) {
+                }
+                // same diagonally scroll fix as in HorizontalViewPagerImpl
+                /*
+                else if (xDiff > mTouchSlop) {
                     // The finger has moved enough in the vertical
                     // direction to be counted as a drag...  abort
                     // any attempt to drag horizontally, to work correctly
                     // with children that have scrolling containers.
                     if (DEBUG) Log.v(TAG, "Starting unable to drag!");
                     mIsUnableToDrag = true;
-                }
+                }*/
                 if (mIsBeingDragged) {
                     // Scroll to follow the motion event
                     if (performDrag(y)) {
