@@ -57,7 +57,7 @@ class BackupFragment : BaseRxFragment<BackupPresenter>() {
         restore_button.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.addCategory(Intent.CATEGORY_OPENABLE)
-            intent.type = "application/json"
+            intent.type = "application/*"
             val chooser = Intent.createChooser(intent, getString(R.string.file_select_backup))
             startActivityForResult(chooser, REQUEST_BACKUP_OPEN)
         }
