@@ -57,7 +57,7 @@ class BackupFragment : BaseRxFragment<BackupPresenter>() {
         restore_button.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.addCategory(Intent.CATEGORY_OPENABLE)
-            intent.type = "application/octet-stream"
+            intent.type = "application/json"
             val chooser = Intent.createChooser(intent, getString(R.string.file_select_backup))
             startActivityForResult(chooser, REQUEST_BACKUP_OPEN)
         }
@@ -76,7 +76,7 @@ class BackupFragment : BaseRxFragment<BackupPresenter>() {
     fun onBackupCompleted(file: File) {
         dismissBackupDialog()
         val intent = Intent(Intent.ACTION_SEND)
-        intent.type = "text/plain"
+        intent.type = "application/json"
         intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + file))
         startActivity(Intent.createChooser(intent, ""))
     }
