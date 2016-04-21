@@ -182,7 +182,15 @@ abstract class OnlineSource(context: Context) : Source {
 
     open fun imageRequest(page: Page) = get(page.imageUrl, headers)
 
-    fun imageResponse(page: Page) = networkService.requestBodyProgress(imageRequest(page), page)
+    fun imageResponse(page: Page): Observable<Response> {
+        return networkService.requestBodyProgress(imageRequest(page), page)
+                .doOnNext {
+                    if (!it.isSuccessful) {
+                        it.body().close()
+                        throw RuntimeException("Not a valid response")
+                    }
+                }
+    }
 
     open fun getCachedImage(page: Page): Observable<Page> {
         val pageObservable = Observable.just(page)
@@ -209,8 +217,8 @@ abstract class OnlineSource(context: Context) : Source {
     private fun cacheImage(page: Page): Observable<Page> {
         page.status = Page.DOWNLOAD_IMAGE
         return imageResponse(page)
-                .map { response ->
-                    page.apply { chapterCache.putImageToCache(imageUrl, response, preferences.reencodeImage()) }
+                .map {
+                    page.apply { chapterCache.putImageToCache(imageUrl, it, preferences.reencodeImage()) }
                 }
     }
 

@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
 import android.content.Context
-import android.net.Uri
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.get
@@ -23,8 +22,6 @@ import java.util.regex.Pattern
 class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(context) {
 
     override val name = "Kissmanga"
-
-    val IP = "93.174.95.110"
 
     override val baseUrl = "http://kissmanga.com"
 
@@ -79,9 +76,7 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
         manga.genre = infoElement.select("p:has(span:contains(Genres:)) > *:gt(0)").text()
         manga.description = infoElement.select("p:has(span:contains(Summary:)) ~ p").text()
         manga.status = parseStatus(infoElement.select("p:has(span:contains(Status:))").first()?.text())
-        manga.thumbnail_url = document.select(".rightBox:eq(0) img").first()?.attr("src")?.let {
-            Uri.parse(it).buildUpon().authority(IP).toString();
-        }
+        manga.thumbnail_url = document.select(".rightBox:eq(0) img").first()?.attr("src")
     }
 
     fun parseStatus(status: String?): Int {
