@@ -38,7 +38,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 23
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode 6
+        versionCode project.hasProperty('versionCode') ? versionCode.toInteger() : 6
         versionName "0.2.0"
 
         buildConfigField "String", "COMMIT_COUNT", "\"${getCommitCount()}\""
@@ -53,7 +53,6 @@ android {
         debug {
             versionNameSuffix ".${getCommitCount()}"
             applicationIdSuffix ".debug"
-            if (project.hasProperty('versionCode')) versionCode = versionCode.toInteger()
         }
         release {
             minifyEnabled true
