@@ -28,12 +28,6 @@ def includeUpdater() {
     return hasProperty("include_updater")
 }
 
-def getVersionCode = {
-    def code = project.hasProperty('versionCode') ? versionCode.toInteger() : 6
-    println "VersionCode is set to $code"
-    return code
-}
-
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -44,7 +38,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 23
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode getVersionCode()
+        versionCode project.hasProperty("versionCode") ? project.getProperty("versionCode").toInt() : 6
         versionName "0.2.0"
 
         buildConfigField "String", "COMMIT_COUNT", "\"${getCommitCount()}\""
