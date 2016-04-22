@@ -38,7 +38,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 23
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode hasProperty("versionCode") ? getProperty("versionCode").toInteger() : 6
+        versionCode project.hasProperty("versionCode") ? project.getProperty("versionCode").toInteger() : 6
         versionName "0.2.0"
 
         buildConfigField "String", "COMMIT_COUNT", "\"${getCommitCount()}\""
