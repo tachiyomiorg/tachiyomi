@@ -28,10 +28,6 @@ def includeUpdater() {
     return hasProperty("include_updater")
 }
 
-def getVersionCodeOrDefault(int defaultCode) {
-    return project.hasProperty("versionCode") ? project.getProperty("versionCode").toInteger() : defaultCode
-}
-
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -42,7 +38,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 23
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode getVersionCodeOrDefault(6)
+        versionCode project.getProperties().get("versionCode")?.toInteger() ?: 6
         versionName "0.2.0"
 
         buildConfigField "String", "COMMIT_COUNT", "\"${getCommitCount()}\""
