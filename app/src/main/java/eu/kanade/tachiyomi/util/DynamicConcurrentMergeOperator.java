@@ -17,8 +17,8 @@ import rx.subscriptions.CompositeSubscription;
 import rx.subscriptions.Subscriptions;
 
 public class DynamicConcurrentMergeOperator<T, R> implements Operator<R, T> {
-    final Func1<? super T, ? extends Observable<? extends R>> mapper;
-    final Observable<Integer> workerCount;
+    private final Func1<? super T, ? extends Observable<? extends R>> mapper;
+    private final Observable<Integer> workerCount;
 
     public DynamicConcurrentMergeOperator(
             Func1<? super T, ? extends Observable<? extends R>> mapper,
@@ -37,14 +37,14 @@ public class DynamicConcurrentMergeOperator<T, R> implements Operator<R, T> {
     }
 
     static final class DynamicConcurrentMerge<T, R> extends Subscriber<T> {
-        final Subscriber<? super R> actual;
-        final Func1<? super T, ? extends Observable<? extends R>> mapper;
-        final Queue<T> queue;
-        final CopyOnWriteArrayList<DynamicWorker<T, R>> workers;
-        final CompositeSubscription composite;
-        final AtomicInteger wipActive;
-        final AtomicBoolean once;
-        long id;
+        private final Subscriber<? super R> actual;
+        private final Func1<? super T, ? extends Observable<? extends R>> mapper;
+        private final Queue<T> queue;
+        private final CopyOnWriteArrayList<DynamicWorker<T, R>> workers;
+        private final CompositeSubscription composite;
+        private final AtomicInteger wipActive;
+        private final AtomicBoolean once;
+        private long id;
 
         public DynamicConcurrentMerge(Subscriber<? super R> actual,
                                       Func1<? super T, ? extends Observable<? extends R>> mapper) {
@@ -121,10 +121,10 @@ public class DynamicConcurrentMergeOperator<T, R> implements Operator<R, T> {
     }
 
     static final class DynamicWorker<T, R> {
-        final long id;
-        final AtomicBoolean running;
-        final DynamicConcurrentMerge<T, R> parent;
-        final AtomicBoolean stop;
+        private final long id;
+        private final AtomicBoolean running;
+        private final DynamicConcurrentMerge<T, R> parent;
+        private final AtomicBoolean stop;
 
         public DynamicWorker(long id, DynamicConcurrentMerge<T, R> parent) {
             this.id = id;

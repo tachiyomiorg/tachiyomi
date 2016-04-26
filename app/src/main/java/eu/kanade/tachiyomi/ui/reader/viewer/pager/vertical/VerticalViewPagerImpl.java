@@ -120,11 +120,11 @@ public class VerticalViewPagerImpl extends ViewGroup {
     private int mExpectedAdapterCount;
 
     static class ItemInfo {
-        Object object;
-        int position;
-        boolean scrolling;
-        float heightFactor;
-        float offset;
+        private Object object;
+        private int position;
+        private boolean scrolling;
+        private float heightFactor;
+        private float offset;
     }
 
     private static final Comparator<ItemInfo> COMPARATOR = new Comparator<ItemInfo>(){
@@ -1260,9 +1260,9 @@ public class VerticalViewPagerImpl extends ViewGroup {
      * contains that state.
      */
     public static class SavedState extends BaseSavedState {
-        int position;
-        Parcelable adapterState;
-        ClassLoader loader;
+        private int position;
+        private Parcelable adapterState;
+        private ClassLoader loader;
 
         public SavedState(Parcelable superState) {
             super(superState);
@@ -2946,23 +2946,23 @@ public class VerticalViewPagerImpl extends ViewGroup {
         /**
          * Width as a 0-1 multiplier of the measured pager width
          */
-        float heightFactor = 0.f;
+        private float heightFactor = 0.f;
 
         /**
          * true if this view was added during layout and needs to be measured
          * before being positioned.
          */
-        boolean needsMeasure;
+        private boolean needsMeasure;
 
         /**
          * Adapter position this view is for if !isDecor
          */
-        int position;
+        private int position;
 
         /**
          * Current child index within the ViewPager that this view occupies
          */
-        int childIndex;
+        private int childIndex;
 
         public LayoutParams() {
             super(FILL_PARENT, FILL_PARENT);
