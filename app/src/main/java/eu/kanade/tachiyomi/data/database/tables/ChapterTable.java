@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.data.database.tables;
 
 import android.support.annotation.NonNull;
 
-public class ChapterTable {
+public final class ChapterTable {
 
     @NonNull
     public static final String TABLE = "chapters";
@@ -33,6 +33,10 @@ public class ChapterTable {
 
 	@NonNull
 	public static final String COLUMN_CHAPTER_NUMBER = "chapter_number";
+
+	private ChapterTable() throws InstantiationException {
+		throw new InstantiationException("This class is not for instantiation");
+	}
 
 	@NonNull
 	public static String getCreateTableQuery() {

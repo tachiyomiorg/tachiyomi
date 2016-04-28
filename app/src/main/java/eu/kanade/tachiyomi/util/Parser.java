@@ -5,7 +5,11 @@ import android.support.annotation.Nullable;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class Parser {
+public final class Parser {
+
+    private Parser() throws InstantiationException {
+        throw new InstantiationException("This class is not for instantiation");
+    }
 
     @Nullable
     public static Element element(Element container, String pattern) {

@@ -3,11 +3,15 @@ package eu.kanade.tachiyomi.util;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class UrlUtil {
+public final class UrlUtil {
 
     private static final String JPG = ".jpg";
     private static final String PNG = ".png";
     private static final String GIF = ".gif";
+
+    private UrlUtil() throws InstantiationException {
+        throw new InstantiationException("This class is not for instantiation");
+    }
 
     public static String getPath(String s) {
         try {

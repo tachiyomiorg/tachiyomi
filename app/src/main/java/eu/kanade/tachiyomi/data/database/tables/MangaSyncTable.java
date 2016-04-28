@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.data.database.tables;
 
 import android.support.annotation.NonNull;
 
-public class MangaSyncTable {
+public final class MangaSyncTable {
 
     public static final String TABLE = "manga_sync";
 
@@ -23,6 +23,10 @@ public class MangaSyncTable {
     public static final String COLUMN_SCORE = "score";
 
     public static final String COLUMN_TOTAL_CHAPTERS = "total_chapters";
+
+    private MangaSyncTable() throws InstantiationException {
+        throw new InstantiationException("This class is not for instantiation");
+    }
 
     @NonNull
     public static String getCreateTableQuery() {

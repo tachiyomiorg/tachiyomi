@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import eu.kanade.tachiyomi.data.database.models.Chapter;
 import eu.kanade.tachiyomi.data.database.models.Manga;
 
-public class ChapterRecognition {
+public final class ChapterRecognition {
 
     private static final Pattern cleanWithToken = Pattern.compile("ch[^0-9]?\\s*(\\d+[\\.,]?\\d+)($|\\b)");
     private static final Pattern uncleanWithToken = Pattern.compile("ch[^0-9]?\\s*(\\d+[\\.,]?\\d*)");
@@ -22,6 +22,10 @@ public class ChapterRecognition {
             Pattern.compile("(\\b|\\d)(v|ver|vol|version|volume)\\.?\\s*\\d+\\b");
     private static final Pattern pPart =
             Pattern.compile("(\\b|\\d)part\\s*\\d+.+");
+
+    private ChapterRecognition() throws InstantiationException {
+        throw new InstantiationException("This class is not for instantiation");
+    }
 
     public static void parseChapterNumber(Chapter chapter, Manga manga) {
         if (chapter.chapter_number != -1)
