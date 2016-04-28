@@ -53,6 +53,7 @@ class SettingsAboutFragment : SettingsNestedFragment() {
         if (!BuildConfig.DEBUG && BuildConfig.INCLUDE_UPDATER) {
             //Set onClickListener to check for new version
             version.setOnPreferenceClickListener {
+                checkVersion()
                 true
             }
 
