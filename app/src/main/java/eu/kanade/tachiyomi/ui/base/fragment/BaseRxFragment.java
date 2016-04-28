@@ -20,7 +20,7 @@ import nucleus.view.ViewWithPresenter;
 public abstract class BaseRxFragment<P extends Presenter> extends BaseFragment implements ViewWithPresenter<P> {
 
     private static final String PRESENTER_STATE_KEY = "presenter_state";
-    private PresenterLifecycleDelegate<P> presenterDelegate =
+    private final PresenterLifecycleDelegate<P> presenterDelegate =
             new PresenterLifecycleDelegate<>(ReflectionPresenterFactory.<P>fromViewClass(getClass()));
 
     /**

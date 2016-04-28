@@ -7,13 +7,13 @@ import rx.functions.Action0;
 public class EndlessScrollListener implements AbsListView.OnScrollListener {
     // The minimum amount of items to have below your current scroll position
     // before loading more.
-    private int visibleThreshold = 5;
+    private static final int VISIBLE_THRESHOLD = 5;
     // The total number of items in the dataset after the last load
     private int previousTotalItemCount = 0;
     // True if we are still waiting for the last set of data to load.
     private boolean loading = true;
 
-    private Action0 requestNext;
+    private final Action0 requestNext;
 
     public EndlessScrollListener(Action0 requestNext) {
         this.requestNext = requestNext;
@@ -47,7 +47,7 @@ public class EndlessScrollListener implements AbsListView.OnScrollListener {
         // If it isn’t currently loading, we check to see if we have breached
         // the visibleThreshold and need to reload more data.
         // If we do need to reload some more data, we execute onLoadMore to fetch the data.
-        if (!loading && (totalItemCount - visibleItemCount)<=(firstVisibleItem + visibleThreshold)) {
+        if (!loading && (totalItemCount - visibleItemCount)<=(firstVisibleItem + VISIBLE_THRESHOLD)) {
             requestNext.call();
             loading = true;
         }

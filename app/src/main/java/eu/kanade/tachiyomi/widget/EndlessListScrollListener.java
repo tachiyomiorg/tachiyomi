@@ -9,12 +9,12 @@ public class EndlessListScrollListener extends RecyclerView.OnScrollListener {
 
     private int previousTotal = 0; // The total number of items in the dataset after the last load
     private boolean loading = true; // True if we are still waiting for the last set of data to load.
-    private int visibleThreshold = 5; // The minimum amount of items to have below your current scroll position before loading more.
+    private static final int VISIBLE_THRESHOLD = 5; // The minimum amount of items to have below your current scroll position before loading more.
     private int firstVisibleItem, visibleItemCount, totalItemCount;
 
     private LinearLayoutManager layoutManager;
 
-    private Action0 requestNext;
+    private final Action0 requestNext;
 
     public EndlessListScrollListener(LinearLayoutManager layoutManager, Action0 requestNext) {
         this.layoutManager = layoutManager;
@@ -39,7 +39,7 @@ public class EndlessListScrollListener extends RecyclerView.OnScrollListener {
             previousTotal = totalItemCount;
         }
         if (!loading && (totalItemCount - visibleItemCount)
-                <= (firstVisibleItem + visibleThreshold)) {
+                <= (firstVisibleItem + VISIBLE_THRESHOLD)) {
             // End has been reached
             requestNext.call();
             loading = true;

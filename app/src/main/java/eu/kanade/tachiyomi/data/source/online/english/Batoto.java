@@ -54,8 +54,8 @@ public class Batoto extends LoginSource {
 
     public static final Pattern staffNotice = Pattern.compile("=+Batoto Staff Notice=+([^=]+)==+", Pattern.CASE_INSENSITIVE);
 
-    private Pattern datePattern;
-    private Map<String, Integer> dateFields;
+    private final Pattern datePattern;
+    private final Map<String, Integer> dateFields;
 
     public Batoto(Context context) {
         super(context);

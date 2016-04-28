@@ -22,7 +22,7 @@ public abstract class BaseRxActivity<P extends Presenter> extends BaseActivity i
 
     private static final String PRESENTER_STATE_KEY = "presenter_state";
 
-    private PresenterLifecycleDelegate<P> presenterDelegate =
+    private final PresenterLifecycleDelegate<P> presenterDelegate =
             new PresenterLifecycleDelegate<>(ReflectionPresenterFactory.<P>fromViewClass(getClass()));
 
     /**
