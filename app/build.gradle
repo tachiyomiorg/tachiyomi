@@ -38,6 +38,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 23
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionCode 7
         versionCode project.findProperty('versionCode')?.toInteger() ?: 7
         versionName "0.2.1"
 
