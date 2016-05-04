@@ -82,12 +82,12 @@ class DownloadService : Service() {
                                     stopSelf()
                                 }
                             } else if (isRunning) {
-                                downloadManager.stopDownloads()
+                                downloadManager.stopDownloads(baseContext.getString(R.string.download_notifier_text_only_wifi))
                             }
                         }
                         else -> {
                             if (isRunning) {
-                                downloadManager.stopDownloads()
+                                downloadManager.stopDownloads(baseContext.getString(R.string.download_notifier_text_only_wifi))
                             }
                         }
                     }

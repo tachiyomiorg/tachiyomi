@@ -303,4 +303,10 @@
     <string name="information_no_recent">No recent chapters</string>
     <string name="information_empty_library">Empty library</string>
 
+    <!-- Download Notification -->
+    <string name="download_notifier_title_error">Error</string>
+    <string name="download_notifier_unkown_error">An unexpected error occurred while downloading chapter</string>
+    <string name="download_notifier_page_error">A page is missing in directory</string>
+    <string name="download_notifier_page_ready_error">A page is not loaded</string>
+    <string name="download_notifier_text_only_wifi">No wifi connection available</string>
 </resources>

@@ -59,7 +59,7 @@ class DownloadPresenter : BasePresenter<DownloadFragment>() {
      * Clears the download queue.
      */
     fun clearQueue() {
-        downloadQueue.clear()
+        downloadManager.clearQueue()
         start(GET_DOWNLOAD_QUEUE)
     }
 

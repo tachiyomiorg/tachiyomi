@@ -5,6 +5,7 @@ import android.net.Uri
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
@@ -14,7 +15,10 @@ import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.SourceManager
 import eu.kanade.tachiyomi.data.source.base.Source
 import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.util.*
+import eu.kanade.tachiyomi.util.DiskUtils
+import eu.kanade.tachiyomi.util.DynamicConcurrentMergeOperator
+import eu.kanade.tachiyomi.util.UrlUtil
+import eu.kanade.tachiyomi.util.saveImageTo
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -35,6 +39,8 @@ class DownloadManager(private val context: Context, private val sourceManager: S
     val runningSubject = BehaviorSubject.create<Boolean>()
     private var downloadsSubscription: Subscription? = null
 
+    val downloadNotifier by lazy { DownloadNotifier(context) }
+
     private val threadsSubject = BehaviorSubject.create<Int>()
     private var threadsSubscription: Subscription? = null
 
@@ -48,10 +54,14 @@ class DownloadManager(private val context: Context, private val sourceManager: S
         private set
 
     private fun initializeSubscriptions() {
+
         downloadsSubscription?.unsubscribe()
 
         threadsSubscription = preferences.downloadThreads().asObservable()
-                .subscribe { threadsSubject.onNext(it) }
+                .subscribe {
+                    threadsSubject.onNext(it)
+                    downloadNotifier.multipleDownloadThreads = it > 1
+                }
 
         downloadsSubscription = downloadsQueueSubject.flatMap { Observable.from(it) }
                 .lift(DynamicConcurrentMergeOperator<Download, Download>({ downloadChapter(it) }, threadsSubject))
@@ -60,7 +70,9 @@ class DownloadManager(private val context: Context, private val sourceManager: S
                 .subscribe({
                     // Delete successful downloads from queue
                     if (it.status == Download.DOWNLOADED) {
+                        // remove downloaded chapter from queue
                         queue.del(it)
+                        downloadNotifier.onProgressChange(queue)
                     }
                     if (areAllDownloadsFinished()) {
                         DownloadService.stop(context)
@@ -68,7 +80,7 @@ class DownloadManager(private val context: Context, private val sourceManager: S
                 }, { e ->
                     DownloadService.stop(context)
                     Timber.e(e, e.message)
-                    context.toast(e.message)
+                    downloadNotifier.onError(e.message)
                 })
 
         if (!isRunning) {
@@ -114,6 +126,12 @@ class DownloadManager(private val context: Context, private val sourceManager: S
                 pending.add(download)
             }
         }
+
+        // Initialize queue size
+        downloadNotifier.initialQueueSize = queue.size
+        // Show notification
+        downloadNotifier.onProgressChange(queue)
+
         if (isRunning) downloadsQueueSubject.onNext(pending)
     }
 
@@ -164,34 +182,40 @@ class DownloadManager(private val context: Context, private val sourceManager: S
         DiskUtils.createDirectory(download.directory)
 
         val pageListObservable = if (download.pages == null)
-            // Pull page list from network and add them to download object
+        // Pull page list from network and add them to download object
             download.source.pullPageListFromNetwork(download.chapter.url)
                     .doOnNext { pages ->
                         download.pages = pages
                         savePageList(download)
                     }
         else
-            // Or if the page list already exists, start from the file
+        // Or if the page list already exists, start from the file
             Observable.just(download.pages)
 
-        return Observable.defer { pageListObservable
-                .doOnNext { pages ->
-                    download.downloadedImages = 0
-                    download.status = Download.DOWNLOADING
-                }
-                // Get all the URLs to the source images, fetch pages if necessary
-                .flatMap { download.source.getAllImageUrlsFromPageList(it) }
-                // Start downloading images, consider we can have downloaded images already
-                .concatMap { page -> getOrDownloadImage(page, download) }
-                // Do after download completes
-                .doOnCompleted { onDownloadCompleted(download) }
-                .toList()
-                .map { pages -> download }
-                // If the page list threw, it will resume here
-                .onErrorResumeNext { error ->
-                    download.status = Download.ERROR
-                    Observable.just(download)
-                }
+        return Observable.defer {
+            pageListObservable
+                    .doOnNext { pages ->
+                        download.downloadedImages = 0
+                        download.status = Download.DOWNLOADING
+                    }
+                    // Get all the URLs to the source images, fetch pages if necessary
+                    .flatMap { download.source.getAllImageUrlsFromPageList(it) }
+                    // Start downloading images, consider we can have downloaded images already
+                    .concatMap { page -> getOrDownloadImage(page, download) }
+                    // Do when page is downloaded.
+                    .doOnNext {
+                        downloadNotifier.onProgressChange(download, queue)
+                    }
+                    // Do after download completes
+                    .doOnCompleted { onDownloadCompleted(download) }
+                    .toList()
+                    .map { pages -> download }
+                    // If the page list threw, it will resume here
+                    .onErrorResumeNext { error ->
+                        download.status = Download.ERROR
+                        downloadNotifier.onError(error.message, download.chapter.name)
+                        Observable.just(download)
+                    }
         }.subscribeOn(Schedulers.io())
     }
 
@@ -297,11 +321,15 @@ class DownloadManager(private val context: Context, private val sourceManager: S
         // If any page has an error, the download result will be error
         for (page in download.pages) {
             actualProgress += page.progress
-            if (page.status != Page.READY) status = Download.ERROR
+            if (page.status != Page.READY) {
+                status = Download.ERROR
+                downloadNotifier.onError(context.getString(R.string.download_notifier_page_ready_error), download.chapter.name)
+            }
         }
         // Ensure that the chapter folder has all the images
         if (!isChapterDownloaded(download.directory, download.pages)) {
             status = Download.ERROR
+            downloadNotifier.onError(context.getString(R.string.download_notifier_page_error), download.chapter.name)
         }
         download.totalProgress = actualProgress
         download.status = status
@@ -399,13 +427,19 @@ class DownloadManager(private val context: Context, private val sourceManager: S
         return !pending.isEmpty()
     }
 
-    fun stopDownloads() {
+    fun stopDownloads(error: String = "") {
         destroySubscriptions()
         for (download in queue) {
             if (download.status == Download.DOWNLOADING) {
                 download.status = Download.ERROR
             }
         }
+        downloadNotifier.onError(error)
+    }
+
+    fun clearQueue() {
+        queue.clear()
+        downloadNotifier.onClear()
     }
 
 }

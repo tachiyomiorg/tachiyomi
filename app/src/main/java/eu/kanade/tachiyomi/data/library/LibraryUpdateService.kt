@@ -12,6 +12,7 @@ import android.util.Pair
 import com.github.pwittchen.reactivenetwork.library.ConnectivityStatus
 import com.github.pwittchen.reactivenetwork.library.ReactiveNetwork
 import eu.kanade.tachiyomi.App
+import eu.kanade.tachiyomi.Constants
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
@@ -67,7 +68,7 @@ class LibraryUpdateService : Service() {
         /**
          * Id of the library update notification.
          */
-        const val UPDATE_NOTIFICATION_ID = 1
+        const val UPDATE_NOTIFICATION_ID = Constants.NOTIFICATION_LIBRARY_ID
 
         /**
          * Key for manual library update.
@@ -206,8 +207,8 @@ class LibraryUpdateService : Service() {
                             showNotification(getString(R.string.notification_update_error), "")
                             stopSelf(startId)
                         }, {
-                            stopSelf(startId)
-                        })
+                    stopSelf(startId)
+                })
 
         return Service.START_STICKY
     }
@@ -451,7 +452,6 @@ class LibraryUpdateService : Service() {
     class CancelUpdateReceiver : BroadcastReceiver() {
         /**
          * Method called when user wants a library update.
-         * 
          * @param context the application context.
          * @param intent the intent received.
          */
@@ -460,5 +460,4 @@ class LibraryUpdateService : Service() {
             context.notificationManager.cancel(UPDATE_NOTIFICATION_ID)
         }
     }
-
 }

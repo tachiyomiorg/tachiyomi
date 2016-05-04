@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.AsyncTask
 import android.support.v4.app.NotificationCompat
 import eu.kanade.tachiyomi.App
+import eu.kanade.tachiyomi.Constants
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.network.NetworkHelper
 import eu.kanade.tachiyomi.data.network.ProgressListener
@@ -181,7 +182,7 @@ class UpdateDownloader(private val context: Context) :
             val FILE_LOCATION = "file_location"
 
             // Id of the notification
-            val notificationId = 2
+            val notificationId = Constants.NOTIFICATION_UPDATER_ID
         }
 
         override fun onReceive(context: Context, intent: Intent) {
