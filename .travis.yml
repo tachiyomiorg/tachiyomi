@@ -15,7 +15,7 @@ android:
 before_script:
     - chmod +x gradlew
 #Build, and run tests
-script: "./gradlew clean assembleDebug testDebugUnitTest"
+script: "./gradlew clean build"
 sudo: false
 
 before_cache:
