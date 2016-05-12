@@ -28,6 +28,9 @@ class DownloadHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         // Update the chapter name.
         view.download_title.text = download.chapter.name
 
+        // Update the manga title
+        view.manga_title.text = download.manga.title
+
         // Update the progress bar and the number of downloaded pages
         if (download.pages == null) {
             view.download_progress.progress = 0

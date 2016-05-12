@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="15dp"
+              android:layout_marginRight="15dp"
+              android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,10 +12,24 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/download_title"/>
+            android:orientation="vertical">
+        <TextView
+            android:id="@+id/manga_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manga Title"
+            android:textAppearance="@style/TextAppearance.Regular.Body1"/>
+
+            <TextView
+                android:id="@+id/download_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chapter Title"
+                android:textAppearance="@style/TextAppearance.Regular.Caption"/>
+        </LinearLayout>
 
         <View
             android:layout_width="0dp"
@@ -22,17 +37,19 @@
             android:layout_weight="1" />
 
         <TextView
+            android:id="@+id/download_progress_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/download_progress_text"
-            android:layout_gravity="start" />
+            android:layout_gravity="start"
+            android:textAppearance="@style/TextAppearance.Regular.Caption.Hint"
+            android:text="(0/10)"/>
 
     </LinearLayout>
 
     <ProgressBar
+        android:id="@+id/download_progress"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/download_progress" />
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
