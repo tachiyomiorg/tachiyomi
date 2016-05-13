@@ -204,7 +204,7 @@ public class Mangachan extends Source {
         ArrayList<String> pages = new ArrayList<>();
 
         int beginIndex = unparsedHtml.indexOf("fullimg\":[");
-        int endIndex = unparsedHtml.indexOf("]", beginIndex);
+        int endIndex = unparsedHtml.indexOf(']', beginIndex);
 
         String trimmedHtml = unparsedHtml.substring(beginIndex + 10, endIndex);
         trimmedHtml = trimmedHtml.replaceAll("\"", "");
@@ -220,7 +220,7 @@ public class Mangachan extends Source {
     @Override
     protected List<Page> parseFirstPage(List<? extends Page> pages, String unparsedHtml) {
         int beginIndex = unparsedHtml.indexOf("fullimg\":[");
-        int endIndex = unparsedHtml.indexOf("]", beginIndex);
+        int endIndex = unparsedHtml.indexOf(']', beginIndex);
 
         String trimmedHtml = unparsedHtml.substring(beginIndex + 10, endIndex);
         trimmedHtml = trimmedHtml.replaceAll("\"", "");

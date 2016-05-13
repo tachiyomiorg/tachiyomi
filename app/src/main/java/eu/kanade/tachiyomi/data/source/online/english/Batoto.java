@@ -106,21 +106,21 @@ public class Batoto extends LoginSource {
 
     @Override
     protected Request mangaDetailsRequest(String mangaUrl) {
-        String mangaId = mangaUrl.substring(mangaUrl.lastIndexOf("r") + 1);
+        String mangaId = mangaUrl.substring(mangaUrl.lastIndexOf('r') + 1);
         return ReqKt.get(String.format(MANGA_URL, mangaId), getRequestHeaders());
     }
 
     @Override
     protected Request pageListRequest(String pageUrl) {
-        String id = pageUrl.substring(pageUrl.indexOf("#") + 1);
+        String id = pageUrl.substring(pageUrl.indexOf('#') + 1);
         return ReqKt.get(String.format(CHAPTER_URL, id), getRequestHeaders());
     }
 
     @Override
     protected Request imageUrlRequest(Page page) {
         String pageUrl = page.getUrl();
-        int start = pageUrl.indexOf("#") + 1;
-        int end = pageUrl.indexOf("_", start);
+        int start = pageUrl.indexOf('#') + 1;
+        int end = pageUrl.indexOf('_', start);
         String id = pageUrl.substring(start, end);
         return ReqKt.get(String.format(PAGE_URL, id, pageUrl.substring(end+1)), getRequestHeaders());
     }
