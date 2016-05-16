@@ -5,9 +5,10 @@ import android.os.Environment
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.source.base.OnlineSource
 import eu.kanade.tachiyomi.data.source.base.Source
-import eu.kanade.tachiyomi.data.source.base.YamlParsedOnlineSource
+import eu.kanade.tachiyomi.data.source.base.YamlOnlineSource
 import eu.kanade.tachiyomi.data.source.online.english.Batoto
 import eu.kanade.tachiyomi.data.source.online.english.Kissmanga
+import org.yaml.snakeyaml.Yaml
 import timber.log.Timber
 import java.io.File
 
@@ -30,15 +31,15 @@ open class SourceManager(private val context: Context) {
         return sourcesMap[sourceKey]
     }
 
+    fun getOnlineSources() = sourcesMap.values.filterIsInstance(OnlineSource::class.java)
+
     private fun createSource(id: Int): Source? = when (id) {
         BATOTO -> Batoto(context, id)
         KISSMANGA -> Kissmanga(context, id)
         else -> null
     }
 
-    fun getOnlineSources() = sourcesMap.values.filterIsInstance(OnlineSource::class.java)
-
-    fun createSources(): Map<Int, Source> = hashMapOf<Int, Source>().apply {
+    private fun createSources(): Map<Int, Source> = hashMapOf<Int, Source>().apply {
         for (i in 1..LAST_SOURCE) {
             createSource(i)?.let { put(i, it) }
         }
@@ -47,9 +48,11 @@ open class SourceManager(private val context: Context) {
                 File.separator + context.getString(R.string.app_name), "parsers")
 
         if (parsersDir.exists()) {
-            for (file in parsersDir.listFiles { file, filename -> filename.endsWith(".yml") }) {
+            val yaml = Yaml()
+            for (file in parsersDir.listFiles().filter { it.extension == "yml" }) {
                 try {
-                    YamlParsedOnlineSource(context, file.inputStream()).let { put(it.id, it) }
+                    val map = file.inputStream().use { yaml.loadAs(it, Map::class.java) }
+                    YamlOnlineSource(context, map).let { put(it.id, it) }
                 } catch (e: Exception) {
                     Timber.e("Error loading source from file. Bad format?")
                 }

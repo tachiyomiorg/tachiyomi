@@ -27,15 +27,13 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override val lang: Language get() = EN
 
-    override val client: OkHttpClient get() = networkService.cloudflareClient
+    override val client: OkHttpClient get() = network.cloudflareClient
 
-    override fun headersBuilder() = super.headersBuilder().add("Host", "kissmanga.com")
+    override fun popularMangaInitialUrl() = "$baseUrl/MangaList/MostPopular"
 
-    override fun getInitialPopularMangaUrl() = "$baseUrl/MangaList/MostPopular"
+    override fun popularMangaSelector() = "table.listing tr:gt(1)"
 
-    override fun getPopularMangaSelector() = "table.listing tr:gt(1)"
-
-    override fun constructPopularMangaFromElement(element: Element, manga: Manga) {
+    override fun popularMangaFromElement(element: Element, manga: Manga) {
         element.select("td a:eq(0)").first().let {
             manga.setUrl(it.attr("href"))
             manga.title = it.text()
@@ -44,7 +42,7 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun searchMangaRequest(page: MangasPage, query: String): Request {
         if (page.page == 1) {
-            page.url = getInitialSearchUrl(query)
+            page.url = searchMangaInitialUrl(query)
         }
 
         val form = FormBody.Builder().apply {
@@ -57,19 +55,19 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
         return post(page.url, headers, form)
     }
 
-    override fun getNextPopularPageSelector() = "li > a:contains(› Next)"
+    override fun popularMangaNextPageSelector() = "li > a:contains(› Next)"
 
-    override fun getSearchMangaSelector() = getPopularMangaSelector()
+    override fun searchMangaSelector() = popularMangaSelector()
 
-    override fun constructSearchMangaFromElement(element: Element, manga: Manga) {
-        constructPopularMangaFromElement(element, manga)
+    override fun searchMangaFromElement(element: Element, manga: Manga) {
+        popularMangaFromElement(element, manga)
     }
 
-    override fun getNextSearchPageSelector() = null
+    override fun searchMangaNextPageSelector() = null
 
-    override fun getInitialSearchUrl(query: String) = "$baseUrl/AdvanceSearch"
+    override fun searchMangaInitialUrl(query: String) = "$baseUrl/AdvanceSearch"
 
-    override fun constructMangaFromDocument(document: Document, manga: Manga) {
+    override fun mangaDetailsParse(document: Document, manga: Manga) {
         val infoElement = document.select("div.barContent").first()
 
         manga.author = infoElement.select("p:has(span:contains(Author:)) > a").first()?.text()
@@ -89,9 +87,9 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
         return Manga.UNKNOWN
     }
 
-    override fun getChapterListSelector() = "table.listing tr:gt(1)"
+    override fun chapterListSelector() = "table.listing tr:gt(1)"
 
-    override fun constructChapterFromElement(element: Element, chapter: Chapter) {
+    override fun chapterFromElement(element: Element, chapter: Chapter) {
         val urlElement = element.select("a").first()
 
         chapter.setUrl(urlElement.attr("href"))
@@ -103,9 +101,9 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun pageListRequest(chapter: Chapter) = post(baseUrl + chapter.url, headers)
 
-    override fun parseHtmlToPages(response: Response, html: String, pages: MutableList<Page>) {
+    override fun pageListParse(response: Response, pages: MutableList<Page>) {
         val p = Pattern.compile("lstImages.push\\(\"(.+?)\"")
-        val m = p.matcher(html)
+        val m = p.matcher(response.body().string())
 
         var i = 0
         while (m.find()) {
@@ -114,10 +112,10 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
     }
 
     // Not used
-    override fun parseDocumentToPages(document: Document, pages: MutableList<Page>) {}
+    override fun pageListParse(document: Document, pages: MutableList<Page>) {}
 
     override fun imageUrlRequest(page: Page) = get(page.url)
 
-    override fun parseDocumentToImageUrl(document: Document) = ""
+    override fun imageUrlParse(document: Document) = ""
 
 }

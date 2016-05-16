@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.util
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.source.base.OnlineSource
 import eu.kanade.tachiyomi.data.source.base.Source
 import java.util.*
 
@@ -34,7 +35,9 @@ fun syncChaptersWithSource(db: DatabaseHelper,
 
     // Recognize number for new chapters.
     toAdd.forEach {
-        source.parseChapterNumber(it)
+        if (source is OnlineSource) {
+            source.parseChapterNumber(it)
+        }
         ChapterRecognition.parseChapterNumber(it, manga)
     }
 

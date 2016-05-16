@@ -9,9 +9,11 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun toMap(map: Any?) = map as? Map<String, Any?>
+private fun toMap(map: Any?) = map as? Map<String, Any?>
 
-class YamlSourceNode(private val map: Map<String, Any?>) {
+class YamlSourceNode(uncheckedMap: Map<*, *>) {
+
+    val map = toMap(uncheckedMap)!!
 
     val id: Any by map
 

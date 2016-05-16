@@ -225,7 +225,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         val observable = if (query.isEmpty())
             source.fetchPopularManga(nextMangasPage)
         else
-            source.searchManga(nextMangasPage, query)
+            source.fetchSearchManga(nextMangasPage, query)
 
         return observable.subscribeOn(Schedulers.io())
                 .doOnNext { lastMangasPage = it }

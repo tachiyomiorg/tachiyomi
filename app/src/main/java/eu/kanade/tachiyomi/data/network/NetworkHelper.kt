@@ -38,14 +38,12 @@ class NetworkHelper(context: Context) {
     val cookies: PersistentCookieStore
         get() = cookieManager.store
 
-    @JvmOverloads
     fun request(request: Request, client: OkHttpClient = defaultClient): Observable<Response> {
         return Observable.fromCallable {
-            client.newCall(request).execute().apply { body().close() }
+            client.newCall(request).execute()
         }
     }
 
-    @JvmOverloads
     fun requestBody(request: Request, client: OkHttpClient = defaultClient): Observable<String> {
         return Observable.fromCallable {
             client.newCall(request).execute().body().string()

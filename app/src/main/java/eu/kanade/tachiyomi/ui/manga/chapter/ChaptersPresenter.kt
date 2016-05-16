@@ -96,7 +96,7 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
     }
 
     fun getOnlineChaptersObs(): Observable<Pair<Int, Int>> {
-        return source.fetchChapters(manga)
+        return source.fetchChapterList(manga)
                 .subscribeOn(Schedulers.io())
                 .map { syncChaptersWithSource(db, it, manga, source) }
                 .observeOn(AndroidSchedulers.mainThread())

@@ -52,9 +52,9 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
             .add("Cookie", "lang_option=English")
             .add("Referer", "http://bato.to/reader")
 
-    override fun getInitialPopularMangaUrl() = "$baseUrl/search_ajax?order_cond=views&order=desc&p=1"
+    override fun popularMangaInitialUrl() = "$baseUrl/search_ajax?order_cond=views&order=desc&p=1"
 
-    override fun getInitialSearchUrl(query: String) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&p=1"
+    override fun searchMangaInitialUrl(query: String) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&p=1"
 
     override fun mangaDetailsRequest(manga: Manga): Request {
         val mangaId = manga.url.substringAfterLast("r")
@@ -74,56 +74,56 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
         return get("$baseUrl/areader?id=$id&p=${pageUrl.substring(end+1)}", headers)
     }
 
-    override fun parseHtmlToPopularManga(html: String, page: MangasPage) {
-        val document = Jsoup.parse(html)
-        for (element in document.select(getPopularMangaSelector())) {
+    override fun popularMangaParse(response: Response, page: MangasPage) {
+        val document = Jsoup.parse(response.body().string())
+        for (element in document.select(popularMangaSelector())) {
             Manga().apply {
                 source = this@Batoto.id
-                constructPopularMangaFromElement(element, this)
+                popularMangaFromElement(element, this)
                 page.mangas.add(this)
             }
         }
 
-        page.nextPageUrl = document.select(getNextPopularPageSelector()).first()?.let {
+        page.nextPageUrl = document.select(popularMangaNextPageSelector()).first()?.let {
             "$baseUrl/search_ajax?order_cond=views&order=desc&p=${page.page + 1}"
         }
     }
 
-    override fun getPopularMangaSelector() = "tr:not([id]):not([class])"
+    override fun popularMangaSelector() = "tr:not([id]):not([class])"
 
-    override fun constructPopularMangaFromElement(element: Element, manga: Manga) {
+    override fun popularMangaFromElement(element: Element, manga: Manga) {
         element.select("a[href^=http://bato.to]").first().let {
             manga.setUrl(it.attr("href"))
             manga.title = it.text().trim()
         }
     }
 
-    override fun getNextPopularPageSelector() = "#show_more_row"
+    override fun popularMangaNextPageSelector() = "#show_more_row"
 
-    override fun parseSearchFromHtml(html: String, page: MangasPage, query: String) {
-        val document = Jsoup.parse(html)
-        for (element in document.select(getSearchMangaSelector())) {
+    override fun searchMangaParse(response: Response, page: MangasPage, query: String) {
+        val document = Jsoup.parse(response.body().string())
+        for (element in document.select(searchMangaSelector())) {
             Manga().apply {
                 source = this@Batoto.id
-                constructSearchMangaFromElement(element, this)
+                searchMangaFromElement(element, this)
                 page.mangas.add(this)
             }
         }
 
-        page.nextPageUrl = document.select(getNextSearchPageSelector()).first()?.let {
+        page.nextPageUrl = document.select(searchMangaNextPageSelector()).first()?.let {
             "$baseUrl/search_ajax?name=${Uri.encode(query)}&p=${page.page + 1}"
         }
     }
 
-    override fun getSearchMangaSelector() = getPopularMangaSelector()
+    override fun searchMangaSelector() = popularMangaSelector()
 
-    override fun constructSearchMangaFromElement(element: Element, manga: Manga) {
-        constructPopularMangaFromElement(element, manga)
+    override fun searchMangaFromElement(element: Element, manga: Manga) {
+        popularMangaFromElement(element, manga)
     }
 
-    override fun getNextSearchPageSelector() = getNextPopularPageSelector()
+    override fun searchMangaNextPageSelector() = popularMangaNextPageSelector()
 
-    override fun constructMangaFromDocument(document: Document, manga: Manga) {
+    override fun mangaDetailsParse(document: Document, manga: Manga) {
         val tbody = document.select("tbody").first()
         val artistElement = tbody.select("tr:contains(Author/Artist:)").first()
 
@@ -141,23 +141,27 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
         else -> Manga.UNKNOWN
     }
 
-    override fun parseHtmlToChapters(html: String, chapters: MutableList<Chapter>) {
-        val matcher = staffNotice.matcher(html)
+    override fun chapterListParse(response: Response, chapters: MutableList<Chapter>) {
+        val body = response.body().string()
+        val matcher = staffNotice.matcher(body)
         if (matcher.find()) {
             val notice = Html.fromHtml(matcher.group(1)).toString().trim()
             throw RuntimeException(notice)
         }
 
-        val document = Jsoup.parse(html)
+        val document = Jsoup.parse(body)
 
-        for (element in document.select(getChapterListSelector())) {
-            constructChapterFromElement(element, Chapter.create())
+        for (element in document.select(chapterListSelector())) {
+            Chapter.create().apply {
+                chapterFromElement(element, this)
+                chapters.add(this)
+            }
         }
     }
 
-    override fun getChapterListSelector() = "tr.row.lang_English.chapter_row"
+    override fun chapterListSelector() = "tr.row.lang_English.chapter_row"
 
-    override fun constructChapterFromElement(element: Element, chapter: Chapter) {
+    override fun chapterFromElement(element: Element, chapter: Chapter) {
         val urlElement = element.select("a[href^=http://bato.to/reader").first()
 
         chapter.setUrl(urlElement.attr("href"))
@@ -192,7 +196,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
         return date.time
     }
 
-    override fun parseDocumentToPages(document: Document, pages: MutableList<Page>) {
+    override fun pageListParse(document: Document, pages: MutableList<Page>) {
         val selectElement = document.select("#page_select").first()
         if (selectElement != null) {
             for ((i, element) in selectElement.select("option").withIndex()) {
@@ -206,12 +210,12 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
         }
     }
 
-    override fun parseDocumentToImageUrl(document: Document): String {
+    override fun imageUrlParse(document: Document): String {
         return document.select("#comic_page").first().attr("src")
     }
 
     override fun login(username: String, password: String) =
-        networkService.requestBody(get("$baseUrl/forums/index.php?app=core&module=global&section=login", headers))
+        network.requestBody(get("$baseUrl/forums/index.php?app=core&module=global&section=login", headers))
                 .flatMap { doLogin(it, username, password) }
                 .map { isAuthenticationSuccessful(it) }
 
@@ -229,7 +233,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
             add("rememberMe", "1")
         }.build()
 
-        return networkService.request(post(url, headers, payload))
+        return network.request(post(url, headers, payload))
     }
 
     override fun isLoginRequired() = true
@@ -239,14 +243,14 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
 
     override fun isLogged(): Boolean {
         try {
-            return networkService.cookies.get(URI(baseUrl)).find { it.name() == "pass_hash" } != null
+            return network.cookies.get(URI(baseUrl)).find { it.name() == "pass_hash" } != null
         } catch (e: URISyntaxException) {
             // Ignore
         }
         return false
     }
 
-    override fun fetchChapters(manga: Manga): Observable<List<Chapter>> {
+    override fun fetchChapterList(manga: Manga): Observable<List<Chapter>> {
         if (!isLogged()) {
             val username = preferences.sourceUsername(this)
             val password = preferences.sourcePassword(this)
@@ -254,11 +258,11 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
             if (username.isNullOrEmpty() || password.isNullOrEmpty()) {
                 return Observable.error(Exception("User not logged"))
             } else {
-                return login(username, password).flatMap { super.fetchChapters(manga) }
+                return login(username, password).flatMap { super.fetchChapterList(manga) }
             }
 
         } else {
-            return super.fetchChapters(manga)
+            return super.fetchChapterList(manga)
         }
     }
 

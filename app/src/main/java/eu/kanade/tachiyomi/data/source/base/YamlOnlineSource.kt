@@ -12,15 +12,12 @@ import okhttp3.Request
 import okhttp3.Response
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
-import org.yaml.snakeyaml.Yaml
-import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
-class YamlParsedOnlineSource(context: Context, stream: InputStream) : OnlineSource(context) {
+class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(context) {
 
-    @Suppress("UNCHECKED_CAST")
-    val map = YamlSourceNode((Yaml().load(stream) as Map<String, Any?>).withDefault { null })
+    val map = YamlSourceNode(mappings)
 
     override val name: String
         get() = map.name
@@ -47,11 +44,11 @@ class YamlParsedOnlineSource(context: Context, stream: InputStream) : OnlineSour
         }
     }
 
-    override fun parseHtmlToPopularManga(html: String, page: MangasPage) {
-        val document = Jsoup.parse(html)
+    override fun popularMangaParse(response: Response, page: MangasPage) {
+        val document = Jsoup.parse(response.body().string())
         for (element in document.select(map.popular.manga_css)) {
             Manga().apply {
-                source = this@YamlParsedOnlineSource.id
+                source = this@YamlOnlineSource.id
                 title = element.text()
                 setUrl(element.attr("href"))
                 page.mangas.add(this)
@@ -70,9 +67,9 @@ class YamlParsedOnlineSource(context: Context, stream: InputStream) : OnlineSour
     }
 
     // Not needed
-    override fun getInitialPopularMangaUrl() = ""
+    override fun popularMangaInitialUrl() = ""
 
-    override fun getInitialSearchUrl(query: String) = ""
+    override fun searchMangaInitialUrl(query: String) = ""
 
     override fun searchMangaRequest(page: MangasPage, query: String): Request {
         if (page.page == 1) {
@@ -84,11 +81,11 @@ class YamlParsedOnlineSource(context: Context, stream: InputStream) : OnlineSour
         }
     }
 
-    override fun parseSearchFromHtml(html: String, page: MangasPage, query: String) {
-        val document = Jsoup.parse(html)
+    override fun searchMangaParse(response: Response, page: MangasPage, query: String) {
+        val document = Jsoup.parse(response.body().string())
         for (element in document.select(map.search.manga_css)) {
             Manga().apply {
-                source = this@YamlParsedOnlineSource.id
+                source = this@YamlOnlineSource.id
                 title = element.text()
                 setUrl(element.attr("href"))
                 page.mangas.add(this)
@@ -106,8 +103,8 @@ class YamlParsedOnlineSource(context: Context, stream: InputStream) : OnlineSour
         }
     }
 
-    override fun parseHtmlToManga(html: String, manga: Manga) {
-        val document = Jsoup.parse(html)
+    override fun mangaDetailsParse(response: Response, manga: Manga) {
+        val document = Jsoup.parse(response.body().string())
         with(map.manga) {
             val pool = parts.get(document)
 
@@ -120,8 +117,8 @@ class YamlParsedOnlineSource(context: Context, stream: InputStream) : OnlineSour
         }
     }
 
-    override fun parseHtmlToChapters(html: String, chapters: MutableList<Chapter>) {
-        val document = Jsoup.parse(html)
+    override fun chapterListParse(response: Response, chapters: MutableList<Chapter>) {
+        val document = Jsoup.parse(response.body().string())
         with(map.chapters) {
             val pool = emptyMap<String, Element>()
             val dateFormat = SimpleDateFormat(date?.format, Locale.ENGLISH)
@@ -139,8 +136,8 @@ class YamlParsedOnlineSource(context: Context, stream: InputStream) : OnlineSour
         }
     }
 
-    override fun parseHtmlToPages(response: Response, html: String, pages: MutableList<Page>) {
-        val document = Jsoup.parse(html)
+    override fun pageListParse(response: Response, pages: MutableList<Page>) {
+        val document = Jsoup.parse(response.body().string())
         with(map.pages) {
             val url = response.request().url().toString()
             pages_css?.let {
@@ -165,8 +162,8 @@ class YamlParsedOnlineSource(context: Context, stream: InputStream) : OnlineSour
 
     }
 
-    override fun parseHtmlToImageUrl(html: String): String {
-        val document = Jsoup.parse(html)
+    override fun imageUrlParse(response: Response): String {
+        val document = Jsoup.parse(response.body().string())
         return with(map.pages) {
             document.select(image_css).first().attr(image_attr).let {
                 when {

@@ -290,8 +290,7 @@ class LibraryUpdateService : Service() {
      */
     fun updateManga(manga: Manga): Observable<Pair<Int, Int>> {
         val source = sourceManager.get(manga.source) as? OnlineSource ?: return Observable.empty()
-        return source!!
-                .pullChaptersFromNetwork(manga.url)
+        return source.fetchChapterList(manga)
                 .map { syncChaptersWithSource(db, it, manga, source) }
     }
 

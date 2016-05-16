@@ -18,7 +18,6 @@ import eu.kanade.tachiyomi.CustomRobolectricGradleTestRunner;
 import eu.kanade.tachiyomi.data.database.models.Chapter;
 import eu.kanade.tachiyomi.data.database.models.Manga;
 import eu.kanade.tachiyomi.data.source.base.OnlineSource;
-import eu.kanade.tachiyomi.data.source.base.Source;
 import rx.Observable;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -63,7 +62,7 @@ public class LibraryUpdateServiceTest {
 
         List<Chapter> sourceChapters = createChapters("/chapter1", "/chapter2");
 
-        when(source.fetchChapters(manga)).thenReturn(Observable.just(sourceChapters));
+        when(source.fetchChapterList(manga)).thenReturn(Observable.just(sourceChapters));
 
         service.updateManga(manga).subscribe();
 
@@ -80,9 +79,9 @@ public class LibraryUpdateServiceTest {
         List<Chapter> chapters3 = createChapters("/achapter1", "/achapter2");
 
         // One of the updates will fail
-        when(source.fetchChapters("/manga1")).thenReturn(Observable.just(chapters));
-        when(source.fetchChapters("/manga2")).thenReturn(Observable.<List<Chapter>>error(new Exception()));
-        when(source.fetchChapters("/manga3")).thenReturn(Observable.just(chapters3));
+        when(source.fetchChapterList(favManga.get(0))).thenReturn(Observable.just(chapters));
+        when(source.fetchChapterList(favManga.get(1))).thenReturn(Observable.<List<Chapter>>error(new Exception()));
+        when(source.fetchChapterList(favManga.get(2))).thenReturn(Observable.just(chapters3));
 
         service.updateMangaList(service.getMangaToUpdate(null)).subscribe();
 
