@@ -1567,9 +1567,6 @@ public class VerticalViewPagerImpl extends ViewGroup {
                     final int hgrav = lp.gravity & Gravity.HORIZONTAL_GRAVITY_MASK;
                     final int vgrav = lp.gravity & Gravity.VERTICAL_GRAVITY_MASK;
                     switch (hgrav) {
-                        default:
-                            childLeft = paddingLeft;
-                            break;
                         case Gravity.LEFT:
                             childLeft = paddingLeft;
                             paddingLeft += child.getMeasuredWidth();
@@ -1582,11 +1579,11 @@ public class VerticalViewPagerImpl extends ViewGroup {
                             childLeft = width - paddingRight - child.getMeasuredWidth();
                             paddingRight += child.getMeasuredWidth();
                             break;
+                        default:
+                            childLeft = paddingLeft;
+                            break;
                     }
                     switch (vgrav) {
-                        default:
-                            childTop = paddingTop;
-                            break;
                         case Gravity.TOP:
                             childTop = paddingTop;
                             paddingTop += child.getMeasuredHeight();
@@ -1598,6 +1595,9 @@ public class VerticalViewPagerImpl extends ViewGroup {
                         case Gravity.BOTTOM:
                             childTop = height - paddingBottom - child.getMeasuredHeight();
                             paddingBottom += child.getMeasuredHeight();
+                            break;
+                        default:
+                            childTop = paddingTop;
                             break;
                     }
                     childTop += scrollY;
@@ -1733,9 +1733,6 @@ public class VerticalViewPagerImpl extends ViewGroup {
                 final int vgrav = lp.gravity & Gravity.VERTICAL_GRAVITY_MASK;
                 int childTop;
                 switch (vgrav) {
-                    default:
-                        childTop = paddingTop;
-                        break;
                     case Gravity.TOP:
                         childTop = paddingTop;
                         paddingTop += child.getHeight();
@@ -1747,6 +1744,9 @@ public class VerticalViewPagerImpl extends ViewGroup {
                     case Gravity.BOTTOM:
                         childTop = height - paddingBottom - child.getMeasuredHeight();
                         paddingBottom += child.getMeasuredHeight();
+                        break;
+                    default:
+                        childTop = paddingTop;
                         break;
                 }
                 childTop += scrollY;
@@ -1999,6 +1999,8 @@ public class VerticalViewPagerImpl extends ViewGroup {
             case MotionEventCompat.ACTION_POINTER_UP:
                 onSecondaryPointerUp(ev);
                 break;
+            default:
+                break;
         }
 
         if (mVelocityTracker == null) {
@@ -2132,6 +2134,8 @@ public class VerticalViewPagerImpl extends ViewGroup {
                 onSecondaryPointerUp(ev);
                 mLastMotionY = MotionEventCompat.getY(ev,
                         MotionEventCompat.findPointerIndex(ev, mActivePointerId));
+                break;
+            default:
                 break;
         }
         if (needsInvalidate) {
@@ -2606,6 +2610,8 @@ public class VerticalViewPagerImpl extends ViewGroup {
                         }
                     }
                     break;
+                default:
+                    break;
             }
         }
         return handled;
@@ -2905,6 +2911,8 @@ public class VerticalViewPagerImpl extends ViewGroup {
                         return true;
                     }
                 } return false;
+                default:
+                    break;
             }
             return false;
         }
