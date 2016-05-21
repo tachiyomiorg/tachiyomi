@@ -121,6 +121,10 @@
         <item name="android:textColor">?attr/colorAccent</item>
     </style>
 
+    <style name="TextAppearance.Medium.Button.Negative">
+        <item name="android:textColor">@color/md_red_500</item>
+    </style>
+
     <!--=======-->
     <!--Widgets-->
     <!--=======-->
@@ -135,6 +139,12 @@
         <item name="layout_anchorGravity">bottom|right|end</item>
         <item name="android:tint">@color/md_white_1000</item>
         <item name="layout_behavior">eu.kanade.tachiyomi.widget.FABAnimationUpDown</item>
+    </style>
+
+    <style name="Theme.Widget.CardView">
+        <item name="android:layout_marginRight">@dimen/card_margin</item>
+        <item name="android:layout_marginLeft">@dimen/card_margin</item>
+        <item name="android:layout_marginTop">@dimen/card_margin</item>
     </style>
 
     <style name="Theme.Widget.GridView">

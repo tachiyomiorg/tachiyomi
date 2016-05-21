@@ -4,6 +4,7 @@ import android.os.Bundle
 import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
+import eu.kanade.tachiyomi.data.database.models.History
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaSync
 import eu.kanade.tachiyomi.data.download.DownloadManager
@@ -24,6 +25,7 @@ import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
 import timber.log.Timber
 import java.io.File
+import java.util.*
 import javax.inject.Inject
 
 class ReaderPresenter : BasePresenter<ReaderActivity>() {
@@ -289,6 +291,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         }
     }
 
+
     // Check whether the given chapter is downloaded
     fun isChapterDownloaded(chapter: Chapter): Boolean {
         return downloadManager.isChapterDownloaded(source, manga, chapter)
@@ -340,6 +343,12 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
             }
         }
         db.updateChapterProgress(chapter).asRxObservable().subscribe()
+        // Update last read data
+        db.updateHistoryLastRead(History.create(chapter)
+                .apply { last_read = Date().time })
+                .asRxObservable()
+                .doOnError { Timber.e(it.message) }
+                .subscribe()
     }
 
     /**

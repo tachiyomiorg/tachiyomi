@@ -7,6 +7,7 @@
     <string name="label_settings">Settings</string>
     <string name="label_download_queue">Download queue</string>
     <string name="label_library">My library</string>
+    <string name="label_recent_manga">Recently read</string>
     <string name="label_recent_updates">Recent updates</string>
     <string name="label_catalogues">Catalogues</string>
     <string name="label_categories">Categories</string>
@@ -46,6 +47,8 @@
     <string name="action_previous_chapter">Previous chapter</string>
     <string name="action_next_chapter">Next chapter</string>
     <string name="action_retry">Retry</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_resume">Resume</string>
     <string name="action_open_in_browser">Open in browser</string>
     <string name="action_display_mode">Change display mode</string>
     <string name="action_cancel">Cancel</string>
@@ -248,6 +251,10 @@
     <string name="status">Status</string>
     <string name="chapters">Chapters</string>
 
+    <!-- Dialog remove recently view -->
+    <string name="dialog_remove_recently_description">This will remove the read date of this chapter. Are you sure?</string>
+    <string name="dialog_remove_recently_reset">Reset all chapters for this manga</string>
+
 
     <!-- Reader activity -->
     <string name="downloading">Downloading…</string>
@@ -265,6 +272,9 @@
     <string name="backup_please_wait">Backup in progress. Please wait…</string>
     <string name="backup_completed">Backup successfully restored</string>
     <string name="restore_please_wait">Restoring backup. Please wait…</string>
+
+    <!-- Recent manga fragment -->
+    <string name="recent_manga_source">%1$s - Ch.%2$s</string>
 
     <!-- Downloads activity and service -->
     <string name="download_queue_error">An error occurred while downloading chapters. You can try again in the downloads section</string>
@@ -302,12 +312,13 @@
     <string name="update_check_notification_update_available">Update available</string>
 
     <!--Content Description-->
-    <string name="description_backdrop">Backdrop image of selected manga</string>
-    <string name="description_cover">Cover of selected manga</string>
+    <string name="description_backdrop">Backdrop image of manga</string>
+    <string name="description_cover">Cover of manga</string>
 
     <!-- Information Text -->
     <string name="information_no_downloads">No downloads</string>
     <string name="information_no_recent">No recent chapters</string>
+    <string name="information_no_recent_manga">No recently read manga</string>
     <string name="information_empty_library">Empty library</string>
 
     <!-- Download Notification -->
@@ -316,4 +327,5 @@
     <string name="download_notifier_page_error">A page is missing in directory</string>
     <string name="download_notifier_page_ready_error">A page is not loaded</string>
     <string name="download_notifier_text_only_wifi">No wifi connection available</string>
+
 </resources>

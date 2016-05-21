@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.recent
+package eu.kanade.tachiyomi.ui.recent_updates
 
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
@@ -213,7 +213,7 @@ class RecentChaptersFragment : BaseRxFragment<RecentChaptersPresenter>(), Action
      */
     fun onNextMangaChapters(chapters: List<Any>) {
         (activity as MainActivity).updateEmptyView(chapters.isEmpty(),
-                R.string.information_no_recent, R.drawable.ic_history_black_128dp)
+                R.string.information_no_recent, R.drawable.ic_update_black_128dp)
 
         destroyActionModeIfNeeded()
         adapter.setItems(chapters)

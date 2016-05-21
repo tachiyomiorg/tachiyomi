@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.recent
+package eu.kanade.tachiyomi.ui.recent_updates
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -72,7 +72,7 @@ class RecentChaptersAdapter(val fragment: RecentChaptersFragment) : FlexibleAdap
         // Check which view type and set correct values.
         when (viewType) {
             VIEW_TYPE_CHAPTER -> {
-                view = parent.inflate(R.layout.item_recent_chapter)
+                view = parent.inflate(R.layout.item_recent_chapters)
                 return RecentChaptersHolder(view, this, fragment)
             }
             VIEW_TYPE_SECTION -> {

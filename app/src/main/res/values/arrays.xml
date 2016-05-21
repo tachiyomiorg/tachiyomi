@@ -136,4 +136,12 @@
         <item>ac</item>
     </string-array>
 
+    <string-array name="remove_recently_read">
+        <item>@string/scale_type_fit_screen</item>
+    </string-array>
+
+    <string-array name="remove_recently_read_values">
+        <item>remove</item>
+    </string-array>
+
 </resources>

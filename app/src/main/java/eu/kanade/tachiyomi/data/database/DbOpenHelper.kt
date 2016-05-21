@@ -17,7 +17,7 @@ class DbOpenHelper(context: Context)
         /**
          * Version of the database.
          */
-        const val DATABASE_VERSION = 2
+        const val DATABASE_VERSION = 3
     }
 
     override fun onCreate(db: SQLiteDatabase) = with(db) {
@@ -26,11 +26,13 @@ class DbOpenHelper(context: Context)
         execSQL(MangaSyncTable.createTableQuery)
         execSQL(CategoryTable.createTableQuery)
         execSQL(MangaCategoryTable.createTableQuery)
+        execSQL(HistoryTable.createTableQuery)
 
         // DB indexes
         execSQL(MangaTable.createUrlIndexQuery)
         execSQL(MangaTable.createFavoriteIndexQuery)
         execSQL(ChapterTable.createMangaIdIndexQuery)
+        execSQL(HistoryTable.createChapterIdIndexQuery)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -40,6 +42,11 @@ class DbOpenHelper(context: Context)
             // Fix kissmanga covers after supporting cloudflare
             db.execSQL("""UPDATE mangas SET thumbnail_url =
                     REPLACE(thumbnail_url, '93.174.95.110', 'kissmanga.com') WHERE source = 4""")
+        }
+        if (oldVersion < 3) {
+            // Initialize history tables
+            db.execSQL(HistoryTable.createTableQuery)
+            db.execSQL(HistoryTable.createChapterIdIndexQuery)
         }
     }
 

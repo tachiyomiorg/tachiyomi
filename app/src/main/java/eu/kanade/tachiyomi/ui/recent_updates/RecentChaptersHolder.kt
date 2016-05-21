@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.recent
+package eu.kanade.tachiyomi.ui.recent_updates
 
 import android.view.View
 import android.widget.PopupMenu
@@ -7,11 +7,11 @@ import eu.kanade.tachiyomi.data.database.models.MangaChapter
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 import eu.kanade.tachiyomi.util.getResourceColor
-import kotlinx.android.synthetic.main.item_recent_chapter.view.*
+import kotlinx.android.synthetic.main.item_recent_chapters.view.*
 
 /**
  * Holder that contains chapter item
- * Uses R.layout.item_recent_chapter.
+ * Uses R.layout.item_recent_chapters.
  * UI related actions should be called from here.
  *
  * @param view the inflated view for this holder.
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.item_recent_chapter.view.*
  * @param listener a listener to react to single tap and long tap events.
  * @constructor creates a new recent chapter holder.
  */
-class RecentChaptersHolder(view: View, private val adapter: RecentChaptersAdapter, listener: FlexibleViewHolder.OnListItemClickListener) :
+class RecentChaptersHolder(view: View, private val adapter: RecentChaptersAdapter, listener: OnListItemClickListener) :
         FlexibleViewHolder(view, adapter, listener) {
     /**
      * Color of read chapter

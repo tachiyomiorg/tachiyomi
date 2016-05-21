@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.recent
+package eu.kanade.tachiyomi.ui.recent_updates
 
 import android.os.Bundle
 import eu.kanade.tachiyomi.data.database.DatabaseHelper

@@ -20,7 +20,7 @@ class MangaChapterGetResolver : DefaultGetResolver<MangaChapter>() {
         val manga = mangaGetResolver.mapFromCursor(cursor)
         val chapter = chapterGetResolver.mapFromCursor(cursor)
         manga.id = chapter.manga_id
-        manga.url = cursor.getString(cursor.getColumnIndex("mangaUrl"));
+        manga.url = cursor.getString(cursor.getColumnIndex("mangaUrl"))
 
         return MangaChapter(manga, chapter)
     }

@@ -9,8 +9,7 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:descendantFocusability="blocksDescendants"
-        tools:listitem="@layout/item_recent_chapters">
+        tools:listitem="@layout/item_recent_manga">
 
     </android.support.v7.widget.RecyclerView>
 
