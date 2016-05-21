@@ -9,7 +9,7 @@ import eu.kanade.tachiyomi.data.database.queries.*
  * This class provides operations to manage the database through its interfaces.
  */
 open class DatabaseHelper(context: Context)
-: MangaQueries, ChapterQueries, MangaSyncQueries, CategoryQueries, MangaCategoryQueries {
+: MangaQueries, ChapterQueries, MangaSyncQueries, CategoryQueries, MangaCategoryQueries, HistoryQueries {
 
     override val db = DefaultStorIOSQLite.builder()
             .sqliteOpenHelper(DbOpenHelper(context))
@@ -18,6 +18,7 @@ open class DatabaseHelper(context: Context)
             .addTypeMapping(MangaSync::class.java, MangaSyncSQLiteTypeMapping())
             .addTypeMapping(Category::class.java, CategorySQLiteTypeMapping())
             .addTypeMapping(MangaCategory::class.java, MangaCategorySQLiteTypeMapping())
+            .addTypeMapping(History::class.java, HistorySQLiteTypeMapping())
             .build()
 
     inline fun inTransaction(block: () -> Unit) = db.inTransaction(block)

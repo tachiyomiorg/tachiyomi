@@ -4,6 +4,7 @@ import android.os.Bundle
 import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
+import eu.kanade.tachiyomi.data.database.models.History
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaSync
 import eu.kanade.tachiyomi.data.download.DownloadManager
@@ -24,6 +25,7 @@ import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
 import timber.log.Timber
 import java.io.File
+import java.util.*
 import javax.inject.Inject
 
 class ReaderPresenter : BasePresenter<ReaderActivity>() {
@@ -82,6 +84,8 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         source = sourceManager.get(manga.source)!!
 
         initializeSubjects()
+
+        setMangaLastRead()
 
         startableLatestCache(GET_ADJACENT_CHAPTERS,
                 { getAdjacentChaptersObservable() },
@@ -222,6 +226,15 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
                 .doOnNext { mangaSyncList = it }
     }
 
+    private fun setMangaLastRead() {
+        var history = db.getHistoryByMangaId(manga.id).executeAsBlocking()
+        if (history == null) {
+            history = History.create(manga)
+        }
+        history?.last_read = Date().time
+        db.insertHistory(history!!).executeAsBlocking()
+    }
+
     // Loads the given chapter
     private fun loadChapter(chapter: Chapter, requestedPage: Int = 0) {
         if (isSeamlessMode) {
@@ -282,6 +295,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
 
         }
     }
+
 
     // Check whether the given chapter is downloaded
     fun isChapterDownloaded(chapter: Chapter): Boolean {

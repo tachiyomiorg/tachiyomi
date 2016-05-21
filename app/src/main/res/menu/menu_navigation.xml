@@ -8,9 +8,14 @@
             android:icon="@drawable/ic_book_black_24dp"
             android:title="@string/label_library" />
         <item
+            android:id="@+id/nav_drawer_recent_manga"
+            android:icon="@drawable/ic_glasses_black_24dp"
+            android:title="@string/label_recent_manga"/>
+        <item
             android:id="@+id/nav_drawer_recent_updates"
-            android:icon="@drawable/ic_history_black_24dp"
+            android:icon="@drawable/ic_update_black_24dp"
             android:title="@string/label_recent_updates" />
+
         <item
             android:id="@+id/nav_drawer_catalogues"
             android:icon="@drawable/ic_explore_black_24dp"

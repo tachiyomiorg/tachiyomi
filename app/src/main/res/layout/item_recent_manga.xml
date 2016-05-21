@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cv_manga"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/Theme.Widget.CardView"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/cover"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:scaleType="centerCrop"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/card_margin">
+
+            <TextView
+                android:id="@+id/manga_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.Medium.Title"/>
+
+            <TextView
+                android:id="@+id/manga_source"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/manga_title"
+                android:textAppearance="@style/TextAppearance.Medium.Body2"/>
+
+            <TextView
+                android:id="@+id/last_read"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/manga_source"
+                android:textAppearance="@style/TextAppearance.Medium.Body2.Hint"/>
+
+            <TextView
+                android:id="@+id/remove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_remove"
+                android:layout_alignParentBottom="true"
+                android:clickable="true"
+                android:background="?attr/selectable_list_drawable"
+                android:textAppearance="@style/TextAppearance.Medium.Button.Negative"/>
+
+            <TextView
+                android:layout_marginLeft="@dimen/card_margin"
+                android:layout_marginStart="@dimen/card_margin"
+                android:layout_marginRight="@dimen/card_margin"
+                android:layout_marginEnd="@dimen/card_margin"
+                android:id="@+id/continue_reading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_continue_reading"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@id/remove"
+                android:layout_toEndOf="@id/remove"
+                android:background="?attr/selectable_list_drawable"
+                android:textAppearance="@style/TextAppearance.Medium.Button"/>
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.recent
+package eu.kanade.tachiyomi.ui.recent.chapters
 
 import android.support.v7.widget.RecyclerView
 import android.text.format.DateUtils
