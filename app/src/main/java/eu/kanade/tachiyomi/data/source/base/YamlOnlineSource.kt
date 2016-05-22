@@ -30,19 +30,26 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         getLanguages().find { code == it.code }!!
     }
 
+    override val client = when(map.client) {
+        "cloudflare" -> network.cloudflareClient
+        else -> network.defaultClient
+    }
+
     override val id = map.id.let {
         if (it is Int) it else (lang.code.hashCode() + 31 * it.hashCode()) and 0x7fffffff
     }
 
     override fun popularMangaRequest(page: MangasPage): Request {
         if (page.page == 1) {
-            page.url = map.popular.url
+            page.url = popularMangaInitialUrl()
         }
         return when (map.popular.method?.toLowerCase()) {
-            "post" -> post(page.url, headers)
+            "post" -> post(page.url, headers, map.popular.createForm())
             else -> get(page.url, headers)
         }
     }
+
+    override fun popularMangaInitialUrl() = map.popular.url
 
     override fun popularMangaParse(response: Response, page: MangasPage) {
         val document = Jsoup.parse(response.body().string())
@@ -66,20 +73,17 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         }
     }
 
-    // Not needed
-    override fun popularMangaInitialUrl() = ""
-
-    override fun searchMangaInitialUrl(query: String) = ""
-
     override fun searchMangaRequest(page: MangasPage, query: String): Request {
         if (page.page == 1) {
-            page.url = map.search.url.replace("\$query", query)
+            page.url = searchMangaInitialUrl(query)
         }
-        return when (map.popular.method?.toLowerCase()) {
-            "post" -> post(page.url, headers)
+        return when (map.search.method?.toLowerCase()) {
+            "post" -> post(page.url, headers, map.search.createForm())
             else -> get(page.url, headers)
         }
     }
+
+    override fun searchMangaInitialUrl(query: String) = map.search.url.replace("\$query", query)
 
     override fun searchMangaParse(response: Response, page: MangasPage, query: String) {
         val document = Jsoup.parse(response.body().string())

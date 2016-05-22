@@ -3,6 +3,8 @@
 package eu.kanade.tachiyomi.data.source.base
 
 import eu.kanade.tachiyomi.data.database.models.Manga
+import okhttp3.FormBody
+import okhttp3.RequestBody
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.text.ParseException
@@ -23,6 +25,8 @@ class YamlSourceNode(uncheckedMap: Map<*, *>) {
 
     val lang: String by map
 
+    val client: String by map
+
     val popular = PopularNode(toMap(map["popular"])!!)
 
     val search = SearchNode(toMap(map["search"])!!)
@@ -34,12 +38,32 @@ class YamlSourceNode(uncheckedMap: Map<*, *>) {
     val pages = PagesNode(toMap(map["pages"])!!)
 }
 
-class PopularNode(private val map: Map<String, Any?>) {
+interface RequestableNode {
 
-    val url: String by map
+    val map: Map<String, Any?>
+
+    val url: String
+        get() = map["url"] as String
 
     val method: String?
         get() = map["method"] as? String
+
+    val payload: Map<String, String>?
+        get() = map["payload"] as? Map<String, String>
+
+    fun createForm(): RequestBody {
+        return FormBody.Builder().apply {
+            payload?.let {
+                for ((key, value) in it) {
+                    add(key, value)
+                }
+            }
+        }.build()
+    }
+
+}
+
+class PopularNode(override val map: Map<String, Any?>): RequestableNode {
 
     val manga_css: String by map
 
@@ -48,12 +72,7 @@ class PopularNode(private val map: Map<String, Any?>) {
 
 }
 
-class SearchNode(private val map: Map<String, Any?>) {
-
-    val url: String by map
-
-    val method: String?
-        get() = map["method"] as? String
+class SearchNode(override val map: Map<String, Any?>): RequestableNode {
 
     val manga_css: String by map
 
