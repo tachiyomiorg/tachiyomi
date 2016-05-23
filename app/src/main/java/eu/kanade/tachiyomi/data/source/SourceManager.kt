@@ -8,6 +8,8 @@ import eu.kanade.tachiyomi.data.source.base.Source
 import eu.kanade.tachiyomi.data.source.base.YamlOnlineSource
 import eu.kanade.tachiyomi.data.source.online.english.Batoto
 import eu.kanade.tachiyomi.data.source.online.english.Kissmanga
+import eu.kanade.tachiyomi.data.source.online.english.Mangafox
+import eu.kanade.tachiyomi.data.source.online.english.Mangahere
 import org.yaml.snakeyaml.Yaml
 import timber.log.Timber
 import java.io.File
@@ -36,6 +38,8 @@ open class SourceManager(private val context: Context) {
     private fun createSource(id: Int): Source? = when (id) {
         BATOTO -> Batoto(context, id)
         KISSMANGA -> Kissmanga(context, id)
+        MANGAHERE -> Mangahere(context, id)
+        MANGAFOX -> Mangafox(context, id)
         else -> null
     }
 

@@ -40,6 +40,8 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
         }
     }
 
+    override fun popularMangaNextPageSelector() = "li > a:contains(› Next)"
+
     override fun searchMangaRequest(page: MangasPage, query: String): Request {
         if (page.page == 1) {
             page.url = searchMangaInitialUrl(query)
@@ -55,7 +57,7 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
         return post(page.url, headers, form)
     }
 
-    override fun popularMangaNextPageSelector() = "li > a:contains(› Next)"
+    override fun searchMangaInitialUrl(query: String) = "$baseUrl/AdvanceSearch"
 
     override fun searchMangaSelector() = popularMangaSelector()
 
@@ -65,26 +67,20 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun searchMangaNextPageSelector() = null
 
-    override fun searchMangaInitialUrl(query: String) = "$baseUrl/AdvanceSearch"
-
     override fun mangaDetailsParse(document: Document, manga: Manga) {
         val infoElement = document.select("div.barContent").first()
 
         manga.author = infoElement.select("p:has(span:contains(Author:)) > a").first()?.text()
         manga.genre = infoElement.select("p:has(span:contains(Genres:)) > *:gt(0)").text()
         manga.description = infoElement.select("p:has(span:contains(Summary:)) ~ p").text()
-        manga.status = parseStatus(infoElement.select("p:has(span:contains(Status:))").first()?.text())
+        manga.status = infoElement.select("p:has(span:contains(Status:))").first()?.text().orEmpty().let { parseStatus(it)}
         manga.thumbnail_url = document.select(".rightBox:eq(0) img").first()?.attr("src")
     }
 
-    fun parseStatus(status: String?): Int {
-        if (status != null) {
-            when {
-                status.contains("Ongoing") -> return Manga.ONGOING
-                status.contains("Completed") -> return Manga.COMPLETED
-            }
-        }
-        return Manga.UNKNOWN
+    fun parseStatus(status: String) = when {
+        status.contains("Ongoing") -> Manga.ONGOING
+        status.contains("Completed") -> Manga.COMPLETED
+        else -> Manga.UNKNOWN
     }
 
     override fun chapterListSelector() = "table.listing tr:gt(1)"
