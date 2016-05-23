@@ -202,6 +202,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
             for ((i, element) in selectElement.select("option").withIndex()) {
                 pages.add(Page(i, element.attr("value")))
             }
+            pages.getOrNull(0)?.imageUrl = imageUrlParse(document)
         } else {
             // For webtoons in one page
             for ((i, element) in document.select("div > img").withIndex()) {

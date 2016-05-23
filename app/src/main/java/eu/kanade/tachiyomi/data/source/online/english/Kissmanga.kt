@@ -98,7 +98,8 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
     override fun pageListRequest(chapter: Chapter) = post(baseUrl + chapter.url, headers)
 
     override fun pageListParse(response: Response, pages: MutableList<Page>) {
-        val p = Pattern.compile("lstImages.push\\(\"(.+?)\"")
+        //language=RegExp
+        val p = Pattern.compile("""lstImages.push\("(.+?)"""")
         val m = p.matcher(response.body().string())
 
         var i = 0

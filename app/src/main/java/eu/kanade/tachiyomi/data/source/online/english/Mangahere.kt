@@ -105,6 +105,7 @@ class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(con
         document.select("select.wid60").first().getElementsByTag("option").forEach {
             pages.add(Page(pages.size, it.attr("value")))
         }
+        pages.getOrNull(0)?.imageUrl = imageUrlParse(document)
     }
 
     override fun imageUrlParse(document: Document) = document.getElementById("image").attr("src")

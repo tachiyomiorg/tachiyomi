@@ -111,6 +111,7 @@ class Mangafox(context: Context, override val id: Int) : ParsedOnlineSource(cont
         document.select("select.m").first().select("option:not([value=0])").forEach {
             pages.add(Page(pages.size, "$url/${it.attr("value")}.html"))
         }
+        pages.getOrNull(0)?.imageUrl = imageUrlParse(document)
     }
 
     // Not used, overrides parent.
