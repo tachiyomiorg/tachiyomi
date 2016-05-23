@@ -8,12 +8,12 @@
     <!--<item android:drawable="?android:attr/colorBackground"/>-->
 <!--</selector>-->
 
-<selector android:exitFadeDuration="@android:integer/config_longAnimTime"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+          android:exitFadeDuration="@android:integer/config_longAnimTime">
 
-    <item android:state_focused="true" android:drawable="@color/selectorColorLight"/>
-    <item android:state_pressed="true" android:drawable="@color/selectorColorLight"/>
-    <item android:state_activated="true" android:drawable="@color/selectorColorLight"/>
+    <item android:drawable="@color/rippleColorLight" android:state_focused="true"/>
+    <item android:drawable="@color/rippleColorLight" android:state_pressed="true"/>
+    <item android:drawable="@color/rippleColorLight" android:state_activated="true"/>
     <item android:drawable="@color/dialogLight"/>
 
 </selector>

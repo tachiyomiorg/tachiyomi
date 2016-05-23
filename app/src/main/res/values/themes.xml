@@ -32,6 +32,7 @@
         <item name="selectable_list_drawable">@drawable/list_item_selector_light</item>
         <item name="selectable_library_drawable">@drawable/library_item_selector_light</item>
         <item name="divider_drawable">@drawable/line_divider_light</item>
+        <item name="text_color_primary">@color/textColorPrimaryLight</item>
     </style>
 
     <style name="Theme.Tachiyomi" parent="Theme.Base">
@@ -66,6 +67,7 @@
         <item name="selectable_list_drawable">@drawable/list_item_selector_dark</item>
         <item name="selectable_library_drawable">@drawable/library_item_selector_dark</item>
         <item name="divider_drawable">@drawable/line_divider_dark</item>
+        <item name="text_color_primary">@color/textColorPrimaryDark</item>
     </style>
 
     <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">

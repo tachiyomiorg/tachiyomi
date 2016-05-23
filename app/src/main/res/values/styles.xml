@@ -4,9 +4,7 @@
     <!--========-->
     <!--Toolbars-->
     <!--========-->
-    <style name="Theme.ActionBar" parent="@style/ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:spinnerDropDownItemStyle">@style/ActionBarSpinnerItem</item>
-    </style>
+    <style name="Theme.ActionBar" parent="@style/ThemeOverlay.AppCompat.ActionBar"/>
 
     <style name="Theme.ActionBar.Light" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
@@ -160,6 +158,12 @@
         <item name="buttonTint">@color/md_white_1000</item>
     </style>
 
+
+    <style name="Theme.Widget.SpinnerItem" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textColor">?attr/text_color_primary</item>
+        <item name="android:background">?attr/selectable_list_drawable</item>
+    </style>
+
     <!--===-->
     <!--OLD-->
     <!--===-->
@@ -171,11 +175,6 @@
     <style name="DialogTitleText">
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
-    </style>
-    
-    <style name="ActionBarSpinnerItem" parent="@style/Widget.AppCompat.Light.DropDownItem.Spinner">
-        <item name="android:textColor">@color/textColorPrimaryLight</item>
-        <item name="android:background">@drawable/list_item_selector_light</item>
     </style>
 
     <style name="FilePickerTheme" parent="NNF_BaseTheme.Light">

@@ -10,6 +10,8 @@
     <color name="textColorSecondaryLight">@color/md_black_1000_54</color>
     <color name="textColorHintLight">@color/md_black_1000_38</color>
     <color name="dividerLight">@color/md_black_1000_12</color>
+    <color name="rippleColorLight">@color/md_black_1000_12</color>
+
 
     <color name="statusBarLight">@color/md_grey_300</color>
     <color name="appBarLight">@color/md_grey_100</color>
@@ -24,6 +26,7 @@
     <color name="textColorSecondaryDark">@color/md_white_1000_70</color>
     <color name="textColorHintDark">@color/md_white_1000_50</color>
     <color name="dividerDark">@color/md_white_1000_12</color>
+    <color name="rippleColorDark">@color/md_white_1000_20</color>
 
     <color name="statusBarDark">@color/md_black_1000</color>
     <color name="appBarDark">@color/md_grey_900</color>
@@ -45,6 +48,7 @@
     <color name="md_white_1000">#FFFFFFFF</color>
     <color name="md_white_1000_70">#B3FFFFFF</color>
     <color name="md_white_1000_50">#80FFFFFF</color>
+    <color name="md_white_1000_20">#33FFFFFF</color>
     <color name="md_white_1000_12">#1FFFFFFF</color>
 
     <!-- Material Design Colors -->
