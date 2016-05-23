@@ -6,7 +6,9 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import rx.Observable
+import rx.subscriptions.Subscriptions
 import java.io.File
+import java.io.IOException
 
 class NetworkHelper(context: Context) {
 
@@ -39,8 +41,20 @@ class NetworkHelper(context: Context) {
         get() = cookieManager.store
 
     fun request(request: Request, client: OkHttpClient = defaultClient): Observable<Response> {
-        return Observable.fromCallable {
-            client.newCall(request).execute()
+        return Observable.create { subscriber ->
+            if (!subscriber.isUnsubscribed) {
+                val call = client.newCall(request)
+                subscriber.add(Subscriptions.create { call.cancel() })
+
+                try {
+                    val response = call.execute()
+                    subscriber.add(Subscriptions.create { response.body().close() })
+                    subscriber.onNext(response)
+                    subscriber.onCompleted()
+                } catch (error: IOException) {
+                    subscriber.onError(error)
+                }
+            }
         }
     }
 

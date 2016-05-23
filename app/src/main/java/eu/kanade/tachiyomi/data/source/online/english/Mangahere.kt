@@ -66,7 +66,7 @@ class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(con
         else -> Manga.UNKNOWN
     }
 
-    override fun chapterListSelector() = ".detail_list > ul:eq(1) > li"
+    override fun chapterListSelector() = ".detail_list > ul:not([class]) > li"
 
     override fun chapterFromElement(element: Element, chapter: Chapter) {
         val urlElement = element.select("a").first()
