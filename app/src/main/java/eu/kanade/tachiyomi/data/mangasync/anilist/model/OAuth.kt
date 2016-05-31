@@ -5,4 +5,7 @@ data class OAuth(
         val token_type: String,
         val expires: Long,
         val expires_in: Long,
-        val refresh_token: String?)
+        val refresh_token: String?) {
+
+    fun isExpired() = System.currentTimeMillis() > expires
+}

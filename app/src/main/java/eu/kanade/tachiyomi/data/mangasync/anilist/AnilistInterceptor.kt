@@ -26,17 +26,19 @@ class AnilistInterceptor(private var refreshToken: String?) : Interceptor {
         }
 
         // Refresh access token if null or expired.
-        if (oauth == null || System.currentTimeMillis() > oauth!!.expires) {
+        if (oauth == null || oauth!!.isExpired()) {
             val response = chain.proceed(AnilistApi.refreshTokenRequest(refreshToken!!))
-            oauth = if (response.isSuccessful)
+            oauth = if (response.isSuccessful) {
                 Gson().fromJson(response.body().string(), OAuth::class.java)
-            else
+            } else {
+                response.close()
                 null
+            }
         }
 
         // Throw on null auth.
         if (oauth == null) {
-            throw RuntimeException("Access token wasn't refreshed")
+            throw Exception("Access token wasn't refreshed")
         }
 
         // Add the authorization header to the original request.
