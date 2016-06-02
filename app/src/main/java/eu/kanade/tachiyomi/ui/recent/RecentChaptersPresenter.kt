@@ -60,12 +60,16 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
         // Used to get recent chapters
         restartableLatestCache(GET_RECENT_CHAPTERS,
                 { getRecentChaptersObservable() },
-                { recentChaptersFragment, chapters ->
+                { fragment, chapters ->
                     // Update adapter to show recent manga's
-                    recentChaptersFragment.onNextMangaChapters(chapters)
+                    fragment.onNextMangaChapters(chapters)
                     // Update download status
                     updateChapterStatus(convertToMangaChaptersList(chapters))
-                }
+                    // Stop refresh
+                    fragment.onFetchChaptersDone()
+
+                },
+                { fragment, error -> fragment.onFetchChaptersError(error) }
         )
 
         // Used to update download status
@@ -88,7 +92,6 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
 
     /**
      * Returns observable containing chapter status.
-
      * @return download object containing download progress.
      */
     private fun getChapterStatusObs(): Observable<Download> {
@@ -107,7 +110,6 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
     /**
      * Function to check if chapter is in recent list
      * @param chaptersId id of chapter
-     * *
      * @return exist in recent list
      */
     private fun chapterIdEquals(chaptersId: Long): Boolean {
@@ -121,9 +123,7 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
 
     /**
      * Returns a list only containing MangaChapter objects.
-
      * @param input the list that will be converted.
-     * *
      * @return list containing MangaChapters objects.
      */
     private fun convertToMangaChaptersList(input: List<Any>): List<MangaChapter> {
@@ -144,7 +144,6 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
 
     /**
      * Update status of chapters.
-
      * @param download download object containing progress.
      */
     private fun updateChapterStatus(download: Download) {
@@ -162,7 +161,6 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
 
     /**
      * Update status of chapters
-
      * @param mangaChapters list containing recent chapters
      */
     private fun updateChapterStatus(mangaChapters: List<MangaChapter>) {
@@ -236,7 +234,6 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
     /**
      * Get date as time key
      * @param date desired date
-     * *
      * @return date as time key
      */
     private fun getMapKey(date: Long): Date {
@@ -251,26 +248,62 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
 
     /**
      * Mark selected chapter as read
-     *
-     * @param chapter selected chapter
+     * @param mangaChapters list of selected MangaChapters
      * @param read read status
      */
-    fun markChapterRead(chapter: Chapter, read: Boolean) {
-        Observable.just(chapter)
-                .doOnNext { chapter ->
-                    chapter.read = read
+    fun markChapterRead(mangaChapters: List<MangaChapter>, read: Boolean) {
+        Observable.from(mangaChapters)
+                .doOnNext { mangaChapter ->
+                    mangaChapter.chapter.read = read
                     if (!read) {
-                        chapter.last_page_read = 0
+                        mangaChapter.chapter.last_page_read = 0
                     }
                 }
-                .flatMap { db.updateChapterProgress(it).asRxObservable() }
+                .map { mangaChapter -> mangaChapter.chapter }
+                .toList()
+                .flatMap { db.updateChaptersProgress(it).asRxObservable() }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
     }
 
     /**
+     * Delete selected chapters
+     * @param chapters list of MangaChapters
+     */
+    fun deleteChapters(chapters: List<MangaChapter>) {
+        val wasRunning = downloadManager.isRunning
+        if (wasRunning) {
+            DownloadService.stop(context)
+        }
+        Observable.from(chapters)
+                .doOnNext { deleteChapter(it) }
+                .toList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeFirst({ view, result ->
+                    view.onChaptersDeleted()
+                    if (wasRunning) {
+                        DownloadService.start(context)
+                    }
+                }, { view, error ->
+                    view.onChaptersDeletedError(error)
+                })
+    }
+
+    /**
+     * Download selected chapters
+     * @param mangaChapters [MangaChapter] that is selected
+     */
+    fun downloadChapters(mangaChapters: List<MangaChapter>) {
+        DownloadService.start(context)
+        Observable.from(mangaChapters)
+                .doOnNext { downloadChapter(it) }
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe()
+    }
+
+    /**
      * Download selected chapter
-     *
      * @param item chapter that is selected
      */
     fun downloadChapter(item: MangaChapter) {
@@ -280,7 +313,6 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
 
     /**
      * Delete selected chapter
-     *
      * @param item chapter that are selected
      */
     fun deleteChapter(item: MangaChapter) {
@@ -304,7 +336,6 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
 
     /**
      * Delete selected chapter
-     *
      * @param chapter chapter that is selected
      * @param manga manga that belongs to chapter
      */
@@ -313,6 +344,10 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
         downloadManager.queue.del(chapter)
         downloadManager.deleteChapter(source, manga, chapter)
         chapter.status = Download.NOT_DOWNLOADED
+    }
+
+    fun fetchChaptersFromSource() {
+        start(GET_RECENT_CHAPTERS)
     }
 
 }

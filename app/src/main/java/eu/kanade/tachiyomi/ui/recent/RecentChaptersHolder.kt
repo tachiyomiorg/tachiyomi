@@ -122,8 +122,8 @@ class RecentChaptersHolder(view: View, private val adapter: RecentChaptersAdapte
                 when (menuItem.itemId) {
                     R.id.action_download -> adapter.fragment.downloadChapter(it)
                     R.id.action_delete -> adapter.fragment.deleteChapter(it)
-                    R.id.action_mark_as_read -> adapter.fragment.markAsRead(it)
-                    R.id.action_mark_as_unread -> adapter.fragment.markAsUnread(it)
+                    R.id.action_mark_as_read -> adapter.fragment.markAsRead(listOf(it))
+                    R.id.action_mark_as_unread -> adapter.fragment.markAsUnread(listOf(it))
                 }
                 true
             }
