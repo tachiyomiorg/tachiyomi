@@ -14,7 +14,7 @@
         android:paddingRight="@dimen/margin_right">
 
         <EditText
-            android:id="@+id/myanimelist_search_field"
+            android:id="@+id/search_field"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -33,7 +33,7 @@
         android:visibility="gone"/>
 
     <ListView
-        android:id="@+id/myanimelist_search_results"
+        android:id="@+id/search_results"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:choiceMode="singleChoice"

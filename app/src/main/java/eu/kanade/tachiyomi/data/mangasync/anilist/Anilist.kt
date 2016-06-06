@@ -1,6 +1,11 @@
 package eu.kanade.tachiyomi.data.mangasync.anilist
 
 import android.content.Context
+import eu.kanade.tachiyomi.Constants.COMPLETED_POSITION
+import eu.kanade.tachiyomi.Constants.DROPPED_POSITION
+import eu.kanade.tachiyomi.Constants.ON_HOLD_POSITION
+import eu.kanade.tachiyomi.Constants.PLAN_TO_READ_POSITION
+import eu.kanade.tachiyomi.Constants.READING_POSITION
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.MangaSync
 import eu.kanade.tachiyomi.data.mangasync.MangaSyncService
@@ -42,7 +47,7 @@ class Anilist(private val context: Context, id: Int) : MangaSyncService(context,
                 .doOnNext { interceptor.setAuth(it) }
                 // Obtain the authenticated user from the API.
                 .zipWith(api.getCurrentUser().map { it["id"].toString() })
-                        { oauth, user -> Pair(user, oauth.refresh_token!!) }
+                { oauth, user -> Pair(user, oauth.refresh_token!!) }
                 // Save service credentials (username and refresh token).
                 .doOnNext { saveCredentials(it.first, it.second) }
                 // Logout on any error.
@@ -55,7 +60,7 @@ class Anilist(private val context: Context, id: Int) : MangaSyncService(context,
         interceptor.setAuth(null)
     }
 
-    fun search(query: String): Observable<List<MangaSync>> {
+    override fun search(query: String): Observable<List<MangaSync>> {
         return api.search(query, 1)
                 .flatMap { Observable.from(it) }
                 .filter { it.type != "Novel" }
@@ -63,7 +68,7 @@ class Anilist(private val context: Context, id: Int) : MangaSyncService(context,
                 .toList()
     }
 
-    fun getList(): Observable<List<MangaSync>> {
+    override fun getList(): Observable<List<MangaSync>> {
         return api.getList(getUsername())
                 .flatMap { Observable.from(it.flatten()) }
                 .map { it.toMangaSync() }
@@ -95,6 +100,7 @@ class Anilist(private val context: Context, id: Int) : MangaSyncService(context,
         return getList()
                 .flatMap { userlist ->
                     manga.sync_id = id
+                    manga.is_bind = true
                     val mangaFromList = userlist.find { it.remote_id == manga.remote_id }
                     if (mangaFromList != null) {
                         manga.copyPersonalFrom(mangaFromList)
@@ -128,5 +134,60 @@ class Anilist(private val context: Context, id: Int) : MangaSyncService(context,
         else -> throw NotImplementedError("Unknown status")
     }
 
+    /**
+     * Returns the spinner position of the status
+     * @return spinner position
+     */
+    override fun getPositionFromStatus(status: Int): Int = with(context) {
+        when (status) {
+            READING -> READING_POSITION
+            COMPLETED -> COMPLETED_POSITION
+            ON_HOLD -> ON_HOLD_POSITION
+            DROPPED -> DROPPED_POSITION
+            PLAN_TO_READ -> PLAN_TO_READ_POSITION
+            else -> READING_POSITION
+        }
+    }
+
+    /**
+     * Returns the status from spinner position
+     * @param position position in spinner
+     * @return status from position
+     */
+    override fun getStatusFromPosition(position: Int): Int = with(context) {
+        when (position) {
+            READING_POSITION -> READING
+            COMPLETED_POSITION -> COMPLETED
+            ON_HOLD_POSITION -> ON_HOLD
+            DROPPED_POSITION -> DROPPED
+            PLAN_TO_READ_POSITION -> PLAN_TO_READ
+            else -> READING
+        }
+    }
+
+    /**
+     * Returns the average score of service
+     * @return average score
+     */
+    override fun getRemoteScore(manga: MangaSync): Float {
+        return manga.remote_score / 10
+    }
+
+    /**
+     * Returns the score of user
+     * @return user score
+     */
+    override fun getUserScore(manga: MangaSync): Float {
+        return manga.score / 10
+    }
+
+    /**
+     * Returns the score of user used for service
+     * This function should only be used to update service score.
+     * @return user score
+     */
+    override fun getServiceUserScore(score: Int): Float {
+        return score * 10F
+    }
 }
 

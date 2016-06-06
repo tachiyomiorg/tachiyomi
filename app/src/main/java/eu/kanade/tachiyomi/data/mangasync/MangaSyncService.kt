@@ -35,6 +35,48 @@ abstract class MangaSyncService(private val context: Context, val id: Int) {
 
     abstract fun getStatus(status: Int): String
 
+    abstract fun getList(): Observable<List<MangaSync>>
+
+    abstract fun search(query: String): Observable<List<MangaSync>>
+
+
+    /**
+     * Returns the spinner position of the status
+     * @return spinner position
+     */
+    abstract fun getPositionFromStatus(status: Int): Int
+
+    /**
+     * Returns the status from spinner position
+     * @param position position in spinner
+     * @return status from position
+     */
+    abstract fun getStatusFromPosition(position: Int): Int
+
+    /**
+     * Returns the average score of service
+     * @return average score
+     */
+    abstract fun getRemoteScore(manga: MangaSync): Float
+
+    /**
+     * Returns the score of user
+     * This function should only be used for showing information in view.
+     * @return user score
+     */
+    open fun getUserScore(manga: MangaSync): Float {
+        return manga.score
+    }
+
+    /**
+     * Returns the score of user used for service
+     * This function should only be used to update service score.
+     * @return user score
+     */
+    open fun getServiceUserScore(score: Int): Float {
+        return score.toFloat()
+    }
+
     fun saveCredentials(username: String, password: String) {
         preferences.setMangaSyncCredentials(this, username, password)
     }

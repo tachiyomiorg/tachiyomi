@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:background="?attr/selectable_list_drawable">
+              android:background="?attr/selectable_list_drawable"
+              android:orientation="vertical">
 
     <TextView
-        android:id="@+id/myanimelist_result_title"
+        android:id="@+id/txt_manga_sync_result_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"/>

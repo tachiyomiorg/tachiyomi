@@ -187,7 +187,7 @@ abstract class OnlineSource(context: Context) : Source {
      *
      * @param manga the manga to be updated.
      */
-    open protected fun mangaDetailsRequest(manga: Manga): Request {
+    open fun mangaDetailsRequest(manga: Manga): Request {
         return GET(baseUrl + manga.url, headers)
     }
 

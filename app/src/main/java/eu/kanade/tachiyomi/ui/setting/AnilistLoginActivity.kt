@@ -7,19 +7,17 @@ import android.view.Gravity.CENTER
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
 import android.widget.ProgressBar
-import eu.kanade.tachiyomi.App
 import eu.kanade.tachiyomi.data.mangasync.MangaSyncManager
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import javax.inject.Inject
+import uy.kohesive.injekt.injectLazy
 
 class AnilistLoginActivity : AppCompatActivity() {
 
-    @Inject lateinit var syncManager: MangaSyncManager
+    val syncManager: MangaSyncManager by injectLazy()
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
-        App.get(this).component.inject(this)
 
         val view = ProgressBar(this)
         setContentView(view, FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT, CENTER))

@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="false">
-
-    <changelogversion versionName="r736" changeDate="">
-        <changelogtext>[b]Important![/b] Now chapters follow the order of the sources. [b]It's required that you update your entire library
-            before reading in order for them to be synced.[/b] Old behavior can be restored for a manga in the overflow menu of the chapters tab.
+    <changelogversion changeDate="" versionName="r828">
+        <changelogtext>[b]Important![/b] Sync has been rewritten. To show the correct average score
+            you have to rebind the manga.[/b]
+            Anilist service can now be added from the settings.
         </changelogtext>
     </changelogversion>
 
-    <changelogversion versionName="r724" changeDate="">
+    <changelogversion changeDate="" versionName="r736">
+        <changelogtext>[b]Important![/b] Now chapters follow the order of the sources. [b]It's
+            required that you update your entire library
+            before reading in order for them to be synced.[/b] Old behavior can be restored for a
+            manga in the overflow menu of the chapters tab.
+        </changelogtext>
+    </changelogversion>
+
+    <changelogversion changeDate="" versionName="r724">
         <changelogtext>Kissmanga covers may not load anymore. The only workaround is to update the details of the manga
             from the info tab, or clearing the database (the latter won't fix covers from library manga).
         </changelogtext>

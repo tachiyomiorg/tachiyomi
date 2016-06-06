@@ -1,298 +1,263 @@
-<?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment">
+    >
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@id/swipe_refresh"
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/global_view"
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <RelativeLayout
-                android:id="@+id/top_view"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.4">
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/backdrop"
+                <RelativeLayout
+                    android:id="@+id/manga_summary_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:alpha="0.2"
-                    android:contentDescription="@string/description_backdrop"/>
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/manga_backdrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
 
-                    <ImageView
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:alpha="0.65"
+                        android:background="?android:attr/textColorPrimaryInverse"/>
+
+                    <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/manga_cover"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/activity_vertical_margin"
-                        android:layout_weight="0.35"
-                        android:contentDescription="@string/description_cover"/>
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        />
 
-                    <RelativeLayout
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/activity_vertical_margin"
-                        android:layout_weight="0.65">
+                        android:layout_toRightOf="@id/manga_cover"
+                        android:orientation="vertical"
+                        android:padding="8dp">
 
-
-                        <android.support.v4.widget.NestedScrollView
+                        <TextView
+                            android:id="@+id/manga_status"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content"
+                            android:text="Ongoing"
+                            android:textAppearance="@style/TextAppearance.Medium.Title.Accent"/>
 
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/manga_source"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="KissManga"
+                            android:textAppearance="@style/TextAppearance.Medium.Title"/>
 
-                                <LinearLayout
-                                    android:id="@+id/manga_author_view"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/manga_author_label"
-                                        style="@style/TextAppearance.Medium.Body2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:paddingRight="10dp"
-                                        android:singleLine="true"
-                                        android:text="@string/manga_info_author_label"
-                                        android:textIsSelectable="false"
-                                        />
-
-                                    <TextView
-                                        android:id="@+id/manga_author"
-                                        style="@style/TextAppearance.Regular.Body1.Secondary"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:singleLine="true"
-                                        android:textIsSelectable="false"
-                                        />
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/manga_artist_view"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/manga_author_view"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/manga_artist_label"
-                                        style="@style/TextAppearance.Medium.Body2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:paddingRight="10dp"
-                                        android:singleLine="true"
-                                        android:text="@string/manga_info_artist_label"
-                                        android:textIsSelectable="false"
-                                        />
-
-                                    <TextView
-                                        android:id="@+id/manga_artist"
-                                        style="@style/TextAppearance.Regular.Body1.Secondary"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:singleLine="true"
-                                        android:textIsSelectable="false"
-                                        />
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/manga_chapters_view"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/manga_artist_view"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/manga_chapters_label"
-                                        style="@style/TextAppearance.Medium.Body2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:paddingRight="10dp"
-                                        android:singleLine="true"
-                                        android:text="@string/manga_info_chapters_label"
-                                        android:textIsSelectable="false"
-                                        />
-
-                                    <TextView
-                                        android:id="@+id/manga_chapters"
-                                        style="@style/TextAppearance.Regular.Body1.Secondary"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:singleLine="true"
-                                        android:textIsSelectable="false"
-                                        />
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/manga_status_view"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/manga_chapters_view"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/manga_status_label"
-                                        style="@style/TextAppearance.Medium.Body2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:paddingRight="10dp"
-                                        android:singleLine="true"
-                                        android:text="@string/manga_info_status_label"
-                                        android:textIsSelectable="false"
-                                        />
-
-                                    <TextView
-                                        android:id="@+id/manga_status"
-                                        style="@style/TextAppearance.Regular.Body1.Secondary"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:singleLine="true"
-                                        android:textIsSelectable="false"
-                                        />
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/manga_source_view"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/manga_status_view"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:id="@+id/manga_source_label"
-                                        style="@style/TextAppearance.Medium.Body2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:paddingRight="10dp"
-                                        android:singleLine="true"
-                                        android:text="@string/manga_info_source_label"
-                                        android:textIsSelectable="false"
-                                        />
-
-                                    <TextView
-                                        android:id="@+id/manga_source"
-                                        style="@style/TextAppearance.Regular.Body1.Secondary"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:singleLine="true"
-                                        android:textIsSelectable="false"
-                                        />
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/manga_genres_view"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@+id/manga_source_view"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:id="@+id/manga_genres_label"
-                                        style="@style/TextAppearance.Medium.Body2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:paddingRight="10dp"
-                                        android:singleLine="true"
-                                        android:text="@string/manga_info_genres_label"
-                                        android:textIsSelectable="false"
-                                        />
-
-                                    <TextView
-                                        android:id="@+id/manga_genres"
-                                        style="@style/TextAppearance.Regular.Body1.Secondary"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:singleLine="false"
-                                        android:textIsSelectable="false"
-                                        />
-                                </LinearLayout>
-                            </RelativeLayout>
-                        </android.support.v4.widget.NestedScrollView>
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <android.support.v4.widget.NestedScrollView
-                android:id="@+id/bottom_view"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="@dimen/activity_vertical_margin"
-                android:layout_weight="0.6">
+                        <TextView
+                            android:id="@+id/manga_chapters"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="825 Chapters"
+                            android:textAppearance="@style/TextAppearance.Medium.Title"/>
+                    </LinearLayout>
+                </RelativeLayout>
 
                 <LinearLayout
+                    android:id="@+id/buttonLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_below="@id/manga_summary_layout"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp">
 
-                    <TextView
-                        android:id="@+id/manga_summary_label"
-                        style="@style/TextAppearance.Medium.Body2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:paddingRight="10dp"
-                        android:singleLine="true"
-                        android:text="@string/description"
-                        android:textIsSelectable="false"/>
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btn_add_to_library"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="?attr/selectable_list_drawable"
+                        android:padding="8dp"
+                        android:text="Remove from Library"
+                        android:textAppearance="@style/TextAppearance.Medium.Button.NoCaps"/>
 
-                    <TextView
-                        android:id="@+id/manga_summary"
-                        style="@style/TextAppearance.Regular.Body1.Secondary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:singleLine="false"
-                        android:textIsSelectable="false"
-                        />
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btn_share"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="?attr/selectable_list_drawable"
+                        android:padding="8dp"
+                        android:text="Share"
+                        android:textAppearance="@style/TextAppearance.Medium.Button.NoCaps"/>
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btn_open_in_browser"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="?attr/selectable_list_drawable"
+                        android:padding="8dp"
+                        android:text="Open In Browser"
+                        android:textAppearance="@style/TextAppearance.Medium.Button.NoCaps"/>
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btn_sync_options"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="?attr/selectable_list_drawable"
+                        android:padding="8dp"
+                        android:text="Sync Options"
+                        android:textAppearance="@style/TextAppearance.Medium.Button.NoCaps"/>
                 </LinearLayout>
 
-            </android.support.v4.widget.NestedScrollView>
+
+                <LinearLayout
+                    android:id="@+id/score_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/buttonLayout"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8.9"
+                        android:textAppearance="@style/TextAppearance.Regular.Display3"/>
+
+                    <TextView
+                        android:id="@+id/btn_rate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/score"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="Rate (8)"
+                        android:textAppearance="@style/TextAppearance.Medium.Button"/>
 
 
-        </LinearLayout>
+                </LinearLayout>
 
+                <android.support.v7.widget.CardView
+                    android:id="@+id/manga_information"
+                    style="@style/Theme.Widget.CardView"
+                    android:layout_below="@id/score_layout">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <android.support.v7.widget.AppCompatImageView
+                            android:id="@+id/information_backdrop"
+                            android:layout_width="match_parent"
+                            android:layout_height="?android:attr/listPreferredItemHeightSmall"
+                            android:background="?attr/colorPrimary"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="?android:attr/listPreferredItemHeightSmall"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="8dp"
+                            android:text="Information"
+                            android:textAppearance="@style/TextAppearance.Medium.Title.Light"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/information_backdrop"
+                            android:padding="8dp">
+
+                            <TextView
+                                android:id="@+id/manga_author_label"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Author"
+                                android:textAppearance="@style/TextAppearance.Medium.Body2"/>
+
+                            <TextView
+                                android:id="@+id/manga_author"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/manga_author_label"
+                                android:text="Oda Eiichiro"
+                                android:textAppearance="@style/TextAppearance.Regular.Body1"/>
+
+                            <TextView
+                                android:id="@+id/manga_artist_label"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/manga_author"
+                                android:layout_marginTop="8dp"
+                                android:text="Artist"
+                                android:textAppearance="@style/TextAppearance.Medium.Body2"/>
+
+                            <TextView
+                                android:id="@+id/manga_artist"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/manga_artist_label"
+                                android:text="Unknown"
+                                android:textAppearance="@style/TextAppearance.Regular.Body1"/>
+
+                            <TextView
+                                android:id="@+id/manga_genres_label"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/manga_artist"
+                                android:layout_marginTop="8dp"
+                                android:text="Genres"
+                                android:textAppearance="@style/TextAppearance.Medium.Body2"/>
+
+                            <TextView
+                                android:id="@+id/manga_genres"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/manga_genres_label"
+                                android:singleLine="false"
+                                android:text="Action, Adventure, Comedy, Drama, Fantasy, Manga, Martial ARts, Mystery, Shounen"
+                                android:textAppearance="@style/TextAppearance.Regular.Body1"/>
+
+                            <TextView
+                                android:id="@+id/manga_summary_label"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/manga_genres"
+                                android:layout_marginTop="8dp"
+                                android:text="Summary"
+                                android:textAppearance="@style/TextAppearance.Medium.Body2"/>
+
+                            <TextView
+                                android:id="@+id/manga_summary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/manga_summary_label"
+                                android:singleLine="false"
+                                android:text="Greatness, Glory, Gold. A Pirate Named Gold Roger also known as the Pirate King has conquered this all. He was executed with an unknown reason but before he died he had revealed his last word about The legendary Treasure named One Piece which was hidden in the Grand Line. 22 years after his Death, A Pirate named Monkey D. Luffy appeared and has only one Goal, To Become the Next Pirate King and Find The Treasure One Piece. This Start The Never Ending Adventure. Monkey D. Luffy, inspired by his childhood hero Red-Haired Shanks, sets out on a journey to find the legendary treasure One Piece, to become the new Pirate King, and after eating the devil's fruit gains the power to do so. To accomplish this, he must reach the end of the most deadly and dangerous ocean: The Grand Line. But first he must find a crew."
+                                android:textAppearance="@style/TextAppearance.Regular.Body1"/>
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+            </RelativeLayout>
+        </android.support.v4.widget.NestedScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_favorite"
-        style="@style/Theme.Widget.FAB"
-        android:layout_gravity=""
-        app:layout_anchor="@id/top_view"
-        app:layout_anchorGravity="bottom|right|end"
-        app:layout_behavior=""
-        app:srcCompat="@drawable/ic_bookmark_border_white_24dp"/>
-
 </android.support.design.widget.CoordinatorLayout>

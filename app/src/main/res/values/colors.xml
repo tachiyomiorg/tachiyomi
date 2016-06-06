@@ -51,6 +51,8 @@
     <color name="md_white_1000_20">#33FFFFFF</color>
     <color name="md_white_1000_12">#1FFFFFFF</color>
 
+    <color name="text_background_transparent">@color/md_black_1000_12</color>
+
     <!-- Material Design Colors -->
     <color name="md_black_1000">#000000</color>
 
@@ -71,5 +73,7 @@
     <color name="md_blue_grey_900">#263238</color>
 
     <color name="md_red_500">#F44336</color>
+
+    <color name="alpha_38">#DE000000</color>
 
 </resources>

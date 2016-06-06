@@ -132,4 +132,6 @@ class PreferencesHelper(context: Context) {
 
     fun automaticUpdateStatus() = prefs.getBoolean(keys.automaticUpdateStatus, false)
 
+    fun defaultServiceId() = rxPrefs.getInteger(keys.defaultService, 1)
+
 }

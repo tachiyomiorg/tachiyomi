@@ -13,6 +13,10 @@ fun Element.selectInt(css: String, defaultValue: Int = 0): Int {
     return select(css).first()?.text()?.toInt() ?: defaultValue
 }
 
+fun Element.selectFloat(css: String, defaultValue: Float = 0F): Float {
+    return select(css).first()?.text()?.toFloat() ?: defaultValue
+}
+
 fun Element.attrOrText(css: String): String {
     return if (css != "text") attr(css) else text()
 }

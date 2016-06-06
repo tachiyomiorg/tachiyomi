@@ -9,6 +9,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="card_margin">16dp</dimen>
     <dimen name="fab_size">56dp</dimen>
+    <dimen name="padding_8dp">8dp</dimen>
 
     <dimen name="dialog_content_padding">24dp</dimen>
     <dimen name="dialog_margin_top_content">20dp</dimen>

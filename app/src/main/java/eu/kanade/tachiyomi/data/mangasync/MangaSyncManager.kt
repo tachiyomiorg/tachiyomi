@@ -16,6 +16,8 @@ class MangaSyncManager(private val context: Context) {
 
     val services = listOf(myAnimeList, aniList)
 
-    fun getService(id: Int) = services.find { it.id == id }
+    val size = services.size
+
+    fun getService(id: Int) = services.find { it.id == id } ?: throw Exception("Service not recognized")
 
 }

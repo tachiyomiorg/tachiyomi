@@ -144,7 +144,7 @@
         <item>remove</item>
     </string-array>
 
-    <string-array name="start_screen_selection">
+<string-array name="start_screen_selection">
         <item>@string/label_library</item>
         <item>@string/label_recent_manga</item>
         <item>@string/label_recent_updates</item>
@@ -155,5 +155,24 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+
+    <string-array name="services">
+        <item>@string/myanimelist</item>
+        <item>@string/anilist</item>
+    </string-array>
+
+    <string-array name="services_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="spinner_sync_items">
+        <item>Reading</item>
+        <item>Completed</item>
+        <item>On Hold</item>
+        <item>Dropped</item>
+        <item>Plan to Read</item>
+    </string-array>
+
 
 </resources>

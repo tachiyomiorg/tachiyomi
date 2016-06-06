@@ -99,12 +99,32 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextAppearance.Regular.Display1">
+        <item name="android:textSize">34sp</item>
+    </style>
+
+    <style name="TextAppearance.Regular.Display2">
+        <item name="android:textSize">45sp</item>
+    </style>
+
+    <style name="TextAppearance.Regular.Display3">
+        <item name="android:textSize">56sp</item>
+    </style>
+
     <style name="TextAppearance.Medium">
         <item name="android:fontFamily">@string/font_roboto_medium</item>
     </style>
 
     <style name="TextAppearance.Medium.Title">
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextAppearance.Medium.Title.Light">
+        <item name="android:textColor">@color/textColorPrimaryDark</item>
+    </style>
+
+    <style name="TextAppearance.Medium.Title.Accent">
+        <item name="android:textColor">?attr/colorAccent</item>
     </style>
 
     <style name="TextAppearance.Medium.Body2">
@@ -119,6 +139,10 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">?attr/colorAccent</item>
+    </style>
+
+    <style name="TextAppearance.Medium.Button.NoCaps">
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="TextAppearance.Medium.Button.Negative">

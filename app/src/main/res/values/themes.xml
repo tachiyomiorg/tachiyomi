@@ -22,6 +22,7 @@
         <item name="android:colorBackground">@color/backgroundLight</item>
         <item name="android:listSelector">?colorAccent</item>
         <item name="android:divider">@color/dividerLight</item>
+        <item name="rippleColor">@color/rippleColorLight</item>
 
         <!-- Themes -->
         <item name="windowActionModeOverlay">true</item>
@@ -58,6 +59,7 @@
         <item name="android:colorBackground">@color/backgroundDark</item>
         <item name="android:listSelector">?colorAccent</item>
         <item name="android:divider">@color/dividerDark</item>
+        <item name="rippleColor">@color/rippleColorDark</item>
 
         <!-- Themes -->
         <item name="windowActionModeOverlay">true</item>

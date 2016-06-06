@@ -12,6 +12,8 @@ interface MangaSync : Serializable {
 
     var remote_id: Int
 
+    var remote_score: Float
+
     var title: String
 
     var last_chapter_read: Int
@@ -23,6 +25,8 @@ interface MangaSync : Serializable {
     var status: Int
 
     var update: Boolean
+
+    var is_bind: Boolean
 
     fun copyPersonalFrom(other: MangaSync) {
         last_chapter_read = other.last_chapter_read
