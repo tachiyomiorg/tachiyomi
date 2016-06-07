@@ -23,7 +23,7 @@ class RecentlyReadAdapter(val fragment: RecentlyReadFragment)
      * @param viewType int containing viewType
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentlyReadHolder {
-        val view = parent.inflate(R.layout.item_recent_manga)
+        val view = parent.inflate(R.layout.item_recently_read)
         return RecentlyReadHolder(view, this)
     }
 

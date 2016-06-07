@@ -9,13 +9,13 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.MangaChapterHistory
 import eu.kanade.tachiyomi.data.source.SourceManager
 import kotlinx.android.synthetic.main.dialog_remove_recently.view.*
-import kotlinx.android.synthetic.main.item_recent_manga.view.*
+import kotlinx.android.synthetic.main.item_recently_read.view.*
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 
 /**
  * Holder that contains recent manga item
- * Uses R.layout.item_recent_manga.
+ * Uses R.layout.item_recently_read.
  * UI related actions should be called from here.
  *
  * @param view the inflated view for this holder.

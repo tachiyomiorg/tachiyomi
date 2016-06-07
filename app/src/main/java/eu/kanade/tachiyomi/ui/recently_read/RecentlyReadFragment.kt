@@ -14,12 +14,12 @@ import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.widget.NpaLinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_recent_manga.*
+import kotlinx.android.synthetic.main.fragment_recently_read.*
 import nucleus.factory.RequiresPresenter
 
 /**
  * Fragment that shows recently read manga.
- * Uses R.layout.fragment_recent_manga.
+ * Uses R.layout.fragment_recently_read.
  * UI related actions should be called from here.
  */
 @RequiresPresenter(RecentlyReadPresenter::class)
@@ -49,7 +49,7 @@ class RecentlyReadFragment : BaseRxFragment<RecentlyReadPresenter>() {
      * @param savedState status of saved state
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_recent_manga, container, false)
+        return inflater.inflate(R.layout.fragment_recently_read, container, false)
     }
 
     /**
