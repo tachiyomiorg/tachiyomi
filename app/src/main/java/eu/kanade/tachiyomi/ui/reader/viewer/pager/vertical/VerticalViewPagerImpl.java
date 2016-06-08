@@ -1141,10 +1141,8 @@ public class VerticalViewPagerImpl extends ViewGroup {
                 for (int i=0; i<getChildCount(); i++) {
                     View child = getChildAt(i);
                     ii = infoForChild(child);
-                    if (ii != null && ii.position == mCurItem) {
-                        if (child.requestFocus(focusDirection)) {
-                            break;
-                        }
+                    if (ii != null && ii.position == mCurItem && child.requestFocus(focusDirection)) {
+                        break;
                     }
                 }
             }
@@ -1264,8 +1262,30 @@ public class VerticalViewPagerImpl extends ViewGroup {
         private Parcelable adapterState;
         private ClassLoader loader;
 
+        public static final Parcelable.Creator<SavedState> CREATOR
+                = ParcelableCompat.newCreator(new ParcelableCompatCreatorCallbacks<SavedState>() {
+            @Override
+            public SavedState createFromParcel(Parcel in, ClassLoader loader) {
+                return new SavedState(in, loader);
+            }
+            @Override
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        });
+
         public SavedState(Parcelable superState) {
             super(superState);
+        }
+
+        SavedState(Parcel in, ClassLoader loader) {
+            super(in);
+            if (loader == null) {
+                loader = getClass().getClassLoader();
+            }
+            position = in.readInt();
+            adapterState = in.readParcelable(loader);
+            this.loader = loader;
         }
 
         @Override
@@ -1282,27 +1302,6 @@ public class VerticalViewPagerImpl extends ViewGroup {
                     + " position=" + position + "}";
         }
 
-        public static final Parcelable.Creator<SavedState> CREATOR
-                = ParcelableCompat.newCreator(new ParcelableCompatCreatorCallbacks<SavedState>() {
-            @Override
-            public SavedState createFromParcel(Parcel in, ClassLoader loader) {
-                return new SavedState(in, loader);
-            }
-            @Override
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-        });
-
-        SavedState(Parcel in, ClassLoader loader) {
-            super(in);
-            if (loader == null) {
-                loader = getClass().getClassLoader();
-            }
-            position = in.readInt();
-            adapterState = in.readParcelable(loader);
-            this.loader = loader;
-        }
     }
 
     @Override
@@ -1956,11 +1955,9 @@ public class VerticalViewPagerImpl extends ViewGroup {
                     if (DEBUG) Log.v(TAG, "Starting unable to drag!");
                     mIsUnableToDrag = true;
                 }
-                if (mIsBeingDragged) {
-                    // Scroll to follow the motion event
-                    if (performDrag(y)) {
-                        ViewCompat.postInvalidateOnAnimation(this);
-                    }
+                // Scroll to follow the motion event
+                if (mIsBeingDragged && performDrag(y)) {
+                    ViewCompat.postInvalidateOnAnimation(this);
                 }
                 break;
             }
@@ -2811,10 +2808,8 @@ public class VerticalViewPagerImpl extends ViewGroup {
             View child = getChildAt(i);
             if (child.getVisibility() == VISIBLE) {
                 ItemInfo ii = infoForChild(child);
-                if (ii != null && ii.position == mCurItem) {
-                    if (child.requestFocus(direction, previouslyFocusedRect)) {
-                        return true;
-                    }
+                if (ii != null && ii.position == mCurItem && child.requestFocus(direction, previouslyFocusedRect)) {
+                    return true;
                 }
             }
         }

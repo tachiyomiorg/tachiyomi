@@ -40,6 +40,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class ComponentReflectionInjector<T> {
 
+    private static final ConcurrentHashMap<Class<?>, HashMap<Class<?>, Method>> cache = new ConcurrentHashMap<>();
+
     private final Class<T> componentClass;
     private final T component;
     private final HashMap<Class<?>, Method> methods;
@@ -73,8 +75,6 @@ public final class ComponentReflectionInjector<T> {
             throw new RuntimeException(e);
         }
     }
-
-    private static final ConcurrentHashMap<Class<?>, HashMap<Class<?>, Method>> cache = new ConcurrentHashMap<>();
 
     private static HashMap<Class<?>, Method> getMethods(Class componentClass) {
         HashMap<Class<?>, Method> methods = cache.get(componentClass);

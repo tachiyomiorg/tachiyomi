@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -15,7 +16,7 @@ public final class DiskUtils {
         String cacheKey;
         try {
             final MessageDigest mDigest = MessageDigest.getInstance("MD5");
-            mDigest.update(key.getBytes());
+            mDigest.update(key.getBytes(StandardCharsets.UTF_8));
             cacheKey = bytesToHexString(mDigest.digest());
         } catch (NoSuchAlgorithmException e) {
             cacheKey = String.valueOf(key.hashCode());
