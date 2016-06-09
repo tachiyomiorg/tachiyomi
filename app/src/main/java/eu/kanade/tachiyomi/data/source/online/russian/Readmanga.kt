@@ -84,14 +84,14 @@ class Readmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
         val html = response.body().string()
         val beginIndex = html.indexOf("rm_h.init( [")
         val endIndex = html.indexOf("], 0, false);", beginIndex)
-        val trimmedHtml = html.substring(beginIndex, endIndex).replace("[\"\']+".toRegex(), "")
+        val trimmedHtml = html.substring(beginIndex, endIndex)
 
-        val p = Pattern.compile("auto/[\\w/]+,http://[\\w.]+/,/[\\w./]+.(png|jpg)+")
+        val p = Pattern.compile("'.+?','.+?',\".+?\"")
         val m = p.matcher(trimmedHtml)
 
         var i = 0
         while (m.find()) {
-            val urlParts = m.group().split(',')
+            val urlParts = m.group().replace("[\"\']+".toRegex(), "").split(',')
             pages.add(Page(i++, "", urlParts[1] + urlParts[0] + urlParts[2]))
         }
     }
