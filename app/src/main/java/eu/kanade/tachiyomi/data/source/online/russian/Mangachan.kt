@@ -17,7 +17,7 @@ class Mangachan(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override val name = "Mangachan"
 
-    override val baseUrl = "http://mangachan.ru"
+    override val baseUrl = "http://mangachan.me"
 
     override val lang: Language get() = RU
 
@@ -31,9 +31,6 @@ class Mangachan(context: Context, override val id: Int) : ParsedOnlineSource(con
         element.select("h2 > a").first().let {
             manga.setUrl(it.attr("href"))
             manga.title = it.text()
-        }
-        element.select("img").first().let {
-            manga.thumbnail_url = baseUrl + it.attr("src")
         }
     }
 
@@ -50,11 +47,13 @@ class Mangachan(context: Context, override val id: Int) : ParsedOnlineSource(con
     override fun mangaDetailsParse(document: Document, manga: Manga) {
         val infoElement = document.select("table.mangatitle").first()
         val descElement = document.select("div#description").first()
+        val imgElement = document.select("img#cover").first()
 
         manga.author = infoElement.select("tr:eq(2) > td:eq(1)").text()
         manga.genre = infoElement.select("tr:eq(5) > td:eq(1)").text()
         manga.status = parseStatus(infoElement.select("tr:eq(4) > td:eq(1)").text())
         manga.description = descElement.textNodes().first().text()
+        manga.thumbnail_url = baseUrl + imgElement.attr("src")
     }
 
     private fun parseStatus(element: String): Int {
