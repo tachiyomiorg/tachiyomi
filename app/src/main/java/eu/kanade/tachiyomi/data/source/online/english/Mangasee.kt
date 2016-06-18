@@ -7,8 +7,8 @@ import eu.kanade.tachiyomi.data.source.EN
 import eu.kanade.tachiyomi.data.source.Language
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
+import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.Response
-import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.util.*
@@ -22,7 +22,7 @@ class Mangasee(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override val lang: Language get() = EN
 
-    private val datePattern = Pattern.compile("(\\d+|A|An)\\s+(.*?)s? ago.*")
+    private val datePattern = Pattern.compile("(\\d+)\\s+(.*?)s? ago.*")
 
     private val dateFields = HashMap<String, Int>().apply {
         put("second", Calendar.SECOND)
@@ -68,7 +68,7 @@ class Mangasee(context: Context, override val id: Int) : ParsedOnlineSource(cont
         manga.genre = detailElement.select("div > div.row > div:has(b:contains(Genre:)) > a").map { it.text() }.joinToString()
         manga.description = detailElement.select("strong:contains(Description:) + div").first()?.text()
         manga.status = detailElement.select("div > div.row > div:has(b:contains(Scanlation Status:))").first()?.text().orEmpty().let { parseStatus(it) }
-        manga.thumbnail_url = detailElement.select("div > img").first()?.attr("src").let { "$baseUrl/$it" }
+        manga.thumbnail_url = detailElement.select("div > img").first()?.absUrl("src")
     }
 
     private fun parseStatus(status: String) = when {
@@ -103,7 +103,7 @@ class Mangasee(context: Context, override val id: Int) : ParsedOnlineSource(cont
     }
 
     override fun pageListParse(response: Response, pages: MutableList<Page>) {
-        val document = Jsoup.parse(response.body().string())
+        val document = response.asJsoup()
         val url = response.request().url().toString().substringBeforeLast('/')
 
         val series = document.select("input[name=series]").first().attr("value")
