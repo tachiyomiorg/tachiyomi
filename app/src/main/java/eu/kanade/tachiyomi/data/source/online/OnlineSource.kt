@@ -14,7 +14,10 @@ import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.util.UrlUtil
-import okhttp3.*
+import okhttp3.Headers
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
 
@@ -396,27 +399,6 @@ abstract class OnlineSource(context: Context) : Source {
 
 
     // Utility methods
-
-    /**
-     * Returns an absolute url from a href.
-     *
-     * Ex:
-     * href="http://example.com/foo" url="http://example.com" -> http://example.com/foo
-     * href="/mypath" url="http://example.com/foo" -> http://example.com/mypath
-     * href="bar" url="http://example.com/foo" -> http://example.com/bar
-     * href="?bar" url="http://example.com/foo" -> http://example.com/foo?bar
-     * href="bar" url="http://example.com/foo/" -> http://example.com/foo/bar
-     *
-     * @param href the href attribute from the html.
-     * @param url the requested url.
-     */
-    fun getAbsoluteUrl(href: String, url: HttpUrl) = when {
-        href.startsWith("http://") || href.startsWith("https://") -> href
-        href.startsWith("/") -> url.newBuilder().encodedPath("/").fragment(null).query(null)
-                .toString() + href.substring(1)
-        href.startsWith("?") -> url.toString().substringBeforeLast('?') + "$href"
-        else -> url.toString().substringBeforeLast('/') + "/$href"
-    }
 
     fun fetchAllImageUrlsFromPageList(pages: List<Page>) = Observable.from(pages)
             .filter { !it.imageUrl.isNullOrEmpty() }

@@ -7,8 +7,8 @@ import eu.kanade.tachiyomi.data.source.EN
 import eu.kanade.tachiyomi.data.source.Language
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
+import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.Response
-import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.text.ParseException
@@ -105,7 +105,7 @@ class Mangafox(context: Context, override val id: Int) : ParsedOnlineSource(cont
     }
 
     override fun pageListParse(response: Response, pages: MutableList<Page>) {
-        val document = Jsoup.parse(response.body().string())
+        val document = response.asJsoup()
 
         val url = response.request().url().toString().substringBeforeLast('/')
         document.select("select.m").first().select("option:not([value=0])").forEach {

@@ -14,11 +14,11 @@ import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
+import eu.kanade.tachiyomi.util.asJsoup
 import eu.kanade.tachiyomi.util.selectText
 import okhttp3.FormBody
 import okhttp3.Request
 import okhttp3.Response
-import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import rx.Observable
@@ -60,7 +60,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
     override fun popularMangaInitialUrl() = "$baseUrl/search_ajax?order_cond=views&order=desc&p=1"
 
     override fun popularMangaParse(response: Response, page: MangasPage) {
-        val document = Jsoup.parse(response.body().string())
+        val document = response.asJsoup()
         for (element in document.select(popularMangaSelector())) {
             Manga.create(id).apply {
                 popularMangaFromElement(element, this)
@@ -87,7 +87,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
     override fun searchMangaInitialUrl(query: String) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&p=1"
 
     override fun searchMangaParse(response: Response, page: MangasPage, query: String) {
-        val document = Jsoup.parse(response.body().string())
+        val document = response.asJsoup()
         for (element in document.select(searchMangaSelector())) {
             Manga.create(id).apply {
                 searchMangaFromElement(element, this)
@@ -139,7 +139,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
             throw Exception(notice)
         }
 
-        val document = Jsoup.parse(body)
+        val document = response.asJsoup(body)
 
         for (element in document.select(chapterListSelector())) {
             Chapter.create().apply {
@@ -221,11 +221,11 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
     override fun login(username: String, password: String) =
         client.newCall(GET("$baseUrl/forums/index.php?app=core&module=global&section=login", headers))
                 .asObservable()
-                .flatMap { doLogin(it.body().string(), username, password) }
+                .flatMap { doLogin(it, username, password) }
                 .map { isAuthenticationSuccessful(it) }
 
-    private fun doLogin(response: String, username: String, password: String): Observable<Response> {
-        val doc = Jsoup.parse(response)
+    private fun doLogin(response: Response, username: String, password: String): Observable<Response> {
+        val doc = response.asJsoup()
         val form = doc.select("#login").first()
         val url = form.attr("action")
         val authKey = form.select("input[name=auth_key]").first()

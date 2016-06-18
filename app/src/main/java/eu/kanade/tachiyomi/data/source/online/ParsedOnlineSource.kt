@@ -5,8 +5,8 @@ import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.Response
-import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 
@@ -24,7 +24,7 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      * @param page the page object to be filled.
      */
     override fun popularMangaParse(response: Response, page: MangasPage) {
-        val document = Jsoup.parse(response.body().string())
+        val document = response.asJsoup()
         for (element in document.select(popularMangaSelector())) {
             Manga.create(id).apply {
                 popularMangaFromElement(element, this)
@@ -33,9 +33,7 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
         }
 
         popularMangaNextPageSelector()?.let { selector ->
-            page.nextPageUrl = document.select(selector).first()?.attr("href")?.let {
-                getAbsoluteUrl(it, response.request().url())
-            }
+            page.nextPageUrl = document.select(selector).first()?.absUrl("href")
         }
     }
 
@@ -67,7 +65,7 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      * @param query the search query.
      */
     override fun searchMangaParse(response: Response, page: MangasPage, query: String) {
-        val document = Jsoup.parse(response.body().string())
+        val document = response.asJsoup()
         for (element in document.select(searchMangaSelector())) {
             Manga.create(id).apply {
                 searchMangaFromElement(element, this)
@@ -76,9 +74,7 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
         }
 
         searchMangaNextPageSelector()?.let { selector ->
-            page.nextPageUrl = document.select(selector).first()?.attr("href")?.let {
-                getAbsoluteUrl(it, response.request().url())
-            }
+            page.nextPageUrl = document.select(selector).first()?.absUrl("href")
         }
     }
 
@@ -109,7 +105,7 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      * @param manga the manga to fill.
      */
     override fun mangaDetailsParse(response: Response, manga: Manga) {
-        mangaDetailsParse(Jsoup.parse(response.body().string()), manga)
+        mangaDetailsParse(response.asJsoup(), manga)
     }
 
     /**
@@ -127,7 +123,7 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      * @param chapters the list of chapters to fill.
      */
     override fun chapterListParse(response: Response, chapters: MutableList<Chapter>) {
-        val document = Jsoup.parse(response.body().string())
+        val document = response.asJsoup()
 
         for (element in document.select(chapterListSelector())) {
             Chapter.create().apply {
@@ -157,7 +153,7 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      * @param pages the list of pages to fill.
      */
     override fun pageListParse(response: Response, pages: MutableList<Page>) {
-        pageListParse(Jsoup.parse(response.body().string()), pages)
+        pageListParse(response.asJsoup(), pages)
     }
 
     /**
@@ -174,7 +170,7 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      * @param response the response from the site.
      */
     override fun imageUrlParse(response: Response): String {
-        return imageUrlParse(Jsoup.parse(response.body().string()))
+        return imageUrlParse(response.asJsoup())
     }
 
     /**

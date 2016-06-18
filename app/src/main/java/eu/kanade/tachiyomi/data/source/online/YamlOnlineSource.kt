@@ -8,9 +8,9 @@ import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.source.getLanguages
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.Request
 import okhttp3.Response
-import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import java.text.SimpleDateFormat
 import java.util.*
@@ -52,7 +52,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
     override fun popularMangaInitialUrl() = map.popular.url
 
     override fun popularMangaParse(response: Response, page: MangasPage) {
-        val document = Jsoup.parse(response.body().string())
+        val document = response.asJsoup()
         for (element in document.select(map.popular.manga_css)) {
             Manga.create(id).apply {
                 title = element.text()
@@ -62,9 +62,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         }
 
         map.popular.next_url_css?.let { selector ->
-            page.nextPageUrl = document.select(selector).first()?.attr("href")?.let {
-                getAbsoluteUrl(it, response.request().url())
-            }
+            page.nextPageUrl = document.select(selector).first()?.absUrl("href")
         }
     }
 
@@ -81,7 +79,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
     override fun searchMangaInitialUrl(query: String) = map.search.url.replace("\$query", query)
 
     override fun searchMangaParse(response: Response, page: MangasPage, query: String) {
-        val document = Jsoup.parse(response.body().string())
+        val document = response.asJsoup()
         for (element in document.select(map.search.manga_css)) {
             Manga.create(id).apply {
                 title = element.text()
@@ -91,14 +89,12 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         }
 
         map.search.next_url_css?.let { selector ->
-            page.nextPageUrl = document.select(selector).first()?.attr("href")?.let {
-                getAbsoluteUrl(it, response.request().url())
-            }
+            page.nextPageUrl = document.select(selector).first()?.absUrl("href")
         }
     }
 
     override fun mangaDetailsParse(response: Response, manga: Manga) {
-        val document = Jsoup.parse(response.body().string())
+        val document = response.asJsoup()
         with(map.manga) {
             val pool = parts.get(document)
 
@@ -112,7 +108,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
     }
 
     override fun chapterListParse(response: Response, chapters: MutableList<Chapter>) {
-        val document = Jsoup.parse(response.body().string())
+        val document = response.asJsoup()
         with(map.chapters) {
             val pool = emptyMap<String, Element>()
             val dateFormat = SimpleDateFormat(date?.format, Locale.ENGLISH)
@@ -131,7 +127,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
     }
 
     override fun pageListParse(response: Response, pages: MutableList<Page>) {
-        val document = Jsoup.parse(response.body().string())
+        val document = response.asJsoup()
         with(map.pages) {
             val url = response.request().url().toString()
             pages_css?.let {
@@ -143,20 +139,16 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
             }
 
             for ((i, element) in document.select(image_css).withIndex()) {
-                pages.getOrNull(i)?.imageUrl = element.attr(image_attr).let {
-                    getAbsoluteUrl(it, response.request().url())
-                }
+                pages.getOrNull(i)?.imageUrl = element.absUrl(image_attr)
             }
         }
 
     }
 
     override fun imageUrlParse(response: Response): String {
-        val document = Jsoup.parse(response.body().string())
+        val document = response.asJsoup()
         return with(map.pages) {
-            document.select(image_css).first().attr(image_attr).let {
-                getAbsoluteUrl(it, response.request().url())
-            }
+            document.select(image_css).first().absUrl(image_attr)
         }
     }
 
