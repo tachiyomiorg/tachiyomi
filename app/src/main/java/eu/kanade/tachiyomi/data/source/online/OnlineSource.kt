@@ -406,6 +406,8 @@ abstract class OnlineSource(context: Context) : Source {
      * href="bar" url="http://example.com/foo" -> http://example.com/bar
      * href="?bar" url="http://example.com/foo" -> http://example.com/foo?bar
      * href="bar" url="http://example.com/foo/" -> http://example.com/foo/bar
+     * href="./bar" url="http://example.com/foo/" -> http://example.com/foo/./bar
+     * href="../bar" url="http://example.com/foo/" -> http://example.com/foo/../bar
      *
      * @param href the href attribute from the html.
      * @param url the requested url.
@@ -414,6 +416,8 @@ abstract class OnlineSource(context: Context) : Source {
         href.startsWith("http://") || href.startsWith("https://") -> href
         href.startsWith("/") -> url.newBuilder().encodedPath("/").fragment(null).query(null)
                 .toString() + href.substring(1)
+        href.startsWith("../") || href.startsWith("./") -> url.newBuilder().encodedPath("/").fragment(null).query(null)
+                .toString() + href
         href.startsWith("?") -> url.toString().substringBeforeLast('?') + "$href"
         else -> url.toString().substringBeforeLast('/') + "/$href"
     }
