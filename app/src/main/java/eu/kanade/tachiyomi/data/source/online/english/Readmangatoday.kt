@@ -9,6 +9,7 @@ import eu.kanade.tachiyomi.data.source.Language
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
+import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
@@ -21,6 +22,8 @@ class Readmangatoday(context: Context, override val id: Int) : ParsedOnlineSourc
     override val baseUrl = "http://www.readmanga.today"
 
     override val lang: Language get() = EN
+
+    override val client: OkHttpClient get() = network.cloudflareClient
 
     override fun popularMangaInitialUrl() = "$baseUrl/hot-manga/"
 
