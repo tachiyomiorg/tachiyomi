@@ -21,7 +21,7 @@
     <string name="pref_default_viewer_key">pref_default_viewer_key</string>
     <string name="pref_image_scale_type_key">pref_image_scale_type_key</string>
     <string name="pref_zoom_start_key">pref_zoom_start_key</string>
-    <string name="pref_hide_status_bar_key">pref_hide_status_bar_key</string>
+    <string name="pref_fullscreen_key">fullscreen</string>
     <string name="pref_rotation_type_key">pref_rotation_type_key</string>
     <string name="pref_enable_transitions_key">pref_enable_transitions_key</string>
     <string name="pref_show_page_number_key">pref_show_page_number_key</string>

@@ -96,7 +96,7 @@
     <string name="dark_theme">Dark theme</string>
 
       <!-- Reader section -->
-    <string name="pref_hide_status_bar">Hide status bar</string>
+    <string name="pref_fullscreen">Fullscreen</string>
     <string name="pref_lock_orientation">Lock orientation</string>
     <string name="pref_enable_transitions">Enable transitions</string>
     <string name="pref_show_page_number">Show page number</string>
@@ -264,6 +264,7 @@
     <string name="no_previous_chapter">Previous chapter not found</string>
     <string name="decode_image_error">Image could not be loaded.\nTry changing the image decoder or with one of the options below</string>
     <string name="confirm_update_manga_sync">Update last chapter read in enabled services to %1$d?</string>
+    <string name="viewer_for_this_series">Viewer for this series</string>
 
     <!-- Backup fragment -->
     <string name="backup">Backup</string>

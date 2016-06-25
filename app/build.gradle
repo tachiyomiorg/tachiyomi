@@ -161,6 +161,7 @@ dependencies {
     compile 'com.github.amulyakhare:TextDrawable:558677e'
     compile 'com.afollestad.material-dialogs:core:0.8.5.9'
     compile 'net.xpece.android:support-preference:0.8.1'
+    compile 'me.zhanghai.android.systemuihelper:library:1.0.0'
 
     // Tests
     testCompile 'junit:junit:4.12'
@@ -183,4 +184,5 @@ buildscript {
 
 repositories {
     mavenCentral()
+    maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
 }

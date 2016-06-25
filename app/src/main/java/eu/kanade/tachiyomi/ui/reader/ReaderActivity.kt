@@ -1,16 +1,13 @@
 package eu.kanade.tachiyomi.ui.reader
 
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.*
-import android.view.WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.SeekBar
@@ -33,11 +30,13 @@ import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.SimpleAnimationListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import kotlinx.android.synthetic.main.activity_reader.*
-import kotlinx.android.synthetic.main.reader_menu.*
+import me.zhanghai.android.systemuihelper.SystemUiHelper
+import me.zhanghai.android.systemuihelper.SystemUiHelper.*
 import nucleus.factory.RequiresPresenter
 import rx.Subscription
 import rx.subscriptions.CompositeSubscription
 import timber.log.Timber
+import uy.kohesive.injekt.injectLazy
 import java.text.DecimalFormat
 
 @RequiresPresenter(ReaderPresenter::class)
@@ -62,8 +61,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private var viewer: BaseReader? = null
 
-    private var uiFlags: Int = 0
-
     lateinit var subscriptions: CompositeSubscription
         private set
 
@@ -77,16 +74,20 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private val decimalFormat = DecimalFormat("#.###")
 
-    private var popupMenu: ReaderPopupMenu? = null
-
     private var nextChapterBtn: MenuItem? = null
 
     private var prevChapterBtn: MenuItem? = null
 
     private val volumeKeysEnabled by lazy { preferences.readWithVolumeKeys().getOrDefault() }
 
-    val preferences: PreferencesHelper
-        get() = presenter.prefs
+    val preferences by injectLazy<PreferencesHelper>()
+
+    private val systemUi by lazy {
+        val level = if (preferences.fullscreen().getOrDefault()) LEVEL_IMMERSIVE else LEVEL_LOW_PROFILE
+        SystemUiHelper(this, level, FLAG_IMMERSIVE_STICKY)
+    }
+
+    private var menuVisible = false
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
@@ -100,47 +101,44 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         setupToolbar(toolbar)
         subscriptions = CompositeSubscription()
 
-        initializeMenu()
         initializeSettings()
+        initializeBottomMenu()
 
         if (savedState != null) {
-            setMenuVisibility(savedState.getBoolean(MENU_VISIBLE), animate = false)
+            menuVisible = savedState.getBoolean(MENU_VISIBLE)
         }
+
+        setMenuVisibility(menuVisible)
 
         maxBitmapSize = GLUtil.getMaxTextureSize()
     }
 
-    override fun onResume() {
-        super.onResume()
-        setSystemUiVisibility()
-    }
-
     override fun onDestroy() {
         subscriptions.unsubscribe()
-        popupMenu?.dismiss()
         viewer = null
         super.onDestroy()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.reader, menu)
-        nextChapterBtn = menu.findItem(R.id.action_next_chapter)
-        prevChapterBtn = menu.findItem(R.id.action_previous_chapter)
-        setAdjacentChaptersVisibility()
+//        nextChapterBtn = menu.findItem(R.id.action_next_chapter)
+//        prevChapterBtn = menu.findItem(R.id.action_previous_chapter)
+//        setAdjacentChaptersVisibility()
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_previous_chapter -> requestPreviousChapter()
-            R.id.action_next_chapter -> requestNextChapter()
+//            R.id.action_previous_chapter -> requestPreviousChapter()
+//            R.id.action_next_chapter -> requestNextChapter()
+            R.id.action_settings -> ReaderSettingsDialog().show(supportFragmentManager, "settings")
             else -> return super.onOptionsItemSelected(item)
         }
         return true
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putBoolean(MENU_VISIBLE, reader_menu.visibility == View.VISIBLE)
+        outState.putBoolean(MENU_VISIBLE, menuVisible)
         super.onSaveInstanceState(outState)
     }
 
@@ -148,7 +146,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         val chapterToUpdate = presenter.getMangaSyncChapterToUpdate()
 
         if (chapterToUpdate > 0) {
-            if (presenter.prefs.askUpdateMangaSync()) {
+            if (preferences.askUpdateMangaSync()) {
                 MaterialDialog.Builder(this)
                         .content(getString(R.string.confirm_update_manga_sync, chapterToUpdate))
                         .positiveText(android.R.string.yes)
@@ -162,13 +160,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             }
         } else {
             super.onBackPressed()
-        }
-    }
-
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        if (hasFocus) {
-            setSystemUiVisibility()
         }
     }
 
@@ -323,7 +314,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     }
 
     fun toggleMenu() {
-        setMenuVisibility(reader_menu.visibility == View.GONE)
+        setMenuVisibility(!menuVisible)
     }
 
     fun requestNextChapter() {
@@ -338,34 +329,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         }
     }
 
-    private fun setMenuVisibility(visible: Boolean, animate: Boolean = true) {
-        if (visible) {
-            reader_menu.visibility = View.VISIBLE
-
-            if (animate) {
-                val toolbarAnimation = AnimationUtils.loadAnimation(this, R.anim.enter_from_top)
-                toolbar.startAnimation(toolbarAnimation)
-
-                val bottomMenuAnimation = AnimationUtils.loadAnimation(this, R.anim.enter_from_bottom)
-                reader_menu_bottom.startAnimation(bottomMenuAnimation)
-            }
-        } else {
-            val toolbarAnimation = AnimationUtils.loadAnimation(this, R.anim.exit_to_top)
-            toolbarAnimation.setAnimationListener(object : SimpleAnimationListener() {
-                override fun onAnimationEnd(animation: Animation) {
-                    reader_menu.visibility = View.GONE
-                }
-            })
-            toolbar.startAnimation(toolbarAnimation)
-
-            val bottomMenuAnimation = AnimationUtils.loadAnimation(this, R.anim.exit_to_bottom)
-            reader_menu_bottom.startAnimation(bottomMenuAnimation)
-
-            popupMenu?.dismiss()
-        }
-    }
-
-    private fun initializeMenu() {
+    private fun initializeBottomMenu() {
         // Intercept all events in this layout
         reader_menu_bottom.setOnTouchListener { v, event -> true }
 
@@ -376,70 +340,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 }
             }
         })
-
-        lock_orientation.setOnClickListener { v ->
-            showImmersiveDialog(MaterialDialog.Builder(this)
-                    .title(R.string.pref_rotation_type)
-                    .items(R.array.rotation_type)
-                    .itemsCallbackSingleChoice(preferences.rotation().getOrDefault() - 1,
-                            { d, itemView, which, text ->
-                                preferences.rotation().set(which + 1)
-                                true
-                            })
-                    .build())
-        }
-
-        reader_zoom_selector.setOnClickListener { v ->
-            showImmersiveDialog(MaterialDialog.Builder(this)
-                    .title(R.string.pref_zoom_start)
-                    .items(R.array.zoom_start)
-                    .itemsCallbackSingleChoice(preferences.zoomStart().getOrDefault() - 1,
-                            { d, itemView, which, text ->
-                                preferences.zoomStart().set(which + 1)
-                                true
-                            })
-                    .build())
-        }
-
-        reader_scale_type_selector.setOnClickListener { v ->
-            showImmersiveDialog(MaterialDialog.Builder(this)
-                    .title(R.string.pref_image_scale_type)
-                    .items(R.array.image_scale_type)
-                    .itemsCallbackSingleChoice(preferences.imageScaleType().getOrDefault() - 1,
-                            { d, itemView, which, text ->
-                                preferences.imageScaleType().set(which + 1)
-                                true
-                            })
-                    .build())
-        }
-
-        reader_selector.setOnClickListener { v ->
-            showImmersiveDialog(MaterialDialog.Builder(this)
-                    .title(R.string.pref_viewer_type)
-                    .items(R.array.viewers_selector)
-                    .itemsCallbackSingleChoice(presenter.manga.viewer,
-                            { d, itemView, which, text ->
-                                presenter.updateMangaViewer(which)
-                                recreate()
-                                true
-                            })
-                    .build())
-        }
-
-        val popupView = layoutInflater.inflate(R.layout.reader_popup, null)
-        popupMenu = ReaderPopupMenu(this, popupView)
-
-        reader_extra_settings.setOnClickListener {
-            popupMenu?.let {
-                if (!it.isShowing)
-                    it.showAtLocation(reader_extra_settings,
-                            Gravity.BOTTOM or Gravity.RIGHT, 0, reader_menu_bottom.height)
-                else
-                    it.dismiss()
-            }
-
-        }
-
     }
 
     private fun initializeSettings() {
@@ -447,23 +347,11 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 .subscribe { setPageNumberVisibility(it) }
 
         subscriptions += preferences.rotation().asObservable()
-                .subscribe {
-                    setRotation(it)
+                .subscribe { setRotation(it) }
 
-                    val isPortrait = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
-
-                    val resourceId = if (it == 1)
-                        R.drawable.ic_screen_rotation_white_24dp
-                    else if (isPortrait)
-                        R.drawable.ic_screen_lock_portrait_white_24dp
-                    else
-                        R.drawable.ic_screen_lock_landscape_white_24dp
-
-                    lock_orientation.setImageResource(resourceId)
-                }
-
-        subscriptions += preferences.hideStatusBar().asObservable()
-                .subscribe { setStatusBarVisibility(it) }
+        subscriptions += preferences.fullscreen().asObservable()
+                .skip(1)
+                .subscribe { recreate() }
 
         subscriptions += preferences.keepScreenOn().asObservable()
                 .subscribe { setKeepScreenOn(it) }
@@ -523,29 +411,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         window.attributes = window.attributes.apply { screenBrightness = value }
     }
 
-    private fun setStatusBarVisibility(hidden: Boolean) {
-        createUiHideFlags(hidden)
-        setSystemUiVisibility()
-    }
-
-    private fun createUiHideFlags(statusBarHidden: Boolean) {
-        uiFlags = 0
-        uiFlags = uiFlags or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-        if (statusBarHidden) {
-            uiFlags = uiFlags or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                    View.SYSTEM_UI_FLAG_FULLSCREEN
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            uiFlags = uiFlags or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        }
-    }
-
-    fun setSystemUiVisibility() {
-        window.decorView.systemUiVisibility = uiFlags
-    }
-
     private fun applyTheme(theme: Int) {
         readerTheme = theme
         val rootView = window.decorView.rootView
@@ -560,12 +425,30 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         }
     }
 
-    private fun showImmersiveDialog(dialog: Dialog) {
-        // Hack to not leave immersive mode
-        dialog.window.setFlags(FLAG_NOT_FOCUSABLE, FLAG_NOT_FOCUSABLE)
-        dialog.show()
-        dialog.window.decorView.systemUiVisibility = window.decorView.systemUiVisibility
-        dialog.window.clearFlags(FLAG_NOT_FOCUSABLE)
+    private fun setMenuVisibility(visible: Boolean) {
+        menuVisible = visible
+        if (visible) {
+            systemUi.show()
+            reader_menu.visibility = View.VISIBLE
+
+            val toolbarAnimation = AnimationUtils.loadAnimation(this, R.anim.enter_from_top)
+            toolbar.startAnimation(toolbarAnimation)
+
+            val bottomMenuAnimation = AnimationUtils.loadAnimation(this, R.anim.enter_from_bottom)
+            reader_menu_bottom.startAnimation(bottomMenuAnimation)
+        } else {
+            systemUi.hide()
+            val toolbarAnimation = AnimationUtils.loadAnimation(this, R.anim.exit_to_top)
+            toolbarAnimation.setAnimationListener(object : SimpleAnimationListener() {
+                override fun onAnimationEnd(animation: Animation) {
+                    reader_menu.visibility = View.GONE
+                }
+            })
+            toolbar.startAnimation(toolbarAnimation)
+
+            val bottomMenuAnimation = AnimationUtils.loadAnimation(this, R.anim.exit_to_bottom)
+            reader_menu_bottom.startAnimation(bottomMenuAnimation)
+        }
     }
 
 }

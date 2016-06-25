@@ -18,7 +18,7 @@ class PreferenceKeys(context: Context) {
 
     val showPageNumber = context.getString(R.string.pref_show_page_number_key)
 
-    val hideStatusBar = context.getString(R.string.pref_hide_status_bar_key)
+    val fullscreen = context.getString(R.string.pref_fullscreen_key)
 
     val keepScreenOn = context.getString(R.string.pref_keep_screen_on_key)
 

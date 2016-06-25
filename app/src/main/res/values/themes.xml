@@ -83,9 +83,15 @@
     <!--==============-->
     <!-- Reader Theme -->
     <!--==============-->
-    <style name="Theme.Reader" parent="Theme.Base.Dark">
+    <style name="Theme.Base.Reader" parent="Theme.Base.Dark">
         <item name="colorPrimary">@color/md_blue_grey_900</item>
+        <item name="colorPrimaryDark">@color/md_black_1000</item>
     </style>
+
+    <style name="Theme.Reader" parent="Theme.Base.Reader">
+        <!-- Attributes specific for SDK 16 to SDK 20 -->
+    </style>
+
 
     <!--===============-->
     <!-- Launch Screen -->

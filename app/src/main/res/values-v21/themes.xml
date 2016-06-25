@@ -19,4 +19,14 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
     </style>
+
+    <!--==============-->
+    <!-- Reader Theme -->
+    <!--==============-->
+    <style name="Theme.Reader" parent="Theme.Base.Reader">
+        <!-- Attributes specific for SDK 21 and up  -->
+        <item name="android:statusBarColor">?colorPrimaryDark</item>
+        <item name="android:navigationBarColor">?colorPrimaryDark</item>
+    </style>
+
 </resources>
