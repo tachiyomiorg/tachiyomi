@@ -23,6 +23,7 @@ import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
+import rx.subjects.SerializedSubject
 import java.io.File
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
@@ -150,7 +151,7 @@ class PagerReaderFragment : BaseFragment() {
      */
     private fun observeStatus() {
         page?.let { page ->
-            val statusSubject = PublishSubject.create<Int>()
+            val statusSubject = SerializedSubject(PublishSubject.create<Int>())
             page.setStatusSubject(statusSubject)
 
             statusSubscription?.unsubscribe()

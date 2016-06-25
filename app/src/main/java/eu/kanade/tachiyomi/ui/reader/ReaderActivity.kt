@@ -437,7 +437,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             val bottomMenuAnimation = AnimationUtils.loadAnimation(this, R.anim.enter_from_bottom)
             reader_menu_bottom.startAnimation(bottomMenuAnimation)
         } else {
-            systemUi.hide()
+            systemUi.delayHide(0)
             val toolbarAnimation = AnimationUtils.loadAnimation(this, R.anim.exit_to_top)
             toolbarAnimation.setAnimationListener(object : SimpleAnimationListener() {
                 override fun onAnimationEnd(animation: Animation) {
