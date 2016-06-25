@@ -85,7 +85,7 @@
     <!--==============-->
     <style name="Theme.Base.Reader" parent="Theme.Base.Dark">
         <item name="colorPrimary">@color/md_blue_grey_900</item>
-        <item name="colorPrimaryDark">@color/md_black_1000</item>
+        <item name="colorPrimaryDark">#171E22</item>
     </style>
 
     <style name="Theme.Reader" parent="Theme.Base.Reader">
