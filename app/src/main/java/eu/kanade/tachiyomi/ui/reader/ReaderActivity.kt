@@ -33,8 +33,7 @@ import eu.kanade.tachiyomi.widget.SimpleAnimationListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import kotlinx.android.synthetic.main.activity_reader.*
 import me.zhanghai.android.systemuihelper.SystemUiHelper
-import me.zhanghai.android.systemuihelper.SystemUiHelper.FLAG_IMMERSIVE_STICKY
-import me.zhanghai.android.systemuihelper.SystemUiHelper.LEVEL_IMMERSIVE
+import me.zhanghai.android.systemuihelper.SystemUiHelper.*
 import nucleus.factory.RequiresPresenter
 import rx.Subscription
 import rx.subscriptions.CompositeSubscription
@@ -396,7 +395,8 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private fun setFullscreen(enabled: Boolean) {
         systemUi = if (enabled) {
-            SystemUiHelper(this, LEVEL_IMMERSIVE, FLAG_IMMERSIVE_STICKY)
+            SystemUiHelper(this, LEVEL_IMMERSIVE,
+                    FLAG_IMMERSIVE_STICKY or FLAG_LAYOUT_IN_SCREEN_OLDER_DEVICES)
         } else {
             null
         }
