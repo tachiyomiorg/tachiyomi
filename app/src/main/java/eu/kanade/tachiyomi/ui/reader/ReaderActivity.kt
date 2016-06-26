@@ -5,9 +5,11 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.*
+import android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.SeekBar
@@ -75,10 +77,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private val decimalFormat = DecimalFormat("#.###")
 
-    private var nextChapterBtn: MenuItem? = null
-
-    private var prevChapterBtn: MenuItem? = null
-
     private val volumeKeysEnabled by lazy { preferences.readWithVolumeKeys().getOrDefault() }
 
     val preferences by injectLazy<PreferencesHelper>()
@@ -109,6 +107,23 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         setMenuVisibility(menuVisible)
 
         maxBitmapSize = GLUtil.getMaxTextureSize()
+
+        left_chapter.setOnClickListener {
+            if (viewer != null) {
+                if (viewer is RightToLeftReader)
+                    requestNextChapter()
+                else
+                    requestPreviousChapter()
+            }
+        }
+        right_chapter.setOnClickListener {
+            if (viewer != null) {
+                if (viewer is RightToLeftReader)
+                    requestPreviousChapter()
+                else
+                    requestNextChapter()
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -119,16 +134,11 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.reader, menu)
-//        nextChapterBtn = menu.findItem(R.id.action_next_chapter)
-//        prevChapterBtn = menu.findItem(R.id.action_previous_chapter)
-//        setAdjacentChaptersVisibility()
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-//            R.id.action_previous_chapter -> requestPreviousChapter()
-//            R.id.action_next_chapter -> requestNextChapter()
             R.id.action_settings -> ReaderSettingsDialog().show(supportFragmentManager, "settings")
             else -> return super.onOptionsItemSelected(item)
         }
@@ -259,16 +269,19 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         viewer?.onPageListAppendReady(chapter)
     }
 
-    @Suppress("UNUSED_PARAMETER")
     fun onAdjacentChapters(previous: Chapter?, next: Chapter?) {
-        setAdjacentChaptersVisibility()
-    }
+        val isInverted = viewer is RightToLeftReader
 
-    private fun setAdjacentChaptersVisibility() {
-        prevChapterBtn?.isVisible = presenter.hasPreviousChapter()
-        nextChapterBtn?.isVisible = presenter.hasNextChapter()
-    }
+        // Chapters are inverted for the right to left reader
+        val hasRightChapter = (if (isInverted) previous else next) != null
+        val hasLeftChapter = (if (isInverted) next else previous) != null
 
+        right_chapter.isEnabled = hasRightChapter
+        right_chapter.alpha = if (hasRightChapter) 1f else 0.4f
+
+        left_chapter.isEnabled = hasLeftChapter
+        left_chapter.alpha = if (hasLeftChapter) 1f else 0.4f
+    }
 
     private fun getOrCreateViewer(manga: Manga): BaseReader {
         val mangaViewer = if (manga.viewer == 0) preferences.defaultViewer() else manga.viewer
@@ -383,7 +396,12 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private fun setFullscreen(enabled: Boolean) {
         systemUi = if (enabled) {
-            SystemUiHelper(this, LEVEL_IMMERSIVE, FLAG_IMMERSIVE_STICKY)
+            SystemUiHelper(this, LEVEL_IMMERSIVE, FLAG_IMMERSIVE_STICKY, { visible ->
+                // Fix status bar being translucent the first time it's opened.
+                if (visible && Build.VERSION.SDK_INT >= 21) {
+                    window.addFlags(FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                }
+            })
         } else {
             null
         }
@@ -442,7 +460,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             val bottomMenuAnimation = AnimationUtils.loadAnimation(this, R.anim.enter_from_bottom)
             reader_menu_bottom.startAnimation(bottomMenuAnimation)
         } else {
-            systemUi?.delayHide(0)
+            systemUi?.hide()
             val toolbarAnimation = AnimationUtils.loadAnimation(this, R.anim.exit_to_top)
             toolbarAnimation.setAnimationListener(object : SimpleAnimationListener() {
                 override fun onAnimationEnd(animation: Animation) {

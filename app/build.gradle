@@ -155,6 +155,7 @@ dependencies {
     compile 'ch.acra:acra:4.8.5'
 
     // UI
+    compile 'com.dmitrymalkovich.android:material-design-dimens:1.2'
     compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
     compile 'eu.davidea:flexible-adapter:4.2.0'
     compile 'com.nononsenseapps:filepicker:2.5.2'

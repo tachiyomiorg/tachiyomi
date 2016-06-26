@@ -12,7 +12,7 @@ import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.util.plusAssign
 import eu.kanade.tachiyomi.widget.SimpleItemSelectedListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
-import kotlinx.android.synthetic.main.reader_settings_dialog.view.*
+import kotlinx.android.synthetic.main.dialog_reader_settings.view.*
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.subscriptions.CompositeSubscription
@@ -27,7 +27,8 @@ class ReaderSettingsDialog : DialogFragment() {
 
     override fun onCreateDialog(savedState: Bundle?): Dialog {
         val dialog = MaterialDialog.Builder(activity)
-                .customView(R.layout.reader_settings_dialog, true)
+                .title(R.string.label_settings)
+                .customView(R.layout.dialog_reader_settings, true)
                 .positiveText(android.R.string.ok)
                 .build()
 

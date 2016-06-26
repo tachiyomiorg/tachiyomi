@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/material_component_dialogs_padding_around_content_area"
+    android:divider="@drawable/empty_divider"
+    android:showDividers="middle">
 
     <!-- Viewer for this series -->
     <LinearLayout
@@ -23,7 +25,7 @@
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/viewer"
             android:layout_width="0dp"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:entries="@array/viewers_selector">
 
@@ -48,7 +50,7 @@
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/rotation_mode"
             android:layout_width="0dp"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:entries="@array/rotation_type">
 
@@ -73,7 +75,7 @@
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/scale_type"
             android:layout_width="0dp"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:entries="@array/image_scale_type">
 
@@ -98,7 +100,7 @@
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/zoom_start"
             android:layout_width="0dp"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:entries="@array/zoom_start">
 
@@ -123,7 +125,7 @@
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/image_decoder"
             android:layout_width="0dp"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:entries="@array/image_decoders">
 
@@ -148,7 +150,7 @@
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/background_color"
             android:layout_width="0dp"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:entries="@array/reader_themes">
 
@@ -159,31 +161,31 @@
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/enable_transitions"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:text="@string/pref_enable_transitions"/>
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/show_page_number"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:text="@string/pref_show_page_number"/>
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/fullscreen"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:text="@string/pref_fullscreen"/>
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/keep_screen_on"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:text="@string/pref_keep_screen_on"/>
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/custom_brightness"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:text="@string/pref_custom_brightness"/>
 
     <SeekBar
