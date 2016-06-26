@@ -31,7 +31,8 @@ import eu.kanade.tachiyomi.widget.SimpleAnimationListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import kotlinx.android.synthetic.main.activity_reader.*
 import me.zhanghai.android.systemuihelper.SystemUiHelper
-import me.zhanghai.android.systemuihelper.SystemUiHelper.*
+import me.zhanghai.android.systemuihelper.SystemUiHelper.FLAG_IMMERSIVE_STICKY
+import me.zhanghai.android.systemuihelper.SystemUiHelper.LEVEL_IMMERSIVE
 import nucleus.factory.RequiresPresenter
 import rx.Subscription
 import rx.subscriptions.CompositeSubscription
@@ -82,10 +83,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     val preferences by injectLazy<PreferencesHelper>()
 
-    private val systemUi by lazy {
-        val level = if (preferences.fullscreen().getOrDefault()) LEVEL_IMMERSIVE else LEVEL_LOW_PROFILE
-        SystemUiHelper(this, level, FLAG_IMMERSIVE_STICKY)
-    }
+    private var systemUi: SystemUiHelper? = null
 
     private var menuVisible = false
 
@@ -343,15 +341,14 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     }
 
     private fun initializeSettings() {
-        subscriptions += preferences.showPageNumber().asObservable()
-                .subscribe { setPageNumberVisibility(it) }
-
         subscriptions += preferences.rotation().asObservable()
                 .subscribe { setRotation(it) }
 
+        subscriptions += preferences.showPageNumber().asObservable()
+                .subscribe { setPageNumberVisibility(it) }
+
         subscriptions += preferences.fullscreen().asObservable()
-                .skip(1)
-                .subscribe { recreate() }
+                .subscribe { setFullscreen(it) }
 
         subscriptions += preferences.keepScreenOn().asObservable()
                 .subscribe { setKeepScreenOn(it) }
@@ -382,6 +379,14 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private fun setPageNumberVisibility(visible: Boolean) {
         page_number.visibility = if (visible) View.VISIBLE else View.INVISIBLE
+    }
+
+    private fun setFullscreen(enabled: Boolean) {
+        systemUi = if (enabled) {
+            SystemUiHelper(this, LEVEL_IMMERSIVE, FLAG_IMMERSIVE_STICKY)
+        } else {
+            null
+        }
     }
 
     private fun setKeepScreenOn(enabled: Boolean) {
@@ -428,7 +433,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     private fun setMenuVisibility(visible: Boolean) {
         menuVisible = visible
         if (visible) {
-            systemUi.show()
+            systemUi?.show()
             reader_menu.visibility = View.VISIBLE
 
             val toolbarAnimation = AnimationUtils.loadAnimation(this, R.anim.enter_from_top)
@@ -437,7 +442,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             val bottomMenuAnimation = AnimationUtils.loadAnimation(this, R.anim.enter_from_bottom)
             reader_menu_bottom.startAnimation(bottomMenuAnimation)
         } else {
-            systemUi.delayHide(0)
+            systemUi?.delayHide(0)
             val toolbarAnimation = AnimationUtils.loadAnimation(this, R.anim.exit_to_top)
             toolbarAnimation.setAnimationListener(object : SimpleAnimationListener() {
                 override fun onAnimationEnd(animation: Animation) {
