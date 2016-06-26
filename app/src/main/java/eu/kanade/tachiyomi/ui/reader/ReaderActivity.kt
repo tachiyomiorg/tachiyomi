@@ -396,12 +396,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private fun setFullscreen(enabled: Boolean) {
         systemUi = if (enabled) {
-            SystemUiHelper(this, LEVEL_IMMERSIVE, FLAG_IMMERSIVE_STICKY, { visible ->
-                // Fix status bar being translucent the first time it's opened.
-                if (visible && Build.VERSION.SDK_INT >= 21) {
-                    window.addFlags(FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                }
-            })
+            SystemUiHelper(this, LEVEL_IMMERSIVE, FLAG_IMMERSIVE_STICKY)
         } else {
             null
         }
@@ -455,6 +450,14 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             reader_menu.visibility = View.VISIBLE
 
             val toolbarAnimation = AnimationUtils.loadAnimation(this, R.anim.enter_from_top)
+            toolbarAnimation.setAnimationListener(object : SimpleAnimationListener() {
+                override fun onAnimationStart(animation: Animation) {
+                    // Fix status bar being translucent the first time it's opened.
+                    if (Build.VERSION.SDK_INT >= 21) {
+                        window.addFlags(FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                    }
+                }
+            })
             toolbar.startAnimation(toolbarAnimation)
 
             val bottomMenuAnimation = AnimationUtils.loadAnimation(this, R.anim.enter_from_bottom)
