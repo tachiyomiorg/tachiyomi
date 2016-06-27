@@ -1,8 +1,8 @@
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center">
 
     <FrameLayout
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/material_layout_keylines_screen_edge_margin"
                 android:background="?android:selectableItemBackground"
-                android:src="@drawable/ic_skip_previous_white_24dp"/>
+                app:srcCompat="@drawable/ic_skip_previous_white_24dp"/>
 
             <TextView
                 android:id="@+id/left_page_text"
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/material_layout_keylines_screen_edge_margin"
                 android:background="?android:selectableItemBackground"
-                android:src="@drawable/ic_skip_next_white_24dp"/>
+                app:srcCompat="@drawable/ic_skip_next_white_24dp"/>
 
         </LinearLayout>
 

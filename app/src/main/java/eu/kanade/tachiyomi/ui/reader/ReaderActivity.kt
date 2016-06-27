@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
+import android.os.Build.VERSION_CODES.KITKAT
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.*
@@ -395,8 +396,9 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private fun setFullscreen(enabled: Boolean) {
         systemUi = if (enabled) {
-            SystemUiHelper(this, LEVEL_IMMERSIVE,
-                    FLAG_IMMERSIVE_STICKY or FLAG_LAYOUT_IN_SCREEN_OLDER_DEVICES)
+            val level = if (Build.VERSION.SDK_INT >= KITKAT) LEVEL_IMMERSIVE else LEVEL_HIDE_STATUS_BAR
+            val flags = FLAG_IMMERSIVE_STICKY or FLAG_LAYOUT_IN_SCREEN_OLDER_DEVICES
+            SystemUiHelper(this, level, flags)
         } else {
             null
         }

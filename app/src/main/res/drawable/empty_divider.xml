@@ -3,4 +3,8 @@
     <size
         android:height="@dimen/material_layout_keylines_horizontal_mobile_margin"
         android:width="0dp"/>
+
+    <solid
+        android:color="@android:color/transparent"/>
+
 </shape>
