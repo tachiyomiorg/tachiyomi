@@ -42,7 +42,7 @@ class PreferencesHelper(context: Context) {
 
     fun showPageNumber() = rxPrefs.getBoolean(keys.showPageNumber, true)
 
-    fun hideStatusBar() = rxPrefs.getBoolean(keys.hideStatusBar, true)
+    fun fullscreen() = rxPrefs.getBoolean(keys.fullscreen, true)
 
     fun keepScreenOn() = rxPrefs.getBoolean(keys.keepScreenOn, true)
 

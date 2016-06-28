@@ -55,8 +55,8 @@
             android:summary="%s" />
 
         <SwitchPreference
-            android:title="@string/pref_hide_status_bar"
-            android:key="@string/pref_hide_status_bar_key"
+            android:title="@string/pref_fullscreen"
+            android:key="@string/pref_fullscreen_key"
             android:defaultValue="true" />
 
         <SwitchPreference

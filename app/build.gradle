@@ -155,12 +155,14 @@ dependencies {
     compile 'ch.acra:acra:4.8.5'
 
     // UI
+    compile 'com.dmitrymalkovich.android:material-design-dimens:1.2'
     compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
     compile 'eu.davidea:flexible-adapter:4.2.0'
     compile 'com.nononsenseapps:filepicker:2.5.2'
     compile 'com.github.amulyakhare:TextDrawable:558677e'
     compile 'com.afollestad.material-dialogs:core:0.8.5.9'
     compile 'net.xpece.android:support-preference:0.8.1'
+    compile 'me.zhanghai.android.systemuihelper:library:1.0.0'
 
     // Tests
     testCompile 'junit:junit:4.12'
@@ -183,4 +185,5 @@ buildscript {
 
 repositories {
     mavenCentral()
+    maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
 }

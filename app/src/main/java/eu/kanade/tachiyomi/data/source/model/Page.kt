@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.data.source.model
 
 import eu.kanade.tachiyomi.data.network.ProgressListener
 import eu.kanade.tachiyomi.ui.reader.ReaderChapter
-import rx.subjects.PublishSubject
+import rx.subjects.Subject
 
 class Page(
         val pageNumber: Int,
@@ -21,13 +21,13 @@ class Page(
 
     @Transient @Volatile var progress: Int = 0
 
-    @Transient private var statusSubject: PublishSubject<Int>? = null
+    @Transient private var statusSubject: Subject<Int, Int>? = null
 
     override fun update(bytesRead: Long, contentLength: Long, done: Boolean) {
         progress = (100 * bytesRead / contentLength).toInt()
     }
 
-    fun setStatusSubject(subject: PublishSubject<Int>?) {
+    fun setStatusSubject(subject: Subject<Int, Int>?) {
         this.statusSubject = subject
     }
 

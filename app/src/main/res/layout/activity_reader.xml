@@ -1,30 +1,102 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:gravity="center">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center">
 
     <FrameLayout
-        android:id="@+id/reader"
+        android:id="@+id/reader_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/reader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
+
+        <ProgressBar
+            android:id="@+id/please_wait"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/page_number"
+            style="@style/TextAppearance.Regular.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:background="?android:attr/colorBackground"
+            android:padding="4dp"/>
+
     </FrameLayout>
 
-    <ProgressBar
-        android:id="@+id/please_wait"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+    <FrameLayout
+        android:id="@+id/reader_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:visibility="invisible"
+        tools:visibility="visible">
 
-    <TextView
-        android:id="@+id/page_number"
-        style="@style/TextAppearance.Regular.Caption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:background="?android:attr/colorBackground"
-        android:padding="4dp"/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?colorPrimary"
+            android:elevation="4dp"
+            android:theme="?attr/actionBarTheme"/>
 
-    <include layout="@layout/reader_menu"/>
+        <LinearLayout
+            android:id="@+id/reader_menu_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:background="?colorPrimary"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/left_chapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/material_layout_keylines_screen_edge_margin"
+                android:background="?android:selectableItemBackground"
+                app:srcCompat="@drawable/ic_skip_previous_white_24dp"/>
+
+            <TextView
+                android:id="@+id/left_page_text"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="15sp"/>
+
+            <SeekBar
+                android:id="@+id/page_seekbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/right_page_text"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="15sp"/>
+
+            <ImageButton
+                android:id="@+id/right_chapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/material_layout_keylines_screen_edge_margin"
+                android:background="?android:selectableItemBackground"
+                app:srcCompat="@drawable/ic_skip_next_white_24dp"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
 
 </FrameLayout>

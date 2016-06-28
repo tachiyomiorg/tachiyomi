@@ -3,17 +3,10 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_previous_chapter"
-        android:title="@string/action_previous_chapter"
-        android:icon="@drawable/ic_skip_previous_white_24dp"
-        android:visible="false"
-        app:showAsAction="always" />
-
-    <item
-        android:id="@+id/action_next_chapter"
-        android:title="@string/action_next_chapter"
-        android:icon="@drawable/ic_skip_next_white_24dp"
-        android:visible="false"
-        app:showAsAction="always" />
+        android:id="@+id/action_settings"
+        android:title="@string/label_settings"
+        android:icon="@drawable/ic_settings_white_24dp"
+        app:showAsAction="always"
+        />
 
 </menu>
