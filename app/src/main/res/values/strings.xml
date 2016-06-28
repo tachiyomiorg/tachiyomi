@@ -53,7 +53,6 @@
     <string name="action_display_mode">Change display mode</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_sort">Sort</string>
-    <string name="action_force">Force refresh</string>
     <string name="action_install">Install</string>
 
     <!-- Operations -->
@@ -193,7 +192,6 @@
 
     <!-- Library fragment -->
     <string name="library_search_hint">Title or author…</string>
-    <string name="library_selection_title">Selected</string>
     <string name="updating_category">Updating category</string>
     <string name="confirm_delete_manga">Are you sure you want to remove selected manga?</string>
 
