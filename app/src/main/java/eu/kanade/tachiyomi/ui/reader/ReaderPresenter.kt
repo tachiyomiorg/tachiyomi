@@ -104,6 +104,11 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
     }
 
     /**
+     * Map of chapters that have been loaded in the reader.
+     */
+    private val loadedChapters = hashMapOf<Long?, ReaderChapter>()
+
+    /**
      * List of manga services linked to the active manga, or null if auto syncing is not enabled.
      */
     private var mangaSyncList: List<MangaSync>? = null
@@ -164,7 +169,6 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
 
     override fun onSave(state: Bundle) {
         chapter.requestedPage = chapter.last_page_read
-        onChapterLeft()
         state.putSerializable(ReaderPresenter::manga.name, manga)
         state.putSerializable(ReaderPresenter::chapter.name, chapter)
         super.onSave(state)
@@ -172,6 +176,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
 
     override fun onDestroy() {
         loader.cleanup()
+        onChapterLeft()
         super.onDestroy()
     }
 
@@ -208,8 +213,8 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         adjacentChaptersSubscription = Observable
                 .fromCallable { getAdjacentChaptersStrategy(chapter) }
                 .doOnNext { pair ->
-                    prevChapter = pair.first
-                    nextChapter = pair.second
+                    prevChapter = loadedChapters.getOrElse(pair.first?.id) { pair.first }
+                    nextChapter = loadedChapters.getOrElse(pair.second?.id) { pair.second }
                 }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -268,7 +273,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         // Cleanup any append.
         appenderSubscription?.let { remove(it) }
 
-        this.chapter = chapter
+        this.chapter = loadedChapters.getOrPut(chapter.id) { chapter }
 
         // If the chapter is partially read, set the starting page to the last the user read
         // otherwise use the requested page.
@@ -303,8 +308,9 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         appenderSubscription?.let { remove(it) }
 
         val nextChapter = nextChapter ?: return
+        val chapterToLoad = loadedChapters.getOrPut(nextChapter.id) { nextChapter }
 
-        appenderSubscription = loader.loadChapter(nextChapter)
+        appenderSubscription = loader.loadChapter(chapterToLoad)
                 .subscribeOn(Schedulers.io())
                 .retryWhen(RetryWithDelay(1, { 3000 }))
                 .observeOn(AndroidSchedulers.mainThread())
@@ -408,40 +414,38 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
      * Returns the chapter to be marked as last read in sync services or 0 if no update required.
      */
     fun getMangaSyncChapterToUpdate(): Int {
-        if (chapter.pages == null || mangaSyncList == null || mangaSyncList!!.isEmpty())
+        val mangaSyncList = mangaSyncList
+        if (chapter.pages == null || mangaSyncList == null || mangaSyncList.isEmpty())
             return 0
 
-        var lastChapterReadLocal = 0
+        val prevChapter = prevChapter
 
-        // If the current chapter has been read, we check with this one
-        if (chapter.read)
-            lastChapterReadLocal = Math.floor(chapter.chapter_number.toDouble()).toInt()
-        // If not, we check if the previous chapter has been read
-        else if (prevChapter != null && prevChapter!!.read)
-            lastChapterReadLocal = Math.floor(prevChapter!!.chapter_number.toDouble()).toInt()
+        // Get the last chapter read from the reader.
+        val lastChapterRead = if (chapter.read)
+            Math.floor(chapter.chapter_number.toDouble()).toInt()
+        else if (prevChapter != null && prevChapter.read)
+            Math.floor(prevChapter.chapter_number.toDouble()).toInt()
+        else
+            0
 
-        // We know the chapter we have to check, but we don't know yet if an update is required.
-        // This boolean is used to return 0 if no update is required
-        var hasToUpdate = false
-
-        for (mangaSync in mangaSyncList!!) {
-            if (lastChapterReadLocal > mangaSync.last_chapter_read) {
-                mangaSync.last_chapter_read = lastChapterReadLocal
-                mangaSync.update = true
-                hasToUpdate = true
+        mangaSyncList.forEach { sync ->
+            if (lastChapterRead > sync.last_chapter_read) {
+                sync.last_chapter_read = lastChapterRead
+                sync.update = true
             }
         }
-        return if (hasToUpdate) lastChapterReadLocal else 0
+
+        return if (mangaSyncList.any { it.update }) lastChapterRead else 0
     }
 
     /**
      * Starts the service that updates the last chapter read in sync services
      */
     fun updateMangaSyncLastChapterRead() {
-        for (mangaSync in mangaSyncList ?: emptyList()) {
-            val service = syncManager.getService(mangaSync.sync_id) ?: continue
-            if (service.isLogged && mangaSync.update) {
-                UpdateMangaSyncService.start(context, mangaSync)
+        mangaSyncList?.forEach { sync ->
+            val service = syncManager.getService(sync.sync_id)
+            if (service != null && service.isLogged && sync.update) {
+                UpdateMangaSyncService.start(context, sync)
             }
         }
     }

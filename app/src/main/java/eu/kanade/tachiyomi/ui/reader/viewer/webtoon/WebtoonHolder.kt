@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.item_webtoon_reader.view.*
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.subjects.PublishSubject
+import rx.subjects.SerializedSubject
 import java.io.File
 
 /**
@@ -56,7 +57,7 @@ class WebtoonHolder(private val view: View, private val adapter: WebtoonAdapter)
             setOnImageEventListener(object : SubsamplingScaleImageView.DefaultOnImageEventListener() {
                 override fun onImageLoaded() {
                     // When the image is loaded, reset the minimum height to avoid gaps
-                    view.frame_container.minimumHeight = 0
+                    view.frame_container.minimumHeight = 30
                 }
 
                 override fun onImageLoadError(e: Exception) {
@@ -106,7 +107,7 @@ class WebtoonHolder(private val view: View, private val adapter: WebtoonAdapter)
      */
     private fun observeStatus() {
         page?.let { page ->
-            val statusSubject = PublishSubject.create<Int>()
+            val statusSubject = SerializedSubject(PublishSubject.create<Int>())
             page.setStatusSubject(statusSubject)
 
             statusSubscription?.unsubscribe()
