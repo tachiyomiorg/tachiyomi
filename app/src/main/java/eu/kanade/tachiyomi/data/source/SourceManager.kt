@@ -7,6 +7,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.data.source.online.YamlOnlineSource
 import eu.kanade.tachiyomi.data.source.online.english.*
+import eu.kanade.tachiyomi.data.source.online.german.WieManga
 import eu.kanade.tachiyomi.data.source.online.russian.Mangachan
 import eu.kanade.tachiyomi.data.source.online.russian.Mintmanga
 import eu.kanade.tachiyomi.data.source.online.russian.Readmanga
@@ -26,8 +27,9 @@ open class SourceManager(private val context: Context) {
     val MANGACHAN = 7
     val READMANGATODAY = 8
     val MANGASEE = 9
+    val WIEMANGA = 10
 
-    val LAST_SOURCE = 9
+    val LAST_SOURCE = 10
 
     val sourcesMap = createSources()
 
@@ -47,6 +49,7 @@ open class SourceManager(private val context: Context) {
         MANGACHAN -> Mangachan(context, id)
         READMANGATODAY -> Readmangatoday(context, id)
         MANGASEE -> Mangasee(context, id)
+        WIEMANGA -> WieManga(context, id)
         else -> null
     }
 
