@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.data.source.online.german
 
 import android.content.Context
-import android.util.Log
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.DE
@@ -80,7 +79,7 @@ class WieManga(context: Context, override val id: Int) : ParsedOnlineSource(cont
         }
 
         private fun parseChapterDate(date: String): Long {
-                return SimpleDateFormat("yyyy-mm-dd hh:mm:ss").parse(date).time
+                return SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(date).time
         }
 
         override fun pageListParse(response: Response, pages: MutableList<Page>) {
