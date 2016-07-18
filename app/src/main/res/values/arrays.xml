@@ -145,9 +145,9 @@
     </string-array>
 
     <string-array name="start_screen_selection">
-        <item>@string/start_screen_my_library</item>
-        <item>@string/start_screen_recent_read</item>
-        <item>@string/start_screen_recent_update</item>
+        <item>@string/label_library</item>
+        <item>@string/label_recent_manga</item>
+        <item>@string/label_recent_updates</item>
     </string-array>
 
     <string-array name="start_screen_selection_values">

@@ -93,10 +93,7 @@
     <string name="pref_theme">Application theme</string>
     <string name="light_theme">Main theme</string>
     <string name="dark_theme">Dark theme</string>
-    <string name="pref_start_screen">Start Up Screen</string>
-    <string name="start_screen_my_library">My Library</string>
-    <string name="start_screen_recent_read">Recently Read</string>
-    <string name="start_screen_recent_update">Recent Updates</string>
+    <string name="pref_start_screen">Start screen</string>
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="pref_start_screen_key">pref_start_screen_key</string>
-
     <string name="pref_category_general_key">pref_category_general_key</string>
     <string name="pref_category_reader_key">pref_category_reader_key</string>
     <string name="pref_category_sync_key">pref_category_sync_key</string>
@@ -20,6 +18,7 @@
     <string name="pref_ask_update_manga_sync_key">pref_ask_update_manga_sync_key</string>
     <string name="pref_theme_key">pref_theme_key</string>
     <string name="pref_library_update_restriction_key">library_update_restriction</string>
+    <string name="pref_start_screen_key">start_screen</string>
 
     <string name="pref_default_viewer_key">pref_default_viewer_key</string>
     <string name="pref_image_scale_type_key">pref_image_scale_type_key</string>
