@@ -144,4 +144,16 @@
         <item>remove</item>
     </string-array>
 
+    <string-array name="start_screen_selection">
+        <item>@string/label_library</item>
+        <item>@string/label_recent_manga</item>
+        <item>@string/label_recent_updates</item>
+    </string-array>
+
+    <string-array name="start_screen_selection_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
 </resources>
