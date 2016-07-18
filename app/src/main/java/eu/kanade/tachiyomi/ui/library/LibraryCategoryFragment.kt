@@ -124,7 +124,7 @@ class LibraryCategoryFragment : BaseFragment(), FlexibleViewHolder.OnListItemCli
             adapter.updateDataSet()
         }
 
-        toggleViewSubscription = preferences.libraryAsList().asObservable().subscribe() {onViewModeChange(it)}
+        toggleViewSubscription = preferences.libraryAsList().asObservable().subscribe {onViewModeChange(it)}
 
         if(libraryPresenter.displayAsList != displayAsList) {
             library_switcher.showNext()
