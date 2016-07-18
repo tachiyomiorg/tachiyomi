@@ -84,17 +84,19 @@ class LibraryCategoryAdapter(val fragment: LibraryCategoryFragment) :
      * @return a new view holder for a manga.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LibraryHolder {
-
         //depending on preferences, display a list or display a grid
-        val view = if(parent.id == R.id.library_list)
-            parent.inflate(R.layout.item_library_list)
-        else
-            parent.inflate(R.layout.item_catalogue_grid).apply {
+        if(parent.id == R.id.library_list) {
+            val view = parent.inflate(R.layout.item_library_list)
+            return LibraryListHolder(view, this, fragment)
+
+        } else {
+            val view = parent.inflate(R.layout.item_catalogue_grid).apply {
                 card.layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, coverHeight)
                 gradient.layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, coverHeight / 2, Gravity.BOTTOM)
             }
+            return LibraryGridHolder(view, this, fragment)
+        }
 
-        return LibraryListHolder(view, this, fragment)
     }
 
     /**

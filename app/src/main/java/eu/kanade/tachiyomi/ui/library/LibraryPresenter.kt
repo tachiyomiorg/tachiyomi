@@ -49,7 +49,7 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
     /**
      * notifier of view switch
      */
-    val viewToggleNotifier = BehaviorSubject.create<libraryToggleViewEvent>()
+    val viewToggleNotifier = BehaviorSubject.create<LibraryToggleViewEvent>()
 
     /**
      * Database.
@@ -315,7 +315,7 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
     fun swapDisplayMode() {
         var currentMode: Boolean = displayAsList
         preferences.libraryAsList().set(!displayAsList)
-        viewToggleNotifier.onNext(libraryToggleViewEvent(!currentMode))
+        viewToggleNotifier.onNext(LibraryToggleViewEvent(!currentMode))
     }
 
 }

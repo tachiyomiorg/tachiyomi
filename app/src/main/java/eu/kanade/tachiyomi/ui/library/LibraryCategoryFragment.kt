@@ -302,7 +302,7 @@ class LibraryCategoryFragment : BaseFragment(), FlexibleViewHolder.OnListItemCli
         }
     }
 
-    fun onViewModeChange(event: libraryToggleViewEvent)
+    fun onViewModeChange(event: LibraryToggleViewEvent)
     {
         //do nothing if the display does not need to change
         if(event.viewAsList == displayAsList) return
