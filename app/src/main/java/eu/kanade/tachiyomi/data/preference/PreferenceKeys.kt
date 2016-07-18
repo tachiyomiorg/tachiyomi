@@ -82,6 +82,8 @@ class PreferenceKeys(context: Context) {
 
     val automaticUpdateStatus = context.getString(R.string.pref_enable_automatic_updates_key)
 
+    val startScreen = context.getString(R.string.pref_start_screen_key)
+
     fun sourceUsername(sourceId: Int) = "pref_source_username_$sourceId"
 
     fun sourcePassword(sourceId: Int) = "pref_source_password_$sourceId"

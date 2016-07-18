@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="pref_start_screen_key">pref_start_screen_key</string>
+
     <string name="pref_category_general_key">pref_category_general_key</string>
     <string name="pref_category_reader_key">pref_category_reader_key</string>
     <string name="pref_category_sync_key">pref_category_sync_key</string>

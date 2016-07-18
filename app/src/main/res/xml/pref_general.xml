@@ -14,6 +14,14 @@
             android:summary="%s"
             android:title="@string/pref_theme"/>
 
+        <eu.kanade.tachiyomi.widget.preference.IntListPreference
+                android:title="@string/pref_start_screen"
+                android:key="@string/pref_start_screen_key"
+                android:entries="@array/start_screen_selection"
+                android:entryValues="@array/start_screen_selection_values"
+                android:defaultValue="1"
+                android:summary="%s"/>
+
         <eu.kanade.tachiyomi.widget.preference.SimpleDialogPreference
             android:dialogLayout="@layout/pref_library_columns"
             android:key="@string/pref_library_columns_dialog_key"

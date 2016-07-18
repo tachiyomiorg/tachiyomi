@@ -32,6 +32,8 @@ class PreferencesHelper(context: Context) {
         }
     }
 
+    fun startScreen() = prefs.getInt(keys.startScreen, 1)
+
     fun clear() = prefs.edit().clear().apply()
 
     fun theme() = prefs.getInt(keys.theme, 1)

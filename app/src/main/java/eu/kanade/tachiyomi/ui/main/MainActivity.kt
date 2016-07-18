@@ -59,7 +59,14 @@ class MainActivity : BaseActivity() {
         }
 
         if (savedState == null) {
-            setFragment(LibraryFragment.newInstance())
+
+            when (preferences.startScreen()) {
+                1 -> setFragment(LibraryFragment.newInstance())
+                2 -> setFragment(RecentlyReadFragment.newInstance())
+                3 -> setFragment(RecentChaptersFragment.newInstance())
+                else -> setFragment(LibraryFragment.newInstance())
+            }
+
             ChangelogDialogFragment.show(preferences, supportFragmentManager)
         }
     }
