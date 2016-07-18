@@ -8,6 +8,7 @@
     <string name="pref_category_about_key">pref_category_about_key</string>
     <string name="pref_category_sources_key">pref_category_sources_key</string>
 
+    <string name="pref_display_library_as_list">pref_display_library_as_list</string>
     <string name="pref_library_columns_dialog_key">pref_library_columns_dialog_key</string>
     <string name="pref_library_columns_portrait_key">pref_library_columns_portrait_key</string>
     <string name="pref_library_columns_landscape_key">pref_library_columns_landscape_key</string>

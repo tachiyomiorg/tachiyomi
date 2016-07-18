@@ -9,14 +9,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <eu.kanade.tachiyomi.widget.AutofitRecyclerView
-            android:id="@+id/recycler"
-            style="@style/Theme.Widget.GridView"
+        <ViewSwitcher
+            android:id="@+id/library_switcher"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:columnWidth="140dp"
-            tools:listitem="@layout/item_catalogue_grid"/>
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
+            <eu.kanade.tachiyomi.widget.AutofitRecyclerView
+                android:id="@+id/recycler"
+                style="@style/Theme.Widget.GridView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:columnWidth="140dp"
+                tools:listitem="@layout/item_catalogue_grid"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/library_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_library_list"/>
+
+        </ViewSwitcher>
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

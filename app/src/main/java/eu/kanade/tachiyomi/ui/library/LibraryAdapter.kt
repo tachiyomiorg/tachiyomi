@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager
 
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.ui.base.adapter.SmartFragmentStatePagerAdapter
+import kotlinx.android.synthetic.main.fragment_library_category.*
 
 /**
  * This adapter stores the categories from the library, used with a ViewPager.
@@ -73,6 +74,7 @@ class LibraryAdapter(fm: FragmentManager) : SmartFragmentStatePagerAdapter(fm) {
     fun refreshRegisteredAdapters() {
         for (fragment in getRegisteredFragments()) {
             (fragment as LibraryCategoryFragment).adapter.notifyDataSetChanged()
+
         }
     }
 

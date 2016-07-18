@@ -30,6 +30,11 @@
         app:actionViewClass="android.support.v7.widget.SearchView" />
 
     <item
+        android:id="@+id/action_library_display_mode"
+        android:title="Display Mode"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/action_update_library"
         android:title="@string/action_update_library"
         android:icon="@drawable/ic_refresh_white_24dp"

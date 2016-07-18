@@ -20,7 +20,9 @@ import eu.kanade.tachiyomi.ui.category.CategoryActivity
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_catalogue.*
 import kotlinx.android.synthetic.main.fragment_library.*
+import kotlinx.android.synthetic.main.fragment_library_category.*
 import nucleus.factory.RequiresPresenter
 import java.io.IOException
 
@@ -52,6 +54,11 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
      * Query of the search box.
      */
     private var query: String? = null
+
+    /**
+     * Display mode of the library (list or grid mode).
+     */
+    private var displayMode: MenuItem? = null
 
     /**
      * Action mode for manga selection.
@@ -178,6 +185,18 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
                 return true
             }
         })
+
+        //set the icon for the display mode button
+        displayMode = menu.findItem(R.id.action_library_display_mode).apply {
+            val icon = if (presenter.displayAsList)
+                R.drawable.ic_view_module_white_24dp
+            else
+                R.drawable.ic_view_list_white_24dp
+
+            setIcon(icon)
+        }
+
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -208,6 +227,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
                 // Apply filter
                 onFilterCheckboxChanged()
             }
+            R.id.action_library_display_mode -> swapDisplayMode()
             R.id.action_update_library -> {
                 LibraryUpdateService.start(activity, true)
             }
@@ -224,12 +244,30 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     /**
      * Applies filter change
      */
-    private fun onFilterCheckboxChanged() {
+    private fun onFilterCheckboxChanged()
+    {
         presenter.updateLibrary()
         adapter.notifyDataSetChanged()
         adapter.refreshRegisteredAdapters()
         activity.supportInvalidateOptionsMenu()
     }
+
+    /**
+     * swap display mode
+     */
+    private fun swapDisplayMode() {
+
+        presenter.swapDisplayMode()
+        val isListMode = presenter.displayAsList
+        val icon = if (isListMode)
+            R.drawable.ic_view_module_white_24dp
+        else
+            R.drawable.ic_view_list_white_24dp
+
+        displayMode?.setIcon(icon)
+
+    }
+
 
     /**
      * Updates the query.

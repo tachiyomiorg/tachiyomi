@@ -90,4 +90,6 @@ class PreferenceKeys(context: Context) {
 
     fun syncPassword(syncId: Int) = "pref_mangasync_password_$syncId"
 
+    val  libraryAsList = context.getString(R.string.pref_display_library_as_list)
+
 }

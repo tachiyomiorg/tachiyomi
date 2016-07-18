@@ -124,6 +124,8 @@ class PreferencesHelper(context: Context) {
 
     fun libraryUpdateRestriction() = prefs.getStringSet(keys.libraryUpdateRestriction, emptySet())
 
+    fun libraryAsList() = rxPrefs.getBoolean(keys.libraryAsList, false)
+
     fun filterDownloaded() = rxPrefs.getBoolean(keys.filterDownloaded, false)
 
     fun filterUnread() = rxPrefs.getBoolean(keys.filterUnread, false)
