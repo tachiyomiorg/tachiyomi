@@ -13,6 +13,7 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.fragment.BaseFragment
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
@@ -21,12 +22,18 @@ import kotlinx.android.synthetic.main.fragment_catalogue.*
 import kotlinx.android.synthetic.main.fragment_library.*
 import kotlinx.android.synthetic.main.fragment_library_category.*
 import rx.Subscription
+import uy.kohesive.injekt.injectLazy
 
 /**
  * Fragment containing the library manga for a certain category.
  * Uses R.layout.fragment_library_category.
  */
 class LibraryCategoryFragment : BaseFragment(), FlexibleViewHolder.OnListItemClickListener {
+
+    /**
+     * Preferences.
+     */
+    val preferences: PreferencesHelper by injectLazy()
 
     /**
      * Adapter to hold the manga in this category.
@@ -117,10 +124,9 @@ class LibraryCategoryFragment : BaseFragment(), FlexibleViewHolder.OnListItemCli
             adapter.updateDataSet()
         }
 
-        toggleViewSubscription = libraryPresenter.viewToggleNotifier.subscribe() {onViewModeChange(it)}
+        toggleViewSubscription = preferences.libraryAsList().asObservable().subscribe() {onViewModeChange(it)}
 
-        if(libraryPresenter.displayAsList != displayAsList)
-        {
+        if(libraryPresenter.displayAsList != displayAsList) {
             library_switcher.showNext()
             displayAsList = libraryPresenter.displayAsList
         }
@@ -302,14 +308,13 @@ class LibraryCategoryFragment : BaseFragment(), FlexibleViewHolder.OnListItemCli
         }
     }
 
-    fun onViewModeChange(event: LibraryToggleViewEvent)
-    {
+    fun onViewModeChange(isList: Boolean) {
         //do nothing if the display does not need to change
-        if(event.viewAsList == displayAsList) return
+        if(isList == displayAsList) return
 
         //else change view and display mode
         library_switcher.showNext()
-        displayAsList = event.viewAsList
+        displayAsList = isList
     }
 
     /**
@@ -321,7 +326,7 @@ class LibraryCategoryFragment : BaseFragment(), FlexibleViewHolder.OnListItemCli
     /**
      * Property to get the library presenter.
      */
-    val libraryPresenter: LibraryPresenter
+    private val libraryPresenter: LibraryPresenter
         get() = libraryFragment.presenter
 
 }

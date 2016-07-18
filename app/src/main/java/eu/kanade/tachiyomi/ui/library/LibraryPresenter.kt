@@ -47,11 +47,6 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
     val libraryMangaSubject = BehaviorSubject.create<LibraryMangaEvent>()
 
     /**
-     * notifier of view switch
-     */
-    val viewToggleNotifier = BehaviorSubject.create<LibraryToggleViewEvent>()
-
-    /**
      * Database.
      */
     val db: DatabaseHelper by injectLazy()
@@ -110,8 +105,7 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
      *
      * @param asList display as list or not
      */
-    fun setDisplayMode(asList: Boolean)
-    {
+    fun setDisplayMode(asList: Boolean)    {
         displayAsList = asList
     }
 
@@ -315,7 +309,6 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
     fun swapDisplayMode() {
         var currentMode: Boolean = displayAsList
         preferences.libraryAsList().set(!displayAsList)
-        viewToggleNotifier.onNext(LibraryToggleViewEvent(!currentMode))
     }
 
 }

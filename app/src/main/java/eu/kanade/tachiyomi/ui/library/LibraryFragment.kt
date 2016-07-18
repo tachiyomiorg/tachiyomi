@@ -14,16 +14,16 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.category.CategoryActivity
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_catalogue.*
 import kotlinx.android.synthetic.main.fragment_library.*
-import kotlinx.android.synthetic.main.fragment_library_category.*
 import nucleus.factory.RequiresPresenter
+import uy.kohesive.injekt.injectLazy
 import java.io.IOException
 
 /**
@@ -38,6 +38,11 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
      */
     lateinit var adapter: LibraryAdapter
         private set
+
+    /**
+     * Preferences.
+     */
+    val preferences: PreferencesHelper by injectLazy()
 
     /**
      * TabLayout of the categories.
@@ -188,7 +193,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
 
         //set the icon for the display mode button
         displayMode = menu.findItem(R.id.action_library_display_mode).apply {
-            val icon = if (presenter.displayAsList)
+            val icon = if (preferences.libraryAsList().getOrDefault())
                 R.drawable.ic_view_module_white_24dp
             else
                 R.drawable.ic_view_list_white_24dp
@@ -244,8 +249,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     /**
      * Applies filter change
      */
-    private fun onFilterCheckboxChanged()
-    {
+    private fun onFilterCheckboxChanged() {
         presenter.updateLibrary()
         adapter.notifyDataSetChanged()
         adapter.refreshRegisteredAdapters()
