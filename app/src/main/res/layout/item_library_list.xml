@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="?android:listPreferredItemHeightSmall"
     android:background="?attr/selectable_list_drawable">
@@ -15,19 +14,6 @@
         android:paddingLeft="6dp"/>
 
     <TextView
-        android:id="@+id/unread_text"
-        style="@style/TextAppearance.Regular.Caption.Light"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|right"
-        android:background="?attr/colorAccent"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:layout_marginRight="6dp"
-        android:visibility="gone"/>
-
-
-    <TextView
             android:id="@+id/title"
             style="@style/TextAppearance.Regular.Body1"
             android:layout_width="match_parent"
@@ -36,5 +22,14 @@
             android:paddingLeft="38dp"
             android:text="Sample name"/>
 
+    <TextView
+            android:id="@+id/unread_text"
+            style="@style/TextAppearance.Regular.Caption"
+            android:textColor="@color/material_grey_500"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:paddingRight="9dp"
+            android:visibility="gone"/>
 
 </FrameLayout>
