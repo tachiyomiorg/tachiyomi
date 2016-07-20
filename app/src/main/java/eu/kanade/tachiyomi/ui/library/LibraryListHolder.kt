@@ -5,7 +5,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
-import kotlinx.android.synthetic.main.item_catalogue_grid.view.*
+import kotlinx.android.synthetic.main.item_library_list.view.*
 
 /**
  * Class used to hold the displayed data of a manga in the library, like the cover or the title.
@@ -38,12 +38,15 @@ class LibraryListHolder(private val view: View,
             text = manga.unread.toString()
         }
 
+
+
         // Update the cover.
         Glide.clear(view.thumbnail)
         Glide.with(view.context)
                 .load(manga)
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
                 .centerCrop()
+                .dontAnimate()
                 .into(view.thumbnail)
     }
 

@@ -2,23 +2,17 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?android:listPreferredItemHeightSmall"
     android:background="?attr/selectable_list_drawable">
 
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/thumbnail"/>
-
-    <View
-        android:id="@+id/gradient"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@drawable/gradient_shape"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/icon"
+        android:layout_gravity="center_vertical|left"
+        android:paddingLeft="6dp"/>
 
     <TextView
         android:id="@+id/unread_text"
@@ -27,26 +21,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|right"
         android:background="?attr/colorAccent"
-        android:paddingBottom="1dp"
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
+        android:layout_marginRight="6dp"
         android:visibility="gone"/>
 
-    <eu.kanade.tachiyomi.widget.PTSansTextView
+
+    <TextView
             android:id="@+id/title"
-            style="@style/TextAppearance.Regular.Body1.Light"
-            app:typeface="ptsansNarrowBold"
+            style="@style/TextAppearance.Regular.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:ellipsize="end"
-            android:lineSpacingExtra="-4dp"
-            android:maxLines="2"
-            android:padding="8dp"
-            android:shadowColor="@color/textColorPrimaryLight"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="4"
-            tools:text="Sample name"/>
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="38dp"
+            android:text="Sample name"/>
+
 
 </FrameLayout>
