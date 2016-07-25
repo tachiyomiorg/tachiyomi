@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -20,6 +21,7 @@ import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.setDrawableTop
+import eu.kanade.tachiyomi.util.setPositionByValue
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
 import kotlinx.android.synthetic.main.dialog_manga_sync_chapters.view.*
@@ -312,6 +314,15 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
             last_read_dialog?.show()
         }
 
+        val spinnerAdapter = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerAdapter.addAll(presenter.statusMap.values)
+        syncView.spinner_status.adapter = spinnerAdapter
+
+        // Set onItemSelectedListener to update status when new status selected by user
+        syncView.spinner_status.onItemSelectedListener = IgnoreFirstSpinnerListener { parent, position ->
+            presenter.setStatus(parent?.getItemAtPosition(position).toString())
+        }
         isSyncInfoInitialized = true
     }
 
@@ -462,13 +473,8 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
      * @param mangaSync [MangaSync] object containing information about [MangaSync].
      */
     fun setSpinnerValue(mangaSync: MangaSync) {
-        // Set onItemSelectedListener to update status when new status selected by user
-        syncView.spinner_status.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
-            presenter.setStatus(position)
-        }
-
         // Update selection
-        syncView.spinner_status.setSelection(presenter.getStatusPosition(mangaSync))
+        syncView.spinner_status.setPositionByValue(presenter.getStatus(mangaSync))
     }
 
     /**

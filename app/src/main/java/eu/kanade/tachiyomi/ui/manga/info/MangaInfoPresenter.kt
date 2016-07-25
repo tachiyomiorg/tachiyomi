@@ -2,11 +2,13 @@ package eu.kanade.tachiyomi.ui.manga.info
 
 import android.os.Bundle
 import com.pushtorefresh.storio.sqlite.operations.put.PutResults
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaSync
 import eu.kanade.tachiyomi.data.mangasync.MangaSyncManager
+import eu.kanade.tachiyomi.data.mangasync.MangaSyncService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.Source
@@ -102,6 +104,10 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
      * List containing bind [MangaSync] objects
      */
     private var mangaSyncList: List<MangaSync> = emptyList()
+
+    val statusMap by lazy {
+        getDefaultService().statusMap
+    }
 
     /**
      * Called when the activity is starting.
@@ -341,22 +347,26 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
                 }, { view, error -> view.setSearchResultsError(error) })
     }
 
+    fun getDefaultService(): MangaSyncService {
+        return syncManager.getService(preferenceHelper.defaultServiceId().getOrDefault())
+    }
+
     /**
      * Returns the spinner position of a status
      * @param mangaSync [MangaSync] object containing information about [MangaSync].
      * @return spinner position
      */
-    fun getStatusPosition(mangaSync: MangaSync): Int {
-        return syncManager.getService(mangaSync.sync_id).getPositionFromStatus(mangaSync.status)
+    fun getStatus(mangaSync: MangaSync): String {
+        return syncManager.getService(mangaSync.sync_id).getStatus(mangaSync.status)
     }
 
     /**
      * Called to update status of bind manga sync
      * @param position selected spinner position
      */
-    fun setStatus(position: Int) {
+    fun setStatus(status: String) {
         mangaSyncList.forEach {
-            it.status = syncManager.getService(it.sync_id).getStatusFromPosition(position)
+            it.status = syncManager.getService(it.sync_id).getStatus(status)
         }
         updateRemote(mangaSyncList)
     }
@@ -395,22 +405,39 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
      * @param chapterNumber number of last read page
      */
     fun setLastChapterRead(chapterNumber: Int) {
+        var status = 0
         mangaSyncList.forEach {
             it.last_chapter_read = chapterNumber
+            if (isDefaultService(it)) {
+                status = it.status
+            }
         }
-        updateRemote(mangaSyncList)
+
+        if (preferenceHelper.autoUpdateStatusMangaSync()) {
+            if (chapterNumber == 0) {
+                if (status != getDefaultService().getStatus(context.getString(R.string.on_hold)))
+                    updateRemote(mangaSyncList,
+                            { setStatus(context.getString(R.string.on_hold)) })
+                else updateRemote(mangaSyncList)
+            } else {
+                if (status != getDefaultService().getStatus(context.getString(R.string.reading)))
+                    updateRemote(mangaSyncList, { setStatus(context.getString(R.string.reading)) })
+                else updateRemote(mangaSyncList)
+            }
+        }
     }
 
     /**
      * Called to update the remote service
      * @param mangaSyncList list containing [MangaSync] objects.
      */
-    private fun updateRemote(mangaSyncList: List<MangaSync>) {
+    private fun updateRemote(mangaSyncList: List<MangaSync>, func: () -> Unit = {}) {
         add(Observable.from(mangaSyncList).flatMap { mangaSync ->
             syncManager.getService(mangaSync.sync_id).update(mangaSync)
         }.toList()
                 .subscribeOn(Schedulers.io())
                 .flatMap { databaseHelper.insertMangasSync(it).asRxObservable() }
+                .doOnCompleted { func() }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({},
                         { error ->

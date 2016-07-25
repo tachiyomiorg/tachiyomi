@@ -165,14 +165,4 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-
-    <string-array name="spinner_sync_items">
-        <item>Reading</item>
-        <item>Completed</item>
-        <item>On Hold</item>
-        <item>Dropped</item>
-        <item>Plan to Read</item>
-    </string-array>
-
-
 </resources>

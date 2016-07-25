@@ -3,11 +3,6 @@ package eu.kanade.tachiyomi.data.mangasync.myanimelist
 import android.content.Context
 import android.net.Uri
 import android.util.Xml
-import eu.kanade.tachiyomi.Constants.COMPLETED_POSITION
-import eu.kanade.tachiyomi.Constants.DROPPED_POSITION
-import eu.kanade.tachiyomi.Constants.ON_HOLD_POSITION
-import eu.kanade.tachiyomi.Constants.PLAN_TO_READ_POSITION
-import eu.kanade.tachiyomi.Constants.READING_POSITION
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.MangaSync
 import eu.kanade.tachiyomi.data.mangasync.MangaSyncService
@@ -227,35 +222,8 @@ class MyAnimeList(private val context: Context, id: Int) : MangaSyncService(cont
         headers = builder.build()
     }
 
-    /**
-     * Returns the spinner position of the status
-     * @return spinner position
-     */
-    override fun getPositionFromStatus(status: Int): Int = with(context) {
-        when (status) {
-            READING -> READING_POSITION
-            COMPLETED -> COMPLETED_POSITION
-            ON_HOLD -> ON_HOLD_POSITION
-            DROPPED -> DROPPED_POSITION
-            PLAN_TO_READ -> PLAN_TO_READ_POSITION
-            else -> READING_POSITION
-        }
-    }
-
-    /**
-     * Returns the status from spinner position
-     * @param position position in spinner
-     * @return status from position
-     */
-    override fun getStatusFromPosition(position: Int): Int = with(context) {
-        when (position) {
-            READING_POSITION -> READING
-            COMPLETED_POSITION -> COMPLETED
-            ON_HOLD_POSITION -> ON_HOLD
-            DROPPED_POSITION -> DROPPED
-            PLAN_TO_READ_POSITION -> PLAN_TO_READ
-            else -> READING
-        }
+    override fun getStatusList(): List<Int> {
+        return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLAN_TO_READ)
     }
 
     /**

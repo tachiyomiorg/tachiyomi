@@ -28,7 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_status_title"
-        android:entries="@array/spinner_sync_items"
         android:paddingBottom="@dimen/padding_8dp"
         android:paddingLeft="@dimen/padding_8dp"
         android:paddingRight="@dimen/padding_8dp"

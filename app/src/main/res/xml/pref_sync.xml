@@ -14,8 +14,15 @@
         <SwitchPreference
             android:defaultValue="false"
             android:dependency="@string/pref_auto_update_manga_sync_key"
+            android:key="@string/pref_auto_update_status_manga_sync_key"
+            android:title="@string/pref_auto_update_status_manga_sync"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="@string/pref_auto_update_manga_sync_key"
             android:key="@string/pref_ask_update_manga_sync_key"
             android:title="@string/pref_ask_update_manga_sync"/>
+
 
         <PreferenceCategory
             android:key="pref_category_manga_sync_accounts"

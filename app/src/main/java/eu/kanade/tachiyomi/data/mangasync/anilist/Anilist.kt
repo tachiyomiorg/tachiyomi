@@ -1,11 +1,6 @@
 package eu.kanade.tachiyomi.data.mangasync.anilist
 
 import android.content.Context
-import eu.kanade.tachiyomi.Constants.COMPLETED_POSITION
-import eu.kanade.tachiyomi.Constants.DROPPED_POSITION
-import eu.kanade.tachiyomi.Constants.ON_HOLD_POSITION
-import eu.kanade.tachiyomi.Constants.PLAN_TO_READ_POSITION
-import eu.kanade.tachiyomi.Constants.READING_POSITION
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.MangaSync
 import eu.kanade.tachiyomi.data.mangasync.MangaSyncService
@@ -22,7 +17,7 @@ class Anilist(private val context: Context, id: Int) : MangaSyncService(context,
         const val DROPPED = 4
         const val PLAN_TO_READ = 5
 
-        const val DEFAULT_STATUS = READING
+        const val DEFAULT_STATUS = PLAN_TO_READ
         const val DEFAULT_SCORE = 0
     }
 
@@ -134,35 +129,8 @@ class Anilist(private val context: Context, id: Int) : MangaSyncService(context,
         else -> throw NotImplementedError("Unknown status")
     }
 
-    /**
-     * Returns the spinner position of the status
-     * @return spinner position
-     */
-    override fun getPositionFromStatus(status: Int): Int = with(context) {
-        when (status) {
-            READING -> READING_POSITION
-            COMPLETED -> COMPLETED_POSITION
-            ON_HOLD -> ON_HOLD_POSITION
-            DROPPED -> DROPPED_POSITION
-            PLAN_TO_READ -> PLAN_TO_READ_POSITION
-            else -> READING_POSITION
-        }
-    }
-
-    /**
-     * Returns the status from spinner position
-     * @param position position in spinner
-     * @return status from position
-     */
-    override fun getStatusFromPosition(position: Int): Int = with(context) {
-        when (position) {
-            READING_POSITION -> READING
-            COMPLETED_POSITION -> COMPLETED
-            ON_HOLD_POSITION -> ON_HOLD
-            DROPPED_POSITION -> DROPPED
-            PLAN_TO_READ_POSITION -> PLAN_TO_READ
-            else -> READING
-        }
+    override fun getStatusList(): List<Int> {
+        return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLAN_TO_READ)
     }
 
     /**

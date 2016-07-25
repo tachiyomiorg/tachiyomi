@@ -27,6 +27,10 @@ abstract class MangaSyncService(private val context: Context, val id: Int) {
         get() = !getUsername().isEmpty() &&
                 !getPassword().isEmpty()
 
+    val statusMap by lazy {
+        getStatusList().associate { it to getStatus(it) }
+    }
+
     abstract fun add(manga: MangaSync): Observable<MangaSync>
 
     abstract fun update(manga: MangaSync): Observable<MangaSync>
@@ -39,19 +43,7 @@ abstract class MangaSyncService(private val context: Context, val id: Int) {
 
     abstract fun search(query: String): Observable<List<MangaSync>>
 
-
-    /**
-     * Returns the spinner position of the status
-     * @return spinner position
-     */
-    abstract fun getPositionFromStatus(status: Int): Int
-
-    /**
-     * Returns the status from spinner position
-     * @param position position in spinner
-     * @return status from position
-     */
-    abstract fun getStatusFromPosition(position: Int): Int
+    abstract fun getStatusList(): List<Int>
 
     /**
      * Returns the average score of service
@@ -66,6 +58,16 @@ abstract class MangaSyncService(private val context: Context, val id: Int) {
      */
     open fun getUserScore(manga: MangaSync): Float {
         return manga.score
+    }
+
+    /**
+     * Returns the code from the string
+     * @param name name of status
+     * @return status id from string
+     */
+    fun getStatus(name: String): Int {
+        statusMap.forEach { if (it.value == name) return it.key }
+        throw Exception("Unknown status")
     }
 
     /**
