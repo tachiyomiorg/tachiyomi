@@ -27,6 +27,7 @@
                 android:id="@+id/library_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingTop="@dimen/material_component_lists_padding_above_list"
                 tools:listitem="@layout/item_library_list"/>
 
         </ViewSwitcher>

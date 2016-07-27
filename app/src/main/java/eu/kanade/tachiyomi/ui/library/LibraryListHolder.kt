@@ -30,24 +30,28 @@ class LibraryListHolder(private val view: View,
      */
     override fun onSetValues(manga: Manga) {
         // Update the title of the manga.
-        view.title.text = manga.title
+        itemView.title.text = manga.title
 
         // Update the unread count and its visibility.
-        with(view.unread_text) {
+        with(itemView.unread_text) {
             visibility = if (manga.unread > 0) View.VISIBLE else View.GONE
             text = manga.unread.toString()
         }
 
-
+        // Create thumbnail onclick to simulate long click
+        itemView.thumbnail.setOnClickListener {
+            // Simulate long click on this view to enter selection mode
+            onLongClick(itemView)
+        }
 
         // Update the cover.
-        Glide.clear(view.thumbnail)
-        Glide.with(view.context)
+        Glide.clear(itemView.thumbnail)
+        Glide.with(itemView.context)
                 .load(manga)
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
                 .centerCrop()
                 .dontAnimate()
-                .into(view.thumbnail)
+                .into(itemView.thumbnail)
     }
 
 }

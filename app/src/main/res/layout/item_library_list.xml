@@ -2,34 +2,41 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="?android:listPreferredItemHeightSmall"
+    android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
     android:background="?attr/selectable_list_drawable">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/thumbnail"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:src="@drawable/icon"
-        android:layout_gravity="center_vertical|left"
-        android:paddingLeft="6dp"/>
+        android:layout_width="@dimen/material_component_text_fields_icon_height"
+        android:layout_height="@dimen/material_component_text_fields_icon_height"
+        android:layout_gravity="center_vertical"
+        android:paddingEnd="0dp"
+        android:paddingLeft="@dimen/material_component_lists_icon_left_padding"
+        android:paddingRight="0dp"
+        android:paddingStart="@dimen/material_component_lists_icon_left_padding"
+        android:src="@drawable/icon"/>
 
     <TextView
-            android:id="@+id/title"
-            style="@style/TextAppearance.Regular.Body1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="38dp"
-            android:text="Sample name"/>
+        android:id="@+id/title"
+        style="@style/TextAppearance.Regular.SubHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingEnd="0dp"
+        android:paddingLeft="@dimen/material_component_lists_text_left_padding"
+        android:paddingRight="0dp"
+        android:paddingStart="@dimen/material_component_lists_text_left_padding"/>
 
     <TextView
-            android:id="@+id/unread_text"
-            style="@style/TextAppearance.Regular.Caption"
-            android:textColor="@color/material_grey_500"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|right"
-            android:paddingRight="9dp"
-            android:visibility="gone"/>
+        android:id="@+id/unread_text"
+        style="@style/TextAppearance.Regular.Caption.Hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|end"
+        android:paddingEnd="@dimen/material_component_lists_right_padding"
+        android:paddingLeft="0dp"
+        android:paddingRight="@dimen/material_component_lists_right_padding"
+        android:paddingStart="0dp"
+        android:visibility="gone"/>
 
 </FrameLayout>

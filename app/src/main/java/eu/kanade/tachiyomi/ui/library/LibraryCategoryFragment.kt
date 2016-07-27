@@ -18,8 +18,6 @@ import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.fragment.BaseFragment
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.util.toast
-import kotlinx.android.synthetic.main.fragment_catalogue.*
-import kotlinx.android.synthetic.main.fragment_library.*
 import kotlinx.android.synthetic.main.fragment_library_category.*
 import rx.Subscription
 import uy.kohesive.injekt.injectLazy
@@ -69,7 +67,7 @@ class LibraryCategoryFragment : BaseFragment(), FlexibleViewHolder.OnListItemCli
     /**
      * display mode
      */
-    private var displayAsList: Boolean = false;
+    private var displayAsList: Boolean = false
 
     companion object {
         /**
@@ -109,6 +107,8 @@ class LibraryCategoryFragment : BaseFragment(), FlexibleViewHolder.OnListItemCli
         library_list.adapter = adapter
         library_list.layoutManager = LinearLayoutManager(activity)
 
+
+
         if (libraryFragment.actionMode != null) {
             setSelectionMode(FlexibleAdapter.MODE_MULTI)
         }
@@ -119,7 +119,7 @@ class LibraryCategoryFragment : BaseFragment(), FlexibleViewHolder.OnListItemCli
                 // Set again the adapter to recalculate the covers height
                 .subscribe { recycler.adapter = adapter }
 
-        searchSubscription = libraryPresenter.searchSubject.subscribe { text ->
+        searchSubscription = libraryPresenter.searchSubject?.subscribe { text ->
             adapter.searchText = text
             adapter.updateDataSet()
         }
@@ -179,7 +179,7 @@ class LibraryCategoryFragment : BaseFragment(), FlexibleViewHolder.OnListItemCli
 
 
         libraryMangaSubscription = libraryPresenter.libraryMangaSubject
-                .subscribe { onNextLibraryManga(it) }
+                ?.subscribe { onNextLibraryManga(it) }
 
     }
 
@@ -247,7 +247,7 @@ class LibraryCategoryFragment : BaseFragment(), FlexibleViewHolder.OnListItemCli
      *
      * @param manga the manga to open.
      */
-    protected fun openManga(manga: Manga) {
+    private fun openManga(manga: Manga) {
         // Notify the presenter a manga is being opened.
         libraryPresenter.onOpenManga()
 
