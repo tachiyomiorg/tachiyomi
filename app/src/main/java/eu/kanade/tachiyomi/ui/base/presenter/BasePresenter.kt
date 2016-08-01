@@ -1,8 +1,10 @@
 package eu.kanade.tachiyomi.ui.base.presenter
 
 import android.content.Context
+import nucleus.presenter.RxPresenter
 import nucleus.view.ViewWithPresenter
 import rx.Observable
+import rx.Subscription
 
 open class BasePresenter<V : ViewWithPresenter<*>> : RxPresenter<V>() {
 
@@ -38,4 +40,13 @@ open class BasePresenter<V : ViewWithPresenter<*>> : RxPresenter<V>() {
     fun <T> Observable<T>.subscribeReplay(onNext: (V, T) -> Unit, onError: ((V, Throwable) -> Unit)? = null)
             = compose(deliverReplay<T>()).subscribe(split(onNext, onError)).apply { add(this) }
 
+    /**
+      * Checks if a subscription is unsubscribed.
+      *
+      * @param subscription the subscription to check.
+      * @return true if the subscription is null or unsubscribed, false otherwise.
+      */
+    fun isUnsubscribed(subscription: Subscription?): Boolean {
+        return subscription == null || subscription.isUnsubscribed
+    }
 }
