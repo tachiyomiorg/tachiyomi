@@ -48,4 +48,7 @@ interface Source {
      */
     fun fetchImage(page: Page): Observable<Page>
 
+    data class Filter(val id: Int, val name: String)
+
+    fun listFilters(): Observable<List<Filter>>
 }

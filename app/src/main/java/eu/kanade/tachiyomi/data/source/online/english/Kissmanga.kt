@@ -7,6 +7,7 @@ import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.source.EN
 import eu.kanade.tachiyomi.data.source.Language
+import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
@@ -42,7 +43,7 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaNextPageSelector() = "li > a:contains(› Next)"
 
-    override fun searchMangaRequest(page: MangasPage, query: String): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Source.Filter>): Request {
         if (page.page == 1) {
             page.url = searchMangaInitialUrl(query)
         }
@@ -51,10 +52,22 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
             add("authorArtist", "")
             add("mangaName", query)
             add("status", "")
-            add("genres", "")
-        }.build()
+        }
 
-        return POST(page.url, headers, form)
+        val filterIndexes = filters.map { it.id }
+        val maxFilterIndex = filterIndexes.max()
+
+        if (maxFilterIndex !== null) {
+            for (i in 0..maxFilterIndex) {
+                form.add("genres", if (filterIndexes.contains(i)) {
+                    "1"
+                } else {
+                    "0"
+                })
+            }
+        }
+
+        return POST(page.url, headers, form.build())
     }
 
     override fun searchMangaInitialUrl(query: String) = "$baseUrl/AdvanceSearch"
@@ -73,7 +86,7 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
         manga.author = infoElement.select("p:has(span:contains(Author:)) > a").first()?.text()
         manga.genre = infoElement.select("p:has(span:contains(Genres:)) > *:gt(0)").text()
         manga.description = infoElement.select("p:has(span:contains(Summary:)) ~ p").text()
-        manga.status = infoElement.select("p:has(span:contains(Status:))").first()?.text().orEmpty().let { parseStatus(it)}
+        manga.status = infoElement.select("p:has(span:contains(Status:))").first()?.text().orEmpty().let { parseStatus(it) }
         manga.thumbnail_url = document.select(".rightBox:eq(0) img").first()?.attr("src")
     }
 
@@ -109,10 +122,18 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
     }
 
     // Not used
-    override fun pageListParse(document: Document, pages: MutableList<Page>) {}
+    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+    }
 
     override fun imageUrlRequest(page: Page) = GET(page.url)
 
     override fun imageUrlParse(document: Document) = ""
 
+    override fun listFilterInitialUrl() = "$baseUrl/AdvanceSearch"
+
+    override fun listFiltersParse(document: Document): List<Source.Filter> = document
+            .select("#formAdvanceSearch select[name=\"genres\"]")
+            .mapIndexed { i, element ->
+                Source.Filter(i, element.nextElementSibling().text())
+            }
 }

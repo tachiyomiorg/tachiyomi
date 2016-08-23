@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.AdapterView
@@ -16,6 +17,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.f2prateek.rx.preferences.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
@@ -28,10 +30,13 @@ import eu.kanade.tachiyomi.widget.EndlessScrollListener
 import kotlinx.android.synthetic.main.fragment_catalogue.*
 import kotlinx.android.synthetic.main.toolbar.*
 import nucleus.factory.RequiresPresenter
+import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
 import timber.log.Timber
+import java.util.*
 import java.util.concurrent.TimeUnit.MILLISECONDS
 
 /**
@@ -101,6 +106,10 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
      * Search item.
      */
     private var searchItem: MenuItem? = null
+
+    private var allFilters: List<Source.Filter> = ArrayList<Source.Filter>()
+
+    private var selectedFilters: List<Source.Filter> = ArrayList<Source.Filter>()
 
     /**
      * Property to get the toolbar from the containing activity.
@@ -223,6 +232,14 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
             })
         }
 
+        if (allFilters.size == 0) {
+            menu.findItem(R.id.action_set_filter).isEnabled = false
+            menu.findItem(R.id.action_set_filter).icon.alpha = 128
+        } else {
+            menu.findItem(R.id.action_set_filter).isEnabled = true
+            menu.findItem(R.id.action_set_filter).icon.alpha = 255
+        }
+
         // Show next display mode
         displayMode = menu.findItem(R.id.action_display_mode).apply {
             val icon = if (presenter.isListMode)
@@ -237,9 +254,29 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_display_mode -> swapDisplayMode()
+            R.id.action_set_filter -> setSourceFilter()
             else -> return super.onOptionsItemSelected(item)
         }
         return true
+    }
+
+    /**
+     * Set the filter for the source
+     */
+    private fun setSourceFilter() {
+        val oldSelectedFilters = selectedFilters.map { filter -> allFilters.indexOf(filter) }.toTypedArray()
+
+        MaterialDialog.Builder(activity)
+                .title(R.string.action_set_filter)
+                .items(allFilters.map { it.name })
+                .itemsCallbackMultiChoice(oldSelectedFilters) { dialog, positions, text ->
+                    selectedFilters = positions.map { allFilters[it] }
+                    presenter.setSourceFilter(selectedFilters)
+                    true
+                }
+                .positiveText(android.R.string.ok)
+                .negativeText(android.R.string.cancel)
+                .show()
     }
 
     override fun onResume() {
@@ -420,6 +457,11 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
         val intent = MangaActivity.newIntent(activity, item, true)
         startActivity(intent)
         return false
+    }
+
+    fun setAvailableFilters(filters: List<Source.Filter>) {
+        allFilters = filters
+        activity.invalidateOptionsMenu()
     }
 
     /**

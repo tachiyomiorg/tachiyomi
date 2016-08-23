@@ -6,6 +6,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.source.EN
 import eu.kanade.tachiyomi.data.source.Language
+import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
@@ -42,7 +43,7 @@ class Readmangatoday(context: Context, override val id: Int) : ParsedOnlineSourc
             "$baseUrl/search"
 
 
-    override fun searchMangaRequest(page: MangasPage, query: String): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Source.Filter>): Request {
         if (page.page == 1) {
             page.url = searchMangaInitialUrl(query)
         }

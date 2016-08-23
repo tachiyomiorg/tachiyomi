@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.catalogue
 
 import android.os.Bundle
+import android.util.Log
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -20,6 +21,7 @@ import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
+import java.util.*
 
 /**
  * Presenter of [CatalogueFragment].
@@ -84,6 +86,8 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     var isListMode: Boolean = false
         private set
 
+    private var selectedFilters: List<Source.Filter> = ArrayList<Source.Filter>()
+
     companion object {
         /**
          * Id of the restartable that delivers a list of manga.
@@ -104,12 +108,15 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
          * Key to save and restore [query] from a [Bundle].
          */
         const val QUERY_KEY = "query_key"
+
+        const val GET_SOURCE_FILTERS = 4;
     }
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
         source = getLastUsedSource()
+        loadSourceFilters()
 
         if (savedState != null) {
             query = savedState.getString(QUERY_KEY, "")
@@ -168,7 +175,22 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     fun setActiveSource(source: OnlineSource) {
         prefs.lastUsedCatalogueSource().set(source.id)
         this.source = source
+        loadSourceFilters()
         restartPager()
+    }
+
+    private fun loadSourceFilters() {
+        view().subscribe {
+            it.setAvailableFilters(ArrayList<Source.Filter>())
+        }
+        Observable.just(source)
+                .observeOn(Schedulers.io())
+                .flatMap { source -> source.listFilters() }
+                .subscribe { filters ->
+                    view().subscribe {
+                        it.setAvailableFilters(filters)
+                    }
+                }
     }
 
     /**
@@ -223,10 +245,10 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
             nextMangasPage.url = lastMangasPage!!.nextPageUrl!!
         }
 
-        val observable = if (query.isEmpty())
+        val observable = if (query.isEmpty() && selectedFilters.size == 0)
             source.fetchPopularManga(nextMangasPage)
         else
-            source.fetchSearchManga(nextMangasPage, query)
+            source.fetchSearchManga(nextMangasPage, query, selectedFilters)
 
         return observable.subscribeOn(Schedulers.io())
                 .doOnNext { lastMangasPage = it }
@@ -352,6 +374,11 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      */
     fun swapDisplayMode() {
         prefs.catalogueAsList().set(!isListMode)
+    }
+
+    fun setSourceFilter(selectedFilters: List<Source.Filter>) {
+        this.selectedFilters = selectedFilters;
+        restartPager(this.query)
     }
 
 }

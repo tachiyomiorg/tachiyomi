@@ -51,6 +51,7 @@
     <string name="action_resume">Resume</string>
     <string name="action_open_in_browser">Open in browser</string>
     <string name="action_display_mode">Change display mode</string>
+    <string name="action_set_filter">Set filter</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_sort">Sort</string>
     <string name="action_install">Install</string>

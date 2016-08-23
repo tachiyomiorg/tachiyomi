@@ -10,6 +10,12 @@
         app:actionViewClass="android.support.v7.widget.SearchView"/>
 
     <item
+        android:id="@+id/action_set_filter"
+        android:title="@string/action_set_filter"
+        android:icon="@drawable/ic_filter_list_white_24dp"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/action_display_mode"
         android:title="@string/action_display_mode"
         app:showAsAction="ifRoom"/>

@@ -126,8 +126,8 @@ abstract class OnlineSource(context: Context) : Source {
      *             the current page and the next page url.
      * @param query the search query.
      */
-    open fun fetchSearchManga(page: MangasPage, query: String): Observable<MangasPage> = client
-            .newCall(searchMangaRequest(page, query))
+    open fun fetchSearchManga(page: MangasPage, query: String, filters: List<Source.Filter>): Observable<MangasPage> = client
+            .newCall(searchMangaRequest(page, query, filters))
             .asObservable()
             .map { response ->
                 searchMangaParse(response, page, query)
@@ -141,7 +141,7 @@ abstract class OnlineSource(context: Context) : Source {
      * @param page the page object.
      * @param query the search query.
      */
-    open protected fun searchMangaRequest(page: MangasPage, query: String): Request {
+    open protected fun searchMangaRequest(page: MangasPage, query: String, filters: List<Source.Filter>): Request {
         if (page.page == 1) {
             page.url = searchMangaInitialUrl(query)
         }
@@ -427,5 +427,7 @@ abstract class OnlineSource(context: Context) : Source {
     open fun parseChapterNumber(chapter: Chapter) {
 
     }
+
+    open protected fun listFilterInitialUrl(): String? = null
 
 }

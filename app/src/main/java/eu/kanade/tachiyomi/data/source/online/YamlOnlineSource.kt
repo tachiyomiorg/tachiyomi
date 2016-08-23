@@ -5,6 +5,7 @@ import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
+import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.getLanguages
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
@@ -14,6 +15,7 @@ import okhttp3.Request
 import okhttp3.Response
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
+import rx.Observable
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -68,7 +70,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         }
     }
 
-    override fun searchMangaRequest(page: MangasPage, query: String): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Source.Filter>): Request {
         if (page.page == 1) {
             page.url = searchMangaInitialUrl(query)
         }
@@ -185,4 +187,5 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         }
     }
 
+    override fun listFilters(): Observable<List<Source.Filter>> = Observable.just(ArrayList<Source.Filter>())
 }
