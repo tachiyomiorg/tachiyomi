@@ -1,34 +1,46 @@
-package eu.kanade.tachiyomi.data.source.online.english
+package eu.kanade.tachiyomi.data.source.online.multi
 
 import android.content.Context
+import android.util.Log
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.EN
+import eu.kanade.tachiyomi.data.source.ES
 import eu.kanade.tachiyomi.data.source.Language
 import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
+import eu.kanade.tachiyomi.data.source.online.MultiSource
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(context) {
+class Mangahere(context: Context, override val id: Int) : MultiSource(context) {
 
     override val name = "Mangahere"
 
-    override val baseUrl = "http://www.mangahere.co"
+    override val lang: Language = lang(listOf(EN, ES))
 
-    override val lang: Language get() = EN
+    override fun baseURL(language: Language, url: String) : String {
+        if (lang == EN) {
+            return "http://www.$url"
+        }
+        return "http://${lang.code}.$url"
+    }
+
+    override val baseUrl = baseURL(lang, "mangahere.co")
 
     override fun popularMangaInitialUrl() = "$baseUrl/directory/"
 
     override fun popularMangaSelector() = "div.directory_list > ul > li"
 
     override fun popularMangaFromElement(element: Element, manga: Manga) {
+        //Log.w("Mangahere.popular", element.html())
         element.select("div.title > a").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
+            //Log.w("Mangahere.popular.url", manga.url)
             manga.title = it.text()
+            //manga.thumbnail_url = it.select("img").attr("src")
         }
     }
 
@@ -49,27 +61,33 @@ class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(con
     override fun searchMangaNextPageSelector() = "div.next-page > a.next"
 
     override fun mangaDetailsParse(document: Document, manga: Manga) {
+        Log.w("Mangahere.details.doc", document.location())
         val detailElement = document.select(".manga_detail_top").first()
+        Log.w("Mangahere.details.el", detailElement.html())
         val infoElement = detailElement.select(".detail_topText").first()
+        //Log.w("Mangahere.details.info", infoElement.html())
 
-        manga.author = infoElement.select("a[href^=http://www.mangahere.co/author/]").first()?.text()
-        manga.artist = infoElement.select("a[href^=http://www.mangahere.co/artist/]").first()?.text()
-        manga.genre = infoElement.select("li:eq(3)").first()?.text()?.substringAfter("Genre(s):")
+        manga.thumbnail_url = detailElement.select("img").first()?.attr("src")
+        manga.author = infoElement.select("li:eq(4) > a").text()
+        if (lang == EN) manga.artist = infoElement.select("li:eq(5) > a").text()
+        manga.genre = infoElement.select("li:eq(3) > a").text().substringAfter(':')
         manga.description = infoElement.select("#show").first()?.text()?.substringBeforeLast("Show less")
-        manga.status = infoElement.select("li:eq(6)").first()?.text().orEmpty().let { parseStatus(it) }
-        manga.thumbnail_url = detailElement.select("img.img").first()?.attr("src")
+        if (lang == ES) manga.status = infoElement.select("li:eq(5)").first()?.text().orEmpty().let { parseStatus(it) }
+        else manga.status = infoElement.select("li:eq(6)").first()?.text().orEmpty().let { parseStatus(it) }
     }
 
     private fun parseStatus(status: String) = when {
         status.contains("Ongoing") -> Manga.ONGOING
+        status.contains("En desarrollo") -> Manga.ONGOING
         status.contains("Completed") -> Manga.COMPLETED
+        status.contains("Terminado") -> Manga.COMPLETED
         else -> Manga.UNKNOWN
     }
 
-    override fun chapterListSelector() = ".detail_list > ul:not([class]) > li"
+    override fun chapterListSelector() = "div.detail_list > ul > li"
 
     override fun chapterFromElement(element: Element, chapter: Chapter) {
-        val urlElement = element.select("a").first()
+        val urlElement = element.select("span.left > a")
 
         chapter.setUrlWithoutDomain(urlElement.attr("href"))
         chapter.name = urlElement.text()
@@ -94,7 +112,7 @@ class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(con
             }.timeInMillis
         } else {
             try {
-                SimpleDateFormat("MMM d, yyyy", Locale.ENGLISH).parse(date).time
+                SimpleDateFormat("MMM dd, yyyy").parse(date).time
             } catch (e: ParseException) {
                 0L
             }
@@ -108,6 +126,6 @@ class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(con
         pages.getOrNull(0)?.imageUrl = imageUrlParse(document)
     }
 
-    override fun imageUrlParse(document: Document) = document.getElementById("image").attr("src")
+    override fun imageUrlParse(document: Document): String = document.getElementById("image").attr("src")
 
 }
