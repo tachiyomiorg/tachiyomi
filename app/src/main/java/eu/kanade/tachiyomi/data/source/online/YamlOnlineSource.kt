@@ -11,6 +11,7 @@ import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.util.asJsoup
 import eu.kanade.tachiyomi.util.attrOrText
+import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import org.jsoup.Jsoup
@@ -34,7 +35,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         getLanguages().find { code == it.code }!!
     }
 
-    override val client = when(map.client) {
+    override val client: OkHttpClient = when(map.client) {
         "cloudflare" -> network.cloudflareClient
         else -> network.client
     }
