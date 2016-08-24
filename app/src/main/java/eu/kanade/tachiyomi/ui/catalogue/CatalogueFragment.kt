@@ -6,7 +6,6 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.*
 import android.view.animation.AnimationUtils
 import android.widget.AdapterView
@@ -17,7 +16,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.f2prateek.rx.preferences.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.source.Source
+import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
@@ -30,10 +29,8 @@ import eu.kanade.tachiyomi.widget.EndlessScrollListener
 import kotlinx.android.synthetic.main.fragment_catalogue.*
 import kotlinx.android.synthetic.main.toolbar.*
 import nucleus.factory.RequiresPresenter
-import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
 import timber.log.Timber
 import java.util.*
@@ -107,9 +104,9 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
      */
     private var searchItem: MenuItem? = null
 
-    private var allFilters: List<Source.Filter> = ArrayList<Source.Filter>()
+    private var allFilters: List<OnlineSource.Filter> = ArrayList()
 
-    private var selectedFilters: List<Source.Filter> = ArrayList<Source.Filter>()
+    private var selectedFilters: List<OnlineSource.Filter> = ArrayList()
 
     /**
      * Property to get the toolbar from the containing activity.
@@ -459,7 +456,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
         return false
     }
 
-    fun setAvailableFilters(filters: List<Source.Filter>) {
+    fun setAvailableFilters(filters: List<OnlineSource.Filter>) {
         allFilters = filters
         activity.invalidateOptionsMenu()
     }

@@ -88,12 +88,12 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
 
     override fun searchMangaInitialUrl(query: String) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=1&genre_cond=and&genres="
 
-    private fun getFilterParams(filters: List<Source.Filter>): String = filters
+    private fun getFilterParams(filters: List<Filter>): String = filters
             .map {
                 ";i" + it.id.toString()
             }.joinToString()
 
-    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Source.Filter>): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
         if (page.page == 1) {
             page.url = searchMangaInitialUrl(query) + getFilterParams(filters)
         }
@@ -101,7 +101,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
         return GET(page.url, headers)
     }
 
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Source.Filter>) {
+    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter>) {
         val document = response.asJsoup()
         for (element in document.select(searchMangaSelector())) {
             Manga.create(id).apply {
@@ -279,15 +279,48 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
         }
     }
 
-    override fun listFilterInitialUrl() = "$baseUrl/search"
-
-    override fun listFiltersParse(document: Document): List<Source.Filter> = document
-            .select("#advanced_options div.genre_buttons")
-            .map {
-                val id = it.attr("onclick").substring(14, it.attr("onclick").length - 2)
-                Source.Filter(id.toInt(), it.text().trim())
-            }
-            .filter {
-                it.name != "[no chapters]"
-            }
+    // [...document.querySelectorAll("#advanced_options div.genre_buttons")].map((el,i) => {
+    //     const onClick=el.getAttribute('onclick');const id=onClick.substr(14,onClick.length-16);return `Filter(${id}, "${el.textContent.trim()}")`
+    // }).join(',\n')
+    // on https://bato.to/search
+    override fun getFilters(): List<Filter> = arrayListOf(
+            Filter(40, "4-Koma"),
+            Filter(1, "Action"),
+            Filter(2, "Adventure"),
+            Filter(39, "Award Winning"),
+            Filter(3, "Comedy"),
+            Filter(41, "Cooking"),
+            Filter(9, "Doujinshi"),
+            Filter(10, "Drama"),
+            Filter(12, "Ecchi"),
+            Filter(13, "Fantasy"),
+            Filter(15, "Gender Bender"),
+            Filter(17, "Harem"),
+            Filter(20, "Historical"),
+            Filter(22, "Horror"),
+            Filter(34, "Josei"),
+            Filter(27, "Martial Arts"),
+            Filter(30, "Mecha"),
+            Filter(42, "Medical"),
+            Filter(37, "Music"),
+            Filter(4, "Mystery"),
+            Filter(38, "Oneshot"),
+            Filter(5, "Psychological"),
+            Filter(6, "Romance"),
+            Filter(7, "School Life"),
+            Filter(8, "Sci-fi"),
+            Filter(32, "Seinen"),
+            Filter(35, "Shoujo"),
+            Filter(16, "Shoujo Ai"),
+            Filter(33, "Shounen"),
+            Filter(19, "Shounen Ai"),
+            Filter(21, "Slice of Life"),
+            Filter(23, "Smut"),
+            Filter(25, "Sports"),
+            Filter(26, "Supernatural"),
+            Filter(28, "Tragedy"),
+            Filter(36, "Webtoon"),
+            Filter(29, "Yaoi"),
+            Filter(31, "Yuri")
+    )
 }

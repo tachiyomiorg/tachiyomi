@@ -20,6 +20,7 @@ import okhttp3.Request
 import okhttp3.Response
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
+import java.util.*
 
 /**
  * A simple implementation for sources from a website.
@@ -126,7 +127,7 @@ abstract class OnlineSource(context: Context) : Source {
      *             the current page and the next page url.
      * @param query the search query.
      */
-    open fun fetchSearchManga(page: MangasPage, query: String, filters: List<Source.Filter>): Observable<MangasPage> = client
+    open fun fetchSearchManga(page: MangasPage, query: String, filters: List<Filter>): Observable<MangasPage> = client
             .newCall(searchMangaRequest(page, query, filters))
             .asObservable()
             .map { response ->
@@ -141,7 +142,7 @@ abstract class OnlineSource(context: Context) : Source {
      * @param page the page object.
      * @param query the search query.
      */
-    open protected fun searchMangaRequest(page: MangasPage, query: String, filters: List<Source.Filter>): Request {
+    open protected fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
         if (page.page == 1) {
             page.url = searchMangaInitialUrl(query)
         }
@@ -163,7 +164,7 @@ abstract class OnlineSource(context: Context) : Source {
      * @param page the page object to be filled.
      * @param query the search query.
      */
-    abstract protected fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Source.Filter>)
+    abstract protected fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter>)
 
     /**
      * Returns an observable with the updated details for a manga. Normally it's not needed to
@@ -428,6 +429,7 @@ abstract class OnlineSource(context: Context) : Source {
 
     }
 
-    open protected fun listFilterInitialUrl(): String? = null
+    data class Filter(val id: Int, val name: String)
 
+    open fun getFilters(): List<Filter> = ArrayList()
 }

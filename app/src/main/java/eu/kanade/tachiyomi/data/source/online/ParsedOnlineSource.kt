@@ -3,17 +3,12 @@ package eu.kanade.tachiyomi.data.source.online
 import android.content.Context
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.network.GET
-import eu.kanade.tachiyomi.data.network.asObservable
-import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.Response
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
-import rx.Observable
-import java.util.*
 
 /**
  * A simple implementation for sources from a website using Jsoup, an HTML parser.
@@ -69,7 +64,7 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      * @param page the page object to be filled.
      * @param query the search query.
      */
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Source.Filter>) {
+    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter>) {
         val document = response.asJsoup()
         for (element in document.select(searchMangaSelector())) {
             Manga.create(id).apply {
@@ -184,20 +179,4 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      * @param document the parsed document.
      */
     abstract protected fun imageUrlParse(document: Document): String
-
-    open protected fun listFiltersParse(document: Document): List<Source.Filter> = ArrayList<Source.Filter>()
-
-    override fun listFilters(): Observable<List<Source.Filter>> {
-        val url = listFilterInitialUrl()
-        return if (url != null) {
-            client
-                    .newCall(GET(url))
-                    .asObservable()
-                    .map { response ->
-                        listFiltersParse(response.asJsoup())
-                    }
-        } else {
-            Observable.just(ArrayList<Source.Filter>())
-        }
-    }
 }

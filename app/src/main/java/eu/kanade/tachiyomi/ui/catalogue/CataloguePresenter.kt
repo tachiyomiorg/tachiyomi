@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.ui.catalogue
 
 import android.os.Bundle
-import android.util.Log
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -86,7 +85,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     var isListMode: Boolean = false
         private set
 
-    private var selectedFilters: List<Source.Filter> = ArrayList<Source.Filter>()
+    private var selectedFilters: List<OnlineSource.Filter> = ArrayList()
 
     companion object {
         /**
@@ -108,27 +107,29 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
          * Key to save and restore [query] from a [Bundle].
          */
         const val QUERY_KEY = "query_key"
-
-        const val GET_SOURCE_FILTERS = 4;
     }
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
         source = getLastUsedSource()
-        loadSourceFilters()
+        view().subscribe {
+            it?.setAvailableFilters(source.getFilters())
+        }
 
         if (savedState != null) {
             query = savedState.getString(QUERY_KEY, "")
         }
 
         startableLatestCache(GET_MANGA_DETAILS,
-                { mangaDetailSubject.observeOn(Schedulers.io())
-                        .flatMap { Observable.from(it) }
-                        .filter { !it.initialized }
-                        .concatMap { getMangaDetailsObservable(it) }
-                        .onBackpressureBuffer()
-                        .observeOn(AndroidSchedulers.mainThread()) },
+                {
+                    mangaDetailSubject.observeOn(Schedulers.io())
+                            .flatMap { Observable.from(it) }
+                            .filter { !it.initialized }
+                            .concatMap { getMangaDetailsObservable(it) }
+                            .onBackpressureBuffer()
+                            .observeOn(AndroidSchedulers.mainThread())
+                },
                 { view, manga -> view.onMangaInitialized(manga) },
                 { view, error -> Timber.e(error.message) })
 
@@ -175,22 +176,10 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     fun setActiveSource(source: OnlineSource) {
         prefs.lastUsedCatalogueSource().set(source.id)
         this.source = source
-        loadSourceFilters()
-        restartPager()
-    }
-
-    private fun loadSourceFilters() {
         view().subscribe {
-            it.setAvailableFilters(ArrayList<Source.Filter>())
+            it?.setAvailableFilters(source.getFilters())
         }
-        Observable.just(source)
-                .observeOn(Schedulers.io())
-                .flatMap { source -> source.listFilters() }
-                .subscribe { filters ->
-                    view().subscribe {
-                        it.setAvailableFilters(filters)
-                    }
-                }
+        restartPager()
     }
 
     /**
@@ -376,8 +365,8 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         prefs.catalogueAsList().set(!isListMode)
     }
 
-    fun setSourceFilter(selectedFilters: List<Source.Filter>) {
-        this.selectedFilters = selectedFilters;
+    fun setSourceFilter(selectedFilters: List<OnlineSource.Filter>) {
+        this.selectedFilters = selectedFilters
         restartPager(this.query)
     }
 

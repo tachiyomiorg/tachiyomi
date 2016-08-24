@@ -70,7 +70,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         }
     }
 
-    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Source.Filter>): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
         if (page.page == 1) {
             page.url = searchMangaInitialUrl(query)
         }
@@ -82,7 +82,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
 
     override fun searchMangaInitialUrl(query: String) = map.search.url.replace("\$query", query)
 
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Source.Filter>) {
+    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter>) {
         val document = response.asJsoup()
         for (element in document.select(map.search.manga_css)) {
             Manga.create(id).apply {
@@ -186,6 +186,4 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
                 throw Exception("image_regex and image_css are null")
         }
     }
-
-    override fun listFilters(): Observable<List<Source.Filter>> = Observable.just(ArrayList<Source.Filter>())
 }

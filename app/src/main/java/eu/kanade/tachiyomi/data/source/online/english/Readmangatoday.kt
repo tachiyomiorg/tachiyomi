@@ -9,6 +9,7 @@ import eu.kanade.tachiyomi.data.source.Language
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -43,7 +44,7 @@ class Readmangatoday(context: Context, override val id: Int) : ParsedOnlineSourc
             "$baseUrl/search"
 
 
-    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Source.Filter>): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<OnlineSource.Filter>): Request {
         if (page.page == 1) {
             page.url = searchMangaInitialUrl(query)
         }
