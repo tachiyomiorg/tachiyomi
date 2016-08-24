@@ -130,7 +130,7 @@ abstract class OnlineSource(context: Context) : Source {
             .newCall(searchMangaRequest(page, query, filters))
             .asObservable()
             .map { response ->
-                searchMangaParse(response, page, query)
+                searchMangaParse(response, page, query, filters)
                 page
             }
 
@@ -163,7 +163,7 @@ abstract class OnlineSource(context: Context) : Source {
      * @param page the page object to be filled.
      * @param query the search query.
      */
-    abstract protected fun searchMangaParse(response: Response, page: MangasPage, query: String)
+    abstract protected fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Source.Filter>)
 
     /**
      * Returns an observable with the updated details for a manga. Normally it's not needed to

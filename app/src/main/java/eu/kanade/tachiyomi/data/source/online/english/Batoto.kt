@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.data.source.online.english
 import android.content.Context
 import android.net.Uri
 import android.text.Html
+import android.util.Log
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.GET
@@ -10,6 +11,7 @@ import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.network.asObservable
 import eu.kanade.tachiyomi.data.source.EN
 import eu.kanade.tachiyomi.data.source.Language
+import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.LoginSource
@@ -84,9 +86,22 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
 
     override fun popularMangaNextPageSelector() = "#show_more_row"
 
-    override fun searchMangaInitialUrl(query: String) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&p=1"
+    override fun searchMangaInitialUrl(query: String) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=1&genre_cond=and&genres="
 
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String) {
+    private fun getFilterParams(filters: List<Source.Filter>): String = filters
+            .map {
+                ";i" + it.id.toString()
+            }.joinToString()
+
+    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Source.Filter>): Request {
+        if (page.page == 1) {
+            page.url = searchMangaInitialUrl(query) + getFilterParams(filters)
+        }
+        Log.d("tachiyomi", page.url);
+        return GET(page.url, headers)
+    }
+
+    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Source.Filter>) {
         val document = response.asJsoup()
         for (element in document.select(searchMangaSelector())) {
             Manga.create(id).apply {
@@ -96,7 +111,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
         }
 
         page.nextPageUrl = document.select(searchMangaNextPageSelector()).first()?.let {
-            "$baseUrl/search_ajax?name=${Uri.encode(query)}&p=${page.page + 1}"
+            "$baseUrl/search_ajax?name=${Uri.encode(query)}&p=${page.page + 1}&order_cond=views&order=desc&genre_cond=and&genres=" + getFilterParams(filters)
         }
     }
 
@@ -211,7 +226,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
         val start = pageUrl.indexOf("#") + 1
         val end = pageUrl.indexOf("_", start)
         val id = pageUrl.substring(start, end)
-        return GET("$baseUrl/areader?id=$id&p=${pageUrl.substring(end+1)}", pageHeaders)
+        return GET("$baseUrl/areader?id=$id&p=${pageUrl.substring(end + 1)}", pageHeaders)
     }
 
     override fun imageUrlParse(document: Document): String {
@@ -219,10 +234,10 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
     }
 
     override fun login(username: String, password: String) =
-        client.newCall(GET("$baseUrl/forums/index.php?app=core&module=global&section=login", headers))
-                .asObservable()
-                .flatMap { doLogin(it, username, password) }
-                .map { isAuthenticationSuccessful(it) }
+            client.newCall(GET("$baseUrl/forums/index.php?app=core&module=global&section=login", headers))
+                    .asObservable()
+                    .flatMap { doLogin(it, username, password) }
+                    .map { isAuthenticationSuccessful(it) }
 
     private fun doLogin(response: Response, username: String, password: String): Observable<Response> {
         val doc = response.asJsoup()
@@ -242,7 +257,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
     }
 
     override fun isAuthenticationSuccessful(response: Response) =
-        response.priorResponse() != null && response.priorResponse().code() == 302
+            response.priorResponse() != null && response.priorResponse().code() == 302
 
     override fun isLogged(): Boolean {
         return network.cookies.get(URI(baseUrl)).any { it.name() == "pass_hash" }
@@ -264,4 +279,15 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
         }
     }
 
+    override fun listFilterInitialUrl() = "$baseUrl/search"
+
+    override fun listFiltersParse(document: Document): List<Source.Filter> = document
+            .select("#advanced_options div.genre_buttons")
+            .map {
+                val id = it.attr("onclick").substring(14, it.attr("onclick").length - 2)
+                Source.Filter(id.toInt(), it.text().trim())
+            }
+            .filter {
+                it.name != "[no chapters]"
+            }
 }

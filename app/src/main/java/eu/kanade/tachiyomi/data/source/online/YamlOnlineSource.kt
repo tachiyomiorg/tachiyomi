@@ -82,7 +82,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
 
     override fun searchMangaInitialUrl(query: String) = map.search.url.replace("\$query", query)
 
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String) {
+    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Source.Filter>) {
         val document = response.asJsoup()
         for (element in document.select(map.search.manga_css)) {
             Manga.create(id).apply {
