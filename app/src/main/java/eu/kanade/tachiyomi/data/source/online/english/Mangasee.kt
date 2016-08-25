@@ -47,7 +47,7 @@ class Mangasee(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override fun popularMangaNextPageSelector() = "ul.pagination > li > a:contains(Next)"
 
-    override fun searchMangaInitialUrl(query: String) =
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
             "$baseUrl/advanced-search/result.php?sortBy=alphabet&direction=ASC&textOnly=no&resPerPage=20&page=1&seriesName=$query"
 
     override fun searchMangaSelector() = "div.row > div > div > div > h1"

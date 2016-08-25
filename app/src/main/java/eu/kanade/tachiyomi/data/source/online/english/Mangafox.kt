@@ -36,8 +36,8 @@ class Mangafox(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override fun popularMangaNextPageSelector() = "a:has(span.next)"
 
-    override fun searchMangaInitialUrl(query: String) =
-            "$baseUrl/search.php?name_method=cw&advopts=1&order=za&sort=views&name=$query&page=1"
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
+            "$baseUrl/search.php?name_method=cw&advopts=1&order=za&sort=views&name=$query&page=1&${filters.map { it.id + "=1" }.joinToString("&")}"
 
     override fun searchMangaSelector() = "table#listing > tbody > tr:gt(0)"
 
@@ -118,4 +118,43 @@ class Mangafox(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override fun imageUrlParse(document: Document) = document.getElementById("image").attr("src")
 
+    // $('select.genres').map((i,el)=>`Filter("${$(el).attr('name')}", "${$(el).next().text().trim()}")`).get().join(',\n')
+    // on http://kissmanga.com/AdvanceSearch
+    override fun getFilters(): List<Filter> = arrayListOf(
+            Filter("genres[Action]", "Action"),
+            Filter("genres[Adult]", "Adult"),
+            Filter("genres[Adventure]", "Adventure"),
+            Filter("genres[Comedy]", "Comedy"),
+            Filter("genres[Doujinshi]", "Doujinshi"),
+            Filter("genres[Drama]", "Drama"),
+            Filter("genres[Ecchi]", "Ecchi"),
+            Filter("genres[Fantasy]", "Fantasy"),
+            Filter("genres[Gender Bender]", "Gender Bender"),
+            Filter("genres[Harem]", "Harem"),
+            Filter("genres[Historical]", "Historical"),
+            Filter("genres[Horror]", "Horror"),
+            Filter("genres[Josei]", "Josei"),
+            Filter("genres[Martial Arts]", "Martial Arts"),
+            Filter("genres[Mature]", "Mature"),
+            Filter("genres[Mecha]", "Mecha"),
+            Filter("genres[Mystery]", "Mystery"),
+            Filter("genres[One Shot]", "One Shot"),
+            Filter("genres[Psychological]", "Psychological"),
+            Filter("genres[Romance]", "Romance"),
+            Filter("genres[School Life]", "School Life"),
+            Filter("genres[Sci-fi]", "Sci-fi"),
+            Filter("genres[Seinen]", "Seinen"),
+            Filter("genres[Shoujo]", "Shoujo"),
+            Filter("genres[Shoujo Ai]", "Shoujo Ai"),
+            Filter("genres[Shounen]", "Shounen"),
+            Filter("genres[Shounen Ai]", "Shounen Ai"),
+            Filter("genres[Slice of Life]", "Slice of Life"),
+            Filter("genres[Smut]", "Smut"),
+            Filter("genres[Sports]", "Sports"),
+            Filter("genres[Supernatural]", "Supernatural"),
+            Filter("genres[Tragedy]", "Tragedy"),
+            Filter("genres[Webtoons]", "Webtoons"),
+            Filter("genres[Yaoi]", "Yaoi"),
+            Filter("genres[Yuri]", "Yuri")
+    )
 }

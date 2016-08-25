@@ -40,16 +40,16 @@ class Readmangatoday(context: Context, override val id: Int) : ParsedOnlineSourc
 
     override fun popularMangaNextPageSelector() = "div.hot-manga > ul.pagination > li > a:contains(»)"
 
-    override fun searchMangaInitialUrl(query: String) =
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
             "$baseUrl/search"
 
 
     override fun searchMangaRequest(page: MangasPage, query: String, filters: List<OnlineSource.Filter>): Request {
         if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query)
+            page.url = searchMangaInitialUrl(query, filters)
         }
 
-        var builder = okhttp3.FormBody.Builder()
+        val builder = okhttp3.FormBody.Builder()
         builder.add("query", query)
 
         return POST(page.url, headers, builder.build())

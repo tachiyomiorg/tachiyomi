@@ -86,7 +86,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
 
     override fun popularMangaNextPageSelector() = "#show_more_row"
 
-    override fun searchMangaInitialUrl(query: String) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=1&genre_cond=and&genres="
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=1&genre_cond=and&genres=${getFilterParams(filters)}"
 
     private fun getFilterParams(filters: List<Filter>): String = filters
             .map {
@@ -95,9 +95,8 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
 
     override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
         if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query) + getFilterParams(filters)
+            page.url = searchMangaInitialUrl(query, filters)
         }
-        Log.d("tachiyomi", page.url);
         return GET(page.url, headers)
     }
 

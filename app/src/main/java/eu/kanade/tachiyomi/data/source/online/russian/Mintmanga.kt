@@ -24,7 +24,7 @@ class Mintmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaInitialUrl() = "$baseUrl/list?sortType=rate"
 
-    override fun searchMangaInitialUrl(query: String) = "$baseUrl/search?q=$query"
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search?q=$query"
 
     override fun popularMangaSelector() = "div.desc"
 

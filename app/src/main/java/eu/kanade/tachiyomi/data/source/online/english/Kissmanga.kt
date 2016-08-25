@@ -45,7 +45,7 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
         if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query)
+            page.url = searchMangaInitialUrl(query, filters)
         }
 
         val form = FormBody.Builder().apply {
@@ -70,7 +70,7 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
         return POST(page.url, headers, form.build())
     }
 
-    override fun searchMangaInitialUrl(query: String) = "$baseUrl/AdvanceSearch"
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/AdvanceSearch"
 
     override fun searchMangaSelector() = popularMangaSelector()
 

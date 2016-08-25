@@ -144,7 +144,7 @@ abstract class OnlineSource(context: Context) : Source {
      */
     open protected fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
         if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query)
+            page.url = searchMangaInitialUrl(query, filters)
         }
         return GET(page.url, headers)
     }
@@ -154,7 +154,7 @@ abstract class OnlineSource(context: Context) : Source {
      *
      * @param query the search query.
      */
-    abstract protected fun searchMangaInitialUrl(query: String): String
+    abstract protected fun searchMangaInitialUrl(query: String, filters: List<Filter>): String
 
     /**
      * Parse the response from the site. It should add a list of manga and the absolute url to the

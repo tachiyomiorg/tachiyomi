@@ -36,7 +36,7 @@ class WieManga(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
         override fun popularMangaNextPageSelector() = null
 
-        override fun searchMangaInitialUrl(query: String) = "$baseUrl/search/?wd=$query"
+        override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search/?wd=$query"
 
         override fun searchMangaSelector() = ".searchresult td > div"
 

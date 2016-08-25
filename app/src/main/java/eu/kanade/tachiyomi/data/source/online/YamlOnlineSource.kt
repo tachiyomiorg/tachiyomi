@@ -72,7 +72,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
 
     override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
         if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query)
+            page.url = searchMangaInitialUrl(query, filters)
         }
         return when (map.search.method?.toLowerCase()) {
             "post" -> POST(page.url, headers, map.search.createForm())
@@ -80,7 +80,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         }
     }
 
-    override fun searchMangaInitialUrl(query: String) = map.search.url.replace("\$query", query)
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = map.search.url.replace("\$query", query)
 
     override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter>) {
         val document = response.asJsoup()

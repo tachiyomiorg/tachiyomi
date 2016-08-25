@@ -34,7 +34,7 @@ class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaNextPageSelector() = "div.next-page > a.next"
 
-    override fun searchMangaInitialUrl(query: String) =
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
             "$baseUrl/search.php?name=$query&page=1&sort=views&order=za"
 
     override fun searchMangaSelector() = "div.result_search > dl:has(dt)"
