@@ -176,6 +176,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     fun setActiveSource(source: OnlineSource) {
         prefs.lastUsedCatalogueSource().set(source.id)
         this.source = source
+        selectedFilters = ArrayList()
         view().subscribe {
             it?.setAvailableFilters(source.getFilters())
         }

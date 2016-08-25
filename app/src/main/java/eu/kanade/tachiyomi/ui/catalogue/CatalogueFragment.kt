@@ -457,6 +457,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
     }
 
     fun setAvailableFilters(filters: List<OnlineSource.Filter>) {
+        selectedFilters = ArrayList()
         allFilters = filters
         activity.invalidateOptionsMenu()
     }
