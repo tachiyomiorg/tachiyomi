@@ -429,7 +429,7 @@ abstract class OnlineSource(context: Context) : Source {
 
     }
 
-    data class Filter(val id: Int, val name: String)
+    data class Filter(val id: String, val name: String)
 
     open fun getFilters(): List<Filter> = ArrayList()
 }

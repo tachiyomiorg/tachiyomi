@@ -90,7 +90,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
 
     private fun getFilterParams(filters: List<Filter>): String = filters
             .map {
-                ";i" + it.id.toString()
+                ";i" + it.id
             }.joinToString()
 
     override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
@@ -280,47 +280,47 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
     }
 
     // [...document.querySelectorAll("#advanced_options div.genre_buttons")].map((el,i) => {
-    //     const onClick=el.getAttribute('onclick');const id=onClick.substr(14,onClick.length-16);return `Filter(${id}, "${el.textContent.trim()}")`
+    //     const onClick=el.getAttribute('onclick');const id=onClick.substr(14,onClick.length-16);return `Filter("${id}", "${el.textContent.trim()}")`
     // }).join(',\n')
     // on https://bato.to/search
     override fun getFilters(): List<Filter> = arrayListOf(
-            Filter(40, "4-Koma"),
-            Filter(1, "Action"),
-            Filter(2, "Adventure"),
-            Filter(39, "Award Winning"),
-            Filter(3, "Comedy"),
-            Filter(41, "Cooking"),
-            Filter(9, "Doujinshi"),
-            Filter(10, "Drama"),
-            Filter(12, "Ecchi"),
-            Filter(13, "Fantasy"),
-            Filter(15, "Gender Bender"),
-            Filter(17, "Harem"),
-            Filter(20, "Historical"),
-            Filter(22, "Horror"),
-            Filter(34, "Josei"),
-            Filter(27, "Martial Arts"),
-            Filter(30, "Mecha"),
-            Filter(42, "Medical"),
-            Filter(37, "Music"),
-            Filter(4, "Mystery"),
-            Filter(38, "Oneshot"),
-            Filter(5, "Psychological"),
-            Filter(6, "Romance"),
-            Filter(7, "School Life"),
-            Filter(8, "Sci-fi"),
-            Filter(32, "Seinen"),
-            Filter(35, "Shoujo"),
-            Filter(16, "Shoujo Ai"),
-            Filter(33, "Shounen"),
-            Filter(19, "Shounen Ai"),
-            Filter(21, "Slice of Life"),
-            Filter(23, "Smut"),
-            Filter(25, "Sports"),
-            Filter(26, "Supernatural"),
-            Filter(28, "Tragedy"),
-            Filter(36, "Webtoon"),
-            Filter(29, "Yaoi"),
-            Filter(31, "Yuri")
+            Filter("40", "4-Koma"),
+            Filter("1", "Action"),
+            Filter("2", "Adventure"),
+            Filter("39", "Award Winning"),
+            Filter("3", "Comedy"),
+            Filter("41", "Cooking"),
+            Filter("9", "Doujinshi"),
+            Filter("10", "Drama"),
+            Filter("12", "Ecchi"),
+            Filter("13", "Fantasy"),
+            Filter("15", "Gender Bender"),
+            Filter("17", "Harem"),
+            Filter("20", "Historical"),
+            Filter("22", "Horror"),
+            Filter("34", "Josei"),
+            Filter("27", "Martial Arts"),
+            Filter("30", "Mecha"),
+            Filter("42", "Medical"),
+            Filter("37", "Music"),
+            Filter("4", "Mystery"),
+            Filter("38", "Oneshot"),
+            Filter("5", "Psychological"),
+            Filter("6", "Romance"),
+            Filter("7", "School Life"),
+            Filter("8", "Sci-fi"),
+            Filter("32", "Seinen"),
+            Filter("35", "Shoujo"),
+            Filter("16", "Shoujo Ai"),
+            Filter("33", "Shounen"),
+            Filter("19", "Shounen Ai"),
+            Filter("21", "Slice of Life"),
+            Filter("23", "Smut"),
+            Filter("25", "Sports"),
+            Filter("26", "Supernatural"),
+            Filter("28", "Tragedy"),
+            Filter("36", "Webtoon"),
+            Filter("29", "Yaoi"),
+            Filter("31", "Yuri")
     )
 }
