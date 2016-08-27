@@ -77,7 +77,7 @@ class Mangasee(context: Context, override val id: Int) : ParsedOnlineSource(cont
         else -> Manga.UNKNOWN
     }
 
-    override fun chapterListSelector() = "div.row > div > div.row:has(a.chapter_link[alt])"
+    override fun chapterListSelector() = "div.row > div > div.row > div > div.row:has(a.chapter_link[alt])"
 
     override fun chapterFromElement(element: Element, chapter: Chapter) {
         val urlElement = element.select("a").first()
