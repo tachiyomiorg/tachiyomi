@@ -1,3 +1,9 @@
+/*
+ * This file is released under the Apache 2.0 license and is subject to terms and condition
+ * provided in APACHE-LICENSE.txt
+ *
+ * line XX is modified and subject to the of GPLv3 provided in GPLv3-LICENSE.md
+ */
 package eu.kanade.tachiyomi.data.source
 
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
@@ -28,8 +34,11 @@ open class SourceManager(private val context: Context) {
     val READMANGATODAY = 8
     val MANGASEE = 9
     val WIEMANGA = 10
+    val MANGAPANDA = 11
+    val MANGAREADER = 12
+    val MANGAGO = 13
 
-    val LAST_SOURCE = 10
+    val LAST_SOURCE = 13
 
     val sourcesMap = createSources()
 
@@ -50,6 +59,9 @@ open class SourceManager(private val context: Context) {
         READMANGATODAY -> Readmangatoday(context, id)
         MANGASEE -> Mangasee(context, id)
         WIEMANGA -> WieManga(context, id)
+        MANGAPANDA -> Mangapanda(context, id)
+        MANGAREADER -> Mangareader(context, id)
+        MANGAGO -> Mangago(context, id)
         else -> null
     }
 
