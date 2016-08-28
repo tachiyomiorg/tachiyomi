@@ -7,7 +7,6 @@ import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.source.EN
 import eu.kanade.tachiyomi.data.source.Language
-import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
@@ -131,7 +130,7 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     // $("select[name=\"genres\"]").map((i,el) => `Filter("${i}", "${$(el).next().text().trim()}")`).get().join(',\n')
     // on http://kissmanga.com/AdvanceSearch
-    override fun getFilters(): List<Filter> = arrayListOf(
+    override fun getFilterList(): List<Filter> = listOf(
             Filter("0", "Action"),
             Filter("1", "Adult"),
             Filter("2", "Adventure"),

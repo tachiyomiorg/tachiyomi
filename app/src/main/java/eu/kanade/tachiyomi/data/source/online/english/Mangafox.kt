@@ -120,7 +120,7 @@ class Mangafox(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     // $('select.genres').map((i,el)=>`Filter("${$(el).attr('name')}", "${$(el).next().text().trim()}")`).get().join(',\n')
     // on http://kissmanga.com/AdvanceSearch
-    override fun getFilters(): List<Filter> = arrayListOf(
+    override fun getFilterList(): List<Filter> = listOf(
             Filter("genres[Action]", "Action"),
             Filter("genres[Adult]", "Adult"),
             Filter("genres[Adventure]", "Adventure"),

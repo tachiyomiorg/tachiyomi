@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.data.source.online.english
 import android.content.Context
 import android.net.Uri
 import android.text.Html
-import android.util.Log
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.GET
@@ -11,7 +10,6 @@ import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.network.asObservable
 import eu.kanade.tachiyomi.data.source.EN
 import eu.kanade.tachiyomi.data.source.Language
-import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.LoginSource
@@ -282,7 +280,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
     //     const onClick=el.getAttribute('onclick');const id=onClick.substr(14,onClick.length-16);return `Filter("${id}", "${el.textContent.trim()}")`
     // }).join(',\n')
     // on https://bato.to/search
-    override fun getFilters(): List<Filter> = arrayListOf(
+    override fun getFilterList(): List<Filter> = listOf(
             Filter("40", "4-Koma"),
             Filter("1", "Action"),
             Filter("2", "Adventure"),

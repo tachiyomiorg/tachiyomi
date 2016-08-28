@@ -20,7 +20,6 @@ import okhttp3.Request
 import okhttp3.Response
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
-import java.util.*
 
 /**
  * A simple implementation for sources from a website.
@@ -58,6 +57,11 @@ abstract class OnlineSource(context: Context) : Source {
      * Headers used for requests.
      */
     val headers by lazy { headersBuilder().build() }
+
+    /**
+     * Genre filters.
+     */
+    val filters by lazy { getFilterList() }
 
     /**
      * Default network client for doing requests.
@@ -431,5 +435,5 @@ abstract class OnlineSource(context: Context) : Source {
 
     data class Filter(val id: String, val name: String)
 
-    open fun getFilters(): List<Filter> = ArrayList()
+    open fun getFilterList(): List<Filter> = emptyList()
 }
