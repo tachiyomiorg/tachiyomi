@@ -118,7 +118,7 @@ class PreferencesHelper(context: Context) {
 
     fun removeAfterRead() = prefs.getBoolean(keys.removeAfterRead, false)
 
-    fun removeAfterReadPrevious() = prefs.getBoolean(keys.removeAfterReadPrevious, false)
+    fun removeAfterReadSlots() = prefs.getInt(keys.removeAfterReadSlots, 0)
 
     fun removeAfterMarkedAsRead() = prefs.getBoolean(keys.removeAfterMarkedAsRead, false)
 

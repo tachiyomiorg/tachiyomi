@@ -116,8 +116,18 @@ class ChaptersFragment : BaseRxFragment<ChaptersPresenter>(), ActionMode.Callbac
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.chapters, menu)
+        menu.findItem(R.id.action_filter_read).isChecked = presenter.onlyRead()
         menu.findItem(R.id.action_filter_unread).isChecked = presenter.onlyUnread()
         menu.findItem(R.id.action_filter_downloaded).isChecked = presenter.onlyDownloaded()
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        if (presenter.onlyRead())
+            //Disable unread filter option if read filter is enabled.
+            menu.findItem(R.id.action_filter_unread).isEnabled = false
+        if (presenter.onlyUnread())
+            //Disable read filter option if unread filter is enabled.
+            menu.findItem(R.id.action_filter_read).isEnabled = false
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -127,7 +137,13 @@ class ChaptersFragment : BaseRxFragment<ChaptersPresenter>(), ActionMode.Callbac
             R.id.action_sorting_mode -> showSortingDialog()
             R.id.action_filter_unread -> {
                 item.isChecked = !item.isChecked
+                presenter.setUnreadFilter(item.isChecked)
+                activity.supportInvalidateOptionsMenu()
+            }
+            R.id.action_filter_read -> {
+                item.isChecked = !item.isChecked
                 presenter.setReadFilter(item.isChecked)
+                activity.supportInvalidateOptionsMenu()
             }
             R.id.action_filter_downloaded -> {
                 item.isChecked = !item.isChecked
@@ -145,8 +161,7 @@ class ChaptersFragment : BaseRxFragment<ChaptersPresenter>(), ActionMode.Callbac
 
     fun onNextManga(manga: Manga) {
         // Set initial values
-        setReadFilter()
-        setDownloadedFilter()
+        activity.supportInvalidateOptionsMenu()
     }
 
     fun onNextChapters(chapters: List<ChapterModel>) {
@@ -393,13 +408,5 @@ class ChaptersFragment : BaseRxFragment<ChaptersPresenter>(), ActionMode.Callbac
 
     private fun setContextTitle(count: Int) {
         actionMode?.title = getString(R.string.label_selected, count)
-    }
-
-    fun setReadFilter() {
-        activity.supportInvalidateOptionsMenu()
-    }
-
-    fun setDownloadedFilter() {
-        activity.supportInvalidateOptionsMenu()
     }
 }

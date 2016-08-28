@@ -48,6 +48,22 @@
         <item>3</item>
     </string-array>
 
+    <string-array name="remove_after_read_slots">
+        <item>Last chapter</item>
+        <item>Penultimate chapter</item>
+        <item>Third to last chapter</item>
+        <item>Fourth to last chapter </item>
+        <item>Fifth to last chapter</item>
+    </string-array>
+
+    <string-array name="remove_after_read_slots_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
     <string-array name="image_decoders">
         <item>@string/rapid_decoder</item>
         <item>@string/skia_decoder</item>

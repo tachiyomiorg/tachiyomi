@@ -19,6 +19,7 @@
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Downloaded</string>
     <string name="action_filter_unread">Unread</string>
+    <string name="action_filter_read">Read</string>
     <string name="action_filter_empty">Remove filter</string>
     <string name="action_search">Search</string>
     <string name="action_select_all">Select all</string>
@@ -139,12 +140,12 @@
       <!-- Downloads section -->
     <string name="pref_download_directory">Downloads directory</string>
     <string name="pref_download_slots">Simultaneous downloads</string>
+    <string name="pref_remove_after_read_slots">Preceding chapter</string>
     <string name="pref_download_only_over_wifi">Only download over Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Remove when marked as read</string>
     <string name="pref_remove_after_read">Remove after read</string>
     <string name="cat_remove_after_read">Remove after read</string>
-    <string name="current_chapter">Current chapter</string>
-    <string name="previous_chapter">Previous chapter</string>
+    <string name="sum_remove_after_read">Will remove preceding chapter after read</string>
     <string name="custom_dir">Custom directory</string>
 
 

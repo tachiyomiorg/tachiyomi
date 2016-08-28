@@ -209,6 +209,9 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
         if (onlyUnread()) {
             observable = observable.filter { !it.read }
         }
+        if (onlyRead()) {
+            observable = observable.filter { it.read }
+        }
         if (onlyDownloaded()) {
             observable = observable.filter { it.isDownloaded }
         }
@@ -349,8 +352,19 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
      *
      * @param onlyUnread whether to display only unread chapters or all chapters.
      */
-    fun setReadFilter(onlyUnread: Boolean) {
+    fun setUnreadFilter(onlyUnread: Boolean) {
         manga.readFilter = if (onlyUnread) Manga.SHOW_UNREAD else Manga.SHOW_ALL
+        db.updateFlags(manga).executeAsBlocking()
+        refreshChapters()
+    }
+
+    /**
+     * Sets the read filter and requests an UI update.
+     *
+     * @param onlyRead whether to display only read chapters or all chapters.
+     */
+    fun setReadFilter(onlyRead: Boolean) {
+        manga.readFilter = if (onlyRead) Manga.SHOW_READ else Manga.SHOW_ALL
         db.updateFlags(manga).executeAsBlocking()
         refreshChapters()
     }
@@ -409,6 +423,13 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
      */
     fun onlyUnread(): Boolean {
         return manga.readFilter == Manga.SHOW_UNREAD
+    }
+
+    /**
+     * Whether the display only read filter is enabled.
+     */
+    fun onlyRead(): Boolean {
+        return manga.readFilter == Manga.SHOW_READ
     }
 
     /**

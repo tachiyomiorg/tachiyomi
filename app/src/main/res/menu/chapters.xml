@@ -9,13 +9,17 @@
         app:showAsAction="ifRoom">
         <menu>
             <item
-                android:id="@+id/action_filter_downloaded"
+                android:id="@+id/action_filter_read"
                 android:checkable="true"
-                android:title="@string/action_filter_downloaded"/>
+                android:title="@string/action_filter_read"/>
             <item
                 android:id="@+id/action_filter_unread"
                 android:checkable="true"
                 android:title="@string/action_filter_unread"/>
+            <item
+                android:id="@+id/action_filter_downloaded"
+                android:checkable="true"
+                android:title="@string/action_filter_downloaded"/>
             <item
                 android:id="@+id/action_filter_empty"
                 android:title="@string/action_filter_empty"/>
