@@ -24,12 +24,10 @@ import eu.kanade.tachiyomi.data.source.Language
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import eu.kanade.tachiyomi.util.UrlUtil
-import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.Response
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.text.SimpleDateFormat
-import java.util.*
 
 class Mangareader(context: Context, override val id: Int) : ParsedOnlineSource(context) {
 
@@ -66,12 +64,12 @@ class Mangareader(context: Context, override val id: Int) : ParsedOnlineSource(c
     override fun mangaDetailsParse(document: Document, manga: Manga) {
         val infoElement = document.select("div#mangaproperties").first().select("table > tbody").first()
 
+        manga.thumbnail_url = document.select("div#mangaimg > img").first()?.attr("src")
         manga.status = infoElement.select("tr:eq(3) > td:eq(1)").first()?.text().orEmpty().let { parseStatus(it) }
         manga.author = infoElement.select("tr:eq(4) > td:eq(1)").first()?.text()
         manga.artist = infoElement.select("tr:eq(5) > td:eq(1)").first()?.text()
         manga.genre = infoElement.select("tr:eq(7) > td:eq(1)").first()?.text()
         manga.description = document.select("div#readmangasum").first()?.text()
-        manga.thumbnail_url = document.select("div#mangaimg > img").first()?.attr("src")
     }
 
     private fun parseStatus(status: String) = when {
@@ -106,6 +104,6 @@ class Mangareader(context: Context, override val id: Int) : ParsedOnlineSource(c
         pages.getOrNull(0)?.imageUrl = imageUrlParse(document)
     }
 
-    override fun imageUrlParse(document: Document) = document.getElementById("img").attr("src")
+    override fun imageUrlParse(document: Document): String = document.getElementById("img").attr("src")
 
 }
