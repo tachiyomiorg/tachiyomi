@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.catalogue
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
@@ -333,10 +334,10 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
         hideProgressBar()
         Timber.e(error, error.message)
 
-        catalogue_view.snack(error.message ?: "") {
+        catalogue_view.snack(error.message ?: "", Snackbar.LENGTH_INDEFINITE) {
             setAction(R.string.action_retry) {
                 showProgressBar()
-                presenter.retryPage()
+                presenter.requestNext()
             }
         }
     }

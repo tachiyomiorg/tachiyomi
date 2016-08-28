@@ -35,7 +35,7 @@ class CataloguePager(val source: OnlineSource, val query: String, val filters: L
     }
 
     fun hasNextPage(): Boolean {
-        return lastPage?.nextPageUrl != null
+        return lastPage == null || lastPage?.nextPageUrl != null
     }
 
 }

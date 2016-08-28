@@ -1,48 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:fitsSystemWindows="true"
-              android:orientation="vertical"
-              android:id="@+id/catalogue_view"
-              tools:context="eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ProgressBar
-        android:id="@+id/progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:visibility="gone"/>
+    <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:fitsSystemWindows="true"
+          android:orientation="vertical"
+          android:id="@+id/catalogue_view"
+          tools:context="eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment">
 
-
-    <ViewSwitcher
-        android:id="@+id/switcher"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        <eu.kanade.tachiyomi.widget.AutofitRecyclerView
-            android:id="@+id/catalogue_grid"
-            style="@style/Theme.Widget.GridView"
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:columnWidth="140dp"
-            tools:listitem="@layout/item_catalogue_grid"/>
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:visibility="gone"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/catalogue_list"
+
+        <ViewSwitcher
+            android:id="@+id/switcher"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <eu.kanade.tachiyomi.widget.AutofitRecyclerView
+                android:id="@+id/catalogue_grid"
+                style="@style/Theme.Widget.GridView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:columnWidth="140dp"
+                tools:listitem="@layout/item_catalogue_grid"/>
 
-    </ViewSwitcher>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/catalogue_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
-    <ProgressBar
-        android:id="@+id/progress_grid"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:visibility="gone"/>
+        </ViewSwitcher>
 
-</LinearLayout>
+        <ProgressBar
+            android:id="@+id/progress_grid"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

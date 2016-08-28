@@ -12,8 +12,10 @@ import eu.kanade.tachiyomi.data.source.SourceManager
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
+import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import rx.Observable
+import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
@@ -65,7 +67,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     /**
      * Active filters.
      */
-    var filters: List<OnlineSource.Filter> = emptyList()
+    var filters: List<Filter> = emptyList()
 
     /**
      * Pager containing a list of manga results.
@@ -83,24 +85,20 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     var isListMode: Boolean = false
         private set
 
+    /**
+     * Subscription for the pager.
+     */
+    private var pagerSubscription: Subscription? = null
 
-    companion object {
-        /**
-         * Id of the restartable that delivers a list of manga.
-         */
-        const val PAGER = 1
+    /**
+     * Subscription for one request from the pager.
+     */
+    private var pageSubscription: Subscription? = null
 
-        /**
-         * Id of the restartable that requests a page of manga from network.
-         */
-        const val REQUEST_PAGE = 2
-
-        /**
-         * Id of the restartable that initializes the details of manga.
-         */
-        const val GET_MANGA_DETAILS = 3
-
-    }
+    /**
+     * Subscription to initialize manga details.
+     */
+    private var initializerSubscription: Subscription? = null
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
@@ -111,34 +109,10 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
             query = savedState.getString(CataloguePresenter::query.name, "")
         }
 
-        pager = CataloguePager(source, query, filters)
-
-        startableLatestCache(GET_MANGA_DETAILS,
-                {
-                    mangaDetailSubject.observeOn(Schedulers.io())
-                            .flatMap { Observable.from(it) }
-                            .filter { !it.initialized }
-                            .concatMap { getMangaDetailsObservable(it) }
-                            .onBackpressureBuffer()
-                            .observeOn(AndroidSchedulers.mainThread())
-                },
-                { view, manga -> view.onMangaInitialized(manga) },
-                { view, error -> Timber.e(error.message) })
-
         add(prefs.catalogueAsList().asObservable()
                 .subscribe { setDisplayMode(it) })
 
-        startableReplay(PAGER,
-                { pager.results() },
-                { view, page -> view.onAddPage(page.page, page.mangas) })
-
-        startableFirst(REQUEST_PAGE,
-                { pager.requestNext { getPageTransformer(it) } },
-                { view, next -> },
-                { view, error -> view.onAddPageError(error) })
-
-        start(PAGER)
-        start(REQUEST_PAGE)
+        restartPager()
     }
 
     override fun onSave(state: Bundle) {
@@ -147,56 +121,46 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     }
 
     /**
-     * Sets the display mode.
+     * Restarts the pager for the active source with the provided query and filters.
      *
-     * @param asList whether the current mode is in list or not.
+     * @param query the query.
+     * @param filters the list of active filters (for search mode).
      */
-    private fun setDisplayMode(asList: Boolean) {
-        isListMode = asList
-        if (asList) {
-            stop(GET_MANGA_DETAILS)
-        } else {
-            start(GET_MANGA_DETAILS)
-        }
-    }
-
-    /**
-     * Sets the active source and restarts the pager.
-     *
-     * @param source the new active source.
-     */
-    fun setActiveSource(source: OnlineSource) {
-        prefs.lastUsedCatalogueSource().set(source.id)
-        this.source = source
-        filters = emptyList()
-
-        restartPager()
-    }
-
-    /**
-     * Restarts the request for the active source.
-     *
-     * @param query the query, or null if searching popular manga.
-     */
-    fun restartPager(query: String = "") {
+    fun restartPager(query: String = this.query, filters: List<Filter> = this.filters) {
         this.query = query
-        stop(REQUEST_PAGE)
-        pager = CataloguePager(source, query, filters)
+        this.filters = filters
 
         if (!isListMode) {
-            start(GET_MANGA_DETAILS)
+            subscribeToMangaInitializer()
         }
-        start(PAGER)
-        start(REQUEST_PAGE)
+
+        // Create a new pager.
+        pager = CataloguePager(source, query, filters)
+
+        // Prepare the pager.
+        pagerSubscription?.let { remove(it) }
+        pagerSubscription = pager.results()
+                .subscribeReplay({ view, page ->
+                    view.onAddPage(page.page, page.mangas)
+                }, { view, error ->
+                    Timber.e(error, error.message)
+                })
+
+        // Request first page.
+        requestNext()
     }
 
     /**
      * Requests the next page for the active pager.
      */
     fun requestNext() {
-        if (hasNextPage()) {
-            start(REQUEST_PAGE)
-        }
+        if (!hasNextPage()) return
+
+        pageSubscription?.let { remove(it) }
+        pageSubscription = pager.requestNext { getPageTransformer(it) }
+                .subscribeFirst({ view, page ->
+                    // Nothing to do when onNext is emitted.
+                }, CatalogueFragment::onAddPageError)
     }
 
     /**
@@ -207,10 +171,49 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     }
 
     /**
-     * Retries the current request that failed.
+     * Sets the active source and restarts the pager.
+     *
+     * @param source the new active source.
      */
-    fun retryPage() {
-        start(REQUEST_PAGE)
+    fun setActiveSource(source: OnlineSource) {
+        prefs.lastUsedCatalogueSource().set(source.id)
+        this.source = source
+
+        restartPager(query = "", filters = emptyList())
+    }
+
+    /**
+     * Sets the display mode.
+     *
+     * @param asList whether the current mode is in list or not.
+     */
+    private fun setDisplayMode(asList: Boolean) {
+        isListMode = asList
+        if (asList) {
+            initializerSubscription?.let { remove(it) }
+        } else {
+            subscribeToMangaInitializer()
+        }
+    }
+
+    /**
+     * Subscribes to the initializer of manga details and updates the view if needed.
+     */
+    private fun subscribeToMangaInitializer() {
+        initializerSubscription?.let { remove(it) }
+        initializerSubscription = mangaDetailSubject.observeOn(Schedulers.io())
+                .flatMap { Observable.from(it) }
+                .filter { !it.initialized }
+                .concatMap { getMangaDetailsObservable(it) }
+                .onBackpressureBuffer()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ manga ->
+                    @Suppress("DEPRECATION")
+                    view?.onMangaInitialized(manga)
+                }, { error ->
+                    Timber.e(error, error.message)
+                })
+                .apply { add(this) }
     }
 
     /**
@@ -352,9 +355,13 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         prefs.catalogueAsList().set(!isListMode)
     }
 
-    fun setSourceFilter(selectedFilters: List<OnlineSource.Filter>) {
-        this.filters = selectedFilters
-        restartPager(this.query)
+    /**
+     * Set the active filters for the current source.
+     *
+     * @param selectedFilters a list of active filters.
+     */
+    fun setSourceFilter(selectedFilters: List<Filter>) {
+        restartPager(filters = selectedFilters)
     }
 
 }
