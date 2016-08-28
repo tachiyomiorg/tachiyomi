@@ -29,9 +29,10 @@ class Mangago(context: Context, override val id: Int) : ParsedOnlineSource(conte
     override fun popularMangaSelector() = "div > ul.pic_list > li.updatesli"
 
     override fun popularMangaFromElement(element: Element, manga: Manga) {
-        element.select("h3.title > a").first().let {
-            manga.setUrlWithoutDomain(it.attr("href"))
-            manga.title = it.text()
+        element.let {
+            manga.setUrlWithoutDomain(it.select("h3.title > a").attr("href"))
+            manga.title = it.select("h3.title > a").text()
+            manga.thumbnail_url = element.select("a.thm-effect > img").attr("src")
         }
     }
 
@@ -44,7 +45,7 @@ class Mangago(context: Context, override val id: Int) : ParsedOnlineSource(conte
                 page.mangas.add(this)
             }
         }
-        popularMangaNextPageSelector()?.let {
+        popularMangaNextPageSelector().let {
             page.nextPageUrl = document.select(it).html().substringAfter("href=\"").substringBefore("\" class")//WTF this is necessary IDK
         }
     }
@@ -57,22 +58,30 @@ class Mangago(context: Context, override val id: Int) : ParsedOnlineSource(conte
     override fun searchMangaSelector() = "ul#search_list > li"
 
     override fun searchMangaFromElement(element: Element, manga: Manga) {
-        element.select("div.box > div.left > a").first().let {
-            manga.setUrlWithoutDomain(it.attr("href"))
-            manga.title = it.attr("title")
+        element.select("div.box").let {
+            manga.setUrlWithoutDomain(it.select("div.row-1 h2 > a").attr("href"))
+            manga.title = it.select("a.thm-effect").attr("title")
+            manga.thumbnail_url = element.select("a.thm-effect > img").attr("src")
         }
     }
 
     override fun searchMangaParse(response: Response, page: MangasPage, query: String) {
         val document = response.asJsoup()
+        val pSel = "select option"
+        val p: String = document.select("div.pagination").attr("total")
+        val pageCount = if (p.isEmpty()) 0 else p.toInt()
+
         for (element in document.select(searchMangaSelector())) {
             Manga.create(id).apply {
                 searchMangaFromElement(element, this)
                 page.mangas.add(this)
             }
         }
-        popularMangaNextPageSelector()?.let { selector ->
-            page.nextPageUrl = document.select(selector).html().substringBefore("\" class").substringAfter("href=\"") //WTF this is necessary IDK
+        if (pageCount > 1) {
+            pSel.let { selector ->
+                val i = page.url.toString().substringAfter("page=").substringBefore('&').toInt() + 1
+                page.nextPageUrl = document.select(selector).first().attr("value").toString().replace("page=1", "page=$i")
+            }
         }
     }
 
@@ -82,13 +91,10 @@ class Mangago(context: Context, override val id: Int) : ParsedOnlineSource(conte
         val ielement = document.select("div#information").first()
         val infoElement = ielement.select("div.manga_right > table.left > tbody").first()
 
-        manga.thumbnail_url = ielement.select("div.left > img").first()?.attr("src")
         manga.status = infoElement.select("tr:eq(0) > td > span").text().orEmpty().let { parseStatus(it) }
         manga.author = infoElement.select("tr:eq(1) > td > a").text()
         manga.artist = manga.author
-        infoElement.select("tr:eq(2) > td").first().getElementsByTag("a")?.forEach {
-            manga.genre += it.text() + ", "
-        }
+        manga.genre = infoElement.select("tr:eq(2) > td > a").text()
         manga.description = ielement.select("div.manga_summary").text()
     }
 
@@ -116,16 +122,6 @@ class Mangago(context: Context, override val id: Int) : ParsedOnlineSource(conte
         }
     }
 
-    override fun imageUrlParse(document: Document) = document.getElementById("page1").attr("src")
-
-    class Internal(response: Response) {
-        var document: Document = response.asJsoup()
-        var p: String = document.select("div.pagination").attr("total")
-        var pageCount = if (p.isEmpty()) 0 else p.toInt()
-
-        fun getDoc(): Document = document
-
-        fun getCount(): Int = pageCount
-    }
+    override fun imageUrlParse(document: Document): String = document.getElementById("page1").attr("src")
 
 }
