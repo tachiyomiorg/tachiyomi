@@ -17,16 +17,12 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
 import android.content.Context
-import android.util.Log
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.EN
 import eu.kanade.tachiyomi.data.source.Language
-import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
-import eu.kanade.tachiyomi.util.asJsoup
-import okhttp3.Response
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.text.SimpleDateFormat
@@ -48,25 +44,11 @@ class Mangago(context: Context, override val id: Int) : ParsedOnlineSource(conte
         element.let {
             manga.setUrlWithoutDomain(it.select("h3.title > a").attr("href"))
             manga.title = it.select("h3.title > a").text()
-            manga.thumbnail_url = element.select("a.thm-effect > img").attr("src")
+            manga.thumbnail_url = it.select("a.thm-effect > img").attr("src")
         }
     }
 
-    override fun popularMangaParse(response: Response, page: MangasPage) {
-        val document = response.asJsoup()
-
-        for (element in document.select(popularMangaSelector())) {
-            Manga.create(id).apply {
-                popularMangaFromElement(element, this)
-                page.mangas.add(this)
-            }
-        }
-        popularMangaNextPageSelector().let {
-            page.nextPageUrl = document.select(it).html().substringAfter("href=\"").substringBefore("\" class")//WTF this is necessary IDK
-        }
-    }
-
-    override fun popularMangaNextPageSelector() = "div.pagination > div > ol > li.current + li"
+    override fun popularMangaNextPageSelector() = "div.pagination > div > ol > li.current + li > a"
 
     override fun searchMangaInitialUrl(query: String) =
             "$baseUrl/r/l_search/?page=1&name=$query"
@@ -77,31 +59,11 @@ class Mangago(context: Context, override val id: Int) : ParsedOnlineSource(conte
         element.select("div.box").let {
             manga.setUrlWithoutDomain(it.select("div.row-1 h2 > a").attr("href"))
             manga.title = it.select("a.thm-effect").attr("title")
-            manga.thumbnail_url = element.select("a.thm-effect > img").attr("src")
+            manga.thumbnail_url = it.select("a.thm-effect > img").attr("src")
         }
     }
 
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String) {
-        val document = response.asJsoup()
-        val pSel = "select option"
-        val p: String = document.select("div.pagination").attr("total")
-        val pageCount = if (p.isEmpty()) 0 else p.toInt()
-
-        for (element in document.select(searchMangaSelector())) {
-            Manga.create(id).apply {
-                searchMangaFromElement(element, this)
-                page.mangas.add(this)
-            }
-        }
-        if (pageCount > 1) {
-            pSel.let { selector ->
-                val i = page.url.toString().substringAfter("page=").substringBefore('&').toInt() + 1
-                page.nextPageUrl = document.select(selector).first().attr("value").toString().replace("page=1", "page=$i")
-            }
-        }
-    }
-
-    override fun searchMangaNextPageSelector() = "div.pagination > div > ol > li.current + li"
+    override fun searchMangaNextPageSelector() = "div.pagination > div > ol > li.current + li > a"
 
     override fun mangaDetailsParse(document: Document, manga: Manga) {
         val ielement = document.select("div#information").first()
