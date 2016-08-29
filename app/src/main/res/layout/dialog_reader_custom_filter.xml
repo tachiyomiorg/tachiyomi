@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@drawable/empty_divider"
+    android:orientation="vertical"
+    android:showDividers="middle">
+
+    <View
+        android:id="@+id/color_view"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="?attr/colorAccent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/material_component_dialogs_padding_around_content_area"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:id="@+id/red_filter_seekbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            app:dsb_indicatorColor="?colorAccent"
+            app:dsb_indicatorFormatter="%d%%"
+            app:dsb_indicatorTextAppearance="@style/TextAppearance.Regular"
+            app:dsb_max="75"
+            app:dsb_min="0"
+            app:dsb_progressColor="?colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/red_filter_seekbar"
+                android:textAppearance="@style/TextAppearance.Medium.Title"
+                android:text="R"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/red_filter_seekbar"
+                android:textAppearance="@style/TextAppearance.Medium.Title"
+                android:text="0"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/g"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                app:dsb_indicatorColor="?colorAccent"
+                app:dsb_indicatorFormatter="%d%%"
+                app:dsb_indicatorTextAppearance="@style/TextAppearance.Regular"
+                app:dsb_max="75"
+                app:dsb_min="0"
+                app:dsb_progressColor="?colorAccent" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/g"
+                android:textAppearance="@style/TextAppearance.Medium.Title"
+                android:text="G"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/g"
+                android:textAppearance="@style/TextAppearance.Medium.Title"
+                android:text="0"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                app:dsb_indicatorColor="?colorAccent"
+                app:dsb_indicatorFormatter="%d%%"
+                app:dsb_indicatorTextAppearance="@style/TextAppearance.Regular"
+                app:dsb_max="75"
+                app:dsb_min="0"
+                app:dsb_progressColor="?colorAccent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/b"
+                android:textAppearance="@style/TextAppearance.Medium.Title"
+                android:text="B"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/b"
+                android:textAppearance="@style/TextAppearance.Medium.Title"
+                android:text="0"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                app:dsb_indicatorColor="?colorAccent"
+                app:dsb_indicatorFormatter="%d%%"
+                app:dsb_indicatorTextAppearance="@style/TextAppearance.Regular"
+                app:dsb_max="75"
+                app:dsb_min="0"
+                app:dsb_progressColor="?colorAccent" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/a"
+                android:textAppearance="@style/TextAppearance.Medium.Title"
+                android:text="A"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/a"
+                android:textAppearance="@style/TextAppearance.Medium.Title"
+                android:text="0"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -26,6 +26,10 @@ class PreferenceKeys(context: Context) {
 
     val customBrightnessValue = context.getString(R.string.pref_custom_brightness_value_key)
 
+    val redFilter = context.getString(R.string.pref_red_filter_key)
+
+    val redFilterValue = context.getString(R.string.pref_red_filter_value_key)
+
     val defaultViewer = context.getString(R.string.pref_default_viewer_key)
 
     val imageScaleType = context.getString(R.string.pref_image_scale_type_key)

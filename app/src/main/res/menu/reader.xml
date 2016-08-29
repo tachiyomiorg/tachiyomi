@@ -3,10 +3,17 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_custom_filter"
+        android:title="@string/label_settings"
+        android:icon="@drawable/ic_brightness_4_white_24dp"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
         android:id="@+id/action_settings"
         android:title="@string/label_settings"
         android:icon="@drawable/ic_settings_white_24dp"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         />
 
 </menu>

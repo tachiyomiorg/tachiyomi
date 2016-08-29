@@ -52,6 +52,10 @@ class PreferencesHelper(context: Context) {
 
     fun customBrightnessValue() = rxPrefs.getInteger(keys.customBrightnessValue, 0)
 
+    fun redFilter() = rxPrefs.getBoolean(keys.redFilter, false)
+
+    fun redFilterValue() = rxPrefs.getInteger(keys.redFilterValue, 0)
+
     fun defaultViewer() = prefs.getInt(keys.defaultViewer, 1)
 
     fun imageScaleType() = rxPrefs.getInteger(keys.imageScaleType, 1)

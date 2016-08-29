@@ -69,6 +69,8 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private var customBrightnessSubscription: Subscription? = null
 
+    private var redFilterSubscription: Subscription? = null
+
     var readerTheme: Int = 0
         private set
 
@@ -139,6 +141,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_settings -> ReaderSettingsDialog().show(supportFragmentManager, "settings")
+            R.id.action_custom_filter -> ReaderCustomFilterDialog().show(supportFragmentManager, "filter")
             else -> return super.onOptionsItemSelected(item)
         }
         return true
@@ -375,6 +378,9 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         subscriptions += preferences.customBrightness().asObservable()
                 .subscribe { setCustomBrightness(it) }
 
+        subscriptions += preferences.redFilter().asObservable()
+                .subscribe { setRedFilter(it) }
+
         subscriptions += preferences.readerTheme().asObservable()
                 .distinctUntilChanged()
                 .subscribe { applyTheme(it) }
@@ -430,6 +436,18 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         }
     }
 
+    private fun setRedFilter(enabled: Boolean) {
+        if (enabled) {
+            redFilterSubscription = preferences.redFilterValue().asObservable()
+                    .subscribe { setRedFilterValue(it) }
+
+            subscriptions.add(redFilterSubscription)
+        } else {
+            redFilterSubscription?.let { subscriptions.remove(it) }
+            setRedFilterValue(0)
+        }
+    }
+
     /**
      * Sets the brightness of the screen. Range is [-75, 100].
      * From -75 to -1 a semi-transparent black view is shown at the top with the minimum brightness.
@@ -453,6 +471,16 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             brightness_overlay.setBackgroundColor(Color.argb(alpha, 0, 0, 0))
         } else {
             brightness_overlay.visibility = View.GONE
+        }
+    }
+
+    private fun setRedFilterValue(value: Int) {
+        if (value > 0) {
+            red_overlay.visibility = View.VISIBLE
+            val alpha = (Math.abs(value) * 2.56).toInt()
+            red_overlay.setBackgroundColor(Color.argb(alpha, 255, 0, 0))
+        } else {
+            red_overlay.visibility = View.GONE
         }
     }
 
