@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceScreen
+        android:key="library_sync_screen"
+        android:persistent="false"
+        android:title="@string/pref_category_library_sync">
+
+        <eu.kanade.tachiyomi.widget.preference.LibrarySyncPreference
+            android:defaultValue="true"
+            android:key="@string/pref_enable_library_sync_key"
+            android:title="@string/pref_library_sync" />
+
+        <eu.kanade.tachiyomi.widget.preference.VerboseEditTextPreference
+            android:defaultValue=""
+            android:key="@string/pref_library_sync_endpoint_key"
+            android:title="@string/pref_library_sync_endpoint" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sync_library_on_launch_key"
+            android:summary="@string/sync_library_on_launch_summary"
+            android:title="@string/sync_library_on_launch" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_sync_favorites_only_key"
+            android:summary="@string/sync_favorites_only_summary"
+            android:title="@string/sync_favorites_only" />
+
+        <Preference
+            android:key="@string/pref_library_sync_now_key"
+            android:persistent="false"
+            android:title="@string/sync_now" />
+
+        <PreferenceCategory
+            android:key="pref_library_sync_advanced"
+            android:persistent="false"
+            android:title="@string/pref_library_sync_advanced">
+            <Preference
+                android:key="@string/pref_library_sync_delete_last_library_state_key"
+                android:persistent="false"
+                android:title="@string/pref_library_sync_delete_last_library_state"
+                android:summary="@string/pref_library_sync_delete_last_library_state_summary" />
+        </PreferenceCategory>
+
+    </PreferenceScreen>
+
+</PreferenceScreen>

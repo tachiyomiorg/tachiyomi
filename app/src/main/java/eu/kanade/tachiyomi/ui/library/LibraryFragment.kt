@@ -15,10 +15,12 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
+import eu.kanade.tachiyomi.data.librarysync.LibrarySyncManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.category.CategoryActivity
+import eu.kanade.tachiyomi.ui.library.sync.LibrarySyncDialogFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -46,6 +48,11 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
      * Preferences.
      */
     val preferences: PreferencesHelper by injectLazy()
+
+    /**
+     * Sync
+     */
+    val sync: LibrarySyncManager by injectLazy()
 
     /**
      * TabLayout of the categories.
@@ -209,6 +216,11 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
             }
         })
 
+        //Initialize sync button
+        val syncItem = menu.findItem(R.id.action_sync_library)
+        preferences.enableLibrarySync().asObservable().subscribe {
+            syncItem.isVisible = sync.enabled
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -242,6 +254,9 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
             R.id.action_library_display_mode -> swapDisplayMode()
             R.id.action_update_library -> {
                 LibraryUpdateService.start(activity, true)
+            }
+            R.id.action_sync_library -> {
+                LibrarySyncDialogFragment.show(childFragmentManager)
             }
             R.id.action_edit_categories -> {
                 val intent = CategoryActivity.newIntent(activity)

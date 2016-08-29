@@ -110,6 +110,16 @@ class PreferencesHelper(context: Context) {
                 .apply()
     }
 
+    fun enableLibrarySync() = rxPrefs.getBoolean(keys.enableLibrarySync, false)
+
+    fun librarySyncEndpoint() = rxPrefs.getString(keys.librarySyncEndpoint, "")
+
+    fun lastFailedLibrarySyncCount() = rxPrefs.getInteger(keys.lastFailedLibrarySyncCount, 0)
+
+    fun syncLibraryOnLaunch() = rxPrefs.getBoolean(keys.syncLibraryOnLaunch, true)
+
+    fun syncFavoritesOnly() = rxPrefs.getBoolean(keys.syncFavoritesOnly, true)
+
     fun downloadsDirectory() = rxPrefs.getString(keys.downloadsDirectory, defaultDownloadsDir.absolutePath)
 
     fun downloadThreads() = rxPrefs.getInteger(keys.downloadThreads, 1)
@@ -133,5 +143,4 @@ class PreferencesHelper(context: Context) {
     fun filterUnread() = rxPrefs.getBoolean(keys.filterUnread, false)
 
     fun automaticUpdateStatus() = prefs.getBoolean(keys.automaticUpdateStatus, false)
-
 }

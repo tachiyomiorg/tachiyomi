@@ -36,6 +36,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/action_sync_library"
+        android:icon="@drawable/ic_cloud_white_24dp"
+        android:title="@string/action_sync_library"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/action_library_display_mode"
         android:title="@string/action_display_mode"
         app:showAsAction="never"/>

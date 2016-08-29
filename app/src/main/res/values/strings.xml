@@ -67,6 +67,7 @@
     <string name="pref_category_downloads">Downloads</string>
     <string name="pref_category_sources">Sources</string>
     <string name="pref_category_sync">Sync</string>
+    <string name="pref_category_library_sync">Library sync</string>
     <string name="pref_category_advanced">Advanced</string>
     <string name="pref_category_about">About</string>
 
@@ -155,6 +156,31 @@
 
       <!-- Sync section -->
     <string name="services">Services</string>
+
+    <!-- Library Sync section -->
+    <string name="pref_library_sync">Library sync</string>
+    <string name="pref_library_sync_endpoint">Sync endpoint</string>
+    <string name="sync_status_not_enabled">Sync is not enabled</string>
+    <string name="sync_status_ok">Sync is enabled and working properly</string>
+    <string name="sync_status_error_invalid_endpoint">Sync error: Endpoint is invalid</string>
+    <string name="sync_status_error_many_failed">Sync may not be working properly, the last sync 5+ attempts have failed</string>
+    <string name="sync_conflicts">Sync Conflicts</string>
+    <string name="sync_now">Sync now</string>
+    <string name="sync_error">Sync Error</string>
+    <string name="sync_unknown_error">Unknown sync error!</string>
+    <string name="saving_changes">Saving changes…</string>
+    <string name="uploading_library">Uploading library…</string>
+    <string name="sync_library_on_launch">Sync library on app launch</string>
+    <string name="sync_library_on_launch_summary">Automatically sync the library when the application is launched</string>
+    <string name="action_sync_library">Sync library</string>
+    <string name="sync_favorites_only">Sync favorites only</string>
+    <string name="sync_favorites_only_summary">Only sync favorite manga, speeds up sync significantly but will delete reading progress on manga not favorited every sync</string>
+    <string name="library_sync_dialog_title">Syncing library</string>
+    <string name="pref_library_sync_advanced">Advanced</string>
+    <string name="pref_library_sync_delete_last_library_state">Overwrite server library</string>
+    <string name="pref_library_sync_delete_last_library_state_summary">Overwrite the server library with your library on the next sync (no manga will be removed from the server library)</string>
+    <string name="library_sync_last_library_state_deleted">The server library will be overwritten on the next sync!</string>
+    <string name="img_library_sync_status">Library sync status</string>
 
       <!-- Advanced section -->
     <string name="pref_clear_chapter_cache">Clear chapter cache</string>
