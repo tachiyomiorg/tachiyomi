@@ -64,6 +64,16 @@ class LibrarySyncDialog(val activity: Activity) {
             val newLibrary = backup.backupToJson(favoritesOnly = prefs.syncFavoritesOnly().getOrDefault()).toString()
             syncClient.syncLibrariesWithProgress(oldLibrary,
                     newLibrary, {
+                //Show sync fail error dialog and log this failed sync attempt
+                fun failSync() {
+                    //Show error dialog
+                    activity.runOnUiThread {
+                        reportError(it.error ?: activity.getString(R.string.sync_unknown_error))
+                    }
+                    //Log this failed sync
+                    sync.lastFailedSyncCount++
+                }
+
                 //Sync is complete (successful or not)
                 try {
                     if (it.isSuccessful) {
@@ -94,17 +104,11 @@ class LibrarySyncDialog(val activity: Activity) {
                         //Sync was successful so reset last failed sync count
                         sync.lastFailedSyncCount = 0
                     } else {
-                        //Invoke exception error handler to launch error dialog? Better way to do this?
-                        throw IllegalStateException("Sync failed on server!")
+                        failSync()
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    //Show error dialog
-                    activity.runOnUiThread {
-                        reportError(it.error ?: activity.getString(R.string.sync_unknown_error))
-                    }
-                    //Log this failed sync
-                    sync.lastFailedSyncCount++
+                    failSync()
                 }
                 //Ensure dialog is dismissed
                 materialDialog.dismiss()
