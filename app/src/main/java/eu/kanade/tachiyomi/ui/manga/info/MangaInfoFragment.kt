@@ -197,6 +197,8 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
     fun addToHomeScreen() {
         val shortcutIntent = activity.intent
         shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
         val addIntent = Intent()
         addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
@@ -220,6 +222,7 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
                     fun mangaBitmap(): BitmapTypeRequest<Manga> {
                         return Glide.with(context).load(presenter.manga).asBitmap()
                     }
+
                     fun BitmapRequestBuilder<Manga, Bitmap>.toIcon(): Bitmap {
                         return this.into(96, 96).get()
                     }

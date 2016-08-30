@@ -47,10 +47,17 @@ class MangaActivity : BaseRxActivity<MangaPresenter>() {
         super.onCreate(savedState)
         setContentView(R.layout.activity_manga)
 
+        /*
+        Open from homescreen opens the previous manga if we keep this code here???
+        We need some way to remove the mangaevent from shared data when opening from homescreen
+
         presenter.setMangaEvent(SharedData.getOrPut(MangaEvent::class.java) {
             val id = intent.getLongExtra(MANGA_EXTRA, 0)
             MangaEvent(presenter.db.getManga(id).executeAsBlocking()!!)
         })
+        */
+        val id = intent.getLongExtra(MANGA_EXTRA, 0)
+        presenter.setMangaEvent(MangaEvent(presenter.db.getManga(id).executeAsBlocking()!!))
 
         setupToolbar(toolbar)
 
