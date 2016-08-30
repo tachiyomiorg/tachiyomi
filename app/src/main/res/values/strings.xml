@@ -163,10 +163,10 @@
     <string name="sync_status_not_enabled">Sync is not enabled</string>
     <string name="sync_status_ok">Sync is enabled and working properly</string>
     <string name="sync_status_error_invalid_endpoint">Sync error: Endpoint is invalid</string>
-    <string name="sync_status_error_many_failed">Sync may not be working properly, the last sync 5+ attempts have failed</string>
-    <string name="sync_conflicts">Sync Conflicts</string>
+    <string name="sync_status_error_many_failed">Sync may not be working properly, the last sync 5+ sync attempts have failed</string>
+    <string name="sync_conflicts">Sync conflicts</string>
     <string name="sync_now">Sync now</string>
-    <string name="sync_error">Sync Error</string>
+    <string name="sync_error">Sync error</string>
     <string name="sync_unknown_error">Unknown sync error!</string>
     <string name="saving_changes">Saving changes…</string>
     <string name="uploading_library">Uploading library…</string>
