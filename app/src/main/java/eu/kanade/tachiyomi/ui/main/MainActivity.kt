@@ -19,6 +19,7 @@ import eu.kanade.tachiyomi.ui.library.sync.LibrarySyncDialogFragment
 import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersFragment
 import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadFragment
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity
+import eu.kanade.tachiyomi.util.DeviceUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import uy.kohesive.injekt.injectLazy
@@ -84,8 +85,8 @@ class MainActivity : BaseActivity() {
             // Show changelog if needed
             ChangelogDialogFragment.show(preferences, supportFragmentManager)
 
-            //Perform sync if allowed and enabled
-            if (sync.enabled && preferences.syncLibraryOnLaunch().getOrDefault())
+            //Perform sync if allowed, enabled and if we have an internet connection
+            if (sync.enabled && preferences.syncLibraryOnLaunch().getOrDefault() && DeviceUtil.isNetworkConnected(this))
                 LibrarySyncDialogFragment.show(supportFragmentManager)
         }
     }
