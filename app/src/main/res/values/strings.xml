@@ -229,11 +229,15 @@
     <string name="added_to_home_screen">Manga added to home screen</string>
     <string name="icon_type">Icon type</string>
     <string name="tachiyomi_icon">Tachiyomi icon</string>
-    <string name="circular_manga_icon">Circular manga icon</string>
-    <string name="rounded_manga_icon">Rounded manga icon</string>
-    <string name="square_manga_icon">Square manga icon</string>
+    <string name="circular_icon">Circular icon</string>
+    <string name="rounded_icon">Rounded icon</string>
+    <string name="square_icon">Square icon</string>
+    <string name="star_icon">Star icon</string>
     <string name="custom_icon">Custom icon</string>
     <string name="shortcut_title">Shortcut title</string>
+    <string name="shortcut_creation_failed">Shortcut creation failed!</string>
+    <string name="manga_thumbnail">Manga thumbnail</string>
+    <string name="icon_shape">Icon shape</string>
 
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapters</string>
@@ -314,6 +318,7 @@
     <!-- File Picker Titles -->
     <string name="file_select_cover">Select cover image</string>
     <string name="file_select_backup">Select backup file</string>
+    <string name="file_select_icon">Select shortcut icon</string>
 
     <!--UpdateCheck-->
     <string name="update_check_title">New update available!</string>

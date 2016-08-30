@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.manga.info
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -8,26 +9,32 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.customtabs.CustomTabsIntent
 import android.support.design.widget.Snackbar
+import android.util.SparseArray
 import android.view.*
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bumptech.glide.BitmapRequestBuilder
 import com.bumptech.glide.BitmapTypeRequest
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
+import eu.kanade.tachiyomi.ui.library.LibraryFragment
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.toast
 import jp.wasabeef.glide.transformations.CropCircleTransformation
 import jp.wasabeef.glide.transformations.CropSquareTransformation
+import jp.wasabeef.glide.transformations.MaskTransformation
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.fragment_manga_info.*
 import kotlinx.android.synthetic.main.item_download.*
 import nucleus.factory.RequiresPresenter
+import timber.log.Timber
+import java.io.IOException
 import kotlin.concurrent.thread
 
 /**
@@ -47,7 +54,12 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
         fun newInstance(): MangaInfoFragment {
             return MangaInfoFragment()
         }
+
     }
+
+    var REQUEST_IMAGE_OPEN = 102
+
+    val imagePickerActivities = SparseArray<Intent>()
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
@@ -204,28 +216,26 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
         addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
                 .action = "com.android.launcher.action.INSTALL_SHORTCUT"
 
-        val modes = intArrayOf(R.string.tachiyomi_icon,
-                R.string.circular_manga_icon,
-                R.string.rounded_manga_icon,
-                R.string.square_manga_icon,
-                R.string.custom_icon)
-
         //Set shortcut title
-        var title = presenter.manga.title
         MaterialDialog.Builder(activity)
                 .title(R.string.shortcut_title)
-                .input("", title, { md, text -> title = text.toString() })
-                .negativeText(android.R.string.cancel)
-                .onNegative { materialDialog, dialogAction -> materialDialog.cancel() }
-                .onPositive { materialDialog, dialogAction ->
-                    //Glide utility methods
-                    fun mangaBitmap(): BitmapTypeRequest<Manga> {
-                        return Glide.with(context).load(presenter.manga).asBitmap()
+                .input("", presenter.manga.title, { md, text ->
+                    //Set shortcut title
+                    addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, text.toString())
+
+                    //Custom image
+                    fun pickCustomImage() {
+                        val intent = Intent(Intent.ACTION_GET_CONTENT)
+                        intent.type = "image/*"
+                        val requestCode = REQUEST_IMAGE_OPEN++
+                        imagePickerActivities.put(requestCode, addIntent)
+                        startActivityForResult(Intent.createChooser(intent,
+                                getString(R.string.file_select_icon)), requestCode)
                     }
 
-                    fun BitmapRequestBuilder<Manga, Bitmap>.toIcon(): Bitmap {
-                        return this.into(96, 96).get()
-                    }
+                    val modes = intArrayOf(R.string.tachiyomi_icon,
+                            R.string.manga_thumbnail,
+                            R.string.custom_icon)
 
                     //Set shortcut icon
                     MaterialDialog.Builder(activity)
@@ -233,37 +243,93 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
                             .negativeText(android.R.string.cancel)
                             .items(modes.map { getString(it) })
                             .itemsCallback { dialog, view, i, charSequence ->
-                                thread {
-                                    // i = 0: Tachiyomi icon
-                                    // i = 1: Circular manga icon
-                                    // i = 2: Rounded manga icon
-                                    // i = 3: Square manga icon
-                                    // i = 4: TODO Custom icon
-                                    val icon = when (i) {
-                                        0 -> BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
-                                        1 -> mangaBitmap().transform(CropCircleTransformation(context)).toIcon()
-                                        2 -> mangaBitmap().transform(RoundedCornersTransformation(context, 5, 0)).toIcon()
-                                        3 -> mangaBitmap().transform(CropSquareTransformation(context)).toIcon()
-                                        4 -> null //TODO
-                                        else -> null
+                                // i = 0: Tachiyomi icon
+                                // i = 1: Manga thumbnail
+                                // i = 2: Custom icon
+                                val icon = when (i) {
+                                    0 -> BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
+                                    1 -> {
+                                        reshapeIconBitmap(addIntent,
+                                                Glide.with(context).load(presenter.manga).asBitmap())
+                                        null
                                     }
+                                    2 -> {
+                                        pickCustomImage()
+                                        null
+                                    }
+                                    else -> null
+                                }
 
-                                    if (icon != null) {
-                                        //Send shortcut intent
-                                        addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, title)
-                                                .putExtra(Intent.EXTRA_SHORTCUT_ICON, icon)
-                                        context.sendBroadcast(addIntent)
-                                        //Go to launcher to show this shiny new shortcut!
-                                        val startMain = Intent(Intent.ACTION_MAIN)
-                                        startMain.addCategory(Intent.CATEGORY_HOME)
-                                                .flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                                        activity.runOnUiThread {
-                                            startActivity(startMain)
-                                        }
-                                    }
+                                if (icon != null) {
+                                    createShortcut(addIntent, icon)
                                 }
                             }.show()
+                })
+                .negativeText(android.R.string.cancel)
+                .onNegative { materialDialog, dialogAction -> materialDialog.cancel() }
+                .show()
+    }
+
+    fun reshapeIconBitmap(addIntent: Intent, request: BitmapTypeRequest<out Any>) {
+        val modes = intArrayOf(R.string.circular_icon,
+                R.string.rounded_icon,
+                R.string.square_icon,
+                R.string.star_icon)
+
+        fun BitmapRequestBuilder<out Any, Bitmap>.toIcon(): Bitmap {
+            return this.into(96, 96).get()
+        }
+
+        MaterialDialog.Builder(activity)
+                .title(R.string.icon_shape)
+                .negativeText(android.R.string.cancel)
+                .items(modes.map { getString(it) })
+                .itemsCallback { dialog, view, i, charSequence ->
+                    thread {
+                        // i = 0: Circular icon
+                        // i = 1: Rounded icon
+                        // i = 2: Square icon
+                        // i = 3: Star icon (because boredom)
+                        val icon = when (i) {
+                            0 -> request.transform(CropCircleTransformation(context)).toIcon()
+                            1 -> request.transform(RoundedCornersTransformation(context, 5, 0)).toIcon()
+                            2 -> request.transform(CropSquareTransformation(context)).toIcon()
+                            3 -> request.transform(CenterCrop(context), MaskTransformation(context, R.drawable.mask_star)).toIcon()
+                            else -> null
+                        }
+
+                        if (icon != null) {
+                            createShortcut(addIntent, icon)
+                        }
+                    }
                 }.show()
+    }
+
+    fun createShortcut(addIntent: Intent, icon: Bitmap) {
+        //Send shortcut intent
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon)
+        context.sendBroadcast(addIntent)
+        //Go to launcher to show this shiny new shortcut!
+        val startMain = Intent(Intent.ACTION_MAIN)
+        startMain.addCategory(Intent.CATEGORY_HOME)
+                .flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        activity.runOnUiThread {
+            startActivity(startMain)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val imagePickerIntent = imagePickerActivities[requestCode]
+        imagePickerActivities.remove(requestCode)
+        if (imagePickerIntent != null && data != null && resultCode == Activity.RESULT_OK) {
+            try {
+                // Get the file's input stream from the incoming Intent
+                reshapeIconBitmap(imagePickerIntent, Glide.with(context).load(context.contentResolver.openInputStream(data.data)).asBitmap())
+            } catch (error: IOException) {
+                context.toast(R.string.shortcut_creation_failed)
+                Timber.e(error, error.message)
+            }
+        }
     }
 
     /**
