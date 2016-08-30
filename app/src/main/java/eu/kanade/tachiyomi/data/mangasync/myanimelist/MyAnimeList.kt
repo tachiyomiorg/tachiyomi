@@ -26,7 +26,7 @@ class MyAnimeList(private val context: Context, id: Int) : MangaSyncService(cont
     private lateinit var headers: Headers
 
     companion object {
-        val BASE_URL = "http://myanimelist.net"
+        val BASE_URL = "https://myanimelist.net"
 
         private val ENTRY_TAG = "entry"
         private val CHAPTER_TAG = "chapter"
