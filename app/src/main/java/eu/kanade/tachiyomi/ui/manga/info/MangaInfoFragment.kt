@@ -19,6 +19,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
+import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.toast
 import jp.wasabeef.glide.transformations.CropCircleTransformation
@@ -197,8 +198,7 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
     fun addToHomeScreen() {
         val shortcutIntent = activity.intent
         shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .putExtra(MangaActivity.FROM_LAUNCHER_EXTRA, true)
 
         val addIntent = Intent()
         addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)

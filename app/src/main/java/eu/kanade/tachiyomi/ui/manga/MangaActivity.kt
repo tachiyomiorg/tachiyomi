@@ -24,6 +24,7 @@ class MangaActivity : BaseRxActivity<MangaPresenter>() {
 
         const val FROM_CATALOGUE_EXTRA = "from_catalogue"
         const val MANGA_EXTRA = "manga"
+        const val FROM_LAUNCHER_EXTRA = "from_launcher"
         const val INFO_FRAGMENT = 0
         const val CHAPTERS_FRAGMENT = 1
         const val MYANIMELIST_FRAGMENT = 2
@@ -47,17 +48,15 @@ class MangaActivity : BaseRxActivity<MangaPresenter>() {
         super.onCreate(savedState)
         setContentView(R.layout.activity_manga)
 
-        /*
-        Open from homescreen opens the previous manga if we keep this code here???
-        We need some way to remove the mangaevent from shared data when opening from homescreen
+        val fromLauncher = intent.getBooleanExtra(FROM_LAUNCHER_EXTRA, false)
+
+        //Remove any current manga if we are launching from launcher
+        if(fromLauncher) SharedData.remove(MangaEvent::class.java)
 
         presenter.setMangaEvent(SharedData.getOrPut(MangaEvent::class.java) {
             val id = intent.getLongExtra(MANGA_EXTRA, 0)
             MangaEvent(presenter.db.getManga(id).executeAsBlocking()!!)
         })
-        */
-        val id = intent.getLongExtra(MANGA_EXTRA, 0)
-        presenter.setMangaEvent(MangaEvent(presenter.db.getManga(id).executeAsBlocking()!!))
 
         setupToolbar(toolbar)
 
