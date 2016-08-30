@@ -52,9 +52,15 @@ class PreferencesHelper(context: Context) {
 
     fun customBrightnessValue() = rxPrefs.getInteger(keys.customBrightnessValue, 0)
 
-    fun redFilter() = rxPrefs.getBoolean(keys.redFilter, false)
+    fun colorFilter() = rxPrefs.getBoolean(keys.colorFilter, false)
 
-    fun redFilterValue() = rxPrefs.getInteger(keys.redFilterValue, 0)
+    fun colorFilterRedValue() = rxPrefs.getInteger(keys.colorFilterRedValue, 255)
+
+    fun colorFilterBlueValue() = rxPrefs.getInteger(keys.colorFilterGreenValue, 0)
+
+    fun colorFilterGreenValue() = rxPrefs.getInteger(keys.colorFilterBlueValue, 0)
+
+    fun colorFilterAlphaValue() = rxPrefs.getInteger(keys.colorFilterAlphaValue, 25)
 
     fun defaultViewer() = prefs.getInt(keys.defaultViewer, 1)
 

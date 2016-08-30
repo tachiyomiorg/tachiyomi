@@ -69,7 +69,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private var customBrightnessSubscription: Subscription? = null
 
-    private var redFilterSubscription: Subscription? = null
+    private var colorFilterAlphaValueSubscription: Subscription? = null
 
     var readerTheme: Int = 0
         private set
@@ -378,7 +378,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         subscriptions += preferences.customBrightness().asObservable()
                 .subscribe { setCustomBrightness(it) }
 
-        subscriptions += preferences.redFilter().asObservable()
+        subscriptions += preferences.colorFilter().asObservable()
                 .subscribe { setRedFilter(it) }
 
         subscriptions += preferences.readerTheme().asObservable()
@@ -438,12 +438,12 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private fun setRedFilter(enabled: Boolean) {
         if (enabled) {
-            redFilterSubscription = preferences.redFilterValue().asObservable()
+            colorFilterAlphaValueSubscription = preferences.colorFilterAlphaValue().asObservable()
                     .subscribe { setRedFilterValue(it) }
 
-            subscriptions.add(redFilterSubscription)
+            subscriptions.add(colorFilterAlphaValueSubscription)
         } else {
-            redFilterSubscription?.let { subscriptions.remove(it) }
+            colorFilterAlphaValueSubscription?.let { subscriptions.remove(it) }
             setRedFilterValue(0)
         }
     }

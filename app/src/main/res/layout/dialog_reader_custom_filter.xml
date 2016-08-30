@@ -3,15 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:divider="@drawable/empty_divider"
-    android:orientation="vertical"
-    android:showDividers="middle">
+    android:orientation="vertical">
 
-    <View
-        android:id="@+id/color_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="?attr/colorAccent"/>
+        android:layout_height="wrap_content">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:src="@drawable/filter_mock"/>
+
+        <View
+            android:id="@+id/color_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:visibility="gone"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,30 +32,30 @@
             android:layout_height="wrap_content">
 
         <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-            android:id="@+id/red_filter_seekbar"
+            android:id="@+id/seekbar_color_filter_red"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
             app:dsb_indicatorColor="?colorAccent"
-            app:dsb_indicatorFormatter="%d%%"
             app:dsb_indicatorTextAppearance="@style/TextAppearance.Regular"
-            app:dsb_max="75"
+            app:dsb_max="255"
             app:dsb_min="0"
             app:dsb_progressColor="?colorAccent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/red_filter_seekbar"
-                android:textAppearance="@style/TextAppearance.Medium.Title"
+                android:layout_alignLeft="@id/seekbar_color_filter_red"
+                android:textAppearance="@style/TextAppearance.Medium.Title.Secondary"
                 android:text="R"/>
 
             <TextView
+                android:id="@+id/txt_color_filter_red_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@id/red_filter_seekbar"
-                android:textAppearance="@style/TextAppearance.Medium.Title"
+                android:layout_alignRight="@id/seekbar_color_filter_red"
+                android:textAppearance="@style/TextAppearance.Medium.Title.Secondary"
                 android:text="0"/>
         </RelativeLayout>
 
@@ -125,15 +133,15 @@
 
 
             <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-                android:id="@+id/a"
+                android:id="@+id/seekbar_color_filter_alpha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="24dp"
                 android:paddingRight="24dp"
                 app:dsb_indicatorColor="?colorAccent"
-                app:dsb_indicatorFormatter="%d%%"
                 app:dsb_indicatorTextAppearance="@style/TextAppearance.Regular"
-                app:dsb_max="75"
+                app:dsb_indicatorFormatter="%d%%"
+                app:dsb_max="80"
                 app:dsb_min="0"
                 app:dsb_progressColor="?colorAccent" />
 
@@ -141,17 +149,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/a"
-                android:textAppearance="@style/TextAppearance.Medium.Title"
+                android:layout_alignLeft="@id/seekbar_color_filter_alpha"
+                android:textAppearance="@style/TextAppearance.Medium.Title.Secondary"
                 android:text="A"/>
 
             <TextView
+                android:id="@+id/txt_color_filter_alpha_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@id/a"
-                android:textAppearance="@style/TextAppearance.Medium.Title"
+                android:layout_alignRight="@id/seekbar_color_filter_alpha"
+                android:textAppearance="@style/TextAppearance.Medium.Title.Secondary"
                 android:text="0"/>
         </RelativeLayout>
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/switch_color_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enable Filter"/>
     </LinearLayout>
 
 </LinearLayout>

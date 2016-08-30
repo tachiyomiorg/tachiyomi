@@ -31,7 +31,11 @@
     <string name="pref_keep_screen_on_key">pref_keep_screen_on_key</string>
     <string name="pref_custom_brightness_key">pref_custom_brightness_key</string>
     <string name="pref_custom_brightness_value_key">custom_brightness_value</string>
-    <string name="pref_red_filter_key">pref_red_filter_key</string>
+    <string name="pref_color_filter_key">pref_color_filter_key</string>
+    <string name="pref_color_filter_red_value_key">pref_color_filter_red_value</string>
+    <string name="pref_color_filter_green_value_key">pref_color_filter_green_value</string>
+    <string name="pref_color_filter_blue_value_key">pref_color_filter_blue_value</string>
+    <string name="pref_color_filter_alpha_value_key">pref_color_filter_alpha_value</string>
     <string name="pref_red_filter_value_key">pref_red_filter_value</string>
     <string name="pref_reader_theme_key">pref_reader_theme_key</string>
     <string name="pref_image_decoder_key">pref_image_decoder_key</string>

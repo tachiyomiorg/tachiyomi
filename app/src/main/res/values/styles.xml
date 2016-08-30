@@ -107,6 +107,10 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="TextAppearance.Medium.Title.Secondary">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+
     <style name="TextAppearance.Medium.Body2">
         <item name="android:textSize">14sp</item>
     </style>
