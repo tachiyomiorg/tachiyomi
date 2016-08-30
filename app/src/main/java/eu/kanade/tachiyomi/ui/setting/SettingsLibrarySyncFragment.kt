@@ -42,7 +42,7 @@ class SettingsLibrarySyncFragment : SettingsFragment() {
 
         overwriteServerLibrary.setOnPreferenceClickListener {
             sync.getAbsoluteLastLibraryFile().delete()
-            Snackbar.make(view, R.string.library_sync_last_library_state_deleted, Snackbar.LENGTH_SHORT)
+            Snackbar.make(view, R.string.library_sync_last_library_state_deleted, Snackbar.LENGTH_SHORT).show()
             true
         }
     }
