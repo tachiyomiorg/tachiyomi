@@ -23,15 +23,13 @@ class VerboseEditTextPreference @JvmOverloads constructor(context: Context, attr
     override fun onClick() {
         super.onClick()
 
-        var currentInput = getPrefValue()
-
         MaterialDialog.Builder(this.context)
                 .title(this.title)
-                .input("", currentInput, { dialog, input -> currentInput = input.toString() })
-                .dismissListener {
-                    persistString(currentInput)
-                    summary = currentInput
-                }
+                .input("", getPrefValue(), { dialog, input ->
+                    val stringInput = input.toString()
+                    persistString(stringInput)
+                    summary = stringInput
+                })
                 .cancelable(true)
                 .negativeText(android.R.string.cancel)
                 .onNegative { materialDialog, dialogAction -> materialDialog.cancel() }
