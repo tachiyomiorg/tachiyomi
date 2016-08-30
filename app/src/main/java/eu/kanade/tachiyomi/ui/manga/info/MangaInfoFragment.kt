@@ -1,10 +1,17 @@
 package eu.kanade.tachiyomi.ui.manga.info
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.support.customtabs.CustomTabsIntent
+import android.support.design.widget.Snackbar
 import android.view.*
+import com.afollestad.materialdialogs.MaterialDialog
+import com.bumptech.glide.BitmapRequestBuilder
+import com.bumptech.glide.BitmapTypeRequest
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
@@ -14,8 +21,13 @@ import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.toast
+import jp.wasabeef.glide.transformations.CropCircleTransformation
+import jp.wasabeef.glide.transformations.CropSquareTransformation
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.fragment_manga_info.*
+import kotlinx.android.synthetic.main.item_download.*
 import nucleus.factory.RequiresPresenter
+import kotlin.concurrent.thread
 
 /**
  * Fragment that shows manga information.
@@ -61,6 +73,7 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
         when (item.itemId) {
             R.id.action_open_in_browser -> openInBrowser()
             R.id.action_share -> shareManga()
+            R.id.action_add_to_home_screen -> addToHomeScreen()
             else -> return super.onOptionsItemSelected(item)
         }
         return true
@@ -176,6 +189,78 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
         } catch (e: Exception) {
             context.toast(e.message)
         }
+    }
+
+    /**
+     * Add the manga to the home screen
+     */
+    fun addToHomeScreen() {
+        val shortcutIntent = activity.intent
+        shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+        val addIntent = Intent()
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
+                .action = "com.android.launcher.action.INSTALL_SHORTCUT"
+
+        val modes = intArrayOf(R.string.tachiyomi_icon,
+                R.string.circular_manga_icon,
+                R.string.rounded_manga_icon,
+                R.string.square_manga_icon,
+                R.string.custom_icon)
+
+        //Set shortcut title
+        var title = presenter.manga.title
+        MaterialDialog.Builder(activity)
+                .title(R.string.shortcut_title)
+                .input("", title, { md, text -> title = text.toString() })
+                .negativeText(android.R.string.cancel)
+                .onNegative { materialDialog, dialogAction -> materialDialog.cancel() }
+                .onPositive { materialDialog, dialogAction ->
+                    //Glide utility methods
+                    fun mangaBitmap(): BitmapTypeRequest<Manga> {
+                        return Glide.with(context).load(presenter.manga).asBitmap()
+                    }
+                    fun BitmapRequestBuilder<Manga, Bitmap>.toIcon(): Bitmap {
+                        return this.into(96, 96).get()
+                    }
+
+                    //Set shortcut icon
+                    MaterialDialog.Builder(activity)
+                            .title(R.string.icon_type)
+                            .negativeText(android.R.string.cancel)
+                            .items(modes.map { getString(it) })
+                            .itemsCallback { dialog, view, i, charSequence ->
+                                thread {
+                                    // i = 0: Tachiyomi icon
+                                    // i = 1: Circular manga icon
+                                    // i = 2: Rounded manga icon
+                                    // i = 3: Square manga icon
+                                    // i = 4: TODO Custom icon
+                                    val icon = when (i) {
+                                        0 -> BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
+                                        1 -> mangaBitmap().transform(CropCircleTransformation(context)).toIcon()
+                                        2 -> mangaBitmap().transform(RoundedCornersTransformation(context, 5, 0)).toIcon()
+                                        3 -> mangaBitmap().transform(CropSquareTransformation(context)).toIcon()
+                                        4 -> null //TODO
+                                        else -> null
+                                    }
+
+                                    if (icon != null) {
+                                        //Send shortcut intent
+                                        addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, title)
+                                                .putExtra(Intent.EXTRA_SHORTCUT_ICON, icon)
+                                        context.sendBroadcast(addIntent)
+                                        //Go to launcher to show this shiny new shortcut!
+                                        val startMain = Intent(Intent.ACTION_MAIN)
+                                        startMain.addCategory(Intent.CATEGORY_HOME)
+                                                .flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                        activity.runOnUiThread {
+                                            startActivity(startMain)
+                                        }
+                                    }
+                                }
+                            }.show()
+                }.show()
     }
 
     /**

@@ -51,6 +51,7 @@
     <string name="action_remove">Remove</string>
     <string name="action_resume">Resume</string>
     <string name="action_open_in_browser">Open in browser</string>
+    <string name="action_add_to_home_screen">Add to home screen</string>
     <string name="action_display_mode">Change display mode</string>
     <string name="action_set_filter">Set filter</string>
     <string name="action_cancel">Cancel</string>
@@ -225,6 +226,14 @@
     <string name="manga_info_genres_label">Genres</string>
     <string name="share_subject">Share…</string>
     <string name="share_text">Check out %1$s! at %2$s</string>
+    <string name="added_to_home_screen">Manga added to home screen</string>
+    <string name="icon_type">Icon type</string>
+    <string name="tachiyomi_icon">Tachiyomi icon</string>
+    <string name="circular_manga_icon">Circular manga icon</string>
+    <string name="rounded_manga_icon">Rounded manga icon</string>
+    <string name="square_manga_icon">Square manga icon</string>
+    <string name="custom_icon">Custom icon</string>
+    <string name="shortcut_title">Shortcut title</string>
 
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapters</string>

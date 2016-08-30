@@ -153,6 +153,8 @@ dependencies {
     // Image library
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+    // Transformations
+    compile 'jp.wasabeef:glide-transformations:2.0.1'
 
     // Logging
     compile 'com.jakewharton.timber:timber:4.3.0'
