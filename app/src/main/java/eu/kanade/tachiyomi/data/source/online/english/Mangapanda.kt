@@ -6,6 +6,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.EN
 import eu.kanade.tachiyomi.data.source.Language
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import eu.kanade.tachiyomi.util.UrlUtil
 import okhttp3.Response
@@ -34,7 +35,7 @@ class Mangapanda(context: Context, override val id: Int) : ParsedOnlineSource(co
 
     override fun popularMangaNextPageSelector() = "div#sp > a:contains(>)"
 
-    override fun searchMangaInitialUrl(query: String) =
+    override fun searchMangaInitialUrl(query: String, filters: List<OnlineSource.Filter>) =
             "$baseUrl/search/?w=$query&rd=0&status=0&order=0&genre=0000000000000000000000000000000000000&p=0"
 
     override fun searchMangaSelector() = "table#listing > tbody > tr:gt(0)"
@@ -90,4 +91,43 @@ class Mangapanda(context: Context, override val id: Int) : ParsedOnlineSource(co
 
     override fun imageUrlParse(document: Document): String = document.getElementById("img").attr("src")
 
+    override fun getFilterList(): List<Filter> = listOf(
+            Filter("1", "Action"),
+            Filter("1", "Adventure"),
+            Filter("1", "Comedy"),
+            Filter("1", "Demons"),
+            Filter("1", "Drama"),
+            Filter("1", "Ecchi"),
+            Filter("1", "Fantasy"),
+            Filter("1", "Gender Bender"),
+            Filter("1", "Harem"),
+            Filter("1", "Historical"),
+            Filter("1", "Horror"),
+            Filter("1", "Josei"),
+            Filter("1", "Magic"),
+            Filter("1", "Martial Arts"),
+            Filter("1", "Mature"),
+            Filter("1", "Mecha"),
+            Filter("1", "Military"),
+            Filter("1", "Mystery"),
+            Filter("1", "One shot"),
+            Filter("1", "Psychological"),
+            Filter("1", "Romance"),
+            Filter("1", "School Life"),
+            Filter("1", "Sci-fi"),
+            Filter("1", "Seinen"),
+            Filter("1", "Shotacon"),
+            Filter("1", "Shoujo"),
+            Filter("1", "Shoujo Ai"),
+            Filter("1", "Shounen"),
+            Filter("1", "Shounen Ai"),
+            Filter("1", "Slice of Life"),
+            Filter("1", "Smut"),
+            Filter("1", "Sports"),
+            Filter("1", "Supernatural"),
+            Filter("1", "Tragedy"),
+            Filter("1", "Vampire"),
+            Filter("1", "Yaoi"),
+            Filter("1", "Yuri")
+    )
 }

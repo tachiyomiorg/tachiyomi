@@ -31,8 +31,9 @@ open class SourceManager(private val context: Context) {
     val MANGAPANDA = 11
     val MANGAREADER = 12
     val MANGAGO = 13
+    val DYNASTYSCANS = 14
 
-    val LAST_SOURCE = 13
+    val LAST_SOURCE = 14
 
     val sourcesMap = createSources()
 
@@ -56,6 +57,7 @@ open class SourceManager(private val context: Context) {
         MANGAPANDA -> Mangapanda(context, id)
         MANGAREADER -> Mangareader(context, id)
         MANGAGO -> Mangago(context, id)
+        DYNASTYSCANS -> Dynastyscans(context, id)
         else -> null
     }
 
