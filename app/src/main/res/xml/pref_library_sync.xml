@@ -22,12 +22,6 @@
             android:summary="@string/sync_library_on_launch_summary"
             android:title="@string/sync_library_on_launch" />
 
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="@string/pref_sync_favorites_only_key"
-            android:summary="@string/sync_favorites_only_summary"
-            android:title="@string/sync_favorites_only" />
-
         <Preference
             android:key="@string/pref_library_sync_now_key"
             android:persistent="false"

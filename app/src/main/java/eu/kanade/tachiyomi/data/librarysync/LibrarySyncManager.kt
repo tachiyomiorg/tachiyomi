@@ -46,9 +46,6 @@ class LibrarySyncManager(private val context: Context) {
         preferences.librarySyncEndpoint().asObservable().subscribe {
             updateSync(endpoint = it)
         }
-        preferences.syncFavoritesOnly().asObservable().subscribe {
-            updateSync(favoritesOnly = it)
-        }
     }
 
     /**
@@ -62,13 +59,12 @@ class LibrarySyncManager(private val context: Context) {
      * Try to enable sync with the current conditions
      */
     private fun updateSync(enableSync: Boolean = preferences.enableLibrarySync().getOrDefault(),
-                           endpoint: String = preferences.librarySyncEndpoint().getOrDefault(),
-                           favoritesOnly: Boolean = preferences.syncFavoritesOnly().getOrDefault()) {
+                           endpoint: String = preferences.librarySyncEndpoint().getOrDefault()) {
         syncClient = null
         //Check the conditions for sync individually and log failed conditions, if all conditions are satisfied, the sync client will be initialized
         if (enableSync) {
             if (endpointValid(endpoint)) {
-                initializeSyncClient(endpoint, favoritesOnly)
+                initializeSyncClient(endpoint)
             } else {
                 syncError = R.string.sync_status_error_invalid_endpoint
             }
@@ -80,13 +76,13 @@ class LibrarySyncManager(private val context: Context) {
     /**
      * Initialize the sync client
      */
-    private fun initializeSyncClient(endpoint: String, favoritesOnly: Boolean) {
+    private fun initializeSyncClient(endpoint: String) {
         //Ensure endpoint ends in a slash
         var builtEndpoint = endpoint
         if (!builtEndpoint.endsWith("/")) {
             builtEndpoint += "/"
         }
-        syncClient = SyncClient(builtEndpoint + SYNC_SUFFIX, builtEndpoint + TASK_SUFFIX, favoritesOnly)
+        syncClient = SyncClient(builtEndpoint + SYNC_SUFFIX, builtEndpoint + TASK_SUFFIX, true)
     }
 
     /**

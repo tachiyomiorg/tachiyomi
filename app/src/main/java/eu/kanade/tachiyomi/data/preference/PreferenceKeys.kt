@@ -101,6 +101,4 @@ class PreferenceKeys(context: Context) {
     val lastFailedLibrarySyncCount = context.getString(R.string.pref_last_failed_library_sync_count_key)
 
     val syncLibraryOnLaunch = context.getString(R.string.pref_sync_library_on_launch_key)
-
-    val syncFavoritesOnly = context.getString(R.string.pref_sync_favorites_only_key)
 }

@@ -61,7 +61,7 @@ class LibrarySyncDialog(val activity: Activity) {
         thread {
             //Get libraries
             val oldLibrary = sync.getLastLibraryState()
-            val newLibrary = backup.backupToJson(favoritesOnly = prefs.syncFavoritesOnly().getOrDefault()).toString()
+            val newLibrary = backup.backupToJson(favoritesOnly = true).toString()
             syncClient.syncLibrariesWithProgress(oldLibrary,
                     newLibrary, {
                 //Show sync fail error dialog and log this failed sync attempt

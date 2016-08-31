@@ -173,8 +173,6 @@
     <string name="sync_library_on_launch">Sync library on app launch</string>
     <string name="sync_library_on_launch_summary">Automatically sync the library when the application is launched</string>
     <string name="action_sync_library">Sync library</string>
-    <string name="sync_favorites_only">Sync favorites only</string>
-    <string name="sync_favorites_only_summary">Only sync favorite manga, speeds up sync significantly but will delete reading progress on manga not favorited every sync</string>
     <string name="library_sync_dialog_title">Syncing library</string>
     <string name="pref_library_sync_advanced">Advanced</string>
     <string name="pref_library_sync_delete_last_library_state">Overwrite server library</string>

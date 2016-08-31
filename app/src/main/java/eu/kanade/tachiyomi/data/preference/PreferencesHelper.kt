@@ -118,8 +118,6 @@ class PreferencesHelper(context: Context) {
 
     fun syncLibraryOnLaunch() = rxPrefs.getBoolean(keys.syncLibraryOnLaunch, true)
 
-    fun syncFavoritesOnly() = rxPrefs.getBoolean(keys.syncFavoritesOnly, true)
-
     fun downloadsDirectory() = rxPrefs.getString(keys.downloadsDirectory, defaultDownloadsDir.absolutePath)
 
     fun downloadThreads() = rxPrefs.getInteger(keys.downloadThreads, 1)
