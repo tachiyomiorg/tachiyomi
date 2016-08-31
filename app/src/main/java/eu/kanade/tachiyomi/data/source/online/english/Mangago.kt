@@ -22,6 +22,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.EN
 import eu.kanade.tachiyomi.data.source.Language
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
@@ -50,7 +51,7 @@ class Mangago(context: Context, override val id: Int) : ParsedOnlineSource(conte
 
     override fun popularMangaNextPageSelector() = "div.pagination > div > ol > li.current + li > a"
 
-    override fun searchMangaInitialUrl(query: String) =
+    override fun searchMangaInitialUrl(query: String, filters: List<OnlineSource.Filter>) =
             "$baseUrl/r/l_search/?page=1&name=$query"
 
     override fun searchMangaSelector() = "ul#search_list > li"
