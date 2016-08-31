@@ -7,10 +7,6 @@ import android.util.AttributeSet
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.librarysync.LibrarySyncManager
 import kotlinx.android.synthetic.main.preference_widget_imageview_switch.view.*
-import rx.Observable
-import rx.Scheduler
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 import uy.kohesive.injekt.injectLazy
 
 class LibrarySyncPreference @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
@@ -27,13 +23,6 @@ class LibrarySyncPreference @JvmOverloads constructor(context: Context, attrs: A
     override fun onAttached() {
         super.onAttached()
         updatePreferenceUI()
-        //Listen for sync manager changes
-        sync.syncAvailableSubject
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    updatePreferenceUI()
-                    notifyPrefChanged()
-                }
     }
 
     /**
@@ -76,7 +65,7 @@ class LibrarySyncPreference @JvmOverloads constructor(context: Context, attrs: A
         holder.itemView.switch_switch_view.isChecked = getPrefValue()
         holder.itemView.switch_switch_view.setOnCheckedChangeListener { compoundButton, b ->
             persistBoolean(b)
-            notifyPrefChanged()
+            notifyChanged()
         }
     }
 
@@ -85,15 +74,11 @@ class LibrarySyncPreference @JvmOverloads constructor(context: Context, attrs: A
     override fun onClick() {
         super.onClick()
         persistBoolean(!getPrefValue())
-        notifyPrefChanged()
+        notifyChanged()
     }
 
-    /**
-     * Update the preference UI
-     */
-    private fun notifyPrefChanged() {
-        this.notifyDependencyChange(this.shouldDisableDependents())
-        this.notifyChanged()
+    public override fun notifyChanged() {
+        super.notifyChanged()
         updatePreferenceUI()
     }
 }

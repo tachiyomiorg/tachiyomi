@@ -6,10 +6,12 @@ import android.support.design.widget.Snackbar
 import android.support.v7.preference.XpPreferenceFragment
 import android.view.View
 import android.view.WindowManager
-import com.afollestad.materialdialogs.MaterialDialog
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.librarysync.LibrarySyncManager
 import eu.kanade.tachiyomi.ui.library.sync.LibrarySyncDialog
+import eu.kanade.tachiyomi.util.plusAssign
+import eu.kanade.tachiyomi.widget.preference.LibrarySyncPreference
+import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.injectLazy
 
 class SettingsLibrarySyncFragment : SettingsFragment() {
@@ -21,6 +23,8 @@ class SettingsLibrarySyncFragment : SettingsFragment() {
             return SettingsLibrarySyncFragment().apply { arguments = args }
         }
     }
+
+    private val syncEnabled by lazy { findPreference(getString(R.string.pref_enable_library_sync_key)) as LibrarySyncPreference }
 
     private val syncNow by lazy { findPreference(getString(R.string.pref_library_sync_now_key)) }
 
@@ -45,6 +49,13 @@ class SettingsLibrarySyncFragment : SettingsFragment() {
             Snackbar.make(view, R.string.library_sync_last_library_state_deleted, Snackbar.LENGTH_SHORT).show()
             true
         }
+
+        //Listen for sync manager changes
+        subscriptions += sync.syncAvailableSubject
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    syncEnabled.notifyChanged()
+                }
     }
 
     /**

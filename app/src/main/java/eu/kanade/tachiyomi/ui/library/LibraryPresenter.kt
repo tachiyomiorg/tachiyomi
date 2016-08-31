@@ -8,6 +8,7 @@ import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.download.DownloadManager
+import eu.kanade.tachiyomi.data.librarysync.LibrarySyncManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.SourceManager
@@ -76,6 +77,11 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
      * Download manager.
      */
     val downloadManager: DownloadManager by injectLazy()
+
+    /**
+     * Sync manager.
+     */
+    val syncManager: LibrarySyncManager by injectLazy()
 
     companion object {
         /**

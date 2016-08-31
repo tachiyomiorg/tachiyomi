@@ -50,11 +50,6 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     val preferences: PreferencesHelper by injectLazy()
 
     /**
-     * Sync
-     */
-    val sync: LibrarySyncManager by injectLazy()
-
-    /**
      * TabLayout of the categories.
      */
     private val tabs: TabLayout
@@ -100,6 +95,11 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
      * Subscription for the number of manga per row.
      */
     private var numColumnsSubscription: Subscription? = null
+
+    /**
+     * Subscription for sync status
+     */
+    private var syncEnabledSubscription: Subscription? = null
 
     companion object {
         /**
@@ -218,9 +218,14 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
 
         //Initialize sync button
         val syncItem = menu.findItem(R.id.action_sync_library)
-        preferences.enableLibrarySync().asObservable().subscribe {
-            syncItem.isVisible = sync.enabled
+        syncEnabledSubscription = preferences.enableLibrarySync().asObservable().subscribe {
+            syncItem.isVisible = presenter.syncManager.enabled
         }
+    }
+
+    override fun onDestroyOptionsMenu() {
+        super.onDestroyOptionsMenu()
+        syncEnabledSubscription?.unsubscribe()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
