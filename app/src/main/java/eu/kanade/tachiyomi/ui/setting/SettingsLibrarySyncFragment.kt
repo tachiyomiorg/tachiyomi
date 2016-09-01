@@ -8,7 +8,7 @@ import android.view.View
 import android.view.WindowManager
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.librarysync.LibrarySyncManager
-import eu.kanade.tachiyomi.ui.library.sync.LibrarySyncDialog
+import eu.kanade.tachiyomi.ui.library.sync.LibrarySyncDialogFragment
 import eu.kanade.tachiyomi.util.plusAssign
 import eu.kanade.tachiyomi.widget.preference.LibrarySyncPreference
 import rx.android.schedulers.AndroidSchedulers
@@ -36,11 +36,7 @@ class SettingsLibrarySyncFragment : SettingsFragment() {
         super.onViewCreated(view, savedState)
 
         syncNow.setOnPreferenceClickListener {
-            val librarySyncDialog = LibrarySyncDialog(activity)
-            val dialog = librarySyncDialog.createDialog()
-            dialog.show()
-            doKeepDialog(dialog)
-            librarySyncDialog.runSync()
+            LibrarySyncDialogFragment.show(childFragmentManager)
             true
         }
 
