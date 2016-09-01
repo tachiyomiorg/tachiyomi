@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="false">
 
+    <changelogversion versionName="r851" changeDate="">
+        <changelogtext>[b]Important![/b] Delete after read has been updated.
+            This means the default value is set to remove the last read chapter (if  remove after read enabled).
+            This can be changed in Settings > Downloads
+        </changelogtext>
+    </changelogversion>
+
     <changelogversion versionName="r736" changeDate="">
         <changelogtext>[b]Important![/b] Now chapters follow the order of the sources. [b]It's required that you update your entire library
             before reading in order for them to be synced.[/b] Old behavior can be restored for a manga in the overflow menu of the chapters tab.

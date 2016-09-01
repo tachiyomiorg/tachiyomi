@@ -41,7 +41,7 @@
 
     <string name="pref_download_directory_key">pref_download_directory_key</string>
     <string name="pref_download_slots_key">pref_download_slots_key</string>
-    <string name="pref_remove_after_read_slots_key"> pref_remove_after_read_slots_key</string>
+    <string name="pref_remove_after_read_slots_key">remove_after_read_slots</string>
     <string name="pref_download_only_over_wifi_key">pref_download_only_over_wifi_key</string>
     <string name="pref_remove_after_marked_as_read_key">pref_remove_after_marked_as_read_key</string>
     <string name="pref_category_remove_after_read_key">pref_category_remove_after_read_key</string>

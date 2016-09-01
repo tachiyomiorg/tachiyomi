@@ -147,7 +147,11 @@
     <string name="cat_remove_after_read">Remove after read</string>
     <string name="sum_remove_after_read">Will remove preceding chapter after read</string>
     <string name="custom_dir">Custom directory</string>
-
+    <string name="last_read_chapter">Last read chapter</string>
+    <string name="second_to_last">Second to last chapter</string>
+    <string name="third_to_last">Third to last chapter</string>
+    <string name="fourth_to_last">Fourth to last chapter</string>
+    <string name="fifth_to_last">Fifth to last chapter</string>
 
       <!-- Sources section -->
     <string name="languages">Languages</string>
