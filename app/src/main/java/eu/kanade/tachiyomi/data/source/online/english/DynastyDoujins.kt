@@ -17,17 +17,15 @@ import org.jsoup.nodes.Element
 import java.text.SimpleDateFormat
 import java.util.regex.Pattern
 
-class Dynastyscans(context: Context, override val id: Int) : ParsedOnlineSource(context) {
+class DynastyDoujins(context: Context, override val id: Int) : ParsedOnlineSource(context) {
 
-    override val name = "Dynasty-Scans"
+    override val name = "Dynasty-Doujins"
 
     override val baseUrl = "http://dynasty-scans.com"
 
     override val lang: Language get() = EN
 
-    val urls = arrayOf("series?view=cover", "/issues?view=cover", "/anthologies?view=cover", "/doujins?view=cover")
-
-    override fun popularMangaInitialUrl() = "$baseUrl/${urls[0]}"
+    override fun popularMangaInitialUrl() = "$baseUrl/doujins?view=cover"
 
     override fun popularMangaSelector() = "ul.thumbnails > li.span2"
 
@@ -47,12 +45,6 @@ class Dynastyscans(context: Context, override val id: Int) : ParsedOnlineSource(
                 page.mangas.add(this)
             }
         }
-        if (page.url.contains("series"))
-            page.nextPageUrl = "$baseUrl${urls[1]}"
-        else if (page.url.contains("issues"))
-            page.nextPageUrl = "$baseUrl${urls[2]}"
-        else if (page.url.contains("anthologies"))
-            page.nextPageUrl = "$baseUrl${urls[3]}"
     }
 
     override fun popularMangaNextPageSelector() = ""
@@ -72,35 +64,20 @@ class Dynastyscans(context: Context, override val id: Int) : ParsedOnlineSource(
     override fun searchMangaNextPageSelector() = "div.pagination > ul > li.active + li > a"
 
     override fun mangaDetailsParse(document: Document, manga: Manga) {
-        val ielement = document.select("div#main").first()
-
-        manga.thumbnail_url = baseUrl + document.select("div.span2 > img").attr("src")
-        manga.status = ielement.select("h2 > small").text().orEmpty().let { parseStatus(it) }
-        manga.author = ielement.select("h2 > a").text()
-        manga.artist = manga.author
+        manga.status = Manga.UNKNOWN
         manga.genre = document.select("div.tag-tags > a").text()
-        manga.description = ielement.select("div.description").text()
     }
 
-    private fun parseStatus(status: String) = when {
-        status.contains("Ongoing") -> Manga.ONGOING
-        status.contains("Completed") -> Manga.COMPLETED
-        else -> Manga.UNKNOWN
-    }
-
-    override fun chapterListSelector() = "div.span10 > dl.chapter-list > dd"
-
-    override fun chapterListParse(response: Response, chapters: MutableList<Chapter>) {
-        super.chapterListParse(response, chapters)
-        chapters.reverse()
-    }
+    override fun chapterListSelector() = "div.span9 > dl.chapter-list > dd"
 
     override fun chapterFromElement(element: Element, chapter: Chapter) {
-        chapter.setUrlWithoutDomain(element.select("a").attr("href"))
-        chapter.name = element.select("a").text()
-        chapter.date_upload = element.select("small").text()?.let {
-            SimpleDateFormat("MMM dd yy").parse(it.replace("\'", "").replace("released ", "")).time
-        } ?: 0
+        val nodes = element.childNodes()
+
+        chapter.setUrlWithoutDomain((nodes[1] as Element).attr("href"))
+        chapter.name = (nodes[1] as Element).text() + " by " + (nodes[3] as Element).text()
+        chapter.date_upload = (nodes[5] as Element).text().let {
+            SimpleDateFormat("MMM dd yy").parse(it.substringAfter("released ").replace("\'", "")).time
+        }
     }
 
     override fun pageListParse(document: Document, pages: MutableList<Page>) {
