@@ -59,6 +59,9 @@
         <service android:name=".data.mangasync.UpdateMangaSyncService"
             android:exported="false"/>
 
+        <service android:name=".data.updater.UpdateDownloaderService"
+            android:exported="false"/>
+
         <receiver
             android:name=".data.library.LibraryUpdateService$SyncOnConnectionAvailable"
             android:enabled="false">
@@ -80,7 +83,7 @@
         </receiver>
 
         <receiver
-            android:name=".data.updater.UpdateDownloader$InstallOnReceived">
+            android:name=".data.updater.UpdateDownloaderService$UpdaterReceiver">
         </receiver>
 
         <receiver

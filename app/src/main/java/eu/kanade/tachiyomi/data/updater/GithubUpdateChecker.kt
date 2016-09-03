@@ -1,20 +1,25 @@
 package eu.kanade.tachiyomi.data.updater
 
-import android.content.Context
-import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.util.toast
+import eu.kanade.tachiyomi.BuildConfig
 import rx.Observable
 
+class GithubUpdateChecker() {
 
-class GithubUpdateChecker(private val context: Context) {
-
-    val service: GithubService = GithubService.create()
+    private val service: GithubService = GithubService.create()
 
     /**
      * Returns observable containing release information
      */
-    fun checkForApplicationUpdate(): Observable<GithubRelease> {
-        context.toast(R.string.update_check_look_for_updates)
-        return service.getLatestVersion()
+    fun checkForUpdate(): Observable<GithubUpdateResult> {
+        return service.getLatestVersion().map { release ->
+            val newVersion = release.version.replace("[^\\d.]".toRegex(), "")
+
+            // Check if latest version is different from current version
+            if (newVersion != BuildConfig.VERSION_NAME) {
+                GithubUpdateResult.NewUpdate(release)
+            } else {
+                GithubUpdateResult.NoNewUpdate()
+            }
+        }
     }
 }

@@ -8,11 +8,14 @@ import com.afollestad.materialdialogs.MaterialDialog
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.updater.GithubUpdateChecker
-import eu.kanade.tachiyomi.data.updater.UpdateDownloader
+import eu.kanade.tachiyomi.data.updater.GithubUpdateResult
+import eu.kanade.tachiyomi.data.updater.UpdateDownloaderAlarm
+import eu.kanade.tachiyomi.data.updater.UpdateDownloaderService
 import eu.kanade.tachiyomi.util.toast
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import timber.log.Timber
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -22,7 +25,7 @@ class SettingsAboutFragment : SettingsFragment() {
     /**
      * Checks for new releases
      */
-    private val updateChecker by lazy { GithubUpdateChecker(activity) }
+    private val updateChecker by lazy { GithubUpdateChecker() }
 
     /**
      * The subscribtion service of the obtained release object
@@ -59,13 +62,12 @@ class SettingsAboutFragment : SettingsFragment() {
                 true
             }
 
-            //TODO One glorious day enable this and add the magnificent option for auto update checking.
-            // automaticUpdateToggle.isEnabled = true
-            //            automaticUpdateToggle.setOnPreferenceChangeListener { preference, any ->
-            //                val status = any as Boolean
-            //                UpdateDownloaderAlarm.startAlarm(activity, 12, status)
-            //                true
-            //            }
+            automaticUpdateToggle.isEnabled = true
+            automaticUpdateToggle.setOnPreferenceChangeListener { preference, any ->
+                val status = any as Boolean
+                UpdateDownloaderAlarm.startAlarm(context, 12, status)
+                true
+            }
         }
 
         buildTime.summary = getFormattedBuildTime()
@@ -98,36 +100,35 @@ class SettingsAboutFragment : SettingsFragment() {
     private fun checkVersion() {
         releaseSubscription?.unsubscribe()
 
-        releaseSubscription = updateChecker.checkForApplicationUpdate()
+        context.toast(R.string.update_check_look_for_updates)
+
+        releaseSubscription = updateChecker.checkForUpdate()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ release ->
-                    //Get version of latest release
-                    var newVersion = release.version
-                    newVersion = newVersion.replace("[^\\d.]".toRegex(), "")
+                .subscribe({ result ->
+                    when (result) {
+                        is GithubUpdateResult.NewUpdate -> {
+                            val body = result.release.changeLog
+                            val url = result.release.downloadLink
 
-                    //Check if latest version is different from current version
-                    if (newVersion != BuildConfig.VERSION_NAME) {
-                        val downloadLink = release.downloadLink
-                        val body = release.changeLog
-
-                        //Create confirmation window
-                        MaterialDialog.Builder(activity)
-                                .title(R.string.update_check_title)
-                                .content(body)
-                                .positiveText(getString(R.string.update_check_confirm))
-                                .negativeText(getString(R.string.update_check_ignore))
-                                .onPositive { dialog, which ->
-                                    // User output that download has started
-                                    activity.toast(R.string.update_check_download_started)
-                                    // Start download
-                                    UpdateDownloader(activity.applicationContext).execute(downloadLink)
-                                }.show()
-                    } else {
-                        activity.toast(R.string.update_check_no_new_updates)
+                            // Create confirmation window
+                            MaterialDialog.Builder(context)
+                                    .title(R.string.update_check_title)
+                                    .content(body)
+                                    .positiveText(getString(R.string.update_check_confirm))
+                                    .negativeText(getString(R.string.update_check_ignore))
+                                    .onPositive { dialog, which ->
+                                        // Start download
+                                        UpdateDownloaderService.downloadUpdate(context, url)
+                                    }
+                                    .show()
+                        }
+                        is GithubUpdateResult.NoNewUpdate -> {
+                            context.toast(R.string.update_check_no_new_updates)
+                        }
                     }
-                }, {
-                    it.printStackTrace()
+                }, { error ->
+                    Timber.e(error, error.message)
                 })
     }
 

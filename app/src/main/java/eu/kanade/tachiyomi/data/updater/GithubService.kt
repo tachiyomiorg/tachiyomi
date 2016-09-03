@@ -6,7 +6,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import rx.Observable
 
-
 /**
  * Used to connect with the Github API.
  */
