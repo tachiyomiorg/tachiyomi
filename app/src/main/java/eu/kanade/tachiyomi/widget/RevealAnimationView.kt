@@ -8,10 +8,14 @@ import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewAnimationUtils
+import android.widget.ImageView
 
+//TODO research animate and rewrite RevealAnimationView
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
-        View(context, attrs) {
+        ImageView(context, attrs) {
+
+    var removeViewOnAnimationEnd = false
 
     /**
      * Hides the animation view with a animation
@@ -75,5 +79,8 @@ class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: Att
         return false
     }
 
-
+    override fun onAnimationEnd() {
+        super.onAnimationEnd()
+        this.visibility = View.INVISIBLE
+    }
 }

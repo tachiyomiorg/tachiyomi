@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_bind_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_manga_sync"/>
+
+    <TextView
+        android:id="@+id/txt_status_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/list_bind_items"
+        android:paddingLeft="@dimen/padding_8dp"
+        android:paddingRight="@dimen/padding_8dp"
+        android:paddingTop="@dimen/padding_8dp"
+        android:text="@string/sync_status"
+        android:textAppearance="@style/TextAppearance.Medium.Body2"
+        android:visibility="gone"/>
+
+    <Spinner
+        android:id="@+id/spinner_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_status_title"
+        android:paddingBottom="@dimen/padding_8dp"
+        android:paddingLeft="@dimen/padding_8dp"
+        android:paddingRight="@dimen/padding_8dp"
+        android:prompt="@string/sync_status_spinner_promt"
+        android:textAppearance="@style/TextAppearance.Regular.Body1.Secondary"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/txt_last_read_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner_status"
+        android:paddingLeft="@dimen/padding_8dp"
+        android:paddingRight="@dimen/padding_8dp"
+        android:paddingTop="@dimen/padding_8dp"
+        android:text="@string/sync_last_read"
+        android:textAppearance="@style/TextAppearance.Medium.Body2"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/txt_last_read_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_last_read_title"
+        android:paddingLeft="@dimen/padding_8dp"
+        android:paddingRight="@dimen/padding_8dp"
+        android:text="@string/unknown"
+        android:textAppearance="@style/TextAppearance.Regular.Body1.Secondary"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/btn_last_read_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/spinner_status"
+        android:background="?attr/selectable_list_drawable"
+        android:padding="@dimen/padding_8dp"
+        android:text="@string/action_edit"
+        android:textAppearance="@style/TextAppearance.Medium.Button"
+        android:visibility="gone"/>
+
+</RelativeLayout>

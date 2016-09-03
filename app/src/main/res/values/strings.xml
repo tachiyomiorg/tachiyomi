@@ -44,6 +44,7 @@
     <string name="action_stop">Stop</string>
     <string name="action_pause">Pause</string>
     <string name="action_clear">Clear</string>
+    <string name="action_close">Close</string>
     <string name="action_previous_chapter">Previous chapter</string>
     <string name="action_next_chapter">Next chapter</string>
     <string name="action_retry">Retry</string>
@@ -90,6 +91,7 @@
     <string name="charging">Charging</string>
     <string name="pref_update_only_non_completed">Only update ongoing manga</string>
     <string name="pref_auto_update_manga_sync">Sync chapters after reading</string>
+    <string name="pref_auto_update_status_manga_sync">Set status to reading on chapter change.</string>
     <string name="pref_ask_update_manga_sync">Confirm before updating</string>
     <string name="pref_theme">Application theme</string>
     <string name="light_theme">Main theme</string>
@@ -155,6 +157,7 @@
 
       <!-- Sync section -->
     <string name="services">Services</string>
+    <string name="pref_default_service">Default service</string>
 
       <!-- Advanced section -->
     <string name="pref_clear_chapter_cache">Clear chapter cache</string>
@@ -328,4 +331,14 @@
     <string name="download_notifier_page_ready_error">A page is not loaded</string>
     <string name="download_notifier_text_only_wifi">No wifi connection available</string>
 
+    <!-- Dialog Manga Sync -->
+    <string name="myanimelist">MyAnimeList</string>
+    <string name="anilist">Anilist</string>
+    <string name="sync_bind">Bind</string>
+    <string name="sync_not_bound">Not Bound</string>
+    <string name="sync_status">Sync status</string>
+    <string name="sync_last_read">Sync last read</string>
+    <string name="sync_options">Sync options</string>
+    <string name="sync_status_spinner_promt">Set Status</string>
+    <string name="remove_from_library_warning">Warning: Are you sure you wish to remove the manga from your library (all services will be unbind)</string>
 </resources>

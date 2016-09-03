@@ -10,6 +10,8 @@ class MangaSyncImpl : MangaSync {
 
     override var remote_id: Int = 0
 
+    override var remote_score: Float = 0f
+
     override lateinit var title: String
 
     override var last_chapter_read: Int = 0
@@ -21,6 +23,8 @@ class MangaSyncImpl : MangaSync {
     override var status: Int = 0
 
     override var update: Boolean = false
+
+    override var is_bind: Boolean = false
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

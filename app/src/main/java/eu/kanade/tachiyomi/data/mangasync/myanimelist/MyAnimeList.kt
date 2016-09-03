@@ -9,6 +9,7 @@ import eu.kanade.tachiyomi.data.mangasync.MangaSyncService
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.network.asObservable
+import eu.kanade.tachiyomi.util.selectFloat
 import eu.kanade.tachiyomi.util.selectInt
 import eu.kanade.tachiyomi.util.selectText
 import okhttp3.Credentials
@@ -90,7 +91,7 @@ class MyAnimeList(private val context: Context, id: Int) : MangaSyncService(cont
                 .toCompletable()
     }
 
-    fun search(query: String): Observable<List<MangaSync>> {
+    override fun search(query: String): Observable<List<MangaSync>> {
         return client.newCall(GET(getSearchUrl(query), headers))
                 .asObservable()
                 .map { Jsoup.parse(it.body().string()) }
@@ -101,14 +102,15 @@ class MyAnimeList(private val context: Context, id: Int) : MangaSyncService(cont
                         title = it.selectText("title")!!
                         remote_id = it.selectInt("id")
                         total_chapters = it.selectInt("chapters")
+                        remote_score = it.selectFloat("score")
                     }
                 }
                 .toList()
     }
 
     // MAL doesn't support score with decimals
-    fun getList(): Observable<List<MangaSync>> {
-        return networkService.forceCacheClient
+    override fun getList(): Observable<List<MangaSync>> {
+        return networkService.client
                 .newCall(GET(getListUrl(getUsername()), headers))
                 .asObservable()
                 .map { Jsoup.parse(it.body().string()) }
@@ -188,6 +190,7 @@ class MyAnimeList(private val context: Context, id: Int) : MangaSyncService(cont
         return getList()
                 .flatMap { userlist ->
                     manga.sync_id = id
+                    manga.is_bind = true
                     val mangaFromList = userlist.find { it.remote_id == manga.remote_id }
                     if (mangaFromList != null) {
                         manga.copyPersonalFrom(mangaFromList)
@@ -219,4 +222,15 @@ class MyAnimeList(private val context: Context, id: Int) : MangaSyncService(cont
         headers = builder.build()
     }
 
+    override fun getStatusList(): List<Int> {
+        return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLAN_TO_READ)
+    }
+
+    /**
+     * Returns the average score of service
+     * @return average score
+     */
+    override fun getRemoteScore(manga: MangaSync): Float = with(context) {
+        return manga.remote_score
+    }
 }

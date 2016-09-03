@@ -17,7 +17,7 @@ class DbOpenHelper(context: Context)
         /**
          * Version of the database.
          */
-        const val DATABASE_VERSION = 3
+        const val DATABASE_VERSION = 4
     }
 
     override fun onCreate(db: SQLiteDatabase) = with(db) {
@@ -47,6 +47,14 @@ class DbOpenHelper(context: Context)
             // Initialize history tables
             db.execSQL(HistoryTable.createTableQuery)
             db.execSQL(HistoryTable.createChapterIdIndexQuery)
+        }
+        if (oldVersion < 4) {
+            // Add Remote score column
+            db.execSQL(MangaSyncTable.remoteScoreUpdateQuery)
+            // Add is_bind option
+            db.execSQL(MangaSyncTable.isBindUpdateQuery)
+            // Update old is_bind values
+            db.execSQL(MangaSyncTable.updateIsBind)
         }
     }
 

@@ -76,6 +76,8 @@ class PreferencesHelper(context: Context) {
 
     fun autoUpdateMangaSync() = prefs.getBoolean(keys.autoUpdateMangaSync, true)
 
+    fun autoUpdateStatusMangaSync() = prefs.getBoolean(keys.autoUpdateStatusMangaSync, false)
+
     fun askUpdateMangaSync() = prefs.getBoolean(keys.askUpdateMangaSync, false)
 
     fun lastUsedCatalogueSource() = rxPrefs.getInteger(keys.lastUsedCatalogueSource, -1)
@@ -133,5 +135,7 @@ class PreferencesHelper(context: Context) {
     fun filterUnread() = rxPrefs.getBoolean(keys.filterUnread, false)
 
     fun automaticUpdateStatus() = prefs.getBoolean(keys.automaticUpdateStatus, false)
+
+    fun defaultServiceId() = rxPrefs.getInteger(keys.defaultService, 1)
 
 }

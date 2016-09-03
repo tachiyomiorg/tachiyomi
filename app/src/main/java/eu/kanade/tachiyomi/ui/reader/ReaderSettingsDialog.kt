@@ -38,7 +38,7 @@ class ReaderSettingsDialog : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedState: Bundle?) = with(view) {
-        viewer.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
+        viewer.onItemSelectedListener = IgnoreFirstSpinnerListener { parent, position ->
             subscriptions += Observable.timer(250, MILLISECONDS, AndroidSchedulers.mainThread())
                     .subscribe {
                         (activity as ReaderActivity).presenter.updateMangaViewer(position)
@@ -47,7 +47,7 @@ class ReaderSettingsDialog : DialogFragment() {
         }
         viewer.setSelection((activity as ReaderActivity).presenter.manga.viewer, false)
 
-        rotation_mode.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
+        rotation_mode.onItemSelectedListener = IgnoreFirstSpinnerListener { parent, position ->
             subscriptions += Observable.timer(250, MILLISECONDS)
                     .subscribe {
                         preferences.rotation().set(position + 1)
@@ -55,22 +55,22 @@ class ReaderSettingsDialog : DialogFragment() {
         }
         rotation_mode.setSelection(preferences.rotation().getOrDefault() - 1, false)
 
-        scale_type.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
+        scale_type.onItemSelectedListener = IgnoreFirstSpinnerListener { parent, position ->
             preferences.imageScaleType().set(position + 1)
         }
         scale_type.setSelection(preferences.imageScaleType().getOrDefault() - 1, false)
 
-        zoom_start.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
+        zoom_start.onItemSelectedListener = IgnoreFirstSpinnerListener { parent, position ->
             preferences.zoomStart().set(position + 1)
         }
         zoom_start.setSelection(preferences.zoomStart().getOrDefault() - 1, false)
 
-        image_decoder.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
+        image_decoder.onItemSelectedListener = IgnoreFirstSpinnerListener { parent, position ->
             preferences.imageDecoder().set(position)
         }
         image_decoder.setSelection(preferences.imageDecoder().getOrDefault(), false)
 
-        background_color.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
+        background_color.onItemSelectedListener = IgnoreFirstSpinnerListener { parent, position ->
             preferences.readerTheme().set(position)
         }
         background_color.setSelection(preferences.readerTheme().getOrDefault(), false)

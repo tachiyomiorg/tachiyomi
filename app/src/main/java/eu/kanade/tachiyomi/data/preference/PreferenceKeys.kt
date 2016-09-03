@@ -50,6 +50,8 @@ class PreferenceKeys(context: Context) {
 
     val autoUpdateMangaSync = context.getString(R.string.pref_auto_update_manga_sync_key)
 
+    val autoUpdateStatusMangaSync = context.getString(R.string.pref_auto_update_status_manga_sync_key)
+
     val askUpdateMangaSync = context.getString(R.string.pref_ask_update_manga_sync_key)
 
     val lastUsedCatalogueSource = context.getString(R.string.pref_last_catalogue_source_key)
@@ -83,6 +85,8 @@ class PreferenceKeys(context: Context) {
     val automaticUpdateStatus = context.getString(R.string.pref_enable_automatic_updates_key)
 
     val startScreen = context.getString(R.string.pref_start_screen_key)
+
+    val defaultService = context.getString(R.string.pref_default_service_key)
 
     fun sourceUsername(sourceId: Int) = "pref_source_username_$sourceId"
 

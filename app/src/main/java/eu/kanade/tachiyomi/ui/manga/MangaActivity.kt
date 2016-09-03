@@ -11,7 +11,6 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.activity.BaseRxActivity
 import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersFragment
 import eu.kanade.tachiyomi.ui.manga.info.MangaInfoFragment
-import eu.kanade.tachiyomi.ui.manga.myanimelist.MyAnimeListFragment
 import eu.kanade.tachiyomi.util.SharedData
 import kotlinx.android.synthetic.main.activity_manga.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -26,7 +25,6 @@ class MangaActivity : BaseRxActivity<MangaPresenter>() {
         const val MANGA_EXTRA = "manga"
         const val INFO_FRAGMENT = 0
         const val CHAPTERS_FRAGMENT = 1
-        const val MYANIMELIST_FRAGMENT = 2
 
         fun newIntent(context: Context, manga: Manga, fromCatalogue: Boolean = false): Intent {
             SharedData.put(MangaEvent(manga))
@@ -75,12 +73,10 @@ class MangaActivity : BaseRxActivity<MangaPresenter>() {
 
         private var pageCount: Int = 0
         private val tabTitles = arrayOf(activity.getString(R.string.manga_detail_tab),
-                activity.getString(R.string.manga_chapters_tab), "MAL")
+                activity.getString(R.string.manga_chapters_tab))
 
         init {
             pageCount = 2
-            if (!activity.fromCatalogue && activity.presenter.syncManager.myAnimeList.isLogged)
-                pageCount++
         }
 
         override fun getCount(): Int {
@@ -91,7 +87,6 @@ class MangaActivity : BaseRxActivity<MangaPresenter>() {
             when (position) {
                 INFO_FRAGMENT -> return MangaInfoFragment.newInstance()
                 CHAPTERS_FRAGMENT -> return ChaptersFragment.newInstance()
-                MYANIMELIST_FRAGMENT -> return MyAnimeListFragment.newInstance()
                 else -> return null
             }
         }

@@ -9,14 +9,12 @@ import android.widget.TextView
 /**
  * Returns coordinates of view.
  * Used for animation
- *
  * @return coordinates of view
  */
 fun View.getCoordinates() = Point((left + right) / 2, (top + bottom) / 2)
 
 /**
  * Shows a snackbar in this view.
- *
  * @param message the message to show.
  * @param length the duration of the snack.
  * @param f a function to execute in the snack, allowing for example to define a custom action.

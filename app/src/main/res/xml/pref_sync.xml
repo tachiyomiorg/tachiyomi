@@ -7,20 +7,38 @@
         android:title="@string/pref_category_sync">
 
         <SwitchPreference
+            android:defaultValue="true"
             android:key="@string/pref_auto_update_manga_sync_key"
-            android:title="@string/pref_auto_update_manga_sync"
-            android:defaultValue="true"/>
+            android:title="@string/pref_auto_update_manga_sync"/>
 
         <SwitchPreference
-            android:key="@string/pref_ask_update_manga_sync_key"
-            android:title="@string/pref_ask_update_manga_sync"
             android:defaultValue="false"
-            android:dependency="@string/pref_auto_update_manga_sync_key"/>
+            android:dependency="@string/pref_auto_update_manga_sync_key"
+            android:key="@string/pref_auto_update_status_manga_sync_key"
+            android:title="@string/pref_auto_update_status_manga_sync"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="@string/pref_auto_update_manga_sync_key"
+            android:key="@string/pref_ask_update_manga_sync_key"
+            android:title="@string/pref_ask_update_manga_sync"/>
+
 
         <PreferenceCategory
             android:key="pref_category_manga_sync_accounts"
-            android:title="@string/services"
-            android:persistent="false"/>
+            android:persistent="false"
+            android:title="@string/services">
+
+            <eu.kanade.tachiyomi.widget.preference.IntListPreference
+                android:defaultValue="1"
+                android:entries="@array/services"
+                android:entryValues="@array/services_values"
+                android:key="@string/pref_default_service_key"
+                android:summary="%s"
+                android:title="@string/pref_default_service"/>
+
+        </PreferenceCategory>
+
 
     </PreferenceScreen>
 

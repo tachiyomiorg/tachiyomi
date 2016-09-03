@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+    <TextView
+        android:id="@+id/txt_bind_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/myanimelist"
+        android:textAppearance="@style/TextAppearance.Medium.Body2"/>
+
+    <TextView
+        android:id="@+id/txt_bind_manga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_bind_title"
+        android:text="@string/sync_not_bound"
+        android:textAppearance="@style/TextAppearance.Regular.Body1.Secondary"/>
+
+    <TextView
+        android:id="@+id/btn_bind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="?attr/selectable_list_drawable"
+        android:padding="8dp"
+        android:text="@string/sync_bind"
+        android:textAppearance="@style/TextAppearance.Medium.Button"/>
+</RelativeLayout>

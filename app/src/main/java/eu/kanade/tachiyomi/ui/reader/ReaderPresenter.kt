@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.reader
 
 import android.os.Bundle
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -363,7 +364,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
                     if (chapter.read) {
                         // Check if remove after read is selected by user
                         if (prefs.removeAfterRead()) {
-                            if (prefs.removeAfterReadPrevious() ) {
+                            if (prefs.removeAfterReadPrevious()) {
                                 if (prevChapter != null) {
                                     deleteChapter(prevChapter, manga)
                                 }
@@ -431,6 +432,8 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         mangaSyncList.forEach { sync ->
             if (lastChapterRead > sync.last_chapter_read) {
                 sync.last_chapter_read = lastChapterRead
+                if (prefs.autoUpdateStatusMangaSync())
+                    sync.status = syncManager.getService(sync.sync_id).getStatus(context.getString(R.string.reading))
                 sync.update = true
             }
         }
@@ -444,7 +447,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
     fun updateMangaSyncLastChapterRead() {
         mangaSyncList?.forEach { sync ->
             val service = syncManager.getService(sync.sync_id)
-            if (service != null && service.isLogged && sync.update) {
+            if (service.isLogged && sync.update) {
                 UpdateMangaSyncService.start(context, sync)
             }
         }
