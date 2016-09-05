@@ -1,17 +1,20 @@
 package eu.kanade.tachiyomi.ui.setting
 
 import android.os.Bundle
-import android.support.v7.preference.SwitchPreferenceCompat
 import android.support.v7.preference.XpPreferenceFragment
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.gms.gcm.GcmNetworkManager
+import com.google.android.gms.gcm.PeriodicTask
+import com.google.android.gms.gcm.Task
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.updater.GithubUpdateChecker
 import eu.kanade.tachiyomi.data.updater.GithubUpdateResult
-import eu.kanade.tachiyomi.data.updater.UpdateDownloaderAlarm
+import eu.kanade.tachiyomi.data.updater.UpdateCheckerService
 import eu.kanade.tachiyomi.data.updater.UpdateDownloaderService
 import eu.kanade.tachiyomi.util.toast
+import net.xpece.android.support.preference.SwitchPreference
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -33,7 +36,7 @@ class SettingsAboutFragment : SettingsFragment() {
     private var releaseSubscription: Subscription? = null
 
     val automaticUpdateToggle by lazy {
-        findPreference(getString(R.string.pref_enable_automatic_updates_key)) as SwitchPreferenceCompat
+        findPreference(getString(R.string.pref_enable_automatic_updates_key)) as SwitchPreference
     }
 
     companion object {
@@ -64,8 +67,24 @@ class SettingsAboutFragment : SettingsFragment() {
 
             automaticUpdateToggle.isEnabled = true
             automaticUpdateToggle.setOnPreferenceChangeListener { preference, any ->
-                val status = any as Boolean
-                UpdateDownloaderAlarm.startAlarm(context, 12, status)
+                val taskManager = GcmNetworkManager.getInstance(context)
+                val checked = any as Boolean
+                if (checked) {
+                    val task = PeriodicTask.Builder()
+                            .setService(UpdateCheckerService::class.java)
+                            // 12 hours
+                            .setPeriod(12 * 60 * 60)
+                            // 1 hour of flex
+                            .setFlex(1 * 60 * 60)
+                            .setRequiredNetwork(Task.NETWORK_STATE_CONNECTED)
+                            .setPersisted(true)
+                            .setTag("Updater")
+                            .build()
+
+                    taskManager.schedule(task)
+                } else {
+                    taskManager.cancelAllTasks(UpdateCheckerService::class.java)
+                }
                 true
             }
         }

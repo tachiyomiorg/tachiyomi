@@ -96,6 +96,8 @@ dependencies {
     compile "com.android.support:support-annotations:$support_library_version"
     compile "com.android.support:customtabs:$support_library_version"
 
+    compile 'com.google.android.gms:play-services-gcm:9.4.0'
+
     // ReactiveX
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.8'

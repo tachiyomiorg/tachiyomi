@@ -1,14 +1,10 @@
 package eu.kanade.tachiyomi.data.updater
 
 import android.app.IntentService
-import android.app.PendingIntent
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.support.v4.app.NotificationCompat
-import com.github.pwittchen.reactivenetwork.library.ConnectivityStatus
-import com.github.pwittchen.reactivenetwork.library.ReactiveNetwork
 import eu.kanade.tachiyomi.Constants.NOTIFICATION_UPDATER_ID
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.network.GET
@@ -25,31 +21,9 @@ class UpdateDownloaderService : IntentService(UpdateDownloaderService::class.jav
 
     companion object {
         /**
-         * Action to check for new updates.
+         * Download url.
          */
-        const val ACTION_CHECK_VERSION = "eu.kanade.CHECK_UPDATE"
-
-        /**
-         * Action to download a new update.
-         */
-        const val ACTION_DOWNLOAD_UPDATE = "eu.kanade.DOWNLOAD_UPDATE"
-
-        /**
-         * Look for updates and notify the user if there's a new version with a notification.
-         * @param context the application context.
-         * @param onlyWifi whether to look for updates only with wifi.
-         */
-        fun checkVersion(context: Context, onlyWifi: Boolean = false) {
-            if (onlyWifi) {
-                val connection = ReactiveNetwork().getConnectivityStatus(context, true)
-                if (connection != ConnectivityStatus.WIFI_CONNECTED_HAS_INTERNET)
-                    return
-            }
-            val intent = Intent(context, UpdateDownloaderService::class.java).apply {
-                action = ACTION_CHECK_VERSION
-            }
-            context.startService(intent)
-        }
+        const val EXTRA_DOWNLOAD_URL = "eu.kanade.APP_DOWNLOAD_URL"
 
         /**
          * Downloads a new update and let the user install the new version from a notification.
@@ -58,8 +32,7 @@ class UpdateDownloaderService : IntentService(UpdateDownloaderService::class.jav
          */
         fun downloadUpdate(context: Context, url: String) {
             val intent = Intent(context, UpdateDownloaderService::class.java).apply {
-                action = ACTION_DOWNLOAD_UPDATE
-                putExtra(Intent.EXTRA_TEXT, url)
+                putExtra(EXTRA_DOWNLOAD_URL, url)
             }
             context.startService(intent)
         }
@@ -85,33 +58,21 @@ class UpdateDownloaderService : IntentService(UpdateDownloaderService::class.jav
      */
     private val network: NetworkHelper by injectLazy()
 
-    init {
-        setIntentRedelivery(true)
-    }
-
-
     override fun onHandleIntent(intent: Intent?) {
         if (intent == null) return
 
-        when (intent.action) {
-            ACTION_DOWNLOAD_UPDATE -> {
-                val url = intent.getStringExtra(Intent.EXTRA_TEXT) ?: return
-                downloadApk(url)
-            }
-            ACTION_CHECK_VERSION -> {
-                checkVersion()
-            }
-        }
+        val url = intent.getStringExtra(EXTRA_DOWNLOAD_URL) ?: return
+        downloadApk(url)
     }
 
     fun downloadApk(url: String) {
         val progressNotification = NotificationCompat.Builder(this)
 
         progressNotification.update {
-            setOngoing(true)
-            setContentTitle(getString(R.string.update_check_notification_file_download))
+            setContentTitle(getString(R.string.app_name))
             setContentText(getString(R.string.update_check_notification_download_in_progress))
             setSmallIcon(android.R.drawable.stat_sys_download)
+            setOngoing(true)
         }
 
         // Progress of the download
@@ -127,6 +88,9 @@ class UpdateDownloaderService : IntentService(UpdateDownloaderService::class.jav
                 }
             }
         }
+
+        // Reference the context for later usage inside apply blocks.
+        val ctx = this
 
         try {
             // Download the new update.
@@ -150,11 +114,11 @@ class UpdateDownloaderService : IntentService(UpdateDownloaderService::class.jav
                 // Install action
                 addAction(R.drawable.ic_system_update_grey_24dp_img,
                         getString(R.string.action_install),
-                        getInstallApkIntent(apkFile.absolutePath))
+                        UpdateNotificationReceiver.installApkIntent(ctx, apkFile.absolutePath))
                 // Cancel action
                 addAction(R.drawable.ic_clear_grey_24dp_img,
                         getString(R.string.action_cancel),
-                        getCancelNotificationIntent())
+                        UpdateNotificationReceiver.cancelNotificationIntent(ctx))
             }
 
         } catch (e: Exception) {
@@ -162,101 +126,24 @@ class UpdateDownloaderService : IntentService(UpdateDownloaderService::class.jav
 
             // Prompt the user to retry the download.
             NotificationCompat.Builder(this).update {
+                setContentTitle(getString(R.string.app_name))
                 setContentText(getString(R.string.update_check_notification_download_error))
                 setSmallIcon(android.R.drawable.stat_sys_download_done)
                 // Retry action
                 addAction(R.drawable.ic_refresh_grey_24dp_img,
                         getString(R.string.action_retry),
-                        getDownloadUpdateIntent(url))
+                        UpdateNotificationReceiver.downloadApkIntent(ctx, url))
                 // Cancel action
                 addAction(R.drawable.ic_clear_grey_24dp_img,
                         getString(R.string.action_cancel),
-                        getCancelNotificationIntent())
+                        UpdateNotificationReceiver.cancelNotificationIntent(ctx))
             }
         }
-    }
-
-    fun checkVersion() {
-        GithubUpdateChecker().checkForUpdate()
-                .subscribe({ result ->
-                    if (result is GithubUpdateResult.NewUpdate) {
-                        val url = result.release.downloadLink
-
-                        NotificationCompat.Builder(this).update {
-                            setContentTitle(getString(R.string.update_check_notification_update_available))
-                            setSmallIcon(android.R.drawable.stat_sys_download_done)
-                            // Download action
-                            addAction(android.R.drawable.stat_sys_download_done,
-                                    getString(R.string.action_download),
-                                    getDownloadUpdateIntent(url))
-                        }
-                    }
-                }, { error ->
-                    Timber.e(error, error.message)
-                })
     }
 
     fun NotificationCompat.Builder.update(block: NotificationCompat.Builder.() -> Unit) {
         block()
         notificationManager.notify(NOTIFICATION_UPDATER_ID, build())
-    }
-
-    private fun getDownloadUpdateIntent(url: String): PendingIntent {
-        val intent = Intent(this, UpdaterReceiver::class.java).apply {
-            action = UpdaterReceiver.ACTION_DOWNLOAD_UPDATE
-            putExtra(UpdaterReceiver.FILE_LOCATION, url)
-        }
-        return PendingIntent.getBroadcast(this, 0, intent, 0)
-    }
-
-    private fun getCancelNotificationIntent(): PendingIntent {
-        val intent = Intent(this, UpdaterReceiver::class.java).apply {
-            action = UpdaterReceiver.ACTION_CANCEL_NOTIFICATION
-        }
-        return PendingIntent.getBroadcast(this, 0, intent, 0)
-    }
-
-    private fun getInstallApkIntent(path: String): PendingIntent {
-        val intent = Intent(this, UpdaterReceiver::class.java).apply {
-            action = UpdaterReceiver.ACTION_INSTALL_APK
-            putExtra(UpdaterReceiver.FILE_LOCATION, path)
-        }
-        return PendingIntent.getBroadcast(this, 0, intent, 0)
-    }
-
-    /**
-     * BroadcastReceiver used to handle updater events.
-     */
-    class UpdaterReceiver : BroadcastReceiver() {
-        companion object {
-            // Install apk action
-            const val ACTION_INSTALL_APK = "eu.kanade.INSTALL_APK"
-
-            // Retry download action
-            const val ACTION_DOWNLOAD_UPDATE = "eu.kanade.DOWNLOAD_UPDATE"
-
-            // Retry download action
-            const val ACTION_CANCEL_NOTIFICATION = "eu.kanade.CANCEL_NOTIFICATION"
-
-            // Absolute path of file || URL of file
-            const val FILE_LOCATION = "file_location"
-        }
-
-        override fun onReceive(context: Context, intent: Intent) {
-            when (intent.action) {
-                ACTION_INSTALL_APK -> {
-                    installAPK(context, File(intent.getStringExtra(FILE_LOCATION)))
-                    cancelNotification(context)
-                }
-                ACTION_DOWNLOAD_UPDATE -> downloadUpdate(context, intent.getStringExtra(FILE_LOCATION))
-                ACTION_CANCEL_NOTIFICATION -> cancelNotification(context)
-            }
-        }
-
-        fun cancelNotification(context: Context) {
-            context.notificationManager.cancel(NOTIFICATION_UPDATER_ID)
-        }
-
     }
 
 }

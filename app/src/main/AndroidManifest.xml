@@ -59,8 +59,19 @@
         <service android:name=".data.mangasync.UpdateMangaSyncService"
             android:exported="false"/>
 
+        <service
+            android:name=".data.updater.UpdateCheckerService"
+            android:exported="true"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY" />
+            </intent-filter>
+        </service>
+
         <service android:name=".data.updater.UpdateDownloaderService"
             android:exported="false"/>
+
+        <receiver android:name=".data.updater.UpdateNotificationReceiver"/>
 
         <receiver
             android:name=".data.library.LibraryUpdateService$SyncOnConnectionAvailable"
@@ -83,25 +94,12 @@
         </receiver>
 
         <receiver
-            android:name=".data.updater.UpdateDownloaderService$UpdaterReceiver">
-        </receiver>
-
-        <receiver
             android:name=".data.library.LibraryUpdateAlarm">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="eu.kanade.UPDATE_LIBRARY" />
             </intent-filter>
         </receiver>
-
-        <receiver
-            android:name=".data.updater.UpdateDownloaderAlarm">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="eu.kanade.CHECK_UPDATE"/>
-            </intent-filter>
-        </receiver>
-
 
         <meta-data
             android:name="eu.kanade.tachiyomi.data.glide.AppGlideModule"
