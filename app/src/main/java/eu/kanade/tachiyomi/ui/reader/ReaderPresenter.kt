@@ -362,16 +362,16 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
                     }
 
                     if (chapter.read) {
-                        // Check if remove after read is selected by user.
-                        if (prefs.removeAfterRead()) {
-                            val removeAfterReadSlots = prefs.removeAfterReadSlots()
-                            if (removeAfterReadSlots == 0) {
-                                // Remove current read chapter
-                                deleteChapter(chapter, manga)
-                            } else {
-                                // Remove previous chapter specified by user in settings.
-                                getAdjacentChaptersStrategy(chapter,removeAfterReadSlots).first?.let {  deleteChapter(it, manga) }
+                        val removeAfterReadSlots = prefs.removeAfterReadSlots()
+                        when (removeAfterReadSlots) {
+                        // Setting disabled
+                            -1 -> {
                             }
+                        // Remove current read chapter
+                            0 -> deleteChapter(chapter, manga)
+                        // Remove previous chapter specified by user in settings.
+                            else -> getAdjacentChaptersStrategy(chapter, removeAfterReadSlots)
+                                    .first?.let { deleteChapter(it, manga) }
                         }
                     }
 

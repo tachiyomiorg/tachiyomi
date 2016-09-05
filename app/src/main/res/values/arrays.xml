@@ -49,6 +49,7 @@
     </string-array>
 
     <string-array name="remove_after_read_slots">
+        <item>@string/disabled</item>
         <item>@string/last_read_chapter</item>
         <item>@string/second_to_last</item>
         <item>@string/third_to_last</item>
@@ -57,6 +58,7 @@
     </string-array>
 
     <string-array name="remove_after_read_slots_values">
+        <item>-1</item>
         <item>0</item>
         <item>1</item>
         <item>2</item>

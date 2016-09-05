@@ -116,9 +116,7 @@ class PreferencesHelper(context: Context) {
 
     fun downloadOnlyOverWifi() = prefs.getBoolean(keys.downloadOnlyOverWifi, true)
 
-    fun removeAfterRead() = prefs.getBoolean(keys.removeAfterRead, false)
-
-    fun removeAfterReadSlots() = prefs.getInt(keys.removeAfterReadSlots, 0)
+    fun removeAfterReadSlots() = prefs.getInt(keys.removeAfterReadSlots, -1)
 
     fun removeAfterMarkedAsRead() = prefs.getBoolean(keys.removeAfterMarkedAsRead, false)
 
