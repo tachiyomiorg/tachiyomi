@@ -14,7 +14,6 @@
 
         <SwitchPreference
             android:defaultValue="false"
-            android:enabled="false"
             android:key="@string/pref_enable_automatic_updates_key"
             android:summary="@string/pref_enable_automatic_updates_summary"
             android:title="@string/pref_enable_automatic_updates"/>

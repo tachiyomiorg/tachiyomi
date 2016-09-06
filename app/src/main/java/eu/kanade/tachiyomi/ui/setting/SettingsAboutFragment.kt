@@ -62,7 +62,6 @@ class SettingsAboutFragment : SettingsFragment() {
                 true
             }
 
-            automaticUpdateToggle.isEnabled = true
             automaticUpdateToggle.setOnPreferenceChangeListener { preference, any ->
                 val checked = any as Boolean
                 if (checked) {
@@ -72,6 +71,8 @@ class SettingsAboutFragment : SettingsFragment() {
                 }
                 true
             }
+        } else {
+            automaticUpdateToggle.isVisible = false
         }
 
         buildTime.summary = getFormattedBuildTime()
