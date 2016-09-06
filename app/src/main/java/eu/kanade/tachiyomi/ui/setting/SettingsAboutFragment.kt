@@ -4,9 +4,6 @@ import android.os.Bundle
 import android.support.v7.preference.XpPreferenceFragment
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
-import com.google.android.gms.gcm.GcmNetworkManager
-import com.google.android.gms.gcm.PeriodicTask
-import com.google.android.gms.gcm.Task
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.updater.GithubUpdateChecker
@@ -67,23 +64,11 @@ class SettingsAboutFragment : SettingsFragment() {
 
             automaticUpdateToggle.isEnabled = true
             automaticUpdateToggle.setOnPreferenceChangeListener { preference, any ->
-                val taskManager = GcmNetworkManager.getInstance(context)
                 val checked = any as Boolean
                 if (checked) {
-                    val task = PeriodicTask.Builder()
-                            .setService(UpdateCheckerService::class.java)
-                            // 12 hours
-                            .setPeriod(12 * 60 * 60)
-                            // 1 hour of flex
-                            .setFlex(1 * 60 * 60)
-                            .setRequiredNetwork(Task.NETWORK_STATE_CONNECTED)
-                            .setPersisted(true)
-                            .setTag("Updater")
-                            .build()
-
-                    taskManager.schedule(task)
+                    UpdateCheckerService.setupTask(context)
                 } else {
-                    taskManager.cancelAllTasks(UpdateCheckerService::class.java)
+                    UpdateCheckerService.cancelTask(context)
                 }
                 true
             }

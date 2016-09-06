@@ -1,14 +1,23 @@
 package eu.kanade.tachiyomi.data.updater
 
+import android.content.Context
 import android.support.v4.app.NotificationCompat
-import com.google.android.gms.gcm.GcmNetworkManager
-import com.google.android.gms.gcm.GcmTaskService
-import com.google.android.gms.gcm.TaskParams
+import com.google.android.gms.gcm.*
 import eu.kanade.tachiyomi.Constants.NOTIFICATION_UPDATER_ID
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.notificationManager
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 class UpdateCheckerService : GcmTaskService() {
+
+    override fun onInitializeTasks() {
+        val preferences: PreferencesHelper = Injekt.get()
+        if (preferences.automaticUpdateStatus()) {
+            setupTask(this)
+        }
+    }
 
     override fun onRunTask(params: TaskParams): Int {
         return checkVersion()
@@ -43,6 +52,29 @@ class UpdateCheckerService : GcmTaskService() {
     fun NotificationCompat.Builder.update(block: NotificationCompat.Builder.() -> Unit) {
         block()
         notificationManager.notify(NOTIFICATION_UPDATER_ID, build())
+    }
+
+    companion object {
+        fun setupTask(context: Context) {
+            val task = PeriodicTask.Builder()
+                    .setService(UpdateCheckerService::class.java)
+                    .setTag("Updater")
+                    // 24 hours
+                    .setPeriod(24 * 60 * 60)
+                    // Run between the last two hours
+                    .setFlex(2 * 60 * 60)
+                    .setRequiredNetwork(Task.NETWORK_STATE_CONNECTED)
+                    .setPersisted(true)
+                    .setUpdateCurrent(true)
+                    .build()
+
+            GcmNetworkManager.getInstance(context).schedule(task)
+        }
+
+        fun cancelTask(context: Context) {
+            GcmNetworkManager.getInstance(context).cancelAllTasks(UpdateCheckerService::class.java)
+        }
+
     }
 
 }
