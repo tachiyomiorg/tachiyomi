@@ -14,7 +14,7 @@ class UpdateCheckerService : GcmTaskService() {
 
     override fun onInitializeTasks() {
         val preferences: PreferencesHelper = Injekt.get()
-        if (preferences.automaticUpdateStatus()) {
+        if (preferences.automaticUpdates()) {
             setupTask(this)
         }
     }

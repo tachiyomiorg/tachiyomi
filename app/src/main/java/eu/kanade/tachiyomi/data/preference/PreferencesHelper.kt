@@ -132,6 +132,6 @@ class PreferencesHelper(context: Context) {
 
     fun filterUnread() = rxPrefs.getBoolean(keys.filterUnread, false)
 
-    fun automaticUpdateStatus() = prefs.getBoolean(keys.automaticUpdateStatus, false)
+    fun automaticUpdates() = prefs.getBoolean(keys.automaticUpdates, false)
 
 }

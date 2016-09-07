@@ -80,7 +80,7 @@ class PreferenceKeys(context: Context) {
 
     val filterUnread = context.getString(R.string.pref_filter_unread_key)
 
-    val automaticUpdateStatus = context.getString(R.string.pref_enable_automatic_updates_key)
+    val automaticUpdates = context.getString(R.string.pref_enable_automatic_updates_key)
 
     val startScreen = context.getString(R.string.pref_start_screen_key)
 

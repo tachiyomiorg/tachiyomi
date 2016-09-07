@@ -32,7 +32,7 @@ class SettingsAboutFragment : SettingsFragment() {
      */
     private var releaseSubscription: Subscription? = null
 
-    val automaticUpdateToggle by lazy {
+    val automaticUpdates by lazy {
         findPreference(getString(R.string.pref_enable_automatic_updates_key)) as SwitchPreference
     }
 
@@ -62,7 +62,7 @@ class SettingsAboutFragment : SettingsFragment() {
                 true
             }
 
-            automaticUpdateToggle.setOnPreferenceChangeListener { preference, any ->
+            automaticUpdates.setOnPreferenceChangeListener { preference, any ->
                 val checked = any as Boolean
                 if (checked) {
                     UpdateCheckerService.setupTask(context)
@@ -72,7 +72,7 @@ class SettingsAboutFragment : SettingsFragment() {
                 true
             }
         } else {
-            automaticUpdateToggle.isVisible = false
+            automaticUpdates.isVisible = false
         }
 
         buildTime.summary = getFormattedBuildTime()
