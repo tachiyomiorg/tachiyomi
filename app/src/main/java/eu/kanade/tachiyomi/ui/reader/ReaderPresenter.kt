@@ -421,8 +421,11 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
 
         val prevChapter = prevChapter
 
+        // Manga with only 1 page won't update, since they'll be marked as read after this function
+        val chapterSize = chapter.pages?.size
+
         // Get the last chapter read from the reader.
-        val lastChapterRead = if (chapter.read)
+        val lastChapterRead = if (chapter.read  || chapterSize == 1)
             Math.floor(chapter.chapter_number.toDouble()).toInt()
         else if (prevChapter != null && prevChapter.read)
             Math.floor(prevChapter.chapter_number.toDouble()).toInt()
