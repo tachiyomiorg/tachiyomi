@@ -7,15 +7,19 @@ import android.support.v4.app.TaskStackBuilder
 import android.support.v4.view.GravityCompat
 import android.view.MenuItem
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.librarysync.LibrarySyncManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.backup.BackupFragment
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment
 import eu.kanade.tachiyomi.ui.download.DownloadFragment
 import eu.kanade.tachiyomi.ui.library.LibraryFragment
+import eu.kanade.tachiyomi.ui.library.sync.LibrarySyncDialogFragment
 import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersFragment
 import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadFragment
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity
+import eu.kanade.tachiyomi.util.DeviceUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import uy.kohesive.injekt.injectLazy
@@ -23,6 +27,8 @@ import uy.kohesive.injekt.injectLazy
 class MainActivity : BaseActivity() {
 
     val preferences: PreferencesHelper by injectLazy()
+
+    val sync: LibrarySyncManager by injectLazy()
 
     private val startScreenId by lazy {
         when (preferences.startScreen()) {
@@ -78,6 +84,10 @@ class MainActivity : BaseActivity() {
 
             // Show changelog if needed
             ChangelogDialogFragment.show(preferences, supportFragmentManager)
+
+            //Perform sync if allowed, enabled and if we have an internet connection
+            if (sync.enabled && preferences.syncLibraryOnLaunch().getOrDefault() && DeviceUtil.isNetworkConnected(this))
+                LibrarySyncDialogFragment.show(supportFragmentManager)
         }
     }
 

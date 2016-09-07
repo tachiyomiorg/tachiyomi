@@ -36,6 +36,7 @@ open class SettingsFragment : XpPreferenceFragment() {
         addPreferencesFromResource(R.xml.pref_downloads)
         addPreferencesFromResource(R.xml.pref_sources)
         addPreferencesFromResource(R.xml.pref_sync)
+        addPreferencesFromResource(R.xml.pref_library_sync)
         addPreferencesFromResource(R.xml.pref_advanced)
         addPreferencesFromResource(R.xml.pref_about)
 
@@ -78,6 +79,7 @@ open class SettingsFragment : XpPreferenceFragment() {
             "downloads_screen" to R.drawable.ic_file_download_black_24dp,
             "sources_screen" to R.drawable.ic_language_black_24dp,
             "sync_screen" to R.drawable.ic_sync_black_24dp,
+            "library_sync_screen" to R.drawable.ic_cloud_white_24dp,
             "advanced_screen" to R.drawable.ic_code_black_24dp,
             "about_screen" to R.drawable.ic_help_black_24dp
     )

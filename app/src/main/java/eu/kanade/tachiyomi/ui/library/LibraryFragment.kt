@@ -19,6 +19,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.category.CategoryActivity
+import eu.kanade.tachiyomi.ui.library.sync.LibrarySyncDialogFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -93,6 +94,11 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
      * Subscription for the number of manga per row.
      */
     private var numColumnsSubscription: Subscription? = null
+
+    /**
+     * Subscription for sync status
+     */
+    private var syncEnabledSubscription: Subscription? = null
 
     companion object {
         /**
@@ -209,6 +215,16 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
             }
         })
 
+        //Initialize sync button
+        val syncItem = menu.findItem(R.id.action_sync_library)
+        syncEnabledSubscription = preferences.enableLibrarySync().asObservable().subscribe {
+            syncItem.isVisible = presenter.syncManager.enabled
+        }
+    }
+
+    override fun onDestroyOptionsMenu() {
+        super.onDestroyOptionsMenu()
+        syncEnabledSubscription?.unsubscribe()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -242,6 +258,9 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
             R.id.action_library_display_mode -> swapDisplayMode()
             R.id.action_update_library -> {
                 LibraryUpdateService.start(activity, true)
+            }
+            R.id.action_sync_library -> {
+                LibrarySyncDialogFragment.show(childFragmentManager)
             }
             R.id.action_edit_categories -> {
                 val intent = CategoryActivity.newIntent(activity)

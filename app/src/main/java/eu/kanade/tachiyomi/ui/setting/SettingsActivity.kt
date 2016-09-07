@@ -64,6 +64,7 @@ class SettingsActivity : BaseActivity(),
             "downloads_screen" -> SettingsDownloadsFragment.newInstance(key)
             "sources_screen" -> SettingsSourcesFragment.newInstance(key)
             "sync_screen" -> SettingsSyncFragment.newInstance(key)
+            "library_sync_screen" -> SettingsLibrarySyncFragment.newInstance(key)
             "advanced_screen" -> SettingsAdvancedFragment.newInstance(key)
             "about_screen" -> SettingsAboutFragment.newInstance(key)
             else -> SettingsFragment.newInstance(key)

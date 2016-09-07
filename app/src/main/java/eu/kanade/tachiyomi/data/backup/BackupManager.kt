@@ -53,8 +53,8 @@ class BackupManager(private val db: DatabaseHelper) {
      * @throws IOException if there's any IO error.
      */
     @Throws(IOException::class)
-    fun backupToFile(file: File) {
-        val root = backupToJson()
+    fun backupToFile(file: File, favoritesOnly: Boolean = true) {
+        val root = backupToJson(favoritesOnly = favoritesOnly)
 
         FileWriter(file).use {
             gson.toJson(root, it)
@@ -64,15 +64,16 @@ class BackupManager(private val db: DatabaseHelper) {
     /**
      * Creates a JSON object containing the backup of the app's data.
      *
+     * @param favoritesOnly Whether or not only favorited manga should be backed up
      * @return the backup as a JSON object.
      */
-    fun backupToJson(): JsonObject {
+    fun backupToJson(favoritesOnly: Boolean = true): JsonObject {
         val root = JsonObject()
 
         // Backup library mangas and its dependencies
         val mangaEntries = JsonArray()
         root.add(MANGAS, mangaEntries)
-        for (manga in db.getFavoriteMangas().executeAsBlocking()) {
+        for (manga in (if (favoritesOnly) db.getFavoriteMangas() else db.getMangas()).executeAsBlocking()) {
             mangaEntries.add(backupManga(manga))
         }
 
