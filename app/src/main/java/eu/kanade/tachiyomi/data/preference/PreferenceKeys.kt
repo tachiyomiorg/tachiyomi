@@ -94,4 +94,8 @@ class PreferenceKeys(context: Context) {
 
     val  libraryAsList = context.getString(R.string.pref_display_library_as_list)
 
+    val spinnerSources = "pref_spinner_sources"
+
+    val spinnerSourcesDismissed = "pref_spinner_sources_dismissed"
+
 }
