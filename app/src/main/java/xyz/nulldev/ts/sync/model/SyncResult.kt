@@ -3,10 +3,6 @@ package xyz.nulldev.ts.sync.model
 import java.util.ArrayList
 
 /**
- * Project: TachiServer
- * Author: nulldev
- * Creation Date: 26/08/16
-
  * A simple sync result
  */
 sealed class SyncResult() {
