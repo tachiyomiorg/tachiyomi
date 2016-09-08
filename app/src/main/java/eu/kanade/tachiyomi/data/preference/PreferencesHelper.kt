@@ -132,4 +132,17 @@ class PreferencesHelper(context: Context) {
 
     fun automaticUpdates() = prefs.getBoolean(keys.automaticUpdates, false)
 
+    fun setSpinnerSources(sources: MutableSet<String>) {
+        prefs.edit().putStringSet(keys.spinnerSources, sources).apply()
+    }
+
+    fun setSpinnerSourcesDismissed(sources: MutableSet<String>) {
+        prefs.edit().putStringSet(keys.spinnerSourcesDismissed, sources).apply()
+    }
+
+    fun spinnerSources(): MutableSet<String> = prefs
+            .getStringSet(keys.spinnerSources,  emptySet<String>()).toMutableSet()
+
+    fun spinnerSourcesDismissed(): MutableSet<String> = prefs
+            .getStringSet(keys.spinnerSourcesDismissed,  emptySet<String>()).toMutableSet()
 }

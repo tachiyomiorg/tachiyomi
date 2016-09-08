@@ -2,30 +2,28 @@ package eu.kanade.tachiyomi.ui.catalogue
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.view.*
 import android.view.animation.AnimationUtils
-import android.widget.ArrayAdapter
-import android.widget.ProgressBar
-import android.widget.Spinner
+import android.widget.*
 import com.afollestad.materialdialogs.MaterialDialog
 import com.f2prateek.rx.preferences.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
+import eu.kanade.tachiyomi.util.SwipeDismissListener
 import eu.kanade.tachiyomi.util.getResourceDrawable
 import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.DividerItemDecoration
 import eu.kanade.tachiyomi.widget.EndlessScrollListener
-import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
 import kotlinx.android.synthetic.main.fragment_catalogue.*
 import kotlinx.android.synthetic.main.toolbar.*
 import nucleus.factory.RequiresPresenter
@@ -48,6 +46,11 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
     private lateinit var spinner: Spinner
 
     /**
+     * Spinner drop down listView, used to set events related to on swipe dismiss.
+     */
+    private lateinit var spinnerList: ListView
+
+    /**
      * Adapter containing the list of manga from the catalogue.
      */
     private lateinit var adapter: CatalogueAdapter
@@ -61,6 +64,16 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
      * Scroll listener for list mode. It loads next pages when the end of the list is reached.
      */
     private lateinit var listScrollListener: EndlessScrollListener
+
+    /**
+     * Spinner dismissed sources MutableSet, save it so that these can be added again if user wants later
+     */
+    private var spinnerSourcesDismissedSet: MutableSet<String> = emptySet<String>().toMutableSet()
+
+    /**
+     * Spinner sources MutableSet, separate from original so that it can be changed
+     */
+    private var spinnerSourcesSet: MutableSet<String> = emptySet<String>().toMutableSet()
 
     /**
      * Query of the search box.
@@ -92,6 +105,11 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
      * Subscription of the number of manga per row.
      */
     private var numColumnsSubscription: Subscription? = null
+
+    /**
+     * Display mode of the catalogue (list or grid mode).
+     */
+    private var displayMode: MenuItem? = null
 
     /**
      * Search item.
@@ -140,8 +158,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
         catalogue_list.adapter = adapter
         catalogue_list.layoutManager = llm
         catalogue_list.addOnScrollListener(listScrollListener)
-        catalogue_list.addItemDecoration(
-                DividerItemDecoration(context.theme.getResourceDrawable(R.attr.divider_drawable)))
+        catalogue_list.addItemDecoration(DividerItemDecoration(context.theme.getResourceDrawable(R.attr.divider_drawable)))
 
         if (presenter.isListMode) {
             switcher.showNext()
@@ -159,29 +176,87 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
         // Create toolbar spinner
         val themedContext = activity.supportActionBar?.themedContext ?: activity
 
-        val spinnerAdapter = ArrayAdapter(themedContext,
-                android.R.layout.simple_spinner_item, presenter.sources)
+        //save spinner list separately to preserve its state and load it here every time except first time
+        val spinnerSources = emptyList<OnlineSource>().toMutableList()
+        val spinnerSourcesDismissed = emptyList<OnlineSource>().toMutableList()
+        spinnerSourcesSet = presenter.prefs.spinnerSources()
+        spinnerSourcesDismissedSet = presenter.prefs.spinnerSourcesDismissed()
+
+        //for first time get from presenter.sources
+        val sources = presenter.sources.toMutableList()
+        if(spinnerSourcesSet.isEmpty()) {
+            spinnerSources.addAll(sources)
+            sources.forEach { spinnerSourcesSet.add(it.baseUrl) }
+        }
+        else sources.forEach {
+            if (spinnerSourcesSet.contains(it.baseUrl)) spinnerSources.add(it)
+            else if(spinnerSourcesDismissedSet.contains(it.baseUrl)) spinnerSourcesDismissed.add(it)
+        }
+        val spinnerAdapter = object : ArrayAdapter<OnlineSource>(themedContext,
+                android.R.layout.simple_spinner_item, spinnerSources) {
+
+            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
+                val dropDownView = super.getDropDownView(position, convertView, parent)
+
+                dropDownView.setOnTouchListener{ view, motionEvent ->
+                    if(motionEvent.actionMasked == MotionEvent.ACTION_DOWN) {
+                        spinnerList = view.parent as ListView
+                        //apply the desired color on background while swiping
+                        spinnerList.setBackgroundResource(R.color.colorPrimary)
+
+                        spinnerList.setOnTouchListener(SwipeDismissListener(spinnerList, object : SwipeDismissListener.DismissCallbacks {
+                            override fun canDismiss(position: Int): Boolean {
+                                //don't dismiss if last source or selected
+                                return count != 1 && selectedIndex != position
+                            }
+
+                            override fun onDismiss(listView: ListView, reverseSortedPositions: IntArray) {
+                                for (i in reverseSortedPositions) {
+                                    if (i <= selectedIndex) {
+                                        selectedIndex--
+                                        spinner.setSelection(selectedIndex)
+                                    }
+                                    //adding dismissed source to a list, saving this list for use of dismissed sources later
+                                    //for example populate these to another view where user can add these to spinner again
+                                    spinnerSourcesDismissedSet.add(getItem(i).baseUrl)
+                                    spinnerSourcesSet.remove(getItem(i).baseUrl)
+                                    remove(getItem(i))
+                                }
+                                notifyDataSetChanged()
+                                presenter.prefs.setSpinnerSources(spinnerSourcesSet)
+                                presenter.prefs.setSpinnerSourcesDismissed(spinnerSourcesDismissedSet)
+                            }
+                        }))
+                    }
+                    false
+                }
+                return dropDownView
+            }
+        }
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_item)
 
-        val onItemSelected = IgnoreFirstSpinnerListener { position ->
-            val source = spinnerAdapter.getItem(position)
-            if (!presenter.isValidSource(source)) {
-                spinner.setSelection(selectedIndex)
-                context.toast(R.string.source_requires_login)
-            } else if (source != presenter.source) {
-                selectedIndex = position
-                showProgressBar()
-                glm.scrollToPositionWithOffset(0, 0)
-                llm.scrollToPositionWithOffset(0, 0)
-                presenter.setActiveSource(source)
-                activity.invalidateOptionsMenu()
+        val onItemSelected = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                val source = spinnerAdapter.getItem(position)
+                if (!presenter.isValidSource(source)) {
+                    spinner.setSelection(selectedIndex)
+                    context.toast(R.string.source_requires_login)
+                } else if (source != presenter.source) {
+                    selectedIndex = position
+                    showProgressBar()
+                    glm.scrollToPositionWithOffset(0, 0)
+                    llm.scrollToPositionWithOffset(0, 0)
+                    presenter.setActiveSource(source)
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
             }
         }
 
-        selectedIndex = presenter.sources.indexOf(presenter.source)
-
         spinner = Spinner(themedContext).apply {
             adapter = spinnerAdapter
+            selectedIndex = spinnerSources.indexOf(presenter.source)
             setSelection(selectedIndex)
             onItemSelectedListener = onItemSelected
         }
@@ -199,7 +274,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
         searchItem = menu.findItem(R.id.action_search).apply {
             val searchView = actionView as SearchView
 
-            if (!query.isBlank()) {
+            if (!query.isNullOrEmpty()) {
                 expandActionView()
                 searchView.setQuery(query, true)
                 searchView.clearFocus()
@@ -217,31 +292,20 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
             })
         }
 
-        // Setup filters button
-        menu.findItem(R.id.action_set_filter).apply {
-            if (presenter.source.filters.isEmpty()) {
-                isEnabled = false
-                icon.alpha = 128
-            } else {
-                isEnabled = true
-                icon.alpha = 255
-            }
-        }
-
         // Show next display mode
-        menu.findItem(R.id.action_display_mode).apply {
+        displayMode = menu.findItem(R.id.action_display_mode).apply {
             val icon = if (presenter.isListMode)
                 R.drawable.ic_view_module_white_24dp
             else
                 R.drawable.ic_view_list_white_24dp
             setIcon(icon)
         }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_display_mode -> swapDisplayMode()
-            R.id.action_set_filter -> showFiltersDialog()
             else -> return super.onOptionsItemSelected(item)
         }
         return true
@@ -317,7 +381,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
      */
     fun onAddPage(page: Int, mangas: List<Manga>) {
         hideProgressBar()
-        if (page == 1) {
+        if (page == 0) {
             adapter.clear()
             gridScrollListener.resetScroll()
             listScrollListener.resetScroll()
@@ -334,7 +398,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
         hideProgressBar()
         Timber.e(error)
 
-        catalogue_view.snack(error.message ?: "", Snackbar.LENGTH_INDEFINITE) {
+        catalogue_view.snack(error.message ?: "") {
             setAction(R.string.action_retry) {
                 showProgressBar()
                 presenter.requestNext()
@@ -357,7 +421,11 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
     fun swapDisplayMode() {
         presenter.swapDisplayMode()
         val isListMode = presenter.isListMode
-        activity.invalidateOptionsMenu()
+        val icon = if (isListMode)
+            R.drawable.ic_view_module_white_24dp
+        else
+            R.drawable.ic_view_list_white_24dp
+        displayMode?.setIcon(icon)
         switcher.showNext()
         if (!isListMode) {
             // Initialize mangas if going to grid view
@@ -443,29 +511,6 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
                         }
                     }
                 }.show()
-    }
-
-    /**
-     * Show the filter dialog for the source.
-     */
-    private fun showFiltersDialog() {
-        val allFilters = presenter.source.filters
-        val selectedFilters = presenter.filters
-                .map { filter -> allFilters.indexOf(filter) }
-                .toTypedArray()
-
-        MaterialDialog.Builder(context)
-                .title(R.string.action_set_filter)
-                .items(allFilters.map { it.name })
-                .itemsCallbackMultiChoice(selectedFilters) { dialog, positions, text ->
-                    val newFilters = positions.map { allFilters[it] }
-                    showProgressBar()
-                    presenter.setSourceFilter(newFilters)
-                    true
-                }
-                .positiveText(android.R.string.ok)
-                .negativeText(android.R.string.cancel)
-                .show()
     }
 
 }
