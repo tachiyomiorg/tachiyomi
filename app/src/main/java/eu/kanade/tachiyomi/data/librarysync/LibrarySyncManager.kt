@@ -7,21 +7,18 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import rx.subjects.PublishSubject
 import uy.kohesive.injekt.injectLazy
-import xyz.nulldev.ts.sync.SyncClient
+import xyz.nulldev.ts.sync.RxSyncClient
 import java.io.File
 import java.io.FileReader
 import java.io.FileWriter
 
 class LibrarySyncManager(private val context: Context) {
 
-    val SYNC_SUFFIX = "sync"
-    val TASK_SUFFIX = "task"
-
     val LAST_LIBRARY_STATE_FILENAME = "last_library_state.json"
 
     private val preferences: PreferencesHelper by injectLazy()
 
-    var syncClient: SyncClient? = null
+    var syncClient: RxSyncClient? = null
 
     val syncAvailable: Boolean
         get() = syncClient != null
@@ -77,12 +74,8 @@ class LibrarySyncManager(private val context: Context) {
      * Initialize the sync client
      */
     private fun initializeSyncClient(endpoint: String) {
-        //Ensure endpoint ends in a slash
-        var builtEndpoint = endpoint
-        if (!builtEndpoint.endsWith("/")) {
-            builtEndpoint += "/"
-        }
-        syncClient = SyncClient(builtEndpoint + SYNC_SUFFIX, builtEndpoint + TASK_SUFFIX, true)
+        val builtEndpoint = if (!endpoint.endsWith("/")) endpoint + "/" else endpoint
+        syncClient = RxSyncClient(builtEndpoint, true)
     }
 
     /**
