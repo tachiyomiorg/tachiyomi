@@ -22,7 +22,7 @@ class Mangasee(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override val lang: Language get() = EN
 
-    private val datePattern = Pattern.compile("(\\d+)\\s+(.*?)s? ago.*")
+    private val datePattern = Pattern.compile("(\\d+)\\s+(.*?)s? (from now|ago).*")
 
     private val dateFields = HashMap<String, Int>().apply {
         put("second", Calendar.SECOND)
@@ -32,6 +32,11 @@ class Mangasee(context: Context, override val id: Int) : ParsedOnlineSource(cont
         put("week", Calendar.WEEK_OF_YEAR)
         put("month", Calendar.MONTH)
         put("year", Calendar.YEAR)
+    }
+
+    private val dateRelationFields = HashMap<String, Int>().apply {
+        put("from now", 1)
+        put("ago", -1)
     }
 
     override fun popularMangaInitialUrl() = "$baseUrl/search_result.php?Action=Yes&order=popularity&numResultPerPage=20&sort=desc"
@@ -93,9 +98,10 @@ class Mangasee(context: Context, override val id: Int) : ParsedOnlineSource(cont
         if (m.matches()) {
             val amount = Integer.parseInt(m.group(1))
             val unit = m.group(2)
+            val relation = m.group(3)
 
             return Calendar.getInstance().apply {
-                add(dateFields[unit]!!, -amount)
+                add(dateFields[unit]!!, dateRelationFields[relation]!! * amount)
             }.time.time
         } else {
             return 0
