@@ -8,6 +8,7 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.librarysync.LibrarySyncManager
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import rx.Observable
+import rx.functions.Func1
 import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
 import timber.log.Timber
@@ -62,27 +63,16 @@ class LibrarySyncPresenter(): BasePresenter<LibrarySyncDialogFragment>() {
             return
         }
         val syncClient = syncManager.syncClient!!
-        //Can't do IO on main thread!
-        Observable.create<LibrarySyncProgressEvent> {
-            val sub = it
-            //Get libraries
-            val oldLibrary = syncManager.getLastLibraryState()
-            val newLibrary = backupManager.backupToJson(favoritesOnly = true).toString()
-
-            //Show sync fail error dialog and log this failed sync attempt
-            fun failSync(reason: String? = null) {
-                sub.onNext(LibrarySyncProgressEvent.Error(reason ?: context.getString(R.string.sync_unknown_error)))
-                //Log this failed sync
-                syncManager.lastFailedSyncCount++
-            }
-
-            syncClient.syncLibrariesWithProgress(oldLibrary,
-                    newLibrary).subscribe ({
-                try {
-                    if(it is SyncResult.Progress) {
-                        //Update progress
-                        sub.onNext(LibrarySyncProgressEvent.ProgressUpdated(it.status))
-                    } else if (it is SyncResult.Success) {
+        //Get library
+        getLibraryObservable().concatMap {
+            //Sync library
+            syncClient.syncLibrariesWithProgress(it.first,
+                    it.second).concatMap<LibrarySyncProgressEvent> (Func1<SyncResult, Observable<LibrarySyncProgressEvent>> { result ->
+                if(result is SyncResult.Progress) {
+                    //Update progress
+                    Observable.just(LibrarySyncProgressEvent.ProgressUpdated(result.status))
+                } else if (result is SyncResult.Success) {
+                    Observable.create { sub ->
                         //Report to user we are saving changes (it might take a while)
                         sub.onNext(LibrarySyncProgressEvent.ProgressUpdated(context.getString(R.string.saving_changes)))
                         //Everything in a transaction to ensure we don't delete the user's entire library in an error
@@ -99,29 +89,37 @@ class LibrarySyncPresenter(): BasePresenter<LibrarySyncDialogFragment>() {
                                 db.deleteCategories(oldCategories).executeAsBlocking()
                             }
                             //Write new library to DB
-                            backupManager.restoreFromJson(JsonParser().parse(it.serializedLibrary).asJsonObject)
+                            backupManager.restoreFromJson(JsonParser().parse(result.serializedLibrary).asJsonObject)
                             //Save new library state
-                            syncManager.saveLastLibraryState(it.serializedLibrary)
+                            syncManager.saveLastLibraryState(result.serializedLibrary)
                         }
                         //Sync ok, report conflicts
-                        sub.onNext(LibrarySyncProgressEvent.Completed(it.conflicts))
+                        sub.onNext(LibrarySyncProgressEvent.Completed(result.conflicts))
                         //Sync was successful so reset last failed sync count
                         syncManager.lastFailedSyncCount = 0
-                    } else if(it is SyncResult.Fail) {
-                        //Sync failed
-                        failSync(it.error)
                     }
-                } catch (e: Exception) {
-                    //Sync failed
-                    Timber.e(e, "Sync failed!")
-                    failSync()
+                } else if(result is SyncResult.Fail) {
+                    //Log this failed sync
+                    syncManager.lastFailedSyncCount++
+                    Observable.just<LibrarySyncProgressEvent>(LibrarySyncProgressEvent.Error(result.error ?: context.getString(R.string.sync_unknown_error)))
+                } else {
+                    throw NotImplementedError("Unknown SyncResult type!")
                 }
-            }, {
-                //Log this failed sync
-                syncManager.lastFailedSyncCount++
-                Timber.e(it, "Sync failed!")
-                failSync(it.message)
             })
         }.subscribeOn(Schedulers.io()).subscribe(syncProgressSubject)
+    }
+
+    /**
+     * Get the library states
+     *
+     * @returns Pair<OLD, NEW>
+     */
+    fun getLibraryObservable():Observable<Pair<String, String>> {
+        return Observable.create {
+            //Get libraries
+            val oldLibrary = syncManager.getLastLibraryState()
+            val newLibrary = backupManager.backupToJson(favoritesOnly = true).toString()
+            it.onNext(Pair(oldLibrary, newLibrary))
+        }
     }
 }

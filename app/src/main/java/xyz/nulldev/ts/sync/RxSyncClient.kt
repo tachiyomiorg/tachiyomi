@@ -8,6 +8,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import rx.Observable
+import rx.schedulers.Schedulers
 import xyz.nulldev.ts.sync.model.GetSyncStatusApiResponse
 import xyz.nulldev.ts.sync.model.StartSyncApiResponse
 import xyz.nulldev.ts.sync.model.SyncRequest
@@ -36,40 +37,30 @@ class RxSyncClient(val endpoint: String,
     fun syncLibrariesWithProgress(
             oldLibrary: String,
             newLibrary: String): Observable<SyncResult> {
-        return Observable.create {
-            val sub = it
-
-            trySync(oldLibrary, newLibrary).subscribe({
-                //OnNext
-                val taskId = it
-
-                fun checkProgress() {
-                    getTaskStatus(taskId).subscribe({
-                        //OnNext
-                        val taskStatus = it
+        return trySync(oldLibrary, newLibrary).concatMap { taskId ->
+            Observable.create<SyncResult> { sub ->
+                while(true) {
+                    val response = service.getSyncStatus(taskId).execute()
+                    val taskStatus = response.body()
+                    if(response.isSuccessful && taskStatus != null) {
                         val taskDetails = getTaskDetails(taskStatus)
                         val statusString = taskDetails.getString("status")
                         if (isSyncComplete(taskStatus, taskDetails)) {
                             //Declare we are complete and stop
                             sub.onNext(taskDetailsToSyncResult(taskDetails))
                             sub.onCompleted()
+                            break
                         } else {
                             sub.onNext(SyncResult.Progress(statusString))
-                            //Not done, check progress again
-                            checkProgress()
                         }
-                    }, {
-                        //OnError
-                        sub.onNext(SyncResult.Fail(it.message ?: "Unknown error!"))
-                        sub.onError(it)
-                    })
+                    } else {
+                        val errorMessage = response.errorBody()?.string() ?: "Unknown error!"
+                        sub.onNext(SyncResult.Fail(errorMessage))
+                        sub.onError(RuntimeException(errorMessage))
+                        break
+                    }
                 }
-                checkProgress()
-            }, {
-                //OnError
-                sub.onNext(SyncResult.Fail(it.message ?: "Unknown error!"))
-                sub.onError(it)
-            })
+            }.subscribeOn(Schedulers.io())
         }
     }
 
@@ -171,32 +162,5 @@ class RxSyncClient(val endpoint: String,
             throw RuntimeException(e)
         }
 
-    }
-
-    /**
-     * Get the task status of a task
-
-     * @param taskId The task ID
-     * *
-     * @return The task status in JSON
-     */
-    private fun getTaskStatus(taskId: Long): Observable<GetSyncStatusApiResponse> {
-        return Observable.create {
-            service.getSyncStatus(taskId).enqueue(object : Callback<GetSyncStatusApiResponse> {
-                override fun onResponse(call: Call<GetSyncStatusApiResponse>?, response: Response<GetSyncStatusApiResponse>?) {
-                    val rawResponse = response?.body()
-                    if (rawResponse == null) {
-                        it.onError(RuntimeException("Sync failed (invalid status response)!"))
-                    } else {
-                        it.onNext(rawResponse)
-                        it.onCompleted()
-                    }
-                }
-
-                override fun onFailure(call: Call<GetSyncStatusApiResponse>?, t: Throwable?) {
-                    it.onError(RuntimeException("Exception making HTTP request!", t))
-                }
-            })
-        }
     }
 }
