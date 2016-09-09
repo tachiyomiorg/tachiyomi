@@ -9,17 +9,17 @@ import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.view.*
 import android.view.animation.AnimationUtils
-import android.widget.ArrayAdapter
-import android.widget.ProgressBar
-import android.widget.Spinner
+import android.widget.*
 import com.afollestad.materialdialogs.MaterialDialog
 import com.f2prateek.rx.preferences.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
+import eu.kanade.tachiyomi.util.SwipeDismissListener
 import eu.kanade.tachiyomi.util.getResourceDrawable
 import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
@@ -48,6 +48,11 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
     private lateinit var spinner: Spinner
 
     /**
+     * Spinner drop down listView, used to set events related to on swipe dismiss.
+     */
+    private lateinit var spinnerList: ListView
+
+    /**
      * Adapter containing the list of manga from the catalogue.
      */
     private lateinit var adapter: CatalogueAdapter
@@ -61,6 +66,16 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
      * Scroll listener for list mode. It loads next pages when the end of the list is reached.
      */
     private lateinit var listScrollListener: EndlessScrollListener
+
+    /**
+     * Spinner dismissed sources MutableSet, save it so that these can be added again if user wants later
+     */
+    private var spinnerSourcesDismissedSet: MutableSet<String> = emptySet<String>().toMutableSet()
+
+    /**
+     * Spinner sources MutableSet, separate from original so that it can be changed
+     */
+    private var spinnerSourcesSet: MutableSet<String> = emptySet<String>().toMutableSet()
 
     /**
      * Query of the search box.
@@ -159,8 +174,59 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
         // Create toolbar spinner
         val themedContext = activity.supportActionBar?.themedContext ?: activity
 
-        val spinnerAdapter = ArrayAdapter(themedContext,
-                android.R.layout.simple_spinner_item, presenter.sources)
+        //save spinner list separately to preserve its state and load it here every time except first time
+        val spinnerSources = emptyList<OnlineSource>().toMutableList()
+        val spinnerSourcesDismissed = emptyList<OnlineSource>().toMutableList()
+        spinnerSourcesSet = presenter.prefs.spinnerSources()
+        spinnerSourcesDismissedSet = presenter.prefs.spinnerSourcesDismissed()
+
+        //for first time get from presenter.sources
+        val sources = presenter.sources.toMutableList()
+        if(spinnerSourcesSet.isEmpty()) {
+            spinnerSources.addAll(sources)
+            sources.forEach { spinnerSourcesSet.add(it.baseUrl) }
+        }
+        else sources.forEach {
+            if (spinnerSourcesSet.contains(it.baseUrl)) spinnerSources.add(it)
+            else if(spinnerSourcesDismissedSet.contains(it.baseUrl)) spinnerSourcesDismissed.add(it)
+        }
+        val spinnerAdapter = object : ArrayAdapter<OnlineSource>(themedContext,
+                android.R.layout.simple_spinner_item, spinnerSources) {
+
+            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup?): View {
+                val dropDownView = super.getDropDownView(position, convertView, parent)
+
+                dropDownView.setOnTouchListener{ view, motionEvent ->
+                    if(motionEvent.actionMasked == MotionEvent.ACTION_DOWN) {
+                        spinnerList = view.parent as ListView
+                        spinnerList.setBackgroundResource(R.color.material_blue_grey_200)
+
+                        spinnerList.setOnTouchListener(SwipeDismissListener(spinnerList, object : SwipeDismissListener.DismissCallbacks {
+                            override fun canDismiss(position: Int): Boolean {
+                                return count != 1 && selectedIndex != position
+                            }
+
+                            override fun onDismiss(listView: ListView, reverseSortedPositions: IntArray) {
+                                for (i in reverseSortedPositions) {
+                                    if (i <= selectedIndex) {
+                                        selectedIndex--
+                                        spinner.setSelection(selectedIndex)
+                                    }
+                                    spinnerSourcesDismissedSet.add(getItem(i).baseUrl)
+                                    spinnerSourcesSet.remove(getItem(i).baseUrl)
+                                    remove(getItem(i))
+                                }
+                                notifyDataSetChanged()
+                                presenter.prefs.setSpinnerSources(spinnerSourcesSet)
+                                presenter.prefs.setSpinnerSourcesDismissed(spinnerSourcesDismissedSet)
+                            }
+                        }))
+                    }
+                    false
+                }
+                return dropDownView
+            }
+        }
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_item)
 
         val onItemSelected = IgnoreFirstSpinnerListener { position ->
@@ -182,6 +248,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
 
         spinner = Spinner(themedContext).apply {
             adapter = spinnerAdapter
+            selectedIndex = spinnerSources.indexOf(presenter.source)
             setSelection(selectedIndex)
             onItemSelectedListener = onItemSelected
         }
@@ -332,7 +399,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
      */
     fun onAddPageError(error: Throwable) {
         hideProgressBar()
-        Timber.e(error)
+        Timber.e(error, "")
 
         catalogue_view.snack(error.message ?: "", Snackbar.LENGTH_INDEFINITE) {
             setAction(R.string.action_retry) {
