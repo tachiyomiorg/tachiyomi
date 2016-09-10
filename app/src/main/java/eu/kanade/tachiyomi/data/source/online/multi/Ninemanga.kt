@@ -1,33 +1,20 @@
 package eu.kanade.tachiyomi.data.source.online.multi
 
 import android.content.Context
-import android.util.Log
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.source.*
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.online.MultiSource
+import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.Response
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.text.SimpleDateFormat
 
-class Ninemanga(context: Context, override val id: Int) : MultiSource(context) {
+abstract class Ninemanga(context: Context) : ParsedOnlineSource(context) {
 
     override val name = "Ninemanga"
-
-    override val lang: Language = lang(listOf(EN, ES, RU, DE, IT, BR))
-
-    override val baseUrl = baseURL(lang, "ninemanga.com")
-
-    override fun baseURL(language: Language, url: String) : String {
-        if (lang == EN) {
-            return "http://$url"
-        }
-        return "http://${lang.code}.$url"
-    }
 
     var index: Int = 2
 
@@ -56,7 +43,7 @@ class Ninemanga(context: Context, override val id: Int) : MultiSource(context) {
 
     override fun popularMangaNextPageSelector() = ""
 
-    override fun searchMangaInitialUrl(query: String) =
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
             "$baseUrl/search/?name_sel=&wd=$query&author_sel=&author=&artist_sel=&artist=&category_id=&out_category_id=&completed_series=&page=1.html"
 
     override fun searchMangaSelector() = "div.leftbox > ul.direlist > li"
@@ -75,20 +62,10 @@ class Ninemanga(context: Context, override val id: Int) : MultiSource(context) {
         manga.genre = infoElement.select("li[itemprop=genre]").text().substringAfter(':')
         manga.author = infoElement.select("li > a[itemprop=author]").text()
         manga.status = infoElement.select("li > a.red").text().orEmpty().let { parseStatus(it) }
-        manga.description = ielement.select("p[itemprop=description]").text()
+        manga.description = ielement.select("p[itemprop=description]").text().substringAfter(':')
     }
 
-    private fun parseStatus(status: String) = when {
-        status.contains("Ongoing") -> Manga.ONGOING
-        status.contains("En curso") -> Manga.ONGOING
-        status.contains("Laufende") -> Manga.ONGOING
-        status.equals("Em tradução") -> Manga.ONGOING
-        status.contains("Completed") -> Manga.COMPLETED
-        status.contains("Completado") -> Manga.COMPLETED
-        status.contains("(Completo") -> Manga.COMPLETED
-        status.contains("Abgeschlossen") -> Manga.COMPLETED
-        else -> Manga.UNKNOWN
-    }
+    protected abstract fun parseStatus(status: String) : Int
 
     override fun chapterListSelector() = "div.chapterbox > div.silde > ul > li"
 
@@ -115,4 +92,3 @@ class Ninemanga(context: Context, override val id: Int) : MultiSource(context) {
     override fun imageUrlParse(document: Document): String = document.select("div.pic_box > img").attr("src")
 
 }
-
