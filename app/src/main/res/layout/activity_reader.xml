@@ -106,7 +106,7 @@
         android:visibility="gone"/>
 
     <View
-        android:id="@+id/red_overlay"
+        android:id="@+id/color_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"/>

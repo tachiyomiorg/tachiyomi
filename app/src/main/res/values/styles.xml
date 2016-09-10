@@ -91,6 +91,10 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="TextAppearance.Regular.SubHeading.Secondary">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+
     <style name="TextAppearance.Regular.SubHeading.Light">
         <item name="android:textColor">@color/textColorPrimaryDark</item>
     </style>

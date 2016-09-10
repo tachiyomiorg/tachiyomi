@@ -16,8 +16,15 @@
         android:scaleType="centerCrop"
         android:src="@drawable/filter_mock"/>
 
+
         <View
-            android:id="@+id/color_view"
+            android:id="@+id/brightness_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:visibility="gone"/>
+
+        <View
+            android:id="@+id/color_overlay"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:visibility="gone"/>
@@ -39,117 +46,161 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/txt_color_filter_red_symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="R"
+                android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
+
+            <TextView
+                android:id="@+id/txt_color_filter_red_value"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
+
             <SeekBar
                 android:id="@+id/seekbar_color_filter_red"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
                 android:max="255"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp" />
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@id/txt_color_filter_red_symbol"
+                android:layout_toLeftOf="@id/txt_color_filter_red_value"
+                android:layout_toRightOf="@id/txt_color_filter_red_symbol"
+                android:layout_toStartOf="@id/txt_color_filter_red_value"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/seekbar_color_filter_red"
-                android:text="R"
-                android:textAppearance="@style/TextAppearance.Medium.Title.Secondary" />
-
-            <TextView
-                android:id="@+id/txt_color_filter_red_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignRight="@id/seekbar_color_filter_red"
-                android:text="0"
-                android:textAppearance="@style/TextAppearance.Medium.Title.Secondary" />
-        </RelativeLayout>
-
+            </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/txt_color_filter_green_symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="G"
+                android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
+
+            <TextView
+                android:id="@+id/txt_color_filter_green_value"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
 
             <SeekBar
                 android:id="@+id/seekbar_color_filter_green"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
                 android:max="255"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp" />
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@id/txt_color_filter_green_symbol"
+                android:layout_toLeftOf="@id/txt_color_filter_green_value"
+                android:layout_toRightOf="@id/txt_color_filter_green_symbol"
+                android:layout_toStartOf="@id/txt_color_filter_green_value"/>
 
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/seekbar_color_filter_green"
-                android:text="G"
-                android:textAppearance="@style/TextAppearance.Medium.Title" />
-
-            <TextView
-                android:id="@+id/txt_color_filter_green_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignRight="@id/seekbar_color_filter_green"
-                android:text="0"
-                android:textAppearance="@style/TextAppearance.Medium.Title" />
         </RelativeLayout>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/txt_color_filter_blue_symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="B"
+                android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
+
+            <TextView
+                android:id="@+id/txt_color_filter_blue_value"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
 
             <SeekBar
                 android:id="@+id/seekbar_color_filter_blue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
                 android:max="255"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/seekbar_color_filter_blue"
-                android:text="B"
-                android:textAppearance="@style/TextAppearance.Medium.Title" />
-
-            <TextView
-                android:id="@+id/txt_color_filter_blue_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignRight="@id/seekbar_color_filter_blue"
-                android:text="0"
-                android:textAppearance="@style/TextAppearance.Medium.Title" />
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@id/txt_color_filter_blue_symbol"
+                android:layout_toLeftOf="@id/txt_color_filter_blue_value"
+                android:layout_toRightOf="@id/txt_color_filter_blue_symbol"
+                android:layout_toStartOf="@id/txt_color_filter_blue_value"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <TextView
+                android:id="@+id/txt_color_filter_alpha_symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="A"
+                android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
+
+            <TextView
+                android:id="@+id/txt_color_filter_alpha_value"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
 
             <SeekBar
                 android:id="@+id/seekbar_color_filter_alpha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
                 android:max="255"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp" />
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@id/txt_color_filter_alpha_symbol"
+                android:layout_toLeftOf="@id/txt_color_filter_alpha_value"
+                android:layout_toRightOf="@id/txt_color_filter_alpha_symbol"
+                android:layout_toStartOf="@id/txt_color_filter_alpha_value"/>
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/seekbar_color_filter_alpha"
-                android:text="A"
-                android:textAppearance="@style/TextAppearance.Medium.Title.Secondary" />
-
-            <TextView
-                android:id="@+id/txt_color_filter_alpha_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignRight="@id/seekbar_color_filter_alpha"
-                android:text="0"
-                android:textAppearance="@style/TextAppearance.Medium.Title.Secondary" />
         </RelativeLayout>
 
         <android.support.v7.widget.SwitchCompat
@@ -158,17 +209,47 @@
             android:layout_height="wrap_content"
             android:text="@string/pref_custom_brightness" />
 
-        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-            android:id="@+id/brightness_seekbar"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:dsb_indicatorColor="?colorAccent"
-            app:dsb_indicatorFormatter="%d%%"
-            app:dsb_indicatorTextAppearance="@style/TextAppearance.Regular"
-            app:dsb_max="100"
-            app:dsb_min="-75"
-            app:dsb_progressColor="?colorAccent"
-            setting:dependency="@id/custom_brightness" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_brightness_seekbar_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="S"
+                android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
+
+            <TextView
+                android:id="@+id/txt_brightness_seekbar_value"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
+
+            <eu.kanade.tachiyomi.widget.NegativeSeekBar
+                android:id="@+id/brightness_seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
+                app:max_seek="100"
+                app:min_seek="-75"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@id/txt_brightness_seekbar_icon"
+                android:layout_toLeftOf="@id/txt_brightness_seekbar_value"
+                android:layout_toRightOf="@id/txt_brightness_seekbar_icon"
+                android:layout_toStartOf="@id/txt_brightness_seekbar_value"/>
+
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

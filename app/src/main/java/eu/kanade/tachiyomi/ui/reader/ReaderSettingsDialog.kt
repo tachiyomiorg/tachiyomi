@@ -11,7 +11,6 @@ import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.util.plusAssign
 import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
 import kotlinx.android.synthetic.main.dialog_reader_settings.view.*
-import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.subscriptions.CompositeSubscription
@@ -84,24 +83,6 @@ class ReaderSettingsDialog : DialogFragment() {
         fullscreen.setOnCheckedChangeListener { v, isChecked ->
             preferences.fullscreen().set(isChecked)
         }
-
-        custom_brightness.isChecked = preferences.customBrightness().getOrDefault()
-        custom_brightness.setOnCheckedChangeListener { v, isChecked ->
-            preferences.customBrightness().set(isChecked)
-        }
-
-        brightness_seekbar.progress = preferences.customBrightnessValue().getOrDefault()
-        brightness_seekbar.setOnProgressChangeListener(object : DiscreteSeekBar.OnProgressChangeListener {
-            override fun onProgressChanged(seekBar: DiscreteSeekBar, value: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    preferences.customBrightnessValue().set(value)
-                }
-            }
-
-            override fun onStartTrackingTouch(seekBar: DiscreteSeekBar) {}
-
-            override fun onStopTrackingTouch(seekBar: DiscreteSeekBar) {}
-        })
     }
 
     override fun onDestroyView() {

@@ -171,22 +171,4 @@
         android:layout_height="wrap_content"
         android:text="@string/pref_fullscreen"/>
 
-    <android.support.v7.widget.SwitchCompat
-        android:id="@+id/custom_brightness"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_custom_brightness"/>
-
-    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
-        android:id="@+id/brightness_seekbar"
-        setting:dependency="@id/custom_brightness"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:dsb_min="-75"
-        app:dsb_max="100"
-        app:dsb_indicatorFormatter="%d%%"
-        app:dsb_indicatorTextAppearance="@style/TextAppearance.Regular"
-        app:dsb_indicatorColor="?colorAccent"
-        app:dsb_progressColor="?colorAccent" />
-
 </LinearLayout>

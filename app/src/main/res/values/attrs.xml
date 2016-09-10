@@ -17,6 +17,11 @@
         <attr name="max" format="integer"/>
     </declare-styleable>
 
+    <declare-styleable name="NegativeSeekBar">
+        <attr name="min_seek" format="integer"/>
+        <attr name="max_seek" format="integer"/>
+    </declare-styleable>
+
     <attr name="navigation_view_theme" format="reference"/>
     <attr name="selectable_list_drawable" format="reference|integer" />
     <attr name="selectable_library_drawable" format="reference|integer"/>

@@ -165,7 +165,6 @@ dependencies {
     compile 'com.afollestad.material-dialogs:core:0.8.6.2'
     compile 'net.xpece.android:support-preference:0.8.1'
     compile 'me.zhanghai.android.systemuihelper:library:1.0.0'
-    compile 'org.adw.library:discrete-seekbar:1.0.1'
     compile 'de.hdodenhof:circleimageview:2.1.0'
 
     // Tests

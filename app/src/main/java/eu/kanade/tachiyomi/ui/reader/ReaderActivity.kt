@@ -354,9 +354,9 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         reader_menu_bottom.setOnTouchListener { v, event -> true }
 
         page_seekbar.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+            override fun onProgressChanged(seekBar: SeekBar?, value: Int, fromUser: Boolean) {
                 if (fromUser) {
-                    gotoPageInCurrentChapter(progress)
+                    gotoPageInCurrentChapter(value)
                 }
             }
         })
@@ -476,11 +476,11 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private fun setRedFilterValue(value: Int) {
         if (value > 0) {
-            red_overlay.visibility = View.VISIBLE
+            color_overlay.visibility = View.VISIBLE
             val alpha = (Math.abs(value) * 2.56).toInt()
-            red_overlay.setBackgroundColor(Color.argb(alpha, 255, 0, 0))
+            color_overlay.setBackgroundColor(Color.argb(alpha, 255, 0, 0))
         } else {
-            red_overlay.visibility = View.GONE
+            color_overlay.visibility = View.GONE
         }
     }
 
