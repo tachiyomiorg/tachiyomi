@@ -7,15 +7,12 @@ import android.support.v7.preference.PreferenceGroup
 import android.support.v7.preference.XpPreferenceFragment
 import android.view.View
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.SourceManager
-import eu.kanade.tachiyomi.data.source.getLanguages
 import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.util.plusAssign
 import eu.kanade.tachiyomi.widget.preference.LoginPreference
 import eu.kanade.tachiyomi.widget.preference.SourceLoginDialog
-import net.xpece.android.support.preference.MultiSelectListPreference
 import uy.kohesive.injekt.injectLazy
 
 class SettingsSourcesFragment : SettingsFragment() {
@@ -34,28 +31,20 @@ class SettingsSourcesFragment : SettingsFragment() {
 
     private val sourceManager: SourceManager by injectLazy()
 
-    val languagesPref by lazy { findPreference("pref_source_languages") as MultiSelectListPreference }
-
-    val sourcesPref by lazy { findPreference("pref_sources") as PreferenceGroup }
+    val sourcesPref by lazy { findPreference("pref_login_sources") as PreferenceGroup }
 
     override fun onViewCreated(view: View, savedState: Bundle?) {
         super.onViewCreated(view, savedState)
-
-        val langs = getLanguages().sortedBy { it.lang }
-
-        val entryKeys = langs.map { it.code }
-        languagesPref.entries = langs.map { it.lang }.toTypedArray()
-        languagesPref.entryValues = entryKeys.toTypedArray()
-        languagesPref.values = preferences.enabledLanguages().getOrDefault()
 
         subscriptions += preferences.enabledLanguages().asObservable()
                 .subscribe { languages ->
                     sourcesPref.removeAll()
 
-                    val enabledSources = sourceManager.getOnlineSources()
+                    val loginSources = sourceManager.getOnlineSources()
                             .filter { it.lang.code in languages }
+                            .filterIsInstance(LoginSource::class.java)
 
-                    for (source in enabledSources.filterIsInstance(LoginSource::class.java)) {
+                    for (source in loginSources) {
                         val pref = createLoginSourceEntry(source)
                         sourcesPref.addPreference(pref)
                     }

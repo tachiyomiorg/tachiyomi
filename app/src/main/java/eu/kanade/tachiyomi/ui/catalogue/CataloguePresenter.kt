@@ -324,6 +324,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      */
     private fun getEnabledSources(): List<OnlineSource> {
         val languages = prefs.enabledLanguages().getOrDefault()
+        val hiddenCatalogues = prefs.hiddenCatalogues().getOrDefault()
 
         // Ensure at least one language
         if (languages.isEmpty()) {
@@ -332,6 +333,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
 
         return sourceManager.getOnlineSources()
                 .filter { it.lang.code in languages }
+                .filterNot { it.id.toString() in hiddenCatalogues }
                 .sortedBy { "(${it.lang.code}) ${it.name}" }
     }
 

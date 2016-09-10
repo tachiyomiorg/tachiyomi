@@ -6,6 +6,7 @@ import android.support.v7.preference.PreferenceScreen
 import android.view.MenuItem
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
+import eu.kanade.tachiyomi.widget.preference.SettingsShownSourcesFragment
 import kotlinx.android.synthetic.main.toolbar.*
 import net.xpece.android.support.preference.PreferenceScreenNavigationStrategy
 import net.xpece.android.support.preference.PreferenceScreenNavigationStrategy.ReplaceFragment
@@ -63,6 +64,7 @@ class SettingsActivity : BaseActivity(),
             "general_screen" -> SettingsGeneralFragment.newInstance(key)
             "downloads_screen" -> SettingsDownloadsFragment.newInstance(key)
             "sources_screen" -> SettingsSourcesFragment.newInstance(key)
+            "shown_sources_screen" -> SettingsShownSourcesFragment.newInstance(key)
             "sync_screen" -> SettingsSyncFragment.newInstance(key)
             "advanced_screen" -> SettingsAdvancedFragment.newInstance(key)
             "about_screen" -> SettingsAboutFragment.newInstance(key)

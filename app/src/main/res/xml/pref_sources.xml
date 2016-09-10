@@ -6,13 +6,18 @@
         android:persistent="false"
         android:title="@string/pref_category_sources">
 
-        <MultiSelectListPreference
-            android:key="@string/pref_source_languages"
-            android:title="@string/languages"
-            android:summary="@string/languages_summary"/>
+        <PreferenceScreen
+            android:key="shown_sources_screen"
+            android:persistent="false"
+            android:title="@string/sources_selection"
+            android:summary="@string/sources_selection_summary">
+
+            <Preference/>
+
+        </PreferenceScreen>
 
         <PreferenceCategory
-            android:key="pref_sources"
+            android:key="pref_login_sources"
             android:persistent="false"
             android:title="@string/accounts"/>
 

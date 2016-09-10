@@ -132,4 +132,6 @@ class PreferencesHelper(context: Context) {
 
     fun automaticUpdates() = prefs.getBoolean(keys.automaticUpdates, false)
 
+    fun hiddenCatalogues() = rxPrefs.getStringSet("hidden_catalogues", emptySet())
+
 }

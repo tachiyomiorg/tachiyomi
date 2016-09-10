@@ -152,6 +152,8 @@
     <string name="fifth_to_last">Fifth to last chapter</string>
 
       <!-- Sources section -->
+    <string name="sources_selection">Sources selection</string>
+    <string name="sources_selection_summary">Select the languages and sources you would like to use</string>
     <string name="languages">Languages</string>
     <string name="languages_summary">Select the languages to show sources from</string>
     <string name="accounts">Accounts</string>
