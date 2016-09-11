@@ -18,7 +18,7 @@ import net.xpece.android.support.preference.R
 
 class SwitchPreferenceCategory @JvmOverloads constructor(
         context: Context,
-        val attrs: AttributeSet? = null)
+        attrs: AttributeSet? = null)
 : PreferenceCategory(
         context,
         attrs,
@@ -29,8 +29,6 @@ CompoundButton.OnCheckedChangeListener {
     init {
         setTitleTextColor(context.theme.getResourceColor(R.attr.colorAccent))
     }
-
-    private val NATIVE_SWITCH_CAPABLE = Build.VERSION.SDK_INT >= ICE_CREAM_SANDWICH
 
     private var mChecked = false
 
@@ -130,6 +128,10 @@ CompoundButton.OnCheckedChangeListener {
             getPersistedBoolean(mChecked)
         else
             defaultValue as Boolean)
+    }
+
+    companion object {
+        private val NATIVE_SWITCH_CAPABLE = Build.VERSION.SDK_INT >= ICE_CREAM_SANDWICH
     }
 
 }

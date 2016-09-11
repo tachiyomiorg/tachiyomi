@@ -1,18 +1,19 @@
 package eu.kanade.tachiyomi.ui.setting
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.support.v7.preference.Preference
-import android.support.v7.preference.PreferenceGroup
 import android.support.v7.preference.XpPreferenceFragment
 import android.view.View
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.source.Source
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.SourceManager
-import eu.kanade.tachiyomi.data.source.online.LoginSource
-import eu.kanade.tachiyomi.util.plusAssign
-import eu.kanade.tachiyomi.widget.preference.LoginPreference
+import eu.kanade.tachiyomi.data.source.getLanguages
+import eu.kanade.tachiyomi.widget.preference.LoginCheckBoxPreference
 import eu.kanade.tachiyomi.widget.preference.SourceLoginDialog
+import eu.kanade.tachiyomi.widget.preference.SwitchPreferenceCategory
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
 
 class SettingsSourcesFragment : SettingsFragment() {
@@ -29,51 +30,105 @@ class SettingsSourcesFragment : SettingsFragment() {
 
     private val preferences: PreferencesHelper by injectLazy()
 
-    private val sourceManager: SourceManager by injectLazy()
+    private val onlineSources by lazy { Injekt.get<SourceManager>().getOnlineSources() }
 
-    val sourcesPref by lazy { findPreference("pref_login_sources") as PreferenceGroup }
+    override fun setDivider(divider: Drawable?) {
+        super.setDivider(null)
+    }
 
     override fun onViewCreated(view: View, savedState: Bundle?) {
         super.onViewCreated(view, savedState)
 
-        subscriptions += preferences.enabledLanguages().asObservable()
-                .subscribe { languages ->
-                    sourcesPref.removeAll()
+        // Remove dummy preference
+        preferenceScreen.removeAll()
 
-                    val loginSources = sourceManager.getOnlineSources()
-                            .filter { it.lang.code in languages }
-                            .filterIsInstance(LoginSource::class.java)
+        // Get the list of active language codes.
+        val activeLangsCodes = preferences.enabledLanguages().getOrDefault()
 
-                    for (source in loginSources) {
-                        val pref = createLoginSourceEntry(source)
-                        sourcesPref.addPreference(pref)
-                    }
+        // Get the list of languages ordered by name.
+        val langs = getLanguages().sortedBy { it.lang }
 
-                    // Hide category if it doesn't have any child
-                    sourcesPref.isVisible = sourcesPref.preferenceCount > 0
+        // Order first by active languages, then inactive ones
+        val orderedLangs = langs.filter { it.code in activeLangsCodes } +
+                langs.filterNot { it.code in activeLangsCodes }
+
+        orderedLangs.forEach { lang ->
+            // Create a preference group and set initial state and change listener
+            SwitchPreferenceCategory(context).apply {
+                preferenceScreen.addPreference(this)
+                title = lang.lang
+                isPersistent = false
+                if (lang.code in activeLangsCodes) {
+                    setChecked(true)
+                    addLanguageSources(this)
                 }
+
+                setOnPreferenceChangeListener { preference, any ->
+                    val checked = any as Boolean
+                    val current = preferences.enabledLanguages().getOrDefault()
+                    if (!checked) {
+                        preferences.enabledLanguages().set(current - lang.code)
+                        removeAll()
+                    } else {
+                        preferences.enabledLanguages().set(current + lang.code)
+                        addLanguageSources(this)
+                    }
+                    true
+                }
+            }
+        }
     }
 
-    fun createLoginSourceEntry(source: Source): Preference {
-        return LoginPreference(preferenceManager.context).apply {
-            key = preferences.keys.sourceUsername(source.id)
-            title = source.toString()
+    /**
+     * Adds the source list for the given group (language).
+     *
+     * @param group the language category.
+     */
+    private fun addLanguageSources(group: SwitchPreferenceCategory) {
+        val sources = onlineSources.filter { it.lang.lang == group.title }.sortedBy { it.name }
+        val hiddenCatalogues = preferences.hiddenCatalogues().getOrDefault()
 
-            setOnPreferenceClickListener {
-                val fragment = SourceLoginDialog.newInstance(source)
-                fragment.setTargetFragment(this@SettingsSourcesFragment, SOURCE_CHANGE_REQUEST)
-                fragment.show(fragmentManager, null)
-                true
+        sources.forEach { source ->
+            val sourcePreference = LoginCheckBoxPreference(context, source).apply {
+                val id = source.id.toString()
+                title = source.name
+                key = getSourceKey(source.id)
+                isPersistent = false
+                isChecked = id !in hiddenCatalogues
+
+                setOnPreferenceChangeListener { preference, any ->
+                    val checked = any as Boolean
+                    val current = preferences.hiddenCatalogues().getOrDefault()
+
+                    preferences.hiddenCatalogues().set(if (checked)
+                        current - id
+                    else
+                        current + id)
+
+                    true
+                }
+
+                setOnLoginClickListener {
+                    val fragment = SourceLoginDialog.newInstance(source)
+                    fragment.setTargetFragment(this@SettingsSourcesFragment, SOURCE_CHANGE_REQUEST)
+                    fragment.show(fragmentManager, null)
+                }
+
             }
 
+            group.addPreference(sourcePreference)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == SOURCE_CHANGE_REQUEST) {
-            val pref = findPreference(preferences.keys.sourceUsername(resultCode)) as? LoginPreference
+            val pref = findPreference(getSourceKey(resultCode)) as? LoginCheckBoxPreference
             pref?.notifyChanged()
         }
+    }
+
+    private fun getSourceKey(sourceId: Int): String {
+        return "source_$sourceId"
     }
 
 }
