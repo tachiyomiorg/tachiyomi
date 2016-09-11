@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:setting="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -40,7 +39,7 @@
             android:id="@+id/switch_color_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enable Filter" />
+            android:text="@string/pref_custom_color_filter" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -213,14 +212,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txt_brightness_seekbar_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:text="S"
+                android:drawableStart="@drawable/ic_brightness_5_black_24dp"
+                android:drawableLeft="@drawable/ic_brightness_5_black_24dp"
+                android:drawableTint="?android:attr/textColorSecondary"
                 android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
 
             <TextView

@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.widget
 
+import android.annotation.TargetApi
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.SeekBar
@@ -38,6 +39,15 @@ class NegativeSeekBar @JvmOverloads constructor(context: Context?, attrs: Attrib
                 listener?.let { it.onStopTrackingTouch(p0) }
             }
         })
+    }
+
+    override fun setProgress(progress: Int) {
+        super.setProgress(Math.abs(minValue) + progress)
+    }
+
+    @TargetApi(24)
+    override fun setProgress(progress: Int, animate: Boolean) {
+        super.setProgress(Math.abs(minValue) + progress, animate)
     }
 
     fun setMinSeek(minValue: Int) {

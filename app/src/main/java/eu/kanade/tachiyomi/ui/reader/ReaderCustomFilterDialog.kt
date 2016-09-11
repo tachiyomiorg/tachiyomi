@@ -55,7 +55,7 @@ class ReaderCustomFilterDialog : DialogFragment() {
         subscriptions += preferences.customBrightness().asObservable()
                 .subscribe { setCustomBrightness(it,view) }
 
-        val color = preferences.colorFilterBlueValue().getOrDefault()
+        val color = preferences.colorFilterValue().getOrDefault()
         val argb = setValues(color, view)
 
         //Initialize seekbar progress
@@ -122,11 +122,15 @@ class ReaderCustomFilterDialog : DialogFragment() {
 
     }
 
-    private fun setSeekBar(enabled: Boolean, view: View) = with(view) {
+    private fun setColorFilterSeekBar(enabled: Boolean, view: View) = with(view) {
         seekbar_color_filter_red.isEnabled = enabled
         seekbar_color_filter_green.isEnabled = enabled
         seekbar_color_filter_blue.isEnabled = enabled
         seekbar_color_filter_alpha.isEnabled = enabled
+    }
+
+    private fun setCustomBrightnessSeekBar(enabled: Boolean, view: View) = with(view) {
+        brightness_seekbar.isEnabled = enabled
     }
 
     fun setValues(color: Int, view: View): Array<Int> {
@@ -158,6 +162,7 @@ class ReaderCustomFilterDialog : DialogFragment() {
             customBrightnessSubscription?.let { subscriptions.remove(it) }
             setCustomBrightnessValue(0,view)
         }
+        setCustomBrightnessSeekBar(enabled, view)
     }
 
     /**
@@ -180,7 +185,7 @@ class ReaderCustomFilterDialog : DialogFragment() {
 
     private fun setColorFilter(enabled: Boolean, view: View) {
         if (enabled) {
-            customFilterColorSubscription = preferences.colorFilterBlueValue().asObservable()
+            customFilterColorSubscription = preferences.colorFilterValue().asObservable()
                     .subscribe { setColorFilterValue(it, view) }
 
             subscriptions.add(customFilterColorSubscription)
@@ -188,7 +193,7 @@ class ReaderCustomFilterDialog : DialogFragment() {
             customFilterColorSubscription?.let { subscriptions.remove(it) }
             view.color_overlay.visibility = View.GONE
         }
-        setSeekBar(enabled, view)
+        setColorFilterSeekBar(enabled, view)
     }
 
     private fun setColorFilterValue(@ColorInt color: Int, view: View) = with(view) {
@@ -198,9 +203,9 @@ class ReaderCustomFilterDialog : DialogFragment() {
     }
 
     fun setColorValue(color: Int, mask: Long, bitShift: Int) {
-        val currentColor = preferences.colorFilterBlueValue().getOrDefault()
+        val currentColor = preferences.colorFilterValue().getOrDefault()
         val updatedColor = (color shl bitShift) or (currentColor and mask.inv().toInt())
-        preferences.colorFilterBlueValue().set(updatedColor)
+        preferences.colorFilterValue().set(updatedColor)
     }
 
     /**

@@ -28,13 +28,7 @@ class PreferenceKeys(context: Context) {
 
     val colorFilter = context.getString(R.string.pref_color_filter_key)
 
-    val colorFilterRedValue = context.getString(R.string.pref_color_filter_red_value_key)
-
-    val colorFilterGreenValue = context.getString(R.string.pref_color_filter_green_value_key)
-
-    val colorFilterBlueValue = context.getString(R.string.pref_color_filter_blue_value_key)
-
-    val colorFilterAlphaValue = context.getString(R.string.pref_color_filter_alpha_value_key)
+    val colorFilterValue = context.getString(R.string.pref_color_filter_value_key)
 
     val defaultViewer = context.getString(R.string.pref_default_viewer_key)
 

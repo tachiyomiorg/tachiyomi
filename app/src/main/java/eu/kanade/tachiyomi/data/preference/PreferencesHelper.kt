@@ -54,13 +54,7 @@ class PreferencesHelper(context: Context) {
 
     fun colorFilter() = rxPrefs.getBoolean(keys.colorFilter, false)
 
-    fun colorFilterRedValue() = rxPrefs.getInteger(keys.colorFilterRedValue, 255)
-
-    fun colorFilterBlueValue() = rxPrefs.getInteger(keys.colorFilterGreenValue, 0)
-
-    fun colorFilterGreenValue() = rxPrefs.getInteger(keys.colorFilterBlueValue, 0)
-
-    fun colorFilterAlphaValue() = rxPrefs.getInteger(keys.colorFilterAlphaValue, 25)
+    fun colorFilterValue() = rxPrefs.getInteger(keys.colorFilterValue, 0)
 
     fun defaultViewer() = prefs.getInt(keys.defaultViewer, 1)
 

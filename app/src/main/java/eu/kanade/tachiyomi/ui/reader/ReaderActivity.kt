@@ -33,6 +33,7 @@ import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.SimpleAnimationListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import kotlinx.android.synthetic.main.activity_reader.*
+import kotlinx.android.synthetic.main.dialog_reader_custom_filter.view.*
 import me.zhanghai.android.systemuihelper.SystemUiHelper
 import me.zhanghai.android.systemuihelper.SystemUiHelper.*
 import nucleus.factory.RequiresPresenter
@@ -69,7 +70,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private var customBrightnessSubscription: Subscription? = null
 
-    private var colorFilterAlphaValueSubscription: Subscription? = null
+    private var customFilterColorSubscription: Subscription? = null
 
     var readerTheme: Int = 0
         private set
@@ -379,7 +380,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 .subscribe { setCustomBrightness(it) }
 
         subscriptions += preferences.colorFilter().asObservable()
-                .subscribe { setRedFilter(it) }
+                .subscribe { setColorFilter(it) }
 
         subscriptions += preferences.readerTheme().asObservable()
                 .distinctUntilChanged()
@@ -436,15 +437,15 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         }
     }
 
-    private fun setRedFilter(enabled: Boolean) {
+    private fun setColorFilter(enabled: Boolean) {
         if (enabled) {
-            colorFilterAlphaValueSubscription = preferences.colorFilterAlphaValue().asObservable()
-                    .subscribe { setRedFilterValue(it) }
+            customFilterColorSubscription = preferences.colorFilterValue().asObservable()
+                    .subscribe { setColorFilterValue(it) }
 
-            subscriptions.add(colorFilterAlphaValueSubscription)
+            subscriptions.add(customFilterColorSubscription)
         } else {
-            colorFilterAlphaValueSubscription?.let { subscriptions.remove(it) }
-            setRedFilterValue(0)
+            customFilterColorSubscription?.let { subscriptions.remove(it) }
+            color_overlay.visibility = View.GONE
         }
     }
 
@@ -474,14 +475,9 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         }
     }
 
-    private fun setRedFilterValue(value: Int) {
-        if (value > 0) {
-            color_overlay.visibility = View.VISIBLE
-            val alpha = (Math.abs(value) * 2.56).toInt()
-            color_overlay.setBackgroundColor(Color.argb(alpha, 255, 0, 0))
-        } else {
-            color_overlay.visibility = View.GONE
-        }
+    private fun setColorFilterValue(value: Int) {
+        color_overlay.visibility = View.VISIBLE
+        color_overlay.setBackgroundColor(value)
     }
 
     private fun applyTheme(theme: Int) {
