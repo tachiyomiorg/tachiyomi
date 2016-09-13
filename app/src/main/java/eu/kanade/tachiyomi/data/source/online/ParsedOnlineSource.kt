@@ -42,6 +42,8 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      */
     abstract protected fun popularMangaSelector(): String
 
+    abstract protected fun latestupdatesMangaSelector(): String
+
     /**
      * Fills [manga] with the given [element]. Most sites only show the title and the url, it's
      * totally safe to fill only those two values.
@@ -51,11 +53,15 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      */
     abstract protected fun popularMangaFromElement(element: Element, manga: Manga)
 
+    abstract protected fun latestupdatesMangaFromElement(element: Element, manga: Manga)
+
     /**
      * Returns the Jsoup selector that returns the <a> tag linking to the next page, or null if
      * there's no next page.
      */
     abstract protected fun popularMangaNextPageSelector(): String?
+
+    abstract protected fun latestupdatesMangaNextPageSelector(): String?
 
     /**
      * Parse the response from the site and fills [page].

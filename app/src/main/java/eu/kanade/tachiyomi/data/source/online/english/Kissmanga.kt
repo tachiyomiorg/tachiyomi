@@ -21,6 +21,22 @@ import java.util.regex.Pattern
 
 class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(context) {
 
+    override fun latestupdatesMangaParse(response: Response, page: MangasPage) {
+        throw UnsupportedOperationException("not implemented")
+    }
+    override fun latestupdatesMangaInitialUrl(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+    override fun latestupdatesMangaNextPageSelector(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+        throw UnsupportedOperationException("not implemented")
+    }
+    override fun latestupdatesMangaSelector(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
     override val name = "Kissmanga"
 
     override val baseUrl = "http://kissmanga.com"
@@ -176,4 +192,7 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
             Filter("42", "Yaoi"),
             Filter("43", "Yuri")
     )
+    override fun supportLatestUpdates(): Boolean {
+        return false
+    }
 }

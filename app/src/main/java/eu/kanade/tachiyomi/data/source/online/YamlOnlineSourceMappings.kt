@@ -30,6 +30,8 @@ class YamlSourceNode(uncheckedMap: Map<*, *>) {
 
     val popular = PopularNode(toMap(map["popular"])!!)
 
+    val latestupdates = LatestUpdatesNode(toMap(map["latest_updates"])!!)
+
     val search = SearchNode(toMap(map["search"])!!)
 
     val manga = MangaNode(toMap(map["manga"])!!)
@@ -72,6 +74,17 @@ class PopularNode(override val map: Map<String, Any?>): RequestableNode {
         get() = map["next_url_css"] as? String
 
 }
+
+
+class LatestUpdatesNode(override val map: Map<String, Any?>): RequestableNode {
+
+    val manga_css: String by map
+
+    val next_url_css: String?
+        get() = map["next_url_css"] as? String
+
+}
+
 
 class SearchNode(override val map: Map<String, Any?>): RequestableNode {
 

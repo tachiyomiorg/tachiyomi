@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue
+package eu.kanade.tachiyomi.ui.catalogue_latest
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -39,8 +39,8 @@ import java.util.concurrent.TimeUnit.MILLISECONDS
  * Fragment that shows the manga from the catalogue.
  * Uses R.layout.fragment_catalogue.
  */
-@RequiresPresenter(CataloguePresenter::class)
-class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHolder.OnListItemClickListener {
+@RequiresPresenter(CatalogueLatestPresenter::class)
+class CatalogueLatestFragment : BaseRxFragment<CatalogueLatestPresenter>(), FlexibleViewHolder.OnListItemClickListener {
 
     /**
      * Spinner shown in the toolbar to change the selected source.
@@ -50,7 +50,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
     /**
      * Adapter containing the list of manga from the catalogue.
      */
-    private lateinit var adapter: CatalogueAdapter
+    private lateinit var adapter: CatalogueLatestAdapter
 
     /**
      * Scroll listener for grid mode. It loads next pages when the end of the list is reached.
@@ -108,10 +108,10 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
         /**
          * Creates a new instance of this fragment.
          *
-         * @return a new instance of [CatalogueFragment].
+         * @return a new instance of [CatalogueLatestFragment].
          */
-        fun newInstance(): CatalogueFragment {
-            return CatalogueFragment()
+        fun newInstance(): CatalogueLatestFragment {
+            return CatalogueLatestFragment()
         }
     }
 
@@ -126,7 +126,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
 
     override fun onViewCreated(view: View, savedState: Bundle?) {
         // Initialize adapter, scroll listener and recycler views
-        adapter = CatalogueAdapter(this)
+        adapter = CatalogueLatestAdapter(this)
 
         val glm = catalogue_grid.layoutManager as GridLayoutManager
         gridScrollListener = EndlessScrollListener(glm, { requestNextPage() })
@@ -193,7 +193,9 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.catalogue_list, menu)
+            inflater.inflate(R.menu.catalogue_list, menu)
+
+
 
         // Initialize search menu
         searchItem = menu.findItem(R.id.action_search).apply {
@@ -214,19 +216,22 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
                     onSearchEvent(newText, false)
                     return true
                 }
+
+
             })
         }
 
         // Setup filters button
         menu.findItem(R.id.action_set_filter).apply {
             if (presenter.source.filters.isEmpty()) {
-                isEnabled = false
+                isEnabled = false //Default is false
                 icon.alpha = 128
             } else {
-                isEnabled = true
+                isEnabled = true //Default is true
                 icon.alpha = 255
             }
         }
+
 
         // Show next display mode
         menu.findItem(R.id.action_display_mode).apply {
@@ -383,8 +388,8 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
      * @param manga the manga to find.
      * @return the holder of the manga or null if it's not bound.
      */
-    private fun getHolder(manga: Manga): CatalogueGridLatestHolder? {
-        return catalogue_grid.findViewHolderForItemId(manga.id!!) as? CatalogueGridLatestHolder
+    private fun getHolder(manga: Manga): CatalogueLatestGridLatestHolder? {
+        return catalogue_grid.findViewHolderForItemId(manga.id!!) as? CatalogueLatestGridLatestHolder
     }
 
     /**
@@ -467,5 +472,6 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
                 .negativeText(android.R.string.cancel)
                 .show()
     }
+
 
 }

@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue
+package eu.kanade.tachiyomi.ui.catalogue_latest
 
 import android.os.Bundle
 import eu.kanade.tachiyomi.data.cache.CoverCache
@@ -25,7 +25,7 @@ import uy.kohesive.injekt.injectLazy
 /**
  * Presenter of [CatalogueLatestFragment].
  */
-class CataloguePresenter : BasePresenter<CatalogueFragment>() {
+class CatalogueLatestPresenter : BasePresenter<CatalogueLatestFragment>() {
 
     /**
      * Source manager.
@@ -72,7 +72,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     /**
      * Pager containing a list of manga results.
      */
-    private lateinit var pager: CataloguePager
+    private lateinit var pager: CatalogueLatestPager
 
     /**
      * Subject that initializes a list of manga.
@@ -100,13 +100,18 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      */
     private var initializerSubscription: Subscription? = null
 
+
+    /**
+    override val source
+     */
+
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
         source = getLastUsedSource()
 
         if (savedState != null) {
-            query = savedState.getString(CataloguePresenter::query.name, "")
+            query = savedState.getString(CatalogueLatestPresenter::query.name, "")
         }
 
         add(prefs.catalogueAsList().asObservable()
@@ -116,7 +121,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     }
 
     override fun onSave(state: Bundle) {
-        state.putString(CataloguePresenter::query.name, query)
+        state.putString(CatalogueLatestPresenter::query.name, query)
         super.onSave(state)
     }
 
@@ -126,6 +131,8 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      * @param query the query.
      * @param filters the list of active filters (for search mode).
      */
+
+
     fun restartPager(query: String = this.query, filters: List<Filter> = this.filters) {
         this.query = query
         this.filters = filters
@@ -135,7 +142,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         }
 
         // Create a new pager.
-        pager = CataloguePager(source, query, filters)
+        pager = CatalogueLatestPager(source, query, filters)
 
         // Prepare the pager.
         pagerSubscription?.let { remove(it) }
@@ -150,6 +157,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         requestNext()
     }
 
+
     /**
      * Requests the next page for the active pager.
      */
@@ -160,7 +168,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         pageSubscription = pager.requestNext { getPageTransformer(it) }
                 .subscribeFirst({ view, page ->
                     // Nothing to do when onNext is emitted.
-                }, CatalogueFragment::onAddPageError)
+                }, CatalogueLatestFragment::onAddPageError)
     }
 
     /**

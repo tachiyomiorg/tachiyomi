@@ -14,6 +14,7 @@ import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.Headers
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.Response
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.util.*
@@ -182,4 +183,23 @@ class Readmangatoday(context: Context, override val id: Int) : ParsedOnlineSourc
             Filter("36", "Yaoi"),
             Filter("37", "Yuri")
     )
+    override fun supportLatestUpdates(): Boolean {
+        return false
+    }
+
+    override fun latestupdatesMangaParse(response: Response, page: MangasPage) {
+        throw UnsupportedOperationException("not implemented")
+    }
+    override fun latestupdatesMangaInitialUrl(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+    override fun latestupdatesMangaNextPageSelector(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+        throw UnsupportedOperationException("not implemented")
+    }
+    override fun latestupdatesMangaSelector(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
 }

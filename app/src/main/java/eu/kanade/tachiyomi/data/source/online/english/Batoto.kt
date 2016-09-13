@@ -59,6 +59,8 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
 
     override fun popularMangaInitialUrl() = "$baseUrl/search_ajax?order_cond=views&order=desc&p=1"
 
+    override fun latestupdatesMangaInitialUrl() = "$baseUrl/search_ajax?order_cond=update&order=desc&p=1"
+
     override fun popularMangaParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(popularMangaSelector())) {
@@ -73,7 +75,23 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
         }
     }
 
+    override fun latestupdatesMangaParse(response: Response, page: MangasPage) {
+        val document = response.asJsoup()
+        for (element in document.select(latestupdatesMangaSelector())) {
+            Manga.create(id).apply {
+                latestupdatesMangaFromElement(element, this)
+                page.mangas.add(this)
+            }
+        }
+
+        page.nextPageUrl = document.select(latestupdatesMangaNextPageSelector()).first()?.let {
+            "$baseUrl/search_ajax?order_cond=update&order=desc&p=${page.page + 1}"
+        }
+    }
+
     override fun popularMangaSelector() = "tr:has(a)"
+
+    override fun latestupdatesMangaSelector() = "tr:has(a)"
 
     override fun popularMangaFromElement(element: Element, manga: Manga) {
         element.select("a[href^=http://bato.to]").first().let {
@@ -82,7 +100,16 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
         }
     }
 
+    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+        element.select("a[href^=http://bato.to]").first().let {
+            manga.setUrlWithoutDomain(it.attr("href"))
+            manga.title = it.text().trim()
+        }
+    }
+
     override fun popularMangaNextPageSelector() = "#show_more_row"
+
+    override fun latestupdatesMangaNextPageSelector() = "#show_more_row"
 
     override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=1&genre_cond=and&genres=${getFilterParams(filters)}"
 
@@ -320,4 +347,8 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
             Filter("29", "Yaoi"),
             Filter("31", "Yuri")
     )
+
+    override fun supportLatestUpdates(): Boolean {
+         return true
+    }
 }
