@@ -34,6 +34,8 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         getLanguages().find { code == it.code }!!
     }
 
+    override val supportsLatest = map.supportsLatest.toBoolean()
+
     override val client = when(map.client) {
         "cloudflare" -> network.cloudflareClient
         else -> network.client
@@ -82,7 +84,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         }
     }
 
-    override fun latestupdatesMangaParse(response: Response, page: MangasPage) {
+    override fun latestUpdatesMangaParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(map.latestupdates.manga_css)) {
             Manga.create(id).apply {

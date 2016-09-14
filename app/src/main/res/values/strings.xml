@@ -205,6 +205,7 @@
 
     <!-- Catalogue fragment -->
     <string name="source_requires_login">This source requires you to log in</string>
+    <string name="source_unsupported_operation">This Source doesn\'t support this feature</string>
     <string name="select_source">Select a source</string>
 
     <!-- Manga info fragment -->

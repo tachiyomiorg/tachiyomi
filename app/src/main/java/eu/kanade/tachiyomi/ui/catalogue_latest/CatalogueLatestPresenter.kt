@@ -185,7 +185,9 @@ class CatalogueLatestPresenter : BasePresenter<CatalogueLatestFragment>() {
      */
     fun setActiveSource(source: OnlineSource) {
         prefs.lastUsedCatalogueSource().set(source.id)
-        this.source = source
+        if (source.supportsLatest)
+            this.source = source
+        else this.source = findFirstValidSource()
 
         restartPager(query = "", filters = emptyList())
     }
@@ -296,7 +298,7 @@ class CatalogueLatestPresenter : BasePresenter<CatalogueLatestFragment>() {
     fun getLastUsedSource(): OnlineSource {
         val id = prefs.lastUsedCatalogueSource().get() ?: -1
         val source = sourceManager.get(id)
-        if (!isValidSource(source)) {
+        if (isValidSource(source as OnlineSource?) != 2) {
             return findFirstValidSource()
         }
         return source as OnlineSource
@@ -306,16 +308,17 @@ class CatalogueLatestPresenter : BasePresenter<CatalogueLatestFragment>() {
      * Checks if the given source is valid.
      *
      * @param source the source to check.
-     * @return true if the source is valid, false otherwise.
+     * @return 2 if the source is valid, 1 if Login is Required and 0 otherwise.
      */
-    fun isValidSource(source: Source?): Boolean {
-        if (source == null) return false
+    fun isValidSource(source: OnlineSource?): Int {
+        if (source == null || !source.supportsLatest) return 0
 
         if (source is LoginSource) {
-            return source.isLogged() ||
-                    (prefs.sourceUsername(source) != "" && prefs.sourcePassword(source) != "")
+            if (source.isLogged() ||
+                    (prefs.sourceUsername(source) != "" && prefs.sourcePassword(source) != ""))
+            return 1
         }
-        return true
+        return 2
     }
 
     /**
@@ -324,7 +327,7 @@ class CatalogueLatestPresenter : BasePresenter<CatalogueLatestFragment>() {
      * @return the index of the first valid source.
      */
     fun findFirstValidSource(): OnlineSource {
-        return sources.first { isValidSource(it) }
+        return sources.first { isValidSource(it) == 2 }
     }
 
     /**

@@ -5,7 +5,6 @@ import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.Language
 import eu.kanade.tachiyomi.data.source.RU
-import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.Response
@@ -22,6 +21,8 @@ class Readmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
     override val baseUrl = "http://readmanga.me"
 
     override val lang: Language get() = RU
+
+    override val supportsLatest = false
 
     override fun popularMangaInitialUrl() = "$baseUrl/list?sortType=rate"
 
@@ -153,23 +154,21 @@ class Readmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
             Filter("el_2149", "этти"),
             Filter("el_2123", "юри")
     )
-    override fun supportLatestUpdates(): Boolean {
-        return false
-    }
 
-    override fun latestupdatesMangaParse(response: Response, page: MangasPage) {
-        throw UnsupportedOperationException("not implemented")
-    }
     override fun latestupdatesMangaInitialUrl(): String {
         throw UnsupportedOperationException("not implemented")
     }
+
     override fun latestupdatesMangaNextPageSelector(): String {
         throw UnsupportedOperationException("not implemented")
     }
+
     override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
         throw UnsupportedOperationException("not implemented")
     }
+
     override fun latestupdatesMangaSelector(): String {
         throw UnsupportedOperationException("not implemented")
     }
+
 }

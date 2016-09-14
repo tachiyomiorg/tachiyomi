@@ -54,6 +54,11 @@ abstract class OnlineSource(context: Context) : Source {
     abstract val lang: Language
 
     /**
+     * If the Source has Support for Latest Updates
+     */
+    abstract val supportsLatest : Boolean
+
+    /**
      * Headers used for requests.
      */
     val headers by lazy { headersBuilder().build() }
@@ -96,15 +101,11 @@ abstract class OnlineSource(context: Context) : Source {
                 page
             }
 
-    open fun supportLatestUpdates(): Boolean {
-        return false
-    }
-
     open fun fetchLatestUpdates(page: MangasPage): Observable<MangasPage> = client
             .newCall(latestupdatesMangaRequest(page))
             .asObservable()
             .map { response ->
-                latestupdatesMangaParse(response, page)
+                latestUpdatesMangaParse(response, page)
                 page
             }
 
@@ -144,7 +145,7 @@ abstract class OnlineSource(context: Context) : Source {
      */
     abstract protected fun popularMangaParse(response: Response, page: MangasPage)
 
-    abstract protected fun latestupdatesMangaParse(response: Response, page: MangasPage)
+    abstract protected fun latestUpdatesMangaParse(response: Response, page: MangasPage)
 
     /**
      * Returns an observable containing a page with a list of manga. Normally it's not needed to

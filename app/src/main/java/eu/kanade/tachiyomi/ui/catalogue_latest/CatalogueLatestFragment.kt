@@ -165,9 +165,10 @@ class CatalogueLatestFragment : BaseRxFragment<CatalogueLatestPresenter>(), Flex
 
         val onItemSelected = IgnoreFirstSpinnerListener { position ->
             val source = spinnerAdapter.getItem(position)
-            if (!presenter.isValidSource(source)) {
+            if (presenter.isValidSource(source) != 2) {
                 spinner.setSelection(selectedIndex)
-                context.toast(R.string.source_requires_login)
+                if (presenter.isValidSource(source) == 1) context.toast(R.string.source_requires_login)
+                else context.toast(R.string.source_unsupported_operation)
             } else if (source != presenter.source) {
                 selectedIndex = position
                 showProgressBar()

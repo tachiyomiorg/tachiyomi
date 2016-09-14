@@ -25,6 +25,8 @@ class YamlSourceNode(uncheckedMap: Map<*, *>) {
 
     val lang: String by map
 
+    val supportsLatest: String by map
+
     val client: String?
         get() = map["client"] as? String
 

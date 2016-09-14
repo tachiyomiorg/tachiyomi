@@ -36,6 +36,8 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
 
     override val lang: Language get() = EN
 
+    override val supportsLatest = true
+
     private val datePattern = Pattern.compile("(\\d+|A|An)\\s+(.*?)s? ago.*")
 
     private val dateFields = HashMap<String, Int>().apply {
@@ -75,7 +77,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
         }
     }
 
-    override fun latestupdatesMangaParse(response: Response, page: MangasPage) {
+    override fun latestUpdatesMangaParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(latestupdatesMangaSelector())) {
             Manga.create(id).apply {
@@ -348,7 +350,4 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
             Filter("31", "Yuri")
     )
 
-    override fun supportLatestUpdates(): Boolean {
-         return true
-    }
 }
