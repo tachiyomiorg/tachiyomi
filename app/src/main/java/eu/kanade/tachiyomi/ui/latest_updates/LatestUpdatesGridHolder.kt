@@ -1,10 +1,10 @@
-package eu.kanade.tachiyomi.ui.catalogue_latest
+package eu.kanade.tachiyomi.ui.latest_updates
 
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.data.database.models.Manga
-import kotlinx.android.synthetic.main.item_catalogue_grid.view.*
+import kotlinx.android.synthetic.main.item_latest_updates_grid.view.*
 
 /**
  * Class used to hold the displayed data of a manga in the catalogue, like the cover or the title.
@@ -15,11 +15,11 @@ import kotlinx.android.synthetic.main.item_catalogue_grid.view.*
  * @param listener a listener to react to single tap and long tap events.
  * @constructor creates a new catalogue holder.
  */
-class CatalogueLatestGridLatestHolder(private val view: View, private val adapter: CatalogueLatestAdapter, listener: OnListItemClickListener) :
-        CatalogueLatestHolder(view, adapter, listener) {
+class LatestUpdatesGridHolder(private val view: View, private val adapter: LatestUpdatesAdapter, listener: OnListItemClickListener) :
+        LatestUpdatesHolder(view, adapter, listener) {
 
     /**
-     * Method called from [CataloguelatestAdapter.onBindViewHolder]. It updates the data for this
+     * Method called from [LatestUpdatesAdapter.onBindViewHolder]. It updates the data for this
      * holder with the given manga.
      *
      * @param manga the manga to bind.

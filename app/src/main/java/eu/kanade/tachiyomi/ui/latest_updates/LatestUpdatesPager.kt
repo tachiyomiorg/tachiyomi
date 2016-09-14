@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue_latest
+package eu.kanade.tachiyomi.ui.latest_updates
 
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
@@ -6,7 +6,7 @@ import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
 import rx.Observable
 import rx.subjects.PublishSubject
 
-class CatalogueLatestPager(val source: OnlineSource, val query: String, val filters: List<Filter>) {
+class LatestUpdatesPager(val source: OnlineSource, val query: String, val filters: List<Filter>) {
 
     private var lastPage: MangasPage? = null
 
@@ -31,7 +31,7 @@ class CatalogueLatestPager(val source: OnlineSource, val query: String, val filt
 
         return transformer(observable)
                 .doOnNext { results.onNext(it) }
-                .doOnNext { this@CatalogueLatestPager.lastPage = it }
+                .doOnNext { this@LatestUpdatesPager.lastPage = it }
     }
 
     fun hasNextPage(): Boolean {

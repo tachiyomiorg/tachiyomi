@@ -103,10 +103,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
     }
 
     override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
-        element.select("a[href^=http://bato.to]").first().let {
-            manga.setUrlWithoutDomain(it.attr("href"))
-            manga.title = it.text().trim()
-        }
+        popularMangaFromElement(element, manga)
     }
 
     override fun popularMangaNextPageSelector() = "#show_more_row"

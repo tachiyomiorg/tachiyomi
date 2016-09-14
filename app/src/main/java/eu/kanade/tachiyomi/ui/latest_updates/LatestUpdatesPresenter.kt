@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue_latest
+package eu.kanade.tachiyomi.ui.latest_updates
 
 import android.os.Bundle
 import eu.kanade.tachiyomi.data.cache.CoverCache
@@ -23,9 +23,9 @@ import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 
 /**
- * Presenter of [CatalogueLatestFragment].
+ * Presenter of [LatestUpdatesFragment].
  */
-class CatalogueLatestPresenter : BasePresenter<CatalogueLatestFragment>() {
+class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
 
     /**
      * Source manager.
@@ -72,7 +72,7 @@ class CatalogueLatestPresenter : BasePresenter<CatalogueLatestFragment>() {
     /**
      * Pager containing a list of manga results.
      */
-    private lateinit var pager: CatalogueLatestPager
+    private lateinit var updatesPager: LatestUpdatesPager
 
     /**
      * Subject that initializes a list of manga.
@@ -86,12 +86,12 @@ class CatalogueLatestPresenter : BasePresenter<CatalogueLatestFragment>() {
         private set
 
     /**
-     * Subscription for the pager.
+     * Subscription for the updatesPager.
      */
     private var pagerSubscription: Subscription? = null
 
     /**
-     * Subscription for one request from the pager.
+     * Subscription for one request from the updatesPager.
      */
     private var pageSubscription: Subscription? = null
 
@@ -111,7 +111,7 @@ class CatalogueLatestPresenter : BasePresenter<CatalogueLatestFragment>() {
         source = getLastUsedSource()
 
         if (savedState != null) {
-            query = savedState.getString(CatalogueLatestPresenter::query.name, "")
+            query = savedState.getString(LatestUpdatesPresenter::query.name, "")
         }
 
         add(prefs.catalogueAsList().asObservable()
@@ -121,12 +121,12 @@ class CatalogueLatestPresenter : BasePresenter<CatalogueLatestFragment>() {
     }
 
     override fun onSave(state: Bundle) {
-        state.putString(CatalogueLatestPresenter::query.name, query)
+        state.putString(LatestUpdatesPresenter::query.name, query)
         super.onSave(state)
     }
 
     /**
-     * Restarts the pager for the active source with the provided query and filters.
+     * Restarts the updatesPager for the active source with the provided query and filters.
      *
      * @param query the query.
      * @param filters the list of active filters (for search mode).
@@ -141,12 +141,12 @@ class CatalogueLatestPresenter : BasePresenter<CatalogueLatestFragment>() {
             subscribeToMangaInitializer()
         }
 
-        // Create a new pager.
-        pager = CatalogueLatestPager(source, query, filters)
+        // Create a new updatesPager.
+        updatesPager = LatestUpdatesPager(source, query, filters)
 
-        // Prepare the pager.
+        // Prepare the updatesPager.
         pagerSubscription?.let { remove(it) }
-        pagerSubscription = pager.results()
+        pagerSubscription = updatesPager.results()
                 .subscribeReplay({ view, page ->
                     view.onAddPage(page.page, page.mangas)
                 }, { view, error ->
@@ -159,27 +159,27 @@ class CatalogueLatestPresenter : BasePresenter<CatalogueLatestFragment>() {
 
 
     /**
-     * Requests the next page for the active pager.
+     * Requests the next page for the active updatesPager.
      */
     fun requestNext() {
         if (!hasNextPage()) return
 
         pageSubscription?.let { remove(it) }
-        pageSubscription = pager.requestNext { getPageTransformer(it) }
+        pageSubscription = updatesPager.requestNext { getPageTransformer(it) }
                 .subscribeFirst({ view, page ->
                     // Nothing to do when onNext is emitted.
-                }, CatalogueLatestFragment::onAddPageError)
+                }, LatestUpdatesFragment::onAddPageError)
     }
 
     /**
      * Returns true if the last fetched page has a next page.
      */
     fun hasNextPage(): Boolean {
-        return pager.hasNextPage()
+        return updatesPager.hasNextPage()
     }
 
     /**
-     * Sets the active source and restarts the pager.
+     * Sets the active source and restarts the updatesPager.
      *
      * @param source the new active source.
      */
@@ -311,14 +311,17 @@ class CatalogueLatestPresenter : BasePresenter<CatalogueLatestFragment>() {
      * @return 2 if the source is valid, 1 if Login is Required and 0 otherwise.
      */
     fun isValidSource(source: OnlineSource?): Int {
-        if (source == null || !source.supportsLatest) return 0
+        if (source == null) return 0
 
-        if (source is LoginSource) {
-            if (source.isLogged() ||
-                    (prefs.sourceUsername(source) != "" && prefs.sourcePassword(source) != ""))
-            return 1
+        if (source.supportsLatest) {
+            if (source is LoginSource) {
+                if (source.isLogged() || (prefs.sourceUsername(source)
+                        != "" && prefs.sourcePassword(source) != ""))
+                    return 2 else return 1
+            }
+            return 2
         }
-        return 2
+        return 0
     }
 
     /**
