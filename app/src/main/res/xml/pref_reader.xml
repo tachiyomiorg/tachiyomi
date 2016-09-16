@@ -70,11 +70,6 @@
             android:defaultValue="true" />
 
         <SwitchPreference
-            android:title="@string/pref_custom_brightness"
-            android:key="@string/pref_custom_brightness_key"
-            android:defaultValue="false" />
-
-        <SwitchPreference
             android:title="@string/pref_keep_screen_on"
             android:key="@string/pref_keep_screen_on_key"
             android:defaultValue="true" />

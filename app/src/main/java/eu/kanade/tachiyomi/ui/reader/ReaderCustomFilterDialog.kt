@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.annotation.ColorInt
 import android.support.v4.app.DialogFragment
 import android.view.View
-import android.view.WindowManager
 import android.widget.SeekBar
 import com.afollestad.materialdialogs.MaterialDialog
 import eu.kanade.tachiyomi.R
@@ -19,23 +18,49 @@ import rx.Subscription
 import rx.subscriptions.CompositeSubscription
 import uy.kohesive.injekt.injectLazy
 
+/**
+ * Custom dialog which can be used to set overlay value's
+ */
 class ReaderCustomFilterDialog : DialogFragment() {
 
     companion object {
+        /** Integer mask of alpha value **/
         private const val ALPHA_MASK: Long = 0xFF000000
+
+        /** Integer mask of red value **/
         private const val RED_MASK: Long = 0x00FF0000
+
+        /** Integer mask of green value **/
         private const val GREEN_MASK: Long = 0x0000FF00
+
+        /** Integer mask of blue value **/
         private const val BLUE_MASK: Long = 0x000000FF
     }
 
+    /**
+     * Provides operations to manage preferences
+     */
     private val preferences by injectLazy<PreferencesHelper>()
 
+    /**
+     * Subscription used for filter overlay
+     */
     private lateinit var subscriptions: CompositeSubscription
 
+    /**
+     * Subscription used for custom brightness overlay
+     */
     private var customBrightnessSubscription: Subscription? = null
 
+    /**
+     * Subscription used for color filter overlay
+     */
     private var customFilterColorSubscription: Subscription? = null
 
+    /**
+     * This method will be called after onCreate(Bundle)
+     * @param savedState The last saved instance state of the Fragment.
+     */
     override fun onCreateDialog(savedState: Bundle?): Dialog {
         val dialog = MaterialDialog.Builder(activity)
                 .customView(R.layout.dialog_reader_custom_filter, false)
@@ -48,22 +73,30 @@ class ReaderCustomFilterDialog : DialogFragment() {
         return dialog
     }
 
+    /**
+     * Called immediately after onCreateView()
+     * @param view The View returned by onCreateDialog.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(view) {
+        // Initialize subscriptions.
         subscriptions += preferences.colorFilter().asObservable()
                 .subscribe { setColorFilter(it, view) }
 
         subscriptions += preferences.customBrightness().asObservable()
                 .subscribe { setCustomBrightness(it,view) }
 
+        // Get color and update values
         val color = preferences.colorFilterValue().getOrDefault()
         val argb = setValues(color, view)
 
-        //Initialize seekbar progress
+        // Initialize seekBar progress
         seekbar_color_filter_alpha.progress = argb[0]
         seekbar_color_filter_red.progress = argb[1]
         seekbar_color_filter_green.progress = argb[2]
         seekbar_color_filter_blue.progress = argb[3]
 
+        // Set listeners
         switch_color_filter.isChecked = preferences.colorFilter().getOrDefault()
         switch_color_filter.setOnCheckedChangeListener { v, isChecked ->
             preferences.colorFilter().set(isChecked)
@@ -75,29 +108,23 @@ class ReaderCustomFilterDialog : DialogFragment() {
         }
 
         seekbar_color_filter_alpha.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar?, value: Int, fromUser: Boolean) {
+            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
                 if (fromUser) {
                     setColorValue(value, ALPHA_MASK, 24)
                 }
             }
         })
 
-        seekbar_color_filter_red.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-            }
-
-            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                if (p2) {
-                    setColorValue(p1, RED_MASK, 16)
+        seekbar_color_filter_red.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
+            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
+                if (fromUser) {
+                    setColorValue(value, RED_MASK, 16)
                 }
             }
         })
 
         seekbar_color_filter_green.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar?, value: Int, fromUser: Boolean) {
+            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
                 if (fromUser) {
                     setColorValue(value, GREEN_MASK, 8)
                 }
@@ -105,7 +132,7 @@ class ReaderCustomFilterDialog : DialogFragment() {
         })
 
         seekbar_color_filter_blue.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar?, value: Int, fromUser: Boolean) {
+            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
                 if (fromUser) {
                     setColorValue(value, BLUE_MASK, 0)
                 }
@@ -113,7 +140,7 @@ class ReaderCustomFilterDialog : DialogFragment() {
         })
         brightness_seekbar.progress = preferences.customBrightnessValue().getOrDefault()
         brightness_seekbar.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar?, value: Int, fromUser: Boolean) {
+            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
                 if (fromUser) {
                     preferences.customBrightnessValue().set(value)
                 }
@@ -122,6 +149,11 @@ class ReaderCustomFilterDialog : DialogFragment() {
 
     }
 
+    /**
+     * Set enabled status of seekBars belonging to color filter
+     * @param enabled determines if seekBar gets enabled
+     * @param view view of the dialog
+     */
     private fun setColorFilterSeekBar(enabled: Boolean, view: View) = with(view) {
         seekbar_color_filter_red.isEnabled = enabled
         seekbar_color_filter_green.isEnabled = enabled
@@ -129,10 +161,20 @@ class ReaderCustomFilterDialog : DialogFragment() {
         seekbar_color_filter_alpha.isEnabled = enabled
     }
 
+    /**
+    * Set enabled status of seekBars belonging to custom brightness
+    * @param enabled value which determines if seekBar gets enabled
+    * @param view view of the dialog
+    */
     private fun setCustomBrightnessSeekBar(enabled: Boolean, view: View) = with(view) {
         brightness_seekbar.isEnabled = enabled
     }
 
+    /**
+     * Set the text value's of color filter
+     * @param color integer containing color information
+     * @param view view of the dialog
+     */
     fun setValues(color: Int, view: View): Array<Int> {
         val alpha = getAlphaFromColor(color)
         val red = getRedFromColor(color)
@@ -152,6 +194,11 @@ class ReaderCustomFilterDialog : DialogFragment() {
         return arrayOf(alpha, red, green, blue)
     }
 
+    /**
+     * Manages the custom brightness value subscription
+     * @param enabled determines if the subscription get (un)subscribed
+     * @param view view of the dialog
+     */
     private fun setCustomBrightness(enabled: Boolean, view: View) {
         if (enabled) {
             customBrightnessSubscription = preferences.customBrightnessValue().asObservable()
@@ -183,6 +230,11 @@ class ReaderCustomFilterDialog : DialogFragment() {
         txt_brightness_seekbar_value.text = value.toString()
     }
 
+    /**
+     * Manages the color filter value subscription
+     * @param enabled determines if the subscription get (un)subscribed
+     * @param view view of the dialog
+     */
     private fun setColorFilter(enabled: Boolean, view: View) {
         if (enabled) {
             customFilterColorSubscription = preferences.colorFilterValue().asObservable()
@@ -196,12 +248,23 @@ class ReaderCustomFilterDialog : DialogFragment() {
         setColorFilterSeekBar(enabled, view)
     }
 
+    /**
+     * Sets the color filter overlay of the screen. Determined by HEX of integer
+     * @param color hex of color.
+     * @param view view of the dialog
+     */
     private fun setColorFilterValue(@ColorInt color: Int, view: View) = with(view) {
         color_overlay.visibility = View.VISIBLE
         color_overlay.setBackgroundColor(color)
         setValues(color, view)
     }
 
+    /**
+     * Updates the color value in preference
+     * @param color value of color range [0,255]
+     * @param mask contains hex mask of chosen color
+     * @param bitShift amounts of bits that gets shifted to receive value
+     */
     fun setColorValue(color: Int, mask: Long, bitShift: Int) {
         val currentColor = preferences.colorFilterValue().getOrDefault()
         val updatedColor = (color shl bitShift) or (currentColor and mask.inv().toInt())
@@ -210,7 +273,6 @@ class ReaderCustomFilterDialog : DialogFragment() {
 
     /**
      * Returns the alpha value from the Color Hex
-     *
      * @param color color hex as int
      * @return alpha of color
      */
@@ -220,7 +282,6 @@ class ReaderCustomFilterDialog : DialogFragment() {
 
     /**
      * Returns the red value from the Color Hex
-     *
      * @param color color hex as int
      * @return red of color
      */
@@ -230,7 +291,6 @@ class ReaderCustomFilterDialog : DialogFragment() {
 
     /**
      * Returns the green value from the Color Hex
-     *
      * @param color color hex as int
      * @return green of color
      */
@@ -240,7 +300,6 @@ class ReaderCustomFilterDialog : DialogFragment() {
 
     /**
      * Returns the blue value from the Color Hex
-     *
      * @param color color hex as int
      * @return blue of color
      */
@@ -248,6 +307,9 @@ class ReaderCustomFilterDialog : DialogFragment() {
         return color and 0xFF
     }
 
+    /**
+     * Called when dialog is dismissed
+     */
     override fun onDestroyView() {
         subscriptions.unsubscribe()
         super.onDestroyView()

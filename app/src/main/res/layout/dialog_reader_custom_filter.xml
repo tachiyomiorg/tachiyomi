@@ -52,7 +52,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:text="R"
+                android:text="@string/color_filter_r_value"
                 android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
 
             <TextView
@@ -68,7 +68,7 @@
                 android:id="@+id/seekbar_color_filter_red"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
+                android:padding="@dimen/material_component_text_fields_floating_label_padding_between_label_and_input_text"
                 android:max="255"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="8dp"
@@ -92,7 +92,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:text="G"
+                android:text="@string/color_filter_g_value"
                 android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
 
             <TextView
@@ -108,7 +108,7 @@
                 android:id="@+id/seekbar_color_filter_green"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
+                android:padding="@dimen/material_component_text_fields_floating_label_padding_between_label_and_input_text"
                 android:max="255"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="8dp"
@@ -132,7 +132,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:text="B"
+                android:text="@string/color_filter_b_value"
                 android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
 
             <TextView
@@ -148,7 +148,7 @@
                 android:id="@+id/seekbar_color_filter_blue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
+                android:padding="@dimen/material_component_text_fields_floating_label_padding_between_label_and_input_text"
                 android:max="255"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="8dp"
@@ -172,7 +172,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:text="A"
+                android:text="@string/color_filter_a_value"
                 android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
 
             <TextView
@@ -188,7 +188,7 @@
                 android:id="@+id/seekbar_color_filter_alpha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
+                android:padding="@dimen/material_component_text_fields_floating_label_padding_between_label_and_input_text"
                 android:max="255"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="8dp"
@@ -212,16 +212,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.v7.widget.AppCompatTextView
+            <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/txt_brightness_seekbar_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:drawableStart="@drawable/ic_brightness_5_black_24dp"
-                android:drawableLeft="@drawable/ic_brightness_5_black_24dp"
-                android:drawableTint="?android:attr/textColorSecondary"
+                app:srcCompat="@drawable/ic_brightness_5_black_24dp"
+                android:tint="?android:attr/textColorSecondary"
                 android:textAppearance="@style/TextAppearance.Regular.SubHeading.Secondary" />
 
             <TextView
@@ -237,7 +236,7 @@
                 android:id="@+id/brightness_seekbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
+                android:padding="@dimen/material_component_text_fields_floating_label_padding_between_label_and_input_text"
                 app:max_seek="100"
                 app:min_seek="-75"
                 android:layout_centerVertical="true"

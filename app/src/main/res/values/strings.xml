@@ -137,6 +137,11 @@
     <string name="rotation_lock">Lock</string>
     <string name="rotation_force_portrait">Force portrait</string>
     <string name="rotation_force_landscape">Force landscape</string>
+    <string name="color_filter_r_value">R</string>
+    <string name="color_filter_g_value">G</string>
+    <string name="color_filter_b_value">B</string>
+    <string name="color_filter_a_value">A</string>
+
 
       <!-- Downloads section -->
     <string name="pref_download_directory">Downloads directory</string>

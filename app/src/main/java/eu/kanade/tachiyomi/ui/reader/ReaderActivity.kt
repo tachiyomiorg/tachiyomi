@@ -355,7 +355,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         reader_menu_bottom.setOnTouchListener { v, event -> true }
 
         page_seekbar.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar?, value: Int, fromUser: Boolean) {
+            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
                 if (fromUser) {
                     gotoPageInCurrentChapter(value)
                 }
