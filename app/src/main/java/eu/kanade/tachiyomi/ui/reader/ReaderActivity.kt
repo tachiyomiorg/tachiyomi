@@ -33,15 +33,16 @@ import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.SimpleAnimationListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import kotlinx.android.synthetic.main.activity_reader.*
-import kotlinx.android.synthetic.main.dialog_reader_custom_filter.view.*
 import me.zhanghai.android.systemuihelper.SystemUiHelper
 import me.zhanghai.android.systemuihelper.SystemUiHelper.*
 import nucleus.factory.RequiresPresenter
 import rx.Subscription
+import rx.android.schedulers.AndroidSchedulers
 import rx.subscriptions.CompositeSubscription
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 import java.text.DecimalFormat
+import java.util.concurrent.TimeUnit
 
 @RequiresPresenter(ReaderPresenter::class)
 class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
@@ -428,6 +429,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     private fun setCustomBrightness(enabled: Boolean) {
         if (enabled) {
             customBrightnessSubscription = preferences.customBrightnessValue().asObservable()
+                    .sample(100, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                     .subscribe { setCustomBrightnessValue(it) }
 
             subscriptions.add(customBrightnessSubscription)
@@ -440,6 +442,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     private fun setColorFilter(enabled: Boolean) {
         if (enabled) {
             customFilterColorSubscription = preferences.colorFilterValue().asObservable()
+                    .sample(100, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                     .subscribe { setColorFilterValue(it) }
 
             subscriptions.add(customFilterColorSubscription)

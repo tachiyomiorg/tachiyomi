@@ -15,8 +15,10 @@ import eu.kanade.tachiyomi.util.plusAssign
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import kotlinx.android.synthetic.main.dialog_reader_custom_filter.view.*
 import rx.Subscription
+import rx.android.schedulers.AndroidSchedulers
 import rx.subscriptions.CompositeSubscription
 import uy.kohesive.injekt.injectLazy
+import java.util.concurrent.TimeUnit
 
 /**
  * Custom dialog which can be used to set overlay value's
@@ -84,11 +86,16 @@ class ReaderCustomFilterDialog : DialogFragment() {
                 .subscribe { setColorFilter(it, view) }
 
         subscriptions += preferences.customBrightness().asObservable()
-                .subscribe { setCustomBrightness(it,view) }
+                .subscribe { setCustomBrightness(it, view) }
 
         // Get color and update values
         val color = preferences.colorFilterValue().getOrDefault()
+        val brightness = preferences.customBrightnessValue().getOrDefault()
+
         val argb = setValues(color, view)
+
+        // Set brightness value
+        txt_brightness_seekbar_value.text = brightness.toString()
 
         // Initialize seekBar progress
         seekbar_color_filter_alpha.progress = argb[0]
@@ -162,10 +169,10 @@ class ReaderCustomFilterDialog : DialogFragment() {
     }
 
     /**
-    * Set enabled status of seekBars belonging to custom brightness
-    * @param enabled value which determines if seekBar gets enabled
-    * @param view view of the dialog
-    */
+     * Set enabled status of seekBars belonging to custom brightness
+     * @param enabled value which determines if seekBar gets enabled
+     * @param view view of the dialog
+     */
     private fun setCustomBrightnessSeekBar(enabled: Boolean, view: View) = with(view) {
         brightness_seekbar.isEnabled = enabled
     }
@@ -202,12 +209,13 @@ class ReaderCustomFilterDialog : DialogFragment() {
     private fun setCustomBrightness(enabled: Boolean, view: View) {
         if (enabled) {
             customBrightnessSubscription = preferences.customBrightnessValue().asObservable()
-                    .subscribe { setCustomBrightnessValue(it,view) }
+                    .sample(100, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+                    .subscribe { setCustomBrightnessValue(it, view) }
 
             subscriptions.add(customBrightnessSubscription)
         } else {
             customBrightnessSubscription?.let { subscriptions.remove(it) }
-            setCustomBrightnessValue(0,view)
+            setCustomBrightnessValue(0, view, true)
         }
         setCustomBrightnessSeekBar(enabled, view)
     }
@@ -218,7 +226,7 @@ class ReaderCustomFilterDialog : DialogFragment() {
      * From 1 to 100 it sets that value as brightness.
      * 0 sets system brightness and hides the overlay.
      */
-    private fun setCustomBrightnessValue(value: Int, view: View) = with(view){
+    private fun setCustomBrightnessValue(value: Int, view: View, isDisabled: Boolean = false) = with(view) {
         // Set black overlay visibility.
         if (value < 0) {
             brightness_overlay.visibility = View.VISIBLE
@@ -227,7 +235,9 @@ class ReaderCustomFilterDialog : DialogFragment() {
         } else {
             brightness_overlay.visibility = View.GONE
         }
-        txt_brightness_seekbar_value.text = value.toString()
+
+        if (!isDisabled)
+            txt_brightness_seekbar_value.text = value.toString()
     }
 
     /**
@@ -238,6 +248,7 @@ class ReaderCustomFilterDialog : DialogFragment() {
     private fun setColorFilter(enabled: Boolean, view: View) {
         if (enabled) {
             customFilterColorSubscription = preferences.colorFilterValue().asObservable()
+                    .sample(100, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                     .subscribe { setColorFilterValue(it, view) }
 
             subscriptions.add(customFilterColorSubscription)
