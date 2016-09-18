@@ -16,6 +16,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.f2prateek.rx.preferences.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
@@ -45,7 +46,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
     /**
      * Spinner shown in the toolbar to change the selected source.
      */
-    private lateinit var spinner: Spinner
+    private var spinner: Spinner? = null
 
     /**
      * Adapter containing the list of manga from the catalogue.
@@ -125,6 +126,14 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
     }
 
     override fun onViewCreated(view: View, savedState: Bundle?) {
+        // If the source list is empty or it only has unlogged sources, return to main screen.
+        val sources = presenter.sources
+        if (sources.isEmpty() || sources.all { it is LoginSource && !it.isLogged() }) {
+            context.toast(R.string.no_valid_sources)
+            activity.onBackPressed()
+            return
+        }
+
         // Initialize adapter, scroll listener and recycler views
         adapter = CatalogueAdapter(this)
 
@@ -166,7 +175,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
         val onItemSelected = IgnoreFirstSpinnerListener { position ->
             val source = spinnerAdapter.getItem(position)
             if (!presenter.isValidSource(source)) {
-                spinner.setSelection(selectedIndex)
+                spinner?.setSelection(selectedIndex)
                 context.toast(R.string.source_requires_login)
             } else if (source != presenter.source) {
                 selectedIndex = position
@@ -264,7 +273,7 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
         searchItem?.let {
             if (it.isActionViewExpanded) it.collapseActionView()
         }
-        toolbar.removeView(spinner)
+        spinner?.let { toolbar.removeView(it) }
         super.onDestroyView()
     }
 

@@ -21,6 +21,7 @@ import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
+import java.util.NoSuchElementException
 
 /**
  * Presenter of [CatalogueFragment].
@@ -103,7 +104,11 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
-        source = getLastUsedSource()
+        try {
+            source = getLastUsedSource()
+        } catch (error: NoSuchElementException) {
+            return
+        }
 
         if (savedState != null) {
             query = savedState.getString(CataloguePresenter::query.name, "")
