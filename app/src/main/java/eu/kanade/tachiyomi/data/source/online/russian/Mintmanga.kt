@@ -22,6 +22,8 @@ class Mintmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override val lang: Language get() = RU
 
+    override val supportsLatest = false
+
     override fun popularMangaInitialUrl() = "$baseUrl/list?sortType=rate"
 
     override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
@@ -151,4 +153,21 @@ class Mintmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
             Filter("el_1315", "юри"),
             Filter("el_1336", "яой")
     )
+
+    override fun latestupdatesMangaInitialUrl(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaNextPageSelector(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaSelector(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
 }

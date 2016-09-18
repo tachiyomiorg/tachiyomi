@@ -34,6 +34,8 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         getLanguages().find { code == it.code }!!
     }
 
+    override val supportsLatest = map.supportsLatest.toBoolean()
+
     override val client = when(map.client) {
         "cloudflare" -> network.cloudflareClient
         else -> network.client
@@ -53,11 +55,38 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         }
     }
 
+    override fun latestupdatesMangaRequest(page: MangasPage): Request {
+        if (page.page == 1) {
+            page.url = latestupdatesMangaInitialUrl()
+        }
+        return when (map.latestupdates.method?.toLowerCase()) {
+            "post" -> POST(page.url, headers, map.latestupdates.createForm())
+            else -> GET(page.url, headers)
+        }
+    }
+
     override fun popularMangaInitialUrl() = map.popular.url
+
+    override fun latestupdatesMangaInitialUrl() = map.latestupdates.url
 
     override fun popularMangaParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(map.popular.manga_css)) {
+            Manga.create(id).apply {
+                title = element.text()
+                setUrlWithoutDomain(element.attr("href"))
+                page.mangas.add(this)
+            }
+        }
+
+        map.popular.next_url_css?.let { selector ->
+            page.nextPageUrl = document.select(selector).first()?.absUrl("href")
+        }
+    }
+
+    override fun latestUpdatesMangaParse(response: Response, page: MangasPage) {
+        val document = response.asJsoup()
+        for (element in document.select(map.latestupdates.manga_css)) {
             Manga.create(id).apply {
                 title = element.text()
                 setUrlWithoutDomain(element.attr("href"))

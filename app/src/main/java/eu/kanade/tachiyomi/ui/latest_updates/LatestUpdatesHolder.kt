@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue
+package eu.kanade.tachiyomi.ui.latest_updates
 
 import android.view.View
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -11,11 +11,11 @@ import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
  * @param adapter the adapter handling this holder.
  * @param listener a listener to react to single tap and long tap events.
  */
-abstract class CatalogueHolder(view: View, adapter: CatalogueAdapter, listener: OnListItemClickListener) :
+abstract class LatestUpdatesHolder(view: View, adapter: LatestUpdatesAdapter, listener: OnListItemClickListener) :
         FlexibleViewHolder(view, adapter, listener) {
 
     /**
-     * Method called from [CataloguelatestAdapter.onBindViewHolder]. It updates the data for this
+     * Method called from [LatestUpdatesAdapter.onBindViewHolder]. It updates the data for this
      * holder with the given manga.
      *
      * @param manga the manga to bind.

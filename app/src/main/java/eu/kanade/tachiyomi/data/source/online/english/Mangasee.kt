@@ -22,6 +22,8 @@ class Mangasee(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override val lang: Language get() = EN
 
+    override val supportsLatest = false
+
     private val datePattern = Pattern.compile("(\\d+)\\s+(.*?)s? (from now|ago).*")
 
     private val dateFields = HashMap<String, Int>().apply {
@@ -168,4 +170,21 @@ class Mangasee(context: Context, override val id: Int) : ParsedOnlineSource(cont
             Filter("Yaoi", "Yaoi"),
             Filter("Yuri", "Yuri")
     )
+
+    override fun latestupdatesMangaInitialUrl(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaNextPageSelector(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaSelector(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
 }

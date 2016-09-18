@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<eu.kanade.tachiyomi.ui.reader.viewer.pager.PageView
+<eu.kanade.tachiyomi.ui.reader.viewer.updatesPager.PageView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -40,4 +40,4 @@
         android:layout_gravity="center"
         android:visibility="gone"/>
 
-</eu.kanade.tachiyomi.ui.reader.viewer.pager.PageView>
+</eu.kanade.tachiyomi.ui.reader.viewer.updatesPager.PageView>

@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
 import android.content.Context
-import android.util.Log
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.EN
@@ -21,6 +20,8 @@ class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(con
     override val baseUrl = "http://www.mangahere.co"
 
     override val lang: Language get() = EN
+
+    override val supportsLatest = false
 
     override fun popularMangaInitialUrl() = "$baseUrl/directory/"
 
@@ -146,4 +147,21 @@ class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(con
             Filter("genres[Yaoi]", "Yaoi"),
             Filter("genres[Yuri]", "Yuri")
     )
+
+    override fun latestupdatesMangaInitialUrl(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaNextPageSelector(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaSelector(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
 }

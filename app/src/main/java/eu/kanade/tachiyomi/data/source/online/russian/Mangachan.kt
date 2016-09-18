@@ -21,6 +21,8 @@ class Mangachan(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override val lang: Language get() = RU
 
+    override val supportsLatest = false
+
     override fun popularMangaInitialUrl() = "$baseUrl/mostfavorites"
 
     override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/?do=search&subaction=search&story=$query"
@@ -91,4 +93,21 @@ class Mangachan(context: Context, override val id: Int) : ParsedOnlineSource(con
     override fun pageListParse(document: Document, pages: MutableList<Page>) { }
 
     override fun imageUrlParse(document: Document) = ""
+
+    override fun latestupdatesMangaInitialUrl(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaNextPageSelector(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaSelector(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
 }

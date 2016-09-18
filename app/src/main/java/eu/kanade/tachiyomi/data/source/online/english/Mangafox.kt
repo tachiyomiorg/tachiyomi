@@ -23,6 +23,8 @@ class Mangafox(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override val lang: Language get() = EN
 
+    override val supportsLatest = false
+
     override fun popularMangaInitialUrl() = "$baseUrl/directory/"
 
     override fun popularMangaSelector() = "div#mangalist > ul.list > li"
@@ -157,4 +159,21 @@ class Mangafox(context: Context, override val id: Int) : ParsedOnlineSource(cont
             Filter("genres[Yaoi]", "Yaoi"),
             Filter("genres[Yuri]", "Yuri")
     )
+
+    override fun latestupdatesMangaInitialUrl(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaNextPageSelector(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun latestupdatesMangaSelector(): String {
+        throw UnsupportedOperationException("not implemented")
+    }
+
 }

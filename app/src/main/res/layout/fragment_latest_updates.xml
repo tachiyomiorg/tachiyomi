@@ -10,8 +10,8 @@
           android:layout_height="match_parent"
           android:fitsSystemWindows="true"
           android:orientation="vertical"
-          android:id="@+id/catalogue_view"
-          tools:context="eu.kanade.tachiyomi.ui.catalogue.CatalogueLatestFragment">
+          android:id="@+id/latest_updates_view"
+          tools:context="eu.kanade.tachiyomi.ui.latest_updates.LatestUpdatesFragment">
 
         <ProgressBar
             android:id="@+id/progress"
@@ -28,15 +28,15 @@
             android:layout_height="0dp"
             android:layout_weight="1">
             <eu.kanade.tachiyomi.widget.AutofitRecyclerView
-                android:id="@+id/catalogue_grid"
+                android:id="@+id/latest_updates_grid"
                 style="@style/Theme.Widget.GridView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:columnWidth="140dp"
-                tools:listitem="@layout/item_catalogue_grid"/>
+                tools:listitem="@layout/item_latest_updates_grid"/>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/catalogue_list"
+                android:id="@+id/latest_updates_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 

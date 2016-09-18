@@ -8,8 +8,9 @@
     <string name="label_download_queue">Download queue</string>
     <string name="label_library">My library</string>
     <string name="label_recent_manga">Recently read</string>
-    <string name="label_recent_updates">Recent updates</string>
     <string name="label_catalogues">Catalogues</string>
+    <string name="label_recent_updates">Recent library updates</string>
+    <string name="label_latest_updates">Latest Catalogue Updates</string>
     <string name="label_categories">Categories</string>
     <string name="label_selected">Selected: %1$d</string>
     <string name="label_backup">Backup</string>
@@ -199,6 +200,7 @@
 
     <!-- Catalogue fragment -->
     <string name="source_requires_login">This source requires you to log in</string>
+    <string name="source_unsupported_operation">This Source doesn\'t support this feature</string>
     <string name="select_source">Select a source</string>
     <string name="no_valid_sources">Please enable at least one valid source</string>
 

@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue
+package eu.kanade.tachiyomi.ui.latest_updates
 
 import android.os.Bundle
 import eu.kanade.tachiyomi.data.cache.CoverCache
@@ -21,12 +21,11 @@ import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
-import java.util.NoSuchElementException
 
 /**
- * Presenter of [CatalogueLatestFragment].
+ * Presenter of [LatestUpdatesFragment].
  */
-class CataloguePresenter : BasePresenter<CatalogueFragment>() {
+class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
 
     /**
      * Source manager.
@@ -73,7 +72,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     /**
      * Pager containing a list of manga results.
      */
-    private lateinit var pager: CataloguePager
+    private lateinit var updatesPager: LatestUpdatesPager
 
     /**
      * Subject that initializes a list of manga.
@@ -87,12 +86,12 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         private set
 
     /**
-     * Subscription for the pager.
+     * Subscription for the updatesPager.
      */
     private var pagerSubscription: Subscription? = null
 
     /**
-     * Subscription for one request from the pager.
+     * Subscription for one request from the updatesPager.
      */
     private var pageSubscription: Subscription? = null
 
@@ -101,17 +100,18 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      */
     private var initializerSubscription: Subscription? = null
 
+
+    /**
+    override val source
+     */
+
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
-        try {
-            source = getLastUsedSource()
-        } catch (error: NoSuchElementException) {
-            return
-        }
+        source = getLastUsedSource()
 
         if (savedState != null) {
-            query = savedState.getString(CataloguePresenter::query.name, "")
+            query = savedState.getString(LatestUpdatesPresenter::query.name, "")
         }
 
         add(prefs.catalogueAsList().asObservable()
@@ -121,16 +121,18 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     }
 
     override fun onSave(state: Bundle) {
-        state.putString(CataloguePresenter::query.name, query)
+        state.putString(LatestUpdatesPresenter::query.name, query)
         super.onSave(state)
     }
 
     /**
-     * Restarts the pager for the active source with the provided query and filters.
+     * Restarts the updatesPager for the active source with the provided query and filters.
      *
      * @param query the query.
      * @param filters the list of active filters (for search mode).
      */
+
+
     fun restartPager(query: String = this.query, filters: List<Filter> = this.filters) {
         this.query = query
         this.filters = filters
@@ -139,12 +141,12 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
             subscribeToMangaInitializer()
         }
 
-        // Create a new pager.
-        pager = CataloguePager(source, query, filters)
+        // Create a new updatesPager.
+        updatesPager = LatestUpdatesPager(source, query, filters)
 
-        // Prepare the pager.
+        // Prepare the updatesPager.
         pagerSubscription?.let { remove(it) }
-        pagerSubscription = pager.results()
+        pagerSubscription = updatesPager.results()
                 .subscribeReplay({ view, page ->
                     view.onAddPage(page.page, page.mangas)
                 }, { view, error ->
@@ -155,34 +157,37 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         requestNext()
     }
 
+
     /**
-     * Requests the next page for the active pager.
+     * Requests the next page for the active updatesPager.
      */
     fun requestNext() {
         if (!hasNextPage()) return
 
         pageSubscription?.let { remove(it) }
-        pageSubscription = pager.requestNext { getPageTransformer(it) }
+        pageSubscription = updatesPager.requestNext { getPageTransformer(it) }
                 .subscribeFirst({ view, page ->
                     // Nothing to do when onNext is emitted.
-                }, CatalogueFragment::onAddPageError)
+                }, LatestUpdatesFragment::onAddPageError)
     }
 
     /**
      * Returns true if the last fetched page has a next page.
      */
     fun hasNextPage(): Boolean {
-        return pager.hasNextPage()
+        return updatesPager.hasNextPage()
     }
 
     /**
-     * Sets the active source and restarts the pager.
+     * Sets the active source and restarts the updatesPager.
      *
      * @param source the new active source.
      */
     fun setActiveSource(source: OnlineSource) {
         prefs.lastUsedCatalogueSource().set(source.id)
-        this.source = source
+        if (source.supportsLatest)
+            this.source = source
+        else this.source = findFirstValidSource()
 
         restartPager(query = "", filters = emptyList())
     }
@@ -293,7 +298,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     fun getLastUsedSource(): OnlineSource {
         val id = prefs.lastUsedCatalogueSource().get() ?: -1
         val source = sourceManager.get(id)
-        if (!isValidSource(source)) {
+        if (isValidSource(source as OnlineSource?) != 2) {
             return findFirstValidSource()
         }
         return source as OnlineSource
@@ -303,16 +308,20 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      * Checks if the given source is valid.
      *
      * @param source the source to check.
-     * @return true if the source is valid, false otherwise.
+     * @return 2 if the source is valid, 1 if Login is Required and 0 otherwise.
      */
-    fun isValidSource(source: Source?): Boolean {
-        if (source == null) return false
+    fun isValidSource(source: OnlineSource?): Int {
+        if (source == null) return 0
 
-        if (source is LoginSource) {
-            return source.isLogged() ||
-                    (prefs.sourceUsername(source) != "" && prefs.sourcePassword(source) != "")
+        if (source.supportsLatest) {
+            if (source is LoginSource) {
+                if (source.isLogged() || (prefs.sourceUsername(source)
+                        != "" && prefs.sourcePassword(source) != ""))
+                    return 2 else return 1
+            }
+            return 2
         }
-        return true
+        return 0
     }
 
     /**
@@ -321,7 +330,7 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      * @return the index of the first valid source.
      */
     fun findFirstValidSource(): OnlineSource {
-        return sources.first { isValidSource(it) }
+        return sources.first { isValidSource(it) == 2 }
     }
 
     /**
@@ -329,7 +338,6 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      */
     private fun getEnabledSources(): List<OnlineSource> {
         val languages = prefs.enabledLanguages().getOrDefault()
-        val hiddenCatalogues = prefs.hiddenCatalogues().getOrDefault()
 
         // Ensure at least one language
         if (languages.isEmpty()) {
@@ -338,7 +346,6 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
 
         return sourceManager.getOnlineSources()
                 .filter { it.lang.code in languages }
-                .filterNot { it.id.toString() in hiddenCatalogues }
                 .sortedBy { "(${it.lang.code}) ${it.name}" }
     }
 

@@ -27,11 +27,17 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override val lang: Language get() = EN
 
-    override val client: OkHttpClient get() = network.cloudflareClient
+    override val supportsLatest = true
+
+    override val client: OkHttpClient = network.cloudflareClient
 
     override fun popularMangaInitialUrl() = "$baseUrl/MangaList/MostPopular"
 
+    override fun latestupdatesMangaInitialUrl() = "http://kissmanga.com/MangaList/LatestUpdate"
+
     override fun popularMangaSelector() = "table.listing tr:gt(1)"
+
+    override fun latestupdatesMangaSelector() = "table.listing tr:gt(1)"
 
     override fun popularMangaFromElement(element: Element, manga: Manga) {
         element.select("td a:eq(0)").first().let {
@@ -40,7 +46,13 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
         }
     }
 
+    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+        popularMangaFromElement(element, manga)
+    }
+
     override fun popularMangaNextPageSelector() = "li > a:contains(› Next)"
+
+    override fun latestupdatesMangaNextPageSelector(): String = "ul.pager > li > a:contains(Next)"
 
     override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
         if (page.page == 1) {
