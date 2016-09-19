@@ -21,6 +21,7 @@ import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
+import java.util.NoSuchElementException
 
 /**
  * Presenter of [LatestUpdatesFragment].
@@ -108,7 +109,11 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
-        source = getLastUsedSource()
+        try {
+            source = getLastUsedSource()
+        } catch (error: NoSuchElementException) {
+            return
+        }
 
         if (savedState != null) {
             query = savedState.getString(LatestUpdatesPresenter::query.name, "")
@@ -338,6 +343,7 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
      */
     private fun getEnabledSources(): List<OnlineSource> {
         val languages = prefs.enabledLanguages().getOrDefault()
+        val hiddenCatalogues = prefs.hiddenCatalogues().getOrDefault()
 
         // Ensure at least one language
         if (languages.isEmpty()) {
@@ -346,6 +352,7 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
 
         return sourceManager.getOnlineSources()
                 .filter { it.lang.code in languages }
+                .filterNot { it.id.toString() in hiddenCatalogues }
                 .sortedBy { "(${it.lang.code}) ${it.name}" }
     }
 
