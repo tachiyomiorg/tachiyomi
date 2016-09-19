@@ -47,12 +47,6 @@ android {
         buildConfigField "boolean", "INCLUDE_UPDATER", "${includeUpdater()}"
 
         vectorDrawables.useSupportLibrary = true
-
-        multiDexEnabled = true
-    }
-
-    dexOptions {
-        javaMaxHeapSize "4g"
     }
 
     buildTypes {
