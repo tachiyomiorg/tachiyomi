@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:columnWidth="140dp"
-                tools:listitem="@layout/item_latest_updates_grid"/>
+                tools:listitem="@layout/item_catalogue_grid"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/latest_updates_list"
