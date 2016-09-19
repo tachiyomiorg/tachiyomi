@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.view.*
 import android.view.animation.AnimationUtils
@@ -28,6 +27,7 @@ import eu.kanade.tachiyomi.widget.DividerItemDecoration
 import eu.kanade.tachiyomi.widget.EndlessScrollListener
 import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
 import kotlinx.android.synthetic.main.fragment_latest_updates.*
+import kotlinx.android.synthetic.main.fragment_manga_chapters.*
 import kotlinx.android.synthetic.main.toolbar.*
 import nucleus.factory.RequiresPresenter
 import rx.Subscription
@@ -62,12 +62,6 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
      * Scroll listener for list mode. It loads next pages when the end of the list is reached.
      */
     private lateinit var listScrollListener: EndlessScrollListener
-
-    /**
-     * Query of the search box.
-     */
-    private val query: String
-        get() = presenter.query
 
     /**
      * Selected index of the spinner (selected source).
@@ -144,6 +138,8 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
         latest_updates_grid.adapter = updatesAdapter
         latest_updates_grid.addOnScrollListener(gridScrollListener)
 
+        // swipe_refresh.setOnRefreshListener { presenter.restartPager() } TODO
+
         val llm = LinearLayoutManager(activity)
         listScrollListener = EndlessScrollListener(llm, { requestNextPage() })
         latest_updates_list.setHasFixedSize(true)
@@ -207,49 +203,14 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.latest_updates_list, menu)
+        inflater.inflate(R.menu.catalogue_list, menu)
+        val mode = menu.findItem(R.id.action_display_mode)
         menu.findItem(R.id.action_search).isVisible = false
         menu.findItem(R.id.action_set_filter).isVisible = false
-        menu.findItem(R.id.action_display_mode).isVisible = true
-
-        // Initialize search menu
-        searchItem = menu.findItem(R.id.action_search).apply {
-            val searchView = actionView as SearchView
-
-            if (!query.isBlank()) {
-                expandActionView()
-                searchView.setQuery(query, true)
-                searchView.clearFocus()
-            }
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    onSearchEvent(query, true)
-                    return true
-                }
-
-                override fun onQueryTextChange(newText: String): Boolean {
-                    onSearchEvent(newText, false)
-                    return true
-                }
-
-
-            })
-        }
-
-        // Setup filters button
-        menu.findItem(R.id.action_set_filter).apply {
-            if (presenter.source.filters.isEmpty()) {
-                isEnabled = false //Default is false
-                icon.alpha = 128
-            } else {
-                isEnabled = true //Default is true
-                icon.alpha = 255
-            }
-        }
-
+        mode.isVisible = true
 
         // Show next display mode
-        menu.findItem(R.id.action_display_mode).apply {
+        mode.apply {
             val icon = if (presenter.isListMode)
                 R.drawable.ic_view_module_white_24dp
             else
@@ -261,7 +222,6 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_display_mode -> swapDisplayMode()
-            R.id.action_set_filter -> showFiltersDialog()
             else -> return super.onOptionsItemSelected(item)
         }
         return true
@@ -271,7 +231,7 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
         super.onResume()
         queryDebouncerSubscription = queryDebouncerSubject.debounce(SEARCH_TIMEOUT, MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { searchWithQuery(it) }
+                .subscribe {}
     }
 
     override fun onPause() {
@@ -286,37 +246,6 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
         }
         spinner?.let { toolbar.removeView(it) }
         super.onDestroyView()
-    }
-
-    /**
-     * Called when the input text changes or is submitted.
-     *
-     * @param query the new query.
-     * @param now whether to send the network call now or debounce it by [SEARCH_TIMEOUT].
-     */
-    private fun onSearchEvent(query: String, now: Boolean) {
-        if (now) {
-            searchWithQuery(query)
-        } else {
-            queryDebouncerSubject.onNext(query)
-        }
-    }
-
-    /**
-     * Restarts the request with a new query.
-     *
-     * @param newQuery the new query.
-     */
-    private fun searchWithQuery(newQuery: String) {
-        // If text didn't change, do nothing
-        if (query == newQuery)
-            return
-
-        showProgressBar()
-        latest_updates_grid.layoutManager.scrollToPosition(0)
-        latest_updates_list.layoutManager.scrollToPosition(0)
-
-        presenter.restartPager(newQuery)
     }
 
     /**
@@ -464,29 +393,5 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
                     }
                 }.show()
     }
-
-    /**
-     * Show the filter dialog for the source.
-     */
-    private fun showFiltersDialog() {
-        val allFilters = presenter.source.filters
-        val selectedFilters = presenter.filters
-                .map { filter -> allFilters.indexOf(filter) }
-                .toTypedArray()
-
-        MaterialDialog.Builder(context)
-                .title(R.string.action_set_filter)
-                .items(allFilters.map { it.name })
-                .itemsCallbackMultiChoice(selectedFilters) { dialog, positions, text ->
-                    val newFilters = positions.map { allFilters[it] }
-                    showProgressBar()
-                    presenter.setSourceFilter(newFilters)
-                    true
-                }
-                .positiveText(android.R.string.ok)
-                .negativeText(android.R.string.cancel)
-                .show()
-    }
-
 
 }

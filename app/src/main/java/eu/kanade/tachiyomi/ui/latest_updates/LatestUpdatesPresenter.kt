@@ -7,12 +7,10 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.EN
-import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.SourceManager
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
-import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import rx.Observable
 import rx.Subscription
@@ -60,17 +58,6 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
         private set
 
     /**
-     * Query from the view.
-     */
-    var query = ""
-        private set
-
-    /**
-     * Active filters.
-     */
-    var filters: List<Filter> = emptyList()
-
-    /**
      * Pager containing a list of manga results.
      */
     private lateinit var updatesPager: LatestUpdatesPager
@@ -115,41 +102,25 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
             return
         }
 
-        if (savedState != null) {
-            query = savedState.getString(LatestUpdatesPresenter::query.name, "")
-        }
-
         add(prefs.catalogueAsList().asObservable()
                 .subscribe { setDisplayMode(it) })
 
         restartPager()
     }
 
-    override fun onSave(state: Bundle) {
-        state.putString(LatestUpdatesPresenter::query.name, query)
-        super.onSave(state)
-    }
-
     /**
-     * Restarts the updatesPager for the active source with the provided query and filters.
+     * Restarts the updatesPager for the active source.
      *
-     * @param query the query.
-     * @param filters the list of active filters (for search mode).
      */
-
-
-    fun restartPager(query: String = this.query, filters: List<Filter> = this.filters) {
-        this.query = query
-        this.filters = filters
-
+    fun restartPager() {
         if (!isListMode) {
             subscribeToMangaInitializer()
         }
 
-        // Create a new updatesPager.
-        updatesPager = LatestUpdatesPager(source, query, filters)
+        // Create a new pager.
+        updatesPager = LatestUpdatesPager(source)
 
-        // Prepare the updatesPager.
+        // Prepare the pager.
         pagerSubscription?.let { remove(it) }
         pagerSubscription = updatesPager.results()
                 .subscribeReplay({ view, page ->
@@ -194,7 +165,7 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
             this.source = source
         else this.source = findFirstValidSource()
 
-        restartPager(query = "", filters = emptyList())
+        restartPager()
     }
 
     /**
@@ -374,15 +345,6 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
      */
     fun swapDisplayMode() {
         prefs.catalogueAsList().set(!isListMode)
-    }
-
-    /**
-     * Set the active filters for the current source.
-     *
-     * @param selectedFilters a list of active filters.
-     */
-    fun setSourceFilter(selectedFilters: List<Filter>) {
-        restartPager(filters = selectedFilters)
     }
 
 }

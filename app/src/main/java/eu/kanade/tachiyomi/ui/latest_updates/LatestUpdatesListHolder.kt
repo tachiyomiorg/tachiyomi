@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.ui.latest_updates
 import android.view.View
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.util.getResourceColor
-import kotlinx.android.synthetic.main.item_latest_updates_list.view.*
+import kotlinx.android.synthetic.main.item_catalogue_list.view.*
 
 /**
  * Class used to hold the displayed data of a manga in the catalogue, like the cover or the title.

@@ -4,7 +4,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.data.database.models.Manga
-import kotlinx.android.synthetic.main.item_latest_updates_grid.view.*
+import kotlinx.android.synthetic.main.item_catalogue_grid.view.*
 
 /**
  * Class used to hold the displayed data of a manga in the catalogue, like the cover or the title.
