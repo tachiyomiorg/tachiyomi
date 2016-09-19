@@ -21,11 +21,15 @@ class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override val lang: Language get() = EN
 
-    override val supportsLatest = false
+    override val supportsLatest = true
 
     override fun popularMangaInitialUrl() = "$baseUrl/directory/"
 
+    override fun latestupdatesMangaInitialUrl() = "$baseUrl/directory/?last_chapter_time.za"
+
     override fun popularMangaSelector() = "div.directory_list > ul > li"
+
+    override fun latestupdatesMangaSelector() = "div#mangalist > ul.list > li"
 
     override fun popularMangaFromElement(element: Element, manga: Manga) {
         element.select("div.title > a").first().let {
@@ -34,7 +38,13 @@ class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(con
         }
     }
 
+    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+        popularMangaFromElement(element, manga)
+    }
+
     override fun popularMangaNextPageSelector() = "div.next-page > a.next"
+
+    override fun latestupdatesMangaNextPageSelector() = "a:has(span.next)"
 
     override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search.php?name=$query&page=1&sort=views&order=za&${filters.map { it.id + "=1" }.joinToString("&")}&advopts=1"
 
@@ -147,21 +157,5 @@ class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(con
             Filter("genres[Yaoi]", "Yaoi"),
             Filter("genres[Yuri]", "Yuri")
     )
-
-    override fun latestupdatesMangaInitialUrl(): String {
-        throw UnsupportedOperationException("not implemented")
-    }
-
-    override fun latestupdatesMangaNextPageSelector(): String {
-        throw UnsupportedOperationException("not implemented")
-    }
-
-    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
-        throw UnsupportedOperationException("not implemented")
-    }
-
-    override fun latestupdatesMangaSelector(): String {
-        throw UnsupportedOperationException("not implemented")
-    }
 
 }
