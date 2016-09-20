@@ -392,8 +392,8 @@ class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHold
      * @param manga the manga to find.
      * @return the holder of the manga or null if it's not bound.
      */
-    private fun getHolder(manga: Manga): CatalogueGridLatestHolder? {
-        return catalogue_grid.findViewHolderForItemId(manga.id!!) as? CatalogueGridLatestHolder
+    private fun getHolder(manga: Manga): CatalogueGridHolder? {
+        return catalogue_grid.findViewHolderForItemId(manga.id!!) as? CatalogueGridHolder
     }
 
     /**

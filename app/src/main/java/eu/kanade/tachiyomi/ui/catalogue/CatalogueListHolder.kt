@@ -14,14 +14,14 @@ import kotlinx.android.synthetic.main.item_catalogue_list.view.*
  * @param listener a listener to react to single tap and long tap events.
  * @constructor creates a new catalogue holder.
  */
-class CatalogueListLatestHolder(private val view: View, adapter: CatalogueAdapter, listener: OnListItemClickListener) :
+class CatalogueListHolder(private val view: View, adapter: CatalogueAdapter, listener: OnListItemClickListener) :
         CatalogueHolder(view, adapter, listener) {
 
     private val favoriteColor = view.context.theme.getResourceColor(android.R.attr.textColorHint)
     private val unfavoriteColor = view.context.theme.getResourceColor(android.R.attr.textColorPrimary)
 
     /**
-     * Method called from [CataloguelatestAdapter.onBindViewHolder]. It updates the data for this
+     * Method called from [CatalogueAdapter.onBindViewHolder]. It updates the data for this
      * holder with the given manga.
      *
      * @param manga the manga to bind.

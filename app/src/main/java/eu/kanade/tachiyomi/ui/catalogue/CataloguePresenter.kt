@@ -24,7 +24,7 @@ import uy.kohesive.injekt.injectLazy
 import java.util.NoSuchElementException
 
 /**
- * Presenter of [CatalogueLatestFragment].
+ * Presenter of [CatalogueFragment].
  */
 class CataloguePresenter : BasePresenter<CatalogueFragment>() {
 

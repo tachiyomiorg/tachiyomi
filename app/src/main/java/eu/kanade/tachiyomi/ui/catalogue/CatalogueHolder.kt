@@ -15,7 +15,7 @@ abstract class CatalogueHolder(view: View, adapter: CatalogueAdapter, listener: 
         FlexibleViewHolder(view, adapter, listener) {
 
     /**
-     * Method called from [CataloguelatestAdapter.onBindViewHolder]. It updates the data for this
+     * Method called from [CatalogueAdapter.onBindViewHolder]. It updates the data for this
      * holder with the given manga.
      *
      * @param manga the manga to bind.
