@@ -39,14 +39,14 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
 
     override fun latestUpdatesMangaParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
-        for (element in document.select(popularMangaSelector())) {
+        for (element in document.select(latestupdatesMangaSelector())) {
             Manga.create(id).apply {
-                popularMangaFromElement(element, this)
+                latestupdatesMangaFromElement(element, this)
                 page.mangas.add(this)
             }
         }
 
-        popularMangaNextPageSelector()?.let { selector ->
+        latestupdatesMangaNextPageSelector()?.let { selector ->
             page.nextPageUrl = document.select(selector).first()?.absUrl("href")
         }
     }
