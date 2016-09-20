@@ -21,11 +21,15 @@ class WieManga(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override val lang: Language = DE
 
-    override val supportsLatest = false
+    override val supportsLatest = true
 
     override fun popularMangaInitialUrl() = "$baseUrl/list/Hot-Book/"
 
+    override fun latestupdatesMangaInitialUrl() = "$baseUrl/list/New-Update/"
+
     override fun popularMangaSelector() = ".booklist td > div"
+
+    override fun latestupdatesMangaSelector() = ".booklist td > div"
 
     override fun popularMangaFromElement(element: Element, manga: Manga) {
         val image = element.select("dt img")
@@ -36,7 +40,13 @@ class WieManga(context: Context, override val id: Int) : ParsedOnlineSource(cont
         manga.thumbnail_url = image.attr("src")
     }
 
+    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+        popularMangaFromElement(element, manga)
+    }
+
     override fun popularMangaNextPageSelector() = null
+
+    override fun latestupdatesMangaNextPageSelector() = null
 
     override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search/?wd=$query"
 
@@ -95,21 +105,5 @@ class WieManga(context: Context, override val id: Int) : ParsedOnlineSource(cont
     override fun pageListParse(document: Document, pages: MutableList<Page>) {}
 
     override fun imageUrlParse(document: Document) = document.select("img#comicpic").first().attr("src")
-
-    override fun latestupdatesMangaInitialUrl(): String {
-        throw UnsupportedOperationException("not implemented")
-    }
-
-    override fun latestupdatesMangaNextPageSelector(): String {
-        throw UnsupportedOperationException("not implemented")
-    }
-
-    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
-        throw UnsupportedOperationException("not implemented")
-    }
-
-    override fun latestupdatesMangaSelector(): String {
-        throw UnsupportedOperationException("not implemented")
-    }
 
 }
