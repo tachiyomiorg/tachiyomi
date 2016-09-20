@@ -38,7 +38,6 @@ import java.util.concurrent.TimeUnit.MILLISECONDS
 
 /**
  * Fragment that shows the manga from the catalogue.
- * Uses R.layout.fragment_catalogue.
  */
 @RequiresPresenter(LatestUpdatesPresenter::class)
 class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), FlexibleViewHolder.OnListItemClickListener {
@@ -102,8 +101,6 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
     companion object {
         /**
          * Creates a new instance of this fragment.
-         *
-         * @return a new instance of [LatestUpdatesFragment].
          */
         fun newInstance(): LatestUpdatesFragment {
             return LatestUpdatesFragment()
@@ -129,16 +126,13 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
         }
 
         // Initialize updatesAdapter, scroll listener and recycler views
-        updatesAdapter = LatestUpdatesAdapter(this) //updatesAdapter null? causes WAIT
-
+        updatesAdapter = LatestUpdatesAdapter(this)
 
         val glm = latest_updates_grid.layoutManager as GridLayoutManager
         gridScrollListener = EndlessScrollListener(glm, { requestNextPage() })
         latest_updates_grid.setHasFixedSize(true)
         latest_updates_grid.adapter = updatesAdapter
         latest_updates_grid.addOnScrollListener(gridScrollListener)
-
-        // swipe_refresh.setOnRefreshListener { presenter.restartPager() } TODO
 
         val llm = LinearLayoutManager(activity)
         listScrollListener = EndlessScrollListener(llm, { requestNextPage() })
@@ -260,9 +254,6 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
 
     /**
      * Called from the presenter when the network request is received.
-     *
-     * @param page the current page.
-     * @param mangas the list of manga of the page.
      */
     fun onAddPage(page: Int, mangas: List<Manga>) {
         hideProgressBar()
@@ -276,8 +267,6 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
 
     /**
      * Called from the presenter when the network request fails.
-     *
-     * @param error the error received.
      */
     fun onAddPageError(error: Throwable) {
         hideProgressBar()
@@ -293,8 +282,6 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
 
     /**
      * Called from the presenter when a manga is initialized.
-     *
-     * @param manga the manga initialized
      */
     fun onMangaInitialized(manga: Manga) {
         getHolder(manga)?.setImage(manga)
@@ -316,8 +303,6 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
 
     /**
      * Returns a preference for the number of manga per row based on the current orientation.
-     *
-     * @return the preference.
      */
     fun getColumnsPreferenceForCurrentOrientation(): Preference<Int> {
         return if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
@@ -328,9 +313,6 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
 
     /**
      * Returns the view holder for the given manga.
-     *
-     * @param manga the manga to find.
-     * @return the holder of the manga or null if it's not bound.
      */
     private fun getHolder(manga: Manga): LatestUpdatesGridHolder? {
         return latest_updates_grid.findViewHolderForItemId(manga.id!!) as? LatestUpdatesGridHolder
@@ -360,9 +342,6 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
 
     /**
      * Called when a manga is clicked.
-     *
-     * @param position the position of the element clicked.
-     * @return true if the item should be selected, false otherwise.
      */
     override fun onListItemClick(position: Int): Boolean {
         val item = updatesAdapter.getItem(position) ?: return false
@@ -374,8 +353,6 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
 
     /**
      * Called when a manga is long clicked.
-     *
-     * @param position the position of the element clicked.
      */
     override fun onListItemLongClick(position: Int) {
         val manga = updatesAdapter.getItem(position) ?: return
@@ -393,5 +370,4 @@ class LatestUpdatesFragment : BaseRxFragment<LatestUpdatesPresenter>(), Flexible
                     }
                 }.show()
     }
-
 }

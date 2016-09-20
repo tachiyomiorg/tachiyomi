@@ -88,11 +88,9 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
      */
     private var initializerSubscription: Subscription? = null
 
-
     /**
-    override val source
+     * Override val source.
      */
-
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
@@ -110,7 +108,6 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
 
     /**
      * Restarts the updatesPager for the active source.
-     *
      */
     fun restartPager() {
         if (!isListMode) {
@@ -132,7 +129,6 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
         // Request first page.
         requestNext()
     }
-
 
     /**
      * Requests the next page for the active updatesPager.
@@ -156,8 +152,6 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
 
     /**
      * Sets the active source and restarts the updatesPager.
-     *
-     * @param source the new active source.
      */
     fun setActiveSource(source: OnlineSource) {
         prefs.lastUsedCatalogueSource().set(source.id)
@@ -170,8 +164,6 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
 
     /**
      * Sets the display mode.
-     *
-     * @param asList whether the current mode is in list or not.
      */
     private fun setDisplayMode(asList: Boolean) {
         isListMode = asList
@@ -204,9 +196,6 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
 
     /**
      * Returns the function to apply to the observable of the list of manga from the source.
-     *
-     * @param observable the observable from the source.
-     * @return the function to apply.
      */
     fun getPageTransformer(observable: Observable<MangasPage>): Observable<MangasPage> {
         return observable.subscribeOn(Schedulers.io())
@@ -227,9 +216,6 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
     /**
      * Returns a manga from the database for the given manga from network. It creates a new entry
      * if the manga is not yet in the database.
-     *
-     * @param networkManga the manga from network.
-     * @return a manga from the database.
      */
     private fun networkToLocalManga(networkManga: Manga): Manga {
         var localManga = db.getManga(networkManga.url, source.id).executeAsBlocking()
@@ -243,8 +229,6 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
 
     /**
      * Initialize a list of manga.
-     *
-     * @param mangas the list of manga to initialize.
      */
     fun initializeMangas(mangas: List<Manga>) {
         mangaDetailSubject.onNext(mangas)
@@ -252,9 +236,6 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
 
     /**
      * Returns an observable of manga that initializes the given manga.
-     *
-     * @param manga the manga to initialize.
-     * @return an observable of the manga to initialize
      */
     private fun getMangaDetailsObservable(manga: Manga): Observable<Manga> {
         return source.fetchMangaDetails(manga)
@@ -268,8 +249,6 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
 
     /**
      * Returns the last used source from preferences or the first valid source.
-     *
-     * @return a source.
      */
     fun getLastUsedSource(): OnlineSource {
         val id = prefs.lastUsedCatalogueSource().get() ?: -1
@@ -282,9 +261,6 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
 
     /**
      * Checks if the given source is valid.
-     *
-     * @param source the source to check.
-     * @return 2 if the source is valid, 1 if Login is Required and 0 otherwise.
      */
     fun isValidSource(source: OnlineSource?): Int {
         if (source == null) return 0
@@ -302,8 +278,6 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
 
     /**
      * Finds the first valid source.
-     *
-     * @return the index of the first valid source.
      */
     fun findFirstValidSource(): OnlineSource {
         return sources.first { isValidSource(it) == 2 }
@@ -329,8 +303,6 @@ class LatestUpdatesPresenter : BasePresenter<LatestUpdatesFragment>() {
 
     /**
      * Adds or removes a manga from the library.
-     *
-     * @param manga the manga to update.
      */
     fun changeMangaFavorite(manga: Manga) {
         manga.favorite = !manga.favorite

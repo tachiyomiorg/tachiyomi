@@ -14,8 +14,6 @@ import java.util.*
 
 /**
  * Adapter storing a list of manga from the catalogue.
- *
- * @param fragment the fragment containing this adapter.
  */
 class LatestUpdatesAdapter(val fragment: LatestUpdatesFragment) : FlexibleAdapter<LatestUpdatesHolder, Manga>() {
 
@@ -32,8 +30,6 @@ class LatestUpdatesAdapter(val fragment: LatestUpdatesFragment) : FlexibleAdapte
 
     /**
      * Adds a list of manga to the adapter.
-     *
-     * @param list the list to add.
      */
     fun addItems(list: List<Manga>) {
         if (list.isNotEmpty()) {
@@ -54,9 +50,6 @@ class LatestUpdatesAdapter(val fragment: LatestUpdatesFragment) : FlexibleAdapte
 
     /**
      * Returns the identifier for a manga.
-     *
-     * @param position the position in the adapter.
-     * @return an identifier for the item.
      */
     override fun getItemId(position: Int): Long {
         return mItems[position].id!!
@@ -69,12 +62,7 @@ class LatestUpdatesAdapter(val fragment: LatestUpdatesFragment) : FlexibleAdapte
 
     /**
      * Creates a new view holder.
-     *
-     * @param parent the parent view.
-     * @param viewType the type of the holder.
-     * @return a new view holder for a manga.
      */
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LatestUpdatesHolder {
         if (parent.id == R.id.latest_updates_grid) {
             val view = parent.inflate(R.layout.item_catalogue_grid).apply {
@@ -90,9 +78,6 @@ class LatestUpdatesAdapter(val fragment: LatestUpdatesFragment) : FlexibleAdapte
 
     /**
      * Binds a holder with a new position.
-     *
-     * @param holder the holder to bind.
-     * @param position the position to bind.
      */
     override fun onBindViewHolder(holder: LatestUpdatesHolder, position: Int) {
         val manga = getItem(position)
