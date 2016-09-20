@@ -80,10 +80,10 @@ class CatalogueAdapter(val fragment: CatalogueFragment) : FlexibleAdapter<Catalo
                 card.layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, coverHeight)
                 gradient.layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, coverHeight / 2, Gravity.BOTTOM)
             }
-            return CatalogueGridLatestHolder(view, this, fragment)
+            return CatalogueGridHolder(view, this, fragment)
         } else {
             val view = parent.inflate(R.layout.item_catalogue_list)
-            return CatalogueListLatestHolder(view, this, fragment)
+            return CatalogueListHolder(view, this, fragment)
         }
     }
 

@@ -15,11 +15,11 @@ import kotlinx.android.synthetic.main.item_catalogue_grid.view.*
  * @param listener a listener to react to single tap and long tap events.
  * @constructor creates a new catalogue holder.
  */
-class CatalogueGridLatestHolder(private val view: View, private val adapter: CatalogueAdapter, listener: OnListItemClickListener) :
+class CatalogueGridHolder(private val view: View, private val adapter: CatalogueAdapter, listener: OnListItemClickListener) :
         CatalogueHolder(view, adapter, listener) {
 
     /**
-     * Method called from [CataloguelatestAdapter.onBindViewHolder]. It updates the data for this
+     * Method called from [CatalogueAdapter.onBindViewHolder]. It updates the data for this
      * holder with the given manga.
      *
      * @param manga the manga to bind.
