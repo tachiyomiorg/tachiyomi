@@ -305,7 +305,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      * @param source the source to check.
      * @return true if the source is valid, false otherwise.
      */
-    fun isValidSource(source: Source?): Boolean {
+    open fun isValidSource(source: Source?): Boolean {
         if (source == null) return false
 
         if (source is LoginSource) {
@@ -327,7 +327,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     /**
      * Returns a list of enabled sources ordered by language and name.
      */
-    private fun getEnabledSources(): List<OnlineSource> {
+    open protected fun getEnabledSources(): List<OnlineSource> {
         val languages = prefs.enabledLanguages().getOrDefault()
         val hiddenCatalogues = prefs.hiddenCatalogues().getOrDefault()
 
