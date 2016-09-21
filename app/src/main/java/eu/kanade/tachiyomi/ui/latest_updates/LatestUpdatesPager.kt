@@ -15,15 +15,9 @@ class LatestUpdatesPager(val source: OnlineSource): Pager() {
         else
             MangasPage(lastPage.page + 1).apply { url = lastPage.nextPageUrl!! }
 
-        /* //in progress
-        val observable = if (query.isBlank() && filters.isEmpty())
-            source.fetchLatestUpdates(page)
-        else
-            source.fetchSearchManga(page, query, filters)
-        */
+        val observable = source.fetchLatestUpdates(page)
 
-
-        return transformer(source.fetchLatestUpdates(page))
+        return transformer(observable)
                 .doOnNext { results.onNext(it) }
                 .doOnNext { this@LatestUpdatesPager.lastPage = it }
     }

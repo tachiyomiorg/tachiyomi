@@ -184,7 +184,7 @@ class Readmangatoday(context: Context, override val id: Int) : ParsedOnlineSourc
             Filter("37", "Yuri")
     )
 
-    override fun latestupdatesMangaInitialUrl(): String {
+    override fun latestUpdatesInitialUrl(): String {
         throw UnsupportedOperationException("not implemented")
     }
 

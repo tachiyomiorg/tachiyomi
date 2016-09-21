@@ -25,7 +25,7 @@ class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaInitialUrl() = "$baseUrl/directory/"
 
-    override fun latestupdatesMangaInitialUrl() = "$baseUrl/directory/?last_chapter_time.za"
+    override fun latestUpdatesInitialUrl() = "$baseUrl/directory/?last_chapter_time.za"
 
     override fun popularMangaSelector() = "div.directory_list > ul > li"
 

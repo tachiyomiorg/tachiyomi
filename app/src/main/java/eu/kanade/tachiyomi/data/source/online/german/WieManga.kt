@@ -25,7 +25,7 @@ class WieManga(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override fun popularMangaInitialUrl() = "$baseUrl/list/Hot-Book/"
 
-    override fun latestupdatesMangaInitialUrl() = "$baseUrl/list/New-Update/"
+    override fun latestUpdatesInitialUrl() = "$baseUrl/list/New-Update/"
 
     override fun popularMangaSelector() = ".booklist td > div"
 

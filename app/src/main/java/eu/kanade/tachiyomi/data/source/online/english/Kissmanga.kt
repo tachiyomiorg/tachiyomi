@@ -33,7 +33,7 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaInitialUrl() = "$baseUrl/MangaList/MostPopular"
 
-    override fun latestupdatesMangaInitialUrl() = "http://kissmanga.com/MangaList/LatestUpdate"
+    override fun latestUpdatesInitialUrl() = "http://kissmanga.com/MangaList/LatestUpdate"
 
     override fun popularMangaSelector() = "table.listing tr:gt(1)"
 

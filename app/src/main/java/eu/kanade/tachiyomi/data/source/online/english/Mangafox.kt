@@ -27,7 +27,7 @@ class Mangafox(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override fun popularMangaInitialUrl() = "$baseUrl/directory/"
 
-    override fun latestupdatesMangaInitialUrl() = "$baseUrl/directory/?latest"
+    override fun latestUpdatesInitialUrl() = "$baseUrl/directory/?latest"
 
     override fun popularMangaSelector() = "div#mangalist > ul.list > li"
 

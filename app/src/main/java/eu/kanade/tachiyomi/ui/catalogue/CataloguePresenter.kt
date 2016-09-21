@@ -14,7 +14,6 @@ import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import eu.kanade.tachiyomi.ui.latest_updates.LatestUpdatesPager
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -74,7 +73,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     /**
      * Pager containing a list of manga results.
      */
-    private lateinit var pager: CataloguePager
+    private lateinit var pager: Pager
 
     /**
      * Subject that initializes a list of manga.
@@ -141,7 +140,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         }
 
         // Create a new pager.
-        pager = CataloguePager(source, query, filters)
+        pager = createPager(query, filters)
 
         // Prepare the pager.
         pagerSubscription?.let { remove(it) }
@@ -373,7 +372,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     }
 
     open fun createPager(query: String, filters: List<Filter>): Pager {
-        return CataloguePager(query, filters)
+        return CataloguePager(source, query, filters)
     }
 
 }

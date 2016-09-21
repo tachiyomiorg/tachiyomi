@@ -61,7 +61,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
 
     override fun popularMangaInitialUrl() = "$baseUrl/search_ajax?order_cond=views&order=desc&p=1"
 
-    override fun latestupdatesMangaInitialUrl() = "$baseUrl/search_ajax?order_cond=update&order=desc&p=1"
+    override fun latestUpdatesInitialUrl() = "$baseUrl/search_ajax?order_cond=update&order=desc&p=1"
 
     override fun popularMangaParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()

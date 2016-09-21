@@ -26,7 +26,7 @@ class Readmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaInitialUrl() = "$baseUrl/list?sortType=rate"
 
-    override fun latestupdatesMangaInitialUrl() = "$baseUrl/list?sortType=updated"
+    override fun latestUpdatesInitialUrl() = "$baseUrl/list?sortType=updated"
 
     override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
             "$baseUrl/search?q=$query&${filters.map { it.id + "=in" }.joinToString("&")}"

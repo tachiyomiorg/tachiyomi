@@ -25,7 +25,7 @@ class Mangachan(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaInitialUrl() = "$baseUrl/mostfavorites"
 
-    override fun latestupdatesMangaInitialUrl() = "$baseUrl/manga/new"
+    override fun latestUpdatesInitialUrl() = "$baseUrl/manga/new"
 
     override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/?do=search&subaction=search&story=$query"
 
