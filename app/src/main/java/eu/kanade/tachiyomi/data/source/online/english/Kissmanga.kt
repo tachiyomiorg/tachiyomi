@@ -37,7 +37,7 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaSelector() = "table.listing tr:gt(1)"
 
-    override fun latestupdatesMangaSelector() = "table.listing tr:gt(1)"
+    override fun latestUpdatesSelector() = "table.listing tr:gt(1)"
 
     override fun popularMangaFromElement(element: Element, manga: Manga) {
         element.select("td a:eq(0)").first().let {
@@ -52,7 +52,7 @@ class Kissmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaNextPageSelector() = "li > a:contains(› Next)"
 
-    override fun latestupdatesMangaNextPageSelector(): String = "ul.pager > li > a:contains(Next)"
+    override fun latestUpdatesNextPageSelector(): String = "ul.pager > li > a:contains(Next)"
 
     override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
         if (page.page == 1) {

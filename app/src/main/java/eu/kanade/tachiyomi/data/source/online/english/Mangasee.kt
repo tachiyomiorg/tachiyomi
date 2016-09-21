@@ -175,7 +175,7 @@ class Mangasee(context: Context, override val id: Int) : ParsedOnlineSource(cont
         throw UnsupportedOperationException("not implemented")
     }
 
-    override fun latestupdatesMangaNextPageSelector(): String {
+    override fun latestUpdatesNextPageSelector(): String {
         throw UnsupportedOperationException("not implemented")
     }
 
@@ -183,7 +183,7 @@ class Mangasee(context: Context, override val id: Int) : ParsedOnlineSource(cont
         throw UnsupportedOperationException("not implemented")
     }
 
-    override fun latestupdatesMangaSelector(): String {
+    override fun latestUpdatesSelector(): String {
         throw UnsupportedOperationException("not implemented")
     }
 

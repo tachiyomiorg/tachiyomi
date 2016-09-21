@@ -29,7 +29,7 @@ class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaSelector() = "div.directory_list > ul > li"
 
-    override fun latestupdatesMangaSelector() = "div.directory_list > ul > li"
+    override fun latestUpdatesSelector() = "div.directory_list > ul > li"
 
     override fun popularMangaFromElement(element: Element, manga: Manga) {
         element.select("div.title > a").first().let {
@@ -44,7 +44,7 @@ class Mangahere(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaNextPageSelector() = "div.next-page > a.next"
 
-    override fun latestupdatesMangaNextPageSelector() = "div.next-page > a.next"
+    override fun latestUpdatesNextPageSelector() = "div.next-page > a.next"
 
     override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search.php?name=$query&page=1&sort=views&order=za&${filters.map { it.id + "=1" }.joinToString("&")}&advopts=1"
 

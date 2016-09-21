@@ -33,7 +33,7 @@ class Mintmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaSelector() = "div.desc"
 
-    override fun latestupdatesMangaSelector() = "div.desc"
+    override fun latestUpdatesSelector() = "div.desc"
 
     override fun popularMangaFromElement(element: Element, manga: Manga) {
         element.select("h3 > a").first().let {
@@ -48,7 +48,7 @@ class Mintmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaNextPageSelector() = "a.nextLink"
 
-    override fun latestupdatesMangaNextPageSelector() = "a.nextLink"
+    override fun latestUpdatesNextPageSelector() = "a.nextLink"
 
     override fun searchMangaSelector() = popularMangaSelector()
 

@@ -29,7 +29,7 @@ class WieManga(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override fun popularMangaSelector() = ".booklist td > div"
 
-    override fun latestupdatesMangaSelector() = ".booklist td > div"
+    override fun latestUpdatesSelector() = ".booklist td > div"
 
     override fun popularMangaFromElement(element: Element, manga: Manga) {
         val image = element.select("dt img")
@@ -46,7 +46,7 @@ class WieManga(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override fun popularMangaNextPageSelector() = null
 
-    override fun latestupdatesMangaNextPageSelector() = null
+    override fun latestUpdatesNextPageSelector() = null
 
     override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search/?wd=$query"
 

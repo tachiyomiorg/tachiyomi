@@ -31,7 +31,7 @@ class Mangachan(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaSelector() = "div.content_row"
 
-    override fun latestupdatesMangaSelector() = "div.content_row"
+    override fun latestUpdatesSelector() = "div.content_row"
 
     override fun popularMangaFromElement(element: Element, manga: Manga) {
         element.select("h2 > a").first().let {
@@ -46,7 +46,7 @@ class Mangachan(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun popularMangaNextPageSelector() = "a:contains(Вперед)"
 
-    override fun latestupdatesMangaNextPageSelector() = "a:contains(Вперед)"
+    override fun latestUpdatesNextPageSelector() = "a:contains(Вперед)"
 
     override fun searchMangaSelector() = popularMangaSelector()
 

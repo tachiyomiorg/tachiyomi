@@ -31,7 +31,7 @@ class Mangafox(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override fun popularMangaSelector() = "div#mangalist > ul.list > li"
 
-    override fun latestupdatesMangaSelector() = "div#mangalist > ul.list > li"
+    override fun latestUpdatesSelector() = "div#mangalist > ul.list > li"
 
     override fun popularMangaFromElement(element: Element, manga: Manga) {
         element.select("a.title").first().let {
@@ -46,7 +46,7 @@ class Mangafox(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override fun popularMangaNextPageSelector() = "a:has(span.next)"
 
-    override fun latestupdatesMangaNextPageSelector() = "a:has(span.next)"
+    override fun latestUpdatesNextPageSelector() = "a:has(span.next)"
 
     override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
             "$baseUrl/search.php?name_method=cw&advopts=1&order=za&sort=views&name=$query&page=1&${filters.map { it.id + "=1" }.joinToString("&")}"

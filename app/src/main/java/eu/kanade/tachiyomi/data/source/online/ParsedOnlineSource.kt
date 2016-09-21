@@ -39,14 +39,14 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
 
     override fun latestUpdatesMangaParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
-        for (element in document.select(latestupdatesMangaSelector())) {
+        for (element in document.select(latestUpdatesSelector())) {
             Manga.create(id).apply {
                 latestupdatesMangaFromElement(element, this)
                 page.mangas.add(this)
             }
         }
 
-        latestupdatesMangaNextPageSelector()?.let { selector ->
+        latestUpdatesNextPageSelector()?.let { selector ->
             page.nextPageUrl = document.select(selector).first()?.absUrl("href")
         }
     }
@@ -56,7 +56,7 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      */
     abstract protected fun popularMangaSelector(): String
 
-    abstract protected fun latestupdatesMangaSelector(): String
+    abstract protected fun latestUpdatesSelector(): String
 
     /**
      * Fills [manga] with the given [element]. Most sites only show the title and the url, it's
@@ -75,7 +75,7 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      */
     abstract protected fun popularMangaNextPageSelector(): String?
 
-    abstract protected fun latestupdatesMangaNextPageSelector(): String?
+    abstract protected fun latestUpdatesNextPageSelector(): String?
 
     /**
      * Parse the response from the site and fills [page].
