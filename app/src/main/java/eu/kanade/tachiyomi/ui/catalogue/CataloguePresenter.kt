@@ -14,6 +14,7 @@ import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
+import eu.kanade.tachiyomi.ui.latest_updates.LatestUpdatesPager
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -26,7 +27,7 @@ import java.util.NoSuchElementException
 /**
  * Presenter of [CatalogueFragment].
  */
-class CataloguePresenter : BasePresenter<CatalogueFragment>() {
+open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
 
     /**
      * Source manager.
@@ -369,6 +370,10 @@ class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      */
     fun setSourceFilter(selectedFilters: List<Filter>) {
         restartPager(filters = selectedFilters)
+    }
+
+    open fun createPager(query: String, filters: List<Filter>): Pager {
+        return CataloguePager(query, filters)
     }
 
 }

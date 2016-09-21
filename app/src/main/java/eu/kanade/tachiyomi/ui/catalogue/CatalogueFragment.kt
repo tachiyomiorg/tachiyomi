@@ -41,7 +41,7 @@ import java.util.concurrent.TimeUnit.MILLISECONDS
  * Uses R.layout.fragment_catalogue.
  */
 @RequiresPresenter(CataloguePresenter::class)
-class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHolder.OnListItemClickListener {
+open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleViewHolder.OnListItemClickListener {
 
     /**
      * Spinner shown in the toolbar to change the selected source.
