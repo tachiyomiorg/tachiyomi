@@ -56,6 +56,7 @@
     <string name="action_cancel">Cancel</string>
     <string name="action_sort">Sort</string>
     <string name="action_install">Install</string>
+    <string name="action_share">Share</string>
 
     <!-- Operations -->
     <string name="deleting">Deleting…</string>
@@ -222,6 +223,8 @@
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Source</string>
     <string name="manga_info_genres_label">Genres</string>
+    <string name="share_subject">Share…</string>
+    <string name="share_text">Check out %1$s! at %2$s</string>
 
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapters</string>

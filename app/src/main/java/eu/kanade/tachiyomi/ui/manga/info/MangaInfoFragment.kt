@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.manga.info
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.customtabs.CustomTabsIntent
@@ -59,6 +60,7 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_open_in_browser -> openInBrowser()
+            R.id.action_share -> shareManga()
             else -> return super.onOptionsItemSelected(item)
         }
         return true
@@ -153,6 +155,24 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
                     .setToolbarColor(context.theme.getResourceColor(R.attr.colorPrimary))
                     .build()
             intent.launchUrl(activity, url)
+        } catch (e: Exception) {
+            context.toast(e.message)
+        }
+    }
+
+    /**
+     * Called to run Intent with [Intent.ACTION_SEND], which show share dialog.
+     */
+    private fun shareManga() {
+        val source = presenter.source as? OnlineSource ?: return
+        try {
+            val url = source.mangaDetailsRequest(presenter.manga).url().toString()
+            val sharingIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(android.content.Intent.EXTRA_SUBJECT, presenter.manga.title)
+                putExtra(android.content.Intent.EXTRA_TEXT, resources.getString(R.string.share_text, presenter.manga.title, url))
+            }
+            startActivity(Intent.createChooser(sharingIntent, resources.getText(R.string.share_subject)))
         } catch (e: Exception) {
             context.toast(e.message)
         }

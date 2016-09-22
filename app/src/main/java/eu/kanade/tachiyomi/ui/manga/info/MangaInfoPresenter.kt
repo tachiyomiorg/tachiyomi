@@ -128,5 +128,4 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
     private fun refreshManga() {
         start(GET_MANGA)
     }
-
 }
