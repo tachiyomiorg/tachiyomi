@@ -26,12 +26,11 @@ class WieManga(context: Context, override val id: Int) : ParsedOnlineSource(cont
         override fun popularMangaSelector() = ".booklist td > div"
 
         override fun popularMangaFromElement(element: Element, manga: Manga) {
-                val image = element.select("dt img")
                 val title = element.select("dd a:first-child")
 
                 manga.setUrlWithoutDomain(title.attr("href"))
                 manga.title = title.text()
-                manga.thumbnail_url = image.attr("src")
+                manga.thumbnail_url = element.select("dt img").attr("src")
         }
 
         override fun popularMangaNextPageSelector() = null
@@ -41,24 +40,22 @@ class WieManga(context: Context, override val id: Int) : ParsedOnlineSource(cont
         override fun searchMangaSelector() = ".searchresult td > div"
 
         override fun searchMangaFromElement(element: Element, manga: Manga) {
-                val image = element.select(".resultimg img")
                 val title = element.select(".resultbookname")
 
                 manga.setUrlWithoutDomain(title.attr("href"))
                 manga.title = title.text()
-                manga.thumbnail_url = image.attr("src")
+                manga.thumbnail_url = element.select(".resultimg img").attr("src")
         }
 
         override fun searchMangaNextPageSelector() = ".pagetor a.l"
 
         override fun mangaDetailsParse(document: Document, manga: Manga) {
-                val imageElement = document.select(".bookmessgae tr > td:nth-child(1)").first()
                 val infoElement = document.select(".bookmessgae tr > td:nth-child(2)").first()
 
                 manga.author = infoElement.select("dd:nth-of-type(2) a").first()?.text()
                 manga.artist = infoElement.select("dd:nth-of-type(3) a").first()?.text()
                 manga.description = infoElement.select("dl > dt:last-child").first()?.text()?.replaceFirst("Beschreibung", "")
-                manga.thumbnail_url = imageElement.select("img").first()?.attr("src")
+                manga.thumbnail_url = document.select(".bookmessgae tr > td:nth-child(1) a > img").first()?.attr("src")
 
                 if (manga.author == "RSS")
                         manga.author = null

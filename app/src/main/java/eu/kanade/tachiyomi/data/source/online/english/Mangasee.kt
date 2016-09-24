@@ -110,14 +110,14 @@ class Mangasee(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override fun pageListParse(response: Response, pages: MutableList<Page>) {
         val document = response.asJsoup()
-        val url = response.request().url().toString().substringBeforeLast('/')
 
         val series = document.select("input[name=series]").first().attr("value")
         val chapter = document.select("input[name=chapter]").first().attr("value")
         val index = document.select("input[name=index]").first().attr("value")
 
         document.select("select[name=page] > option").forEach {
-            pages.add(Page(pages.size, "$url/?series=$series&chapter=$chapter&index=$index&page=${pages.size + 1}"))
+            pages.add(Page(pages.size, document.location().substringBeforeLast('/') +
+                    "/?series=$series&chapter=$chapter&index=$index&page=${pages.size + 1}"))
         }
         pages.getOrNull(0)?.imageUrl = imageUrlParse(document)
     }

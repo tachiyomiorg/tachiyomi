@@ -46,14 +46,12 @@ class Mangachan(context: Context, override val id: Int) : ParsedOnlineSource(con
 
     override fun mangaDetailsParse(document: Document, manga: Manga) {
         val infoElement = document.select("table.mangatitle").first()
-        val descElement = document.select("div#description").first()
-        val imgElement = document.select("img#cover").first()
 
         manga.author = infoElement.select("tr:eq(2) > td:eq(1)").text()
         manga.genre = infoElement.select("tr:eq(5) > td:eq(1)").text()
         manga.status = parseStatus(infoElement.select("tr:eq(4) > td:eq(1)").text())
-        manga.description = descElement.textNodes().first().text()
-        manga.thumbnail_url = baseUrl + imgElement.attr("src")
+        manga.description = document.select("div#description").first().textNodes().first().text()
+        manga.thumbnail_url = baseUrl + document.select("img#cover").first().attr("src")
     }
 
     private fun parseStatus(element: String): Int {
@@ -79,9 +77,7 @@ class Mangachan(context: Context, override val id: Int) : ParsedOnlineSource(con
     override fun pageListParse(response: Response, pages: MutableList<Page>) {
         val html = response.body().string()
         val beginIndex = html.indexOf("fullimg\":[") + 10
-        val endIndex = html.indexOf(",]", beginIndex)
-        val trimmedHtml = html.substring(beginIndex, endIndex).replace("\"", "")
-        val pageUrls = trimmedHtml.split(',')
+        val pageUrls = html.substring(beginIndex, html.indexOf(",]", beginIndex)).replace("\"", "").split(',')
 
         for ((i, url) in pageUrls.withIndex()) {
             pages.add(Page(i, "", url))
