@@ -13,6 +13,10 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.data.source.online.YamlOnlineSource
 import eu.kanade.tachiyomi.data.source.online.english.*
+import eu.kanade.tachiyomi.data.source.online.english.dynasty.DynastyAnthologies
+import eu.kanade.tachiyomi.data.source.online.english.dynasty.DynastyDoujins
+import eu.kanade.tachiyomi.data.source.online.english.dynasty.DynastyIssues
+import eu.kanade.tachiyomi.data.source.online.english.dynasty.DynastySeries
 import eu.kanade.tachiyomi.data.source.online.german.WieManga
 import eu.kanade.tachiyomi.data.source.online.russian.Mangachan
 import eu.kanade.tachiyomi.data.source.online.russian.Mintmanga

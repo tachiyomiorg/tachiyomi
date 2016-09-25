@@ -1,0 +1,958 @@
+From 45ca56869466b91da79d89b94bd9b48d7c2e58b1 Mon Sep 17 00:00:00 2001
+From: Greg Wright <gregwright@thisyear.me>
+Date: Wed, 14 Sep 2016 02:42:05 -0500
+Subject: [PATCH] WIP
+
+---
+ app/.gitignore                                     |   3 +-
+ app/build.gradle                                   |   4 +
+ .../kanade/tachiyomi/data/source/SourceManager.kt  |   4 +
+ .../source/online/english/DynastyAnthologies.kt    | 113 -----------
+ .../data/source/online/english/DynastyDoujins.kt   | 103 ----------
+ .../data/source/online/english/DynastyIssues.kt    | 113 -----------
+ .../data/source/online/english/DynastySeries.kt    | 118 -----------
+ .../online/english/dynasty/DynastyAnthologies.kt   |  23 +++
+ .../online/english/dynasty/DynastyDoujins.kt       |  43 ++++
+ .../source/online/english/dynasty/DynastyIssues.kt |  25 +++
+ .../source/online/english/dynasty/DynastyScans.kt  | 225 +++++++++++++++++++++
+ .../source/online/english/dynasty/DynastySeries.kt |  30 +++
+ build.gradle                                       |   3 +-
+ gradle/wrapper/gradle-wrapper.properties           |   4 +-
+ 14 files changed, 360 insertions(+), 451 deletions(-)
+ delete mode 100644 app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastyAnthologies.kt
+ delete mode 100644 app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastyDoujins.kt
+ delete mode 100644 app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastyIssues.kt
+ delete mode 100644 app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastySeries.kt
+ create mode 100644 app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyAnthologies.kt
+ create mode 100644 app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyDoujins.kt
+ create mode 100644 app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyIssues.kt
+ create mode 100644 app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyScans.kt
+ create mode 100644 app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastySeries.kt
+
+diff --git a/app/.gitignore b/app/.gitignore
+index 8bd2d8b..92b0dbf 100644
+--- a/app/.gitignore
++++ b/app/.gitignore
+@@ -1,4 +1,5 @@
+ /build
+ *iml
+ *.iml
+-.idea
+\ No newline at end of file
++.idea
++custom.gradle
+\ No newline at end of file
+diff --git a/app/build.gradle b/app/build.gradle
+index 7a5d166..57d1cf5 100644
+--- a/app/build.gradle
++++ b/app/build.gradle
+@@ -4,6 +4,10 @@ apply plugin: 'com.android.application'
+ apply plugin: 'kotlin-android'
+ apply plugin: 'kotlin-android-extensions'
+ 
++if (file("custom.gradle").exists()) {
++    apply from: "custom.gradle"
++}
++
+ ext {
+     // Git is needed in your system PATH for these commands to work.
+     // If it's not installed, you can return a random value as a workaround
+diff --git a/app/src/main/java/eu/kanade/tachiyomi/data/source/SourceManager.kt b/app/src/main/java/eu/kanade/tachiyomi/data/source/SourceManager.kt
+index 79fd92e..e2bbfde 100644
+--- a/app/src/main/java/eu/kanade/tachiyomi/data/source/SourceManager.kt
++++ b/app/src/main/java/eu/kanade/tachiyomi/data/source/SourceManager.kt
+@@ -7,6 +7,10 @@ import eu.kanade.tachiyomi.R
+ import eu.kanade.tachiyomi.data.source.online.OnlineSource
+ import eu.kanade.tachiyomi.data.source.online.YamlOnlineSource
+ import eu.kanade.tachiyomi.data.source.online.english.*
++import eu.kanade.tachiyomi.data.source.online.english.dynasty.DynastyAnthologies
++import eu.kanade.tachiyomi.data.source.online.english.dynasty.DynastyDoujins
++import eu.kanade.tachiyomi.data.source.online.english.dynasty.DynastyIssues
++import eu.kanade.tachiyomi.data.source.online.english.dynasty.DynastySeries
+ import eu.kanade.tachiyomi.data.source.online.german.WieManga
+ import eu.kanade.tachiyomi.data.source.online.russian.Mangachan
+ import eu.kanade.tachiyomi.data.source.online.russian.Mintmanga
+diff --git a/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastyAnthologies.kt b/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastyAnthologies.kt
+deleted file mode 100644
+index 328a66d..0000000
+--- a/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastyAnthologies.kt
++++ /dev/null
+@@ -1,113 +0,0 @@
+-package eu.kanade.tachiyomi.data.source.online.english
+-
+-import android.content.Context
+-import eu.kanade.tachiyomi.data.database.models.Chapter
+-import eu.kanade.tachiyomi.data.database.models.Manga
+-import eu.kanade.tachiyomi.data.source.EN
+-import eu.kanade.tachiyomi.data.source.Language
+-import eu.kanade.tachiyomi.data.source.model.MangasPage
+-import eu.kanade.tachiyomi.data.source.model.Page
+-import eu.kanade.tachiyomi.data.source.online.OnlineSource
+-import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
+-import eu.kanade.tachiyomi.util.asJsoup
+-import okhttp3.Response
+-import org.json.JSONArray
+-import org.jsoup.nodes.Document
+-import org.jsoup.nodes.Element
+-import java.text.SimpleDateFormat
+-import java.util.regex.Pattern
+-
+-class DynastyAnthologies(context: Context, override val id: Int) : ParsedOnlineSource(context) {
+-
+-    override val name = "Dynasty-Anthologies"
+-
+-    override val baseUrl = "http://dynasty-scans.com"
+-
+-    override val lang: Language get() = EN
+-
+-    override fun popularMangaInitialUrl() = "$baseUrl/anthologies?view=cover"
+-
+-    override fun popularMangaSelector() = "ul.thumbnails > li.span2"
+-
+-    override fun popularMangaFromElement(element: Element, manga: Manga) {
+-        element.let {
+-            manga.setUrlWithoutDomain(it.select("a").attr("href"))
+-            manga.title = it.select("div.caption").text()
+-            manga.thumbnail_url = baseUrl + it.select("img").attr("src")
+-        }
+-    }
+-
+-    override fun popularMangaParse(response: Response, page: MangasPage) {
+-        val document = response.asJsoup()
+-        for (element in document.select(popularMangaSelector())) {
+-            Manga.create(id).apply {
+-                popularMangaFromElement(element, this)
+-                page.mangas.add(this)
+-            }
+-        }
+-    }
+-
+-    override fun popularMangaNextPageSelector() = ""
+-
+-    override fun searchMangaInitialUrl(query: String, filters: List<OnlineSource.Filter>) =
+-            "$baseUrl/search?q=$query&classes[]=Anthology&classes[]=Issue&classes[]=Series&sort="
+-
+-    override fun searchMangaSelector() = "a.name"
+-
+-    override fun searchMangaFromElement(element: Element, manga: Manga) {
+-        element.let {
+-            manga.setUrlWithoutDomain(it.attr("href"))
+-            manga.title = it.text()
+-        }
+-    }
+-
+-    override fun searchMangaNextPageSelector() = "div.pagination > ul > li.active + li > a"
+-
+-    override fun mangaDetailsParse(document: Document, manga: Manga) {
+-        val ielement = document.select("div#main").first()
+-
+-        if (manga.thumbnail_url == null) manga.thumbnail_url = baseUrl + document.select("div.span2 > img").attr("src")
+-        manga.status = ielement.select("h2 > small").text().orEmpty().let { parseStatus(it) }
+-        manga.genre = document.select("div.tag-tags > a").text() + ","
+-        manga.description = ielement.select("div.description").text()
+-    }
+-
+-    private fun parseStatus(status: String) = when {
+-        status.contains("Ongoing") -> Manga.ONGOING
+-        status.contains("Completed") -> Manga.COMPLETED
+-        else -> Manga.UNKNOWN
+-    }
+-
+-    override fun chapterListSelector() = "div.span10 > dl.chapter-list > dd"
+-
+-    override fun chapterFromElement(element: Element, chapter: Chapter) {
+-        val nodes = element.childNodes()
+-
+-        chapter.setUrlWithoutDomain((nodes[1] as Element).attr("href"))
+-        chapter.name = (nodes[1] as Element).text() + " by " + (nodes[3] as Element).text()
+-        chapter.date_upload = (nodes[7] as Element).text().let {
+-            SimpleDateFormat("MMM dd yy").parse(it.substringAfter("released ").replace("\'", "")).time
+-        }
+-    }
+-
+-    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+-        try {
+-            val script = document.select("script").last()
+-            val p = Pattern.compile("(?s)(pages)\\s??=\\s??\\[(.*?)\\]")
+-            val m = p.matcher(script.html())
+-            var imageUrls = JSONArray()
+-            while (m.find())
+-                imageUrls = JSONArray("[" + m.group(2) + "]")
+-
+-            for (i in 0..imageUrls.length() - 1) {
+-                val jsonObject = imageUrls.getJSONObject(i)
+-                val image = baseUrl + jsonObject.get("image")
+-                pages.add(Page(pages.size, "", image))
+-            }
+-        } catch (e: Exception) {
+-            e.printStackTrace()
+-        }
+-    }
+-
+-    override fun imageUrlParse(document: Document): String = null!!
+-}
+diff --git a/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastyDoujins.kt b/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastyDoujins.kt
+deleted file mode 100644
+index 1be5629..0000000
+--- a/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastyDoujins.kt
++++ /dev/null
+@@ -1,103 +0,0 @@
+-package eu.kanade.tachiyomi.data.source.online.english
+-
+-import android.content.Context
+-import eu.kanade.tachiyomi.data.database.models.Chapter
+-import eu.kanade.tachiyomi.data.database.models.Manga
+-import eu.kanade.tachiyomi.data.source.EN
+-import eu.kanade.tachiyomi.data.source.Language
+-import eu.kanade.tachiyomi.data.source.model.MangasPage
+-import eu.kanade.tachiyomi.data.source.model.Page
+-import eu.kanade.tachiyomi.data.source.online.OnlineSource
+-import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
+-import eu.kanade.tachiyomi.util.asJsoup
+-import okhttp3.Response
+-import org.json.JSONArray
+-import org.jsoup.nodes.Document
+-import org.jsoup.nodes.Element
+-import java.text.SimpleDateFormat
+-import java.util.regex.Pattern
+-
+-class DynastyDoujins(context: Context, override val id: Int) : ParsedOnlineSource(context) {
+-
+-    override val name = "Dynasty-Doujins"
+-
+-    override val baseUrl = "http://dynasty-scans.com"
+-
+-    override val lang: Language get() = EN
+-
+-    override fun popularMangaInitialUrl() = "$baseUrl/doujins?view=cover"
+-
+-    override fun popularMangaSelector() = "ul.thumbnails > li.span2"
+-
+-    override fun popularMangaFromElement(element: Element, manga: Manga) {
+-        element.let {
+-            manga.setUrlWithoutDomain(it.select("a").attr("href"))
+-            manga.title = it.select("div.caption").text()
+-            manga.thumbnail_url = baseUrl + it.select("img").attr("src")
+-        }
+-    }
+-
+-    override fun popularMangaParse(response: Response, page: MangasPage) {
+-        val document = response.asJsoup()
+-        for (element in document.select(popularMangaSelector())) {
+-            Manga.create(id).apply {
+-                popularMangaFromElement(element, this)
+-                page.mangas.add(this)
+-            }
+-        }
+-    }
+-
+-    override fun popularMangaNextPageSelector() = ""
+-
+-    override fun searchMangaInitialUrl(query: String, filters: List<OnlineSource.Filter>) =
+-            "$baseUrl/search?q=$query&classes[]=Anthology&classes[]=Issue&classes[]=Series&sort="
+-
+-    override fun searchMangaSelector() = "a.name"
+-
+-    override fun searchMangaFromElement(element: Element, manga: Manga) {
+-        element.let {
+-            manga.setUrlWithoutDomain(it.attr("href"))
+-            manga.title = it.text()
+-        }
+-    }
+-
+-    override fun searchMangaNextPageSelector() = "div.pagination > ul > li.active + li > a"
+-
+-    override fun mangaDetailsParse(document: Document, manga: Manga) {
+-        manga.status = Manga.UNKNOWN
+-        manga.genre = document.select("div.tag-tags > a").text()
+-    }
+-
+-    override fun chapterListSelector() = "div.span9 > dl.chapter-list > dd"
+-
+-    override fun chapterFromElement(element: Element, chapter: Chapter) {
+-        val nodes = element.childNodes()
+-
+-        chapter.setUrlWithoutDomain((nodes[1] as Element).attr("href"))
+-        chapter.name = (nodes[1] as Element).text() + " by " + (nodes[3] as Element).text()
+-        chapter.date_upload = (nodes[5] as Element).text().let {
+-            SimpleDateFormat("MMM dd yy").parse(it.substringAfter("released ").replace("\'", "")).time
+-        }
+-    }
+-
+-    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+-        try {
+-            val script = document.select("script").last()
+-            val p = Pattern.compile("(?s)(pages)\\s??=\\s??\\[(.*?)\\]")
+-            val m = p.matcher(script.html())
+-            var imageUrls = JSONArray()
+-            while (m.find())
+-                imageUrls = JSONArray("[" + m.group(2) + "]")
+-
+-            for (i in 0..imageUrls.length() - 1) {
+-                val jsonObject = imageUrls.getJSONObject(i)
+-                val image = baseUrl + jsonObject.get("image")
+-                pages.add(Page(pages.size, "", image))
+-            }
+-        } catch (e: Exception) {
+-            e.printStackTrace()
+-        }
+-    }
+-
+-    override fun imageUrlParse(document: Document): String = null!!
+-}
+diff --git a/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastyIssues.kt b/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastyIssues.kt
+deleted file mode 100644
+index 1d4bd5b..0000000
+--- a/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastyIssues.kt
++++ /dev/null
+@@ -1,113 +0,0 @@
+-package eu.kanade.tachiyomi.data.source.online.english
+-
+-import android.content.Context
+-import eu.kanade.tachiyomi.data.database.models.Chapter
+-import eu.kanade.tachiyomi.data.database.models.Manga
+-import eu.kanade.tachiyomi.data.source.EN
+-import eu.kanade.tachiyomi.data.source.Language
+-import eu.kanade.tachiyomi.data.source.model.MangasPage
+-import eu.kanade.tachiyomi.data.source.model.Page
+-import eu.kanade.tachiyomi.data.source.online.OnlineSource
+-import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
+-import eu.kanade.tachiyomi.util.asJsoup
+-import okhttp3.Response
+-import org.json.JSONArray
+-import org.jsoup.nodes.Document
+-import org.jsoup.nodes.Element
+-import java.text.SimpleDateFormat
+-import java.util.regex.Pattern
+-
+-class DynastyIssues(context: Context, override val id: Int) : ParsedOnlineSource(context) {
+-
+-    override val name = "Dynasty-Issues"
+-
+-    override val baseUrl = "http://dynasty-scans.com"
+-
+-    override val lang: Language get() = EN
+-
+-    override fun popularMangaInitialUrl() = "$baseUrl/issues?view=cover"
+-
+-    override fun popularMangaSelector() = "ul.thumbnails > li.span2"
+-
+-    override fun popularMangaFromElement(element: Element, manga: Manga) {
+-        element.let {
+-            manga.setUrlWithoutDomain(it.select("a").attr("href"))
+-            manga.title = it.select("div.caption").text()
+-            manga.thumbnail_url = baseUrl + it.select("img").attr("src")
+-        }
+-    }
+-
+-    override fun popularMangaParse(response: Response, page: MangasPage) {
+-        val document = response.asJsoup()
+-        for (element in document.select(popularMangaSelector())) {
+-            Manga.create(id).apply {
+-                popularMangaFromElement(element, this)
+-                page.mangas.add(this)
+-            }
+-        }
+-    }
+-
+-    override fun popularMangaNextPageSelector() = ""
+-
+-    override fun searchMangaInitialUrl(query: String, filters: List<OnlineSource.Filter>) =
+-            "$baseUrl/search?q=$query&classes[]=Anthology&classes[]=Issue&classes[]=Series&sort="
+-
+-    override fun searchMangaSelector() = "a.name"
+-
+-    override fun searchMangaFromElement(element: Element, manga: Manga) {
+-        element.let {
+-            manga.setUrlWithoutDomain(it.attr("href"))
+-            manga.title = it.text()
+-        }
+-    }
+-
+-    override fun searchMangaNextPageSelector() = "div.pagination > ul > li.active + li > a"
+-
+-    override fun mangaDetailsParse(document: Document, manga: Manga) {
+-        val ielement = document.select("div#main").first()
+-
+-        if (manga.thumbnail_url == null) manga.thumbnail_url = baseUrl + document.select("div.span2 > img").attr("src")
+-        manga.status = ielement.select("h2 > small").text().orEmpty().let { parseStatus(it) }
+-        manga.genre = document.select("div.tag-tags > a").text() + ","
+-        manga.description = ielement.select("div.description").text()
+-    }
+-
+-    private fun parseStatus(status: String) = when {
+-        status.contains("Ongoing") -> Manga.ONGOING
+-        status.contains("Completed") -> Manga.COMPLETED
+-        else -> Manga.UNKNOWN
+-    }
+-
+-    override fun chapterListSelector() = "div.span10 > dl.chapter-list > dd"
+-
+-    override fun chapterFromElement(element: Element, chapter: Chapter) {
+-        val nodes = element.childNodes()
+-
+-        chapter.setUrlWithoutDomain((nodes[1] as Element).attr("href"))
+-        chapter.name = (nodes[1] as Element).text() + " by " + (nodes[3] as Element).text()
+-        chapter.date_upload = (nodes[5] as Element).text().let {
+-            SimpleDateFormat("MMM dd yy").parse(it.substringAfter("released ").replace("\'", "")).time
+-        }
+-    }
+-
+-    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+-        try {
+-            val script = document.select("script").last()
+-            val p = Pattern.compile("(?s)(pages)\\s??=\\s??\\[(.*?)\\]")
+-            val m = p.matcher(script.html())
+-            var imageUrls = JSONArray()
+-            while (m.find())
+-                imageUrls = JSONArray("[" + m.group(2) + "]")
+-
+-            for (i in 0..imageUrls.length() - 1) {
+-                val jsonObject = imageUrls.getJSONObject(i)
+-                val image = baseUrl + jsonObject.get("image")
+-                pages.add(Page(pages.size, "", image))
+-            }
+-        } catch (e: Exception) {
+-            e.printStackTrace()
+-        }
+-    }
+-
+-    override fun imageUrlParse(document: Document): String = null!!
+-}
+diff --git a/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastySeries.kt b/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastySeries.kt
+deleted file mode 100644
+index fc958b9..0000000
+--- a/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/DynastySeries.kt
++++ /dev/null
+@@ -1,118 +0,0 @@
+-package eu.kanade.tachiyomi.data.source.online.english
+-
+-import android.content.Context
+-import eu.kanade.tachiyomi.data.database.models.Chapter
+-import eu.kanade.tachiyomi.data.database.models.Manga
+-import eu.kanade.tachiyomi.data.source.EN
+-import eu.kanade.tachiyomi.data.source.Language
+-import eu.kanade.tachiyomi.data.source.model.MangasPage
+-import eu.kanade.tachiyomi.data.source.model.Page
+-import eu.kanade.tachiyomi.data.source.online.OnlineSource
+-import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
+-import eu.kanade.tachiyomi.util.asJsoup
+-import okhttp3.Response
+-import org.json.JSONArray
+-import org.jsoup.nodes.Document
+-import org.jsoup.nodes.Element
+-import java.text.SimpleDateFormat
+-import java.util.regex.Pattern
+-
+-class DynastySeries(context: Context, override val id: Int) : ParsedOnlineSource(context) {
+-
+-    override val name = "Dynasty-Scans"
+-
+-    override val baseUrl = "http://dynasty-scans.com"
+-
+-    override val lang: Language get() = EN
+-
+-    override fun popularMangaInitialUrl() = "$baseUrl/series?view=cover"
+-
+-    override fun popularMangaSelector() = "ul.thumbnails > li.span2"
+-
+-    override fun popularMangaFromElement(element: Element, manga: Manga) {
+-        element.let {
+-            manga.setUrlWithoutDomain(it.select("a").attr("href"))
+-            manga.title = it.select("div.caption").text()
+-            manga.thumbnail_url = baseUrl + it.select("img").attr("src")
+-        }
+-    }
+-
+-    override fun popularMangaParse(response: Response, page: MangasPage) {
+-        val document = response.asJsoup()
+-        for (element in document.select(popularMangaSelector())) {
+-            Manga.create(id).apply {
+-                popularMangaFromElement(element, this)
+-                page.mangas.add(this)
+-            }
+-        }
+-    }
+-
+-    override fun popularMangaNextPageSelector() = ""
+-
+-    override fun searchMangaInitialUrl(query: String, filters: List<OnlineSource.Filter>) =
+-            "$baseUrl/search?q=$query&classes[]=Anthology&classes[]=Issue&classes[]=Series&sort="
+-
+-    override fun searchMangaSelector() = "a.name"
+-
+-    override fun searchMangaFromElement(element: Element, manga: Manga) {
+-        element.let {
+-            manga.setUrlWithoutDomain(it.attr("href"))
+-            manga.title = it.text()
+-        }
+-    }
+-
+-    override fun searchMangaNextPageSelector() = "div.pagination > ul > li.active + li > a"
+-
+-    override fun mangaDetailsParse(document: Document, manga: Manga) {
+-        val ielement = document.select("div#main").first()
+-
+-        if (manga.thumbnail_url == null) manga.thumbnail_url = baseUrl + document.select("div.span2 > img").attr("src")
+-        manga.status = ielement.select("h2 > small").text().orEmpty().let { parseStatus(it) }
+-        manga.author = ielement.select("h2 > a").text()
+-        manga.artist = manga.author
+-        manga.genre = document.select("div.tag-tags > a").text() + ","
+-        manga.description = ielement.select("div.description").text()
+-    }
+-
+-    private fun parseStatus(status: String) = when {
+-        status.contains("Ongoing") -> Manga.ONGOING
+-        status.contains("Completed") -> Manga.COMPLETED
+-        else -> Manga.UNKNOWN
+-    }
+-
+-    override fun chapterListSelector() = "div.span10 > dl.chapter-list > dd"
+-
+-    override fun chapterListParse(response: Response, chapters: MutableList<Chapter>) {
+-        super.chapterListParse(response, chapters)
+-        chapters.reverse()
+-    }
+-
+-    override fun chapterFromElement(element: Element, chapter: Chapter) {
+-        chapter.setUrlWithoutDomain(element.select("a.name").attr("href"))
+-        chapter.name = element.select("a.name").text()
+-        chapter.date_upload = element.select("small:contains(released)").text().let {
+-            SimpleDateFormat("MMM dd yy").parse(it.substringAfter("released ").replace("\'", "")).time
+-        } ?: 0
+-    }
+-
+-    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+-        try {
+-            val script = document.select("script").last()
+-            val p = Pattern.compile("(?s)(pages)\\s??=\\s??\\[(.*?)\\]")
+-            val m = p.matcher(script.html())
+-            var imageUrls = JSONArray()
+-            while (m.find())
+-                imageUrls = JSONArray("[" + m.group(2) + "]")
+-
+-            for (i in 0..imageUrls.length() - 1) {
+-                val jsonObject = imageUrls.getJSONObject(i)
+-                val image = baseUrl + jsonObject.get("image")
+-                pages.add(Page(pages.size, "", image))
+-            }
+-        } catch (e: Exception) {
+-            e.printStackTrace()
+-        }
+-    }
+-
+-    override fun imageUrlParse(document: Document): String = null!!
+-}
+diff --git a/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyAnthologies.kt b/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyAnthologies.kt
+new file mode 100644
+index 0000000..1e27878
+--- /dev/null
++++ b/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyAnthologies.kt
+@@ -0,0 +1,23 @@
++package eu.kanade.tachiyomi.data.source.online.english.dynasty
++
++import android.content.Context
++import eu.kanade.tachiyomi.data.database.models.Manga
++import org.jsoup.nodes.Document
++
++class DynastyAnthologies(context: Context, override val id: Int) : DynastyScans(context) {
++
++    override val name = "Dynasty-Anthologies"
++
++    override fun popularMangaInitialUrl() = "$baseUrl/anthologies?view=cover"
++
++    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
++            "$baseUrl/search?q=$query&classes[]=Anthology&sort="
++
++    override fun mangaDetailsParse(document: Document, manga: Manga) {
++        manga.thumbnail_url = baseUrl + document.select("div.span2 > img").attr("src")
++        parseHeader(document, manga)
++        parseGenres(document, manga)
++        parseDescription(document, manga)
++    }
++
++}
+diff --git a/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyDoujins.kt b/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyDoujins.kt
+new file mode 100644
+index 0000000..97ca96e
+--- /dev/null
++++ b/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyDoujins.kt
+@@ -0,0 +1,43 @@
++package eu.kanade.tachiyomi.data.source.online.english.dynasty
++
++import android.content.Context
++import eu.kanade.tachiyomi.data.database.models.Manga
++import eu.kanade.tachiyomi.data.source.model.MangasPage
++import eu.kanade.tachiyomi.util.asJsoup
++import okhttp3.CacheControl
++import okhttp3.Headers
++import okhttp3.Request
++import okhttp3.Response
++import org.jsoup.nodes.Document
++import java.util.concurrent.TimeUnit
++
++class DynastyDoujins(context: Context, override val id: Int) : DynastyScans(context) {
++
++    override val name = "Dynasty-Doujins"
++
++    override fun popularMangaInitialUrl() = "$baseUrl/doujins?view=cover"
++
++    override fun popularMangaParse(response: Response, page: MangasPage) {
++        val document = response.asJsoup()
++        for (element in document.select(popularMangaSelector())) {
++            Manga.create(id).apply {
++                popularMangaFromElement(element, this)
++                page.mangas.add(this)
++            }
++        }
++    }
++
++    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
++            "$baseUrl/search?q=$query&classes[]=Doujin&sort="
++
++    override fun mangaDetailsParse(document: Document, manga: Manga) {
++        super.mangaDetailsParse(document, manga)
++        parseThumbnail(manga)
++        manga.author = ".."
++        manga.status = Manga.UNKNOWN
++        parseGenres(document, manga)
++    }
++
++    override fun chapterListSelector() = "div.span9 > dl.chapter-list > dd"
++
++}
+diff --git a/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyIssues.kt b/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyIssues.kt
+new file mode 100644
+index 0000000..8329bcb
+--- /dev/null
++++ b/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyIssues.kt
+@@ -0,0 +1,25 @@
++package eu.kanade.tachiyomi.data.source.online.english.dynasty
++
++import android.content.Context
++import eu.kanade.tachiyomi.data.database.models.Chapter
++import eu.kanade.tachiyomi.data.database.models.Manga
++import okhttp3.Response
++import org.jsoup.nodes.Document
++
++class DynastyIssues(context: Context, override val id: Int) : DynastyScans(context) {
++
++    override val name = "Dynasty-Issues"
++
++    override fun popularMangaInitialUrl() = "$baseUrl/issues?view=cover"
++
++    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
++            "$baseUrl/search?q=$query&classes[]=Issue&sort="
++
++    override fun mangaDetailsParse(document: Document, manga: Manga) {
++        manga.thumbnail_url = baseUrl + document.select("div.span2 > img").attr("src")
++        parseHeader(document, manga)
++        parseGenres(document, manga)
++        parseDescription(document, manga)
++    }
++
++}
+diff --git a/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyScans.kt b/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyScans.kt
+new file mode 100644
+index 0000000..3c03d43
+--- /dev/null
++++ b/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastyScans.kt
+@@ -0,0 +1,225 @@
++package eu.kanade.tachiyomi.data.source.online.english.dynasty
++
++import android.content.Context
++import android.util.Log
++import eu.kanade.tachiyomi.data.database.models.Chapter
++import eu.kanade.tachiyomi.data.database.models.Manga
++import eu.kanade.tachiyomi.data.source.EN
++import eu.kanade.tachiyomi.data.source.Language
++import eu.kanade.tachiyomi.data.source.model.MangasPage
++import eu.kanade.tachiyomi.data.source.model.Page
++import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
++import eu.kanade.tachiyomi.util.asJsoup
++import okhttp3.*
++import org.json.JSONArray
++import org.jsoup.nodes.Document
++import org.jsoup.nodes.Element
++import org.jsoup.nodes.Node
++import org.jsoup.nodes.TextNode
++import java.text.SimpleDateFormat
++import java.util.*
++import java.util.regex.Pattern
++
++abstract class DynastyScans(context: Context) : ParsedOnlineSource(context) {
++
++    override val baseUrl = "http://dynasty-scans.com"
++
++    override val lang: Language get() = EN
++
++    var parent: List<Node> = ArrayList()
++
++    var list = InternalList(ArrayList(), "")
++
++    var imgList = InternalList(ArrayList(), "")
++
++    var _valid: Validate = Validate(false, -1)
++
++    override fun popularMangaSelector() = "ul.thumbnails > li.span2"
++
++    override fun popularMangaFromElement(element: Element, manga: Manga) {
++        manga.setUrlWithoutDomain(element.select("a").attr("href"))
++        manga.title = element.select("div.caption").text()
++    }
++
++    override fun popularMangaParse(response: Response, page: MangasPage) {
++        for (element in response.asJsoup().select(popularMangaSelector())) {
++            Manga.create(id).apply {
++                popularMangaFromElement(element, this)
++                page.mangas.add(this)
++            }
++        }
++    }
++
++    override fun searchMangaSelector() = "a.name"
++
++    override fun searchMangaFromElement(element: Element, manga: Manga) {
++            manga.setUrlWithoutDomain(element.attr("href"))
++            manga.title = element.text()
++    }
++
++    override fun searchMangaNextPageSelector() = "div.pagination > ul > li.active + li > a"
++
++    private fun buildListfromResponse(): List<Node> {
++        return client.newCall(Request.Builder().headers(headers)
++                .url(popularMangaInitialUrl()).build()).execute().asJsoup()
++                .select("div#main").filter { it.hasText() }.first().childNodes()
++    }
++
++    protected fun parseThumbnail(manga: Manga) {
++        if (_valid.isManga == false) Log.i("Debug_Thumbnail", manga.url + " ,, " + list[_valid.pos])
++        if (_valid.isManga) manga.thumbnail_url = baseUrl + imgList[_valid.pos].substringBefore('?')
++    }
++
++    protected fun parseHeader(document: Document, manga: Manga) : Boolean {
++        val elements = document.select("div.tags > h2.tag-title").first().getElementsByTag("a")
++
++        if (!elements.isEmpty()) {
++            if (elements.lastIndex == 0) {
++                manga.author = elements[0].text()
++            } else {
++                manga.artist = elements[0].text()
++                manga.author = elements[1].text()
++            }
++            manga.status = document.select("div.tags > h2.tag-title > small").text().let {
++                when {
++                    it.contains("Ongoing") -> Manga.ONGOING
++                    it.contains("Completed") -> Manga.COMPLETED
++                    else -> Manga.UNKNOWN
++                }
++            }
++            return true
++        }
++        return false
++    }
++
++    protected fun parseGenres(document: Document, manga: Manga) {
++        manga.genre = ""
++        val glist = document.select("div.tags > div.tag-tags").first().getElementsByTag("a")
++        if (!glist.isEmpty()) {
++            for (g in glist) {
++                val s = g.text()
++                manga.genre += if (glist.last().equals(g)) s else "$s, "
++            }
++        }
++    }
++
++    protected fun parseDescription(document: Document, manga: Manga) {
++        Log.i("Debug_", "parseDescripion(...) has executed")
++        manga.description = document.select("div.tags > div.row div.description").text()
++    }
++
++    private fun getValid(manga: Manga): Validate {
++        if (parent.isEmpty()) parent = buildListfromResponse()
++        if (list.isEmpty()) list = InternalList(parent, "href")
++        if (imgList.isEmpty()) imgList = InternalList(parent, "src")
++        val pos = list.indexOf(manga.url)
++        return Validate((pos > -1), pos)
++    }
++
++    override fun mangaDetailsParse(document: Document, manga: Manga) {
++        _valid = getValid(manga)
++        Log.i("Debug_Valid", _valid.isManga.toString() + " .. " + _valid.pos)
++    }
++
++    override fun chapterListSelector() = "div.span10 > dl.chapter-list > dd"
++
++    override fun chapterListParse(response: Response, chapters: MutableList<Chapter>) {
++        super.chapterListParse(response, chapters)
++        chapters.reverse()
++    }
++
++    override fun chapterFromElement(element: Element, chapter: Chapter) {
++        val nodes = InternalList(element.childNodes(), "text")
++
++        chapter.setUrlWithoutDomain(element.select("a.name").attr("href"))
++        chapter.name = nodes[0]
++        if (nodes.contains(" by ")) {
++            chapter.name += " by ${nodes[nodes.indexOf(" by ") + 1]}"
++            if (nodes.contains(" and ")) {
++                chapter.name += " and ${nodes[nodes.indexOf(" and ") + 1]}"
++            }
++        }
++        chapter.date_upload = nodes[nodes.indexOf("released")].let {
++            SimpleDateFormat("MMM dd yy").parse(it.substringAfter("released ").replace("\'", "")).time
++        }
++    }
++
++    override fun pageListParse(document: Document, pages: MutableList<Page>) {
++        try {
++            val script = document.select("script").last()
++            val p = Pattern.compile("(?s)(pages)\\s??=\\s??\\[(.*?)\\]")
++            val m = p.matcher(script.html())
++            var imageUrls = JSONArray()
++            while (m.find())
++                imageUrls = JSONArray("[" + m.group(2) + "]")
++
++            for (i in 0..imageUrls.length() - 1) {
++                val jsonObject = imageUrls.getJSONObject(i)
++                val image = baseUrl + jsonObject.get("image")
++                pages.add(Page(pages.size, "", image))
++            }
++        } catch (e: Exception) {
++            e.printStackTrace()
++        }
++    }
++
++    class InternalList : ArrayList<String> {
++
++        constructor(nodes: List<Node>, type: String) {
++            if (type.equals("text")) {
++                for (node in nodes) {
++                    if (node is TextNode) {
++                        if (!node.text().equals(" ") && !node.text().contains("\n"))
++                            this.add(node.text())
++                    } else if (node is Element) this.add(node.text())
++                }
++            }
++            if (type.equals("src")) {
++                for (node in nodes) {
++                    if (node is Element && node.hasClass("thumbnails")) {
++                        for (n in node.childNodes()) {
++                            if (n is Element && n.hasClass("span2")) {
++                                this.add(n.child(0).child(0).attr(type))
++                            }
++                        }
++                    }
++                }
++            }
++            if (type.equals("href")) {
++                for (node in nodes) {
++                    if (node is Element && node.hasClass("thumbnails")) {
++                        for (n in node.childNodes()) {
++                            if (n is Element && n.hasClass("span2")) {
++                                this.add(n.child(0).attr(type))
++                            }
++                        }
++                    }
++                }
++            }
++        }
++
++        override fun indexOf(partial: String): Int {
++            for (i in 0 .. this.lastIndex) {
++                if (this[i].contains(partial)) return i
++            }
++            return -1
++        }
++
++        fun getItem(partial: String): String {
++            for (i in 0 .. this.lastIndex) {
++                if (super.get(i).contains(partial)) return super.get(i)
++            }
++            return ""
++        }
++    }
++
++    class Validate(_isManga: Boolean, _pos: Int) {
++        val isManga = _isManga
++        val pos = _pos
++    }
++
++    override fun popularMangaNextPageSelector() = ""
++
++    override fun imageUrlParse(document: Document): String = null!!
++
++}
+\ No newline at end of file
+diff --git a/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastySeries.kt b/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastySeries.kt
+new file mode 100644
+index 0000000..8fe2537
+--- /dev/null
++++ b/app/src/main/java/eu/kanade/tachiyomi/data/source/online/english/dynasty/DynastySeries.kt
+@@ -0,0 +1,30 @@
++package eu.kanade.tachiyomi.data.source.online.english.dynasty
++
++import android.content.Context
++import eu.kanade.tachiyomi.data.database.models.Chapter
++import eu.kanade.tachiyomi.data.database.models.Manga
++import eu.kanade.tachiyomi.data.source.model.MangasPage
++import okhttp3.Response
++import org.jsoup.nodes.Document
++import rx.Observable
++
++class DynastySeries(context: Context, override val id: Int) : DynastyScans(context) {
++
++    override val name = "Dynasty-Series"
++
++    override fun popularMangaInitialUrl() = "$baseUrl/series?view=cover"
++
++    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
++            "$baseUrl/search?q=$query&classes[]=Series&sort="
++
++    override fun mangaDetailsParse(document: Document, manga: Manga) {
++        manga.thumbnail_url = baseUrl + document.select("div.span2 > img").attr("src")
++        //manga.author = document.select("h2.tag-title > a").first().text()
++        //manga.artist = document.select("h2.tag-title > a + a").text()
++        parseHeader(document, manga)
++        parseGenres(document, manga)
++        //manga.status = document.select("h2.tag-title > small").text().orEmpty().let { parseStatus(it) }
++        parseDescription(document, manga)
++    }
++
++}
+\ No newline at end of file
+diff --git a/build.gradle b/build.gradle
+index 00ced40..9b006fe 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -1,12 +1,13 @@
+ // Top-level build file where you can add configuration options common to all sub-projects/modules.
+ apply plugin: 'com.github.ben-manes.versions'
+ 
++
+ buildscript {
+     repositories {
+         jcenter()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:2.1.2'
++        classpath 'com.android.tools.build:gradle:2.2.0'
+         classpath 'com.github.ben-manes:gradle-versions-plugin:0.13.0'
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+diff --git a/gradle/wrapper/gradle-wrapper.properties b/gradle/wrapper/gradle-wrapper.properties
+index ec9f420..aa462eb 100644
+--- a/gradle/wrapper/gradle-wrapper.properties
++++ b/gradle/wrapper/gradle-wrapper.properties
+@@ -1,6 +1,6 @@
+-#Fri Feb 05 17:57:08 CET 2016
++#Fri Sep 23 03:30:51 EST 2016
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-2.14-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-2.14.1-all.zip
+-- 
+2.10.0
+

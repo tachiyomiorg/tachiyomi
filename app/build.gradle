@@ -4,6 +4,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+if (file("custom.gradle").exists()) {
+    apply from: "custom.gradle"
+}
+
 ext {
     // Git is needed in your system PATH for these commands to work.
     // If it's not installed, you can return a random value as a workaround
