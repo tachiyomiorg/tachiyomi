@@ -112,7 +112,7 @@ class Readmangatoday(context: Context, override val id: Int) : ParsedOnlineSourc
 
         if (dateWords.size == 3) {
             val timeAgo = Integer.parseInt(dateWords[0])
-            var date : Calendar = Calendar.getInstance()
+            val date : Calendar = Calendar.getInstance()
 
             if (dateWords[1].contains("Minute")) {
                 date.add(Calendar.MINUTE, - timeAgo)
@@ -128,7 +128,7 @@ class Readmangatoday(context: Context, override val id: Int) : ParsedOnlineSourc
                 date.add(Calendar.YEAR, -timeAgo)
             }
 
-            return date.getTimeInMillis()
+            return date.timeInMillis
         }
 
         return 0L
@@ -141,7 +141,7 @@ class Readmangatoday(context: Context, override val id: Int) : ParsedOnlineSourc
         pages.getOrNull(0)?.imageUrl = imageUrlParse(document)
     }
 
-    override fun imageUrlParse(document: Document) = document.select("img.img-responsive-2").first().attr("src")
+    override fun imageUrlParse(document: Document): String = document.select("img.img-responsive-2").first().attr("src")
 
     // [...document.querySelectorAll("ul.manga-cat span")].map(el => `Filter("${el.getAttribute('data-id')}", "${el.nextSibling.textContent.trim()}")`).join(',\n')
     // http://www.readmanga.today/advanced-search
