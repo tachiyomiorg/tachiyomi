@@ -37,11 +37,14 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
         }
     }
 
-    override fun latestUpdatesMangaParse(response: Response, page: MangasPage) {
+    /**
+     * @InheritDoc
+     */
+    override fun latestUpdatesParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(latestUpdatesSelector())) {
             Manga.create(id).apply {
-                latestupdatesMangaFromElement(element, this)
+                latestUpdatesFromElement(element, this)
                 page.mangas.add(this)
             }
         }
@@ -67,7 +70,7 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      */
     abstract protected fun popularMangaFromElement(element: Element, manga: Manga)
 
-    abstract protected fun latestupdatesMangaFromElement(element: Element, manga: Manga)
+    abstract protected fun latestUpdatesFromElement(element: Element, manga: Manga)
 
     /**
      * Returns the Jsoup selector that returns the <a> tag linking to the next page, or null if

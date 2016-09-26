@@ -40,7 +40,7 @@ class Mangafox(context: Context, override val id: Int) : ParsedOnlineSource(cont
         }
     }
 
-    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
         popularMangaFromElement(element, manga)
     }
 

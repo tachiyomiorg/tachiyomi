@@ -55,7 +55,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         }
     }
 
-    override fun latestUpdatesMangaRequest(page: MangasPage): Request {
+    override fun latestUpdatesRequest(page: MangasPage): Request {
         if (page.page == 1) {
             page.url = latestUpdatesInitialUrl()
         }
@@ -84,7 +84,7 @@ class YamlOnlineSource(context: Context, mappings: Map<*, *>) : OnlineSource(con
         }
     }
 
-    override fun latestUpdatesMangaParse(response: Response, page: MangasPage) {
+    override fun latestUpdatesParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(map.latestupdates.manga_css)) {
             Manga.create(id).apply {

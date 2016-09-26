@@ -77,11 +77,11 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
         }
     }
 
-    override fun latestUpdatesMangaParse(response: Response, page: MangasPage) {
+    override fun latestUpdatesParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(latestUpdatesSelector())) {
             Manga.create(id).apply {
-                latestupdatesMangaFromElement(element, this)
+                latestUpdatesFromElement(element, this)
                 page.mangas.add(this)
             }
         }
@@ -102,7 +102,7 @@ class Batoto(context: Context, override val id: Int) : ParsedOnlineSource(contex
         }
     }
 
-    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
         popularMangaFromElement(element, manga)
     }
 

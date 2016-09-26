@@ -19,7 +19,7 @@ class WieManga(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override val baseUrl = "http://www.wiemanga.com"
 
-    override val lang: Language = DE
+    override val lang: Language get() = DE
 
     override val supportsLatest = true
 
@@ -40,7 +40,7 @@ class WieManga(context: Context, override val id: Int) : ParsedOnlineSource(cont
         manga.thumbnail_url = image.attr("src")
     }
 
-    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
         popularMangaFromElement(element, manga)
     }
 

@@ -192,7 +192,7 @@ class Readmangatoday(context: Context, override val id: Int) : ParsedOnlineSourc
         throw UnsupportedOperationException("not implemented")
     }
 
-    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
         throw UnsupportedOperationException("not implemented")
     }
 

@@ -5,6 +5,9 @@ import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.ui.catalogue.Pager
 import rx.Observable
 
+/**
+ * LatestUpdatesPager inherited from the general Pager.
+ */
 class LatestUpdatesPager(val source: OnlineSource): Pager() {
 
     override fun requestNext(transformer: (Observable<MangasPage>) -> Observable<MangasPage>): Observable<MangasPage> {

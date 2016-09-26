@@ -179,7 +179,7 @@ class Mangasee(context: Context, override val id: Int) : ParsedOnlineSource(cont
         throw UnsupportedOperationException("not implemented")
     }
 
-    override fun latestupdatesMangaFromElement(element: Element, manga: Manga) {
+    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
         throw UnsupportedOperationException("not implemented")
     }
 

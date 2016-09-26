@@ -21,7 +21,7 @@
             android:title="@string/label_catalogues" />
         <item
             android:id="@+id/nav_drawer_latest_updates"
-            android:icon="@drawable/ic_rotate_90_degrees_ccw"
+            android:icon="@drawable/ic_watch_later"
             android:title="@string/label_latest_updates" />
         <item
             android:id="@+id/nav_drawer_downloads"

@@ -7,7 +7,7 @@ import eu.kanade.tachiyomi.ui.catalogue.Pager
 import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
 
 /**
- * Presenter of [*Fragment]. Inherit CataloguePresenter.
+ * Presenter of [LatestUpdatesFragment]. Inherit CataloguePresenter.
  */
 class LatestUpdatesPresenter : CataloguePresenter() {
 
