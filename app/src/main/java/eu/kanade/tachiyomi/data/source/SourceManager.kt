@@ -18,18 +18,7 @@ import java.io.File
 
 open class SourceManager(private val context: Context) {
 
-    val BATOTO = 1
-    val MANGAHERE = 2
-    val MANGAFOX = 3
-    val KISSMANGA = 4
-    val READMANGA = 5
-    val MINTMANGA = 6
-    val MANGACHAN = 7
-    val READMANGATODAY = 8
-    val MANGASEE = 9
-    val WIEMANGA = 10
-
-    val LAST_SOURCE = 10
+    val SOURCES = 10
 
     val sourcesMap = createSources()
 
@@ -40,21 +29,21 @@ open class SourceManager(private val context: Context) {
     fun getOnlineSources() = sourcesMap.values.filterIsInstance(OnlineSource::class.java)
 
     private fun createSource(id: Int): Source? = when (id) {
-        BATOTO -> Batoto(context, id)
-        KISSMANGA -> Kissmanga(context, id)
-        MANGAHERE -> Mangahere(context, id)
-        MANGAFOX -> Mangafox(context, id)
-        READMANGA -> Readmanga(context, id)
-        MINTMANGA -> Mintmanga(context, id)
-        MANGACHAN -> Mangachan(context, id)
-        READMANGATODAY -> Readmangatoday(context, id)
-        MANGASEE -> Mangasee(context, id)
-        WIEMANGA -> WieManga(context, id)
+        1 -> Batoto(context, id)
+        2 -> Kissmanga(context, id)
+        3 -> Mangahere(context, id)
+        4 -> Mangafox(context, id)
+        5 -> Readmanga(context, id)
+        6 -> Mintmanga(context, id)
+        7 -> Mangachan(context, id)
+        8 -> Readmangatoday(context, id)
+        9 -> Mangasee(context, id)
+        10 -> WieManga(context, id)
         else -> null
     }
 
     private fun createSources(): Map<Int, Source> = hashMapOf<Int, Source>().apply {
-        for (i in 1..LAST_SOURCE) {
+        for (i in 1..SOURCES) {
             createSource(i)?.let { put(i, it) }
         }
 

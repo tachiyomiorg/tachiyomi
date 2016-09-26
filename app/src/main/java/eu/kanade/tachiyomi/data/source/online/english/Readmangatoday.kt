@@ -112,23 +112,23 @@ class Readmangatoday(context: Context, override val id: Int) : ParsedOnlineSourc
 
         if (dateWords.size == 3) {
             val timeAgo = Integer.parseInt(dateWords[0])
-            var date : Calendar = Calendar.getInstance()
+            val calendar : Calendar = Calendar.getInstance()
 
             if (dateWords[1].contains("Minute")) {
-                date.add(Calendar.MINUTE, - timeAgo)
+                calendar.add(Calendar.MINUTE, - timeAgo)
             } else if (dateWords[1].contains("Hour")) {
-                date.add(Calendar.HOUR_OF_DAY, - timeAgo)
+                calendar.add(Calendar.HOUR_OF_DAY, - timeAgo)
             } else if (dateWords[1].contains("Day")) {
-                date.add(Calendar.DAY_OF_YEAR, -timeAgo)
+                calendar.add(Calendar.DAY_OF_YEAR, -timeAgo)
             } else if (dateWords[1].contains("Week")) {
-                date.add(Calendar.WEEK_OF_YEAR, -timeAgo)
+                calendar.add(Calendar.WEEK_OF_YEAR, -timeAgo)
             } else if (dateWords[1].contains("Month")) {
-                date.add(Calendar.MONTH, -timeAgo)
+                calendar.add(Calendar.MONTH, -timeAgo)
             } else if (dateWords[1].contains("Year")) {
-                date.add(Calendar.YEAR, -timeAgo)
+                calendar.add(Calendar.YEAR, -timeAgo)
             }
 
-            return date.getTimeInMillis()
+            return calendar.timeInMillis
         }
 
         return 0L

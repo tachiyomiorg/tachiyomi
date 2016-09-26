@@ -106,8 +106,8 @@ class Mangafox(context: Context, override val id: Int) : ParsedOnlineSource(cont
 
     override fun pageListParse(response: Response, pages: MutableList<Page>) {
         val document = response.asJsoup()
+        val url = document.location().substringBeforeLast('/')
 
-        val url = response.request().url().toString().substringBeforeLast('/')
         document.select("select.m").first().select("option:not([value=0])").forEach {
             pages.add(Page(pages.size, "$url/${it.attr("value")}.html"))
         }

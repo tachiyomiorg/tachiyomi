@@ -88,11 +88,9 @@ class Readmanga(context: Context, override val id: Int) : ParsedOnlineSource(con
     override fun pageListParse(response: Response, pages: MutableList<Page>) {
         val html = response.body().string()
         val beginIndex = html.indexOf("rm_h.init( [")
-        val endIndex = html.indexOf("], 0, false);", beginIndex)
-        val trimmedHtml = html.substring(beginIndex, endIndex)
 
         val p = Pattern.compile("'.+?','.+?',\".+?\"")
-        val m = p.matcher(trimmedHtml)
+        val m = p.matcher(html.substring(beginIndex, html.indexOf("], 0, false);", beginIndex)))
 
         var i = 0
         while (m.find()) {
