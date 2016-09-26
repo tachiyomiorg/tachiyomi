@@ -57,10 +57,6 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
 
     }
 
-    var REQUEST_IMAGE_OPEN = 102
-
-    val imagePickerActivities = SparseArray<Intent>()
-
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
         setHasOptionsMenu(true)
@@ -223,47 +219,8 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
                     //Set shortcut title
                     addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, text.toString())
 
-                    //Custom image
-                    fun pickCustomImage() {
-                        val intent = Intent(Intent.ACTION_GET_CONTENT)
-                        intent.type = "image/*"
-                        val requestCode = REQUEST_IMAGE_OPEN++
-                        imagePickerActivities.put(requestCode, addIntent)
-                        startActivityForResult(Intent.createChooser(intent,
-                                getString(R.string.file_select_icon)), requestCode)
-                    }
-
-                    val modes = intArrayOf(R.string.tachiyomi_icon,
-                            R.string.manga_thumbnail,
-                            R.string.custom_icon)
-
-                    //Set shortcut icon
-                    MaterialDialog.Builder(activity)
-                            .title(R.string.icon_type)
-                            .negativeText(android.R.string.cancel)
-                            .items(modes.map { getString(it) })
-                            .itemsCallback { dialog, view, i, charSequence ->
-                                // i = 0: Tachiyomi icon
-                                // i = 1: Manga thumbnail
-                                // i = 2: Custom icon
-                                val icon = when (i) {
-                                    0 -> BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
-                                    1 -> {
-                                        reshapeIconBitmap(addIntent,
-                                                Glide.with(context).load(presenter.manga).asBitmap())
-                                        null
-                                    }
-                                    2 -> {
-                                        pickCustomImage()
-                                        null
-                                    }
-                                    else -> null
-                                }
-
-                                if (icon != null) {
-                                    createShortcut(addIntent, icon)
-                                }
-                            }.show()
+                    reshapeIconBitmap(addIntent,
+                            Glide.with(context).load(presenter.manga).asBitmap())
                 })
                 .negativeText(android.R.string.cancel)
                 .onNegative { materialDialog, dialogAction -> materialDialog.cancel() }
@@ -315,20 +272,6 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
                 .flags = Intent.FLAG_ACTIVITY_NEW_TASK
         activity.runOnUiThread {
             startActivity(startMain)
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        val imagePickerIntent = imagePickerActivities[requestCode]
-        imagePickerActivities.remove(requestCode)
-        if (imagePickerIntent != null && data != null && resultCode == Activity.RESULT_OK) {
-            try {
-                // Get the file's input stream from the incoming Intent
-                reshapeIconBitmap(imagePickerIntent, Glide.with(context).load(context.contentResolver.openInputStream(data.data)).asBitmap())
-            } catch (error: IOException) {
-                context.toast(R.string.shortcut_creation_failed)
-                Timber.e(error, error.message)
-            }
         }
     }
 

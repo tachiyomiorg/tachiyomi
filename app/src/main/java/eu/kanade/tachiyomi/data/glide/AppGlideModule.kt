@@ -28,6 +28,5 @@ class AppGlideModule : GlideModule {
 
         glide.register(GlideUrl::class.java, InputStream::class.java, networkFactory)
         glide.register(Manga::class.java, InputStream::class.java, MangaModelLoader.Factory())
-        glide.register(InputStream::class.java, InputStream::class.java, PassthroughStreamLoader.Factory())
     }
 }
