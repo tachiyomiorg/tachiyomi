@@ -33,6 +33,9 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.fragment_manga_info.*
 import kotlinx.android.synthetic.main.item_download.*
 import nucleus.factory.RequiresPresenter
+import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 import timber.log.Timber
 import java.io.IOException
 import kotlin.concurrent.thread
@@ -242,23 +245,22 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
                 .negativeText(android.R.string.cancel)
                 .items(modes.map { getString(it) })
                 .itemsCallback { dialog, view, i, charSequence ->
-                    thread {
+                    Observable.fromCallable {
                         // i = 0: Circular icon
                         // i = 1: Rounded icon
                         // i = 2: Square icon
                         // i = 3: Star icon (because boredom)
-                        val icon = when (i) {
+                        when (i) {
                             0 -> request.transform(CropCircleTransformation(context)).toIcon()
                             1 -> request.transform(RoundedCornersTransformation(context, 5, 0)).toIcon()
                             2 -> request.transform(CropSquareTransformation(context)).toIcon()
                             3 -> request.transform(CenterCrop(context), MaskTransformation(context, R.drawable.mask_star)).toIcon()
                             else -> null
                         }
-
-                        if (icon != null) {
-                            createShortcut(addIntent, icon)
-                        }
-                    }
+                    }.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ if (it != null) createShortcut(addIntent, it) },
+                            { context.toast(R.string.icon_creation_fail) })
                 }.show()
     }
 

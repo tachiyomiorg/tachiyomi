@@ -235,6 +235,7 @@
     <string name="star_icon">Star icon</string>
     <string name="shortcut_title">Shortcut title</string>
     <string name="icon_shape">Icon shape</string>
+    <string name="icon_creation_fail">Failed to create shortcut!</string>
 
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapters</string>
