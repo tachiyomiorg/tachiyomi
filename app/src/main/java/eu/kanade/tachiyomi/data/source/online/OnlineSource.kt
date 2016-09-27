@@ -101,6 +101,9 @@ abstract class OnlineSource(context: Context) : Source {
                 page
             }
 
+    /**
+     * Returns an observable containing a page with a list of latest manga.
+     */
     open fun fetchLatestUpdates(page: MangasPage): Observable<MangasPage> = client
             .newCall(latestUpdatesRequest(page))
             .asObservable()
@@ -122,6 +125,9 @@ abstract class OnlineSource(context: Context) : Source {
         return GET(page.url, headers)
     }
 
+    /**
+     * Returns the request for latest manga given the page.
+     */
     open protected fun latestUpdatesRequest(page: MangasPage): Request {
         if (page.page == 1) {
             page.url = latestUpdatesInitialUrl()
@@ -149,7 +155,7 @@ abstract class OnlineSource(context: Context) : Source {
     abstract protected fun popularMangaParse(response: Response, page: MangasPage)
 
     /**
-     * Same as {@link #popularMangaParse(response: Response, page: MangasPage)} but for latest manga
+     * Same as [popularMangaParse], but for latest manga.
      */
     abstract protected fun latestUpdatesParse(response: Response, page: MangasPage)
 

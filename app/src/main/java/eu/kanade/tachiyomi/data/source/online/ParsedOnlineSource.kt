@@ -38,7 +38,7 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
     }
 
     /**
-     * @InheritDoc
+     * Parse the response from the site for latest updates and fills [page].
      */
     override fun latestUpdatesParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
@@ -59,6 +59,9 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      */
     abstract protected fun popularMangaSelector(): String
 
+    /**
+     * Returns the Jsoup selector similar to [popularMangaSelector], but for latest updates.
+     */
     abstract protected fun latestUpdatesSelector(): String
 
     /**
@@ -70,6 +73,9 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      */
     abstract protected fun popularMangaFromElement(element: Element, manga: Manga)
 
+    /**
+     * Fills [manga] with the given [element]. For latest updates.
+     */
     abstract protected fun latestUpdatesFromElement(element: Element, manga: Manga)
 
     /**
@@ -78,6 +84,9 @@ abstract class ParsedOnlineSource(context: Context) : OnlineSource(context) {
      */
     abstract protected fun popularMangaNextPageSelector(): String?
 
+    /**
+     * Returns the Jsoup selector that returns the <a> tag, like [popularMangaNextPageSelector].
+     */
     abstract protected fun latestUpdatesNextPageSelector(): String?
 
     /**
