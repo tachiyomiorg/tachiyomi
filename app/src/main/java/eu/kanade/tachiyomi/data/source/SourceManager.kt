@@ -7,10 +7,11 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.data.source.online.YamlOnlineSource
 import eu.kanade.tachiyomi.data.source.online.english.*
-import eu.kanade.tachiyomi.data.source.online.german.WieManga
-import eu.kanade.tachiyomi.data.source.online.russian.Mangachan
-import eu.kanade.tachiyomi.data.source.online.russian.Mintmanga
-import eu.kanade.tachiyomi.data.source.online.russian.Readmanga
+import eu.kanade.tachiyomi.data.source.online.german.*
+import eu.kanade.tachiyomi.data.source.online.italian.*
+import eu.kanade.tachiyomi.data.source.online.portuguese.*
+import eu.kanade.tachiyomi.data.source.online.russian.*
+import eu.kanade.tachiyomi.data.source.online.spanish.*
 import eu.kanade.tachiyomi.util.hasPermission
 import org.yaml.snakeyaml.Yaml
 import timber.log.Timber
@@ -18,18 +19,7 @@ import java.io.File
 
 open class SourceManager(private val context: Context) {
 
-    val BATOTO = 1
-    val MANGAHERE = 2
-    val MANGAFOX = 3
-    val KISSMANGA = 4
-    val READMANGA = 5
-    val MINTMANGA = 6
-    val MANGACHAN = 7
-    val READMANGATODAY = 8
-    val MANGASEE = 9
-    val WIEMANGA = 10
-
-    val LAST_SOURCE = 10
+    val SOURCES = 19
 
     val sourcesMap = createSources()
 
@@ -40,21 +30,30 @@ open class SourceManager(private val context: Context) {
     fun getOnlineSources() = sourcesMap.values.filterIsInstance(OnlineSource::class.java)
 
     private fun createSource(id: Int): Source? = when (id) {
-        BATOTO -> Batoto(context, id)
-        KISSMANGA -> Kissmanga(context, id)
-        MANGAHERE -> Mangahere(context, id)
-        MANGAFOX -> Mangafox(context, id)
-        READMANGA -> Readmanga(context, id)
-        MINTMANGA -> Mintmanga(context, id)
-        MANGACHAN -> Mangachan(context, id)
-        READMANGATODAY -> Readmangatoday(context, id)
-        MANGASEE -> Mangasee(context, id)
-        WIEMANGA -> WieManga(context, id)
+        1 -> Batoto(context, id)
+        2 -> MangahereEN(context, id)
+        3 -> Mangafox(context, id)
+        4 -> Kissmanga(context, id)
+        5 -> Readmanga(context, id)
+        6 -> Mintmanga(context, id)
+        7 -> Mangachan(context, id)
+        8 -> Readmangatoday(context, id)
+        9 -> Mangasee(context, id)
+        10 -> WieManga(context, id)
+        11 -> NinemangaEN(context, id)
+        12 -> NinemangaDE(context, id)
+        13 -> NinemangaIT(context, id)
+        14 -> NinemangaBR(context, id)
+        15 -> NinemangaRU(context, id)
+        16 -> NinemangaES(context, id)
+        17 -> MangahereES(context, id)
+        18 -> MangaedenEN(context, id)
+        19 -> MangaedenIT(context, id)
         else -> null
     }
 
     private fun createSources(): Map<Int, Source> = hashMapOf<Int, Source>().apply {
-        for (i in 1..LAST_SOURCE) {
+        for (i in 1..SOURCES) {
             createSource(i)?.let { put(i, it) }
         }
 
