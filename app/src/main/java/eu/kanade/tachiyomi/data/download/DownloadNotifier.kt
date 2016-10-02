@@ -96,6 +96,10 @@ class DownloadNotifier(private val context: Context) {
             if (multipleDownloadThreads) {
                 setContentTitle(context.getString(R.string.app_name))
 
+                // Reset the queue size if the download progress is negative
+                if ((initialQueueSize - queue.size) < 0)
+                    initialQueueSize = queue.size
+
                 setContentText(context.getString(R.string.chapter_downloading_progress)
                         .format(initialQueueSize - queue.size, initialQueueSize))
                 setProgress(initialQueueSize, initialQueueSize - queue.size, false)
@@ -161,6 +165,9 @@ class DownloadNotifier(private val context: Context) {
             setProgress(0, 0, false)
         }
         context.notificationManager.notify(Constants.NOTIFICATION_DOWNLOAD_CHAPTER_ERROR_ID, notificationBuilder.build())
+
+        // Reset download information
+        onClear()
         isDownloading = false
     }
 }
