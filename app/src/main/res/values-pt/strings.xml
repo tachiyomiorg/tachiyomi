@@ -19,8 +19,9 @@
     <string name="action_settings">Definições</string>
     <string name="action_filter">Filtro</string>
     <string name="action_filter_downloaded">Transferido</string>
-    <string name="action_filter_unread">Não lido</string>
-    <string name="action_filter_empty">Eliminar filtros</string>
+    <string name="action_filter_unread">Não Lido</string>
+    <string name="action_filter_read">Lido</string>
+    <string name="action_filter_empty">Remover filtro</string>
     <string name="action_search">Procurar</string>
     <string name="action_select_all">Selecionar tudo</string>
     <string name="action_mark_as_read">Marcar como lido</string>
@@ -32,7 +33,7 @@
     <string name="action_update_library">Atualizar biblioteca</string>
     <string name="action_edit">Editar</string>
     <string name="action_add_category">Adicionar categoria</string>
-    <string name="action_edit_categories">Editar categoria</string>
+    <string name="action_edit_categories">Editar categorias</string>
     <string name="action_rename_category">Renomear categoria</string>
     <string name="action_move_category">Mover para categorias</string>
     <string name="action_edit_cover">Alterar imagem de capa</string>
@@ -52,6 +53,7 @@
     <string name="action_resume">Resumir</string>
     <string name="action_open_in_browser">Abrir no navegador de internet</string>
     <string name="action_display_mode">Mudar modo de visualização</string>
+    <string name="action_set_filter">Definir filtro</string>
     <string name="action_cancel">Cancelar</string>
     <string name="action_sort">Ordenar</string>
     <string name="action_install">Instalar</string>
@@ -84,13 +86,15 @@
     <string name="update_12hour">A cada 12 horas</string>
     <string name="update_24hour">Diariamente</string>
     <string name="update_48hour">A cada 2 dias</string>
+    <string name="pref_library_update_categories">Categorias a incluir na actualizização global</string>
+    <string name="all">Tudo</string>
     <string name="pref_library_update_restriction">Restrições sobre a atualização da biblioteca</string>
     <string name="pref_library_update_restriction_summary">Atualizar apenas quando se cumprem as condições</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">A carregar</string>
     <string name="pref_update_only_non_completed">Atualizar apenas manga em curso</string>
     <string name="pref_auto_update_manga_sync">Sincronizar capítulos após leitura</string>
-    <string name="pref_ask_update_manga_sync">Confirmar antes de atualização</string>
+    <string name="pref_ask_update_manga_sync">Confirmar antes da atualização</string>
     <string name="pref_theme">Tema da aplicação</string>
     <string name="light_theme">Tema principal</string>
     <string name="dark_theme">Tema escuro</string>
@@ -141,16 +145,13 @@
     <string name="pref_download_only_over_wifi">Transferir apenas através Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Eliminar ao marcar como lido</string>
     <string name="pref_remove_after_read">Eliminar depois de ler</string>
-    <string name="cat_remove_after_read">Eliminar depois de ler</string>
-    <string name="current_chapter">Capítulo atual</string>
-    <string name="previous_chapter">Capítulo anterior</string>
     <string name="custom_dir">Pasta personalizada</string>
-
-
-    <!-- Sources section -->
-    <string name="languages">Idiomas</string>
-    <string name="languages_summary">Seleciona em que idiomas mostras as fontes</string>
-    <string name="accounts">Contas</string>
+    <string name="disabled">Desativado</string>
+    <string name="last_read_chapter">Último capítulo</string>
+    <string name="second_to_last">Segundo capítulo antes do último</string>
+    <string name="third_to_last">Terceiro capítulo antes do último</string>
+    <string name="fourth_to_last">Quarto capítulo antes do último</string>
+    <string name="fifth_to_last">Quinto capítulo antes do último</string>
 
     <!-- Sync section -->
     <string name="services">Serviços</string>
@@ -165,11 +166,11 @@
     <string name="pref_clear_database">Limpar redundância da base de dados</string>
     <string name="pref_clear_database_summary">Eliminar manga não presente na biblioteca</string>
     <string name="clear_database_confirmation">Capítulos lidos e progresso em manga que não está na biblioteca será perdido. Deseja continuar?</string>
-    <string name="clear_database_completed">Entradas eliminar</string>
+    <string name="clear_database_completed">Eliminar entradas</string>
     <string name="pref_show_warning_message">Mostrar avisos</string>
     <string name="pref_show_warning_message_summary">Mostrar mensagens de avisos durante a sincronização</string>
     <string name="pref_reencode">Recodificar imagens</string>
-    <string name="pref_reencode_summary">Permitir recodificação se as imagens não poderem ser descodificadas. Para melhores resultados utilize Skia</string>
+    <string name="pref_reencode_summary">Permitir recodificação se as imagens não puderam ser descodificadas. Para melhores resultados utilize Skia</string>
 
     <!-- About section -->
     <string name="version">Versão</string>
@@ -180,28 +181,28 @@
     <string name="pref_enable_acra">Enviar relatórios de erro</string>
     <string name="pref_acra_summary">Ajuda a corrigir qualquer erro. Não serão enviados dados sensíveis</string>
 
-
     <!-- Login dialog -->
     <string name="login_title">Iniciar sessão para %1$s</string>
     <string name="username">Nome de utilizador</string>
-    <string name="password">Password</string>
-    <string name="show_password">Mostrar password</string>
+    <string name="password">Palavra-passe</string>
+    <string name="show_password">Mostrar palavra-passe</string>
     <string name="login">Iniciar sessão</string>
     <string name="login_success">Início de sessão bem sucedido</string>
     <string name="invalid_login">Início de sessão falhado</string>
     <string name="unknown_error">Erro desconhecido</string>
 
-    <!-- Biblioteca fragment -->
-    <string name="library_search_hint">Titulo ou autor…</string>
+    <!-- Library fragment -->
+    <string name="library_search_hint">Título ou autor…</string>
     <string name="updating_category">A atualizar categoria</string>
     <string name="confirm_delete_manga">Eliminar manga selecionada?</string>
 
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Esta fonte necessita que inicies a sessão</string>
     <string name="select_source">Selecionar a fonte</string>
+    <string name="no_valid_sources">Por favor habilite pelo menos uma fonte valida</string>
 
     <!-- Manga info fragment -->
-    <string name="manga_detail_tab">Info</string>
+    <string name="manga_detail_tab">Informações</string>
     <string name="description">Descrição</string>
     <string name="ongoing">Em curso</string>
     <string name="unknown">Desconhecido</string>
@@ -217,7 +218,7 @@
 
     <!-- Manga chapter fragment -->
     <string name="manga_chapters_tab">Capítulos</string>
-    <string name="manga_chapter_no_title">Sem titulo</string>
+    <string name="manga_chapter_no_title">Sem título</string>
     <string name="display_mode_chapter">Capítulo %1$s</string>
     <string name="chapter_downloaded">Transferido</string>
     <string name="chapter_queued">Em fila</string>
@@ -225,7 +226,7 @@
     <string name="chapter_downloading_progress">A Transferir (%1$d/%2$d)</string>
     <string name="chapter_error">Erro</string>
     <string name="fetch_chapters_error">Erro ao obter capítulos</string>
-    <string name="show_title">Mostrar titulo</string>
+    <string name="show_title">Mostrar título</string>
     <string name="show_chapter_number">Mostrar número de capítulo</string>
     <string name="sorting_mode">Modo de organização</string>
     <string name="sort_by_source">Por fonte</string>
@@ -236,7 +237,7 @@
     <string name="download_10">Transferir próximos 10 capítulos</string>
     <string name="download_all">Transferir tudo</string>
     <string name="download_unread">Transferir não lidos</string>
-    <string name="confirm_delete_chapters">Tem a certeza que deseja eliminar os capítulos selecionados?</string>
+    <string name="confirm_delete_chapters">Eliminar os capítulos selecionados?</string>
 
     <!-- MyAnimeList fragment -->
     <string name="reading">A ler</string>
@@ -245,14 +246,13 @@
     <string name="on_hold">Em espera</string>
     <string name="plan_to_read">Planeada a leitura</string>
     <string name="score">Avaliação</string>
-    <string name="title_hint">Titulo…</string>
+    <string name="title_hint">Título…</string>
     <string name="status">Estado</string>
     <string name="chapters">Capítulos</string>
 
     <!-- Dialog remove recently view -->
-    <string name="dialog_remove_recently_description">Isto irá remover a data de leitura deste capítulo. Continuar?</string>
-    <string name="dialog_remove_recently_reset">Repor todos os capítulos deste manga</string>
-
+    <string name="dialog_remove_recently_description">Esta ação irá remover a data de leitura deste capítulo. Continuar?</string>
+    <string name="dialog_remove_recently_reset">Repor todos os capítulos desta manga</string>
 
     <!-- Reader activity -->
     <string name="downloading">A transferir…</string>
@@ -261,7 +261,7 @@
     <string name="chapter_subtitle">Capítulo %1$s</string>
     <string name="no_next_chapter">Capítulo seguinte não encontrado</string>
     <string name="no_previous_chapter">Capítulo anterior não encontrado</string>
-    <string name="decode_image_error">Imagem não pode ser carregada.\nPor favor tente alterar o descodificador de imagem ou selecione uma das seguintes opções</string>
+    <string name="decode_image_error">Imagem não pôde ser carregada.\nPor favor tente alterar o descodificador de imagem ou selecione uma das seguintes opções</string>
     <string name="confirm_update_manga_sync">Atualizar último capítulo lido a %1$d nos serviços ativos?</string>
     <string name="viewer_for_this_series">Visualizador para esta série</string>
 
@@ -270,21 +270,21 @@
     <string name="restore">Restaurar</string>
     <string name="backup_please_wait">Cópia de segurança em curso. Por favor aguarde…</string>
     <string name="backup_completed">Cópia de segurança restaurada com sucesso</string>
-    <string name="restore_please_wait">Restaurando cópia de segurança. Por favor aguarde…</string>
+    <string name="restore_please_wait">A restaurar cópia de segurança. Por favor aguarde…</string>
 
     <!-- Recent manga fragment -->
-    <string name="recent_manga_source">%1$s - Ch.%2$s</string>
+    <string name="recent_manga_source">%1$s - Cap.%2$s</string>
 
-    <!-- Download activity and service -->
+    <!-- Downloads activity and service -->
     <string name="download_queue_error">Ocorreu um erro ao transferir capítulos. Poderá tentar novamente na secção das transferências</string>
 
-    <!-- Library atualização service notifications -->
+    <!-- Library update service notifications -->
     <string name="notification_update_progress">Progresso da atualização: %1$d/%2$d</string>
     <string name="notification_update_completed">Atualização completa</string>
     <string name="notification_update_error">Ocorreu um erro inesperado ao atualizar a biblioteca</string>
     <string name="notification_no_new_chapters">Sem novos capítulos encontrados</string>
     <string name="notification_new_chapters">Novos capítulos encontrados para:</string>
-    <string name="notification_manga_update_failed">Falha ao atualizar ao manga:</string>
+    <string name="notification_manga_update_failed">Falha ao atualizar a manga:</string>
     <string name="notification_first_add_to_library">Por favor adicione a manga à sua biblioteca antes de fazer isto</string>
     <string name="notification_not_connected_to_ac_title">Sincronização cancelada</string>
     <string name="notification_not_connected_to_ac_body">O dispositivo não está ligado ao carregador</string>
@@ -311,8 +311,8 @@
     <string name="update_check_notification_update_available">Atualização disponível</string>
 
     <!--Content Description-->
-    <string name="description_backdrop">Imagem de capa de manga</string>
-    <string name="description_cover">Imagem de capa de manga</string>
+    <string name="description_backdrop">Imagem de capa da manga</string>
+    <string name="description_cover">Imagem de capa da manga</string>
 
     <!-- Information Text -->
     <string name="information_no_downloads">Sem transferências</string>
