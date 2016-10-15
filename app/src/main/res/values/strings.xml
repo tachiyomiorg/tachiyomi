@@ -275,6 +275,7 @@
 
 
     <!-- Reader activity -->
+    <string name="custom_filter">Custom filter</string>
     <string name="downloading">Downloading…</string>
     <string name="download_progress">Downloaded %1$d%%</string>
     <string name="chapter_progress">Page: %1$d</string>
