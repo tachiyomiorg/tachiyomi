@@ -21,6 +21,7 @@ class ChaptersHolder(
 
     private val readColor = view.context.theme.getResourceColor(android.R.attr.textColorHint)
     private val unreadColor = view.context.theme.getResourceColor(android.R.attr.textColorPrimary)
+    private val bookmarkedColor = view.context.theme.getResourceColor(android.R.attr.colorAccent)
     private val decimalFormat = DecimalFormat("#.###", DecimalFormatSymbols().apply { decimalSeparator = '.' })
     private val df = DateFormat.getDateInstance(DateFormat.SHORT)
 
@@ -43,7 +44,10 @@ class ChaptersHolder(
             }
             else -> chapter.name
         }
+
+        // Set correct text color
         chapter_title.setTextColor(if (chapter.read) readColor else unreadColor)
+        if (chapter.bookmarked) chapter_title.setTextColor(bookmarkedColor)
 
         if (chapter.date_upload > 0) {
             chapter_date.text = df.format(Date(chapter.date_upload))
@@ -84,6 +88,10 @@ class ChaptersHolder(
             popup.menu.findItem(R.id.action_delete).isVisible = true
         }
 
+        // Hide bookmark if bookmarked
+        popup.menu.findItem(R.id.action_bookmark).isVisible = !chapter.bookmarked
+        popup.menu.findItem(R.id.action_remove_bookmark).isVisible = chapter.bookmarked
+
         // Hide mark as unread when the chapter is unread
         if (!chapter.read && chapter.last_page_read == 0) {
             popup.menu.findItem(R.id.action_mark_as_unread).isVisible = false
@@ -101,6 +109,8 @@ class ChaptersHolder(
             with(adapter.fragment) {
                 when (menuItem.itemId) {
                     R.id.action_download -> downloadChapters(chapterList)
+                    R.id.action_bookmark -> bookmarkChapters(chapterList, true)
+                    R.id.action_remove_bookmark -> bookmarkChapters(chapterList, false)
                     R.id.action_delete -> deleteChapters(chapterList)
                     R.id.action_mark_as_read -> markAsRead(chapterList)
                     R.id.action_mark_as_unread -> markAsUnread(chapterList)

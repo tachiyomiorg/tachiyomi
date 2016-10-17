@@ -123,11 +123,13 @@ class ChaptersFragment : BaseRxFragment<ChaptersPresenter>(), ActionMode.Callbac
         val menuFilterRead = menu.findItem(R.id.action_filter_read)
         val menuFilterUnread = menu.findItem(R.id.action_filter_unread)
         val menuFilterDownloaded = menu.findItem(R.id.action_filter_downloaded)
+        val menuFilterBookmarked = menu.findItem(R.id.action_filter_bookmarked)
 
         // Set correct checkbox values.
         menuFilterRead.isChecked = presenter.onlyRead()
         menuFilterUnread.isChecked = presenter.onlyUnread()
         menuFilterDownloaded.isChecked = presenter.onlyDownloaded()
+        menuFilterBookmarked.isChecked = presenter.onlyBookmarked()
 
         if (presenter.onlyRead())
             //Disable unread filter option if read filter is enabled.
@@ -155,6 +157,10 @@ class ChaptersFragment : BaseRxFragment<ChaptersPresenter>(), ActionMode.Callbac
             R.id.action_filter_downloaded -> {
                 item.isChecked = !item.isChecked
                 presenter.setDownloadedFilter(item.isChecked)
+            }
+            R.id.action_filter_bookmarked -> {
+                item.isChecked = !item.isChecked
+                presenter.setBookmarkedFilter(item.isChecked)
             }
             R.id.action_filter_empty -> {
                 presenter.removeFilters()
@@ -362,6 +368,11 @@ class ChaptersFragment : BaseRxFragment<ChaptersPresenter>(), ActionMode.Callbac
     fun downloadChapters(chapters: List<ChapterModel>) {
         destroyActionModeIfNeeded()
         presenter.downloadChapters(chapters)
+    }
+
+    fun bookmarkChapters(chapters: List<ChapterModel>, bookmarked: Boolean) {
+        destroyActionModeIfNeeded()
+        presenter.bookmarkChapters(chapters,bookmarked)
     }
 
     fun deleteChapters(chapters: List<ChapterModel>) {

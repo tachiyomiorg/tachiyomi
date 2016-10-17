@@ -14,6 +14,8 @@ object ChapterTable {
 
     const val COL_READ = "read"
 
+    const val COL_BOOKMARKED = "col_bookmarked"
+
     const val COL_DATE_FETCH = "date_fetch"
 
     const val COL_DATE_UPLOAD = "date_upload"
@@ -31,6 +33,7 @@ object ChapterTable {
             $COL_URL TEXT NOT NULL,
             $COL_NAME TEXT NOT NULL,
             $COL_READ BOOLEAN NOT NULL,
+            $COL_BOOKMARKED BOOLEAN NOT NULL,
             $COL_LAST_PAGE_READ INT NOT NULL,
             $COL_CHAPTER_NUMBER FLOAT NOT NULL,
             $COL_SOURCE_ORDER INTEGER NOT NULL,
@@ -45,5 +48,8 @@ object ChapterTable {
 
     val sourceOrderUpdateQuery: String
         get() = "ALTER TABLE $TABLE ADD COLUMN $COL_SOURCE_ORDER INTEGER DEFAULT 0"
+
+    val bookmarkUpdateQuery: String
+        get() = "ALTER TABLE $TABLE ADD COLUMN $COL_BOOKMARKED BOOLEAN DEFAULT FALSE"
 
 }

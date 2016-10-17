@@ -200,7 +200,6 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
 
     /**
      * Applies the view filters to the list of chapters obtained from the database.
-     *
      * @param chapters the list of chapters from the database
      * @return an observable of the list of chapters filtered and sorted.
      */
@@ -214,6 +213,9 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
         }
         if (onlyDownloaded()) {
             observable = observable.filter { it.isDownloaded }
+        }
+        if (onlyBookmarked()) {
+            observable = observable.filter { it.bookmarked }
         }
         val sortFunction: (Chapter, Chapter) -> Int = when (manga.sorting) {
             Manga.SORTING_SOURCE -> when (sortDescending()) {
@@ -231,7 +233,6 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
 
     /**
      * Called when a download for the active manga changes status.
-     *
      * @param download the download whose status changed.
      */
     fun onDownloadStatusChange(download: Download) {
@@ -258,7 +259,6 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
 
     /**
      * Mark the selected chapter list as read/unread.
-     *
      * @param selectedChapters the list of selected chapters.
      * @param read whether to mark chapters as read or unread.
      */
@@ -278,7 +278,6 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
 
     /**
      * Mark the previous chapters to the selected one as read.
-     *
      * @param chapter the selected chapter.
      */
     fun markPreviousChaptersAsRead(chapter: ChapterModel) {
@@ -292,7 +291,6 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
 
     /**
      * Downloads the given list of chapters with the manager.
-     *
      * @param chapters the list of chapters to download.
      */
     fun downloadChapters(chapters: List<ChapterModel>) {
@@ -301,8 +299,22 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
     }
 
     /**
+     * Bookmarks the given list of chapters.
+     * @param selectedChapters the list of chapters to bookmark.
+     */
+    fun bookmarkChapters(selectedChapters: List<ChapterModel>, bookmarked: Boolean) {
+        Observable.from(selectedChapters)
+                .doOnNext { chapter ->
+                    chapter.bookmarked = bookmarked
+                }
+                .toList()
+                .flatMap { db.updateChaptersProgress(it).asRxObservable() }
+                .subscribeOn(Schedulers.io())
+                .subscribe()
+    }
+
+    /**
      * Deletes the given list of chapter.
-     *
      * @param chapters the list of chapters to delete.
      */
     fun deleteChapters(chapters: List<ChapterModel>) {
@@ -328,7 +340,6 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
 
     /**
      * Deletes a chapter from disk. This method is called in a background thread.
-     *
      * @param chapter the chapter to delete.
      */
     private fun deleteChapter(chapter: ChapterModel) {
@@ -349,7 +360,6 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
 
     /**
      * Sets the read filter and requests an UI update.
-     *
      * @param onlyUnread whether to display only unread chapters or all chapters.
      */
     fun setUnreadFilter(onlyUnread: Boolean) {
@@ -360,7 +370,6 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
 
     /**
      * Sets the read filter and requests an UI update.
-     *
      * @param onlyRead whether to display only read chapters or all chapters.
      */
     fun setReadFilter(onlyRead: Boolean) {
@@ -371,11 +380,20 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
 
     /**
      * Sets the download filter and requests an UI update.
-     *
      * @param onlyDownloaded whether to display only downloaded chapters or all chapters.
      */
     fun setDownloadedFilter(onlyDownloaded: Boolean) {
         manga.downloadedFilter = if (onlyDownloaded) Manga.SHOW_DOWNLOADED else Manga.SHOW_ALL
+        db.updateFlags(manga).executeAsBlocking()
+        refreshChapters()
+    }
+
+    /**
+     * Sets the bookmarked filter and requests an UI update.
+     * @param onlyBookmarked whether to display only bookmarked chapters or all chapters.
+     */
+    fun setBookmarkedFilter(onlyBookmarked: Boolean) {
+        manga.bookmarkedFilter = if (onlyBookmarked) Manga.SHOW_BOOKMARKED else Manga.SHOW_ALL
         db.updateFlags(manga).executeAsBlocking()
         refreshChapters()
     }
@@ -386,13 +404,13 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
     fun removeFilters() {
         manga.readFilter = Manga.SHOW_ALL
         manga.downloadedFilter = Manga.SHOW_ALL
+        manga.bookmarkedFilter = Manga.SHOW_ALL
         db.updateFlags(manga).executeAsBlocking()
         refreshChapters()
     }
 
     /**
      * Sets the active display mode.
-     *
      * @param mode the mode to set.
      */
     fun setDisplayMode(mode: Int) {
@@ -402,7 +420,6 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
 
     /**
      * Sets the sorting method and requests an UI update.
-     *
      * @param sort the sorting mode.
      */
     fun setSorting(sort: Int) {
@@ -416,6 +433,13 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
      */
     fun onlyDownloaded(): Boolean {
         return manga.downloadedFilter == Manga.SHOW_DOWNLOADED
+    }
+
+    /**
+     * Whether the display only downloaded filter is enabled.
+     */
+    fun onlyBookmarked(): Boolean {
+        return manga.bookmarkedFilter == Manga.SHOW_BOOKMARKED
     }
 
     /**

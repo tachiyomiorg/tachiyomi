@@ -14,6 +14,8 @@ interface Chapter : Serializable {
 
     var read: Boolean
 
+    var bookmarked: Boolean
+
     var last_page_read: Int
 
     var date_fetch: Long

@@ -6,6 +6,14 @@
           android:title="@string/action_download"
           android:visible="true" />
 
+    <item android:id="@+id/action_bookmark"
+          android:title="@string/action_bookmark"
+          android:visible="true" />
+
+    <item android:id="@+id/action_remove_bookmark"
+          android:title="@string/action_remove_bookmark"
+          android:visible="true" />
+
     <item android:id="@+id/action_delete"
           android:title="@string/action_delete"
           android:visible="false" />

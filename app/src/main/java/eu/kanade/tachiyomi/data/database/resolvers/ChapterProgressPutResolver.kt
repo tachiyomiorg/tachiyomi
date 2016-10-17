@@ -25,8 +25,9 @@ class ChapterProgressPutResolver : PutResolver<Chapter>() {
             .whereArgs(chapter.id)
             .build()
 
-    fun mapToContentValues(chapter: Chapter) = ContentValues(2).apply {
+    fun mapToContentValues(chapter: Chapter) = ContentValues(3).apply {
         put(ChapterTable.COL_READ, chapter.read)
+        put(ChapterTable.COL_BOOKMARKED, chapter.bookmarked)
         put(ChapterTable.COL_LAST_PAGE_READ, chapter.last_page_read)
     }
 
