@@ -429,4 +429,15 @@ class ChapterRecognitionTest {
         assertThat(chapter.chapter_number).isEqualTo(7f)
     }
 
+
+    /**
+     * Test for chapters in format sx - chapter xx
+     */
+    @Test fun chapterContainingSeasonCase2() {
+        createManga("The Gamer")
+
+        createChapter("S3 - Chapter 20")
+        ChapterRecognition.parseChapterNumber(chapter, manga)
+        assertThat(chapter.chapter_number).isEqualTo(20f)
+    }
 }
