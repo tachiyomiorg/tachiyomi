@@ -47,7 +47,7 @@ class ChaptersHolder(
 
         // Set correct text color
         chapter_title.setTextColor(if (chapter.read) readColor else unreadColor)
-        if (chapter.bookmarked) chapter_title.setTextColor(bookmarkedColor)
+        if (chapter.bookmark) chapter_title.setTextColor(bookmarkedColor)
 
         if (chapter.date_upload > 0) {
             chapter_date.text = df.format(Date(chapter.date_upload))
@@ -88,9 +88,9 @@ class ChaptersHolder(
             popup.menu.findItem(R.id.action_delete).isVisible = true
         }
 
-        // Hide bookmark if bookmarked
-        popup.menu.findItem(R.id.action_bookmark).isVisible = !chapter.bookmarked
-        popup.menu.findItem(R.id.action_remove_bookmark).isVisible = chapter.bookmarked
+        // Hide bookmark if bookmark
+        popup.menu.findItem(R.id.action_bookmark).isVisible = !chapter.bookmark
+        popup.menu.findItem(R.id.action_remove_bookmark).isVisible = chapter.bookmark
 
         // Hide mark as unread when the chapter is unread
         if (!chapter.read && chapter.last_page_read == 0) {

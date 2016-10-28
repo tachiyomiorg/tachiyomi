@@ -12,7 +12,7 @@ class ChapterImpl : Chapter {
 
     override var read: Boolean = false
 
-    override var bookmarked: Boolean = false
+    override var bookmark: Boolean = false
 
     override var last_page_read: Int = 0
 

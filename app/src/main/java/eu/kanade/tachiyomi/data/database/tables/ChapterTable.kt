@@ -14,7 +14,7 @@ object ChapterTable {
 
     const val COL_READ = "read"
 
-    const val COL_BOOKMARKED = "col_bookmarked"
+    const val COL_BOOKMARKED = "bookmark"
 
     const val COL_DATE_FETCH = "date_fetch"
 

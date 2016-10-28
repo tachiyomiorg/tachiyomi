@@ -215,7 +215,7 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
             observable = observable.filter { it.isDownloaded }
         }
         if (onlyBookmarked()) {
-            observable = observable.filter { it.bookmarked }
+            observable = observable.filter { it.bookmark }
         }
         val sortFunction: (Chapter, Chapter) -> Int = when (manga.sorting) {
             Manga.SORTING_SOURCE -> when (sortDescending()) {
@@ -305,7 +305,7 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
     fun bookmarkChapters(selectedChapters: List<ChapterModel>, bookmarked: Boolean) {
         Observable.from(selectedChapters)
                 .doOnNext { chapter ->
-                    chapter.bookmarked = bookmarked
+                    chapter.bookmark = bookmarked
                 }
                 .toList()
                 .flatMap { db.updateChaptersProgress(it).asRxObservable() }
@@ -389,7 +389,7 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
     }
 
     /**
-     * Sets the bookmarked filter and requests an UI update.
+     * Sets the bookmark filter and requests an UI update.
      * @param onlyBookmarked whether to display only bookmarked chapters or all chapters.
      */
     fun setBookmarkedFilter(onlyBookmarked: Boolean) {

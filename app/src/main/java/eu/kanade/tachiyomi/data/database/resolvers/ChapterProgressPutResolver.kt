@@ -27,7 +27,7 @@ class ChapterProgressPutResolver : PutResolver<Chapter>() {
 
     fun mapToContentValues(chapter: Chapter) = ContentValues(3).apply {
         put(ChapterTable.COL_READ, chapter.read)
-        put(ChapterTable.COL_BOOKMARKED, chapter.bookmarked)
+        put(ChapterTable.COL_BOOKMARKED, chapter.bookmark)
         put(ChapterTable.COL_LAST_PAGE_READ, chapter.last_page_read)
     }
 
