@@ -43,4 +43,12 @@ interface MangaSyncQueries : DbProvider {
                     .build())
             .prepare()
 
+    fun deleteMangaSyncForManga(manga: Manga, sync: MangaSyncService) = db.delete()
+            .byQuery(DeleteQuery.builder()
+                    .table(MangaSyncTable.TABLE)
+                    .where("${MangaSyncTable.COL_MANGA_ID} = ? AND ${MangaSyncTable.COL_SYNC_ID} = ?")
+                    .whereArgs(manga.id, sync.id)
+                    .build())
+            .prepare()
+
 }

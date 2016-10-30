@@ -2,13 +2,16 @@ package eu.kanade.tachiyomi.ui.setting
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.customtabs.CustomTabsIntent
 import android.support.v7.preference.PreferenceCategory
 import android.support.v7.preference.XpPreferenceFragment
 import android.view.View
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.mangasync.MangaSyncManager
 import eu.kanade.tachiyomi.data.mangasync.MangaSyncService
+import eu.kanade.tachiyomi.data.mangasync.anilist.AnilistApi
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.widget.preference.LoginPreference
 import eu.kanade.tachiyomi.widget.preference.MangaSyncLoginDialog
 import uy.kohesive.injekt.injectLazy
@@ -36,13 +39,13 @@ class SettingsSyncFragment : SettingsFragment() {
 
         registerService(syncManager.myAnimeList)
 
-//        registerService(syncManager.aniList) {
-//            val intent = CustomTabsIntent.Builder()
-//                    .setToolbarColor(activity.theme.getResourceColor(R.attr.colorPrimary))
-//                    .build()
-//            intent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-//            intent.launchUrl(activity, AnilistApi.authUrl())
-//        }
+        registerService(syncManager.aniList) {
+            val intent = CustomTabsIntent.Builder()
+                    .setToolbarColor(activity.theme.getResourceColor(R.attr.colorPrimary))
+                    .build()
+            intent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            intent.launchUrl(activity, AnilistApi.authUrl())
+        }
     }
 
     private fun <T : MangaSyncService> registerService(

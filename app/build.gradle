@@ -110,6 +110,8 @@ dependencies {
     compile "com.android.support:support-annotations:$support_library_version"
     compile "com.android.support:customtabs:$support_library_version"
 
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+
     compile 'com.android.support:multidex:1.0.1'
 
     // ReactiveX

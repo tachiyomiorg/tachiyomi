@@ -1,9 +1,11 @@
 package eu.kanade.tachiyomi.data.mangasync.anilist
 
 import android.content.Context
+import android.graphics.Color
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.MangaSync
 import eu.kanade.tachiyomi.data.mangasync.MangaSyncService
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import rx.Completable
 import rx.Observable
 import timber.log.Timber
@@ -31,6 +33,12 @@ class Anilist(private val context: Context, id: Int) : MangaSyncService(context,
                 .build())
     }
 
+    override fun getLogo() = R.drawable.al
+
+    override fun getLogoColor() = Color.rgb(18, 25, 35)
+
+    override fun maxScore() = 100
+
     override fun login(username: String, password: String) = login(password)
 
     fun login(authCode: String): Completable {
@@ -41,8 +49,10 @@ class Anilist(private val context: Context, id: Int) : MangaSyncService(context,
                 // Save the token in the interceptor.
                 .doOnNext { interceptor.setAuth(it) }
                 // Obtain the authenticated user from the API.
-                .zipWith(api.getCurrentUser().map { it["id"].toString() })
-                        { oauth, user -> Pair(user, oauth.refresh_token!!) }
+                .zipWith(api.getCurrentUser().map {
+                    preferences.anilistScoreType().set(it["score_type"].asInt)
+                    it["id"].toString()
+                }, { oauth, user -> Pair(user, oauth.refresh_token!!) })
                 // Save service credentials (username and refresh token).
                 .doOnNext { saveCredentials(it.first, it.second) }
                 // Logout on any error.
@@ -55,7 +65,7 @@ class Anilist(private val context: Context, id: Int) : MangaSyncService(context,
         interceptor.setAuth(null)
     }
 
-    fun search(query: String): Observable<List<MangaSync>> {
+    override fun search(query: String): Observable<List<MangaSync>> {
         return api.search(query, 1)
                 .flatMap { Observable.from(it) }
                 .filter { it.type != "Novel" }
@@ -71,11 +81,10 @@ class Anilist(private val context: Context, id: Int) : MangaSyncService(context,
     }
 
     override fun add(manga: MangaSync): Observable<MangaSync> {
-        return api.addManga(manga.remote_id, manga.last_chapter_read, manga.getAnilistStatus(),
-                manga.score.toInt())
+        return api.addManga(manga.remote_id, manga.last_chapter_read, manga.getAnilistStatus())
                 .doOnNext { it.body().close() }
                 .doOnNext { if (!it.isSuccessful) throw Exception("Could not add manga") }
-                .doOnError { Timber.e(it, it.message) }
+                .doOnError { Timber.e(it) }
                 .map { manga }
     }
 
@@ -84,10 +93,10 @@ class Anilist(private val context: Context, id: Int) : MangaSyncService(context,
             manga.status = COMPLETED
         }
         return api.updateManga(manga.remote_id, manga.last_chapter_read, manga.getAnilistStatus(),
-                manga.score.toInt())
+                manga.getAnilistScore())
                 .doOnNext { it.body().close() }
                 .doOnNext { if (!it.isSuccessful) throw Exception("Could not update manga") }
-                .doOnError { Timber.e(it, it.message) }
+                .doOnError { Timber.e(it) }
                 .map { manga }
     }
 
@@ -108,6 +117,24 @@ class Anilist(private val context: Context, id: Int) : MangaSyncService(context,
                 }
     }
 
+    override fun refresh(manga: MangaSync): Observable<MangaSync> {
+        return getList()
+                .map { myList ->
+                    val myManga = myList.find { it.remote_id == manga.remote_id }
+                    if (myManga != null) {
+                        manga.copyPersonalFrom(myManga)
+                        manga.total_chapters = myManga.total_chapters
+                        manga
+                    } else {
+                        throw Exception("Could not find manga")
+                    }
+                }
+    }
+
+    override fun getStatusList(): List<Int> {
+        return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLAN_TO_READ)
+    }
+
     override fun getStatus(status: Int): String = with(context) {
         when (status) {
             READING -> getString(R.string.reading)
@@ -126,6 +153,36 @@ class Anilist(private val context: Context, id: Int) : MangaSyncService(context,
         DROPPED -> "dropped"
         PLAN_TO_READ -> "plan to read"
         else -> throw NotImplementedError("Unknown status")
+    }
+
+    fun MangaSync.getAnilistScore(): String = when (preferences.anilistScoreType().getOrDefault()) {
+        // 10 point
+        0 -> Math.floor(score.toDouble() / 10).toInt().toString()
+        // 100 point
+        1 -> score.toInt().toString()
+        // 5 stars
+        2 -> when {
+            score == 0f -> "0"
+            score < 30 -> "1"
+            score < 50 -> "2"
+            score < 70 -> "3"
+            score < 90 -> "4"
+            else -> "5"
+        }
+        // Smiley
+        3 -> when {
+            score == 0f -> "0"
+            score <= 30 -> ":("
+            score <= 60 -> ":|"
+            else -> ":)"
+        }
+        // 10 point decimal
+        4 -> (score / 10).toString()
+        else -> throw Exception("Unknown score type")
+    }
+
+    override fun formatScore(manga: MangaSync): String {
+        return manga.getAnilistScore()
     }
 
 }

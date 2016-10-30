@@ -15,9 +15,10 @@ class MangaSyncManager(private val context: Context) {
 
     val aniList = Anilist(context, ANILIST)
 
-    // TODO enable anilist
-    val services = listOf(myAnimeList)
+    val services: List<MangaSyncService> = listOf(myAnimeList, aniList)
 
     fun getService(id: Int) = services.find { it.id == id }
+
+    fun hasLoggedServices() = services.any { it.isLogged }
 
 }

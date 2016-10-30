@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
-import android.content.Context
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.EN

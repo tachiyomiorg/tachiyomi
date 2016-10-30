@@ -73,8 +73,7 @@ interface AnilistApi {
     fun addManga(
             @Field("id") id: Int,
             @Field("chapters_read") chapters_read: Int,
-            @Field("list_status") list_status: String,
-            @Field("score_raw") score_raw: Int)
+            @Field("list_status") list_status: String)
             : Observable<Response<ResponseBody>>
 
     @FormUrlEncoded
@@ -83,7 +82,7 @@ interface AnilistApi {
             @Field("id") id: Int,
             @Field("chapters_read") chapters_read: Int,
             @Field("list_status") list_status: String,
-            @Field("score_raw") score_raw: Int)
+            @Field("score") score_raw: String)
             : Observable<Response<ResponseBody>>
 
 }
