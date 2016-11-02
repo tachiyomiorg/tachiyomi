@@ -25,7 +25,7 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
 
     override val lang: Language get() = EN
 
-    override val supportsLatest = false
+    override val supportsLatest = true
 
     override val client: OkHttpClient get() = network.cloudflareClient
 
@@ -39,7 +39,11 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
 
     override fun popularMangaInitialUrl() = "$baseUrl/hot-manga/"
 
+    override fun latestUpdatesInitialUrl() = "$baseUrl/latest-releases/"
+
     override fun popularMangaSelector() = "div.hot-manga > div.style-list > div.box"
+
+    override fun latestUpdatesSelector() = "div.hot-manga > div.style-grid > div.box"
 
     override fun popularMangaFromElement(element: Element, manga: Manga) {
         element.select("div.title > h2 > a").first().let {
@@ -48,7 +52,13 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
         }
     }
 
+    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
+        popularMangaFromElement(element, manga)
+    }
+
     override fun popularMangaNextPageSelector() = "div.hot-manga > ul.pagination > li > a:contains(»)"
+
+    override fun latestUpdatesNextPageSelector(): String = "div.hot-manga > ul.pagination > li > a:contains(»)"
 
     override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
             "$baseUrl/service/advanced_search"
@@ -183,21 +193,4 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
             Filter("36", "Yaoi"),
             Filter("37", "Yuri")
     )
-
-    override fun latestUpdatesInitialUrl(): String {
-        throw UnsupportedOperationException("not implemented")
-    }
-
-    override fun latestUpdatesNextPageSelector(): String {
-        throw UnsupportedOperationException("not implemented")
-    }
-
-    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
-        throw UnsupportedOperationException("not implemented")
-    }
-
-    override fun latestUpdatesSelector(): String {
-        throw UnsupportedOperationException("not implemented")
-    }
-
 }
