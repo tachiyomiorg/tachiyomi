@@ -18,7 +18,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
 
     override val name = "Mangasee"
 
-    override val baseUrl = "http://www.mangasee.co"
+    override val baseUrl = "http://mangaseeonline.net"
 
     override val lang: Language get() = EN
 
