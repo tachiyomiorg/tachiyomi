@@ -72,12 +72,13 @@ class ChapterLoader(
                 // Check if the chapter is downloaded.
                 chapter.isDownloaded = downloadManager.isChapterDownloaded(source, manga, chapter)
 
-                // Fetch the page list from disk.
-                if (chapter.isDownloaded)
-                    Observable.just(downloadManager.getSavedPageList(source, manga, chapter)!!)
-                // Fetch the page list from cache or fallback to network
-                else
+                if (chapter.isDownloaded) {
+                    // Fetch the page list from disk.
+                    downloadManager.buildPageList(source, manga, chapter)
+                } else {
+                    // Fetch the page list from cache or fallback to network
                     source.fetchPageList(chapter)
+                }
             }
             .doOnNext { pages ->
                 chapter.pages = pages
@@ -85,19 +86,9 @@ class ChapterLoader(
             }
 
     private fun loadPages(chapter: ReaderChapter) {
-        if (chapter.isDownloaded) {
-            loadDownloadedPages(chapter)
-        } else {
+        if (!chapter.isDownloaded) {
             loadOnlinePages(chapter)
         }
-    }
-
-    private fun loadDownloadedPages(chapter: ReaderChapter) {
-        val chapterDir = downloadManager.getAbsoluteChapterDirectory(source, manga, chapter)
-        subscriptions += Observable.from(chapter.pages!!)
-                .flatMap { downloadManager.getDownloadedImage(it, chapterDir) }
-                .subscribeOn(Schedulers.io())
-                .subscribe()
     }
 
     private fun loadOnlinePages(chapter: ReaderChapter) {

@@ -6,7 +6,7 @@ import rx.subjects.Subject
 
 class Page(
         val pageNumber: Int,
-        val url: String,
+        val url: String = "",
         var imageUrl: String? = null,
         @Transient var imagePath: String? = null
 ) : ProgressListener {

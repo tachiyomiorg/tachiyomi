@@ -1,15 +1,15 @@
 package eu.kanade.tachiyomi.data.download.model
 
+import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import rx.subjects.PublishSubject
-import java.io.File
 
 class Download(val source: OnlineSource, val manga: Manga, val chapter: Chapter) {
 
-    lateinit var directory: File
+    lateinit var directory: UniFile
 
     var pages: List<Page>? = null
 

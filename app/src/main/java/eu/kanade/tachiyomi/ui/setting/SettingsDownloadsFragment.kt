@@ -2,6 +2,8 @@ package eu.kanade.tachiyomi.ui.setting
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.support.v4.content.ContextCompat
@@ -52,17 +54,24 @@ class SettingsDownloadsFragment : SettingsFragment() {
                     .items(externalDirs)
                     .itemsCallbackSingleChoice(selectedIndex, { dialog, view, which, text ->
                         if (which == externalDirs.lastIndex) {
-                            // Custom dir selected, open directory selector
-                            val i = Intent(activity, CustomLayoutPickerActivity::class.java)
-                            i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
-                            i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
-                            i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
-                            i.putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
+                            if (Build.VERSION.SDK_INT < 21) {
+                                // Custom dir selected, open directory selector
+                                val i = Intent(activity, CustomLayoutPickerActivity::class.java)
+                                i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
+                                i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
+                                i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
+                                i.putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
 
-                            startActivityForResult(i, DOWNLOAD_DIR_CODE)
+                                startActivityForResult(i, DOWNLOAD_DIR_CODE)
+                            } else {
+                                val i = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+                                startActivityForResult(i, DOWNLOAD_DIR_CODE)
+                            }
                         } else {
                             // One of the predefined folders was selected
-                            preferences.downloadsDirectory().set(text.toString())
+                            val path = Uri.parse(text.toString()).toString()
+                            // FIXME find a better approach
+                            preferences.downloadsDirectory().set("file://$path")
                         }
                         true
                     })
@@ -86,7 +95,7 @@ class SettingsDownloadsFragment : SettingsFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (data != null && requestCode == DOWNLOAD_DIR_CODE && resultCode == Activity.RESULT_OK) {
-            preferences.downloadsDirectory().set(data.data.path)
+            preferences.downloadsDirectory().set(data.data.toString())
         }
     }
 

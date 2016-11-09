@@ -52,7 +52,7 @@ class DownloadService : Service() {
     override fun onDestroy() {
         queueRunningSubscription?.unsubscribe()
         networkChangeSubscription?.unsubscribe()
-        downloadManager.destroySubscriptions()
+        downloadManager.stopDownloads()
         destroyWakeLock()
         super.onDestroy()
     }

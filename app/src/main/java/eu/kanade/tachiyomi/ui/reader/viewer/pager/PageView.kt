@@ -2,12 +2,14 @@ package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
 import android.content.Context
 import android.graphics.PointF
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.widget.FrameLayout
 import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
@@ -22,7 +24,6 @@ import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.subjects.PublishSubject
 import rx.subjects.SerializedSubject
-import java.io.File
 import java.util.concurrent.TimeUnit
 
 class PageView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null)
@@ -208,13 +209,28 @@ class PageView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
      * Called when the page is ready.
      */
     private fun setImage() {
-        val path = page.imagePath
-        if (path != null && File(path).exists()) {
-            progress_text.visibility = View.INVISIBLE
-            image_view.setImage(ImageSource.uri(path))
-        } else {
+        var path = page.imagePath
+        if (path == null) {
             page.status = Page.ERROR
+            return
         }
+
+        // FIXME use Uri instead
+        if (!path.contains("://")) {
+            if (path.startsWith("/")) {
+                path = path.substring(1)
+            }
+            path = "file:///" + path
+        }
+
+        val file = UniFile.fromUri(context, Uri.parse(path))
+        if (!file.exists()) {
+            page.status = Page.ERROR
+            return
+        }
+
+        progress_text.visibility = View.INVISIBLE
+        image_view.setImage(ImageSource.uri(file.uri))
     }
 
     /**
