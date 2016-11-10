@@ -1,11 +1,13 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
+import android.os.Build
 import android.support.v7.widget.RecyclerView
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
@@ -242,14 +244,26 @@ class WebtoonHolder(private val view: View, private val adapter: WebtoonAdapter)
      * Called when the page is ready.
      */
     private fun setImage() = with(view) {
-        val path = page?.imagePath
-        if (path != null && File(path).exists()) {
-            progress_text.visibility = View.INVISIBLE
-            image_view.visibility = View.VISIBLE
-            image_view.setImage(ImageSource.uri(path))
-        } else {
+        val uri = page?.imagePath
+        if (uri == null) {
             page?.status = Page.ERROR
+            return
         }
+
+        val file = if (Build.VERSION.SDK_INT < 21 || UniFile.isFileUri(uri)) {
+            UniFile.fromFile(File(uri.path))
+        } else {
+            // Tree uri returns the root folder
+            UniFile.fromSingleUri(context, uri)
+        }!!
+        if (!file.exists()) {
+            page?.status = Page.ERROR
+            return
+        }
+
+        progress_text.visibility = View.INVISIBLE
+        image_view.visibility = View.VISIBLE
+        image_view.setImage(ImageSource.uri(file.uri))
     }
 
     /**

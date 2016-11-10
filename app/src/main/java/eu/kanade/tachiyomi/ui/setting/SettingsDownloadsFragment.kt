@@ -96,6 +96,10 @@ class SettingsDownloadsFragment : SettingsFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (data != null && requestCode == DOWNLOAD_DIR_CODE && resultCode == Activity.RESULT_OK) {
+            val uri = data.data
+            context.contentResolver.takePersistableUriPermission(uri,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+
             val file = UniFile.fromTreeUri(context, data.data)
             preferences.downloadsDirectory().set(file.uri.toString())
         }

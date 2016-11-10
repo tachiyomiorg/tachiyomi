@@ -352,8 +352,9 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         if (page != null && source is OnlineSource) {
             page.status = Page.QUEUE
             val path = page.imagePath
-            if (!path.isNullOrEmpty() && !page.chapter.isDownloaded) {
-                chapterCache.removeFileFromCache(File(path).name)
+            if (path != null && !page.chapter.isDownloaded) {
+                // TODO test
+                chapterCache.removeFileFromCache(path.encodedPath.substringAfterLast('/'))
             }
             loader.retryPage(page)
         }
@@ -537,7 +538,8 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         try {
             if (manga.favorite) {
                 if (manga.thumbnail_url != null) {
-                    coverCache.copyToCache(manga.thumbnail_url!!, File(page.imagePath).inputStream())
+                    val input = context.contentResolver.openInputStream(page.imagePath)
+                    coverCache.copyToCache(manga.thumbnail_url!!, input)
                     context.toast(R.string.cover_updated)
                 } else {
                     throw Exception("Image url not found")
@@ -555,7 +557,6 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
      * Save page to local storage
      * @throws IOException
      */
-    @Throws(IOException::class)
     internal fun savePage(page: Page) {
         if (page.status != Page.READY)
             return
@@ -563,29 +564,37 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         // Used to show image notification
         val imageNotifier = ImageNotifier(context)
 
-        // Location of image file.
-        val inputFile = File(page.imagePath)
-
-        // File where the image will be saved.
-        val destFile = File(pictureDirectory, manga.title + " - " + chapter.name +
-                " - " + downloadManager.getImageFilename(page))
-
         //Remove the notification if already exist (user feedback)
         imageNotifier.onClear()
-        if (inputFile.exists()) {
-            // Copy file
-            Observable.fromCallable { inputFile.copyTo(destFile, true) }
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            {
-                                // Show notification
-                                imageNotifier.onComplete(it)
-                            },
-                            { error ->
-                                Timber.e(error)
-                                imageNotifier.onError(error.message)
-                            })
-        }
+
+        // Copy file
+        Observable
+                .fromCallable {
+                    // Location of image file.
+                    val inputStream = context.contentResolver.openInputStream(page.imagePath)
+
+                    // File where the image will be saved.
+                    // TODO Will storage access framework be required?
+                    val destFile = File(pictureDirectory, manga.title + " - " + chapter.name +
+                            " - " + (page.pageNumber + 1))
+
+                    inputStream.use { inp ->
+                        destFile.outputStream().use { output ->
+                            inp.copyTo(output)
+                        }
+                    }
+                    destFile
+                }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {
+                            // Show notification
+                            imageNotifier.onComplete(it)
+                        },
+                        { error ->
+                            Timber.e(error)
+                            imageNotifier.onError(error.message)
+                        })
     }
 }

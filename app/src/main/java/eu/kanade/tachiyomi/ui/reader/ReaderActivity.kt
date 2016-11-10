@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.graphics.Color
-import android.net.Uri
 import android.os.Build
 import android.os.Build.VERSION_CODES.KITKAT
 import android.os.Bundle
@@ -481,7 +480,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
         val shareIntent = Intent().apply {
             action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_STREAM, Uri.parse(page.imagePath))
+            putExtra(Intent.EXTRA_STREAM, page.imagePath)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
             type = "image/jpeg"
         }

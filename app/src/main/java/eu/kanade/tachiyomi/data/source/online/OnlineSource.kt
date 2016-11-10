@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.data.source.online
 
+import android.net.Uri
 import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -416,7 +417,7 @@ abstract class OnlineSource() : Source {
                     }
                 }
                 .doOnNext {
-                    page.imagePath = chapterCache.getImagePath(imageUrl)
+                    page.imagePath = Uri.fromFile(chapterCache.getImagePath(imageUrl))
                     page.status = Page.READY
                 }
                 .doOnError { page.status = Page.ERROR }

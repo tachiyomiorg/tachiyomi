@@ -168,11 +168,11 @@ class ChapterCache(private val context: Context) {
      * @param imageUrl url of image.
      * @return path of image.
      */
-    fun getImagePath(imageUrl: String): String? {
+    fun getImagePath(imageUrl: String): File? {
         try {
             // Get file from md5 key.
             val imageName = DiskUtils.hashKeyForDisk(imageUrl) + ".0"
-            return File(diskCache.directory, imageName).canonicalPath
+            return File(diskCache.directory, imageName)
         } catch (e: IOException) {
             return null
         }

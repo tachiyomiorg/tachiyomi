@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.ui.reader.notification
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.media.Image
 import android.support.v4.app.NotificationCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
