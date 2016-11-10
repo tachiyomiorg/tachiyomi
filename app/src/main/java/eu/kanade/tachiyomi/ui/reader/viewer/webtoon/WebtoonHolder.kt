@@ -244,7 +244,7 @@ class WebtoonHolder(private val view: View, private val adapter: WebtoonAdapter)
      * Called when the page is ready.
      */
     private fun setImage() = with(view) {
-        val uri = page?.imagePath
+        val uri = page?.uri
         if (uri == null) {
             page?.status = Page.ERROR
             return

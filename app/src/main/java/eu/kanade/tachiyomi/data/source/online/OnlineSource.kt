@@ -417,7 +417,7 @@ abstract class OnlineSource() : Source {
                     }
                 }
                 .doOnNext {
-                    page.imagePath = Uri.fromFile(chapterCache.getImagePath(imageUrl))
+                    page.uri = Uri.fromFile(chapterCache.getImagePath(imageUrl))
                     page.status = Page.READY
                 }
                 .doOnError { page.status = Page.ERROR }

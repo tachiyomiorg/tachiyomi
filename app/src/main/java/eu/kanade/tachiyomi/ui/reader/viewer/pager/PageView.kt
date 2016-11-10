@@ -210,7 +210,7 @@ class PageView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
      * Called when the page is ready.
      */
     private fun setImage() {
-        val uri = page.imagePath
+        val uri = page.uri
         if (uri == null) {
             page.status = Page.ERROR
             return

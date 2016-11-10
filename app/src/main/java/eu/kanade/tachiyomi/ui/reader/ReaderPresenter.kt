@@ -351,10 +351,9 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
     fun retryPage(page: Page?) {
         if (page != null && source is OnlineSource) {
             page.status = Page.QUEUE
-            val path = page.imagePath
-            if (path != null && !page.chapter.isDownloaded) {
-                // TODO test
-                chapterCache.removeFileFromCache(path.encodedPath.substringAfterLast('/'))
+            val uri = page.uri
+            if (uri != null && !page.chapter.isDownloaded) {
+                chapterCache.removeFileFromCache(uri.encodedPath.substringAfterLast('/'))
             }
             loader.retryPage(page)
         }

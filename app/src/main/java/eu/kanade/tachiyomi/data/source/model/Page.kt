@@ -9,7 +9,7 @@ class Page(
         val pageNumber: Int,
         val url: String = "",
         var imageUrl: String? = null,
-        @Transient var imagePath: Uri? = null
+        @Transient var uri: Uri? = null
 ) : ProgressListener {
 
     @Transient lateinit var chapter: ReaderChapter

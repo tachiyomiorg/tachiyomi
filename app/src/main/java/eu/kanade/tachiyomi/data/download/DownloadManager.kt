@@ -227,7 +227,7 @@ class DownloadManager(
         return pageObservable
                 // When the image is ready, set image path, progress (just in case) and status
                 .doOnNext { file ->
-                    page.imagePath = file.uri
+                    page.uri = file.uri
                     page.progress = 100
                     download.downloadedImages++
                     page.status = Page.READY
@@ -279,7 +279,7 @@ class DownloadManager(
             chapterDir.listFiles()
                     ?.filter { it.type?.startsWith("image") ?: false }
                     ?.forEach { file ->
-                        val page = Page(pages.size, imagePath = file.uri)
+                        val page = Page(pages.size, uri = file.uri)
                         pages.add(page)
                         page.status = Page.READY
                     }
