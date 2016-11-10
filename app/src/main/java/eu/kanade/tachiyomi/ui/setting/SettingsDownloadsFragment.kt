@@ -97,8 +97,8 @@ class SettingsDownloadsFragment : SettingsFragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             DOWNLOAD_DIR_PRE_L -> if (data != null && resultCode == Activity.RESULT_OK) {
-                val file = UniFile.fromFile(File(data.data.path))
-                preferences.downloadsDirectory().set(file!!.uri.toString())
+                val uri = Uri.fromFile(File(data.data.path))
+                preferences.downloadsDirectory().set(uri.toString())
             }
             DOWNLOAD_DIR_L -> if (data != null && resultCode == Activity.RESULT_OK) {
                 val uri = data.data
