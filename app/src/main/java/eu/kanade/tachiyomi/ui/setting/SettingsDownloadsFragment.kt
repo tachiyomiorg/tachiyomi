@@ -29,7 +29,8 @@ import java.io.File
 class SettingsDownloadsFragment : SettingsFragment() {
 
     companion object {
-        val DOWNLOAD_DIR_CODE = 103
+        const val DOWNLOAD_DIR_PRE_L = 103
+        const val DOWNLOAD_DIR_L = 104
 
         fun newInstance(rootKey: String): SettingsDownloadsFragment {
             val args = Bundle()
@@ -63,16 +64,15 @@ class SettingsDownloadsFragment : SettingsFragment() {
                                 i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
                                 i.putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
 
-                                startActivityForResult(i, DOWNLOAD_DIR_CODE)
+                                startActivityForResult(i, DOWNLOAD_DIR_PRE_L)
                             } else {
                                 val i = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-                                startActivityForResult(i, DOWNLOAD_DIR_CODE)
+                                startActivityForResult(i, DOWNLOAD_DIR_L)
                             }
                         } else {
                             // One of the predefined folders was selected
-                            val path = Uri.parse(text.toString()).toString()
-                            // FIXME find a better approach
-                            preferences.downloadsDirectory().set("file://$path")
+                            val path = Uri.fromFile(File(text.toString()))
+                            preferences.downloadsDirectory().set(path.toString())
                         }
                         true
                     })
@@ -95,13 +95,22 @@ class SettingsDownloadsFragment : SettingsFragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (data != null && requestCode == DOWNLOAD_DIR_CODE && resultCode == Activity.RESULT_OK) {
-            val uri = data.data
-            context.contentResolver.takePersistableUriPermission(uri,
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+        when (requestCode) {
+            DOWNLOAD_DIR_PRE_L -> if (data != null && resultCode == Activity.RESULT_OK) {
+                val file = UniFile.fromFile(File(data.data.path))
+                preferences.downloadsDirectory().set(file!!.uri.toString())
+            }
+            DOWNLOAD_DIR_L -> if (data != null && resultCode == Activity.RESULT_OK) {
+                val uri = data.data
+                val flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or
+                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION
 
-            val file = UniFile.fromTreeUri(context, data.data)
-            preferences.downloadsDirectory().set(file.uri.toString())
+                @Suppress("NewApi")
+                context.contentResolver.takePersistableUriPermission(uri, flags)
+
+                val file = UniFile.fromTreeUri(context, data.data)
+                preferences.downloadsDirectory().set(file.uri.toString())
+            }
         }
     }
 
