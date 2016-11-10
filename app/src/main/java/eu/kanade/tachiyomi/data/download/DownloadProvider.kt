@@ -25,23 +25,17 @@ class DownloadProvider(private val context: Context) {
     }
 
     fun getMangaDir(source: Source, manga: Manga): UniFile {
-        val uri = downloadsDir.uri.buildUpon()
-                .appendPath(source.toString())
-                .appendPath(buildValidFatFilename(manga.title))
-                .build()
-        return UniFile.fromUri(context, uri)
+        return downloadsDir
+                .subFile(source.toString())!!
+                .subFile(buildValidFatFilename(manga.title))!!
     }
 
     fun getChapterDir(mangaDir: UniFile, chapter: Chapter): UniFile {
-        val uri = mangaDir.uri.buildUpon()
-                .appendPath(buildValidFatFilename(chapter.name))
-                .build()
-        return UniFile.fromUri(context, uri)
+        return mangaDir.subFile(getChapterDirName(chapter))!!
     }
 
-    fun getTmpChapterDir(chapterDir: UniFile): UniFile {
-        val file = chapterDir.uri.buildUpon().encodedPath("${chapterDir.uri.encodedPath}_tmp").build()
-        return UniFile.fromUri(context, file)
+    fun getChapterDirName(chapter: Chapter): String {
+        return buildValidFatFilename(chapter.name)
     }
 
     /**

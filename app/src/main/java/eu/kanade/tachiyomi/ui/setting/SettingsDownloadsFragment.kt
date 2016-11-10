@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.afollestad.materialdialogs.MaterialDialog
+import com.hippo.unifile.UniFile
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment
 import com.nononsenseapps.filepicker.FilePickerActivity
 import com.nononsenseapps.filepicker.FilePickerFragment
@@ -95,7 +96,8 @@ class SettingsDownloadsFragment : SettingsFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (data != null && requestCode == DOWNLOAD_DIR_CODE && resultCode == Activity.RESULT_OK) {
-            preferences.downloadsDirectory().set(data.data.toString())
+            val file = UniFile.fromTreeUri(context, data.data)
+            preferences.downloadsDirectory().set(file.uri.toString())
         }
     }
 

@@ -144,18 +144,20 @@ class DownloadManager(
         }
 
         val mangaDir = provider.getMangaDir(download.source, download.manga)
-        val chapterDir = provider.getChapterDir(mangaDir, download.chapter)
+        val filename = provider.getChapterDirName(download.chapter)
+        val chapterDir = mangaDir.subFile(filename)!!
 
         if (chapterDir.exists())
             return true
 
         download.directory = chapterDir
+        download.filename = filename
         return false
     }
 
     // Download the entire chapter
     private fun downloadChapter(download: Download): Observable<Download> {
-        val tmpDir = provider.getTmpChapterDir(download.directory)
+        val tmpDir = download.directory.parentFile!!.subFile("${download.filename}_tmp")!!
 
         val pageListObservable: Observable<List<Page>> = if (download.pages == null)
             // Pull page list from network and add them to download object
@@ -275,7 +277,7 @@ class DownloadManager(
         return Observable.fromCallable {
             val pages = mutableListOf<Page>()
             chapterDir.listFiles()
-                    ?.filterNot { it.name!!.endsWith(".tmp") }
+                    ?.filter { it.type?.startsWith("image") ?: false }
                     ?.forEach {
                         val page = Page(pages.size, imagePath = it.uri.toString())
                         pages.add(page)
@@ -311,7 +313,7 @@ class DownloadManager(
         }
 
         if (status == Download.DOWNLOADED) {
-            tmpDir.renameTo(download.directory.name)
+            tmpDir.renameTo(download.filename)
         }
 
         download.totalProgress = actualProgress

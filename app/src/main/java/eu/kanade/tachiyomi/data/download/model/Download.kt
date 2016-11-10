@@ -9,7 +9,10 @@ import rx.subjects.PublishSubject
 
 class Download(val source: OnlineSource, val manga: Manga, val chapter: Chapter) {
 
-    lateinit var directory: UniFile
+    @Transient lateinit var directory: UniFile
+
+    @Transient lateinit var filename: String
+
 
     var pages: List<Page>? = null
 

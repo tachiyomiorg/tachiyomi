@@ -223,7 +223,7 @@ class PageView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
             path = "file:///" + path
         }
 
-        val file = UniFile.fromUri(context, Uri.parse(path))
+        val file = UniFile.fromSingleUri(context, Uri.parse(path))
         if (!file.exists()) {
             page.status = Page.ERROR
             return
