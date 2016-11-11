@@ -268,6 +268,9 @@
     <string name="status">Status</string>
     <string name="chapters">Chapters</string>
 
+    <!-- Category activity -->
+    <string name="error_category_exists">Could not create category, a category with this name already exists!</string>
+
     <!-- Dialog remove recently view -->
     <string name="dialog_remove_recently_description">This will remove the read date of this chapter. Are you sure?</string>
     <string name="dialog_remove_recently_reset">Reset all chapters for this manga</string>
