@@ -10,17 +10,13 @@ class CategoryItemTouchHelper(adapter: ItemTouchHelperAdapter) : SimpleItemTouch
      *
      * @return false
      */
-    override fun isItemViewSwipeEnabled(): Boolean {
-        return false
-    }
+    override fun isItemViewSwipeEnabled() = false
 
     /**
      * Disable long press item drag
      *
      * @return false
      */
-    override fun isLongPressDragEnabled(): Boolean {
-        return false
-    }
+    override fun isLongPressDragEnabled() = false
 
 }

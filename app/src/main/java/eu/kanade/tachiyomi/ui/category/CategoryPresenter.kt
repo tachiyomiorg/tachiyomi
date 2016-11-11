@@ -28,7 +28,7 @@ class CategoryPresenter : BasePresenter<CategoryActivity>() {
         /**
          * The id of the restartable.
          */
-        final private val GET_CATEGORIES = 1
+        private val GET_CATEGORIES = 1
     }
 
     override fun onCreate(savedState: Bundle?) {
