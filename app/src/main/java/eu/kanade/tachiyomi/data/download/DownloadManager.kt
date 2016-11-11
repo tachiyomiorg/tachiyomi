@@ -12,11 +12,13 @@ import rx.subjects.BehaviorSubject
 
 class DownloadManager(context: Context) {
 
-    val queue = DownloadQueue()
 
     private val provider = DownloadProvider(context)
 
-    private val downloader = Downloader(context, queue, provider)
+    private val downloader = Downloader(context, provider)
+
+    val queue: DownloadQueue
+        get() = downloader.queue
 
     val isRunning: Boolean
         get() = downloader.isRunning
@@ -37,7 +39,7 @@ class DownloadManager(context: Context) {
     }
 
     fun downloadChapters(manga: Manga, chapters: List<Chapter>) {
-        downloader.downloadChapters(manga, chapters)
+        downloader.queueChapters(manga, chapters)
     }
 
     private fun buildPageList(chapterDir: UniFile?): Observable<List<Page>> {

@@ -28,7 +28,11 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.util.*
 
-class Downloader(val context: Context, val queue: DownloadQueue, val provider: DownloadProvider) {
+class Downloader(val context: Context, val provider: DownloadProvider) {
+
+    private val store = DownloadStore(context)
+
+    val queue = DownloadQueue(store)
 
     private val sourceManager: SourceManager = Injekt.get()
     private val preferences: PreferencesHelper = Injekt.get()
@@ -46,6 +50,17 @@ class Downloader(val context: Context, val queue: DownloadQueue, val provider: D
 
     @Volatile var isRunning: Boolean = false
         private set
+
+    init {
+        Observable.fromCallable { store.restore() }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ downloads -> downloads.forEach {
+                    if (!prepareDownload(it)) {
+                        queue.add(it)
+                    }
+                }}, { error -> Timber.e(error) })
+    }
 
     fun start(): Boolean {
         if (queue.isEmpty())
@@ -130,7 +145,7 @@ class Downloader(val context: Context, val queue: DownloadQueue, val provider: D
     }
 
     // Create a download object for every chapter and add them to the downloads queue
-    fun downloadChapters(manga: Manga, chapters: List<Chapter>) {
+    fun queueChapters(manga: Manga, chapters: List<Chapter>) {
         val source = sourceManager.get(manga.source) as? OnlineSource ?: return
 
         // Add chapters to queue from the start
@@ -177,13 +192,13 @@ class Downloader(val context: Context, val queue: DownloadQueue, val provider: D
             return true
 
         download.directory = chapterDir
-        download.filename = filename
         return false
     }
 
     // Download the entire chapter
     private fun downloadChapter(download: Download): Observable<Download> {
-        val tmpDir = download.directory.parentFile!!.subFile("${download.filename}_tmp")!!
+        val dirname = provider.getChapterDirName(download.chapter)
+        val tmpDir = download.directory.parentFile!!.subFile("${dirname}_tmp")!!
 
         val pageListObservable: Observable<List<Page>> = if (download.pages == null)
         // Pull page list from network and add them to download object
@@ -195,38 +210,37 @@ class Downloader(val context: Context, val queue: DownloadQueue, val provider: D
         // Or if the page list already exists, start from the file
             Observable.just(download.pages)
 
-        return Observable.defer {
-            pageListObservable
-                    .doOnNext { pages ->
-                        tmpDir.ensureDir()
+        return pageListObservable
+                .doOnNext { pages ->
+                    tmpDir.ensureDir()
 
-                        // Delete all temporary files
-                        tmpDir.listFiles()
-                                ?.filter { it.name!!.endsWith(".tmp") }
-                                ?.forEach { it.delete() }
+                    // Delete all temporary files
+                    tmpDir.listFiles()
+                            ?.filter { it.name!!.endsWith(".tmp") }
+                            ?.forEach { it.delete() }
 
-                        download.downloadedImages = 0
-                        download.status = Download.DOWNLOADING
-                    }
-                    // Get all the URLs to the source images, fetch pages if necessary
-                    .flatMap { download.source.fetchAllImageUrlsFromPageList(it) }
-                    // Start downloading images, consider we can have downloaded images already
-                    .concatMap { page -> getOrDownloadImage(page, download, tmpDir) }
-                    // Do when page is downloaded.
-                    .doOnNext {
-                        notifier.onProgressChange(download, queue)
-                    }
-                    // Do after download completes
-                    .doOnCompleted { onDownloadCompleted(download, tmpDir) }
-                    .toList()
-                    .map { pages -> download }
-                    // If the page list threw, it will resume here
-                    .onErrorReturn { error ->
-                        download.status = Download.ERROR
-                        notifier.onError(error.message, download.chapter.name)
-                        download
-                    }
-        }.subscribeOn(Schedulers.io())
+                    download.downloadedImages = 0
+                    download.status = Download.DOWNLOADING
+                }
+                // Get all the URLs to the source images, fetch pages if necessary
+                .flatMap { download.source.fetchAllImageUrlsFromPageList(it) }
+                // Start downloading images, consider we can have downloaded images already
+                .concatMap { page -> getOrDownloadImage(page, download, tmpDir) }
+                // Do when page is downloaded.
+                .doOnNext {
+                    notifier.onProgressChange(download, queue)
+                }
+                // Do after download completes
+                .doOnCompleted { onDownloadCompleted(download, tmpDir, dirname) }
+                .toList()
+                .map { pages -> download }
+                // If the page list threw, it will resume here
+                .onErrorReturn { error ->
+                    download.status = Download.ERROR
+                    notifier.onError(error.message, download.chapter.name)
+                    download
+                }
+                .subscribeOn(Schedulers.io())
     }
 
     // Get the image from the filesystem if it exists or download from network
@@ -300,7 +314,7 @@ class Downloader(val context: Context, val queue: DownloadQueue, val provider: D
     }
 
     // Called when a download finishes. This doesn't mean the download was successful, so we check it
-    private fun onDownloadCompleted(download: Download, tmpDir: UniFile) {
+    private fun onDownloadCompleted(download: Download, tmpDir: UniFile, dirname: String) {
         var actualProgress = 0
         var status = Download.DOWNLOADED
 
@@ -320,7 +334,7 @@ class Downloader(val context: Context, val queue: DownloadQueue, val provider: D
         }
 
         if (status == Download.DOWNLOADED) {
-            tmpDir.renameTo(download.filename)
+            tmpDir.renameTo(dirname)
         }
 
         download.totalProgress = actualProgress

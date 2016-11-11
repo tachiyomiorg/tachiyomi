@@ -1,12 +1,15 @@
 package eu.kanade.tachiyomi.data.download.model
 
 import eu.kanade.tachiyomi.data.database.models.Chapter
+import eu.kanade.tachiyomi.data.download.DownloadStore
 import eu.kanade.tachiyomi.data.source.model.Page
 import rx.Observable
 import rx.subjects.PublishSubject
 import java.util.concurrent.CopyOnWriteArrayList
 
-class DownloadQueue(private val queue: MutableList<Download> = CopyOnWriteArrayList<Download>())
+class DownloadQueue(
+        private val store: DownloadStore,
+        private val queue: MutableList<Download> = CopyOnWriteArrayList<Download>())
 : List<Download> by queue {
 
     private val statusSubject = PublishSubject.create<Download>()
@@ -16,11 +19,13 @@ class DownloadQueue(private val queue: MutableList<Download> = CopyOnWriteArrayL
     fun add(download: Download): Boolean {
         download.setStatusSubject(statusSubject)
         download.status = Download.QUEUE
+        store.add(download)
         return queue.add(download)
     }
 
     fun del(download: Download) {
         val removed = queue.remove(download)
+        store.remove(download)
         download.setStatusSubject(null)
         if (removed) {
             removeSubject.onNext(download)

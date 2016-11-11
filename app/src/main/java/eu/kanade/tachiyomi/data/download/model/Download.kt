@@ -11,9 +11,6 @@ class Download(val source: OnlineSource, val manga: Manga, val chapter: Chapter)
 
     @Transient lateinit var directory: UniFile
 
-    @Transient lateinit var filename: String
-
-
     var pages: List<Page>? = null
 
     @Volatile @Transient var totalProgress: Int = 0
