@@ -70,7 +70,7 @@ class ChapterLoader(
     private fun retrievePageList(chapter: ReaderChapter) = Observable.just(chapter)
             .flatMap {
                 // Check if the chapter is downloaded.
-                chapter.isDownloaded = downloadManager.isChapterDownloaded(source, manga, chapter)
+                chapter.isDownloaded = downloadManager.findChapterDir(source, manga, chapter) != null
 
                 if (chapter.isDownloaded) {
                     // Fetch the page list from disk.

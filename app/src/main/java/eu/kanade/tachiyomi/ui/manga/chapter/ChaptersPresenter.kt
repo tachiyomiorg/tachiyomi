@@ -132,6 +132,9 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
                     chapters.map { it.toModel() }
                 }
                 .doOnNext { chapters ->
+                    // Find downloaded chapters
+                    setDownloadedChapters(chapters)
+
                     // Store the last emission
                     this.chapters = chapters
 
@@ -157,14 +160,23 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
         if (download != null) {
             // If there's an active download, assign it.
             model.download = download
-        } else {
-            // Otherwise ask the manager if the chapter is downloaded and assign it to the status.
-            model.status = if (downloadManager.isChapterDownloaded(source, manga, this))
-                Download.DOWNLOADED
-            else
-                Download.NOT_DOWNLOADED
         }
         return model
+    }
+
+    /**
+     * Finds and assigns the list of downloaded chapters.
+     *
+     * @param chapters the list of chapter from the database.
+     */
+    private fun setDownloadedChapters(chapters: List<ChapterModel>) {
+        val files = downloadManager.findMangaDir(source, manga)?.listFiles() ?: return
+        val cached = mutableMapOf<Chapter, String>()
+        files.mapNotNull { it.name }
+                .mapNotNull { name -> chapters.find {
+                    name == cached.getOrPut(it) { downloadManager.getChapterDirName(it) }
+                } }
+                .forEach { it.status = Download.DOWNLOADED }
     }
 
     /**

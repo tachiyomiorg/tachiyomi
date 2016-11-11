@@ -26,12 +26,30 @@ class DownloadProvider(private val context: Context) {
 
     fun getMangaDir(source: Source, manga: Manga): UniFile {
         return downloadsDir
-                .subFile(source.toString())!!
-                .subFile(buildValidFatFilename(manga.title))!!
+                .subFile(getSourceDirName(source))!!
+                .subFile(getMangaDirName(manga))!!
     }
 
     fun getChapterDir(mangaDir: UniFile, chapter: Chapter): UniFile {
         return mangaDir.subFile(getChapterDirName(chapter))!!
+    }
+
+    fun findMangaDir(source: Source, manga: Manga): UniFile? {
+        val sourceDir = downloadsDir.findFile(getSourceDirName(source))
+        return sourceDir?.findFile(getMangaDirName(manga))
+    }
+
+    fun findChapterDir(source: Source, manga: Manga, chapter: Chapter): UniFile? {
+        val mangaDir = findMangaDir(source, manga)
+        return mangaDir?.findFile(getChapterDirName(chapter))
+    }
+
+    fun getSourceDirName(source: Source): String {
+        return source.toString()
+    }
+
+    fun getMangaDirName(manga: Manga): String {
+        return buildValidFatFilename(manga.title)
     }
 
     fun getChapterDirName(chapter: Chapter): String {
