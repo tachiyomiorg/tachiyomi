@@ -355,5 +355,6 @@
     <string name="download_notifier_page_error">A page is missing in directory</string>
     <string name="download_notifier_page_ready_error">A page is not loaded</string>
     <string name="download_notifier_text_only_wifi">No wifi connection available</string>
+    <string name="download_notifier_no_network">No network connection available</string>
 
 </resources>

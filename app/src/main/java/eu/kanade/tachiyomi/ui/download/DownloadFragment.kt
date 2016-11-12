@@ -95,7 +95,7 @@ class DownloadFragment : BaseRxFragment<DownloadPresenter>() {
         recycler.setHasFixedSize(true)
 
         // Suscribe to changes
-        subscriptions += presenter.downloadManager.runningSubject
+        subscriptions += DownloadService.runningRelay
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { onQueueStatusChange(it) }
 

@@ -3,10 +3,14 @@ package eu.kanade.tachiyomi.data.download
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo.State.CONNECTED
+import android.net.NetworkInfo.State.DISCONNECTED
 import android.os.IBinder
 import android.os.PowerManager
-import com.github.pwittchen.reactivenetwork.library.ConnectivityStatus
+import com.github.pwittchen.reactivenetwork.library.Connectivity
 import com.github.pwittchen.reactivenetwork.library.ReactiveNetwork
+import com.jakewharton.rxrelay.BehaviorRelay
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.toast
@@ -18,6 +22,8 @@ import uy.kohesive.injekt.injectLazy
 class DownloadService : Service() {
 
     companion object {
+
+        val runningRelay: BehaviorRelay<Boolean> = BehaviorRelay.create()
 
         fun start(context: Context) {
             context.startService(Intent(context, DownloadService::class.java))
@@ -31,16 +37,19 @@ class DownloadService : Service() {
     val downloadManager: DownloadManager by injectLazy()
     val preferences: PreferencesHelper by injectLazy()
 
-    private var wakeLock: PowerManager.WakeLock? = null
+    private val wakeLock by lazy { (getSystemService(Context.POWER_SERVICE) as PowerManager)
+            .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DownloadService:WakeLock") }
+
+    private val connectivityManager by lazy {
+        getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    }
+
     private var networkChangeSubscription: Subscription? = null
     private var queueRunningSubscription: Subscription? = null
-    private var isRunning: Boolean = false
 
     override fun onCreate() {
         super.onCreate()
-
-        createWakeLock()
-
+        runningRelay.call(true)
         listenQueueRunningChanges()
         listenNetworkChanges()
     }
@@ -50,10 +59,11 @@ class DownloadService : Service() {
     }
 
     override fun onDestroy() {
+        runningRelay.call(false)
         queueRunningSubscription?.unsubscribe()
         networkChangeSubscription?.unsubscribe()
         downloadManager.stopDownloads()
-        destroyWakeLock()
+        wakeLock.releaseIfNeeded()
         super.onDestroy()
     }
 
@@ -62,71 +72,48 @@ class DownloadService : Service() {
     }
 
     private fun listenNetworkChanges() {
-        networkChangeSubscription = ReactiveNetwork().enableInternetCheck()
-                .observeConnectivity(applicationContext)
+        networkChangeSubscription = ReactiveNetwork.observeNetworkConnectivity(applicationContext)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ state ->
-                    when (state) {
-                        ConnectivityStatus.WIFI_CONNECTED_HAS_INTERNET -> {
-                            // If there are no remaining downloads, destroy the service
-                            if (!isRunning && !downloadManager.startDownloads()) {
-                                stopSelf()
-                            }
-                        }
-                        ConnectivityStatus.MOBILE_CONNECTED -> {
-                            if (!preferences.downloadOnlyOverWifi()) {
-                                if (!isRunning && !downloadManager.startDownloads()) {
-                                    stopSelf()
-                                }
-                            } else if (isRunning) {
-                                downloadManager.stopDownloads(getString(R.string.download_notifier_text_only_wifi))
-                            }
-                        }
-                        else -> {
-                            if (isRunning) {
-                                downloadManager.stopDownloads(getString(R.string.download_notifier_text_only_wifi))
-                            }
-                        }
-                    }
+                .subscribe({ state -> onNetworkStateChanged(state)
                 }, { error ->
                     toast(R.string.download_queue_error)
                     stopSelf()
                 })
     }
 
+    private fun onNetworkStateChanged(connectivity: Connectivity) {
+        when (connectivity.state) {
+            CONNECTED -> {
+                if (preferences.downloadOnlyOverWifi() && connectivityManager.isActiveNetworkMetered) {
+                    downloadManager.stopDownloads(getString(R.string.download_notifier_text_only_wifi))
+                } else {
+                    val started = downloadManager.startDownloads()
+                    if (!started) stopSelf()
+                }
+            }
+            DISCONNECTED -> {
+                downloadManager.stopDownloads(getString(R.string.download_notifier_no_network))
+            }
+            else -> { /* Do nothing */ }
+        }
+    }
+
     private fun listenQueueRunningChanges() {
         queueRunningSubscription = downloadManager.runningSubject.subscribe { running ->
-            isRunning = running
             if (running)
-                acquireWakeLock()
+                wakeLock.acquireIfNeeded()
             else
-                releaseWakeLock()
+                wakeLock.releaseIfNeeded()
         }
     }
 
-    private fun createWakeLock() {
-        wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager).newWakeLock(
-                PowerManager.PARTIAL_WAKE_LOCK, "DownloadService:WakeLock")
+    fun PowerManager.WakeLock.releaseIfNeeded() {
+        if (isHeld) release()
     }
 
-    private fun destroyWakeLock() {
-        if (wakeLock != null && wakeLock!!.isHeld) {
-            wakeLock!!.release()
-            wakeLock = null
-        }
-    }
-
-    fun acquireWakeLock() {
-        if (wakeLock != null && !wakeLock!!.isHeld) {
-            wakeLock!!.acquire()
-        }
-    }
-
-    fun releaseWakeLock() {
-        if (wakeLock != null && wakeLock!!.isHeld) {
-            wakeLock!!.release()
-        }
+    fun PowerManager.WakeLock.acquireIfNeeded() {
+        if (!isHeld) acquire()
     }
 
 }

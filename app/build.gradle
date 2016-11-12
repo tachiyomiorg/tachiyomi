@@ -99,7 +99,6 @@ dependencies {
 
     // Modified dependencies
     compile 'com.github.inorichi:subsampling-scale-image-view:96d2c7f'
-    compile 'com.github.inorichi:ReactiveNetwork:69092ed'
 
     // Android support library
     final support_library_version = '25.0.0'
@@ -122,11 +121,13 @@ dependencies {
     // ReactiveX
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.2.2'
+    compile 'com.jakewharton.rxrelay:rxrelay:1.2.0'
     compile 'com.f2prateek.rx.preferences:rx-preferences:1.0.2'
 
     // Network client
     compile "com.squareup.okhttp3:okhttp:3.4.2"
     compile 'com.squareup.okio:okio:1.11.0'
+    compile 'com.github.pwittchen:reactivenetwork:0.6.0'
 
     // REST
     final retrofit_version = '2.1.0'

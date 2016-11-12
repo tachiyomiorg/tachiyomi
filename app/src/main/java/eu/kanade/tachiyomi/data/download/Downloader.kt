@@ -81,14 +81,13 @@ class Downloader(val context: Context, val provider: DownloadProvider) {
         return !pending.isEmpty()
     }
 
-    fun stop(errorMessage: String? = null) {
+    fun stop(reason: String? = null) {
         destroySubscriptions()
-        for (download in queue) {
-            if (download.status == Download.DOWNLOADING) {
-                download.status = Download.ERROR
-            }
-        }
-        errorMessage?.let { notifier.onError(it) }
+        queue
+                .filter { it.status == Download.DOWNLOADING }
+                .forEach { it.status = Download.ERROR }
+
+        reason?.let { notifier.onError(it) }
     }
 
     fun clearQueue() {
@@ -341,7 +340,7 @@ class Downloader(val context: Context, val provider: DownloadProvider) {
         download.status = status
     }
 
-    fun areAllDownloadsFinished(): Boolean {
+    private fun areAllDownloadsFinished(): Boolean {
         for (download in queue) {
             if (download.status <= Download.DOWNLOADING)
                 return false
