@@ -49,11 +49,11 @@ class DownloadProvider(private val context: Context) {
     }
 
     fun getMangaDirName(manga: Manga): String {
-        return buildValidFatFilename(manga.title)
+        return buildValidFatFilename(manga.title).trim('.', ' ')
     }
 
     fun getChapterDirName(chapter: Chapter): String {
-        return buildValidFatFilename(chapter.name)
+        return buildValidFatFilename(chapter.name).trim('.', ' ')
     }
 
     /**
