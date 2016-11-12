@@ -80,10 +80,22 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
     override fun chapterListSelector() = ".detail_list > ul:not([class]) > li"
 
     override fun chapterFromElement(element: Element, chapter: Chapter) {
-        val urlElement = element.select("a").first()
+        val parentEl = element.select("span.left").first()
+
+        val urlElement = parentEl.select("a").first()
+
+        var volume = parentEl.select("span.mr6")?.first()?.text()?.trim()?:""
+        if (volume.length > 0) {
+            volume = " - " + volume
+        }
+
+        var title = parentEl?.textNodes()?.last()?.text()?.trim()?:""
+        if (title.length > 0) {
+            title = " - " + title
+        }
 
         chapter.setUrlWithoutDomain(urlElement.attr("href"))
-        chapter.name = urlElement.text()
+        chapter.name = urlElement.text() + volume + title
         chapter.date_upload = element.select("span.right").first()?.text()?.let { parseChapterDate(it) } ?: 0
     }
 
