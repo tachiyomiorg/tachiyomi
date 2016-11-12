@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.data.download
 import android.content.Context
 import android.webkit.MimeTypeMap
 import com.hippo.unifile.UniFile
+import com.jakewharton.rxrelay.BehaviorRelay
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -42,7 +43,8 @@ class Downloader(val context: Context, val provider: DownloadProvider) {
     private var downloadsSubscription: Subscription? = null
 
     private val notifier by lazy { DownloadNotifier(context) }
-    val runningSubject: BehaviorSubject<Boolean> = BehaviorSubject.create()
+
+    val runningRelay: BehaviorRelay<Boolean> = BehaviorRelay.create(false)
 
     private val threadsSubject = BehaviorSubject.create<Int>()
 
@@ -128,13 +130,13 @@ class Downloader(val context: Context, val provider: DownloadProvider) {
                     notifier.onError(error.message)
                 })
 
-        runningSubject.onNext(true)
+        runningRelay.call(true)
     }
 
     private fun destroySubscriptions() {
         if (!isRunning) return
         isRunning = false
-        runningSubject.onNext(false)
+        runningRelay.call(false)
 
         downloadsSubscription?.unsubscribe()
         downloadsSubscription = null

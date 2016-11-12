@@ -10,7 +10,7 @@ import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import uy.kohesive.injekt.injectLazy
 
 /**
- * This class is used to restore the active downloads after application restarts.
+ * This class is used to persist active downloads across application restarts.
  *
  * @param context the application context.
  */

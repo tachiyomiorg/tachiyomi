@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.data.download
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
 import android.net.NetworkInfo.State.CONNECTED
 import android.net.NetworkInfo.State.DISCONNECTED
 import android.os.IBinder
@@ -13,66 +12,113 @@ import com.github.pwittchen.reactivenetwork.library.ReactiveNetwork
 import com.jakewharton.rxrelay.BehaviorRelay
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.util.connectivityManager
+import eu.kanade.tachiyomi.util.plusAssign
+import eu.kanade.tachiyomi.util.powerManager
 import eu.kanade.tachiyomi.util.toast
-import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import rx.subscriptions.CompositeSubscription
 import uy.kohesive.injekt.injectLazy
 
+/**
+ * This service is used to manage the downloader. The system can decide to stop the service, in
+ * which case the downloader is also stopped. It's also stopped while there's no network available.
+ * While the downloader is running, a wake lock will be held.
+ */
 class DownloadService : Service() {
 
     companion object {
 
-        val runningRelay: BehaviorRelay<Boolean> = BehaviorRelay.create()
+        /**
+         * Relay used to know when the service is running.
+         */
+        val runningRelay: BehaviorRelay<Boolean> = BehaviorRelay.create(false)
 
+        /**
+         * Starts this service.
+         *
+         * @param context the application context.
+         */
         fun start(context: Context) {
             context.startService(Intent(context, DownloadService::class.java))
         }
 
+        /**
+         * Stops this service.
+         *
+         * @param context the application context.
+         */
         fun stop(context: Context) {
             context.stopService(Intent(context, DownloadService::class.java))
         }
     }
 
-    val downloadManager: DownloadManager by injectLazy()
-    val preferences: PreferencesHelper by injectLazy()
+    /**
+     * Download manager.
+     */
+    private val downloadManager: DownloadManager by injectLazy()
 
-    private val wakeLock by lazy { (getSystemService(Context.POWER_SERVICE) as PowerManager)
-            .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DownloadService:WakeLock") }
+    /**
+     * Preferences helper.
+     */
+    private val preferences: PreferencesHelper by injectLazy()
 
-    private val connectivityManager by lazy {
-        getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    /**
+     * Wake lock to prevent the device to enter sleep mode.
+     */
+    private val wakeLock by lazy {
+        powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DownloadService:WakeLock")
     }
 
-    private var networkChangeSubscription: Subscription? = null
-    private var queueRunningSubscription: Subscription? = null
+    /**
+     * Subscriptions to store while the service is running.
+     */
+    private lateinit var subscriptions: CompositeSubscription
 
+    /**
+     * Called when the service is created.
+     */
     override fun onCreate() {
         super.onCreate()
         runningRelay.call(true)
-        listenQueueRunningChanges()
+        subscriptions = CompositeSubscription()
+        listenDownloaderState()
         listenNetworkChanges()
     }
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        return Service.START_STICKY
-    }
-
+    /**
+     * Called when the service is destroyed.
+     */
     override fun onDestroy() {
         runningRelay.call(false)
-        queueRunningSubscription?.unsubscribe()
-        networkChangeSubscription?.unsubscribe()
+        subscriptions.unsubscribe()
         downloadManager.stopDownloads()
         wakeLock.releaseIfNeeded()
         super.onDestroy()
     }
 
+    /**
+     * Not used.
+     */
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        return Service.START_NOT_STICKY
+    }
+
+    /**
+     * Not used.
+     */
     override fun onBind(intent: Intent): IBinder? {
         return null
     }
 
+    /**
+     * Listens to network changes.
+     *
+     * @see onNetworkStateChanged
+     */
     private fun listenNetworkChanges() {
-        networkChangeSubscription = ReactiveNetwork.observeNetworkConnectivity(applicationContext)
+        subscriptions += ReactiveNetwork.observeNetworkConnectivity(applicationContext)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ state -> onNetworkStateChanged(state)
@@ -82,6 +128,11 @@ class DownloadService : Service() {
                 })
     }
 
+    /**
+     * Called when the network state changes.
+     *
+     * @param connectivity the new network state.
+     */
     private fun onNetworkStateChanged(connectivity: Connectivity) {
         when (connectivity.state) {
             CONNECTED -> {
@@ -99,8 +150,11 @@ class DownloadService : Service() {
         }
     }
 
-    private fun listenQueueRunningChanges() {
-        queueRunningSubscription = downloadManager.runningSubject.subscribe { running ->
+    /**
+     * Listens to downloader status. Enables or disables the wake lock depending on the status.
+     */
+    private fun listenDownloaderState() {
+        subscriptions += downloadManager.runningRelay.subscribe { running ->
             if (running)
                 wakeLock.acquireIfNeeded()
             else
@@ -108,10 +162,16 @@ class DownloadService : Service() {
         }
     }
 
+    /**
+     * Releases the wake lock if it's held.
+     */
     fun PowerManager.WakeLock.releaseIfNeeded() {
         if (isHeld) release()
     }
 
+    /**
+     * Acquires the wake lock if it's not held.
+     */
     fun PowerManager.WakeLock.acquireIfNeeded() {
         if (!isHeld) acquire()
     }

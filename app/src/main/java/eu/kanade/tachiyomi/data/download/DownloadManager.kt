@@ -2,13 +2,13 @@ package eu.kanade.tachiyomi.data.download
 
 import android.content.Context
 import com.hippo.unifile.UniFile
+import com.jakewharton.rxrelay.BehaviorRelay
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.DownloadQueue
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.model.Page
 import rx.Observable
-import rx.subjects.BehaviorSubject
 
 /**
  * This class is used to manage chapter downloads in the application. It must be instantiated once
@@ -44,8 +44,8 @@ class DownloadManager(context: Context) {
     /**
      * Subject for subscribing to downloader status.
      */
-    val runningSubject: BehaviorSubject<Boolean>
-        get() = downloader.runningSubject
+    val runningRelay: BehaviorRelay<Boolean>
+        get() = downloader.runningRelay
 
     /**
      * Tells the downloader to begin downloads.
