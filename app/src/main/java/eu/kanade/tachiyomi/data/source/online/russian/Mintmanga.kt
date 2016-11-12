@@ -90,7 +90,7 @@ class Mintmanga(override val id: Int) : ParsedOnlineSource() {
         } ?: 0
     }
 
-    override fun parseChapterNumber(chapter: Chapter) {
+    override fun prepareNewChapter(chapter: Chapter, manga: Manga) {
         chapter.chapter_number = -2f
     }
 

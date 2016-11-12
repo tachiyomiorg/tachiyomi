@@ -201,7 +201,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
     private fun parseDateFromElement(dateElement: Element): Long {
         val dateAsString = dateElement.text()
 
-        val date: Date
+        var date: Date
         try {
             date = SimpleDateFormat("dd MMMMM yyyy - hh:mm a", Locale.ENGLISH).parse(dateAsString)
         } catch (e: ParseException) {

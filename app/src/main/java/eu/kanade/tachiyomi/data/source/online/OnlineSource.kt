@@ -461,8 +461,14 @@ abstract class OnlineSource() : Source {
     }
 
 
-    // Overridable method to allow custom parsing.
-    open fun parseChapterNumber(chapter: Chapter) {
+    /**
+     * Called before inserting a new chapter into database. Use it if you need to override chapter
+     * fields, like the title or the chapter number. Do not change anything to [manga].
+     *
+     * @param chapter the chapter to be added.
+     * @param manga the manga of the chapter.
+     */
+    open fun prepareNewChapter(chapter: Chapter, manga: Manga) {
 
     }
 

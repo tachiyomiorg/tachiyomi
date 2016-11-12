@@ -36,7 +36,7 @@ fun syncChaptersWithSource(db: DatabaseHelper,
     // Recognize number for new chapters.
     toAdd.forEach {
         if (source is OnlineSource) {
-            source.parseChapterNumber(it)
+            source.prepareNewChapter(it, manga)
         }
         ChapterRecognition.parseChapterNumber(it, manga)
     }
