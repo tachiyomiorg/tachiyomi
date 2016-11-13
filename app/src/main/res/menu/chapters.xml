@@ -32,7 +32,7 @@
 
     <item
         android:id="@+id/action_sort"
-        android:icon="@drawable/ic_sort_by_alpha_white_24dp"
+        android:icon="@drawable/ic_sort_by_numeric_white_24dp"
         android:title="@string/action_sort"
         app:showAsAction="ifRoom"/>
 
