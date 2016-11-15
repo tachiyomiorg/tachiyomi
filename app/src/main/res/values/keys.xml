@@ -41,6 +41,7 @@
     <string name="pref_read_with_tapping_key">reader_tap</string>
     <string name="pref_filter_downloaded_key">pref_filter_downloaded_key</string>
     <string name="pref_filter_unread_key">pref_filter_unread_key</string>
+    <string name="pref_library_sorting_mode_key">library_sorting_mode</string>
 
     <string name="pref_download_directory_key">pref_download_directory_key</string>
     <string name="pref_download_slots_key">pref_download_slots_key</string>

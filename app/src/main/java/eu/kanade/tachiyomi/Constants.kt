@@ -6,4 +6,7 @@ object Constants {
     const val NOTIFICATION_DOWNLOAD_CHAPTER_ID = 3
     const val NOTIFICATION_DOWNLOAD_CHAPTER_ERROR_ID = 4
     const val NOTIFICATION_DOWNLOAD_IMAGE_ID = 5
+
+    const val SORT_LIBRARY_ALPHABETICALLY = 0
+    const val SORT_LIBRARY_BY_LAST_READ = 1
 }

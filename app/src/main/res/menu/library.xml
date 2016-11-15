@@ -30,6 +30,30 @@
     </item>
 
     <item
+            android:id="@+id/action_sort"
+            android:icon="@drawable/ic_sort_white_24dp"
+            android:title="@string/action_sort"
+            app:showAsAction="ifRoom">
+        <menu>
+            <group android:checkableBehavior="single">
+            <item
+                    android:id="@+id/action_sort_alpha"
+                    android:title="@string/action_sort_alpha"/>
+            <item
+                    android:id="@+id/action_sort_last_read"
+                    android:title="@string/action_sort_last_read"/>
+            <item
+                    android:id="@+id/action_sort_last_updated"
+                    android:title="@string/action_sort_last_updated"/>
+
+            <item
+                    android:id="@+id/action_sort_date_added"
+                    android:title="@string/action_sort_date_added"/>
+            </group>
+        </menu>
+    </item>
+
+    <item
         android:id="@+id/action_update_library"
         android:icon="@drawable/ic_refresh_white_24dp"
         android:title="@string/action_update_library"

@@ -2,9 +2,11 @@ package eu.kanade.tachiyomi.ui.library
 
 import android.os.Bundle
 import android.util.Pair
+import eu.kanade.tachiyomi.Constants
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
+import eu.kanade.tachiyomi.data.database.models.History
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.download.DownloadManager
@@ -12,14 +14,18 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
+import eu.kanade.tachiyomi.util.toast
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
+import rx.functions.Func2
 import rx.schedulers.Schedulers
 import rx.subjects.BehaviorSubject
 import rx.subjects.PublishSubject
+import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 import java.io.IOException
 import java.io.InputStream
+import java.lang.Long
 import java.util.*
 
 /**
@@ -133,10 +139,12 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
      */
     fun getLibraryMangasObservable(): Observable<Map<Int, List<Manga>>> {
         return db.getLibraryMangas().asRxObservable()
-                .flatMap { mangas ->
-                    Observable.from(mangas)
+                .flatMap {
+                    Observable.from(it)
                             // Filter library by options
                             .filter { filterManga(it) }
+                            .toSortedList { manga1, manga2 -> sortManga(manga1, manga2) }
+                            .flatMap { Observable.from(it) }
                             .groupBy { it.category }
                             .flatMap { group -> group.toList().map { Pair(group.key, it) } }
                             .toMap({ it.first }, { it.second })
@@ -157,6 +165,31 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
      */
     fun resubscribeLibrary() {
         start(GET_LIBRARY)
+    }
+
+    fun sortManga(manga1: Manga, manga2: Manga): Int {
+        when (preferences.librarySortingMode().getOrDefault()) {
+            Constants.SORT_LIBRARY_ALPHABETICALLY -> return manga1.title.compareTo(manga2.title)
+            Constants.SORT_LIBRARY_BY_LAST_READ -> {
+                var a = 0L
+                var b = 0L
+                manga1.id?.let { manga1Id ->
+                    manga2.id?.let { manga2Id ->
+                        Timber.i("value m1" + manga1Id, manga1Id)
+                        Timber.i("value m2" + manga2Id, manga2Id)
+                        db.getLastReadByMangaId(manga1Id).executeAsBlocking()?.let { a = it.last_read }
+                        db.getLastReadByMangaId(manga2Id).executeAsBlocking()?.let { b = it.last_read }
+                    }
+                }
+                Timber.i("value a" + a, a)
+                Timber.i("value b" + b, b)
+                Timber.i("value c" + a.compareTo(b),a.compareTo(b))
+
+                return b.compareTo(a)
+            }
+            2 -> return manga1.last_update.compareTo(manga2.last_update)
+            else -> return manga1.title.compareTo(manga2.title)
+        }
     }
 
     /**

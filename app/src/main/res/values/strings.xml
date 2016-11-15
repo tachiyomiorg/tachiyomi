@@ -23,6 +23,10 @@
     <string name="action_filter_unread">Unread</string>
     <string name="action_filter_read">Read</string>
     <string name="action_filter_empty">Remove filter</string>
+    <string name="action_sort_alpha">Sort alphabetically</string>
+    <string name="action_sort_last_read">Sort by last read</string>
+    <string name="action_sort_last_updated">Sort by last updated</string>
+    <string name="action_sort_date_added">Sort by date added</string>
     <string name="action_search">Search</string>
     <string name="action_select_all">Select all</string>
     <string name="action_mark_as_read">Mark as read</string>

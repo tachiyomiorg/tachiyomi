@@ -134,6 +134,8 @@ class PreferencesHelper(context: Context) {
 
     fun filterUnread() = rxPrefs.getBoolean(keys.filterUnread, false)
 
+    fun librarySortingMode() = rxPrefs.getInteger(keys.librarySortingMode, 0)
+
     fun automaticUpdates() = prefs.getBoolean(keys.automaticUpdates, false)
 
     fun hiddenCatalogues() = rxPrefs.getStringSet("hidden_catalogues", emptySet())

@@ -11,6 +11,7 @@ import android.support.v7.widget.SearchView
 import android.view.*
 import com.afollestad.materialdialogs.MaterialDialog
 import com.f2prateek.rx.preferences.Preference
+import eu.kanade.tachiyomi.Constants
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -84,6 +85,11 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     var isFilterUnread = false
 
     /**
+     * Sorting mode for library
+     */
+    var sortingMode = 0
+
+    /**
      * Number of manga per row in grid mode.
      */
     var mangaPerRow = 0
@@ -123,8 +129,9 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
         setHasOptionsMenu(true)
-        isFilterDownloaded = preferences.filterDownloaded().get() as Boolean
-        isFilterUnread = preferences.filterUnread().get() as Boolean
+        isFilterDownloaded = preferences.filterDownloaded().getOrDefault()
+        isFilterUnread = preferences.filterUnread().getOrDefault()
+        sortingMode = preferences.librarySortingMode().getOrDefault()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedState: Bundle?): View? {
@@ -185,6 +192,8 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
         // Initialize search menu
         val filterDownloadedItem = menu.findItem(R.id.action_filter_downloaded)
         val filterUnreadItem = menu.findItem(R.id.action_filter_unread)
+        val sortModeAlpha = menu.findItem(R.id.action_sort_alpha)
+        val sortModeLastRead = menu.findItem(R.id.action_sort_last_read)
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
@@ -196,6 +205,9 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
 
         filterDownloadedItem.isChecked = isFilterDownloaded
         filterUnreadItem.isChecked = isFilterUnread
+
+        sortModeLastRead.isChecked = sortingMode == Constants.SORT_LIBRARY_BY_LAST_READ
+        sortModeAlpha.isChecked = sortingMode == Constants.SORT_LIBRARY_ALPHABETICALLY
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -237,6 +249,16 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
                 preferences.filterUnread().set(isFilterUnread)
                 preferences.filterDownloaded().set(isFilterDownloaded)
                 // Apply filter
+                onFilterCheckboxChanged()
+            }
+            R.id.action_sort_alpha -> {
+                sortingMode = Constants.SORT_LIBRARY_ALPHABETICALLY
+                preferences.librarySortingMode().set(sortingMode)
+                onFilterCheckboxChanged()
+            }
+            R.id.action_sort_last_read -> {
+                sortingMode = Constants.SORT_LIBRARY_BY_LAST_READ
+                preferences.librarySortingMode().set(sortingMode)
                 onFilterCheckboxChanged()
             }
             R.id.action_library_display_mode -> swapDisplayMode()
