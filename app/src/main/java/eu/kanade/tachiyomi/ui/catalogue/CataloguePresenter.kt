@@ -21,7 +21,7 @@ import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
-import java.util.NoSuchElementException
+import java.util.*
 
 /**
  * Presenter of [CatalogueFragment].
@@ -349,6 +349,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      */
     fun changeMangaFavorite(manga: Manga) {
         manga.favorite = !manga.favorite
+        manga.date_added = Date().time
         if (!manga.favorite) {
             coverCache.deleteFromCache(manga.thumbnail_url)
         }

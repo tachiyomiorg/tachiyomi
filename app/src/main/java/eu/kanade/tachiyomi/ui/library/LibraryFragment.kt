@@ -186,14 +186,38 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
         super.onSaveInstanceState(outState)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.library, menu)
-
+    /**
+     * Prepare the Fragment host's standard options menu to be displayed.  This is
+     * called right before the menu is shown, every time it is shown.  You can
+     * use this method to efficiently enable/disable items or otherwise
+     * dynamically modify the contents.
+     *
+     * @param menu The options menu as last shown or first initialized by
+     */
+    override fun onPrepareOptionsMenu(menu: Menu) {
         // Initialize search menu
         val filterDownloadedItem = menu.findItem(R.id.action_filter_downloaded)
         val filterUnreadItem = menu.findItem(R.id.action_filter_unread)
         val sortModeAlpha = menu.findItem(R.id.action_sort_alpha)
         val sortModeLastRead = menu.findItem(R.id.action_sort_last_read)
+        val sortModeLastUpdated = menu.findItem(R.id.action_sort_last_updated)
+        val sortModeDateAdded = menu.findItem(R.id.action_sort_date_added)
+
+        // Set correct checkbox filter
+        filterDownloadedItem.isChecked = isFilterDownloaded
+        filterUnreadItem.isChecked = isFilterUnread
+
+        // Set correct radio button sort
+        if (sortingMode == Constants.SORT_LIBRARY_ALPHA) sortModeAlpha.isChecked = true
+        if (sortingMode == Constants.SORT_LIBRARY_LAST_READ) sortModeLastRead.isChecked = true
+        if (sortingMode == Constants.SORT_LIBRARY_LAST_UPDATED) sortModeLastUpdated.isChecked = true
+        if (sortingMode == Constants.SORT_LIBRARY_DATE_ADDED) sortModeDateAdded.isChecked = true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.library, menu)
+
+
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
@@ -202,12 +226,6 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
             searchView.setQuery(query, true)
             searchView.clearFocus()
         }
-
-        filterDownloadedItem.isChecked = isFilterDownloaded
-        filterUnreadItem.isChecked = isFilterUnread
-
-        sortModeLastRead.isChecked = sortingMode == Constants.SORT_LIBRARY_BY_LAST_READ
-        sortModeAlpha.isChecked = sortingMode == Constants.SORT_LIBRARY_ALPHABETICALLY
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -231,7 +249,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
                 // Update settings.
                 preferences.filterUnread().set(isFilterUnread)
                 // Apply filter.
-                onFilterCheckboxChanged()
+                onFilterOrSortChanged()
             }
             R.id.action_filter_downloaded -> {
                 // Change downloaded filter status.
@@ -239,7 +257,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
                 // Update settings.
                 preferences.filterDownloaded().set(isFilterDownloaded)
                 // Apply filter.
-                onFilterCheckboxChanged()
+                onFilterOrSortChanged()
             }
             R.id.action_filter_empty -> {
                 // Remove filter status.
@@ -249,17 +267,27 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
                 preferences.filterUnread().set(isFilterUnread)
                 preferences.filterDownloaded().set(isFilterDownloaded)
                 // Apply filter
-                onFilterCheckboxChanged()
+                onFilterOrSortChanged()
             }
             R.id.action_sort_alpha -> {
-                sortingMode = Constants.SORT_LIBRARY_ALPHABETICALLY
+                sortingMode = Constants.SORT_LIBRARY_ALPHA
                 preferences.librarySortingMode().set(sortingMode)
-                onFilterCheckboxChanged()
+                onFilterOrSortChanged()
             }
             R.id.action_sort_last_read -> {
-                sortingMode = Constants.SORT_LIBRARY_BY_LAST_READ
+                sortingMode = Constants.SORT_LIBRARY_LAST_READ
                 preferences.librarySortingMode().set(sortingMode)
-                onFilterCheckboxChanged()
+                onFilterOrSortChanged()
+            }
+            R.id.action_sort_last_updated -> {
+                sortingMode = Constants.SORT_LIBRARY_LAST_UPDATED
+                preferences.librarySortingMode().set(sortingMode)
+                onFilterOrSortChanged()
+            }
+            R.id.action_sort_date_added -> {
+                sortingMode = Constants.SORT_LIBRARY_DATE_ADDED
+                preferences.librarySortingMode().set(sortingMode)
+                onFilterOrSortChanged()
             }
             R.id.action_library_display_mode -> swapDisplayMode()
             R.id.action_update_library -> {
@@ -278,7 +306,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     /**
      * Applies filter change
      */
-    private fun onFilterCheckboxChanged() {
+    private fun onFilterOrSortChanged() {
         presenter.resubscribeLibrary()
         activity.supportInvalidateOptionsMenu()
     }

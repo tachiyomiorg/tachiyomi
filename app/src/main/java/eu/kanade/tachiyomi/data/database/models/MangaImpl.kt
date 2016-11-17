@@ -24,6 +24,8 @@ class MangaImpl : Manga {
 
     override var favorite: Boolean = false
 
+    override var date_added: Long = 0
+
     override var last_update: Long = 0
 
     override var initialized: Boolean = false

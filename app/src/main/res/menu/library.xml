@@ -1,31 +1,32 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".MainActivity">
 
     <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/ic_search_white_24dp"
-        android:title="@string/action_search"
-        app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="collapseActionView|ifRoom"/>
+            android:id="@+id/action_search"
+            android:icon="@drawable/ic_search_white_24dp"
+            android:title="@string/action_search"
+            app:actionViewClass="android.support.v7.widget.SearchView"
+            app:showAsAction="collapseActionView|ifRoom"/>
 
     <item
-        android:id="@+id/action_filter"
-        android:icon="@drawable/ic_filter_list_white_24dp"
-        android:title="@string/action_filter"
-        app:showAsAction="ifRoom">
+            android:id="@+id/action_filter"
+            android:icon="@drawable/ic_filter_list_white_24dp"
+            android:title="@string/action_filter"
+            app:showAsAction="ifRoom">
         <menu>
             <item
-                android:id="@+id/action_filter_downloaded"
-                android:checkable="true"
-                android:title="@string/action_filter_downloaded"/>
+                    android:id="@+id/action_filter_downloaded"
+                    android:checkable="true"
+                    android:title="@string/action_filter_downloaded"/>
             <item
-                android:id="@+id/action_filter_unread"
-                android:checkable="true"
-                android:title="@string/action_filter_unread"/>
+                    android:id="@+id/action_filter_unread"
+                    android:checkable="true"
+                    android:title="@string/action_filter_unread"/>
             <item
-                android:id="@+id/action_filter_empty"
-                android:title="@string/action_filter_empty"/>
+                    android:id="@+id/action_filter_empty"
+                    android:title="@string/action_filter_empty"/>
         </menu>
     </item>
 
@@ -33,40 +34,42 @@
             android:id="@+id/action_sort"
             android:icon="@drawable/ic_sort_white_24dp"
             android:title="@string/action_sort"
-            app:showAsAction="ifRoom">
+            >
         <menu>
-            <group android:checkableBehavior="single">
-            <item
-                    android:id="@+id/action_sort_alpha"
-                    android:title="@string/action_sort_alpha"/>
-            <item
-                    android:id="@+id/action_sort_last_read"
-                    android:title="@string/action_sort_last_read"/>
-            <item
-                    android:id="@+id/action_sort_last_updated"
-                    android:title="@string/action_sort_last_updated"/>
+            <group
+                    android:id="@+id/sort_group1"
+                    android:checkableBehavior="single">
+                <item
+                        android:id="@+id/action_sort_alpha"
+                        android:title="@string/action_sort_alpha"/>
+                <item
+                        android:id="@+id/action_sort_last_read"
+                        android:title="@string/action_sort_last_read"/>
+                <item
+                        android:id="@+id/action_sort_last_updated"
+                        android:title="@string/action_sort_last_updated"/>
 
-            <item
-                    android:id="@+id/action_sort_date_added"
-                    android:title="@string/action_sort_date_added"/>
+                <item
+                        android:id="@+id/action_sort_date_added"
+                        android:title="@string/action_sort_date_added"/>
             </group>
         </menu>
     </item>
 
     <item
-        android:id="@+id/action_update_library"
-        android:icon="@drawable/ic_refresh_white_24dp"
-        android:title="@string/action_update_library"
-        app:showAsAction="ifRoom" />
+            android:id="@+id/action_update_library"
+            android:icon="@drawable/ic_refresh_white_24dp"
+            android:title="@string/action_update_library"
+            app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/action_library_display_mode"
-        android:title="@string/action_display_mode"
-        app:showAsAction="never"/>
+            android:id="@+id/action_library_display_mode"
+            android:title="@string/action_display_mode"
+            app:showAsAction="never"/>
 
     <item
-        android:id="@+id/action_edit_categories"
-        android:title="@string/action_edit_categories"
-        app:showAsAction="never" />
+            android:id="@+id/action_edit_categories"
+            android:title="@string/action_edit_categories"
+            app:showAsAction="never"/>
 
 </menu>

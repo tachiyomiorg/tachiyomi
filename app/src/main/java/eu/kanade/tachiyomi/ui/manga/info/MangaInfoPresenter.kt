@@ -13,6 +13,7 @@ import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.injectLazy
+import java.util.*
 
 /**
  * Presenter of MangaInfoFragment.
@@ -115,6 +116,7 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
      */
     fun toggleFavorite() {
         manga.favorite = !manga.favorite
+        manga.date_added = Date().time
         if (!manga.favorite) {
             coverCache.deleteFromCache(manga.thumbnail_url)
         }

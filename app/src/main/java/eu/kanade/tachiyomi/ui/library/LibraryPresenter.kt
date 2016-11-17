@@ -169,25 +169,20 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
 
     fun sortManga(manga1: Manga, manga2: Manga): Int {
         when (preferences.librarySortingMode().getOrDefault()) {
-            Constants.SORT_LIBRARY_ALPHABETICALLY -> return manga1.title.compareTo(manga2.title)
-            Constants.SORT_LIBRARY_BY_LAST_READ -> {
+            Constants.SORT_LIBRARY_ALPHA -> return manga1.title.compareTo(manga2.title)
+            Constants.SORT_LIBRARY_LAST_READ -> {
                 var a = 0L
                 var b = 0L
                 manga1.id?.let { manga1Id ->
                     manga2.id?.let { manga2Id ->
-                        Timber.i("value m1" + manga1Id, manga1Id)
-                        Timber.i("value m2" + manga2Id, manga2Id)
                         db.getLastReadByMangaId(manga1Id).executeAsBlocking()?.let { a = it.last_read }
                         db.getLastReadByMangaId(manga2Id).executeAsBlocking()?.let { b = it.last_read }
                     }
                 }
-                Timber.i("value a" + a, a)
-                Timber.i("value b" + b, b)
-                Timber.i("value c" + a.compareTo(b),a.compareTo(b))
-
                 return b.compareTo(a)
             }
-            2 -> return manga1.last_update.compareTo(manga2.last_update)
+            2 -> return manga2.last_update.compareTo(manga1.last_update)
+            3 -> return manga2.date_added.compareTo(manga1.date_added)
             else -> return manga1.title.compareTo(manga2.title)
         }
     }
