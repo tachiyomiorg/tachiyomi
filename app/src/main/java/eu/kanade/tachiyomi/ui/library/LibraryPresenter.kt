@@ -6,7 +6,6 @@ import eu.kanade.tachiyomi.Constants
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
-import eu.kanade.tachiyomi.data.database.models.History
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.download.DownloadManager
@@ -14,18 +13,14 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import eu.kanade.tachiyomi.util.toast
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
-import rx.functions.Func2
 import rx.schedulers.Schedulers
 import rx.subjects.BehaviorSubject
 import rx.subjects.PublishSubject
-import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 import java.io.IOException
 import java.io.InputStream
-import java.lang.Long
 import java.util.*
 
 /**
@@ -167,6 +162,14 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
         start(GET_LIBRARY)
     }
 
+    /**
+     * Compares the two manga determined by sorting mode.
+     * Returns zero if this object is equal to the specified other object,
+     * a negative number if it's less than other, or a positive number if it's greater than other.
+     *
+     * @param manga1 first manga to compare
+     * @param manga2 second manga to compare
+     */
     fun sortManga(manga1: Manga, manga2: Manga): Int {
         when (preferences.librarySortingMode().getOrDefault()) {
             Constants.SORT_LIBRARY_ALPHA -> return manga1.title.compareTo(manga2.title)
@@ -175,14 +178,14 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
                 var b = 0L
                 manga1.id?.let { manga1Id ->
                     manga2.id?.let { manga2Id ->
-                        db.getLastReadByMangaId(manga1Id).executeAsBlocking()?.let { a = it.last_read }
-                        db.getLastReadByMangaId(manga2Id).executeAsBlocking()?.let { b = it.last_read }
+                        db.getLastHistoryByMangaId(manga1Id).executeAsBlocking()?.let { a = it.last_read }
+                        db.getLastHistoryByMangaId(manga2Id).executeAsBlocking()?.let { b = it.last_read }
                     }
                 }
                 return b.compareTo(a)
             }
-            2 -> return manga2.last_update.compareTo(manga1.last_update)
-            3 -> return manga2.date_added.compareTo(manga1.date_added)
+            Constants.SORT_LIBRARY_LAST_UPDATED -> return manga2.last_update.compareTo(manga1.last_update)
+            Constants.SORT_LIBRARY_DATE_ADDED -> return manga2.date_added.compareTo(manga1.date_added)
             else -> return manga1.title.compareTo(manga2.title)
         }
     }

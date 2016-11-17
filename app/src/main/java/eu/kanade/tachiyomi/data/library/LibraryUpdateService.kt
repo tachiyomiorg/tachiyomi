@@ -255,8 +255,10 @@ class LibraryUpdateService : Service() {
                 }
                 // Add manga with new chapters to the list.
                 .doOnNext {
+                    // Set last updated time
                     it.last_update = Date().time
                     db.insertManga(it).executeAsBlocking()
+                    // Add to the list
                     newUpdates.add(it)
                 }
                 // Notify result of the overall update.

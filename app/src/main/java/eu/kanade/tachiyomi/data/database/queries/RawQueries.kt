@@ -73,7 +73,7 @@ fun getHistoryByMangaId() = """
     WHERE ${Chapter.TABLE}.${Chapter.COL_MANGA_ID} = ? AND ${History.TABLE}.${History.COL_CHAPTER_ID} = ${Chapter.TABLE}.${Chapter.COL_ID}
 """
 
-fun getLastReadByMangaId() = """
+fun getLastHistoryByMangaId() = """
     SELECT ${History.TABLE}.*
     FROM ${History.TABLE}
     JOIN ${Chapter.TABLE}
