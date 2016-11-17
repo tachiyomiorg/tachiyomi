@@ -370,27 +370,27 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         val pages = chapter.pages ?: return
 
         Observable.fromCallable {
-            // Chapters with 1 page don't trigger page changes, so mark them as read.
-            if (pages.size == 1) {
-                chapter.read = true
-            }
-
             // Cache current page list progress for online chapters to allow a faster reopen
             if (!chapter.isDownloaded) {
                 source.let { if (it is OnlineSource) it.savePageList(chapter, pages) }
             }
 
-            if (chapter.read) {
-                val removeAfterReadSlots = prefs.removeAfterReadSlots()
-                when (removeAfterReadSlots) {
-                    // Setting disabled
-                    -1 -> { /**Empty function**/ }
-                    // Remove current read chapter
-                    0 -> deleteChapter(chapter, manga)
-                    // Remove previous chapter specified by user in settings.
-                    else -> getAdjacentChaptersStrategy(chapter, removeAfterReadSlots)
-                            .first?.let { deleteChapter(it, manga) }
+            try {
+                if (chapter.read) {
+                    val removeAfterReadSlots = prefs.removeAfterReadSlots()
+                    when (removeAfterReadSlots) {
+                        // Setting disabled
+                        -1 -> { /* Empty function */ }
+                        // Remove current read chapter
+                        0 -> deleteChapter(chapter, manga)
+                        // Remove previous chapter specified by user in settings.
+                        else -> getAdjacentChaptersStrategy(chapter, removeAfterReadSlots)
+                                .first?.let { deleteChapter(it, manga) }
+                    }
                 }
+            } catch (error: Exception) {
+                // TODO find out why it crashes
+                Timber.e(error)
             }
 
             db.updateChapterProgress(chapter).executeAsBlocking()
@@ -537,7 +537,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         try {
             if (manga.favorite) {
                 if (manga.thumbnail_url != null) {
-                    val input = context.contentResolver.openInputStream(page.imagePath)
+                    val input = context.contentResolver.openInputStream(page.uri)
                     coverCache.copyToCache(manga.thumbnail_url!!, input)
                     context.toast(R.string.cover_updated)
                 } else {
@@ -570,7 +570,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         Observable
                 .fromCallable {
                     // Location of image file.
-                    val inputStream = context.contentResolver.openInputStream(page.imagePath)
+                    val inputStream = context.contentResolver.openInputStream(page.uri)
 
                     // File where the image will be saved.
                     // TODO Will storage access framework be required?

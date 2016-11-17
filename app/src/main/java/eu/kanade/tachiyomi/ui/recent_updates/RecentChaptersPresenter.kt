@@ -222,10 +222,6 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
      * @param chapters list of chapters
      */
     fun deleteChapters(chapters: List<RecentChapter>) {
-        val wasRunning = downloadManager.isRunning
-        if (wasRunning) {
-            DownloadService.stop(context)
-        }
         Observable.from(chapters)
                 .doOnNext { deleteChapter(it) }
                 .toList()
@@ -233,9 +229,6 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeFirst({ view, result ->
                     view.onChaptersDeleted()
-                    if (wasRunning) {
-                        DownloadService.start(context)
-                    }
                 }, { view, error ->
                     view.onChaptersDeletedError(error)
                 })

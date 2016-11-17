@@ -480,7 +480,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
         val shareIntent = Intent().apply {
             action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_STREAM, page.imagePath)
+            putExtra(Intent.EXTRA_STREAM, page.uri)
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
             type = "image/jpeg"
         }

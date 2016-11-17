@@ -29,7 +29,7 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.util.*
 
-class Downloader(val context: Context, val provider: DownloadProvider) {
+class Downloader(private val context: Context, private val provider: DownloadProvider) {
 
     private val store = DownloadStore(context)
 
@@ -89,13 +89,17 @@ class Downloader(val context: Context, val provider: DownloadProvider) {
                 .filter { it.status == Download.DOWNLOADING }
                 .forEach { it.status = Download.ERROR }
 
-        reason?.let { notifier.onError(it) }
+        if (reason != null) {
+            notifier.onWarning(reason)
+        } else {
+            notifier.dismiss()
+        }
     }
 
     fun clearQueue() {
         destroySubscriptions()
         queue.clear()
-        notifier.onClear()
+        notifier.dismiss()
     }
 
     private fun initializeSubscriptions() {
@@ -343,11 +347,7 @@ class Downloader(val context: Context, val provider: DownloadProvider) {
     }
 
     private fun areAllDownloadsFinished(): Boolean {
-        for (download in queue) {
-            if (download.status <= Download.DOWNLOADING)
-                return false
-        }
-        return true
+        return queue.none { it.status <= Download.DOWNLOADING }
     }
 
 }

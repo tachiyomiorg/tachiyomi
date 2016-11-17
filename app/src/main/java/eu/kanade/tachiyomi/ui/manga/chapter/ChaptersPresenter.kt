@@ -330,10 +330,6 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
      * @param chapters the list of chapters to delete.
      */
     fun deleteChapters(chapters: List<ChapterModel>) {
-        val wasRunning = downloadManager.isRunning
-        if (wasRunning) {
-            DownloadService.stop(context)
-        }
         Observable.from(chapters)
                 .doOnNext { deleteChapter(it) }
                 .toList()
@@ -342,9 +338,6 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeFirst({ view, result ->
                     view.onChaptersDeleted()
-                    if (wasRunning) {
-                        DownloadService.start(context)
-                    }
                 }, { view, error ->
                     view.onChaptersDeletedError(error)
                 })

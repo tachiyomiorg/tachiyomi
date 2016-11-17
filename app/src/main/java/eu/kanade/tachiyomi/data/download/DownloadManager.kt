@@ -36,12 +36,6 @@ class DownloadManager(context: Context) {
         get() = downloader.queue
 
     /**
-     * Whether the downloader is running.
-     */
-    val isRunning: Boolean
-        get() = downloader.isRunning
-
-    /**
      * Subject for subscribing to downloader status.
      */
     val runningRelay: BehaviorRelay<Boolean>
