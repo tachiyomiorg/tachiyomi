@@ -29,36 +29,22 @@ class DownloadPresenter : BasePresenter<DownloadFragment>() {
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
-        
-        Observable.just(ArrayList(downloadQueue))
-                .doOnNext { syncQueue(it) }
-                .subscribeLatestCache({ view, downloads ->
-                    view.onNextDownloads(downloads)
-                }, { view, error ->
+
+        downloadQueue.getUpdatedObservable()
+                .startWith(Unit)
+                .observeOn(AndroidSchedulers.mainThread())
+                .map { ArrayList(downloadQueue) }
+                .subscribeLatestCache(DownloadFragment::onNextDownloads, { view, error ->
                     Timber.e(error)
                 })
     }
 
-    private fun syncQueue(queue: MutableList<Download>) {
-        add(downloadQueue.getRemovedObservable()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { download ->
-                    val position = queue.indexOf(download)
-                    if (position != -1) {
-                        queue.removeAt(position)
-
-                        @Suppress("DEPRECATION")
-                        view?.onDownloadRemoved(position)
-                    }
-                })
-    }
-
-    fun getStatusObservable(): Observable<Download> {
+    fun getDownloadStatusObservable(): Observable<Download> {
         return downloadQueue.getStatusObservable()
                 .startWith(downloadQueue.getActiveDownloads())
     }
 
-    fun getProgressObservable(): Observable<Download> {
+    fun getDownloadProgressObservable(): Observable<Download> {
         return downloadQueue.getProgressObservable()
                 .onBackpressureBuffer()
     }

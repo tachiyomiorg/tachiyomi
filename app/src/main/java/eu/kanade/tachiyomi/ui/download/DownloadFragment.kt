@@ -84,11 +84,11 @@ class DownloadFragment : BaseRxFragment<DownloadPresenter>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { onQueueStatusChange(it) }
 
-        subscriptions += presenter.getStatusObservable()
+        subscriptions += presenter.getDownloadStatusObservable()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { onStatusChange(it) }
 
-        subscriptions += presenter.getProgressObservable()
+        subscriptions += presenter.getDownloadProgressObservable()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { onUpdateDownloadedPages(it) }
     }
@@ -210,10 +210,6 @@ class DownloadFragment : BaseRxFragment<DownloadPresenter>() {
      */
     fun onNextDownloads(downloads: List<Download>) {
         adapter.setItems(downloads)
-    }
-
-    fun onDownloadRemoved(position: Int) {
-        adapter.notifyItemRemoved(position)
     }
 
     /**

@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.data.download.model
 
+import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.download.DownloadStore
 import eu.kanade.tachiyomi.data.source.model.Page
@@ -14,13 +15,16 @@ class DownloadQueue(
 
     private val statusSubject = PublishSubject.create<Download>()
 
-    private val removeSubject = PublishSubject.create<Download>()
+    private val updatedRelay = PublishRelay.create<Unit>()
 
-    fun add(download: Download): Boolean {
+    fun add(download: Download) {
         download.setStatusSubject(statusSubject)
         download.status = Download.QUEUE
         store.add(download)
-        return queue.add(download)
+        val added = queue.add(download)
+        if (added) {
+            updatedRelay.call(Unit)
+        }
     }
 
     fun del(download: Download) {
@@ -28,7 +32,7 @@ class DownloadQueue(
         store.remove(download)
         download.setStatusSubject(null)
         if (removed) {
-            removeSubject.onNext(download)
+            updatedRelay.call(Unit)
         }
     }
 
@@ -45,7 +49,7 @@ class DownloadQueue(
 
     fun getStatusObservable(): Observable<Download> = statusSubject.onBackpressureBuffer()
 
-    fun getRemovedObservable(): Observable<Download> = removeSubject.onBackpressureBuffer()
+    fun getUpdatedObservable(): Observable<Unit> = updatedRelay.onBackpressureBuffer()
 
     fun getProgressObservable(): Observable<Download> {
         return statusSubject.onBackpressureBuffer()
