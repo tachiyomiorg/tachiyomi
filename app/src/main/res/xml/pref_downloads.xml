@@ -44,6 +44,15 @@
             android:summary="%s"
             android:title="@string/pref_remove_after_read" />
 
+        <PreferenceCategory
+            android:persistent="false"
+            android:title="@string/pref_download_new" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/pref_download_new_key"
+            android:title="@string/pref_download_new"/>
+
     </PreferenceScreen>
 
 </PreferenceScreen>

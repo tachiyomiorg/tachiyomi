@@ -134,4 +134,6 @@ class PreferencesHelper(context: Context) {
 
     fun hiddenCatalogues() = rxPrefs.getStringSet("hidden_catalogues", emptySet())
 
+    fun downloadNew() = prefs.getBoolean(keys.downloadNew, false)
+
 }

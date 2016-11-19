@@ -166,6 +166,7 @@
     <string name="third_to_last">Third to last chapter</string>
     <string name="fourth_to_last">Fourth to last chapter</string>
     <string name="fifth_to_last">Fifth to last chapter</string>
+    <string name="pref_download_new">Download new chapters</string>
 
       <!-- Sync section -->
     <string name="services">Services</string>

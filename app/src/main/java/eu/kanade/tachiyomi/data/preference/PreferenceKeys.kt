@@ -89,6 +89,8 @@ class PreferenceKeys(context: Context) {
 
     val startScreen = context.getString(R.string.pref_start_screen_key)
 
+    val downloadNew = context.getString(R.string.pref_download_new_key)
+
     fun sourceUsername(sourceId: Int) = "pref_source_username_$sourceId"
 
     fun sourcePassword(sourceId: Int) = "pref_source_password_$sourceId"

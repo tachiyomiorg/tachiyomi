@@ -19,7 +19,7 @@ import java.util.*
 fun syncChaptersWithSource(db: DatabaseHelper,
                            sourceChapters: List<Chapter>,
                            manga: Manga,
-                           source: Source) : Pair<Int, Int> {
+                           source: Source) : Pair<List<Chapter>, List<Chapter>> {
 
     // Chapters from db.
     val dbChapters = db.getChapters(manga).executeAsBlocking()
@@ -44,22 +44,19 @@ fun syncChaptersWithSource(db: DatabaseHelper,
     // Chapters from the db not in the source.
     val toDelete = dbChapters.filterNot { it in sourceChapters }
 
-    // Amount of chapters added and deleted.
-    var added = 0
-    var deleted = 0
-
-    // Amount of chapters readded (different url but the same chapter number).
-    var readded = 0
+    val readded = mutableListOf<Chapter>()
 
     db.inTransaction {
+        val deletedChapterNumbers = TreeSet<Float>()
         val deletedReadChapterNumbers = TreeSet<Float>()
         if (!toDelete.isEmpty()) {
             for (c in toDelete) {
                 if (c.read) {
                     deletedReadChapterNumbers.add(c.chapter_number)
                 }
+                deletedChapterNumbers.add(c.chapter_number)
             }
-            deleted = db.deleteChapters(toDelete).executeAsBlocking().results().size
+            db.deleteChapters(toDelete).executeAsBlocking()
         }
 
         if (!toAdd.isEmpty()) {
@@ -73,14 +70,16 @@ fun syncChaptersWithSource(db: DatabaseHelper,
                 // Try to mark already read chapters as read when the source deletes them
                 if (c.isRecognizedNumber && c.chapter_number in deletedReadChapterNumbers) {
                     c.read = true
-                    readded++
+                }
+                if (c.isRecognizedNumber && c.chapter_number in deletedChapterNumbers) {
+                    readded.add(c)
                 }
             }
-            added = db.insertChapters(toAdd).executeAsBlocking().numberOfInserts()
+            db.insertChapters(toAdd).executeAsBlocking()
         }
 
         // Fix order in source.
         db.fixChaptersSourceOrder(sourceChapters).executeAsBlocking()
     }
-    return Pair(added - readded, deleted - readded)
+    return Pair(toAdd.subtract(readded).toList(), toDelete.subtract(readded).toList())
 }
