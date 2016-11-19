@@ -95,7 +95,7 @@ class Downloader(private val context: Context, private val provider: DownloadPro
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ downloads -> downloads.forEach {
-                    if (!isDownloadAllowed(it)) {
+                    if (isDownloadAllowed(it)) {
                         queue.add(it)
                     }
                 }}, { error -> Timber.e(error) })

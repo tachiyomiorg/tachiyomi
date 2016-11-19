@@ -31,21 +31,6 @@ class DownloadFragment : BaseRxFragment<DownloadPresenter>() {
     private lateinit var adapter: DownloadAdapter
 
     /**
-     * Menu item to start the queue.
-     */
-    private var startButton: MenuItem? = null
-
-    /**
-     * Menu item to pause the queue.
-     */
-    private var pauseButton: MenuItem? = null
-
-    /**
-     * Menu item to clear the queue.
-     */
-    private var clearButton: MenuItem? = null
-
-    /**
      * Subscription list to be cleared during [onDestroyView].
      */
     private val subscriptions by lazy { CompositeSubscription() }
@@ -119,23 +104,17 @@ class DownloadFragment : BaseRxFragment<DownloadPresenter>() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.download_queue, menu)
+    }
 
+    override fun onPrepareOptionsMenu(menu: Menu) {
         // Set start button visibility.
-        startButton = menu.findItem(R.id.start_queue).apply {
-            isVisible = !isRunning && !presenter.downloadQueue.isEmpty()
-        }
+        menu.findItem(R.id.start_queue).isVisible = !isRunning && !presenter.downloadQueue.isEmpty()
 
         // Set pause button visibility.
-        pauseButton = menu.findItem(R.id.pause_queue).apply {
-            isVisible = isRunning
-        }
+        menu.findItem(R.id.pause_queue).isVisible = isRunning
 
         // Set clear button visibility.
-        clearButton = menu.findItem(R.id.clear_queue).apply {
-            if (!presenter.downloadQueue.isEmpty()) {
-                isVisible = true
-            }
-        }
+        menu.findItem(R.id.clear_queue).isVisible = !presenter.downloadQueue.isEmpty()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -218,9 +197,7 @@ class DownloadFragment : BaseRxFragment<DownloadPresenter>() {
      */
     private fun onQueueStatusChange(running: Boolean) {
         isRunning = running
-        startButton?.isVisible = !running && !presenter.downloadQueue.isEmpty()
-        pauseButton?.isVisible = running
-        clearButton?.isVisible = !presenter.downloadQueue.isEmpty()
+        activity.supportInvalidateOptionsMenu()
 
         // Check if download queue is empty and update information accordingly.
         setInformationView()
