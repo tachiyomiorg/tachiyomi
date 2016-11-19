@@ -99,7 +99,7 @@ class DownloadProvider(private val context: Context) {
      * replacing any invalid characters with "_".
      */
     private fun buildValidFatFilename(name: String): String {
-        if (name.isNullOrBlank()) {
+        if (name.isNullOrEmpty()) {
             return "(invalid)"
         }
         val res = StringBuilder(name.length)
@@ -111,8 +111,8 @@ class DownloadProvider(private val context: Context) {
             }
         }
         // Even though vfat allows 255 UCS-2 chars, we might eventually write to
-        // ext4 through a FUSE layer, so use that limit.
-        return res.toString().take(255)
+        // ext4 through a FUSE layer, so use that limit minus 5 reserved characters.
+        return res.toString().take(250)
     }
 
     /**
