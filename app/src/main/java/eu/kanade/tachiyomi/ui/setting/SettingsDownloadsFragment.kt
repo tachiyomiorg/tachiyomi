@@ -49,8 +49,8 @@ class SettingsDownloadsFragment : SettingsFragment() {
         downloadDirPref.setOnPreferenceClickListener {
 
             val currentDir = preferences.downloadsDirectory().getOrDefault()
-            val externalDirs = getExternalFilesDirs() + getString(R.string.custom_dir)
-            val selectedIndex = externalDirs.indexOf(File(currentDir))
+            val externalDirs = getExternalFilesDirs() + File(getString(R.string.custom_dir))
+            val selectedIndex = externalDirs.map(File::toString).indexOfFirst { it in currentDir }
 
             MaterialDialog.Builder(activity)
                     .items(externalDirs)
@@ -82,7 +82,15 @@ class SettingsDownloadsFragment : SettingsFragment() {
         }
 
         subscriptions += preferences.downloadsDirectory().asObservable()
-                .subscribe { downloadDirPref.summary = it }
+                .subscribe { path ->
+                    downloadDirPref.summary = path
+
+                    // Don't display downloaded chapters in gallery apps creating a ".nomedia" file.
+                    val dir = UniFile.fromUri(context, Uri.parse(path))
+                    if (dir != null && dir.exists()) {
+                        dir.createFile(".nomedia")
+                    }
+                }
     }
 
     fun getExternalFilesDirs(): List<File> {

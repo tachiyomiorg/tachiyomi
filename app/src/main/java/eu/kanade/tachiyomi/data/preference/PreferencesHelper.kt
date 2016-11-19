@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.preference
 
 import android.content.Context
+import android.net.Uri
 import android.os.Environment
 import android.preference.PreferenceManager
 import com.f2prateek.rx.preferences.Preference
@@ -9,7 +10,6 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.mangasync.MangaSyncService
 import eu.kanade.tachiyomi.data.source.Source
 import java.io.File
-import java.io.IOException
 
 fun <T> Preference<T>.getOrDefault(): T = get() ?: defaultValue()!!
 
@@ -20,17 +20,9 @@ class PreferencesHelper(context: Context) {
     private val prefs = PreferenceManager.getDefaultSharedPreferences(context)
     private val rxPrefs = RxSharedPreferences.create(prefs)
 
-    private val defaultDownloadsDir = File(Environment.getExternalStorageDirectory().absolutePath +
-            File.separator + context.getString(R.string.app_name), "downloads")
-
-    init {
-        // Don't display downloaded chapters in gallery apps creating a ".nomedia" file
-        try {
-            File(downloadsDirectory().getOrDefault(), ".nomedia").createNewFile()
-        } catch (e: IOException) {
-            /* Ignore */
-        }
-    }
+    private val defaultDownloadsDir = Uri.fromFile(
+            File(Environment.getExternalStorageDirectory().absolutePath + File.separator +
+                    context.getString(R.string.app_name), "downloads"))
 
     fun startScreen() = prefs.getInt(keys.startScreen, 1)
 
@@ -112,7 +104,7 @@ class PreferencesHelper(context: Context) {
                 .apply()
     }
 
-    fun downloadsDirectory() = rxPrefs.getString(keys.downloadsDirectory, defaultDownloadsDir.absolutePath)
+    fun downloadsDirectory() = rxPrefs.getString(keys.downloadsDirectory, defaultDownloadsDir.toString())
 
     fun downloadThreads() = rxPrefs.getInteger(keys.downloadThreads, 1)
 

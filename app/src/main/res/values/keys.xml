@@ -42,12 +42,11 @@
     <string name="pref_filter_downloaded_key">pref_filter_downloaded_key</string>
     <string name="pref_filter_unread_key">pref_filter_unread_key</string>
 
-    <string name="pref_download_directory_key">pref_download_directory_key</string>
+    <string name="pref_download_directory_key">download_directory</string>
     <string name="pref_download_slots_key">pref_download_slots_key</string>
     <string name="pref_remove_after_read_slots_key">remove_after_read_slots</string>
     <string name="pref_download_only_over_wifi_key">pref_download_only_over_wifi_key</string>
     <string name="pref_remove_after_marked_as_read_key">pref_remove_after_marked_as_read_key</string>
-    <string name="pref_category_remove_after_read_key">pref_category_remove_after_read_key</string>
     <string name="pref_last_used_category_key">last_used_category</string>
 
     <string name="pref_source_languages">pref_source_languages</string>
