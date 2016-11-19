@@ -305,7 +305,7 @@ class Downloader(private val context: Context, private val provider: DownloadPro
         if (page.imageUrl == null)
             return Observable.just(page)
 
-        val filename = String.format("%03d", page.pageNumber + 1)
+        val filename = String.format("%03d", page.index + 1)
         val tmpFile = tmpDir.findFile("$filename.tmp")
 
         // Delete temp file if it exists.

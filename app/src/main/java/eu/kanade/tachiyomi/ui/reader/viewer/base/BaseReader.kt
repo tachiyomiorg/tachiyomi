@@ -95,7 +95,7 @@ abstract class BaseReader : BaseFragment() {
 
         // Active chapter has changed.
         if (oldChapter.id != newChapter.id) {
-            readerActivity.onEnterChapter(newPage.chapter, newPage.pageNumber)
+            readerActivity.onEnterChapter(newPage.chapter, newPage.index)
         }
         // Request next chapter only when the conditions are met.
         if (pages.size - position < 5 && chapters.last().id == newChapter.id
@@ -125,7 +125,7 @@ abstract class BaseReader : BaseFragment() {
      */
     fun getPageIndex(search: Page): Int {
         for ((index, page) in pages.withIndex()) {
-            if (page.pageNumber == search.pageNumber && page.chapter.id == search.chapter.id) {
+            if (page.index == search.index && page.chapter.id == search.chapter.id) {
                 return index
             }
         }

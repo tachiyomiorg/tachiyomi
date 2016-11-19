@@ -116,7 +116,7 @@ class WebtoonReader : BaseReader() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        val savedPosition = pages.getOrNull(layoutManager.findFirstVisibleItemPosition())?.pageNumber ?: 0
+        val savedPosition = pages.getOrNull(layoutManager.findFirstVisibleItemPosition())?.index ?: 0
         outState.putInt(SAVED_POSITION, savedPosition)
         super.onSaveInstanceState(outState)
     }
@@ -163,7 +163,7 @@ class WebtoonReader : BaseReader() {
      * @param currentPage the initial page to display.
      */
     override fun onChapterSet(chapter: ReaderChapter, currentPage: Page) {
-        this.currentPage = currentPage.pageNumber
+        this.currentPage = currentPage.index
 
         // Make sure the view is already initialized.
         if (view != null) {

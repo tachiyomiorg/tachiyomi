@@ -414,7 +414,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
      */
     fun onPageChanged(page: Page) {
         val chapter = page.chapter
-        chapter.last_page_read = page.pageNumber
+        chapter.last_page_read = page.index
         if (chapter.pages!!.last() === page) {
             chapter.read = true
         }
@@ -575,7 +575,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
                     // File where the image will be saved.
                     // TODO Will storage access framework be required?
                     val destFile = File(pictureDirectory, manga.title + " - " + chapter.name +
-                            " - " + (page.pageNumber + 1))
+                            " - " + (page.index + 1))
 
                     inputStream.use { inp ->
                         destFile.outputStream().use { output ->

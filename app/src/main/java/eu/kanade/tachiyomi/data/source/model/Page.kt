@@ -6,7 +6,7 @@ import eu.kanade.tachiyomi.ui.reader.ReaderChapter
 import rx.subjects.Subject
 
 class Page(
-        val pageNumber: Int,
+        val index: Int,
         val url: String = "",
         var imageUrl: String? = null,
         @Transient var uri: Uri? = null

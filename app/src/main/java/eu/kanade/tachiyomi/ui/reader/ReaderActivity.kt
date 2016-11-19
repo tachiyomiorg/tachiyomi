@@ -264,7 +264,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         val activePage = pages.getOrElse(chapter.requestedPage) { pages.first() }
 
         viewer?.onPageListReady(chapter, activePage)
-        setActiveChapter(chapter, activePage.pageNumber)
+        setActiveChapter(chapter, activePage.index)
     }
 
     fun onEnterChapter(chapter: ReaderChapter, currentPage: Int) {
@@ -331,7 +331,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     fun onPageChanged(page: Page) {
         presenter.onPageChanged(page)
 
-        val pageNumber = page.pageNumber + 1
+        val pageNumber = page.index + 1
         val pageCount = page.chapter.pages!!.size
         page_number.text = "$pageNumber/$pageCount"
         if (page_seekbar.rotation != 180f) {
@@ -339,7 +339,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         } else {
             right_page_text.text = "$pageNumber"
         }
-        page_seekbar.progress = page.pageNumber
+        page_seekbar.progress = page.index
     }
 
     fun gotoPageInCurrentChapter(pageIndex: Int) {
