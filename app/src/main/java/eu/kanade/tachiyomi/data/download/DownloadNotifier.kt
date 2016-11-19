@@ -7,6 +7,7 @@ import eu.kanade.tachiyomi.Constants
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.download.model.DownloadQueue
+import eu.kanade.tachiyomi.util.chop
 import eu.kanade.tachiyomi.util.notificationManager
 
 /**
@@ -120,11 +121,7 @@ internal class DownloadNotifier(private val context: Context) {
                 setProgress(initialQueueSize, initialQueueSize - queue.size, false)
             } else {
                 download?.let {
-                    if (it.chapter.name.length >= 33)
-                        setContentTitle(it.chapter.name.slice(IntRange(0, 30)).plus("..."))
-                    else
-                        setContentTitle(it.chapter.name)
-
+                    setContentTitle(it.chapter.name.chop(30))
                     setContentText(context.getString(R.string.chapter_downloading_progress)
                             .format(it.downloadedImages, it.pages!!.size))
                     setProgress(it.pages!!.size, it.downloadedImages, false)
