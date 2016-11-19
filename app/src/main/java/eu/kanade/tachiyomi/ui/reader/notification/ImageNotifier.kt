@@ -5,8 +5,6 @@ import android.graphics.Bitmap
 import android.support.v4.app.NotificationCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.animation.GlideAnimation
-import com.bumptech.glide.request.target.SimpleTarget
 import eu.kanade.tachiyomi.Constants
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.notificationManager
@@ -28,24 +26,25 @@ class ImageNotifier(private val context: Context) {
         get() = Constants.NOTIFICATION_DOWNLOAD_IMAGE_ID
 
     /**
-     * Called when image download/copy is complete
-     * @param file image file containing downloaded page image
+     * Called when image download/copy is complete. This method must be called in a background
+     * thread.
+     *
+     * @param file image file containing downloaded page image.
      */
     fun onComplete(file: File) {
+        val bitmap = Glide.with(context)
+                .load(file)
+                .asBitmap()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(720, 1280)
+                .get()
 
-        Glide.with(context).load(file).asBitmap().diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true).into(object : SimpleTarget<Bitmap>(720, 1280) {
-            /**
-             * The method that will be called when the resource load has finished.
-             * @param resource the loaded resource.
-             */
-            override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap>?) {
-                if (resource!= null){
-                    showCompleteNotification(file, resource)
-                }else{
-                    onError(null)
-                }
-            }
-        })
+        if (bitmap != null) {
+            showCompleteNotification(file, bitmap)
+        } else {
+            onError(null)
+        }
     }
 
     private fun showCompleteNotification(file: File, image: Bitmap) {
@@ -74,7 +73,7 @@ class ImageNotifier(private val context: Context) {
     }
 
     /**
-     * Clears the notification message
+     * Clears the notification message.
      */
     fun onClear() {
         context.notificationManager.cancel(notificationId)
@@ -87,8 +86,8 @@ class ImageNotifier(private val context: Context) {
 
 
     /**
-     * Called on error while downloading image
-     * @param error string containing error information
+     * Called on error while downloading image.
+     * @param error string containing error information.
      */
     fun onError(error: String?) {
         // Create notification

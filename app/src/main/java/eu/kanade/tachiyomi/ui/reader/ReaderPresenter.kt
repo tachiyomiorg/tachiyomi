@@ -29,7 +29,6 @@ import rx.schedulers.Schedulers
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 import java.io.File
-import java.io.IOException
 import java.util.*
 
 /**
@@ -97,15 +96,6 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
      * Source of the manga.
      */
     private val source by lazy { sourceManager.get(manga.source)!! }
-
-    /**
-     * Directory of pictures
-     */
-    private val pictureDirectory: String by lazy {
-        Environment.getExternalStorageDirectory().absolutePath + File.separator +
-                Environment.DIRECTORY_PICTURES + File.separator +
-                context.getString(R.string.app_name) + File.separator
-    }
 
     /**
      * Chapter list for the active manga. It's retrieved lazily and should be accessed for the first
@@ -553,44 +543,44 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
     }
 
     /**
-     * Save page to local storage
-     * @throws IOException
+     * Save page to local storage.
      */
     internal fun savePage(page: Page) {
         if (page.status != Page.READY)
             return
 
-        // Used to show image notification
+        // Used to show image notification.
         val imageNotifier = ImageNotifier(context)
 
-        //Remove the notification if already exist (user feedback)
+        // Remove the notification if it already exists (user feedback).
         imageNotifier.onClear()
 
-        // Copy file
+        // Pictures directory.
+        val pictureDirectory = Environment.getExternalStorageDirectory().absolutePath +
+                File.separator + Environment.DIRECTORY_PICTURES +
+                File.separator + context.getString(R.string.app_name)
+
+        // Copy file in background.
         Observable
                 .fromCallable {
-                    // Location of image file.
-                    val inputStream = context.contentResolver.openInputStream(page.uri)
-
                     // File where the image will be saved.
-                    // TODO Will storage access framework be required?
-                    val destFile = File(pictureDirectory, manga.title + " - " + chapter.name +
+                    val destDir = File(pictureDirectory)
+                    destDir.mkdirs()
+
+                    val destFile = File(destDir, manga.title + " - " + chapter.name +
                             " - " + (page.index + 1))
 
-                    inputStream.use { inp ->
+                    // Location of image file.
+                    context.contentResolver.openInputStream(page.uri).use { input ->
                         destFile.outputStream().use { output ->
-                            inp.copyTo(output)
+                            input.copyTo(output)
                         }
                     }
-                    destFile
+
+                    imageNotifier.onComplete(destFile)
                 }
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        {
-                            // Show notification
-                            imageNotifier.onComplete(it)
-                        },
+                .subscribe({},
                         { error ->
                             Timber.e(error)
                             imageNotifier.onError(error.message)
