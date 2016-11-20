@@ -6,6 +6,7 @@ import android.view.*
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.download.model.Download
+import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.plusAssign
@@ -161,7 +162,7 @@ class DownloadFragment : BaseRxFragment<DownloadPresenter>() {
                 // Get the sum of percentages for all the pages.
                 .flatMap {
                     Observable.from(download.pages)
-                            .map { it.progress }
+                            .map(Page::progress)
                             .reduce { x, y -> x + y }
                 }
                 // Keep only the latest emission to avoid backpressure.
@@ -209,6 +210,8 @@ class DownloadFragment : BaseRxFragment<DownloadPresenter>() {
      * @param downloads the downloads from the queue.
      */
     fun onNextDownloads(downloads: List<Download>) {
+        activity.supportInvalidateOptionsMenu()
+        setInformationView()
         adapter.setItems(downloads)
     }
 

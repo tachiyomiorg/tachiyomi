@@ -42,14 +42,14 @@ class DownloadStore(context: Context) {
     private var counter = 0
 
     /**
-     * Adds a download to the store.
+     * Adds a list of downloads to the store.
      *
-     * @param download the download to add.
+     * @param downloads the list of downloads to add.
      */
-    fun add(download: Download) {
-        preferences.edit()
-                .putString(getKey(download), serialize(download))
-                .apply()
+    fun addAll(downloads: List<Download>) {
+        val editor = preferences.edit()
+        downloads.forEach { editor.putString(getKey(it), serialize(it)) }
+        editor.apply()
     }
 
     /**

@@ -17,17 +17,17 @@ class DownloadQueue(
 
     private val updatedRelay = PublishRelay.create<Unit>()
 
-    fun add(download: Download) {
-        download.setStatusSubject(statusSubject)
-        download.status = Download.QUEUE
-        store.add(download)
-        val added = queue.add(download)
-        if (added) {
-            updatedRelay.call(Unit)
+    fun addAll(downloads: List<Download>) {
+        downloads.forEach { download ->
+            download.setStatusSubject(statusSubject)
+            download.status = Download.QUEUE
         }
+        queue.addAll(downloads)
+        store.addAll(downloads)
+        updatedRelay.call(Unit)
     }
 
-    fun del(download: Download) {
+    fun remove(download: Download) {
         val removed = queue.remove(download)
         store.remove(download)
         download.setStatusSubject(null)
@@ -36,12 +36,16 @@ class DownloadQueue(
         }
     }
 
-    fun del(chapter: Chapter) {
-        find { it.chapter.id == chapter.id }?.let { del(it) }
+    fun remove(chapter: Chapter) {
+        find { it.chapter.id == chapter.id }?.let { remove(it) }
     }
 
     fun clear() {
-        queue.forEach { del(it) }
+        queue.forEach { download ->
+            download.setStatusSubject(null)
+        }
+        queue.clear()
+        updatedRelay.call(Unit)
     }
 
     fun getActiveDownloads(): Observable<Download> =
@@ -49,7 +53,9 @@ class DownloadQueue(
 
     fun getStatusObservable(): Observable<Download> = statusSubject.onBackpressureBuffer()
 
-    fun getUpdatedObservable(): Observable<Unit> = updatedRelay.onBackpressureBuffer()
+    fun getUpdatedObservable(): Observable<List<Download>> = updatedRelay.onBackpressureBuffer()
+            .startWith(Unit)
+            .map { this }
 
     fun getProgressObservable(): Observable<Download> {
         return statusSubject.onBackpressureBuffer()

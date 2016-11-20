@@ -348,7 +348,7 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
      * @param chapter the chapter to delete.
      */
     private fun deleteChapter(chapter: ChapterModel) {
-        downloadManager.queue.del(chapter)
+        downloadManager.queue.remove(chapter)
         downloadManager.deleteChapter(source, manga, chapter)
         chapter.status = Download.NOT_DOWNLOADED
         chapter.download = null

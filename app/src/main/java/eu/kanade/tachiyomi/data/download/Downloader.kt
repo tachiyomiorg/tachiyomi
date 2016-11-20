@@ -92,13 +92,11 @@ class Downloader(private val context: Context, private val provider: DownloadPro
 
     init {
         Observable.fromCallable { store.restore() }
+                .map { downloads -> downloads.filter { isDownloadAllowed(it) } }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ downloads -> downloads.forEach {
-                    if (isDownloadAllowed(it)) {
-                        queue.add(it)
-                    }
-                }}, { error -> Timber.e(error) })
+                .subscribe({ downloads -> queue.addAll(downloads)
+                }, { error -> Timber.e(error) })
     }
 
     /**
@@ -209,7 +207,7 @@ class Downloader(private val context: Context, private val provider: DownloadPro
         if (chaptersToQueue.isEmpty())
             return
 
-        chaptersToQueue.forEach { queue.add(it) }
+        queue.addAll(chaptersToQueue)
 
         // Initialize queue size.
         notifier.initialQueueSize = queue.size
@@ -413,7 +411,7 @@ class Downloader(private val context: Context, private val provider: DownloadPro
         // Delete successful downloads from queue
         if (download.status == Download.DOWNLOADED) {
             // remove downloaded chapter from queue
-            queue.del(download)
+            queue.remove(download)
             notifier.onProgressChange(queue)
         }
         if (areAllDownloadsFinished()) {

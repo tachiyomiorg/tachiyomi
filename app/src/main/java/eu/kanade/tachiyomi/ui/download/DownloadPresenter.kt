@@ -31,9 +31,8 @@ class DownloadPresenter : BasePresenter<DownloadFragment>() {
         super.onCreate(savedState)
 
         downloadQueue.getUpdatedObservable()
-                .startWith(Unit)
                 .observeOn(AndroidSchedulers.mainThread())
-                .map { ArrayList(downloadQueue) }
+                .map { ArrayList(it) }
                 .subscribeLatestCache(DownloadFragment::onNextDownloads, { view, error ->
                     Timber.e(error)
                 })

@@ -261,7 +261,7 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
      */
     private fun deleteChapter(chapter: RecentChapter) {
         val source = sourceManager.get(chapter.manga.source) ?: return
-        downloadManager.queue.del(chapter)
+        downloadManager.queue.remove(chapter)
         downloadManager.deleteChapter(source, chapter.manga, chapter)
         chapter.status = Download.NOT_DOWNLOADED
         chapter.download = null
