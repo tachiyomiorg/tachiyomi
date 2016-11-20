@@ -28,7 +28,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
 
     override val supportsLatest = true
 
-    private val recentUpdatesPattern = Pattern.compile("(.*?)\\s(\\d+)")
+    private val recentUpdatesPattern = Pattern.compile("(.*?)\\s(\\d+\\.?\\d*)\\s?(Completed)?")
 
     private val indexPattern = Pattern.compile("-index-(.*?)-")
 
@@ -242,7 +242,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
             val indexOfMangaUrl = chapterUrl.indexOf("-chapter-")
             val indexOfLastPath = chapterUrl.lastIndexOf("/")
             val mangaUrl = chapterUrl.substring(indexOfLastPath, indexOfMangaUrl)
-            val defaultText = it.select("p.clamp2").text();
+            val defaultText = it.select("p.clamp2").text()
             val m = recentUpdatesPattern.matcher(defaultText)
             val title = if (m.matches()) m.group(1) else defaultText
             manga.setUrlWithoutDomain("/manga" + mangaUrl)
