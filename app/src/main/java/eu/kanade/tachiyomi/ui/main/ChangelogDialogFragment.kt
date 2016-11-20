@@ -38,7 +38,7 @@ class ChangelogDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedState: Bundle?): Dialog {
         val view = WhatsNewRecyclerView(context)
         return MaterialDialog.Builder(activity)
-                .title("Changelog")
+                .title(if (BuildConfig.DEBUG) "Notices" else "Changelog")
                 .customView(view, false)
                 .positiveText(android.R.string.yes)
                 .build()

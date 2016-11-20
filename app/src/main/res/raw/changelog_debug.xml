@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="false">
 
+    <changelogversion changeDate="" versionName="r959">
+        <changelogtext>The download manager has been rewritten and it's possible some of your downloads
+            aren't recognized anymore. You may have to check your downloads folder and manually delete those.
+        </changelogtext>
+        <changelogtext>You can now download to any folder in your SD card.</changelogtext>
+        <changelogtext>The download directory setting has been reset.</changelogtext>
+    </changelogversion>
+
     <changelogversion changeDate="" versionName="r857">
         <changelogtext>[b]Important![/b] Delete after read has been updated.
             This means the value has been reset set to disabled.
