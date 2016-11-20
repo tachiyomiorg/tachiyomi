@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.data.source.online.russian
 
-import android.content.Context
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.Language
@@ -53,10 +52,7 @@ class Readmanga(override val id: Int) : ParsedOnlineSource() {
     override fun searchMangaSelector() = popularMangaSelector()
 
     override fun searchMangaFromElement(element: Element, manga: Manga) {
-        element.select("h3 > a").first().let {
-            manga.setUrlWithoutDomain(it.attr("href"))
-            manga.title = it.attr("title")
-        }
+        popularMangaFromElement(element, manga)
     }
 
     // max 200 results
@@ -118,9 +114,9 @@ class Readmanga(override val id: Int) : ParsedOnlineSource() {
     override fun imageUrlParse(document: Document) = ""
 
     /* [...document.querySelectorAll("tr.advanced_option:nth-child(1) > td:nth-child(3) span.js-link")].map((el,i) => {
-    * const onClick=el.getAttribute('onclick');const id=onClick.substr(31,onClick.length-33);
-    * return `Filter("${id}", "${el.textContent.trim()}")` }).join(',\n')
-    * on http://readmanga.me/search
+    *  const onClick=el.getAttribute('onclick');const id=onClick.substr(31,onClick.length-33);
+    *  return `Filter("${id}", "${el.textContent.trim()}")` }).join(',\n')
+    *  on http://readmanga.me/search
     */
     override fun getFilterList(): List<Filter> = listOf(
             Filter("el_5685", "арт"),
@@ -136,6 +132,7 @@ class Readmanga(override val id: Int) : ParsedOnlineSource() {
             Filter("el_2118", "драма"),
             Filter("el_2154", "игра"),
             Filter("el_2119", "история"),
+            Filter("el_8032", "киберпанк"),
             Filter("el_2137", "кодомо"),
             Filter("el_2136", "комедия"),
             Filter("el_2147", "махо-сёдзё"),
@@ -164,5 +161,4 @@ class Readmanga(override val id: Int) : ParsedOnlineSource() {
             Filter("el_2149", "этти"),
             Filter("el_2123", "юри")
     )
-
 }
