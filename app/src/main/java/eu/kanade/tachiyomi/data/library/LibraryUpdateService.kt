@@ -16,6 +16,7 @@ import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadManager
+import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService.Companion.start
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
@@ -272,6 +273,9 @@ class LibraryUpdateService : Service() {
                     if (newUpdates.isEmpty()) {
                         cancelNotification()
                     } else {
+                        if (preferences.downloadNew()) {
+                            DownloadService.start(this)
+                        }
                         showResultNotification(newUpdates, failedUpdates)
                     }
                 }
@@ -284,7 +288,6 @@ class LibraryUpdateService : Service() {
             mangaChapters.find { mangaChapter -> mangaChapter.url == it.url }!!
         }
         downloadManager.downloadChapters(manga, dbChapters)
-        downloadManager.startDownloads()
     }
 
     /**
