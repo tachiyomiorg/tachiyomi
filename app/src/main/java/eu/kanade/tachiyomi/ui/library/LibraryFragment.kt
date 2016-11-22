@@ -201,7 +201,6 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
         val sortModeAlpha = menu.findItem(R.id.action_sort_alpha)
         val sortModeLastRead = menu.findItem(R.id.action_sort_last_read)
         val sortModeLastUpdated = menu.findItem(R.id.action_sort_last_updated)
-        val sortModeDateAdded = menu.findItem(R.id.action_sort_date_added)
 
         // Set correct checkbox filter
         filterDownloadedItem.isChecked = isFilterDownloaded
@@ -211,7 +210,6 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
         if (sortingMode == Constants.SORT_LIBRARY_ALPHA) sortModeAlpha.isChecked = true
         if (sortingMode == Constants.SORT_LIBRARY_LAST_READ) sortModeLastRead.isChecked = true
         if (sortingMode == Constants.SORT_LIBRARY_LAST_UPDATED) sortModeLastUpdated.isChecked = true
-        if (sortingMode == Constants.SORT_LIBRARY_DATE_ADDED) sortModeDateAdded.isChecked = true
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -280,11 +278,6 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
             }
             R.id.action_sort_last_updated -> {
                 sortingMode = Constants.SORT_LIBRARY_LAST_UPDATED
-                preferences.librarySortingMode().set(sortingMode)
-                onFilterOrSortChanged()
-            }
-            R.id.action_sort_date_added -> {
-                sortingMode = Constants.SORT_LIBRARY_DATE_ADDED
                 preferences.librarySortingMode().set(sortingMode)
                 onFilterOrSortChanged()
             }

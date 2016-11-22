@@ -10,5 +10,4 @@ object Constants {
     const val SORT_LIBRARY_ALPHA = 0
     const val SORT_LIBRARY_LAST_READ = 1
     const val SORT_LIBRARY_LAST_UPDATED = 2
-    const val SORT_LIBRARY_DATE_ADDED = 3
 }

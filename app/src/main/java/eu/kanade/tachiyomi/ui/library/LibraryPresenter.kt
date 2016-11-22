@@ -185,7 +185,6 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
                 return b.compareTo(a)
             }
             Constants.SORT_LIBRARY_LAST_UPDATED -> return manga2.last_update.compareTo(manga1.last_update)
-            Constants.SORT_LIBRARY_DATE_ADDED -> return manga2.date_added.compareTo(manga1.date_added)
             else -> return manga1.title.compareTo(manga2.title)
         }
     }

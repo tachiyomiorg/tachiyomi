@@ -37,7 +37,7 @@
             >
         <menu>
             <group
-                    android:id="@+id/sort_group1"
+                    android:id="@+id/sort_group"
                     android:checkableBehavior="single">
                 <item
                         android:id="@+id/action_sort_alpha"
@@ -48,10 +48,6 @@
                 <item
                         android:id="@+id/action_sort_last_updated"
                         android:title="@string/action_sort_last_updated"/>
-
-                <item
-                        android:id="@+id/action_sort_date_added"
-                        android:title="@string/action_sort_date_added"/>
             </group>
         </menu>
     </item>
