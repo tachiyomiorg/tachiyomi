@@ -5,7 +5,7 @@ import com.google.gson.FieldAttributes
 import eu.kanade.tachiyomi.data.database.models.CategoryImpl
 import eu.kanade.tachiyomi.data.database.models.ChapterImpl
 import eu.kanade.tachiyomi.data.database.models.MangaImpl
-import eu.kanade.tachiyomi.data.database.models.MangaSyncImpl
+import eu.kanade.tachiyomi.data.database.models.TrackImpl
 
 class IdExclusion : ExclusionStrategy {
 
@@ -17,7 +17,7 @@ class IdExclusion : ExclusionStrategy {
     override fun shouldSkipField(f: FieldAttributes) = when (f.declaringClass) {
         MangaImpl::class.java -> mangaExclusions.contains(f.name)
         ChapterImpl::class.java -> chapterExclusions.contains(f.name)
-        MangaSyncImpl::class.java -> syncExclusions.contains(f.name)
+        TrackImpl::class.java -> syncExclusions.contains(f.name)
         CategoryImpl::class.java -> categoryExclusions.contains(f.name)
         else -> false
     }

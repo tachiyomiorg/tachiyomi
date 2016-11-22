@@ -6,7 +6,7 @@ import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.download.DownloadManager
-import eu.kanade.tachiyomi.data.mangasync.MangaSyncManager
+import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.network.NetworkHelper
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.source.SourceManager
@@ -32,7 +32,7 @@ class AppModule(val app: Application) : InjektModule {
 
             addSingletonFactory { DownloadManager(app) }
 
-            addSingletonFactory { MangaSyncManager(app) }
+            addSingletonFactory { TrackManager(app) }
 
             addSingletonFactory { Gson() }
 

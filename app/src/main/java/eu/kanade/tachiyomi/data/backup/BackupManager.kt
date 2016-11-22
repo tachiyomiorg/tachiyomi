@@ -110,7 +110,7 @@ class BackupManager(private val db: DatabaseHelper) {
         }
 
         // Backup manga sync
-        val mangaSync = db.getMangasSync(manga).executeAsBlocking()
+        val mangaSync = db.getTracks(manga).executeAsBlocking()
         if (!mangaSync.isEmpty()) {
             entry.add(MANGA_SYNC, gson.toJsonTree(mangaSync))
         }
@@ -231,7 +231,7 @@ class BackupManager(private val db: DatabaseHelper) {
             val element = backupManga.asJsonObject
             val manga = gson.fromJson(element.get(MANGA), MangaImpl::class.java)
             val chapters = gson.fromJson<List<ChapterImpl>>(element.get(CHAPTERS) ?: JsonArray())
-            val sync = gson.fromJson<List<MangaSyncImpl>>(element.get(MANGA_SYNC) ?: JsonArray())
+            val sync = gson.fromJson<List<TrackImpl>>(element.get(MANGA_SYNC) ?: JsonArray())
             val categories = gson.fromJson<List<String>>(element.get(CATEGORIES) ?: JsonArray())
 
             // Restore everything related to this manga
@@ -335,14 +335,14 @@ class BackupManager(private val db: DatabaseHelper) {
      * @param manga the manga whose sync have to be restored.
      * @param sync the sync to restore.
      */
-    private fun restoreSyncForManga(manga: Manga, sync: List<MangaSync>) {
+    private fun restoreSyncForManga(manga: Manga, sync: List<Track>) {
         // Fix foreign keys with the current manga id
         for (mangaSync in sync) {
             mangaSync.manga_id = manga.id!!
         }
 
-        val dbSyncs = db.getMangasSync(manga).executeAsBlocking()
-        val syncToUpdate = ArrayList<MangaSync>()
+        val dbSyncs = db.getTracks(manga).executeAsBlocking()
+        val syncToUpdate = ArrayList<Track>()
         for (backupSync in sync) {
             // Try to find existing chapter in db
             val pos = dbSyncs.indexOf(backupSync)
@@ -361,7 +361,7 @@ class BackupManager(private val db: DatabaseHelper) {
 
         // Update database
         if (!syncToUpdate.isEmpty()) {
-            db.insertMangasSync(syncToUpdate).executeAsBlocking()
+            db.insertTracks(syncToUpdate).executeAsBlocking()
         }
     }
 

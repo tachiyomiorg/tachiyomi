@@ -7,7 +7,7 @@ import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.MangaSync
+import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.widget.SimpleTextWatcher
 import kotlinx.android.synthetic.main.dialog_track_search.view.*
 import rx.Subscription
@@ -32,7 +32,7 @@ class TrackSearchDialog : DialogFragment() {
 
     private var searchDebounceSubscription: Subscription? = null
 
-    private var selectedItem: MangaSync? = null
+    private var selectedItem: Track? = null
 
     val presenter: TrackPresenter
         get() = (parentFragment as TrackFragment).presenter
@@ -99,7 +99,7 @@ class TrackSearchDialog : DialogFragment() {
         presenter.search(query)
     }
 
-    fun onSearchResults(results: List<MangaSync>) {
+    fun onSearchResults(results: List<Track>) {
         selectedItem = null
         v.progress.visibility = View.GONE
         v.track_search_list.visibility = View.VISIBLE

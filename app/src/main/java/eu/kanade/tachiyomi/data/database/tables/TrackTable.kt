@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.data.database.tables
 
-object MangaSyncTable {
+object TrackTable {
 
     const val TABLE = "manga_sync"
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.NumberPicker
 import com.afollestad.materialdialogs.MaterialDialog
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.MangaSync
+import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.util.toast
@@ -55,7 +55,7 @@ class TrackFragment : BaseRxFragment<TrackPresenter>() {
         (activity as MangaActivity).setTrackingIcon(trackings.any { it.sync != null })
     }
 
-    fun onSearchResults(results: List<MangaSync>) {
+    fun onSearchResults(results: List<Track>) {
         if (!isResumed) return
 
         findSearchFragmentIfNeeded()

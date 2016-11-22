@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.data.database.models
 
 import java.io.Serializable
 
-interface MangaSync : Serializable {
+interface Track : Serializable {
 
     var id: Long?
 
@@ -24,7 +24,7 @@ interface MangaSync : Serializable {
 
     var update: Boolean
 
-    fun copyPersonalFrom(other: MangaSync) {
+    fun copyPersonalFrom(other: Track) {
         last_chapter_read = other.last_chapter_read
         score = other.score
         status = other.status
@@ -32,7 +32,7 @@ interface MangaSync : Serializable {
 
     companion object {
 
-        fun create(serviceId: Int): MangaSync = MangaSyncImpl().apply {
+        fun create(serviceId: Int): Track = TrackImpl().apply {
             sync_id = serviceId
         }
     }

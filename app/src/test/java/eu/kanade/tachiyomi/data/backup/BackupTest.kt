@@ -412,7 +412,7 @@ class BackupTest {
         val dbManga = db.getManga(1).executeAsBlocking()
         assertThat(dbManga).isNotNull()
 
-        val dbSync = db.getMangasSync(dbManga!!).executeAsBlocking()
+        val dbSync = db.getTracks(dbManga!!).executeAsBlocking()
         assertThat(dbSync).hasSize(3)
     }
 
@@ -441,7 +441,7 @@ class BackupTest {
         val dbManga = db.getManga(mangaId).executeAsBlocking()
         assertThat(dbManga).isNotNull()
 
-        val dbSync = db.getMangasSync(dbManga!!).executeAsBlocking()
+        val dbSync = db.getTracks(dbManga!!).executeAsBlocking()
         assertThat(dbSync).hasSize(3)
     }
 
@@ -453,7 +453,7 @@ class BackupTest {
         manga.id = mangaId
         var mangaSync = createMangaSync(manga, 1, 2, 3)
         db.insertManga(manga).executeAsBlocking()
-        db.insertMangasSync(mangaSync).executeAsBlocking()
+        db.insertTracks(mangaSync).executeAsBlocking()
 
         // The backup contains a existing sync and a new one, so it should have 4 sync
         mangaSync = createMangaSync(manga, 3, 4)
@@ -474,7 +474,7 @@ class BackupTest {
         val dbManga = db.getManga(mangaId).executeAsBlocking()
         assertThat(dbManga).isNotNull()
 
-        val dbSync = db.getMangasSync(dbManga!!).executeAsBlocking()
+        val dbSync = db.getTracks(dbManga!!).executeAsBlocking()
         assertThat(dbSync).hasSize(4)
     }
 
@@ -546,15 +546,15 @@ class BackupTest {
         return chapters
     }
 
-    private fun createMangaSync(manga: Manga, syncId: Int): MangaSync {
-        val m = MangaSync.create(syncId)
+    private fun createMangaSync(manga: Manga, syncId: Int): Track {
+        val m = Track.create(syncId)
         m.manga_id = manga.id!!
         m.title = "title"
         return m
     }
 
-    private fun createMangaSync(manga: Manga, vararg syncIds: Int): List<MangaSync> {
-        val ms = ArrayList<MangaSync>()
+    private fun createMangaSync(manga: Manga, vararg syncIds: Int): List<Track> {
+        val ms = ArrayList<Track>()
         for (title in syncIds) {
             ms.add(createMangaSync(manga, title))
         }

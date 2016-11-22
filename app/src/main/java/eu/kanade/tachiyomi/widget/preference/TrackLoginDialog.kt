@@ -3,20 +3,20 @@ package eu.kanade.tachiyomi.widget.preference
 import android.os.Bundle
 import android.view.View
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.mangasync.MangaSyncManager
-import eu.kanade.tachiyomi.data.mangasync.MangaSyncService
+import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.pref_account_login.view.*
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.injectLazy
 
-class MangaSyncLoginDialog : LoginDialogPreference() {
+class TrackLoginDialog : LoginDialogPreference() {
 
     companion object {
 
-        fun newInstance(sync: MangaSyncService): LoginDialogPreference {
-            val fragment = MangaSyncLoginDialog()
+        fun newInstance(sync: TrackService): LoginDialogPreference {
+            val fragment = TrackLoginDialog()
             val bundle = Bundle(1)
             bundle.putInt("key", sync.id)
             fragment.arguments = bundle
@@ -24,9 +24,9 @@ class MangaSyncLoginDialog : LoginDialogPreference() {
         }
     }
 
-    val syncManager: MangaSyncManager by injectLazy()
+    val syncManager: TrackManager by injectLazy()
 
-    lateinit var sync: MangaSyncService
+    lateinit var sync: TrackService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

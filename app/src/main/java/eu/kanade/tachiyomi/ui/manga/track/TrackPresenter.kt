@@ -3,9 +3,9 @@ package eu.kanade.tachiyomi.ui.manga.track
 import android.os.Bundle
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.database.models.MangaSync
-import eu.kanade.tachiyomi.data.mangasync.MangaSyncManager
-import eu.kanade.tachiyomi.data.mangasync.MangaSyncService
+import eu.kanade.tachiyomi.data.database.models.Track
+import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.manga.MangaEvent
 import eu.kanade.tachiyomi.util.SharedData
@@ -20,7 +20,7 @@ class TrackPresenter : BasePresenter<TrackFragment>() {
 
     private val db: DatabaseHelper by injectLazy()
 
-    private val syncManager: MangaSyncManager by injectLazy()
+    private val syncManager: TrackManager by injectLazy()
 
     lateinit var manga: Manga
         private set
@@ -29,7 +29,7 @@ class TrackPresenter : BasePresenter<TrackFragment>() {
 
     private val loggedServices by lazy { syncManager.services.filter { it.isLogged } }
 
-    var selectedService: MangaSyncService? = null
+    var selectedService: TrackService? = null
 
     private var trackSubscription: Subscription? = null
 
@@ -46,7 +46,7 @@ class TrackPresenter : BasePresenter<TrackFragment>() {
 
     fun fetchTrackings() {
         trackSubscription?.let { remove(it) }
-        trackSubscription = db.getMangasSync(manga)
+        trackSubscription = db.getTracks(manga)
                 .asRxObservable()
                 .map { tracks ->
                     loggedServices.map { service ->
@@ -64,7 +64,7 @@ class TrackPresenter : BasePresenter<TrackFragment>() {
                 .filter { it.sync != null }
                 .concatMap { item ->
                     item.service.refresh(item.sync!!)
-                            .flatMap { db.insertMangaSync(it).asRxObservable() }
+                            .flatMap { db.insertTrack(it).asRxObservable() }
                             .map { item }
                             .onErrorReturn { item }
                 }
@@ -86,25 +86,25 @@ class TrackPresenter : BasePresenter<TrackFragment>() {
                         TrackFragment::onSearchResultsError)
     }
 
-    fun registerTracking(item: MangaSync?) {
+    fun registerTracking(item: Track?) {
         val service = selectedService ?: return
 
         if (item != null) {
             item.manga_id = manga.id!!
             add(service.bind(item)
-                    .flatMap { db.insertMangaSync(item).asRxObservable() }
+                    .flatMap { db.insertTrack(item).asRxObservable() }
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ },
                             { error -> context.toast(error.message) }))
         } else {
-            db.deleteMangaSyncForManga(manga, service).executeAsBlocking()
+            db.deleteTrackForManga(manga, service).executeAsBlocking()
         }
     }
 
-    private fun updateRemote(sync: MangaSync, service: MangaSyncService) {
+    private fun updateRemote(sync: Track, service: TrackService) {
         service.update(sync)
-                .flatMap { db.insertMangaSync(sync).asRxObservable() }
+                .flatMap { db.insertTrack(sync).asRxObservable() }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeFirst({ view, result -> view.onRefreshDone() },

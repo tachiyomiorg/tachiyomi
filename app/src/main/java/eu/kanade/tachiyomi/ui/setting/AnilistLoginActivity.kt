@@ -7,14 +7,14 @@ import android.view.Gravity.CENTER
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
 import android.widget.ProgressBar
-import eu.kanade.tachiyomi.data.mangasync.MangaSyncManager
+import eu.kanade.tachiyomi.data.track.TrackManager
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.injectLazy
 
 class AnilistLoginActivity : AppCompatActivity() {
 
-    private val syncManager: MangaSyncManager by injectLazy()
+    private val syncManager: TrackManager by injectLazy()
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)

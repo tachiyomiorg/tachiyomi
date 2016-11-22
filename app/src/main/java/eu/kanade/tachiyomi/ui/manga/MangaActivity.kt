@@ -100,6 +100,7 @@ class MangaActivity : BaseRxActivity<MangaPresenter>() {
         val view = field.get(tab) as LinearLayout
         val textView = view.getChildAt(1) as TextView
         textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
+        textView.compoundDrawablePadding = 4
     }
 
     private class MangaDetailAdapter(fm: FragmentManager, activity: MangaActivity)

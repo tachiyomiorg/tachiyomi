@@ -1,20 +1,20 @@
-package eu.kanade.tachiyomi.data.mangasync
+package eu.kanade.tachiyomi.data.track
 
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
-import eu.kanade.tachiyomi.data.database.models.MangaSync
+import eu.kanade.tachiyomi.data.database.models.Track
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
 import uy.kohesive.injekt.injectLazy
 
-class UpdateMangaSyncService : Service() {
+class TrackUpdateService : Service() {
 
-    val syncManager: MangaSyncManager by injectLazy()
+    val syncManager: TrackManager by injectLazy()
     val db: DatabaseHelper by injectLazy()
 
     private lateinit var subscriptions: CompositeSubscription
@@ -32,7 +32,7 @@ class UpdateMangaSyncService : Service() {
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         val manga = intent.getSerializableExtra(EXTRA_MANGASYNC)
         if (manga != null) {
-            updateLastChapterRead(manga as MangaSync, startId)
+            updateLastChapterRead(manga as Track, startId)
             return Service.START_REDELIVER_INTENT
         } else {
             stopSelf(startId)
@@ -44,15 +44,15 @@ class UpdateMangaSyncService : Service() {
         return null
     }
 
-    private fun updateLastChapterRead(mangaSync: MangaSync, startId: Int) {
-        val sync = syncManager.getService(mangaSync.sync_id)
+    private fun updateLastChapterRead(track: Track, startId: Int) {
+        val sync = syncManager.getService(track.sync_id)
         if (sync == null) {
             stopSelf(startId)
             return
         }
 
-        subscriptions.add(Observable.defer { sync.update(mangaSync) }
-                .flatMap { db.insertMangaSync(mangaSync).asRxObservable() }
+        subscriptions.add(Observable.defer { sync.update(track) }
+                .flatMap { db.insertTrack(track).asRxObservable() }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ stopSelf(startId) },
@@ -64,9 +64,9 @@ class UpdateMangaSyncService : Service() {
         private val EXTRA_MANGASYNC = "extra_mangasync"
 
         @JvmStatic
-        fun start(context: Context, mangaSync: MangaSync) {
-            val intent = Intent(context, UpdateMangaSyncService::class.java)
-            intent.putExtra(EXTRA_MANGASYNC, mangaSync)
+        fun start(context: Context, track: Track) {
+            val intent = Intent(context, TrackUpdateService::class.java)
+            intent.putExtra(EXTRA_MANGASYNC, track)
             context.startService(intent)
         }
     }

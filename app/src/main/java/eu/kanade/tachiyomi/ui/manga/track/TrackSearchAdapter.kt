@@ -5,13 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.MangaSync
+import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.util.inflate
 import kotlinx.android.synthetic.main.item_track_search.view.*
 import java.util.*
 
 class TrackSearchAdapter(context: Context)
-: ArrayAdapter<MangaSync>(context, R.layout.item_track_search, ArrayList<MangaSync>()) {
+: ArrayAdapter<Track>(context, R.layout.item_track_search, ArrayList<Track>()) {
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         var v = view
@@ -30,7 +30,7 @@ class TrackSearchAdapter(context: Context)
         return v
     }
 
-    fun setItems(syncs: List<MangaSync>) {
+    fun setItems(syncs: List<Track>) {
         setNotifyOnChange(false)
         clear()
         addAll(syncs)
@@ -39,7 +39,7 @@ class TrackSearchAdapter(context: Context)
 
     class TrackSearchHolder(private val view: View) {
 
-        fun onSetValues(sync: MangaSync) {
+        fun onSetValues(sync: Track) {
             view.track_search_title.text = sync.title
         }
     }

@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.ui.manga
 import android.os.Bundle
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.mangasync.MangaSyncManager
+import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.manga.info.ChapterCountEvent
 import eu.kanade.tachiyomi.util.SharedData
@@ -24,7 +24,7 @@ class MangaPresenter : BasePresenter<MangaActivity>() {
     /**
      * Manga sync manager.
      */
-    val syncManager: MangaSyncManager by injectLazy()
+    val syncManager: TrackManager by injectLazy()
 
     /**
      * Manga associated with this instance.

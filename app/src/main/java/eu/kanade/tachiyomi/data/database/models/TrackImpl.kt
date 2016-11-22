@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.data.database.models
 
-class MangaSyncImpl : MangaSync {
+class TrackImpl : Track {
 
     override var id: Long? = null
 
@@ -26,7 +26,7 @@ class MangaSyncImpl : MangaSync {
         if (this === other) return true
         if (other == null || javaClass != other.javaClass) return false
 
-        val mangaSync = other as MangaSync
+        val mangaSync = other as Track
 
         if (manga_id != mangaSync.manga_id) return false
         if (sync_id != mangaSync.sync_id) return false

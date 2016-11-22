@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.ui.manga.track
 
-import eu.kanade.tachiyomi.data.database.models.MangaSync
-import eu.kanade.tachiyomi.data.mangasync.MangaSyncService
+import eu.kanade.tachiyomi.data.database.models.Track
+import eu.kanade.tachiyomi.data.track.TrackService
 
-class TrackItem(val sync: MangaSync?, val service: MangaSyncService) {
+class TrackItem(val sync: Track?, val service: TrackService) {
 
 }

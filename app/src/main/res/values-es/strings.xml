@@ -65,7 +65,7 @@
     <string name="pref_category_reader">Lector</string>
     <string name="pref_category_downloads">Descargas</string>
     <string name="pref_category_sources">Fuentes</string>
-    <string name="pref_category_sync">Sincronización</string>
+    <string name="pref_category_tracking">Seguimiento</string>
     <string name="pref_category_advanced">Avanzado</string>
     <string name="pref_category_about">Acerca de</string>
 

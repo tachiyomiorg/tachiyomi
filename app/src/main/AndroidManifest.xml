@@ -82,7 +82,7 @@
         <service android:name=".data.download.DownloadService"
             android:exported="false"/>
 
-        <service android:name=".data.mangasync.UpdateMangaSyncService"
+        <service android:name=".data.track.TrackUpdateService"
             android:exported="false"/>
 
         <service android:name=".data.updater.UpdateDownloaderService"

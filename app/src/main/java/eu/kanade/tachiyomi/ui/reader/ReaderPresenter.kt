@@ -10,14 +10,14 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.History
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.database.models.MangaSync
+import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.download.DownloadManager
-import eu.kanade.tachiyomi.data.mangasync.MangaSyncManager
-import eu.kanade.tachiyomi.data.mangasync.UpdateMangaSyncService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.source.SourceManager
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
+import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.data.track.TrackUpdateService
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.reader.notification.ImageNotifier
 import eu.kanade.tachiyomi.util.DiskUtil
@@ -56,7 +56,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
     /**
      * Sync manager.
      */
-    val syncManager: MangaSyncManager by injectLazy()
+    val syncManager: TrackManager by injectLazy()
 
     /**
      * Source manager.
@@ -124,7 +124,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
     /**
      * List of manga services linked to the active manga, or null if auto syncing is not enabled.
      */
-    private var mangaSyncList: List<MangaSync>? = null
+    private var trackList: List<Track>? = null
 
     /**
      * Chapter loader whose job is to obtain the chapter list and initialize every page.
@@ -166,8 +166,8 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
 
         // Retrieve the sync list if auto syncing is enabled.
         if (prefs.autoUpdateMangaSync()) {
-            add(db.getMangasSync(manga).asRxSingle()
-                    .subscribe({ mangaSyncList = it }))
+            add(db.getTracks(manga).asRxSingle()
+                    .subscribe({ trackList = it }))
         }
 
         restartableLatestCache(LOAD_ACTIVE_CHAPTER,
@@ -432,7 +432,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
      * Returns the chapter to be marked as last read in sync services or 0 if no update required.
      */
     fun getMangaSyncChapterToUpdate(): Int {
-        val mangaSyncList = mangaSyncList
+        val mangaSyncList = trackList
         if (chapter.pages == null || mangaSyncList == null || mangaSyncList.isEmpty())
             return 0
 
@@ -460,10 +460,10 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
      * Starts the service that updates the last chapter read in sync services
      */
     fun updateMangaSyncLastChapterRead() {
-        mangaSyncList?.forEach { sync ->
+        trackList?.forEach { sync ->
             val service = syncManager.getService(sync.sync_id)
             if (service != null && service.isLogged && sync.update) {
-                UpdateMangaSyncService.start(context, sync)
+                TrackUpdateService.start(context, sync)
             }
         }
     }

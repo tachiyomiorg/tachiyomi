@@ -3,7 +3,7 @@
 
     <string name="pref_category_general_key">pref_category_general_key</string>
     <string name="pref_category_reader_key">pref_category_reader_key</string>
-    <string name="pref_category_sync_key">pref_category_sync_key</string>
+    <string name="pref_category_tracking_key">pref_category_tracking_key</string>
     <string name="pref_category_downloads_key">pref_category_downloads_key</string>
     <string name="pref_category_advanced_key">pref_category_advanced_key</string>
     <string name="pref_category_about_key">pref_category_about_key</string>
@@ -52,7 +52,7 @@
     <string name="pref_last_used_category_key">last_used_category</string>
 
     <string name="pref_source_languages">pref_source_languages</string>
-    <string name="pref_category_manga_sync_accounts_key">category_manga_sync_accounts</string>
+    <string name="pref_category_tracking_accounts_key">category_tracking_accounts</string>
 
     <string name="pref_clear_chapter_cache_key">pref_clear_chapter_cache_key</string>
     <string name="pref_clear_database_key">pref_clear_database_key</string>
