@@ -40,6 +40,11 @@ internal class DownloadNotifier(private val context: Context) {
     var multipleDownloadThreads = false
 
     /**
+     * Checks if error notification is visible
+     */
+    var errorThrown = false
+
+    /**
      * Shows a notification from this builder.
      *
      * @param id the id of the notification.
@@ -95,7 +100,7 @@ internal class DownloadNotifier(private val context: Context) {
                 return
             }
         } else {
-            if (download != null && download.pages!!.size == download.downloadedImages) {
+            if (download != null && download.pages!!.size == download.downloadedImages && download.totalProgress == queue.size - 1) {
                 onChapterCompleted(download)
                 return
             }
@@ -106,6 +111,10 @@ internal class DownloadNotifier(private val context: Context) {
             // Check if icon needs refresh
             if (!isDownloading) {
                 setSmallIcon(android.R.drawable.stat_sys_download)
+                // Clear old actions if they exist
+                if (!mActions.isEmpty())
+                    mActions.clear()
+                setContentIntent(DownloadNotificationReceiver.OpenDownloadManagerIntent(context))
                 isDownloading = true
             }
 
@@ -121,7 +130,9 @@ internal class DownloadNotifier(private val context: Context) {
                 setProgress(initialQueueSize, initialQueueSize - queue.size, false)
             } else {
                 download?.let {
-                    setContentTitle(it.chapter.name.chop(30))
+                    val title = it.manga.title
+                    val chapter = it.chapter.name.replaceFirst(it.manga.title, "", true)
+                    setContentTitle((title + ":" + chapter).chop(30))
                     setContentText(context.getString(R.string.chapter_downloading_progress)
                             .format(it.downloadedImages, it.pages!!.size))
                     setProgress(it.pages!!.size, it.downloadedImages, false)
@@ -178,6 +189,9 @@ internal class DownloadNotifier(private val context: Context) {
      * @param chapter string containing chapter title.
      */
     fun onError(error: String? = null, chapter: String? = null) {
+        // Error is thrown
+        errorThrown = true
+
         // Create notification
         with(notification) {
             setContentTitle(chapter ?: context.getString(R.string.download_notifier_downloader_title))

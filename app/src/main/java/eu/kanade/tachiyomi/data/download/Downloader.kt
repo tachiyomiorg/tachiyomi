@@ -132,7 +132,10 @@ class Downloader(private val context: Context, private val provider: DownloadPro
         if (reason != null) {
             notifier.onWarning(reason)
         } else {
-            notifier.dismiss()
+            if (notifier.errorThrown) {
+                notifier.errorThrown = false
+                notifier.dismiss()
+            }
         }
     }
 

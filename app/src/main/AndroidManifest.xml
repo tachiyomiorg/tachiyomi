@@ -82,6 +82,8 @@
 
         <receiver android:name=".ui.reader.notification.ImageNotificationReceiver" />
 
+        <receiver android:name=".data.download.DownloadNotificationReceiver"/>
+
         <meta-data
             android:name="eu.kanade.tachiyomi.data.glide.AppGlideModule"
             android:value="GlideModule" />
