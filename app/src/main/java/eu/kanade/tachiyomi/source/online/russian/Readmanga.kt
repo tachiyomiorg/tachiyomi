@@ -102,7 +102,21 @@ class Readmanga : ParsedHttpSource() {
     }
 
     override fun prepareNewChapter(chapter: SChapter, manga: SManga) {
-        chapter.chapter_number = -2f
+        val basic = Regex("""\s([0-9]+)(\s-\s)([0-9]+)\s*""")
+        val extra = Regex("""\s([0-9]+\sЭкстра)\s*""")
+        val single = Regex("""\sСингл\s*""")
+        when {
+            basic.containsMatchIn(chapter.name) -> {
+                basic.find(chapter.name)?.let {
+                    val number = it.groups[3]?.value!!
+                    chapter.chapter_number = number.toFloat()
+                }
+            }
+            extra.containsMatchIn(chapter.name) -> // Extra chapters doesn't contain chapter number
+                chapter.chapter_number = -2f
+            single.containsMatchIn(chapter.name) -> // Oneshoots, doujinshi and other mangas with one chapter
+                chapter.chapter_number = 1f
+        }
     }
 
     override fun pageListParse(response: Response): List<Page> {
