@@ -1,0 +1,361 @@
+<resources>
+    <string name="app_name">Tachiyomi</string>
+
+    <string name="name">Nome</string>
+
+    <!-- Activities and fragments labels (toolbar title) -->
+    <string name="label_settings">Impostazioni</string>
+    <string name="label_download_queue">Coda dei download</string>
+    <string name="label_library">La mia libreria</string>
+    <string name="label_recent_manga">Recenti</string>
+    <string name="label_catalogues">Cataloghi</string>
+    <string name="label_recent_updates">Aggiornamenti libreria</string>
+    <string name="label_latest_updates">Ultimi aggiornamenti</string>
+    <string name="label_categories">Categorie</string>
+    <string name="label_selected">Selezionati: %1$d</string>
+    <string name="label_backup">Backup</string>
+
+    <!-- Actions -->
+    <string name="action_settings">Impostazioni</string>
+    <string name="action_filter">Filtro</string>
+    <string name="action_filter_downloaded">Scaricati</string>
+    <string name="action_filter_bookmarked">Con segnalibro</string>
+    <string name="action_filter_unread">Non letti</string>
+    <string name="action_filter_read">Letti</string>
+    <string name="action_filter_empty">Elimina filtri</string>
+    <string name="action_search">Ricerca</string>
+    <string name="action_select_all">Seleziona tutto</string>
+    <string name="action_mark_as_read">Marca come letto</string>
+    <string name="action_mark_as_unread">Marca come non letto</string>
+    <string name="action_mark_previous_as_read">Marca precedenti come letti</string>
+    <string name="action_download">Scarica</string>
+    <string name="action_bookmark">Aggiungi segnalibro</string>
+    <string name="action_remove_bookmark">Rimuovi segnalibro</string>
+    <string name="action_delete">Cancella</string>
+    <string name="action_update">Aggiorna</string>
+    <string name="action_update_library">Aggiorna libreria</string>
+    <string name="action_edit">Modifica</string>
+    <string name="action_add_category">Aggiungi categoria</string>
+    <string name="action_edit_categories">Modifica categorie</string>
+    <string name="action_rename_category">Rinomina categoria</string>
+    <string name="action_move_category">Assegna categorie</string>
+    <string name="action_edit_cover">Modifica immagine di copertina</string>
+    <string name="action_sort_up">Ordine crescente</string>
+    <string name="action_sort_down">Ordine decrescente</string>
+    <string name="action_show_unread">Non letti</string>
+    <string name="action_show_downloaded">Scaricati</string>
+    <string name="action_next_unread">Prossimo non letto</string>
+    <string name="action_start">Inizia</string>
+    <string name="action_stop">Stop</string>
+    <string name="action_pause">Pausa</string>
+    <string name="action_clear">Azzera</string>
+    <string name="action_previous_chapter">Capitolo precedente</string>
+    <string name="action_next_chapter">Prossimo capito</string>
+    <string name="action_retry">Riprova</string>
+    <string name="action_remove">Rimuovi</string>
+    <string name="action_resume">Riprendi</string>
+    <string name="action_open_in_browser">Apri nel browser</string>
+    <string name="action_add_to_home_screen">Aggiungi alla Home</string>
+    <string name="action_display_mode">Cambia modalità di visualizzazione</string>
+    <string name="action_set_filter">Imposta filtro</string>
+    <string name="action_cancel">Cancella</string>
+    <string name="action_sort">Ordina</string>
+    <string name="action_install">Installa</string>
+    <string name="action_share">Condividi</string>
+    <string name="action_save">Salva</string>
+
+    <!-- Operations -->
+    <string name="deleting">Cancellazione…</string>
+    <string name="loading">Caricamento…</string>
+
+    <!-- Preferences -->
+      <!-- Subsections -->
+    <string name="pref_category_general">Generali</string>
+    <string name="pref_category_reader">Lettore</string>
+    <string name="pref_category_downloads">Download</string>
+    <string name="pref_category_sources">Fonti</string>
+    <string name="pref_category_sync">Sincronizzazione</string>
+    <string name="pref_category_advanced">Avanzate</string>
+    <string name="pref_category_about">Informazioni</string>
+
+      <!-- General section -->
+    <string name="pref_library_columns">Manga per riga nella libreria</string>
+    <string name="portrait">Orientamento verticale</string>
+    <string name="landscape">Orientamento orizzontale</string>
+    <string name="default_columns">Predefinito</string>
+    <string name="pref_library_update_interval">Frequenza di aggiornamento della libreria</string>
+    <string name="update_never">Manuale</string>
+    <string name="update_1hour">Ogni ora</string>
+    <string name="update_2hour">Ogni 2 ore</string>
+    <string name="update_3hour">Ogni 3 ore</string>
+    <string name="update_6hour">Ogni 6 ore</string>
+    <string name="update_12hour">Ogni 12 ore</string>
+    <string name="update_24hour">Quotidiana</string>
+    <string name="update_48hour">Ogni 2 giorni</string>
+    <string name="pref_library_update_categories">Categorie da includere nell'aggiornamento globale</string>
+    <string name="all">Tutte</string>
+    <string name="pref_library_update_restriction">Restrizioni dell'aggiornamento della libreria</string>
+    <string name="pref_library_update_restriction_summary">Aggiorna solo quando sono soddisfatte le condizioni</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="charging">Caricamento</string>
+    <string name="pref_update_only_non_completed">Aggiorna solo manga in corso</string>
+    <string name="pref_auto_update_manga_sync">Sincronizza capitoli dopo la lettura</string>
+    <string name="pref_ask_update_manga_sync">Chiedi prima di aggiornare</string>
+    <string name="pref_theme">Tema dell'applicazione</string>
+    <string name="light_theme">Tema principale</string>
+    <string name="dark_theme">Tema scuro</string>
+    <string name="pref_start_screen">Schermata iniziale</string>
+
+      <!-- Reader section -->
+    <string name="pref_fullscreen">Schermo intero</string>
+    <string name="pref_lock_orientation">Blocca orientamento</string>
+    <string name="pref_enable_transitions">Abilita transizioni</string>
+    <string name="pref_show_page_number">Mostra numero di pagina</string>
+    <string name="pref_custom_brightness">Usa luminosità personalizzata</string>
+    <string name="pref_custom_color_filter">Usa filtro colore personalizzato</string>
+    <string name="pref_keep_screen_on">Mantieni lo schermo acceso</string>
+    <string name="pref_reader_navigation">Navigazione</string>
+    <string name="pref_read_with_volume_keys">Tasti volume</string>
+    <string name="pref_read_with_tapping">Singolo tocco</string>
+    <string name="pref_reader_theme">Colore di sfondo</string>
+    <string name="white_background">Bianco</string>
+    <string name="black_background">Nero</string>
+    <string name="pref_viewer_type">Visualizzatore predefinito</string>
+    <string name="default_viewer">Predefinito</string>
+    <string name="left_to_right_viewer">Da sinistra a destra</string>
+    <string name="right_to_left_viewer">Da destra a sinistra</string>
+    <string name="vertical_viewer">Verticale</string>
+    <string name="webtoon_viewer">Webtoon</string>
+    <string name="pref_image_decoder">Decoder immagini</string>
+    <string name="pref_image_scale_type">Scala</string>
+    <string name="scale_type_fit_screen">Adatta a schermo</string>
+    <string name="scale_type_stretch">Riempi schermo</string>
+    <string name="scale_type_fit_width">Adatta alla larghezza</string>
+    <string name="scale_type_fit_height">Adatta all'altezza</string>
+    <string name="scale_type_original_size">Grandezza originale</string>
+    <string name="scale_type_smart_fit">Adattamento intelligente</string>
+    <string name="pref_zoom_start">Posizione zoom iniziale</string>
+    <string name="zoom_start_automatic">Automatico</string>
+    <string name="zoom_start_left">Sinistra</string>
+    <string name="zoom_start_right">Destra</string>
+    <string name="zoom_start_center">Centro</string>
+    <string name="pref_rotation_type">Rotazione</string>
+    <string name="rotation_free">Libera</string>
+    <string name="rotation_lock">Bloccata</string>
+    <string name="rotation_force_portrait">Forza verticale</string>
+    <string name="rotation_force_landscape">Forza orizzontale</string>
+    <string name="color_filter_r_value">R</string>
+    <string name="color_filter_g_value">G</string>
+    <string name="color_filter_b_value">B</string>
+    <string name="color_filter_a_value">A</string>
+
+
+      <!-- Downloads section -->
+    <string name="pref_download_directory">Directory di download</string>
+    <string name="pref_download_slots">Download simultanei</string>
+    <string name="pref_download_only_over_wifi">Download solo tramite Wi-Fi</string>
+    <string name="pref_remove_after_marked_as_read">Rimuovi quando marcato come letto</string>
+    <string name="pref_remove_after_read">Rimuovi dopo la lettura</string>
+    <string name="custom_dir">Directory personalizzata</string>
+    <string name="disabled">Disabilitato</string>
+    <string name="last_read_chapter">Ultimo capitolo letto</string>
+    <string name="second_to_last">Penultimo capitolo</string>
+    <string name="third_to_last">Terzultimo capitolo</string>
+    <string name="fourth_to_last">Quartultimo capitolo</string>
+    <string name="fifth_to_last">Quintultimo capitolo</string>
+
+      <!-- Sync section -->
+    <string name="services">Servizi</string>
+
+      <!-- Advanced section -->
+    <string name="pref_clear_chapter_cache">Cancella cache capitoli</string>
+    <string name="used_cache">Usati: %1$s</string>
+    <string name="cache_deleted">Cache cancellata. %1$d file sono stati cancellati</string>
+    <string name="cache_delete_error">Si è verificato un errore durante la cancellazione della cache</string>
+    <string name="pref_clear_cookies">Cancella cookie</string>
+    <string name="cookies_cleared">Cookie cancellati</string>
+    <string name="pref_clear_database">Cancella database</string>
+    <string name="pref_clear_database_summary">Elimina manga e capitoli che non sono nella tua libreria</string>
+    <string name="clear_database_confirmation">Sei sicuro? Capitoli e progressi dei manga non presenti nella libreria verranno persi</string>
+    <string name="clear_database_completed">Elementi eliminati</string>
+    <string name="pref_refresh_library_metadata">Aggiorna i metadati della libreria</string>
+    <string name="pref_refresh_library_metadata_summary">Aggiorna copertine, generi, descrizioni e stato dei manga</string>
+
+      <!-- About section -->
+    <string name="version">Versione</string>
+    <string name="build_time">Data di build</string>
+    <string name="pref_enable_automatic_updates">Controlla aggiornamenti</string>
+    <string name="pref_enable_automatic_updates_summary">Controlla automaticamente aggiornamenti dell'applicazione</string>
+    <!-- ACRA -->
+    <string name="pref_enable_acra">Invia segnalazioni di crash</string>
+    <string name="pref_acra_summary">Aiuta a correggere eventuali bug. Non verranno inviati dati sensibili</string>
+
+
+    <!-- Login dialog -->
+    <string name="login_title">Credenziali per %1$s</string>
+    <string name="username">Nome utente</string>
+    <string name="password">Password</string>
+    <string name="show_password">Mastra password</string>
+    <string name="login">Accedi</string>
+    <string name="login_success">Accesso riuscito</string>
+    <string name="invalid_login">Credenziali non valide</string>
+    <string name="unknown_error">Errore sconosciuto</string>
+
+    <!-- Library fragment -->
+    <string name="library_search_hint">Titolo o autore…</string>
+    <string name="updating_category">Aggiornamento categoria</string>
+    <string name="confirm_delete_manga">Sei sicuro di voler rimuovere i manga selezionati?</string>
+
+    <!-- Catalogue fragment -->
+    <string name="source_requires_login">Questa fonte richiede credenziali di accesso</string>
+    <string name="select_source">Selezionare una fonte</string>
+    <string name="no_valid_sources">Per favore abilita almeno una fonte valida</string>
+
+    <!-- Manga info fragment -->
+    <string name="manga_detail_tab">Informazioni</string>
+    <string name="description">Descrizione</string>
+    <string name="ongoing">In corso</string>
+    <string name="unknown">Sconosciuto</string>
+    <string name="licensed">Concesso in licenza</string>
+    <string name="add_to_library">Aggiungi alla libreria</string>
+    <string name="remove_from_library">Rimuovi dalla libreria</string>
+    <string name="manga_info_author_label">Autore</string>
+    <string name="manga_info_artist_label">Artista</string>
+    <string name="manga_info_chapters_label">Capitoli</string>
+    <string name="manga_info_status_label">Stato</string>
+    <string name="manga_info_source_label">Fonte</string>
+    <string name="manga_info_genres_label">Generi</string>
+    <string name="share_text">Dai un'occhiata a %1$s! %2$s</string>
+    <string name="circular_icon">Icona circolare</string>
+    <string name="rounded_icon">Icona arrotondata</string>
+    <string name="square_icon">Icona quadrata</string>
+    <string name="star_icon">Icona a stella</string>
+    <string name="shortcut_title">Titolo della scorciatoia</string>
+    <string name="icon_shape">Forma dell'icona</string>
+    <string name="icon_creation_fail">Impossibile creare la scorciatoia!</string>
+
+    <!-- Manga chapters fragment -->
+    <string name="manga_chapters_tab">Capitoli</string>
+    <string name="manga_chapter_no_title">Senza titolo</string>
+    <string name="display_mode_chapter">Capitolo %1$s</string>
+    <string name="chapter_downloaded">Scaricato</string>
+    <string name="chapter_queued">In coda</string>
+    <string name="chapter_downloading">Scaricamento</string>
+    <string name="chapter_downloading_progress">Scaricamento (%1$d/%2$d)</string>
+    <string name="chapter_error">Errore</string>
+    <string name="fetch_chapters_error">Errore durante il recupero dei capitoli</string>
+    <string name="show_title">Mostra titolo</string>
+    <string name="show_chapter_number">Mostra numero del capitolo</string>
+    <string name="sorting_mode">Modalità di ordinamento</string>
+    <string name="sort_by_source">Per fonte</string>
+    <string name="sort_by_number">Per numero di capitolo</string>
+    <string name="manga_download">Download</string>
+    <string name="download_1">Scarica il prossimo capitolo</string>
+    <string name="download_5">Scarica i prossimi 5 capitoli</string>
+    <string name="download_10">Scarica i prossimi 10 capitoli</string>
+    <string name="download_all">Scarica tutti</string>
+    <string name="download_unread">Scarica non letti</string>
+    <string name="confirm_delete_chapters">Sei sicuro di voler eliminare i capitoli selezionati?</string>
+
+    <!-- MyAnimeList fragment -->
+    <string name="reading">In lettura</string>
+    <string name="completed">Completato</string>
+    <string name="dropped">Abbandonato</string>
+    <string name="on_hold">Sospeso</string>
+    <string name="plan_to_read">Lettura pianificata</string>
+    <string name="score">Punteggio</string>
+    <string name="title_hint">Titolo…</string>
+    <string name="status">Stato</string>
+    <string name="chapters">Capitoli</string>
+
+    <!-- Dialog remove recently view -->
+    <string name="dialog_remove_recently_description">Questo rimuoverà la data lettura di questo capitolo. Sei sicuro?</string>
+    <string name="dialog_remove_recently_reset">Rimuovi per tutti i capitoli di questo manga</string>
+
+    <!-- Image notifier -->
+    <string name="picture_saved">Immagine salvata</string>
+    <string name="saving_picture">Salvataggio immagine</string>
+    <string name="options">Opzioni</string>
+
+    <!-- Reader activity -->
+    <string name="custom_filter">Filtro personalizzato</string>
+    <string name="set_as_cover">Imposta come copertina</string>
+    <string name="cover_updated">Copertina aggiornata</string>
+    <string name="page_downloaded">Pagina copiata in %1$s</string>
+    <string name="downloading">Scaricamento…</string>
+    <string name="download_progress">Scaricato %1$d%%</string>
+    <string name="chapter_progress">Pagina: %1$d</string>
+    <string name="chapter_subtitle">Capitolo %1$s</string>
+    <string name="no_next_chapter">Capitolo successivo non trovato</string>
+    <string name="no_previous_chapter">Capitolo precedente non trovato</string>
+    <string name="decode_image_error">L'immagine non può essere caricata.\nProva a cambiare il decoder immagini o con una delle opzioni più in basso</string>
+    <string name="confirm_update_manga_sync">Aggiornare a %1$d l'ultimo capitolo letto nei servizi abilitati?</string>
+    <string name="viewer_for_this_series">Visualizzatore per questa serie</string>
+
+    <!-- Backup fragment -->
+    <string name="backup">Backup</string>
+    <string name="restore">Ripristina</string>
+    <string name="backup_please_wait">Backup in corso. Attendere prego…</string>
+    <string name="backup_completed">Backup ripristinato con successo</string>
+    <string name="restore_please_wait">Ripristino backup in corso. Attendere prego…</string>
+
+    <!-- Recent manga fragment -->
+    <string name="recent_manga_source">%1$s - Cap.%2$s</string>
+
+    <!-- Downloads activity and service -->
+    <string name="download_queue_error">Si è verificato un errore durante il download dei capitoli. Puoi provare di nuovo nella sezione download</string>
+
+    <!-- Library update service notifications -->
+    <string name="notification_update_progress">Progressione aggiornamento: %1$d/%2$d</string>
+    <string name="notification_update_completed">Aggiornamento completato</string>
+    <string name="notification_update_error">Si è verificato un errore imprevisto durante l'aggiornamento della libreria</string>
+    <string name="notification_no_new_chapters">Non sono stati trovati nuovi capitoli</string>
+    <string name="notification_new_chapters">Nuovi capitoli trovati per:</string>
+    <string name="notification_manga_update_failed">Impossibile aggiornare:</string>
+    <string name="notification_cover_update_failed">Impossibile aggiornare la copertina</string>
+    <string name="notification_first_add_to_library">Prima di fare questo per favore aggiungi il manga alla libreria</string>
+    <string name="notification_not_connected_to_ac_title">Sincronizzazione annullata</string>
+    <string name="notification_not_connected_to_ac_body">Non collegato all'alimentazione</string>
+    <string name="notification_no_connection_title">Sincronizzazione annullata</string>
+    <string name="notification_no_connection_body">Connessione non disponibile</string>
+
+    <!-- File Picker Titles -->
+    <string name="file_select_cover">Seleziona immagine copertina</string>
+    <string name="file_select_backup">Seleziona il file di backup</string>
+    <string name="file_select_icon">Seleziona l'icona della scorciatoia</string>
+
+    <!--UpdateCheck-->
+    <string name="update_check_title">Nuovo aggiornamento disponibile!</string>
+    <string name="update_check_confirm">Scarica</string>
+    <string name="update_check_ignore">Ignora</string>
+    <string name="update_check_no_new_updates">Non ci sono nuovi aggiornamenti disponibili</string>
+    <string name="update_check_download_started">Download iniziato</string>
+    <string name="update_check_look_for_updates">Ricerca aggiornamenti</string>
+
+    <!--UpdateCheck Notifications-->
+    <string name="update_check_notification_file_download">Download aggiornamento</string>
+    <string name="update_check_notification_download_in_progress">Download in corso</string>
+    <string name="update_check_notification_download_complete">Download completato</string>
+    <string name="update_check_notification_download_error">Errore di download</string>
+    <string name="update_check_notification_update_available">Aggiornamento disponibile</string>
+
+    <!--Content Description-->
+    <string name="description_backdrop">Immagine di sfondo del manga</string>
+    <string name="description_cover">Copertina del manga</string>
+
+    <!-- Information Text -->
+    <string name="information_no_downloads">Nessun download</string>
+    <string name="information_no_recent">Non ci sono capitoli più recenti</string>
+    <string name="information_no_recent_manga">Non ci sono manga letti di recente</string>
+    <string name="information_empty_library">Libreria vuota</string>
+
+    <!-- Download Notification -->
+    <string name="download_notifier_downloader_title">Downloader</string>
+    <string name="download_notifier_title_error">Errore</string>
+    <string name="download_notifier_unkown_error">Si è verificato un errore imprevisto durante il download del capitolo</string>
+    <string name="download_notifier_page_error">Una pagina non è presente nella directory</string>
+    <string name="download_notifier_page_ready_error">Non è stata caricata una pagina</string>
+    <string name="download_notifier_text_only_wifi">Nessuna connessione Wi-Fi disponibile</string>
+    <string name="download_notifier_no_network">Nessuna connessione di rete disponibile</string>
+
+</resources>
