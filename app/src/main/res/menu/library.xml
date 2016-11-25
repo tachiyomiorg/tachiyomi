@@ -34,6 +34,7 @@
             android:id="@+id/action_sort"
             android:icon="@drawable/ic_sort_white_24dp"
             android:title="@string/action_sort"
+            app:showAsAction="never"
             >
         <menu>
             <group

@@ -23,8 +23,8 @@
     <changelogversion
             changeDate=""
             versionName="r359">
-        <changelogtext>Library sort for "date added" / "last updated" will only work with manga
-            added/updated after this version.
+        <changelogtext>Library sort for "last updated" will only work with manga updated after this
+            version.
         </changelogtext>
     </changelogversion>
 

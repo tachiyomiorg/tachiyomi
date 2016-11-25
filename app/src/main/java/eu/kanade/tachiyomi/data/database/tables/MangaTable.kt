@@ -28,8 +28,6 @@ object MangaTable {
 
     const val COL_LAST_UPDATE = "last_update"
 
-    const val COL_DATE_ADDED = "date_added"
-
     const val COL_INITIALIZED = "initialized"
 
     const val COL_VIEWER = "viewer"
@@ -54,7 +52,6 @@ object MangaTable {
             $COL_THUMBNAIL_URL TEXT,
             $COL_FAVORITE INTEGER NOT NULL,
             $COL_LAST_UPDATE LONG,
-            $COL_DATE_ADDED LONG,
             $COL_INITIALIZED BOOLEAN NOT NULL,
             $COL_VIEWER INTEGER NOT NULL,
             $COL_CHAPTER_FLAGS INTEGER NOT NULL
@@ -65,7 +62,4 @@ object MangaTable {
 
     val createFavoriteIndexQuery: String
         get() = "CREATE INDEX ${TABLE}_${COL_FAVORITE}_index ON $TABLE($COL_FAVORITE)"
-
-    val dateAddedUpdateQuery: String
-        get() = "ALTER TABLE $TABLE ADD COLUMN $COL_DATE_ADDED LONG DEFAULT 0"
 }

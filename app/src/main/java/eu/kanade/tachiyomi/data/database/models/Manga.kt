@@ -28,8 +28,6 @@ interface Manga : Serializable {
 
     var last_update: Long
 
-    var date_added: Long
-
     var initialized: Boolean
 
     var viewer: Int

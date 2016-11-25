@@ -349,7 +349,6 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      */
     fun changeMangaFavorite(manga: Manga) {
         manga.favorite = !manga.favorite
-        manga.date_added = Date().time
         if (!manga.favorite) {
             coverCache.deleteFromCache(manga.thumbnail_url)
         }
