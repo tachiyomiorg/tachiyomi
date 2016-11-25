@@ -92,16 +92,16 @@
     <string name="update_12hour">Ogni 12 ore</string>
     <string name="update_24hour">Quotidiana</string>
     <string name="update_48hour">Ogni 2 giorni</string>
-    <string name="pref_library_update_categories">Categorie da includere nell'aggiornamento globale</string>
+    <string name="pref_library_update_categories">Categorie da includere nell\'aggiornamento globale</string>
     <string name="all">Tutte</string>
-    <string name="pref_library_update_restriction">Restrizioni dell'aggiornamento della libreria</string>
+    <string name="pref_library_update_restriction">Restrizioni dell\'aggiornamento della libreria</string>
     <string name="pref_library_update_restriction_summary">Aggiorna solo quando sono soddisfatte le condizioni</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Caricamento</string>
     <string name="pref_update_only_non_completed">Aggiorna solo manga in corso</string>
     <string name="pref_auto_update_manga_sync">Sincronizza capitoli dopo la lettura</string>
     <string name="pref_ask_update_manga_sync">Chiedi prima di aggiornare</string>
-    <string name="pref_theme">Tema dell'applicazione</string>
+    <string name="pref_theme">Tema dell\'applicazione</string>
     <string name="light_theme">Tema principale</string>
     <string name="dark_theme">Tema scuro</string>
     <string name="pref_start_screen">Schermata iniziale</string>
@@ -131,7 +131,7 @@
     <string name="scale_type_fit_screen">Adatta a schermo</string>
     <string name="scale_type_stretch">Riempi schermo</string>
     <string name="scale_type_fit_width">Adatta alla larghezza</string>
-    <string name="scale_type_fit_height">Adatta all'altezza</string>
+    <string name="scale_type_fit_height">Adatta all\'altezza</string>
     <string name="scale_type_original_size">Grandezza originale</string>
     <string name="scale_type_smart_fit">Adattamento intelligente</string>
     <string name="pref_zoom_start">Posizione zoom iniziale</string>
@@ -185,7 +185,7 @@
     <string name="version">Versione</string>
     <string name="build_time">Data di build</string>
     <string name="pref_enable_automatic_updates">Controlla aggiornamenti</string>
-    <string name="pref_enable_automatic_updates_summary">Controlla automaticamente aggiornamenti dell'applicazione</string>
+    <string name="pref_enable_automatic_updates_summary">Controlla automaticamente aggiornamenti dell\'applicazione</string>
     <!-- ACRA -->
     <string name="pref_enable_acra">Invia segnalazioni di crash</string>
     <string name="pref_acra_summary">Aiuta a correggere eventuali bug. Non verranno inviati dati sensibili</string>
@@ -225,13 +225,13 @@
     <string name="manga_info_status_label">Stato</string>
     <string name="manga_info_source_label">Fonte</string>
     <string name="manga_info_genres_label">Generi</string>
-    <string name="share_text">Dai un'occhiata a %1$s! %2$s</string>
+    <string name="share_text">Dai un\'occhiata a %1$s! %2$s</string>
     <string name="circular_icon">Icona circolare</string>
     <string name="rounded_icon">Icona arrotondata</string>
     <string name="square_icon">Icona quadrata</string>
     <string name="star_icon">Icona a stella</string>
     <string name="shortcut_title">Titolo della scorciatoia</string>
-    <string name="icon_shape">Forma dell'icona</string>
+    <string name="icon_shape">Forma dell\'icona</string>
     <string name="icon_creation_fail">Impossibile creare la scorciatoia!</string>
 
     <!-- Manga chapters fragment -->
@@ -288,8 +288,8 @@
     <string name="chapter_subtitle">Capitolo %1$s</string>
     <string name="no_next_chapter">Capitolo successivo non trovato</string>
     <string name="no_previous_chapter">Capitolo precedente non trovato</string>
-    <string name="decode_image_error">L'immagine non può essere caricata.\nProva a cambiare il decoder immagini o con una delle opzioni più in basso</string>
-    <string name="confirm_update_manga_sync">Aggiornare a %1$d l'ultimo capitolo letto nei servizi abilitati?</string>
+    <string name="decode_image_error">L\'immagine non può essere caricata.\nProva a cambiare il decoder immagini o con una delle opzioni più in basso</string>
+    <string name="confirm_update_manga_sync">Aggiornare a %1$d l\'ultimo capitolo letto nei servizi abilitati?</string>
     <string name="viewer_for_this_series">Visualizzatore per questa serie</string>
 
     <!-- Backup fragment -->
@@ -308,21 +308,21 @@
     <!-- Library update service notifications -->
     <string name="notification_update_progress">Progressione aggiornamento: %1$d/%2$d</string>
     <string name="notification_update_completed">Aggiornamento completato</string>
-    <string name="notification_update_error">Si è verificato un errore imprevisto durante l'aggiornamento della libreria</string>
+    <string name="notification_update_error">Si è verificato un errore imprevisto durante l\'aggiornamento della libreria</string>
     <string name="notification_no_new_chapters">Non sono stati trovati nuovi capitoli</string>
     <string name="notification_new_chapters">Nuovi capitoli trovati per:</string>
     <string name="notification_manga_update_failed">Impossibile aggiornare:</string>
     <string name="notification_cover_update_failed">Impossibile aggiornare la copertina</string>
     <string name="notification_first_add_to_library">Prima di fare questo per favore aggiungi il manga alla libreria</string>
     <string name="notification_not_connected_to_ac_title">Sincronizzazione annullata</string>
-    <string name="notification_not_connected_to_ac_body">Non collegato all'alimentazione</string>
+    <string name="notification_not_connected_to_ac_body">Non collegato all\'alimentazione</string>
     <string name="notification_no_connection_title">Sincronizzazione annullata</string>
     <string name="notification_no_connection_body">Connessione non disponibile</string>
 
     <!-- File Picker Titles -->
     <string name="file_select_cover">Seleziona immagine copertina</string>
     <string name="file_select_backup">Seleziona il file di backup</string>
-    <string name="file_select_icon">Seleziona l'icona della scorciatoia</string>
+    <string name="file_select_icon">Seleziona l\'icona della scorciatoia</string>
 
     <!--UpdateCheck-->
     <string name="update_check_title">Nuovo aggiornamento disponibile!</string>
