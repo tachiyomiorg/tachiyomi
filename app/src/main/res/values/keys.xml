@@ -4,6 +4,7 @@
     <string name="pref_category_general_key">pref_category_general_key</string>
     <string name="pref_category_reader_key">pref_category_reader_key</string>
     <string name="pref_category_sync_key">pref_category_sync_key</string>
+    <string name="pref_category_backup_key">pref_category_backup_key</string>
     <string name="pref_category_downloads_key">pref_category_downloads_key</string>
     <string name="pref_category_advanced_key">pref_category_advanced_key</string>
     <string name="pref_category_about_key">pref_category_about_key</string>
@@ -18,6 +19,8 @@
     <string name="pref_update_only_non_completed_key">pref_update_only_non_completed_key</string>
     <string name="pref_auto_update_manga_sync_key">pref_auto_update_manga_sync_key</string>
     <string name="pref_ask_update_manga_sync_key">pref_ask_update_manga_sync_key</string>
+    <string name="pref_create_local_backup_key">create_local_backup</string>
+    <string name="pref_restore_local_backup_key">restore_local_backup</string>
     <string name="pref_theme_key">pref_theme_key</string>
     <string name="pref_library_update_restriction_key">library_update_restriction</string>
     <string name="pref_start_screen_key">start_screen</string>

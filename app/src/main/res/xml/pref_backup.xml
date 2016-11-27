@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceScreen
+        android:key="backup_screen"
+        android:persistent="false"
+        android:title="Backup">
+
+        <Preference
+            android:key="@string/pref_create_local_backup_key"
+            android:summary="@string/pref_create_backup_summ"
+            android:title="@string/pref_create_backup" />
+
+        <Preference
+            android:key="@string/pref_restore_local_backup_key"
+            android:summary="@string/pref_restore_backup_summ"
+            android:title="@string/pref_restore_backup" />
+
+    </PreferenceScreen>
+
+</PreferenceScreen>
