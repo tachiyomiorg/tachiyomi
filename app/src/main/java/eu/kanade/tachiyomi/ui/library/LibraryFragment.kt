@@ -207,9 +207,11 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
         filterUnreadItem.isChecked = isFilterUnread
 
         // Set correct radio button sort
-        if (sortingMode == Constants.SORT_LIBRARY_ALPHA) sortModeAlpha.isChecked = true
-        if (sortingMode == Constants.SORT_LIBRARY_LAST_READ) sortModeLastRead.isChecked = true
-        if (sortingMode == Constants.SORT_LIBRARY_LAST_UPDATED) sortModeLastUpdated.isChecked = true
+        when (sortingMode) {
+            Constants.SORT_LIBRARY_ALPHA -> sortModeAlpha.isChecked = true
+            Constants.SORT_LIBRARY_LAST_READ -> sortModeLastRead.isChecked = true
+            Constants.SORT_LIBRARY_LAST_UPDATED -> sortModeLastUpdated.isChecked = true
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
