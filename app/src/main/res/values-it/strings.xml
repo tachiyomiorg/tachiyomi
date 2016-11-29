@@ -249,7 +249,7 @@
     <string name="sorting_mode">Modalità di ordinamento</string>
     <string name="sort_by_source">Per fonte</string>
     <string name="sort_by_number">Per numero di capitolo</string>
-    <string name="manga_download">Download</string>
+    <string name="manga_download">Scarica</string>
     <string name="download_1">Scarica il prossimo capitolo</string>
     <string name="download_5">Scarica i prossimi 5 capitoli</string>
     <string name="download_10">Scarica i prossimi 10 capitoli</string>
@@ -289,7 +289,7 @@
     <string name="no_next_chapter">Capitolo successivo non trovato</string>
     <string name="no_previous_chapter">Capitolo precedente non trovato</string>
     <string name="decode_image_error">L\'immagine non può essere caricata.\nProva a cambiare il decoder immagini o con una delle opzioni più in basso</string>
-    <string name="confirm_update_manga_sync">Aggiornare a %1$d l\'ultimo capitolo letto nei servizi abilitati?</string>
+    <string name="confirm_update_manga_sync">Aggiornare nei servizi abilitati l\'ultimo capitolo letto a %1$d?</string>
     <string name="viewer_for_this_series">Visualizzatore per questa serie</string>
 
     <!-- Backup fragment -->
