@@ -1,9 +1,11 @@
 package eu.kanade.tachiyomi.ui.category
 
 import android.os.Bundle
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
+import eu.kanade.tachiyomi.util.toast
 import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.injectLazy
 
@@ -28,7 +30,7 @@ class CategoryPresenter : BasePresenter<CategoryActivity>() {
         /**
          * The id of the restartable.
          */
-        final private val GET_CATEGORIES = 1
+        private val GET_CATEGORIES = 1
     }
 
     override fun onCreate(savedState: Bundle?) {
@@ -53,18 +55,22 @@ class CategoryPresenter : BasePresenter<CategoryActivity>() {
      * @param name name of category
      */
     fun createCategory(name: String) {
-        // Create category.
-        val cat = Category.create(name)
-
         // Set the new item in the last position.
         var max = 0
         if (categories != null) {
             for (cat2 in categories!!) {
-                if (cat2.order > max) {
+                if(cat2.name.equals(name, true)) {
+                    //Do not allow duplicate categories
+                    context.toast(R.string.error_category_exists)
+                    return
+                } else if (cat2.order > max) {
                     max = cat2.order + 1
                 }
             }
         }
+
+        // Create category.
+        val cat = Category.create(name)
         cat.order = max
 
         // Insert into database.

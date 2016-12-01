@@ -17,7 +17,7 @@ object CategoryTable {
             $COL_ID INTEGER NOT NULL PRIMARY KEY,
             $COL_NAME TEXT NOT NULL,
             $COL_ORDER INTEGER NOT NULL,
-            $COL_FLAGS INTEGER NOT NULL
+            $COL_FLAGS INTEGER NOT NULL,
+            UNIQUE ($COL_NAME COLLATE NOCASE)
             )"""
-
 }
