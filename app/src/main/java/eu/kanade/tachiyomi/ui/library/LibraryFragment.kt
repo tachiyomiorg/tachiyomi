@@ -6,22 +6,22 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.view.ActionMode
 import android.support.v7.widget.SearchView
 import android.view.*
 import com.afollestad.materialdialogs.MaterialDialog
 import com.f2prateek.rx.preferences.Preference
-import eu.kanade.tachiyomi.Constants
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
-import eu.kanade.tachiyomi.data.preference.invert
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.category.CategoryActivity
 import eu.kanade.tachiyomi.ui.main.MainActivity
+import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_library.*
@@ -80,6 +80,10 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
      */
     var mangaPerRow = 0
         private set
+
+    private lateinit var navView: LibraryNavigationView
+
+    private lateinit var drawerListener: DrawerLayout.DrawerListener
 
     /**
      * Subscription for the number of manga per row.
@@ -149,6 +153,36 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
                 .skip(1)
                 // Set again the adapter to recalculate the covers height
                 .subscribe { reattachAdapter() }
+
+
+        navView = activity.drawer.inflate(R.layout.library_drawer) as LibraryNavigationView
+        activity.drawer.addView(navView)
+        drawerListener = object : DrawerLayout.SimpleDrawerListener() {
+            override fun onDrawerClosed(drawerView: View) {
+                if (drawerView == navView) {
+                    activity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
+                }
+            }
+
+            override fun onDrawerOpened(drawerView: View) {
+                if (drawerView == navView) {
+                    activity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, navView)
+                }
+            }
+        }
+        activity.drawer.addDrawerListener(drawerListener)
+        navView.post {
+            if (isAdded && !activity.drawer.isDrawerOpen(navView))
+                activity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
+        }
+
+        navView.onGroupClicked = {
+            when (it) {
+                is LibraryNavigationView.FilterGroup -> onFilterOrSortChanged()
+                is LibraryNavigationView.SortGroup -> onFilterOrSortChanged()
+                is LibraryNavigationView.DisplayGroup -> reattachAdapter()
+            }
+        }
     }
 
     override fun onResume() {
@@ -157,6 +191,8 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     }
 
     override fun onDestroyView() {
+        activity.drawer.removeDrawerListener(drawerListener)
+        activity.drawer.removeView(navView)
         numColumnsSubscription?.unsubscribe()
         tabs.setupWithViewPager(null)
         tabs.visibility = View.GONE
@@ -167,34 +203,6 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
         outState.putInt(CATEGORY_KEY, view_pager.currentItem)
         outState.putString(QUERY_KEY, query)
         super.onSaveInstanceState(outState)
-    }
-
-    /**
-     * Prepare the Fragment host's standard options menu to be displayed.  This is
-     * called right before the menu is shown, every time it is shown.  You can
-     * use this method to efficiently enable/disable items or otherwise
-     * dynamically modify the contents.
-     *
-     * @param menu The options menu as last shown or first initialized by
-     */
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        // Initialize search menu
-        val filterDownloadedItem = menu.findItem(R.id.action_filter_downloaded)
-        val filterUnreadItem = menu.findItem(R.id.action_filter_unread)
-        val sortModeAlpha = menu.findItem(R.id.action_sort_alpha)
-        val sortModeLastRead = menu.findItem(R.id.action_sort_last_read)
-        val sortModeLastUpdated = menu.findItem(R.id.action_sort_last_updated)
-
-        // Set correct checkbox filter
-        filterDownloadedItem.isChecked = preferences.filterDownloaded().getOrDefault()
-        filterUnreadItem.isChecked = preferences.filterUnread().getOrDefault()
-
-        // Set correct radio button sort
-        when (preferences.librarySortingMode().getOrDefault()) {
-            Constants.SORT_LIBRARY_ALPHA -> sortModeAlpha.isChecked = true
-            Constants.SORT_LIBRARY_LAST_READ -> sortModeLastRead.isChecked = true
-            Constants.SORT_LIBRARY_LAST_UPDATED -> sortModeLastUpdated.isChecked = true
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -225,38 +233,9 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_filter_unread -> {
-                // Update settings.
-                preferences.filterUnread().invert()
-                // Apply filter.
-                onFilterOrSortChanged()
+            R.id.action_filter -> {
+                activity.drawer.openDrawer(Gravity.END)
             }
-            R.id.action_filter_downloaded -> {
-                // Update settings.
-                preferences.filterDownloaded().invert()
-                // Apply filter.
-                onFilterOrSortChanged()
-            }
-            R.id.action_filter_empty -> {
-                // Update settings.
-                preferences.filterUnread().set(false)
-                preferences.filterDownloaded().set(false)
-                // Apply filter
-                onFilterOrSortChanged()
-            }
-            R.id.action_sort_alpha -> {
-                preferences.librarySortingMode().set(Constants.SORT_LIBRARY_ALPHA)
-                onFilterOrSortChanged()
-            }
-            R.id.action_sort_last_read -> {
-                preferences.librarySortingMode().set(Constants.SORT_LIBRARY_LAST_READ)
-                onFilterOrSortChanged()
-            }
-            R.id.action_sort_last_updated -> {
-                preferences.librarySortingMode().set(Constants.SORT_LIBRARY_LAST_UPDATED)
-                onFilterOrSortChanged()
-            }
-            R.id.action_library_display_mode -> swapDisplayMode()
             R.id.action_update_library -> {
                 LibraryUpdateService.start(activity)
             }
@@ -276,14 +255,6 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     private fun onFilterOrSortChanged() {
         presenter.requestLibraryUpdate()
         activity.supportInvalidateOptionsMenu()
-    }
-
-    /**
-     * Swap display mode
-     */
-    private fun swapDisplayMode() {
-        presenter.swapDisplayMode()
-        reattachAdapter()
     }
 
     /**

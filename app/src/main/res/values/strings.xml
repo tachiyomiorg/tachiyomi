@@ -60,6 +60,9 @@
     <string name="action_open_in_browser">Open in browser</string>
     <string name="action_add_to_home_screen">Add to home screen</string>
     <string name="action_display_mode">Change display mode</string>
+    <string name="action_display">Display</string>
+    <string name="action_display_grid">Grid</string>
+    <string name="action_display_list">List</string>
     <string name="action_set_filter">Set filter</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_sort">Sort</string>

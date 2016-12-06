@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Pair
 import com.jakewharton.rxrelay.BehaviorRelay
 import com.jakewharton.rxrelay.PublishRelay
-import eu.kanade.tachiyomi.Constants
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
@@ -111,9 +110,12 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
     }
 
     private fun applyFilters(map: Map<Int, List<Manga>>): Map<Int, List<Manga>> {
+        val isAscending = preferences.librarySortingAscending().getOrDefault()
+        val comparator = Comparator<Manga> { m1, m2 -> sortManga(m1, m2) }
+
         return map.mapValues { entry -> entry.value
                 .filter { filterManga(it) }
-                .sortedWith(Comparator<Manga> { m1, m2 -> sortManga(m1, m2) })
+                .sortedWith(if (isAscending) comparator else Collections.reverseOrder(comparator))
         }
     }
 
@@ -172,19 +174,15 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
      */
     fun sortManga(manga1: Manga, manga2: Manga): Int {
         when (preferences.librarySortingMode().getOrDefault()) {
-            Constants.SORT_LIBRARY_ALPHA -> return manga1.title.compareTo(manga2.title)
-            Constants.SORT_LIBRARY_LAST_READ -> {
+            LibrarySort.ALPHA -> return manga1.title.compareTo(manga2.title)
+            LibrarySort.LAST_READ -> {
                 var a = 0L
                 var b = 0L
-                manga1.id?.let { manga1Id ->
-                    manga2.id?.let { manga2Id ->
-                        db.getLastHistoryByMangaId(manga1Id).executeAsBlocking()?.let { a = it.last_read }
-                        db.getLastHistoryByMangaId(manga2Id).executeAsBlocking()?.let { b = it.last_read }
-                    }
-                }
+                db.getLastHistoryByMangaId(manga1.id!!).executeAsBlocking()?.let { a = it.last_read }
+                db.getLastHistoryByMangaId(manga2.id!!).executeAsBlocking()?.let { b = it.last_read }
                 return b.compareTo(a)
             }
-            Constants.SORT_LIBRARY_LAST_UPDATED -> return manga2.last_update.compareTo(manga1.last_update)
+            LibrarySort.LAST_UPDATED -> return manga2.last_update.compareTo(manga1.last_update)
             else -> return manga1.title.compareTo(manga2.title)
         }
     }
@@ -324,14 +322,6 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
             return true
         }
         return false
-    }
-
-    /**
-     * Changes the active display mode.
-     */
-    fun swapDisplayMode() {
-        val displayAsList = preferences.libraryAsList().getOrDefault()
-        preferences.libraryAsList().set(!displayAsList)
     }
 
 }

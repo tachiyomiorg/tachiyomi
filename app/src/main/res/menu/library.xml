@@ -14,55 +14,13 @@
         android:id="@+id/action_filter"
         android:icon="@drawable/ic_filter_list_white_24dp"
         android:title="@string/action_filter"
-        app:showAsAction="ifRoom">
-        <menu>
-            <item
-                android:id="@+id/action_filter_downloaded"
-                android:checkable="true"
-                android:title="@string/action_filter_downloaded"/>
-            <item
-                android:id="@+id/action_filter_unread"
-                android:checkable="true"
-                android:title="@string/action_filter_unread"/>
-            <item
-                android:id="@+id/action_filter_empty"
-                android:title="@string/action_filter_empty"/>
-        </menu>
-    </item>
-
-    <item
-        android:id="@+id/action_sort"
-        android:icon="@drawable/ic_sort_white_24dp"
-        android:title="@string/action_sort"
-        app:showAsAction="never"
-        >
-        <menu>
-            <group
-                android:id="@+id/sort_group"
-                android:checkableBehavior="single">
-                <item
-                    android:id="@+id/action_sort_alpha"
-                    android:title="@string/action_sort_alpha"/>
-                <item
-                    android:id="@+id/action_sort_last_read"
-                    android:title="@string/action_sort_last_read"/>
-                <item
-                    android:id="@+id/action_sort_last_updated"
-                    android:title="@string/action_sort_last_updated"/>
-            </group>
-        </menu>
-    </item>
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/action_update_library"
         android:icon="@drawable/ic_refresh_white_24dp"
         android:title="@string/action_update_library"
         app:showAsAction="ifRoom"/>
-
-    <item
-        android:id="@+id/action_library_display_mode"
-        android:title="@string/action_display_mode"
-        app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_edit_categories"

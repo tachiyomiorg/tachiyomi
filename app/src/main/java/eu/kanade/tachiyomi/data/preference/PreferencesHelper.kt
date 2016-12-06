@@ -130,6 +130,8 @@ class PreferencesHelper(context: Context) {
 
     fun librarySortingMode() = rxPrefs.getInteger(keys.librarySortingMode, 0)
 
+    fun librarySortingAscending() = rxPrefs.getBoolean("library_sorting_ascending", true)
+
     fun automaticUpdates() = prefs.getBoolean(keys.automaticUpdates, false)
 
     fun hiddenCatalogues() = rxPrefs.getStringSet("hidden_catalogues", emptySet())
