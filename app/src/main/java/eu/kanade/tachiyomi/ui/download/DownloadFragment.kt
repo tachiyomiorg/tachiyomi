@@ -247,8 +247,13 @@ class DownloadFragment : BaseRxFragment<DownloadPresenter>() {
      * Set information view when queue is empty
      */
     private fun setInformationView() {
-        (activity as MainActivity).updateEmptyView(presenter.downloadQueue.isEmpty(),
-                R.string.information_no_downloads, R.drawable.ic_file_download_black_128dp)
+        if (activity is MainActivity) {
+            (activity as MainActivity).updateEmptyView(presenter.downloadQueue.isEmpty(),
+                    R.string.information_no_downloads, R.drawable.ic_file_download_black_128dp)
+        } else if (activity is DownloadActivity) {
+            (activity as DownloadActivity).updateEmptyView(presenter.downloadQueue.isEmpty(),
+                    R.string.information_no_downloads, R.drawable.ic_file_download_black_128dp)
+        }
     }
 
 }

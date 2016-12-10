@@ -4,7 +4,7 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import eu.kanade.tachiyomi.ui.main.MainActivity
+import eu.kanade.tachiyomi.ui.download.DownloadActivity
 
 
 /**
@@ -21,8 +21,7 @@ class DownloadNotificationReceiver : BroadcastReceiver() {
     }
 
     private fun OpenDownloadManager(context: Context) {
-        val intent = Intent(context, MainActivity::class.java).apply {
-            putExtra("menuFragment", "downloadManager")
+        val intent = Intent(context, DownloadActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         }
         context.startActivity(intent)
