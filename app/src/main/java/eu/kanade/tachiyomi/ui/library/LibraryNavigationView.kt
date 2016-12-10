@@ -30,6 +30,10 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
         groups.forEach { it.initModels() }
     }
 
+    fun hasActiveFilters(): Boolean {
+        return (groups[0] as FilterGroup).items.any { it.checked }
+    }
+
     inner class Adapter() : ExtendedNavigationView.Adapter(items) {
 
         override fun onItemClicked(item: Item) {

@@ -3,8 +3,10 @@ package eu.kanade.tachiyomi.ui.library
 import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.view.ActionMode
@@ -81,9 +83,29 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     var mangaPerRow = 0
         private set
 
+    /**
+     * Navigation view containing filter/sort/display items.
+     */
     private lateinit var navView: LibraryNavigationView
 
-    private lateinit var drawerListener: DrawerLayout.DrawerListener
+    /**
+     * Drawer listener to allow swipe only for closing the drawer.
+     */
+    private val drawerListener by lazy {
+        object : DrawerLayout.SimpleDrawerListener() {
+            override fun onDrawerClosed(drawerView: View) {
+                if (drawerView == navView) {
+                    activity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
+                }
+            }
+
+            override fun onDrawerOpened(drawerView: View) {
+                if (drawerView == navView) {
+                    activity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, navView)
+                }
+            }
+        }
+    }
 
     /**
      * Subscription for the number of manga per row.
@@ -155,22 +177,11 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
                 .subscribe { reattachAdapter() }
 
 
+        // Inflate and prepare drawer
         navView = activity.drawer.inflate(R.layout.library_drawer) as LibraryNavigationView
         activity.drawer.addView(navView)
-        drawerListener = object : DrawerLayout.SimpleDrawerListener() {
-            override fun onDrawerClosed(drawerView: View) {
-                if (drawerView == navView) {
-                    activity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
-                }
-            }
-
-            override fun onDrawerOpened(drawerView: View) {
-                if (drawerView == navView) {
-                    activity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, navView)
-                }
-            }
-        }
         activity.drawer.addDrawerListener(drawerListener)
+
         navView.post {
             if (isAdded && !activity.drawer.isDrawerOpen(navView))
                 activity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
@@ -178,8 +189,8 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
 
         navView.onGroupClicked = {
             when (it) {
-                is LibraryNavigationView.FilterGroup -> onFilterOrSortChanged()
-                is LibraryNavigationView.SortGroup -> onFilterOrSortChanged()
+                is LibraryNavigationView.FilterGroup -> onFilterChanged()
+                is LibraryNavigationView.SortGroup -> onSortChanged()
                 is LibraryNavigationView.DisplayGroup -> reattachAdapter()
             }
         }
@@ -217,6 +228,9 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
             searchView.clearFocus()
         }
 
+        // Mutate the filter icon because it needs to be tinted and the resource is shared.
+        menu.findItem(R.id.action_filter).icon.mutate()
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 onSearchTextChange(query)
@@ -229,6 +243,15 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
             }
         })
 
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        val filterItem = menu.findItem(R.id.action_filter)
+
+        DrawableCompat.setTint(filterItem.icon, if (navView.hasActiveFilters())
+            Color.rgb(255, 238, 7)
+        else
+            Color.WHITE)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -250,11 +273,18 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     }
 
     /**
-     * Applies filter change
+     * Called when a filter is changed.
      */
-    private fun onFilterOrSortChanged() {
+    private fun onFilterChanged() {
         presenter.requestLibraryUpdate()
         activity.supportInvalidateOptionsMenu()
+    }
+
+    /**
+     * Called when the sorting mode is changed.
+     */
+    private fun onSortChanged() {
+        presenter.requestLibraryUpdate()
     }
 
     /**

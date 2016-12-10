@@ -221,6 +221,7 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
 
         // Setup filters button
         menu.findItem(R.id.action_set_filter).apply {
+            icon.mutate()
             if (presenter.source.filters.isEmpty()) {
                 isEnabled = false
                 icon.alpha = 128
