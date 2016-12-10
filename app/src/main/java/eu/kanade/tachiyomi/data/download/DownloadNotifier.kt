@@ -132,7 +132,7 @@ internal class DownloadNotifier(private val context: Context) {
                 download?.let {
                     val title = it.manga.title
                     val chapter = it.chapter.name.replaceFirst(it.manga.title, "", true)
-                    setContentTitle((title + ":" + chapter).chop(30))
+                    setContentTitle("$title - $chapter".chop(30))
                     setContentText(context.getString(R.string.chapter_downloading_progress)
                             .format(it.downloadedImages, it.pages!!.size))
                     setProgress(it.pages!!.size, it.downloadedImages, false)
@@ -142,6 +142,24 @@ internal class DownloadNotifier(private val context: Context) {
         }
         // Displays the progress bar on notification
         notification.show()
+    }
+
+    /**
+     * TODO write correct code
+     */
+    fun onDownloadPaused() {
+        // Create notification.
+        with(notification) {
+            setContentText(context.getString(R.string.update_check_notification_download_paused))
+            setSmallIcon(android.R.drawable.stat_sys_download_done)
+            setProgress(0, 0, false)
+        }
+
+        // Show notification.
+        notification.show()
+
+        // Reset initial values
+        isDownloading = false
     }
 
     /**

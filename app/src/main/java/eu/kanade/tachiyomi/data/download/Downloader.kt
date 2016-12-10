@@ -135,6 +135,8 @@ class Downloader(private val context: Context, private val provider: DownloadPro
             if (notifier.errorThrown) {
                 notifier.errorThrown = false
                 notifier.dismiss()
+            } else if (!queue.isEmpty()) {
+                notifier.onDownloadPaused()
             }
         }
     }

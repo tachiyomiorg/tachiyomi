@@ -354,7 +354,8 @@
     <!--UpdateCheck Notifications-->
     <string name="update_check_notification_file_download">Download update</string>
     <string name="update_check_notification_download_in_progress">Download in progress</string>
-    <string name="update_check_notification_download_complete">Download complete</string>
+    <string name="update_check_notification_download_complete">Completed</string>.
+    <string name="update_check_notification_download_paused">Paused</string>
     <string name="update_check_notification_download_error">Download error</string>
     <string name="update_check_notification_update_available">Update available</string>
 
