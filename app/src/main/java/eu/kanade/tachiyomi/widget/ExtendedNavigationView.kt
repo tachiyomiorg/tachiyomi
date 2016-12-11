@@ -123,7 +123,22 @@ open class ExtendedNavigationView @JvmOverloads constructor(
          */
         abstract class MultiState(val resTitle: Int, var state: Int = 0) : Item() {
 
+            /**
+             * Returns the drawable associated to every possible each state.
+             */
             abstract fun getStateDrawable(context: Context): Drawable?
+
+            /**
+             * Creates a vector tinted with the accent color.
+             *
+             * @param context any context.
+             * @param resId the vector resource to load and tint
+             */
+            fun tintVector(context: Context, resId: Int): Drawable {
+                return VectorDrawableCompat.create(context.resources, resId, context.theme)!!.apply {
+                    setTint(context.theme.getResourceColor(TR.attr.colorAccent))
+                }
+            }
         }
 
         /**
@@ -145,15 +160,9 @@ open class ExtendedNavigationView @JvmOverloads constructor(
             }
 
             override fun getStateDrawable(context: Context): Drawable? {
-                fun tintVector(resId: Int): Drawable {
-                    return VectorDrawableCompat.create(context.resources, resId, context.theme)!!.apply {
-                        setTint(context.theme.getResourceColor(TR.attr.colorAccent))
-                    }
-                }
-
                 return when (state) {
-                    SORT_ASC -> tintVector(TR.drawable.ic_keyboard_arrow_up_black_32dp)
-                    SORT_DESC -> tintVector(TR.drawable.ic_keyboard_arrow_down_black_32dp)
+                    SORT_ASC -> tintVector(context, TR.drawable.ic_keyboard_arrow_up_black_32dp)
+                    SORT_DESC -> tintVector(context, TR.drawable.ic_keyboard_arrow_down_black_32dp)
                     SORT_NONE -> ContextCompat.getDrawable(context, TR.drawable.empty_drawable_32dp)
                     else -> null
                 }
@@ -241,7 +250,7 @@ open class ExtendedNavigationView @JvmOverloads constructor(
     class RadioHolder(parent: ViewGroup, listener: View.OnClickListener?)
         : ClickableHolder(parent.inflate(TR.layout.navigation_view_radio), listener) {
 
-        val radio: RadioButton = itemView.findViewById(TR.id.nav_view_item) as RadioButton
+        val radio = itemView.findViewById(TR.id.nav_view_item) as RadioButton
     }
 
     /**
@@ -250,7 +259,7 @@ open class ExtendedNavigationView @JvmOverloads constructor(
     class CheckboxHolder(parent: ViewGroup, listener: View.OnClickListener?)
         : ClickableHolder(parent.inflate(TR.layout.navigation_view_checkbox), listener) {
 
-        val check: CheckBox = itemView.findViewById(TR.id.nav_view_item) as CheckBox
+        val check = itemView.findViewById(TR.id.nav_view_item) as CheckBox
     }
 
     /**
@@ -259,9 +268,13 @@ open class ExtendedNavigationView @JvmOverloads constructor(
     class MultiStateHolder(parent: ViewGroup, listener: View.OnClickListener?)
         : ClickableHolder(parent.inflate(TR.layout.navigation_view_checkedtext), listener) {
 
-        val text: CheckedTextView = itemView.findViewById(TR.id.nav_view_item) as CheckedTextView
+        val text = itemView.findViewById(TR.id.nav_view_item) as CheckedTextView
     }
 
+    /**
+     * Base adapter for the navigation view. It knows how to create and render every subclass of
+     * [Item].
+     */
     abstract inner class Adapter(private val items: List<Item>) : RecyclerView.Adapter<Holder>() {
 
         private val onClick = View.OnClickListener {

@@ -187,8 +187,8 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
                 activity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
         }
 
-        navView.onGroupClicked = {
-            when (it) {
+        navView.onGroupClicked = { group ->
+            when (group) {
                 is LibraryNavigationView.FilterGroup -> onFilterChanged()
                 is LibraryNavigationView.SortGroup -> onSortChanged()
                 is LibraryNavigationView.DisplayGroup -> reattachAdapter()
@@ -248,10 +248,9 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     override fun onPrepareOptionsMenu(menu: Menu) {
         val filterItem = menu.findItem(R.id.action_filter)
 
-        DrawableCompat.setTint(filterItem.icon, if (navView.hasActiveFilters())
-            Color.rgb(255, 238, 7)
-        else
-            Color.WHITE)
+        // Tint icon if there's a filter active
+        val filterColor = if (navView.hasActiveFilters()) Color.rgb(255, 238, 7) else Color.WHITE
+        DrawableCompat.setTint(filterItem.icon, filterColor)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

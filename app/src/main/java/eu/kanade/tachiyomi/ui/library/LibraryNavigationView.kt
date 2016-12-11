@@ -11,17 +11,30 @@ import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.MultiSort.Companio
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.MultiSort.Companion.SORT_NONE
 import uy.kohesive.injekt.injectLazy
 
+/**
+ * The navigation view shown in a drawer with the different options to show the library.
+ */
 class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null)
 : ExtendedNavigationView(context, attrs) {
 
+    /**
+     * Preferences helper.
+     */
     private val preferences: PreferencesHelper by injectLazy()
 
+    /**
+     * List of groups shown in the view.
+     */
     private val groups = listOf(FilterGroup(), SortGroup(),  DisplayGroup())
 
-    private val items = groups.map { it.createItems() }.flatten()
+    /**
+     * Adapter instance.
+     */
+    private val adapter = Adapter(groups.map { it.createItems() }.flatten())
 
-    private val adapter = Adapter()
-
+    /**
+     * Click listener to notify the parent fragment when an item from a group is clicked.
+     */
     var onGroupClicked: (Group) -> Unit = {}
 
     init {
@@ -30,11 +43,17 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
         groups.forEach { it.initModels() }
     }
 
+    /**
+     * Returns true if there's at least one filter from [FilterGroup] active.
+     */
     fun hasActiveFilters(): Boolean {
         return (groups[0] as FilterGroup).items.any { it.checked }
     }
 
-    inner class Adapter() : ExtendedNavigationView.Adapter(items) {
+    /**
+     * Adapter of the recycler view.
+     */
+    inner class Adapter(items: List<Item>) : ExtendedNavigationView.Adapter(items) {
 
         override fun onItemClicked(item: Item) {
             if (item is GroupedItem) {
@@ -45,6 +64,9 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
         
     }
 
+    /**
+     * Filters group (unread, downloaded, ...).
+     */
     inner class FilterGroup : Group {
 
         private val downloaded = Item.CheckboxGroup(R.string.action_filter_downloaded, this)
@@ -75,6 +97,9 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
 
     }
 
+    /**
+     * Sorting group (alphabetically, by last read, ...) and ascending or descending.
+     */
     inner class SortGroup : Group {
 
         private val alphabetically = Item.MultiSort(R.string.action_sort_alpha, this)
@@ -124,6 +149,9 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
 
     }
 
+    /**
+     * Display group, to show the library as a list or a grid.
+     */
     inner class DisplayGroup : Group {
 
         private val grid = Item.Radio(R.string.action_display_grid, this)
