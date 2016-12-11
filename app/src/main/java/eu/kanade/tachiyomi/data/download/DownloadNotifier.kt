@@ -100,7 +100,7 @@ internal class DownloadNotifier(private val context: Context) {
                 return
             }
         } else {
-            if (download != null && download.pages!!.size == download.downloadedImages && download.totalProgress == queue.size - 1) {
+            if (download != null && download.pages!!.size == download.downloadedImages && queue.size - 1 == 0) {
                 onChapterCompleted(download)
                 return
             }
@@ -114,7 +114,12 @@ internal class DownloadNotifier(private val context: Context) {
                 // Clear old actions if they exist
                 if (!mActions.isEmpty())
                     mActions.clear()
-                setContentIntent(DownloadNotificationReceiver.OpenDownloadManagerIntent(context))
+                setContentIntent(DownloadNotificationReceiver.openDownloadManagerIntent(context))
+                // Pause action
+                addAction(R.drawable.ic_pause_grey_24dp_img,
+                        context.getString(R.string.action_pause),
+                        DownloadNotificationReceiver.pauseDownloadIntent(context))
+
                 isDownloading = true
             }
 
@@ -145,7 +150,7 @@ internal class DownloadNotifier(private val context: Context) {
     }
 
     /**
-     * TODO write correct code
+     * Show information when download is paused
      */
     fun onDownloadPaused() {
         // Create notification.
@@ -153,8 +158,20 @@ internal class DownloadNotifier(private val context: Context) {
             setContentText(context.getString(R.string.update_check_notification_download_paused))
             setSmallIcon(android.R.drawable.stat_sys_download_done)
             setProgress(0, 0, false)
-        }
 
+            // Clear old actions if they exist
+            if (!mActions.isEmpty())
+                mActions.clear()
+            setContentIntent(DownloadNotificationReceiver.openDownloadManagerIntent(context))
+            // Resume action
+            addAction(R.drawable.ic_play_arrow_grey_24dp_img,
+                    context.getString(R.string.action_resume),
+                    DownloadNotificationReceiver.resumeDownloadIntent(context))
+            // Clear action
+            addAction(R.drawable.ic_clear_grey_24dp_img,
+                    context.getString(R.string.action_clear),
+                    DownloadNotificationReceiver.clearDownloadIntent(context, Constants.NOTIFICATION_DOWNLOAD_CHAPTER_ID))
+        }
         // Show notification.
         notification.show()
 
@@ -170,7 +187,21 @@ internal class DownloadNotifier(private val context: Context) {
     private fun onChapterCompleted(download: Download?) {
         // Create notification.
         with(notification) {
-            setContentTitle(download?.chapter?.name ?: context.getString(R.string.app_name))
+            // Clear old actions if they exist
+            if (!mActions.isEmpty())
+                mActions.clear()
+
+            if (download == null) {
+                setContentTitle(context.getString(R.string.app_name))
+                setContentIntent(DownloadNotificationReceiver.dismissNotification(context,
+                        Constants.NOTIFICATION_DOWNLOAD_CHAPTER_ID))
+            } else {
+                val title = download.manga.title
+                val chapter = download.chapter.name.replaceFirst(download.manga.title, "", true)
+                setContentTitle("$title - $chapter".chop(30))
+                setContentIntent(DownloadNotificationReceiver.openManga(context, download.manga.id ?: 0,
+                        download.chapter.id ?: 0, Constants.NOTIFICATION_DOWNLOAD_CHAPTER_ID))
+            }
             setContentText(context.getString(R.string.update_check_notification_download_complete))
             setSmallIcon(android.R.drawable.stat_sys_download_done)
             setProgress(0, 0, false)
