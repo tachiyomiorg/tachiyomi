@@ -84,4 +84,11 @@ interface MangaQueries : DbProvider {
                     .build())
             .prepare()
 
+    fun getLastReadManga() = db.get()
+            .listOfObjects(Manga::class.java)
+            .withQuery(RawQuery.builder()
+                    .query(getLastReadMangaQuery())
+                    .observesTables(MangaTable.TABLE)
+                    .build())
+            .prepare()
 }

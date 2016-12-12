@@ -86,6 +86,11 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
     private val updateTriggerRelay = BehaviorRelay.create(Unit)
 
     /**
+     * Value that contains library sorted by last read
+     */
+    private lateinit var lastReadManga: Map<Long, Int>
+
+    /**
      * Library subscription.
      */
     private var librarySubscription: Subscription? = null
@@ -136,7 +141,7 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
 
                 val mangaDirName = downloadManager.getMangaDirName(manga)
                 val mangaDir = mangaDirs.find { it.name == mangaDirName }
-                
+
                 return@f if (mangaDir == null) {
                     false
                 } else {
@@ -149,14 +154,22 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
         }
 
         // Sorting
-        val comparator: Comparator<Manga> = if (preferences.librarySortingAscending().getOrDefault())
-            Comparator { m1, m2 -> sortManga(m1, m2) }
-        else
-            Comparator { m1, m2 -> sortManga(m2, m1) }
+        val sortingMode = preferences.librarySortingMode().getOrDefault()
+        if (sortingMode == LibrarySort.LAST_READ) {
+            var counter = 0
+            lastReadManga = db.getLastReadManga().executeAsBlocking()
+                    .associate { it.id!! to counter++ }
+        }
 
-        return map.mapValues { entry -> entry.value
-                .filter(filterFn)
-                .sortedWith(comparator)
+        val comparator: Comparator<Manga> = if (preferences.librarySortingAscending().getOrDefault())
+            Comparator { m1, m2 -> sortManga(sortingMode, m1, m2) }
+        else
+            Comparator { m1, m2 -> sortManga(sortingMode, m2, m1) }
+
+        return map.mapValues { entry ->
+            entry.value
+                    .filter(filterFn)
+                    .sortedWith(comparator)
         }
     }
 
@@ -210,18 +223,18 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
      * Returns zero if this object is equal to the specified other object,
      * a negative number if it's less than other, or a positive number if it's greater than other.
      *
+     * @param sortingMode current sorting mode
      * @param manga1 first manga to compare
      * @param manga2 second manga to compare
      */
-    fun sortManga(manga1: Manga, manga2: Manga): Int {
-        when (preferences.librarySortingMode().getOrDefault()) {
+    fun sortManga(sortingMode: Int, manga1: Manga, manga2: Manga): Int {
+        when (sortingMode) {
             LibrarySort.ALPHA -> return manga1.title.compareTo(manga2.title)
             LibrarySort.LAST_READ -> {
-                var a = 0L
-                var b = 0L
-                db.getLastHistoryByMangaId(manga1.id!!).executeAsBlocking()?.let { a = it.last_read }
-                db.getLastHistoryByMangaId(manga2.id!!).executeAsBlocking()?.let { b = it.last_read }
-                return b.compareTo(a)
+                // Get index of manga, set equal to list if size unknown.
+                val manga1LastRead = lastReadManga.getOrElse(manga1.id!!, { lastReadManga.size })
+                val manga2LastRead = lastReadManga.getOrElse(manga2.id!!, { lastReadManga.size })
+                return manga1LastRead.compareTo(manga2LastRead)
             }
             LibrarySort.LAST_UPDATED -> return manga2.last_update.compareTo(manga1.last_update)
             else -> return manga1.title.compareTo(manga2.title)

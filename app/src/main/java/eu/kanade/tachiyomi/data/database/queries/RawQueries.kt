@@ -73,17 +73,16 @@ fun getHistoryByMangaId() = """
     WHERE ${Chapter.TABLE}.${Chapter.COL_MANGA_ID} = ? AND ${History.TABLE}.${History.COL_CHAPTER_ID} = ${Chapter.TABLE}.${Chapter.COL_ID}
 """
 
-fun getLastHistoryByMangaId() = """
-    SELECT ${History.TABLE}.*
-    FROM ${History.TABLE}
+fun getLastReadMangaQuery() = """
+    SELECT ${Manga.TABLE}.*, MAX(${History.TABLE}.${History.COL_LAST_READ}) AS max
+    FROM ${Manga.TABLE}
     JOIN ${Chapter.TABLE}
-    ON ${History.TABLE}.${History.COL_CHAPTER_ID} = ${Chapter.TABLE}.${Chapter.COL_ID}
-     LEFT JOIN (
-            SELECT MAX(${History.TABLE}.${History.COL_LAST_READ}) AS max
-            FROM ${History.TABLE}
-            GROUP BY ${History.COL_LAST_READ}
-        ) AS M
-    WHERE ${Chapter.TABLE}.${Chapter.COL_MANGA_ID} = ? AND M.max = ${History.TABLE}.${History.COL_LAST_READ}
+    ON ${Manga.TABLE}.${Manga.COL_ID} = ${Chapter.TABLE}.${Chapter.COL_MANGA_ID}
+    JOIN ${History.TABLE}
+    ON ${Chapter.TABLE}.${Chapter.COL_ID} = ${History.TABLE}.${History.COL_CHAPTER_ID}
+    WHERE ${Manga.TABLE}.${Manga.COL_FAVORITE} = 1
+    GROUP BY ${Manga.TABLE}.${Manga.COL_ID}
+    ORDER BY max DESC
 """
 
 /**
