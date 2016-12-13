@@ -6,7 +6,6 @@ import android.content.res.Configuration
 import android.support.multidex.MultiDex
 import com.evernote.android.job.JobManager
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.updater.UpdateCheckerJob
 import eu.kanade.tachiyomi.util.LocaleHelper
 import org.acra.ACRA
@@ -14,9 +13,7 @@ import org.acra.annotation.ReportsCrashes
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.InjektScope
-import uy.kohesive.injekt.injectLazy
 import uy.kohesive.injekt.registry.default.DefaultRegistrar
-import java.util.*
 
 @ReportsCrashes(
         formUri = "http://tachiyomi.kanade.eu/crash_report",

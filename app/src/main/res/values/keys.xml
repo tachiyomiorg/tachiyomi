@@ -22,6 +22,7 @@
     <string name="pref_library_update_restriction_key">library_update_restriction</string>
     <string name="pref_start_screen_key">start_screen</string>
     <string name="pref_language">language</string>
+    <string name="pref_language_key">language</string>
 
     <string name="pref_default_viewer_key">pref_default_viewer_key</string>
     <string name="pref_image_scale_type_key">pref_image_scale_type_key</string>

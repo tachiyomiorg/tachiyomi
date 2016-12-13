@@ -46,7 +46,7 @@ class SettingsGeneralFragment : SettingsFragment(),
 
     val categoryUpdate: MultiSelectListPreference by bindPref(R.string.pref_library_update_categories_key)
 
-    val langPreference: IntListPreference by bindPref(R.string.pref_language)
+    val langPreference: IntListPreference by bindPref(R.string.pref_language_key)
 
     override fun onViewCreated(view: View, savedState: Bundle?) {
         super.onViewCreated(view, savedState)
