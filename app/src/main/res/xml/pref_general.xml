@@ -62,7 +62,7 @@
             android:entryValues="@array/languages_values"
             android:key="@string/pref_language_key"
             android:summary="%s"
-            android:title="Language" />
+            android:title="@string/pref_language" />
 
     </PreferenceScreen>
 
