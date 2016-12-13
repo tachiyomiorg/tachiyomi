@@ -60,7 +60,7 @@
             android:defaultValue="0"
             android:entries="@array/languages"
             android:entryValues="@array/languages_values"
-            android:key="pref_language"
+            android:key="language"
             android:summary="%s"
             android:title="Language" />
 

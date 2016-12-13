@@ -78,7 +78,7 @@ class SettingsActivity : BaseActivity(),
     companion object {
         const val FLAG_THEME_CHANGED = 0x1
         const val FLAG_DATABASE_CLEARED = 0x2
-        const val FLAG_LANG_CHANGED = 0x3
+        const val FLAG_LANG_CHANGED = 0x4
     }
 
 }

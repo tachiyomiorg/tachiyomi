@@ -27,13 +27,6 @@ import java.util.*
 )
 open class App : Application() {
 
-    val preferences: PreferencesHelper by injectLazy()
-
-    //get lang code by pref
-    private val langCode by lazy {
-        LocaleHelper.intToLangCode(preferences.lang())
-    }
-
     override fun onCreate() {
         super.onCreate()
         Injekt = InjektScope(DefaultRegistrar())
@@ -44,8 +37,6 @@ open class App : Application() {
         setupAcra()
         setupJobManager()
 
-        //set language from preferences
-        LocaleHelper.setLocale(Locale(langCode))
         LocaleHelper.updateCfg(this, baseContext.resources.configuration)
     }
 
@@ -56,9 +47,9 @@ open class App : Application() {
         }
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration?) {
+    override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        LocaleHelper.updateCfg(this, newConfig!!)
+        LocaleHelper.updateCfg(this, newConfig)
     }
 
     protected open fun setupAcra() {
