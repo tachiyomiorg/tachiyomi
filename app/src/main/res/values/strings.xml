@@ -112,6 +112,13 @@
     <string name="dark_theme">Dark theme</string>
     <string name="pref_start_screen">Start screen</string>
 
+      <!-- Languages -->
+    <string name="system_default">System Default</string>
+    <string name="english">English</string>
+    <string name="spanish">Spanish</string>
+    <string name="italian">Italian</string>
+    <string name="portuguese">Portuguese</string>
+
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>
     <string name="pref_lock_orientation">Lock orientation</string>

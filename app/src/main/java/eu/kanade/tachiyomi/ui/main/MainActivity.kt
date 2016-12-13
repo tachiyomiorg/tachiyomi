@@ -110,6 +110,8 @@ class MainActivity : BaseActivity() {
             } else if (resultCode and SettingsActivity.FLAG_THEME_CHANGED != 0) {
                 // Delay activity recreation to avoid fragment leaks.
                 nav_view.post { recreate() }
+            } else if (resultCode and SettingsActivity.FLAG_LANG_CHANGED != 0) {
+                nav_view.post { recreate() }
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)

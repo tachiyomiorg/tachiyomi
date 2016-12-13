@@ -9,6 +9,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.util.LocaleHelper
 import eu.kanade.tachiyomi.util.plusAssign
 import eu.kanade.tachiyomi.widget.preference.IntListPreference
 import eu.kanade.tachiyomi.widget.preference.LibraryColumnsDialog
@@ -17,6 +18,7 @@ import net.xpece.android.support.preference.MultiSelectListPreference
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.injectLazy
+import java.util.*
 
 class SettingsGeneralFragment : SettingsFragment(),
         PreferenceFragmentCompat.OnPreferenceDisplayDialogCallback {
@@ -43,6 +45,8 @@ class SettingsGeneralFragment : SettingsFragment(),
     val themePreference: IntListPreference by bindPref(R.string.pref_theme_key)
 
     val categoryUpdate: MultiSelectListPreference by bindPref(R.string.pref_library_update_categories_key)
+
+    val langPreference: IntListPreference by bindPref(R.string.pref_language)
 
     override fun onViewCreated(view: View, savedState: Bundle?) {
         super.onViewCreated(view, savedState)
@@ -101,6 +105,15 @@ class SettingsGeneralFragment : SettingsFragment(),
             activity.recreate()
             true
         }
+
+        langPreference.setOnPreferenceChangeListener { preference, newValue ->
+            (activity as SettingsActivity).parentFlags = SettingsActivity.FLAG_LANG_CHANGED
+            LocaleHelper.setLocale(Locale(LocaleHelper.intToLangCode(newValue.toString().toInt())))
+            LocaleHelper.updateCfg(activity.application, activity.baseContext.resources.configuration)
+            activity.recreate()
+            true
+        }
+
     }
 
     override fun onPreferenceDisplayDialog(p0: PreferenceFragmentCompat?, p: Preference): Boolean {

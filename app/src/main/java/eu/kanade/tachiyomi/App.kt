@@ -2,16 +2,21 @@ package eu.kanade.tachiyomi
 
 import android.app.Application
 import android.content.Context
+import android.content.res.Configuration
 import android.support.multidex.MultiDex
 import com.evernote.android.job.JobManager
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.updater.UpdateCheckerJob
+import eu.kanade.tachiyomi.util.LocaleHelper
 import org.acra.ACRA
 import org.acra.annotation.ReportsCrashes
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.InjektScope
+import uy.kohesive.injekt.injectLazy
 import uy.kohesive.injekt.registry.default.DefaultRegistrar
+import java.util.*
 
 @ReportsCrashes(
         formUri = "http://tachiyomi.kanade.eu/crash_report",
@@ -22,6 +27,13 @@ import uy.kohesive.injekt.registry.default.DefaultRegistrar
 )
 open class App : Application() {
 
+    val preferences: PreferencesHelper by injectLazy()
+
+    //get lang code by pref
+    private val langCode by lazy {
+        LocaleHelper.intToLangCode(preferences.lang())
+    }
+
     override fun onCreate() {
         super.onCreate()
         Injekt = InjektScope(DefaultRegistrar())
@@ -31,6 +43,10 @@ open class App : Application() {
 
         setupAcra()
         setupJobManager()
+
+        //set language from preferences
+        LocaleHelper.setLocale(Locale(langCode))
+        LocaleHelper.updateCfg(this, baseContext.resources.configuration)
     }
 
     override fun attachBaseContext(base: Context) {
@@ -38,6 +54,11 @@ open class App : Application() {
         if (BuildConfig.DEBUG) {
             MultiDex.install(this)
         }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+        super.onConfigurationChanged(newConfig)
+        LocaleHelper.updateCfg(this, newConfig!!)
     }
 
     protected open fun setupAcra() {

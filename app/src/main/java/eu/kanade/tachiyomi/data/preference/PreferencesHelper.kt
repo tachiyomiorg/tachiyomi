@@ -138,4 +138,6 @@ class PreferencesHelper(context: Context) {
 
     fun downloadNew() = prefs.getBoolean(keys.downloadNew, false)
 
+    fun lang() = prefs.getInt(keys.lang, 0)
+
 }
