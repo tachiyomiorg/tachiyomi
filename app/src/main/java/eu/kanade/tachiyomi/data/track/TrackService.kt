@@ -52,16 +52,16 @@ abstract class TrackService(val id: Int) {
     abstract fun formatScore(manga: Track): String
 
     fun saveCredentials(username: String, password: String) {
-        preferences.setMangaSyncCredentials(this, username, password)
+        preferences.setTrackCredentials(this, username, password)
     }
 
     @CallSuper
     open fun logout() {
-        preferences.setMangaSyncCredentials(this, "", "")
+        preferences.setTrackCredentials(this, "", "")
     }
 
-    fun getUsername() = preferences.mangaSyncUsername(this)
+    fun getUsername() = preferences.trackUsername(this)
 
-    fun getPassword() = preferences.mangaSyncPassword(this)
+    fun getPassword() = preferences.trackPassword(this)
 
 }

@@ -30,9 +30,9 @@ class TrackUpdateService : Service() {
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        val manga = intent.getSerializableExtra(EXTRA_MANGASYNC)
-        if (manga != null) {
-            updateLastChapterRead(manga as Track, startId)
+        val track = intent.getSerializableExtra(EXTRA_TRACK)
+        if (track != null) {
+            updateLastChapterRead(track as Track, startId)
             return Service.START_REDELIVER_INTENT
         } else {
             stopSelf(startId)
@@ -61,12 +61,12 @@ class TrackUpdateService : Service() {
 
     companion object {
 
-        private val EXTRA_MANGASYNC = "extra_mangasync"
+        private val EXTRA_TRACK = "extra_track"
 
         @JvmStatic
         fun start(context: Context, track: Track) {
             val intent = Intent(context, TrackUpdateService::class.java)
-            intent.putExtra(EXTRA_MANGASYNC, track)
+            intent.putExtra(EXTRA_TRACK, track)
             context.startService(intent)
         }
     }

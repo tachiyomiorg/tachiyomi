@@ -163,19 +163,19 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     }
 
     override fun onBackPressed() {
-        val chapterToUpdate = presenter.getMangaSyncChapterToUpdate()
+        val chapterToUpdate = presenter.getTrackChapterToUpdate()
 
         if (chapterToUpdate > 0) {
-            if (preferences.askUpdateMangaSync()) {
+            if (preferences.askUpdateTrack()) {
                 MaterialDialog.Builder(this)
                         .content(getString(R.string.confirm_update_manga_sync, chapterToUpdate))
                         .positiveText(android.R.string.yes)
                         .negativeText(android.R.string.no)
-                        .onPositive { dialog, which -> presenter.updateMangaSyncLastChapterRead() }
+                        .onPositive { dialog, which -> presenter.updateTrackLastChapterRead() }
                         .onAny { dialog1, which1 -> super.onBackPressed() }
                         .show()
             } else {
-                presenter.updateMangaSyncLastChapterRead()
+                presenter.updateTrackLastChapterRead()
                 super.onBackPressed()
             }
         } else {

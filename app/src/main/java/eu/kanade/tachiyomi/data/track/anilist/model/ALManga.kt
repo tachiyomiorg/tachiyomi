@@ -9,7 +9,7 @@ data class ALManga(
         val type: String,
         val total_chapters: Int) {
 
-    fun toMangaSync() = Track.create(TrackManager.ANILIST).apply {
+    fun toTrack() = Track.create(TrackManager.ANILIST).apply {
         remote_id = this@ALManga.id
         title = title_romaji
         total_chapters = this@ALManga.total_chapters

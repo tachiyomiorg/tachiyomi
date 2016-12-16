@@ -26,11 +26,11 @@ class TrackImpl : Track {
         if (this === other) return true
         if (other == null || javaClass != other.javaClass) return false
 
-        val mangaSync = other as Track
+        other as Track
 
-        if (manga_id != mangaSync.manga_id) return false
-        if (sync_id != mangaSync.sync_id) return false
-        return remote_id == mangaSync.remote_id
+        if (manga_id != other.manga_id) return false
+        if (sync_id != other.sync_id) return false
+        return remote_id == other.remote_id
     }
 
     override fun hashCode(): Int {

@@ -165,7 +165,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
                 .subscribeLatestCache({ view, manga -> view.onMangaOpen(manga) })
 
         // Retrieve the sync list if auto syncing is enabled.
-        if (prefs.autoUpdateMangaSync()) {
+        if (prefs.autoUpdateTrack()) {
             add(db.getTracks(manga).asRxSingle()
                     .subscribe({ trackList = it }))
         }
@@ -431,9 +431,9 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
     /**
      * Returns the chapter to be marked as last read in sync services or 0 if no update required.
      */
-    fun getMangaSyncChapterToUpdate(): Int {
-        val mangaSyncList = trackList
-        if (chapter.pages == null || mangaSyncList == null || mangaSyncList.isEmpty())
+    fun getTrackChapterToUpdate(): Int {
+        val trackList = trackList
+        if (chapter.pages == null || trackList == null || trackList.isEmpty())
             return 0
 
         val prevChapter = prevChapter
@@ -446,20 +446,20 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         else
             0
 
-        mangaSyncList.forEach { sync ->
+        trackList.forEach { sync ->
             if (lastChapterRead > sync.last_chapter_read) {
                 sync.last_chapter_read = lastChapterRead
                 sync.update = true
             }
         }
 
-        return if (mangaSyncList.any { it.update }) lastChapterRead else 0
+        return if (trackList.any { it.update }) lastChapterRead else 0
     }
 
     /**
      * Starts the service that updates the last chapter read in sync services
      */
-    fun updateMangaSyncLastChapterRead() {
+    fun updateTrackLastChapterRead() {
         trackList?.forEach { sync ->
             val service = syncManager.getService(sync.sync_id)
             if (service != null && service.isLogged && sync.update) {

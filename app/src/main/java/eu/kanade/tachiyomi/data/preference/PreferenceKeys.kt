@@ -51,9 +51,9 @@ class PreferenceKeys(context: Context) {
 
     val updateOnlyNonCompleted = context.getString(R.string.pref_update_only_non_completed_key)
 
-    val autoUpdateMangaSync = context.getString(R.string.pref_auto_update_manga_sync_key)
+    val autoUpdateTrack = context.getString(R.string.pref_auto_update_manga_sync_key)
 
-    val askUpdateMangaSync = context.getString(R.string.pref_ask_update_manga_sync_key)
+    val askUpdateTrack = context.getString(R.string.pref_ask_update_manga_sync_key)
 
     val lastUsedCatalogueSource = context.getString(R.string.pref_last_catalogue_source_key)
 

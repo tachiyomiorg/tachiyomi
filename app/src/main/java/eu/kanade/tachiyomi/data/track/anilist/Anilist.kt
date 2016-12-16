@@ -4,8 +4,8 @@ import android.content.Context
 import android.graphics.Color
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.data.track.TrackService
 import rx.Completable
 import rx.Observable
 import timber.log.Timber
@@ -69,14 +69,14 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
         return api.search(query, 1)
                 .flatMap { Observable.from(it) }
                 .filter { it.type != "Novel" }
-                .map { it.toMangaSync() }
+                .map { it.toTrack() }
                 .toList()
     }
 
     fun getList(): Observable<List<Track>> {
         return api.getList(getUsername())
                 .flatMap { Observable.from(it.flatten()) }
-                .map { it.toMangaSync() }
+                .map { it.toTrack() }
                 .toList()
     }
 

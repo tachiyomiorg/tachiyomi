@@ -11,14 +11,14 @@ data class ALUserManga(
         val chapters_read: Int,
         val manga: ALManga) {
 
-    fun toMangaSync() = Track.create(TrackManager.ANILIST).apply {
+    fun toTrack() = Track.create(TrackManager.ANILIST).apply {
         remote_id = manga.id
-        status = getMangaSyncStatus()
+        status = getTrackStatus()
         score = score_raw.toFloat()
         last_chapter_read = chapters_read
     }
 
-    fun getMangaSyncStatus() = when (list_status) {
+    fun getTrackStatus() = when (list_status) {
         "reading" -> Anilist.READING
         "completed" -> Anilist.COMPLETED
         "on-hold" -> Anilist.ON_HOLD

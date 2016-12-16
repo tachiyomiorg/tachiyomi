@@ -7,8 +7,8 @@ import android.preference.PreferenceManager
 import com.f2prateek.rx.preferences.Preference
 import com.f2prateek.rx.preferences.RxSharedPreferences
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.source.Source
+import eu.kanade.tachiyomi.data.track.TrackService
 import java.io.File
 
 fun <T> Preference<T>.getOrDefault(): T = get() ?: defaultValue()!!
@@ -70,9 +70,9 @@ class PreferencesHelper(context: Context) {
 
     fun updateOnlyNonCompleted() = prefs.getBoolean(keys.updateOnlyNonCompleted, false)
 
-    fun autoUpdateMangaSync() = prefs.getBoolean(keys.autoUpdateMangaSync, true)
+    fun autoUpdateTrack() = prefs.getBoolean(keys.autoUpdateTrack, true)
 
-    fun askUpdateMangaSync() = prefs.getBoolean(keys.askUpdateMangaSync, false)
+    fun askUpdateTrack() = prefs.getBoolean(keys.askUpdateTrack, false)
 
     fun lastUsedCatalogueSource() = rxPrefs.getInteger(keys.lastUsedCatalogueSource, -1)
 
@@ -95,11 +95,11 @@ class PreferencesHelper(context: Context) {
                 .apply()
     }
 
-    fun mangaSyncUsername(sync: TrackService) = prefs.getString(keys.syncUsername(sync.id), "")
+    fun trackUsername(sync: TrackService) = prefs.getString(keys.syncUsername(sync.id), "")
 
-    fun mangaSyncPassword(sync: TrackService) = prefs.getString(keys.syncPassword(sync.id), "")
+    fun trackPassword(sync: TrackService) = prefs.getString(keys.syncPassword(sync.id), "")
 
-    fun setMangaSyncCredentials(sync: TrackService, username: String, password: String) {
+    fun setTrackCredentials(sync: TrackService, username: String, password: String) {
         prefs.edit()
                 .putString(keys.syncUsername(sync.id), username)
                 .putString(keys.syncPassword(sync.id), password)
