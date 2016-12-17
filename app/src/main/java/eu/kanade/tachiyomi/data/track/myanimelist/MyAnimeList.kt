@@ -6,10 +6,10 @@ import android.net.Uri
 import android.util.Xml
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.network.asObservable
+import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.util.selectInt
 import eu.kanade.tachiyomi.util.selectText
 import okhttp3.Credentials
@@ -100,6 +100,8 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
                 .asObservable()
                 .doOnNext { it.close() }
                 .doOnNext { if (it.code() != 200) throw Exception("Login error") }
+                .doOnNext { saveCredentials(username, password) }
+                .doOnError { logout() }
                 .toCompletable()
     }
 

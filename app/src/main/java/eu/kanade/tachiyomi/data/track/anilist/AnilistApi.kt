@@ -2,10 +2,10 @@ package eu.kanade.tachiyomi.data.track.anilist
 
 import android.net.Uri
 import com.google.gson.JsonObject
+import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.track.anilist.model.ALManga
 import eu.kanade.tachiyomi.data.track.anilist.model.ALUserLists
 import eu.kanade.tachiyomi.data.track.anilist.model.OAuth
-import eu.kanade.tachiyomi.data.network.POST
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody

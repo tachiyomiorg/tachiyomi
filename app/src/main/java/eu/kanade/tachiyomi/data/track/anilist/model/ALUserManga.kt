@@ -13,12 +13,12 @@ data class ALUserManga(
 
     fun toTrack() = Track.create(TrackManager.ANILIST).apply {
         remote_id = manga.id
-        status = getTrackStatus()
+        status = toTrackStatus()
         score = score_raw.toFloat()
         last_chapter_read = chapters_read
     }
 
-    fun getTrackStatus() = when (list_status) {
+    fun toTrackStatus() = when (list_status) {
         "reading" -> Anilist.READING
         "completed" -> Anilist.COMPLETED
         "on-hold" -> Anilist.ON_HOLD

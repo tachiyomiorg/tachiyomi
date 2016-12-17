@@ -2,6 +2,8 @@ package eu.kanade.tachiyomi.data.track.anilist
 
 import android.content.Context
 import android.graphics.Color
+import com.github.salomonbrys.kotson.int
+import com.github.salomonbrys.kotson.string
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.preference.getOrDefault
@@ -50,8 +52,8 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
                 .doOnNext { interceptor.setAuth(it) }
                 // Obtain the authenticated user from the API.
                 .zipWith(api.getCurrentUser().map {
-                    preferences.anilistScoreType().set(it["score_type"].asInt)
-                    it["id"].toString()
+                    preferences.anilistScoreType().set(it["score_type"].int)
+                    it["id"].string
                 }, { oauth, user -> Pair(user, oauth.refresh_token!!) })
                 // Save service credentials (username and refresh token).
                 .doOnNext { saveCredentials(it.first, it.second) }

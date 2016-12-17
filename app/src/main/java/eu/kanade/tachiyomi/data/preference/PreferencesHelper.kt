@@ -95,16 +95,18 @@ class PreferencesHelper(context: Context) {
                 .apply()
     }
 
-    fun trackUsername(sync: TrackService) = prefs.getString(keys.syncUsername(sync.id), "")
+    fun trackUsername(sync: TrackService) = prefs.getString(keys.trackUsername(sync.id), "")
 
-    fun trackPassword(sync: TrackService) = prefs.getString(keys.syncPassword(sync.id), "")
+    fun trackPassword(sync: TrackService) = prefs.getString(keys.trackPassword(sync.id), "")
 
     fun setTrackCredentials(sync: TrackService, username: String, password: String) {
         prefs.edit()
-                .putString(keys.syncUsername(sync.id), username)
-                .putString(keys.syncPassword(sync.id), password)
+                .putString(keys.trackUsername(sync.id), username)
+                .putString(keys.trackPassword(sync.id), password)
                 .apply()
     }
+
+    fun trackToken(sync: TrackService) = rxPrefs.getString(keys.trackToken(sync.id), "")
 
     fun anilistScoreType() = rxPrefs.getInteger("anilist_score_type", 0)
 

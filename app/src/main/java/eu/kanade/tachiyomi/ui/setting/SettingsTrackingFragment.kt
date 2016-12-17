@@ -46,6 +46,8 @@ class SettingsTrackingFragment : SettingsFragment() {
             intent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
             intent.launchUrl(activity, AnilistApi.authUrl())
         }
+
+        registerService(trackManager.kitsu)
     }
 
     private fun <T : TrackService> registerService(
@@ -53,7 +55,7 @@ class SettingsTrackingFragment : SettingsFragment() {
             onPreferenceClick: (T) -> Unit = defaultOnPreferenceClick) {
 
         LoginPreference(preferenceManager.context).apply {
-            key = preferences.keys.syncUsername(service.id)
+            key = preferences.keys.trackUsername(service.id)
             title = service.name
 
             setOnPreferenceClickListener {
@@ -85,7 +87,7 @@ class SettingsTrackingFragment : SettingsFragment() {
     }
 
     private fun updatePreference(id: Int) {
-        val pref = findPreference(preferences.keys.syncUsername(id)) as? LoginPreference
+        val pref = findPreference(preferences.keys.trackUsername(id)) as? LoginPreference
         pref?.notifyChanged()
     }
 

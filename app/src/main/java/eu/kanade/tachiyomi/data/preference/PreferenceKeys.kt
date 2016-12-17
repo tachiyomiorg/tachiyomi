@@ -95,9 +95,11 @@ class PreferenceKeys(context: Context) {
 
     fun sourcePassword(sourceId: Int) = "pref_source_password_$sourceId"
 
-    fun syncUsername(syncId: Int) = "pref_mangasync_username_$syncId"
+    fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 
-    fun syncPassword(syncId: Int) = "pref_mangasync_password_$syncId"
+    fun trackPassword(syncId: Int) = "pref_mangasync_password_$syncId"
+
+    fun trackToken(syncId: Int) = "track_token_$syncId"
 
     val libraryAsList = context.getString(R.string.pref_display_library_as_list)
 
