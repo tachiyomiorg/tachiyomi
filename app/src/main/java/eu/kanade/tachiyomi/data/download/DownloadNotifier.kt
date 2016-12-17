@@ -62,6 +62,15 @@ internal class DownloadNotifier(private val context: Context) {
     }
 
     /**
+     * TODO
+     */
+    fun clearActions() = with(notification) {
+        // Clear old actions if they exist
+        if (!mActions.isEmpty())
+            mActions.clear()
+    }
+
+    /**
      * Called when download progress changes.
      * Note: Only accepted when multi download active.
      *
@@ -112,8 +121,7 @@ internal class DownloadNotifier(private val context: Context) {
             if (!isDownloading) {
                 setSmallIcon(android.R.drawable.stat_sys_download)
                 // Clear old actions if they exist
-                if (!mActions.isEmpty())
-                    mActions.clear()
+                clearActions()
                 setContentIntent(DownloadNotificationReceiver.openDownloadManagerIntent(context))
                 // Pause action
                 addAction(R.drawable.ic_pause_grey_24dp_img,
@@ -159,9 +167,7 @@ internal class DownloadNotifier(private val context: Context) {
             setSmallIcon(android.R.drawable.stat_sys_download_done)
             setProgress(0, 0, false)
 
-            // Clear old actions if they exist
-            if (!mActions.isEmpty())
-                mActions.clear()
+            clearActions()
             setContentIntent(DownloadNotificationReceiver.openDownloadManagerIntent(context))
             // Resume action
             addAction(R.drawable.ic_play_arrow_grey_24dp_img,
@@ -188,9 +194,7 @@ internal class DownloadNotifier(private val context: Context) {
         // Create notification.
         with(notification) {
             // Clear old actions if they exist
-            if (!mActions.isEmpty())
-                mActions.clear()
-
+            clearActions()
             if (download == null) {
                 setContentTitle(context.getString(R.string.app_name))
                 setContentIntent(DownloadNotificationReceiver.dismissNotification(context,
@@ -222,6 +226,7 @@ internal class DownloadNotifier(private val context: Context) {
      */
     fun onWarning(reason: String) {
         with(notification) {
+            clearActions()
             setContentTitle(context.getString(R.string.download_notifier_downloader_title))
             setContentText(reason)
             setSmallIcon(android.R.drawable.stat_sys_warning)
