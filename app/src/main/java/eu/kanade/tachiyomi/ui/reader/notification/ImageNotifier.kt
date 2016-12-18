@@ -62,7 +62,7 @@ class ImageNotifier(private val context: Context) {
             // Share action
             addAction(R.drawable.ic_share_grey_24dp,
                     context.getString(R.string.action_share),
-                    ImageNotificationReceiver.shareImageIntent(context, file.absolutePath, notificationId))
+                    ImageNotificationReceiver.shareImageIntent(context, file.absolutePath))
             // Delete action
             addAction(R.drawable.ic_delete_grey_24dp,
                     context.getString(R.string.action_delete),
