@@ -40,6 +40,11 @@ internal class DownloadNotifier(private val context: Context) {
     var multipleDownloadThreads = false
 
     /**
+     * Checks if error notification is visible
+     */
+    var errorThrown = false
+
+    /**
      * Shows a notification from this builder.
      *
      * @param id the id of the notification.
@@ -54,6 +59,15 @@ internal class DownloadNotifier(private val context: Context) {
      */
     fun dismiss() {
         context.notificationManager.cancel(Constants.NOTIFICATION_DOWNLOAD_CHAPTER_ID)
+    }
+
+    /**
+     * TODO
+     */
+    fun clearActions() = with(notification) {
+        // Clear old actions if they exist
+        if (!mActions.isEmpty())
+            mActions.clear()
     }
 
     /**
@@ -95,7 +109,7 @@ internal class DownloadNotifier(private val context: Context) {
                 return
             }
         } else {
-            if (download != null && download.pages!!.size == download.downloadedImages) {
+            if (download != null && download.pages!!.size == download.downloadedImages && queue.size - 1 == 0) {
                 onChapterCompleted(download)
                 return
             }
@@ -106,6 +120,14 @@ internal class DownloadNotifier(private val context: Context) {
             // Check if icon needs refresh
             if (!isDownloading) {
                 setSmallIcon(android.R.drawable.stat_sys_download)
+                // Clear old actions if they exist
+                clearActions()
+                setContentIntent(DownloadNotificationReceiver.openDownloadManagerIntent(context))
+                // Pause action
+                addAction(R.drawable.ic_pause_grey_24dp_img,
+                        context.getString(R.string.action_pause),
+                        DownloadNotificationReceiver.pauseDownloadIntent(context))
+
                 isDownloading = true
             }
 
@@ -121,7 +143,9 @@ internal class DownloadNotifier(private val context: Context) {
                 setProgress(initialQueueSize, initialQueueSize - queue.size, false)
             } else {
                 download?.let {
-                    setContentTitle(it.chapter.name.chop(30))
+                    val title = it.manga.title
+                    val chapter = it.chapter.name.replaceFirst(it.manga.title, "", true)
+                    setContentTitle("$title - $chapter".chop(30))
                     setContentText(context.getString(R.string.chapter_downloading_progress)
                             .format(it.downloadedImages, it.pages!!.size))
                     setProgress(it.pages!!.size, it.downloadedImages, false)
@@ -134,6 +158,34 @@ internal class DownloadNotifier(private val context: Context) {
     }
 
     /**
+     * Show information when download is paused
+     */
+    fun onDownloadPaused() {
+        // Create notification.
+        with(notification) {
+            setContentText(context.getString(R.string.update_check_notification_download_paused))
+            setSmallIcon(android.R.drawable.stat_sys_download_done)
+            setProgress(0, 0, false)
+
+            clearActions()
+            setContentIntent(DownloadNotificationReceiver.openDownloadManagerIntent(context))
+            // Resume action
+            addAction(R.drawable.ic_play_arrow_grey_24dp_img,
+                    context.getString(R.string.action_resume),
+                    DownloadNotificationReceiver.resumeDownloadIntent(context))
+            // Clear action
+            addAction(R.drawable.ic_clear_grey_24dp_img,
+                    context.getString(R.string.action_clear),
+                    DownloadNotificationReceiver.clearDownloadIntent(context, Constants.NOTIFICATION_DOWNLOAD_CHAPTER_ID))
+        }
+        // Show notification.
+        notification.show()
+
+        // Reset initial values
+        isDownloading = false
+    }
+
+    /**
      * Called when chapter is downloaded.
      *
      * @param download download object containing download information.
@@ -141,7 +193,19 @@ internal class DownloadNotifier(private val context: Context) {
     private fun onChapterCompleted(download: Download?) {
         // Create notification.
         with(notification) {
-            setContentTitle(download?.chapter?.name ?: context.getString(R.string.app_name))
+            // Clear old actions if they exist
+            clearActions()
+            if (download == null) {
+                setContentTitle(context.getString(R.string.app_name))
+                setContentIntent(DownloadNotificationReceiver.dismissNotification(context,
+                        Constants.NOTIFICATION_DOWNLOAD_CHAPTER_ID))
+            } else {
+                val title = download.manga.title
+                val chapter = download.chapter.name.replaceFirst(download.manga.title, "", true)
+                setContentTitle("$title - $chapter".chop(30))
+                setContentIntent(DownloadNotificationReceiver.openManga(context, download.manga.id ?: 0,
+                        download.chapter.id ?: 0, Constants.NOTIFICATION_DOWNLOAD_CHAPTER_ID))
+            }
             setContentText(context.getString(R.string.update_check_notification_download_complete))
             setSmallIcon(android.R.drawable.stat_sys_download_done)
             setProgress(0, 0, false)
@@ -162,6 +226,7 @@ internal class DownloadNotifier(private val context: Context) {
      */
     fun onWarning(reason: String) {
         with(notification) {
+            clearActions()
             setContentTitle(context.getString(R.string.download_notifier_downloader_title))
             setContentText(reason)
             setSmallIcon(android.R.drawable.stat_sys_warning)
@@ -178,6 +243,9 @@ internal class DownloadNotifier(private val context: Context) {
      * @param chapter string containing chapter title.
      */
     fun onError(error: String? = null, chapter: String? = null) {
+        // Error is thrown
+        errorThrown = true
+
         // Create notification
         with(notification) {
             setContentTitle(chapter ?: context.getString(R.string.download_notifier_downloader_title))

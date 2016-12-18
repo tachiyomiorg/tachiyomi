@@ -31,12 +31,15 @@
         </activity>
         <activity
             android:name=".ui.manga.MangaActivity"
-            android:parentActivityName=".ui.main.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:parentActivityName=".ui.main.MainActivity">
         </activity>
         <activity
             android:name=".ui.reader.ReaderActivity"
             android:theme="@style/Theme.Reader">
+        </activity>
+        <activity
+            android:name=".ui.download.DownloadActivity">
         </activity>
         <activity
             android:name=".ui.setting.SettingsActivity"
@@ -81,6 +84,8 @@
         <receiver android:name=".data.library.LibraryUpdateService$CancelUpdateReceiver" />
 
         <receiver android:name=".ui.reader.notification.ImageNotificationReceiver" />
+
+        <receiver android:name=".data.download.DownloadNotificationReceiver"/>
 
         <meta-data
             android:name="eu.kanade.tachiyomi.data.glide.AppGlideModule"

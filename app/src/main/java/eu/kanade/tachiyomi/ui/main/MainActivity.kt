@@ -11,8 +11,8 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.backup.BackupFragment
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment
-import eu.kanade.tachiyomi.ui.download.DownloadFragment
 import eu.kanade.tachiyomi.ui.latest_updates.LatestUpdatesFragment
+import eu.kanade.tachiyomi.ui.download.DownloadFragment
 import eu.kanade.tachiyomi.ui.library.LibraryFragment
 import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersFragment
 import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadFragment
