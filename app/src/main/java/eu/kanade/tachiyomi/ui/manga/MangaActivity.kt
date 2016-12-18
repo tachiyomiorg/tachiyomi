@@ -115,7 +115,7 @@ class MangaActivity : BaseRxActivity<MangaPresenter>() {
                 .map { activity.getString(it) }
 
         init {
-            if (!activity.fromCatalogue && activity.presenter.syncManager.hasLoggedServices())
+            if (!activity.fromCatalogue && activity.presenter.trackManager.hasLoggedServices())
                 tabCount++
         }
 

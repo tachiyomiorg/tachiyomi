@@ -14,7 +14,7 @@ import uy.kohesive.injekt.injectLazy
 
 class TrackUpdateService : Service() {
 
-    val syncManager: TrackManager by injectLazy()
+    val trackManager: TrackManager by injectLazy()
     val db: DatabaseHelper by injectLazy()
 
     private lateinit var subscriptions: CompositeSubscription
@@ -45,7 +45,7 @@ class TrackUpdateService : Service() {
     }
 
     private fun updateLastChapterRead(track: Track, startId: Int) {
-        val sync = syncManager.getService(track.sync_id)
+        val sync = trackManager.getService(track.sync_id)
         if (sync == null) {
             stopSelf(startId)
             return

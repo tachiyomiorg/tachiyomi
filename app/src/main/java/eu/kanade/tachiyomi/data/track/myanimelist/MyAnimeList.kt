@@ -64,8 +64,8 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
 
     override fun maxScore() = 10
 
-    override fun formatScore(manga: Track): String {
-        return manga.score.toInt().toString()
+    override fun formatScore(track: Track): String {
+        return track.score.toInt().toString()
     }
 
     fun getLoginUrl() = Uri.parse(BASE_URL).buildUpon()
@@ -84,14 +84,14 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
             .appendQueryParameter("type", "manga")
             .toString()
 
-    fun getUpdateUrl(manga: Track) = Uri.parse(BASE_URL).buildUpon()
+    fun getUpdateUrl(track: Track) = Uri.parse(BASE_URL).buildUpon()
             .appendEncodedPath("api/mangalist/update")
-            .appendPath("${manga.remote_id}.xml")
+            .appendPath("${track.remote_id}.xml")
             .toString()
 
-    fun getAddUrl(manga: Track) = Uri.parse(BASE_URL).buildUpon()
+    fun getAddUrl(track: Track) = Uri.parse(BASE_URL).buildUpon()
             .appendEncodedPath("api/mangalist/add")
-            .appendPath("${manga.remote_id}.xml")
+            .appendPath("${track.remote_id}.xml")
             .toString()
 
     override fun login(username: String, password: String): Completable {
@@ -129,14 +129,14 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
         }
     }
 
-    override fun refresh(manga: Track): Observable<Track> {
+    override fun refresh(track: Track): Observable<Track> {
         return getList()
                 .map { myList ->
-                    val myManga = myList.find { it.remote_id == manga.remote_id }
-                    if (myManga != null) {
-                        manga.copyPersonalFrom(myManga)
-                        manga.total_chapters = myManga.total_chapters
-                        manga
+                    val remoteTrack = myList.find { it.remote_id == track.remote_id }
+                    if (remoteTrack != null) {
+                        track.copyPersonalFrom(remoteTrack)
+                        track.total_chapters = remoteTrack.total_chapters
+                        track
                     } else {
                         throw Exception("Could not find manga")
                     }
@@ -163,31 +163,31 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
                 .toList()
     }
 
-    override fun update(manga: Track): Observable<Track> {
+    override fun update(track: Track): Observable<Track> {
         return Observable.defer {
-            if (manga.total_chapters != 0 && manga.last_chapter_read == manga.total_chapters) {
-                manga.status = COMPLETED
+            if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
+                track.status = COMPLETED
             }
-            client.newCall(POST(getUpdateUrl(manga), headers, getMangaPostPayload(manga)))
+            client.newCall(POST(getUpdateUrl(track), headers, getMangaPostPayload(track)))
                     .asObservable()
                     .doOnNext { it.close() }
                     .doOnNext { if (!it.isSuccessful) throw Exception("Could not update manga") }
-                    .map { manga }
+                    .map { track }
         }
 
     }
 
-    override fun add(manga: Track): Observable<Track> {
+    override fun add(track: Track): Observable<Track> {
         return Observable.defer {
-            client.newCall(POST(getAddUrl(manga), headers, getMangaPostPayload(manga)))
+            client.newCall(POST(getAddUrl(track), headers, getMangaPostPayload(track)))
                     .asObservable()
                     .doOnNext { it.close() }
                     .doOnNext { if (!it.isSuccessful) throw Exception("Could not add manga") }
-                    .map { manga }
+                    .map { track }
         }
     }
 
-    private fun getMangaPostPayload(manga: Track): RequestBody {
+    private fun getMangaPostPayload(track: Track): RequestBody {
         val xml = Xml.newSerializer()
         val writer = StringWriter()
 
@@ -197,14 +197,14 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
             startTag("", ENTRY_TAG)
 
             // Last chapter read
-            if (manga.last_chapter_read != 0) {
-                inTag(CHAPTER_TAG, manga.last_chapter_read.toString())
+            if (track.last_chapter_read != 0) {
+                inTag(CHAPTER_TAG, track.last_chapter_read.toString())
             }
             // Manga status in the list
-            inTag(STATUS_TAG, manga.status.toString())
+            inTag(STATUS_TAG, track.status.toString())
 
             // Manga score
-            inTag(SCORE_TAG, manga.score.toString())
+            inTag(SCORE_TAG, track.score.toString())
 
             endTag("", ENTRY_TAG)
             endDocument()
@@ -221,19 +221,19 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
         endTag(namespace, tag)
     }
 
-    override fun bind(manga: Track): Observable<Track> {
+    override fun bind(track: Track): Observable<Track> {
         return getList()
                 .flatMap { userlist ->
-                    manga.sync_id = id
-                    val mangaFromList = userlist.find { it.remote_id == manga.remote_id }
-                    if (mangaFromList != null) {
-                        manga.copyPersonalFrom(mangaFromList)
-                        update(manga)
+                    track.sync_id = id
+                    val remoteTrack = userlist.find { it.remote_id == track.remote_id }
+                    if (remoteTrack != null) {
+                        track.copyPersonalFrom(remoteTrack)
+                        update(track)
                     } else {
                         // Set default fields if it's not found in the list
-                        manga.score = DEFAULT_SCORE.toFloat()
-                        manga.status = DEFAULT_STATUS
-                        add(manga)
+                        track.score = DEFAULT_SCORE.toFloat()
+                        track.status = DEFAULT_STATUS
+                        add(track)
                     }
                 }
     }

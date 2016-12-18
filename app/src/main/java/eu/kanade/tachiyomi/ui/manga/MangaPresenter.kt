@@ -22,9 +22,9 @@ class MangaPresenter : BasePresenter<MangaActivity>() {
     val db: DatabaseHelper by injectLazy()
 
     /**
-     * Manga sync manager.
+     * Tracking manager.
      */
-    val syncManager: TrackManager by injectLazy()
+    val trackManager: TrackManager by injectLazy()
 
     /**
      * Manga associated with this instance.

@@ -27,15 +27,15 @@ abstract class TrackService(val id: Int) {
         get() = !getUsername().isEmpty() &&
                 !getPassword().isEmpty()
 
-    abstract fun add(manga: Track): Observable<Track>
+    abstract fun add(track: Track): Observable<Track>
 
-    abstract fun update(manga: Track): Observable<Track>
+    abstract fun update(track: Track): Observable<Track>
 
-    abstract fun bind(manga: Track): Observable<Track>
+    abstract fun bind(track: Track): Observable<Track>
 
     abstract fun search(query: String): Observable<List<Track>>
 
-    abstract fun refresh(manga: Track): Observable<Track>
+    abstract fun refresh(track: Track): Observable<Track>
 
     abstract fun getStatus(status: Int): String
 
@@ -49,7 +49,7 @@ abstract class TrackService(val id: Int) {
     // TODO better support (decimals)
     abstract fun maxScore(): Int
 
-    abstract fun formatScore(manga: Track): String
+    abstract fun formatScore(track: Track): String
 
     fun saveCredentials(username: String, password: String) {
         preferences.setTrackCredentials(this, username, password)

@@ -82,51 +82,51 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
                 .toList()
     }
 
-    override fun add(manga: Track): Observable<Track> {
-        return api.addManga(manga.remote_id, manga.last_chapter_read, manga.getAnilistStatus())
+    override fun add(track: Track): Observable<Track> {
+        return api.addManga(track.remote_id, track.last_chapter_read, track.getAnilistStatus())
                 .doOnNext { it.body().close() }
                 .doOnNext { if (!it.isSuccessful) throw Exception("Could not add manga") }
                 .doOnError { Timber.e(it) }
-                .map { manga }
+                .map { track }
     }
 
-    override fun update(manga: Track): Observable<Track> {
-        if (manga.total_chapters != 0 && manga.last_chapter_read == manga.total_chapters) {
-            manga.status = COMPLETED
+    override fun update(track: Track): Observable<Track> {
+        if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
+            track.status = COMPLETED
         }
-        return api.updateManga(manga.remote_id, manga.last_chapter_read, manga.getAnilistStatus(),
-                manga.getAnilistScore())
+        return api.updateManga(track.remote_id, track.last_chapter_read, track.getAnilistStatus(),
+                track.getAnilistScore())
                 .doOnNext { it.body().close() }
                 .doOnNext { if (!it.isSuccessful) throw Exception("Could not update manga") }
                 .doOnError { Timber.e(it) }
-                .map { manga }
+                .map { track }
     }
 
-    override fun bind(manga: Track): Observable<Track> {
+    override fun bind(track: Track): Observable<Track> {
         return getList()
                 .flatMap { userlist ->
-                    manga.sync_id = id
-                    val mangaFromList = userlist.find { it.remote_id == manga.remote_id }
-                    if (mangaFromList != null) {
-                        manga.copyPersonalFrom(mangaFromList)
-                        update(manga)
+                    track.sync_id = id
+                    val remoteTrack = userlist.find { it.remote_id == track.remote_id }
+                    if (remoteTrack != null) {
+                        track.copyPersonalFrom(remoteTrack)
+                        update(track)
                     } else {
                         // Set default fields if it's not found in the list
-                        manga.score = DEFAULT_SCORE.toFloat()
-                        manga.status = DEFAULT_STATUS
-                        add(manga)
+                        track.score = DEFAULT_SCORE.toFloat()
+                        track.status = DEFAULT_STATUS
+                        add(track)
                     }
                 }
     }
 
-    override fun refresh(manga: Track): Observable<Track> {
+    override fun refresh(track: Track): Observable<Track> {
         return getList()
                 .map { myList ->
-                    val myManga = myList.find { it.remote_id == manga.remote_id }
-                    if (myManga != null) {
-                        manga.copyPersonalFrom(myManga)
-                        manga.total_chapters = myManga.total_chapters
-                        manga
+                    val remoteTrack = myList.find { it.remote_id == track.remote_id }
+                    if (remoteTrack != null) {
+                        track.copyPersonalFrom(remoteTrack)
+                        track.total_chapters = remoteTrack.total_chapters
+                        track
                     } else {
                         throw Exception("Could not find manga")
                     }
@@ -183,8 +183,8 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
         else -> throw Exception("Unknown score type")
     }
 
-    override fun formatScore(manga: Track): String {
-        return manga.getAnilistScore()
+    override fun formatScore(track: Track): String {
+        return track.getAnilistScore()
     }
 
 }

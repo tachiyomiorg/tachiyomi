@@ -20,7 +20,7 @@ import uy.kohesive.injekt.registry.default.DefaultRegistrar
         reportType = org.acra.sender.HttpSender.Type.JSON,
         httpMethod = org.acra.sender.HttpSender.Method.PUT,
         buildConfigClass = BuildConfig::class,
-        excludeMatchingSharedPreferencesKeys = arrayOf(".*username.*", ".*password.*")
+        excludeMatchingSharedPreferencesKeys = arrayOf(".*username.*", ".*password.*", ".*token.*")
 )
 open class App : Application() {
 

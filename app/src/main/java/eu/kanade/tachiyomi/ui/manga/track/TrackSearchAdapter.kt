@@ -16,7 +16,7 @@ class TrackSearchAdapter(context: Context)
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         var v = view
         // Get the data item for this position
-        val sync = getItem(position)
+        val track = getItem(position)
         // Check if an existing view is being reused, otherwise inflate the view
         val holder: TrackSearchHolder // view lookup cache stored in tag
         if (v == null) {
@@ -26,7 +26,7 @@ class TrackSearchAdapter(context: Context)
         } else {
             holder = v.tag as TrackSearchHolder
         }
-        holder.onSetValues(sync)
+        holder.onSetValues(track)
         return v
     }
 
@@ -39,8 +39,8 @@ class TrackSearchAdapter(context: Context)
 
     class TrackSearchHolder(private val view: View) {
 
-        fun onSetValues(sync: Track) {
-            view.track_search_title.text = sync.title
+        fun onSetValues(track: Track) {
+            view.track_search_title.text = track.title
         }
     }
 

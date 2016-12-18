@@ -20,14 +20,14 @@ class TrackPresenter : BasePresenter<TrackFragment>() {
 
     private val db: DatabaseHelper by injectLazy()
 
-    private val syncManager: TrackManager by injectLazy()
+    private val trackManager: TrackManager by injectLazy()
 
     lateinit var manga: Manga
         private set
 
     private var trackList: List<TrackItem> = emptyList()
 
-    private val loggedServices by lazy { syncManager.services.filter { it.isLogged } }
+    private val loggedServices by lazy { trackManager.services.filter { it.isLogged } }
 
     var selectedService: TrackService? = null
 
@@ -61,9 +61,9 @@ class TrackPresenter : BasePresenter<TrackFragment>() {
     fun refresh() {
         refreshSubscription?.let { remove(it) }
         refreshSubscription = Observable.from(trackList)
-                .filter { it.sync != null }
+                .filter { it.track != null }
                 .concatMap { item ->
-                    item.service.refresh(item.sync!!)
+                    item.service.refresh(item.track!!)
                             .flatMap { db.insertTrack(it).asRxObservable() }
                             .map { item }
                             .onErrorReturn { item }
@@ -102,9 +102,9 @@ class TrackPresenter : BasePresenter<TrackFragment>() {
         }
     }
 
-    private fun updateRemote(sync: Track, service: TrackService) {
-        service.update(sync)
-                .flatMap { db.insertTrack(sync).asRxObservable() }
+    private fun updateRemote(track: Track, service: TrackService) {
+        service.update(track)
+                .flatMap { db.insertTrack(track).asRxObservable() }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeFirst({ view, result -> view.onRefreshDone() },
@@ -117,21 +117,21 @@ class TrackPresenter : BasePresenter<TrackFragment>() {
     }
 
     fun setStatus(item: TrackItem, index: Int) {
-        val sync = item.sync!!
-        sync.status = item.service.getStatusList()[index]
-        updateRemote(sync, item.service)
+        val track = item.track!!
+        track.status = item.service.getStatusList()[index]
+        updateRemote(track, item.service)
     }
 
     fun setScore(item: TrackItem, score: Int) {
-        val sync = item.sync!!
-        sync.score = score.toFloat()
-        updateRemote(sync, item.service)
+        val track = item.track!!
+        track.score = score.toFloat()
+        updateRemote(track, item.service)
     }
 
     fun setLastChapterRead(item: TrackItem, chapterNumber: Int) {
-        val sync = item.sync!!
-        sync.last_chapter_read = chapterNumber
-        updateRemote(sync, item.service)
+        val track = item.track!!
+        track.last_chapter_read = chapterNumber
+        updateRemote(track, item.service)
     }
 
 }

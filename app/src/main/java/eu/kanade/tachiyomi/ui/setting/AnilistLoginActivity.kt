@@ -14,7 +14,7 @@ import uy.kohesive.injekt.injectLazy
 
 class AnilistLoginActivity : AppCompatActivity() {
 
-    private val syncManager: TrackManager by injectLazy()
+    private val trackManager: TrackManager by injectLazy()
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
@@ -24,7 +24,7 @@ class AnilistLoginActivity : AppCompatActivity() {
 
         val code = intent.data?.getQueryParameter("code")
         if (code != null) {
-            syncManager.aniList.login(code)
+            trackManager.aniList.login(code)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
@@ -33,7 +33,7 @@ class AnilistLoginActivity : AppCompatActivity() {
                         returnToSettings()
                     })
         } else {
-            syncManager.aniList.logout()
+            trackManager.aniList.logout()
             returnToSettings()
         }
     }

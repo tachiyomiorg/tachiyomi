@@ -51,8 +51,8 @@ class TrackFragment : BaseRxFragment<TrackPresenter>() {
 
     fun onNextTrackings(trackings: List<TrackItem>) {
         adapter.items = trackings
-        swipe_refresh.isEnabled = trackings.any { it.sync != null }
-        (activity as MangaActivity).setTrackingIcon(trackings.any { it.sync != null })
+        swipe_refresh.isEnabled = trackings.any { it.track != null }
+        (activity as MangaActivity).setTrackingIcon(trackings.any { it.track != null })
     }
 
     fun onSearchResults(results: List<Track>) {
@@ -90,10 +90,10 @@ class TrackFragment : BaseRxFragment<TrackPresenter>() {
     }
 
     fun onStatusClick(item: TrackItem) {
-        if (!isResumed || item.sync == null) return
+        if (!isResumed || item.track == null) return
 
         val statusList = item.service.getStatusList().map { item.service.getStatus(it) }
-        val selectedIndex = item.service.getStatusList().indexOf(item.sync.status)
+        val selectedIndex = item.service.getStatusList().indexOf(item.track.status)
 
         MaterialDialog.Builder(context)
                 .title(R.string.status)
@@ -107,7 +107,7 @@ class TrackFragment : BaseRxFragment<TrackPresenter>() {
     }
 
     fun onChaptersClick(item: TrackItem) {
-        if (!isResumed || item.sync == null) return
+        if (!isResumed || item.track == null) return
 
         val dialog = MaterialDialog.Builder(context)
                 .title(R.string.chapters)
@@ -129,14 +129,14 @@ class TrackFragment : BaseRxFragment<TrackPresenter>() {
         if (view != null) {
             val np = view.findViewById(R.id.chapters_picker) as NumberPicker
             // Set initial value
-            np.value = item.sync.last_chapter_read
+            np.value = item.track.last_chapter_read
             // Don't allow to go from 0 to 9999
             np.wrapSelectorWheel = false
         }
     }
 
     fun onScoreClick(item: TrackItem) {
-        if (!isResumed || item.sync == null) return
+        if (!isResumed || item.track == null) return
 
         val dialog = MaterialDialog.Builder(activity)
                 .title(R.string.score)
@@ -159,7 +159,7 @@ class TrackFragment : BaseRxFragment<TrackPresenter>() {
             val np = view.findViewById(R.id.score_picker) as NumberPicker
             np.maxValue = item.service.maxScore()
             // Set initial value
-            np.value = item.sync.score.toInt()
+            np.value = item.track.score.toInt()
         }
     }
 

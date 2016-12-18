@@ -20,17 +20,17 @@ class TrackHolder(private val view: View, private val fragment: TrackFragment)
     @Suppress("DEPRECATION")
     fun onSetValues(item: TrackItem) = with(view) {
         this@TrackHolder.item = item
-        val sync = item.sync
+        val track = item.track
         track_logo.setImageResource(item.service.getLogo())
         logo.setBackgroundColor(item.service.getLogoColor())
-        if (sync != null) {
+        if (track != null) {
             track_title.setTextAppearance(context, R.style.TextAppearance_Regular_Body1_Secondary)
             track_title.setAllCaps(false)
-            track_title.text = sync.title
-            track_chapters.text = "${sync.last_chapter_read}/" +
-                    if (sync.total_chapters > 0) sync.total_chapters else "-"
-            track_status.text = item.service.getStatus(sync.status)
-            track_score.text = if (sync.score == 0f) "-" else item.service.formatScore(sync)
+            track_title.text = track.title
+            track_chapters.text = "${track.last_chapter_read}/" +
+                    if (track.total_chapters > 0) track.total_chapters else "-"
+            track_status.text = item.service.getStatus(track.status)
+            track_score.text = if (track.score == 0f) "-" else item.service.formatScore(track)
         } else {
             track_title.setTextAppearance(context, R.style.TextAppearance_Medium_Button)
             track_title.setText(R.string.action_edit)

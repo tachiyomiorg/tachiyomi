@@ -54,9 +54,9 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
     val downloadManager: DownloadManager by injectLazy()
 
     /**
-     * Sync manager.
+     * Tracking manager.
      */
-    val syncManager: TrackManager by injectLazy()
+    val trackManager: TrackManager by injectLazy()
 
     /**
      * Source manager.
@@ -461,7 +461,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
      */
     fun updateTrackLastChapterRead() {
         trackList?.forEach { sync ->
-            val service = syncManager.getService(sync.sync_id)
+            val service = trackManager.getService(sync.sync_id)
             if (service != null && service.isLogged && sync.update) {
                 TrackUpdateService.start(context, sync)
             }

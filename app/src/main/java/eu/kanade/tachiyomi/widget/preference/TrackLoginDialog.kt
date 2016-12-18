@@ -24,7 +24,7 @@ class TrackLoginDialog : LoginDialogPreference() {
         }
     }
 
-    val syncManager: TrackManager by injectLazy()
+    val trackManager: TrackManager by injectLazy()
 
     lateinit var sync: TrackService
 
@@ -32,7 +32,7 @@ class TrackLoginDialog : LoginDialogPreference() {
         super.onCreate(savedInstanceState)
 
         val syncId = arguments.getInt("key")
-        sync = syncManager.getService(syncId)!!
+        sync = trackManager.getService(syncId)!!
     }
 
     override fun setCredentialsOnView(view: View) = with(view) {

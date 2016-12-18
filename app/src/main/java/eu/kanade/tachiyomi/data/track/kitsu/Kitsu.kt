@@ -78,23 +78,23 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
                 .doOnError { Timber.e(it) }
     }
 
-    override fun bind(manga: Track): Observable<Track> {
-        return find(manga)
-                .flatMap { mangaFromList ->
-                    if (mangaFromList != null) {
-                        manga.copyPersonalFrom(mangaFromList)
-                        manga.remote_id = mangaFromList.remote_id
-                        update(manga)
+    override fun bind(track: Track): Observable<Track> {
+        return find(track)
+                .flatMap { remoteTrack ->
+                    if (remoteTrack != null) {
+                        track.copyPersonalFrom(remoteTrack)
+                        track.remote_id = remoteTrack.remote_id
+                        update(track)
                     } else {
-                        manga.score = DEFAULT_SCORE
-                        manga.status = DEFAULT_STATUS
-                        add(manga)
+                        track.score = DEFAULT_SCORE
+                        track.status = DEFAULT_STATUS
+                        add(track)
                     }
                 }
     }
 
-    private fun find(manga: Track): Observable<Track?> {
-        return api.findLibManga(getUserId(), manga.remote_id)
+    private fun find(track: Track): Observable<Track?> {
+        return api.findLibManga(getUserId(), track.remote_id)
                 .map { json ->
                     val data = json["data"].array
                     if (data.size() > 0) {
@@ -105,13 +105,13 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
                 }
     }
 
-    override fun add(manga: Track): Observable<Track> {
+    override fun add(track: Track): Observable<Track> {
         // @formatter:off
         val data = jsonObject(
             "type" to "libraryEntries",
             "attributes" to jsonObject(
-                "status" to manga.getKitsuStatus(),
-                "progress" to manga.last_chapter_read
+                "status" to track.getKitsuStatus(),
+                "progress" to track.last_chapter_read
             ),
             "relationships" to jsonObject(
                 "user" to jsonObject(
@@ -122,7 +122,7 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
                 ),
                 "media" to jsonObject(
                     "data" to jsonObject(
-                        "id" to manga.remote_id,
+                        "id" to track.remote_id,
                         "type" to "manga"
                     )
                 )
@@ -131,41 +131,41 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
         // @formatter:on
 
         return api.addLibManga(jsonObject("data" to data))
-                .doOnNext { json -> manga.remote_id = json["data"]["id"].int }
+                .doOnNext { json -> track.remote_id = json["data"]["id"].int }
                 .doOnError { Timber.e(it) }
-                .map { manga }
+                .map { track }
     }
 
-    override fun update(manga: Track): Observable<Track> {
-        if (manga.total_chapters != 0 && manga.last_chapter_read == manga.total_chapters) {
-            manga.status = COMPLETED
+    override fun update(track: Track): Observable<Track> {
+        if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
+            track.status = COMPLETED
         }
         // @formatter:off
         val data = jsonObject(
             "type" to "libraryEntries",
-            "id" to manga.remote_id,
+            "id" to track.remote_id,
             "attributes" to jsonObject(
-                "status" to manga.getKitsuStatus(),
-                "progress" to manga.last_chapter_read,
-                "rating" to manga.getKitsuScore()
+                "status" to track.getKitsuStatus(),
+                "progress" to track.last_chapter_read,
+                "rating" to track.getKitsuScore()
             )
         )
         // @formatter:on
 
-        return api.updateLibManga(manga.remote_id, jsonObject("data" to data))
-                .map { manga }
+        return api.updateLibManga(track.remote_id, jsonObject("data" to data))
+                .map { track }
     }
 
-    override fun refresh(manga: Track): Observable<Track> {
-        return api.getLibManga(manga.remote_id)
+    override fun refresh(track: Track): Observable<Track> {
+        return api.getLibManga(track.remote_id)
                 .map { json ->
                     val data = json["data"].array
                     if (data.size() > 0) {
                         val include = json["included"].array[0].obj
-                        val mangaFromList = KitsuLibManga(data[0].obj, include).toTrack()
-                        manga.copyPersonalFrom(mangaFromList)
-                        manga.total_chapters = mangaFromList.total_chapters
-                        manga
+                        val remoteTrack = KitsuLibManga(data[0].obj, include).toTrack()
+                        track.copyPersonalFrom(remoteTrack)
+                        track.total_chapters = remoteTrack.total_chapters
+                        track
                     } else {
                         throw Exception("Could not find manga")
                     }
@@ -212,8 +212,8 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
         return 10
     }
 
-    override fun formatScore(manga: Track): String {
-        return manga.getKitsuScore()
+    override fun formatScore(track: Track): String {
+        return track.getKitsuScore()
     }
 
 }
