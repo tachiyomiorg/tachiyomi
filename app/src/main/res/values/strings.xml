@@ -260,6 +260,7 @@
     <string name="chapter_downloading">Downloading</string>
     <string name="chapter_downloading_progress">Downloading (%1$d/%2$d)</string>
     <string name="chapter_error">Error</string>
+    <string name="chapter_paused">Paused</string>
     <string name="fetch_chapters_error">Error while fetching chapters</string>
     <string name="show_title">Show title</string>
     <string name="show_chapter_number">Show chapter number</string>
@@ -383,5 +384,6 @@
     <string name="download_notifier_page_ready_error">A page is not loaded</string>
     <string name="download_notifier_text_only_wifi">No wifi connection available</string>
     <string name="download_notifier_no_network">No network connection available</string>
+    <string name="download_notifier_download_paused">Download paused</string>
 
 </resources>

@@ -60,10 +60,17 @@ class DownloadManager(context: Context) {
     }
 
     /**
+     * Tells the downloader to pause downloads.
+     */
+    fun pauseDownloads() {
+        downloader.pause()
+    }
+
+    /**
      * Empties the download queue.
      */
-    fun clearQueue() {
-        downloader.clearQueue()
+    fun clearQueue(isNotification: Boolean = false) {
+        downloader.clearQueue(isNotification)
     }
 
     /**

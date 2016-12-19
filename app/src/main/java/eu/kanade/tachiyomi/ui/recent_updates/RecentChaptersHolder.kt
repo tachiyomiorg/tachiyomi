@@ -83,6 +83,7 @@ class RecentChaptersHolder(
             Download.DOWNLOADING -> setText(R.string.chapter_downloading)
             Download.DOWNLOADED -> setText(R.string.chapter_downloaded)
             Download.ERROR -> setText(R.string.chapter_error)
+            Download.PAUSED -> setText(R.string.chapter_paused)
             else -> text = ""
         }
     }

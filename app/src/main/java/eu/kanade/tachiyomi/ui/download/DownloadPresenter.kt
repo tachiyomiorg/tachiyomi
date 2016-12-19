@@ -55,4 +55,11 @@ class DownloadPresenter : BasePresenter<DownloadFragment>() {
         downloadManager.clearQueue()
     }
 
+    /**
+     * Pauses the downloader.
+     */
+    fun pauseDownloads() {
+        downloadManager.pauseDownloads()
+    }
+
 }

@@ -98,7 +98,7 @@ class Downloader(private val context: Context, private val provider: DownloadPro
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ downloads -> queue.addAll(downloads)
-                }, { error -> Timber.e(error) })
+                           }, { error -> Timber.e(error) })
     }
 
     /**
@@ -122,6 +122,17 @@ class Downloader(private val context: Context, private val provider: DownloadPro
     }
 
     /**
+     * Pauses the downloader.
+     */
+    fun pause() {
+        DownloadService.stop(context)
+        queue
+                .filter { it.status == Download.DOWNLOADING }
+                .forEach { it.status = Download.PAUSED }
+        notifier.onDownloadPaused()
+    }
+
+    /**
      * Stops the downloader.
      */
     fun stop(reason: String? = null) {
@@ -133,15 +144,25 @@ class Downloader(private val context: Context, private val provider: DownloadPro
         if (reason != null) {
             notifier.onWarning(reason)
         } else {
-            notifier.dismiss()
+            if (notifier.errorThrown) {
+                notifier.errorThrown = false
+                notifier.dismiss()
+            }
         }
     }
 
     /**
      * Removes everything from the queue.
      */
-    fun clearQueue() {
+    fun clearQueue(isNotification: Boolean = false) {
         destroySubscriptions()
+
+        //Needed to update the chapter view
+        if (isNotification) {
+            queue
+                    .filter { it.status == Download.QUEUE || it.status == Download.PAUSED }
+                    .forEach { it.status = Download.NOT_DOWNLOADED }
+        }
         queue.clear()
         notifier.dismiss()
     }
@@ -166,12 +187,12 @@ class Downloader(private val context: Context, private val provider: DownloadPro
                 .lift(DynamicConcurrentMergeOperator<Download, Download>({ downloadChapter(it) }, threadsSubject))
                 .onBackpressureBuffer()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ completeDownload(it)
-                }, { error ->
-                    DownloadService.stop(context)
-                    Timber.e(error)
-                    notifier.onError(error.message)
-                })
+                .subscribe({ completeDownload(it) },
+                           { error ->
+                               DownloadService.stop(context)
+                               Timber.e(error)
+                               notifier.onError(error.message)
+                           })
     }
 
     /**
@@ -313,7 +334,7 @@ class Downloader(private val context: Context, private val provider: DownloadPro
         tmpFile?.delete()
 
         // Try to find the image file.
-        val imageFile = tmpDir.listFiles()!!.find { it.name!!.startsWith("$filename.")}
+        val imageFile = tmpDir.listFiles()!!.find { it.name!!.startsWith("$filename.") }
 
         // If the image is already downloaded, do nothing. Otherwise download from network
         val pageObservable = if (imageFile != null)
@@ -377,10 +398,10 @@ class Downloader(private val context: Context, private val provider: DownloadPro
     private fun getImageExtension(response: Response, file: UniFile): String {
         // Read content type if available.
         val mime = response.body().contentType()?.let { ct -> "${ct.type()}/${ct.subtype()}" }
-        // Else guess from the uri.
-        ?: context.contentResolver.getType(file.uri)
-        // Else read magic numbers.
-        ?: file.openInputStream().buffered().use {
+                // Else guess from the uri.
+                ?: context.contentResolver.getType(file.uri)
+                // Else read magic numbers.
+                ?: file.openInputStream().buffered().use {
             URLConnection.guessContentTypeFromStream(it)
         }
 
@@ -417,11 +438,12 @@ class Downloader(private val context: Context, private val provider: DownloadPro
         // Delete successful downloads from queue
         if (download.status == Download.DOWNLOADED) {
             // remove downloaded chapter from queue
-            queue.remove(download)
             notifier.onProgressChange(queue)
+            queue.remove(download)
         }
         if (areAllDownloadsFinished()) {
             DownloadService.stop(context)
+            notifier.onDownloadCompleted(download, queue)
         }
     }
 
