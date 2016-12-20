@@ -45,14 +45,14 @@ class ImageNotificationReceiver : BroadcastReceiver() {
          * Called to start share intent to share image
          *
          * @param context context of application
-         * @param path path of file
+         * @param file file that contains image
          */
-        internal fun shareImageIntent(context: Context, path: String): PendingIntent {
+        internal fun shareImageIntent(context: Context, file: File): PendingIntent {
             val intent = Intent(Intent.ACTION_SEND).apply {
-                val uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", File(path))
+                val uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", file)
                 putExtra(Intent.EXTRA_STREAM, uri)
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
                 type = "image/*"
+                flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
             }
             return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }
@@ -61,15 +61,15 @@ class ImageNotificationReceiver : BroadcastReceiver() {
          * Called to show image in gallery application
          *
          * @param context context of application
-         * @param path path of file
+         * @param file file that contains image
          */
-        internal fun showImageIntent(context: Context, path: String): PendingIntent {
+        internal fun showImageIntent(context: Context, file: File): PendingIntent {
             val intent = Intent(Intent.ACTION_VIEW).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
-                val uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", File(path))
+                val uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", file)
                 setDataAndType(uri, "image/*")
+                flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
             }
-            return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            return PendingIntent.getActivity(context, 0, intent, 0)
         }
 
         internal fun deleteImageIntent(context: Context, path: String, notificationId: Int): PendingIntent {

@@ -58,11 +58,11 @@ class ImageNotifier(private val context: Context) {
             if (!mActions.isEmpty())
                 mActions.clear()
 
-            setContentIntent(ImageNotificationReceiver.showImageIntent(context, file.absolutePath))
+            setContentIntent(ImageNotificationReceiver.showImageIntent(context, file))
             // Share action
             addAction(R.drawable.ic_share_grey_24dp,
-                    context.getString(R.string.action_share),
-                    ImageNotificationReceiver.shareImageIntent(context, file.absolutePath))
+                      context.getString(R.string.action_share),
+                      ImageNotificationReceiver.shareImageIntent(context, file))
             // Delete action
             addAction(R.drawable.ic_delete_grey_24dp,
                     context.getString(R.string.action_delete),
