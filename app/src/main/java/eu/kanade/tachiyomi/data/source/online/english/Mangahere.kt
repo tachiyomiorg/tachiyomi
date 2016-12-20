@@ -33,7 +33,7 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
     override fun popularMangaFromElement(element: Element, manga: Manga) {
         element.select("div.title > a").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
-            manga.title = it.text()
+            manga.title = it.attr("title")
         }
     }
 
@@ -52,7 +52,7 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
     override fun searchMangaFromElement(element: Element, manga: Manga) {
         element.select("a.manga_info").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
-            manga.title = it.text()
+            manga.title = it.attr("title")
         }
     }
 
