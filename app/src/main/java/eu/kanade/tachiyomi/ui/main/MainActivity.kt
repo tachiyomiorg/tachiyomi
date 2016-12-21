@@ -76,10 +76,19 @@ class MainActivity : BaseActivity() {
 
         if (savedState == null) {
             // Set start screen
-            setSelectedDrawerItem(startScreenId)
+            val intentStartScreenId = intent.getIntExtra(EXTRA_START_SCREEN_ID, startScreenId)
+            setSelectedDrawerItem(intentStartScreenId)
 
             // Show changelog if needed
             ChangelogDialogFragment.show(this, preferences, supportFragmentManager)
+        }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        val intentStartScreenId = intent.getIntExtra(EXTRA_START_SCREEN_ID, -1)
+        if (intentStartScreenId != -1) {
+            setSelectedDrawerItem(intentStartScreenId)
         }
     }
 
@@ -139,5 +148,7 @@ class MainActivity : BaseActivity() {
 
     companion object {
         private const val REQUEST_OPEN_SETTINGS = 200
+
+        const val EXTRA_START_SCREEN_ID = "start_screen_id"
     }
 }
