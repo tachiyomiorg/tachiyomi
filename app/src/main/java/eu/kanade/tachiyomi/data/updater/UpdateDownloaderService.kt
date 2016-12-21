@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.data.updater
 import android.app.IntentService
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.support.v4.app.NotificationCompat
 import eu.kanade.tachiyomi.Constants.NOTIFICATION_UPDATER_ID
 import eu.kanade.tachiyomi.R
@@ -35,21 +34,6 @@ class UpdateDownloaderService : IntentService(UpdateDownloaderService::class.jav
                 putExtra(EXTRA_DOWNLOAD_URL, url)
             }
             context.startService(intent)
-        }
-
-        /**
-         * Prompt user with apk install intent
-         * @param context context
-         * @param file file of apk that is installed
-         */
-        fun installAPK(context: Context, file: File) {
-            // Prompt install interface
-            val intent = Intent(Intent.ACTION_VIEW).apply {
-                setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive")
-                // Without this flag android returned a intent error!
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            }
-            context.startActivity(intent)
         }
     }
 
@@ -106,7 +90,7 @@ class UpdateDownloaderService : IntentService(UpdateDownloaderService::class.jav
                 throw Exception("Unsuccessful response")
             }
 
-            val installIntent = UpdateNotificationReceiver.installApkIntent(ctx, apkFile.absolutePath)
+            val installIntent = UpdateNotificationReceiver.installApkIntent(ctx, apkFile)
 
             // Prompt the user to install the new update.
             NotificationCompat.Builder(this).update {

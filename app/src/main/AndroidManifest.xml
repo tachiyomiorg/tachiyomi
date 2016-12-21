@@ -53,6 +53,18 @@
             android:label="@string/app_name"
             android:theme="@style/FilePickerTheme">
         </activity>
+        <activity
+            android:name=".ui.setting.AnilistLoginActivity"
+            android:label="Anilist">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="anilist-auth"
+                    android:scheme="tachiyomi" />
+            </intent-filter>
+        </activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -70,7 +82,7 @@
         <service android:name=".data.download.DownloadService"
             android:exported="false"/>
 
-        <service android:name=".data.mangasync.UpdateMangaSyncService"
+        <service android:name=".data.track.TrackUpdateService"
             android:exported="false"/>
 
         <service android:name=".data.updater.UpdateDownloaderService"

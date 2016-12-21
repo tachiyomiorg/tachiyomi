@@ -394,7 +394,8 @@ class ChaptersFragment : BaseRxFragment<ChaptersPresenter>(), ActionMode.Callbac
     }
 
     fun dismissDeletingDialog() {
-        (childFragmentManager.findFragmentByTag(DeletingChaptersDialog.TAG) as? DialogFragment)?.dismiss()
+        (childFragmentManager.findFragmentByTag(DeletingChaptersDialog.TAG) as? DialogFragment)
+                ?.dismissAllowingStateLoss()
     }
 
     override fun onListItemClick(position: Int): Boolean {

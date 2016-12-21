@@ -18,7 +18,6 @@ import net.xpece.android.support.preference.MultiSelectListPreference
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.injectLazy
-import java.util.*
 
 class SettingsGeneralFragment : SettingsFragment(),
         PreferenceFragmentCompat.OnPreferenceDisplayDialogCallback {
@@ -108,7 +107,7 @@ class SettingsGeneralFragment : SettingsFragment(),
 
         langPreference.setOnPreferenceChangeListener { preference, newValue ->
             (activity as SettingsActivity).parentFlags = SettingsActivity.FLAG_LANG_CHANGED
-            LocaleHelper.setLocale(Locale(LocaleHelper.intToLangCode(newValue.toString().toInt())))
+            LocaleHelper.changeLocale(newValue.toString().toInt())
             LocaleHelper.updateCfg(activity.application, activity.baseContext.resources.configuration)
             activity.recreate()
             true

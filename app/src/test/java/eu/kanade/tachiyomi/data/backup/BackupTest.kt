@@ -390,16 +390,16 @@ class BackupTest {
 
     @Test
     fun testRestoreSyncForManga() {
-        // Create a manga and mangaSync
+        // Create a manga and track
         val manga = createManga("title")
         manga.id = 1L
 
-        val mangaSync = createMangaSync(manga, 1, 2, 3)
+        val track = createTrack(manga, 1, 2, 3)
 
         // Add an entry for the manga
         val entry = JsonObject()
         entry.add("manga", toJson(manga))
-        entry.add("sync", toJson(mangaSync))
+        entry.add("sync", toJson(track))
 
         // Append the entry to the backup list
         val mangas = ArrayList<JsonElement>()
@@ -412,7 +412,7 @@ class BackupTest {
         val dbManga = db.getManga(1).executeAsBlocking()
         assertThat(dbManga).isNotNull()
 
-        val dbSync = db.getMangasSync(dbManga!!).executeAsBlocking()
+        val dbSync = db.getTracks(dbManga!!).executeAsBlocking()
         assertThat(dbSync).hasSize(3)
     }
 
@@ -422,13 +422,13 @@ class BackupTest {
         // Create a manga and 3 sync
         val manga = createManga("title")
         manga.id = mangaId
-        val mangaSync = createMangaSync(manga, 1, 2, 3)
+        val track = createTrack(manga, 1, 2, 3)
         db.insertManga(manga).executeAsBlocking()
 
         // Add an entry for the manga
         val entry = JsonObject()
         entry.add("manga", toJson(manga))
-        entry.add("sync", toJson(mangaSync))
+        entry.add("sync", toJson(track))
 
         // Append the entry to the backup list
         val mangas = ArrayList<JsonElement>()
@@ -441,7 +441,7 @@ class BackupTest {
         val dbManga = db.getManga(mangaId).executeAsBlocking()
         assertThat(dbManga).isNotNull()
 
-        val dbSync = db.getMangasSync(dbManga!!).executeAsBlocking()
+        val dbSync = db.getTracks(dbManga!!).executeAsBlocking()
         assertThat(dbSync).hasSize(3)
     }
 
@@ -451,17 +451,17 @@ class BackupTest {
         // Store a manga and 3 sync
         val manga = createManga("title")
         manga.id = mangaId
-        var mangaSync = createMangaSync(manga, 1, 2, 3)
+        var track = createTrack(manga, 1, 2, 3)
         db.insertManga(manga).executeAsBlocking()
-        db.insertMangasSync(mangaSync).executeAsBlocking()
+        db.insertTracks(track).executeAsBlocking()
 
         // The backup contains a existing sync and a new one, so it should have 4 sync
-        mangaSync = createMangaSync(manga, 3, 4)
+        track = createTrack(manga, 3, 4)
 
         // Add an entry for the manga
         val entry = JsonObject()
         entry.add("manga", toJson(manga))
-        entry.add("sync", toJson(mangaSync))
+        entry.add("sync", toJson(track))
 
         // Append the entry to the backup list
         val mangas = ArrayList<JsonElement>()
@@ -474,7 +474,7 @@ class BackupTest {
         val dbManga = db.getManga(mangaId).executeAsBlocking()
         assertThat(dbManga).isNotNull()
 
-        val dbSync = db.getMangasSync(dbManga!!).executeAsBlocking()
+        val dbSync = db.getTracks(dbManga!!).executeAsBlocking()
         assertThat(dbSync).hasSize(4)
     }
 
@@ -546,17 +546,17 @@ class BackupTest {
         return chapters
     }
 
-    private fun createMangaSync(manga: Manga, syncId: Int): MangaSync {
-        val m = MangaSync.create(syncId)
+    private fun createTrack(manga: Manga, syncId: Int): Track {
+        val m = Track.create(syncId)
         m.manga_id = manga.id!!
         m.title = "title"
         return m
     }
 
-    private fun createMangaSync(manga: Manga, vararg syncIds: Int): List<MangaSync> {
-        val ms = ArrayList<MangaSync>()
+    private fun createTrack(manga: Manga, vararg syncIds: Int): List<Track> {
+        val ms = ArrayList<Track>()
         for (title in syncIds) {
-            ms.add(createMangaSync(manga, title))
+            ms.add(createTrack(manga, title))
         }
         return ms
     }

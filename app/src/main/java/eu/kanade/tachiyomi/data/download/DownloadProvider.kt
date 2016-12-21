@@ -6,6 +6,7 @@ import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.util.DiskUtil
 import uy.kohesive.injekt.injectLazy
@@ -26,10 +27,13 @@ class DownloadProvider(private val context: Context) {
     /**
      * The root directory for downloads.
      */
-    private lateinit var downloadsDir: UniFile
+    private var downloadsDir = preferences.downloadsDirectory().getOrDefault().let {
+        UniFile.fromUri(context, Uri.parse(it))
+    }
 
     init {
         preferences.downloadsDirectory().asObservable()
+                .skip(1)
                 .subscribe { downloadsDir = UniFile.fromUri(context, Uri.parse(it)) }
     }
 

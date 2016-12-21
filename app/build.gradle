@@ -38,8 +38,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 25
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode 16
-        versionName "0.4.0"
+        versionCode 17
+        versionName "0.4.1"
 
         buildConfigField "String", "COMMIT_COUNT", "\"${getCommitCount()}\""
         buildConfigField "String", "COMMIT_SHA", "\"${getGitSha()}\""
@@ -98,7 +98,7 @@ android {
 dependencies {
 
     // Modified dependencies
-    compile 'com.github.inorichi:subsampling-scale-image-view:f687b74'
+    compile 'com.github.inorichi:subsampling-scale-image-view:c4db85c'
 
     // Android support library
     final support_library_version = '25.0.1'
@@ -110,14 +110,16 @@ dependencies {
     compile "com.android.support:support-annotations:$support_library_version"
     compile "com.android.support:customtabs:$support_library_version"
 
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+
     compile 'com.android.support:multidex:1.0.1'
 
     // ReactiveX
     compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.2.3'
+    compile 'io.reactivex:rxjava:1.2.4'
     compile 'com.jakewharton.rxrelay:rxrelay:1.2.0'
     compile 'com.f2prateek.rx.preferences:rx-preferences:1.0.2'
-    compile 'com.github.pwittchen:reactivenetwork:0.6.0'
+    compile 'com.github.pwittchen:reactivenetwork:0.7.0'
 
     // Network client
     compile "com.squareup.okhttp3:okhttp:3.5.0"
@@ -172,7 +174,7 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.1'
 
     // Logging
-    compile 'com.jakewharton.timber:timber:4.3.1'
+    compile 'com.jakewharton.timber:timber:4.4.0'
 
     // Crash reports
     compile 'ch.acra:acra:4.9.1'

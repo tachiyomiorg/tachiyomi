@@ -80,7 +80,7 @@
     <string name="pref_category_reader">Reader</string>
     <string name="pref_category_downloads">Downloads</string>
     <string name="pref_category_sources">Sources</string>
-    <string name="pref_category_sync">Sync</string>
+    <string name="pref_category_tracking">Tracking</string>
     <string name="pref_category_advanced">Advanced</string>
     <string name="pref_category_about">About</string>
 
@@ -226,6 +226,9 @@
     <string name="select_source">Select a source</string>
     <string name="no_valid_sources">Please enable at least one valid source</string>
 
+    <!-- Manga activity -->
+    <string name="manga_not_in_db">This manga was removed from the database!</string>
+
     <!-- Manga info fragment -->
     <string name="manga_detail_tab">Info</string>
     <string name="description">Description</string>
@@ -273,13 +276,14 @@
     <string name="confirm_delete_chapters">Are you sure you want to delete selected chapters?</string>
 
     <!-- MyAnimeList fragment -->
+    <string name="manga_tracking_tab">Tracking</string>
     <string name="reading">Reading</string>
     <string name="completed">Completed</string>
     <string name="dropped">Dropped</string>
     <string name="on_hold">On hold</string>
     <string name="plan_to_read">Plan to read</string>
     <string name="score">Score</string>
-    <string name="title_hint">Title…</string>
+    <string name="title">Title</string>
     <string name="status">Status</string>
     <string name="chapters">Chapters</string>
 

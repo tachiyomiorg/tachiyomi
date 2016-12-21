@@ -7,15 +7,15 @@ import android.preference.PreferenceManager
 import com.f2prateek.rx.preferences.Preference
 import com.f2prateek.rx.preferences.RxSharedPreferences
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.mangasync.MangaSyncService
 import eu.kanade.tachiyomi.data.source.Source
+import eu.kanade.tachiyomi.data.track.TrackService
 import java.io.File
 
 fun <T> Preference<T>.getOrDefault(): T = get() ?: defaultValue()!!
 
 fun Preference<Boolean>.invert(): Boolean = getOrDefault().let { set(!it); !it }
 
-class PreferencesHelper(context: Context) {
+class PreferencesHelper(val context: Context) {
 
     val keys = PreferenceKeys(context)
 
@@ -70,9 +70,9 @@ class PreferencesHelper(context: Context) {
 
     fun updateOnlyNonCompleted() = prefs.getBoolean(keys.updateOnlyNonCompleted, false)
 
-    fun autoUpdateMangaSync() = prefs.getBoolean(keys.autoUpdateMangaSync, true)
+    fun autoUpdateTrack() = prefs.getBoolean(keys.autoUpdateTrack, true)
 
-    fun askUpdateMangaSync() = prefs.getBoolean(keys.askUpdateMangaSync, false)
+    fun askUpdateTrack() = prefs.getBoolean(keys.askUpdateTrack, false)
 
     fun lastUsedCatalogueSource() = rxPrefs.getInteger(keys.lastUsedCatalogueSource, -1)
 
@@ -95,16 +95,20 @@ class PreferencesHelper(context: Context) {
                 .apply()
     }
 
-    fun mangaSyncUsername(sync: MangaSyncService) = prefs.getString(keys.syncUsername(sync.id), "")
+    fun trackUsername(sync: TrackService) = prefs.getString(keys.trackUsername(sync.id), "")
 
-    fun mangaSyncPassword(sync: MangaSyncService) = prefs.getString(keys.syncPassword(sync.id), "")
+    fun trackPassword(sync: TrackService) = prefs.getString(keys.trackPassword(sync.id), "")
 
-    fun setMangaSyncCredentials(sync: MangaSyncService, username: String, password: String) {
+    fun setTrackCredentials(sync: TrackService, username: String, password: String) {
         prefs.edit()
-                .putString(keys.syncUsername(sync.id), username)
-                .putString(keys.syncPassword(sync.id), password)
+                .putString(keys.trackUsername(sync.id), username)
+                .putString(keys.trackPassword(sync.id), password)
                 .apply()
     }
+
+    fun trackToken(sync: TrackService) = rxPrefs.getString(keys.trackToken(sync.id), "")
+
+    fun anilistScoreType() = rxPrefs.getInteger("anilist_score_type", 0)
 
     fun downloadsDirectory() = rxPrefs.getString(keys.downloadsDirectory, defaultDownloadsDir.toString())
 

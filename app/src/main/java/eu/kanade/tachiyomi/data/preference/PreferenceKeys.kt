@@ -51,9 +51,9 @@ class PreferenceKeys(context: Context) {
 
     val updateOnlyNonCompleted = context.getString(R.string.pref_update_only_non_completed_key)
 
-    val autoUpdateMangaSync = context.getString(R.string.pref_auto_update_manga_sync_key)
+    val autoUpdateTrack = context.getString(R.string.pref_auto_update_manga_sync_key)
 
-    val askUpdateMangaSync = context.getString(R.string.pref_ask_update_manga_sync_key)
+    val askUpdateTrack = context.getString(R.string.pref_ask_update_manga_sync_key)
 
     val lastUsedCatalogueSource = context.getString(R.string.pref_last_catalogue_source_key)
 
@@ -95,9 +95,11 @@ class PreferenceKeys(context: Context) {
 
     fun sourcePassword(sourceId: Int) = "pref_source_password_$sourceId"
 
-    fun syncUsername(syncId: Int) = "pref_mangasync_username_$syncId"
+    fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 
-    fun syncPassword(syncId: Int) = "pref_mangasync_password_$syncId"
+    fun trackPassword(syncId: Int) = "pref_mangasync_password_$syncId"
+
+    fun trackToken(syncId: Int) = "track_token_$syncId"
 
     val libraryAsList = context.getString(R.string.pref_display_library_as_list)
 

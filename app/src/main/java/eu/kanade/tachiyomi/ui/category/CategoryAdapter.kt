@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.ui.category
 
 import android.view.ViewGroup
-import com.amulyakhare.textdrawable.util.ColorGenerator
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
@@ -17,18 +16,10 @@ import java.util.*
  * @param activity activity that created adapter
  * @constructor Creates a CategoryAdapter object
  */
-class CategoryAdapter(private val activity: CategoryActivity) : FlexibleAdapter<CategoryHolder, Category>(), ItemTouchHelperAdapter {
-
-    /**
-     * Generator used to generate circle letter icons
-     */
-    private val generator: ColorGenerator
+class CategoryAdapter(private val activity: CategoryActivity) :
+        FlexibleAdapter<CategoryHolder, Category>(), ItemTouchHelperAdapter {
 
     init {
-        // Let generator use Material Design colors.
-        // Material design is love, material design is live!
-        generator = ColorGenerator.MATERIAL
-
         // Set unique id's
         setHasStableIds(true)
     }
@@ -54,7 +45,7 @@ class CategoryAdapter(private val activity: CategoryActivity) : FlexibleAdapter<
     override fun onBindViewHolder(holder: CategoryHolder, position: Int) {
         // Update holder values.
         val category = getItem(position)
-        holder.onSetValues(category, generator)
+        holder.onSetValues(category)
 
         //When user scrolls this bind the correct selection status
         holder.itemView.isActivated = isSelected(position)

@@ -3,16 +3,20 @@ package eu.kanade.tachiyomi.ui.manga
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.graphics.drawable.VectorDrawableCompat
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.widget.LinearLayout
+import android.widget.TextView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.activity.BaseRxActivity
 import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersFragment
 import eu.kanade.tachiyomi.ui.manga.info.MangaInfoFragment
-import eu.kanade.tachiyomi.ui.manga.myanimelist.MyAnimeListFragment
+import eu.kanade.tachiyomi.ui.manga.track.TrackFragment
 import eu.kanade.tachiyomi.util.SharedData
+import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.activity_manga.*
 import kotlinx.android.synthetic.main.toolbar.*
 import nucleus.factory.RequiresPresenter
@@ -27,7 +31,7 @@ class MangaActivity : BaseRxActivity<MangaPresenter>() {
         const val FROM_LAUNCHER_EXTRA = "from_launcher"
         const val INFO_FRAGMENT = 0
         const val CHAPTERS_FRAGMENT = 1
-        const val MYANIMELIST_FRAGMENT = 2
+        const val TRACK_FRAGMENT = 2
 
         fun newIntent(context: Context, manga: Manga, fromCatalogue: Boolean = false): Intent {
             SharedData.put(MangaEvent(manga))
@@ -50,12 +54,19 @@ class MangaActivity : BaseRxActivity<MangaPresenter>() {
 
         val fromLauncher = intent.getBooleanExtra(FROM_LAUNCHER_EXTRA, false)
 
-        //Remove any current manga if we are launching from launcher
-        if(fromLauncher) SharedData.remove(MangaEvent::class.java)
+        // Remove any current manga if we are launching from launcher
+        if (fromLauncher) SharedData.remove(MangaEvent::class.java)
 
         presenter.setMangaEvent(SharedData.getOrPut(MangaEvent::class.java) {
             val id = intent.getLongExtra(MANGA_EXTRA, 0)
-            MangaEvent(presenter.db.getManga(id).executeAsBlocking()!!)
+            val dbManga = presenter.db.getManga(id).executeAsBlocking()
+            if (dbManga != null) {
+                MangaEvent(dbManga)
+            } else {
+                toast(R.string.manga_not_in_db)
+                finish()
+                return
+            }
         })
 
         setupToolbar(toolbar)
@@ -63,6 +74,7 @@ class MangaActivity : BaseRxActivity<MangaPresenter>() {
         fromCatalogue = intent.getBooleanExtra(FROM_CATALOGUE_EXTRA, false)
 
         adapter = MangaDetailAdapter(supportFragmentManager, this)
+        view_pager.offscreenPageLimit = 3
         view_pager.adapter = adapter
 
         tabs.setupWithViewPager(view_pager)
@@ -77,33 +89,50 @@ class MangaActivity : BaseRxActivity<MangaPresenter>() {
         setToolbarTitle(manga.title)
     }
 
-    internal class MangaDetailAdapter(fm: FragmentManager, activity: MangaActivity) : FragmentPagerAdapter(fm) {
+    fun setTrackingIcon(visible: Boolean) {
+        val tab = tabs.getTabAt(TRACK_FRAGMENT) ?: return
+        val drawable = if (visible)
+            VectorDrawableCompat.create(resources, R.drawable.ic_done_white_18dp, null)
+        else null
 
-        private var pageCount: Int = 0
-        private val tabTitles = arrayOf(activity.getString(R.string.manga_detail_tab),
-                activity.getString(R.string.manga_chapters_tab), "MAL")
+        // I had no choice but to use reflection...
+        val field = tab.javaClass.getDeclaredField("mView").apply { isAccessible = true }
+        val view = field.get(tab) as LinearLayout
+        val textView = view.getChildAt(1) as TextView
+        textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
+        textView.compoundDrawablePadding = 4
+    }
+
+    private class MangaDetailAdapter(fm: FragmentManager, activity: MangaActivity)
+    : FragmentPagerAdapter(fm) {
+
+        private var tabCount = 2
+
+        private val tabTitles = listOf(
+                R.string.manga_detail_tab,
+                R.string.manga_chapters_tab,
+                R.string.manga_tracking_tab)
+                .map { activity.getString(it) }
 
         init {
-            pageCount = 2
-            if (!activity.fromCatalogue && activity.presenter.syncManager.myAnimeList.isLogged)
-                pageCount++
+            if (!activity.fromCatalogue && activity.presenter.trackManager.hasLoggedServices())
+                tabCount++
         }
 
         override fun getCount(): Int {
-            return pageCount
+            return tabCount
         }
 
-        override fun getItem(position: Int): Fragment? {
+        override fun getItem(position: Int): Fragment {
             when (position) {
                 INFO_FRAGMENT -> return MangaInfoFragment.newInstance()
                 CHAPTERS_FRAGMENT -> return ChaptersFragment.newInstance()
-                MYANIMELIST_FRAGMENT -> return MyAnimeListFragment.newInstance()
-                else -> return null
+                TRACK_FRAGMENT -> return TrackFragment.newInstance()
+                else -> throw Exception("Unknown position")
             }
         }
 
         override fun getPageTitle(position: Int): CharSequence {
-            // Generate title based on item position
             return tabTitles[position]
         }
 

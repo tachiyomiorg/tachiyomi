@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceScreen
+        android:icon="@drawable/ic_sync_black_24dp"
+        android:key="tracking_screen"
+        android:persistent="false"
+        android:title="@string/pref_category_tracking"
+        app:asp_tintEnabled="true">
+
+        <SwitchPreference
+            android:key="@string/pref_auto_update_manga_sync_key"
+            android:title="@string/pref_auto_update_manga_sync"
+            android:defaultValue="true"
+            app:showText="false"/>
+
+        <SwitchPreference
+            android:key="@string/pref_ask_update_manga_sync_key"
+            android:title="@string/pref_ask_update_manga_sync"
+            android:defaultValue="false"
+            android:dependency="@string/pref_auto_update_manga_sync_key"
+            app:showText="false"/>
+
+        <PreferenceCategory
+            android:key="@string/pref_category_tracking_accounts_key"
+            android:title="@string/services"
+            android:persistent="false"
+            app:showText="false"/>
+
+    </PreferenceScreen>
+
+</PreferenceScreen>

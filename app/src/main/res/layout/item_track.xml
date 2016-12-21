@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/track"
+    style="@style/Theme.Widget.CardView">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/logo"
+            android:layout_width="48dp"
+            android:layout_height="0dp"
+            tools:background="#2E51A2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/track_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:src="@drawable/mal" />
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/title_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="?attr/selectable_list_drawable"
+            android:clickable="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/logo"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                style="@style/TextAppearance.Regular.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title" />
+
+            <TextView
+                android:id="@+id/track_title"
+                style="@style/TextAppearance.Medium.Button"
+                android:textColor="?colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:text="@string/action_edit" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/divider"
+            app:layout_constraintTop_toBottomOf="@+id/title_container"
+            app:layout_constraintLeft_toRightOf="@+id/logo"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp" />
+
+        <RelativeLayout
+            android:id="@+id/status_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="?attr/selectable_list_drawable"
+            android:clickable="true"
+            app:layout_constraintTop_toBottomOf="@+id/divider1"
+            app:layout_constraintLeft_toRightOf="@+id/logo"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                style="@style/TextAppearance.Regular.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/status" />
+
+            <TextView
+                android:id="@+id/track_status"
+                style="@style/TextAppearance.Regular.Body1.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                tools:text="Reading" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/divider"
+            app:layout_constraintTop_toBottomOf="@+id/status_container"
+            app:layout_constraintLeft_toRightOf="@+id/logo"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp" />
+
+        <RelativeLayout
+            android:id="@+id/chapters_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="?attr/selectable_list_drawable"
+            android:clickable="true"
+            app:layout_constraintTop_toBottomOf="@+id/divider2"
+            app:layout_constraintLeft_toRightOf="@+id/logo"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                style="@style/TextAppearance.Regular.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chapters" />
+
+            <TextView
+                android:id="@+id/track_chapters"
+                style="@style/TextAppearance.Regular.Body1.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                tools:text="12/24" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/divider"
+            app:layout_constraintTop_toBottomOf="@+id/chapters_container"
+            app:layout_constraintLeft_toRightOf="@+id/logo"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp" />
+
+        <RelativeLayout
+            android:id="@+id/score_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="?attr/selectable_list_drawable"
+            android:clickable="true"
+            app:layout_constraintTop_toBottomOf="@+id/divider3"
+            app:layout_constraintLeft_toRightOf="@+id/logo"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                style="@style/TextAppearance.Regular.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/score" />
+
+            <TextView
+                android:id="@+id/track_score"
+                style="@style/TextAppearance.Regular.Body1.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                tools:text="10" />
+
+        </RelativeLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

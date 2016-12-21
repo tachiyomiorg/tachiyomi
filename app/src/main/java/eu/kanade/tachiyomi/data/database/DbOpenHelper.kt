@@ -23,7 +23,7 @@ class DbOpenHelper(context: Context)
     override fun onCreate(db: SQLiteDatabase) = with(db) {
         execSQL(MangaTable.createTableQuery)
         execSQL(ChapterTable.createTableQuery)
-        execSQL(MangaSyncTable.createTableQuery)
+        execSQL(TrackTable.createTableQuery)
         execSQL(CategoryTable.createTableQuery)
         execSQL(MangaCategoryTable.createTableQuery)
         execSQL(HistoryTable.createTableQuery)

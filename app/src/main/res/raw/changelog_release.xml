@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="true">
 
+    <changelogversion versionName="v0.4.1" changeDate="">
+        <changelogtext>Added an app's language selector.</changelogtext>
+
+        <changelogtext>Added options to sort the library and merged them with the filters.</changelogtext>
+
+        <changelogtext>Added an option to automatically download chapters.</changelogtext>
+
+        <changelogtext>Fixed performance issues when using a custom downloads directory, especially in the library updates tab.</changelogtext>
+
+        <changelogtext>Fixed gesture conflicts with the contextual menu and the webtoon reader.</changelogtext>
+
+        <changelogtext>Fixed wrong page direction when using volume keys for the right to left reader.</changelogtext>
+
+        <changelogtext>Fixed many crashes.</changelogtext>
+    </changelogversion>
+
     <changelogversion versionName="v0.4.0" changeDate="">
         <changelogtext>The download manager has been rewritten and it's possible some of your downloads
             aren't recognized anymore. It's recommended to manually delete everything and start over.

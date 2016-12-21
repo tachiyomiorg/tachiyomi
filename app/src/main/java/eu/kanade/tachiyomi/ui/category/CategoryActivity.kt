@@ -27,7 +27,9 @@ import nucleus.factory.RequiresPresenter
  * UI related actions should be called from here.
  */
 @RequiresPresenter(CategoryPresenter::class)
-class CategoryActivity : BaseRxActivity<CategoryPresenter>(), ActionMode.Callback, FlexibleViewHolder.OnListItemClickListener, OnStartDragListener {
+class CategoryActivity :
+        BaseRxActivity<CategoryPresenter>(),
+        ActionMode.Callback, FlexibleViewHolder.OnListItemClickListener, OnStartDragListener {
 
     /**
      * Object used to show actionMode toolbar.

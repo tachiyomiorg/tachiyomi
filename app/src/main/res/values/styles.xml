@@ -13,13 +13,7 @@
     <!--====-->
     <!--Tabs-->
     <!--====-->
-    <style name="Theme.ActionBar.Tab" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="tabIndicatorColor">@android:color/white</item>
-    </style>
-
-    <style name="Theme.ActionBar.Tab.Filled">
-        <item name="tabGravity">fill</item>
-    </style>
+    <style name="Theme.ActionBar.Tab" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <!--===========-->
     <!--AlertDialog-->

@@ -39,7 +39,7 @@ class BackupManager(private val db: DatabaseHelper) {
     private val MANGA = "manga"
     private val MANGAS = "mangas"
     private val CHAPTERS = "chapters"
-    private val MANGA_SYNC = "sync"
+    private val TRACK = "sync"
     private val CATEGORIES = "categories"
 
     @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
@@ -109,10 +109,10 @@ class BackupManager(private val db: DatabaseHelper) {
             entry.add(CHAPTERS, gson.toJsonTree(chapters))
         }
 
-        // Backup manga sync
-        val mangaSync = db.getMangasSync(manga).executeAsBlocking()
-        if (!mangaSync.isEmpty()) {
-            entry.add(MANGA_SYNC, gson.toJsonTree(mangaSync))
+        // Backup tracks
+        val tracks = db.getTracks(manga).executeAsBlocking()
+        if (!tracks.isEmpty()) {
+            entry.add(TRACK, gson.toJsonTree(tracks))
         }
 
         // Backup categories for this manga
@@ -231,13 +231,13 @@ class BackupManager(private val db: DatabaseHelper) {
             val element = backupManga.asJsonObject
             val manga = gson.fromJson(element.get(MANGA), MangaImpl::class.java)
             val chapters = gson.fromJson<List<ChapterImpl>>(element.get(CHAPTERS) ?: JsonArray())
-            val sync = gson.fromJson<List<MangaSyncImpl>>(element.get(MANGA_SYNC) ?: JsonArray())
+            val tracks = gson.fromJson<List<TrackImpl>>(element.get(TRACK) ?: JsonArray())
             val categories = gson.fromJson<List<String>>(element.get(CATEGORIES) ?: JsonArray())
 
             // Restore everything related to this manga
             restoreManga(manga)
             restoreChaptersForManga(manga, chapters)
-            restoreSyncForManga(manga, sync)
+            restoreSyncForManga(manga, tracks)
             restoreCategoriesForManga(manga, categories)
         }
     }
@@ -333,35 +333,35 @@ class BackupManager(private val db: DatabaseHelper) {
      * Restores the sync of a manga.
      *
      * @param manga the manga whose sync have to be restored.
-     * @param sync the sync to restore.
+     * @param tracks the track list to restore.
      */
-    private fun restoreSyncForManga(manga: Manga, sync: List<MangaSync>) {
+    private fun restoreSyncForManga(manga: Manga, tracks: List<Track>) {
         // Fix foreign keys with the current manga id
-        for (mangaSync in sync) {
-            mangaSync.manga_id = manga.id!!
+        for (track in tracks) {
+            track.manga_id = manga.id!!
         }
 
-        val dbSyncs = db.getMangasSync(manga).executeAsBlocking()
-        val syncToUpdate = ArrayList<MangaSync>()
-        for (backupSync in sync) {
+        val dbTracks = db.getTracks(manga).executeAsBlocking()
+        val trackToUpdate = ArrayList<Track>()
+        for (backupTrack in tracks) {
             // Try to find existing chapter in db
-            val pos = dbSyncs.indexOf(backupSync)
+            val pos = dbTracks.indexOf(backupTrack)
             if (pos != -1) {
                 // The sync is already in the db, only update its fields
-                val dbSync = dbSyncs[pos]
+                val dbSync = dbTracks[pos]
                 // Mark the max chapter as read and nothing else
-                dbSync.last_chapter_read = Math.max(backupSync.last_chapter_read, dbSync.last_chapter_read)
-                syncToUpdate.add(dbSync)
+                dbSync.last_chapter_read = Math.max(backupTrack.last_chapter_read, dbSync.last_chapter_read)
+                trackToUpdate.add(dbSync)
             } else {
                 // Insert new sync. Let the db assign the id
-                backupSync.id = null
-                syncToUpdate.add(backupSync)
+                backupTrack.id = null
+                trackToUpdate.add(backupTrack)
             }
         }
 
         // Update database
-        if (!syncToUpdate.isEmpty()) {
-            db.insertMangasSync(syncToUpdate).executeAsBlocking()
+        if (!trackToUpdate.isEmpty()) {
+            db.insertTracks(trackToUpdate).executeAsBlocking()
         }
     }
 

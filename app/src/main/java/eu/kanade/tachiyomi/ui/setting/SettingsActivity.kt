@@ -63,7 +63,7 @@ class SettingsActivity : BaseActivity(),
             "general_screen" -> SettingsGeneralFragment.newInstance(key)
             "downloads_screen" -> SettingsDownloadsFragment.newInstance(key)
             "sources_screen" -> SettingsSourcesFragment.newInstance(key)
-            "sync_screen" -> SettingsSyncFragment.newInstance(key)
+            "tracking_screen" -> SettingsTrackingFragment.newInstance(key)
             "advanced_screen" -> SettingsAdvancedFragment.newInstance(key)
             "about_screen" -> SettingsAboutFragment.newInstance(key)
             else -> SettingsFragment.newInstance(key)

@@ -24,7 +24,12 @@ import kotlinx.android.synthetic.main.item_edit_categories.view.*
  *
  * @constructor Create CategoryHolder object
  */
-class CategoryHolder(view: View, adapter: CategoryAdapter, listener: FlexibleViewHolder.OnListItemClickListener, dragListener: OnStartDragListener) : FlexibleViewHolder(view, adapter, listener) {
+class CategoryHolder(
+        view: View,
+        adapter: CategoryAdapter,
+        listener: FlexibleViewHolder.OnListItemClickListener,
+        dragListener: OnStartDragListener
+) : FlexibleViewHolder(view, adapter, listener) {
 
     init {
         // Create round letter image onclick to simulate long click
@@ -46,29 +51,31 @@ class CategoryHolder(view: View, adapter: CategoryAdapter, listener: FlexibleVie
      * Update category item values.
      *
      * @param category category of item.
-     * @param generator generator used to generate circle letter icons.
      */
-    fun onSetValues(category: Category, generator: ColorGenerator) {
+    fun onSetValues(category: Category) {
         // Set capitalized title.
         itemView.title.text = category.name.capitalize()
 
         // Update circle letter image.
-        itemView.image.setImageDrawable(getRound(category.name.substring(0, 1).toUpperCase(), generator))
+        itemView.post {
+            itemView.image.setImageDrawable(getRound(category.name.take(1).toUpperCase()))
+        }
     }
 
     /**
      * Returns circle letter image
      *
      * @param text first letter of string
-     * @param generator the generator used to generate circle letter image
      */
-    private fun getRound(text: String, generator: ColorGenerator): TextDrawable {
+    private fun getRound(text: String): TextDrawable {
+        val size = Math.min(itemView.image.width, itemView.image.height)
         return TextDrawable.builder()
                 .beginConfig()
+                .width(size)
+                .height(size)
                 .textColor(Color.WHITE)
                 .useFont(Typeface.DEFAULT)
-                .toUpperCase()
                 .endConfig()
-                .buildRound(text, generator.getColor(text))
+                .buildRound(text, ColorGenerator.MATERIAL.getColor(text))
     }
 }

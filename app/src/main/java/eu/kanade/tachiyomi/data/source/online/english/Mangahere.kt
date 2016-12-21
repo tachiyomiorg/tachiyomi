@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
-import android.content.Context
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.EN
@@ -34,7 +33,7 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
     override fun popularMangaFromElement(element: Element, manga: Manga) {
         element.select("div.title > a").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
-            manga.title = it.text()
+            manga.title = it.attr("title")
         }
     }
 
@@ -53,7 +52,7 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
     override fun searchMangaFromElement(element: Element, manga: Manga) {
         element.select("a.manga_info").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
-            manga.title = it.text()
+            manga.title = it.attr("title")
         }
     }
 

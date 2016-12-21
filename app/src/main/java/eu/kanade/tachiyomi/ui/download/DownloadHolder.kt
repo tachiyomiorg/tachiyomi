@@ -48,8 +48,9 @@ class DownloadHolder(private val view: View) : RecyclerView.ViewHolder(view) {
      * Updates the progress bar of the download.
      */
     fun notifyProgress() {
+        val pages = download.pages ?: return
         if (view.download_progress.max == 1) {
-            view.download_progress.max = download.pages!!.size * 100
+            view.download_progress.max = pages.size * 100
         }
         view.download_progress.progress = download.totalProgress
     }
@@ -58,7 +59,8 @@ class DownloadHolder(private val view: View) : RecyclerView.ViewHolder(view) {
      * Updates the text field of the number of downloaded pages.
      */
     fun notifyDownloadedPages() {
-        view.download_progress_text.text = "${download.downloadedImages}/${download.pages!!.size}"
+        val pages = download.pages ?: return
+        view.download_progress_text.text = "${download.downloadedImages}/${pages.size}"
     }
 
 }
