@@ -1,14 +1,19 @@
 package eu.kanade.tachiyomi.data.download
 
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.support.v4.app.NotificationCompat
 import eu.kanade.tachiyomi.Constants
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.download.model.DownloadQueue
+import eu.kanade.tachiyomi.ui.main.MainActivity
+import eu.kanade.tachiyomi.ui.main.MainActivity.Companion.EXTRA_START_SCREEN_ID
 import eu.kanade.tachiyomi.util.chop
 import eu.kanade.tachiyomi.util.notificationManager
+
 
 /**
  * DownloadNotifier is used to show notifications when downloading one or multiple chapters.
@@ -16,13 +21,26 @@ import eu.kanade.tachiyomi.util.notificationManager
  * @param context context of application
  */
 internal class DownloadNotifier(private val context: Context) {
+
     /**
      * Notification builder.
      */
     private val notification by lazy {
         NotificationCompat.Builder(context)
                 .setLargeIcon(BitmapFactory.decodeResource(context.resources, R.mipmap.ic_launcher))
+                .setContentIntent(notificationIntent)
     }
+
+    /**
+     * Property that returns an intent to open the downloads fragment.
+     */
+    private val notificationIntent: PendingIntent
+        get() {
+            val intent = Intent(context, MainActivity::class.java)
+                    .putExtra(EXTRA_START_SCREEN_ID, R.id.nav_drawer_downloads)
+            intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
 
     /**
      * Status of download. Used for correct notification icon.
