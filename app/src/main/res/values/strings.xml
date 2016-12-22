@@ -113,7 +113,7 @@
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>
 
-      <!-- Languages -->
+    <!-- Languages -->
     <string name="system_default">System Default</string>
     <string name="english">English</string>
     <string name="spanish">Spanish</string>

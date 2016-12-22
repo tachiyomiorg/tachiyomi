@@ -23,6 +23,9 @@
     <string name="action_filter_unread">Non letti</string>
     <string name="action_filter_read">Letti</string>
     <string name="action_filter_empty">Elimina filtri</string>
+    <string name="action_sort_alpha">Alfabeticamente</string>
+    <string name="action_sort_last_read">Ultimo letto</string>
+    <string name="action_sort_last_updated">Ultimo aggiornato</string>
     <string name="action_search">Ricerca</string>
     <string name="action_select_all">Seleziona tutto</string>
     <string name="action_mark_as_read">Marca come letto</string>
@@ -57,6 +60,9 @@
     <string name="action_open_in_browser">Apri nel browser</string>
     <string name="action_add_to_home_screen">Aggiungi alla Home</string>
     <string name="action_display_mode">Cambia modalità di visualizzazione</string>
+    <string name="action_display">Visualizzazione</string>
+    <string name="action_display_grid">Griglia</string>
+    <string name="action_display_list">Lista</string>
     <string name="action_set_filter">Imposta filtro</string>
     <string name="action_cancel">Cancella</string>
     <string name="action_sort">Ordina</string>
@@ -69,7 +75,7 @@
     <string name="loading">Caricamento…</string>
 
     <!-- Preferences -->
-      <!-- Subsections -->
+    <!-- Subsections -->
     <string name="pref_category_general">Generali</string>
     <string name="pref_category_reader">Lettore</string>
     <string name="pref_category_downloads">Download</string>
@@ -78,7 +84,7 @@
     <string name="pref_category_advanced">Avanzate</string>
     <string name="pref_category_about">Informazioni</string>
 
-      <!-- General section -->
+    <!-- General section -->
     <string name="pref_library_columns">Manga per riga nella libreria</string>
     <string name="portrait">Orientamento verticale</string>
     <string name="landscape">Orientamento orizzontale</string>
@@ -106,7 +112,14 @@
     <string name="dark_theme">Tema scuro</string>
     <string name="pref_start_screen">Schermata iniziale</string>
 
-      <!-- Reader section -->
+    <!-- Languages -->
+    <string name="system_default">Predefinito di sistema</string>
+    <string name="english">Inglese</string>
+    <string name="spanish">Spagnolo</string>
+    <string name="italian">Italiano</string>
+    <string name="portuguese">Portoghese</string>
+
+    <!-- Reader section -->
     <string name="pref_fullscreen">Schermo intero</string>
     <string name="pref_lock_orientation">Blocca orientamento</string>
     <string name="pref_enable_transitions">Abilita transizioni</string>
@@ -150,7 +163,7 @@
     <string name="color_filter_a_value">A</string>
 
 
-      <!-- Downloads section -->
+    <!-- Downloads section -->
     <string name="pref_download_directory">Directory di download</string>
     <string name="pref_download_slots">Download simultanei</string>
     <string name="pref_download_only_over_wifi">Download solo tramite Wi-Fi</string>
@@ -164,10 +177,10 @@
     <string name="fourth_to_last">Quartultimo capitolo</string>
     <string name="fifth_to_last">Quintultimo capitolo</string>
 
-      <!-- Sync section -->
+    <!-- Sync section -->
     <string name="services">Servizi</string>
 
-      <!-- Advanced section -->
+    <!-- Advanced section -->
     <string name="pref_clear_chapter_cache">Cancella cache capitoli</string>
     <string name="used_cache">Usati: %1$s</string>
     <string name="cache_deleted">Cache cancellata. %1$d file sono stati cancellati</string>
@@ -181,7 +194,7 @@
     <string name="pref_refresh_library_metadata">Aggiorna i metadati della libreria</string>
     <string name="pref_refresh_library_metadata_summary">Aggiorna copertine, generi, descrizioni e stato dei manga</string>
 
-      <!-- About section -->
+    <!-- About section -->
     <string name="version">Versione</string>
     <string name="build_time">Data di build</string>
     <string name="pref_enable_automatic_updates">Controlla aggiornamenti</string>
@@ -210,6 +223,9 @@
     <string name="source_requires_login">Questa fonte richiede credenziali di accesso</string>
     <string name="select_source">Selezionare una fonte</string>
     <string name="no_valid_sources">Per favore abilita almeno una fonte valida</string>
+
+    <!-- Manga activity -->
+    <string name="manga_not_in_db">Questo manca è stato rimosso dal database</string>
 
     <!-- Manga info fragment -->
     <string name="manga_detail_tab">Informazioni</string>
@@ -264,9 +280,13 @@
     <string name="on_hold">Sospeso</string>
     <string name="plan_to_read">Lettura pianificata</string>
     <string name="score">Punteggio</string>
+    <string name="title">Titolo</string>
     <string name="title_hint">Titolo…</string>
     <string name="status">Stato</string>
     <string name="chapters">Capitoli</string>
+
+    <!-- Category activity -->
+    <string name="error_category_exists">Esiste già una categoria con questo nome</string>
 
     <!-- Dialog remove recently view -->
     <string name="dialog_remove_recently_description">Questo rimuoverà la data lettura di questo capitolo. Sei sicuro?</string>
@@ -290,6 +310,7 @@
     <string name="no_previous_chapter">Capitolo precedente non trovato</string>
     <string name="decode_image_error">L\'immagine non può essere caricata.\nProva a cambiare il decoder immagini o con una delle opzioni più in basso</string>
     <string name="confirm_update_manga_sync">Aggiornare nei servizi abilitati l\'ultimo capitolo letto a %1$d?</string>
+    <string name="confirm_set_image_as_cover">Vuoi impostare questa immagine come copertina?</string>
     <string name="viewer_for_this_series">Visualizzatore per questa serie</string>
 
     <!-- Backup fragment -->
