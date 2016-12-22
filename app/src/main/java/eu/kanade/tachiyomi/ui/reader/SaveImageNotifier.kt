@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.reader.notification
+package eu.kanade.tachiyomi.ui.reader
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -7,13 +7,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.Constants
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.notification.NotificationHandler
+import eu.kanade.tachiyomi.data.notification.NotificationService
 import eu.kanade.tachiyomi.util.notificationManager
 import java.io.File
 
 /**
  * Class used to show BigPictureStyle notifications
  */
-class ImageNotifier(private val context: Context) {
+class SaveImageNotifier(private val context: Context) {
     /**
      * Notification builder.
      */
@@ -58,15 +60,15 @@ class ImageNotifier(private val context: Context) {
             if (!mActions.isEmpty())
                 mActions.clear()
 
-            setContentIntent(ImageNotificationReceiver.showImageIntent(context, file))
+            setContentIntent(NotificationHandler.openImagePendingActivity(context, file))
             // Share action
             addAction(R.drawable.ic_share_grey_24dp,
-                      context.getString(R.string.action_share),
-                      ImageNotificationReceiver.shareImageIntent(context, file))
+                    context.getString(R.string.action_share),
+                    NotificationService.shareImagePendingService(context, file.absolutePath, notificationId))
             // Delete action
             addAction(R.drawable.ic_delete_grey_24dp,
                     context.getString(R.string.action_delete),
-                    ImageNotificationReceiver.deleteImageIntent(context, file.absolutePath, notificationId))
+                    NotificationService.deleteImagePendingService(context, file.absolutePath, notificationId))
             updateNotification()
 
         }

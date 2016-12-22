@@ -1,5 +1,7 @@
 package eu.kanade.tachiyomi.data.updater
 
+import android.app.PendingIntent
+import android.content.Intent
 import android.support.v4.app.NotificationCompat
 import com.evernote.android.job.Job
 import com.evernote.android.job.JobManager
@@ -17,6 +19,10 @@ class UpdateCheckerJob : Job() {
                     if (result is GithubUpdateResult.NewUpdate) {
                         val url = result.release.downloadLink
 
+                        val intent = Intent(context, UpdateDownloaderService::class.java).apply {
+                            putExtra(UpdateDownloaderService.EXTRA_DOWNLOAD_URL, url)
+                        }
+
                         NotificationCompat.Builder(context).update {
                             setContentTitle(context.getString(R.string.app_name))
                             setContentText(context.getString(R.string.update_check_notification_update_available))
@@ -24,7 +30,7 @@ class UpdateCheckerJob : Job() {
                             // Download action
                             addAction(android.R.drawable.stat_sys_download_done,
                                     context.getString(R.string.action_download),
-                                    UpdateNotificationReceiver.downloadApkIntent(context, url))
+                                    PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT))
                         }
                     }
                     Job.Result.SUCCESS

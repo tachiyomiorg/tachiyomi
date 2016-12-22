@@ -33,6 +33,5 @@ class Download(val source: OnlineSource, val manga: Manga, val chapter: Chapter)
         const val DOWNLOADING = 2
         const val DOWNLOADED = 3
         const val ERROR = 4
-        const val PAUSED = 5
     }
 }

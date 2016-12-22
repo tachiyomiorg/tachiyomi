@@ -68,6 +68,8 @@ class DownloadManager(context: Context) {
 
     /**
      * Empties the download queue.
+     *
+     * @param isNotification value that determines if status is set (needed for view updates)
      */
     fun clearQueue(isNotification: Boolean = false) {
         downloader.clearQueue(isNotification)
@@ -175,5 +177,4 @@ class DownloadManager(context: Context) {
     fun deleteChapter(source: Source, manga: Manga, chapter: Chapter) {
         provider.findChapterDir(source, manga, chapter)?.delete()
     }
-
 }
