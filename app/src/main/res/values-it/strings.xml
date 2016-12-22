@@ -111,9 +111,10 @@
     <string name="light_theme">Tema principale</string>
     <string name="dark_theme">Tema scuro</string>
     <string name="pref_start_screen">Schermata iniziale</string>
+    <string name="pref_language">Lingua</string>
 
     <!-- Languages -->
-    <string name="system_default">Predefinito di sistema</string>
+    <string name="system_default">Predefinita di sistema</string>
     <string name="english">Inglese</string>
     <string name="spanish">Spagnolo</string>
     <string name="italian">Italiano</string>
@@ -176,6 +177,7 @@
     <string name="third_to_last">Terzultimo capitolo</string>
     <string name="fourth_to_last">Quartultimo capitolo</string>
     <string name="fifth_to_last">Quintultimo capitolo</string>
+    <string name="pref_download_new">Scarica nuovi capitoli</string>
 
     <!-- Sync section -->
     <string name="services">Servizi</string>
@@ -225,7 +227,7 @@
     <string name="no_valid_sources">Per favore abilita almeno una fonte valida</string>
 
     <!-- Manga activity -->
-    <string name="manga_not_in_db">Questo manca è stato rimosso dal database</string>
+    <string name="manga_not_in_db">Questo manga è stato rimosso dal database</string>
 
     <!-- Manga info fragment -->
     <string name="manga_detail_tab">Informazioni</string>
