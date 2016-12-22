@@ -67,7 +67,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
     override fun popularMangaNextPageSelector() = ""
 
     override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
-            "$baseUrl/search/request.php?sortBy=popularity&sortOrder=descending&keyword=$query&genre=${filters.map { it.id }.joinToString(",")}"
+            "$baseUrl/search/request.php?sortBy=popularity&sortOrder=descending&keyword=$query${if (filters.contains(completedFilter)) "&status=Complete" else ""}&genre=${filters.filter { !it.equals(completedFilter) }.map { it.id }.joinToString(",")}"
 
     override fun searchMangaSelector() = "div.searchResults > div.requested > div.row"
 
@@ -168,9 +168,11 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
 
     override fun imageUrlParse(document: Document): String = document.select("img.CurImage").attr("src")
 
+    private val completedFilter = Filter("Complete", "Completed")
     // [...document.querySelectorAll("label.triStateCheckBox input")].map(el => `Filter("${el.getAttribute('name')}", "${el.nextSibling.textContent.trim()}")`).join(',\n')
     // http://mangasee.co/advanced-search/
     override fun getFilterList(): List<Filter> = listOf(
+            completedFilter,
             Filter("Action", "Action"),
             Filter("Adult", "Adult"),
             Filter("Adventure", "Adventure"),

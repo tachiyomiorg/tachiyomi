@@ -109,11 +109,11 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
 
     override fun latestUpdatesNextPageSelector() = "#show_more_row"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=1&genre_cond=and&genres=${getFilterParams(filters)}"
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=1&genre_cond=and&genres=${getFilterParams(filters)}${if (filters.contains(completedFilter)) "&completed=c" else ""}"
 
     private fun getFilterParams(filters: List<Filter>): String = filters
             .map {
-                ";i" + it.id
+                if (it.equals(completedFilter)) "" else ";i" + it.id
             }.joinToString()
 
     override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
@@ -301,11 +301,13 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         }
     }
 
+    private val completedFilter = Filter("completed", "Completed")
     // [...document.querySelectorAll("#advanced_options div.genre_buttons")].map((el,i) => {
     //     const onClick=el.getAttribute('onclick');const id=onClick.substr(14,onClick.length-16);return `Filter("${id}", "${el.textContent.trim()}")`
     // }).join(',\n')
     // on https://bato.to/search
     override fun getFilterList(): List<Filter> = listOf(
+            completedFilter,
             Filter("40", "4-Koma"),
             Filter("1", "Action"),
             Filter("2", "Adventure"),
