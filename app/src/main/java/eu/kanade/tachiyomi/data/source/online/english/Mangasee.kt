@@ -66,8 +66,16 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
     // Not used, overrides parent.
     override fun popularMangaNextPageSelector() = ""
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
-            "$baseUrl/search/request.php?sortBy=popularity&sortOrder=descending&keyword=$query${if (filters.contains(completedFilter)) "&status=Complete" else ""}&genre=${filters.filter { !it.equals(completedFilter) }.map { it.id }.joinToString(",")}"
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter>): String {
+        var url = "$baseUrl/search/request.php?sortBy=popularity&sortOrder=descending&keyword=$query"
+        var genres: String? = null
+        for (filter in filters) {
+            if (filter.equals(completedFilter)) url += "&status=Complete"
+            else if (genres == null) genres = filter.id
+            else genres += "," + filter.id
+        }
+        return if (genres == null) url else url + "&genre=$genres"
+    }
 
     override fun searchMangaSelector() = "div.searchResults > div.requested > div.row"
 
