@@ -109,12 +109,17 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
 
     override fun latestUpdatesNextPageSelector() = "#show_more_row"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=1&genre_cond=and&genres=${getFilterParams(filters)}${if (filters.contains(completedFilter)) "&completed=c" else ""}"
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=1${getFilterParams(filters)}"
 
-    private fun getFilterParams(filters: List<Filter>): String = filters
-            .map {
-                if (it.equals(completedFilter)) "" else ";i" + it.id
-            }.joinToString()
+    private fun getFilterParams(filters: List<Filter>): String {
+        var genres = ""
+        var completed = ""
+        for (filter in filters) {
+            if (filter.equals(completedFilter)) completed = "&completed=c"
+            else genres += ";i" + filter.id
+        }
+        return if (genres.isEmpty()) completed else "&genres=$genres&genre_cond=and$completed"
+    }
 
     override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
         if (page.page == 1) {
@@ -133,7 +138,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         }
 
         page.nextPageUrl = document.select(searchMangaNextPageSelector()).first()?.let {
-            "$baseUrl/search_ajax?name=${Uri.encode(query)}&p=${page.page + 1}&order_cond=views&order=desc&genre_cond=and&genres=" + getFilterParams(filters)
+            "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=${page.page + 1}${getFilterParams(filters)}"
         }
     }
 
