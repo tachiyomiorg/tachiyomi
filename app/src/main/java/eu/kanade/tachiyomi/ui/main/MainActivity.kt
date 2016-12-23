@@ -95,9 +95,7 @@ class MainActivity : BaseActivity() {
         val fragment = supportFragmentManager.findFragmentById(R.id.frame_container)
         if (drawer.isDrawerOpen(GravityCompat.START) || drawer.isDrawerOpen(GravityCompat.END)) {
             drawer.closeDrawers()
-            return
-        }
-        if (fragment != null && fragment.tag.toInt() != startScreenId) {
+        } else if (fragment != null && fragment.tag.toInt() != startScreenId) {
             if (resumed) {
                 setSelectedDrawerItem(startScreenId)
             }
