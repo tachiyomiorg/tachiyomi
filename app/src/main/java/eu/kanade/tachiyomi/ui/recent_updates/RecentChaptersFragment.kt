@@ -10,10 +10,12 @@ import com.afollestad.materialdialogs.MaterialDialog
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
+import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
+import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.DeletingChaptersDialog
 import kotlinx.android.synthetic.main.fragment_recent_chapters.*
 import nucleus.factory.RequiresPresenter
@@ -72,6 +74,16 @@ class RecentChaptersFragment
         recycler.setHasFixedSize(true)
         adapter = RecentChaptersAdapter(this)
         recycler.adapter = adapter
+
+        swipe_refresh.setDistanceToTriggerSync((2 * 64 * resources.displayMetrics.density).toInt())
+        swipe_refresh.setOnRefreshListener {
+            if (!LibraryUpdateService.isRunning(activity)) {
+                LibraryUpdateService.start(activity)
+                context.toast(R.string.action_update_library)
+            }
+            // It can be a very long operation, so we disable swipe refresh and show a toast.
+            swipe_refresh.isRefreshing = false
+        }
 
         // Update toolbar text
         setToolbarTitle(R.string.label_recent_updates)
