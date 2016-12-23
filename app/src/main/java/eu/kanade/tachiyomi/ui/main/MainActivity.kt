@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.TaskStackBuilder
 import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
-import android.view.Gravity
 import android.view.MenuItem
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -95,14 +93,8 @@ class MainActivity : BaseActivity() {
 
     override fun onBackPressed() {
         val fragment = supportFragmentManager.findFragmentById(R.id.frame_container)
-        if (fragment != null && fragment.tag.toInt() == R.id.nav_drawer_library) {
-            if (drawer.getDrawerLockMode(Gravity.RIGHT).equals(DrawerLayout.LOCK_MODE_UNLOCKED)) {
-                drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-                return
-            }
-        }
-        if (fragment != null && fragment.activity.drawer.isDrawerOpen(GravityCompat.START)) {
-            fragment.activity.drawer.closeDrawers()
+        if (drawer.isDrawerOpen(GravityCompat.START) || drawer.isDrawerOpen(GravityCompat.END)) {
+            drawer.closeDrawers()
             return
         }
         if (fragment != null && fragment.tag.toInt() != startScreenId) {
