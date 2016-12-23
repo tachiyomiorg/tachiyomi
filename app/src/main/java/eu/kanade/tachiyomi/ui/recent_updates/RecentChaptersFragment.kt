@@ -19,7 +19,6 @@ import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.DeletingChaptersDialog
 import kotlinx.android.synthetic.main.fragment_recent_chapters.*
-import kotlinx.android.synthetic.main.item_library_category.view.*
 import nucleus.factory.RequiresPresenter
 import timber.log.Timber
 
