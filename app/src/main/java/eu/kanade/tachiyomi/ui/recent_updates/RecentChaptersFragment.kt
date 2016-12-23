@@ -5,6 +5,7 @@ import android.support.v4.app.DialogFragment
 import android.support.v7.view.ActionMode
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.*
 import com.afollestad.materialdialogs.MaterialDialog
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -18,6 +19,7 @@ import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.DeletingChaptersDialog
 import kotlinx.android.synthetic.main.fragment_recent_chapters.*
+import kotlinx.android.synthetic.main.item_library_category.view.*
 import nucleus.factory.RequiresPresenter
 import timber.log.Timber
 
@@ -74,6 +76,15 @@ class RecentChaptersFragment
         recycler.setHasFixedSize(true)
         adapter = RecentChaptersAdapter(this)
         recycler.adapter = adapter
+
+        recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recycler: RecyclerView, newState: Int) {
+                // Disable swipe refresh when view is not at the top
+                val firstPos = (recycler.layoutManager as LinearLayoutManager)
+                        .findFirstCompletelyVisibleItemPosition()
+                swipe_refresh.isEnabled = firstPos == 0
+            }
+        })
 
         swipe_refresh.setDistanceToTriggerSync((2 * 64 * resources.displayMetrics.density).toInt())
         swipe_refresh.setOnRefreshListener {
