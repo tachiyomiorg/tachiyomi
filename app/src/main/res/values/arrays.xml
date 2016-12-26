@@ -188,20 +188,12 @@
         <item>2</item>
     </string-array>
 
-    <string-array name="languages">
-        <item>@string/system_default</item>
-        <item>@string/english</item>
-        <item>@string/spanish</item>
-        <item>@string/italian</item>
-        <item>@string/portuguese</item>
-    </string-array>
-
     <string-array name="languages_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
+        <item></item>
+        <item>en</item>
+        <item>es</item>
+        <item>it</item>
+        <item>pt</item>
     </string-array>
 
 </resources>

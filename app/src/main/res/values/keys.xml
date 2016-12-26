@@ -21,7 +21,7 @@
     <string name="pref_theme_key">pref_theme_key</string>
     <string name="pref_library_update_restriction_key">library_update_restriction</string>
     <string name="pref_start_screen_key">start_screen</string>
-    <string name="pref_language_key">language</string>
+    <string name="pref_language_key">app_language</string>
 
     <string name="pref_default_viewer_key">pref_default_viewer_key</string>
     <string name="pref_image_scale_type_key">pref_image_scale_type_key</string>
@@ -51,7 +51,7 @@
     <string name="pref_remove_after_marked_as_read_key">pref_remove_after_marked_as_read_key</string>
     <string name="pref_last_used_category_key">last_used_category</string>
 
-    <string name="pref_source_languages">pref_source_languages</string>
+    <string name="pref_source_languages">source_languages</string>
     <string name="pref_category_tracking_accounts_key">category_tracking_accounts</string>
 
     <string name="pref_clear_chapter_cache_key">pref_clear_chapter_cache_key</string>

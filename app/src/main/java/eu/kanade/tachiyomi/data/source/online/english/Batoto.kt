@@ -7,8 +7,6 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.network.asObservable
-import eu.kanade.tachiyomi.data.source.EN
-import eu.kanade.tachiyomi.data.source.Language
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.LoginSource
@@ -33,7 +31,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
 
     override val baseUrl = "http://bato.to"
 
-    override val lang: Language get() = EN
+    override val lang = "en"
 
     override val supportsLatest = true
 

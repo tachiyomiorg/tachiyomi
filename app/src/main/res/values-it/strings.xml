@@ -112,13 +112,7 @@
     <string name="dark_theme">Tema scuro</string>
     <string name="pref_start_screen">Schermata iniziale</string>
     <string name="pref_language">Lingua</string>
-
-    <!-- Languages -->
     <string name="system_default">Predefinita di sistema</string>
-    <string name="english">Inglese</string>
-    <string name="spanish">Spagnolo</string>
-    <string name="italian">Italiano</string>
-    <string name="portuguese">Portoghese</string>
 
     <!-- Reader section -->
     <string name="pref_fullscreen">Schermo intero</string>

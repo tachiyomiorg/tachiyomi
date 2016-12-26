@@ -50,7 +50,7 @@ fun Call.asObservableSuccess(): Observable<Response> {
     return asObservable().doOnNext { response ->
         if (!response.isSuccessful) {
             response.close()
-            throw Exception("Unsuccessful code ${response.code()}")
+            throw Exception("HTTP error ${response.code()}")
         }
     }
 }

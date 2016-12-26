@@ -9,7 +9,7 @@ import nucleus.view.NucleusAppCompatActivity
 abstract class BaseRxActivity<P : BasePresenter<*>> : NucleusAppCompatActivity<P>(), ActivityMixin {
 
     init {
-        LocaleHelper.updateCfg(this)
+        LocaleHelper.updateConfiguration(this)
     }
 
     override fun onCreate(savedState: Bundle?) {

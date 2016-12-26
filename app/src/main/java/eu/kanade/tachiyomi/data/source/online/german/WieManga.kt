@@ -1,10 +1,7 @@
 package eu.kanade.tachiyomi.data.source.online.german
 
-import android.content.Context
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.source.DE
-import eu.kanade.tachiyomi.data.source.Language
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import eu.kanade.tachiyomi.util.asJsoup
@@ -19,7 +16,7 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
 
     override val baseUrl = "http://www.wiemanga.com"
 
-    override val lang: Language get() = DE
+    override val lang = "de"
 
     override val supportsLatest = true
 

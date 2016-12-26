@@ -4,7 +4,6 @@ import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
-import eu.kanade.tachiyomi.data.source.getLanguages
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.util.asJsoup
@@ -27,9 +26,7 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
         if (it.endsWith("/")) it.dropLast(1) else it
     }
 
-    override val lang = map.lang.toUpperCase().let { code ->
-        getLanguages().find { code == it.code }!!
-    }
+    override val lang = map.lang.toLowerCase()
 
     override val supportsLatest = map.latestupdates != null
 
@@ -39,7 +36,7 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
     }
 
     override val id = map.id.let {
-        if (it is Int) it else (lang.code.hashCode() + 31 * it.hashCode()) and 0x7fffffff
+        if (it is Int) it else (lang.toUpperCase().hashCode() + 31 * it.hashCode()) and 0x7fffffff
     }
 
     override fun popularMangaRequest(page: MangasPage): Request {

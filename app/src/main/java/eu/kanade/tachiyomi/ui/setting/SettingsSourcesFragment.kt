@@ -8,13 +8,14 @@ import android.view.View
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.SourceManager
-import eu.kanade.tachiyomi.data.source.getLanguages
+import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.widget.preference.LoginCheckBoxPreference
 import eu.kanade.tachiyomi.widget.preference.SourceLoginDialog
 import eu.kanade.tachiyomi.widget.preference.SwitchPreferenceCategory
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
+import java.util.*
 
 class SettingsSourcesFragment : SettingsFragment() {
 
@@ -45,33 +46,35 @@ class SettingsSourcesFragment : SettingsFragment() {
         // Get the list of active language codes.
         val activeLangsCodes = preferences.enabledLanguages().getOrDefault()
 
-        // Get the list of languages ordered by name.
-        val langs = getLanguages().sortedBy { it.lang }
+        // Get a map of sources grouped by language.
+        val sourcesByLang = onlineSources.groupByTo(TreeMap(), { it.lang })
 
         // Order first by active languages, then inactive ones
-        val orderedLangs = langs.filter { it.code in activeLangsCodes } +
-                langs.filterNot { it.code in activeLangsCodes }
+        val orderedLangs = sourcesByLang.keys.filter { it in activeLangsCodes } +
+                sourcesByLang.keys.filterNot { it in activeLangsCodes }
 
         orderedLangs.forEach { lang ->
+            val sources = sourcesByLang[lang].orEmpty().sortedBy { it.name }
+
             // Create a preference group and set initial state and change listener
             SwitchPreferenceCategory(context).apply {
                 preferenceScreen.addPreference(this)
-                title = lang.lang
+                title = Locale(lang).let { it.getDisplayLanguage(it).capitalize() }
                 isPersistent = false
-                if (lang.code in activeLangsCodes) {
+                if (lang in activeLangsCodes) {
                     setChecked(true)
-                    addLanguageSources(this)
+                    addLanguageSources(this, sources)
                 }
 
                 setOnPreferenceChangeListener { preference, any ->
                     val checked = any as Boolean
                     val current = preferences.enabledLanguages().getOrDefault()
                     if (!checked) {
-                        preferences.enabledLanguages().set(current - lang.code)
+                        preferences.enabledLanguages().set(current - lang)
                         removeAll()
                     } else {
-                        preferences.enabledLanguages().set(current + lang.code)
-                        addLanguageSources(this)
+                        preferences.enabledLanguages().set(current + lang)
+                        addLanguageSources(this, sources)
                     }
                     true
                 }
@@ -84,8 +87,7 @@ class SettingsSourcesFragment : SettingsFragment() {
      *
      * @param group the language category.
      */
-    private fun addLanguageSources(group: SwitchPreferenceCategory) {
-        val sources = onlineSources.filter { it.lang.lang == group.title }.sortedBy { it.name }
+    private fun addLanguageSources(group: SwitchPreferenceCategory, sources: List<OnlineSource>) {
         val hiddenCatalogues = preferences.hiddenCatalogues().getOrDefault()
 
         sources.forEach { source ->

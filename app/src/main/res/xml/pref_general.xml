@@ -10,9 +10,8 @@
         android:title="@string/pref_category_general"
         app:asp_tintEnabled="true">
 
-        <eu.kanade.tachiyomi.widget.preference.IntListPreference
-            android:defaultValue="0"
-            android:entries="@array/languages"
+        <ListPreference
+            android:defaultValue=""
             android:entryValues="@array/languages_values"
             android:key="@string/pref_language_key"
             android:summary="%s"

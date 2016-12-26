@@ -6,7 +6,6 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
-import eu.kanade.tachiyomi.data.source.EN
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.SourceManager
 import eu.kanade.tachiyomi.data.source.model.MangasPage
@@ -333,13 +332,13 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
 
         // Ensure at least one language
         if (languages.isEmpty()) {
-            languages.add(EN.code)
+            languages.add("en")
         }
 
         return sourceManager.getOnlineSources()
-                .filter { it.lang.code in languages }
+                .filter { it.lang in languages }
                 .filterNot { it.id.toString() in hiddenCatalogues }
-                .sortedBy { "(${it.lang.code}) ${it.name}" }
+                .sortedBy { "(${it.lang}) ${it.name}" }
     }
 
     /**

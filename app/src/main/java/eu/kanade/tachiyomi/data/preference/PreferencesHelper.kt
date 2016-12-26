@@ -82,7 +82,7 @@ class PreferencesHelper(val context: Context) {
 
     fun catalogueAsList() = rxPrefs.getBoolean(keys.catalogueAsList, false)
 
-    fun enabledLanguages() = rxPrefs.getStringSet(keys.enabledLanguages, setOf("EN"))
+    fun enabledLanguages() = rxPrefs.getStringSet(keys.enabledLanguages, setOf("en"))
 
     fun sourceUsername(source: Source) = prefs.getString(keys.sourceUsername(source.id), "")
 
@@ -142,6 +142,6 @@ class PreferencesHelper(val context: Context) {
 
     fun downloadNew() = prefs.getBoolean(keys.downloadNew, false)
 
-    fun lang() = prefs.getInt(keys.lang, 0)
+    fun lang() = prefs.getString(keys.lang, "")
 
 }

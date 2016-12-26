@@ -14,6 +14,7 @@ import eu.kanade.tachiyomi.util.plusAssign
 import eu.kanade.tachiyomi.widget.preference.IntListPreference
 import eu.kanade.tachiyomi.widget.preference.LibraryColumnsDialog
 import eu.kanade.tachiyomi.widget.preference.SimpleDialogPreference
+import net.xpece.android.support.preference.ListPreference
 import net.xpece.android.support.preference.MultiSelectListPreference
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -45,7 +46,7 @@ class SettingsGeneralFragment : SettingsFragment(),
 
     val categoryUpdate: MultiSelectListPreference by bindPref(R.string.pref_library_update_categories_key)
 
-    val langPreference: IntListPreference by bindPref(R.string.pref_language_key)
+    val langPreference: ListPreference by bindPref(R.string.pref_language_key)
 
     override fun onViewCreated(view: View, savedState: Bundle?) {
         super.onViewCreated(view, savedState)
@@ -105,10 +106,17 @@ class SettingsGeneralFragment : SettingsFragment(),
             true
         }
 
+        val langValues = langPreference.entryValues.map { value ->
+            val locale = LocaleHelper.getLocaleFromString(value.toString())
+            locale?.getDisplayName(locale)?.capitalize() ?: context.getString(R.string.system_default)
+        }
+
+        langPreference.entries = langValues.toTypedArray()
         langPreference.setOnPreferenceChangeListener { preference, newValue ->
             (activity as SettingsActivity).parentFlags = SettingsActivity.FLAG_LANG_CHANGED
-            LocaleHelper.changeLocale(newValue.toString().toInt())
-            LocaleHelper.updateCfg(activity.application, activity.baseContext.resources.configuration)
+            LocaleHelper.changeLocale(newValue.toString())
+            val app = activity.application
+            LocaleHelper.updateConfiguration(app, app.resources.configuration)
             activity.recreate()
             true
         }

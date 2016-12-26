@@ -2,8 +2,6 @@ package eu.kanade.tachiyomi.data.source.online.english
 
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.source.EN
-import eu.kanade.tachiyomi.data.source.Language
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import org.jsoup.nodes.Document
@@ -18,7 +16,7 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
 
     override val baseUrl = "http://www.mangahere.co"
 
-    override val lang: Language get() = EN
+    override val lang = "en"
 
     override val supportsLatest = true
 

@@ -34,7 +34,7 @@ open class App : Application() {
         setupAcra()
         setupJobManager()
 
-        LocaleHelper.updateCfg(this, baseContext.resources.configuration)
+        LocaleHelper.updateConfiguration(this, resources.configuration)
     }
 
     override fun attachBaseContext(base: Context) {
@@ -46,7 +46,7 @@ open class App : Application() {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        LocaleHelper.updateCfg(this, newConfig)
+        LocaleHelper.updateConfiguration(this, newConfig, true)
     }
 
     protected open fun setupAcra() {

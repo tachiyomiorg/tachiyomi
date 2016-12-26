@@ -9,7 +9,6 @@ import eu.kanade.tachiyomi.data.network.NetworkHelper
 import eu.kanade.tachiyomi.data.network.asObservableSuccess
 import eu.kanade.tachiyomi.data.network.newCallWithProgress
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.source.Language
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
@@ -47,9 +46,9 @@ abstract class OnlineSource() : Source {
     abstract val baseUrl: String
 
     /**
-     * Language of the source.
+     * An ISO 639-1 compliant language code (two characters in lower case).
      */
-    abstract val lang: Language
+    abstract val lang: String
 
     /**
      * Whether the source has support for latest updates.
@@ -82,7 +81,7 @@ abstract class OnlineSource() : Source {
     /**
      * Visible name of the source.
      */
-    override fun toString() = "$name (${lang.code})"
+    override fun toString() = "$name (${lang.toUpperCase()})"
 
     /**
      * Returns an observable containing a page with a list of manga. Normally it's not needed to

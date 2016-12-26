@@ -2,8 +2,6 @@ package eu.kanade.tachiyomi.data.source.online.russian
 
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.source.Language
-import eu.kanade.tachiyomi.data.source.RU
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
@@ -20,7 +18,7 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
 
     override val baseUrl = "http://mangachan.me"
 
-    override val lang: Language get() = RU
+    override val lang = "ru"
 
     override val supportsLatest = true
 

@@ -6,7 +6,7 @@ import eu.kanade.tachiyomi.util.LocaleHelper
 abstract class BaseActivity : AppCompatActivity(), ActivityMixin {
 
     init {
-        LocaleHelper.updateCfg(this)
+        LocaleHelper.updateConfiguration(this)
     }
 
     override fun getActivity() = this
