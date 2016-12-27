@@ -1,13 +1,13 @@
 package eu.kanade.tachiyomi.ui.catalogue
 
 import android.content.Context
+import android.support.graphics.drawable.VectorDrawableCompat
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import android.widget.CheckBox
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
 import eu.kanade.tachiyomi.data.source.online.OnlineSource.FilterState
-
 
 class FilterAdapter(val filterStates: List<FilterState>) : RecyclerView.Adapter<FilterAdapter.ViewHolder>() {
     val states = IntArray(filterStates.size);
@@ -42,7 +42,9 @@ class FilterAdapter(val filterStates: List<FilterState>) : RecyclerView.Adapter<
         }
 
         fun updateButton() {
-            setButtonDrawable(arrayOf(R.drawable.ic_check_box_outline_blank_24px, R.drawable.ic_check_box_24px, R.drawable.ic_check_box_x_24px)[states[position]])
+            setButtonDrawable(VectorDrawableCompat.create(getResources(),
+                    arrayOf(R.drawable.ic_check_box_outline_blank_24dp, R.drawable.ic_check_box_24dp, R.drawable.ic_check_box_x_24dp)[states[position]],
+                    null))
             invalidate()
         }
     }
