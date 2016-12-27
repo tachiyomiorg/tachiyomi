@@ -26,12 +26,12 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesInitialUrl() = "$baseUrl/newestch"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>): String {
+    override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>): String {
         if (query.isNotEmpty()) {
             return "$baseUrl/?do=search&subaction=search&story=$query"
-        } else if (filters.isNotEmpty()) {
+        } else if (filterStates.isNotEmpty()) {
             var genres = ""
-            filters.forEach { genres = genres + it.name + '+' }
+            filterStates.forEach { genres = genres + it.filter.name + '+' }
             return "$baseUrl/tags/${genres.dropLast(1)}"
         } else {
             return "$baseUrl/?do=search&subaction=search&story=$query"
@@ -70,7 +70,7 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
 
     private fun searchGenresNextPageSelector() = popularMangaNextPageSelector()
 
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter>) {
+    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filterStates: List<FilterState>) {
         val document = response.asJsoup()
         for (element in document.select(searchMangaSelector())) {
             Manga.create(id).apply {
@@ -78,9 +78,9 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
                 page.mangas.add(this)
             }
         }
-
+        val allIgnore = filterStates.all { it.state == Filter.STATE_IGNORE }
         searchMangaNextPageSelector().let { selector ->
-            if (page.nextPageUrl.isNullOrEmpty() && filters.isEmpty()) {
+            if (page.nextPageUrl.isNullOrEmpty() && allIgnore) {
                 val onClick = document.select(selector).first()?.attr("onclick")
                 val pageNum = onClick?.substring(23, onClick.indexOf("); return(false)"))
                 page.nextPageUrl = searchMangaInitialUrl(query, emptyList()) + "&search_start=" + pageNum
@@ -88,9 +88,9 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
         }
 
         searchGenresNextPageSelector().let { selector ->
-            if (page.nextPageUrl.isNullOrEmpty() && filters.isNotEmpty()) {
+            if (page.nextPageUrl.isNullOrEmpty() && !allIgnore) {
                 val url = document.select(selector).first()?.attr("href")
-                page.nextPageUrl = searchMangaInitialUrl(query, filters) + url
+                page.nextPageUrl = searchMangaInitialUrl(query, filterStates) + url
             }
         }
     }

@@ -66,9 +66,9 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
         }
     }
 
-    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filterStates: List<FilterState>): Request {
         if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query, filters)
+            page.url = searchMangaInitialUrl(query, filterStates)
         }
         return when (map.search.method?.toLowerCase()) {
             "post" -> POST(page.url, headers, map.search.createForm())
@@ -76,9 +76,9 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
         }
     }
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = map.search.url.replace("\$query", query)
+    override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>) = map.search.url.replace("\$query", query)
 
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter>) {
+    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filterStates: List<FilterState>) {
         val document = response.asJsoup()
         for (element in document.select(map.search.manga_css)) {
             Manga.create(id).apply {

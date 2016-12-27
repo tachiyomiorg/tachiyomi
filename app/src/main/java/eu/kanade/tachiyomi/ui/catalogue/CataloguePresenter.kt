@@ -11,7 +11,7 @@ import eu.kanade.tachiyomi.data.source.SourceManager
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
-import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
+import eu.kanade.tachiyomi.data.source.online.OnlineSource.FilterState
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import rx.Observable
 import rx.Subscription
@@ -65,9 +65,9 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         private set
 
     /**
-     * Active filters.
+     * Filters states.
      */
-    var filters: List<Filter> = emptyList()
+    var filterStates: List<FilterState> = emptyList()
 
     /**
      * Pager containing a list of manga results.
@@ -105,6 +105,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
 
         try {
             source = getLastUsedSource()
+            filterStates = source.filters.map { FilterState(it, it.defaultState) }
         } catch (error: NoSuchElementException) {
             return
         }
@@ -128,18 +129,18 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      * Restarts the pager for the active source with the provided query and filters.
      *
      * @param query the query.
-     * @param filters the list of active filters (for search mode).
+     * @param filterStates the current state of the filters (for search mode).
      */
-    fun restartPager(query: String = this.query, filters: List<Filter> = this.filters) {
+    fun restartPager(query: String = this.query, filterStates: List<FilterState> = this.filterStates) {
         this.query = query
-        this.filters = filters
+        this.filterStates = filterStates
 
         if (!isListMode) {
             subscribeToMangaInitializer()
         }
 
         // Create a new pager.
-        pager = createPager(query, filters)
+        pager = createPager(query, filterStates)
 
         // Prepare the pager.
         pagerSubscription?.let { remove(it) }
@@ -183,7 +184,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         prefs.lastUsedCatalogueSource().set(source.id)
         this.source = source
 
-        restartPager(query = "", filters = emptyList())
+        restartPager(query = "", filterStates = source.filters.map { FilterState(it, it.defaultState) })
     }
 
     /**
@@ -362,16 +363,16 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     }
 
     /**
-     * Set the active filters for the current source.
+     * Set the filter states for the current source.
      *
-     * @param selectedFilters a list of active filters.
+     * @param filterStates a list of active filters.
      */
-    fun setSourceFilter(selectedFilters: List<Filter>) {
-        restartPager(filters = selectedFilters)
+    fun setSourceFilter(filterStates: List<FilterState>) {
+        restartPager(filterStates = filterStates)
     }
 
-    open fun createPager(query: String, filters: List<Filter>): Pager {
-        return CataloguePager(source, query, filters)
+    open fun createPager(query: String, filterStates: List<FilterState>): Pager {
+        return CataloguePager(source, query, filterStates)
     }
 
 }

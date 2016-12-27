@@ -133,11 +133,11 @@ abstract class OnlineSource() : Source {
      *             the current page and the next page url.
      * @param query the search query.
      */
-    open fun fetchSearchManga(page: MangasPage, query: String, filters: List<Filter>): Observable<MangasPage> = client
-            .newCall(searchMangaRequest(page, query, filters))
+    open fun fetchSearchManga(page: MangasPage, query: String, filterStates: List<FilterState>): Observable<MangasPage> = client
+            .newCall(searchMangaRequest(page, query, filterStates))
             .asObservableSuccess()
             .map { response ->
-                searchMangaParse(response, page, query, filters)
+                searchMangaParse(response, page, query, filterStates)
                 page
             }
 
@@ -148,9 +148,9 @@ abstract class OnlineSource() : Source {
      * @param page the page object.
      * @param query the search query.
      */
-    open protected fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
+    open protected fun searchMangaRequest(page: MangasPage, query: String, filterStates: List<FilterState>): Request {
         if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query, filters)
+            page.url = searchMangaInitialUrl(query, filterStates)
         }
         return GET(page.url, headers)
     }
@@ -160,7 +160,7 @@ abstract class OnlineSource() : Source {
      *
      * @param query the search query.
      */
-    abstract protected fun searchMangaInitialUrl(query: String, filters: List<Filter>): String
+    abstract protected fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>): String
 
     /**
      * Parse the response from the site. It should add a list of manga and the absolute url to the
@@ -170,7 +170,7 @@ abstract class OnlineSource() : Source {
      * @param page the page object to be filled.
      * @param query the search query.
      */
-    abstract protected fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter>)
+    abstract protected fun searchMangaParse(response: Response, page: MangasPage, query: String, filterStates: List<FilterState>)
 
     /**
      * Returns an observable containing a page with a list of latest manga.
@@ -463,7 +463,17 @@ abstract class OnlineSource() : Source {
 
     }
 
-    data class Filter(val id: String, val name: String)
+    data class Filter(val id: String, val name: String, val type: Int = TYPE_IGNORE_INCLUDE_EXCLUDE, val defaultState: Int = STATE_IGNORE) {
+        companion object {
+            const val TYPE_IGNORE_INCLUDE = 0
+            const val TYPE_IGNORE_INCLUDE_EXCLUDE = 1
+            const val STATE_IGNORE = 0
+            const val STATE_INCLUDE = 1
+            const val STATE_EXCLUDE = 2
+        }
+    }
+
+    data class FilterState(val filter: Filter, val state: Int)
 
     open fun getFilterList(): List<Filter> = emptyList()
 }

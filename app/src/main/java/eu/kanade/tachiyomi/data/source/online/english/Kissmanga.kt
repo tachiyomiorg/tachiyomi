@@ -51,9 +51,9 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector(): String = "ul.pager > li > a:contains(Next)"
 
-    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filterStates: List<FilterState>): Request {
         if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query, filters)
+            page.url = searchMangaInitialUrl(query, filterStates)
         }
 
         val form = FormBody.Builder().apply {
@@ -61,7 +61,7 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
             add("mangaName", query)
 
             this@Kissmanga.filters.forEach { filter ->
-                if (filter.equals(completedFilter)) add("status", if (filter in filters) filter.id else "")
+                if (filter.equals(completedFilter)) add("status", if (filter in filterStates.map { it.filter }) filter.id else "")
                 else add("genres", if (filter in filters) "1" else "0")
             }
         }
@@ -69,7 +69,7 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
         return POST(page.url, headers, form.build())
     }
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/AdvanceSearch"
+    override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>) = "$baseUrl/AdvanceSearch"
 
     override fun searchMangaSelector() = popularMangaSelector()
 

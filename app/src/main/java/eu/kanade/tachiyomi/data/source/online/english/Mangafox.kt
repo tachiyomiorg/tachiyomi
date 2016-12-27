@@ -45,8 +45,7 @@ class Mangafox(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector() = "a:has(span.next)"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
-            "$baseUrl/search.php?name_method=cw&advopts=1&order=za&sort=views&name=$query&page=1&${filters.map { it.id + "=1" }.joinToString("&")}"
+    override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>) = "$baseUrl/search.php?name_method=cw&advopts=1&order=za&sort=views&name=$query&page=1&${filterStates.map { it.filter.id + "=" + it.state }.joinToString("&")}"
 
     override fun searchMangaSelector() = "div#mangalist > ul.list > li"
 

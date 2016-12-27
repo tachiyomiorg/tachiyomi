@@ -47,7 +47,7 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector() = "div.next-page > a.next"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search.php?name=$query&page=1&sort=views&order=za&${filters.map { it.id + "=1" }.joinToString("&")}&advopts=1"
+    override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>) = "$baseUrl/search.php?name=$query&page=1&sort=views&order=za&${filterStates.map { it.filter.id + "=" + it.state  }.joinToString("&")}&advopts=1"
 
     override fun searchMangaSelector() = "div.result_search > dl:has(dt)"
 

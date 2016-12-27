@@ -5,7 +5,6 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.Headers
 import okhttp3.OkHttpClient
@@ -57,22 +56,22 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector(): String = "div.hot-manga > ul.pagination > li > a:contains(»)"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
+    override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>) =
             "$baseUrl/service/advanced_search"
 
 
-    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<OnlineSource.Filter>): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filterStates: List<FilterState>): Request {
         if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query, filters)
+            page.url = searchMangaInitialUrl(query, filterStates)
         }
 
         val builder = okhttp3.FormBody.Builder()
         builder.add("manga-name", query)
         builder.add("type", "all")
         var status = "both"
-        for (filter in filters) {
-            if (filter.equals(completedFilter)) status = filter.id
-            else builder.add("include[]", filter.id)
+        for (filterState in filterStates) {
+            if (filterState.state.equals(completedFilter)) status = filterState.filter.id
+            else builder.add("include[]", filterState.filter.id)
         }
         builder.add("status", status)
 

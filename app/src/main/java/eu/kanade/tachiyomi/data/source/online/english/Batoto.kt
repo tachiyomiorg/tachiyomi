@@ -107,26 +107,26 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
 
     override fun latestUpdatesNextPageSelector() = "#show_more_row"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=1${getFilterParams(filters)}"
+    override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=1${getFilterParams(filterStates)}"
 
-    private fun getFilterParams(filters: List<Filter>): String {
+    private fun getFilterParams(filterStates: List<FilterState>): String {
         var genres = ""
         var completed = ""
-        for (filter in filters) {
-            if (filter.equals(completedFilter)) completed = "&completed=c"
-            else genres += ";i" + filter.id
+        for (filterState in filterStates) {
+            if (filterState.filter.equals(completedFilter)) completed = "&completed=c"
+            else genres += ";i" + filterState.filter.id
         }
         return if (genres.isEmpty()) completed else "&genres=$genres&genre_cond=and$completed"
     }
 
-    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filterStates: List<FilterState>): Request {
         if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query, filters)
+            page.url = searchMangaInitialUrl(query, filterStates)
         }
         return GET(page.url, headers)
     }
 
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter>) {
+    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filterStates: List<FilterState>) {
         val document = response.asJsoup()
         for (element in document.select(searchMangaSelector())) {
             Manga.create(id).apply {
@@ -136,7 +136,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         }
 
         page.nextPageUrl = document.select(searchMangaNextPageSelector()).first()?.let {
-            "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=${page.page + 1}${getFilterParams(filters)}"
+            "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=${page.page + 1}${getFilterParams(filterStates)}"
         }
     }
 

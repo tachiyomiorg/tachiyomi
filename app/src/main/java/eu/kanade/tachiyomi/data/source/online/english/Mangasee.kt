@@ -64,22 +64,22 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
     // Not used, overrides parent.
     override fun popularMangaNextPageSelector() = ""
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>): String {
+    override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>): String {
         var url = "$baseUrl/search/request.php?sortBy=popularity&sortOrder=descending&keyword=$query"
         var genres: String? = null
-        for (filter in filters) {
-            if (filter.equals(completedFilter)) url += "&status=Complete"
-            else if (genres == null) genres = filter.id
-            else genres += "," + filter.id
+        for (filterState in filterStates) {
+            if (filterState.filter.equals(completedFilter)) url += "&status=Complete"
+            else if (genres == null) genres = filterState.filter.id
+            else genres += "," + filterState.filter.id
         }
         return if (genres == null) url else url + "&genre=$genres"
     }
 
     override fun searchMangaSelector() = "div.searchResults > div.requested > div.row"
 
-    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filterStates: List<FilterState>): Request {
         if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query, filters)
+            page.url = searchMangaInitialUrl(query, filterStates)
         }
         val (body, requestUrl) = convertQueryToPost(page)
         return POST(requestUrl, headers, body.build())
@@ -95,7 +95,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
         return Pair(body, requestUrl)
     }
 
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter>) {
+    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filterStates: List<FilterState>) {
         val document = response.asJsoup()
         for (element in document.select(popularMangaSelector())) {
             Manga.create(id).apply {
