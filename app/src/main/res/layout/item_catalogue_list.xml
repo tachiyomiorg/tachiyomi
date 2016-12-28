@@ -1,17 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="?android:listPreferredItemHeightSmall"
+    android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
     android:background="?attr/selectable_list_drawable">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="@dimen/material_component_lists_single_line_with_avatar_height"
+        android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+        android:layout_gravity="center_vertical"
+        android:paddingEnd="0dp"
+        android:paddingLeft="@dimen/material_component_lists_icon_left_padding"
+        android:paddingRight="0dp"
+        android:paddingStart="@dimen/material_component_lists_icon_left_padding"
+        tools:src="@drawable/icon"/>
 
     <TextView
         android:id="@+id/title"
-        style="@style/TextAppearance.Regular.Body1"
+        style="@style/TextAppearance.Regular.SubHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:paddingLeft="?android:listPreferredItemPaddingLeft"
-        android:paddingRight="?android:listPreferredItemPaddingLeft"/>
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingEnd="@dimen/material_component_lists_right_padding"
+        android:paddingLeft="@dimen/material_component_lists_text_left_padding"
+        android:paddingRight="@dimen/material_component_lists_right_padding"
+        android:paddingStart="@dimen/material_component_lists_text_left_padding"
+        tools:text="Manga title"/>
 
 </FrameLayout>
