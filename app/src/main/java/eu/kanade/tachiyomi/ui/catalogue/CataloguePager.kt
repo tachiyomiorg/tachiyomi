@@ -16,7 +16,7 @@ open class CataloguePager(val source: OnlineSource, val query: String, val filte
         else
             MangasPage(lastPage.page + 1).apply { url = lastPage.nextPageUrl!! }
 
-        val observable = if (query.isBlank() && filterStates.all { it.state == Filter.STATE_IGNORE })
+        val observable = if (query.isBlank() && filterStates.all { it.state == it.filter.defaultState })
             source.fetchPopularManga(page)
         else
             source.fetchSearchManga(page, query, filterStates)

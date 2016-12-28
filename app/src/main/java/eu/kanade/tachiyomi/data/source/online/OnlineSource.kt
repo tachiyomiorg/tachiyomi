@@ -53,7 +53,7 @@ abstract class OnlineSource() : Source {
     /**
      * Whether the source has support for latest updates.
      */
-    abstract val supportsLatest : Boolean
+    abstract val supportsLatest: Boolean
 
     /**
      * Headers used for requests.
@@ -365,10 +365,10 @@ abstract class OnlineSource() : Source {
      * @param page the page whose source image has to be downloaded.
      */
     final override fun fetchImage(page: Page): Observable<Page> =
-        if (page.imageUrl.isNullOrEmpty())
-            fetchImageUrl(page).flatMap { getCachedImage(it) }
-        else
-            getCachedImage(page)
+            if (page.imageUrl.isNullOrEmpty())
+                fetchImageUrl(page).flatMap { getCachedImage(it) }
+            else
+                getCachedImage(page)
 
     /**
      * Returns an observable with the response of the source image.
@@ -463,17 +463,21 @@ abstract class OnlineSource() : Source {
 
     }
 
-    data class Filter(val id: String, val name: String, val type: Int = TYPE_IGNORE_INCLUDE_EXCLUDE, val defaultState: Int = STATE_IGNORE) {
+    data class Filter(val id: String, val name: String, val type: Int = TYPE_IGNORE_INCLUDE_EXCLUDE,
+                      val states: Array<Any> = if (type == TYPE_IGNORE_INCLUDE_EXCLUDE)
+                          arrayOf(STATE_IGNORE, STATE_INCLUDE, STATE_EXCLUDE) else arrayOf(STATE_IGNORE, STATE_INCLUDE),
+                      val defaultState: Any = if (states.isEmpty()) "" else states.first()) {
         companion object {
             const val TYPE_IGNORE_INCLUDE = 0
             const val TYPE_IGNORE_INCLUDE_EXCLUDE = 1
+            const val TYPE_LIST = 2
             const val STATE_IGNORE = 0
             const val STATE_INCLUDE = 1
             const val STATE_EXCLUDE = 2
         }
     }
 
-    data class FilterState(val filter: Filter, val state: Int)
+    data class FilterState(val filter: Filter, val state: Any)
 
     open fun getFilterList(): List<Filter> = emptyList()
 }

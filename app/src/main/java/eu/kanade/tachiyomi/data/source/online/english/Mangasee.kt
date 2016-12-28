@@ -65,18 +65,19 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
     override fun popularMangaNextPageSelector() = ""
 
     override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>): String {
-        var url = "$baseUrl/search/request.php?sortBy=popularity&sortOrder=descending&keyword=$query"
+        var url = "$baseUrl/search/request.php?keyword=$query"
         var genres: String? = null
         var genresNo: String? = null
         for (filterState in filterStates) {
-            if (filterState.state != Filter.STATE_IGNORE) {
-                if (filterState.filter.equals(completedFilter))
-                    url += "&status=Complete"
-                else if (filterState.state == Filter.STATE_EXCLUDE)
-                    genresNo = if (genresNo == null) filterState.filter.id else genresNo + "," + filterState.filter.id
-                else
-                    genres = if (genres == null) filterState.filter.id else genres + "," + filterState.filter.id
-            }
+            if (filterState.filter.type == Filter.TYPE_LIST) {
+                val desc = filterState.state
+                if (desc is QString) url += desc.query
+                else if (filterState.state != filterState.filter.defaultState)
+                    url += "&" + filterState.filter.id + "=" + desc
+            } else if (filterState.state == Filter.STATE_INCLUDE)
+                genres = if (genres == null) filterState.filter.id else genres + "," + filterState.filter.id
+            else if (filterState.state == Filter.STATE_EXCLUDE)
+                genresNo = if (genresNo == null) filterState.filter.id else genresNo + "," + filterState.filter.id
         }
         if (genres != null) url += "&genre=$genres"
         return if (genresNo == null) url else "$url&genreNo=$genresNo"
@@ -181,11 +182,23 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
 
     override fun imageUrlParse(document: Document): String = document.select("img.CurImage").attr("src")
 
-    private val completedFilter = Filter("Complete", "Completed", Filter.TYPE_IGNORE_INCLUDE)
+    data class QString(val string: String, val query: String) {
+        override fun toString(): String = string
+    }
+
+    val mostPopular = QString("Most Popular", "&sortBy=popularity&sortOrder=descending")
     // [...document.querySelectorAll("label.triStateCheckBox input")].map(el => `Filter("${el.getAttribute('name')}", "${el.nextSibling.textContent.trim()}")`).join(',\n')
     // http://mangasee.co/advanced-search/
     override fun getFilterList(): List<Filter> = listOf(
-            completedFilter,
+            Filter("sort", "Sort By", Filter.TYPE_LIST, arrayOf(QString("Alphabetical A-Z", ""),
+                    QString("Alphabetical Z-A", "&sortOrder=descending"),
+                    QString("Newest", "&sortBy=dateUpdated&sortOrder=descending"),
+                    QString("Oldest", "&sortBy=dateUpdated"),
+                    mostPopular,
+                    QString("Least Popular ", "&sortBy=popularity")), mostPopular),
+            Filter("status", "Scan Status", Filter.TYPE_LIST, arrayOf("Any", "Complete", "Discontinued", "Hiatus", "Incomplete", "Ongoing")),
+            Filter("pstatus", "Publish Status", Filter.TYPE_LIST, arrayOf("Any", "Cancelled", "Complete", "Discontinued", "Hiatus", "Incomplete", "Ongoing", "Unfinished")),
+            Filter("type", "Type", Filter.TYPE_LIST, arrayOf("Any", "Doujinshi", "Manga", "Manhua", "Manhwa", "OEL", "One-shot")),
             Filter("Action", "Action"),
             Filter("Adult", "Adult"),
             Filter("Adventure", "Adventure"),

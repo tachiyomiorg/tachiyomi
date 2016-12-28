@@ -47,7 +47,7 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector() = "div.next-page > a.next"
 
-    override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>) = "$baseUrl/search.php?name=$query&page=1&sort=views&order=za&${filterStates.map { it.filter.id + "=" + it.state  }.joinToString("&")}&advopts=1"
+    override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>) = "$baseUrl/search.php?name=$query&page=1&sort=views&order=za&${filterStates.map { it.filter.id + "=" + it.state }.joinToString("&")}&advopts=1"
 
     override fun searchMangaSelector() = "div.result_search > dl:has(dt)"
 
@@ -134,7 +134,7 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
     // [...document.querySelectorAll("select[id^='genres'")].map((el,i) => `Filter("${el.getAttribute('name')}", "${el.nextSibling.nextSibling.textContent.trim()}")`).join(',\n')
     // http://www.mangahere.co/advsearch.htm
     override fun getFilterList(): List<Filter> = listOf(
-            Filter("is_completed", "Completed"),
+            Filter("is_completed", "Completed", Filter.TYPE_IGNORE_INCLUDE_EXCLUDE, arrayOf("", "1", "0")),
             Filter("genres[Action]", "Action"),
             Filter("genres[Adventure]", "Adventure"),
             Filter("genres[Comedy]", "Comedy"),

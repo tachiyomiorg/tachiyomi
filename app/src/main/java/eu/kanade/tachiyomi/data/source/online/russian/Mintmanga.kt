@@ -26,7 +26,7 @@ class Mintmanga(override val id: Int) : ParsedOnlineSource() {
     override fun latestUpdatesInitialUrl() = "$baseUrl/list?sortType=updated"
 
     override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>) =
-            "$baseUrl/search?q=$query&${filterStates.map { it.filter.id + arrayOf("=","=in","=ex")[it.state] }.joinToString("&")}"
+            "$baseUrl/search?q=$query&${filterStates.map { it.filter.id + arrayOf("=","=in","=ex")[it.state as Int] }.joinToString("&")}"
 
     override fun popularMangaSelector() = "div.desc"
 

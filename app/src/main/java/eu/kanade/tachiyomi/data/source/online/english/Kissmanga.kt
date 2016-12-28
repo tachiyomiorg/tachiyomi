@@ -62,9 +62,9 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
             add("mangaName", query)
 
             this@Kissmanga.filters.forEach { filter ->
-                val state = map[filter.id] ?: 0
-                if (filter.equals(completedFilter)) add(filter.id, arrayOf("", "Completed", "Ongoing")[state])
-                else add("genres", state.toString())
+                val state = map[filter.id]?.toString()
+                if (filter.equals(completedFilter)) add(filter.id, state ?: "")
+                else add("genres", state ?: "0")
             }
         }
 
@@ -130,7 +130,7 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun imageUrlParse(document: Document) = ""
 
-    private val completedFilter = Filter("status", "Completed")
+    private val completedFilter = Filter("status", "Completed", Filter.TYPE_IGNORE_INCLUDE_EXCLUDE, arrayOf("", "Completed", "Ongoing"))
     // $("select[name=\"genres\"]").map((i,el) => `Filter("${i}", "${$(el).next().text().trim()}")`).get().join(',\n')
     // on http://kissmanga.com/AdvanceSearch
     override fun getFilterList(): List<Filter> = listOf(
