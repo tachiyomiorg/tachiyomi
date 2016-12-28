@@ -68,12 +68,16 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
         val builder = okhttp3.FormBody.Builder()
         builder.add("manga-name", query)
         builder.add("type", "all")
-        var status = "both"
+        var status = 0
         for (filterState in filterStates) {
-            if (filterState.state.equals(completedFilter)) status = filterState.filter.id
-            else builder.add("include[]", filterState.filter.id)
+            if (filterState.filter.equals(completedFilter))
+                status = filterState.state
+            else if (filterState.state == Filter.STATE_INCLUDE)
+                builder.add("include[]", filterState.filter.id)
+            else if (filterState.state == Filter.STATE_EXCLUDE)
+                builder.add("exclude[]", filterState.filter.id)
         }
-        builder.add("status", status)
+        builder.add("status", arrayOf("both", "completed", "ongoing")[status])
 
         return POST(page.url, headers, builder.build())
     }
@@ -152,7 +156,7 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
 
     override fun imageUrlParse(document: Document) = document.select("img.img-responsive-2").first().attr("src")
 
-    private val completedFilter = Filter("completed", "Completed")
+    private val completedFilter = Filter("status", "Completed")
     // [...document.querySelectorAll("ul.manga-cat span")].map(el => `Filter("${el.getAttribute('data-id')}", "${el.nextSibling.textContent.trim()}")`).join(',\n')
     // http://www.readmanga.today/advanced-search
     override fun getFilterList(): List<Filter> = listOf(

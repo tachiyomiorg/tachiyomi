@@ -113,8 +113,12 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         var genres = ""
         var completed = ""
         for (filterState in filterStates) {
-            if (filterState.filter.equals(completedFilter)) completed = "&completed=c"
-            else genres += ";i" + filterState.filter.id
+            if (filterState.state != Filter.STATE_IGNORE) {
+                if (filterState.filter.equals(completedFilter))
+                    completed = "&completed=" + if (filterState.state == Filter.STATE_EXCLUDE) "i" else "c"
+                else
+                    genres += (if (filterState.state == Filter.STATE_EXCLUDE) ";e" else ";i") + filterState.filter.id
+            }
         }
         return if (genres.isEmpty()) completed else "&genres=$genres&genre_cond=and$completed"
     }

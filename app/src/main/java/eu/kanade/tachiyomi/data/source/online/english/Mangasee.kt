@@ -67,12 +67,19 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
     override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>): String {
         var url = "$baseUrl/search/request.php?sortBy=popularity&sortOrder=descending&keyword=$query"
         var genres: String? = null
+        var genresNo: String? = null
         for (filterState in filterStates) {
-            if (filterState.filter.equals(completedFilter)) url += "&status=Complete"
-            else if (genres == null) genres = filterState.filter.id
-            else genres += "," + filterState.filter.id
+            if (filterState.state != Filter.STATE_IGNORE) {
+                if (filterState.filter.equals(completedFilter))
+                    url += "&status=Complete"
+                else if (filterState.state == Filter.STATE_EXCLUDE)
+                    genresNo = if (genresNo == null) filterState.filter.id else genresNo + "," + filterState.filter.id
+                else
+                    genres = if (genres == null) filterState.filter.id else genres + "," + filterState.filter.id
+            }
         }
-        return if (genres == null) url else url + "&genre=$genres"
+        if (genres != null) url += "&genre=$genres"
+        return if (genresNo == null) url else "$url&genreNo=$genresNo"
     }
 
     override fun searchMangaSelector() = "div.searchResults > div.requested > div.row"
@@ -174,7 +181,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
 
     override fun imageUrlParse(document: Document): String = document.select("img.CurImage").attr("src")
 
-    private val completedFilter = Filter("Complete", "Completed")
+    private val completedFilter = Filter("Complete", "Completed", Filter.TYPE_IGNORE_INCLUDE)
     // [...document.querySelectorAll("label.triStateCheckBox input")].map(el => `Filter("${el.getAttribute('name')}", "${el.nextSibling.textContent.trim()}")`).join(',\n')
     // http://mangasee.co/advanced-search/
     override fun getFilterList(): List<Filter> = listOf(

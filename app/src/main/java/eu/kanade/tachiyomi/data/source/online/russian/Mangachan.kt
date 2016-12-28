@@ -29,12 +29,15 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
     override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>): String {
         if (query.isNotEmpty()) {
             return "$baseUrl/?do=search&subaction=search&story=$query"
-        } else if (filterStates.isNotEmpty()) {
-            var genres = ""
-            filterStates.forEach { genres = genres + it.filter.name + '+' }
-            return "$baseUrl/tags/${genres.dropLast(1)}"
         } else {
-            return "$baseUrl/?do=search&subaction=search&story=$query"
+            val filt = filterStates.filter { it.state != Filter.STATE_IGNORE }
+            if (filt.isNotEmpty()) {
+                var genres = ""
+                filt.forEach { genres += (if (it.state == Filter.STATE_EXCLUDE) "-" else "") + it.filter.name + '+' }
+                return "$baseUrl/tags/${genres.dropLast(1)}"
+            } else {
+                return "$baseUrl/?do=search&subaction=search&story=$query"
+            }
         }
     }
 
@@ -147,7 +150,7 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
     *  on http://mangachan.me/
     */
     override fun getFilterList(): List<Filter> = listOf(
-            Filter("18_плюс", "18_плюс"),
+            Filter("18_плюс", "18 плюс"),
             Filter("bdsm", "bdsm"),
             Filter("арт", "арт"),
             Filter("биография", "биография"),
