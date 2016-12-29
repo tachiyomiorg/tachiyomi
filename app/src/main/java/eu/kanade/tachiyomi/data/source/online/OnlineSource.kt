@@ -464,13 +464,16 @@ abstract class OnlineSource() : Source {
     }
 
     data class Filter(val id: String, val name: String, val type: Int = TYPE_IGNORE_INCLUDE_EXCLUDE,
-                      val states: Array<Any> = if (type == TYPE_IGNORE_INCLUDE_EXCLUDE)
-                          arrayOf(STATE_IGNORE, STATE_INCLUDE, STATE_EXCLUDE) else arrayOf(STATE_IGNORE, STATE_INCLUDE),
-                      val defaultState: Any = if (states.isEmpty()) "" else states.first()) {
+                      val states: Array<Any> = when (type) {
+                          TYPE_IGNORE_INCLUDE -> arrayOf(STATE_IGNORE, STATE_INCLUDE);
+                          TYPE_IGNORE_INCLUDE_EXCLUDE -> arrayOf(STATE_IGNORE, STATE_INCLUDE, STATE_EXCLUDE)
+                          else -> emptyArray()
+                      }, val defaultState: Any = if (states.isEmpty()) "" else states.first()) {
         companion object {
             const val TYPE_IGNORE_INCLUDE = 0
             const val TYPE_IGNORE_INCLUDE_EXCLUDE = 1
             const val TYPE_LIST = 2
+            const val TYPE_TEXT = 3
             const val STATE_IGNORE = 0
             const val STATE_INCLUDE = 1
             const val STATE_EXCLUDE = 2

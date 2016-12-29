@@ -69,7 +69,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
         var genres: String? = null
         var genresNo: String? = null
         for (filterState in filterStates) {
-            if (filterState.filter.type == Filter.TYPE_LIST) {
+            if (filterState.filter.type == Filter.TYPE_LIST || filterState.filter.type == Filter.TYPE_TEXT) {
                 val desc = filterState.state
                 if (desc is QString) url += desc.query
                 else if (filterState.state != filterState.filter.defaultState)
@@ -190,6 +190,8 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
     // [...document.querySelectorAll("label.triStateCheckBox input")].map(el => `Filter("${el.getAttribute('name')}", "${el.nextSibling.textContent.trim()}")`).join(',\n')
     // http://mangasee.co/advanced-search/
     override fun getFilterList(): List<Filter> = listOf(
+            Filter("year", "Years", Filter.TYPE_TEXT),
+            Filter("author", "Author", Filter.TYPE_TEXT),
             Filter("sort", "Sort By", Filter.TYPE_LIST, arrayOf(QString("Alphabetical A-Z", ""),
                     QString("Alphabetical Z-A", "&sortOrder=descending"),
                     QString("Newest", "&sortBy=dateUpdated&sortOrder=descending"),
