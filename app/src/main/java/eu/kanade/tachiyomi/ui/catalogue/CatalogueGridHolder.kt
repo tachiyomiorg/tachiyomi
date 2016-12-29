@@ -34,13 +34,7 @@ class CatalogueGridHolder(private val view: View, private val adapter: Catalogue
         setImage(manga)
     }
 
-    /**
-     * Updates the image for this holder. Useful to update the image when the manga is initialized
-     * and the url is now known.
-     *
-     * @param manga the manga to bind.
-     */
-    fun setImage(manga: Manga) {
+    override fun setImage(manga: Manga) {
         Glide.clear(view.thumbnail)
         if (!manga.thumbnail_url.isNullOrEmpty()) {
             Glide.with(view.context)

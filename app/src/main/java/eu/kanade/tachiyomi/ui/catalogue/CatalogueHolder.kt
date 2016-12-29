@@ -21,4 +21,13 @@ abstract class CatalogueHolder(view: View, adapter: CatalogueAdapter, listener: 
      * @param manga the manga to bind.
      */
     abstract fun onSetValues(manga: Manga)
+
+
+    /**
+     * Updates the image for this holder. Useful to update the image when the manga is initialized
+     * and the url is now known.
+     *
+     * @param manga the manga to bind.
+     */
+    abstract fun setImage(manga: Manga)
 }
