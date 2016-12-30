@@ -237,8 +237,8 @@
     <string name="chapters">Capítulos</string>
 
     <!-- Dialog remove recently view -->
-    <string name="dialog_remove_recently_description">Esto eliminará la fecha de lectura de este capítulo. ¿Estás seguro?</string>
-    <string name="dialog_remove_recently_reset">Reiniciar todas los capítulos de este manga</string>
+    <string name="dialog_with_checkbox_remove_description">Esto eliminará la fecha de lectura de este capítulo. ¿Estás seguro?</string>
+    <string name="dialog_with_checkbox_reset">Reiniciar todas los capítulos de este manga</string>
 
 
     <!-- Reader activity -->

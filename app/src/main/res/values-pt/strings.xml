@@ -245,8 +245,8 @@
     <string name="chapters">Capítulos</string>
 
     <!-- Dialog remove recently view -->
-    <string name="dialog_remove_recently_description">Esta ação irá remover a data de leitura deste capítulo. Continuar?</string>
-    <string name="dialog_remove_recently_reset">Repor todos os capítulos desta manga</string>
+    <string name="dialog_with_checkbox_remove_description">Esta ação irá remover a data de leitura deste capítulo. Continuar?</string>
+    <string name="dialog_with_checkbox_reset">Repor todos os capítulos desta manga</string>
 
     <!-- Reader activity -->
     <string name="downloading">A transferir…</string>

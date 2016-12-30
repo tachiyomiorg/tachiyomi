@@ -38,6 +38,8 @@
     <string name="action_update">Update</string>
     <string name="action_update_library">Update library</string>
     <string name="action_edit">Edit</string>
+    <string name="action_add">Add</string>
+    <string name="action_ignore">Ignore</string>
     <string name="action_add_category">Add category</string>
     <string name="action_edit_categories">Edit categories</string>
     <string name="action_rename_category">Rename category</string>
@@ -184,6 +186,7 @@
     <string name="cache_delete_error">An error occurred while clearing cache</string>
     <string name="pref_clear_cookies">Clear cookies</string>
     <string name="cookies_cleared">Cookies cleared</string>
+    <string name="choices_reset">Dialog choices reset</string>
     <string name="pref_clear_database">Clear database</string>
     <string name="pref_clear_database_summary">Delete manga and chapters that are not in your library</string>
     <string name="clear_database_confirmation">Are you sure? Read chapters and progress of non-library manga will be lost</string>
@@ -285,9 +288,12 @@
     <!-- Category activity -->
     <string name="error_category_exists">A category with this name already exists!</string>
 
-    <!-- Dialog remove recently view -->
-    <string name="dialog_remove_recently_description">This will remove the read date of this chapter. Are you sure?</string>
-    <string name="dialog_remove_recently_reset">Reset all chapters for this manga</string>
+    <!-- Dialog option with checkbox view -->
+    <string name="dialog_with_checkbox_remove_description">This will remove the read date of this chapter. Are you sure?</string>
+    <string name="dialog_with_checkbox_reset">Reset all chapters for this manga</string>
+
+    <!-- SnackBar -->
+    <string name="snack_add_to_library">Add manga to library?</string>
 
     <!-- Image notifier -->
     <string name="picture_saved">Picture saved</string>

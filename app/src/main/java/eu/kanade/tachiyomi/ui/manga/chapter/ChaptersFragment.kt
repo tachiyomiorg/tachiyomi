@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.DialogFragment
 import android.support.v7.view.ActionMode
 import android.support.v7.widget.DividerItemDecoration
@@ -15,13 +16,16 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.getCoordinates
+import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.DeletingChaptersDialog
+import eu.kanade.tachiyomi.widget.DialogCheckboxView
 import kotlinx.android.synthetic.main.fragment_manga_chapters.*
 import nucleus.factory.RequiresPresenter
 import timber.log.Timber
@@ -50,6 +54,11 @@ class ChaptersFragment : BaseRxFragment<ChaptersPresenter>(), ActionMode.Callbac
      * Action mode for multiple selection.
      */
     private var actionMode: ActionMode? = null
+
+    /**
+     * Value determining if user wants to automatically add manga to library
+     */
+    private var addToLibrary: Int? = null
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
@@ -370,6 +379,13 @@ class ChaptersFragment : BaseRxFragment<ChaptersPresenter>(), ActionMode.Callbac
     fun downloadChapters(chapters: List<ChapterModel>) {
         destroyActionModeIfNeeded()
         presenter.downloadChapters(chapters)
+        if (!presenter.manga.favorite){
+            recycler.snack(getString(R.string.snack_add_to_library), Snackbar.LENGTH_INDEFINITE) {
+                setAction(R.string.action_add) {
+                    presenter.addToLibrary()
+                }
+            }
+        }
     }
 
     fun bookmarkChapters(chapters: List<ChapterModel>, bookmarked: Boolean) {

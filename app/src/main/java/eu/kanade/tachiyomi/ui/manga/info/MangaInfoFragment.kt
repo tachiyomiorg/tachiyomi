@@ -56,6 +56,22 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
         setHasOptionsMenu(true)
     }
 
+
+    /**
+     * Set a hint to the system about whether this fragment's UI is currently visible
+     * to the user. This hint defaults to true and is persistent across fragment instance
+     * state save and restore.
+     *
+     * @param isVisibleToUser true if this fragment's UI is currently visible to the user (default),
+     * *                        false if it is not.
+     */
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        if (isVisibleToUser && view != null){
+            presenter.refreshManga()
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_manga_info, container, false)
     }

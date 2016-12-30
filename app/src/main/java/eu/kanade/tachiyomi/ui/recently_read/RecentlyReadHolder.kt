@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.MangaChapterHistory
-import kotlinx.android.synthetic.main.dialog_remove_recently.view.*
+import eu.kanade.tachiyomi.widget.DialogCheckboxView
 import kotlinx.android.synthetic.main.item_recently_read.view.*
 import java.text.DateFormat
 import java.text.DecimalFormat
@@ -24,7 +24,7 @@ import java.util.*
  * @constructor creates a new recent chapter holder.
  */
 class RecentlyReadHolder(view: View, private val adapter: RecentlyReadAdapter)
-: RecyclerView.ViewHolder(view) {
+    : RecyclerView.ViewHolder(view) {
 
     /**
      * DecimalFormat used to display correct chapter number
@@ -66,14 +66,19 @@ class RecentlyReadHolder(view: View, private val adapter: RecentlyReadAdapter)
 
         // Set remove clickListener
         itemView.remove.setOnClickListener {
+            // Create custom view
+            val dialogCheckboxView = DialogCheckboxView(itemView.context).apply {
+                setDescription(R.string.dialog_with_checkbox_remove_description)
+                setOptionDescription(R.string.dialog_with_checkbox_reset)
+            }
             MaterialDialog.Builder(itemView.context)
                     .title(R.string.action_remove)
-                    .customView(R.layout.dialog_remove_recently, true)
+                    .customView(dialogCheckboxView, true)
                     .positiveText(R.string.action_remove)
                     .negativeText(android.R.string.cancel)
                     .onPositive { materialDialog, dialogAction ->
                         // Check if user wants all chapters reset
-                        if (materialDialog.customView?.removeAll?.isChecked as Boolean) {
+                        if (dialogCheckboxView.isChecked()) {
                             adapter.fragment.removeAllFromHistory(manga.id!!)
                         } else {
                             adapter.fragment.removeFromHistory(history)
@@ -81,8 +86,7 @@ class RecentlyReadHolder(view: View, private val adapter: RecentlyReadAdapter)
                     }
                     .onNegative { materialDialog, dialogAction ->
                         materialDialog.dismiss()
-                    }
-                    .show()
+                    }.show()
         }
 
         // Set continue reading clickListener

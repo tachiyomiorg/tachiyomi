@@ -126,7 +126,7 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
     /**
      * Refresh MangaInfo view.
      */
-    private fun refreshManga() {
+    fun refreshManga() {
         start(GET_MANGA)
     }
 }

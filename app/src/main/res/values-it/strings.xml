@@ -285,8 +285,8 @@
     <string name="error_category_exists">Esiste già una categoria con questo nome</string>
 
     <!-- Dialog remove recently view -->
-    <string name="dialog_remove_recently_description">Questo rimuoverà la data lettura di questo capitolo. Sei sicuro?</string>
-    <string name="dialog_remove_recently_reset">Rimuovi per tutti i capitoli di questo manga</string>
+    <string name="dialog_with_checkbox_remove_description">Questo rimuoverà la data lettura di questo capitolo. Sei sicuro?</string>
+    <string name="dialog_with_checkbox_reset">Rimuovi per tutti i capitoli di questo manga</string>
 
     <!-- Image notifier -->
     <string name="picture_saved">Immagine salvata</string>
