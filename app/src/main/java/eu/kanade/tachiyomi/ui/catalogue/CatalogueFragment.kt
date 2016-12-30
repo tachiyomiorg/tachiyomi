@@ -467,7 +467,6 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
                         }
                     }
                     presenter.setSourceFilter(if (allDefault) emptyList() else adapter.filters)
-                    true
                 }
                 .positiveText(android.R.string.ok)
                 .negativeText(android.R.string.cancel)

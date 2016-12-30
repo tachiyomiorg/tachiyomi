@@ -60,7 +60,7 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
             add("authorArtist", "")
             add("mangaName", query)
 
-            for (filter in filters) {
+            for (filter in if (filters.isEmpty()) this@Kissmanga.filters else filters) {
                 when (filter) {
                     is Status -> add("status", arrayOf("", "Completed", "Ongoing")[filter.state])
                     is Genre -> add("genres", filter.state.toString())

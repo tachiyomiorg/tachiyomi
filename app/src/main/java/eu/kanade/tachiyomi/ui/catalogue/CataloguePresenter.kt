@@ -128,7 +128,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      * Restarts the pager for the active source with the provided query and filters.
      *
      * @param query the query.
-     * @param filterStates the current state of the filters (for search mode).
+     * @param filters the current state of the filters (for search mode).
      */
     fun restartPager(query: String = this.query, filters: List<Filter<*>> = this.filters) {
         this.query = query

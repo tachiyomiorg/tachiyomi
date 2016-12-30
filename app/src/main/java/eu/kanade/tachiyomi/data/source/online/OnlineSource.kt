@@ -462,7 +462,8 @@ abstract class OnlineSource() : Source {
     open fun prepareNewChapter(chapter: Chapter, manga: Manga) {
     }
 
-    abstract sealed class Filter<T>(val name: String, var state: T) {
+    sealed class Filter<T>(val name: String, var state: T) {
+        open class Header(name: String) : Filter<Any>(name, 0)
         abstract class List<V>(name: String, val values: Array<V>, state: Int = 0) : Filter<Int>(name, state)
         abstract class Text(name: String, state: String = "") : Filter<String>(name, state)
         abstract class CheckBox(name: String, state: Boolean = false) : Filter<Boolean>(name, state)

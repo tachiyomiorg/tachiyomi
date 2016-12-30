@@ -200,7 +200,6 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
     override fun getFilterList(): List<Filter<*>> = listOf(
             TextField("Years", "year"),
             TextField("Author", "author"),
-            // "sort",
             Sort("Sort By", arrayOf(SortOption("Alphabetical A-Z", emptyArray(), emptyArray()),
                     SortOption("Alphabetical Z-A", arrayOf("sortOrder"), arrayOf("descending")),
                     SortOption("Newest", arrayOf("sortBy", "sortOrder"), arrayOf("dateUpdated", "descending")),
@@ -211,6 +210,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
             ListField("Scan Status", "status", arrayOf("Any", "Complete", "Discontinued", "Hiatus", "Incomplete", "Ongoing")),
             ListField("Publish Status", "pstatus", arrayOf("Any", "Cancelled", "Complete", "Discontinued", "Hiatus", "Incomplete", "Ongoing", "Unfinished")),
             ListField("Type", "type", arrayOf("Any", "Doujinshi", "Manga", "Manhua", "Manhwa", "OEL", "One-shot")),
+            Filter.Header("Genres"),
             Genre("Action"),
             Genre("Adult"),
             Genre("Adventure"),

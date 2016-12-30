@@ -26,11 +26,11 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesInitialUrl() = "$baseUrl/newestch"
 
-    override fun searchMangaInitialUrl(query: String, filterStates: List<Filter<*>>): String {
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>): String {
         if (query.isNotEmpty()) {
             return "$baseUrl/?do=search&subaction=search&story=$query"
         } else {
-            val filt = filterStates.filter { it.state != Filter.TriState.STATE_IGNORE }
+            val filt = filters.filter { it.state != Filter.TriState.STATE_IGNORE }
             if (filt.isNotEmpty()) {
                 var genres = ""
                 filt.forEach { genres += (if (it.state == Filter.TriState.STATE_EXCLUDE) "-" else "") + (it as Genre).id + '+' }

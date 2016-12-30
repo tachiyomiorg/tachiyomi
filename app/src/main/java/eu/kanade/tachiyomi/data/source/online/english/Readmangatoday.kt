@@ -56,7 +56,7 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector(): String = "div.hot-manga > ul.pagination > li > a:contains(»)"
 
-    override fun searchMangaInitialUrl(query: String, filterStates: List<Filter<*>>) =
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) =
             "$baseUrl/service/advanced_search"
 
 

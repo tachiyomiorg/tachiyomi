@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.data.source.online.english
 
 import android.net.Uri
 import android.text.Html
+import android.util.Log
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.GET
@@ -14,6 +15,7 @@ import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import eu.kanade.tachiyomi.util.asJsoup
 import eu.kanade.tachiyomi.util.selectText
 import okhttp3.FormBody
+import okhttp3.HttpUrl
 import okhttp3.Request
 import okhttp3.Response
 import org.jsoup.nodes.Document
@@ -107,32 +109,47 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
 
     override fun latestUpdatesNextPageSelector() = "#show_more_row"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=1${getFilterParams(filters)}"
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) = searchMangaUrl(query, filters, 1)
 
-    private fun getFilterParams(filters: List<Filter<*>>): String {
+    private fun searchMangaUrl(query: String, filters: List<Filter<*>>, page: Int): String {
+        val url = HttpUrl.parse("$baseUrl/search_ajax").newBuilder()
+        if(!query.isEmpty()) url.addQueryParameter("name", "query").addQueryParameter("name_cond", "c")
         var genres = ""
-        var completed = ""
         for (filter in filters) {
             when (filter) {
                 is Status -> if (filter.state != Filter.TriState.STATE_IGNORE) {
-                    completed = "&completed=" + if (filter.state == Filter.TriState.STATE_EXCLUDE) "i" else "c"
+                    url.addQueryParameter("completed", if (filter.state == Filter.TriState.STATE_EXCLUDE) "i" else "c")
                 }
                 is Genre -> if (filter.state != Filter.TriState.STATE_IGNORE) {
                     genres += (if (filter.state == Filter.TriState.STATE_EXCLUDE) ";e" else ";i") + filter.id
                 }
+                is TextField -> {
+                    if (!filter.state.isEmpty()) url.addQueryParameter(filter.key, filter.state)
+                }
+                is ListField -> {
+                    val sel = filter.values[filter.state].value
+                    if (!sel.isEmpty()) url.addQueryParameter(filter.key, sel)
+                }
+                is Flag -> {
+                    val sel = if (filter.state) filter.valTrue else filter.valFalse
+                    if (!sel.isEmpty()) url.addQueryParameter(filter.key, sel)
+                }
             }
         }
-        return if (genres.isEmpty()) completed else "&genres=$genres&genre_cond=and$completed"
+        if (!genres.isEmpty()) url.addQueryParameter("genres", genres)
+        url.addQueryParameter("p", page.toString())
+        Log.d("ciao", url.toString())
+        return url.toString()
     }
 
-    override fun searchMangaRequest(page: MangasPage, query: String, filterStates: List<Filter<*>>): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter<*>>): Request {
         if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query, filterStates)
+            page.url = searchMangaInitialUrl(query, filters)
         }
         return GET(page.url, headers)
     }
 
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filterStates: List<Filter<*>>) {
+    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>) {
         val document = response.asJsoup()
         for (element in document.select(searchMangaSelector())) {
             Manga.create(id).apply {
@@ -142,7 +159,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         }
 
         page.nextPageUrl = document.select(searchMangaNextPageSelector()).first()?.let {
-            "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=${page.page + 1}${getFilterParams(filterStates)}"
+            searchMangaUrl(query, filters, page.page + 1)
         }
     }
 
@@ -310,15 +327,30 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         }
     }
 
+    private data class ListValue(val name: String, val value: String) {
+        override fun toString(): String = name
+    }
+
     private class Status() : Filter.TriState("Completed")
     private class Genre(name: String, val id: Int) : Filter.TriState(name)
+    private class TextField(name: String, val key: String) : Filter.Text(name)
+    private class ListField(name: String, val key: String, values: Array<ListValue>, state: Int = 0) : Filter.List<ListValue>(name, values, state)
+    private class Flag(name: String, val key: String, val valTrue: String, val valFalse: String) : Filter.CheckBox(name)
 
     // [...document.querySelectorAll("#advanced_options div.genre_buttons")].map((el,i) => {
     //     const onClick=el.getAttribute('onclick');const id=onClick.substr(14,onClick.length-16);return `Genre("${el.textContent.trim()}", ${id})`
     // }).join(',\n')
     // on https://bato.to/search
     override fun getFilterList(): List<Filter<*>> = listOf(
+            TextField("Author", "artist_name"),
+            ListField("Type", "type", arrayOf(ListValue("Any", ""), ListValue("Manga (Jp)", "jp"), ListValue("Manhwa (Kr)", "kr"), ListValue("Manhua (Cn)", "cn"), ListValue("Artbook", "ar"), ListValue("Other", "ot"))),
             Status(),
+            Flag("Exclude mature", "mature", "m", ""),
+            Filter.Header(""),
+            ListField("Order by", "order_cond", arrayOf(ListValue("Title", "title"), ListValue("Author", "author"), ListValue("Artist", "artist"), ListValue("Rating", "rating"), ListValue("Views", "views"), ListValue("Last Update", "update")), 4),
+            Flag("Ascendig order", "order", "asc", "desc"),
+            Filter.Header("Genres"),
+            ListField("Inclusion mode", "genre_cond", arrayOf(ListValue("And (all selected genres)", "and"), ListValue("Or (any selected genres) ", "or"))),
             Genre("4-Koma", 40),
             Genre("Action", 1),
             Genre("Adventure", 2),
