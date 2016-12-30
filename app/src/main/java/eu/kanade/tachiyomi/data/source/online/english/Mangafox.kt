@@ -45,7 +45,7 @@ class Mangafox(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector() = "a:has(span.next)"
 
-    override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>) = "$baseUrl/search.php?name_method=cw&advopts=1&order=za&sort=views&name=$query&page=1&${filterStates.map { it.filter.id + "=" + it.state }.joinToString("&")}"
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) = "$baseUrl/search.php?name_method=cw&advopts=1&order=za&sort=views&name=$query&page=1&${filters.map { (it as Genre).id + "=" + it.state }.joinToString("&")}"
 
     override fun searchMangaSelector() = "div#mangalist > ul.list > li"
 
@@ -122,49 +122,52 @@ class Mangafox(override val id: Int) : ParsedOnlineSource() {
     }
 
     // Not used, overrides parent.
-    override fun pageListParse(document: Document, pages: MutableList<Page>) {}
+    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+    }
 
     override fun imageUrlParse(document: Document) = document.getElementById("image").attr("src")
 
-    // $('select.genres').map((i,el)=>`Filter("${$(el).attr('name')}", "${$(el).next().text().trim()}")`).get().join(',\n')
-    // on http://kissmanga.com/AdvanceSearch
-    override fun getFilterList(): List<Filter> = listOf(
-            Filter("is_completed", "Completed"),
-            Filter("genres[Action]", "Action"),
-            Filter("genres[Adult]", "Adult"),
-            Filter("genres[Adventure]", "Adventure"),
-            Filter("genres[Comedy]", "Comedy"),
-            Filter("genres[Doujinshi]", "Doujinshi"),
-            Filter("genres[Drama]", "Drama"),
-            Filter("genres[Ecchi]", "Ecchi"),
-            Filter("genres[Fantasy]", "Fantasy"),
-            Filter("genres[Gender Bender]", "Gender Bender"),
-            Filter("genres[Harem]", "Harem"),
-            Filter("genres[Historical]", "Historical"),
-            Filter("genres[Horror]", "Horror"),
-            Filter("genres[Josei]", "Josei"),
-            Filter("genres[Martial Arts]", "Martial Arts"),
-            Filter("genres[Mature]", "Mature"),
-            Filter("genres[Mecha]", "Mecha"),
-            Filter("genres[Mystery]", "Mystery"),
-            Filter("genres[One Shot]", "One Shot"),
-            Filter("genres[Psychological]", "Psychological"),
-            Filter("genres[Romance]", "Romance"),
-            Filter("genres[School Life]", "School Life"),
-            Filter("genres[Sci-fi]", "Sci-fi"),
-            Filter("genres[Seinen]", "Seinen"),
-            Filter("genres[Shoujo]", "Shoujo"),
-            Filter("genres[Shoujo Ai]", "Shoujo Ai"),
-            Filter("genres[Shounen]", "Shounen"),
-            Filter("genres[Shounen Ai]", "Shounen Ai"),
-            Filter("genres[Slice of Life]", "Slice of Life"),
-            Filter("genres[Smut]", "Smut"),
-            Filter("genres[Sports]", "Sports"),
-            Filter("genres[Supernatural]", "Supernatural"),
-            Filter("genres[Tragedy]", "Tragedy"),
-            Filter("genres[Webtoons]", "Webtoons"),
-            Filter("genres[Yaoi]", "Yaoi"),
-            Filter("genres[Yuri]", "Yuri")
+    private class Genre(name: String, val id: String = "genres[$name]") : Filter.TriState(name)
+
+    // $('select.genres').map((i,el)=>`Genre("${$(el).next().text().trim()}", "${$(el).attr('name')}")`).get().join(',\n')
+    // on http://mangafox.me/search.php
+    override fun getFilterList(): List<Filter<*>> = listOf(
+            Genre("Completed", "is_completed"),
+            Genre("Action"),
+            Genre("Adult"),
+            Genre("Adventure"),
+            Genre("Comedy"),
+            Genre("Doujinshi"),
+            Genre("Drama"),
+            Genre("Ecchi"),
+            Genre("Fantasy"),
+            Genre("Gender Bender"),
+            Genre("Harem"),
+            Genre("Historical"),
+            Genre("Horror"),
+            Genre("Josei"),
+            Genre("Martial Arts"),
+            Genre("Mature"),
+            Genre("Mecha"),
+            Genre("Mystery"),
+            Genre("One Shot"),
+            Genre("Psychological"),
+            Genre("Romance"),
+            Genre("School Life"),
+            Genre("Sci-fi"),
+            Genre("Seinen"),
+            Genre("Shoujo"),
+            Genre("Shoujo Ai"),
+            Genre("Shounen"),
+            Genre("Shounen Ai"),
+            Genre("Slice of Life"),
+            Genre("Smut"),
+            Genre("Sports"),
+            Genre("Supernatural"),
+            Genre("Tragedy"),
+            Genre("Webtoons"),
+            Genre("Yaoi"),
+            Genre("Yuri")
     )
 
 }

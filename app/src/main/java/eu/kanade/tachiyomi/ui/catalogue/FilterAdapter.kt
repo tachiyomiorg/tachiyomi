@@ -9,51 +9,79 @@ import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
-import eu.kanade.tachiyomi.data.source.online.OnlineSource.FilterState
 import android.text.TextWatcher
 import android.text.Editable
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 
 
-class FilterAdapter(val filterStates: List<FilterState>) : RecyclerView.Adapter<FilterAdapter.ViewHolder>() {
-    val states: Array<Any> = Array(filterStates.size, { 0 })
+class FilterAdapter(val filters: List<Filter<*>>) : RecyclerView.Adapter<FilterAdapter.ViewHolder>() {
+    private companion object {
+        const val CHECKBOX = 0
+        const val TRISTATE = 1
+        const val LIST = 2
+        const val TEXT = 3
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilterAdapter.ViewHolder {
         return when (viewType) {
-            Filter.TYPE_LIST -> ViewHolder(TextSpinner(parent.context))
-            Filter.TYPE_TEXT -> ViewHolder(TextEditText(parent.context))
-            else -> ViewHolder(ThreeStateCheckBox(parent.context))
+            LIST -> ViewHolder(TextSpinner(parent.context))
+            TEXT -> ViewHolder(TextEditText(parent.context))
+            else -> ViewHolder(CheckBox(parent.context))
         }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val filterState = filterStates[position];
-        states[position] = filterState.state
-        when (holder.view) {
-            is ThreeStateCheckBox -> {
-                holder.view.position = position
-                holder.view.threeState = filterState.filter.type == Filter.TYPE_IGNORE_INCLUDE_EXCLUDE
-                holder.view.text = filterState.filter.name
-                holder.view.updateButton()
+        val filter = filters[position]
+        when (filter) {
+            is Filter.CheckBox -> {
+                var checkBox = holder.view as CheckBox
+                checkBox.text = filter.name
+                checkBox.isChecked = filter.state
+                val unCheckIcon = VectorDrawableCompat.create(checkBox.getResources(), R.drawable.ic_check_box_outline_blank_24dp, null)
+                val checkIcon = VectorDrawableCompat.create(checkBox.getResources(), R.drawable.ic_check_box_24dp, null)
+                checkBox.setButtonDrawable(if (filter.state) checkIcon else unCheckIcon)
+                checkBox.invalidate()
+                checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+                    filter.state = isChecked
+                    checkBox.setButtonDrawable(if (isChecked) checkIcon else unCheckIcon)
+                    checkBox.invalidate()
+                }
             }
-            is TextSpinner -> {
-                holder.view.textView.text = filterState.filter.name + ":"
-                holder.view.spinner.adapter = ArrayAdapter<Any>(holder.view.context,
-                        android.R.layout.simple_spinner_item, filterState.filter.states)
-                holder.view.spinner.setSelection(filterState.filter.states.indexOf(filterState.state))
-                holder.view.spinner.onItemSelectedListener = object : OnItemSelectedListener {
+            is Filter.TriState -> {
+                var triCheckBox = holder.view as CheckBox
+                triCheckBox.text = filter.name
+                val icons = arrayOf(VectorDrawableCompat.create(triCheckBox.getResources(), R.drawable.ic_check_box_outline_blank_24dp, null),
+                        VectorDrawableCompat.create(triCheckBox.getResources(), R.drawable.ic_check_box_24dp, null),
+                        VectorDrawableCompat.create(triCheckBox.getResources(), R.drawable.ic_check_box_x_24dp, null))
+                triCheckBox.setButtonDrawable(icons[filter.state])
+                triCheckBox.invalidate()
+                triCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
+                    filter.state = (filter.state + 1) % 3
+                    triCheckBox.setButtonDrawable(icons[filter.state])
+                    triCheckBox.invalidate()
+                }
+            }
+            is Filter.List<*> -> {
+                var txtSpin = holder.view as TextSpinner
+                txtSpin.textView.text = filter.name + ":"
+                txtSpin.spinner.adapter = ArrayAdapter<Any>(holder.view.context,
+                        android.R.layout.simple_spinner_item, filter.values)
+                txtSpin.spinner.setSelection(filter.state)
+                txtSpin.spinner.onItemSelectedListener = object : OnItemSelectedListener {
                     override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, pos: Int, id: Long) {
-                        states[position] = filterState.filter.states[pos]
+                        filter.state = pos
                     }
 
                     override fun onNothingSelected(parentView: AdapterView<*>) {
                     }
                 }
             }
-            is TextEditText -> {
-                holder.view.textView.text = filterState.filter.name + ":"
-                holder.view.editText.setText(filterState.state.toString())
-                holder.view.editText.addTextChangedListener(object : TextWatcher {
+            is Filter.Text -> {
+                var txtEdTx = holder.view as TextEditText
+                txtEdTx.textView.text = filter.name + ":"
+                txtEdTx.editText.setText(filter.state)
+                txtEdTx.editText.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable) {
                     }
 
@@ -61,7 +89,7 @@ class FilterAdapter(val filterStates: List<FilterState>) : RecyclerView.Adapter<
                     }
 
                     override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                        states[position] = s
+                        filter.state = s.toString()
                     }
                 })
             }
@@ -69,16 +97,21 @@ class FilterAdapter(val filterStates: List<FilterState>) : RecyclerView.Adapter<
     }
 
     override fun getItemCount(): Int {
-        return filterStates.size
+        return filters.size
     }
 
     override fun getItemViewType(position: Int): Int {
-        return filterStates[position].filter.type
+        return when (filters[position]) {
+            is Filter.CheckBox -> CHECKBOX
+            is Filter.TriState -> TRISTATE
+            is Filter.List<*> -> LIST
+            is Filter.Text -> TEXT
+        }
     }
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
-    class TextSpinner(context: Context?) : LinearLayout(context) {
+    private class TextSpinner(context: Context?) : LinearLayout(context) {
         val textView: TextView = TextView(context)
         val spinner: Spinner = Spinner(context)
 
@@ -88,7 +121,7 @@ class FilterAdapter(val filterStates: List<FilterState>) : RecyclerView.Adapter<
         }
     }
 
-    class TextEditText(context: Context?) : LinearLayout(context) {
+    private class TextEditText(context: Context?) : LinearLayout(context) {
         val textView: TextView = TextView(context)
         val editText: EditText = EditText(context)
 
@@ -97,24 +130,6 @@ class FilterAdapter(val filterStates: List<FilterState>) : RecyclerView.Adapter<
             editText.setSingleLine()
             editText.setImeOptions(EditorInfo.IME_ACTION_DONE);
             addView(editText)
-        }
-    }
-
-    inner class ThreeStateCheckBox(context: Context?, var position: Int = 0, var threeState: Boolean = false) : CheckBox(context) {
-        init {
-            setOnCheckedChangeListener { buttonView, isChecked ->
-                val all = filterStates[position].filter.states
-                states[position] = all[(all.indexOf(states[position]) + 1) % if (threeState) 3 else 2]
-                updateButton()
-            }
-        }
-
-        fun updateButton() {
-            setButtonDrawable(VectorDrawableCompat.create(getResources(),
-                    arrayOf(R.drawable.ic_check_box_outline_blank_24dp, R.drawable.ic_check_box_24dp,
-                            R.drawable.ic_check_box_x_24dp)[filterStates[position].filter.states.indexOf(states[position])],
-                    null))
-            invalidate()
         }
     }
 }

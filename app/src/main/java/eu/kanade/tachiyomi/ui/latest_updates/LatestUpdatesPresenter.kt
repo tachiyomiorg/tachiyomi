@@ -4,14 +4,14 @@ import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.ui.catalogue.CataloguePresenter
 import eu.kanade.tachiyomi.ui.catalogue.Pager
-import eu.kanade.tachiyomi.data.source.online.OnlineSource.FilterState
+import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
 
 /**
  * Presenter of [LatestUpdatesFragment]. Inherit CataloguePresenter.
  */
 class LatestUpdatesPresenter : CataloguePresenter() {
 
-    override fun createPager(query: String, filterStates: List<FilterState>): Pager {
+    override fun createPager(query: String, filters: List<Filter<*>>): Pager {
         return LatestUpdatesPager(source)
     }
 

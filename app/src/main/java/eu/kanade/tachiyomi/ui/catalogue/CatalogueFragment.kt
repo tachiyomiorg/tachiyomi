@@ -14,7 +14,6 @@ import com.f2prateek.rx.preferences.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.online.LoginSource
-import eu.kanade.tachiyomi.data.source.online.OnlineSource.FilterState
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
@@ -453,16 +452,21 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
      * Show the filter dialog for the source.
      */
     private fun showFiltersDialog() {
-        val adapter = FilterAdapter(presenter.filterStates)
-        val show = MaterialDialog.Builder(context)
+        val adapter = FilterAdapter(if (presenter.filters.isEmpty()) presenter.source.getFilterList() // make a copy
+        else presenter.filters)
+        MaterialDialog.Builder(context)
                 .title(R.string.action_set_filter)
                 .adapter(adapter, null)
                 .onPositive() { dialog, which ->
                     showProgressBar()
-                    presenter.setSourceFilter(adapter.states.mapIndexed {
-                        i, state ->
-                        FilterState(presenter.filterStates[i].filter, state)
-                    })
+                    var allDefault = true
+                    for (i in 0..adapter.filters.lastIndex) {
+                        if (adapter.filters[i].state != presenter.source.filters[i].state) {
+                            allDefault = false
+                            break
+                        }
+                    }
+                    presenter.setSourceFilter(if (allDefault) emptyList() else adapter.filters)
                     true
                 }
                 .positiveText(android.R.string.ok)

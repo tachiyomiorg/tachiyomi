@@ -107,30 +107,32 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
 
     override fun latestUpdatesNextPageSelector() = "#show_more_row"
 
-    override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=1${getFilterParams(filterStates)}"
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) = "$baseUrl/search_ajax?name=${Uri.encode(query)}&order_cond=views&order=desc&p=1${getFilterParams(filters)}"
 
-    private fun getFilterParams(filterStates: List<FilterState>): String {
+    private fun getFilterParams(filters: List<Filter<*>>): String {
         var genres = ""
         var completed = ""
-        for (filterState in filterStates) {
-            if (filterState.state != Filter.STATE_IGNORE) {
-                if (filterState.filter.equals(completedFilter))
-                    completed = "&completed=" + if (filterState.state == Filter.STATE_EXCLUDE) "i" else "c"
-                else
-                    genres += (if (filterState.state == Filter.STATE_EXCLUDE) ";e" else ";i") + filterState.filter.id
+        for (filter in filters) {
+            when (filter) {
+                is Status -> if (filter.state != Filter.TriState.STATE_IGNORE) {
+                    completed = "&completed=" + if (filter.state == Filter.TriState.STATE_EXCLUDE) "i" else "c"
+                }
+                is Genre -> if (filter.state != Filter.TriState.STATE_IGNORE) {
+                    genres += (if (filter.state == Filter.TriState.STATE_EXCLUDE) ";e" else ";i") + filter.id
+                }
             }
         }
         return if (genres.isEmpty()) completed else "&genres=$genres&genre_cond=and$completed"
     }
 
-    override fun searchMangaRequest(page: MangasPage, query: String, filterStates: List<FilterState>): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filterStates: List<Filter<*>>): Request {
         if (page.page == 1) {
             page.url = searchMangaInitialUrl(query, filterStates)
         }
         return GET(page.url, headers)
     }
 
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filterStates: List<FilterState>) {
+    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filterStates: List<Filter<*>>) {
         val document = response.asJsoup()
         for (element in document.select(searchMangaSelector())) {
             Manga.create(id).apply {
@@ -308,51 +310,54 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         }
     }
 
-    private val completedFilter = Filter("completed", "Completed")
+    private class Status() : Filter.TriState("Completed")
+    private class Genre(name: String, val id: Int) : Filter.TriState(name)
+
     // [...document.querySelectorAll("#advanced_options div.genre_buttons")].map((el,i) => {
-    //     const onClick=el.getAttribute('onclick');const id=onClick.substr(14,onClick.length-16);return `Filter("${id}", "${el.textContent.trim()}")`
+    //     const onClick=el.getAttribute('onclick');const id=onClick.substr(14,onClick.length-16);return `Genre("${el.textContent.trim()}", ${id})`
     // }).join(',\n')
     // on https://bato.to/search
-    override fun getFilterList(): List<Filter> = listOf(
-            completedFilter,
-            Filter("40", "4-Koma"),
-            Filter("1", "Action"),
-            Filter("2", "Adventure"),
-            Filter("39", "Award Winning"),
-            Filter("3", "Comedy"),
-            Filter("41", "Cooking"),
-            Filter("9", "Doujinshi"),
-            Filter("10", "Drama"),
-            Filter("12", "Ecchi"),
-            Filter("13", "Fantasy"),
-            Filter("15", "Gender Bender"),
-            Filter("17", "Harem"),
-            Filter("20", "Historical"),
-            Filter("22", "Horror"),
-            Filter("34", "Josei"),
-            Filter("27", "Martial Arts"),
-            Filter("30", "Mecha"),
-            Filter("42", "Medical"),
-            Filter("37", "Music"),
-            Filter("4", "Mystery"),
-            Filter("38", "Oneshot"),
-            Filter("5", "Psychological"),
-            Filter("6", "Romance"),
-            Filter("7", "School Life"),
-            Filter("8", "Sci-fi"),
-            Filter("32", "Seinen"),
-            Filter("35", "Shoujo"),
-            Filter("16", "Shoujo Ai"),
-            Filter("33", "Shounen"),
-            Filter("19", "Shounen Ai"),
-            Filter("21", "Slice of Life"),
-            Filter("23", "Smut"),
-            Filter("25", "Sports"),
-            Filter("26", "Supernatural"),
-            Filter("28", "Tragedy"),
-            Filter("36", "Webtoon"),
-            Filter("29", "Yaoi"),
-            Filter("31", "Yuri")
+    override fun getFilterList(): List<Filter<*>> = listOf(
+            Status(),
+            Genre("4-Koma", 40),
+            Genre("Action", 1),
+            Genre("Adventure", 2),
+            Genre("Award Winning", 39),
+            Genre("Comedy", 3),
+            Genre("Cooking", 41),
+            Genre("Doujinshi", 9),
+            Genre("Drama", 10),
+            Genre("Ecchi", 12),
+            Genre("Fantasy", 13),
+            Genre("Gender Bender", 15),
+            Genre("Harem", 17),
+            Genre("Historical", 20),
+            Genre("Horror", 22),
+            Genre("Josei", 34),
+            Genre("Martial Arts", 27),
+            Genre("Mecha", 30),
+            Genre("Medical", 42),
+            Genre("Music", 37),
+            Genre("Mystery", 4),
+            Genre("Oneshot", 38),
+            Genre("Psychological", 5),
+            Genre("Romance", 6),
+            Genre("School Life", 7),
+            Genre("Sci-fi", 8),
+            Genre("Seinen", 32),
+            Genre("Shoujo", 35),
+            Genre("Shoujo Ai", 16),
+            Genre("Shounen", 33),
+            Genre("Shounen Ai", 19),
+            Genre("Slice of Life", 21),
+            Genre("Smut", 23),
+            Genre("Sports", 25),
+            Genre("Supernatural", 26),
+            Genre("Tragedy", 28),
+            Genre("Webtoon", 36),
+            Genre("Yaoi", 29),
+            Genre("Yuri", 31),
+            Genre("[no chapters]", 44)
     )
 
 }

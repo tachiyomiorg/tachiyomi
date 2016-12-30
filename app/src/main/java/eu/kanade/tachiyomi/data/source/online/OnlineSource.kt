@@ -133,11 +133,11 @@ abstract class OnlineSource() : Source {
      *             the current page and the next page url.
      * @param query the search query.
      */
-    open fun fetchSearchManga(page: MangasPage, query: String, filterStates: List<FilterState>): Observable<MangasPage> = client
-            .newCall(searchMangaRequest(page, query, filterStates))
+    open fun fetchSearchManga(page: MangasPage, query: String, filters: List<Filter<*>>): Observable<MangasPage> = client
+            .newCall(searchMangaRequest(page, query, filters))
             .asObservableSuccess()
             .map { response ->
-                searchMangaParse(response, page, query, filterStates)
+                searchMangaParse(response, page, query, filters)
                 page
             }
 
@@ -148,9 +148,9 @@ abstract class OnlineSource() : Source {
      * @param page the page object.
      * @param query the search query.
      */
-    open protected fun searchMangaRequest(page: MangasPage, query: String, filterStates: List<FilterState>): Request {
+    open protected fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter<*>>): Request {
         if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query, filterStates)
+            page.url = searchMangaInitialUrl(query, filters)
         }
         return GET(page.url, headers)
     }
@@ -160,7 +160,7 @@ abstract class OnlineSource() : Source {
      *
      * @param query the search query.
      */
-    abstract protected fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>): String
+    abstract protected fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>): String
 
     /**
      * Parse the response from the site. It should add a list of manga and the absolute url to the
@@ -170,7 +170,7 @@ abstract class OnlineSource() : Source {
      * @param page the page object to be filled.
      * @param query the search query.
      */
-    abstract protected fun searchMangaParse(response: Response, page: MangasPage, query: String, filterStates: List<FilterState>)
+    abstract protected fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>)
 
     /**
      * Returns an observable containing a page with a list of latest manga.
@@ -460,27 +460,20 @@ abstract class OnlineSource() : Source {
      * @param manga the manga of the chapter.
      */
     open fun prepareNewChapter(chapter: Chapter, manga: Manga) {
-
     }
 
-    data class Filter(val id: String, val name: String, val type: Int = TYPE_IGNORE_INCLUDE_EXCLUDE,
-                      val states: Array<Any> = when (type) {
-                          TYPE_IGNORE_INCLUDE -> arrayOf(STATE_IGNORE, STATE_INCLUDE);
-                          TYPE_IGNORE_INCLUDE_EXCLUDE -> arrayOf(STATE_IGNORE, STATE_INCLUDE, STATE_EXCLUDE)
-                          else -> emptyArray()
-                      }, val defaultState: Any = if (states.isEmpty()) "" else states.first()) {
-        companion object {
-            const val TYPE_IGNORE_INCLUDE = 0
-            const val TYPE_IGNORE_INCLUDE_EXCLUDE = 1
-            const val TYPE_LIST = 2
-            const val TYPE_TEXT = 3
-            const val STATE_IGNORE = 0
-            const val STATE_INCLUDE = 1
-            const val STATE_EXCLUDE = 2
+    abstract sealed class Filter<T>(val name: String, var state: T) {
+        abstract class List<V>(name: String, val values: Array<V>, state: Int = 0) : Filter<Int>(name, state)
+        abstract class Text(name: String, state: String = "") : Filter<String>(name, state)
+        abstract class CheckBox(name: String, state: Boolean = false) : Filter<Boolean>(name, state)
+        abstract class TriState(name: String, state: Int = STATE_IGNORE) : Filter<Int>(name, state) {
+            companion object {
+                const val STATE_IGNORE = 0
+                const val STATE_INCLUDE = 1
+                const val STATE_EXCLUDE = 2
+            }
         }
     }
 
-    data class FilterState(val filter: Filter, val state: Any)
-
-    open fun getFilterList(): List<Filter> = emptyList()
+    open fun getFilterList(): List<Filter<*>> = emptyList()
 }

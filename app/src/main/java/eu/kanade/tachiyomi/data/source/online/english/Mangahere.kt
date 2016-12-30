@@ -47,7 +47,7 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector() = "div.next-page > a.next"
 
-    override fun searchMangaInitialUrl(query: String, filterStates: List<FilterState>) = "$baseUrl/search.php?name=$query&page=1&sort=views&order=za&${filterStates.map { it.filter.id + "=" + it.state }.joinToString("&")}&advopts=1"
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) = "$baseUrl/search.php?name=$query&page=1&sort=views&order=za&${filters.map { (it as Genre).id + "=" + if (it.id == "is_completed") arrayOf("", "1", "0")[it.state] else it.state }.joinToString("&")}&advopts=1"
 
     override fun searchMangaSelector() = "div.result_search > dl:has(dt)"
 
@@ -82,12 +82,12 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
 
         val urlElement = parentEl.select("a").first()
 
-        var volume = parentEl.select("span.mr6")?.first()?.text()?.trim()?:""
+        var volume = parentEl.select("span.mr6")?.first()?.text()?.trim() ?: ""
         if (volume.length > 0) {
             volume = " - " + volume
         }
 
-        var title = parentEl?.textNodes()?.last()?.text()?.trim()?:""
+        var title = parentEl?.textNodes()?.last()?.text()?.trim() ?: ""
         if (title.length > 0) {
             title = " - " + title
         }
@@ -131,42 +131,44 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
 
     override fun imageUrlParse(document: Document) = document.getElementById("image").attr("src")
 
-    // [...document.querySelectorAll("select[id^='genres'")].map((el,i) => `Filter("${el.getAttribute('name')}", "${el.nextSibling.nextSibling.textContent.trim()}")`).join(',\n')
+    private class Genre(name: String, val id: String = "genres[$name]") : Filter.TriState(name)
+
+    // [...document.querySelectorAll("select[id^='genres'")].map((el,i) => `Genre("${el.nextSibling.nextSibling.textContent.trim()}", "${el.getAttribute('name')}")`).join(',\n')
     // http://www.mangahere.co/advsearch.htm
-    override fun getFilterList(): List<Filter> = listOf(
-            Filter("is_completed", "Completed", Filter.TYPE_IGNORE_INCLUDE_EXCLUDE, arrayOf("", "1", "0")),
-            Filter("genres[Action]", "Action"),
-            Filter("genres[Adventure]", "Adventure"),
-            Filter("genres[Comedy]", "Comedy"),
-            Filter("genres[Doujinshi]", "Doujinshi"),
-            Filter("genres[Drama]", "Drama"),
-            Filter("genres[Ecchi]", "Ecchi"),
-            Filter("genres[Fantasy]", "Fantasy"),
-            Filter("genres[Gender Bender]", "Gender Bender"),
-            Filter("genres[Harem]", "Harem"),
-            Filter("genres[Historical]", "Historical"),
-            Filter("genres[Horror]", "Horror"),
-            Filter("genres[Josei]", "Josei"),
-            Filter("genres[Martial Arts]", "Martial Arts"),
-            Filter("genres[Mature]", "Mature"),
-            Filter("genres[Mecha]", "Mecha"),
-            Filter("genres[Mystery]", "Mystery"),
-            Filter("genres[One Shot]", "One Shot"),
-            Filter("genres[Psychological]", "Psychological"),
-            Filter("genres[Romance]", "Romance"),
-            Filter("genres[School Life]", "School Life"),
-            Filter("genres[Sci-fi]", "Sci-fi"),
-            Filter("genres[Seinen]", "Seinen"),
-            Filter("genres[Shoujo]", "Shoujo"),
-            Filter("genres[Shoujo Ai]", "Shoujo Ai"),
-            Filter("genres[Shounen]", "Shounen"),
-            Filter("genres[Shounen Ai]", "Shounen Ai"),
-            Filter("genres[Slice of Life]", "Slice of Life"),
-            Filter("genres[Sports]", "Sports"),
-            Filter("genres[Supernatural]", "Supernatural"),
-            Filter("genres[Tragedy]", "Tragedy"),
-            Filter("genres[Yaoi]", "Yaoi"),
-            Filter("genres[Yuri]", "Yuri")
+    override fun getFilterList(): List<Filter<*>> = listOf(
+            Genre("Completed", "is_completed"),
+            Genre("Action"),
+            Genre("Adventure"),
+            Genre("Comedy"),
+            Genre("Doujinshi"),
+            Genre("Drama"),
+            Genre("Ecchi"),
+            Genre("Fantasy"),
+            Genre("Gender Bender"),
+            Genre("Harem"),
+            Genre("Historical"),
+            Genre("Horror"),
+            Genre("Josei"),
+            Genre("Martial Arts"),
+            Genre("Mature"),
+            Genre("Mecha"),
+            Genre("Mystery"),
+            Genre("One Shot"),
+            Genre("Psychological"),
+            Genre("Romance"),
+            Genre("School Life"),
+            Genre("Sci-fi"),
+            Genre("Seinen"),
+            Genre("Shoujo"),
+            Genre("Shoujo Ai"),
+            Genre("Shounen"),
+            Genre("Shounen Ai"),
+            Genre("Slice of Life"),
+            Genre("Sports"),
+            Genre("Supernatural"),
+            Genre("Tragedy"),
+            Genre("Yaoi"),
+            Genre("Yuri")
     )
 
 }
