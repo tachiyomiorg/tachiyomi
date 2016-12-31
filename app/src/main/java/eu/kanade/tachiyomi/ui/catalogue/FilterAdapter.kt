@@ -46,14 +46,9 @@ class FilterAdapter(val filters: List<Filter<*>>) : RecyclerView.Adapter<FilterA
                 var checkBox = holder.view as CheckBox
                 checkBox.text = filter.name
                 checkBox.isChecked = filter.state
-                val unCheckIcon = VectorDrawableCompat.create(checkBox.getResources(), R.drawable.ic_check_box_outline_blank_24dp, null)
-                val checkIcon = VectorDrawableCompat.create(checkBox.getResources(), R.drawable.ic_check_box_24dp, null)
-                checkBox.setButtonDrawable(if (filter.state) checkIcon else unCheckIcon)
-                checkBox.invalidate()
+                checkBox.setButtonDrawable(VectorDrawableCompat.create(checkBox.getResources(), R.drawable.ic_check_box_set, null))
                 checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
                     filter.state = isChecked
-                    checkBox.setButtonDrawable(if (isChecked) checkIcon else unCheckIcon)
-                    checkBox.invalidate()
                 }
             }
             is Filter.TriState -> {

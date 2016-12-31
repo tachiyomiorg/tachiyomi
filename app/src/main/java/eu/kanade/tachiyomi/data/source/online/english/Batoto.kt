@@ -1,8 +1,6 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
-import android.net.Uri
 import android.text.Html
-import android.util.Log
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.GET
@@ -111,11 +109,11 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
 
     override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) = searchMangaUrl(query, filters, 1)
 
-    private fun searchMangaUrl(query: String, filters: List<Filter<*>>, page: Int): String {
+    private fun searchMangaUrl(query: String, filterStates: List<Filter<*>>, page: Int): String {
         val url = HttpUrl.parse("$baseUrl/search_ajax").newBuilder()
-        if(!query.isEmpty()) url.addQueryParameter("name", "query").addQueryParameter("name_cond", "c")
+        if (!query.isEmpty()) url.addQueryParameter("name", query).addQueryParameter("name_cond", "c")
         var genres = ""
-        for (filter in filters) {
+        for (filter in if (filterStates.isEmpty()) filters else filterStates) {
             when (filter) {
                 is Status -> if (filter.state != Filter.TriState.STATE_IGNORE) {
                     url.addQueryParameter("completed", if (filter.state == Filter.TriState.STATE_EXCLUDE) "i" else "c")
@@ -138,7 +136,6 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         }
         if (!genres.isEmpty()) url.addQueryParameter("genres", genres)
         url.addQueryParameter("p", page.toString())
-        Log.d("ciao", url.toString())
         return url.toString()
     }
 
@@ -348,7 +345,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
             Flag("Exclude mature", "mature", "m", ""),
             Filter.Header(""),
             ListField("Order by", "order_cond", arrayOf(ListValue("Title", "title"), ListValue("Author", "author"), ListValue("Artist", "artist"), ListValue("Rating", "rating"), ListValue("Views", "views"), ListValue("Last Update", "update")), 4),
-            Flag("Ascendig order", "order", "asc", "desc"),
+            Flag("Ascending order", "order", "asc", "desc"),
             Filter.Header("Genres"),
             ListField("Inclusion mode", "genre_cond", arrayOf(ListValue("And (all selected genres)", "and"), ListValue("Or (any selected genres) ", "or"))),
             Genre("4-Koma", 40),

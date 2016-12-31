@@ -69,7 +69,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
         if (!query.isEmpty()) url.addQueryParameter("keyword", query)
         var genres: String? = null
         var genresNo: String? = null
-        for (filter in filters) {
+        for (filter in if (filters.isEmpty()) this@Mangasee.filters else filters) {
             when (filter) {
                 is Sort -> filter.values[filter.state].keys.forEachIndexed { i, s ->
                     url.addQueryParameter(s, filter.values[filter.state].values[i])

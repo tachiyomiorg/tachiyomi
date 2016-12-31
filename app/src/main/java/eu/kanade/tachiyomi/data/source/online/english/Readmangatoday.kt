@@ -67,19 +67,18 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
 
         val builder = okhttp3.FormBody.Builder()
         builder.add("manga-name", query)
-        builder.add("type", "all")
-        var status = 0
-        for (filter in filters) {
+        for (filter in if (filters.isEmpty()) this@Readmangatoday.filters else filters) {
             when (filter) {
-                is Status -> status = filter.state
-                is Genre -> if (filter.state == Filter.TriState.STATE_INCLUDE)
-                    builder.add("include[]", filter.id.toString())
-                else if (filter.state == Filter.TriState.STATE_EXCLUDE)
-                    builder.add("exclude[]", filter.id.toString())
+                is TextField -> builder.add(filter.key, filter.state)
+                is Type -> builder.add("type", arrayOf("all", "japanese", "korean", "chinese")[filter.state])
+                is Status -> builder.add("status", arrayOf("both", "completed", "ongoing")[filter.state])
+                is Genre -> when (filter.state) {
+                    Filter.TriState.STATE_INCLUDE -> builder.add("include[]", filter.id.toString())
+                    Filter.TriState.STATE_EXCLUDE -> builder.add("exclude[]", filter.id.toString())
+
+                }
             }
         }
-        builder.add("status", arrayOf("both", "completed", "ongoing")[status])
-
         return POST(page.url, headers, builder.build())
     }
 
@@ -159,11 +158,17 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
 
     private class Status() : Filter.TriState("Completed")
     private class Genre(name: String, val id: Int) : Filter.TriState(name)
+    private class TextField(name: String, val key: String) : Filter.Text(name)
+    private class Type() : Filter.List<String>("Type", arrayOf("All", "Japanese Manga", "Korean Manhwa", "Chinese Manhua"))
 
     // [...document.querySelectorAll("ul.manga-cat span")].map(el => `Genre("${el.nextSibling.textContent.trim()}", ${el.getAttribute('data-id')})`).join(',\n')
     // http://www.readmanga.today/advanced-search
     override fun getFilterList(): List<Filter<*>> = listOf(
+            TextField("Author", "author-name"),
+            TextField("Artist", "artist-name"),
+            Type(),
             Status(),
+            Filter.Header("Genres"),
             Genre("Action", 2),
             Genre("Adventure", 4),
             Genre("Comedy", 5),

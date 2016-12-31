@@ -5,6 +5,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import eu.kanade.tachiyomi.util.asJsoup
+import okhttp3.HttpUrl
 import okhttp3.Response
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
@@ -45,7 +46,18 @@ class Mangafox(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector() = "a:has(span.next)"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) = "$baseUrl/search.php?name_method=cw&advopts=1&order=za&sort=views&name=$query&page=1&${filters.map { (it as Genre).id + "=" + it.state }.joinToString("&")}"
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>): String {
+        val url = HttpUrl.parse("$baseUrl/search.php?name_method=cw&author_method=cw&artist_method=cw&advopts=1").newBuilder().addQueryParameter("name", query)
+        for (filter in if (filters.isEmpty()) this@Mangafox.filters else filters) {
+            when (filter) {
+                is Genre -> url.addQueryParameter(filter.id, filter.state.toString())
+                is TextField -> url.addQueryParameter(filter.key, filter.state)
+                is ListField -> url.addQueryParameter(filter.key, filter.values[filter.state].value)
+                is Order -> url.addQueryParameter("order", if (filter.state) "az" else "za")
+            }
+        }
+        return url.toString()
+    }
 
     override fun searchMangaSelector() = "div#mangalist > ul.list > li"
 
@@ -127,12 +139,26 @@ class Mangafox(override val id: Int) : ParsedOnlineSource() {
 
     override fun imageUrlParse(document: Document) = document.getElementById("image").attr("src")
 
+    private data class ListValue(val name: String, val value: String) {
+        override fun toString(): String = name
+    }
+
     private class Genre(name: String, val id: String = "genres[$name]") : Filter.TriState(name)
+    private class TextField(name: String, val key: String) : Filter.Text(name)
+    private class ListField(name: String, val key: String, values: Array<ListValue>, state: Int = 0) : Filter.List<ListValue>(name, values, state)
+    private class Order() : Filter.CheckBox("Ascending order")
 
     // $('select.genres').map((i,el)=>`Genre("${$(el).next().text().trim()}", "${$(el).attr('name')}")`).get().join(',\n')
     // on http://mangafox.me/search.php
     override fun getFilterList(): List<Filter<*>> = listOf(
+            TextField("Author", "author"),
+            TextField("Artist", "artist"),
+            ListField("Type", "type", arrayOf(ListValue("Any", ""), ListValue("Japanese Manga", "1"), ListValue("Korean Manhwa", "2"), ListValue("Chinese Manhua", "3"))),
             Genre("Completed", "is_completed"),
+            Filter.Header(""),
+            ListField("Order by", "sort", arrayOf(ListValue("Series name", "name"), ListValue("Rating", "rating"), ListValue("Views", "views"), ListValue("Total chapters", "total_chapters"), ListValue("Last chapter", "last_chapter_time")), 2),
+            Order(),
+            Filter.Header("Genres"),
             Genre("Action"),
             Genre("Adult"),
             Genre("Adventure"),
