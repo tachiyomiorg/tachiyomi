@@ -1,9 +1,9 @@
 package eu.kanade.tachiyomi.data.source.online.russian
 
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.model.SChapter
+import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.Response
@@ -47,21 +47,21 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaSelector() = popularMangaSelector()
 
-    override fun popularMangaFromElement(element: Element, manga: Manga) {
+    override fun popularMangaFromElement(element: Element, manga: SManga) {
         element.select("h2 > a").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text()
         }
     }
 
-    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
+    override fun latestUpdatesFromElement(element: Element, manga: SManga) {
         element.select("a:nth-child(1)").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text()
         }
     }
 
-    override fun searchMangaFromElement(element: Element, manga: Manga) {
+    override fun searchMangaFromElement(element: Element, manga: SManga) {
         popularMangaFromElement(element, manga)
     }
 
@@ -76,7 +76,7 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
     override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>) {
         val document = response.asJsoup()
         for (element in document.select(searchMangaSelector())) {
-            Manga.create(id).apply {
+            SManga.create().apply {
                 searchMangaFromElement(element, this)
                 page.mangas.add(this)
             }
@@ -98,7 +98,7 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
         }
     }
 
-    override fun mangaDetailsParse(document: Document, manga: Manga) {
+    override fun mangaDetailsParse(document: Document, manga: SManga) {
         val infoElement = document.select("table.mangatitle").first()
         val descElement = document.select("div#description").first()
         val imgElement = document.select("img#cover").first()
@@ -112,15 +112,15 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
 
     private fun parseStatus(element: String): Int {
         when {
-            element.contains("перевод завершен") -> return Manga.COMPLETED
-            element.contains("перевод продолжается") -> return Manga.ONGOING
-            else -> return Manga.UNKNOWN
+            element.contains("перевод завершен") -> return SManga.COMPLETED
+            element.contains("перевод продолжается") -> return SManga.ONGOING
+            else -> return SManga.UNKNOWN
         }
     }
 
     override fun chapterListSelector() = "table.table_cha tr:gt(1)"
 
-    override fun chapterFromElement(element: Element, chapter: Chapter) {
+    override fun chapterFromElement(element: Element, chapter: SChapter) {
         val urlElement = element.select("a").first()
 
         chapter.setUrlWithoutDomain(urlElement.attr("href"))

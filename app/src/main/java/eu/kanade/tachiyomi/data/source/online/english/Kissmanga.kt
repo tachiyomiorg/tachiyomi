@@ -1,11 +1,11 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.model.SChapter
+import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
@@ -36,14 +36,14 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesSelector() = "table.listing tr:gt(1)"
 
-    override fun popularMangaFromElement(element: Element, manga: Manga) {
+    override fun popularMangaFromElement(element: Element, manga: SManga) {
         element.select("td a:eq(0)").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text()
         }
     }
 
-    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
+    override fun latestUpdatesFromElement(element: Element, manga: SManga) {
         popularMangaFromElement(element, manga)
     }
 
@@ -74,13 +74,13 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaSelector() = popularMangaSelector()
 
-    override fun searchMangaFromElement(element: Element, manga: Manga) {
+    override fun searchMangaFromElement(element: Element, manga: SManga) {
         popularMangaFromElement(element, manga)
     }
 
     override fun searchMangaNextPageSelector() = null
 
-    override fun mangaDetailsParse(document: Document, manga: Manga) {
+    override fun mangaDetailsParse(document: Document, manga: SManga) {
         val infoElement = document.select("div.barContent").first()
 
         manga.author = infoElement.select("p:has(span:contains(Author:)) > a").first()?.text()
@@ -91,14 +91,14 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
     }
 
     fun parseStatus(status: String) = when {
-        status.contains("Ongoing") -> Manga.ONGOING
-        status.contains("Completed") -> Manga.COMPLETED
-        else -> Manga.UNKNOWN
+        status.contains("Ongoing") -> SManga.ONGOING
+        status.contains("Completed") -> SManga.COMPLETED
+        else -> SManga.UNKNOWN
     }
 
     override fun chapterListSelector() = "table.listing tr:gt(1)"
 
-    override fun chapterFromElement(element: Element, chapter: Chapter) {
+    override fun chapterFromElement(element: Element, chapter: SChapter) {
         val urlElement = element.select("a").first()
 
         chapter.setUrlWithoutDomain(urlElement.attr("href"))
@@ -108,7 +108,7 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
         } ?: 0
     }
 
-    override fun pageListRequest(chapter: Chapter) = POST(baseUrl + chapter.url, headers)
+    override fun pageListRequest(chapter: SChapter) = POST(baseUrl + chapter.url, headers)
 
     override fun pageListParse(response: Response, pages: MutableList<Page>) {
         //language=RegExp

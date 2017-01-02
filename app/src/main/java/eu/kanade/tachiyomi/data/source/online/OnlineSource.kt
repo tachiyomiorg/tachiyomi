@@ -2,8 +2,6 @@ package eu.kanade.tachiyomi.data.source.online
 
 import android.net.Uri
 import eu.kanade.tachiyomi.data.cache.ChapterCache
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.NetworkHelper
 import eu.kanade.tachiyomi.data.network.asObservableSuccess
@@ -12,6 +10,8 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.model.SChapter
+import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.util.UrlUtil
 import okhttp3.Headers
 import okhttp3.OkHttpClient
@@ -23,7 +23,7 @@ import uy.kohesive.injekt.injectLazy
 /**
  * A simple implementation for sources from a website.
  */
-abstract class OnlineSource() : Source {
+abstract class OnlineSource : Source {
 
     /**
      * Network service.
@@ -58,7 +58,7 @@ abstract class OnlineSource() : Source {
     /**
      * Headers used for requests.
      */
-    val headers by lazy { headersBuilder().build() }
+    val headers: Headers by lazy { headersBuilder().build() }
 
     /**
      * Genre filters.
@@ -209,11 +209,11 @@ abstract class OnlineSource() : Source {
      *
      * @param manga the manga to be updated.
      */
-    override fun fetchMangaDetails(manga: Manga): Observable<Manga> = client
+    override fun fetchMangaDetails(manga: SManga): Observable<SManga> = client
             .newCall(mangaDetailsRequest(manga))
             .asObservableSuccess()
             .map { response ->
-                Manga.create(manga.url, id).apply {
+                SManga.create().apply {
                     mangaDetailsParse(response, this)
                     initialized = true
                 }
@@ -225,7 +225,7 @@ abstract class OnlineSource() : Source {
      *
      * @param manga the manga to be updated.
      */
-    open fun mangaDetailsRequest(manga: Manga): Request {
+    open fun mangaDetailsRequest(manga: SManga): Request {
         return GET(baseUrl + manga.url, headers)
     }
 
@@ -235,7 +235,7 @@ abstract class OnlineSource() : Source {
      * @param response the response from the site.
      * @param manga the manga whose fields have to be filled.
      */
-    abstract protected fun mangaDetailsParse(response: Response, manga: Manga)
+    abstract protected fun mangaDetailsParse(response: Response, manga: SManga)
 
     /**
      * Returns an observable with the updated chapter list for a manga. Normally it's not needed to
@@ -243,11 +243,11 @@ abstract class OnlineSource() : Source {
      *
      * @param manga the manga to look for chapters.
      */
-    override fun fetchChapterList(manga: Manga): Observable<List<Chapter>> = client
+    override fun fetchChapterList(manga: SManga): Observable<List<SChapter>> = client
             .newCall(chapterListRequest(manga))
             .asObservableSuccess()
             .map { response ->
-                mutableListOf<Chapter>().apply {
+                mutableListOf<SChapter>().apply {
                     chapterListParse(response, this)
                     if (isEmpty()) {
                         throw Exception("No chapters found")
@@ -261,7 +261,7 @@ abstract class OnlineSource() : Source {
      *
      * @param manga the manga to look for chapters.
      */
-    open protected fun chapterListRequest(manga: Manga): Request {
+    open protected fun chapterListRequest(manga: SManga): Request {
         return GET(baseUrl + manga.url, headers)
     }
 
@@ -271,7 +271,7 @@ abstract class OnlineSource() : Source {
      * @param response the response from the site.
      * @param chapters the chapter list to be filled.
      */
-    abstract protected fun chapterListParse(response: Response, chapters: MutableList<Chapter>)
+    abstract protected fun chapterListParse(response: Response, chapters: MutableList<SChapter>)
 
     /**
      * Returns an observable with the page list for a chapter. It tries to return the page list from
@@ -279,7 +279,7 @@ abstract class OnlineSource() : Source {
      *
      * @param chapter the chapter whose page list has to be fetched.
      */
-    final override fun fetchPageList(chapter: Chapter): Observable<List<Page>> = chapterCache
+    final override fun fetchPageList(chapter: SChapter): Observable<List<Page>> = chapterCache
             .getPageListFromCache(getChapterCacheKey(chapter))
             .onErrorResumeNext { fetchPageListFromNetwork(chapter) }
 
@@ -289,7 +289,7 @@ abstract class OnlineSource() : Source {
      *
      * @param chapter the chapter whose page list has to be fetched.
      */
-    open fun fetchPageListFromNetwork(chapter: Chapter): Observable<List<Page>> = client
+    open fun fetchPageListFromNetwork(chapter: SChapter): Observable<List<Page>> = client
             .newCall(pageListRequest(chapter))
             .asObservableSuccess()
             .map { response ->
@@ -307,7 +307,7 @@ abstract class OnlineSource() : Source {
      *
      * @param chapter the chapter whose page list has to be fetched
      */
-    open protected fun pageListRequest(chapter: Chapter): Request {
+    open protected fun pageListRequest(chapter: SChapter): Request {
         return GET(baseUrl + chapter.url, headers)
     }
 
@@ -322,7 +322,7 @@ abstract class OnlineSource() : Source {
     /**
      * Returns the key for the page list to be stored in [ChapterCache].
      */
-    private fun getChapterCacheKey(chapter: Chapter) = "$id${chapter.url}"
+    private fun getChapterCacheKey(chapter: SChapter) = "$id${chapter.url}"
 
     /**
      * Returns an observable with the page containing the source url of the image. If there's any
@@ -437,17 +437,17 @@ abstract class OnlineSource() : Source {
             .filter { it.imageUrl.isNullOrEmpty() }
             .concatMap { fetchImageUrl(it) }
 
-    fun savePageList(chapter: Chapter, pages: List<Page>?) {
+    fun savePageList(chapter: SChapter, pages: List<Page>?) {
         if (pages != null) {
             chapterCache.putPageListToCache(getChapterCacheKey(chapter), pages)
         }
     }
 
-    fun Chapter.setUrlWithoutDomain(url: String) {
+    fun SChapter.setUrlWithoutDomain(url: String) {
         this.url = UrlUtil.getPath(url)
     }
 
-    fun Manga.setUrlWithoutDomain(url: String) {
+    fun SManga.setUrlWithoutDomain(url: String) {
         this.url = UrlUtil.getPath(url)
     }
 
@@ -459,7 +459,7 @@ abstract class OnlineSource() : Source {
      * @param chapter the chapter to be added.
      * @param manga the manga of the chapter.
      */
-    open fun prepareNewChapter(chapter: Chapter, manga: Manga) {
+    open fun prepareNewChapter(chapter: SChapter, manga: SManga) {
     }
 
     sealed class Filter<T>(val name: String, var state: T) {

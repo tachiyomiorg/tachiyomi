@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.data.source
 
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.model.SChapter
+import eu.kanade.tachiyomi.data.source.model.SManga
 import rx.Observable
 
 /**
@@ -25,21 +25,21 @@ interface Source {
      *
      * @param manga the manga to update.
      */
-    fun fetchMangaDetails(manga: Manga): Observable<Manga>
+    fun fetchMangaDetails(manga: SManga): Observable<SManga>
 
     /**
      * Returns an observable with all the available chapters for a manga.
      *
      * @param manga the manga to update.
      */
-    fun fetchChapterList(manga: Manga): Observable<List<Chapter>>
+    fun fetchChapterList(manga: SManga): Observable<List<SChapter>>
 
     /**
      * Returns an observable with the list of pages a chapter has.
      *
      * @param chapter the chapter.
      */
-    fun fetchPageList(chapter: Chapter): Observable<List<Page>>
+    fun fetchPageList(chapter: SChapter): Observable<List<Page>>
 
     /**
      * Returns an observable with the path of the image.

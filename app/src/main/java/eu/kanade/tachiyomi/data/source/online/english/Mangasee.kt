@@ -1,10 +1,10 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.model.SChapter
+import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.FormBody
@@ -45,7 +45,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
     override fun popularMangaParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(popularMangaSelector())) {
-            Manga.create(id).apply {
+            SManga.create().apply {
                 popularMangaFromElement(element, this)
                 page.mangas.add(this)
             }
@@ -54,7 +54,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
         page.nextPageUrl = page.url
     }
 
-    override fun popularMangaFromElement(element: Element, manga: Manga) {
+    override fun popularMangaFromElement(element: Element, manga: SManga) {
         element.select("a.resultLink").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text()
@@ -110,7 +110,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
     override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>) {
         val document = response.asJsoup()
         for (element in document.select(popularMangaSelector())) {
-            Manga.create(id).apply {
+            SManga.create().apply {
                 popularMangaFromElement(element, this)
                 page.mangas.add(this)
             }
@@ -119,7 +119,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
         page.nextPageUrl = page.url
     }
 
-    override fun searchMangaFromElement(element: Element, manga: Manga) {
+    override fun searchMangaFromElement(element: Element, manga: SManga) {
         element.select("a.resultLink").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text()
@@ -129,7 +129,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
     // Not used, overrides parent.
     override fun searchMangaNextPageSelector() = ""
 
-    override fun mangaDetailsParse(document: Document, manga: Manga) {
+    override fun mangaDetailsParse(document: Document, manga: SManga) {
         val detailElement = document.select("div.well > div.row").first()
 
         manga.author = detailElement.select("a[href^=/search/?author=]").first()?.text()
@@ -140,14 +140,14 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
     }
 
     private fun parseStatus(status: String) = when {
-        status.contains("Ongoing (Scan)") -> Manga.ONGOING
-        status.contains("Complete (Scan)") -> Manga.COMPLETED
-        else -> Manga.UNKNOWN
+        status.contains("Ongoing (Scan)") -> SManga.ONGOING
+        status.contains("Complete (Scan)") -> SManga.COMPLETED
+        else -> SManga.UNKNOWN
     }
 
     override fun chapterListSelector() = "div.chapter-list > a"
 
-    override fun chapterFromElement(element: Element, chapter: Chapter) {
+    override fun chapterFromElement(element: Element, chapter: SChapter) {
         val urlElement = element.select("a").first()
 
         chapter.setUrlWithoutDomain(urlElement.attr("href"))
@@ -267,7 +267,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
     override fun latestUpdatesParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(latestUpdatesSelector())) {
-            Manga.create(id).apply {
+            SManga.create().apply {
                 latestUpdatesFromElement(element, this)
                 page.mangas.add(this)
             }
@@ -276,7 +276,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
         page.nextPageUrl = page.url
     }
 
-    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
+    override fun latestUpdatesFromElement(element: Element, manga: SManga) {
         element.select("a.latestSeries").first().let {
             val chapterUrl = it.attr("href")
             val indexOfMangaUrl = chapterUrl.indexOf("-chapter-")

@@ -1,9 +1,9 @@
 package eu.kanade.tachiyomi.data.source.online
 
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.model.SChapter
+import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.Response
 import org.jsoup.nodes.Document
@@ -12,7 +12,7 @@ import org.jsoup.nodes.Element
 /**
  * A simple implementation for sources from a website using Jsoup, an HTML parser.
  */
-abstract class ParsedOnlineSource() : OnlineSource() {
+abstract class ParsedOnlineSource : OnlineSource() {
 
     /**
      * Parse the response from the site and fills [page].
@@ -23,7 +23,7 @@ abstract class ParsedOnlineSource() : OnlineSource() {
     override fun popularMangaParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(popularMangaSelector())) {
-            Manga.create(id).apply {
+            SManga.create().apply {
                 popularMangaFromElement(element, this)
                 page.mangas.add(this)
             }
@@ -46,7 +46,7 @@ abstract class ParsedOnlineSource() : OnlineSource() {
      * @param element an element obtained from [popularMangaSelector].
      * @param manga the manga to fill.
      */
-    abstract protected fun popularMangaFromElement(element: Element, manga: Manga)
+    abstract protected fun popularMangaFromElement(element: Element, manga: SManga)
 
     /**
      * Returns the Jsoup selector that returns the <a> tag linking to the next page, or null if
@@ -64,7 +64,7 @@ abstract class ParsedOnlineSource() : OnlineSource() {
     override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>) {
         val document = response.asJsoup()
         for (element in document.select(searchMangaSelector())) {
-            Manga.create(id).apply {
+            SManga.create().apply {
                 searchMangaFromElement(element, this)
                 page.mangas.add(this)
             }
@@ -87,7 +87,7 @@ abstract class ParsedOnlineSource() : OnlineSource() {
      * @param element an element obtained from [searchMangaSelector].
      * @param manga the manga to fill.
      */
-    abstract protected fun searchMangaFromElement(element: Element, manga: Manga)
+    abstract protected fun searchMangaFromElement(element: Element, manga: SManga)
 
     /**
      * Returns the Jsoup selector that returns the <a> tag linking to the next page, or null if
@@ -101,7 +101,7 @@ abstract class ParsedOnlineSource() : OnlineSource() {
     override fun latestUpdatesParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(latestUpdatesSelector())) {
-            Manga.create(id).apply {
+            SManga.create().apply {
                 latestUpdatesFromElement(element, this)
                 page.mangas.add(this)
             }
@@ -120,7 +120,7 @@ abstract class ParsedOnlineSource() : OnlineSource() {
     /**
      * Fills [manga] with the given [element]. For latest updates.
      */
-    abstract protected fun latestUpdatesFromElement(element: Element, manga: Manga)
+    abstract protected fun latestUpdatesFromElement(element: Element, manga: SManga)
 
     /**
      * Returns the Jsoup selector that returns the <a> tag, like [popularMangaNextPageSelector].
@@ -133,7 +133,7 @@ abstract class ParsedOnlineSource() : OnlineSource() {
      * @param response the response from the site.
      * @param manga the manga to fill.
      */
-    override fun mangaDetailsParse(response: Response, manga: Manga) {
+    override fun mangaDetailsParse(response: Response, manga: SManga) {
         mangaDetailsParse(response.asJsoup(), manga)
     }
 
@@ -143,7 +143,7 @@ abstract class ParsedOnlineSource() : OnlineSource() {
      * @param document the parsed document.
      * @param manga the manga to fill.
      */
-    abstract protected fun mangaDetailsParse(document: Document, manga: Manga)
+    abstract protected fun mangaDetailsParse(document: Document, manga: SManga)
 
     /**
      * Parse the response from the site and fills the chapter list.
@@ -151,11 +151,11 @@ abstract class ParsedOnlineSource() : OnlineSource() {
      * @param response the response from the site.
      * @param chapters the list of chapters to fill.
      */
-    override fun chapterListParse(response: Response, chapters: MutableList<Chapter>) {
+    override fun chapterListParse(response: Response, chapters: MutableList<SChapter>) {
         val document = response.asJsoup()
 
         for (element in document.select(chapterListSelector())) {
-            Chapter.create().apply {
+            SChapter.create().apply {
                 chapterFromElement(element, this)
                 chapters.add(this)
             }
@@ -173,7 +173,7 @@ abstract class ParsedOnlineSource() : OnlineSource() {
      * @param element an element obtained from [chapterListSelector].
      * @param chapter the chapter to fill.
      */
-    abstract protected fun chapterFromElement(element: Element, chapter: Chapter)
+    abstract protected fun chapterFromElement(element: Element, chapter: SChapter)
 
     /**
      * Parse the response from the site and fills the page list.

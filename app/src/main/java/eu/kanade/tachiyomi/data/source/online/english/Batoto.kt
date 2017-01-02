@@ -1,13 +1,13 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
 import android.text.Html
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.network.asObservable
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.model.SChapter
+import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import eu.kanade.tachiyomi.util.asJsoup
@@ -63,7 +63,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
     override fun popularMangaParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(popularMangaSelector())) {
-            Manga.create(id).apply {
+            SManga.create().apply {
                 popularMangaFromElement(element, this)
                 page.mangas.add(this)
             }
@@ -77,7 +77,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
     override fun latestUpdatesParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(latestUpdatesSelector())) {
-            Manga.create(id).apply {
+            SManga.create().apply {
                 latestUpdatesFromElement(element, this)
                 page.mangas.add(this)
             }
@@ -92,14 +92,14 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
 
     override fun latestUpdatesSelector() = "tr:has(a)"
 
-    override fun popularMangaFromElement(element: Element, manga: Manga) {
+    override fun popularMangaFromElement(element: Element, manga: SManga) {
         element.select("a[href^=http://bato.to]").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text().trim()
         }
     }
 
-    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
+    override fun latestUpdatesFromElement(element: Element, manga: SManga) {
         popularMangaFromElement(element, manga)
     }
 
@@ -149,7 +149,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
     override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>) {
         val document = response.asJsoup()
         for (element in document.select(searchMangaSelector())) {
-            Manga.create(id).apply {
+            SManga.create().apply {
                 searchMangaFromElement(element, this)
                 page.mangas.add(this)
             }
@@ -162,18 +162,18 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
 
     override fun searchMangaSelector() = popularMangaSelector()
 
-    override fun searchMangaFromElement(element: Element, manga: Manga) {
+    override fun searchMangaFromElement(element: Element, manga: SManga) {
         popularMangaFromElement(element, manga)
     }
 
     override fun searchMangaNextPageSelector() = popularMangaNextPageSelector()
 
-    override fun mangaDetailsRequest(manga: Manga): Request {
+    override fun mangaDetailsRequest(manga: SManga): Request {
         val mangaId = manga.url.substringAfterLast("r")
         return GET("$baseUrl/comic_pop?id=$mangaId", headers)
     }
 
-    override fun mangaDetailsParse(document: Document, manga: Manga) {
+    override fun mangaDetailsParse(document: Document, manga: SManga) {
         val tbody = document.select("tbody").first()
         val artistElement = tbody.select("tr:contains(Author/Artist:)").first()
 
@@ -186,12 +186,12 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
     }
 
     private fun parseStatus(status: String?) = when (status) {
-        "Ongoing" -> Manga.ONGOING
-        "Complete" -> Manga.COMPLETED
-        else -> Manga.UNKNOWN
+        "Ongoing" -> SManga.ONGOING
+        "Complete" -> SManga.COMPLETED
+        else -> SManga.UNKNOWN
     }
 
-    override fun chapterListParse(response: Response, chapters: MutableList<Chapter>) {
+    override fun chapterListParse(response: Response, chapters: MutableList<SChapter>) {
         val body = response.body().string()
         val matcher = staffNotice.matcher(body)
         if (matcher.find()) {
@@ -202,7 +202,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         val document = response.asJsoup(body)
 
         for (element in document.select(chapterListSelector())) {
-            Chapter.create().apply {
+            SChapter.create().apply {
                 chapterFromElement(element, this)
                 chapters.add(this)
             }
@@ -211,7 +211,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
 
     override fun chapterListSelector() = "tr.row.lang_English.chapter_row"
 
-    override fun chapterFromElement(element: Element, chapter: Chapter) {
+    override fun chapterFromElement(element: Element, chapter: SChapter) {
         val urlElement = element.select("a[href^=http://bato.to/reader").first()
 
         chapter.setUrlWithoutDomain(urlElement.attr("href"))
@@ -246,7 +246,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         return date.time
     }
 
-    override fun pageListRequest(chapter: Chapter): Request {
+    override fun pageListRequest(chapter: SChapter): Request {
         val id = chapter.url.substringAfterLast("#")
         return GET("$baseUrl/areader?id=$id&p=1", pageHeaders)
     }
@@ -308,7 +308,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         return network.cookies.get(URI(baseUrl)).any { it.name() == "pass_hash" }
     }
 
-    override fun fetchChapterList(manga: Manga): Observable<List<Chapter>> {
+    override fun fetchChapterList(manga: SManga): Observable<List<SChapter>> {
         if (!isLogged()) {
             val username = preferences.sourceUsername(this)
             val password = preferences.sourcePassword(this)

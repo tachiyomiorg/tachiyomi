@@ -1,10 +1,8 @@
 package eu.kanade.tachiyomi.data.source.model
 
-import eu.kanade.tachiyomi.data.database.models.Manga
-
 class MangasPage(val page: Int) {
 
-    val mangas: MutableList<Manga> = mutableListOf()
+    val mangas: MutableList<SManga> = mutableListOf()
 
     lateinit var url: String
 

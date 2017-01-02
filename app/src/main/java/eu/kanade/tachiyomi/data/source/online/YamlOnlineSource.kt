@@ -1,11 +1,11 @@
 package eu.kanade.tachiyomi.data.source.online
 
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.model.SChapter
+import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.util.asJsoup
 import eu.kanade.tachiyomi.util.attrOrText
 import okhttp3.Request
@@ -54,7 +54,7 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
     override fun popularMangaParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(map.popular.manga_css)) {
-            Manga.create(id).apply {
+            SManga.create().apply {
                 title = element.text()
                 setUrlWithoutDomain(element.attr("href"))
                 page.mangas.add(this)
@@ -81,7 +81,7 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
     override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>) {
         val document = response.asJsoup()
         for (element in document.select(map.search.manga_css)) {
-            Manga.create(id).apply {
+            SManga.create().apply {
                 title = element.text()
                 setUrlWithoutDomain(element.attr("href"))
                 page.mangas.add(this)
@@ -108,7 +108,7 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
     override fun latestUpdatesParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
         for (element in document.select(map.latestupdates!!.manga_css)) {
-            Manga.create(id).apply {
+            SManga.create().apply {
                 title = element.text()
                 setUrlWithoutDomain(element.attr("href"))
                 page.mangas.add(this)
@@ -120,7 +120,7 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
         }
     }
 
-    override fun mangaDetailsParse(response: Response, manga: Manga) {
+    override fun mangaDetailsParse(response: Response, manga: SManga) {
         val document = response.asJsoup()
         with(map.manga) {
             val pool = parts.get(document)
@@ -130,18 +130,18 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
             manga.description = summary?.process(document, pool)
             manga.thumbnail_url = cover?.process(document, pool)
             manga.genre = genres?.process(document, pool)
-            manga.status = status?.getStatus(document, pool) ?: Manga.UNKNOWN
+            manga.status = status?.getStatus(document, pool) ?: SManga.UNKNOWN
         }
     }
 
-    override fun chapterListParse(response: Response, chapters: MutableList<Chapter>) {
+    override fun chapterListParse(response: Response, chapters: MutableList<SChapter>) {
         val document = response.asJsoup()
         with(map.chapters) {
             val pool = emptyMap<String, Element>()
             val dateFormat = SimpleDateFormat(date?.format, Locale.ENGLISH)
 
             for (element in document.select(chapter_css)) {
-                val chapter = Chapter.create()
+                val chapter = SChapter.create()
                 element.select(title).first().let {
                     chapter.name = it.text()
                     chapter.setUrlWithoutDomain(it.attr("href"))

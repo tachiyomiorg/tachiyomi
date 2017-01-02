@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.data.source.online.german
 
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.model.SChapter
+import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.Response
@@ -28,7 +28,7 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesSelector() = ".booklist td > div"
 
-    override fun popularMangaFromElement(element: Element, manga: Manga) {
+    override fun popularMangaFromElement(element: Element, manga: SManga) {
         val image = element.select("dt img")
         val title = element.select("dd a:first-child")
 
@@ -37,7 +37,7 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
         manga.thumbnail_url = image.attr("src")
     }
 
-    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
+    override fun latestUpdatesFromElement(element: Element, manga: SManga) {
         popularMangaFromElement(element, manga)
     }
 
@@ -49,7 +49,7 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaSelector() = ".searchresult td > div"
 
-    override fun searchMangaFromElement(element: Element, manga: Manga) {
+    override fun searchMangaFromElement(element: Element, manga: SManga) {
         val image = element.select(".resultimg img")
         val title = element.select(".resultbookname")
 
@@ -60,7 +60,7 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaNextPageSelector() = ".pagetor a.l"
 
-    override fun mangaDetailsParse(document: Document, manga: Manga) {
+    override fun mangaDetailsParse(document: Document, manga: SManga) {
         val imageElement = document.select(".bookmessgae tr > td:nth-child(1)").first()
         val infoElement = document.select(".bookmessgae tr > td:nth-child(2)").first()
 
@@ -78,7 +78,7 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
 
     override fun chapterListSelector() = ".chapterlist tr:not(:first-child)"
 
-    override fun chapterFromElement(element: Element, chapter: Chapter) {
+    override fun chapterFromElement(element: Element, chapter: SChapter) {
         val urlElement = element.select(".col1 a").first()
         val dateElement = element.select(".col3 a").first()
 

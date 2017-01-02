@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.model.SChapter
+import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.HttpUrl
 import org.jsoup.nodes.Document
@@ -29,18 +29,18 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesSelector() = "div.directory_list > ul > li"
 
-    private fun mangaFromElement(query: String, element: Element, manga: Manga) {
+    private fun mangaFromElement(query: String, element: Element, manga: SManga) {
         element.select(query).first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = if (it.hasAttr("title")) it.attr("title") else if (it.hasAttr("rel")) it.attr("rel") else it.text()
         }
     }
 
-    override fun popularMangaFromElement(element: Element, manga: Manga) {
+    override fun popularMangaFromElement(element: Element, manga: SManga) {
         mangaFromElement("div.title > a", element, manga)
     }
 
-    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
+    override fun latestUpdatesFromElement(element: Element, manga: SManga) {
         popularMangaFromElement(element, manga)
     }
 
@@ -65,13 +65,13 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaSelector() = "div.result_search > dl:has(dt)"
 
-    override fun searchMangaFromElement(element: Element, manga: Manga) {
+    override fun searchMangaFromElement(element: Element, manga: SManga) {
         mangaFromElement("a.manga_info", element, manga)
     }
 
     override fun searchMangaNextPageSelector() = "div.next-page > a.next"
 
-    override fun mangaDetailsParse(document: Document, manga: Manga) {
+    override fun mangaDetailsParse(document: Document, manga: SManga) {
         val detailElement = document.select(".manga_detail_top").first()
         val infoElement = detailElement.select(".detail_topText").first()
 
@@ -84,14 +84,14 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
     }
 
     private fun parseStatus(status: String) = when {
-        status.contains("Ongoing") -> Manga.ONGOING
-        status.contains("Completed") -> Manga.COMPLETED
-        else -> Manga.UNKNOWN
+        status.contains("Ongoing") -> SManga.ONGOING
+        status.contains("Completed") -> SManga.COMPLETED
+        else -> SManga.UNKNOWN
     }
 
     override fun chapterListSelector() = ".detail_list > ul:not([class]) > li"
 
-    override fun chapterFromElement(element: Element, chapter: Chapter) {
+    override fun chapterFromElement(element: Element, chapter: SChapter) {
         val parentEl = element.select("span.left").first()
 
         val urlElement = parentEl.select("a").first()

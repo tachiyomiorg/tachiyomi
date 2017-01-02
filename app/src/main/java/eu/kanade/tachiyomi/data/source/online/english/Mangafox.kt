@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.model.SChapter
+import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.HttpUrl
@@ -31,14 +31,14 @@ class Mangafox(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesSelector() = "div#mangalist > ul.list > li"
 
-    override fun popularMangaFromElement(element: Element, manga: Manga) {
+    override fun popularMangaFromElement(element: Element, manga: SManga) {
         element.select("a.title").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text()
         }
     }
 
-    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
+    override fun latestUpdatesFromElement(element: Element, manga: SManga) {
         popularMangaFromElement(element, manga)
     }
 
@@ -61,7 +61,7 @@ class Mangafox(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaSelector() = "div#mangalist > ul.list > li"
 
-    override fun searchMangaFromElement(element: Element, manga: Manga) {
+    override fun searchMangaFromElement(element: Element, manga: SManga) {
         element.select("a.title").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text()
@@ -70,7 +70,7 @@ class Mangafox(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaNextPageSelector() = "a:has(span.next)"
 
-    override fun mangaDetailsParse(document: Document, manga: Manga) {
+    override fun mangaDetailsParse(document: Document, manga: SManga) {
         val infoElement = document.select("div#title").first()
         val rowElement = infoElement.select("table > tbody > tr:eq(1)").first()
         val sideInfoElement = document.select("#series_info").first()
@@ -84,14 +84,14 @@ class Mangafox(override val id: Int) : ParsedOnlineSource() {
     }
 
     private fun parseStatus(status: String) = when {
-        status.contains("Ongoing") -> Manga.ONGOING
-        status.contains("Completed") -> Manga.COMPLETED
-        else -> Manga.UNKNOWN
+        status.contains("Ongoing") -> SManga.ONGOING
+        status.contains("Completed") -> SManga.COMPLETED
+        else -> SManga.UNKNOWN
     }
 
     override fun chapterListSelector() = "div#chapters li div"
 
-    override fun chapterFromElement(element: Element, chapter: Chapter) {
+    override fun chapterFromElement(element: Element, chapter: SChapter) {
         val urlElement = element.select("a.tips").first()
 
         chapter.setUrlWithoutDomain(urlElement.attr("href"))

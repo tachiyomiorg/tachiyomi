@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.data.source.online.russian
 
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.model.SChapter
+import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.Response
 import org.jsoup.nodes.Document
@@ -32,14 +32,14 @@ class Mintmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesSelector() = "div.desc"
 
-    override fun popularMangaFromElement(element: Element, manga: Manga) {
+    override fun popularMangaFromElement(element: Element, manga: SManga) {
         element.select("h3 > a").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.attr("title")
         }
     }
 
-    override fun latestUpdatesFromElement(element: Element, manga: Manga) {
+    override fun latestUpdatesFromElement(element: Element, manga: SManga) {
         popularMangaFromElement(element, manga)
     }
 
@@ -49,14 +49,14 @@ class Mintmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaSelector() = popularMangaSelector()
 
-    override fun searchMangaFromElement(element: Element, manga: Manga) {
+    override fun searchMangaFromElement(element: Element, manga: SManga) {
         popularMangaFromElement(element, manga)
     }
 
     // max 200 results
     override fun searchMangaNextPageSelector() = null
 
-    override fun mangaDetailsParse(document: Document, manga: Manga) {
+    override fun mangaDetailsParse(document: Document, manga: SManga) {
         val infoElement = document.select("div.leftContent").first()
 
         manga.author = infoElement.select("span.elem_author").first()?.text()
@@ -68,16 +68,16 @@ class Mintmanga(override val id: Int) : ParsedOnlineSource() {
 
     private fun parseStatus(element: String): Int {
         when {
-            element.contains("<h3>Запрещена публикация произведения по копирайту</h3>") -> return Manga.LICENSED
-            element.contains("<h1 class=\"names\"> Сингл") || element.contains("<b>Перевод:</b> завершен") -> return Manga.COMPLETED
-            element.contains("<b>Перевод:</b> продолжается") -> return Manga.ONGOING
-            else -> return Manga.UNKNOWN
+            element.contains("<h3>Запрещена публикация произведения по копирайту</h3>") -> return SManga.LICENSED
+            element.contains("<h1 class=\"names\"> Сингл") || element.contains("<b>Перевод:</b> завершен") -> return SManga.COMPLETED
+            element.contains("<b>Перевод:</b> продолжается") -> return SManga.ONGOING
+            else -> return SManga.UNKNOWN
         }
     }
 
     override fun chapterListSelector() = "div.chapters-link tbody tr"
 
-    override fun chapterFromElement(element: Element, chapter: Chapter) {
+    override fun chapterFromElement(element: Element, chapter: SChapter) {
         val urlElement = element.select("a").first()
 
         chapter.setUrlWithoutDomain(urlElement.attr("href") + "?mature=1")
@@ -87,7 +87,7 @@ class Mintmanga(override val id: Int) : ParsedOnlineSource() {
         } ?: 0
     }
 
-    override fun prepareNewChapter(chapter: Chapter, manga: Manga) {
+    override fun prepareNewChapter(chapter: SChapter, manga: SManga) {
         chapter.chapter_number = -2f
     }
 
