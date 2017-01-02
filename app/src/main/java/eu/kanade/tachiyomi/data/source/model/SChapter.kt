@@ -15,7 +15,13 @@ interface SChapter : Serializable {
 
     var chapter_number: Float
 
-    var source_order: Int
+    fun copyFrom(other: SChapter) {
+        name = other.name
+        url = other.url
+        date_fetch = other.date_fetch
+        date_upload = other.date_upload
+        chapter_number = other.chapter_number
+    }
 
     companion object {
         fun create(): SChapter {

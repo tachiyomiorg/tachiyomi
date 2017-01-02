@@ -2,7 +2,7 @@
 
 package eu.kanade.tachiyomi.data.source.online
 
-import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.source.model.SManga
 import okhttp3.FormBody
 import okhttp3.RequestBody
 import org.jsoup.nodes.Document
@@ -164,15 +164,15 @@ class StatusNode(private val map: Map<String, Any?>) : SelectableNode(map) {
     fun getStatus(document: Element, cache: Map<String, Element>): Int {
         val text = process(document, cache)
         complete?.let {
-            if (text.contains(it)) return Manga.COMPLETED
+            if (text.contains(it)) return SManga.COMPLETED
         }
         ongoing?.let {
-            if (text.contains(it)) return Manga.ONGOING
+            if (text.contains(it)) return SManga.ONGOING
         }
         licensed?.let {
-            if (text.contains(it)) return Manga.LICENSED
+            if (text.contains(it)) return SManga.LICENSED
         }
-        return Manga.UNKNOWN
+        return SManga.UNKNOWN
     }
 }
 

@@ -86,8 +86,9 @@ interface Manga : SManga {
             this.source = source
         }
 
-        fun create(pathUrl: String, source: Int = 0): Manga = MangaImpl().apply {
+        fun create(pathUrl: String, title: String, source: Int = 0): Manga = MangaImpl().apply {
             url = pathUrl
+            this.title = title
             this.source = source
         }
     }

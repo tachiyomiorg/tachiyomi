@@ -9,6 +9,7 @@ import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.SourceManager
 import eu.kanade.tachiyomi.data.source.model.MangasPage
+import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
@@ -234,8 +235,9 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      * @return the function to apply.
      */
     fun getPageTransformer(observable: Observable<MangasPage>): Observable<MangasPage> {
+        val sourceId = source.id
         return observable.subscribeOn(Schedulers.io())
-                .doOnNext { it.mangas.replace { networkToLocalManga(it) } }
+                .doOnNext { it.mangas.replace { networkToLocalManga(it, sourceId) } }
                 .doOnNext { initializeMangas(it.mangas) }
                 .observeOn(AndroidSchedulers.mainThread())
     }
@@ -253,15 +255,17 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      * Returns a manga from the database for the given manga from network. It creates a new entry
      * if the manga is not yet in the database.
      *
-     * @param networkManga the manga from network.
+     * @param sManga the manga from the source.
      * @return a manga from the database.
      */
-    private fun networkToLocalManga(networkManga: Manga): Manga {
-        var localManga = db.getManga(networkManga.url, source.id).executeAsBlocking()
+    private fun networkToLocalManga(sManga: SManga, sourceId: Int): Manga {
+        var localManga = db.getManga(sManga.url, sourceId).executeAsBlocking()
         if (localManga == null) {
-            val result = db.insertManga(networkManga).executeAsBlocking()
-            networkManga.id = result.insertedId()
-            localManga = networkManga
+            val newManga = Manga.create(sManga.url, sManga.title, sourceId)
+            newManga.copyFrom(sManga)
+            val result = db.insertManga(newManga).executeAsBlocking()
+            newManga.id = result.insertedId()
+            localManga = newManga
         }
         return localManga
     }

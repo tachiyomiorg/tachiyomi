@@ -4,6 +4,7 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.source.Source
+import eu.kanade.tachiyomi.data.source.model.SChapter
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import java.util.*
 
@@ -11,23 +12,25 @@ import java.util.*
  * Helper method for syncing the list of chapters from the source with the ones from the database.
  *
  * @param db the database.
- * @param sourceChapters a list of chapters from the source.
+ * @param rawSourceChapters a list of chapters from the source.
  * @param manga the manga of the chapters.
  * @param source the source of the chapters.
  * @return a pair of new insertions and deletions.
  */
 fun syncChaptersWithSource(db: DatabaseHelper,
-                           sourceChapters: List<Chapter>,
+                           rawSourceChapters: List<SChapter>,
                            manga: Manga,
                            source: Source) : Pair<List<Chapter>, List<Chapter>> {
 
     // Chapters from db.
     val dbChapters = db.getChapters(manga).executeAsBlocking()
 
-    // Fix manga id and order in source.
-    sourceChapters.forEachIndexed { i, chapter ->
-        chapter.manga_id = manga.id
-        chapter.source_order = i
+    val sourceChapters = rawSourceChapters.mapIndexed { i, sChapter ->
+        Chapter.create().apply {
+            copyFrom(sChapter)
+            manga_id = manga.id
+            source_order = i
+        }
     }
 
     // Chapters from the source not in db.

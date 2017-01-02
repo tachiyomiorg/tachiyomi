@@ -12,6 +12,4 @@ class SChapterImpl : SChapter {
 
     override var chapter_number: Float = 0f
 
-    override var source_order: Int = 0
-
 }

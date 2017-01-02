@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.ui.catalogue
 
 import eu.kanade.tachiyomi.data.source.model.MangasPage
-import rx.subjects.PublishSubject
 import rx.Observable
+import rx.subjects.PublishSubject
 
 /**
  * A general pager for source requests (latest updates, popular, search)

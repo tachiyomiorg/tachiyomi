@@ -21,6 +21,7 @@ import eu.kanade.tachiyomi.data.library.LibraryUpdateService.Companion.start
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.SourceManager
+import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.*
@@ -214,7 +215,7 @@ class LibraryUpdateService : Service() {
         }
 
         if (!intent.getBooleanExtra(UPDATE_DETAILS, false) && preferences.updateOnlyNonCompleted()) {
-            listToUpdate = listToUpdate.filter { it.status != Manga.COMPLETED }
+            listToUpdate = listToUpdate.filter { it.status != SManga.COMPLETED }
         }
 
         return listToUpdate
@@ -328,9 +329,10 @@ class LibraryUpdateService : Service() {
                             ?: return@concatMap Observable.empty<Manga>()
 
                     source.fetchMangaDetails(manga)
-                            .doOnNext { networkManga ->
+                            .map { networkManga ->
                                 manga.copyFrom(networkManga)
                                 db.insertManga(manga).executeAsBlocking()
+                                manga
                             }
                             .onErrorReturn { manga }
                 }

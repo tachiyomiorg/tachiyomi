@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.data.source.model
 
-import eu.kanade.tachiyomi.data.database.models.Manga
 import java.io.Serializable
 
 interface SManga : Serializable {
@@ -23,7 +22,7 @@ interface SManga : Serializable {
 
     var initialized: Boolean
 
-    fun copyFrom(other: Manga) {
+    fun copyFrom(other: SManga) {
         if (other.author != null)
             author = other.author
 
