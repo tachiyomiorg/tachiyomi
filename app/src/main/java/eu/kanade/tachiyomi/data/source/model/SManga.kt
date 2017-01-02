@@ -40,7 +40,8 @@ interface SManga : Serializable {
 
         status = other.status
 
-        initialized = true
+        if (!initialized)
+            initialized = other.initialized
     }
 
     companion object {

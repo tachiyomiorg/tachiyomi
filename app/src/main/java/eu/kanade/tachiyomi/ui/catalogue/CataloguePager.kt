@@ -4,10 +4,12 @@ import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
 import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 open class CataloguePager(val source: OnlineSource, val query: String, val filters: List<Filter<*>>) : Pager() {
 
-    override fun requestNext(transformer: (Observable<MangasPage>) -> Observable<MangasPage>): Observable<MangasPage> {
+    override fun requestNext(): Observable<MangasPage> {
         val lastPage = lastPage
 
         val page = if (lastPage == null)
@@ -20,7 +22,9 @@ open class CataloguePager(val source: OnlineSource, val query: String, val filte
         else
             source.fetchSearchManga(page, query, filters)
 
-        return transformer(observable)
+        return observable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext { results.onNext(it) }
                 .doOnNext { this@CataloguePager.lastPage = it }
     }

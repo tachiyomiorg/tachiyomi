@@ -18,8 +18,8 @@ abstract class Pager {
     }
 
     fun hasNextPage(): Boolean {
-        return lastPage == null || lastPage?.nextPageUrl != null
+        return lastPage == null || !lastPage?.nextPageUrl.isNullOrBlank()
     }
 
-    abstract fun requestNext(transformer: (Observable<MangasPage>) -> Observable<MangasPage>): Observable<MangasPage>
+    abstract fun requestNext(): Observable<MangasPage>
 }

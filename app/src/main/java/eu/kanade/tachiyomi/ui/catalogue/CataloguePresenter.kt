@@ -8,7 +8,6 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.SourceManager
-import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
@@ -148,11 +147,17 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         // Create a new pager.
         pager = createPager(query, filters)
 
+        val sourceId = source.id
+
         // Prepare the pager.
         pagerSubscription?.let { remove(it) }
         pagerSubscription = pager.results()
-                .subscribeReplay({ view, page ->
-                    view.onAddPage(page.page, page.mangas)
+                .observeOn(Schedulers.io())
+                .map { it.page to it.mangas.map { networkToLocalManga(it, sourceId) } }
+                .doOnNext { initializeMangas(it.second) }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeReplay({ view, pair ->
+                    view.onAddPage(pair.first, pair.second)
                 }, { view, error ->
                     Timber.e(error)
                 })
@@ -168,7 +173,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         if (!hasNextPage()) return
 
         pageSubscription?.let { remove(it) }
-        pageSubscription = pager.requestNext { getPageTransformer(it) }
+        pageSubscription = pager.requestNext()
                 .subscribeFirst({ view, page ->
                     // Nothing to do when onNext is emitted.
                 }, CatalogueFragment::onAddPageError)
@@ -229,20 +234,6 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     }
 
     /**
-     * Returns the function to apply to the observable of the list of manga from the source.
-     *
-     * @param observable the observable from the source.
-     * @return the function to apply.
-     */
-    fun getPageTransformer(observable: Observable<MangasPage>): Observable<MangasPage> {
-        val sourceId = source.id
-        return observable.subscribeOn(Schedulers.io())
-                .doOnNext { it.mangas.replace { networkToLocalManga(it, sourceId) } }
-                .doOnNext { initializeMangas(it.mangas) }
-                .observeOn(AndroidSchedulers.mainThread())
-    }
-
-    /**
      * Replaces an object in the list with another.
      */
     fun <T> MutableList<T>.replace(block: (T) -> T) {
@@ -289,6 +280,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         return source.fetchMangaDetails(manga)
                 .flatMap { networkManga ->
                     manga.copyFrom(networkManga)
+                    manga.initialized = true
                     db.insertManga(manga).executeAsBlocking()
                     Observable.just(manga)
                 }

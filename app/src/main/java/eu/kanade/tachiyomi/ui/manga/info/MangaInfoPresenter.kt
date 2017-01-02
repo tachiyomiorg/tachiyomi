@@ -102,6 +102,7 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
         return source.fetchMangaDetails(manga)
                 .flatMap { networkManga ->
                     manga.copyFrom(networkManga)
+                    manga.initialized = true
                     db.insertManga(manga).executeAsBlocking()
                     Observable.just<Manga>(manga)
                 }
