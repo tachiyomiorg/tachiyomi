@@ -234,15 +234,6 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     }
 
     /**
-     * Replaces an object in the list with another.
-     */
-    fun <T> MutableList<T>.replace(block: (T) -> T) {
-        forEachIndexed { i, obj ->
-            set(i, block(obj))
-        }
-    }
-
-    /**
      * Returns a manga from the database for the given manga from network. It creates a new entry
      * if the manga is not yet in the database.
      *
