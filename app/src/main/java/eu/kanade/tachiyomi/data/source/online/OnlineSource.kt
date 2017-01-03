@@ -12,13 +12,14 @@ import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter
 import eu.kanade.tachiyomi.data.source.model.SManga
-import eu.kanade.tachiyomi.util.UrlUtil
 import okhttp3.Headers
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
+import java.net.URI
+import java.net.URISyntaxException
 
 /**
  * A simple implementation for sources from a website.
@@ -444,13 +445,27 @@ abstract class OnlineSource : Source {
     }
 
     fun SChapter.setUrlWithoutDomain(url: String) {
-        this.url = UrlUtil.getPath(url)
+        this.url = getUrlPath(url)
     }
 
     fun SManga.setUrlWithoutDomain(url: String) {
-        this.url = UrlUtil.getPath(url)
+        this.url = getUrlPath(url)
     }
 
+    fun getUrlPath(s: String): String {
+        try {
+            val uri = URI(s)
+            var out = uri.path
+            if (uri.query != null)
+                out += "?" + uri.query
+            if (uri.fragment != null)
+                out += "#" + uri.fragment
+            return out
+        } catch (e: URISyntaxException) {
+            return s
+        }
+
+    }
 
     /**
      * Called before inserting a new chapter into database. Use it if you need to override chapter
