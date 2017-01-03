@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.data.source
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.content.Context
 import android.content.pm.ApplicationInfo
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Environment
 import dalvik.system.PathClassLoader
@@ -22,7 +21,11 @@ import java.io.File
 
 open class SourceManager(private val context: Context) {
 
-    private val sourcesMap = createSources()
+    private val sourcesMap = mutableMapOf<Int, Source>()
+
+    init {
+        createSources()
+    }
 
     open fun get(sourceKey: Int): Source? {
         return sourcesMap[sourceKey]
@@ -43,8 +46,9 @@ open class SourceManager(private val context: Context) {
             WieManga(10)
     )
 
-    private fun createSources(): Map<Int, Source> = hashMapOf<Int, Source>().apply {
-        createOnlineSourceList().forEach { put(it.id, it) }
+    private fun createSources() {
+        createExtensionSources().forEach { registerSource(it) }
+        createOnlineSourceList().forEach { registerSource(it) }
 
         val parsersDir = File(Environment.getExternalStorageDirectory().absolutePath +
                 File.separator + context.getString(R.string.app_name), "parsers")
@@ -54,14 +58,18 @@ open class SourceManager(private val context: Context) {
             for (file in parsersDir.listFiles().filter { it.extension == "yml" }) {
                 try {
                     val map = file.inputStream().use { yaml.loadAs(it, Map::class.java) }
-                    YamlOnlineSource(map).let { put(it.id, it) }
+                    YamlOnlineSource(map).let { registerSource(it) }
                 } catch (e: Exception) {
                     Timber.e("Error loading source from file. Bad format?")
                 }
             }
         }
+    }
 
-        createExtensionSources().forEach { put(it.id, it) }
+    private fun registerSource(source: Source, overwrite: Boolean = false) {
+        if (overwrite || !sourcesMap.containsKey(source.id)) {
+            sourcesMap.put(source.id, source)
+        }
     }
 
     private fun createExtensionSources(): List<OnlineSource> {
@@ -81,19 +89,34 @@ open class SourceManager(private val context: Context) {
             val version = data.getInt(VERSION)
             val sourceClass = extendClassName(data.getString(SOURCE), pkgInfo.packageName)
 
-            val ext = Extension(extName, pkgInfo, appInfo, version, sourceClass)
+            val ext = Extension(extName, appInfo, version, sourceClass)
+            if (!validateExtension(ext)) {
+                continue
+            }
 
-
-            val instance = loadExtension(ext, pkgManager) ?: continue
+            val instance = loadExtension(ext, pkgManager)
+            if (instance == null) {
+                Timber.e("Extension error: failed to instance $extName")
+                continue
+            }
             sources.add(instance)
         }
         return sources
     }
 
+    private fun validateExtension(ext: Extension): Boolean {
+        if (ext.version < LIB_VERSION_MIN || ext.version > LIB_VERSION_MAX) {
+            Timber.e("Extension error: ${ext.name} has version ${ext.version}, while only versions "
+                    + "$LIB_VERSION_MIN to $LIB_VERSION_MAX are allowed")
+            return false
+        }
+        return true
+    }
+
     private fun loadExtension(ext: Extension, pkgManager: PackageManager): OnlineSource? {
         return try {
-            val classLoader = PathClassLoader(ext.applicationInfo.sourceDir, null, context.classLoader)
-            val resources = pkgManager.getResourcesForApplication(ext.applicationInfo)
+            val classLoader = PathClassLoader(ext.appInfo.sourceDir, null, context.classLoader)
+            val resources = pkgManager.getResourcesForApplication(ext.appInfo)
 
             Class.forName(ext.sourceClass, false, classLoader).newInstance() as? OnlineSource
         } catch (e: Exception) {
@@ -111,17 +134,18 @@ open class SourceManager(private val context: Context) {
         }
     }
 
-    class Extension(val extensionName: String,
-                    val packageInfo: PackageInfo,
-                    val applicationInfo: ApplicationInfo,
+    class Extension(val name: String,
+                    val appInfo: ApplicationInfo,
                     val version: Int,
                     val sourceClass: String)
 
-    companion object {
-        private val FEATURE = "tachiyomi.extension"
-        private val NAME = "tachiyomi.extension.name"
-        private val VERSION = "tachiyomi.extension.version"
-        private val SOURCE = "tachiyomi.extension.source"
+    private companion object {
+        const val FEATURE = "tachiyomi.extension"
+        const val NAME = "tachiyomi.extension.name"
+        const val VERSION = "tachiyomi.extension.version"
+        const val SOURCE = "tachiyomi.extension.source"
+        const val LIB_VERSION_MIN = 1
+        const val LIB_VERSION_MAX = 1
     }
 
 }

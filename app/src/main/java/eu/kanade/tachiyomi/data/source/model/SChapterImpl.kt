@@ -8,6 +8,6 @@ class SChapterImpl : SChapter {
 
     override var date_upload: Long = 0
 
-    override var chapter_number: Float = 0f
+    override var chapter_number: Float = -1f
 
 }
