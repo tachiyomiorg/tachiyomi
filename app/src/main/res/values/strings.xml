@@ -39,7 +39,6 @@
     <string name="action_update_library">Update library</string>
     <string name="action_edit">Edit</string>
     <string name="action_add">Add</string>
-    <string name="action_ignore">Ignore</string>
     <string name="action_add_category">Add category</string>
     <string name="action_edit_categories">Edit categories</string>
     <string name="action_rename_category">Rename category</string>

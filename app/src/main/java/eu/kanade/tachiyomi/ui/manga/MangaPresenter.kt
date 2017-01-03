@@ -6,6 +6,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.manga.info.ChapterCountEvent
+import eu.kanade.tachiyomi.ui.manga.info.MangaFavoriteEvent
 import eu.kanade.tachiyomi.util.SharedData
 import rx.Observable
 import rx.Subscription
@@ -38,6 +39,8 @@ class MangaPresenter : BasePresenter<MangaActivity>() {
 
         // Prepare a subject to communicate the chapters and info presenters for the chapter count.
         SharedData.put(ChapterCountEvent())
+        // Prepare a subject to communicate the chapters and info presenters for the chapter favorite.
+        SharedData.put(MangaFavoriteEvent())
     }
 
     fun setMangaEvent(event: MangaEvent) {

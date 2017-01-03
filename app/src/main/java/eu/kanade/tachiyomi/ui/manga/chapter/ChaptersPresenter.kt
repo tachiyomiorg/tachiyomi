@@ -13,6 +13,7 @@ import eu.kanade.tachiyomi.data.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.manga.MangaEvent
 import eu.kanade.tachiyomi.ui.manga.info.ChapterCountEvent
+import eu.kanade.tachiyomi.ui.manga.info.MangaFavoriteEvent
 import eu.kanade.tachiyomi.util.SharedData
 import eu.kanade.tachiyomi.util.syncChaptersWithSource
 import rx.Observable
@@ -176,7 +177,7 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
         files.mapNotNull { it.name }
                 .mapNotNull { name -> chapters.find {
                     name == cached.getOrPut(it) { downloadManager.getChapterDirName(it) }
-                    } }
+                } }
                 .forEach { it.status = Download.DOWNLOADED }
     }
 
@@ -408,6 +409,8 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
     fun addToLibrary() {
         manga.favorite = true
         db.insertManga(manga).executeAsBlocking()
+        // Emit that manga is added to favorite
+        SharedData.get(MangaFavoriteEvent::class.java)?.emit(manga.favorite)
     }
 
     /**

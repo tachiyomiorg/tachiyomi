@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.ui.manga.info
 import rx.Observable
 import rx.subjects.BehaviorSubject
 
-class ChapterCountEvent() {
+class ChapterCountEvent {
 
     private val subject = BehaviorSubject.create<Int>()
 

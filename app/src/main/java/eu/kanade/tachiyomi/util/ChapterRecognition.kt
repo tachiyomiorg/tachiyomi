@@ -23,7 +23,7 @@ object ChapterRecognition {
      * Regex used when manga title removed
      * Example: Solanin 028 Vol. 2 -> 028 Vol.2 -> 028Vol.2 -R> 028
      */
-    private val withoutMange = Regex("""^([0-9]+)(\.[0-9]+)?(\.?[a-z]+)?""")
+    private val withoutManga = Regex("""^([0-9]+)(\.[0-9]+)?(\.?[a-z]+)?""")
 
     /**
      * Regex used to remove unwanted tags
@@ -77,7 +77,7 @@ object ChapterRecognition {
         val nameWithoutManga = name.replace(manga.title.toLowerCase(), "").trim()
 
         // Check if first value is number after title remove.
-        if (updateChapter(withoutMange.find(nameWithoutManga), chapter))
+        if (updateChapter(withoutManga.find(nameWithoutManga), chapter))
             return
 
         // Take the first number encountered.
@@ -123,7 +123,7 @@ object ChapterRecognition {
             if (alpha.contains("special"))
                 return .97f
 
-            if (alpha[0].equals('.') ) {
+            if (alpha[0] == '.') {
                 // Take value after (.)
                 return parseAlphaPostFix(alpha[1])
             } else {

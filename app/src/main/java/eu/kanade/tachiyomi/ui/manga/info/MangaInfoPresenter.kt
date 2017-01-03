@@ -77,11 +77,14 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
         refreshManga()
 
         // Update chapter count
-        SharedData.get(ChapterCountEvent::class.java)?.let {
-            it.observable
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeLatestCache({ view, count -> view.setChapterCount(count) })
-        }
+        SharedData.get(ChapterCountEvent::class.java)?.observable
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribeLatestCache(MangaInfoFragment::setChapterCount)
+
+        // Update favorite status
+        SharedData.get(MangaFavoriteEvent::class.java)?.observable
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribeLatestCache(MangaInfoFragment::setFavoriteDrawable)
     }
 
     /**
@@ -126,7 +129,7 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
     /**
      * Refresh MangaInfo view.
      */
-    fun refreshManga() {
+    private fun refreshManga() {
         start(GET_MANGA)
     }
 }

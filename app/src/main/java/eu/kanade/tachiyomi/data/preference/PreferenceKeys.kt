@@ -104,4 +104,5 @@ class PreferenceKeys(context: Context) {
     val libraryAsList = context.getString(R.string.pref_display_library_as_list)
 
     val lang = context.getString(R.string.pref_language_key)
+
 }
