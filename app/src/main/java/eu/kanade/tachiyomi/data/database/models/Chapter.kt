@@ -15,6 +15,8 @@ interface Chapter : SChapter, Serializable {
 
     var last_page_read: Int
 
+    var date_fetch: Long
+
     var source_order: Int
 
     val isRecognizedNumber: Boolean
