@@ -91,7 +91,7 @@ class LibraryCategoryAdapter(val fragment: LibraryCategoryView) :
             }
             return LibraryGridHolder(view, this, fragment)
         } else {
-            val view = parent.inflate(R.layout.item_library_list)
+            val view = parent.inflate(R.layout.item_catalogue_list)
             return LibraryListHolder(view, this, fragment)
         }
     }
