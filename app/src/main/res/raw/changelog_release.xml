@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="true">
 
+    <changelogversion versionName="v0.4.2" changeDate="">
+        <changelogtext>Added support for Anilist and Kitsu.</changelogtext>
+
+        <changelogtext>Added library refresh option to library updates tab.</changelogtext>
+
+        <changelogtext>Back button closes drawers before exiting the app.</changelogtext>
+
+        <changelogtext>Fixed issues when using custom app language.</changelogtext>
+
+        <changelogtext>Fixed updater in Android N.</changelogtext>
+
+        <changelogtext>Fixed Mangafox search.</changelogtext>
+    </changelogversion>
+
     <changelogversion versionName="v0.4.1" changeDate="">
         <changelogtext>Added an app's language selector.</changelogtext>
 

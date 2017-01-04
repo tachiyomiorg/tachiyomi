@@ -11,7 +11,6 @@ import eu.kanade.tachiyomi.ui.reader.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.viewer.base.BaseReader
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.horizontal.LeftToRightReader
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.horizontal.RightToLeftReader
-import eu.kanade.tachiyomi.util.toast
 import rx.subscriptions.CompositeSubscription
 
 /**

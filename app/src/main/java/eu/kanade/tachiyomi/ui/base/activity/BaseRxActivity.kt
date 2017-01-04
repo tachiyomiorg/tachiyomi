@@ -8,6 +8,8 @@ import nucleus.view.NucleusAppCompatActivity
 
 abstract class BaseRxActivity<P : BasePresenter<*>> : NucleusAppCompatActivity<P>(), ActivityMixin {
 
+    override var resumed = false
+
     init {
         LocaleHelper.updateConfiguration(this)
     }
@@ -24,9 +26,6 @@ abstract class BaseRxActivity<P : BasePresenter<*>> : NucleusAppCompatActivity<P
     }
 
     override fun getActivity() = this
-
-    var resumed = false
-        private set
 
     override fun onResume() {
         super.onResume()

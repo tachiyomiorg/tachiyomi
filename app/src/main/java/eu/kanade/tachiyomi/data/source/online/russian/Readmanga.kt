@@ -25,8 +25,8 @@ class Readmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesInitialUrl() = "$baseUrl/list?sortType=updated"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
-            "$baseUrl/search?q=$query&${filters.map { it.id + "=in" }.joinToString("&")}"
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) =
+            "$baseUrl/search?q=$query&${filters.map { (it as Genre).id + arrayOf("=", "=in", "=ex")[it.state] }.joinToString("&")}"
 
     override fun popularMangaSelector() = "div.desc"
 
@@ -107,56 +107,59 @@ class Readmanga(override val id: Int) : ParsedOnlineSource() {
         }
     }
 
-    override fun pageListParse(document: Document, pages: MutableList<Page>) { }
+    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+    }
 
     override fun imageUrlParse(document: Document) = ""
 
+    private class Genre(name: String, val id: String) : Filter.TriState(name)
+
     /* [...document.querySelectorAll("tr.advanced_option:nth-child(1) > td:nth-child(3) span.js-link")].map((el,i) => {
     *  const onClick=el.getAttribute('onclick');const id=onClick.substr(31,onClick.length-33);
-    *  return `Filter("${id}", "${el.textContent.trim()}")` }).join(',\n')
+    *  return `Genre("${el.textContent.trim()}", "${id}")` }).join(',\n')
     *  on http://readmanga.me/search
     */
-    override fun getFilterList(): List<Filter> = listOf(
-            Filter("el_5685", "арт"),
-            Filter("el_2155", "боевик"),
-            Filter("el_2143", "боевые искусства"),
-            Filter("el_2148", "вампиры"),
-            Filter("el_2142", "гарем"),
-            Filter("el_2156", "гендерная интрига"),
-            Filter("el_2146", "героическое фэнтези"),
-            Filter("el_2152", "детектив"),
-            Filter("el_2158", "дзёсэй"),
-            Filter("el_2141", "додзинси"),
-            Filter("el_2118", "драма"),
-            Filter("el_2154", "игра"),
-            Filter("el_2119", "история"),
-            Filter("el_8032", "киберпанк"),
-            Filter("el_2137", "кодомо"),
-            Filter("el_2136", "комедия"),
-            Filter("el_2147", "махо-сёдзё"),
-            Filter("el_2126", "меха"),
-            Filter("el_2132", "мистика"),
-            Filter("el_2133", "научная фантастика"),
-            Filter("el_2135", "повседневность"),
-            Filter("el_2151", "постапокалиптика"),
-            Filter("el_2130", "приключения"),
-            Filter("el_2144", "психология"),
-            Filter("el_2121", "романтика"),
-            Filter("el_2124", "самурайский боевик"),
-            Filter("el_2159", "сверхъестественное"),
-            Filter("el_2122", "сёдзё"),
-            Filter("el_2128", "сёдзё-ай"),
-            Filter("el_2134", "сёнэн"),
-            Filter("el_2139", "сёнэн-ай"),
-            Filter("el_2129", "спорт"),
-            Filter("el_2138", "сэйнэн"),
-            Filter("el_2153", "трагедия"),
-            Filter("el_2150", "триллер"),
-            Filter("el_2125", "ужасы"),
-            Filter("el_2140", "фантастика"),
-            Filter("el_2131", "фэнтези"),
-            Filter("el_2127", "школа"),
-            Filter("el_2149", "этти"),
-            Filter("el_2123", "юри")
+    override fun getFilterList(): List<Filter<*>> = listOf(
+            Genre("арт", "el_5685"),
+            Genre("боевик", "el_2155"),
+            Genre("боевые искусства", "el_2143"),
+            Genre("вампиры", "el_2148"),
+            Genre("гарем", "el_2142"),
+            Genre("гендерная интрига", "el_2156"),
+            Genre("героическое фэнтези", "el_2146"),
+            Genre("детектив", "el_2152"),
+            Genre("дзёсэй", "el_2158"),
+            Genre("додзинси", "el_2141"),
+            Genre("драма", "el_2118"),
+            Genre("игра", "el_2154"),
+            Genre("история", "el_2119"),
+            Genre("киберпанк", "el_8032"),
+            Genre("кодомо", "el_2137"),
+            Genre("комедия", "el_2136"),
+            Genre("махо-сёдзё", "el_2147"),
+            Genre("меха", "el_2126"),
+            Genre("мистика", "el_2132"),
+            Genre("научная фантастика", "el_2133"),
+            Genre("повседневность", "el_2135"),
+            Genre("постапокалиптика", "el_2151"),
+            Genre("приключения", "el_2130"),
+            Genre("психология", "el_2144"),
+            Genre("романтика", "el_2121"),
+            Genre("самурайский боевик", "el_2124"),
+            Genre("сверхъестественное", "el_2159"),
+            Genre("сёдзё", "el_2122"),
+            Genre("сёдзё-ай", "el_2128"),
+            Genre("сёнэн", "el_2134"),
+            Genre("сёнэн-ай", "el_2139"),
+            Genre("спорт", "el_2129"),
+            Genre("сэйнэн", "el_2138"),
+            Genre("трагедия", "el_2153"),
+            Genre("триллер", "el_2150"),
+            Genre("ужасы", "el_2125"),
+            Genre("фантастика", "el_2140"),
+            Genre("фэнтези", "el_2131"),
+            Genre("школа", "el_2127"),
+            Genre("этти", "el_2149"),
+            Genre("юри", "el_2123")
     )
 }

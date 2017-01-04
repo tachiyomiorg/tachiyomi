@@ -45,7 +45,7 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector() = null
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/search/?wd=$query"
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) = "$baseUrl/search/?wd=$query"
 
     override fun searchMangaSelector() = ".searchresult td > div"
 
@@ -70,10 +70,10 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
         manga.thumbnail_url = imageElement.select("img").first()?.attr("src")
 
         if (manga.author == "RSS")
-                manga.author = null
+            manga.author = null
 
         if (manga.artist == "RSS")
-                manga.artist = null
+            manga.artist = null
     }
 
     override fun chapterListSelector() = ".chapterlist tr:not(:first-child)"
@@ -95,11 +95,12 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
         val document = response.asJsoup()
 
         document.select("select#page").first().select("option").forEach {
-                pages.add(Page(pages.size, it.attr("value")))
+            pages.add(Page(pages.size, it.attr("value")))
         }
     }
 
-    override fun pageListParse(document: Document, pages: MutableList<Page>) {}
+    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+    }
 
     override fun imageUrlParse(document: Document) = document.select("img#comicpic").first().attr("src")
 

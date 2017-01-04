@@ -26,15 +26,18 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesInitialUrl() = "$baseUrl/newestch"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>): String {
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>): String {
         if (query.isNotEmpty()) {
             return "$baseUrl/?do=search&subaction=search&story=$query"
-        } else if (filters.isNotEmpty()) {
-            var genres = ""
-            filters.forEach { genres = genres + it.name + '+' }
-            return "$baseUrl/tags/${genres.dropLast(1)}"
         } else {
-            return "$baseUrl/?do=search&subaction=search&story=$query"
+            val filt = filters.filter { it.state != Filter.TriState.STATE_IGNORE }
+            if (filt.isNotEmpty()) {
+                var genres = ""
+                filt.forEach { genres += (if (it.state == Filter.TriState.STATE_EXCLUDE) "-" else "") + (it as Genre).id + '+' }
+                return "$baseUrl/tags/${genres.dropLast(1)}"
+            } else {
+                return "$baseUrl/?do=search&subaction=search&story=$query"
+            }
         }
     }
 
@@ -70,7 +73,7 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
 
     private fun searchGenresNextPageSelector() = popularMangaNextPageSelector()
 
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter>) {
+    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>) {
         val document = response.asJsoup()
         for (element in document.select(searchMangaSelector())) {
             Manga.create(id).apply {
@@ -78,9 +81,9 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
                 page.mangas.add(this)
             }
         }
-
+        val allIgnore = filters.all { it.state == Filter.TriState.STATE_IGNORE }
         searchMangaNextPageSelector().let { selector ->
-            if (page.nextPageUrl.isNullOrEmpty() && filters.isEmpty()) {
+            if (page.nextPageUrl.isNullOrEmpty() && allIgnore) {
                 val onClick = document.select(selector).first()?.attr("onclick")
                 val pageNum = onClick?.substring(23, onClick.indexOf("); return(false)"))
                 page.nextPageUrl = searchMangaInitialUrl(query, emptyList()) + "&search_start=" + pageNum
@@ -88,7 +91,7 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
         }
 
         searchGenresNextPageSelector().let { selector ->
-            if (page.nextPageUrl.isNullOrEmpty() && filters.isNotEmpty()) {
+            if (page.nextPageUrl.isNullOrEmpty() && !allIgnore) {
                 val url = document.select(selector).first()?.attr("href")
                 page.nextPageUrl = searchMangaInitialUrl(query, filters) + url
             }
@@ -137,71 +140,75 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
         pageUrls.mapIndexedTo(pages) { i, url -> Page(i, "", url) }
     }
 
-    override fun pageListParse(document: Document, pages: MutableList<Page>) { }
+    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+    }
 
     override fun imageUrlParse(document: Document) = ""
 
+    private class Genre(name: String, val id: String = name.replace(' ', '_')) : Filter.TriState(name)
+
     /* [...document.querySelectorAll("li.sidetag > a:nth-child(1)")].map((el,i) =>
     *  { const link=el.getAttribute('href');const id=link.substr(6,link.length);
-    *  return `Filter("${id}", "${id}")` }).join(',\n')
+    *  return `Genre("${id.replace("_", " ")}")` }).join(',\n')
     *  on http://mangachan.me/
     */
-    override fun getFilterList(): List<Filter> = listOf(
-            Filter("18_плюс", "18_плюс"),
-            Filter("bdsm", "bdsm"),
-            Filter("арт", "арт"),
-            Filter("биография", "биография"),
-            Filter("боевик", "боевик"),
-            Filter("боевые_искусства", "боевые_искусства"),
-            Filter("вампиры", "вампиры"),
-            Filter("веб", "веб"),
-            Filter("гарем", "гарем"),
-            Filter("гендерная_интрига", "гендерная_интрига"),
-            Filter("героическое_фэнтези", "героическое_фэнтези"),
-            Filter("детектив", "детектив"),
-            Filter("дзёсэй", "дзёсэй"),
-            Filter("додзинси", "додзинси"),
-            Filter("драма", "драма"),
-            Filter("игра", "игра"),
-            Filter("инцест", "инцест"),
-            Filter("искусство", "искусство"),
-            Filter("история", "история"),
-            Filter("киберпанк", "киберпанк"),
-            Filter("кодомо", "кодомо"),
-            Filter("комедия", "комедия"),
-            Filter("литРПГ", "литРПГ"),
-            Filter("махо-сёдзё", "махо-сёдзё"),
-            Filter("меха", "меха"),
-            Filter("мистика", "мистика"),
-            Filter("музыка", "музыка"),
-            Filter("научная_фантастика", "научная_фантастика"),
-            Filter("повседневность", "повседневность"),
-            Filter("постапокалиптика", "постапокалиптика"),
-            Filter("приключения", "приключения"),
-            Filter("психология", "психология"),
-            Filter("романтика", "романтика"),
-            Filter("самурайский_боевик", "самурайский_боевик"),
-            Filter("сборник", "сборник"),
-            Filter("сверхъестественное", "сверхъестественное"),
-            Filter("сказка", "сказка"),
-            Filter("спорт", "спорт"),
-            Filter("супергерои", "супергерои"),
-            Filter("сэйнэн", "сэйнэн"),
-            Filter("сёдзё", "сёдзё"),
-            Filter("сёдзё-ай", "сёдзё-ай"),
-            Filter("сёнэн", "сёнэн"),
-            Filter("сёнэн-ай", "сёнэн-ай"),
-            Filter("тентакли", "тентакли"),
-            Filter("трагедия", "трагедия"),
-            Filter("триллер", "триллер"),
-            Filter("ужасы", "ужасы"),
-            Filter("фантастика", "фантастика"),
-            Filter("фурри", "фурри"),
-            Filter("фэнтези", "фэнтези"),
-            Filter("школа", "школа"),
-            Filter("эротика", "эротика"),
-            Filter("юри", "юри"),
-            Filter("яой", "яой"),
-            Filter("ёнкома", "ёнкома")
+    override fun getFilterList(): List<Filter<*>> = listOf(
+            Genre("18 плюс"),
+            Genre("bdsm"),
+            Genre("арт"),
+            Genre("биография"),
+            Genre("боевик"),
+            Genre("боевые искусства"),
+            Genre("вампиры"),
+            Genre("веб"),
+            Genre("гарем"),
+            Genre("гендерная интрига"),
+            Genre("героическое фэнтези"),
+            Genre("детектив"),
+            Genre("дзёсэй"),
+            Genre("додзинси"),
+            Genre("драма"),
+            Genre("игра"),
+            Genre("инцест"),
+            Genre("искусство"),
+            Genre("история"),
+            Genre("киберпанк"),
+            Genre("кодомо"),
+            Genre("комедия"),
+            Genre("литРПГ"),
+            Genre("магия"),
+            Genre("махо-сёдзё"),
+            Genre("меха"),
+            Genre("мистика"),
+            Genre("музыка"),
+            Genre("научная фантастика"),
+            Genre("повседневность"),
+            Genre("постапокалиптика"),
+            Genre("приключения"),
+            Genre("психология"),
+            Genre("романтика"),
+            Genre("самурайский боевик"),
+            Genre("сборник"),
+            Genre("сверхъестественное"),
+            Genre("сказка"),
+            Genre("спорт"),
+            Genre("супергерои"),
+            Genre("сэйнэн"),
+            Genre("сёдзё"),
+            Genre("сёдзё-ай"),
+            Genre("сёнэн"),
+            Genre("сёнэн-ай"),
+            Genre("тентакли"),
+            Genre("трагедия"),
+            Genre("триллер"),
+            Genre("ужасы"),
+            Genre("фантастика"),
+            Genre("фурри"),
+            Genre("фэнтези"),
+            Genre("школа"),
+            Genre("эротика"),
+            Genre("юри"),
+            Genre("яой"),
+            Genre("ёнкома")
     )
 }

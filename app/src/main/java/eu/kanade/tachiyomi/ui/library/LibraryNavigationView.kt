@@ -39,6 +39,7 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
 
     init {
         recycler.adapter = adapter
+        addView(recycler)
 
         groups.forEach { it.initModels() }
     }

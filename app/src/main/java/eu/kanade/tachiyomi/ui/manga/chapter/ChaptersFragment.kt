@@ -118,7 +118,7 @@ class ChaptersFragment : BaseRxFragment<ChaptersPresenter>(), ActionMode.Callbac
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         // Initialize menu items.
-        val menuFilterRead = menu.findItem(R.id.action_filter_read)
+        val menuFilterRead = menu.findItem(R.id.action_filter_read) ?: return
         val menuFilterUnread = menu.findItem(R.id.action_filter_unread)
         val menuFilterDownloaded = menu.findItem(R.id.action_filter_downloaded)
         val menuFilterBookmarked = menu.findItem(R.id.action_filter_bookmarked)

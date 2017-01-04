@@ -28,6 +28,7 @@ class SettingsActivity : BaseActivity(),
     override fun onCreate(savedState: Bundle?) {
         setAppTheme()
         super.onCreate(savedState)
+        setTitle(R.string.label_settings)
         setContentView(R.layout.activity_preferences)
 
         replaceFragmentStrategy = ReplaceFragment(this,

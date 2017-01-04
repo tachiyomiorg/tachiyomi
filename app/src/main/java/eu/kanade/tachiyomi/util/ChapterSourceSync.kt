@@ -44,6 +44,11 @@ fun syncChaptersWithSource(db: DatabaseHelper,
     // Chapters from the db not in the source.
     val toDelete = dbChapters.filterNot { it in sourceChapters }
 
+    // Return if there's nothing to add or delete, avoiding unnecessary db transactions.
+    if (toAdd.isEmpty() && toDelete.isEmpty()) {
+        return Pair(emptyList(), emptyList())
+    }
+
     val readded = mutableListOf<Chapter>()
 
     db.inTransaction {

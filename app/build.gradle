@@ -38,8 +38,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 25
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode 17
-        versionName "0.4.1"
+        versionCode 18
+        versionName "0.4.2"
 
         buildConfigField "String", "COMMIT_COUNT", "\"${getCommitCount()}\""
         buildConfigField "String", "COMMIT_SHA", "\"${getGitSha()}\""
@@ -98,7 +98,7 @@ android {
 dependencies {
 
     // Modified dependencies
-    compile 'com.github.inorichi:subsampling-scale-image-view:c4db85c'
+    compile 'com.github.inorichi:subsampling-scale-image-view:e8b72cb'
 
     // Android support library
     final support_library_version = '25.0.1'

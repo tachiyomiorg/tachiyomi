@@ -5,7 +5,6 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.Headers
 import okhttp3.OkHttpClient
@@ -57,25 +56,29 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector(): String = "div.hot-manga > ul.pagination > li > a:contains(»)"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) =
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) =
             "$baseUrl/service/advanced_search"
 
 
-    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<OnlineSource.Filter>): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter<*>>): Request {
         if (page.page == 1) {
             page.url = searchMangaInitialUrl(query, filters)
         }
 
         val builder = okhttp3.FormBody.Builder()
         builder.add("manga-name", query)
-        builder.add("type", "all")
-        var status = "both"
-        for (filter in filters) {
-            if (filter.equals(completedFilter)) status = filter.id
-            else builder.add("include[]", filter.id)
-        }
-        builder.add("status", status)
+        for (filter in if (filters.isEmpty()) this@Readmangatoday.filters else filters) {
+            when (filter) {
+                is TextField -> builder.add(filter.key, filter.state)
+                is Type -> builder.add("type", arrayOf("all", "japanese", "korean", "chinese")[filter.state])
+                is Status -> builder.add("status", arrayOf("both", "completed", "ongoing")[filter.state])
+                is Genre -> when (filter.state) {
+                    Filter.TriState.STATE_INCLUDE -> builder.add("include[]", filter.id.toString())
+                    Filter.TriState.STATE_EXCLUDE -> builder.add("exclude[]", filter.id.toString())
 
+                }
+            }
+        }
         return POST(page.url, headers, builder.build())
     }
 
@@ -118,16 +121,16 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
     }
 
     private fun parseChapterDate(date: String): Long {
-        val dateWords : List<String> = date.split(" ")
+        val dateWords: List<String> = date.split(" ")
 
         if (dateWords.size == 3) {
             val timeAgo = Integer.parseInt(dateWords[0])
-            var date : Calendar = Calendar.getInstance()
+            var date: Calendar = Calendar.getInstance()
 
             if (dateWords[1].contains("Minute")) {
-                date.add(Calendar.MINUTE, - timeAgo)
+                date.add(Calendar.MINUTE, -timeAgo)
             } else if (dateWords[1].contains("Hour")) {
-                date.add(Calendar.HOUR_OF_DAY, - timeAgo)
+                date.add(Calendar.HOUR_OF_DAY, -timeAgo)
             } else if (dateWords[1].contains("Day")) {
                 date.add(Calendar.DAY_OF_YEAR, -timeAgo)
             } else if (dateWords[1].contains("Week")) {
@@ -153,45 +156,53 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
 
     override fun imageUrlParse(document: Document) = document.select("img.img-responsive-2").first().attr("src")
 
-    private val completedFilter = Filter("completed", "Completed")
-    // [...document.querySelectorAll("ul.manga-cat span")].map(el => `Filter("${el.getAttribute('data-id')}", "${el.nextSibling.textContent.trim()}")`).join(',\n')
+    private class Status() : Filter.TriState("Completed")
+    private class Genre(name: String, val id: Int) : Filter.TriState(name)
+    private class TextField(name: String, val key: String) : Filter.Text(name)
+    private class Type() : Filter.List<String>("Type", arrayOf("All", "Japanese Manga", "Korean Manhwa", "Chinese Manhua"))
+
+    // [...document.querySelectorAll("ul.manga-cat span")].map(el => `Genre("${el.nextSibling.textContent.trim()}", ${el.getAttribute('data-id')})`).join(',\n')
     // http://www.readmanga.today/advanced-search
-    override fun getFilterList(): List<Filter> = listOf(
-            completedFilter,
-            Filter("2", "Action"),
-            Filter("4", "Adventure"),
-            Filter("5", "Comedy"),
-            Filter("6", "Doujinshi"),
-            Filter("7", "Drama"),
-            Filter("8", "Ecchi"),
-            Filter("9", "Fantasy"),
-            Filter("10", "Gender Bender"),
-            Filter("11", "Harem"),
-            Filter("12", "Historical"),
-            Filter("13", "Horror"),
-            Filter("14", "Josei"),
-            Filter("15", "Lolicon"),
-            Filter("16", "Martial Arts"),
-            Filter("17", "Mature"),
-            Filter("18", "Mecha"),
-            Filter("19", "Mystery"),
-            Filter("20", "One shot"),
-            Filter("21", "Psychological"),
-            Filter("22", "Romance"),
-            Filter("23", "School Life"),
-            Filter("24", "Sci-fi"),
-            Filter("25", "Seinen"),
-            Filter("26", "Shotacon"),
-            Filter("27", "Shoujo"),
-            Filter("28", "Shoujo Ai"),
-            Filter("29", "Shounen"),
-            Filter("30", "Shounen Ai"),
-            Filter("31", "Slice of Life"),
-            Filter("32", "Smut"),
-            Filter("33", "Sports"),
-            Filter("34", "Supernatural"),
-            Filter("35", "Tragedy"),
-            Filter("36", "Yaoi"),
-            Filter("37", "Yuri")
+    override fun getFilterList(): List<Filter<*>> = listOf(
+            TextField("Author", "author-name"),
+            TextField("Artist", "artist-name"),
+            Type(),
+            Status(),
+            Filter.Header("Genres"),
+            Genre("Action", 2),
+            Genre("Adventure", 4),
+            Genre("Comedy", 5),
+            Genre("Doujinshi", 6),
+            Genre("Drama", 7),
+            Genre("Ecchi", 8),
+            Genre("Fantasy", 9),
+            Genre("Gender Bender", 10),
+            Genre("Harem", 11),
+            Genre("Historical", 12),
+            Genre("Horror", 13),
+            Genre("Josei", 14),
+            Genre("Lolicon", 15),
+            Genre("Martial Arts", 16),
+            Genre("Mature", 17),
+            Genre("Mecha", 18),
+            Genre("Mystery", 19),
+            Genre("One shot", 20),
+            Genre("Psychological", 21),
+            Genre("Romance", 22),
+            Genre("School Life", 23),
+            Genre("Sci-fi", 24),
+            Genre("Seinen", 25),
+            Genre("Shotacon", 26),
+            Genre("Shoujo", 27),
+            Genre("Shoujo Ai", 28),
+            Genre("Shounen", 29),
+            Genre("Shounen Ai", 30),
+            Genre("Slice of Life", 31),
+            Genre("Smut", 32),
+            Genre("Sports", 33),
+            Genre("Supernatural", 34),
+            Genre("Tragedy", 35),
+            Genre("Yaoi", 36),
+            Genre("Yuri", 37)
     )
 }

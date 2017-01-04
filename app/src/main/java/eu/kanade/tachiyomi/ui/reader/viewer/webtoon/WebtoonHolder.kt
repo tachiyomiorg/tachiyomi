@@ -54,7 +54,7 @@ class WebtoonHolder(private val view: View, private val adapter: WebtoonAdapter)
 
     init {
         with(view.image_view) {
-            setMaxBitmapDimensions(readerActivity.maxBitmapSize)
+            setMaxTileSize(readerActivity.maxBitmapSize)
             setDoubleTapZoomStyle(SubsamplingScaleImageView.ZOOM_FOCUS_FIXED)
             setPanLimit(SubsamplingScaleImageView.PAN_LIMIT_INSIDE)
             setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_FIT_WIDTH)

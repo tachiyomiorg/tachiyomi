@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/listPreferredItemHeightSmall"
+    android:paddingLeft="?attr/listPreferredItemPaddingLeft"
+    android:paddingRight="?attr/listPreferredItemPaddingRight"
+    android:background="?attr/selectableItemBackground"
+    android:focusable="true">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/nav_view_item_wrapper"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical|start">
+
+        <EditText
+            android:id="@+id/nav_view_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:imeOptions="actionDone"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>

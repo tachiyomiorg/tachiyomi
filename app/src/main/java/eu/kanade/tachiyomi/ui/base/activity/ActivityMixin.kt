@@ -15,11 +15,17 @@ import uy.kohesive.injekt.api.get
 
 interface ActivityMixin {
 
+    var resumed: Boolean
+
     fun setupToolbar(toolbar: Toolbar, backNavigation: Boolean = true) {
         setSupportActionBar(toolbar)
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
         if (backNavigation) {
-            toolbar.setNavigationOnClickListener { onBackPressed() }
+            toolbar.setNavigationOnClickListener {
+                if (resumed) {
+                    onBackPressed()
+                }
+            }
         }
     }
 

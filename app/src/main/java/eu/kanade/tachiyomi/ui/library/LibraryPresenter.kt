@@ -293,9 +293,12 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
      *
      * @param mangas the list of manga.
      */
-    fun getCommonCategories(mangas: List<Manga>): Collection<Category> = mangas.toSet()
-            .map { db.getCategoriesForManga(it).executeAsBlocking() }
-            .reduce { set1: Iterable<Category>, set2 -> set1.intersect(set2) }
+    fun getCommonCategories(mangas: List<Manga>): Collection<Category> {
+        if (mangas.isEmpty()) return emptyList()
+        return mangas.toSet()
+                .map { db.getCategoriesForManga(it).executeAsBlocking() }
+                .reduce { set1: Iterable<Category>, set2 -> set1.intersect(set2) }
+    }
 
     /**
      * Remove the selected manga from the library.

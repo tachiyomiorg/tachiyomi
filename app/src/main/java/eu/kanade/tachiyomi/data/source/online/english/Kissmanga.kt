@@ -51,25 +51,26 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector(): String = "ul.pager > li > a:contains(Next)"
 
-    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter>): Request {
+    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter<*>>): Request {
         if (page.page == 1) {
             page.url = searchMangaInitialUrl(query, filters)
         }
 
         val form = FormBody.Builder().apply {
-            add("authorArtist", "")
             add("mangaName", query)
 
-            this@Kissmanga.filters.forEach { filter ->
-                if (filter.equals(completedFilter)) add("status", if (filter in filters) filter.id else "")
-                else add("genres", if (filter in filters) "1" else "0")
+            for (filter in if (filters.isEmpty()) this@Kissmanga.filters else filters) {
+                when (filter) {
+                    is Author -> add("authorArtist", filter.state)
+                    is Status -> add("status", arrayOf("", "Completed", "Ongoing")[filter.state])
+                    is Genre -> add("genres", filter.state.toString())
+                }
             }
         }
-
         return POST(page.url, headers, form.build())
     }
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter>) = "$baseUrl/AdvanceSearch"
+    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) = "$baseUrl/AdvanceSearch"
 
     override fun searchMangaSelector() = popularMangaSelector()
 
@@ -128,54 +129,59 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun imageUrlParse(document: Document) = ""
 
-    private val completedFilter = Filter("Completed", "Completed")
-    // $("select[name=\"genres\"]").map((i,el) => `Filter("${i}", "${$(el).next().text().trim()}")`).get().join(',\n')
+    private class Status() : Filter.TriState("Completed")
+    private class Author() : Filter.Text("Author")
+    private class Genre(name: String, val id: Int) : Filter.TriState(name)
+
+    // $("select[name=\"genres\"]").map((i,el) => `Genre("${$(el).next().text().trim()}", ${i})`).get().join(',\n')
     // on http://kissmanga.com/AdvanceSearch
-    override fun getFilterList(): List<Filter> = listOf(
-            completedFilter,
-            Filter("0", "Action"),
-            Filter("1", "Adult"),
-            Filter("2", "Adventure"),
-            Filter("3", "Comedy"),
-            Filter("4", "Comic"),
-            Filter("5", "Cooking"),
-            Filter("6", "Doujinshi"),
-            Filter("7", "Drama"),
-            Filter("8", "Ecchi"),
-            Filter("9", "Fantasy"),
-            Filter("10", "Gender Bender"),
-            Filter("11", "Harem"),
-            Filter("12", "Historical"),
-            Filter("13", "Horror"),
-            Filter("14", "Josei"),
-            Filter("15", "Lolicon"),
-            Filter("16", "Manga"),
-            Filter("17", "Manhua"),
-            Filter("18", "Manhwa"),
-            Filter("19", "Martial Arts"),
-            Filter("20", "Mature"),
-            Filter("21", "Mecha"),
-            Filter("22", "Medical"),
-            Filter("23", "Music"),
-            Filter("24", "Mystery"),
-            Filter("25", "One shot"),
-            Filter("26", "Psychological"),
-            Filter("27", "Romance"),
-            Filter("28", "School Life"),
-            Filter("29", "Sci-fi"),
-            Filter("30", "Seinen"),
-            Filter("31", "Shotacon"),
-            Filter("32", "Shoujo"),
-            Filter("33", "Shoujo Ai"),
-            Filter("34", "Shounen"),
-            Filter("35", "Shounen Ai"),
-            Filter("36", "Slice of Life"),
-            Filter("37", "Smut"),
-            Filter("38", "Sports"),
-            Filter("39", "Supernatural"),
-            Filter("40", "Tragedy"),
-            Filter("41", "Webtoon"),
-            Filter("42", "Yaoi"),
-            Filter("43", "Yuri")
+    override fun getFilterList(): List<Filter<*>> = listOf(
+            Author(),
+            Status(),
+            Filter.Header("Genres"),
+            Genre("Action", 0),
+            Genre("Adult", 1),
+            Genre("Adventure", 2),
+            Genre("Comedy", 3),
+            Genre("Comic", 4),
+            Genre("Cooking", 5),
+            Genre("Doujinshi", 6),
+            Genre("Drama", 7),
+            Genre("Ecchi", 8),
+            Genre("Fantasy", 9),
+            Genre("Gender Bender", 10),
+            Genre("Harem", 11),
+            Genre("Historical", 12),
+            Genre("Horror", 13),
+            Genre("Josei", 14),
+            Genre("Lolicon", 15),
+            Genre("Manga", 16),
+            Genre("Manhua", 17),
+            Genre("Manhwa", 18),
+            Genre("Martial Arts", 19),
+            Genre("Mature", 20),
+            Genre("Mecha", 21),
+            Genre("Medical", 22),
+            Genre("Music", 23),
+            Genre("Mystery", 24),
+            Genre("One shot", 25),
+            Genre("Psychological", 26),
+            Genre("Romance", 27),
+            Genre("School Life", 28),
+            Genre("Sci-fi", 29),
+            Genre("Seinen", 30),
+            Genre("Shotacon", 31),
+            Genre("Shoujo", 32),
+            Genre("Shoujo Ai", 33),
+            Genre("Shounen", 34),
+            Genre("Shounen Ai", 35),
+            Genre("Slice of Life", 36),
+            Genre("Smut", 37),
+            Genre("Sports", 38),
+            Genre("Supernatural", 39),
+            Genre("Tragedy", 40),
+            Genre("Webtoon", 41),
+            Genre("Yaoi", 42),
+            Genre("Yuri", 43)
     )
 }

@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.catalogue
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.widget.*
 import android.view.*
 import android.view.animation.AnimationUtils
@@ -19,10 +20,12 @@ import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.util.connectivityManager
+import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.EndlessScrollListener
 import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_catalogue.*
 import kotlinx.android.synthetic.main.toolbar.*
 import nucleus.factory.RequiresPresenter
@@ -101,6 +104,30 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
     private val toolbar: Toolbar
         get() = (activity as MainActivity).toolbar
 
+    /**
+     * Navigation view containing filter items.
+     */
+    private var navView: CatalogueNavigationView? = null
+
+    /**
+     * Drawer listener to allow swipe only for closing the drawer.
+     */
+    private val drawerListener by lazy {
+        object : DrawerLayout.SimpleDrawerListener() {
+            override fun onDrawerClosed(drawerView: View) {
+                if (drawerView == navView) {
+                    activity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
+                }
+            }
+
+            override fun onDrawerOpened(drawerView: View) {
+                if (drawerView == navView) {
+                    activity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, navView)
+                }
+            }
+        }
+    }
+
     companion object {
         /**
          * Creates a new instance of this fragment.
@@ -177,6 +204,7 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
                 glm.scrollToPositionWithOffset(0, 0)
                 llm.scrollToPositionWithOffset(0, 0)
                 presenter.setActiveSource(source)
+                navView?.setFilters(presenter.sourceFilters)
                 activity.invalidateOptionsMenu()
             }
         }
@@ -191,6 +219,32 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
 
         setToolbarTitle("")
         toolbar.addView(spinner)
+
+        // Inflate and prepare drawer
+        val navView = activity.drawer.inflate(R.layout.catalogue_drawer) as CatalogueNavigationView
+        this.navView = navView
+        activity.drawer.addView(navView)
+        activity.drawer.addDrawerListener(drawerListener)
+        navView.setFilters(presenter.sourceFilters)
+
+        navView.post {
+            if (isAdded && !activity.drawer.isDrawerOpen(navView))
+                activity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
+        }
+
+        navView.onSearchClicked = {
+            val allDefault = (0..navView.adapter.items.lastIndex)
+                    .none { navView.adapter.items[it].state != presenter.source.filters[it].state }
+
+            presenter.setSourceFilter(if (allDefault) emptyList() else navView.adapter.items)
+        }
+
+        navView.onResetClicked = {
+            presenter.appliedFilters = emptyList()
+            val newFilters = presenter.source.getFilterList()
+            presenter.sourceFilters = newFilters
+            navView.setFilters(newFilters)
+        }
 
         showProgressBar()
     }
@@ -245,7 +299,7 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_display_mode -> swapDisplayMode()
-            R.id.action_set_filter -> showFiltersDialog()
+            R.id.action_set_filter -> navView?.let { activity.drawer.openDrawer(Gravity.END) }
             else -> return super.onOptionsItemSelected(item)
         }
         return true
@@ -264,6 +318,10 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
     }
 
     override fun onDestroyView() {
+        navView?.let {
+            activity.drawer.removeDrawerListener(drawerListener)
+            activity.drawer.removeView(it)
+        }
         numColumnsSubscription?.unsubscribe()
         searchItem?.let {
             if (it.isActionViewExpanded) it.collapseActionView()
@@ -449,29 +507,6 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
                         }
                     }
                 }.show()
-    }
-
-    /**
-     * Show the filter dialog for the source.
-     */
-    private fun showFiltersDialog() {
-        val allFilters = presenter.source.filters
-        val selectedFilters = presenter.filters
-                .map { filter -> allFilters.indexOf(filter) }
-                .toTypedArray()
-
-        MaterialDialog.Builder(context)
-                .title(R.string.action_set_filter)
-                .items(allFilters.map { it.name })
-                .itemsCallbackMultiChoice(selectedFilters) { dialog, positions, text ->
-                    val newFilters = positions.map { allFilters[it] }
-                    showProgressBar()
-                    presenter.setSourceFilter(newFilters)
-                    true
-                }
-                .positiveText(android.R.string.ok)
-                .negativeText(android.R.string.cancel)
-                .show()
     }
 
 }

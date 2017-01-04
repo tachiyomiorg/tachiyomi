@@ -69,6 +69,7 @@
     <string name="action_install">Install</string>
     <string name="action_share">Share</string>
     <string name="action_save">Save</string>
+    <string name="action_reset">Reset</string>
 
     <!-- Operations -->
     <string name="deleting">Deleting…</string>

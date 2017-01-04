@@ -11,7 +11,7 @@ import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
  */
 class LatestUpdatesPresenter : CataloguePresenter() {
 
-    override fun createPager(query: String, filters: List<Filter>): Pager {
+    override fun createPager(query: String, filters: List<Filter<*>>): Pager {
         return LatestUpdatesPager(source)
     }
 

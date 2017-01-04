@@ -141,6 +141,11 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
      */
     private var adjacentChaptersSubscription: Subscription? = null
 
+    /**
+     * Whether the active chapter has been loaded.
+     */
+    private var chapterLoaded = false
+
     companion object {
         /**
          * Id of the restartable that loads the active chapter.
@@ -211,6 +216,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         return loader.loadChapter(chapter)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext { chapterLoaded = true }
     }
 
     /**
@@ -298,6 +304,7 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         nextChapter = null
         prevChapter = null
 
+        chapterLoaded = false
         start(LOAD_ACTIVE_CHAPTER)
         getAdjacentChapters(chapter)
     }
@@ -474,6 +481,9 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
      * @return true if the next chapter is being loaded, false if there is no next chapter.
      */
     fun loadNextChapter(): Boolean {
+        // Avoid skipping chapters.
+        if (!chapterLoaded) return true
+
         nextChapter?.let {
             onChapterLeft()
             loadChapter(it, 0)
@@ -488,6 +498,9 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
      * @return true if the previous chapter is being loaded, false if there is no previous chapter.
      */
     fun loadPreviousChapter(): Boolean {
+        // Avoid skipping chapters.
+        if (!chapterLoaded) return true
+
         prevChapter?.let {
             onChapterLeft()
             loadChapter(it, if (it.read) -1 else 0)

@@ -5,7 +5,7 @@ import eu.kanade.tachiyomi.data.source.online.OnlineSource
 import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
 import rx.Observable
 
-open class CataloguePager(val source: OnlineSource, val query: String, val filters: List<Filter>): Pager() {
+open class CataloguePager(val source: OnlineSource, val query: String, val filters: List<Filter<*>>) : Pager() {
 
     override fun requestNext(transformer: (Observable<MangasPage>) -> Observable<MangasPage>): Observable<MangasPage> {
         val lastPage = lastPage

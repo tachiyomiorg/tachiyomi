@@ -78,8 +78,7 @@ object LocaleHelper {
         if (systemLocale == null) {
             systemLocale = getConfigLocale(config)
         }
-        // In API 16 and lower [systemLocale] can't be changed.
-        if (configChange && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        if (configChange) {
             val configLocale = getConfigLocale(config)
             if (currentLocale == configLocale) {
                 return

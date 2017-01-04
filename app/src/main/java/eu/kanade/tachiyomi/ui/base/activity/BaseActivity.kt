@@ -5,14 +5,13 @@ import eu.kanade.tachiyomi.util.LocaleHelper
 
 abstract class BaseActivity : AppCompatActivity(), ActivityMixin {
 
+    override var resumed = false
+
     init {
         LocaleHelper.updateConfiguration(this)
     }
 
     override fun getActivity() = this
-
-    var resumed = false
-        private set
 
     override fun onResume() {
         super.onResume()
