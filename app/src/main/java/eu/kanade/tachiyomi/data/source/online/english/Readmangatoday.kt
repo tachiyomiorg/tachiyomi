@@ -151,11 +151,13 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
         return 0L
     }
 
-    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+    override fun pageListParse(document: Document): List<Page> {
+        val pages = mutableListOf<Page>()
         document.select("ul.list-switcher-2 > li > select.jump-menu").first().getElementsByTag("option").forEach {
             pages.add(Page(pages.size, it.attr("value")))
         }
         pages.getOrNull(0)?.imageUrl = imageUrlParse(document)
+        return pages
     }
 
     override fun imageUrlParse(document: Document) = document.select("img.img-responsive-2").first().attr("src")

@@ -114,7 +114,8 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun pageListRequest(chapter: SChapter) = POST(baseUrl + chapter.url, headers)
 
-    override fun pageListParse(response: Response, pages: MutableList<Page>) {
+    override fun pageListParse(response: Response): List<Page> {
+        val pages = mutableListOf<Page>()
         //language=RegExp
         val p = Pattern.compile("""lstImages.push\("(.+?)"""")
         val m = p.matcher(response.body().string())
@@ -123,10 +124,11 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
         while (m.find()) {
             pages.add(Page(i++, "", m.group(1)))
         }
+        return pages
     }
 
-    // Not used
-    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+    override fun pageListParse(document: Document): List<Page> {
+        throw Exception("Not used")
     }
 
     override fun imageUrlRequest(page: Page) = GET(page.url)

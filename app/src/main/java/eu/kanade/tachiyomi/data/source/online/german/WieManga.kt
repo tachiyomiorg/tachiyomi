@@ -4,8 +4,6 @@ import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter
 import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
-import eu.kanade.tachiyomi.util.asJsoup
-import okhttp3.Response
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.text.SimpleDateFormat
@@ -95,15 +93,13 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
         return SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(date).time
     }
 
-    override fun pageListParse(response: Response, pages: MutableList<Page>) {
-        val document = response.asJsoup()
+    override fun pageListParse(document: Document): List<Page> {
+        val pages = mutableListOf<Page>()
 
         document.select("select#page").first().select("option").forEach {
             pages.add(Page(pages.size, it.attr("value")))
         }
-    }
-
-    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+        return pages
     }
 
     override fun imageUrlParse(document: Document) = document.select("img#comicpic").first().attr("src")

@@ -159,9 +159,11 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
         return chapters
     }
 
-    override fun pageListParse(response: Response, pages: MutableList<Page>) {
+    override fun pageListParse(response: Response): List<Page> {
         val body = response.body().string()
         val url = response.request().url().toString()
+
+        val pages = mutableListOf<Page>()
 
         // TODO lazy initialization in Kotlin 1.1
         val document = Jsoup.parse(body, url)
@@ -200,6 +202,7 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
                 page.imageUrl = url
             }
         }
+        return pages
     }
 
     override fun imageUrlParse(response: Response): String {

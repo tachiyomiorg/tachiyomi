@@ -253,6 +253,9 @@ class Downloader(private val context: Context, private val provider: DownloadPro
             // Pull page list from network and add them to download object
             download.source.fetchPageListFromNetwork(download.chapter)
                     .doOnNext { pages ->
+                        if (pages.isEmpty()) {
+                            throw Exception("Page list is empty")
+                        }
                         download.pages = pages
                     }
         } else {

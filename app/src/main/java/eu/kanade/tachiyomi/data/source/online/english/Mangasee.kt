@@ -163,10 +163,11 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
         return SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(dateAsString).time
     }
 
-    override fun pageListParse(response: Response, pages: MutableList<Page>) {
-        val document = response.asJsoup()
-        val fullUrl = response.request().url().toString()
+    override fun pageListParse(document: Document): List<Page> {
+        val fullUrl = document.baseUri()
         val url = fullUrl.substringBeforeLast('/')
+
+        val pages = mutableListOf<Page>()
 
         val series = document.select("input.IndexName").first().attr("value")
         val chapter = document.select("span.CurChapter").first().text()
@@ -182,10 +183,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
             pages.add(Page(pages.size, "$url/$series-chapter-$chapter$index-page-${pages.size + 1}.html"))
         }
         pages.getOrNull(0)?.imageUrl = imageUrlParse(document)
-    }
-
-    // Not used, overrides parent.
-    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+        return pages
     }
 
     override fun imageUrlParse(document: Document): String = document.select("img.CurImage").attr("src")

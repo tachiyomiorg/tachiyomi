@@ -95,7 +95,7 @@ class Mintmanga(override val id: Int) : ParsedOnlineSource() {
         chapter.chapter_number = -2f
     }
 
-    override fun pageListParse(response: Response, pages: MutableList<Page>) {
+    override fun pageListParse(response: Response): List<Page> {
         val html = response.body().string()
         val beginIndex = html.indexOf("rm_h.init( [")
         val endIndex = html.indexOf("], 0, false);", beginIndex)
@@ -104,14 +104,18 @@ class Mintmanga(override val id: Int) : ParsedOnlineSource() {
         val p = Pattern.compile("'.+?','.+?',\".+?\"")
         val m = p.matcher(trimmedHtml)
 
+        val pages = mutableListOf<Page>()
+
         var i = 0
         while (m.find()) {
             val urlParts = m.group().replace("[\"\']+".toRegex(), "").split(',')
             pages.add(Page(i++, "", urlParts[1] + urlParts[0] + urlParts[2]))
         }
+        return pages
     }
 
-    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+    override fun pageListParse(document: Document): List<Page> {
+        throw Exception("Not used")
     }
 
     override fun imageUrlParse(document: Document) = ""

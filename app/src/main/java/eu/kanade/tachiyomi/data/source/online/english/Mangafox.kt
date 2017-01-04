@@ -4,9 +4,7 @@ import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter
 import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
-import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.HttpUrl
-import okhttp3.Response
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.text.ParseException
@@ -128,17 +126,14 @@ class Mangafox(override val id: Int) : ParsedOnlineSource() {
         }
     }
 
-    override fun pageListParse(response: Response, pages: MutableList<Page>) {
-        val document = response.asJsoup()
+    override fun pageListParse(document: Document): List<Page> {
+        val url = document.baseUri().substringBeforeLast('/')
 
-        val url = response.request().url().toString().substringBeforeLast('/')
+        val pages = mutableListOf<Page>()
         document.select("select.m").first()?.select("option:not([value=0])")?.forEach {
             pages.add(Page(pages.size, "$url/${it.attr("value")}.html"))
         }
-    }
-
-    // Not used, overrides parent.
-    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+        return pages
     }
 
     override fun imageUrlParse(document: Document) = document.getElementById("image").attr("src")

@@ -175,8 +175,8 @@ abstract class ParsedOnlineSource : OnlineSource() {
      * @param response the response from the site.
      * @param pages the list of pages to fill.
      */
-    override fun pageListParse(response: Response, pages: MutableList<Page>) {
-        pageListParse(response.asJsoup(), pages)
+    override fun pageListParse(response: Response): List<Page> {
+        return pageListParse(response.asJsoup())
     }
 
     /**
@@ -185,7 +185,7 @@ abstract class ParsedOnlineSource : OnlineSource() {
      * @param document the parsed document.
      * @param pages the list of pages to fill.
      */
-    abstract protected fun pageListParse(document: Document, pages: MutableList<Page>)
+    abstract protected fun pageListParse(document: Document): List<Page>
 
     /**
      * Parse the response from the site and returns the absolute url to the source image.

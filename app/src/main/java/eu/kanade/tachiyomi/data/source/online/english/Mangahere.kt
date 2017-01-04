@@ -140,11 +140,13 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
         }
     }
 
-    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+    override fun pageListParse(document: Document): List<Page> {
+        val pages = mutableListOf<Page>()
         document.select("select.wid60").first()?.getElementsByTag("option")?.forEach {
             pages.add(Page(pages.size, it.attr("value")))
         }
         pages.getOrNull(0)?.imageUrl = imageUrlParse(document)
+        return pages
     }
 
     override fun imageUrlParse(document: Document) = document.getElementById("image").attr("src")

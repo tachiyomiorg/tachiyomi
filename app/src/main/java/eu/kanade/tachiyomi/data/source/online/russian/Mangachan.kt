@@ -134,17 +134,18 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
         return chapter
     }
 
-    override fun pageListParse(response: Response, pages: MutableList<Page>) {
+    override fun pageListParse(response: Response): List<Page> {
         val html = response.body().string()
         val beginIndex = html.indexOf("fullimg\":[") + 10
         val endIndex = html.indexOf(",]", beginIndex)
         val trimmedHtml = html.substring(beginIndex, endIndex).replace("\"", "")
         val pageUrls = trimmedHtml.split(',')
 
-        pageUrls.mapIndexedTo(pages) { i, url -> Page(i, "", url) }
+        return pageUrls.mapIndexed { i, url -> Page(i, "", url) }
     }
 
-    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+    override fun pageListParse(document: Document): List<Page> {
+        throw Exception("Not used")
     }
 
     override fun imageUrlParse(document: Document) = ""

@@ -275,6 +275,7 @@ abstract class OnlineSource : Source {
     final override fun fetchPageList(chapter: SChapter): Observable<List<Page>> = chapterCache
             .getPageListFromCache(getChapterCacheKey(chapter))
             .onErrorResumeNext { fetchPageListFromNetwork(chapter) }
+            .doOnNext { if (it.isEmpty()) throw Exception("Page list is empty") }
 
     /**
      * Returns an observable with the page list for a chapter. Normally it's not needed to override
@@ -286,12 +287,7 @@ abstract class OnlineSource : Source {
             .newCall(pageListRequest(chapter))
             .asObservableSuccess()
             .map { response ->
-                mutableListOf<Page>().apply {
-                    pageListParse(response, this)
-                    if (isEmpty()) {
-                        throw Exception("Page list is empty")
-                    }
-                }
+                pageListParse(response)
             }
 
     /**
@@ -310,7 +306,7 @@ abstract class OnlineSource : Source {
      * @param response the response from the site.
      * @param pages the page list to be filled.
      */
-    abstract protected fun pageListParse(response: Response, pages: MutableList<Page>)
+    abstract protected fun pageListParse(response: Response): List<Page>
 
     /**
      * Returns the key for the page list to be stored in [ChapterCache].

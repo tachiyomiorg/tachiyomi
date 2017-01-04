@@ -250,7 +250,8 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         return GET("$baseUrl/areader?id=$id&p=1", pageHeaders)
     }
 
-    override fun pageListParse(document: Document, pages: MutableList<Page>) {
+    override fun pageListParse(document: Document): List<Page> {
+        val pages = mutableListOf<Page>()
         val selectElement = document.select("#page_select").first()
         if (selectElement != null) {
             for ((i, element) in selectElement.select("option").withIndex()) {
@@ -263,6 +264,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
                 pages.add(Page(i, "", element.attr("src")))
             }
         }
+        return pages
     }
 
     override fun imageUrlRequest(page: Page): Request {
