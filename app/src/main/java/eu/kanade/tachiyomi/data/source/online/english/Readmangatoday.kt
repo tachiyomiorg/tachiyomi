@@ -114,12 +114,14 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
 
     override fun chapterListSelector() = "ul.chp_lst > li"
 
-    override fun chapterFromElement(element: Element, chapter: SChapter) {
+    override fun chapterFromElement(element: Element): SChapter {
         val urlElement = element.select("a").first()
 
+        val chapter = SChapter.create()
         chapter.setUrlWithoutDomain(urlElement.attr("href"))
         chapter.name = urlElement.select("span.val").text()
         chapter.date_upload = element.select("span.dte").first()?.text()?.let { parseChapterDate(it) } ?: 0
+        return chapter
     }
 
     private fun parseChapterDate(date: String): Long {

@@ -193,34 +193,31 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         else -> SManga.UNKNOWN
     }
 
-    override fun chapterListParse(response: Response, chapters: MutableList<SChapter>) {
+    override fun chapterListParse(response: Response): List<SChapter> {
         val body = response.body().string()
         val matcher = staffNotice.matcher(body)
         if (matcher.find()) {
+            @Suppress("DEPRECATION")
             val notice = Html.fromHtml(matcher.group(1)).toString().trim()
             throw Exception(notice)
         }
 
         val document = response.asJsoup(body)
-
-        for (element in document.select(chapterListSelector())) {
-            SChapter.create().apply {
-                chapterFromElement(element, this)
-                chapters.add(this)
-            }
-        }
+        return document.select(chapterListSelector()).map { chapterFromElement(it) }
     }
 
     override fun chapterListSelector() = "tr.row.lang_English.chapter_row"
 
-    override fun chapterFromElement(element: Element, chapter: SChapter) {
+    override fun chapterFromElement(element: Element): SChapter {
         val urlElement = element.select("a[href^=http://bato.to/reader").first()
 
+        val chapter = SChapter.create()
         chapter.setUrlWithoutDomain(urlElement.attr("href"))
         chapter.name = urlElement.text()
         chapter.date_upload = element.select("td").getOrNull(4)?.let {
             parseDateFromElement(it)
         } ?: 0
+        return chapter
     }
 
     private fun parseDateFromElement(dateElement: Element): Long {

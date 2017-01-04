@@ -245,12 +245,7 @@ abstract class OnlineSource : Source {
             .newCall(chapterListRequest(manga))
             .asObservableSuccess()
             .map { response ->
-                mutableListOf<SChapter>().apply {
-                    chapterListParse(response, this)
-                    if (isEmpty()) {
-                        throw Exception("No chapters found")
-                    }
-                }
+                chapterListParse(response)
             }
 
     /**
@@ -269,7 +264,7 @@ abstract class OnlineSource : Source {
      * @param response the response from the site.
      * @param chapters the chapter list to be filled.
      */
-    abstract protected fun chapterListParse(response: Response, chapters: MutableList<SChapter>)
+    abstract protected fun chapterListParse(response: Response): List<SChapter>
 
     /**
      * Returns an observable with the page list for a chapter. It tries to return the page list from

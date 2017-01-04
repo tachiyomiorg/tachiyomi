@@ -137,8 +137,10 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
         return manga
     }
 
-    override fun chapterListParse(response: Response, chapters: MutableList<SChapter>) {
+    override fun chapterListParse(response: Response): List<SChapter> {
         val document = response.asJsoup()
+
+        val chapters = mutableListOf<SChapter>()
         with(map.chapters) {
             val pool = emptyMap<String, Element>()
             val dateFormat = SimpleDateFormat(date?.format, Locale.ENGLISH)
@@ -154,6 +156,7 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
                 chapters.add(chapter)
             }
         }
+        return chapters
     }
 
     override fun pageListParse(response: Response, pages: MutableList<Page>) {

@@ -79,14 +79,16 @@ class Mintmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun chapterListSelector() = "div.chapters-link tbody tr"
 
-    override fun chapterFromElement(element: Element, chapter: SChapter) {
+    override fun chapterFromElement(element: Element): SChapter {
         val urlElement = element.select("a").first()
 
+        val chapter = SChapter.create()
         chapter.setUrlWithoutDomain(urlElement.attr("href") + "?mature=1")
         chapter.name = urlElement.text().replace(" новое", "")
         chapter.date_upload = element.select("td:eq(1)").first()?.text()?.let {
             SimpleDateFormat("dd/MM/yy", Locale.US).parse(it).time
         } ?: 0
+        return chapter
     }
 
     override fun prepareNewChapter(chapter: SChapter, manga: SManga) {

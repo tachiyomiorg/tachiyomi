@@ -149,12 +149,14 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
 
     override fun chapterListSelector() = "div.chapter-list > a"
 
-    override fun chapterFromElement(element: Element, chapter: SChapter) {
+    override fun chapterFromElement(element: Element): SChapter {
         val urlElement = element.select("a").first()
 
+        val chapter = SChapter.create()
         chapter.setUrlWithoutDomain(urlElement.attr("href"))
         chapter.name = element.select("span.chapterLabel").first().text()?.let { it } ?: ""
         chapter.date_upload = element.select("time").first()?.attr("datetime")?.let { parseChapterDate(it) } ?: 0
+        return chapter
     }
 
     private fun parseChapterDate(dateAsString: String): Long {

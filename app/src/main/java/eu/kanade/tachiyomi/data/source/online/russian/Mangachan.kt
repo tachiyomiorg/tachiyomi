@@ -122,14 +122,16 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
 
     override fun chapterListSelector() = "table.table_cha tr:gt(1)"
 
-    override fun chapterFromElement(element: Element, chapter: SChapter) {
+    override fun chapterFromElement(element: Element): SChapter {
         val urlElement = element.select("a").first()
 
+        val chapter = SChapter.create()
         chapter.setUrlWithoutDomain(urlElement.attr("href"))
         chapter.name = urlElement.text()
         chapter.date_upload = element.select("div.date").first()?.text()?.let {
             SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(it).time
         } ?: 0
+        return chapter
     }
 
     override fun pageListParse(response: Response, pages: MutableList<Page>) {

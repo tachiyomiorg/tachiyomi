@@ -80,13 +80,15 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
 
     override fun chapterListSelector() = ".chapterlist tr:not(:first-child)"
 
-    override fun chapterFromElement(element: Element, chapter: SChapter) {
+    override fun chapterFromElement(element: Element): SChapter {
         val urlElement = element.select(".col1 a").first()
         val dateElement = element.select(".col3 a").first()
 
+        val chapter = SChapter.create()
         chapter.setUrlWithoutDomain(urlElement.attr("href"))
         chapter.name = urlElement.text()
         chapter.date_upload = dateElement?.text()?.let { parseChapterDate(it) } ?: 0
+        return chapter
     }
 
     private fun parseChapterDate(date: String): Long {

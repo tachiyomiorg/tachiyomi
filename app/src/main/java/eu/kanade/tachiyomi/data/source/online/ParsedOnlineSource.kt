@@ -151,15 +151,9 @@ abstract class ParsedOnlineSource : OnlineSource() {
      * @param response the response from the site.
      * @param chapters the list of chapters to fill.
      */
-    override fun chapterListParse(response: Response, chapters: MutableList<SChapter>) {
+    override fun chapterListParse(response: Response): List<SChapter> {
         val document = response.asJsoup()
-
-        for (element in document.select(chapterListSelector())) {
-            SChapter.create().apply {
-                chapterFromElement(element, this)
-                chapters.add(this)
-            }
-        }
+        return document.select(chapterListSelector()).map { chapterFromElement(it) }
     }
 
     /**
@@ -173,7 +167,7 @@ abstract class ParsedOnlineSource : OnlineSource() {
      * @param element an element obtained from [chapterListSelector].
      * @param chapter the chapter to fill.
      */
-    abstract protected fun chapterFromElement(element: Element, chapter: SChapter)
+    abstract protected fun chapterFromElement(element: Element): SChapter
 
     /**
      * Parse the response from the site and fills the page list.
