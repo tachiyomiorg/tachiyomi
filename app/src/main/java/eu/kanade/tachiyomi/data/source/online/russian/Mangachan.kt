@@ -79,11 +79,8 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>) {
         val document = response.asJsoup()
-        for (element in document.select(searchMangaSelector())) {
-            SManga.create().apply {
-                searchMangaFromElement(element)
-                page.mangas.add(this)
-            }
+        document.select(searchMangaSelector()).forEach { element ->
+            page.mangas.add(searchMangaFromElement(element))
         }
         val allIgnore = filters.all { it.state == Filter.TriState.STATE_IGNORE }
         searchMangaNextPageSelector().let { selector ->

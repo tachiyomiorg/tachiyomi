@@ -27,10 +27,10 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
     override fun latestUpdatesSelector() = ".booklist td > div"
 
     override fun popularMangaFromElement(element: Element): SManga {
-        val manga = SManga.create()
         val image = element.select("dt img")
         val title = element.select("dd a:first-child")
 
+        val manga = SManga.create()
         manga.setUrlWithoutDomain(title.attr("href"))
         manga.title = title.text()
         manga.thumbnail_url = image.attr("src")

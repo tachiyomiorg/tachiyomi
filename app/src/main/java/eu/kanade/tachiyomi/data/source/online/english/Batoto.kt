@@ -62,11 +62,8 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
 
     override fun popularMangaParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
-        for (element in document.select(popularMangaSelector())) {
-            SManga.create().apply {
-                popularMangaFromElement(element)
-                page.mangas.add(this)
-            }
+        document.select(popularMangaSelector()).forEach { element ->
+            page.mangas.add(popularMangaFromElement(element))
         }
 
         page.nextPageUrl = document.select(popularMangaNextPageSelector()).first()?.let {
@@ -76,11 +73,8 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
 
     override fun latestUpdatesParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
-        for (element in document.select(latestUpdatesSelector())) {
-            SManga.create().apply {
-                latestUpdatesFromElement(element)
-                page.mangas.add(this)
-            }
+        document.select(latestUpdatesSelector()).forEach { element ->
+            page.mangas.add(latestUpdatesFromElement(element))
         }
 
         page.nextPageUrl = document.select(latestUpdatesNextPageSelector()).first()?.let {
@@ -150,11 +144,8 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
 
     override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>) {
         val document = response.asJsoup()
-        for (element in document.select(searchMangaSelector())) {
-            SManga.create().apply {
-                searchMangaFromElement(element)
-                page.mangas.add(this)
-            }
+        document.select(searchMangaSelector()).forEach { element ->
+             page.mangas.add(searchMangaFromElement(element))
         }
 
         page.nextPageUrl = document.select(searchMangaNextPageSelector()).first()?.let {

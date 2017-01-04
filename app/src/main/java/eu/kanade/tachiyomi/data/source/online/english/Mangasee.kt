@@ -44,11 +44,8 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
 
     override fun popularMangaParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
-        for (element in document.select(popularMangaSelector())) {
-            SManga.create().apply {
-                popularMangaFromElement(element)
-                page.mangas.add(this)
-            }
+        document.select(popularMangaSelector()).forEach { element ->
+            page.mangas.add(popularMangaFromElement(element))
         }
 
         page.nextPageUrl = page.url
@@ -111,11 +108,8 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>) {
         val document = response.asJsoup()
-        for (element in document.select(popularMangaSelector())) {
-            SManga.create().apply {
-                popularMangaFromElement(element)
-                page.mangas.add(this)
-            }
+        document.select(popularMangaSelector()).forEach { element ->
+            page.mangas.add(popularMangaFromElement(element))
         }
 
         page.nextPageUrl = page.url
@@ -272,11 +266,8 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
-        for (element in document.select(latestUpdatesSelector())) {
-            SManga.create().apply {
-                latestUpdatesFromElement(element)
-                page.mangas.add(this)
-            }
+        document.select(latestUpdatesSelector()).forEach { element ->
+            page.mangas.add(latestUpdatesFromElement(element))
         }
 
         page.nextPageUrl = page.url
