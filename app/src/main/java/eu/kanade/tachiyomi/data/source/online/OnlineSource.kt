@@ -214,10 +214,7 @@ abstract class OnlineSource : Source {
             .newCall(mangaDetailsRequest(manga))
             .asObservableSuccess()
             .map { response ->
-                SManga.create().apply {
-                    mangaDetailsParse(response, this)
-                    initialized = true
-                }
+                mangaDetailsParse(response).apply { initialized = true }
             }
 
     /**
@@ -236,7 +233,7 @@ abstract class OnlineSource : Source {
      * @param response the response from the site.
      * @param manga the manga whose fields have to be filled.
      */
-    abstract protected fun mangaDetailsParse(response: Response, manga: SManga)
+    abstract protected fun mangaDetailsParse(response: Response): SManga
 
     /**
      * Returns an observable with the updated chapter list for a manga. Normally it's not needed to

@@ -93,15 +93,17 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaNextPageSelector() = "div.next-page > a.next"
 
-    override fun mangaDetailsParse(document: Document, manga: SManga) {
+    override fun mangaDetailsParse(document: Document): SManga {
         val detailElement = document.select("div.movie-meta").first()
 
+        val manga = SManga.create()
         manga.author = document.select("ul.cast-list li.director > ul a").first()?.text()
         manga.artist = document.select("ul.cast-list li:not(.director) > ul a").first()?.text()
         manga.genre = detailElement.select("dl.dl-horizontal > dd:eq(5)").first()?.text()
         manga.description = detailElement.select("li.movie-detail").first()?.text()
         manga.status = detailElement.select("dl.dl-horizontal > dd:eq(3)").first()?.text().orEmpty().let { parseStatus(it) }
         manga.thumbnail_url = detailElement.select("img.img-responsive").first()?.attr("src")
+        return manga
     }
 
     private fun parseStatus(status: String) = when {

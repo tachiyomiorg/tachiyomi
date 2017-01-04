@@ -56,14 +56,16 @@ class Readmanga(override val id: Int) : ParsedOnlineSource() {
     // max 200 results
     override fun searchMangaNextPageSelector() = null
 
-    override fun mangaDetailsParse(document: Document, manga: SManga) {
+    override fun mangaDetailsParse(document: Document): SManga {
         val infoElement = document.select("div.leftContent").first()
 
+        val manga = SManga.create()
         manga.author = infoElement.select("span.elem_author").first()?.text()
         manga.genre = infoElement.select("span.elem_genre").text().replace(" ,", ",")
         manga.description = infoElement.select("div.manga-description").text()
         manga.status = parseStatus(infoElement.html())
         manga.thumbnail_url = infoElement.select("img").attr("data-full")
+        return manga
     }
 
     private fun parseStatus(element: String): Int {

@@ -129,14 +129,16 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
     // Not used, overrides parent.
     override fun searchMangaNextPageSelector() = ""
 
-    override fun mangaDetailsParse(document: Document, manga: SManga) {
+    override fun mangaDetailsParse(document: Document): SManga {
         val detailElement = document.select("div.well > div.row").first()
 
+        val manga = SManga.create()
         manga.author = detailElement.select("a[href^=/search/?author=]").first()?.text()
         manga.genre = detailElement.select("span.details > div.row > div:has(b:contains(Genre(s))) > a").map { it.text() }.joinToString()
         manga.description = detailElement.select("strong:contains(Description:) + div").first()?.text()
         manga.status = detailElement.select("a[href^=/search/?status=]").first()?.text().orEmpty().let { parseStatus(it) }
         manga.thumbnail_url = detailElement.select("div > img").first()?.absUrl("src")
+        return manga
     }
 
     private fun parseStatus(status: String) = when {

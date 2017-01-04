@@ -133,8 +133,8 @@ abstract class ParsedOnlineSource : OnlineSource() {
      * @param response the response from the site.
      * @param manga the manga to fill.
      */
-    override fun mangaDetailsParse(response: Response, manga: SManga) {
-        mangaDetailsParse(response.asJsoup(), manga)
+    override fun mangaDetailsParse(response: Response): SManga {
+        return mangaDetailsParse(response.asJsoup())
     }
 
     /**
@@ -143,7 +143,7 @@ abstract class ParsedOnlineSource : OnlineSource() {
      * @param document the parsed document.
      * @param manga the manga to fill.
      */
-    abstract protected fun mangaDetailsParse(document: Document, manga: SManga)
+    abstract protected fun mangaDetailsParse(document: Document): SManga
 
     /**
      * Parse the response from the site and fills the chapter list.

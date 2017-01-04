@@ -173,16 +173,18 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         return GET("$baseUrl/comic_pop?id=$mangaId", headers)
     }
 
-    override fun mangaDetailsParse(document: Document, manga: SManga) {
+    override fun mangaDetailsParse(document: Document): SManga {
         val tbody = document.select("tbody").first()
         val artistElement = tbody.select("tr:contains(Author/Artist:)").first()
 
+        val manga = SManga.create()
         manga.author = artistElement.selectText("td:eq(1)")
         manga.artist = artistElement.selectText("td:eq(2)") ?: manga.author
         manga.description = tbody.selectText("tr:contains(Description:) > td:eq(1)")
         manga.thumbnail_url = document.select("img[src^=http://img.bato.to/forums/uploads/]").first()?.attr("src")
         manga.status = parseStatus(document.selectText("tr:contains(Status:) > td:eq(1)"))
         manga.genre = tbody.select("tr:contains(Genres:) img").map { it.attr("alt") }.joinToString(", ")
+        return manga
     }
 
     private fun parseStatus(status: String?) = when (status) {

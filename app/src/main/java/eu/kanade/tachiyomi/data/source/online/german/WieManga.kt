@@ -60,10 +60,11 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaNextPageSelector() = ".pagetor a.l"
 
-    override fun mangaDetailsParse(document: Document, manga: SManga) {
+    override fun mangaDetailsParse(document: Document): SManga {
         val imageElement = document.select(".bookmessgae tr > td:nth-child(1)").first()
         val infoElement = document.select(".bookmessgae tr > td:nth-child(2)").first()
 
+        val manga = SManga.create()
         manga.author = infoElement.select("dd:nth-of-type(2) a").first()?.text()
         manga.artist = infoElement.select("dd:nth-of-type(3) a").first()?.text()
         manga.description = infoElement.select("dl > dt:last-child").first()?.text()?.replaceFirst("Beschreibung", "")
@@ -74,6 +75,7 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
 
         if (manga.artist == "RSS")
             manga.artist = null
+        return manga
     }
 
     override fun chapterListSelector() = ".chapterlist tr:not(:first-child)"

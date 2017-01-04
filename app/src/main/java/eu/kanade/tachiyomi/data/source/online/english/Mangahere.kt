@@ -71,16 +71,18 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaNextPageSelector() = "div.next-page > a.next"
 
-    override fun mangaDetailsParse(document: Document, manga: SManga) {
+    override fun mangaDetailsParse(document: Document): SManga {
         val detailElement = document.select(".manga_detail_top").first()
         val infoElement = detailElement.select(".detail_topText").first()
 
+        val manga = SManga.create()
         manga.author = infoElement.select("a[href^=http://www.mangahere.co/author/]").first()?.text()
         manga.artist = infoElement.select("a[href^=http://www.mangahere.co/artist/]").first()?.text()
         manga.genre = infoElement.select("li:eq(3)").first()?.text()?.substringAfter("Genre(s):")
         manga.description = infoElement.select("#show").first()?.text()?.substringBeforeLast("Show less")
         manga.status = infoElement.select("li:eq(6)").first()?.text().orEmpty().let { parseStatus(it) }
         manga.thumbnail_url = detailElement.select("img.img").first()?.attr("src")
+        return manga
     }
 
     private fun parseStatus(status: String) = when {

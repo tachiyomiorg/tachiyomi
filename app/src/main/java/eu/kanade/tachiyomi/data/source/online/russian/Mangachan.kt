@@ -98,16 +98,18 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
         }
     }
 
-    override fun mangaDetailsParse(document: Document, manga: SManga) {
+    override fun mangaDetailsParse(document: Document): SManga {
         val infoElement = document.select("table.mangatitle").first()
         val descElement = document.select("div#description").first()
         val imgElement = document.select("img#cover").first()
 
+        val manga = SManga.create()
         manga.author = infoElement.select("tr:eq(2) > td:eq(1)").text()
         manga.genre = infoElement.select("tr:eq(5) > td:eq(1)").text()
         manga.status = parseStatus(infoElement.select("tr:eq(4) > td:eq(1)").text())
         manga.description = descElement.textNodes().first().text()
         manga.thumbnail_url = baseUrl + imgElement.attr("src")
+        return manga
     }
 
     private fun parseStatus(element: String): Int {

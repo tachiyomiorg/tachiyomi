@@ -120,8 +120,10 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
         }
     }
 
-    override fun mangaDetailsParse(response: Response, manga: SManga) {
+    override fun mangaDetailsParse(response: Response): SManga {
         val document = response.asJsoup()
+
+        val manga = SManga.create()
         with(map.manga) {
             val pool = parts.get(document)
 
@@ -132,6 +134,7 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
             manga.genre = genres?.process(document, pool)
             manga.status = status?.getStatus(document, pool) ?: SManga.UNKNOWN
         }
+        return manga
     }
 
     override fun chapterListParse(response: Response, chapters: MutableList<SChapter>) {

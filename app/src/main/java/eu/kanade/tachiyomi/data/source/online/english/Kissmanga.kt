@@ -80,14 +80,16 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaNextPageSelector() = null
 
-    override fun mangaDetailsParse(document: Document, manga: SManga) {
+    override fun mangaDetailsParse(document: Document): SManga {
         val infoElement = document.select("div.barContent").first()
 
+        val manga = SManga.create()
         manga.author = infoElement.select("p:has(span:contains(Author:)) > a").first()?.text()
         manga.genre = infoElement.select("p:has(span:contains(Genres:)) > *:gt(0)").text()
         manga.description = infoElement.select("p:has(span:contains(Summary:)) ~ p").text()
         manga.status = infoElement.select("p:has(span:contains(Status:))").first()?.text().orEmpty().let { parseStatus(it) }
         manga.thumbnail_url = document.select(".rightBox:eq(0) img").first()?.attr("src")
+        return manga
     }
 
     fun parseStatus(status: String) = when {
