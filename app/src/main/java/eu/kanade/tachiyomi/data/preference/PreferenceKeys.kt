@@ -91,9 +91,9 @@ class PreferenceKeys(context: Context) {
 
     val downloadNew = context.getString(R.string.pref_download_new_key)
 
-    fun sourceUsername(sourceId: Int) = "pref_source_username_$sourceId"
+    fun sourceUsername(sourceId: Long) = "pref_source_username_$sourceId"
 
-    fun sourcePassword(sourceId: Int) = "pref_source_password_$sourceId"
+    fun sourcePassword(sourceId: Long) = "pref_source_password_$sourceId"
 
     fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 

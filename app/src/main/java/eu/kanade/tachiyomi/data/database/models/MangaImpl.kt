@@ -4,7 +4,7 @@ class MangaImpl : Manga {
 
     override var id: Long? = null
 
-    override var source: Int = 0
+    override var source: Long = 0
 
     override lateinit var url: String
 

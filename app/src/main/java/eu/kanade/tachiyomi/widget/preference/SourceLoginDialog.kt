@@ -19,7 +19,7 @@ class SourceLoginDialog : LoginDialogPreference() {
         fun newInstance(source: Source): LoginDialogPreference {
             val fragment = SourceLoginDialog()
             val bundle = Bundle(1)
-            bundle.putInt("key", source.id)
+            bundle.putLong("key", source.id)
             fragment.arguments = bundle
             return fragment
         }
@@ -32,7 +32,7 @@ class SourceLoginDialog : LoginDialogPreference() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val sourceId = arguments.getInt("key")
+        val sourceId = arguments.getLong("key")
         source = sourceManager.get(sourceId) as LoginSource
     }
 

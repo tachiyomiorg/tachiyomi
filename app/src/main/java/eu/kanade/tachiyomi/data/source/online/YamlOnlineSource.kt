@@ -36,7 +36,7 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
     }
 
     override val id = map.id.let {
-        if (it is Int) it else (lang.toUpperCase().hashCode() + 31 * it.hashCode()) and 0x7fffffff
+        (if (it is Int) it else (lang.toUpperCase().hashCode() + 31 * it.hashCode()) and 0x7fffffff).toLong()
     }
 
     override fun popularMangaRequest(page: MangasPage): Request {

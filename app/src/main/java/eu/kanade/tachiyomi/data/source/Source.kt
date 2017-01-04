@@ -13,7 +13,7 @@ interface Source {
     /**
      * Id for the source. Must be unique.
      */
-    val id: Int
+    val id: Long
 
     /**
      * Name of the source.

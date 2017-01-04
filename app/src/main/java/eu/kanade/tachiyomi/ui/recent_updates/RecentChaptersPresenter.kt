@@ -130,7 +130,7 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
      */
     private fun setDownloadedChapters(chapters: List<RecentChapter>) {
         // Cached list of downloaded manga directories.
-        val mangaDirectories = mutableMapOf<Int, Array<UniFile>>()
+        val mangaDirectories = mutableMapOf<Long, Array<UniFile>>()
 
         // Cached list of downloaded chapter directories for a manga.
         val chapterDirectories = mutableMapOf<Long, Array<UniFile>>()

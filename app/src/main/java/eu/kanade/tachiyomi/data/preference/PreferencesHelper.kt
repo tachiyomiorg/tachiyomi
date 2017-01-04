@@ -74,7 +74,7 @@ class PreferencesHelper(val context: Context) {
 
     fun askUpdateTrack() = prefs.getBoolean(keys.askUpdateTrack, false)
 
-    fun lastUsedCatalogueSource() = rxPrefs.getInteger(keys.lastUsedCatalogueSource, -1)
+    fun lastUsedCatalogueSource() = rxPrefs.getLong(keys.lastUsedCatalogueSource, -1)
 
     fun lastUsedCategory() = rxPrefs.getInteger(keys.lastUsedCategory, 0)
 

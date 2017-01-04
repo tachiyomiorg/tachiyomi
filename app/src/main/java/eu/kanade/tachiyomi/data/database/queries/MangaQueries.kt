@@ -40,7 +40,7 @@ interface MangaQueries : DbProvider {
                     .build())
             .prepare()
 
-    fun getManga(url: String, sourceId: Int) = db.get()
+    fun getManga(url: String, sourceId: Long) = db.get()
             .`object`(Manga::class.java)
             .withQuery(Query.builder()
                     .table(MangaTable.TABLE)

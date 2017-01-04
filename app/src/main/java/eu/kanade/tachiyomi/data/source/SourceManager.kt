@@ -21,13 +21,13 @@ import java.io.File
 
 open class SourceManager(private val context: Context) {
 
-    private val sourcesMap = mutableMapOf<Int, Source>()
+    private val sourcesMap = mutableMapOf<Long, Source>()
 
     init {
         createSources()
     }
 
-    open fun get(sourceKey: Int): Source? {
+    open fun get(sourceKey: Long): Source? {
         return sourcesMap[sourceKey]
     }
 

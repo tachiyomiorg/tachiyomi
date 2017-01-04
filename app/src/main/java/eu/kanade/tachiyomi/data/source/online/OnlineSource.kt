@@ -20,6 +20,7 @@ import rx.Observable
 import uy.kohesive.injekt.injectLazy
 import java.net.URI
 import java.net.URISyntaxException
+import java.security.MessageDigest
 
 /**
  * A simple implementation for sources from a website.
@@ -55,6 +56,15 @@ abstract class OnlineSource : Source {
      * Whether the source has support for latest updates.
      */
     abstract val supportsLatest: Boolean
+
+    /**
+     * Id of the source. By default it uses a generated id.
+     */
+    override val id by lazy {
+        val key = "$lang - ${name.toLowerCase()}"
+        val bytes = MessageDigest.getInstance("MD5").digest(key.toByteArray())
+        (0..7).map { bytes[it].toLong() shl (8 * it) }.sum()
+    }
 
     /**
      * Headers used for requests.

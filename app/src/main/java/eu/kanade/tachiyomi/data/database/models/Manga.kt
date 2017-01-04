@@ -6,7 +6,7 @@ interface Manga : SManga {
 
     var id: Long?
 
-    var source: Int
+    var source: Long
 
     var favorite: Boolean
 
@@ -82,11 +82,11 @@ interface Manga : SManga {
         const val DISPLAY_NUMBER = 0x00100000
         const val DISPLAY_MASK = 0x00100000
 
-        fun create(source: Int): Manga = MangaImpl().apply {
+        fun create(source: Long): Manga = MangaImpl().apply {
             this.source = source
         }
 
-        fun create(pathUrl: String, title: String, source: Int = 0): Manga = MangaImpl().apply {
+        fun create(pathUrl: String, title: String, source: Long = 0): Manga = MangaImpl().apply {
             url = pathUrl
             this.title = title
             this.source = source

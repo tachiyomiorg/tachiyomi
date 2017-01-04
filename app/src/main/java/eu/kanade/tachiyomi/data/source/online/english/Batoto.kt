@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Pattern
 
-class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
+class Batoto(override val id: Long) : ParsedOnlineSource(), LoginSource {
 
     override val name = "Batoto"
 

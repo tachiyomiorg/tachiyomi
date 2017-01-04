@@ -52,7 +52,7 @@ class MangaModelLoader(context: Context) : StreamModelLoader<Manga> {
     /**
      * Map where request headers are stored for a source.
      */
-    private val cachedHeaders = hashMapOf<Int, LazyHeaders>()
+    private val cachedHeaders = hashMapOf<Long, LazyHeaders>()
 
     /**
      * Factory class for creating [MangaModelLoader] instances.

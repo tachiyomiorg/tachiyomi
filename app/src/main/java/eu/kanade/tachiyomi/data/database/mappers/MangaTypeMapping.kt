@@ -69,7 +69,7 @@ open class MangaGetResolver : DefaultGetResolver<Manga>() {
 
     override fun mapFromCursor(cursor: Cursor): Manga = MangaImpl().apply {
         id = cursor.getLong(cursor.getColumnIndex(COL_ID))
-        source = cursor.getInt(cursor.getColumnIndex(COL_SOURCE))
+        source = cursor.getLong(cursor.getColumnIndex(COL_SOURCE))
         url = cursor.getString(cursor.getColumnIndex(COL_URL))
         artist = cursor.getString(cursor.getColumnIndex(COL_ARTIST))
         author = cursor.getString(cursor.getColumnIndex(COL_AUTHOR))

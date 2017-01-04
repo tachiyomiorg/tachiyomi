@@ -125,7 +125,7 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
      */
     private fun applyFilters(map: Map<Int, List<Manga>>): Map<Int, List<Manga>> {
         // Cached list of downloaded manga directories given a source id.
-        val mangaDirectories = mutableMapOf<Int, Array<UniFile>>()
+        val mangaDirectories = mutableMapOf<Long, Array<UniFile>>()
 
         // Cached list of downloaded chapter directories for a manga.
         val chapterDirectories = mutableMapOf<Long, Boolean>()
