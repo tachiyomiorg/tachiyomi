@@ -45,8 +45,8 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
         return manga
     }
 
-    override fun latestUpdatesFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element)
+    override fun latestUpdatesFromElement(element: Element): SManga {
+        return popularMangaFromElement(element)
     }
 
     override fun popularMangaNextPageSelector() = "li > a:contains(› Next)"
@@ -76,8 +76,8 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaSelector() = popularMangaSelector()
 
-    override fun searchMangaFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element)
+    override fun searchMangaFromElement(element: Element): SManga {
+        return popularMangaFromElement(element)
     }
 
     override fun searchMangaNextPageSelector() = null

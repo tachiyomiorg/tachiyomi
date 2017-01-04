@@ -41,8 +41,8 @@ class Mintmanga(override val id: Int) : ParsedOnlineSource() {
         return manga
     }
 
-    override fun latestUpdatesFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element)
+    override fun latestUpdatesFromElement(element: Element): SManga {
+        return popularMangaFromElement(element)
     }
 
     override fun popularMangaNextPageSelector() = "a.nextLink"
@@ -51,8 +51,8 @@ class Mintmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaSelector() = popularMangaSelector()
 
-    override fun searchMangaFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element)
+    override fun searchMangaFromElement(element: Element): SManga {
+        return popularMangaFromElement(element)
     }
 
     // max 200 results

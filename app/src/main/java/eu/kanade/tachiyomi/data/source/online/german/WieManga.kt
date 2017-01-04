@@ -37,8 +37,8 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
         return manga
     }
 
-    override fun latestUpdatesFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element)
+    override fun latestUpdatesFromElement(element: Element): SManga {
+        return popularMangaFromElement(element)
     }
 
     override fun popularMangaNextPageSelector() = null
@@ -49,13 +49,15 @@ class WieManga(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaSelector() = ".searchresult td > div"
 
-    override fun searchMangaFromElement(element: Element, manga: SManga) {
+    override fun searchMangaFromElement(element: Element): SManga {
         val image = element.select(".resultimg img")
         val title = element.select(".resultbookname")
 
+        val manga = SManga.create()
         manga.setUrlWithoutDomain(title.attr("href"))
         manga.title = title.text()
         manga.thumbnail_url = image.attr("src")
+        return manga
     }
 
     override fun searchMangaNextPageSelector() = ".pagetor a.l"

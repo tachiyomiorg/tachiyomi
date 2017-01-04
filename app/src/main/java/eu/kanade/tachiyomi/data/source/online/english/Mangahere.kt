@@ -42,8 +42,8 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
         return mangaFromElement("div.title > a", element)
     }
 
-    override fun latestUpdatesFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element)
+    override fun latestUpdatesFromElement(element: Element): SManga {
+        return popularMangaFromElement(element)
     }
 
     override fun popularMangaNextPageSelector() = "div.next-page > a.next"
@@ -67,8 +67,8 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
 
     override fun searchMangaSelector() = "div.result_search > dl:has(dt)"
 
-    override fun searchMangaFromElement(element: Element, manga: SManga) {
-        mangaFromElement("a.manga_info", element)
+    override fun searchMangaFromElement(element: Element): SManga {
+        return mangaFromElement("a.manga_info", element)
     }
 
     override fun searchMangaNextPageSelector() = "div.next-page > a.next"

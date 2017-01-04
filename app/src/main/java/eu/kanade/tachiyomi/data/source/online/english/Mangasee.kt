@@ -121,11 +121,13 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
         page.nextPageUrl = page.url
     }
 
-    override fun searchMangaFromElement(element: Element, manga: SManga) {
+    override fun searchMangaFromElement(element: Element): SManga {
+        val manga = SManga.create()
         element.select("a.resultLink").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text()
         }
+        return manga
     }
 
     // Not used, overrides parent.
@@ -272,7 +274,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
         val document = response.asJsoup()
         for (element in document.select(latestUpdatesSelector())) {
             SManga.create().apply {
-                latestUpdatesFromElement(element, this)
+                latestUpdatesFromElement(element)
                 page.mangas.add(this)
             }
         }
@@ -280,7 +282,8 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
         page.nextPageUrl = page.url
     }
 
-    override fun latestUpdatesFromElement(element: Element, manga: SManga) {
+    override fun latestUpdatesFromElement(element: Element): SManga {
+        val manga = SManga.create()
         element.select("a.latestSeries").first().let {
             val chapterUrl = it.attr("href")
             val indexOfMangaUrl = chapterUrl.indexOf("-chapter-")
@@ -292,6 +295,7 @@ class Mangasee(override val id: Int) : ParsedOnlineSource() {
             manga.setUrlWithoutDomain("/manga" + mangaUrl)
             manga.title = title
         }
+        return manga
     }
 
 }

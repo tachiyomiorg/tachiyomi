@@ -56,15 +56,17 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
         return manga
     }
 
-    override fun latestUpdatesFromElement(element: Element, manga: SManga) {
+    override fun latestUpdatesFromElement(element: Element): SManga {
+        val manga = SManga.create()
         element.select("a:nth-child(1)").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text()
         }
+        return manga
     }
 
-    override fun searchMangaFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element)
+    override fun searchMangaFromElement(element: Element): SManga {
+        return popularMangaFromElement(element)
     }
 
     override fun popularMangaNextPageSelector() = "a:contains(Вперед)"
@@ -79,7 +81,7 @@ class Mangachan(override val id: Int) : ParsedOnlineSource() {
         val document = response.asJsoup()
         for (element in document.select(searchMangaSelector())) {
             SManga.create().apply {
-                searchMangaFromElement(element, this)
+                searchMangaFromElement(element)
                 page.mangas.add(this)
             }
         }

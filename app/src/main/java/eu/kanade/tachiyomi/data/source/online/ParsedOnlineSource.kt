@@ -60,11 +60,8 @@ abstract class ParsedOnlineSource : OnlineSource() {
      */
     override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>) {
         val document = response.asJsoup()
-        for (element in document.select(searchMangaSelector())) {
-            SManga.create().apply {
-                searchMangaFromElement(element, this)
-                page.mangas.add(this)
-            }
+        document.select(searchMangaSelector()).forEach { element ->
+            page.mangas.add(searchMangaFromElement(element))
         }
 
         searchMangaNextPageSelector()?.let { selector ->
@@ -84,7 +81,7 @@ abstract class ParsedOnlineSource : OnlineSource() {
      * @param element an element obtained from [searchMangaSelector].
      * @param manga the manga to fill.
      */
-    abstract protected fun searchMangaFromElement(element: Element, manga: SManga)
+    abstract protected fun searchMangaFromElement(element: Element): SManga
 
     /**
      * Returns the Jsoup selector that returns the <a> tag linking to the next page, or null if
@@ -97,11 +94,8 @@ abstract class ParsedOnlineSource : OnlineSource() {
      */
     override fun latestUpdatesParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
-        for (element in document.select(latestUpdatesSelector())) {
-            SManga.create().apply {
-                latestUpdatesFromElement(element, this)
-                page.mangas.add(this)
-            }
+        document.select(latestUpdatesSelector()).forEach { element ->
+            page.mangas.add(latestUpdatesFromElement(element))
         }
 
         latestUpdatesNextPageSelector()?.let { selector ->
@@ -117,7 +111,7 @@ abstract class ParsedOnlineSource : OnlineSource() {
     /**
      * Fills [manga] with the given [element]. For latest updates.
      */
-    abstract protected fun latestUpdatesFromElement(element: Element, manga: SManga)
+    abstract protected fun latestUpdatesFromElement(element: Element): SManga
 
     /**
      * Returns the Jsoup selector that returns the <a> tag, like [popularMangaNextPageSelector].
