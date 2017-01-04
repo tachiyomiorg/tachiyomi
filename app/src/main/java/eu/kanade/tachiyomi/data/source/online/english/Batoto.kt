@@ -64,7 +64,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
         val document = response.asJsoup()
         for (element in document.select(popularMangaSelector())) {
             SManga.create().apply {
-                popularMangaFromElement(element, this)
+                popularMangaFromElement(element)
                 page.mangas.add(this)
             }
         }
@@ -92,15 +92,17 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
 
     override fun latestUpdatesSelector() = "tr:has(a)"
 
-    override fun popularMangaFromElement(element: Element, manga: SManga) {
+    override fun popularMangaFromElement(element: Element): SManga {
+        val manga = SManga.create()
         element.select("a[href^=http://bato.to]").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text().trim()
         }
+        return manga
     }
 
     override fun latestUpdatesFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element, manga)
+        popularMangaFromElement(element)
     }
 
     override fun popularMangaNextPageSelector() = "#show_more_row"
@@ -163,7 +165,7 @@ class Batoto(override val id: Int) : ParsedOnlineSource(), LoginSource {
     override fun searchMangaSelector() = popularMangaSelector()
 
     override fun searchMangaFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element, manga)
+        popularMangaFromElement(element)
     }
 
     override fun searchMangaNextPageSelector() = popularMangaNextPageSelector()

@@ -32,15 +32,17 @@ class Readmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesSelector() = "div.desc"
 
-    override fun popularMangaFromElement(element: Element, manga: SManga) {
+    override fun popularMangaFromElement(element: Element): SManga {
+        val manga = SManga.create()
         element.select("h3 > a").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.attr("title")
         }
+        return manga
     }
 
     override fun latestUpdatesFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element, manga)
+        popularMangaFromElement(element)
     }
 
     override fun popularMangaNextPageSelector() = "a.nextLink"
@@ -50,7 +52,7 @@ class Readmanga(override val id: Int) : ParsedOnlineSource() {
     override fun searchMangaSelector() = popularMangaSelector()
 
     override fun searchMangaFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element, manga)
+        popularMangaFromElement(element)
     }
 
     // max 200 results

@@ -22,11 +22,8 @@ abstract class ParsedOnlineSource : OnlineSource() {
      */
     override fun popularMangaParse(response: Response, page: MangasPage) {
         val document = response.asJsoup()
-        for (element in document.select(popularMangaSelector())) {
-            SManga.create().apply {
-                popularMangaFromElement(element, this)
-                page.mangas.add(this)
-            }
+        document.select(popularMangaSelector()).forEach { element ->
+            page.mangas.add(popularMangaFromElement(element))
         }
 
         popularMangaNextPageSelector()?.let { selector ->
@@ -46,7 +43,7 @@ abstract class ParsedOnlineSource : OnlineSource() {
      * @param element an element obtained from [popularMangaSelector].
      * @param manga the manga to fill.
      */
-    abstract protected fun popularMangaFromElement(element: Element, manga: SManga)
+    abstract protected fun popularMangaFromElement(element: Element): SManga
 
     /**
      * Returns the Jsoup selector that returns the <a> tag linking to the next page, or null if

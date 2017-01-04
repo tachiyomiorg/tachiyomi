@@ -29,15 +29,17 @@ class Mangafox(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesSelector() = "div#mangalist > ul.list > li"
 
-    override fun popularMangaFromElement(element: Element, manga: SManga) {
+    override fun popularMangaFromElement(element: Element): SManga {
+        val manga = SManga.create()
         element.select("a.title").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text()
         }
+        return manga
     }
 
     override fun latestUpdatesFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element, manga)
+        popularMangaFromElement(element)
     }
 
     override fun popularMangaNextPageSelector() = "a:has(span.next)"

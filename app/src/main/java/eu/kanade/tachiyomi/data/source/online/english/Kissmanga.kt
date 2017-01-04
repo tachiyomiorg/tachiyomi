@@ -36,15 +36,17 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesSelector() = "table.listing tr:gt(1)"
 
-    override fun popularMangaFromElement(element: Element, manga: SManga) {
+    override fun popularMangaFromElement(element: Element): SManga {
+        val manga = SManga.create()
         element.select("td a:eq(0)").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text()
         }
+        return manga
     }
 
     override fun latestUpdatesFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element, manga)
+        popularMangaFromElement(element)
     }
 
     override fun popularMangaNextPageSelector() = "li > a:contains(› Next)"
@@ -75,7 +77,7 @@ class Kissmanga(override val id: Int) : ParsedOnlineSource() {
     override fun searchMangaSelector() = popularMangaSelector()
 
     override fun searchMangaFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element, manga)
+        popularMangaFromElement(element)
     }
 
     override fun searchMangaNextPageSelector() = null

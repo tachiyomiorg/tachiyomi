@@ -41,15 +41,17 @@ class Readmangatoday(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesSelector() = "div.hot-manga > div.style-grid > div.box"
 
-    override fun popularMangaFromElement(element: Element, manga: SManga) {
+    override fun popularMangaFromElement(element: Element): SManga {
+        val manga = SManga.create()
         element.select("div.title > h2 > a").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.attr("title")
         }
+        return manga
     }
 
     override fun latestUpdatesFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element, manga)
+        popularMangaFromElement(element)
     }
 
     override fun popularMangaNextPageSelector() = "div.hot-manga > ul.pagination > li > a:contains(»)"

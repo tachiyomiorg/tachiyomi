@@ -29,19 +29,21 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
 
     override fun latestUpdatesSelector() = "div.directory_list > ul > li"
 
-    private fun mangaFromElement(query: String, element: Element, manga: SManga) {
+    private fun mangaFromElement(query: String, element: Element): SManga {
+        val manga = SManga.create()
         element.select(query).first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = if (it.hasAttr("title")) it.attr("title") else if (it.hasAttr("rel")) it.attr("rel") else it.text()
         }
+        return manga
     }
 
-    override fun popularMangaFromElement(element: Element, manga: SManga) {
-        mangaFromElement("div.title > a", element, manga)
+    override fun popularMangaFromElement(element: Element): SManga {
+        return mangaFromElement("div.title > a", element)
     }
 
     override fun latestUpdatesFromElement(element: Element, manga: SManga) {
-        popularMangaFromElement(element, manga)
+        popularMangaFromElement(element)
     }
 
     override fun popularMangaNextPageSelector() = "div.next-page > a.next"
@@ -66,7 +68,7 @@ class Mangahere(override val id: Int) : ParsedOnlineSource() {
     override fun searchMangaSelector() = "div.result_search > dl:has(dt)"
 
     override fun searchMangaFromElement(element: Element, manga: SManga) {
-        mangaFromElement("a.manga_info", element, manga)
+        mangaFromElement("a.manga_info", element)
     }
 
     override fun searchMangaNextPageSelector() = "div.next-page > a.next"
