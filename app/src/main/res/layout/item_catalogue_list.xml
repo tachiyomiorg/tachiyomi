@@ -38,6 +38,7 @@
             android:paddingLeft="4dp"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.Regular.Caption.Hint"
+            android:visibility="gone"
             tools:text="22"/>
 
         <TextView
