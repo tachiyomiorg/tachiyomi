@@ -84,7 +84,7 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
         // Update favorite status
         SharedData.get(MangaFavoriteEvent::class.java)?.observable
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribeLatestCache(MangaInfoFragment::setFavoriteDrawable)
+                ?.subscribe{setFavorite(it)}
     }
 
     /**
@@ -124,6 +124,12 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
         }
         db.insertManga(manga).executeAsBlocking()
         refreshManga()
+    }
+
+    private fun setFavorite(favorite:Boolean){
+        if (manga.favorite == favorite)
+            return
+        toggleFavorite()
     }
 
     /**

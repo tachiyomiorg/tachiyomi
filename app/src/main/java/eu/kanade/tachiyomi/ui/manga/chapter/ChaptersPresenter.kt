@@ -407,10 +407,7 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
      * Adds manga to library
      */
     fun addToLibrary() {
-        manga.favorite = true
-        db.insertManga(manga).executeAsBlocking()
-        // Emit that manga is added to favorite
-        SharedData.get(MangaFavoriteEvent::class.java)?.emit(manga.favorite)
+        SharedData.get(MangaFavoriteEvent::class.java)?.call(true)
     }
 
     /**
