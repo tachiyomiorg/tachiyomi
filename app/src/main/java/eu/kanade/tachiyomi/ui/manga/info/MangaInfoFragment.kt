@@ -269,7 +269,7 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
      *
      * @param isFavorite determines if manga is favorite or not.
      */
-    fun setFavoriteDrawable(isFavorite: Boolean) {
+    private fun setFavoriteDrawable(isFavorite: Boolean) {
         // Set the Favorite drawable to the correct one.
         // Border drawable if false, filled drawable if true.
         fab_favorite.setImageResource(if (isFavorite)
