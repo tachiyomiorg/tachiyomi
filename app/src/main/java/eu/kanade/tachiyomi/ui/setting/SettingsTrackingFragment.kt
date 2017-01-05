@@ -81,8 +81,9 @@ class SettingsTrackingFragment : SettingsFragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == SYNC_CHANGE_REQUEST) {
-            updatePreference(resultCode)
+        if (requestCode == SYNC_CHANGE_REQUEST && data != null) {
+            val serviceId = data.getIntExtra("key", -1)
+            updatePreference(serviceId)
         }
     }
 

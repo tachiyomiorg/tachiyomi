@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.widget.preference
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
@@ -70,7 +71,8 @@ abstract class LoginDialogPreference : DialogFragment() {
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        targetFragment?.onActivityResult(targetRequestCode, arguments.getInt("key"), Intent())
+        val intent = Intent().putExtras(arguments)
+        targetFragment?.onActivityResult(targetRequestCode, Activity.RESULT_OK, intent)
     }
 
     protected abstract fun checkLogin()

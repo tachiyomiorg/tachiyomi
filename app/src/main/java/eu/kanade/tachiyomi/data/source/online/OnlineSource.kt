@@ -63,7 +63,7 @@ abstract class OnlineSource : Source {
     override val id by lazy {
         val key = "$lang - ${name.toLowerCase()}"
         val bytes = MessageDigest.getInstance("MD5").digest(key.toByteArray())
-        (0..7).map { bytes[it].toLong() shl (8 * it) }.sum()
+        (0..7).map { bytes[it].toLong() shl (8 * it) }.reduce(Long::or)
     }
 
     /**

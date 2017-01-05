@@ -123,9 +123,9 @@ class SettingsSourcesFragment : SettingsFragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == SOURCE_CHANGE_REQUEST) {
-            // FIXME
-            val pref = findPreference(getSourceKey(resultCode.toLong())) as? LoginCheckBoxPreference
+        if (requestCode == SOURCE_CHANGE_REQUEST && data != null) {
+            val sourceId = data.getLongExtra("key", -1L)
+            val pref = findPreference(getSourceKey(sourceId)) as? LoginCheckBoxPreference
             pref?.notifyChanged()
         }
     }
