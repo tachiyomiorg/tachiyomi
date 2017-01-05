@@ -1,16 +1,13 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
 import eu.kanade.tachiyomi.data.network.POST
-import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter
 import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
-import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.FormBody
 import okhttp3.HttpUrl
 import okhttp3.Request
-import okhttp3.Response
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.text.SimpleDateFormat
@@ -30,25 +27,11 @@ class Mangasee(override val id: Long) : ParsedOnlineSource() {
 
     private val indexPattern = Pattern.compile("-index-(.*?)-")
 
-    override fun popularMangaInitialUrl() = "$baseUrl/search/request.php?sortBy=popularity&sortOrder=descending&todo=1"
-
     override fun popularMangaSelector() = "div.requested > div.row"
 
-    override fun popularMangaRequest(page: MangasPage): Request {
-        if (page.page == 1) {
-            page.url = popularMangaInitialUrl()
-        }
-        val (body, requestUrl) = convertQueryToPost(page)
+    override fun popularMangaRequest(page: Int): Request {
+        val (body, requestUrl) = convertQueryToPost(page, "$baseUrl/search/request.php?sortBy=popularity&sortOrder=descending&todo=1")
         return POST(requestUrl, headers, body.build())
-    }
-
-    override fun popularMangaParse(response: Response, page: MangasPage) {
-        val document = response.asJsoup()
-        document.select(popularMangaSelector()).forEach { element ->
-            page.mangas.add(popularMangaFromElement(element))
-        }
-
-        page.nextPageUrl = page.url
     }
 
     override fun popularMangaFromElement(element: Element): SManga {
@@ -60,10 +43,11 @@ class Mangasee(override val id: Long) : ParsedOnlineSource() {
         return manga
     }
 
-    // Not used, overrides parent.
-    override fun popularMangaNextPageSelector() = ""
+    override fun popularMangaNextPageSelector() = "button.requestMore"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>): String {
+    override fun searchMangaSelector() = "div.searchResults > div.requested > div.row"
+
+    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
         val url = HttpUrl.parse("$baseUrl/search/request.php").newBuilder()
         if (!query.isEmpty()) url.addQueryParameter("keyword", query)
         var genres: String? = null
@@ -83,36 +67,19 @@ class Mangasee(override val id: Long) : ParsedOnlineSource() {
         }
         if (genres != null) url.addQueryParameter("genre", genres)
         if (genresNo != null) url.addQueryParameter("genreNo", genresNo)
-        return url.toString()
-    }
 
-    override fun searchMangaSelector() = "div.searchResults > div.requested > div.row"
-
-    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter<*>>): Request {
-        if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query, filters)
-        }
-        val (body, requestUrl) = convertQueryToPost(page)
+        val (body, requestUrl) = convertQueryToPost(page, url.toString())
         return POST(requestUrl, headers, body.build())
     }
 
-    private fun convertQueryToPost(page: MangasPage): Pair<FormBody.Builder, String> {
-        val url = HttpUrl.parse(page.url)
-        val body = FormBody.Builder().add("page", page.page.toString())
+    private fun convertQueryToPost(page: Int, url: String): Pair<FormBody.Builder, String> {
+        val url = HttpUrl.parse(url)
+        val body = FormBody.Builder().add("page", page.toString())
         for (i in 0..url.querySize() - 1) {
             body.add(url.queryParameterName(i), url.queryParameterValue(i))
         }
         val requestUrl = url.scheme() + "://" + url.host() + url.encodedPath()
         return Pair(body, requestUrl)
-    }
-
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>) {
-        val document = response.asJsoup()
-        document.select(popularMangaSelector()).forEach { element ->
-            page.mangas.add(popularMangaFromElement(element))
-        }
-
-        page.nextPageUrl = page.url
     }
 
     override fun searchMangaFromElement(element: Element): SManga {
@@ -124,8 +91,7 @@ class Mangasee(override val id: Long) : ParsedOnlineSource() {
         return manga
     }
 
-    // Not used, overrides parent.
-    override fun searchMangaNextPageSelector() = ""
+    override fun searchMangaNextPageSelector() = "button.requestMore"
 
     override fun mangaDetailsParse(document: Document): SManga {
         val detailElement = document.select("div.well > div.row").first()
@@ -249,28 +215,14 @@ class Mangasee(override val id: Long) : ParsedOnlineSource() {
             Genre("Yuri")
     )
 
-    override fun latestUpdatesInitialUrl(): String = "http://mangaseeonline.net/home/latest.request.php"
-
-    // Not used, overrides parent.
-    override fun latestUpdatesNextPageSelector(): String = ""
+    override fun latestUpdatesNextPageSelector() = "button.requestMore"
 
     override fun latestUpdatesSelector(): String = "a.latestSeries"
 
-    override fun latestUpdatesRequest(page: MangasPage): Request {
-        if (page.page == 1) {
-            page.url = latestUpdatesInitialUrl()
-        }
-        val (body, requestUrl) = convertQueryToPost(page)
+    override fun latestUpdatesRequest(page: Int): Request {
+        val url = "http://mangaseeonline.net/home/latest.request.php"
+        val (body, requestUrl) = convertQueryToPost(page, url)
         return POST(requestUrl, headers, body.build())
-    }
-
-    override fun latestUpdatesParse(response: Response, page: MangasPage) {
-        val document = response.asJsoup()
-        document.select(latestUpdatesSelector()).forEach { element ->
-            page.mangas.add(latestUpdatesFromElement(element))
-        }
-
-        page.nextPageUrl = page.url
     }
 
     override fun latestUpdatesFromElement(element: Element): SManga {

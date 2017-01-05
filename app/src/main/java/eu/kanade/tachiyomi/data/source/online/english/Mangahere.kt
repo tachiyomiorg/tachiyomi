@@ -1,10 +1,12 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
+import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter
 import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.HttpUrl
+import okhttp3.Request
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.text.ParseException
@@ -21,13 +23,17 @@ class Mangahere(override val id: Long) : ParsedOnlineSource() {
 
     override val supportsLatest = true
 
-    override fun popularMangaInitialUrl() = "$baseUrl/directory/?views.za"
-
-    override fun latestUpdatesInitialUrl() = "$baseUrl/directory/?last_chapter_time.za"
-
     override fun popularMangaSelector() = "div.directory_list > ul > li"
 
     override fun latestUpdatesSelector() = "div.directory_list > ul > li"
+
+    override fun popularMangaRequest(page: Int): Request {
+        return GET("$baseUrl/directory/$page.htm?views.za", headers)
+    }
+
+    override fun latestUpdatesRequest(page: Int): Request {
+        return GET("$baseUrl/directory/$page.htm?last_chapter_time.za", headers)
+    }
 
     private fun mangaFromElement(query: String, element: Element): SManga {
         val manga = SManga.create()
@@ -50,9 +56,9 @@ class Mangahere(override val id: Long) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector() = "div.next-page > a.next"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>): String {
+    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
         val url = HttpUrl.parse("$baseUrl/search.php?name_method=cw&author_method=cw&artist_method=cw&advopts=1").newBuilder().addQueryParameter("name", query)
-        for (filter in if (filters.isEmpty()) this@Mangahere.filters else filters) {
+        (if (filters.isEmpty()) this@Mangahere.filters else filters).forEach { filter ->
             when (filter) {
                 is Status -> url.addQueryParameter("is_completed", arrayOf("", "1", "0")[filter.state])
                 is Genre -> url.addQueryParameter(filter.id, filter.state.toString())
@@ -61,9 +67,9 @@ class Mangahere(override val id: Long) : ParsedOnlineSource() {
                 is Order -> url.addQueryParameter("order", if (filter.state) "az" else "za")
             }
         }
-        return url.toString()
+        url.addQueryParameter("page", page.toString())
+        return GET(url.toString(), headers)
     }
-
 
     override fun searchMangaSelector() = "div.result_search > dl:has(dt)"
 

@@ -153,7 +153,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         pagerSubscription?.let { remove(it) }
         pagerSubscription = pager.results()
                 .observeOn(Schedulers.io())
-                .map { it.page to it.mangas.map { networkToLocalManga(it, sourceId) } }
+                .map { it.first to it.second.map { networkToLocalManga(it, sourceId) } }
                 .doOnNext { initializeMangas(it.second) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeReplay({ view, pair ->
@@ -183,7 +183,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      * Returns true if the last fetched page has a next page.
      */
     fun hasNextPage(): Boolean {
-        return pager.hasNextPage()
+        return pager.hasNextPage
     }
 
     /**

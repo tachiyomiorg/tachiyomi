@@ -20,15 +20,18 @@ abstract class ParsedOnlineSource : OnlineSource() {
      * @param response the response from the site.
      * @param page the page object to be filled.
      */
-    override fun popularMangaParse(response: Response, page: MangasPage) {
+    override fun popularMangaParse(response: Response): MangasPage {
         val document = response.asJsoup()
-        document.select(popularMangaSelector()).forEach { element ->
-            page.mangas.add(popularMangaFromElement(element))
+
+        val mangas = document.select(popularMangaSelector()).map { element ->
+            popularMangaFromElement(element)
         }
 
-        popularMangaNextPageSelector()?.let { selector ->
-            page.nextPageUrl = document.select(selector).first()?.absUrl("href")
-        }
+        val hasNextPage = popularMangaNextPageSelector()?.let { selector ->
+            document.select(selector).first()
+        } != null
+
+        return MangasPage(mangas, hasNextPage)
     }
 
     /**
@@ -58,15 +61,18 @@ abstract class ParsedOnlineSource : OnlineSource() {
      * @param page the page object to be filled.
      * @param query the search query.
      */
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>) {
+    override fun searchMangaParse(response: Response, page: Int, query: String, filters: List<Filter<*>>): MangasPage {
         val document = response.asJsoup()
-        document.select(searchMangaSelector()).forEach { element ->
-            page.mangas.add(searchMangaFromElement(element))
+
+        val mangas = document.select(searchMangaSelector()).map { element ->
+            searchMangaFromElement(element)
         }
 
-        searchMangaNextPageSelector()?.let { selector ->
-            page.nextPageUrl = document.select(selector).first()?.absUrl("href")
-        }
+        val hasNextPage = searchMangaNextPageSelector()?.let { selector ->
+            document.select(selector).first()
+        } != null
+
+        return MangasPage(mangas, hasNextPage)
     }
 
     /**
@@ -92,15 +98,18 @@ abstract class ParsedOnlineSource : OnlineSource() {
     /**
      * Parse the response from the site for latest updates and fills [page].
      */
-    override fun latestUpdatesParse(response: Response, page: MangasPage) {
+    override fun latestUpdatesParse(response: Response, page: Int): MangasPage {
         val document = response.asJsoup()
-        document.select(latestUpdatesSelector()).forEach { element ->
-            page.mangas.add(latestUpdatesFromElement(element))
+
+        val mangas = document.select(latestUpdatesSelector()).map { element ->
+            latestUpdatesFromElement(element)
         }
 
-        latestUpdatesNextPageSelector()?.let { selector ->
-            page.nextPageUrl = document.select(selector).first()?.absUrl("href")
-        }
+        val hasNextPage = latestUpdatesNextPageSelector()?.let { selector ->
+            document.select(selector).first()
+        } != null
+
+        return MangasPage(mangas, hasNextPage)
     }
 
     /**

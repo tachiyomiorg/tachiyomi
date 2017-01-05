@@ -1,25 +1,31 @@
 package eu.kanade.tachiyomi.ui.catalogue
 
+import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.data.source.model.MangasPage
+import eu.kanade.tachiyomi.data.source.model.SManga
 import rx.Observable
-import rx.subjects.PublishSubject
 
 /**
  * A general pager for source requests (latest updates, popular, search)
  */
-abstract class Pager {
+abstract class Pager(var currentPage: Int = 1) {
 
-    protected var lastPage: MangasPage? = null
+    var hasNextPage = true
+        protected set
 
-    protected val results = PublishSubject.create<MangasPage>()
+    protected val results: PublishRelay<Pair<Int, List<SManga>>> = PublishRelay.create()
 
-    fun results(): Observable<MangasPage> {
+    fun results(): Observable<Pair<Int, List<SManga>>> {
         return results.asObservable()
     }
 
-    fun hasNextPage(): Boolean {
-        return lastPage == null || !lastPage?.nextPageUrl.isNullOrBlank()
+    abstract fun requestNext(): Observable<MangasPage>
+
+    fun onPageReceived(mangasPage: MangasPage) {
+        val page = currentPage
+        currentPage++
+        hasNextPage = mangasPage.hasNextPage && !mangasPage.mangas.isEmpty()
+        results.call(Pair(page, mangasPage.mangas))
     }
 
-    abstract fun requestNext(): Observable<MangasPage>
 }

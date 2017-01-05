@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
+import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
-import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter
 import eu.kanade.tachiyomi.data.source.model.SManga
@@ -33,9 +33,13 @@ class Readmangatoday(override val id: Long) : ParsedOnlineSource() {
         add("X-Requested-With", "XMLHttpRequest")
     }
 
-    override fun popularMangaInitialUrl() = "$baseUrl/hot-manga/"
+    override fun popularMangaRequest(page: Int): Request {
+        return GET("$baseUrl/hot-manga/$page", headers)
+    }
 
-    override fun latestUpdatesInitialUrl() = "$baseUrl/latest-releases/"
+    override fun latestUpdatesRequest(page: Int): Request {
+        return GET("$baseUrl/latest-releases/$page", headers)
+    }
 
     override fun popularMangaSelector() = "div.hot-manga > div.style-list > div.box"
 
@@ -56,20 +60,12 @@ class Readmangatoday(override val id: Long) : ParsedOnlineSource() {
 
     override fun popularMangaNextPageSelector() = "div.hot-manga > ul.pagination > li > a:contains(»)"
 
-    override fun latestUpdatesNextPageSelector(): String = "div.hot-manga > ul.pagination > li > a:contains(»)"
+    override fun latestUpdatesNextPageSelector() = "div.hot-manga > ul.pagination > li > a:contains(»)"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) =
-            "$baseUrl/service/advanced_search"
-
-
-    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter<*>>): Request {
-        if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query, filters)
-        }
-
+    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
         val builder = okhttp3.FormBody.Builder()
         builder.add("manga-name", query)
-        for (filter in if (filters.isEmpty()) this@Readmangatoday.filters else filters) {
+        (if (filters.isEmpty()) this@Readmangatoday.filters else filters).forEach { filter ->
             when (filter) {
                 is TextField -> builder.add(filter.key, filter.state)
                 is Type -> builder.add("type", arrayOf("all", "japanese", "korean", "chinese")[filter.state])
@@ -81,7 +77,7 @@ class Readmangatoday(override val id: Long) : ParsedOnlineSource() {
                 }
             }
         }
-        return POST(page.url, headers, builder.build())
+        return POST("$baseUrl/service/advanced_search", headers, builder.build())
     }
 
     override fun searchMangaSelector() = "div.style-list > div.box"

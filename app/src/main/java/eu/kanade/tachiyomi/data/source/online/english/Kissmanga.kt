@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.data.source.online.english
 
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
-import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter
 import eu.kanade.tachiyomi.data.source.model.SManga
@@ -28,13 +27,17 @@ class Kissmanga(override val id: Long) : ParsedOnlineSource() {
 
     override val client: OkHttpClient = network.cloudflareClient
 
-    override fun popularMangaInitialUrl() = "$baseUrl/MangaList/MostPopular"
-
-    override fun latestUpdatesInitialUrl() = "http://kissmanga.com/MangaList/LatestUpdate"
-
     override fun popularMangaSelector() = "table.listing tr:gt(1)"
 
     override fun latestUpdatesSelector() = "table.listing tr:gt(1)"
+
+    override fun popularMangaRequest(page: Int): Request {
+        return GET("$baseUrl/MangaList/MostPopular?page=$page", headers)
+    }
+
+    override fun latestUpdatesRequest(page: Int): Request {
+        return GET("http://kissmanga.com/MangaList/LatestUpdate?page=$page", headers)
+    }
 
     override fun popularMangaFromElement(element: Element): SManga {
         val manga = SManga.create()
@@ -53,11 +56,7 @@ class Kissmanga(override val id: Long) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector(): String = "ul.pager > li > a:contains(Next)"
 
-    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter<*>>): Request {
-        if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query, filters)
-        }
-
+    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
         val form = FormBody.Builder().apply {
             add("mangaName", query)
 
@@ -69,10 +68,8 @@ class Kissmanga(override val id: Long) : ParsedOnlineSource() {
                 }
             }
         }
-        return POST(page.url, headers, form.build())
+        return POST("$baseUrl/AdvanceSearch", headers, form.build())
     }
-
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) = "$baseUrl/AdvanceSearch"
 
     override fun searchMangaSelector() = popularMangaSelector()
 

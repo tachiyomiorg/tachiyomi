@@ -1,9 +1,11 @@
 package eu.kanade.tachiyomi.data.source.online.russian
 
+import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter
 import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
+import okhttp3.Request
 import okhttp3.Response
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
@@ -21,16 +23,17 @@ class Readmanga(override val id: Long) : ParsedOnlineSource() {
 
     override val supportsLatest = true
 
-    override fun popularMangaInitialUrl() = "$baseUrl/list?sortType=rate"
-
-    override fun latestUpdatesInitialUrl() = "$baseUrl/list?sortType=updated"
-
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) =
-            "$baseUrl/search?q=$query&${filters.map { (it as Genre).id + arrayOf("=", "=in", "=ex")[it.state] }.joinToString("&")}"
-
     override fun popularMangaSelector() = "div.desc"
 
     override fun latestUpdatesSelector() = "div.desc"
+
+    override fun popularMangaRequest(page: Int): Request {
+        return GET("$baseUrl/list?sortType=rate&offset=${70 * (page - 1)}&max=70", headers)
+    }
+
+    override fun latestUpdatesRequest(page: Int): Request {
+        return GET("$baseUrl/list?sortType=updated&offset=${70 * (page - 1)}&max=70", headers)
+    }
 
     override fun popularMangaFromElement(element: Element): SManga {
         val manga = SManga.create()
@@ -48,6 +51,11 @@ class Readmanga(override val id: Long) : ParsedOnlineSource() {
     override fun popularMangaNextPageSelector() = "a.nextLink"
 
     override fun latestUpdatesNextPageSelector() = "a.nextLink"
+
+    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
+        val genres = filters.filterIsInstance<Genre>().map { it.id + arrayOf("=", "=in", "=ex")[it.state] }.joinToString("&")
+        return GET("$baseUrl/search?q=$query&$genres", headers)
+    }
 
     override fun searchMangaSelector() = popularMangaSelector()
 

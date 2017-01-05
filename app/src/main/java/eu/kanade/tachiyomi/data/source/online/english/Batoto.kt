@@ -4,7 +4,6 @@ import android.text.Html
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.network.asObservable
-import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter
 import eu.kanade.tachiyomi.data.source.model.SManga
@@ -56,30 +55,12 @@ class Batoto(override val id: Long) : ParsedOnlineSource(), LoginSource {
             .add("Referer", "http://bato.to/reader")
             .build()
 
-    override fun popularMangaInitialUrl() = "$baseUrl/search_ajax?order_cond=views&order=desc&p=1"
-
-    override fun latestUpdatesInitialUrl() = "$baseUrl/search_ajax?order_cond=update&order=desc&p=1"
-
-    override fun popularMangaParse(response: Response, page: MangasPage) {
-        val document = response.asJsoup()
-        document.select(popularMangaSelector()).forEach { element ->
-            page.mangas.add(popularMangaFromElement(element))
-        }
-
-        page.nextPageUrl = document.select(popularMangaNextPageSelector()).first()?.let {
-            "$baseUrl/search_ajax?order_cond=views&order=desc&p=${page.page + 1}"
-        }
+    override fun popularMangaRequest(page: Int): Request {
+        return GET("$baseUrl/search_ajax?order_cond=views&order=desc&p=$page", headers)
     }
 
-    override fun latestUpdatesParse(response: Response, page: MangasPage) {
-        val document = response.asJsoup()
-        document.select(latestUpdatesSelector()).forEach { element ->
-            page.mangas.add(latestUpdatesFromElement(element))
-        }
-
-        page.nextPageUrl = document.select(latestUpdatesNextPageSelector()).first()?.let {
-            "$baseUrl/search_ajax?order_cond=update&order=desc&p=${page.page + 1}"
-        }
+    override fun latestUpdatesRequest(page: Int): Request {
+        return GET("$baseUrl/search_ajax?order_cond=update&order=desc&p=$page", headers)
     }
 
     override fun popularMangaSelector() = "tr:has(a)"
@@ -103,13 +84,11 @@ class Batoto(override val id: Long) : ParsedOnlineSource(), LoginSource {
 
     override fun latestUpdatesNextPageSelector() = "#show_more_row"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) = searchMangaUrl(query, filters, 1)
-
-    private fun searchMangaUrl(query: String, filterStates: List<Filter<*>>, page: Int): String {
+    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
         val url = HttpUrl.parse("$baseUrl/search_ajax").newBuilder()
         if (!query.isEmpty()) url.addQueryParameter("name", query).addQueryParameter("name_cond", "c")
         var genres = ""
-        for (filter in if (filterStates.isEmpty()) filters else filterStates) {
+        (if (filters.isEmpty()) this@Batoto.filters else filters).forEach { filter ->
             when (filter) {
                 is Status -> if (filter.state != Filter.TriState.STATE_IGNORE) {
                     url.addQueryParameter("completed", if (filter.state == Filter.TriState.STATE_EXCLUDE) "i" else "c")
@@ -132,25 +111,7 @@ class Batoto(override val id: Long) : ParsedOnlineSource(), LoginSource {
         }
         if (!genres.isEmpty()) url.addQueryParameter("genres", genres)
         url.addQueryParameter("p", page.toString())
-        return url.toString()
-    }
-
-    override fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter<*>>): Request {
-        if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query, filters)
-        }
-        return GET(page.url, headers)
-    }
-
-    override fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>) {
-        val document = response.asJsoup()
-        document.select(searchMangaSelector()).forEach { element ->
-             page.mangas.add(searchMangaFromElement(element))
-        }
-
-        page.nextPageUrl = document.select(searchMangaNextPageSelector()).first()?.let {
-            searchMangaUrl(query, filters, page.page + 1)
-        }
+        return GET(url.toString(), headers)
     }
 
     override fun searchMangaSelector() = popularMangaSelector()

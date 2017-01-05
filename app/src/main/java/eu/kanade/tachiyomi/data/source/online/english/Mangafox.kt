@@ -1,10 +1,12 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
+import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter
 import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.HttpUrl
+import okhttp3.Request
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.text.ParseException
@@ -21,13 +23,19 @@ class Mangafox(override val id: Long) : ParsedOnlineSource() {
 
     override val supportsLatest = true
 
-    override fun popularMangaInitialUrl() = "$baseUrl/directory/"
-
-    override fun latestUpdatesInitialUrl() = "$baseUrl/directory/?latest"
-
     override fun popularMangaSelector() = "div#mangalist > ul.list > li"
+    
+    override fun popularMangaRequest(page: Int): Request {
+        val pageStr = if (page != 1) "$page.htm" else ""
+        return GET("$baseUrl/directory/$pageStr", headers)
+    }
 
     override fun latestUpdatesSelector() = "div#mangalist > ul.list > li"
+
+    override fun latestUpdatesRequest(page: Int): Request {
+        val pageStr = if (page != 1) "$page.htm" else ""
+        return GET("$baseUrl/directory/$pageStr?latest")
+    }
 
     override fun popularMangaFromElement(element: Element): SManga {
         val manga = SManga.create()
@@ -46,9 +54,9 @@ class Mangafox(override val id: Long) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector() = "a:has(span.next)"
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>): String {
+    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
         val url = HttpUrl.parse("$baseUrl/search.php?name_method=cw&author_method=cw&artist_method=cw&advopts=1").newBuilder().addQueryParameter("name", query)
-        for (filter in if (filters.isEmpty()) this@Mangafox.filters else filters) {
+        (if (filters.isEmpty()) this@Mangafox.filters else filters).forEach { filter ->
             when (filter) {
                 is Genre -> url.addQueryParameter(filter.id, filter.state.toString())
                 is TextField -> url.addQueryParameter(filter.key, filter.state)
@@ -56,7 +64,8 @@ class Mangafox(override val id: Long) : ParsedOnlineSource() {
                 is Order -> url.addQueryParameter("order", if (filter.state) "az" else "za")
             }
         }
-        return url.toString()
+        url.addQueryParameter("page", page.toString())
+        return GET(url.toString(), headers)
     }
 
     override fun searchMangaSelector() = "div#mangalist > ul.list > li"

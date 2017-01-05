@@ -1,9 +1,11 @@
 package eu.kanade.tachiyomi.data.source.online.german
 
+import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter
 import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
+import okhttp3.Request
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.text.SimpleDateFormat
@@ -18,13 +20,17 @@ class WieManga(override val id: Long) : ParsedOnlineSource() {
 
     override val supportsLatest = true
 
-    override fun popularMangaInitialUrl() = "$baseUrl/list/Hot-Book/"
-
-    override fun latestUpdatesInitialUrl() = "$baseUrl/list/New-Update/"
-
     override fun popularMangaSelector() = ".booklist td > div"
 
     override fun latestUpdatesSelector() = ".booklist td > div"
+
+    override fun popularMangaRequest(page: Int): Request {
+        return GET("$baseUrl/list/Hot-Book/", headers)
+    }
+
+    override fun latestUpdatesRequest(page: Int): Request {
+        return GET("$baseUrl/list/New-Update/", headers)
+    }
 
     override fun popularMangaFromElement(element: Element): SManga {
         val image = element.select("dt img")
@@ -45,7 +51,9 @@ class WieManga(override val id: Long) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector() = null
 
-    override fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>) = "$baseUrl/search/?wd=$query"
+    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
+        return GET("$baseUrl/search/?wd=$query", headers)
+    }
 
     override fun searchMangaSelector() = ".searchresult td > div"
 

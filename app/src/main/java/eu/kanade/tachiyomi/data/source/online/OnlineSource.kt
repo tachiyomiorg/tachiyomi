@@ -101,12 +101,11 @@ abstract class OnlineSource : Source {
      * @param page the page object where the information will be saved, like the list of manga,
      *             the current page and the next page url.
      */
-    open fun fetchPopularManga(page: MangasPage): Observable<MangasPage> = client
+    open fun fetchPopularManga(page: Int): Observable<MangasPage> = client
             .newCall(popularMangaRequest(page))
             .asObservableSuccess()
             .map { response ->
-                popularMangaParse(response, page)
-                page
+                popularMangaParse(response)
             }
 
     /**
@@ -115,17 +114,7 @@ abstract class OnlineSource : Source {
      *
      * @param page the page object.
      */
-    open protected fun popularMangaRequest(page: MangasPage): Request {
-        if (page.page == 1) {
-            page.url = popularMangaInitialUrl()
-        }
-        return GET(page.url, headers)
-    }
-
-    /**
-     * Returns the absolute url of the first page to popular manga.
-     */
-    abstract protected fun popularMangaInitialUrl(): String
+    abstract protected fun popularMangaRequest(page: Int): Request
 
     /**
      * Parse the response from the site. It should add a list of manga and the absolute url to the
@@ -134,7 +123,7 @@ abstract class OnlineSource : Source {
      * @param response the response from the site.
      * @param page the page object to be filled.
      */
-    abstract protected fun popularMangaParse(response: Response, page: MangasPage)
+    abstract protected fun popularMangaParse(response: Response): MangasPage
 
     /**
      * Returns an observable containing a page with a list of manga. Normally it's not needed to
@@ -144,12 +133,11 @@ abstract class OnlineSource : Source {
      *             the current page and the next page url.
      * @param query the search query.
      */
-    open fun fetchSearchManga(page: MangasPage, query: String, filters: List<Filter<*>>): Observable<MangasPage> = client
+    open fun fetchSearchManga(page: Int, query: String, filters: List<Filter<*>>): Observable<MangasPage> = client
             .newCall(searchMangaRequest(page, query, filters))
             .asObservableSuccess()
             .map { response ->
                 searchMangaParse(response, page, query, filters)
-                page
             }
 
     /**
@@ -159,19 +147,7 @@ abstract class OnlineSource : Source {
      * @param page the page object.
      * @param query the search query.
      */
-    open protected fun searchMangaRequest(page: MangasPage, query: String, filters: List<Filter<*>>): Request {
-        if (page.page == 1) {
-            page.url = searchMangaInitialUrl(query, filters)
-        }
-        return GET(page.url, headers)
-    }
-
-    /**
-     * Returns the absolute url of the first page to popular manga.
-     *
-     * @param query the search query.
-     */
-    abstract protected fun searchMangaInitialUrl(query: String, filters: List<Filter<*>>): String
+    abstract protected fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request
 
     /**
      * Parse the response from the site. It should add a list of manga and the absolute url to the
@@ -181,38 +157,27 @@ abstract class OnlineSource : Source {
      * @param page the page object to be filled.
      * @param query the search query.
      */
-    abstract protected fun searchMangaParse(response: Response, page: MangasPage, query: String, filters: List<Filter<*>>)
+    abstract protected fun searchMangaParse(response: Response, page: Int, query: String, filters: List<Filter<*>>): MangasPage
 
     /**
      * Returns an observable containing a page with a list of latest manga.
      */
-    open fun fetchLatestUpdates(page: MangasPage): Observable<MangasPage> = client
+    open fun fetchLatestUpdates(page: Int): Observable<MangasPage> = client
             .newCall(latestUpdatesRequest(page))
             .asObservableSuccess()
             .map { response ->
                 latestUpdatesParse(response, page)
-                page
             }
 
     /**
      * Returns the request for latest manga given the page.
      */
-    open protected fun latestUpdatesRequest(page: MangasPage): Request {
-        if (page.page == 1) {
-            page.url = latestUpdatesInitialUrl()
-        }
-        return GET(page.url, headers)
-    }
-
-    /**
-     * Returns the absolute url of the first page to latest manga.
-     */
-    abstract protected fun latestUpdatesInitialUrl(): String
+    abstract protected fun latestUpdatesRequest(page: Int): Request
 
     /**
      * Same as [popularMangaParse], but for latest manga.
      */
-    abstract protected fun latestUpdatesParse(response: Response, page: MangasPage)
+    abstract protected fun latestUpdatesParse(response: Response, page: Int): MangasPage
 
     /**
      * Returns an observable with the updated details for a manga. Normally it's not needed to

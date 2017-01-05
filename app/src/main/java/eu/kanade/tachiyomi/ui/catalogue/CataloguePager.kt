@@ -10,12 +10,7 @@ import rx.schedulers.Schedulers
 open class CataloguePager(val source: OnlineSource, val query: String, val filters: List<Filter<*>>) : Pager() {
 
     override fun requestNext(): Observable<MangasPage> {
-        val lastPage = lastPage
-
-        val page = if (lastPage == null)
-            MangasPage(1)
-        else
-            MangasPage(lastPage.page + 1).apply { url = lastPage.nextPageUrl!! }
+        val page = currentPage
 
         val observable = if (query.isBlank() && filters.isEmpty())
             source.fetchPopularManga(page)
@@ -25,8 +20,7 @@ open class CataloguePager(val source: OnlineSource, val query: String, val filte
         return observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { results.onNext(it) }
-                .doOnNext { this@CataloguePager.lastPage = it }
+                .doOnNext { onPageReceived(it) }
     }
 
 }
