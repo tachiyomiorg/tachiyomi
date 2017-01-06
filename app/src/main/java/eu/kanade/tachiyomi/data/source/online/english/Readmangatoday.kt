@@ -73,7 +73,6 @@ class Readmangatoday(override val id: Long) : ParsedOnlineSource() {
                 is Genre -> when (filter.state) {
                     Filter.TriState.STATE_INCLUDE -> builder.add("include[]", filter.id.toString())
                     Filter.TriState.STATE_EXCLUDE -> builder.add("exclude[]", filter.id.toString())
-
                 }
             }
         }
@@ -129,7 +128,7 @@ class Readmangatoday(override val id: Long) : ParsedOnlineSource() {
 
         if (dateWords.size == 3) {
             val timeAgo = Integer.parseInt(dateWords[0])
-            var date: Calendar = Calendar.getInstance()
+            val date: Calendar = Calendar.getInstance()
 
             if (dateWords[1].contains("Minute")) {
                 date.add(Calendar.MINUTE, -timeAgo)
@@ -145,7 +144,7 @@ class Readmangatoday(override val id: Long) : ParsedOnlineSource() {
                 date.add(Calendar.YEAR, -timeAgo)
             }
 
-            return date.getTimeInMillis()
+            return date.timeInMillis
         }
 
         return 0L

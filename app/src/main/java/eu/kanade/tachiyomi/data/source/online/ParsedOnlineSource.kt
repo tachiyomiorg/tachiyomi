@@ -15,10 +15,9 @@ import org.jsoup.nodes.Element
 abstract class ParsedOnlineSource : OnlineSource() {
 
     /**
-     * Parse the response from the site and fills [page].
+     * Parses the response from the site and returns a [MangasPage] object.
      *
      * @param response the response from the site.
-     * @param page the page object to be filled.
      */
     override fun popularMangaParse(response: Response): MangasPage {
         val document = response.asJsoup()
@@ -40,11 +39,10 @@ abstract class ParsedOnlineSource : OnlineSource() {
     abstract protected fun popularMangaSelector(): String
 
     /**
-     * Fills [manga] with the given [element]. Most sites only show the title and the url, it's
-     * totally safe to fill only those two values.
+     * Returns a manga from the given [element]. Most sites only show the title and the url, it's
+     * totally fine to fill only those two values.
      *
      * @param element an element obtained from [popularMangaSelector].
-     * @param manga the manga to fill.
      */
     abstract protected fun popularMangaFromElement(element: Element): SManga
 
@@ -55,13 +53,11 @@ abstract class ParsedOnlineSource : OnlineSource() {
     abstract protected fun popularMangaNextPageSelector(): String?
 
     /**
-     * Parse the response from the site and fills [page].
+     * Parses the response from the site and returns a [MangasPage] object.
      *
      * @param response the response from the site.
-     * @param page the page object to be filled.
-     * @param query the search query.
      */
-    override fun searchMangaParse(response: Response, page: Int, query: String, filters: List<Filter<*>>): MangasPage {
+    override fun searchMangaParse(response: Response): MangasPage {
         val document = response.asJsoup()
 
         val mangas = document.select(searchMangaSelector()).map { element ->
@@ -81,11 +77,10 @@ abstract class ParsedOnlineSource : OnlineSource() {
     abstract protected fun searchMangaSelector(): String
 
     /**
-     * Fills [manga] with the given [element]. Most sites only show the title and the url, it's
-     * totally safe to fill only those two values.
+     * Returns a manga from the given [element]. Most sites only show the title and the url, it's
+     * totally fine to fill only those two values.
      *
      * @param element an element obtained from [searchMangaSelector].
-     * @param manga the manga to fill.
      */
     abstract protected fun searchMangaFromElement(element: Element): SManga
 
@@ -96,9 +91,11 @@ abstract class ParsedOnlineSource : OnlineSource() {
     abstract protected fun searchMangaNextPageSelector(): String?
 
     /**
-     * Parse the response from the site for latest updates and fills [page].
+     * Parses the response from the site and returns a [MangasPage] object.
+     *
+     * @param response the response from the site.
      */
-    override fun latestUpdatesParse(response: Response, page: Int): MangasPage {
+    override fun latestUpdatesParse(response: Response): MangasPage {
         val document = response.asJsoup()
 
         val mangas = document.select(latestUpdatesSelector()).map { element ->
@@ -113,43 +110,44 @@ abstract class ParsedOnlineSource : OnlineSource() {
     }
 
     /**
-     * Returns the Jsoup selector similar to [popularMangaSelector], but for latest updates.
+     * Returns the Jsoup selector that returns a list of [Element] corresponding to each manga.
      */
     abstract protected fun latestUpdatesSelector(): String
 
     /**
-     * Fills [manga] with the given [element]. For latest updates.
+     * Returns a manga from the given [element]. Most sites only show the title and the url, it's
+     * totally fine to fill only those two values.
+     *
+     * @param element an element obtained from [latestUpdatesSelector].
      */
     abstract protected fun latestUpdatesFromElement(element: Element): SManga
 
     /**
-     * Returns the Jsoup selector that returns the <a> tag, like [popularMangaNextPageSelector].
+     * Returns the Jsoup selector that returns the <a> tag linking to the next page, or null if
+     * there's no next page.
      */
     abstract protected fun latestUpdatesNextPageSelector(): String?
 
     /**
-     * Parse the response from the site and fills the details of [manga].
+     * Parses the response from the site and returns the details of a manga.
      *
      * @param response the response from the site.
-     * @param manga the manga to fill.
      */
     override fun mangaDetailsParse(response: Response): SManga {
         return mangaDetailsParse(response.asJsoup())
     }
 
     /**
-     * Fills the details of [manga] from the given [document].
+     * Returns the details of the manga from the given [document].
      *
      * @param document the parsed document.
-     * @param manga the manga to fill.
      */
     abstract protected fun mangaDetailsParse(document: Document): SManga
 
     /**
-     * Parse the response from the site and fills the chapter list.
+     * Parses the response from the site and returns a list of chapters.
      *
      * @param response the response from the site.
-     * @param chapters the list of chapters to fill.
      */
     override fun chapterListParse(response: Response): List<SChapter> {
         val document = response.asJsoup()
@@ -162,28 +160,25 @@ abstract class ParsedOnlineSource : OnlineSource() {
     abstract protected fun chapterListSelector(): String
 
     /**
-     * Fills [chapter] with the given [element].
+     * Returns a chapter from the given element.
      *
      * @param element an element obtained from [chapterListSelector].
-     * @param chapter the chapter to fill.
      */
     abstract protected fun chapterFromElement(element: Element): SChapter
 
     /**
-     * Parse the response from the site and fills the page list.
+     * Parses the response from the site and returns the page list.
      *
      * @param response the response from the site.
-     * @param pages the list of pages to fill.
      */
     override fun pageListParse(response: Response): List<Page> {
         return pageListParse(response.asJsoup())
     }
 
     /**
-     * Fills [pages] from the given [document].
+     * Returns a page list from the given document.
      *
      * @param document the parsed document.
-     * @param pages the list of pages to fill.
      */
     abstract protected fun pageListParse(document: Document): List<Page>
 

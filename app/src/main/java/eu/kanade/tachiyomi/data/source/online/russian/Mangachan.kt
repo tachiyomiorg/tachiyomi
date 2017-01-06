@@ -32,10 +32,10 @@ class Mangachan(override val id: Long) : ParsedOnlineSource() {
         val url = if (query.isNotEmpty()) {
             "$baseUrl/?do=search&subaction=search&story=$query"
         } else {
-            val filt = filters.filter { it.state != Filter.TriState.STATE_IGNORE }
+            val filt = filters.filterIsInstance<Genre>().filter { !it.isIgnored() }
             if (filt.isNotEmpty()) {
                 var genres = ""
-                filt.forEach { genres += (if (it.state == Filter.TriState.STATE_EXCLUDE) "-" else "") + (it as Genre).id + '+' }
+                filt.forEach { genres += (if (it.isExcluded()) "-" else "") + it.id + '+' }
                 "$baseUrl/tags/${genres.dropLast(1)}"
             } else {
                 "$baseUrl/?do=search&subaction=search&story=$query"
@@ -84,7 +84,7 @@ class Mangachan(override val id: Long) : ParsedOnlineSource() {
 
     private fun searchGenresNextPageSelector() = popularMangaNextPageSelector()
 
-    override fun searchMangaParse(response: Response, page: Int, query: String, filters: List<Filter<*>>): MangasPage {
+    override fun searchMangaParse(response: Response): MangasPage {
         val document = response.asJsoup()
         val mangas = document.select(searchMangaSelector()).map { element ->
             searchMangaFromElement(element)

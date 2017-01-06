@@ -90,11 +90,11 @@ class Batoto(override val id: Long) : ParsedOnlineSource(), LoginSource {
         var genres = ""
         (if (filters.isEmpty()) this@Batoto.filters else filters).forEach { filter ->
             when (filter) {
-                is Status -> if (filter.state != Filter.TriState.STATE_IGNORE) {
-                    url.addQueryParameter("completed", if (filter.state == Filter.TriState.STATE_EXCLUDE) "i" else "c")
+                is Status -> if (!filter.isIgnored()) {
+                    url.addQueryParameter("completed", if (filter.isExcluded()) "i" else "c")
                 }
-                is Genre -> if (filter.state != Filter.TriState.STATE_IGNORE) {
-                    genres += (if (filter.state == Filter.TriState.STATE_EXCLUDE) ";e" else ";i") + filter.id
+                is Genre -> if (!filter.isIgnored()) {
+                    genres += (if (filter.isExcluded()) ";e" else ";i") + filter.id
                 }
                 is TextField -> {
                     if (!filter.state.isEmpty()) url.addQueryParameter(filter.key, filter.state)

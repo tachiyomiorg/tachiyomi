@@ -45,7 +45,7 @@ class Mangasee(override val id: Long) : ParsedOnlineSource() {
 
     override fun popularMangaNextPageSelector() = "button.requestMore"
 
-    override fun searchMangaSelector() = "div.searchResults > div.requested > div.row"
+    override fun searchMangaSelector() = "div.requested > div.row"
 
     override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
         val url = HttpUrl.parse("$baseUrl/search/request.php").newBuilder()

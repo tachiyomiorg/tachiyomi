@@ -87,7 +87,7 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
         }
     }
 
-    override fun searchMangaParse(response: Response, page: Int, query: String, filters: List<Filter<*>>): MangasPage {
+    override fun searchMangaParse(response: Response): MangasPage {
         val document = response.asJsoup()
 
         val mangas = document.select(map.search.manga_css).map { element ->
@@ -117,7 +117,7 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
         }
     }
 
-    override fun latestUpdatesParse(response: Response, page: Int): MangasPage {
+    override fun latestUpdatesParse(response: Response): MangasPage {
         val document = response.asJsoup()
 
         val mangas = document.select(map.latestupdates!!.manga_css).map { element ->
