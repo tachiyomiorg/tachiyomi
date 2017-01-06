@@ -15,7 +15,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Matchers.anyInt
+import org.mockito.Matchers.anyLong
 import org.mockito.Mockito
 import org.mockito.Mockito.*
 import org.robolectric.Robolectric
@@ -52,7 +52,7 @@ class LibraryUpdateServiceTest {
 
         service = Robolectric.setupService(LibraryUpdateService::class.java)
         source = mock(OnlineSource::class.java)
-        `when`(service.sourceManager.get(anyInt())).thenReturn(source)
+        `when`(service.sourceManager.get(anyLong())).thenReturn(source)
     }
 
     @Test
