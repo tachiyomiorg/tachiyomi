@@ -50,7 +50,7 @@ class Readmanga(override val id: Long) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector() = "a.nextLink"
 
-    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
+    override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
         val genres = filters.filterIsInstance<Genre>().map { it.id + arrayOf("=", "=in", "=ex")[it.state] }.joinToString("&")
         return GET("$baseUrl/search?q=$query&$genres", headers)
     }

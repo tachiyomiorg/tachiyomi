@@ -45,7 +45,7 @@ class Mangasee(override val id: Long) : ParsedOnlineSource() {
 
     override fun searchMangaSelector() = "div.requested > div.row"
 
-    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
+    override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
         val url = HttpUrl.parse("$baseUrl/search/request.php").newBuilder()
         if (!query.isEmpty()) url.addQueryParameter("keyword", query)
         var genres: String? = null

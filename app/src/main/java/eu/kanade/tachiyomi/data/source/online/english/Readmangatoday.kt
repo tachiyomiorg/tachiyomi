@@ -60,7 +60,7 @@ class Readmangatoday(override val id: Long) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector() = "div.hot-manga > ul.pagination > li > a:contains(»)"
 
-    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
+    override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
         val builder = okhttp3.FormBody.Builder()
         builder.add("manga-name", query)
         (if (filters.isEmpty()) getFilterList() else filters).forEach { filter ->

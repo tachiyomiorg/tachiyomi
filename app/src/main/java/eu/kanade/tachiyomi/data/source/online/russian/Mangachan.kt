@@ -25,7 +25,7 @@ class Mangachan(override val id: Long) : ParsedOnlineSource() {
         return GET("$baseUrl/mostfavorites?offset=${20 * (page - 1)}", headers)
     }
 
-    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
+    override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
         val url = if (query.isNotEmpty()) {
             "$baseUrl/?do=search&subaction=search&story=$query"
         } else {

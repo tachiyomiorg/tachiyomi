@@ -32,7 +32,6 @@ import nucleus.factory.RequiresPresenter
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.subjects.PublishSubject
-import timber.log.Timber
 import java.util.concurrent.TimeUnit.MILLISECONDS
 
 /**
@@ -103,6 +102,11 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
      */
     private val toolbar: Toolbar
         get() = (activity as MainActivity).toolbar
+
+    /**
+     * Snackbar containing an error message when a request fails.
+     */
+    private var snack: Snackbar? = null
 
     /**
      * Navigation view containing filter items.
@@ -201,6 +205,7 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
             } else if (source != presenter.source) {
                 selectedIndex = position
                 showProgressBar()
+                adapter.clear()
                 glm.scrollToPositionWithOffset(0, 0)
                 llm.scrollToPositionWithOffset(0, 0)
                 presenter.setActiveSource(source)
@@ -234,7 +239,8 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
 
         navView.onSearchClicked = {
             val allDefault = navView.adapter.items.hasSameState(presenter.source.getFilterList())
-
+            showProgressBar()
+            adapter.clear()
             presenter.setSourceFilter(if (allDefault) FilterList() else navView.adapter.items)
         }
 
@@ -354,6 +360,7 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
             return
 
         showProgressBar()
+        adapter.clear()
         catalogue_grid.layoutManager.scrollToPosition(0)
         catalogue_list.layoutManager.scrollToPosition(0)
 
@@ -393,9 +400,11 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
      */
     fun onAddPageError(error: Throwable) {
         hideProgressBar()
-        Timber.e(error)
 
-        catalogue_view.snack(error.message ?: "", Snackbar.LENGTH_INDEFINITE) {
+        val message = if (error is NoResultsException) "No results found" else error.message ?: ""
+
+        snack?.dismiss()
+        snack = catalogue_view.snack(message, Snackbar.LENGTH_INDEFINITE) {
             setAction(R.string.action_retry) {
                 showProgressBar()
                 presenter.requestNext()
@@ -453,6 +462,8 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
      */
     private fun showProgressBar() {
         progress.visibility = ProgressBar.VISIBLE
+        snack?.dismiss()
+        snack = null
     }
 
     /**
@@ -460,6 +471,8 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
      */
     private fun showGridProgressBar() {
         progress_grid.visibility = ProgressBar.VISIBLE
+        snack?.dismiss()
+        snack = null
     }
 
     /**

@@ -120,7 +120,7 @@ abstract class OnlineSource : CatalogueSource {
      * @param query the search query.
      * @param filters the list of filters to apply.
      */
-    abstract protected fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request
+    abstract protected fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request
 
     /**
      * Parses the response from the site and returns a [MangasPage] object.

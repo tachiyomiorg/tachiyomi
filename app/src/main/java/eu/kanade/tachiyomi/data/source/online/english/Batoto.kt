@@ -82,11 +82,11 @@ class Batoto(override val id: Long) : ParsedOnlineSource(), LoginSource {
 
     override fun latestUpdatesNextPageSelector() = "#show_more_row"
 
-    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
+    override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
         val url = HttpUrl.parse("$baseUrl/search_ajax").newBuilder()
         if (!query.isEmpty()) url.addQueryParameter("name", query).addQueryParameter("name_cond", "c")
         var genres = ""
-        (if (filters.isEmpty()) getFilterList() else filters).forEach { filter ->
+        filters.forEach { filter ->
             when (filter) {
                 is Status -> if (!filter.isIgnored()) {
                     url.addQueryParameter("completed", if (filter.isExcluded()) "i" else "c")
@@ -281,7 +281,7 @@ class Batoto(override val id: Long) : ParsedOnlineSource(), LoginSource {
         override fun toString(): String = name
     }
 
-    private class Status() : Filter.TriState("Completed")
+    private class Status : Filter.TriState("Completed")
     private class Genre(name: String, val id: Int) : Filter.TriState(name)
     private class TextField(name: String, val key: String) : Filter.Text(name)
     private class ListField(name: String, val key: String, values: Array<ListValue>, state: Int = 0) : Filter.List<ListValue>(name, values, state)

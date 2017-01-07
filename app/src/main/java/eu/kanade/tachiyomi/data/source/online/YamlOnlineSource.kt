@@ -2,11 +2,7 @@ package eu.kanade.tachiyomi.data.source.online
 
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
-import eu.kanade.tachiyomi.data.source.model.Filter
-import eu.kanade.tachiyomi.data.source.model.MangasPage
-import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.model.SChapter
-import eu.kanade.tachiyomi.data.source.model.SManga
+import eu.kanade.tachiyomi.data.source.model.*
 import eu.kanade.tachiyomi.util.asJsoup
 import eu.kanade.tachiyomi.util.attrOrText
 import okhttp3.Request
@@ -75,7 +71,7 @@ class YamlOnlineSource(mappings: Map<*, *>) : OnlineSource() {
         return MangasPage(mangas, popularNextPage != null)
     }
 
-    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
+    override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
         val url = if (page == 1) {
             searchNextPage = null
             map.search.url.replace("\$query", query)

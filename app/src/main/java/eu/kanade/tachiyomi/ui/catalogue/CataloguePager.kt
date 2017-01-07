@@ -20,7 +20,13 @@ open class CataloguePager(val source: CatalogueSource, val query: String, val fi
         return observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { onPageReceived(it) }
+                .doOnNext {
+                    if (it.mangas.isNotEmpty()) {
+                        onPageReceived(it)
+                    } else {
+                        throw NoResultsException()
+                    }
+                }
     }
 
 }

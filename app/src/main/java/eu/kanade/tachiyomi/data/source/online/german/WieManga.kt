@@ -1,10 +1,7 @@
 package eu.kanade.tachiyomi.data.source.online.german
 
 import eu.kanade.tachiyomi.data.network.GET
-import eu.kanade.tachiyomi.data.source.model.Filter
-import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.model.SChapter
-import eu.kanade.tachiyomi.data.source.model.SManga
+import eu.kanade.tachiyomi.data.source.model.*
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.Request
 import org.jsoup.nodes.Document
@@ -52,7 +49,7 @@ class WieManga(override val id: Long) : ParsedOnlineSource() {
 
     override fun latestUpdatesNextPageSelector() = null
 
-    override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
+    override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
         return GET("$baseUrl/search/?wd=$query", headers)
     }
 

@@ -220,7 +220,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         initializerSubscription?.let { remove(it) }
         initializerSubscription = mangaDetailSubject.observeOn(Schedulers.io())
                 .flatMap { Observable.from(it) }
-                .filter { !it.initialized }
+                .filter { it.thumbnail_url == null && !it.initialized }
                 .concatMap { getMangaDetailsObservable(it) }
                 .onBackpressureBuffer()
                 .observeOn(AndroidSchedulers.mainThread())
