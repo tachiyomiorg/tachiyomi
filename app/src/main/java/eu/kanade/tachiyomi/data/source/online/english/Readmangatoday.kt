@@ -2,10 +2,7 @@ package eu.kanade.tachiyomi.data.source.online.english
 
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
-import eu.kanade.tachiyomi.data.source.model.Filter
-import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.model.SChapter
-import eu.kanade.tachiyomi.data.source.model.SManga
+import eu.kanade.tachiyomi.data.source.model.*
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.Headers
 import okhttp3.OkHttpClient
@@ -66,7 +63,7 @@ class Readmangatoday(override val id: Long) : ParsedOnlineSource() {
     override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
         val builder = okhttp3.FormBody.Builder()
         builder.add("manga-name", query)
-        (if (filters.isEmpty()) this@Readmangatoday.filters else filters).forEach { filter ->
+        (if (filters.isEmpty()) getFilterList() else filters).forEach { filter ->
             when (filter) {
                 is TextField -> builder.add(filter.key, filter.state)
                 is Type -> builder.add("type", arrayOf("all", "japanese", "korean", "chinese")[filter.state])
@@ -169,7 +166,7 @@ class Readmangatoday(override val id: Long) : ParsedOnlineSource() {
 
     // [...document.querySelectorAll("ul.manga-cat span")].map(el => `Genre("${el.nextSibling.textContent.trim()}", ${el.getAttribute('data-id')})`).join(',\n')
     // http://www.readmanga.today/advanced-search
-    override fun getFilterList(): List<Filter<*>> = listOf(
+    override fun getFilterList() = FilterList(
             TextField("Author", "author-name"),
             TextField("Artist", "artist-name"),
             Type(),

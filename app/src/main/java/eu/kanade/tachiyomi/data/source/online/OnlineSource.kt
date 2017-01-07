@@ -8,11 +8,7 @@ import eu.kanade.tachiyomi.data.network.asObservableSuccess
 import eu.kanade.tachiyomi.data.network.newCallWithProgress
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.source.CatalogueSource
-import eu.kanade.tachiyomi.data.source.model.Filter
-import eu.kanade.tachiyomi.data.source.model.MangasPage
-import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.model.SChapter
-import eu.kanade.tachiyomi.data.source.model.SManga
+import eu.kanade.tachiyomi.data.source.model.*
 import okhttp3.Headers
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -61,11 +57,6 @@ abstract class OnlineSource : CatalogueSource {
      * Headers used for requests.
      */
     val headers: Headers by lazy { headersBuilder().build() }
-
-    /**
-     * Genre filters.
-     */
-    override val filters by lazy { getFilterList() }
 
     /**
      * Default network client for doing requests.
@@ -120,7 +111,7 @@ abstract class OnlineSource : CatalogueSource {
      * @param query the search query.
      * @param filters the list of filters to apply.
      */
-    override fun fetchSearchManga(page: Int, query: String, filters: List<Filter<*>>): Observable<MangasPage> = client
+    override fun fetchSearchManga(page: Int, query: String, filters: FilterList): Observable<MangasPage> = client
             .newCall(searchMangaRequest(page, query, filters))
             .asObservableSuccess()
             .map { response ->
@@ -427,5 +418,5 @@ abstract class OnlineSource : CatalogueSource {
     open fun prepareNewChapter(chapter: SChapter, manga: SManga) {
     }
 
-    override fun getFilterList(): List<Filter<*>> = emptyList()
+    override fun getFilterList() = FilterList()
 }

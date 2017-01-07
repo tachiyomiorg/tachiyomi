@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.source.model.Filter
+import eu.kanade.tachiyomi.data.source.model.FilterList
 import eu.kanade.tachiyomi.util.dpToPx
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.inflate
@@ -38,14 +39,14 @@ class CatalogueNavigationView @JvmOverloads constructor(context: Context, attrs:
         reset_btn.setOnClickListener { onResetClicked() }
     }
 
-    fun setFilters(items: List<Filter<*>>) {
+    fun setFilters(items: FilterList) {
         adapter.items = items
         adapter.notifyDataSetChanged()
     }
 
     inner class Adapter : RecyclerView.Adapter<Holder>() {
 
-        var items: List<Filter<*>> = emptyList()
+        var items: FilterList = FilterList()
 
         override fun getItemCount(): Int {
             return items.size

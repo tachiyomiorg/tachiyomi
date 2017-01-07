@@ -1,10 +1,7 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
 import eu.kanade.tachiyomi.data.network.GET
-import eu.kanade.tachiyomi.data.source.model.Filter
-import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.model.SChapter
-import eu.kanade.tachiyomi.data.source.model.SManga
+import eu.kanade.tachiyomi.data.source.model.*
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.HttpUrl
 import okhttp3.Request
@@ -59,7 +56,7 @@ class Mangahere(override val id: Long) : ParsedOnlineSource() {
 
     override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
         val url = HttpUrl.parse("$baseUrl/search.php?name_method=cw&author_method=cw&artist_method=cw&advopts=1").newBuilder().addQueryParameter("name", query)
-        (if (filters.isEmpty()) this@Mangahere.filters else filters).forEach { filter ->
+        (if (filters.isEmpty()) getFilterList() else filters).forEach { filter ->
             when (filter) {
                 is Status -> url.addQueryParameter("is_completed", arrayOf("", "1", "0")[filter.state])
                 is Genre -> url.addQueryParameter(filter.id, filter.state.toString())
@@ -172,7 +169,7 @@ class Mangahere(override val id: Long) : ParsedOnlineSource() {
 
     // [...document.querySelectorAll("select[id^='genres'")].map((el,i) => `Genre("${el.nextSibling.nextSibling.textContent.trim()}", "${el.getAttribute('name')}")`).join(',\n')
     // http://www.mangahere.co/advsearch.htm
-    override fun getFilterList(): List<Filter<*>> = listOf(
+    override fun getFilterList() = FilterList(
             TextField("Author", "author"),
             TextField("Artist", "artist"),
             ListField("Type", "direction", arrayOf(ListValue("Any", ""), ListValue("Japanese Manga (read from right to left)", "rl"), ListValue("Korean Manhwa (read from left to right)", "lr"))),

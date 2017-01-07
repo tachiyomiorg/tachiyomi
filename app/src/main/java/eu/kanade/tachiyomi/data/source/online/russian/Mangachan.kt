@@ -1,11 +1,7 @@
 package eu.kanade.tachiyomi.data.source.online.russian
 
 import eu.kanade.tachiyomi.data.network.GET
-import eu.kanade.tachiyomi.data.source.model.Filter
-import eu.kanade.tachiyomi.data.source.model.MangasPage
-import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.model.SChapter
-import eu.kanade.tachiyomi.data.source.model.SManga
+import eu.kanade.tachiyomi.data.source.model.*
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import eu.kanade.tachiyomi.util.asJsoup
 import okhttp3.Request
@@ -170,7 +166,7 @@ class Mangachan(override val id: Long) : ParsedOnlineSource() {
     *  return `Genre("${id.replace("_", " ")}")` }).join(',\n')
     *  on http://mangachan.me/
     */
-    override fun getFilterList(): List<Filter<*>> = listOf(
+    override fun getFilterList() = FilterList(
             Genre("18 плюс"),
             Genre("bdsm"),
             Genre("арт"),

@@ -1,10 +1,7 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
 import eu.kanade.tachiyomi.data.network.POST
-import eu.kanade.tachiyomi.data.source.model.Filter
-import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.model.SChapter
-import eu.kanade.tachiyomi.data.source.model.SManga
+import eu.kanade.tachiyomi.data.source.model.*
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.FormBody
 import okhttp3.HttpUrl
@@ -53,7 +50,7 @@ class Mangasee(override val id: Long) : ParsedOnlineSource() {
         if (!query.isEmpty()) url.addQueryParameter("keyword", query)
         var genres: String? = null
         var genresNo: String? = null
-        for (filter in if (filters.isEmpty()) this@Mangasee.filters else filters) {
+        for (filter in if (filters.isEmpty()) getFilterList() else filters) {
             when (filter) {
                 is Sort -> filter.values[filter.state].keys.forEachIndexed { i, s ->
                     url.addQueryParameter(s, filter.values[filter.state].values[i])
@@ -164,7 +161,7 @@ class Mangasee(override val id: Long) : ParsedOnlineSource() {
 
     // [...document.querySelectorAll("label.triStateCheckBox input")].map(el => `Filter("${el.getAttribute('name')}", "${el.nextSibling.textContent.trim()}")`).join(',\n')
     // http://mangasee.co/advanced-search/
-    override fun getFilterList(): List<Filter<*>> = listOf(
+    override fun getFilterList() = FilterList(
             TextField("Years", "year"),
             TextField("Author", "author"),
             Sort("Sort By", arrayOf(SortOption("Alphabetical A-Z", emptyArray(), emptyArray()),

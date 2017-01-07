@@ -2,10 +2,7 @@ package eu.kanade.tachiyomi.data.source.online.english
 
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
-import eu.kanade.tachiyomi.data.source.model.Filter
-import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.model.SChapter
-import eu.kanade.tachiyomi.data.source.model.SManga
+import eu.kanade.tachiyomi.data.source.model.*
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
@@ -61,7 +58,7 @@ class Kissmanga(override val id: Long) : ParsedOnlineSource() {
         val form = FormBody.Builder().apply {
             add("mangaName", query)
 
-            for (filter in if (filters.isEmpty()) this@Kissmanga.filters else filters) {
+            for (filter in if (filters.isEmpty()) getFilterList() else filters) {
                 when (filter) {
                     is Author -> add("authorArtist", filter.state)
                     is Status -> add("status", arrayOf("", "Completed", "Ongoing")[filter.state])
@@ -141,7 +138,7 @@ class Kissmanga(override val id: Long) : ParsedOnlineSource() {
 
     // $("select[name=\"genres\"]").map((i,el) => `Genre("${$(el).next().text().trim()}", ${i})`).get().join(',\n')
     // on http://kissmanga.com/AdvanceSearch
-    override fun getFilterList(): List<Filter<*>> = listOf(
+    override fun getFilterList() = FilterList(
             Author(),
             Status(),
             Filter.Header("Genres"),

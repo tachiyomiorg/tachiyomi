@@ -14,6 +14,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.f2prateek.rx.preferences.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.source.model.FilterList
 import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
@@ -232,14 +233,13 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
         }
 
         navView.onSearchClicked = {
-            val allDefault = (0..navView.adapter.items.lastIndex)
-                    .none { navView.adapter.items[it].state != presenter.source.filters[it].state }
+            val allDefault = navView.adapter.items.hasSameState(presenter.source.getFilterList())
 
-            presenter.setSourceFilter(if (allDefault) emptyList() else navView.adapter.items)
+            presenter.setSourceFilter(if (allDefault) FilterList() else navView.adapter.items)
         }
 
         navView.onResetClicked = {
-            presenter.appliedFilters = emptyList()
+            presenter.appliedFilters = FilterList()
             val newFilters = presenter.source.getFilterList()
             presenter.sourceFilters = newFilters
             navView.setFilters(newFilters)
@@ -276,7 +276,7 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
         // Setup filters button
         menu.findItem(R.id.action_set_filter).apply {
             icon.mutate()
-            if (presenter.source.filters.isEmpty()) {
+            if (presenter.sourceFilters.isEmpty()) {
                 isEnabled = false
                 icon.alpha = 128
             } else {

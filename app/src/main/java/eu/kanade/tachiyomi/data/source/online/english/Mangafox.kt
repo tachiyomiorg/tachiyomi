@@ -1,10 +1,7 @@
 package eu.kanade.tachiyomi.data.source.online.english
 
 import eu.kanade.tachiyomi.data.network.GET
-import eu.kanade.tachiyomi.data.source.model.Filter
-import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.model.SChapter
-import eu.kanade.tachiyomi.data.source.model.SManga
+import eu.kanade.tachiyomi.data.source.model.*
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.HttpUrl
 import okhttp3.Request
@@ -57,7 +54,7 @@ class Mangafox(override val id: Long) : ParsedOnlineSource() {
 
     override fun searchMangaRequest(page: Int, query: String, filters: List<Filter<*>>): Request {
         val url = HttpUrl.parse("$baseUrl/search.php?name_method=cw&author_method=cw&artist_method=cw&advopts=1").newBuilder().addQueryParameter("name", query)
-        (if (filters.isEmpty()) this@Mangafox.filters else filters).forEach { filter ->
+        (if (filters.isEmpty()) getFilterList() else filters).forEach { filter ->
             when (filter) {
                 is Genre -> url.addQueryParameter(filter.id, filter.state.toString())
                 is TextField -> url.addQueryParameter(filter.key, filter.state)
@@ -163,7 +160,7 @@ class Mangafox(override val id: Long) : ParsedOnlineSource() {
 
     // $('select.genres').map((i,el)=>`Genre("${$(el).next().text().trim()}", "${$(el).attr('name')}")`).get().join(',\n')
     // on http://mangafox.me/search.php
-    override fun getFilterList(): List<Filter<*>> = listOf(
+    override fun getFilterList() = FilterList(
             TextField("Author", "author"),
             TextField("Artist", "artist"),
             ListField("Type", "type", arrayOf(ListValue("Any", ""), ListValue("Japanese Manga", "1"), ListValue("Korean Manhwa", "2"), ListValue("Chinese Manhua", "3"))),

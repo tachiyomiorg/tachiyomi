@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.ui.latest_updates
 
 import eu.kanade.tachiyomi.data.source.CatalogueSource
 import eu.kanade.tachiyomi.data.source.Source
-import eu.kanade.tachiyomi.data.source.model.Filter
+import eu.kanade.tachiyomi.data.source.model.FilterList
 import eu.kanade.tachiyomi.ui.catalogue.CataloguePresenter
 import eu.kanade.tachiyomi.ui.catalogue.Pager
 
@@ -11,7 +11,7 @@ import eu.kanade.tachiyomi.ui.catalogue.Pager
  */
 class LatestUpdatesPresenter : CataloguePresenter() {
 
-    override fun createPager(query: String, filters: List<Filter<*>>): Pager {
+    override fun createPager(query: String, filters: FilterList): Pager {
         return LatestUpdatesPager(source)
     }
 

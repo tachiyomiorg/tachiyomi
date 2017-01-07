@@ -1,10 +1,7 @@
 package eu.kanade.tachiyomi.data.source.online.russian
 
 import eu.kanade.tachiyomi.data.network.GET
-import eu.kanade.tachiyomi.data.source.model.Filter
-import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.model.SChapter
-import eu.kanade.tachiyomi.data.source.model.SManga
+import eu.kanade.tachiyomi.data.source.model.*
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.Request
 import okhttp3.Response
@@ -138,7 +135,7 @@ class Readmanga(override val id: Long) : ParsedOnlineSource() {
     *  return `Genre("${el.textContent.trim()}", "${id}")` }).join(',\n')
     *  on http://readmanga.me/search
     */
-    override fun getFilterList(): List<Filter<*>> = listOf(
+    override fun getFilterList() = FilterList(
             Genre("арт", "el_5685"),
             Genre("боевик", "el_2155"),
             Genre("боевые искусства", "el_2143"),

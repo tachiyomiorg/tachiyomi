@@ -9,7 +9,7 @@ import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.CatalogueSource
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.SourceManager
-import eu.kanade.tachiyomi.data.source.model.Filter
+import eu.kanade.tachiyomi.data.source.model.FilterList
 import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
@@ -67,12 +67,12 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     /**
      * Modifiable list of filters.
      */
-    var sourceFilters: List<Filter<*>> = emptyList()
+    var sourceFilters = FilterList()
 
     /**
      * List of filters used by the [Pager]. If empty alongside [query], the popular query is used.
      */
-    var appliedFilters: List<Filter<*>> = emptyList()
+    var appliedFilters = FilterList()
 
     /**
      * Pager containing a list of manga results.
@@ -136,7 +136,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      * @param query the query.
      * @param filters the current state of the filters (for search mode).
      */
-    fun restartPager(query: String = this.query, filters: List<Filter<*>> = this.appliedFilters) {
+    fun restartPager(query: String = this.query, filters: FilterList = this.appliedFilters) {
         this.query = query
         this.appliedFilters = filters
 
@@ -196,7 +196,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         this.source = source
         sourceFilters = source.getFilterList()
 
-        restartPager(query = "", filters = emptyList())
+        restartPager(query = "", filters = FilterList())
     }
 
     /**
@@ -358,13 +358,13 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     /**
      * Set the filter states for the current source.
      *
-     * @param filterStates a list of active filters.
+     * @param filters a list of active filters.
      */
-    fun setSourceFilter(filters: List<Filter<*>>) {
+    fun setSourceFilter(filters: FilterList) {
         restartPager(filters = filters)
     }
 
-    open fun createPager(query: String, filters: List<Filter<*>>): Pager {
+    open fun createPager(query: String, filters: FilterList): Pager {
         return CataloguePager(source, query, filters)
     }
 

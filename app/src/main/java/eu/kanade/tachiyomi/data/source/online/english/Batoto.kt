@@ -4,10 +4,7 @@ import android.text.Html
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.network.asObservable
-import eu.kanade.tachiyomi.data.source.model.Filter
-import eu.kanade.tachiyomi.data.source.model.Page
-import eu.kanade.tachiyomi.data.source.model.SChapter
-import eu.kanade.tachiyomi.data.source.model.SManga
+import eu.kanade.tachiyomi.data.source.model.*
 import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import eu.kanade.tachiyomi.util.asJsoup
@@ -89,7 +86,7 @@ class Batoto(override val id: Long) : ParsedOnlineSource(), LoginSource {
         val url = HttpUrl.parse("$baseUrl/search_ajax").newBuilder()
         if (!query.isEmpty()) url.addQueryParameter("name", query).addQueryParameter("name_cond", "c")
         var genres = ""
-        (if (filters.isEmpty()) this@Batoto.filters else filters).forEach { filter ->
+        (if (filters.isEmpty()) getFilterList() else filters).forEach { filter ->
             when (filter) {
                 is Status -> if (!filter.isIgnored()) {
                     url.addQueryParameter("completed", if (filter.isExcluded()) "i" else "c")
@@ -294,7 +291,7 @@ class Batoto(override val id: Long) : ParsedOnlineSource(), LoginSource {
     //     const onClick=el.getAttribute('onclick');const id=onClick.substr(14,onClick.length-16);return `Genre("${el.textContent.trim()}", ${id})`
     // }).join(',\n')
     // on https://bato.to/search
-    override fun getFilterList(): List<Filter<*>> = listOf(
+    override fun getFilterList() = FilterList(
             TextField("Author", "artist_name"),
             ListField("Type", "type", arrayOf(ListValue("Any", ""), ListValue("Manga (Jp)", "jp"), ListValue("Manhwa (Kr)", "kr"), ListValue("Manhua (Cn)", "cn"), ListValue("Artbook", "ar"), ListValue("Other", "ot"))),
             Status(),
