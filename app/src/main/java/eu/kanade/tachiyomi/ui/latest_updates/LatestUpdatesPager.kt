@@ -13,11 +13,7 @@ import rx.schedulers.Schedulers
 class LatestUpdatesPager(val source: CatalogueSource): Pager() {
 
     override fun requestNext(): Observable<MangasPage> {
-        val page = currentPage
-
-        val observable = source.fetchLatestUpdates(page)
-
-        return observable
+        return source.fetchLatestUpdates(currentPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext { onPageReceived(it) }

@@ -197,7 +197,7 @@ class ChaptersPresenter : BasePresenter<ChaptersFragment>() {
     /**
      * Returns an observable that updates the chapter list with the latest from the source.
      */
-    fun getRemoteChaptersObservable() = source.fetchChapterList(manga)
+    fun getRemoteChaptersObservable() = Observable.defer { source.fetchChapterList(manga) }
             .subscribeOn(Schedulers.io())
             .map { syncChaptersWithSource(db, it, manga, source) }
             .observeOn(AndroidSchedulers.mainThread())

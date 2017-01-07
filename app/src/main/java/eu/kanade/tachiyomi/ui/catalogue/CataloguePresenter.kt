@@ -7,9 +7,9 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.CatalogueSource
-import eu.kanade.tachiyomi.data.source.model.Filter
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.SourceManager
+import eu.kanade.tachiyomi.data.source.model.Filter
 import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
@@ -173,7 +173,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         if (!hasNextPage()) return
 
         pageSubscription?.let { remove(it) }
-        pageSubscription = pager.requestNext()
+        pageSubscription = Observable.defer { pager.requestNext() }
                 .subscribeFirst({ view, page ->
                     // Nothing to do when onNext is emitted.
                 }, CatalogueFragment::onAddPageError)

@@ -11,7 +11,7 @@ import rx.Observable
 abstract class Pager(var currentPage: Int = 1) {
 
     var hasNextPage = true
-        protected set
+        private set
 
     protected val results: PublishRelay<Pair<Int, List<SManga>>> = PublishRelay.create()
 
