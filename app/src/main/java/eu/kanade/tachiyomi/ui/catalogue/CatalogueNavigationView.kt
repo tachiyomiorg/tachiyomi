@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
+import eu.kanade.tachiyomi.data.source.model.Filter
 import eu.kanade.tachiyomi.util.dpToPx
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.inflate

@@ -33,6 +33,8 @@ open class SourceManager(private val context: Context) {
 
     fun getOnlineSources() = sourcesMap.values.filterIsInstance(OnlineSource::class.java)
 
+    fun getCatalogueSources() = sourcesMap.values.filterIsInstance<CatalogueSource>()
+
     private fun createOnlineSourceList(): List<Source> = listOf(
             Batoto(1),
             Mangahere(2),

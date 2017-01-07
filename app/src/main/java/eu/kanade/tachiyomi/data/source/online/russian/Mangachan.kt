@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.source.online.russian
 
 import eu.kanade.tachiyomi.data.network.GET
+import eu.kanade.tachiyomi.data.source.model.Filter
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter

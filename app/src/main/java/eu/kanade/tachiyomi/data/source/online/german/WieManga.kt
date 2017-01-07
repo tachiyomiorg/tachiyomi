@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.source.online.german
 
 import eu.kanade.tachiyomi.data.network.GET
+import eu.kanade.tachiyomi.data.source.model.Filter
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter
 import eu.kanade.tachiyomi.data.source.model.SManga

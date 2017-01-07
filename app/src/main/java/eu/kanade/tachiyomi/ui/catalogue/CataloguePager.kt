@@ -1,13 +1,13 @@
 package eu.kanade.tachiyomi.ui.catalogue
 
+import eu.kanade.tachiyomi.data.source.CatalogueSource
 import eu.kanade.tachiyomi.data.source.model.MangasPage
-import eu.kanade.tachiyomi.data.source.online.OnlineSource
-import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
+import eu.kanade.tachiyomi.data.source.model.Filter
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
-open class CataloguePager(val source: OnlineSource, val query: String, val filters: List<Filter<*>>) : Pager() {
+open class CataloguePager(val source: CatalogueSource, val query: String, val filters: List<Filter<*>>) : Pager() {
 
     override fun requestNext(): Observable<MangasPage> {
         val page = currentPage

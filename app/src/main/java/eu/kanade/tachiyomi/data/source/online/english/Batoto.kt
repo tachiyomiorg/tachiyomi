@@ -4,6 +4,7 @@ import android.text.Html
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.POST
 import eu.kanade.tachiyomi.data.network.asObservable
+import eu.kanade.tachiyomi.data.source.model.Filter
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter
 import eu.kanade.tachiyomi.data.source.model.SManga

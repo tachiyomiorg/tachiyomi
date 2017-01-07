@@ -7,7 +7,8 @@ import eu.kanade.tachiyomi.data.network.NetworkHelper
 import eu.kanade.tachiyomi.data.network.asObservableSuccess
 import eu.kanade.tachiyomi.data.network.newCallWithProgress
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.source.Source
+import eu.kanade.tachiyomi.data.source.CatalogueSource
+import eu.kanade.tachiyomi.data.source.model.Filter
 import eu.kanade.tachiyomi.data.source.model.MangasPage
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.model.SChapter
@@ -25,7 +26,7 @@ import java.security.MessageDigest
 /**
  * A simple implementation for sources from a website.
  */
-abstract class OnlineSource : Source {
+abstract class OnlineSource : CatalogueSource {
 
     /**
      * Network service.
@@ -48,16 +49,6 @@ abstract class OnlineSource : Source {
     abstract val baseUrl: String
 
     /**
-     * An ISO 639-1 compliant language code (two characters in lower case).
-     */
-    abstract val lang: String
-
-    /**
-     * Whether the source has support for latest updates.
-     */
-    abstract val supportsLatest: Boolean
-
-    /**
      * Id of the source. By default it uses a generated id.
      */
     override val id by lazy {
@@ -74,7 +65,7 @@ abstract class OnlineSource : Source {
     /**
      * Genre filters.
      */
-    val filters by lazy { getFilterList() }
+    override val filters by lazy { getFilterList() }
 
     /**
      * Default network client for doing requests.
@@ -100,7 +91,7 @@ abstract class OnlineSource : Source {
      *
      * @param page the page number to retrieve.
      */
-    open fun fetchPopularManga(page: Int): Observable<MangasPage> = client
+    override fun fetchPopularManga(page: Int): Observable<MangasPage> = client
             .newCall(popularMangaRequest(page))
             .asObservableSuccess()
             .map { response ->
@@ -127,8 +118,9 @@ abstract class OnlineSource : Source {
      *
      * @param page the page number to retrieve.
      * @param query the search query.
+     * @param filters the list of filters to apply.
      */
-    open fun fetchSearchManga(page: Int, query: String, filters: List<Filter<*>>): Observable<MangasPage> = client
+    override fun fetchSearchManga(page: Int, query: String, filters: List<Filter<*>>): Observable<MangasPage> = client
             .newCall(searchMangaRequest(page, query, filters))
             .asObservableSuccess()
             .map { response ->
@@ -156,7 +148,7 @@ abstract class OnlineSource : Source {
      *
      * @param page the page number to retrieve.
      */
-    open fun fetchLatestUpdates(page: Int): Observable<MangasPage> = client
+    override fun fetchLatestUpdates(page: Int): Observable<MangasPage> = client
             .newCall(latestUpdatesRequest(page))
             .asObservableSuccess()
             .map { response ->
@@ -435,22 +427,5 @@ abstract class OnlineSource : Source {
     open fun prepareNewChapter(chapter: SChapter, manga: SManga) {
     }
 
-    sealed class Filter<T>(val name: String, var state: T) {
-        open class Header(name: String) : Filter<Any>(name, 0)
-        abstract class List<V>(name: String, val values: Array<V>, state: Int = 0) : Filter<Int>(name, state)
-        abstract class Text(name: String, state: String = "") : Filter<String>(name, state)
-        abstract class CheckBox(name: String, state: Boolean = false) : Filter<Boolean>(name, state)
-        abstract class TriState(name: String, state: Int = STATE_IGNORE) : Filter<Int>(name, state) {
-            fun isIgnored() = state == STATE_IGNORE
-            fun isIncluded() = state == STATE_INCLUDE
-            fun isExcluded() = state == STATE_EXCLUDE
-            companion object {
-                const val STATE_IGNORE = 0
-                const val STATE_INCLUDE = 1
-                const val STATE_EXCLUDE = 2
-            }
-        }
-    }
-
-    open fun getFilterList(): List<Filter<*>> = emptyList()
+    override fun getFilterList(): List<Filter<*>> = emptyList()
 }

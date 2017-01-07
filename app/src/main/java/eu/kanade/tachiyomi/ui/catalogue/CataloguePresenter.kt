@@ -6,12 +6,12 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.data.source.CatalogueSource
+import eu.kanade.tachiyomi.data.source.model.Filter
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.SourceManager
 import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.LoginSource
-import eu.kanade.tachiyomi.data.source.online.OnlineSource
-import eu.kanade.tachiyomi.data.source.online.OnlineSource.Filter
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import rx.Observable
 import rx.Subscription
@@ -55,7 +55,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     /**
      * Active source.
      */
-    lateinit var source: OnlineSource
+    lateinit var source: CatalogueSource
         private set
 
     /**
@@ -191,7 +191,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      *
      * @param source the new active source.
      */
-    fun setActiveSource(source: OnlineSource) {
+    fun setActiveSource(source: CatalogueSource) {
         prefs.lastUsedCatalogueSource().set(source.id)
         this.source = source
         sourceFilters = source.getFilterList()
@@ -283,13 +283,13 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      *
      * @return a source.
      */
-    fun getLastUsedSource(): OnlineSource {
+    fun getLastUsedSource(): CatalogueSource {
         val id = prefs.lastUsedCatalogueSource().get() ?: -1
         val source = sourceManager.get(id)
         if (!isValidSource(source)) {
             return findFirstValidSource()
         }
-        return source as OnlineSource
+        return source as CatalogueSource
     }
 
     /**
@@ -313,14 +313,14 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      *
      * @return the index of the first valid source.
      */
-    fun findFirstValidSource(): OnlineSource {
+    fun findFirstValidSource(): CatalogueSource {
         return sources.first { isValidSource(it) }
     }
 
     /**
      * Returns a list of enabled sources ordered by language and name.
      */
-    open protected fun getEnabledSources(): List<OnlineSource> {
+    open protected fun getEnabledSources(): List<CatalogueSource> {
         val languages = prefs.enabledLanguages().getOrDefault()
         val hiddenCatalogues = prefs.hiddenCatalogues().getOrDefault()
 
@@ -329,7 +329,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
             languages.add("en")
         }
 
-        return sourceManager.getOnlineSources()
+        return sourceManager.getCatalogueSources()
                 .filter { it.lang in languages }
                 .filterNot { it.id.toString() in hiddenCatalogues }
                 .sortedBy { "(${it.lang}) ${it.name}" }
