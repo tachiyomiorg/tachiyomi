@@ -5,6 +5,7 @@ import android.text.format.Formatter
 import com.github.salomonbrys.kotson.fromJson
 import com.google.gson.Gson
 import com.jakewharton.disklrucache.DiskLruCache
+import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.util.DiskUtil
 import eu.kanade.tachiyomi.util.saveTo
@@ -92,13 +93,13 @@ class ChapterCache(private val context: Context) {
     /**
      * Get page list from cache.
      *
-     * @param chapterUrl the url of the chapter.
+     * @param chapter the chapter.
      * @return an observable of the list of pages.
      */
-    fun getPageListFromCache(chapterUrl: String): Observable<List<Page>> {
-        return Observable.fromCallable<List<Page>> {
+    fun getPageListFromCache(chapter: Chapter): Observable<List<Page>> {
+        return Observable.fromCallable {
             // Get the key for the chapter.
-            val key = DiskUtil.hashKeyForDisk(chapterUrl)
+            val key = DiskUtil.hashKeyForDisk(getKey(chapter))
 
             // Convert JSON string to list of objects. Throws an exception if snapshot is null
             diskCache.get(key).use {
@@ -110,10 +111,10 @@ class ChapterCache(private val context: Context) {
     /**
      * Add page list to disk cache.
      *
-     * @param chapterUrl the url of the chapter.
+     * @param chapter the chapter.
      * @param pages list of pages.
      */
-    fun putPageListToCache(chapterUrl: String, pages: List<Page>) {
+    fun putPageListToCache(chapter: Chapter, pages: List<Page>) {
         // Convert list of pages to json string.
         val cachedValue = gson.toJson(pages)
 
@@ -122,7 +123,7 @@ class ChapterCache(private val context: Context) {
 
         try {
             // Get editor from md5 key.
-            val key = DiskUtil.hashKeyForDisk(chapterUrl)
+            val key = DiskUtil.hashKeyForDisk(getKey(chapter))
             editor = diskCache.edit(key) ?: return
 
             // Write chapter urls to cache.
@@ -196,5 +197,8 @@ class ChapterCache(private val context: Context) {
         }
     }
 
+    private fun getKey(chapter: Chapter): String {
+        return "${chapter.manga_id}${chapter.url}"
+    }
 }
 

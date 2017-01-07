@@ -41,10 +41,4 @@ interface Source {
      */
     fun fetchPageList(chapter: SChapter): Observable<List<Page>>
 
-    /**
-     * Returns an observable with the path of the image.
-     *
-     * @param page the page.
-     */
-    fun fetchImage(page: Page): Observable<Page>
 }

@@ -4,6 +4,9 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.source.Source
 import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.online.OnlineSource
+import eu.kanade.tachiyomi.data.source.online.fetchImageFromCacheThenNet
+import eu.kanade.tachiyomi.data.source.online.fetchPageListFromCacheThenNet
 import eu.kanade.tachiyomi.util.plusAssign
 import rx.Observable
 import rx.schedulers.Schedulers
@@ -36,9 +39,11 @@ class ChapterLoader(
     }
 
     private fun prepareOnlineReading() {
+        if (source !is OnlineSource) return
+
         subscriptions += Observable.defer { Observable.just(queue.take().page) }
                 .filter { it.status == Page.QUEUE }
-                .concatMap { source.fetchImage(it) }
+                .concatMap { source.fetchImageFromCacheThenNet(it) }
                 .repeat()
                 .subscribeOn(Schedulers.io())
                 .subscribe({
@@ -57,6 +62,10 @@ class ChapterLoader(
                     Observable.just(chapter.pages!!)
             }
             .doOnNext { pages ->
+                if (pages.isEmpty()) {
+                    throw Exception("Page list is empty")
+                }
+
                 // Now that the number of pages is known, fix the requested page if the last one
                 // was requested.
                 if (chapter.requestedPage == -1) {
@@ -76,8 +85,8 @@ class ChapterLoader(
                     // Fetch the page list from disk.
                     downloadManager.buildPageList(source, manga, chapter)
                 } else {
-                    // Fetch the page list from cache or fallback to network
-                    source.fetchPageList(chapter)
+                    (source as? OnlineSource)?.fetchPageListFromCacheThenNet(chapter)
+                            ?: source.fetchPageList(chapter)
                 }
             }
             .doOnNext { pages ->
@@ -110,6 +119,8 @@ class ChapterLoader(
     fun retryPage(page: Page) {
         queue.offer(PriorityPage(page, 2))
     }
+
+
 
     private data class PriorityPage(val page: Page, val priority: Int): Comparable<PriorityPage> {
 

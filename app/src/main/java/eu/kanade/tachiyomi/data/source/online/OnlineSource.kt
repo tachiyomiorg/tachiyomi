@@ -1,7 +1,5 @@
 package eu.kanade.tachiyomi.data.source.online
 
-import android.net.Uri
-import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.network.GET
 import eu.kanade.tachiyomi.data.network.NetworkHelper
 import eu.kanade.tachiyomi.data.network.asObservableSuccess
@@ -28,11 +26,6 @@ abstract class OnlineSource : CatalogueSource {
      * Network service.
      */
     val network: NetworkHelper by injectLazy()
-
-    /**
-     * Chapter cache.
-     */
-    val chapterCache: ChapterCache by injectLazy()
 
     /**
      * Preferences helper.
@@ -82,12 +75,13 @@ abstract class OnlineSource : CatalogueSource {
      *
      * @param page the page number to retrieve.
      */
-    override fun fetchPopularManga(page: Int): Observable<MangasPage> = client
-            .newCall(popularMangaRequest(page))
-            .asObservableSuccess()
-            .map { response ->
-                popularMangaParse(response)
-            }
+    override fun fetchPopularManga(page: Int): Observable<MangasPage> {
+        return client.newCall(popularMangaRequest(page))
+                .asObservableSuccess()
+                .map { response ->
+                    popularMangaParse(response)
+                }
+    }
 
     /**
      * Returns the request for the popular manga given the page.
@@ -111,12 +105,13 @@ abstract class OnlineSource : CatalogueSource {
      * @param query the search query.
      * @param filters the list of filters to apply.
      */
-    override fun fetchSearchManga(page: Int, query: String, filters: FilterList): Observable<MangasPage> = client
-            .newCall(searchMangaRequest(page, query, filters))
-            .asObservableSuccess()
-            .map { response ->
-                searchMangaParse(response)
-            }
+    override fun fetchSearchManga(page: Int, query: String, filters: FilterList): Observable<MangasPage> {
+        return client.newCall(searchMangaRequest(page, query, filters))
+                .asObservableSuccess()
+                .map { response ->
+                    searchMangaParse(response)
+                }
+    }
 
     /**
      * Returns the request for the search manga given the page.
@@ -139,12 +134,13 @@ abstract class OnlineSource : CatalogueSource {
      *
      * @param page the page number to retrieve.
      */
-    override fun fetchLatestUpdates(page: Int): Observable<MangasPage> = client
-            .newCall(latestUpdatesRequest(page))
-            .asObservableSuccess()
-            .map { response ->
-                latestUpdatesParse(response)
-            }
+    override fun fetchLatestUpdates(page: Int): Observable<MangasPage> {
+        return client.newCall(latestUpdatesRequest(page))
+                .asObservableSuccess()
+                .map { response ->
+                    latestUpdatesParse(response)
+                }
+    }
 
     /**
      * Returns the request for latest manga given the page.
@@ -166,12 +162,13 @@ abstract class OnlineSource : CatalogueSource {
      *
      * @param manga the manga to be updated.
      */
-    override fun fetchMangaDetails(manga: SManga): Observable<SManga> = client
-            .newCall(mangaDetailsRequest(manga))
-            .asObservableSuccess()
-            .map { response ->
-                mangaDetailsParse(response).apply { initialized = true }
-            }
+    override fun fetchMangaDetails(manga: SManga): Observable<SManga> {
+        return client.newCall(mangaDetailsRequest(manga))
+                .asObservableSuccess()
+                .map { response ->
+                    mangaDetailsParse(response).apply { initialized = true }
+                }
+    }
 
     /**
      * Returns the request for the details of a manga. Override only if it's needed to change the
@@ -196,12 +193,13 @@ abstract class OnlineSource : CatalogueSource {
      *
      * @param manga the manga to look for chapters.
      */
-    override fun fetchChapterList(manga: SManga): Observable<List<SChapter>> = client
-            .newCall(chapterListRequest(manga))
-            .asObservableSuccess()
-            .map { response ->
-                chapterListParse(response)
-            }
+    override fun fetchChapterList(manga: SManga): Observable<List<SChapter>> {
+        return client.newCall(chapterListRequest(manga))
+                .asObservableSuccess()
+                .map { response ->
+                    chapterListParse(response)
+                }
+    }
 
     /**
      * Returns the request for updating the chapter list. Override only if it's needed to override
@@ -221,28 +219,17 @@ abstract class OnlineSource : CatalogueSource {
     abstract protected fun chapterListParse(response: Response): List<SChapter>
 
     /**
-     * Returns an observable with the page list for a chapter. It tries to return the page list from
-     * the local cache, otherwise fallbacks to network calling [fetchPageListFromNetwork].
+     * Returns an observable with the page list for a chapter.
      *
      * @param chapter the chapter whose page list has to be fetched.
      */
-    final override fun fetchPageList(chapter: SChapter): Observable<List<Page>> = chapterCache
-            .getPageListFromCache(getChapterCacheKey(chapter))
-            .onErrorResumeNext { fetchPageListFromNetwork(chapter) }
-            .doOnNext { if (it.isEmpty()) throw Exception("Page list is empty") }
-
-    /**
-     * Returns an observable with the page list for a chapter. Normally it's not needed to override
-     * this method.
-     *
-     * @param chapter the chapter whose page list has to be fetched.
-     */
-    open fun fetchPageListFromNetwork(chapter: SChapter): Observable<List<Page>> = client
-            .newCall(pageListRequest(chapter))
-            .asObservableSuccess()
-            .map { response ->
-                pageListParse(response)
-            }
+    override fun fetchPageList(chapter: SChapter): Observable<List<Page>> {
+        return client.newCall(pageListRequest(chapter))
+                .asObservableSuccess()
+                .map { response ->
+                    pageListParse(response)
+                }
+    }
 
     /**
      * Returns the request for getting the page list. Override only if it's needed to override the
@@ -262,26 +249,15 @@ abstract class OnlineSource : CatalogueSource {
     abstract protected fun pageListParse(response: Response): List<Page>
 
     /**
-     * Returns the key for the page list to be stored in [ChapterCache].
-     */
-    private fun getChapterCacheKey(chapter: SChapter) = "$id${chapter.url}"
-
-    /**
      * Returns an observable with the page containing the source url of the image. If there's any
      * error, it will return null instead of throwing an exception.
      *
      * @param page the page whose source image has to be fetched.
      */
-    open protected fun fetchImageUrl(page: Page): Observable<Page> {
-        page.status = Page.LOAD_PAGE
-        return client
-                .newCall(imageUrlRequest(page))
+    open fun fetchImageUrl(page: Page): Observable<String> {
+        return client.newCall(imageUrlRequest(page))
                 .asObservableSuccess()
                 .map { imageUrlParse(it) }
-                .doOnError { page.status = Page.ERROR }
-                .onErrorReturn { null }
-                .doOnNext { page.imageUrl = it }
-                .map { page }
     }
 
     /**
@@ -302,24 +278,14 @@ abstract class OnlineSource : CatalogueSource {
     abstract protected fun imageUrlParse(response: Response): String
 
     /**
-     * Returns an observable of the page with the downloaded image.
-     *
-     * @param page the page whose source image has to be downloaded.
-     */
-    final override fun fetchImage(page: Page): Observable<Page> =
-            if (page.imageUrl.isNullOrEmpty())
-                fetchImageUrl(page).flatMap { getCachedImage(it) }
-            else
-                getCachedImage(page)
-
-    /**
      * Returns an observable with the response of the source image.
      *
      * @param page the page whose source image has to be downloaded.
      */
-    fun imageResponse(page: Page): Observable<Response> = client
-            .newCallWithProgress(imageRequest(page), page)
-            .asObservableSuccess()
+    fun fetchImage(page: Page): Observable<Response> {
+        return client.newCallWithProgress(imageRequest(page), page)
+                .asObservableSuccess()
+    }
 
     /**
      * Returns the request for getting the source image. Override only if it's needed to override
@@ -332,70 +298,33 @@ abstract class OnlineSource : CatalogueSource {
     }
 
     /**
-     * Returns an observable of the page that gets the image from the chapter or fallbacks to
-     * network and copies it to the cache calling [cacheImage].
+     * Assigns the url of the chapter without the scheme and domain. It saves some redundancy from
+     * database and the urls could still work after a domain change.
      *
-     * @param page the page.
+     * @param url the full url to the chapter.
      */
-    fun getCachedImage(page: Page): Observable<Page> {
-        val imageUrl = page.imageUrl ?: return Observable.just(page)
-
-        return Observable.just(page)
-                .flatMap {
-                    if (!chapterCache.isImageInCache(imageUrl)) {
-                        cacheImage(page)
-                    } else {
-                        Observable.just(page)
-                    }
-                }
-                .doOnNext {
-                    page.uri = Uri.fromFile(chapterCache.getImageFile(imageUrl))
-                    page.status = Page.READY
-                }
-                .doOnError { page.status = Page.ERROR }
-                .onErrorReturn { page }
+    fun SChapter.setUrlWithoutDomain(url: String) {
+        this.url = getUrlWithoutDomain(url)
     }
 
     /**
-     * Returns an observable of the page that downloads the image to [ChapterCache].
+     * Assigns the url of the manga without the scheme and domain. It saves some redundancy from
+     * database and the urls could still work after a domain change.
      *
-     * @param page the page.
+     * @param url the full url to the manga.
      */
-    private fun cacheImage(page: Page): Observable<Page> {
-        page.status = Page.DOWNLOAD_IMAGE
-        return imageResponse(page)
-                .doOnNext { chapterCache.putImageToCache(page.imageUrl!!, it) }
-                .map { page }
-    }
-
-
-    // Utility methods
-
-    fun fetchAllImageUrlsFromPageList(pages: List<Page>): Observable<Page> = Observable.from(pages)
-            .filter { !it.imageUrl.isNullOrEmpty() }
-            .mergeWith(fetchRemainingImageUrlsFromPageList(pages))
-
-    fun fetchRemainingImageUrlsFromPageList(pages: List<Page>): Observable<Page> = Observable.from(pages)
-            .filter { it.imageUrl.isNullOrEmpty() }
-            .concatMap { fetchImageUrl(it) }
-
-    fun savePageList(chapter: SChapter, pages: List<Page>?) {
-        if (pages != null) {
-            chapterCache.putPageListToCache(getChapterCacheKey(chapter), pages)
-        }
-    }
-
-    fun SChapter.setUrlWithoutDomain(url: String) {
-        this.url = getUrlPath(url)
-    }
-
     fun SManga.setUrlWithoutDomain(url: String) {
-        this.url = getUrlPath(url)
+        this.url = getUrlWithoutDomain(url)
     }
 
-    fun getUrlPath(s: String): String {
+    /**
+     * Returns the url of the given string without the scheme and domain.
+     *
+     * @param orig the full url.
+     */
+    private fun getUrlWithoutDomain(orig: String): String {
         try {
-            val uri = URI(s)
+            val uri = URI(orig)
             var out = uri.path
             if (uri.query != null)
                 out += "?" + uri.query
@@ -403,9 +332,8 @@ abstract class OnlineSource : CatalogueSource {
                 out += "#" + uri.fragment
             return out
         } catch (e: URISyntaxException) {
-            return s
+            return orig
         }
-
     }
 
     /**
@@ -418,5 +346,8 @@ abstract class OnlineSource : CatalogueSource {
     open fun prepareNewChapter(chapter: SChapter, manga: SManga) {
     }
 
+    /**
+     * Returns the list of filters for the source.
+     */
     override fun getFilterList() = FilterList()
 }

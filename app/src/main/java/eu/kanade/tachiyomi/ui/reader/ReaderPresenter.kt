@@ -372,7 +372,9 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
         Observable.fromCallable {
             // Cache current page list progress for online chapters to allow a faster reopen
             if (!chapter.isDownloaded) {
-                source.let { if (it is OnlineSource) it.savePageList(chapter, pages) }
+                source.let {
+                    if (it is OnlineSource) chapterCache.putPageListToCache(chapter, pages)
+                }
             }
 
             try {

@@ -13,6 +13,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.source.SourceManager
 import eu.kanade.tachiyomi.data.source.model.Page
 import eu.kanade.tachiyomi.data.source.online.OnlineSource
+import eu.kanade.tachiyomi.data.source.online.fetchAllImageUrlsFromPageList
 import eu.kanade.tachiyomi.util.DynamicConcurrentMergeOperator
 import eu.kanade.tachiyomi.util.RetryWithDelay
 import eu.kanade.tachiyomi.util.plusAssign
@@ -251,7 +252,7 @@ class Downloader(private val context: Context, private val provider: DownloadPro
 
         val pageListObservable = if (download.pages == null) {
             // Pull page list from network and add them to download object
-            download.source.fetchPageListFromNetwork(download.chapter)
+            download.source.fetchPageList(download.chapter)
                     .doOnNext { pages ->
                         if (pages.isEmpty()) {
                             throw Exception("Page list is empty")
@@ -348,7 +349,7 @@ class Downloader(private val context: Context, private val provider: DownloadPro
     private fun downloadImage(page: Page, source: OnlineSource, tmpDir: UniFile, filename: String): Observable<UniFile> {
         page.status = Page.DOWNLOAD_IMAGE
         page.progress = 0
-        return source.imageResponse(page)
+        return source.fetchImage(page)
                 .map { response ->
                     val file = tmpDir.createFile("$filename.tmp")
                     try {
