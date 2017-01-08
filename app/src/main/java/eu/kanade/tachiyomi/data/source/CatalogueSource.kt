@@ -24,8 +24,7 @@ interface CatalogueSource : Source {
     fun fetchPopularManga(page: Int): Observable<MangasPage>
 
     /**
-     * Returns an observable containing a page with a list of manga. Normally it's not needed to
-     * override this method.
+     * Returns an observable containing a page with a list of manga.
      *
      * @param page the page number to retrieve.
      * @param query the search query.
