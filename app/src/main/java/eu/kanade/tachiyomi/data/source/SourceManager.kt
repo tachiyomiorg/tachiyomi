@@ -31,26 +31,37 @@ open class SourceManager(private val context: Context) {
         return sourcesMap[sourceKey]
     }
 
-    fun getOnlineSources() = sourcesMap.values.filterIsInstance(OnlineSource::class.java)
+    fun getOnlineSources() = sourcesMap.values.filterIsInstance<OnlineSource>()
 
     fun getCatalogueSources() = sourcesMap.values.filterIsInstance<CatalogueSource>()
 
-    private fun createOnlineSourceList(): List<Source> = listOf(
-            Batoto(1),
-            Mangahere(2),
-            Mangafox(3),
-            Kissmanga(4),
-            Readmanga(5),
-            Mintmanga(6),
-            Mangachan(7),
-            Readmangatoday(8),
-            Mangasee(9),
-            WieManga(10)
-    )
-
     private fun createSources() {
         createExtensionSources().forEach { registerSource(it) }
-        createOnlineSourceList().forEach { registerSource(it) }
+        createYamlSources().forEach { registerSource(it) }
+        createInternalSources().forEach { registerSource(it) }
+    }
+
+    private fun registerSource(source: Source, overwrite: Boolean = false) {
+        if (overwrite || !sourcesMap.containsKey(source.id)) {
+            sourcesMap.put(source.id, source)
+        }
+    }
+
+    private fun createInternalSources(): List<Source> = listOf(
+            Batoto(),
+            Mangahere(),
+            Mangafox(),
+            Kissmanga(),
+            Readmanga(),
+            Mintmanga(),
+            Mangachan(),
+            Readmangatoday(),
+            Mangasee(),
+            WieManga()
+    )
+
+    private fun createYamlSources(): List<Source> {
+        val sources = mutableListOf<Source>()
 
         val parsersDir = File(Environment.getExternalStorageDirectory().absolutePath +
                 File.separator + context.getString(R.string.app_name), "parsers")
@@ -60,18 +71,13 @@ open class SourceManager(private val context: Context) {
             for (file in parsersDir.listFiles().filter { it.extension == "yml" }) {
                 try {
                     val map = file.inputStream().use { yaml.loadAs(it, Map::class.java) }
-                    YamlOnlineSource(map).let { registerSource(it) }
+                    sources.add(YamlOnlineSource(map))
                 } catch (e: Exception) {
                     Timber.e("Error loading source from file. Bad format?")
                 }
             }
         }
-    }
-
-    private fun registerSource(source: Source, overwrite: Boolean = false) {
-        if (overwrite || !sourcesMap.containsKey(source.id)) {
-            sourcesMap.put(source.id, source)
-        }
+        return sources
     }
 
     private fun createExtensionSources(): List<OnlineSource> {

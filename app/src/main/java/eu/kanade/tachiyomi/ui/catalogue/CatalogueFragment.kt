@@ -206,8 +206,6 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
                 selectedIndex = position
                 showProgressBar()
                 adapter.clear()
-                glm.scrollToPositionWithOffset(0, 0)
-                llm.scrollToPositionWithOffset(0, 0)
                 presenter.setActiveSource(source)
                 navView?.setFilters(presenter.sourceFilters)
                 activity.invalidateOptionsMenu()
@@ -361,8 +359,6 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
 
         showProgressBar()
         adapter.clear()
-        catalogue_grid.layoutManager.scrollToPosition(0)
-        catalogue_list.layoutManager.scrollToPosition(0)
 
         presenter.restartPager(newQuery)
     }
@@ -401,7 +397,7 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(), FlexibleVie
     fun onAddPageError(error: Throwable) {
         hideProgressBar()
 
-        val message = if (error is NoResultsException) "No results found" else error.message ?: ""
+        val message = if (error is NoResultsException) "No results found" else (error.message ?: "")
 
         snack?.dismiss()
         snack = catalogue_view.snack(message, Snackbar.LENGTH_INDEFINITE) {

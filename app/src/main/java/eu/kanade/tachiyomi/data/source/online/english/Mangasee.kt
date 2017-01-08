@@ -11,7 +11,9 @@ import org.jsoup.nodes.Element
 import java.text.SimpleDateFormat
 import java.util.regex.Pattern
 
-class Mangasee(override val id: Long) : ParsedOnlineSource() {
+class Mangasee : ParsedOnlineSource() {
+
+    override val id: Long = 9
 
     override val name = "Mangasee"
 

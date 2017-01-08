@@ -11,7 +11,9 @@ import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.util.*
 
-class Readmangatoday(override val id: Long) : ParsedOnlineSource() {
+class Readmangatoday : ParsedOnlineSource() {
+
+    override val id: Long = 8
 
     override val name = "ReadMangaToday"
 

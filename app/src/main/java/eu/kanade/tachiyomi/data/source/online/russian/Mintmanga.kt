@@ -11,7 +11,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Pattern
 
-class Mintmanga(override val id: Long) : ParsedOnlineSource() {
+class Mintmanga : ParsedOnlineSource() {
+
+    override val id: Long = 6
 
     override val name = "Mintmanga"
 

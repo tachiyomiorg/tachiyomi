@@ -1,14 +1,19 @@
 package eu.kanade.tachiyomi.data.source.online.german
 
 import eu.kanade.tachiyomi.data.network.GET
-import eu.kanade.tachiyomi.data.source.model.*
+import eu.kanade.tachiyomi.data.source.model.FilterList
+import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.data.source.model.SChapter
+import eu.kanade.tachiyomi.data.source.model.SManga
 import eu.kanade.tachiyomi.data.source.online.ParsedOnlineSource
 import okhttp3.Request
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.text.SimpleDateFormat
 
-class WieManga(override val id: Long) : ParsedOnlineSource() {
+class WieManga : ParsedOnlineSource() {
+
+    override val id: Long = 10
 
     override val name = "Wie Manga!"
 

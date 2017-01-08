@@ -11,7 +11,9 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Mangahere(override val id: Long) : ParsedOnlineSource() {
+class Mangahere : ParsedOnlineSource() {
+
+    override val id: Long = 2
 
     override val name = "Mangahere"
 
