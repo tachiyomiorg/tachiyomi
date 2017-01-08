@@ -15,6 +15,7 @@ import eu.kanade.tachiyomi.util.hasPermission
 import org.yaml.snakeyaml.Yaml
 import timber.log.Timber
 import java.io.File
+import dalvik.system.DexClassLoader
 
 open class SourceManager(private val context: Context) {
 
@@ -47,10 +48,17 @@ open class SourceManager(private val context: Context) {
 
         if (parsersDir.exists() && context.hasPermission(READ_EXTERNAL_STORAGE)) {
             val yaml = Yaml()
-            for (file in parsersDir.listFiles().filter { it.extension == "yml" }) {
+            for (file in parsersDir.listFiles()) {
                 try {
-                    val map = file.inputStream().use { yaml.loadAs(it, Map::class.java) }
-                    YamlOnlineSource(map).let { put(it.id, it) }
+                    if (file.extension == "yml") {
+                        val map = file.inputStream().use { yaml.loadAs(it, Map::class.java) }
+                        YamlOnlineSource(map).let { put(it.id, it) }
+                    } else if (file.extension == "jar") {
+                        val cl = DexClassLoader(file.absolutePath, context.getDir("outdex", Context.MODE_PRIVATE).absolutePath, null, context.classLoader)
+                        val clazz = cl.loadClass(file.name.dropLast(4))
+                        val source = clazz.newInstance() as Source
+                        put(source.id, source)
+                    }
                 } catch (e: Exception) {
                     Timber.e("Error loading source from file. Bad format?")
                 }
