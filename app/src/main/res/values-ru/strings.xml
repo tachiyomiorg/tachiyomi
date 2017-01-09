@@ -25,7 +25,7 @@
     <string name="action_install">Установить</string>
     <string name="action_mark_as_read">Отметить как прочитанное</string>
     <string name="action_mark_as_unread">Пометить как непрочитанное</string>
-    <string name="action_mark_previous_as_read">Отметить предыдущие как прочитанное</string>
+    <string name="action_mark_previous_as_read">Отметить предыдущие как прочит.</string>
     <string name="action_move_category">Изменить категорию</string>
     <string name="action_next_chapter">Следующая глава</string>
     <string name="action_next_unread">Следующая непрочитанная</string>
@@ -103,7 +103,7 @@
     <string name="dialog_with_checkbox_reset">Сбросить все главы для этой манги</string>
     <string name="disabled">Отключено</string>
     <string name="display_mode_chapter">Глава %1$s</string>
-    <string name="download_1">Скачать следующую главку</string>
+    <string name="download_1">Скачать следующую главу</string>
     <string name="download_10">Скачать 10 следующих глав</string>
     <string name="download_5">Скачать 5 следующих глав</string>
     <string name="download_all">Скачать все</string>
@@ -140,7 +140,7 @@
     <string name="label_download_queue">Очередь загрузки</string>
     <string name="label_latest_updates">Последние обновление</string>
     <string name="label_library">Моя библиотека</string>
-    <string name="label_recent_manga">Недавно прочитанные</string>
+    <string name="label_recent_manga">История чтения</string>
     <string name="label_recent_updates">Обновления библиотеки</string>
     <string name="label_selected">Выбраны: %1$d</string>
     <string name="label_settings">Настройки</string>
