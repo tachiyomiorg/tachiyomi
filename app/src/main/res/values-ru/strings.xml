@@ -24,7 +24,7 @@
     <string name="action_filter_unread">Непрочитанные</string>
     <string name="action_install">Установить</string>
     <string name="action_mark_as_read">Отметить как прочитанное</string>
-    <string name="action_mark_as_unread">пометить как непрочитанное</string>
+    <string name="action_mark_as_unread">Пометить как непрочитанное</string>
     <string name="action_mark_previous_as_read">Отметить предыдущие как прочитанное</string>
     <string name="action_move_category">Изменить категорию</string>
     <string name="action_next_chapter">Следующая глава</string>
@@ -58,7 +58,7 @@
     <string name="action_update_library">Обновить библиотеку</string>
     <string name="add_to_library">Добавить в библиотеку</string>
     <string name="all">Все</string>
-    <string name="backup">Архив</string>
+    <string name="backup">Создать</string>
     <string name="backup_completed">Архив успешно загружен</string>
     <string name="backup_please_wait">Архив создается. Пожалуйста подождите...</string>
     <string name="black_background">Черный</string>
@@ -149,7 +149,7 @@
     <string name="left_to_right_viewer">Слева направо</string>
     <string name="library_search_hint">Название или автор...</string>
     <string name="licensed">Лицензировано</string>
-    <string name="light_theme">Главная тема</string>
+    <string name="light_theme">Основная тема</string>
     <string name="loading">Загрузка...</string>
     <string name="login">Авторизация</string>
     <string name="login_success">Успешная авторизация</string>
@@ -204,7 +204,7 @@
     <string name="pref_clear_chapter_cache">Очистить кэш глав</string>
     <string name="pref_clear_cookies">Очистить куки</string>
     <string name="pref_clear_database">Очистить базу данных</string>
-    <string name="pref_clear_database_summary">Удалять мангу и главы которые больше не в библиотеки</string>
+    <string name="pref_clear_database_summary">Удалять мангу и главы которые больше не находятся в библиотеке</string>
     <string name="pref_custom_brightness">Использовать пользовательскую яркость</string>
     <string name="pref_custom_color_filter">Использовать пользовательский цветовой фильтр</string>
     <string name="pref_download_directory">Каталог загрузок</string>
@@ -217,7 +217,7 @@
     <string name="pref_enable_transitions">Включить переходы</string>
     <string name="pref_fullscreen">Полноэкранный режим</string>
     <string name="pref_image_decoder">Декодер изображений</string>
-    <string name="pref_image_scale_type">Тип масштаба</string>
+    <string name="pref_image_scale_type">Масштабирование</string>
     <string name="pref_keep_screen_on">Держать экран включенным</string>
     <string name="pref_language">Язык</string>
     <string name="pref_library_columns">Количество манги в ряд</string>
@@ -230,8 +230,8 @@
     <string name="pref_read_with_volume_keys">Клавиши громкости</string>
     <string name="pref_reader_navigation">Навигация</string>
     <string name="pref_reader_theme">Цвет фона</string>
-    <string name="pref_refresh_library_metadata">Обновлять метаданные библиотеки</string>
-    <string name="pref_refresh_library_metadata_summary">Обновлять обложку, жанры, описания и информацию о манге</string>
+    <string name="pref_refresh_library_metadata">Обновлять библиотечные метаданные</string>
+    <string name="pref_refresh_library_metadata_summary">Обновить обложки, жанры, описания и информацию о мангах</string>
     <string name="pref_remove_after_marked_as_read">Удалить когда отмечена как прочитанная</string>
     <string name="pref_remove_after_read">Удалить после прочтения</string>
     <string name="pref_rotation_type">Ориентация</string>
@@ -310,7 +310,7 @@
     <string name="webtoon_viewer">Webtoon</string>
     <string name="white_background">Белый</string>
     <string name="wifi">Wi-Fi</string>
-    <string name="zoom_start_automatic">Автоматический</string>
+    <string name="zoom_start_automatic">Автоматическая</string>
     <string name="zoom_start_center">Центральная</string>
     <string name="zoom_start_left">Слева</string>
     <string name="zoom_start_right">Справа</string>
