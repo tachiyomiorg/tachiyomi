@@ -28,7 +28,7 @@
     <string name="action_mark_previous_as_read">Отметить предыдущие как прочитанное</string>
     <string name="action_move_category">Изменить категорию</string>
     <string name="action_next_chapter">Следующая глава</string>
-    <string name="action_next_unread">Следающая непрочитанная</string>
+    <string name="action_next_unread">Следующая непрочитанная</string>
     <string name="action_open_in_browser">Открыть в браузере</string>
     <string name="action_pause">Пауза</string>
     <string name="action_previous_chapter">Предыдущая глава</string>
@@ -50,7 +50,7 @@
     <string name="action_sort_alpha">Алфавитно</string>
     <string name="action_sort_down">По убыванию</string>
     <string name="action_sort_last_read">Последняя прочитанная</string>
-    <string name="action_sort_last_updated">Последнаяя обнавленная</string>
+    <string name="action_sort_last_updated">Последняя обновленная</string>
     <string name="action_sort_up">По возрастанию</string>
     <string name="action_start">Старт</string>
     <string name="action_stop">Стоп</string>
@@ -65,7 +65,7 @@
     <string name="build_time">Дата сборки</string>
     <string name="cache_delete_error">Возникла ошибка при удаление кэша</string>
     <string name="cache_deleted">Кэш удален. %1$d файлов было удалено</string>
-    <string name="chapter_downloaded">Скаченно</string>
+    <string name="chapter_downloaded">Скачено</string>
     <string name="chapter_downloading">Скачивается</string>
     <string name="chapter_downloading_progress">Скачивается (%1$d/%2$d)</string>
     <string name="chapter_error">Ошибка</string>
@@ -99,7 +99,7 @@
     <string name="description">Описание</string>
     <string name="description_backdrop">Фоновое изображение манги</string>
     <string name="description_cover">Обложка манги</string>
-    <string name="dialog_with_checkbox_remove_description">Это действие удалиьт дату прочтения главы. Вы уверены?</string>
+    <string name="dialog_with_checkbox_remove_description">Это действие удалит дату прочтения главы. Вы уверены?</string>
     <string name="dialog_with_checkbox_reset">Сбросить все главы для этой манги</string>
     <string name="disabled">Отключено</string>
     <string name="display_mode_chapter">Глава %1$s</string>
@@ -146,13 +146,13 @@
     <string name="label_settings">Настройки</string>
     <string name="landscape">Горизонтальная</string>
     <string name="last_read_chapter">Последняя прочитанная глава</string>
-    <string name="left_to_right_viewer">Cлева направо</string>
+    <string name="left_to_right_viewer">Слева направо</string>
     <string name="library_search_hint">Название или автор...</string>
-    <string name="licensed">Лицензированно</string>
+    <string name="licensed">Лицензировано</string>
     <string name="light_theme">Главная тема</string>
     <string name="loading">Загрузка...</string>
     <string name="login">Авторизация</string>
-    <string name="login_success">Успешая авторизация</string>
+    <string name="login_success">Успешная авторизация</string>
     <string name="login_title">Авторизация для %1$s</string>
     <string name="manga_chapter_no_title">Нет названия</string>
     <string name="manga_chapters_tab">Главы</string>
@@ -164,7 +164,7 @@
     <string name="manga_info_genres_label">Жанры</string>
     <string name="manga_info_status_label">Статус</string>
     <string name="manga_info_source_label">Источник</string>
-    <string name="manga_not_in_db">Эта манга будет удалена из базы данны!</string>
+    <string name="manga_not_in_db">Эта манга будет удалена из базы данных!</string>
     <string name="manga_tracking_tab">Отслеживать</string>
     <string name="name">Имя</string>
     <string name="no_next_chapter">Следующая глава не найдена</string>
@@ -180,12 +180,12 @@
     <string name="notification_not_connected_to_ac_body">Не заряжается</string>
     <string name="notification_not_connected_to_ac_title">Синхронизация отменена</string>
     <string name="notification_update_completed">Обновление завершено</string>
-    <string name="notification_update_error">Неожиданная ошибка случилась пока обноалялась библиотека</string>
+    <string name="notification_update_error">Неожиданная ошибка случилась пока обновлялась библиотека</string>
     <string name="notification_update_progress">Статус обновления: %1$d/%2$d</string>
     <string name="on_hold">На ожидание</string>
     <string name="ongoing">Выпускается</string>
     <string name="options">Опции</string>
-    <string name="page_downloaded">Страница скопированна в %1$s</string>
+    <string name="page_downloaded">Страница скопирована в %1$s</string>
     <string name="password">Пароль</string>
     <string name="picture_saved">Картинка сохранена</string>
     <string name="plan_to_read">План для чтения</string>
@@ -206,7 +206,7 @@
     <string name="pref_clear_database">Очистить базу данных</string>
     <string name="pref_clear_database_summary">Удалять мангу и главы которые больше не в библиотеки</string>
     <string name="pref_custom_brightness">Использовать пользовательскую яркость</string>
-    <string name="pref_custom_color_filter">Использывать пользовательский цветовой фильтр</string>
+    <string name="pref_custom_color_filter">Использовать пользовательский цветовой фильтр</string>
     <string name="pref_download_directory">Каталог загрузок</string>
     <string name="pref_download_new">Скачивать новые главы</string>
     <string name="pref_download_only_over_wifi">Скачивать только через Wi-Fi</string>
@@ -221,7 +221,7 @@
     <string name="pref_keep_screen_on">Держать экран включенным</string>
     <string name="pref_language">Язык</string>
     <string name="pref_library_columns">Количество манги в ряд</string>
-    <string name="pref_library_update_categories">Категории вкюченные в глобальный поиск</string>
+    <string name="pref_library_update_categories">Категории включенные в глобальный поиск</string>
     <string name="pref_library_update_interval">Частота обновления библиотеки</string>
     <string name="pref_library_update_restriction">Ограничения обновления библиотеки</string>
     <string name="pref_library_update_restriction_summary">Обновлять когда условия выполнены</string>
@@ -230,7 +230,7 @@
     <string name="pref_read_with_volume_keys">Клавиши громкости</string>
     <string name="pref_reader_navigation">Навигация</string>
     <string name="pref_reader_theme">Цвет фона</string>
-    <string name="pref_refresh_library_metadata">Обнавлять метаданные библиотеки</string>
+    <string name="pref_refresh_library_metadata">Обновлять метаданные библиотеки</string>
     <string name="pref_refresh_library_metadata_summary">Обновлять обложку, жанры, описания и информацию о манге</string>
     <string name="pref_remove_after_marked_as_read">Удалить когда отмечена как прочитанная</string>
     <string name="pref_remove_after_read">Удалить после прочтения</string>
@@ -244,7 +244,7 @@
     <string name="reading">В процессе чтения</string>
     <string name="recent_manga_source">%1$s - Гл.%2$s</string>
     <string name="remove_from_library">Удалить из библиотеки</string>
-    <string name="restore">Востановить</string>
+    <string name="restore">Восстановить</string>
     <string name="restore_please_wait">Восстановление резервной копии. Подождите пожалуйста...</string>
     <string name="right_to_left_viewer">Справа налево</string>
     <string name="rotation_force_landscape">Горизонтальная</string>
@@ -292,7 +292,7 @@
     <string name="update_check_confirm">Скачать</string>
     <string name="update_check_download_started">Загрузка началась</string>
     <string name="update_check_ignore">Игнорировать</string>
-    <string name="update_check_look_for_updates">Ищу обнавления</string>
+    <string name="update_check_look_for_updates">Ищу обновления</string>
     <string name="update_check_no_new_updates">Обновлений не обнаружено</string>
     <string name="update_check_notification_download_complete">Загрузка завершена</string>
     <string name="update_check_notification_download_error">Ошибка загрузки</string>
