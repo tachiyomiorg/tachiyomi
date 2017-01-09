@@ -204,7 +204,7 @@
     <string name="login_title">Credenziali per %1$s</string>
     <string name="username">Nome utente</string>
     <string name="password">Password</string>
-    <string name="show_password">Mastra password</string>
+    <string name="show_password">Mostra password</string>
     <string name="login">Accedi</string>
     <string name="login_success">Accesso riuscito</string>
     <string name="invalid_login">Credenziali non valide</string>
