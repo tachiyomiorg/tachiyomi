@@ -139,7 +139,7 @@
     <string name="label_categories">Категории</string>
     <string name="label_download_queue">Очередь загрузки</string>
     <string name="label_latest_updates">Последние обновления</string>
-    <string name="label_library">Моя библиотека</string>
+    <string name="label_library">Библиотека</string>
     <string name="label_recent_manga">История чтения</string>
     <string name="label_recent_updates">Обновления библиотеки</string>
     <string name="label_selected">Выбраны: %1$d</string>
