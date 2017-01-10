@@ -9,6 +9,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/action_switch_orientation"
+        android:icon="@drawable/ic_screen_rotation_white_24dp"
+        android:title="@string/switch_orientation"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_settings_white_24dp"
         android:title="@string/label_settings"

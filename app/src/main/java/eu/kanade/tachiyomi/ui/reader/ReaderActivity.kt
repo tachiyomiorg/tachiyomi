@@ -59,6 +59,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         const val BLACK_THEME = 1
 
         const val MENU_VISIBLE = "menu_visible"
+        const val FORCED_ORIENTATION = "forced_orientation"
 
         fun newIntent(context: Context, manga: Manga, chapter: Chapter): Intent {
             SharedData.put(ReaderEvent(manga, chapter))
@@ -90,6 +91,8 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private var menuVisible = false
 
+    private var forcedOrientation = false
+
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
         setContentView(R.layout.activity_reader)
@@ -101,12 +104,13 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
         setupToolbar(toolbar)
 
-        initializeSettings()
-        initializeBottomMenu()
-
         if (savedState != null) {
             menuVisible = savedState.getBoolean(MENU_VISIBLE)
+            forcedOrientation = savedState.getBoolean(FORCED_ORIENTATION)
         }
+
+        initializeSettings()
+        initializeBottomMenu()
 
         setMenuVisibility(menuVisible)
 
@@ -144,6 +148,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_settings -> ReaderSettingsDialog().show(supportFragmentManager, "settings")
+            R.id.action_switch_orientation -> switchOrientation()
             R.id.action_custom_filter -> ReaderCustomFilterDialog().show(supportFragmentManager, "filter")
             else -> return super.onOptionsItemSelected(item)
         }
@@ -152,6 +157,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putBoolean(MENU_VISIBLE, menuVisible)
+        outState.putBoolean(FORCED_ORIENTATION, forcedOrientation)
         super.onSaveInstanceState(outState)
     }
 
@@ -385,8 +391,11 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     }
 
     private fun initializeSettings() {
-        subscriptions += preferences.rotation().asObservable()
-                .subscribe { setRotation(it) }
+        // When the orientation is forced the value from settings is ignored
+        if (!forcedOrientation) {
+            subscriptions += preferences.rotation().asObservable()
+                    .subscribe { setRotation(it) }
+        }
 
         subscriptions += preferences.showPageNumber().asObservable()
                 .subscribe { setPageNumberVisibility(it) }
@@ -406,6 +415,20 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         subscriptions += preferences.readerTheme().asObservable()
                 .distinctUntilChanged()
                 .subscribe { applyTheme(it) }
+    }
+
+    /**
+     * Sets ORIENTATION_PORTRAIT when in ORIENTATION_LANDSCAPE and vice versa
+     */
+    private fun switchOrientation() {
+        // Track that the orientation has been manually set
+        forcedOrientation = true
+        val currentOrientation = resources.configuration.orientation
+        requestedOrientation = if (currentOrientation == Configuration.ORIENTATION_PORTRAIT) {
+            ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+        } else {
+            ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
+        }
     }
 
     private fun setRotation(rotation: Int) {
