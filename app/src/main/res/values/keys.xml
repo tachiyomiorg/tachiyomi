@@ -52,6 +52,12 @@
     <string name="pref_remove_after_marked_as_read_key" translatable="false">pref_remove_after_marked_as_read_key</string>
     <string name="pref_last_used_category_key" translatable="false">last_used_category</string>
 
+    <string name="pref_create_local_backup_key" translatable="false">create_local_backup</string>
+    <string name="pref_restore_local_backup_key" translatable="false">restore_local_backup</string>
+    <string name="pref_backup_interval_key" translatable="false">backup_interval</string>
+    <string name="pref_backup_directory_key" translatable="false">backup_directory</string>
+    <string name="pref_backup_slots_key" translatable="false">backup_slots</string>
+
     <string name="pref_source_languages" translatable="false">source_languages</string>
     <string name="pref_category_tracking_accounts_key" translatable="false">category_tracking_accounts</string>
 

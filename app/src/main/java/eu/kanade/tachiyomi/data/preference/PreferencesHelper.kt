@@ -26,6 +26,10 @@ class PreferencesHelper(val context: Context) {
             File(Environment.getExternalStorageDirectory().absolutePath + File.separator +
                     context.getString(R.string.app_name), "downloads"))
 
+    private val defaultBackupDir = Uri.fromFile(
+            File(Environment.getExternalStorageDirectory().absolutePath + File.separator +
+                    context.getString(R.string.app_name), "backup"))
+
     fun startScreen() = prefs.getInt(keys.startScreen, 1)
 
     fun clear() = prefs.edit().clear().apply()
@@ -112,11 +116,17 @@ class PreferencesHelper(val context: Context) {
 
     fun anilistScoreType() = rxPrefs.getInteger("anilist_score_type", 0)
 
+    fun backupsDirectory() = rxPrefs.getString(keys.backupDirectory, defaultBackupDir.toString())
+
     fun downloadsDirectory() = rxPrefs.getString(keys.downloadsDirectory, defaultDownloadsDir.toString())
 
     fun downloadThreads() = rxPrefs.getInteger(keys.downloadThreads, 1)
 
     fun downloadOnlyOverWifi() = prefs.getBoolean(keys.downloadOnlyOverWifi, true)
+
+    fun numberOfBackups() = rxPrefs.getInteger(keys.numberOfBackups, 1)
+
+    fun backupInterval() = rxPrefs.getInteger(keys.backupInterval, 0)
 
     fun removeAfterReadSlots() = prefs.getInt(keys.removeAfterReadSlots, -1)
 

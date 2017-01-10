@@ -9,21 +9,16 @@ import android.os.Environment
 import android.support.v4.content.ContextCompat
 import android.support.v7.preference.Preference
 import android.support.v7.preference.XpPreferenceFragment
-import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.view.ViewGroup
 import com.afollestad.materialdialogs.MaterialDialog
 import com.hippo.unifile.UniFile
-import com.nononsenseapps.filepicker.AbstractFilePickerFragment
 import com.nononsenseapps.filepicker.FilePickerActivity
-import com.nononsenseapps.filepicker.FilePickerFragment
-import com.nononsenseapps.filepicker.LogicHandler
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
-import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.util.plusAssign
+import eu.kanade.tachiyomi.widget.CustomLayoutPickerActivity
 import net.xpece.android.support.preference.MultiSelectListPreference
 import uy.kohesive.injekt.injectLazy
 import java.io.File
@@ -151,27 +146,4 @@ class SettingsDownloadsFragment : SettingsFragment() {
             }
         }
     }
-
-    class CustomLayoutPickerActivity : FilePickerActivity() {
-
-        override fun getFragment(startPath: String?, mode: Int, allowMultiple: Boolean, allowCreateDir: Boolean):
-                AbstractFilePickerFragment<File> {
-            val fragment = CustomLayoutFilePickerFragment()
-            fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir)
-            return fragment
-        }
-    }
-
-    class CustomLayoutFilePickerFragment : FilePickerFragment() {
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            when (viewType) {
-                LogicHandler.VIEWTYPE_DIR -> {
-                    val view = parent.inflate(R.layout.listitem_dir)
-                    return DirViewHolder(view)
-                }
-                else -> return super.onCreateViewHolder(parent, viewType)
-            }
-        }
-    }
-
 }

@@ -65,6 +65,7 @@ class SettingsActivity : BaseActivity(),
             "downloads_screen" -> SettingsDownloadsFragment.newInstance(key)
             "sources_screen" -> SettingsSourcesFragment.newInstance(key)
             "tracking_screen" -> SettingsTrackingFragment.newInstance(key)
+            "backup_screen" -> SettingsBackupFragment.newInstance(key)
             "advanced_screen" -> SettingsAdvancedFragment.newInstance(key)
             "about_screen" -> SettingsAboutFragment.newInstance(key)
             else -> SettingsFragment.newInstance(key)

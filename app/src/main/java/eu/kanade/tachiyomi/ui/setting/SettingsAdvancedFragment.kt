@@ -108,6 +108,7 @@ class SettingsAdvancedFragment : SettingsFragment() {
                 .onPositive { dialog, which ->
                     (activity as SettingsActivity).parentFlags = SettingsActivity.FLAG_DATABASE_CLEARED
                     db.deleteMangasNotInLibrary().executeAsBlocking()
+                    db.deleteHistoryNoLastRead().executeAsBlocking()
                     activity.toast(R.string.clear_database_completed)
                 }
                 .show()

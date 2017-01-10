@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.support.multidex.MultiDex
 import com.evernote.android.job.JobManager
+import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.updater.UpdateCheckerJob
 import eu.kanade.tachiyomi.util.LocaleHelper
@@ -58,6 +59,7 @@ open class App : Application() {
             when (tag) {
                 LibraryUpdateJob.TAG -> LibraryUpdateJob()
                 UpdateCheckerJob.TAG -> UpdateCheckerJob()
+                BackupCreatorJob.TAG -> BackupCreatorJob()
                 else -> null
             }
         }

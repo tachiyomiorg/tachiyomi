@@ -65,11 +65,17 @@ class PreferenceKeys(context: Context) {
 
     val enabledLanguages = context.getString(R.string.pref_source_languages)
 
+    val backupDirectory = context.getString(R.string.pref_backup_directory_key)
+
     val downloadsDirectory = context.getString(R.string.pref_download_directory_key)
 
     val downloadThreads = context.getString(R.string.pref_download_slots_key)
 
     val downloadOnlyOverWifi = context.getString(R.string.pref_download_only_over_wifi_key)
+
+    val numberOfBackups = context.getString(R.string.pref_backup_slots_key)
+
+    val backupInterval = context.getString(R.string.pref_backup_interval_key)
 
     val removeAfterReadSlots = context.getString(R.string.pref_remove_after_read_slots_key)
 

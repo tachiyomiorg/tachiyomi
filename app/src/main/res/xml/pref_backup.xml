@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceScreen
+        android:icon="@drawable/ic_backup_black_24dp"
+        android:key="backup_screen"
+        android:persistent="false"
+        android:title="Backup"
+        app:asp_tintEnabled="true">
+
+        <Preference
+            android:key="@string/pref_create_local_backup_key"
+            android:summary="@string/pref_create_backup_summ"
+            android:title="@string/pref_create_backup" />
+
+        <Preference
+            android:key="@string/pref_restore_local_backup_key"
+            android:summary="@string/pref_restore_backup_summ"
+            android:title="@string/pref_restore_backup" />
+
+        <PreferenceCategory
+            android:persistent="false"
+            android:title="@string/pref_backup_service_category" />
+
+        <eu.kanade.tachiyomi.widget.preference.IntListPreference
+            android:defaultValue="0"
+            android:entries="@array/backup_update_interval"
+            android:entryValues="@array/backup_update_interval_values"
+            android:key="@string/pref_backup_interval_key"
+            android:summary="%s"
+            android:title="@string/pref_backup_interval"/>
+
+        <Preference
+            android:key="@string/pref_backup_directory_key"
+            android:title="@string/pref_backup_directory" />
+
+        <eu.kanade.tachiyomi.widget.preference.IntListPreference
+            android:defaultValue="1"
+            android:entries="@array/backup_slots"
+            android:entryValues="@array/backup_slots"
+            android:key="@string/pref_backup_slots_key"
+            android:summary="%s"
+            android:title="@string/pref_backup_slots" />
+
+    </PreferenceScreen>
+
+</PreferenceScreen>

@@ -36,9 +36,5 @@
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="@string/label_settings"
             android:checkable="false" />
-        <item
-            android:id="@+id/nav_drawer_backup"
-            android:icon="@drawable/ic_backup_black_24dp"
-            android:title="@string/label_backup" />
     </group>
 </menu>

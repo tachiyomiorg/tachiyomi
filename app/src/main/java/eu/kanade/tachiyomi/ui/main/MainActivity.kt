@@ -8,7 +8,6 @@ import android.support.v4.view.GravityCompat
 import android.view.MenuItem
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.ui.backup.BackupFragment
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment
 import eu.kanade.tachiyomi.ui.download.DownloadActivity
@@ -71,7 +70,6 @@ class MainActivity : BaseActivity() {
                         val intent = Intent(this, SettingsActivity::class.java)
                         startActivityForResult(intent, REQUEST_OPEN_SETTINGS)
                     }
-                    R.id.nav_drawer_backup -> setFragment(BackupFragment.newInstance(), id)
                 }
             }
             drawer.closeDrawer(GravityCompat.START)

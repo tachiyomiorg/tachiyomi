@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.data.database.queries
 
+import com.pushtorefresh.storio.sqlite.queries.DeleteQuery
 import com.pushtorefresh.storio.sqlite.queries.RawQuery
 import eu.kanade.tachiyomi.data.database.DbProvider
 import eu.kanade.tachiyomi.data.database.models.History
@@ -67,5 +68,19 @@ interface HistoryQueries : DbProvider {
     fun updateHistoryLastRead(historyList: List<History>) = db.put()
             .objects(historyList)
             .withPutResolver(HistoryLastReadPutResolver())
+            .prepare()
+
+    fun deleteHistory() = db.delete()
+            .byQuery(DeleteQuery.builder()
+                    .table(HistoryTable.TABLE)
+                    .build())
+            .prepare()
+
+    fun deleteHistoryNoLastRead() = db.delete()
+            .byQuery(DeleteQuery.builder()
+                    .table(HistoryTable.TABLE)
+                    .where("${HistoryTable.COL_LAST_READ} = ?")
+                    .whereArgs(0)
+                    .build())
             .prepare()
 }

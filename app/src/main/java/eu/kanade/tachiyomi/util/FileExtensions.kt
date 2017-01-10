@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Build
 import android.support.v4.content.FileProvider
 import eu.kanade.tachiyomi.BuildConfig
+import java.io.BufferedWriter
 import java.io.File
 
 /**
@@ -20,14 +21,9 @@ fun File.getUriCompat(context: Context): Uri {
 }
 
 /**
- * Deletes file if exists
- *
- * @return success of file deletion
+ * Write line with \n
  */
-fun File.deleteIfExists(): Boolean {
-    if (this.exists()) {
-        this.delete()
-        return true
-    }
-    return false
+fun BufferedWriter.writeLn(line: String) {
+    this.write(line)
+    this.newLine()
 }
