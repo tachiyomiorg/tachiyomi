@@ -2,12 +2,12 @@ package eu.kanade.tachiyomi.ui.catalogue
 
 import android.content.Context
 import android.support.graphics.drawable.VectorDrawableCompat
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.TextView
+import android.widget.*
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.source.model.Filter
 import eu.kanade.tachiyomi.data.source.model.FilterList
@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.catalogue_drawer_content.view.*
 
 class CatalogueNavigationView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null)
     : SimpleNavigationView(context, attrs) {
+    val VIEW_TYPE_SORT = 0
 
     val adapter = Adapter()
 
@@ -55,16 +56,19 @@ class CatalogueNavigationView @JvmOverloads constructor(context: Context, attrs:
         override fun getItemViewType(position: Int): Int {
             return when (items[position]) {
                 is Filter.Header -> VIEW_TYPE_HEADER
+                is Filter.Separator -> VIEW_TYPE_SEPARATOR
                 is Filter.CheckBox -> VIEW_TYPE_CHECKBOX
                 is Filter.TriState -> VIEW_TYPE_MULTISTATE
                 is Filter.List<*> -> VIEW_TYPE_LIST
                 is Filter.Text -> VIEW_TYPE_TEXT
+                is Filter.Sort<*> -> VIEW_TYPE_SORT
             }
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
             return when (viewType) {
                 VIEW_TYPE_HEADER -> HeaderHolder(parent)
+                VIEW_TYPE_SEPARATOR -> SeparatorHolder(parent)
                 VIEW_TYPE_CHECKBOX -> CheckboxHolder(parent, null)
                 VIEW_TYPE_MULTISTATE -> MultiStateHolder(parent, null).apply {
                     // Adjust view with checkbox
@@ -73,6 +77,7 @@ class CatalogueNavigationView @JvmOverloads constructor(context: Context, attrs:
                 }
                 VIEW_TYPE_LIST -> SpinnerHolder(parent)
                 VIEW_TYPE_TEXT -> EditTextHolder(parent)
+                VIEW_TYPE_SORT -> SortHolder(parent)
                 else -> throw Exception("Unknown view type")
             }
         }
@@ -144,9 +149,48 @@ class CatalogueNavigationView @JvmOverloads constructor(context: Context, attrs:
                         }
                     })
                 }
+                is Filter.Sort<*> -> {
+                    val view = (holder as SortHolder).sortView
+                    if (!filter.name.isEmpty()) {
+                        val header = HeaderHolder(view)
+                        (header.itemView as TextView).text = filter.name
+                        view.addView(header.itemView)
+                    }
+                    val holders = Array<MultiStateHolder>(filter.values.size, { MultiStateHolder(view, null) })
+                    for ((i, rb) in holders.withIndex()) {
+                        rb.text.text = filter.values[i].toString()
+
+                        fun getIcon() = when (filter.state) {
+                            Filter.Sort.Selection(i, false) -> VectorDrawableCompat.create(view.resources, R.drawable.ic_keyboard_arrow_down_black_32dp, null)
+                                    ?.apply { setTint(view.context.getResourceColor(R.attr.colorAccent)) }
+                            Filter.Sort.Selection(i, true) -> VectorDrawableCompat.create(view.resources, R.drawable.ic_keyboard_arrow_up_black_32dp, null)
+                                    ?.apply { setTint(view.context.getResourceColor(R.attr.colorAccent)) }
+                            else -> ContextCompat.getDrawable(context, R.drawable.empty_drawable_32dp)
+                        }
+
+                        rb.text.setCompoundDrawablesWithIntrinsicBounds(getIcon(), null, null, null)
+                        rb.itemView.setOnClickListener {
+                            val pre = filter.state?.index ?: i
+                            if (pre != i)
+                                holders[pre].text.setCompoundDrawablesWithIntrinsicBounds(getIcon(), null, null, null)
+                            filter.state = Filter.Sort.Selection(i, filter.state?.ascending == false)
+                            rb.text.setCompoundDrawablesWithIntrinsicBounds(getIcon(), null, null, null)
+                        }
+
+                        view.addView(rb.itemView)
+                    }
+                }
             }
         }
 
+    }
+
+    private class SortHolder(parent: ViewGroup, val sortView: SortView = SortView(parent)) : Holder(sortView) {
+        class SortView(parent: ViewGroup) : LinearLayout(parent.context) {
+            init {
+                orientation = LinearLayout.VERTICAL
+            }
+        }
     }
 
 }

@@ -24,7 +24,7 @@ class Mangafox : ParsedOnlineSource() {
     override val supportsLatest = true
 
     override fun popularMangaSelector() = "div#mangalist > ul.list > li"
-    
+
     override fun popularMangaRequest(page: Int): Request {
         val pageStr = if (page != 1) "$page.htm" else ""
         return GET("$baseUrl/directory/$pageStr", headers)
@@ -60,8 +60,11 @@ class Mangafox : ParsedOnlineSource() {
             when (filter) {
                 is Genre -> url.addQueryParameter(filter.id, filter.state.toString())
                 is TextField -> url.addQueryParameter(filter.key, filter.state)
-                is ListField -> url.addQueryParameter(filter.key, filter.values[filter.state].value)
-                is Order -> url.addQueryParameter("order", if (filter.state) "az" else "za")
+                is Type -> url.addQueryParameter("type", if(filter.state == 0) "" else filter.state.toString())
+                is OrderBy -> {
+                    url.addQueryParameter("sort", arrayOf("name", "rating", "views", "total_chapters", "last_chapter_time")[filter.state!!.index])
+                    url.addQueryParameter("order", if (filter.state?.ascending == true) "az" else "za")
+                }
             }
         }
         url.addQueryParameter("page", page.toString())
@@ -158,24 +161,23 @@ class Mangafox : ParsedOnlineSource() {
         }
     }
 
-    private data class ListValue(val name: String, val value: String) {
-        override fun toString(): String = name
-    }
-
     private class Genre(name: String, val id: String = "genres[$name]") : Filter.TriState(name)
     private class TextField(name: String, val key: String) : Filter.Text(name)
-    private class ListField(name: String, val key: String, values: Array<ListValue>, state: Int = 0) : Filter.List<ListValue>(name, values, state)
-    private class Order() : Filter.CheckBox("Ascending order")
+    private class Type() : Filter.List<String>("Type", arrayOf("Any", "Japanese Manga", "Korean Manhwa", "Chinese Manhua"))
+    private class OrderBy() : Filter.Sort<String>("Order by",
+            arrayOf("Series name", "Rating", "Views", "Total chapters", "Last chapter"),
+            Filter.Sort.Selection(2, false))
 
     // $('select.genres').map((i,el)=>`Genre("${$(el).next().text().trim()}", "${$(el).attr('name')}")`).get().join(',\n')
     // on http://mangafox.me/search.php
     override fun getFilterList() = FilterList(
             TextField("Author", "author"),
             TextField("Artist", "artist"),
-            ListField("Type", "type", arrayOf(ListValue("Any", ""), ListValue("Japanese Manga", "1"), ListValue("Korean Manhwa", "2"), ListValue("Chinese Manhua", "3"))),
+            Type(),
             Genre("Completed", "is_completed"),
-            ListField("Order by", "sort", arrayOf(ListValue("Series name", "name"), ListValue("Rating", "rating"), ListValue("Views", "views"), ListValue("Total chapters", "total_chapters"), ListValue("Last chapter", "last_chapter_time")), 2),
-            Order(),
+            Filter.Separator(),
+            OrderBy(),
+            Filter.Separator(),
             Filter.Header("Genres"),
             Genre("Action"),
             Genre("Adult"),

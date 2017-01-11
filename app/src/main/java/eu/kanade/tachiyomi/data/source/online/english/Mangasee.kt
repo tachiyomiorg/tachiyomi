@@ -30,7 +30,7 @@ class Mangasee : ParsedOnlineSource() {
     override fun popularMangaSelector() = "div.requested > div.row"
 
     override fun popularMangaRequest(page: Int): Request {
-        val (body, requestUrl) = convertQueryToPost(page, "$baseUrl/search/request.php?sortBy=popularity&sortOrder=descending&todo=1")
+        val (body, requestUrl) = convertQueryToPost(page, "$baseUrl/search/request.php?sortBy=popularity&sortOrder=descending")
         return POST(requestUrl, headers, body.build())
     }
 
