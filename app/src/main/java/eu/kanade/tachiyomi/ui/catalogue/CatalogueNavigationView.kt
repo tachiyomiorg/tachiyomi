@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.catalogue_drawer_content.view.*
 
 class CatalogueNavigationView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null)
     : SimpleNavigationView(context, attrs) {
-    val VIEW_TYPE_SORT = 0
 
     val adapter = Adapter()
 
@@ -151,6 +150,7 @@ class CatalogueNavigationView @JvmOverloads constructor(context: Context, attrs:
                 }
                 is Filter.Sort<*> -> {
                     val view = (holder as SortHolder).sortView
+                    view.removeAllViews()
                     if (!filter.name.isEmpty()) {
                         val header = HeaderHolder(view)
                         (header.itemView as TextView).text = filter.name
@@ -184,6 +184,8 @@ class CatalogueNavigationView @JvmOverloads constructor(context: Context, attrs:
         }
 
     }
+
+    val VIEW_TYPE_SORT = 0
 
     private class SortHolder(parent: ViewGroup, val sortView: SortView = SortView(parent)) : Holder(sortView) {
         class SortView(parent: ViewGroup) : LinearLayout(parent.context) {
