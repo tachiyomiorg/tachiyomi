@@ -54,14 +54,17 @@ class Mangasee : ParsedOnlineSource() {
         var genresNo: String? = null
         for (filter in if (filters.isEmpty()) getFilterList() else filters) {
             when (filter) {
-                is Sort -> filter.values[filter.state].keys.forEachIndexed { i, s ->
-                    url.addQueryParameter(s, filter.values[filter.state].values[i])
+                is Sort -> {
+                    if (filter.state?.index != 0)
+                        url.addQueryParameter("sortBy", if (filter.state?.index == 1) "dateUpdated" else "popularity")
+                    if (filter.state?.ascending != true)
+                        url.addQueryParameter("sortOrder", "descending")
                 }
                 is ListField -> if (filter.state != 0) url.addQueryParameter(filter.key, filter.values[filter.state])
                 is TextField -> if (!filter.state.isEmpty()) url.addQueryParameter(filter.key, filter.state)
                 is Genre -> when (filter.state) {
-                    Filter.TriState.STATE_INCLUDE -> genres = if (genres == null) filter.id else genres + "," + filter.id
-                    Filter.TriState.STATE_EXCLUDE -> genresNo = if (genresNo == null) filter.id else genresNo + "," + filter.id
+                    Filter.TriState.STATE_INCLUDE -> genres = if (genres == null) filter.name else genres + "," + filter.name
+                    Filter.TriState.STATE_EXCLUDE -> genresNo = if (genresNo == null) filter.name else genresNo + "," + filter.name
                 }
             }
         }
@@ -156,8 +159,8 @@ class Mangasee : ParsedOnlineSource() {
         override fun toString(): String = name
     }
 
-    private class Sort(name: String, values: Array<SortOption>, state: Int = 0) : Filter.List<SortOption>(name, values, state)
-    private class Genre(name: String, val id: String = name.replace(' ', '_')) : Filter.TriState(name)
+    private class Sort() : Filter.Sort<String>("Sort", arrayOf("Alphabetically", "Date updated", "Popularity"), Filter.Sort.Selection(2, false))
+    private class Genre(name: String) : Filter.TriState(name)
     private class TextField(name: String, val key: String) : Filter.Text(name)
     private class ListField(name: String, val key: String, values: Array<String>, state: Int = 0) : Filter.List<String>(name, values, state)
 
@@ -166,16 +169,12 @@ class Mangasee : ParsedOnlineSource() {
     override fun getFilterList() = FilterList(
             TextField("Years", "year"),
             TextField("Author", "author"),
-            Sort("Sort By", arrayOf(SortOption("Alphabetical A-Z", emptyArray(), emptyArray()),
-                    SortOption("Alphabetical Z-A", arrayOf("sortOrder"), arrayOf("descending")),
-                    SortOption("Newest", arrayOf("sortBy", "sortOrder"), arrayOf("dateUpdated", "descending")),
-                    SortOption("Oldest", arrayOf("sortBy"), arrayOf("dateUpdated")),
-                    SortOption("Most Popular", arrayOf("sortBy", "sortOrder"), arrayOf("popularity", "descending")),
-                    SortOption("Least Popular", arrayOf("sortBy"), arrayOf("popularity"))
-            ), 4),
             ListField("Scan Status", "status", arrayOf("Any", "Complete", "Discontinued", "Hiatus", "Incomplete", "Ongoing")),
             ListField("Publish Status", "pstatus", arrayOf("Any", "Cancelled", "Complete", "Discontinued", "Hiatus", "Incomplete", "Ongoing", "Unfinished")),
             ListField("Type", "type", arrayOf("Any", "Doujinshi", "Manga", "Manhua", "Manhwa", "OEL", "One-shot")),
+            Filter.Separator(),
+            Sort(),
+            Filter.Separator(),
             Filter.Header("Genres"),
             Genre("Action"),
             Genre("Adult"),

@@ -107,6 +107,10 @@ class Batoto : ParsedOnlineSource(), LoginSource {
                     val sel = if (filter.state) filter.valTrue else filter.valFalse
                     if (!sel.isEmpty()) url.addQueryParameter(filter.key, sel)
                 }
+                is OrderBy -> {
+                    url.addQueryParameter("order_cond", arrayOf("title", "author", "artist", "rating", "views", "update")[filter.state!!.index])
+                    url.addQueryParameter("order", if (filter.state?.ascending == true) "asc" else "desc")
+                }
             }
         }
         if (!genres.isEmpty()) url.addQueryParameter("genres", genres)
@@ -288,6 +292,9 @@ class Batoto : ParsedOnlineSource(), LoginSource {
     private class TextField(name: String, val key: String) : Filter.Text(name)
     private class ListField(name: String, val key: String, values: Array<ListValue>, state: Int = 0) : Filter.List<ListValue>(name, values, state)
     private class Flag(name: String, val key: String, val valTrue: String, val valFalse: String) : Filter.CheckBox(name)
+    private class OrderBy() : Filter.Sort<String>("Order by",
+            arrayOf("Title", "Author", "Artist", "Rating", "Views", "Last Update"),
+            Filter.Sort.Selection(4, false))
 
     // [...document.querySelectorAll("#advanced_options div.genre_buttons")].map((el,i) => {
     //     const onClick=el.getAttribute('onclick');const id=onClick.substr(14,onClick.length-16);return `Genre("${el.textContent.trim()}", ${id})`
@@ -298,8 +305,9 @@ class Batoto : ParsedOnlineSource(), LoginSource {
             ListField("Type", "type", arrayOf(ListValue("Any", ""), ListValue("Manga (Jp)", "jp"), ListValue("Manhwa (Kr)", "kr"), ListValue("Manhua (Cn)", "cn"), ListValue("Artbook", "ar"), ListValue("Other", "ot"))),
             Status(),
             Flag("Exclude mature", "mature", "m", ""),
-            ListField("Order by", "order_cond", arrayOf(ListValue("Title", "title"), ListValue("Author", "author"), ListValue("Artist", "artist"), ListValue("Rating", "rating"), ListValue("Views", "views"), ListValue("Last Update", "update")), 4),
-            Flag("Ascending order", "order", "asc", "desc"),
+            Filter.Separator(),
+            OrderBy(),
+            Filter.Separator(),
             Filter.Header("Genres"),
             ListField("Inclusion mode", "genre_cond", arrayOf(ListValue("And (all selected genres)", "and"), ListValue("Or (any selected genres) ", "or"))),
             Genre("4-Koma", 40),

@@ -63,8 +63,11 @@ class Mangahere : ParsedOnlineSource() {
                 is Status -> url.addQueryParameter("is_completed", arrayOf("", "1", "0")[filter.state])
                 is Genre -> url.addQueryParameter(filter.id, filter.state.toString())
                 is TextField -> url.addQueryParameter(filter.key, filter.state)
-                is ListField -> url.addQueryParameter(filter.key, filter.values[filter.state].value)
-                is Order -> url.addQueryParameter("order", if (filter.state) "az" else "za")
+                is Type -> url.addQueryParameter("direction", arrayOf("", "rl", "lr")[filter.state])
+                is OrderBy -> {
+                    url.addQueryParameter("sort", arrayOf("name", "rating", "views", "total_chapters", "last_chapter_time")[filter.state!!.index])
+                    url.addQueryParameter("order", if (filter.state?.ascending == true) "az" else "za")
+                }
             }
         }
         url.addQueryParameter("page", page.toString())
@@ -166,18 +169,21 @@ class Mangahere : ParsedOnlineSource() {
     private class Status() : Filter.TriState("Completed")
     private class Genre(name: String, val id: String = "genres[$name]") : Filter.TriState(name)
     private class TextField(name: String, val key: String) : Filter.Text(name)
-    private class ListField(name: String, val key: String, values: Array<ListValue>, state: Int = 0) : Filter.List<ListValue>(name, values, state)
-    private class Order() : Filter.CheckBox("Ascending order")
+    private class Type() : Filter.List<String>("Type", arrayOf("Any", "Japanese Manga (read from right to left)", "Korean Manhwa (read from left to right)"))
+    private class OrderBy() : Filter.Sort<String>("Order by",
+            arrayOf("Series name", "Rating", "Views", "Total chapters", "Last chapter"),
+            Filter.Sort.Selection(2, false))
 
     // [...document.querySelectorAll("select[id^='genres'")].map((el,i) => `Genre("${el.nextSibling.nextSibling.textContent.trim()}", "${el.getAttribute('name')}")`).join(',\n')
     // http://www.mangahere.co/advsearch.htm
     override fun getFilterList() = FilterList(
             TextField("Author", "author"),
             TextField("Artist", "artist"),
-            ListField("Type", "direction", arrayOf(ListValue("Any", ""), ListValue("Japanese Manga (read from right to left)", "rl"), ListValue("Korean Manhwa (read from left to right)", "lr"))),
+            Type(),
             Status(),
-            ListField("Order by", "sort", arrayOf(ListValue("Series name", "name"), ListValue("Rating", "rating"), ListValue("Views", "views"), ListValue("Total chapters", "total_chapters"), ListValue("Last chapter", "last_chapter_time")), 2),
-            Order(),
+            Filter.Separator(),
+            OrderBy(),
+            Filter.Separator(),
             Filter.Header("Genres"),
             Genre("Action"),
             Genre("Adventure"),
