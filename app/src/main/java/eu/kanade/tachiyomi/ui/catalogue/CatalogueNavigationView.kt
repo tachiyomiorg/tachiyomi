@@ -171,9 +171,12 @@ class CatalogueNavigationView @JvmOverloads constructor(context: Context, attrs:
                         rb.text.setCompoundDrawablesWithIntrinsicBounds(getIcon(), null, null, null)
                         rb.itemView.setOnClickListener {
                             val pre = filter.state?.index ?: i
-                            if (pre != i)
+                            if (pre != i) {
                                 holders[pre].text.setCompoundDrawablesWithIntrinsicBounds(getIcon(), null, null, null)
-                            filter.state = Filter.Sort.Selection(i, filter.state?.ascending == false)
+                                filter.state = Filter.Sort.Selection(i, false)
+                            } else {
+                                filter.state = Filter.Sort.Selection(i, filter.state?.ascending == false)
+                            }
                             rb.text.setCompoundDrawablesWithIntrinsicBounds(getIcon(), null, null, null)
                         }
 
