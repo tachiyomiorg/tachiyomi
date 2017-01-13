@@ -106,7 +106,7 @@
     <string name="pref_library_update_restriction_summary">Mettre à jour uniquement lorsque les conditions sont remplies</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">En charge</string>
-    <string name="pref_update_only_non_completed">Ne mettre à jour que les manga en cours</string>
+    <string name="pref_update_only_non_completed">Ne mettre à jour que les mangas en cours</string>
     <string name="pref_auto_update_manga_sync">Synchroniser les chapitres après les avoir lus</string>
     <string name="pref_ask_update_manga_sync">Confirmez avant de mettre à jour</string>
     <string name="pref_theme">Thème de l\'application</string>
@@ -181,10 +181,10 @@
     <string name="cookies_cleared">Cookies effacés</string>
     <string name="choices_reset">Réinitialiser les choix</string>
     <string name="pref_clear_database">Effacer base de données</string>
-    <string name="pref_clear_database_summary">Supprimer les manga et chapitres non présents dans la bibliothèque</string>
+    <string name="pref_clear_database_summary">Supprimer les mangas et chapitres non présents dans la bibliothèque</string>
     <string name="clear_database_completed">Entrées supprimées</string>
     <string name="pref_refresh_library_metadata">Actualiser les méta-données de la bibliothèque</string>
-    <string name="pref_refresh_library_metadata_summary">Mettre à jour les couvertures, genres, description et statut des manga</string>
+    <string name="pref_refresh_library_metadata_summary">Mettre à jour les couvertures, genres, description et statut des mangas</string>
 
       <!-- About section -->
     <string name="version">Version</string>
@@ -207,7 +207,7 @@
 
     <!-- Library fragment -->
     <string name="library_search_hint">Titre ou auteur…</string>
-    <string name="confirm_delete_manga">Êtes-vous sûr de vouloir supprimer les manga séléctionnés?</string>
+    <string name="confirm_delete_manga">Êtes-vous sûr de vouloir supprimer les mangas séléctionnés?</string>
 
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Cette source requiert de vous identifier</string>
@@ -362,7 +362,7 @@
     <string name="download_notifier_text_only_wifi">Aucune connexion disponible</string>
     <string name="download_notifier_no_network">Aucune connexion disponible</string>
     <string name="pref_language">Langage</string>
-    <string name="clear_database_confirmation">Êtes-vous sûr? Les chapitres lus et la progression des manga non présents dans la bibliothèque seront perdus</string>
+    <string name="clear_database_confirmation">Êtes-vous sûr? Les chapitres lus et la progression des mangas non présents dans la bibliothèque seront perdus</string>
     <string name="confirm_delete_chapters">Êtes-vous sûr de vouloir supprimer les chapitres séléctionnés?</string>
     <string name="custom_dir">Répertoire personnalisé</string>
     <string name="download_10">Télécharger les 10 chapitres suivants</string>
