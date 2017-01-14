@@ -9,7 +9,7 @@
     <string name="label_library">Ma bibliothèque</string>
     <string name="label_recent_manga">Lu récemment</string>
     <string name="label_catalogues">Catalogues</string>
-    <string name="label_recent_updates">Nouveautés bibiliothèque</string>
+    <string name="label_recent_updates">Nouveautés bibliothèque</string>
     <string name="label_latest_updates">Dernières nouveautés</string>
     <string name="label_categories">Catégories</string>
     <string name="label_selected">Sélectionné: %1$d</string>
@@ -70,7 +70,7 @@
     <string name="action_install">Installer</string>
     <string name="action_share">Partager</string>
     <string name="action_save">Sauvegarder</string>
-    <string name="action_reset">Reset</string>
+    <string name="action_reset">Réinitialiser</string>
 
     <!-- Operations -->
     <string name="deleting">Suppression…</string>
@@ -297,7 +297,7 @@
     <string name="no_next_chapter">Chapitre suivant non trouvé</string>
     <string name="no_previous_chapter">Chapitre précédent non trouvé</string>
     <string name="decode_image_error">L\'image n\'a pas pu être chargée.\nEssayez de changer le décodeur d\'image ou une des autres options ci-après</string>
-    <string name="confirm_update_manga_sync">Update last chapter read in enabled services to %1$d ?</string>
+    <string name="confirm_update_manga_sync">Mettre à jour le dernier chapitre lu dans les services activés à %1$d ?</string>
     <string name="confirm_set_image_as_cover">Voulez-vous mettre cette image comme couverture ?</string>
     <string name="viewer_for_this_series">Lecteur pour cette série</string>
 
@@ -320,13 +320,13 @@
     <string name="notification_new_chapters">De nouveaux chapitres ont été trouvé pour:</string>
     <string name="notification_cover_update_failed">La mise à jour de la couverture a échoué</string>
     <string name="notification_first_add_to_library">Veuillez ajouter le manga dans votre bibliothèque avant de faire cela</string>
-    <string name="notification_not_connected_to_ac_body">Not connected to AC power</string>
+    <string name="notification_not_connected_to_ac_body">Pas branché</string>
     <string name="notification_no_connection_title">Synchronisation annulée</string>
     <string name="notification_no_connection_body">Connexion non disponible</string>
 
     <!-- File Picker Titles -->
-    <string name="file_select_cover">Séléctionner l\'image de couverture</string>
-    <string name="file_select_backup">Séléctionner fichier de sauvegarde</string>
+    <string name="file_select_cover">Sélectionner l\'image de couverture</string>
+    <string name="file_select_backup">Sélectionner fichier de sauvegarde</string>
     <string name="file_select_icon">Sélectionner une icône de raccourci</string>
 
     <!--UpdateCheck-->
@@ -362,7 +362,7 @@
     <string name="download_notifier_text_only_wifi">Aucune connexion disponible</string>
     <string name="download_notifier_no_network">Aucune connexion disponible</string>
     <string name="pref_language">Langage</string>
-    <string name="clear_database_confirmation">Êtes-vous sûr? Les chapitres lus et la progression des mangas non présents dans la bibliothèque seront perdus</string>
+    <string name="clear_database_confirmation">Êtes-vous sûr ? Les chapitres lus et la progression des mangas non présents dans la bibliothèque seront perdus</string>
     <string name="confirm_delete_chapters">Êtes-vous sûr de vouloir supprimer les chapitres sélectionnés ?</string>
     <string name="custom_dir">Répertoire personnalisé</string>
     <string name="download_10">Télécharger les 10 chapitres suivants</string>
