@@ -12,7 +12,7 @@
     <string name="label_recent_updates">Nouveautés bibiliothèque</string>
     <string name="label_latest_updates">Dernières nouveautés</string>
     <string name="label_categories">Catégories</string>
-    <string name="label_selected">Selectionné: %1$d</string>
+    <string name="label_selected">Sélectionné: %1$d</string>
     <string name="label_backup">Sauvegarde</string>
 
     <!-- Actions -->
@@ -27,7 +27,7 @@
     <string name="action_sort_last_read">Dernier lu</string>
     <string name="action_sort_last_updated">Dernier mis à jour</string>
     <string name="action_search">Rechercher</string>
-    <string name="action_select_all">Sélectionner tout</string>
+    <string name="action_select_all">Tout sélectionner</string>
     <string name="action_mark_as_read">Marquer comme lu</string>
     <string name="action_mark_as_unread">Marquer comme non lu</string>
     <string name="action_mark_previous_as_read">Marquer précédent comme lu</string>
@@ -50,7 +50,7 @@
     <string name="action_show_downloaded">Téléchargé</string>
     <string name="action_next_unread">Prochain non lu</string>
     <string name="action_start">Commencer</string>
-    <string name="action_stop">Stop</string>
+    <string name="action_stop">Arrêter</string>
     <string name="action_pause">Pause</string>
     <string name="action_clear">Effacer</string>
     <string name="action_previous_chapter">Chapitre précédent</string>
@@ -98,8 +98,8 @@
     <string name="update_3hour">Toutes les 3 heures</string>
     <string name="update_6hour">Toutes les 6 heures</string>
     <string name="update_12hour">Toutes les 12 heures</string>
-    <string name="update_24hour">Tout les jours</string>
-    <string name="update_48hour">Tout les 2 jours</string>
+    <string name="update_24hour">Tous les jours</string>
+    <string name="update_48hour">Tous les 2 jours</string>
     <string name="pref_library_update_categories">Catégories à inclure dans une mise à jour globale</string>
     <string name="all">Tout</string>
     <string name="pref_library_update_restriction">Restrictions de mise à jour de la bibliothèque</string>
@@ -118,7 +118,7 @@
     <string name="pref_fullscreen">Plein écran</string>
     <string name="pref_lock_orientation">Verrouiller l\'orientation</string>
     <string name="pref_enable_transitions">Activer les transitions</string>
-    <string name="pref_show_page_number">Montrer le numéro de page</string>
+    <string name="pref_show_page_number">Afficher le numéro de page</string>
     <string name="pref_custom_brightness">Utiliser une luminosité personnalisée</string>
     <string name="pref_custom_color_filter">Utiliser un filtre de couleur personnalisé</string>
     <string name="pref_keep_screen_on">Garder l\'écran allumé</string>
@@ -174,7 +174,7 @@
     <string name="services">Services</string>
 
       <!-- Advanced section -->
-    <string name="used_cache">Utilisé: %1$s</string>
+    <string name="used_cache">Utilisé : %1$s</string>
     <string name="cache_deleted">Cache effacé. %1$d fichiers ont été supprimés</string>
     <string name="cache_delete_error">Une erreur est survenue lors de l\'effacement du cache</string>
     <string name="pref_clear_cookies">Effacer cookies</string>
@@ -200,14 +200,14 @@
     <string name="login_title">Connexion vers %1$s</string>
     <string name="username">Nom d\'utilisateur</string>
     <string name="password">Mot de passe</string>
-    <string name="show_password">Montrer le mot de passe</string>
+    <string name="show_password">Afficher le mot de passe</string>
     <string name="login">Connexion</string>
     <string name="invalid_login">Erreur de connexion</string>
     <string name="unknown_error">Erreur inconnue</string>
 
     <!-- Library fragment -->
     <string name="library_search_hint">Titre ou auteur…</string>
-    <string name="confirm_delete_manga">Êtes-vous sûr de vouloir supprimer les mangas séléctionnés?</string>
+    <string name="confirm_delete_manga">Êtes-vous sûr de vouloir supprimer les mangas sélectionnés ?</string>
 
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Cette source requiert de vous identifier</string>
@@ -215,7 +215,7 @@
     <string name="no_valid_sources">Veuillez au moins activer une source valide</string>
 
     <!-- Manga activity -->
-    <string name="manga_not_in_db">Ce manga a été supprimé de la base de données!</string>
+    <string name="manga_not_in_db">Ce manga a été supprimé de la base de données !</string>
 
     <!-- Manga info fragment -->
     <string name="manga_detail_tab">Info</string>
@@ -231,13 +231,13 @@
     <string name="manga_info_status_label">Statut</string>
     <string name="manga_info_source_label">Source</string>
     <string name="manga_info_genres_label">Genres</string>
-    <string name="share_text">Regarde %1$s! sur %2$s</string>
+    <string name="share_text">Regarde %1$s ! sur %2$s</string>
     <string name="circular_icon">Icône circulaire</string>
-    <string name="square_icon">Square icon</string>
+    <string name="square_icon">Icône carrée</string>
     <string name="star_icon">Icône étoile</string>
     <string name="shortcut_title">Titre de raccourci</string>
     <string name="icon_shape">Forme de l\'icône</string>
-    <string name="icon_creation_fail">La création du raccourci a échoué!</string>
+    <string name="icon_creation_fail">Échec de la création du raccourci !</string>
 
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapitres</string>
@@ -248,8 +248,8 @@
     <string name="chapter_downloading_progress">En téléchargement (%1$d/%2$d)</string>
     <string name="chapter_error">Erreur</string>
     <string name="fetch_chapters_error">Une erreur est survenue en récupérant les chapitres</string>
-    <string name="show_title">Montrer le titre</string>
-    <string name="show_chapter_number">Montrer le numéro de chapitre</string>
+    <string name="show_title">Afficher le titre</string>
+    <string name="show_chapter_number">Afficher le numéro de chapitre</string>
     <string name="sorting_mode">Mode de tri</string>
     <string name="sort_by_number">Par numéro de chapitre</string>
     <string name="manga_download">Télécharger</string>
@@ -271,14 +271,14 @@
     <string name="chapters">Chapitres</string>
 
     <!-- Category activity -->
-    <string name="error_category_exists">Une catégorie avec ce nom existe déjà!</string>
+    <string name="error_category_exists">Une catégorie avec ce nom existe déjà !</string>
 
     <!-- Dialog option with checkbox view -->
-    <string name="dialog_with_checkbox_remove_description">Cela enlèvera la date de lecture de ce chapitre. Êtes-vous sûr?</string>
+    <string name="dialog_with_checkbox_remove_description">Cela enlèvera la date de lecture de ce chapitre. Êtes-vous sûr ?</string>
     <string name="dialog_with_checkbox_reset">Réinitialiser tout les chapitres de ce manga</string>
 
     <!-- SnackBar -->
-    <string name="snack_add_to_library">Ajouter ce manga à la bibliothèque?</string>
+    <string name="snack_add_to_library">Ajouter ce manga à la bibliothèque ?</string>
 
     <!-- Image notifier -->
     <string name="picture_saved">Image sauvegardée</string>
@@ -297,7 +297,7 @@
     <string name="no_next_chapter">Chapitre suivant non trouvé</string>
     <string name="no_previous_chapter">Chapitre précédent non trouvé</string>
     <string name="decode_image_error">L\'image n\'a pas pu être chargée.\nEssayez de changer le décodeur d\'image ou une des autres options ci-après</string>
-    <string name="confirm_update_manga_sync">Update last chapter read in enabled services to %1$d?</string>
+    <string name="confirm_update_manga_sync">Update last chapter read in enabled services to %1$d ?</string>
     <string name="confirm_set_image_as_cover">Voulez-vous mettre cette image comme couverture ?</string>
     <string name="viewer_for_this_series">Lecteur pour cette série</string>
 
@@ -363,7 +363,7 @@
     <string name="download_notifier_no_network">Aucune connexion disponible</string>
     <string name="pref_language">Langage</string>
     <string name="clear_database_confirmation">Êtes-vous sûr? Les chapitres lus et la progression des mangas non présents dans la bibliothèque seront perdus</string>
-    <string name="confirm_delete_chapters">Êtes-vous sûr de vouloir supprimer les chapitres séléctionnés?</string>
+    <string name="confirm_delete_chapters">Êtes-vous sûr de vouloir supprimer les chapitres sélectionnés ?</string>
     <string name="custom_dir">Répertoire personnalisé</string>
     <string name="download_10">Télécharger les 10 chapitres suivants</string>
     <string name="download_notifier_unkown_error">Une erreur inattendue s\'est produite lors du téléchargement du chapitre</string>
