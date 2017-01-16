@@ -261,7 +261,7 @@
     <!-- MyAnimeList fragment -->
     <string name="manga_tracking_tab">Suivi</string>
     <string name="reading">En lecture</string>
-    <string name="completed">Completé</string>
+    <string name="completed">Complété</string>
     <string name="dropped">Abandonné</string>
     <string name="on_hold">En pause</string>
     <string name="plan_to_read">Lecture planifiée</string>
