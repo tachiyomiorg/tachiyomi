@@ -160,7 +160,7 @@
 
       <!-- Downloads section -->
     <string name="pref_download_directory">Répertoire de téléchargements</string>
-    <string name="pref_download_slots">Téléchargement simultanés</string>
+    <string name="pref_download_slots">Téléchargements simultanés</string>
     <string name="pref_download_only_over_wifi">Télécharger uniquement via Wi-Fi</string>
     <string name="pref_remove_after_read">Supprimer après avoir lu</string>
     <string name="disabled">Désactivé</string>
@@ -263,7 +263,7 @@
     <string name="reading">En lecture</string>
     <string name="completed">Completé</string>
     <string name="dropped">Abandonné</string>
-    <string name="on_hold">Pausé</string>
+    <string name="on_hold">En pause</string>
     <string name="plan_to_read">Lecture planifiée</string>
     <string name="score">Ponctuation</string>
     <string name="title">Titre</string>
@@ -275,7 +275,7 @@
 
     <!-- Dialog option with checkbox view -->
     <string name="dialog_with_checkbox_remove_description">Cela enlèvera la date de lecture de ce chapitre. Êtes-vous sûr ?</string>
-    <string name="dialog_with_checkbox_reset">Réinitialiser tout les chapitres de ce manga</string>
+    <string name="dialog_with_checkbox_reset">Réinitialiser tous les chapitres de ce manga</string>
 
     <!-- SnackBar -->
     <string name="snack_add_to_library">Ajouter ce manga à la bibliothèque ?</string>
@@ -302,7 +302,7 @@
     <string name="viewer_for_this_series">Lecteur pour cette série</string>
 
     <!-- Backup fragment -->
-    <string name="backup">Sauvegarde</string>
+    <string name="backup">Sauvegarder</string>
     <string name="restore">Restaurer</string>
     <string name="backup_please_wait">Sauvegarde en cours. Veuillez patienter…</string>
     <string name="backup_completed">Sauvegarde restaurée avec succès</string>
@@ -316,11 +316,11 @@
     <!-- Library update service notifications -->
     <string name="notification_update_progress">Progression mise à jour: %1$d/%2$d</string>
     <string name="notification_update_completed">Mise à jour terminée</string>
-    <string name="notification_no_new_chapters">Aucun nouveaux chapitres trouvés</string>
-    <string name="notification_new_chapters">De nouveaux chapitres ont été trouvé pour:</string>
+    <string name="notification_no_new_chapters">Aucun nouveau chapitre trouvé</string>
+    <string name="notification_new_chapters">Des nouveaux chapitres ont été trouvés pour :</string>
     <string name="notification_cover_update_failed">La mise à jour de la couverture a échoué</string>
     <string name="notification_first_add_to_library">Veuillez ajouter le manga dans votre bibliothèque avant de faire cela</string>
-    <string name="notification_not_connected_to_ac_body">Pas branché</string>
+    <string name="notification_not_connected_to_ac_body">Non branché</string>
     <string name="notification_no_connection_title">Synchronisation annulée</string>
     <string name="notification_no_connection_body">Connexion non disponible</string>
 
@@ -355,13 +355,13 @@
     <string name="information_empty_library">Bibliothèque vide</string>
 
     <!-- Download Notification -->
-    <string name="download_notifier_downloader_title">Downloader</string>
+    <string name="download_notifier_downloader_title">Téléchargement</string>
     <string name="download_notifier_title_error">Erreur</string>
     <string name="download_notifier_page_error">Une page est manquante dans le répertoire</string>
     <string name="download_notifier_page_ready_error">Une page n\'est pas chargée</string>
     <string name="download_notifier_text_only_wifi">Aucune connexion disponible</string>
     <string name="download_notifier_no_network">Aucune connexion disponible</string>
-    <string name="pref_language">Langage</string>
+    <string name="pref_language">Langue</string>
     <string name="clear_database_confirmation">Êtes-vous sûr ? Les chapitres lus et la progression des mangas non présents dans la bibliothèque seront perdus</string>
     <string name="confirm_delete_chapters">Êtes-vous sûr de vouloir supprimer les chapitres sélectionnés ?</string>
     <string name="custom_dir">Répertoire personnalisé</string>
