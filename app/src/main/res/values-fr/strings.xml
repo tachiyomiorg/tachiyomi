@@ -124,7 +124,7 @@
     <string name="pref_keep_screen_on">Garder l\'écran allumé</string>
     <string name="pref_reader_navigation">Navigation</string>
     <string name="pref_read_with_volume_keys">Boutons de volume</string>
-    <string name="pref_read_with_tapping">Tap</string>
+    <string name="pref_read_with_tapping">Appui</string>
     <string name="pref_reader_theme">Couleur de fond</string>
     <string name="white_background">Blanc</string>
     <string name="black_background">Noir</string>
@@ -210,7 +210,7 @@
     <string name="confirm_delete_manga">Êtes-vous sûr de vouloir supprimer les mangas sélectionnés ?</string>
 
     <!-- Catalogue fragment -->
-    <string name="source_requires_login">Cette source requiert de vous identifier</string>
+    <string name="source_requires_login">Cette source demande de vous identifier</string>
     <string name="select_source">Sélectionner une source</string>
     <string name="no_valid_sources">Veuillez au moins activer une source valide</string>
 
