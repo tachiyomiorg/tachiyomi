@@ -380,5 +380,7 @@
     <string name="sort_by_source">Par source</string>
     <string name="system_default">Par défaut système</string>
     <string name="updating_category">Mise à jour de la catégorie</string>
-
+    <string name="no_more_results">Pas d\'autres résultats</string>
+    <string name="snack_categories_deleted">Catégories supprimées</string>
+    <string name="action_undo">Annuler</string>
 </resources>
