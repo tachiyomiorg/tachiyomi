@@ -2,14 +2,11 @@ package eu.kanade.tachiyomi.ui.category
 
 import android.graphics.Color
 import android.graphics.Typeface
-import android.support.v4.view.MotionEventCompat
-import android.view.MotionEvent
 import android.view.View
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
+import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.data.database.models.Category
-import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
-import eu.kanade.tachiyomi.ui.base.adapter.OnStartDragListener
 import kotlinx.android.synthetic.main.item_edit_categories.view.*
 
 /**
@@ -19,17 +16,10 @@ import kotlinx.android.synthetic.main.item_edit_categories.view.*
  *
  * @param view view of category item.
  * @param adapter adapter belonging to holder.
- * @param listener called when item clicked.
- * @param dragListener called when item dragged.
  *
  * @constructor Create CategoryHolder object
  */
-class CategoryHolder(
-        view: View,
-        adapter: CategoryAdapter,
-        listener: FlexibleViewHolder.OnListItemClickListener,
-        dragListener: OnStartDragListener
-) : FlexibleViewHolder(view, adapter, listener) {
+class CategoryHolder(view: View, val adapter: CategoryAdapter) : FlexibleViewHolder(view, adapter) {
 
     init {
         // Create round letter image onclick to simulate long click
@@ -38,13 +28,7 @@ class CategoryHolder(
             onLongClick(view)
         }
 
-        // Set on touch listener for reorder image
-        itemView.reorder.setOnTouchListener { v, event ->
-            if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
-                dragListener.onStartDrag(this)
-            }
-            false
-        }
+        setDragHandleView(itemView.reorder)
     }
 
     /**
@@ -52,7 +36,7 @@ class CategoryHolder(
      *
      * @param category category of item.
      */
-    fun onSetValues(category: Category) {
+    fun bind(category: Category) {
         // Set capitalized title.
         itemView.title.text = category.name.capitalize()
 
@@ -78,4 +62,10 @@ class CategoryHolder(
                 .endConfig()
                 .buildRound(text, ColorGenerator.MATERIAL.getColor(text))
     }
+
+    override fun onItemReleased(position: Int) {
+        super.onItemReleased(position)
+        adapter.onItemReleased()
+    }
+
 }

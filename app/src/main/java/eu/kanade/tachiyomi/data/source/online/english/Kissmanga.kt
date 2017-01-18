@@ -64,7 +64,7 @@ class Kissmanga : ParsedOnlineSource() {
                 when (filter) {
                     is Author -> add("authorArtist", filter.state)
                     is Status -> add("status", arrayOf("", "Completed", "Ongoing")[filter.state])
-                    is Genre -> add("genres", filter.state.toString())
+                    is GenreList -> filter.state.forEach { genre -> add("genres", genre.state.toString()) }
                 }
             }
         }
@@ -134,16 +134,20 @@ class Kissmanga : ParsedOnlineSource() {
 
     override fun imageUrlParse(document: Document) = ""
 
-    private class Status() : Filter.TriState("Completed")
-    private class Author() : Filter.Text("Author")
+    private class Status : Filter.TriState("Completed")
+    private class Author : Filter.Text("Author")
     private class Genre(name: String) : Filter.TriState(name)
+    private class GenreList(genres: List<Genre>) : Filter.Group<Genre>("Genres", genres)
 
-    // $("select[name=\"genres\"]").map((i,el) => `Genre("${$(el).next().text().trim()}", ${i})`).get().join(',\n')
-    // on http://kissmanga.com/AdvanceSearch
     override fun getFilterList() = FilterList(
             Author(),
             Status(),
-            Filter.Header("Genres"),
+            GenreList(getGenreList())
+    )
+
+    // $("select[name=\"genres\"]").map((i,el) => `Genre("${$(el).next().text().trim()}", ${i})`).get().join(',\n')
+    // on http://kissmanga.com/AdvanceSearch
+    private fun getGenreList() = listOf(
             Genre("4-Koma"),
             Genre("Action"),
             Genre("Adult"),

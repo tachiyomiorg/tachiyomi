@@ -71,6 +71,7 @@
     <string name="action_share">Share</string>
     <string name="action_save">Save</string>
     <string name="action_reset">Reset</string>
+    <string name="action_undo">Undo</string>
 
     <!-- Operations -->
     <string name="deleting">Deleting…</string>
@@ -222,6 +223,7 @@
     <string name="source_requires_login">This source requires you to log in</string>
     <string name="select_source">Select a source</string>
     <string name="no_valid_sources">Please enable at least one valid source</string>
+    <string name="no_more_results">No more results</string>
 
     <!-- Manga activity -->
     <string name="manga_not_in_db">This manga was removed from the database!</string>
@@ -286,6 +288,7 @@
 
     <!-- Category activity -->
     <string name="error_category_exists">A category with this name already exists!</string>
+    <string name="snack_categories_deleted">Categories deleted</string>
 
     <!-- Dialog option with checkbox view -->
     <string name="dialog_with_checkbox_remove_description">This will remove the read date of this chapter. Are you sure?</string>

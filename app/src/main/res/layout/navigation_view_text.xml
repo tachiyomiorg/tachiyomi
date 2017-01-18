@@ -15,7 +15,7 @@
         android:layout_weight="1"
         android:gravity="center_vertical|start">
 
-        <EditText
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/nav_view_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

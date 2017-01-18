@@ -70,9 +70,11 @@ class Readmangatoday : ParsedOnlineSource() {
                 is TextField -> builder.add(filter.key, filter.state)
                 is Type -> builder.add("type", arrayOf("all", "japanese", "korean", "chinese")[filter.state])
                 is Status -> builder.add("status", arrayOf("both", "completed", "ongoing")[filter.state])
-                is Genre -> when (filter.state) {
-                    Filter.TriState.STATE_INCLUDE -> builder.add("include[]", filter.id.toString())
-                    Filter.TriState.STATE_EXCLUDE -> builder.add("exclude[]", filter.id.toString())
+                is GenreList -> filter.state.forEach { genre ->
+                    when (genre.state) {
+                        Filter.TriState.STATE_INCLUDE -> builder.add("include[]", genre.id.toString())
+                        Filter.TriState.STATE_EXCLUDE -> builder.add("exclude[]", genre.id.toString())
+                    }
                 }
             }
         }
@@ -161,19 +163,23 @@ class Readmangatoday : ParsedOnlineSource() {
 
     override fun imageUrlParse(document: Document) = document.select("img.img-responsive-2").first().attr("src")
 
-    private class Status() : Filter.TriState("Completed")
+    private class Status : Filter.TriState("Completed")
     private class Genre(name: String, val id: Int) : Filter.TriState(name)
     private class TextField(name: String, val key: String) : Filter.Text(name)
-    private class Type() : Filter.List<String>("Type", arrayOf("All", "Japanese Manga", "Korean Manhwa", "Chinese Manhua"))
+    private class Type : Filter.Select<String>("Type", arrayOf("All", "Japanese Manga", "Korean Manhwa", "Chinese Manhua"))
+    private class GenreList(genres: List<Genre>) : Filter.Group<Genre>("Genres", genres)
 
-    // [...document.querySelectorAll("ul.manga-cat span")].map(el => `Genre("${el.nextSibling.textContent.trim()}", ${el.getAttribute('data-id')})`).join(',\n')
-    // http://www.readmanga.today/advanced-search
     override fun getFilterList() = FilterList(
             TextField("Author", "author-name"),
             TextField("Artist", "artist-name"),
             Type(),
             Status(),
-            Filter.Header("Genres"),
+            GenreList(getGenreList())
+    )
+
+    // [...document.querySelectorAll("ul.manga-cat span")].map(el => `Genre("${el.nextSibling.textContent.trim()}", ${el.getAttribute('data-id')})`).join(',\n')
+    // http://www.readmanga.today/advanced-search
+    private fun getGenreList() = listOf(
             Genre("Action", 2),
             Genre("Adventure", 4),
             Genre("Comedy", 5),

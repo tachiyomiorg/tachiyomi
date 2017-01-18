@@ -58,7 +58,8 @@ class Mangafox : ParsedOnlineSource() {
         val url = HttpUrl.parse("$baseUrl/search.php?name_method=cw&author_method=cw&artist_method=cw&advopts=1").newBuilder().addQueryParameter("name", query)
         (if (filters.isEmpty()) getFilterList() else filters).forEach { filter ->
             when (filter) {
-                is Genre -> url.addQueryParameter(filter.id, filter.state.toString())
+                is Status -> url.addQueryParameter(filter.id, filter.state.toString())
+                is GenreList -> filter.state.forEach { genre -> url.addQueryParameter(genre.id, genre.state.toString()) }
                 is TextField -> url.addQueryParameter(filter.key, filter.state)
                 is Type -> url.addQueryParameter("type", if(filter.state == 0) "" else filter.state.toString())
                 is OrderBy -> {
@@ -161,24 +162,27 @@ class Mangafox : ParsedOnlineSource() {
         }
     }
 
+    private class Status(val id: String = "is_completed") : Filter.TriState("Completed")
     private class Genre(name: String, val id: String = "genres[$name]") : Filter.TriState(name)
     private class TextField(name: String, val key: String) : Filter.Text(name)
-    private class Type() : Filter.List<String>("Type", arrayOf("Any", "Japanese Manga", "Korean Manhwa", "Chinese Manhua"))
-    private class OrderBy() : Filter.Sort<String>("Order by",
+    private class Type : Filter.Select<String>("Type", arrayOf("Any", "Japanese Manga", "Korean Manhwa", "Chinese Manhua"))
+    private class OrderBy : Filter.Sort("Order by",
             arrayOf("Series name", "Rating", "Views", "Total chapters", "Last chapter"),
             Filter.Sort.Selection(2, false))
+    private class GenreList(genres: List<Genre>) : Filter.Group<Genre>("Genres", genres)
 
-    // $('select.genres').map((i,el)=>`Genre("${$(el).next().text().trim()}", "${$(el).attr('name')}")`).get().join(',\n')
-    // on http://mangafox.me/search.php
     override fun getFilterList() = FilterList(
             TextField("Author", "author"),
             TextField("Artist", "artist"),
             Type(),
-            Genre("Completed", "is_completed"),
-            Filter.Separator(),
+            Status(),
             OrderBy(),
-            Filter.Separator(),
-            Filter.Header("Genres"),
+            GenreList(getGenreList())
+    )
+
+    // $('select.genres').map((i,el)=>`Genre("${$(el).next().text().trim()}", "${$(el).attr('name')}")`).get().join(',\n')
+    // on http://mangafox.me/search.php
+    private fun getGenreList() = listOf(
             Genre("Action"),
             Genre("Adult"),
             Genre("Adventure"),

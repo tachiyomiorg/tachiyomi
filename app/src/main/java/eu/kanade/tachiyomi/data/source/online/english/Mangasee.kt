@@ -50,8 +50,8 @@ class Mangasee : ParsedOnlineSource() {
     override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
         val url = HttpUrl.parse("$baseUrl/search/request.php").newBuilder()
         if (!query.isEmpty()) url.addQueryParameter("keyword", query)
-        var genres: String? = null
-        var genresNo: String? = null
+        val genres = mutableListOf<String>()
+        val genresNo = mutableListOf<String>()
         for (filter in if (filters.isEmpty()) getFilterList() else filters) {
             when (filter) {
                 is Sort -> {
@@ -60,16 +60,18 @@ class Mangasee : ParsedOnlineSource() {
                     if (filter.state?.ascending != true)
                         url.addQueryParameter("sortOrder", "descending")
                 }
-                is ListField -> if (filter.state != 0) url.addQueryParameter(filter.key, filter.values[filter.state])
+                is SelectField -> if (filter.state != 0) url.addQueryParameter(filter.key, filter.values[filter.state])
                 is TextField -> if (!filter.state.isEmpty()) url.addQueryParameter(filter.key, filter.state)
-                is Genre -> when (filter.state) {
-                    Filter.TriState.STATE_INCLUDE -> genres = if (genres == null) filter.name else genres + "," + filter.name
-                    Filter.TriState.STATE_EXCLUDE -> genresNo = if (genresNo == null) filter.name else genresNo + "," + filter.name
+                is GenreList -> filter.state.forEach { genre ->
+                    when (genre.state) {
+                        Filter.TriState.STATE_INCLUDE -> genres.add(genre.name)
+                        Filter.TriState.STATE_EXCLUDE -> genresNo.add(genre.name)
+                    }
                 }
             }
         }
-        if (genres != null) url.addQueryParameter("genre", genres)
-        if (genresNo != null) url.addQueryParameter("genreNo", genresNo)
+        if (genres.isNotEmpty()) url.addQueryParameter("genre", genres.joinToString(","))
+        if (genresNo.isNotEmpty()) url.addQueryParameter("genreNo", genresNo.joinToString(","))
 
         val (body, requestUrl) = convertQueryToPost(page, url.toString())
         return POST(requestUrl, headers, body.build())
@@ -155,27 +157,51 @@ class Mangasee : ParsedOnlineSource() {
 
     override fun imageUrlParse(document: Document): String = document.select("img.CurImage").attr("src")
 
-    private data class SortOption(val name: String, val keys: Array<String>, val values: Array<String>) {
-        override fun toString(): String = name
+    override fun latestUpdatesNextPageSelector() = "button.requestMore"
+
+    override fun latestUpdatesSelector(): String = "a.latestSeries"
+
+    override fun latestUpdatesRequest(page: Int): Request {
+        val url = "http://mangaseeonline.net/home/latest.request.php"
+        val (body, requestUrl) = convertQueryToPost(page, url)
+        return POST(requestUrl, headers, body.build())
     }
 
-    private class Sort() : Filter.Sort<String>("Sort", arrayOf("Alphabetically", "Date updated", "Popularity"), Filter.Sort.Selection(2, false))
+    override fun latestUpdatesFromElement(element: Element): SManga {
+        val manga = SManga.create()
+        element.select("a.latestSeries").first().let {
+            val chapterUrl = it.attr("href")
+            val indexOfMangaUrl = chapterUrl.indexOf("-chapter-")
+            val indexOfLastPath = chapterUrl.lastIndexOf("/")
+            val mangaUrl = chapterUrl.substring(indexOfLastPath, indexOfMangaUrl)
+            val defaultText = it.select("p.clamp2").text()
+            val m = recentUpdatesPattern.matcher(defaultText)
+            val title = if (m.matches()) m.group(1) else defaultText
+            manga.setUrlWithoutDomain("/manga" + mangaUrl)
+            manga.title = title
+        }
+        return manga
+    }
+
+    private class Sort : Filter.Sort("Sort", arrayOf("Alphabetically", "Date updated", "Popularity"), Filter.Sort.Selection(2, false))
     private class Genre(name: String) : Filter.TriState(name)
     private class TextField(name: String, val key: String) : Filter.Text(name)
-    private class ListField(name: String, val key: String, values: Array<String>, state: Int = 0) : Filter.List<String>(name, values, state)
+    private class SelectField(name: String, val key: String, values: Array<String>, state: Int = 0) : Filter.Select<String>(name, values, state)
+    private class GenreList(genres: List<Genre>) : Filter.Group<Genre>("Genres", genres)
 
-    // [...document.querySelectorAll("label.triStateCheckBox input")].map(el => `Filter("${el.getAttribute('name')}", "${el.nextSibling.textContent.trim()}")`).join(',\n')
-    // http://mangasee.co/advanced-search/
     override fun getFilterList() = FilterList(
             TextField("Years", "year"),
             TextField("Author", "author"),
-            ListField("Scan Status", "status", arrayOf("Any", "Complete", "Discontinued", "Hiatus", "Incomplete", "Ongoing")),
-            ListField("Publish Status", "pstatus", arrayOf("Any", "Cancelled", "Complete", "Discontinued", "Hiatus", "Incomplete", "Ongoing", "Unfinished")),
-            ListField("Type", "type", arrayOf("Any", "Doujinshi", "Manga", "Manhua", "Manhwa", "OEL", "One-shot")),
-            Filter.Separator(),
+            SelectField("Scan Status", "status", arrayOf("Any", "Complete", "Discontinued", "Hiatus", "Incomplete", "Ongoing")),
+            SelectField("Publish Status", "pstatus", arrayOf("Any", "Cancelled", "Complete", "Discontinued", "Hiatus", "Incomplete", "Ongoing", "Unfinished")),
+            SelectField("Type", "type", arrayOf("Any", "Doujinshi", "Manga", "Manhua", "Manhwa", "OEL", "One-shot")),
             Sort(),
-            Filter.Separator(),
-            Filter.Header("Genres"),
+            GenreList(getGenreList())
+    )
+
+    // [...document.querySelectorAll("label.triStateCheckBox input")].map(el => `Filter("${el.getAttribute('name')}", "${el.nextSibling.textContent.trim()}")`).join(',\n')
+    // http://mangasee.co/advanced-search/
+    private fun getGenreList() = listOf(
             Genre("Action"),
             Genre("Adult"),
             Genre("Adventure"),
@@ -213,31 +239,5 @@ class Mangasee : ParsedOnlineSource() {
             Genre("Yaoi"),
             Genre("Yuri")
     )
-
-    override fun latestUpdatesNextPageSelector() = "button.requestMore"
-
-    override fun latestUpdatesSelector(): String = "a.latestSeries"
-
-    override fun latestUpdatesRequest(page: Int): Request {
-        val url = "http://mangaseeonline.net/home/latest.request.php"
-        val (body, requestUrl) = convertQueryToPost(page, url)
-        return POST(requestUrl, headers, body.build())
-    }
-
-    override fun latestUpdatesFromElement(element: Element): SManga {
-        val manga = SManga.create()
-        element.select("a.latestSeries").first().let {
-            val chapterUrl = it.attr("href")
-            val indexOfMangaUrl = chapterUrl.indexOf("-chapter-")
-            val indexOfLastPath = chapterUrl.lastIndexOf("/")
-            val mangaUrl = chapterUrl.substring(indexOfLastPath, indexOfMangaUrl)
-            val defaultText = it.select("p.clamp2").text()
-            val m = recentUpdatesPattern.matcher(defaultText)
-            val title = if (m.matches()) m.group(1) else defaultText
-            manga.setUrlWithoutDomain("/manga" + mangaUrl)
-            manga.title = title
-        }
-        return manga
-    }
 
 }
