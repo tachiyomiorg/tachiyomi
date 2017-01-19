@@ -19,31 +19,31 @@ import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
 internal class UpdateDownloaderReceiver(val context: Context) : BroadcastReceiver() {
 
     companion object {
-        private val NAME = UpdateDownloaderReceiver::class.java.name
+        private const val NAME = "UpdateDownloaderReceiver"
 
         // Called to show initial notification.
-        internal val NOTIFICATION_UPDATER_INITIAL = "$ID.$NAME.UPDATER_INITIAL"
+        internal const val NOTIFICATION_UPDATER_INITIAL = "$ID.$NAME.UPDATER_INITIAL"
 
         // Called to show progress notification.
-        internal val NOTIFICATION_UPDATER_PROGRESS = "$ID.$NAME.UPDATER_PROGRESS"
+        internal const val NOTIFICATION_UPDATER_PROGRESS = "$ID.$NAME.UPDATER_PROGRESS"
 
         // Called to show install notification.
-        internal val NOTIFICATION_UPDATER_INSTALL = "$ID.$NAME.UPDATER_INSTALL"
+        internal const val NOTIFICATION_UPDATER_INSTALL = "$ID.$NAME.UPDATER_INSTALL"
 
         // Called to show error notification
-        internal val NOTIFICATION_UPDATER_ERROR = "$ID.$NAME.UPDATER_ERROR"
+        internal const val NOTIFICATION_UPDATER_ERROR = "$ID.$NAME.UPDATER_ERROR"
 
         // Value containing action of BroadcastReceiver
-        internal val EXTRA_ACTION = "$ID.$NAME.ACTION"
+        internal const val EXTRA_ACTION = "$ID.$NAME.ACTION"
 
         // Value containing progress
-        internal val EXTRA_PROGRESS = "$ID.$NAME.PROGRESS"
+        internal const val EXTRA_PROGRESS = "$ID.$NAME.PROGRESS"
 
         // Value containing apk path
-        internal val EXTRA_APK_PATH = "$ID.$NAME.APK_PATH"
+        internal const val EXTRA_APK_PATH = "$ID.$NAME.APK_PATH"
 
         // Value containing apk url
-        internal val EXTRA_APK_URL = "$ID.$NAME.APK_URL"
+        internal const val EXTRA_APK_URL = "$ID.$NAME.APK_URL"
     }
 
     /**

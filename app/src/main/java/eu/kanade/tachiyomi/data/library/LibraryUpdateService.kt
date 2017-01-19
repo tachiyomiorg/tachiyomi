@@ -72,7 +72,7 @@ class LibraryUpdateService : Service() {
     /**
      * Pending intent of action that cancels the library update
      */
-    private val cancelPendingIntent by lazy {NotificationReceiver.cancelLibraryUpdatePendingBroadcast(this, notificationId)}
+    private val cancelPendingIntent by lazy {NotificationReceiver.cancelLibraryUpdatePendingBroadcast(this)}
 
     /**
      * Id of the library update notification.
@@ -149,6 +149,7 @@ class LibraryUpdateService : Service() {
      * the alarm and release the wake lock.
      */
     override fun onDestroy() {
+        notificationManager.cancel(notificationId)
         subscription?.unsubscribe()
         destroyWakeLock()
         super.onDestroy()

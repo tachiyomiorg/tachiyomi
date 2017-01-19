@@ -51,7 +51,7 @@ class DownloadActivity : BaseRxActivity<DownloadPresenter>() {
         setAppTheme()
         super.onCreate(savedState)
         setContentView(R.layout.activity_download_manager)
-        setupToolbar(toolbar, backNavigation = false)
+        setupToolbar(toolbar)
         setToolbarTitle(R.string.label_download_queue)
 
         // Check if download queue is empty and update information accordingly.
@@ -107,7 +107,6 @@ class DownloadActivity : BaseRxActivity<DownloadPresenter>() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            android.R.id.home -> onBackPressed()
             R.id.start_queue -> DownloadService.start(this)
             R.id.pause_queue -> {
                 DownloadService.stop(this)

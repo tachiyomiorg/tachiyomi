@@ -26,42 +26,135 @@ import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
  * NOTE: Use local broadcasts if possible.
  */
 class NotificationReceiver : BroadcastReceiver() {
+    /**
+     * Download manager.
+     */
+    private val downloadManager: DownloadManager by injectLazy()
+
+    override fun onReceive(context: Context, intent: Intent) {
+        when (intent.action) {
+            // Dismiss notification
+            ACTION_DISMISS_NOTIFICATION -> dismissNotification(context, intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
+            // Resume the download service
+            ACTION_RESUME_DOWNLOADS -> DownloadService.start(context)
+            // Clear the download queue
+            ACTION_CLEAR_DOWNLOADS -> downloadManager.clearQueue(true)
+            // Launch share activity and dismiss notification
+            ACTION_SHARE_IMAGE -> shareImage(context, intent.getStringExtra(EXTRA_FILE_LOCATION),
+                    intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
+            // Delete image from path and dismiss notification
+            ACTION_DELETE_IMAGE -> deleteImage(context, intent.getStringExtra(EXTRA_FILE_LOCATION),
+                    intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
+            // Cancel library update and dismiss notification
+            ACTION_CANCEL_LIBRARY_UPDATE -> LibraryUpdateService.stop(context)
+            // Open reader activity
+            ACTION_OPEN_CHAPTER -> { openChapter(context, intent.getLongExtra(EXTRA_MANGA_ID,-1),
+                    intent.getLongExtra(EXTRA_CHAPTER_ID,-1))
+            }
+        }
+    }
+
+    /**
+     * Dismiss the notification
+     *
+     * @param notificationId the id of the notification
+     */
+    private fun dismissNotification(context: Context, notificationId: Int) {
+        context.notificationManager.cancel(notificationId)
+    }
+
+    /**
+     * Called to start share intent to share image
+     *
+     * @param context context of application
+     * @param path path of file
+     * @param notificationId id of notification
+     */
+    private fun shareImage(context: Context, path: String, notificationId: Int) {
+        // Create intent
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            val uri = File(path).getUriCompat(context)
+            putExtra(Intent.EXTRA_STREAM, uri)
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
+            type = "image/*"
+        }
+        // Dismiss notification
+        dismissNotification(context, notificationId)
+        // Launch share activity
+        context.startActivity(intent)
+    }
+
+    /**
+     * Starts reader activity
+     *
+     * @param context context of application
+     * @param mangaId id of manga
+     * @param chapterId id of chapter
+     */
+    internal fun openChapter(context: Context, mangaId: Long, chapterId: Long) {
+        val db = DatabaseHelper(context)
+        val manga = db.getManga(mangaId).executeAsBlocking()
+        val chapter = db.getChapter(chapterId).executeAsBlocking()
+
+        if (manga != null && chapter != null) {
+            val intent = ReaderActivity.newIntent(context, manga, chapter).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            }
+            context.startActivity(intent)
+        } else {
+            context.toast(context.getString(R.string.chapter_error))
+        }
+    }
+
+    /**
+     * Called to delete image
+     *
+     * @param path path of file
+     * @param notificationId id of notification
+     */
+    private fun deleteImage(context: Context, path: String, notificationId: Int) {
+        // Dismiss notification
+        dismissNotification(context, notificationId)
+
+        // Delete file
+        File(path).deleteIfExists()
+    }
 
     companion object {
-        private val NAME = NotificationReceiver::class.java.name
+        private const val NAME = "NotificationReceiver"
 
         // Called to launch share intent.
-        private val ACTION_SHARE_IMAGE = "$ID.$NAME.SHARE_IMAGE"
+        private const val ACTION_SHARE_IMAGE = "$ID.$NAME.SHARE_IMAGE"
 
         // Called to delete image.
-        private val ACTION_DELETE_IMAGE = "$ID.$NAME.DELETE_IMAGE"
+        private const val ACTION_DELETE_IMAGE = "$ID.$NAME.DELETE_IMAGE"
 
         // Called to cancel library update.
-        private val ACTION_CANCEL_LIBRARY_UPDATE = "$ID.$NAME.CANCEL_LIBRARY_UPDATE"
+        private const val ACTION_CANCEL_LIBRARY_UPDATE = "$ID.$NAME.CANCEL_LIBRARY_UPDATE"
 
         // Called to open chapter
-        private val ACTION_OPEN_CHAPTER = "$ID.$NAME.ACTION_OPEN_CHAPTER"
+        private const val ACTION_OPEN_CHAPTER = "$ID.$NAME.ACTION_OPEN_CHAPTER"
 
         // Value containing file location.
-        private val EXTRA_FILE_LOCATION = "$ID.$NAME.FILE_LOCATION"
+        private const val EXTRA_FILE_LOCATION = "$ID.$NAME.FILE_LOCATION"
 
         // Called to resume downloads.
-        private val ACTION_RESUME_DOWNLOADS = "$ID.$NAME.ACTION_RESUME_DOWNLOADS"
+        private const val ACTION_RESUME_DOWNLOADS = "$ID.$NAME.ACTION_RESUME_DOWNLOADS"
 
         // Called to clear downloads.
-        private val ACTION_CLEAR_DOWNLOADS = "$ID.$NAME.ACTION_CLEAR_DOWNLOADS"
+        private const val ACTION_CLEAR_DOWNLOADS = "$ID.$NAME.ACTION_CLEAR_DOWNLOADS"
 
         // Called to dismiss notification.
-        private val ACTION_DISMISS_NOTIFICATION = "$ID.$NAME.ACTION_DISMISS_NOTIFICATION"
+        private const val ACTION_DISMISS_NOTIFICATION = "$ID.$NAME.ACTION_DISMISS_NOTIFICATION"
 
         // Value containing notification id.
-        private val EXTRA_NOTIFICATION_ID = "$ID.$NAME.NOTIFICATION_ID"
+        private const val EXTRA_NOTIFICATION_ID = "$ID.$NAME.NOTIFICATION_ID"
 
         // Value containing manga id.
-        private val EXTRA_MANGA_ID = "$ID.$NAME.EXTRA_MANGA_ID"
+        private const val EXTRA_MANGA_ID = "$ID.$NAME.EXTRA_MANGA_ID"
 
         // Value containing chapter id.
-        private val EXTRA_CHAPTER_ID = "$ID.$NAME.EXTRA_CHAPTER_ID"
+        private const val EXTRA_CHAPTER_ID = "$ID.$NAME.EXTRA_CHAPTER_ID"
 
         /**
          * Returns a [PendingIntent] that resumes the download of a chapter
@@ -69,7 +162,7 @@ class NotificationReceiver : BroadcastReceiver() {
          * @param context context of application
          * @return [PendingIntent]
          */
-        internal fun resumeDownloadsPendingBroadcast(context: Context): PendingIntent? {
+        internal fun resumeDownloadsPendingBroadcast(context: Context): PendingIntent {
             val intent = Intent(context, NotificationReceiver::class.java).apply {
                 action = ACTION_RESUME_DOWNLOADS
             }
@@ -82,7 +175,7 @@ class NotificationReceiver : BroadcastReceiver() {
          * @param context context of application
          * @return [PendingIntent]
          */
-        internal fun clearDownloadsPendingBroadcast(context: Context): PendingIntent? {
+        internal fun clearDownloadsPendingBroadcast(context: Context): PendingIntent {
             val intent = Intent(context, NotificationReceiver::class.java).apply {
                 action = ACTION_CLEAR_DOWNLOADS
             }
@@ -158,121 +251,13 @@ class NotificationReceiver : BroadcastReceiver() {
          * Returns [PendingIntent] that starts a service which stops the library update
          *
          * @param context context of application
-         * @param notificationId id of notification
          * @return [PendingIntent]
          */
-        internal fun cancelLibraryUpdatePendingBroadcast(context: Context, notificationId: Int): PendingIntent {
+        internal fun cancelLibraryUpdatePendingBroadcast(context: Context): PendingIntent {
             val intent = Intent(context, NotificationReceiver::class.java).apply {
                 action = ACTION_CANCEL_LIBRARY_UPDATE
-                putExtra(EXTRA_NOTIFICATION_ID, notificationId)
             }
             return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_ONE_SHOT)
         }
-    }
-
-    /**
-     * Download manager.
-     */
-    private val downloadManager: DownloadManager by injectLazy()
-
-    override fun onReceive(context: Context, intent: Intent) {
-        when (intent.action) {
-            // Dismiss notification
-            ACTION_DISMISS_NOTIFICATION -> dismissNotification(context, intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
-            // Resume the download service
-            ACTION_RESUME_DOWNLOADS -> DownloadService.start(context)
-            // Clear the download queue
-            ACTION_CLEAR_DOWNLOADS -> downloadManager.clearQueue(true)
-            // Launch share activity and dismiss notification
-            ACTION_SHARE_IMAGE -> shareImage(context, intent.getStringExtra(EXTRA_FILE_LOCATION),
-                    intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
-            // Delete image from path and dismiss notification
-            ACTION_DELETE_IMAGE -> deleteImage(context, intent.getStringExtra(EXTRA_FILE_LOCATION),
-                    intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
-            // Cancel library update and dismiss notification
-            ACTION_CANCEL_LIBRARY_UPDATE -> cancelLibraryUpdate(context,
-                    intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
-            // Open reader activity
-            ACTION_OPEN_CHAPTER -> { openChapter(context, intent.getLongExtra(EXTRA_MANGA_ID,-1),
-                    intent.getLongExtra(EXTRA_CHAPTER_ID,-1))
-            }
-        }
-    }
-
-    /**
-     * Dismiss the notification
-     *
-     * @param notificationId the id of the notification
-     */
-    private fun dismissNotification(context: Context, notificationId: Int) {
-        context.notificationManager.cancel(notificationId)
-    }
-
-    /**
-     * Called to start share intent to share image
-     *
-     * @param context context of application
-     * @param path path of file
-     * @param notificationId id of notification
-     */
-    private fun shareImage(context: Context, path: String, notificationId: Int) {
-        // Create intent
-        val intent = Intent(Intent.ACTION_SEND).apply {
-            val uri = File(path).getUriCompat(context)
-            putExtra(Intent.EXTRA_STREAM, uri)
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
-            type = "image/*"
-        }
-        // Dismiss notification
-        dismissNotification(context, notificationId)
-        // Launch share activity
-        context.startActivity(intent)
-    }
-
-    /**
-     * Starts reader activity
-     *
-     * @param context context of application
-     * @param mangaId id of manga
-     * @param chapterId id of chapter
-     */
-    internal fun openChapter(context: Context, mangaId: Long, chapterId: Long) {
-        val db = DatabaseHelper(context)
-        val manga = db.getManga(mangaId).executeAsBlocking()
-        val chapter = db.getChapter(chapterId).executeAsBlocking()
-
-        if (manga != null && chapter != null) {
-            val intent = ReaderActivity.newIntent(context, manga, chapter).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            }
-            context.startActivity(intent)
-        } else {
-            context.toast(context.getString(R.string.chapter_error))
-        }
-    }
-
-    /**
-     * Called to delete image
-     *
-     * @param path path of file
-     * @param notificationId id of notification
-     */
-    private fun deleteImage(context: Context, path: String, notificationId: Int) {
-        // Dismiss notification
-        dismissNotification(context, notificationId)
-
-        // Delete file
-        File(path).deleteIfExists()
-    }
-
-    /**
-     * Method called when user wants to stop a library update
-     *
-     * @param context context of application
-     * @param notificationId id of notification
-     */
-    private fun cancelLibraryUpdate(context: Context, notificationId: Int) {
-        LibraryUpdateService.stop(context)
-        dismissNotification(context, notificationId)
     }
 }

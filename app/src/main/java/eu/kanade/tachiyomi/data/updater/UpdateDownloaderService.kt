@@ -21,46 +21,6 @@ import uy.kohesive.injekt.injectLazy
 import java.io.File
 
 class UpdateDownloaderService : IntentService(UpdateDownloaderService::class.java.name) {
-
-    companion object {
-        private val NAME = UpdateDownloaderService::class.java.name
-
-        /**
-         * Download url.
-         */
-        internal val EXTRA_DOWNLOAD_URL = "${BuildConfig.APPLICATION_ID}.$NAME.DOWNLOAD_URL"
-
-        /**
-         * Downloads a new update and let the user install the new version from a notification.
-         * @param context the application context.
-         * @param url the url to the new update.
-         */
-        fun downloadUpdate(context: Context, url: String) {
-            val intent = Intent(context, UpdateDownloaderService::class.java).apply {
-                putExtra(EXTRA_DOWNLOAD_URL, url)
-            }
-            context.startService(intent)
-        }
-
-        /**
-         * Returns [PendingIntent] that starts a service which downloads the apk specified in url.
-         *
-         * @param url the url to the new update.
-         * @return [PendingIntent]
-         */
-        internal fun downloadApkPendingService(context: Context, url: String): PendingIntent {
-            val intent = Intent(context, UpdateDownloaderService::class.java).apply {
-                putExtra(EXTRA_DOWNLOAD_URL, url)
-            }
-            return PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-        }
-    }
-
-    /**
-     * Name of Local BroadCastReceiver.
-     */
-    private val INTENT_FILTER_NAME = UpdateDownloaderService::class.java.name
-
     /**
      * Network helper
      */
@@ -183,6 +143,43 @@ class UpdateDownloaderService : IntentService(UpdateDownloaderService::class.jav
             putExtra(UpdateDownloaderReceiver.EXTRA_APK_URL, url)
         }
         sendLocalBroadcastSync(intent)
+    }
+
+    companion object {
+        /**
+         * Name of Local BroadCastReceiver.
+         */
+        private val INTENT_FILTER_NAME = UpdateDownloaderService::class.java.name
+
+        /**
+         * Download url.
+         */
+        internal const val EXTRA_DOWNLOAD_URL = "${BuildConfig.APPLICATION_ID}.UpdateDownloaderService.DOWNLOAD_URL"
+
+        /**
+         * Downloads a new update and let the user install the new version from a notification.
+         * @param context the application context.
+         * @param url the url to the new update.
+         */
+        fun downloadUpdate(context: Context, url: String) {
+            val intent = Intent(context, UpdateDownloaderService::class.java).apply {
+                putExtra(EXTRA_DOWNLOAD_URL, url)
+            }
+            context.startService(intent)
+        }
+
+        /**
+         * Returns [PendingIntent] that starts a service which downloads the apk specified in url.
+         *
+         * @param url the url to the new update.
+         * @return [PendingIntent]
+         */
+        internal fun downloadApkPendingService(context: Context, url: String): PendingIntent {
+            val intent = Intent(context, UpdateDownloaderService::class.java).apply {
+                putExtra(EXTRA_DOWNLOAD_URL, url)
+            }
+            return PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
     }
 }
 
