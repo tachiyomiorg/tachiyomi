@@ -5,10 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v4.content.FileProvider
 import eu.kanade.tachiyomi.BuildConfig
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.download.DownloadActivity
-import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.getUriCompat
 import java.io.File
 
@@ -16,20 +13,6 @@ import java.io.File
  * Class that manages [PendingIntent] of activity's
  */
 object NotificationHandler {
-    /**
-     * Returns [PendingIntent] that start a reader activity containing chapter.
-     *
-     * @param context context of application
-     * @param manga manga of chapter
-     * @param chapter chapter that needs to be opened
-     */
-    internal fun openMangaPendingActivity(context: Context, manga: Manga, chapter: Chapter): PendingIntent {
-        val intent = ReaderActivity.newIntent(context, manga, chapter).apply {
-            flags = Intent.FLAG_ACTIVITY_MULTIPLE_TASK
-        }
-        return PendingIntent.getActivity(context, 0, intent, 0)
-    }
-
     /**
      * Returns [PendingIntent] that starts a download activity.
      *

@@ -4,12 +4,18 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.database.models.Chapter
+import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
+import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.deleteIfExists
 import eu.kanade.tachiyomi.util.getUriCompat
 import eu.kanade.tachiyomi.util.notificationManager
+import eu.kanade.tachiyomi.util.toast
 import uy.kohesive.injekt.injectLazy
 import java.io.File
 import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
@@ -33,6 +39,9 @@ class NotificationReceiver : BroadcastReceiver() {
         // Called to cancel library update.
         private val ACTION_CANCEL_LIBRARY_UPDATE = "$ID.$NAME.CANCEL_LIBRARY_UPDATE"
 
+        // Called to open chapter
+        private val ACTION_OPEN_CHAPTER = "$ID.$NAME.ACTION_OPEN_CHAPTER"
+
         // Value containing file location.
         private val EXTRA_FILE_LOCATION = "$ID.$NAME.FILE_LOCATION"
 
@@ -47,6 +56,12 @@ class NotificationReceiver : BroadcastReceiver() {
 
         // Value containing notification id.
         private val EXTRA_NOTIFICATION_ID = "$ID.$NAME.NOTIFICATION_ID"
+
+        // Value containing manga id.
+        private val EXTRA_MANGA_ID = "$ID.$NAME.EXTRA_MANGA_ID"
+
+        // Value containing chapter id.
+        private val EXTRA_CHAPTER_ID = "$ID.$NAME.EXTRA_CHAPTER_ID"
 
         /**
          * Returns a [PendingIntent] that resumes the download of a chapter
@@ -124,6 +139,22 @@ class NotificationReceiver : BroadcastReceiver() {
         }
 
         /**
+         * Returns [PendingIntent] that start a reader activity containing chapter.
+         *
+         * @param context context of application
+         * @param manga manga of chapter
+         * @param chapter chapter that needs to be opened
+         */
+        internal fun openChapterPendingBroadcast(context: Context, manga: Manga, chapter: Chapter): PendingIntent {
+            val intent = Intent(context, NotificationReceiver::class.java).apply {
+                action = ACTION_OPEN_CHAPTER
+                putExtra(EXTRA_MANGA_ID, manga.id)
+                putExtra(EXTRA_CHAPTER_ID, chapter.id)
+            }
+            return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_ONE_SHOT)
+        }
+
+        /**
          * Returns [PendingIntent] that starts a service which stops the library update
          *
          * @param context context of application
@@ -138,15 +169,16 @@ class NotificationReceiver : BroadcastReceiver() {
             return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_ONE_SHOT)
         }
     }
+
     /**
      * Download manager.
      */
     private val downloadManager: DownloadManager by injectLazy()
 
     override fun onReceive(context: Context, intent: Intent) {
-        when(intent.action){
+        when (intent.action) {
             // Dismiss notification
-            ACTION_DISMISS_NOTIFICATION -> dismissNotification(context,intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
+            ACTION_DISMISS_NOTIFICATION -> dismissNotification(context, intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
             // Resume the download service
             ACTION_RESUME_DOWNLOADS -> DownloadService.start(context)
             // Clear the download queue
@@ -160,6 +192,10 @@ class NotificationReceiver : BroadcastReceiver() {
             // Cancel library update and dismiss notification
             ACTION_CANCEL_LIBRARY_UPDATE -> cancelLibraryUpdate(context,
                     intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
+            // Open reader activity
+            ACTION_OPEN_CHAPTER -> { openChapter(context, intent.getLongExtra(EXTRA_MANGA_ID,-1),
+                    intent.getLongExtra(EXTRA_CHAPTER_ID,-1))
+            }
         }
     }
 
@@ -168,7 +204,7 @@ class NotificationReceiver : BroadcastReceiver() {
      *
      * @param notificationId the id of the notification
      */
-    private fun dismissNotification(context: Context, notificationId: Int){
+    private fun dismissNotification(context: Context, notificationId: Int) {
         context.notificationManager.cancel(notificationId)
     }
 
@@ -191,6 +227,28 @@ class NotificationReceiver : BroadcastReceiver() {
         dismissNotification(context, notificationId)
         // Launch share activity
         context.startActivity(intent)
+    }
+
+    /**
+     * Starts reader activity
+     *
+     * @param context context of application
+     * @param mangaId id of manga
+     * @param chapterId id of chapter
+     */
+    internal fun openChapter(context: Context, mangaId: Long, chapterId: Long) {
+        val db = DatabaseHelper(context)
+        val manga = db.getManga(mangaId).executeAsBlocking()
+        val chapter = db.getChapter(chapterId).executeAsBlocking()
+
+        if (manga != null && chapter != null) {
+            val intent = ReaderActivity.newIntent(context, manga, chapter).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            }
+            context.startActivity(intent)
+        } else {
+            context.toast(context.getString(R.string.chapter_error))
+        }
     }
 
     /**

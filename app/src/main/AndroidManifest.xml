@@ -9,7 +9,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.READ_PHONE_STATE"
+        tools:node="remove" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
     <application
@@ -20,8 +22,7 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/Theme.Tachiyomi">
-        <activity
-            android:name=".ui.main.MainActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,7 +64,7 @@
         </activity>
         <activity
             android:name=".ui.download.DownloadActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTop" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

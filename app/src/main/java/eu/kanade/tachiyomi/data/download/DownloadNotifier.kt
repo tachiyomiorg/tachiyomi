@@ -208,7 +208,7 @@ internal class DownloadNotifier(private val context: Context) {
             setSmallIcon(android.R.drawable.stat_sys_download_done)
             setAutoCancel(true)
             clearActions()
-            setContentIntent(NotificationHandler.openMangaPendingActivity(context, download.manga, download.chapter))
+            setContentIntent(NotificationReceiver.openChapterPendingBroadcast(context, download.manga, download.chapter))
             setProgress(0, 0, false)
         }
 

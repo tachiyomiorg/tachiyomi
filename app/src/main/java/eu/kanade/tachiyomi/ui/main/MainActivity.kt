@@ -63,10 +63,7 @@ class MainActivity : BaseActivity() {
                 R.id.nav_drawer_recently_read -> setFragment(RecentlyReadFragment.newInstance(), id)
                 R.id.nav_drawer_catalogues -> setFragment(CatalogueFragment.newInstance(), id)
                 R.id.nav_drawer_latest_updates -> setFragment(LatestUpdatesFragment.newInstance(), id)
-                R.id.nav_drawer_downloads -> {
-                    val intent = Intent(this, DownloadActivity::class.java)
-                    startActivityForResult(intent, REQUEST_OPEN_DOWNLOADS)
-                }
+                R.id.nav_drawer_downloads -> startActivity(Intent(this, DownloadActivity::class.java))
                 R.id.nav_drawer_settings -> {
                     val intent = Intent(this, SettingsActivity::class.java)
                     startActivityForResult(intent, REQUEST_OPEN_SETTINGS)
@@ -144,6 +141,5 @@ class MainActivity : BaseActivity() {
 
     companion object {
         private const val REQUEST_OPEN_SETTINGS = 200
-        private const val REQUEST_OPEN_DOWNLOADS = 201
     }
 }
