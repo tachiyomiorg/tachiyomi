@@ -17,7 +17,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService.Companion.start
-import eu.kanade.tachiyomi.data.notification.NotificationService
+import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.source.SourceManager
@@ -72,7 +72,7 @@ class LibraryUpdateService : Service() {
     /**
      * Pending intent of action that cancels the library update
      */
-    private val cancelPendingIntent by lazy {NotificationService.cancelLibraryUpdatePendingService(this, notificationId)}
+    private val cancelPendingIntent by lazy {NotificationReceiver.cancelLibraryUpdatePendingBroadcast(this, notificationId)}
 
     /**
      * Id of the library update notification.

@@ -25,7 +25,7 @@ object NotificationHandler {
      */
     internal fun openMangaPendingActivity(context: Context, manga: Manga, chapter: Chapter): PendingIntent {
         val intent = ReaderActivity.newIntent(context, manga, chapter).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT
         }
         return PendingIntent.getActivity(context, 0, intent, 0)
     }

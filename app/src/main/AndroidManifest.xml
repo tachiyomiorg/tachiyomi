@@ -94,10 +94,6 @@
             android:name=".data.updater.UpdateDownloaderService"
             android:exported="false" />
 
-        <service
-            android:name=".data.notification.NotificationService"
-            android:exported="false" />
-
         <meta-data
             android:name="eu.kanade.tachiyomi.data.glide.AppGlideModule"
             android:value="GlideModule" />

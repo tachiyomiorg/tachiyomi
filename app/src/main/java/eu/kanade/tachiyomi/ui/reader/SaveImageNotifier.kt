@@ -8,7 +8,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.Constants
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.NotificationHandler
-import eu.kanade.tachiyomi.data.notification.NotificationService
+import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.util.notificationManager
 import java.io.File
 
@@ -64,11 +64,11 @@ class SaveImageNotifier(private val context: Context) {
             // Share action
             addAction(R.drawable.ic_share_grey_24dp,
                     context.getString(R.string.action_share),
-                    NotificationService.shareImagePendingService(context, file.absolutePath, notificationId))
+                    NotificationReceiver.shareImagePendingBroadcast(context, file.absolutePath, notificationId))
             // Delete action
             addAction(R.drawable.ic_delete_grey_24dp,
                     context.getString(R.string.action_delete),
-                    NotificationService.deleteImagePendingService(context, file.absolutePath, notificationId))
+                    NotificationReceiver.deleteImagePendingBroadcast(context, file.absolutePath, notificationId))
             updateNotification()
 
         }
