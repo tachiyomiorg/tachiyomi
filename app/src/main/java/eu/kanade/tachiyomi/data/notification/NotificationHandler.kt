@@ -25,7 +25,7 @@ object NotificationHandler {
      */
     internal fun openMangaPendingActivity(context: Context, manga: Manga, chapter: Chapter): PendingIntent {
         val intent = ReaderActivity.newIntent(context, manga, chapter).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT
+            flags = Intent.FLAG_ACTIVITY_MULTIPLE_TASK
         }
         return PendingIntent.getActivity(context, 0, intent, 0)
     }
@@ -37,7 +37,7 @@ object NotificationHandler {
      */
     internal fun openDownloadManagerPendingActivity(context: Context): PendingIntent {
         val intent = Intent(context, DownloadActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         }
         return PendingIntent.getActivity(context, 0, intent, 0)
     }
