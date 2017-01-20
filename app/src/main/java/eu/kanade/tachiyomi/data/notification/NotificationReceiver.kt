@@ -4,6 +4,7 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.Handler
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -46,10 +47,12 @@ class NotificationReceiver : BroadcastReceiver() {
             ACTION_DELETE_IMAGE -> deleteImage(context, intent.getStringExtra(EXTRA_FILE_LOCATION),
                     intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
             // Cancel library update and dismiss notification
-            ACTION_CANCEL_LIBRARY_UPDATE -> LibraryUpdateService.stop(context)
+            ACTION_CANCEL_LIBRARY_UPDATE -> cancelLibraryUpdate(context,
+                    intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
             // Open reader activity
-            ACTION_OPEN_CHAPTER -> { openChapter(context, intent.getLongExtra(EXTRA_MANGA_ID,-1),
-                    intent.getLongExtra(EXTRA_CHAPTER_ID,-1))
+            ACTION_OPEN_CHAPTER -> {
+                openChapter(context, intent.getLongExtra(EXTRA_MANGA_ID, -1),
+                        intent.getLongExtra(EXTRA_CHAPTER_ID, -1))
             }
         }
     }
@@ -118,6 +121,17 @@ class NotificationReceiver : BroadcastReceiver() {
 
         // Delete file
         File(path).deleteIfExists()
+    }
+
+    /**
+     * Method called when user wants to stop a library update
+     *
+     * @param context context of application
+     * @param notificationId id of notification
+     */
+    private fun cancelLibraryUpdate(context: Context, notificationId: Int) {
+        LibraryUpdateService.stop(context)
+        Handler().post { dismissNotification(context, notificationId) }
     }
 
     companion object {

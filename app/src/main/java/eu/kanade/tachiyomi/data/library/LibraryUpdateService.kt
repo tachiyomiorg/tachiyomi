@@ -149,7 +149,6 @@ class LibraryUpdateService : Service() {
      * the alarm and release the wake lock.
      */
     override fun onDestroy() {
-        notificationManager.cancel(notificationId)
         subscription?.unsubscribe()
         destroyWakeLock()
         super.onDestroy()
