@@ -451,8 +451,10 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
      * Resets orientation to user preference
      */
     private fun resetOrientation() {
-        forcedOrientation = false
-        subscriptions += rotationPreferenceSubscription()
+        if (forcedOrientation) {
+            forcedOrientation = false
+            subscriptions += rotationPreferenceSubscription()
+        }
     }
 
     private fun setRotation(rotation: Int) {
