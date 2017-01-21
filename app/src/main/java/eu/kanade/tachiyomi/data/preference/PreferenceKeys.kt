@@ -15,6 +15,8 @@ class PreferenceKeys(context: Context) {
 
     val rotation = context.getString(R.string.pref_rotation_type_key)
 
+    val rotationSwitchAlert = context.getString(R.string.pref_rotation_switch_alert_key)
+
     val enableTransitions = context.getString(R.string.pref_enable_transitions_key)
 
     val showPageNumber = context.getString(R.string.pref_show_page_number_key)

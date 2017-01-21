@@ -375,5 +375,6 @@
     <string name="download_notifier_page_ready_error">Non è stata caricata una pagina</string>
     <string name="download_notifier_text_only_wifi">Nessuna connessione Wi-Fi disponibile</string>
     <string name="download_notifier_no_network">Nessuna connessione di rete disponibile</string>
+    <string name="switch_orientation_alert">Tappa per cambiare orientamento. Tieni premuto per resettare.</string>
 
 </resources>

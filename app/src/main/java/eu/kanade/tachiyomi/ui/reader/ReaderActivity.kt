@@ -14,6 +14,7 @@ import android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.SeekBar
+import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -116,6 +117,19 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
         maxBitmapSize = GLUtil.getMaxTextureSize()
 
+        switch_orientation.setOnClickListener {
+            switchOrientation()
+            preferences.rotationSwitchAlert().getOrDefault().let {
+                if (it < 2) {
+                    toast(R.string.switch_orientation_alert, Toast.LENGTH_LONG)
+                    preferences.rotationSwitchAlert().set(it + 1)
+                }
+            }
+        }
+        switch_orientation.setOnLongClickListener {
+            resetOrientation()
+            return@setOnLongClickListener true
+        }
         left_chapter.setOnClickListener {
             if (viewer != null) {
                 if (viewer is RightToLeftReader)
@@ -148,7 +162,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_settings -> ReaderSettingsDialog().show(supportFragmentManager, "settings")
-            R.id.action_switch_orientation -> switchOrientation()
             R.id.action_custom_filter -> ReaderCustomFilterDialog().show(supportFragmentManager, "filter")
             else -> return super.onOptionsItemSelected(item)
         }
@@ -390,11 +403,11 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         })
     }
 
+
     private fun initializeSettings() {
         // When the orientation is forced the value from settings is ignored
         if (!forcedOrientation) {
-            subscriptions += preferences.rotation().asObservable()
-                    .subscribe { setRotation(it) }
+            subscriptions += rotationPreferenceSubscription()
         }
 
         subscriptions += preferences.showPageNumber().asObservable()
@@ -417,6 +430,9 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 .subscribe { applyTheme(it) }
     }
 
+    private fun rotationPreferenceSubscription(): Subscription = preferences.rotation()
+            .asObservable().subscribe { setRotation(it) }
+
     /**
      * Sets ORIENTATION_PORTRAIT when in ORIENTATION_LANDSCAPE and vice versa
      */
@@ -431,18 +447,26 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         }
     }
 
+    /**
+     * Resets orientation to user preference
+     */
+    private fun resetOrientation() {
+        forcedOrientation = false
+        subscriptions += rotationPreferenceSubscription()
+    }
+
     private fun setRotation(rotation: Int) {
         when (rotation) {
-            // Rotation free
+        // Rotation free
             1 -> requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-            // Lock in current rotation
+        // Lock in current rotation
             2 -> {
                 val currentOrientation = resources.configuration.orientation
                 setRotation(if (currentOrientation == Configuration.ORIENTATION_PORTRAIT) 3 else 4)
             }
-            // Lock in portrait
+        // Lock in portrait
             3 -> requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
-            // Lock in landscape
+        // Lock in landscape
             4 -> requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
         }
     }
@@ -533,10 +557,12 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             rootView.setBackgroundColor(Color.BLACK)
             page_number.setTextColor(ContextCompat.getColor(this, R.color.textColorPrimaryDark))
             page_number.setBackgroundColor(ContextCompat.getColor(this, R.color.pageNumberBackgroundDark))
+            switch_orientation.setImageResource(R.drawable.ic_screen_rotation_white_24dp)
         } else {
             rootView.setBackgroundColor(Color.WHITE)
             page_number.setTextColor(ContextCompat.getColor(this, R.color.textColorPrimaryLight))
             page_number.setBackgroundColor(ContextCompat.getColor(this, R.color.pageNumberBackgroundLight))
+            switch_orientation.setImageResource(R.drawable.ic_screen_rotation_black_24dp)
         }
     }
 
