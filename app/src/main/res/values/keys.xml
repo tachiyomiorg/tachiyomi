@@ -1,74 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="pref_category_general_key" translatable="false">pref_category_general_key</string>
+    <string name="pref_category_reader_key" translatable="false">pref_category_reader_key</string>
+    <string name="pref_category_tracking_key" translatable="false">pref_category_tracking_key</string>
+    <string name="pref_category_downloads_key" translatable="false">pref_category_downloads_key</string>
+    <string name="pref_category_advanced_key" translatable="false">pref_category_advanced_key</string>
+    <string name="pref_category_about_key" translatable="false">pref_category_about_key</string>
+    <string name="pref_category_sources_key" translatable="false">pref_category_sources_key</string>
 
-    <string name="pref_category_general_key">pref_category_general_key</string>
-    <string name="pref_category_reader_key">pref_category_reader_key</string>
-    <string name="pref_category_tracking_key">pref_category_tracking_key</string>
-    <string name="pref_category_downloads_key">pref_category_downloads_key</string>
-    <string name="pref_category_advanced_key">pref_category_advanced_key</string>
-    <string name="pref_category_about_key">pref_category_about_key</string>
-    <string name="pref_category_sources_key">pref_category_sources_key</string>
+    <string name="pref_display_library_as_list" translatable="false">pref_display_library_as_list</string>
+    <string name="pref_library_columns_dialog_key" translatable="false">pref_library_columns_dialog_key</string>
+    <string name="pref_library_columns_portrait_key" translatable="false">pref_library_columns_portrait_key</string>
+    <string name="pref_library_columns_landscape_key" translatable="false">pref_library_columns_landscape_key</string>
+    <string name="pref_library_update_interval_key" translatable="false">pref_library_update_interval_key</string>
+    <string name="pref_library_update_categories_key" translatable="false">library_update_categories</string>
+    <string name="pref_update_only_non_completed_key" translatable="false">pref_update_only_non_completed_key</string>
+    <string name="pref_auto_update_manga_sync_key" translatable="false">pref_auto_update_manga_sync_key</string>
+    <string name="pref_ask_update_manga_sync_key" translatable="false">pref_ask_update_manga_sync_key</string>
+    <string name="pref_theme_key" translatable="false">pref_theme_key</string>
+    <string name="pref_library_update_restriction_key" translatable="false">library_update_restriction</string>
+    <string name="pref_start_screen_key" translatable="false">start_screen</string>
+    <string name="pref_language_key" translatable="false">app_language</string>
 
-    <string name="pref_display_library_as_list">pref_display_library_as_list</string>
-    <string name="pref_library_columns_dialog_key">pref_library_columns_dialog_key</string>
-    <string name="pref_library_columns_portrait_key">pref_library_columns_portrait_key</string>
-    <string name="pref_library_columns_landscape_key">pref_library_columns_landscape_key</string>
-    <string name="pref_library_update_interval_key">pref_library_update_interval_key</string>
-    <string name="pref_library_update_categories_key">library_update_categories</string>
-    <string name="pref_update_only_non_completed_key">pref_update_only_non_completed_key</string>
-    <string name="pref_auto_update_manga_sync_key">pref_auto_update_manga_sync_key</string>
-    <string name="pref_ask_update_manga_sync_key">pref_ask_update_manga_sync_key</string>
-    <string name="pref_theme_key">pref_theme_key</string>
-    <string name="pref_library_update_restriction_key">library_update_restriction</string>
-    <string name="pref_start_screen_key">start_screen</string>
-    <string name="pref_language_key">app_language</string>
+    <string name="pref_default_viewer_key" translatable="false">pref_default_viewer_key</string>
+    <string name="pref_image_scale_type_key" translatable="false">pref_image_scale_type_key</string>
+    <string name="pref_zoom_start_key" translatable="false">pref_zoom_start_key</string>
+    <string name="pref_fullscreen_key" translatable="false">fullscreen</string>
+    <string name="pref_rotation_type_key" translatable="false">pref_rotation_type_key</string>
+    <string name="pref_enable_transitions_key" translatable="false">pref_enable_transitions_key</string>
+    <string name="pref_show_page_number_key" translatable="false">pref_show_page_number_key</string>
+    <string name="pref_keep_screen_on_key" translatable="false">pref_keep_screen_on_key</string>
+    <string name="pref_custom_brightness_key" translatable="false">pref_custom_brightness_key</string>
+    <string name="pref_custom_brightness_value_key" translatable="false">custom_brightness_value</string>
+    <string name="pref_color_filter_key" translatable="false">pref_color_filter_key</string>
+    <string name="pref_color_filter_value_key" translatable="false">color_filter_value</string>
+    <string name="pref_red_filter_value_key" translatable="false">pref_red_filter_value</string>
+    <string name="pref_reader_theme_key" translatable="false">pref_reader_theme_key</string>
+    <string name="pref_image_decoder_key" translatable="false">image_decoder</string>
+    <string name="pref_read_with_volume_keys_key" translatable="false">reader_volume_keys</string>
+    <string name="pref_read_with_tapping_key" translatable="false">reader_tap</string>
+    <string name="pref_filter_downloaded_key" translatable="false">pref_filter_downloaded_key</string>
+    <string name="pref_filter_unread_key" translatable="false">pref_filter_unread_key</string>
+    <string name="pref_library_sorting_mode_key" translatable="false">library_sorting_mode</string>
 
-    <string name="pref_default_viewer_key">pref_default_viewer_key</string>
-    <string name="pref_image_scale_type_key">pref_image_scale_type_key</string>
-    <string name="pref_zoom_start_key">pref_zoom_start_key</string>
-    <string name="pref_fullscreen_key">fullscreen</string>
-    <string name="pref_rotation_type_key">pref_rotation_type_key</string>
-    <string name="pref_enable_transitions_key">pref_enable_transitions_key</string>
-    <string name="pref_show_page_number_key">pref_show_page_number_key</string>
-    <string name="pref_keep_screen_on_key">pref_keep_screen_on_key</string>
-    <string name="pref_custom_brightness_key">pref_custom_brightness_key</string>
-    <string name="pref_custom_brightness_value_key">custom_brightness_value</string>
-    <string name="pref_color_filter_key">pref_color_filter_key</string>
-    <string name="pref_color_filter_value_key">color_filter_value</string>
-    <string name="pref_red_filter_value_key">pref_red_filter_value</string>
-    <string name="pref_reader_theme_key">pref_reader_theme_key</string>
-    <string name="pref_image_decoder_key">image_decoder</string>
-    <string name="pref_read_with_volume_keys_key">reader_volume_keys</string>
-    <string name="pref_read_with_tapping_key">reader_tap</string>
-    <string name="pref_filter_downloaded_key">pref_filter_downloaded_key</string>
-    <string name="pref_filter_unread_key">pref_filter_unread_key</string>
-    <string name="pref_library_sorting_mode_key">library_sorting_mode</string>
+    <string name="pref_download_directory_key" translatable="false">download_directory</string>
+    <string name="pref_download_slots_key" translatable="false">pref_download_slots_key</string>
+    <string name="pref_remove_after_read_slots_key" translatable="false">remove_after_read_slots</string>
+    <string name="pref_download_only_over_wifi_key" translatable="false">pref_download_only_over_wifi_key</string>
+    <string name="pref_remove_after_marked_as_read_key" translatable="false">pref_remove_after_marked_as_read_key</string>
+    <string name="pref_last_used_category_key" translatable="false">last_used_category</string>
 
-    <string name="pref_download_directory_key">download_directory</string>
-    <string name="pref_download_slots_key">pref_download_slots_key</string>
-    <string name="pref_remove_after_read_slots_key">remove_after_read_slots</string>
-    <string name="pref_download_only_over_wifi_key">pref_download_only_over_wifi_key</string>
-    <string name="pref_remove_after_marked_as_read_key">pref_remove_after_marked_as_read_key</string>
-    <string name="pref_last_used_category_key">last_used_category</string>
+    <string name="pref_source_languages" translatable="false">source_languages</string>
+    <string name="pref_category_tracking_accounts_key" translatable="false">category_tracking_accounts</string>
 
-    <string name="pref_source_languages">source_languages</string>
-    <string name="pref_category_tracking_accounts_key">category_tracking_accounts</string>
+    <string name="pref_clear_chapter_cache_key" translatable="false">pref_clear_chapter_cache_key</string>
+    <string name="pref_clear_database_key" translatable="false">pref_clear_database_key</string>
+    <string name="pref_clear_cookies_key" translatable="false">pref_clear_cookies_key</string>
+    <string name="pref_refresh_library_metadata_key" translatable="false">refresh_library_metadata</string>
 
-    <string name="pref_clear_chapter_cache_key">pref_clear_chapter_cache_key</string>
-    <string name="pref_clear_database_key">pref_clear_database_key</string>
-    <string name="pref_clear_cookies_key">pref_clear_cookies_key</string>
-    <string name="pref_refresh_library_metadata_key">refresh_library_metadata</string>
+    <string name="pref_version" translatable="false">pref_version</string>
+    <string name="pref_build_time" translatable="false">pref_build_time</string>
+    <string name="pref_enable_automatic_updates_key" translatable="false">automatic_updates</string>
 
-    <string name="pref_version">pref_version</string>
-    <string name="pref_build_time">pref_build_time</string>
-    <string name="pref_enable_automatic_updates_key">automatic_updates</string>
+    <string name="pref_display_catalogue_as_list" translatable="false">pref_display_catalogue_as_list</string>
+    <string name="pref_last_catalogue_source_key" translatable="false">last_catalogue_source</string>
 
-    <string name="pref_display_catalogue_as_list">pref_display_catalogue_as_list</string>
-    <string name="pref_last_catalogue_source_key">last_catalogue_source</string>
-
-    <string name="pref_download_new_key">download_new</string>
+    <string name="pref_download_new_key" translatable="false">download_new</string>
 
     <!-- String Fonts -->
-    <string name="font_roboto_medium">sans-serif</string>
-    <string name="font_roboto_regular">sans-serif</string>
+    <string name="font_roboto_medium" translatable="false">sans-serif</string>
+    <string name="font_roboto_regular" translatable="false">sans-serif</string>
 </resources>
