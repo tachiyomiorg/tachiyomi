@@ -3,8 +3,8 @@ package eu.kanade.tachiyomi.data.track
 import android.support.annotation.CallSuper
 import android.support.annotation.DrawableRes
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.network.NetworkHelper
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.network.NetworkHelper
 import okhttp3.OkHttpClient
 import rx.Completable
 import rx.Observable

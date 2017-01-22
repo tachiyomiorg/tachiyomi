@@ -11,7 +11,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.backup.BackupFragment
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment
-import eu.kanade.tachiyomi.ui.download.DownloadFragment
+import eu.kanade.tachiyomi.ui.download.DownloadActivity
 import eu.kanade.tachiyomi.ui.latest_updates.LatestUpdatesFragment
 import eu.kanade.tachiyomi.ui.library.LibraryFragment
 import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersFragment
@@ -63,7 +63,7 @@ class MainActivity : BaseActivity() {
                 R.id.nav_drawer_recently_read -> setFragment(RecentlyReadFragment.newInstance(), id)
                 R.id.nav_drawer_catalogues -> setFragment(CatalogueFragment.newInstance(), id)
                 R.id.nav_drawer_latest_updates -> setFragment(LatestUpdatesFragment.newInstance(), id)
-                R.id.nav_drawer_downloads -> setFragment(DownloadFragment.newInstance(), id)
+                R.id.nav_drawer_downloads -> startActivity(Intent(this, DownloadActivity::class.java))
                 R.id.nav_drawer_settings -> {
                     val intent = Intent(this, SettingsActivity::class.java)
                     startActivityForResult(intent, REQUEST_OPEN_SETTINGS)

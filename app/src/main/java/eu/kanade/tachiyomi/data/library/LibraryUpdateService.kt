@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.data.library
 
 import android.app.PendingIntent
 import android.app.Service
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -18,11 +17,12 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService.Companion.start
+import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
-import eu.kanade.tachiyomi.data.source.SourceManager
-import eu.kanade.tachiyomi.data.source.model.SManga
-import eu.kanade.tachiyomi.data.source.online.OnlineSource
+import eu.kanade.tachiyomi.source.SourceManager
+import eu.kanade.tachiyomi.source.model.SManga
+import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.*
 import rx.Observable
@@ -68,6 +68,11 @@ class LibraryUpdateService : Service() {
      * Subscription where the update is done.
      */
     private var subscription: Subscription? = null
+
+    /**
+     * Pending intent of action that cancels the library update
+     */
+    private val cancelPendingIntent by lazy {NotificationReceiver.cancelLibraryUpdatePendingBroadcast(this)}
 
     /**
      * Id of the library update notification.
@@ -236,13 +241,10 @@ class LibraryUpdateService : Service() {
         val newUpdates = ArrayList<Manga>()
         val failedUpdates = ArrayList<Manga>()
 
-        val cancelIntent = PendingIntent.getBroadcast(this, 0,
-                Intent(this, CancelUpdateReceiver::class.java), 0)
-
         // Emit each manga and update it sequentially.
         return Observable.from(mangaToUpdate)
                 // Notify manga that will update.
-                .doOnNext { showProgressNotification(it, count.andIncrement, mangaToUpdate.size, cancelIntent) }
+                .doOnNext { showProgressNotification(it, count.andIncrement, mangaToUpdate.size, cancelPendingIntent) }
                 // Update the chapters of the manga.
                 .concatMap { manga ->
                     updateManga(manga)
@@ -298,7 +300,7 @@ class LibraryUpdateService : Service() {
      * @return a pair of the inserted and removed chapters.
      */
     fun updateManga(manga: Manga): Observable<Pair<List<Chapter>, List<Chapter>>> {
-        val source = sourceManager.get(manga.source) as? OnlineSource ?: return Observable.empty()
+        val source = sourceManager.get(manga.source) as? HttpSource ?: return Observable.empty()
         return source.fetchChapterList(manga)
                 .map { syncChaptersWithSource(db, it, manga, source) }
     }
@@ -316,16 +318,13 @@ class LibraryUpdateService : Service() {
         // Initialize the variables holding the progress of the updates.
         val count = AtomicInteger(0)
 
-        val cancelIntent = PendingIntent.getBroadcast(this, 0,
-                Intent(this, CancelUpdateReceiver::class.java), 0)
-
         // Emit each manga and update it sequentially.
         return Observable.from(mangaToUpdate)
                 // Notify manga that will update.
-                .doOnNext { showProgressNotification(it, count.andIncrement, mangaToUpdate.size, cancelIntent) }
+                .doOnNext { showProgressNotification(it, count.andIncrement, mangaToUpdate.size, cancelPendingIntent) }
                 // Update the details of the manga.
                 .concatMap { manga ->
-                    val source = sourceManager.get(manga.source) as? OnlineSource
+                    val source = sourceManager.get(manga.source) as? HttpSource
                             ?: return@concatMap Observable.empty<Manga>()
 
                     source.fetchMangaDetails(manga)
@@ -459,19 +458,4 @@ class LibraryUpdateService : Service() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             return PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }
-
-    /**
-     * Class that stops updating the library.
-     */
-    class CancelUpdateReceiver : BroadcastReceiver() {
-        /**
-         * Method called when user wants a library update.
-         * @param context the application context.
-         * @param intent the intent received.
-         */
-        override fun onReceive(context: Context, intent: Intent) {
-            LibraryUpdateService.stop(context)
-            context.notificationManager.cancel(Constants.NOTIFICATION_LIBRARY_ID)
-        }
-    }
 }

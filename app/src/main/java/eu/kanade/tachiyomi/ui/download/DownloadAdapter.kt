@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.ui.download
 
 import android.content.Context
 import android.view.ViewGroup
-import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter4.FlexibleAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.util.inflate

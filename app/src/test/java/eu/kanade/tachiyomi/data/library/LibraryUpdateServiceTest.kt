@@ -8,9 +8,9 @@ import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.CustomRobolectricGradleTestRunner
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.source.SourceManager
-import eu.kanade.tachiyomi.data.source.model.SChapter
-import eu.kanade.tachiyomi.data.source.online.OnlineSource
+import eu.kanade.tachiyomi.source.SourceManager
+import eu.kanade.tachiyomi.source.model.SChapter
+import eu.kanade.tachiyomi.source.online.HttpSource
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
@@ -35,7 +35,7 @@ class LibraryUpdateServiceTest {
     lateinit var app: Application
     lateinit var context: Context
     lateinit var service: LibraryUpdateService
-    lateinit var source: OnlineSource
+    lateinit var source: HttpSource
 
     @Before
     fun setup() {
@@ -51,7 +51,7 @@ class LibraryUpdateServiceTest {
         Injekt.importModule(module)
 
         service = Robolectric.setupService(LibraryUpdateService::class.java)
-        source = mock(OnlineSource::class.java)
+        source = mock(HttpSource::class.java)
         `when`(service.sourceManager.get(anyLong())).thenReturn(source)
     }
 

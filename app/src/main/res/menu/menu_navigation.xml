@@ -26,7 +26,8 @@
         <item
             android:id="@+id/nav_drawer_downloads"
             android:icon="@drawable/ic_file_download_black_24dp"
-            android:title="@string/label_download_queue" />
+            android:title="@string/label_download_queue"
+            android:checkable="false" />
     </group>
     <group android:id="@+id/group_settings"
            android:checkableBehavior="single">

@@ -31,6 +31,7 @@ class CategoryPresenter : BasePresenter<CategoryActivity>() {
 
         db.getCategories().asRxObservable()
                 .doOnNext { categories = it }
+                .map { it.map(::CategoryItem) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeLatestCache(CategoryActivity::setCategories)
     }

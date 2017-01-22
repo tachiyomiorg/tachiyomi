@@ -8,8 +8,8 @@ import com.bumptech.glide.load.model.*
 import com.bumptech.glide.load.model.stream.StreamModelLoader
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.source.SourceManager
-import eu.kanade.tachiyomi.data.source.online.OnlineSource
+import eu.kanade.tachiyomi.source.SourceManager
+import eu.kanade.tachiyomi.source.online.HttpSource
 import uy.kohesive.injekt.injectLazy
 import java.io.File
 import java.io.InputStream
@@ -102,7 +102,7 @@ class MangaModelLoader(context: Context) : StreamModelLoader<Manga> {
      * @param manga the model.
      */
     fun getHeaders(manga: Manga): Headers {
-        val source = sourceManager.get(manga.source) as? OnlineSource ?: return LazyHeaders.DEFAULT
+        val source = sourceManager.get(manga.source) as? HttpSource ?: return LazyHeaders.DEFAULT
         return cachedHeaders.getOrPut(manga.source) {
             LazyHeaders.Builder().apply {
                 val nullStr: String? = null

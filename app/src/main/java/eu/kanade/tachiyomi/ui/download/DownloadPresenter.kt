@@ -12,9 +12,9 @@ import uy.kohesive.injekt.injectLazy
 import java.util.*
 
 /**
- * Presenter of [DownloadFragment].
+ * Presenter of [DownloadActivity].
  */
-class DownloadPresenter : BasePresenter<DownloadFragment>() {
+class DownloadPresenter : BasePresenter<DownloadActivity>() {
 
     /**
      * Download manager.
@@ -33,7 +33,7 @@ class DownloadPresenter : BasePresenter<DownloadFragment>() {
         downloadQueue.getUpdatedObservable()
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { ArrayList(it) }
-                .subscribeLatestCache(DownloadFragment::onNextDownloads, { view, error ->
+                .subscribeLatestCache(DownloadActivity::onNextDownloads, { view, error ->
                     Timber.e(error)
                 })
     }
@@ -46,6 +46,13 @@ class DownloadPresenter : BasePresenter<DownloadFragment>() {
     fun getDownloadProgressObservable(): Observable<Download> {
         return downloadQueue.getProgressObservable()
                 .onBackpressureBuffer()
+    }
+
+    /**
+     * Pauses the download queue.
+     */
+    fun pauseDownloads() {
+        downloadManager.pauseDownloads()
     }
 
     /**

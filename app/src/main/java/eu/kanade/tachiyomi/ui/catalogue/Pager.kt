@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.ui.catalogue
 
 import com.jakewharton.rxrelay.PublishRelay
-import eu.kanade.tachiyomi.data.source.model.MangasPage
-import eu.kanade.tachiyomi.data.source.model.SManga
+import eu.kanade.tachiyomi.source.model.MangasPage
+import eu.kanade.tachiyomi.source.model.SManga
 import rx.Observable
 
 /**

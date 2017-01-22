@@ -14,9 +14,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.source.Source
-import eu.kanade.tachiyomi.data.source.model.SManga
-import eu.kanade.tachiyomi.data.source.online.OnlineSource
+import eu.kanade.tachiyomi.source.Source
+import eu.kanade.tachiyomi.source.model.SManga
+import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.util.getResourceColor
@@ -164,7 +164,7 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
      * Open the manga in browser.
      */
     fun openInBrowser() {
-        val source = presenter.source as? OnlineSource ?: return
+        val source = presenter.source as? HttpSource ?: return
         try {
             val url = Uri.parse(source.baseUrl + presenter.manga.url)
             val intent = CustomTabsIntent.Builder()
@@ -180,7 +180,7 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
      * Called to run Intent with [Intent.ACTION_SEND], which show share dialog.
      */
     private fun shareManga() {
-        val source = presenter.source as? OnlineSource ?: return
+        val source = presenter.source as? HttpSource ?: return
         try {
             val url = source.mangaDetailsRequest(presenter.manga).url().toString()
             val sharingIntent = Intent(Intent.ACTION_SEND).apply {

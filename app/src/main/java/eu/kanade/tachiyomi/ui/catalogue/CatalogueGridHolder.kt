@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.catalogue
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import kotlinx.android.synthetic.main.item_catalogue_grid.view.*
 
@@ -12,11 +13,10 @@ import kotlinx.android.synthetic.main.item_catalogue_grid.view.*
  *
  * @param view the inflated view for this holder.
  * @param adapter the adapter handling this holder.
- * @param listener a listener to react to single tap and long tap events.
  * @constructor creates a new catalogue holder.
  */
-class CatalogueGridHolder(private val view: View, private val adapter: CatalogueAdapter, listener: OnListItemClickListener) :
-        CatalogueHolder(view, adapter, listener) {
+class CatalogueGridHolder(private val view: View, private val adapter: FlexibleAdapter<*>) :
+        CatalogueHolder(view, adapter) {
 
     /**
      * Method called from [CatalogueAdapter.onBindViewHolder]. It updates the data for this

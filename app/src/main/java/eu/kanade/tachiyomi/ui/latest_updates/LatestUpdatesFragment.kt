@@ -1,9 +1,9 @@
 package eu.kanade.tachiyomi.ui.latest_updates
 
+import android.view.Menu
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment
 import nucleus.factory.RequiresPresenter
-import android.view.*
-import eu.kanade.tachiyomi.R
 
 /**
  * Fragment that shows the manga from the catalogue. Inherit CatalogueFragment.

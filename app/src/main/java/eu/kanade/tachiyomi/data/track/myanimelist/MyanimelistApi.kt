@@ -3,11 +3,11 @@ package eu.kanade.tachiyomi.data.track.myanimelist
 import android.net.Uri
 import android.util.Xml
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.network.GET
-import eu.kanade.tachiyomi.data.network.POST
-import eu.kanade.tachiyomi.data.network.asObservable
-import eu.kanade.tachiyomi.data.network.asObservableSuccess
 import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.network.GET
+import eu.kanade.tachiyomi.network.POST
+import eu.kanade.tachiyomi.network.asObservable
+import eu.kanade.tachiyomi.network.asObservableSuccess
 import eu.kanade.tachiyomi.util.selectInt
 import eu.kanade.tachiyomi.util.selectText
 import okhttp3.*

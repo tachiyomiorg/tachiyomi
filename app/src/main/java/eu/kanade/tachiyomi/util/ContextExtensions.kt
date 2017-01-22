@@ -2,7 +2,10 @@ package eu.kanade.tachiyomi.util
 
 import android.app.Notification
 import android.app.NotificationManager
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.net.ConnectivityManager
@@ -10,6 +13,7 @@ import android.os.PowerManager
 import android.support.annotation.StringRes
 import android.support.v4.app.NotificationCompat
 import android.support.v4.content.ContextCompat
+import android.support.v4.content.LocalBroadcastManager
 import android.widget.Toast
 
 /**
@@ -94,4 +98,41 @@ val Context.connectivityManager: ConnectivityManager
  */
 val Context.powerManager: PowerManager
     get() = getSystemService(Context.POWER_SERVICE) as PowerManager
+
+/**
+ * Function used to send a local broadcast asynchronous
+ *
+ * @param intent intent that contains broadcast information
+ */
+fun Context.sendLocalBroadcast(intent:Intent){
+    LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
+}
+
+/**
+ * Function used to send a local broadcast synchronous
+ *
+ * @param intent intent that contains broadcast information
+ */
+fun Context.sendLocalBroadcastSync(intent: Intent) {
+    LocalBroadcastManager.getInstance(this).sendBroadcastSync(intent)
+}
+
+/**
+ * Function used to register local broadcast
+ *
+ * @param receiver receiver that gets registered.
+ */
+fun Context.registerLocalReceiver(receiver: BroadcastReceiver, filter: IntentFilter ){
+    LocalBroadcastManager.getInstance(this).registerReceiver(receiver, filter)
+}
+
+/**
+ * Function used to unregister local broadcast
+ *
+ * @param receiver receiver that gets unregistered.
+ */
+fun Context.unregisterLocalReceiver(receiver: BroadcastReceiver){
+    LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver)
+}
+
 

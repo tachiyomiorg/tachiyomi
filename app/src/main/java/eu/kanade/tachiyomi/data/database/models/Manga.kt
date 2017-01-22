@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.data.database.models
 
-import eu.kanade.tachiyomi.data.source.model.SManga
+import eu.kanade.tachiyomi.source.model.SManga
 
 interface Manga : SManga {
 

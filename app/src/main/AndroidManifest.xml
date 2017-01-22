@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="eu.kanade.tachiyomi">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission
+        android:name="android.permission.READ_PHONE_STATE"
+        tools:node="remove" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
     <application
@@ -20,9 +21,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:theme="@style/Theme.Tachiyomi" >
-        <activity
-            android:name=".ui.main.MainActivity">
+        android:theme="@style/Theme.Tachiyomi">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,40 +31,40 @@
         </activity>
         <activity
             android:name=".ui.manga.MangaActivity"
-            android:parentActivityName=".ui.main.MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
             android:name=".ui.reader.ReaderActivity"
-            android:theme="@style/Theme.Reader">
-        </activity>
+            android:theme="@style/Theme.Reader" />
         <activity
             android:name=".ui.setting.SettingsActivity"
             android:label="@string/label_settings"
-            android:parentActivityName=".ui.main.MainActivity" >
-        </activity>
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
             android:name=".ui.category.CategoryActivity"
             android:label="@string/label_categories"
-            android:parentActivityName=".ui.main.MainActivity">
-        </activity>
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
             android:name=".ui.setting.SettingsDownloadsFragment$CustomLayoutPickerActivity"
             android:label="@string/app_name"
-            android:theme="@style/FilePickerTheme">
-        </activity>
+            android:theme="@style/FilePickerTheme" />
         <activity
             android:name=".ui.setting.AnilistLoginActivity"
             android:label="Anilist">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="anilist-auth"
                     android:scheme="tachiyomi" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.download.DownloadActivity"
+            android:launchMode="singleTop" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -73,26 +73,27 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
 
-        <service android:name=".data.library.LibraryUpdateService"
-            android:exported="false"/>
+        <receiver
+            android:name=".data.notification.NotificationReceiver"
+            android:exported="false" />
 
-        <service android:name=".data.download.DownloadService"
-            android:exported="false"/>
+        <service
+            android:name=".data.library.LibraryUpdateService"
+            android:exported="false" />
 
-        <service android:name=".data.track.TrackUpdateService"
-            android:exported="false"/>
+        <service
+            android:name=".data.download.DownloadService"
+            android:exported="false" />
 
-        <service android:name=".data.updater.UpdateDownloaderService"
-            android:exported="false"/>
-
-        <receiver android:name=".data.updater.UpdateNotificationReceiver"/>
-
-        <receiver android:name=".data.library.LibraryUpdateService$CancelUpdateReceiver" />
-
-        <receiver android:name=".ui.reader.notification.ImageNotificationReceiver" />
+        <service
+            android:name=".data.track.TrackUpdateService"
+            android:exported="false" />
+        <service
+            android:name=".data.updater.UpdateDownloaderService"
+            android:exported="false" />
 
         <meta-data
             android:name="eu.kanade.tachiyomi.data.glide.AppGlideModule"

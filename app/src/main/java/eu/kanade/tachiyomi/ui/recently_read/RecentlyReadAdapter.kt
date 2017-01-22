@@ -1,10 +1,10 @@
 package eu.kanade.tachiyomi.ui.recently_read
 
 import android.view.ViewGroup
-import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter4.FlexibleAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.MangaChapterHistory
-import eu.kanade.tachiyomi.data.source.SourceManager
+import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.util.inflate
 import uy.kohesive.injekt.injectLazy
 

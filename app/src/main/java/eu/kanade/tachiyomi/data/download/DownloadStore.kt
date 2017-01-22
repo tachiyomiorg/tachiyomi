@@ -5,8 +5,8 @@ import com.google.gson.Gson
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
-import eu.kanade.tachiyomi.data.source.SourceManager
-import eu.kanade.tachiyomi.data.source.online.OnlineSource
+import eu.kanade.tachiyomi.source.SourceManager
+import eu.kanade.tachiyomi.source.online.HttpSource
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -93,7 +93,7 @@ class DownloadStore(context: Context) {
                 val manga = cachedManga.getOrPut(mangaId) {
                     db.getManga(mangaId).executeAsBlocking()
                 } ?: continue
-                val source = sourceManager.get(manga.source) as? OnlineSource ?: continue
+                val source = sourceManager.get(manga.source) as? HttpSource ?: continue
                 val chapter = db.getChapter(chapterId).executeAsBlocking() ?: continue
                 downloads.add(Download(source, manga, chapter))
             }

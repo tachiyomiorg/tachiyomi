@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.ui.recent_updates
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter4.FlexibleAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.inflate
 import java.util.*

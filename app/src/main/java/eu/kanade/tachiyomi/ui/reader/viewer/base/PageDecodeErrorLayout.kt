@@ -4,7 +4,7 @@ import android.net.Uri
 import android.support.v4.content.ContextCompat
 import android.view.View
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import kotlinx.android.synthetic.main.page_decode_error.view.*
 

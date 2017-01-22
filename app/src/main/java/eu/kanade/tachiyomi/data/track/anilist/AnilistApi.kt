@@ -5,7 +5,7 @@ import com.github.salomonbrys.kotson.int
 import com.github.salomonbrys.kotson.string
 import com.google.gson.JsonObject
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.network.POST
+import eu.kanade.tachiyomi.network.POST
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody

@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.ui.latest_updates
 
-import eu.kanade.tachiyomi.data.source.CatalogueSource
-import eu.kanade.tachiyomi.data.source.Source
-import eu.kanade.tachiyomi.data.source.model.FilterList
+import eu.kanade.tachiyomi.source.CatalogueSource
+import eu.kanade.tachiyomi.source.Source
+import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.ui.catalogue.CataloguePresenter
 import eu.kanade.tachiyomi.ui.catalogue.Pager
 

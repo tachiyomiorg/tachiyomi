@@ -1,18 +1,22 @@
 package eu.kanade.tachiyomi.ui.catalogue
 
 import android.os.Bundle
+import eu.davidea.flexibleadapter.items.IFlexible
+import eu.davidea.flexibleadapter.items.ISectionable
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
-import eu.kanade.tachiyomi.data.source.CatalogueSource
-import eu.kanade.tachiyomi.data.source.Source
-import eu.kanade.tachiyomi.data.source.SourceManager
-import eu.kanade.tachiyomi.data.source.model.FilterList
-import eu.kanade.tachiyomi.data.source.model.SManga
-import eu.kanade.tachiyomi.data.source.online.LoginSource
+import eu.kanade.tachiyomi.source.CatalogueSource
+import eu.kanade.tachiyomi.source.Source
+import eu.kanade.tachiyomi.source.SourceManager
+import eu.kanade.tachiyomi.source.model.Filter
+import eu.kanade.tachiyomi.source.model.FilterList
+import eu.kanade.tachiyomi.source.model.SManga
+import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
+import eu.kanade.tachiyomi.ui.catalogue.filter.*
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -68,6 +72,12 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      * Modifiable list of filters.
      */
     var sourceFilters = FilterList()
+        set(value) {
+            field = value
+            filterItems = value.toItems()
+        }
+
+    var filterItems: List<IFlexible<*>> = emptyList()
 
     /**
      * List of filters used by the [Pager]. If empty alongside [query], the popular query is used.
@@ -153,6 +163,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
                 .observeOn(Schedulers.io())
                 .map { it.first to it.second.map { networkToLocalManga(it, sourceId) } }
                 .doOnNext { initializeMangas(it.second) }
+                .map { it.first to it.second.map(::CatalogueItem) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeReplay({ view, pair ->
                     view.onAddPage(pair.first, pair.second)
@@ -360,6 +371,43 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
 
     open fun createPager(query: String, filters: FilterList): Pager {
         return CataloguePager(source, query, filters)
+    }
+
+    private fun FilterList.toItems(): List<IFlexible<*>> {
+        return mapNotNull {
+            when (it) {
+                is Filter.Header -> HeaderItem(it)
+                is Filter.Separator -> SeparatorItem(it)
+                is Filter.CheckBox -> CheckboxItem(it)
+                is Filter.TriState -> TriStateItem(it)
+                is Filter.Text -> TextItem(it)
+                is Filter.Select<*> -> SelectItem(it)
+                is Filter.Group<*> -> {
+                    val group = GroupItem(it)
+                    val subItems = it.state.mapNotNull {
+                        when (it) {
+                            is Filter.CheckBox -> CheckboxSectionItem(it)
+                            is Filter.TriState -> TriStateSectionItem(it)
+                            is Filter.Text -> TextSectionItem(it)
+                            is Filter.Select<*> -> SelectSectionItem(it)
+                            else -> null
+                        } as? ISectionable<*, *>
+                    }
+                    subItems.forEach { it.header = group }
+                    group.subItems = subItems
+                    group
+                }
+                is Filter.Sort -> {
+                    val group = SortGroup(it)
+                    val subItems = it.values.mapNotNull {
+                        SortItem(it, group)
+                    }
+                    group.subItems = subItems
+                    group
+                }
+                else -> null
+            }
+        }
     }
 
 }

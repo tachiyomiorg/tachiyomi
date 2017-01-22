@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.ui.reader.viewer.base
 
 import com.davemorrissey.labs.subscaleview.decoder.*
 import eu.kanade.tachiyomi.data.preference.getOrDefault
-import eu.kanade.tachiyomi.data.source.model.Page
+import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.base.fragment.BaseFragment
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.reader.ReaderChapter
@@ -21,14 +21,14 @@ abstract class BaseReader : BaseFragment() {
         const val IMAGE_DECODER = 0
 
         /**
-         * Skia decoder.
-         */
-        const val SKIA_DECODER = 1
-
-        /**
          * Rapid decoder.
          */
-        const val RAPID_DECODER = 2
+        const val RAPID_DECODER = 1
+
+        /**
+         * Skia decoder.
+         */
+        const val SKIA_DECODER = 2
     }
 
     /**
@@ -233,13 +233,13 @@ abstract class BaseReader : BaseFragment() {
                 bitmapDecoderClass = IImageDecoder::class.java
                 regionDecoderClass = IImageRegionDecoder::class.java
             }
-            SKIA_DECODER -> {
-                bitmapDecoderClass = SkiaImageDecoder::class.java
-                regionDecoderClass = SkiaImageRegionDecoder::class.java
-            }
             RAPID_DECODER -> {
                 bitmapDecoderClass = RapidImageDecoder::class.java
                 regionDecoderClass = RapidImageRegionDecoder::class.java
+            }
+            SKIA_DECODER -> {
+                bitmapDecoderClass = SkiaImageDecoder::class.java
+                regionDecoderClass = SkiaImageRegionDecoder::class.java
             }
         }
     }

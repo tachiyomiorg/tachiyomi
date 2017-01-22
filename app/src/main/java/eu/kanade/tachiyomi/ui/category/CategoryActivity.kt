@@ -6,16 +6,15 @@ import android.os.Bundle
 import android.support.v7.view.ActionMode
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter.helpers.UndoHelper
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.ui.base.activity.BaseRxActivity
-import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
-import eu.kanade.tachiyomi.ui.base.adapter.OnStartDragListener
 import kotlinx.android.synthetic.main.activity_edit_categories.*
 import kotlinx.android.synthetic.main.toolbar.*
 import nucleus.factory.RequiresPresenter
@@ -29,7 +28,10 @@ import nucleus.factory.RequiresPresenter
 @RequiresPresenter(CategoryPresenter::class)
 class CategoryActivity :
         BaseRxActivity<CategoryPresenter>(),
-        ActionMode.Callback, FlexibleViewHolder.OnListItemClickListener, OnStartDragListener {
+        ActionMode.Callback,
+        FlexibleAdapter.OnItemClickListener,
+        FlexibleAdapter.OnItemLongClickListener,
+        UndoHelper.OnUndoListener {
 
     /**
      * Object used to show actionMode toolbar.
@@ -40,11 +42,6 @@ class CategoryActivity :
      * Adapter containing category items.
      */
     private lateinit var adapter: CategoryAdapter
-
-    /**
-     * TouchHelper used for reorder animation and movement.
-     */
-    private lateinit var touchHelper: ItemTouchHelper
 
     companion object {
         /**
@@ -75,27 +72,17 @@ class CategoryActivity :
         recycler.setHasFixedSize(true)
         recycler.adapter = adapter
 
-        // Touch helper to drag and reorder categories
-        touchHelper = ItemTouchHelper(CategoryItemTouchHelper(adapter))
-        touchHelper.attachToRecyclerView(recycler)
+        adapter.isHandleDragEnabled = true
 
         // Create OnClickListener for creating new category
-        fab.setOnClickListener({ v ->
+        fab.setOnClickListener {
             MaterialDialog.Builder(this)
                     .title(R.string.action_add_category)
                     .negativeText(android.R.string.cancel)
                     .input(R.string.name, 0, false)
                     { dialog, input -> presenter.createCategory(input.toString()) }
                     .show()
-        })
-    }
-
-    /**
-     * Finishes action mode.
-     * Call this when action mode action is finished.
-     */
-    fun destroyActionModeIfNeeded() {
-        actionMode?.finish()
+        }
     }
 
     /**
@@ -103,19 +90,13 @@ class CategoryActivity :
      *
      * @param categories list containing categories
      */
-    fun setCategories(categories: List<Category>) {
-        destroyActionModeIfNeeded()
-        adapter.setItems(categories)
-    }
-
-    /**
-     * Returns the selected categories
-     *
-     * @return list of selected categories
-     */
-    private fun getSelectedCategories(): List<Category> {
-        // Create a list of the selected categories
-        return adapter.selectedItems.map { adapter.getItem(it) }
+    fun setCategories(categories: List<CategoryItem>) {
+        actionMode?.finish()
+        adapter.updateDataSet(categories.toMutableList())
+        val selected = categories.filter { it.isSelected }
+        if (selected.isNotEmpty()) {
+            selected.forEach { onItemLongClick(categories.indexOf(it)) }
+        }
     }
 
     /**
@@ -127,49 +108,9 @@ class CategoryActivity :
         MaterialDialog.Builder(this)
                 .title(R.string.action_rename_category)
                 .negativeText(android.R.string.cancel)
-                .onNegative { materialDialog, dialogAction -> destroyActionModeIfNeeded() }
                 .input(getString(R.string.name), category.name, false)
                 { dialog, input -> presenter.renameCategory(category, input.toString()) }
                 .show()
-    }
-
-    /**
-     * Toggle actionMode selection
-     *
-     * @param position position of selected item
-     */
-    private fun toggleSelection(position: Int) {
-        adapter.toggleSelection(position, false)
-
-        // Get selected item count
-        val count = adapter.selectedItemCount
-
-        // If no item is selected finish action mode
-        if (count == 0) {
-            actionMode?.finish()
-        } else {
-            // This block will only run if actionMode is not null
-            actionMode?.let {
-
-                // Set title equal to selected item
-                it.title = getString(R.string.label_selected, count)
-                it.invalidate()
-
-                // Show edit button only when one item is selected
-                val editItem = it.menu.findItem(R.id.action_edit)
-                editItem.isVisible = count == 1
-            }
-        }
-    }
-
-    /**
-     * Called each time the action mode is shown.
-     * Always called after onCreateActionMode
-     *
-     * @return false
-     */
-    override fun onPrepareActionMode(actionMode: ActionMode, menu: Menu): Boolean {
-        return false
     }
 
     /**
@@ -183,12 +124,26 @@ class CategoryActivity :
     override fun onActionItemClicked(actionMode: ActionMode, menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
             R.id.action_delete -> {
-                // Delete select categories.
-                presenter.deleteCategories(getSelectedCategories())
+                UndoHelper(adapter, this)
+                        .withAction(UndoHelper.ACTION_REMOVE, object : UndoHelper.OnActionListener {
+                            override fun onPreAction(): Boolean {
+                                adapter.selectedPositions.forEach { adapter.getItem(it).isSelected = false }
+                                return false
+                            }
+
+                            override fun onPostAction() {
+                                actionMode.finish()
+                            }
+                        })
+                        .remove(adapter.selectedPositions, recycler.parent as View,
+                                R.string.snack_categories_deleted, R.string.action_undo, 3000)
             }
             R.id.action_edit -> {
                 // Edit selected category
-                editCategory(getSelectedCategories()[0])
+                if (adapter.selectedItemCount == 1) {
+                    val position = adapter.selectedPositions.first()
+                    editCategory(adapter.getItem(position).category)
+                }
             }
             else -> return false
         }
@@ -212,14 +167,29 @@ class CategoryActivity :
     }
 
     /**
+     * Called each time the action mode is shown.
+     * Always called after onCreateActionMode
+     *
+     * @return false
+     */
+    override fun onPrepareActionMode(actionMode: ActionMode, menu: Menu): Boolean {
+        val count = adapter.selectedItemCount
+        actionMode.title = getString(R.string.label_selected, count)
+
+        // Show edit button only when one item is selected
+        val editItem = actionMode.menu.findItem(R.id.action_edit)
+        editItem.isVisible = count == 1
+        return true
+    }
+
+    /**
      * Called when action mode destroyed.
      *
      * @param mode ActionMode object.
      */
     override fun onDestroyActionMode(mode: ActionMode?) {
         // Reset adapter to single selection
-        adapter.mode = FlexibleAdapter.MODE_SINGLE
-        // Clear selected items
+        adapter.mode = FlexibleAdapter.MODE_IDLE
         adapter.clearSelection()
         actionMode = null
     }
@@ -229,11 +199,9 @@ class CategoryActivity :
      *
      * @param position position of clicked item.
      */
-    override fun onListItemClick(position: Int): Boolean {
+    override fun onItemClick(position: Int): Boolean {
         // Check if action mode is initialized and selected item exist.
-        if (position == -1) {
-            return false
-        } else if (actionMode != null) {
+        if (actionMode != null && position != RecyclerView.NO_POSITION) {
             toggleSelection(position)
             return true
         } else {
@@ -246,24 +214,52 @@ class CategoryActivity :
      *
      * @param position position of clicked item.
      */
-    override fun onListItemLongClick(position: Int) {
+    override fun onItemLongClick(position: Int) {
         // Check if action mode is initialized.
-        if (actionMode == null)
-        // Initialize action mode
+        if (actionMode == null) {
+            // Initialize action mode
             actionMode = startSupportActionMode(this)
+        }
 
         // Set item as selected
         toggleSelection(position)
     }
 
     /**
-     * Called when item is dragged
-     *
-     * @param viewHolder view that contains dragged item
+     * Toggle the selection state of an item.
+     * If the item was the last one in the selection and is unselected, the ActionMode is finished.
      */
-    override fun onStartDrag(viewHolder: RecyclerView.ViewHolder) {
-        // Notify touchHelper
-        touchHelper.startDrag(viewHolder)
+    private fun toggleSelection(position: Int) {
+        //Mark the position selected
+        adapter.toggleSelection(position)
+
+        if (adapter.selectedItemCount == 0) {
+            actionMode?.finish()
+        } else {
+            actionMode?.invalidate()
+        }
+    }
+
+    /**
+     * Called when an item is released from a drag.
+     */
+    fun onItemReleased() {
+        val categories = (0..adapter.itemCount-1).map { adapter.getItem(it).category }
+        presenter.reorderCategories(categories)
+    }
+
+    /**
+     * Called when the undo action is clicked in the snackbar.
+     */
+    override fun onUndoConfirmed(action: Int) {
+        adapter.restoreDeletedItems()
+    }
+
+    /**
+     * Called when the time to restore the items expires.
+     */
+    override fun onDeleteConfirmed(action: Int) {
+        presenter.deleteCategories(adapter.deletedItems.map { it.category })
     }
 
 }

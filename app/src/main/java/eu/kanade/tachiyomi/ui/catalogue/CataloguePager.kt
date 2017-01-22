@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.ui.catalogue
 
-import eu.kanade.tachiyomi.data.source.CatalogueSource
-import eu.kanade.tachiyomi.data.source.model.FilterList
-import eu.kanade.tachiyomi.data.source.model.MangasPage
+import eu.kanade.tachiyomi.source.CatalogueSource
+import eu.kanade.tachiyomi.source.model.FilterList
+import eu.kanade.tachiyomi.source.model.MangasPage
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers

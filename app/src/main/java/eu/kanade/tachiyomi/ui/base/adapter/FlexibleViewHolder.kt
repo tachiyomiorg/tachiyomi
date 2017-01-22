@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.ui.base.adapter
 import android.support.v7.widget.RecyclerView
 import android.view.View
 
-import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter4.FlexibleAdapter
 
 abstract class FlexibleViewHolder(view: View,
                                   private val adapter: FlexibleAdapter<*, *>,
