@@ -224,6 +224,7 @@
     <string name="select_source">Select a source</string>
     <string name="no_valid_sources">Please enable at least one valid source</string>
     <string name="no_more_results">No more results</string>
+    <string name="local_source">Local mangas</string>
 
     <!-- Manga activity -->
     <string name="manga_not_in_db">This manga was removed from the database!</string>

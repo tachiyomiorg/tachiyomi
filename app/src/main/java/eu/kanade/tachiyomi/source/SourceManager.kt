@@ -48,6 +48,7 @@ open class SourceManager(private val context: Context) {
     }
 
     private fun createInternalSources(): List<Source> = listOf(
+            LocalSource(context),
             Batoto(),
             Mangahere(),
             Mangafox(),

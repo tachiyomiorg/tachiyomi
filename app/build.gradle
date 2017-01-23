@@ -179,6 +179,9 @@ dependencies {
     // Crash reports
     compile 'ch.acra:acra:4.9.2'
 
+    // Sort
+    compile 'com.github.gpanther:java-nat-sort:natural-comparator-1.1'
+
     // UI
     compile 'com.dmitrymalkovich.android:material-design-dimens:1.4'
     compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
