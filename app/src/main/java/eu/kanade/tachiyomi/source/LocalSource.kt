@@ -5,10 +5,10 @@ import android.net.Uri
 import android.os.Environment
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.model.*
+import eu.kanade.tachiyomi.util.ChapterRecognition
 import net.greypanther.natsort.CaseInsensitiveSimpleNaturalComparator
 import rx.Observable
 import java.util.*
-import java.util.regex.Pattern
 import java.util.zip.ZipInputStream
 import java.io.*
 
@@ -16,7 +16,6 @@ class LocalSource(private val context: Context) : CatalogueSource {
     private class OrderBy() : Filter.Sort("Order by", arrayOf("Title", "Date"), Filter.Sort.Selection(1, false))
 
     private val fileProtocol = "file://"
-    private val floatPattern = Pattern.compile("[0-9]+[.]?[0-9]*")
     private fun isImage(name: String) = name.endsWith(".jpg", true) || name.endsWith(".jpeg", true) || name.endsWith(".png", true) || name.endsWith(".gif", true)
 
     override val id = 0L;
@@ -38,11 +37,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
                         val chapNameCut = chapName.replace(manga.title, "", true)
                         name = if (chapNameCut.isEmpty()) chapName else chapNameCut
                         date_upload = chapterFile.lastModified()
-                        var chapNum = "0"
-                        val matcher = floatPattern.matcher(name)
-                        while (matcher.find())
-                            chapNum = matcher.group()
-                        chapter_number = chapNum.toFloat()
+                        ChapterRecognition.parseChapterNumber(this, manga)
                     }
                 }
         return Observable.just(chapters.sortedByDescending { it.chapter_number })
