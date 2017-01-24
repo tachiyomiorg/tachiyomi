@@ -89,8 +89,8 @@ class MangaModelLoader(context: Context) : StreamModelLoader<Manga> {
             return null
         }
 
-        if (url!!.startsWith("file:/"))
-            return FileLoader(baseFileLoader).getResourceFetcher(File(url.substring(6)), width, height)
+        if (url!!.startsWith("file://"))
+            return FileLoader(baseFileLoader).getResourceFetcher(File(url.substring(7)), width, height)
 
         // Obtain the request url and the file for this url from the LRU cache, or calculate it
         // and add them to the cache.
