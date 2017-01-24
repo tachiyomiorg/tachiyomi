@@ -76,6 +76,11 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
+        <provider
+            android:name="eu.kanade.tachiyomi.util.ZipContentProvider"
+            android:authorities="${applicationId}.zip-provider"
+            android:exported="false"></provider>
+
         <receiver
             android:name=".data.notification.NotificationReceiver"
             android:exported="false" />
