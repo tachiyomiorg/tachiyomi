@@ -10,14 +10,16 @@ import eu.kanade.tachiyomi.util.ZipContentProvider
 import net.greypanther.natsort.CaseInsensitiveSimpleNaturalComparator
 import rx.Observable
 import java.io.File
+import java.net.URLConnection
 import java.util.*
+import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 
 class LocalSource(private val context: Context) : CatalogueSource {
-    private class OrderBy() : Filter.Sort("Order by", arrayOf("Title", "Date"), Filter.Sort.Selection(1, false))
+    private class OrderBy() : Filter.Sort("Order by", arrayOf("Title", "Date"), Filter.Sort.Selection(0, true))
 
     private val fileProtocol = "file://"
-    private fun isImage(name: String) = name.endsWith(".jpg", true) || name.endsWith(".jpeg", true) || name.endsWith(".png", true) || name.endsWith(".gif", true)
+    private fun isImage(name: String) = URLConnection.guessContentTypeFromName(name).orEmpty().startsWith("image/")
 
     override val id = 0L;
     override val name = "LocalSource"
@@ -49,13 +51,16 @@ class LocalSource(private val context: Context) : CatalogueSource {
         if (chapFile.isDirectory)
             return Observable.just(chapFile.listFiles()
                     .filter { !it.isDirectory && isImage(it.name) }
-                    .sortedWith(Comparator<File> { t1, t2 -> CaseInsensitiveSimpleNaturalComparator.getInstance<String>().compare(t1.nameWithoutExtension, t2.nameWithoutExtension) })
+                    .sortedWith(Comparator<File> { t1, t2 -> CaseInsensitiveSimpleNaturalComparator.getInstance<String>().compare(t1.name, t2.name) })
                     .mapIndexed { i, v -> Page(i, fileProtocol + v.absolutePath, fileProtocol + v.absolutePath, Uri.fromFile(v)).apply { status = Page.READY } })
         else
             return Observable.just(ZipFile(chapFile).entries().toList()
-                    .filter { !it.isDirectory && isImage(it.name) }.map { entry ->
-                "content://${ZipContentProvider.PROVIDER}${chapFile.absolutePath}!/${entry.name}"
-            }.mapIndexed { i, v -> Page(i, v, v, Uri.parse(v)).apply { status = Page.READY } })
+                    .filter { !it.isDirectory && isImage(it.name) }
+                    .sortedWith(Comparator<ZipEntry> { t1, t2 -> CaseInsensitiveSimpleNaturalComparator.getInstance<String>().compare(t1.name, t2.name) })
+                    .mapIndexed { i, v ->
+                        val path = "content://${ZipContentProvider.PROVIDER}${chapFile.absolutePath}!/${v.name}"
+                        Page(i, path, path, Uri.parse(path)).apply { status = Page.READY }
+                    })
     }
 
     override fun fetchPopularManga(page: Int) = fetchSearchManga(page, "", getFilterList())

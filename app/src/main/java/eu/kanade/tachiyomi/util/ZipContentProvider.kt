@@ -6,13 +6,12 @@ import android.content.res.AssetFileDescriptor
 import android.database.Cursor
 import android.net.Uri
 import android.os.ParcelFileDescriptor
-import android.webkit.MimeTypeMap
 import eu.kanade.tachiyomi.BuildConfig
 import timber.log.Timber
 import java.io.IOException
 import java.net.URL
+import java.net.URLConnection
 import java.util.concurrent.Executors
-import kotlin.concurrent.thread
 
 class ZipContentProvider : ContentProvider() {
 
@@ -27,8 +26,7 @@ class ZipContentProvider : ContentProvider() {
     }
 
     override fun getType(uri: Uri): String? {
-        val ext = MimeTypeMap.getFileExtensionFromUrl(uri.toString())
-        return MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext)
+        return URLConnection.guessContentTypeFromName(uri.toString())
     }
 
     override fun openAssetFile(uri: Uri, mode: String): AssetFileDescriptor? {
