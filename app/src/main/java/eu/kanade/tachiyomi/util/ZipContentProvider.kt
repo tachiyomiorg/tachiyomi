@@ -8,11 +8,15 @@ import android.net.Uri
 import android.os.ParcelFileDescriptor
 import android.webkit.MimeTypeMap
 import eu.kanade.tachiyomi.BuildConfig
+import timber.log.Timber
 import java.io.IOException
 import java.net.URL
+import java.util.concurrent.Executors
 import kotlin.concurrent.thread
 
 class ZipContentProvider : ContentProvider() {
+
+    private val pool by lazy { Executors.newCachedThreadPool() }
 
     companion object {
         const val PROVIDER = "${BuildConfig.APPLICATION_ID}.zip-provider"
@@ -32,17 +36,17 @@ class ZipContentProvider : ContentProvider() {
             val url = "jar:file://" + uri.toString().substringAfter("content://$PROVIDER")
             val input = URL(url).openStream()
             val pipe = ParcelFileDescriptor.createPipe()
-            thread {
-                val output = ParcelFileDescriptor.AutoCloseOutputStream(pipe[1])
-                input.use {
-                    output.use {
-                        try {
+            pool.execute {
+                try {
+                    val output = ParcelFileDescriptor.AutoCloseOutputStream(pipe[1])
+                    input.use {
+                        output.use {
                             input.copyTo(output)
-                        } catch (e: IOException) {
-                            e.printStackTrace()
+                            output.flush()
                         }
-                        output.flush()
                     }
+                } catch (e: IOException) {
+                    Timber.e(e)
                 }
             }
             return AssetFileDescriptor(pipe[0], 0, -1)
@@ -51,11 +55,11 @@ class ZipContentProvider : ContentProvider() {
         }
     }
 
-    override fun insert(p0: Uri?, p1: ContentValues?): Uri {
-        throw UnsupportedOperationException("not implemented")
+    override fun query(p0: Uri?, p1: Array<out String>?, p2: String?, p3: Array<out String>?, p4: String?): Cursor? {
+        return null
     }
 
-    override fun query(p0: Uri?, p1: Array<out String>?, p2: String?, p3: Array<out String>?, p4: String?): Cursor {
+    override fun insert(p0: Uri?, p1: ContentValues?): Uri {
         throw UnsupportedOperationException("not implemented")
     }
 
