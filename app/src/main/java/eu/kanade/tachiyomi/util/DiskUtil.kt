@@ -9,7 +9,7 @@ import java.security.NoSuchAlgorithmException
 object DiskUtil {
 
     fun isImage(name: String, openStream: (() -> InputStream)? = null): Boolean {
-        var contentType = URLConnection.guessContentTypeFromName(name)
+        val contentType = URLConnection.guessContentTypeFromName(name)
         if (contentType != null)
             return contentType.startsWith("image/")
 
