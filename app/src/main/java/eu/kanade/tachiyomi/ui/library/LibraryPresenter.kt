@@ -13,6 +13,7 @@ import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.util.combineLatest
@@ -345,6 +346,11 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
      */
     @Throws(IOException::class)
     fun editCoverWithStream(inputStream: InputStream, manga: Manga): Boolean {
+        if (manga.source == LocalSource.ID) {
+            LocalSource.updateCover(manga, inputStream)
+            return true
+        }
+
         if (manga.thumbnail_url != null && manga.favorite) {
             coverCache.copyToCache(manga.thumbnail_url!!, inputStream)
             return true

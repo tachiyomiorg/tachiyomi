@@ -15,6 +15,7 @@ import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackUpdateService
+import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.source.online.HttpSource
@@ -539,6 +540,12 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
      */
     internal fun setImageAsCover(page: Page) {
         try {
+            if (manga.source == LocalSource.ID) {
+                LocalSource.updateCover(manga, page.url, context)
+                context.toast(R.string.cover_updated)
+                return
+            }
+
             val thumbUrl = manga.thumbnail_url ?: throw Exception("Image url not found")
             if (manga.favorite) {
                 val input = context.contentResolver.openInputStream(page.uri)

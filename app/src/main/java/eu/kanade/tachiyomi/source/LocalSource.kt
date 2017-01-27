@@ -12,16 +12,38 @@ import net.greypanther.natsort.CaseInsensitiveSimpleNaturalComparator
 import rx.Observable
 import java.io.File
 import java.io.FileInputStream
+import java.io.InputStream
 import java.util.*
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 
 class LocalSource(private val context: Context) : CatalogueSource {
+    companion object {
+        private val FILE_PROTOCOL = "file://"
+        private val COVER_NAME = "cover.jpg"
+        val ID = 0L
+        fun updateCover(manga: SManga, inputStream: InputStream) {
+            val coverUrl = manga.url + File.separator + COVER_NAME
+            File(coverUrl.substring(FILE_PROTOCOL.length)).outputStream().use {
+                inputStream.copyTo(it)
+                it.flush()
+                manga.thumbnail_url = coverUrl
+            }
+        }
+
+        fun updateCover(manga: SManga, url: String, context: Context) {
+            (if (url.startsWith(FILE_PROTOCOL))
+                File(url.substring(FILE_PROTOCOL.length)).inputStream()
+            else
+                context.contentResolver.openInputStream(Uri.parse(url))).use {
+                updateCover(manga, it)
+            }
+        }
+    }
+
     private class OrderBy() : Filter.Sort("Order by", arrayOf("Title", "Date"), Filter.Sort.Selection(0, true))
 
-    private val fileProtocol = "file://"
-
-    override val id = 0L;
+    override val id = ID
     override val name = "LocalSource"
     override val lang = "en"
     override val supportsLatest = false
@@ -31,11 +53,11 @@ class LocalSource(private val context: Context) : CatalogueSource {
     override fun fetchMangaDetails(manga: SManga) = Observable.just(manga)
 
     override fun fetchChapterList(manga: SManga): Observable<List<SChapter>> {
-        val chapters = File(manga.url.substring((7))).listFiles()
+        val chapters = File(manga.url.substring((FILE_PROTOCOL.length))).listFiles()
                 .filter { it.isDirectory || it.extension.equals("zip", true) || it.extension.equals("cbz", true) }
                 .map { chapterFile ->
                     SChapter.create().apply {
-                        url = fileProtocol + chapterFile.absolutePath
+                        url = FILE_PROTOCOL + chapterFile.absolutePath
                         val chapName = if (chapterFile.isDirectory) chapterFile.name else chapterFile.nameWithoutExtension
                         val chapNameCut = chapName.replace(manga.title, "", true)
                         name = if (chapNameCut.isEmpty()) chapName else chapNameCut
@@ -47,12 +69,12 @@ class LocalSource(private val context: Context) : CatalogueSource {
     }
 
     override fun fetchPageList(chapter: SChapter): Observable<List<Page>> {
-        val chapFile = File(chapter.url.substring(7))
+        val chapFile = File(chapter.url.substring(FILE_PROTOCOL.length))
         if (chapFile.isDirectory) {
             return Observable.just(chapFile.listFiles()
                     .filter { !it.isDirectory && DiskUtil.isImage(it.name, { FileInputStream(it) }) }
                     .sortedWith(Comparator<File> { t1, t2 -> CaseInsensitiveSimpleNaturalComparator.getInstance<String>().compare(t1.name, t2.name) })
-                    .mapIndexed { i, v -> Page(i, fileProtocol + v.absolutePath, fileProtocol + v.absolutePath, Uri.fromFile(v)).apply { status = Page.READY } })
+                    .mapIndexed { i, v -> Page(i, FILE_PROTOCOL + v.absolutePath, FILE_PROTOCOL + v.absolutePath, Uri.fromFile(v)).apply { status = Page.READY } })
         } else {
             val zip = ZipFile(chapFile)
             return Observable.just(ZipFile(chapFile).entries().toList()
@@ -90,9 +112,18 @@ class LocalSource(private val context: Context) : CatalogueSource {
         val mangas = mangaDirs.map { mangaDir ->
             SManga.create().apply {
                 title = mangaDir.name
-                url = fileProtocol + mangaDir.absolutePath
-                val coverPath = mangaDir.absolutePath + File.separator + "cover.jpg"
-                if (File(coverPath).exists()) thumbnail_url = fileProtocol + coverPath
+                url = FILE_PROTOCOL + mangaDir.absolutePath
+                if (File(mangaDir, COVER_NAME).exists()) {
+                    thumbnail_url = url + File.separator + COVER_NAME
+                } else {
+                    var p = url.substring(0)
+                    p = p.substring(0)
+                    val chapters = fetchChapterList(this).toBlocking().first()
+                    if (chapters.isNotEmpty()) {
+                        val url = fetchPageList(chapters.last()).toBlocking().first().firstOrNull()?.url
+                        if (url != null) updateCover(this, url, context)
+                    }
+                }
                 initialized = true
             }
         }
