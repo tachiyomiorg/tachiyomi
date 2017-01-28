@@ -14,6 +14,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
 import java.util.*
+import java.util.concurrent.TimeUnit
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 
@@ -21,6 +22,9 @@ class LocalSource(private val context: Context) : CatalogueSource {
     companion object {
         private val FILE_PROTOCOL = "file://"
         private val COVER_NAME = "cover.jpg"
+        private val POPULAR_FILTERS = FilterList(OrderBy())
+        private val LATEST_FILTERS = FilterList(OrderBy().apply { state = Filter.Sort.Selection(1, false) })
+        private val LATEST_THRESHOLD = TimeUnit.MILLISECONDS.convert(7, TimeUnit.DAYS)
         val ID = 0L
         fun updateCover(manga: SManga, inputStream: InputStream) {
             val coverUrl = manga.url + File.separator + COVER_NAME
@@ -46,7 +50,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
     override val id = ID
     override val name = "LocalSource"
     override val lang = "en"
-    override val supportsLatest = false
+    override val supportsLatest = true
 
     override fun toString() = context.getString(R.string.local_source)
 
@@ -87,14 +91,16 @@ class LocalSource(private val context: Context) : CatalogueSource {
         }
     }
 
-    override fun fetchPopularManga(page: Int) = fetchSearchManga(page, "", getFilterList())
+    override fun fetchPopularManga(page: Int) = fetchSearchManga(page, "", POPULAR_FILTERS)
 
     override fun fetchSearchManga(page: Int, query: String, filters: FilterList): Observable<MangasPage> {
         val mangaBaseDir = File(Environment.getExternalStorageDirectory().absolutePath +
                 File.separator + context.getString(R.string.app_name), "local")
+
+        val time = if (filters === LATEST_FILTERS) System.currentTimeMillis() - LATEST_THRESHOLD else 0L
         var mangaDirs = mangaBaseDir.listFiles()
-                .filter { it.isDirectory && it.name.contains(query, true) }
-        val state = ((if (filters.isEmpty()) getFilterList() else filters).get(0) as OrderBy).state
+                .filter { it.isDirectory && if (time == 0L) it.name.contains(query, true) else it.lastModified() >= time }
+        val state = ((if (filters.isEmpty()) POPULAR_FILTERS else filters).get(0) as OrderBy).state
         when (state?.index) {
             0 -> {
                 if (state!!.ascending)
@@ -130,9 +136,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
         return Observable.from(arrayOf(MangasPage(mangas, false)))
     }
 
-    override fun fetchLatestUpdates(page: Int): Observable<MangasPage> {
-        throw UnsupportedOperationException("not implemented")
-    }
+    override fun fetchLatestUpdates(page: Int) = fetchSearchManga(page, "", LATEST_FILTERS)
 
     override fun getFilterList() = FilterList(OrderBy())
 }
