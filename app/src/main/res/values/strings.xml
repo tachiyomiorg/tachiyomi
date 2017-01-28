@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tachiyomi</string>
+    <string name="app_name" translatable="false">Tachiyomi</string>
 
     <string name="name">Name</string>
 

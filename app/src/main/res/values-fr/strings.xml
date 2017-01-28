@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">Tachiyomi</string>
-
     <string name="name">Nom</string>
 
     <!-- Activities and fragments labels (toolbar title) -->

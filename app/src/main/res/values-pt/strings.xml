@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Tachiyomi</string>
-
     <string name="name">Nome</string>
 
     <!-- Activities and fragments labels (toolbar title) -->

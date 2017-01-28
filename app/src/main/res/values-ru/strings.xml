@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Tachiyomi</string>
     <string name="action_add">Добавить</string>
     <string name="action_add_category">Добавить категорию</string>
     <string name="action_add_to_home_screen">Добавить на домашний экран</string>
