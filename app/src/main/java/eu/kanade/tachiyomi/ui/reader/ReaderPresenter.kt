@@ -541,7 +541,8 @@ class ReaderPresenter : BasePresenter<ReaderActivity>() {
     internal fun setImageAsCover(page: Page) {
         try {
             if (manga.source == LocalSource.ID) {
-                LocalSource.updateCover(manga, page.url, context)
+                val input = context.contentResolver.openInputStream(page.uri)
+                LocalSource.updateCover(context, manga, input)
                 context.toast(R.string.cover_updated)
                 return
             }

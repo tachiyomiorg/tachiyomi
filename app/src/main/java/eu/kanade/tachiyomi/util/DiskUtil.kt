@@ -1,5 +1,9 @@
 package eu.kanade.tachiyomi.util
 
+import android.content.Context
+import android.os.Environment
+import android.support.v4.content.ContextCompat
+import android.support.v4.os.EnvironmentCompat
 import java.io.File
 import java.io.InputStream
 import java.net.URLConnection
@@ -70,8 +74,25 @@ object DiskUtil {
     }
 
     /**
+     * Returns the root folders of all the available external storages.
+     */
+    fun getExternalStorages(context: Context): List<File> {
+        return ContextCompat.getExternalFilesDirs(context, null)
+                .filterNotNull()
+                .mapNotNull {
+                    val file = File(it.absolutePath.substringBefore("/Android/"))
+                    val state = EnvironmentCompat.getStorageState(file)
+                    if (state == Environment.MEDIA_MOUNTED || state == Environment.MEDIA_MOUNTED_READ_ONLY) {
+                        file
+                    } else {
+                        null
+                    }
+                }
+    }
+
+    /**
      * Mutate the given filename to make it valid for a FAT filesystem,
-     * replacing any invalid characters with "_". This method doesn't allow private files (starting
+     * replacing any invalid characters with "_". This method doesn't allow hidden files (starting
      * with a dot), but you can manually add it later.
      */
     fun buildValidFilename(origName: String): String {

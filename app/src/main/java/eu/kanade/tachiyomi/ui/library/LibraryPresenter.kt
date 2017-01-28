@@ -347,7 +347,7 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
     @Throws(IOException::class)
     fun editCoverWithStream(inputStream: InputStream, manga: Manga): Boolean {
         if (manga.source == LocalSource.ID) {
-            LocalSource.updateCover(manga, inputStream)
+            LocalSource.updateCover(context, manga, inputStream)
             return true
         }
 
