@@ -28,16 +28,21 @@ class Mangachan : ParsedHttpSource() {
     }
 
     override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
+        var pageNum = 1
+        when {
+            page <  1 -> pageNum = 1
+            page >= 1 -> pageNum = page
+        }
         val url = if (query.isNotEmpty()) {
-            "$baseUrl/?do=search&subaction=search&story=$query"
+            "$baseUrl/?do=search&subaction=search&story=$query&search_start=$pageNum"
         } else {
             val filt = filters.filterIsInstance<Genre>().filter { !it.isIgnored() }
             if (filt.isNotEmpty()) {
                 var genres = ""
                 filt.forEach { genres += (if (it.isExcluded()) "-" else "") + it.id + '+' }
-                "$baseUrl/tags/${genres.dropLast(1)}"
+                "$baseUrl/tags/${genres.dropLast(1)}?offset=${20 * (pageNum - 1)}"
             } else {
-                "$baseUrl/?do=search&subaction=search&story=$query"
+                "$baseUrl/?do=search&subaction=search&story=$query&search_start=$pageNum"
             }
         }
         return GET(url, headers)
@@ -85,28 +90,29 @@ class Mangachan : ParsedHttpSource() {
 
     override fun searchMangaParse(response: Response): MangasPage {
         val document = response.asJsoup()
+        var hasNextPage = false
+
         val mangas = document.select(searchMangaSelector()).map { element ->
             searchMangaFromElement(element)
         }
 
-        // FIXME
-//        val allIgnore = filters.all { it.state == Filter.TriState.STATE_IGNORE }
-//        searchMangaNextPageSelector().let { selector ->
-//            if (page.nextPageUrl.isNullOrEmpty() && allIgnore) {
-//                val onClick = document.select(selector).first()?.attr("onclick")
-//                val pageNum = onClick?.substring(23, onClick.indexOf("); return(false)"))
-//                page.nextPageUrl = searchMangaInitialUrl(query, emptyList()) + "&search_start=" + pageNum
-//            }
-//        }
-//
-//        searchGenresNextPageSelector().let { selector ->
-//            if (page.nextPageUrl.isNullOrEmpty() && !allIgnore) {
-//                val url = document.select(selector).first()?.attr("href")
-//                page.nextPageUrl = searchMangaInitialUrl(query, filters) + url
-//            }
-//        }
+        val nextSearchPage = document.select(searchMangaNextPageSelector())
+        if (nextSearchPage.isNotEmpty()) {
+            val query = document.select("input#searchinput").first().attr("value")
+            val pageNum = nextSearchPage.let { selector ->
+                val onClick = selector.attr("onclick")
+                onClick?.split("""\\d+""")
+            }
+            nextSearchPage.attr("href", "$baseUrl/?do=search&subaction=search&story=$query&search_start=$pageNum")
+            hasNextPage = true
+        }
 
-        return MangasPage(mangas, false)
+        val nextGenresPage = document.select(searchGenresNextPageSelector())
+        if (nextGenresPage.isNotEmpty()) {
+            hasNextPage = true
+        }
+
+        return MangasPage(mangas, hasNextPage)
     }
 
     override fun mangaDetailsParse(document: Document): SManga {
