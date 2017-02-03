@@ -60,6 +60,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
     override fun fetchMangaDetails(manga: SManga) = Observable.just(manga)
 
     override fun fetchChapterList(manga: SManga): Observable<List<SChapter>> {
+        val comparator = CaseInsensitiveSimpleNaturalComparator.getInstance<String>()
         val chapters = getBaseDirectories(context)
                 .mapNotNull { File(it, manga.url).listFiles()?.toList() }
                 .flatten()
@@ -72,13 +73,16 @@ class LocalSource(private val context: Context) : CatalogueSource {
                         } else {
                             chapterFile.nameWithoutExtension
                         }
-                        val chapNameCut = chapName.replace(manga.title, "", true)
+                        val chapNameCut = chapName.replace(manga.title, "", true).trim()
                         name = if (chapNameCut.isEmpty()) chapName else chapNameCut
                         date_upload = chapterFile.lastModified()
                         ChapterRecognition.parseChapterNumber(this, manga)
                     }
                 }
-                .sortedByDescending { it.chapter_number }
+                .sortedWith(Comparator<SChapter> { c1, c2 ->
+                    val c = c2.chapter_number.compareTo(c1.chapter_number)
+                    if (c == 0) comparator.compare(c2.name, c1.name) else c
+                })
 
         return Observable.just(chapters)
     }
