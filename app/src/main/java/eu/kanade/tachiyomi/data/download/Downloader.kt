@@ -10,6 +10,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.download.model.DownloadQueue
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.source.online.HttpSource
@@ -236,6 +237,9 @@ class Downloader(private val context: Context, private val provider: DownloadPro
 
         // Initialize queue size.
         notifier.initialQueueSize = queue.size
+
+        // Initial multi-thread
+        notifier.multipleDownloadThreads = preferences.downloadThreads().getOrDefault() > 1
 
         if (isRunning) {
             // Send the list of downloads to the downloader.
