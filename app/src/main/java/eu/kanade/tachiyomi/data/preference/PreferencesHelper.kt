@@ -34,6 +34,8 @@ class PreferencesHelper(val context: Context) {
 
     fun rotation() = rxPrefs.getInteger(keys.rotation, 1)
 
+    fun rotationSwitchAlert() = rxPrefs.getInteger(keys.rotationSwitchAlert, 0)
+
     fun enableTransitions() = rxPrefs.getBoolean(keys.enableTransitions, true)
 
     fun showPageNumber() = rxPrefs.getBoolean(keys.showPageNumber, true)

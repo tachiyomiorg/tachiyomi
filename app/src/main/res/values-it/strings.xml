@@ -293,6 +293,7 @@
 
     <!-- Reader activity -->
     <string name="custom_filter">Filtro personalizzato</string>
+    <string name="switch_orientation">Scambia orientamento</string>
     <string name="set_as_cover">Imposta come copertina</string>
     <string name="cover_updated">Copertina aggiornata</string>
     <string name="page_downloaded">Pagina copiata in %1$s</string>
@@ -372,5 +373,6 @@
     <string name="download_notifier_page_ready_error">Non è stata caricata una pagina</string>
     <string name="download_notifier_text_only_wifi">Nessuna connessione Wi-Fi disponibile</string>
     <string name="download_notifier_no_network">Nessuna connessione di rete disponibile</string>
+    <string name="switch_orientation_alert">Tappa per cambiare orientamento. Tieni premuto per resettare.</string>
 
 </resources>

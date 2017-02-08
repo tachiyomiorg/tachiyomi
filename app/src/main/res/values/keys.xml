@@ -27,6 +27,7 @@
     <string name="pref_zoom_start_key" translatable="false">pref_zoom_start_key</string>
     <string name="pref_fullscreen_key" translatable="false">fullscreen</string>
     <string name="pref_rotation_type_key" translatable="false">pref_rotation_type_key</string>
+    <string name="pref_rotation_switch_alert_key">pref_rotation_switch_alert_key</string>
     <string name="pref_enable_transitions_key" translatable="false">pref_enable_transitions_key</string>
     <string name="pref_show_page_number_key" translatable="false">pref_show_page_number_key</string>
     <string name="pref_keep_screen_on_key" translatable="false">pref_keep_screen_on_key</string>

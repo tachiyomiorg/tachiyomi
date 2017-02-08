@@ -1,9 +1,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:gravity="center">
 
     <FrameLayout
         android:id="@+id/reader_container"
@@ -34,7 +34,19 @@
 
     </FrameLayout>
 
-    <FrameLayout
+    <View
+        android:id="@+id/brightness_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <View
+        android:id="@+id/color_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <RelativeLayout
         android:id="@+id/reader_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -50,23 +62,36 @@
             android:elevation="4dp"
             android:theme="?attr/actionBarTheme"/>
 
+        <ImageButton
+            android:id="@+id/switch_orientation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/reader_menu_bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="?attr/selectableItemBackground"
+            android:minHeight="40dp"
+            android:minWidth="40dp"
+            app:srcCompat="@drawable/ic_screen_rotation_black_24dp"/>
+
         <LinearLayout
             android:id="@+id/reader_menu_bottom"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="bottom"
-            android:gravity="center"
             android:background="?colorPrimary"
-            android:orientation="horizontal"
+            android:descendantFocusability="blocksDescendants"
             android:focusable="false"
-            android:descendantFocusability="blocksDescendants">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/left_chapter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/material_layout_keylines_screen_edge_margin"
                 android:background="?android:selectableItemBackground"
+                android:padding="@dimen/material_layout_keylines_screen_edge_margin"
                 app:srcCompat="@drawable/ic_skip_previous_white_24dp"/>
 
             <TextView
@@ -93,24 +118,12 @@
                 android:id="@+id/right_chapter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/material_layout_keylines_screen_edge_margin"
                 android:background="?android:selectableItemBackground"
+                android:padding="@dimen/material_layout_keylines_screen_edge_margin"
                 app:srcCompat="@drawable/ic_skip_next_white_24dp"/>
 
         </LinearLayout>
 
-    </FrameLayout>
-
-    <View
-        android:id="@+id/brightness_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"/>
-
-    <View
-        android:id="@+id/color_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"/>
+    </RelativeLayout>
 
 </FrameLayout>
