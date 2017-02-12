@@ -1,3 +1,7 @@
+# Catalogue requests
+
+* Catalogue requests should be created at https://github.com/inorichi/tachiyomi-extensions/issues, not here
+
 # Bugs
 * Include version (Setting > About > Version)
  * If not latest, try updating, it may have already been solved
