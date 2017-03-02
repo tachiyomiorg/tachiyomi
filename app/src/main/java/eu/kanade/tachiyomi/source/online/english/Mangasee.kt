@@ -4,6 +4,7 @@ import eu.kanade.tachiyomi.network.POST
 import eu.kanade.tachiyomi.source.model.*
 import eu.kanade.tachiyomi.source.online.ParsedHttpSource
 import okhttp3.FormBody
+import okhttp3.Headers
 import okhttp3.HttpUrl
 import okhttp3.Request
 import org.jsoup.nodes.Document
@@ -27,11 +28,16 @@ class Mangasee : ParsedHttpSource() {
 
     private val indexPattern = Pattern.compile("-index-(.*?)-")
 
+    private val catalogHeaders = Headers.Builder().apply {
+        add("User-Agent", "Mozilla/5.0 (Windows NT 6.3; WOW64)")
+        add("Host", "mangaseeonline.us")
+    }.build()
+
     override fun popularMangaSelector() = "div.requested > div.row"
 
     override fun popularMangaRequest(page: Int): Request {
         val (body, requestUrl) = convertQueryToPost(page, "$baseUrl/search/request.php?sortBy=popularity&sortOrder=descending")
-        return POST(requestUrl, headers, body.build())
+        return POST(requestUrl, catalogHeaders, body.build())
     }
 
     override fun popularMangaFromElement(element: Element): SManga {
@@ -74,7 +80,7 @@ class Mangasee : ParsedHttpSource() {
         if (genresNo.isNotEmpty()) url.addQueryParameter("genreNo", genresNo.joinToString(","))
 
         val (body, requestUrl) = convertQueryToPost(page, url.toString())
-        return POST(requestUrl, headers, body.build())
+        return POST(requestUrl, catalogHeaders, body.build())
     }
 
     private fun convertQueryToPost(page: Int, url: String): Pair<FormBody.Builder, String> {
@@ -164,7 +170,7 @@ class Mangasee : ParsedHttpSource() {
     override fun latestUpdatesRequest(page: Int): Request {
         val url = "http://mangaseeonline.net/home/latest.request.php"
         val (body, requestUrl) = convertQueryToPost(page, url)
-        return POST(requestUrl, headers, body.build())
+        return POST(requestUrl, catalogHeaders, body.build())
     }
 
     override fun latestUpdatesFromElement(element: Element): SManga {
