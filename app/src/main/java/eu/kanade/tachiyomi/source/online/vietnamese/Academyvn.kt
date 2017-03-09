@@ -103,7 +103,6 @@ class Academyvn : ParsedHttpSource() {
 
     override fun chapterFromElement(element: Element): SChapter {
         val urlElement = element.select("a").first()
-
         val chapter = SChapter.create()
         chapter.setUrlWithoutDomain(urlElement.attr("href"))
         chapter.name = urlElement.attr("title")
@@ -113,7 +112,6 @@ class Academyvn : ParsedHttpSource() {
 
     private fun parseChapterDate(date: String): Long {
         val dateWords: List<String> = date.split(" ")
-
         if (dateWords.size == 3) {
             val timeAgo = Integer.parseInt(dateWords[0])
             val dates: Calendar = Calendar.getInstance()
@@ -132,7 +130,6 @@ class Academyvn : ParsedHttpSource() {
             }
             return dates.timeInMillis
         }
-
         return 0L
     }
 
