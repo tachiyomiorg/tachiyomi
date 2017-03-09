@@ -68,6 +68,7 @@
     <string name="pref_last_catalogue_source_key" translatable="false">last_catalogue_source</string>
 
     <string name="pref_download_new_key" translatable="false">download_new</string>
+    <string name="pref_download_new_categories_key" translatable="false">download_new_categories</string>
 
     <!-- String Fonts -->
     <string name="font_roboto_medium" translatable="false">sans-serif</string>

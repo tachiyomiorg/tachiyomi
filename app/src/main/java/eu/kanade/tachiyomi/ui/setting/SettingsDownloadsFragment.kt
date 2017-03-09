@@ -19,10 +19,12 @@ import com.nononsenseapps.filepicker.FilePickerActivity
 import com.nononsenseapps.filepicker.FilePickerFragment
 import com.nononsenseapps.filepicker.LogicHandler
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.util.plusAssign
+import net.xpece.android.support.preference.MultiSelectListPreference
 import uy.kohesive.injekt.injectLazy
 import java.io.File
 
@@ -41,7 +43,11 @@ class SettingsDownloadsFragment : SettingsFragment() {
 
     private val preferences: PreferencesHelper by injectLazy()
 
+    private val db: DatabaseHelper by injectLazy()
+
     val downloadDirPref: Preference by bindPref(R.string.pref_download_directory_key)
+
+    val downloadCategory: MultiSelectListPreference by bindPref(R.string.pref_download_new_categories_key)
 
     override fun onViewCreated(view: View, savedState: Bundle?) {
         super.onViewCreated(view, savedState)
@@ -91,6 +97,29 @@ class SettingsDownloadsFragment : SettingsFragment() {
                     if (dir != null && dir.exists()) {
                         dir.createFile(".nomedia")
                     }
+                }
+
+        subscriptions += preferences.downloadNew().asObservable()
+                .subscribe { downloadCategory.isVisible = it }
+
+        val dbCategories = db.getCategories().executeAsBlocking()
+        downloadCategory.apply {
+            entries = dbCategories.map { it.name }.toTypedArray()
+            entryValues = dbCategories.map { it.id.toString() }.toTypedArray()
+        }
+
+        subscriptions += preferences.downloadNewCategories().asObservable()
+                .subscribe {
+                    val selectedCategories = it
+                            .mapNotNull { id -> dbCategories.find { it.id == id.toInt() } }
+                            .sortedBy { it.order }
+
+                    val summary = if (selectedCategories.isEmpty())
+                        getString(R.string.all)
+                    else
+                        selectedCategories.joinToString { it.name }
+
+                    downloadCategory.summary = summary
                 }
     }
 

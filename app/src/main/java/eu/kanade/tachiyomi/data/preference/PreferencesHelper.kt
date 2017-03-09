@@ -142,7 +142,9 @@ class PreferencesHelper(val context: Context) {
 
     fun hiddenCatalogues() = rxPrefs.getStringSet("hidden_catalogues", emptySet())
 
-    fun downloadNew() = prefs.getBoolean(keys.downloadNew, false)
+    fun downloadNew() = rxPrefs.getBoolean(keys.downloadNew, false)
+
+    fun downloadNewCategories() = rxPrefs.getStringSet(keys.downloadNewCategories, emptySet())
 
     fun lang() = prefs.getString(keys.lang, "")
 

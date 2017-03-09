@@ -93,6 +93,8 @@ class PreferenceKeys(context: Context) {
 
     val downloadNew = context.getString(R.string.pref_download_new_key)
 
+    val downloadNewCategories = context.getString(R.string.pref_download_new_categories_key)
+
     fun sourceUsername(sourceId: Long) = "pref_source_username_$sourceId"
 
     fun sourcePassword(sourceId: Long) = "pref_source_password_$sourceId"

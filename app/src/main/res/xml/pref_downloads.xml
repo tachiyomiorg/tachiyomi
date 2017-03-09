@@ -53,6 +53,10 @@
             android:key="@string/pref_download_new_key"
             android:title="@string/pref_download_new"/>
 
+        <MultiSelectListPreference
+            android:key="@string/pref_download_new_categories_key"
+            android:title="@string/pref_download_new_categories" />
+
     </PreferenceScreen>
 
 </PreferenceScreen>
