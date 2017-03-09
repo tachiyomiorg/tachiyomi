@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name" translatable="false">Tachiyomi</string>
     <string name="name">Name</string>
 
     <!-- Activities and fragments labels (toolbar title) -->
@@ -24,14 +25,14 @@
     <string name="action_sort_alpha">Theo bảng chữ cái</string>
     <string name="action_sort_last_read">Đọc gần nhất</string>
     <string name="action_sort_last_updated">Cập nhật mới nhất</string>
-    <string name="action_search">Tìm iếm</string>
+    <string name="action_search">Tìm kiếm</string>
     <string name="action_select_all">Chọn tất cả</string>
     <string name="action_mark_as_read">Đánh dấu là đã đọc</string>
     <string name="action_mark_as_unread">Đánh dấu là chưa đọc</string>
     <string name="action_mark_previous_as_read">Đánh dấu các chương trước là đã đọc</string>
     <string name="action_download">Tải xuống</string>
     <string name="action_bookmark">Đánh dấu</string>
-    <string name="action_remove_bookmark">Gỡ đánh dấu</string>
+    <string name="action_remove_bookmark">Bỏ đánh dấu</string>
     <string name="action_delete">Xóa</string>
     <string name="action_update">Cập nhật</string>
     <string name="action_update_library">Cập nhật thư viện</string>
@@ -90,7 +91,7 @@
     <string name="portrait">Dọc</string>
     <string name="landscape">Ngang</string>
     <string name="default_columns">Mặc định</string>
-    <string name="pref_library_update_interval">Thời gian cập nhật thư viện</string>
+    <string name="pref_library_update_interval">Lịch cập nhật thư viện</string>
     <string name="update_never">Thủ công</string>
     <string name="update_1hour">Mỗi giờ</string>
     <string name="update_2hour">Mỗi 2 giờ</string>
@@ -184,7 +185,7 @@
     <string name="cache_delete_error">Lỗi đã xày ra khi xóa bộ nhớ đệm</string>
     <string name="pref_clear_cookies">Dọn dẹp cookies</string>
     <string name="cookies_cleared">Cookies đã được dọn dẹp</string>
-    <string name="choices_reset">Dialog choices reset</string>
+    <string name="choices_reset">Thiết lập lại các hộp thoại</string>
     <string name="pref_clear_database">Dọn dẹp cơ sở dữ liệu</string>
     <string name="pref_clear_database_summary">Xóa các truyện và các chương không nằm trong thư viện</string>
     <string name="clear_database_confirmation">Bạn có chắc không? Các chương đã đọc và tiến độ đọc các truyện không nằm trong thư viện sẽ bị mất</string>
@@ -245,7 +246,7 @@
     <string name="rounded_icon">Biểu tượng hình chữ nhật</string>
     <string name="square_icon">Biểu tượng vuông</string>
     <string name="star_icon">Biểu tượng ngôi sao</string>
-    <string name="shortcut_title">Tiêu đề lối tắt</string>
+    <string name="shortcut_title">Tiêu đề của lối tắt</string>
     <string name="icon_shape">Kiểu biểu tượng</string>
     <string name="icon_creation_fail">Tạo lối tắt thất bại!</string>
 
