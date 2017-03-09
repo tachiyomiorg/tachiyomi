@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Tachiyomi</string>
-    <string name="name">Name</string>
+    <string name="name">Tên</string>
 
     <!-- Activities and fragments labels (toolbar title) -->
     <string name="label_settings">Cài đặt</string>
