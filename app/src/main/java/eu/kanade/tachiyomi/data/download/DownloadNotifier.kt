@@ -11,6 +11,7 @@ import eu.kanade.tachiyomi.data.notification.NotificationHandler
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.util.chop
 import eu.kanade.tachiyomi.util.notificationManager
+import java.util.regex.Pattern
 
 /**
  * DownloadNotifier is used to show notifications when downloading one or multiple chapters.
@@ -145,7 +146,8 @@ internal class DownloadNotifier(private val context: Context) {
             } else {
                 download?.let {
                     val title = it.manga.title.chop(15)
-                    val chapter = download.chapter.name.replaceFirst("$title[\\s]*[-]*[\\s]*".toRegex(RegexOption.IGNORE_CASE), "")
+                    val quotedTitle = Pattern.quote(title)
+                    val chapter = download.chapter.name.replaceFirst("$quotedTitle[\\s]*[-]*[\\s]*".toRegex(RegexOption.IGNORE_CASE), "")
                     setContentTitle("$title - $chapter".chop(30))
                     setContentText(context.getString(R.string.chapter_downloading_progress)
                             .format(it.downloadedImages, it.pages!!.size))
@@ -202,7 +204,8 @@ internal class DownloadNotifier(private val context: Context) {
         // Create notification.
         with(notification) {
             val title = download.manga.title.chop(15)
-            val chapter = download.chapter.name.replaceFirst("$title[\\s]*[-]*[\\s]*".toRegex(RegexOption.IGNORE_CASE), "")
+            val quotedTitle = Pattern.quote(title)
+            val chapter = download.chapter.name.replaceFirst("$quotedTitle[\\s]*[-]*[\\s]*".toRegex(RegexOption.IGNORE_CASE), "")
             setContentTitle("$title - $chapter".chop(30))
             setContentText(context.getString(R.string.update_check_notification_download_complete))
             setSmallIcon(android.R.drawable.stat_sys_download_done)
