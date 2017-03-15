@@ -288,13 +288,13 @@ class LibraryUpdateService : Service() {
                     if (newUpdates.isEmpty()) {
                         cancelNotification()
                     } else {
-     			showResultNotification(newUpdates, failedUpdates)
                         if (preferences.downloadNew().getOrDefault()) {
                             if (hasDownloads) {
                                 DownloadService.start(this)
                                 hasDownloads = false
                             }
                         }
+                        showResultNotification(newUpdates, failedUpdates)
                     }
                 }
     }
