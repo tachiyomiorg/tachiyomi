@@ -63,11 +63,6 @@ class LibraryUpdateService : Service() {
     val downloadManager: DownloadManager by injectLazy()
 
     /**
-     * Boolean to determine if [DownloadManager] has downloads
-     */
-    private var hasDownloads = false
-
-    /**
      * Wake lock that will be held until the service is destroyed.
      */
     private lateinit var wakeLock: PowerManager.WakeLock
@@ -246,9 +241,16 @@ class LibraryUpdateService : Service() {
     fun updateChapterList(mangaToUpdate: List<Manga>): Observable<Manga> {
         // Initialize the variables holding the progress of the updates.
         val count = AtomicInteger(0)
+        // List containing new updates
         val newUpdates = ArrayList<Manga>()
+        // list containing failed updates
         val failedUpdates = ArrayList<Manga>()
+        // List containing categories that get included in downloads.
         val categoriesToDownload = preferences.downloadNewCategories().getOrDefault().map(String::toInt)
+        // Boolean to determine if user wants to automatically download new chapters.
+        val downloadNew = preferences.downloadNew().getOrDefault()
+        // Boolean to determine if DownloadManager has downloads
+        var hasDownloads = false
 
         // Emit each manga and update it sequentially.
         return Observable.from(mangaToUpdate)
@@ -265,7 +267,7 @@ class LibraryUpdateService : Service() {
                             // Filter out mangas without new chapters (or failed).
                             .filter { pair -> pair.first.isNotEmpty() }
                             .doOnNext {
-                                if (preferences.downloadNew().getOrDefault()) {
+                                if (downloadNew) {
                                     if (categoriesToDownload.isEmpty() || manga.category in categoriesToDownload) {
                                         downloadChapters(manga, it.first)
                                         hasDownloads = true
@@ -289,7 +291,7 @@ class LibraryUpdateService : Service() {
                         cancelNotification()
                     } else {
                         showResultNotification(newUpdates, failedUpdates)
-                        if (preferences.downloadNew().getOrDefault()) {
+                        if (downloadNew) {
                             if (hasDownloads) {
                                 DownloadService.start(this)
                             }
