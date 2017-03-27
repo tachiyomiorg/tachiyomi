@@ -269,6 +269,7 @@
     <string name="sort_by_source">По источнику</string>
     <string name="sorting_mode">Метод сортировки</string>
     <string name="source_requires_login">Этот источник требует авторизации</string>
+    <string name="invalid_combination">Значение по умолчанию не может быть выбрано с другими категориями.</string>
     <string name="square_icon">Квадратная иконка</string>
     <string name="star_icon">Звездочная иконка</string>
     <string name="status">Статус</string>

@@ -5,7 +5,9 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.flexibleadapter.items.ISectionable
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.CatalogueSource
@@ -24,6 +26,7 @@ import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
+import java.util.ArrayList
 
 /**
  * Presenter of [CatalogueFragment].
@@ -394,6 +397,34 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
                 else -> null
             }
         }
+    }
+
+    fun getCategories(): List<Category> {
+        return arrayListOf(Category.createDefault()) + db.getCategories().executeAsBlocking()
+    }
+
+    fun getMangaCategoryIds(manga: Manga): Array<Int?> {
+        val categories = db.getCategoriesForManga(manga).executeAsBlocking()
+        if(categories.isEmpty()) {
+            return arrayListOf(Category.createDefault().id).toTypedArray()
+        }
+        return db.getCategoriesForManga(manga).executeAsBlocking().map { it.id }.toTypedArray()
+    }
+
+    /**
+     * Move the given list of manga to categories.
+     *
+     * @param categories the selected categories.
+     * @param mangas the list of manga to move.
+     */
+    fun moveMangasToCategories(categories: List<Category>, manga: Manga) {
+        val mc = ArrayList<MangaCategory>()
+
+        for (cat in categories) {
+            mc.add(MangaCategory.create(manga, cat))
+        }
+
+        db.setMangaCategories(mc, arrayListOf(manga))
     }
 
 }

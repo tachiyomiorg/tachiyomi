@@ -228,6 +228,7 @@
     <string name="no_valid_sources">Please enable at least one valid source</string>
     <string name="no_more_results">No more results</string>
     <string name="local_source">Local manga</string>
+    <string name="invalid_combination">Default can\'t be selected with other categories</string>
 
     <!-- Manga activity -->
     <string name="manga_not_in_db">This manga was removed from the database!</string>

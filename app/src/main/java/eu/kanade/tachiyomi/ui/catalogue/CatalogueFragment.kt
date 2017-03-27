@@ -34,6 +34,7 @@ import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.subjects.PublishSubject
 import java.util.concurrent.TimeUnit.MILLISECONDS
+import android.widget.Toast
 
 /**
  * Fragment that shows the manga from the catalogue.
@@ -534,19 +535,40 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(),
      */
     override fun onItemLongClick(position: Int) {
         val manga = (adapter.getItem(position) as? CatalogueItem?)?.manga ?: return
-
-        val textRes = if (manga.favorite) R.string.remove_from_library else R.string.add_to_library
+        val categories = presenter.getCategories()
 
         MaterialDialog.Builder(activity)
-                .items(getString(textRes))
-                .itemsCallback { dialog, itemView, which, text ->
-                    when (which) {
-                        0 -> {
-                            presenter.changeMangaFavorite(manga)
-                            adapter.notifyItemChanged(position)
+                .title(R.string.action_move_category)
+                .items(categories.map { it.name })
+                .itemsCallbackMultiChoice(presenter.getMangaCategoryIds(manga), object: MaterialDialog.ListCallbackMultiChoice {
+                    override fun onSelection(dialog: MaterialDialog, position: Array<Int>, text: Array<CharSequence>): Boolean {
+                        if (position.contains(0) && position.count() > 1) {
+                            dialog.setSelectedIndices(position.filter {it > 0}.toTypedArray())
+                            Toast.makeText(dialog.context, R.string.invalid_combination, Toast.LENGTH_SHORT).show()
                         }
+
+                        return true
                     }
-                }.show()
+                })
+                .alwaysCallMultiChoiceCallback()
+                .positiveText(android.R.string.ok)
+                .negativeText(android.R.string.cancel)
+                .onPositive { dialog, action ->
+                    val selectedCategories = dialog.selectedIndices?.map { categories[it] }
+
+                    if(!selectedCategories!!.isEmpty()) {
+                        if(!manga.favorite) {
+                            presenter.changeMangaFavorite(manga)
+                        }
+                        presenter.moveMangasToCategories(selectedCategories.filter { it.id != 0}, manga)
+                    } else {
+                        presenter.changeMangaFavorite(manga)
+                    }
+                    adapter.notifyItemChanged(position)
+                }
+                .build()
+                .show()
+
     }
 
 }

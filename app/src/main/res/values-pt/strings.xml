@@ -192,6 +192,7 @@
     <string name="source_requires_login">Esta fonte necessita que inicies a sessão</string>
     <string name="select_source">Selecionar a fonte</string>
     <string name="no_valid_sources">Por favor habilite pelo menos uma fonte valida</string>
+    <string name="invalid_combination">O padrão não pode ser selecionado com outras categorias</string>
 
     <!-- Manga info fragment -->
     <string name="manga_detail_tab">Informações</string>

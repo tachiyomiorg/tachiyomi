@@ -211,6 +211,7 @@
     <string name="source_requires_login">Cette source demande de vous identifier</string>
     <string name="select_source">Sélectionner une source</string>
     <string name="no_valid_sources">Veuillez au moins activer une source valide</string>
+    <string name="invalid_combination">La valeur par défaut ne peut pas être sélectionnée avec d\'autres catégories</string>
 
     <!-- Manga activity -->
     <string name="manga_not_in_db">Ce manga a été supprimé de la base de données !</string>
