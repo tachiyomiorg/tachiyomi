@@ -217,7 +217,6 @@
     <string name="source_requires_login">Questa fonte richiede credenziali di accesso</string>
     <string name="select_source">Selezionare una fonte</string>
     <string name="no_valid_sources">Per favore abilita almeno una fonte valida</string>
-    <string name="invalid_combination">Di default non può essere selezionata con altre categorie</string>
 
     <!-- Manga activity -->
     <string name="manga_not_in_db">Questo manga è stato rimosso dal database</string>

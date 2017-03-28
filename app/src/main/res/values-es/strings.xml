@@ -184,7 +184,6 @@
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Este sitio requiere que inicies sesión</string>
     <string name="select_source">Selecciona una fuente</string>
-    <string name="invalid_combination">El valor predeterminado no se puede seleccionar con otras categorías</string>
 
     <!-- Manga info fragment -->
     <string name="manga_detail_tab">Info</string>

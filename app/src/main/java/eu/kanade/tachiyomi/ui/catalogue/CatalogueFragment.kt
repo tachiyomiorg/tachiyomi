@@ -554,9 +554,9 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(),
                 .positiveText(android.R.string.ok)
                 .negativeText(android.R.string.cancel)
                 .onPositive { dialog, action ->
-                    val selectedCategories = dialog.selectedIndices?.map { categories[it] }
+                    val selectedCategories = dialog.selectedIndices?.map { categories[it] } ?: emptyList()
 
-                    if(!selectedCategories!!.isEmpty()) {
+                    if(!selectedCategories.isEmpty()) {
                         if(!manga.favorite) {
                             presenter.changeMangaFavorite(manga)
                         }

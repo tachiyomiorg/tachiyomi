@@ -222,7 +222,6 @@
     <string name="select_source">Изберете източник</string>
     <string name="no_valid_sources">Моля, изберете поне един източник.</string>
     <string name="no_more_results">Няма повече резултати.</string>
-    <string name="invalid_combination">По подразбиране не може да бъде избран с други категории</string>
 
     <!-- Manga activity -->
     <string name="manga_not_in_db">Тази манга беше премахната от базата данни!</string>

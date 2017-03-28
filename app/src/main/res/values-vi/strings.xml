@@ -222,7 +222,6 @@
     <string name="select_source">Chọn một nguồn truyện</string>
     <string name="no_valid_sources">Vui lòng chọn ít nhất một nguồn truyện hợp lệ</string>
     <string name="no_more_results">Không có thêm kết quả nào</string>
-    <string name="invalid_combination">Không thể chọn mặc định với các danh mục khác</string>
 
     <!-- Manga activity -->
     <string name="manga_not_in_db">Truyện này đã bị gỡ bỏ khỏi cơ sở dữ liệu!</string>
