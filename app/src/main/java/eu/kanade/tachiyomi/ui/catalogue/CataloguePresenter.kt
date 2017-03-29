@@ -412,12 +412,12 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
     }
 
     /**
-     * Move the given list of manga to categories.
+     * Move the given manga to categories.
      *
      * @param categories the selected categories.
-     * @param mangas the list of manga to move.
+     * @param manga the manga to move.
      */
-    fun moveMangasToCategories(categories: List<Category>, manga: Manga) {
+    fun moveMangaToCategories(categories: List<Category>, manga: Manga) {
         val mc = ArrayList<MangaCategory>()
 
         for (cat in categories) {

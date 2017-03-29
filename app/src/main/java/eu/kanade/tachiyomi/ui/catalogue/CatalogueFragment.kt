@@ -560,7 +560,7 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(),
                         if(!manga.favorite) {
                             presenter.changeMangaFavorite(manga)
                         }
-                        presenter.moveMangasToCategories(selectedCategories.filter { it.id != 0}, manga)
+                        presenter.moveMangaToCategories(selectedCategories.filter { it.id != 0}, manga)
                     } else {
                         presenter.changeMangaFavorite(manga)
                     }
