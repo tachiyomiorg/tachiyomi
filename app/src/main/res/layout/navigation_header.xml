@@ -17,6 +17,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="@dimen/navigation_drawer_header_margin"
         android:scaleType="centerCrop"
-        android:src="@drawable/icon"/>
+        android:src="@drawable/tachiyomi_circle"/>
 
 </FrameLayout>

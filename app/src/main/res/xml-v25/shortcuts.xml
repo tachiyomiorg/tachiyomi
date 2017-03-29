@@ -1,0 +1,51 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/sc_book_48dp"
+        android:shortcutDisabledMessage="@string/app_not_available"
+        android:shortcutId="show_library"
+        android:shortcutLongLabel="@string/label_library"
+        android:shortcutShortLabel="@string/label_library">
+        <intent
+            android:action="eu.kanade.tachiyomi.SHOW_LIBRARY"
+            android:targetClass="eu.kanade.tachiyomi.ui.main.MainActivity"
+            android:targetPackage="${applicationId}" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/sc_update_48dp"
+        android:shortcutDisabledMessage="@string/app_not_available"
+        android:shortcutId="show_recently_updated"
+        android:shortcutLongLabel="@string/label_recent_updates"
+        android:shortcutShortLabel="@string/short_recent_updates">
+        <intent
+            android:action="eu.kanade.tachiyomi.SHOW_RECENTLY_UPDATED"
+            android:targetClass="eu.kanade.tachiyomi.ui.main.MainActivity"
+            android:targetPackage="${applicationId}" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/sc_glasses_48dp"
+        android:shortcutDisabledMessage="@string/app_not_available"
+        android:shortcutId="show_recently_read"
+        android:shortcutLongLabel="@string/label_recent_manga"
+        android:shortcutShortLabel="@string/label_recent_manga">
+        <intent
+            android:action="eu.kanade.tachiyomi.SHOW_RECENTLY_READ"
+            android:targetClass="eu.kanade.tachiyomi.ui.main.MainActivity"
+            android:targetPackage="${applicationId}" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/sc_explore_48dp"
+        android:shortcutDisabledMessage="@string/app_not_available"
+        android:shortcutId="show_catalogues"
+        android:shortcutLongLabel="@string/label_catalogues"
+        android:shortcutShortLabel="@string/label_catalogues">
+        <intent
+            android:action="eu.kanade.tachiyomi.SHOW_CATALOGUES"
+            android:targetClass="eu.kanade.tachiyomi.ui.main.MainActivity"
+            android:targetPackage="${applicationId}" />
+    </shortcut>
+</shortcuts>

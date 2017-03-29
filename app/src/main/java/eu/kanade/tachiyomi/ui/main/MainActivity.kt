@@ -80,11 +80,19 @@ class MainActivity : BaseActivity() {
 
         if (savedState == null) {
             // Set start screen
-            setSelectedDrawerItem(startScreenId)
+            when(intent.action){
+                "eu.kanade.tachiyomi.SHOW_LIBRARY" -> setSelectedDrawerItem(R.id.nav_drawer_library)
+                "eu.kanade.tachiyomi.SHOW_RECENTLY_UPDATED" -> setSelectedDrawerItem(R.id.nav_drawer_recent_updates)
+                "eu.kanade.tachiyomi.SHOW_RECENTLY_READ" -> setSelectedDrawerItem(R.id.nav_drawer_recently_read)
+                "eu.kanade.tachiyomi.SHOW_CATALOGUES" -> setSelectedDrawerItem(R.id.nav_drawer_catalogues)
+                else ->  setSelectedDrawerItem(startScreenId)
+            }
 
             // Show changelog if needed
             ChangelogDialogFragment.show(this, preferences, supportFragmentManager)
         }
+
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -224,3 +224,38 @@ buildscript {
 repositories {
     mavenCentral()
 }
+
+// add support for placeholders in resource files
+//https://code.google.com/p/android/issues/detail?id=69224
+def replacePlaceholdersInFile(basePath, fileName, placeholders) {
+    def file = new File(basePath, fileName);
+
+    if (!file.exists()) {
+        logger.quiet("Unable to replace placeholders in " + file.toString() + ". File cannot be found.")
+        return;
+    }
+
+    logger.debug("Replacing placeholders in " + file.toString())
+    logger.debug("Placeholders: " + placeholders.toString())
+
+    def content = file.getText('UTF-8')
+
+    placeholders.each { entry ->
+        content = content.replaceAll("\\\$\\{${entry.key}\\}", entry.value)
+    }
+
+    file.write(content, 'UTF-8')
+}
+
+afterEvaluate {
+    android.applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.processResources.doFirst {
+                // prepare placeholder map from manifestPlaceholders including applicationId placeholder
+                def placeholders = variant.mergedFlavor.manifestPlaceholders + [applicationId: variant.applicationId]
+
+                replacePlaceholdersInFile(resDir, 'xml-v25/shortcuts.xml', placeholders)
+            }
+        }
+    }
+}
