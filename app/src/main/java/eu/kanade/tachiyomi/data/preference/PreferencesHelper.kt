@@ -148,4 +148,6 @@ class PreferencesHelper(val context: Context) {
 
     fun lang() = prefs.getString(keys.lang, "")
 
+    fun defaultLongpressCategory() = prefs.getInt(keys.defaultLongpressCategory, -1)
+
 }

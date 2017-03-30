@@ -3,7 +3,9 @@ package eu.kanade.tachiyomi.ui.manga.info
 import android.os.Bundle
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
@@ -16,6 +18,7 @@ import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.injectLazy
+import java.util.ArrayList
 
 /**
  * Presenter of MangaInfoFragment.
@@ -146,6 +149,38 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
      */
     fun deleteDownloads() {
         downloadManager.findMangaDir(source, manga)?.delete()
+    }
+
+    fun getCategories(): List<Category> {
+        return arrayListOf(Category.createDefault()) + db.getCategories().executeAsBlocking()
+    }
+
+    fun getMangaCategoryIds(manga: Manga): Array<Int?> {
+        val categories = db.getCategoriesForManga(manga).executeAsBlocking()
+        if(categories.isEmpty()) {
+            return arrayListOf(Category.createDefault().id).toTypedArray()
+        }
+        return db.getCategoriesForManga(manga).executeAsBlocking().map { it.id }.toTypedArray()
+    }
+
+    /**
+     * Move the given manga to categories.
+     *
+     * @param categories the selected categories.
+     * @param manga the manga to move.
+     */
+    fun moveMangaToCategories(categories: List<Category>, manga: Manga) {
+        val mc = ArrayList<MangaCategory>()
+
+        for (cat in categories) {
+            mc.add(MangaCategory.create(manga, cat))
+        }
+
+        db.setMangaCategories(mc, arrayListOf(manga))
+    }
+
+    fun moveMangaToCategory(category: Category, manga: Manga) {
+        moveMangaToCategories(arrayListOf(category), manga)
     }
 
 }

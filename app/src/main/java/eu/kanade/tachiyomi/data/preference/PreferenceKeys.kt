@@ -109,4 +109,6 @@ class PreferenceKeys(context: Context) {
 
     val lang = context.getString(R.string.pref_language_key)
 
+    val defaultLongpressCategory = context.getString(R.string.pref_default_longpress_category_key)
+
 }

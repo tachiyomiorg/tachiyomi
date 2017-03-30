@@ -116,6 +116,8 @@
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>
     <string name="system_default">System default</string>
+    <string name="pref_default_longpress_category">Default longpress category</string>
+    <string name="pref_default_longpress_entry">Always ask</string>
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>
