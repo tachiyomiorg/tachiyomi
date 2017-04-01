@@ -8,17 +8,14 @@ import com.github.salomonbrys.kotson.set
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.hippo.unifile.UniFile
-import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.backup.models.JSON
-import eu.kanade.tachiyomi.data.backup.models.JSON.CATEGORIES
-import eu.kanade.tachiyomi.data.backup.models.JSON.MANGAS
-import eu.kanade.tachiyomi.data.backup.models.JSON.VERSION
+import eu.kanade.tachiyomi.data.backup.models.Backup
+import eu.kanade.tachiyomi.data.backup.models.Backup.CATEGORIES
+import eu.kanade.tachiyomi.data.backup.models.Backup.MANGAS
+import eu.kanade.tachiyomi.data.backup.models.Backup.VERSION
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.setting.SettingsBackupFragment
 import eu.kanade.tachiyomi.util.sendLocalBroadcast
 import timber.log.Timber
-import java.text.SimpleDateFormat
-import java.util.*
 import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
 
 /**
@@ -99,7 +96,7 @@ class BackupCreateService : IntentService(NAME) {
         val categoryEntries = JsonArray()
 
         // Add value's to root
-        root[VERSION] = JSON.CURRENT_VERSION
+        root[VERSION] = Backup.CURRENT_VERSION
         root[MANGAS] = mangaEntries
         root[CATEGORIES] = categoryEntries
 
@@ -134,8 +131,7 @@ class BackupCreateService : IntentService(NAME) {
                         .forEach { it.delete() }
 
                 // Create new file to place backup
-                val date = SimpleDateFormat("yyyy-MM-dd_HH-mm", Locale.getDefault()).format(Date())
-                val newFile = dir.createFile(getString(R.string.backup_file_name, date))
+                val newFile = dir.createFile(Backup.getDefaultFilename())
                         ?: throw Exception("Couldn't create backup file")
 
                 newFile.openOutputStream().bufferedWriter().use {

@@ -1,18 +1,13 @@
 package eu.kanade.tachiyomi.ui.setting
 
-import android.Manifest
 import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.support.v7.preference.XpPreferenceFragment
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
@@ -22,16 +17,16 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.backup.BackupCreateService
 import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
 import eu.kanade.tachiyomi.data.backup.BackupRestoreService
+import eu.kanade.tachiyomi.data.backup.models.Backup
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.util.*
 import eu.kanade.tachiyomi.widget.CustomLayoutPickerActivity
 import eu.kanade.tachiyomi.widget.preference.IntListPreference
 import net.xpece.android.support.preference.Preference
 import uy.kohesive.injekt.injectLazy
 import java.io.File
-import java.text.SimpleDateFormat
-import java.util.*
 import java.util.concurrent.TimeUnit
 import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
 
@@ -41,23 +36,22 @@ import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
 class SettingsBackupFragment : SettingsFragment() {
 
     companion object {
-        internal const val INTENT_FILTER = "SettingsBackupFragment"
-        internal const val ACTION_BACKUP_COMPLETED_DIALOG = "$ID.$INTENT_FILTER.ACTION_BACKUP_COMPLETED_DIALOG"
-        internal const val ACTION_SET_PROGRESS_DIALOG = "$ID.$INTENT_FILTER.ACTION_SET_PROGRESS_DIALOG"
-        internal const val ACTION_ERROR_BACKUP_DIALOG = "$ID.$INTENT_FILTER.ACTION_ERROR_BACKUP_DIALOG"
-        internal const val ACTION_ERROR_RESTORE_DIALOG = "$ID.$INTENT_FILTER.ACTION_ERROR_RESTORE_DIALOG"
-        internal const val ACTION_RESTORE_COMPLETED_DIALOG = "$ID.$INTENT_FILTER.ACTION_RESTORE_COMPLETED_DIALOG"
-        internal const val ACTION = "$ID.$INTENT_FILTER.ACTION"
-        internal const val EXTRA_PROGRESS = "$ID.$INTENT_FILTER.EXTRA_PROGRESS"
-        internal const val EXTRA_AMOUNT = "$ID.$INTENT_FILTER.EXTRA_AMOUNT"
-        internal const val EXTRA_ERRORS = "$ID.$INTENT_FILTER.EXTRA_ERRORS"
-        internal const val EXTRA_CONTENT = "$ID.$INTENT_FILTER.EXTRA_CONTENT"
-        internal const val EXTRA_ERROR_MESSAGE = "$ID.$INTENT_FILTER.EXTRA_ERROR_MESSAGE"
-        internal const val EXTRA_URI = "$ID.$INTENT_FILTER.EXTRA_URI"
-        internal const val EXTRA_TIME = "$ID.$INTENT_FILTER.EXTRA_TIME"
-        internal const val EXTRA_ERROR_FILE_PATH = "$ID.$INTENT_FILTER.EXTRA_ERROR_FILE_PATH"
-        internal const val EXTRA_ERROR_FILE = "$ID.$INTENT_FILTER.EXTRA_ERROR_FILE"
-
+        const val INTENT_FILTER = "SettingsBackupFragment"
+        const val ACTION_BACKUP_COMPLETED_DIALOG = "$ID.$INTENT_FILTER.ACTION_BACKUP_COMPLETED_DIALOG"
+        const val ACTION_SET_PROGRESS_DIALOG = "$ID.$INTENT_FILTER.ACTION_SET_PROGRESS_DIALOG"
+        const val ACTION_ERROR_BACKUP_DIALOG = "$ID.$INTENT_FILTER.ACTION_ERROR_BACKUP_DIALOG"
+        const val ACTION_ERROR_RESTORE_DIALOG = "$ID.$INTENT_FILTER.ACTION_ERROR_RESTORE_DIALOG"
+        const val ACTION_RESTORE_COMPLETED_DIALOG = "$ID.$INTENT_FILTER.ACTION_RESTORE_COMPLETED_DIALOG"
+        const val ACTION = "$ID.$INTENT_FILTER.ACTION"
+        const val EXTRA_PROGRESS = "$ID.$INTENT_FILTER.EXTRA_PROGRESS"
+        const val EXTRA_AMOUNT = "$ID.$INTENT_FILTER.EXTRA_AMOUNT"
+        const val EXTRA_ERRORS = "$ID.$INTENT_FILTER.EXTRA_ERRORS"
+        const val EXTRA_CONTENT = "$ID.$INTENT_FILTER.EXTRA_CONTENT"
+        const val EXTRA_ERROR_MESSAGE = "$ID.$INTENT_FILTER.EXTRA_ERROR_MESSAGE"
+        const val EXTRA_URI = "$ID.$INTENT_FILTER.EXTRA_URI"
+        const val EXTRA_TIME = "$ID.$INTENT_FILTER.EXTRA_TIME"
+        const val EXTRA_ERROR_FILE_PATH = "$ID.$INTENT_FILTER.EXTRA_ERROR_FILE_PATH"
+        const val EXTRA_ERROR_FILE = "$ID.$INTENT_FILTER.EXTRA_ERROR_FILE"
 
         private const val BACKUP_CREATE = 201
         private const val BACKUP_RESTORE = 202
@@ -115,10 +109,10 @@ class SettingsBackupFragment : SettingsFragment() {
     val restoreDialog: MaterialDialog by lazy {
         MaterialDialog.Builder(context)
                 .title(R.string.backup)
-                .content("Restoring Backup")
+                .content(R.string.restoring_backup)
                 .progress(false, 100, true)
                 .cancelable(false)
-                .negativeText("Stop")
+                .negativeText(R.string.action_stop)
                 .onNegative { materialDialog, _ ->
                     BackupRestoreService.stop(context)
                     materialDialog.dismiss()
@@ -129,7 +123,7 @@ class SettingsBackupFragment : SettingsFragment() {
     val backupDialog: MaterialDialog by lazy {
         MaterialDialog.Builder(context)
                 .title(R.string.backup)
-                .content("Creating Backup")
+                .content(R.string.creating_backup)
                 .progress(true, 0)
                 .cancelable(false)
                 .build()
@@ -229,15 +223,15 @@ class SettingsBackupFragment : SettingsFragment() {
     override fun onViewCreated(view: View, savedState: Bundle?) {
         super.onViewCreated(view, savedState)
 
-        requestPermissionsOnMarshmallow()
+        (activity as BaseActivity).requestPermissionsOnMarshmallow()
 
         // Set onClickListeners
         createBackup.setOnPreferenceClickListener {
             MaterialDialog.Builder(context)
-                    .title(R.string.create_backup)
+                    .title(R.string.pref_create_backup)
                     .content(R.string.backup_choice)
                     .items(R.array.backup_options)
-                    .itemsCallbackMultiChoice(arrayOf(0, 1, 2, 3, 4 /*todo not hard code*/)) { dialog, positions, text ->
+                    .itemsCallbackMultiChoice(arrayOf(0, 1, 2, 3, 4 /*todo not hard code*/)) { _, positions, _ ->
                         // TODO not very happy with global value, but putExtra doesn't work
                         backup_flags = 0
                         for (i in 1..positions.size - 1) {
@@ -252,39 +246,21 @@ class SettingsBackupFragment : SettingsFragment() {
                         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
                             // Get dirs
                             val currentDir = preferences.backupsDirectory().getOrDefault()
-                            val externalDirs = getExternalFilesDirs() + File(getString(R.string.custom_dir))
 
-                            MaterialDialog.Builder(activity)
-                                    .title(getString(R.string.action_save))
-                                    .items(externalDirs)
-                                    .itemsCallback { materialDialog, view, which, charSequence ->
-                                        if (which == externalDirs.lastIndex) {
-                                            // Custom dir selected, open directory selector
-                                            val i = Intent(activity, CustomLayoutPickerActivity::class.java)
-                                            i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
-                                            i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
-                                            i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
-                                            i.putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
-                                            startActivityForResult(i, BACKUP_CREATE)
-                                        } else {
-                                            val dir = File(charSequence.toString())
-                                            dir.mkdirs()
-                                            val date = SimpleDateFormat("yyyy-MM-dd_HH-mm", Locale.getDefault()).format(Date())
-                                            val file = File(dir, getString(R.string.backup_file_name, date))
-                                            backupDialog.show()
-                                            BackupCreateService.makeBackup(context, file.toURI().toString(), backup_flags)
-                                        }
-                                    }
-                                    .show()
+                            val i = Intent(activity, CustomLayoutPickerActivity::class.java)
+                            i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
+                            i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
+                            i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
+                            i.putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
+                            startActivityForResult(i, BACKUP_CREATE)
                         } else {
                             // Use Androids build in file creator
                             val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
                             intent.addCategory(Intent.CATEGORY_OPENABLE)
 
-                            // TODO create custom MIMI data type? Will make older backups deprecated
+                            // TODO create custom MIME data type? Will make older backups deprecated
                             intent.type = "application/*"
-                            val date = SimpleDateFormat("yyyy-MM-dd_HH-mm", Locale.getDefault()).format(Date())
-                            intent.putExtra(Intent.EXTRA_TITLE, getString(R.string.backup_file_name, date))
+                            intent.putExtra(Intent.EXTRA_TITLE, Backup.getDefaultFilename())
                             startActivityForResult(intent, BACKUP_CREATE)
                         }
                         true
@@ -311,7 +287,7 @@ class SettingsBackupFragment : SettingsFragment() {
             true
         }
 
-        automaticBackup.setOnPreferenceChangeListener { preference, newValue ->
+        automaticBackup.setOnPreferenceChangeListener { _, newValue ->
             // Always cancel the previous task, it seems that sometimes they are not updated.
             BackupCreatorJob.cancelTask()
 
@@ -330,34 +306,20 @@ class SettingsBackupFragment : SettingsFragment() {
 
         backupDirPref.setOnPreferenceClickListener {
             val currentDir = preferences.backupsDirectory().getOrDefault()
-            val externalDirs = getExternalFilesDirs() + File(getString(R.string.custom_dir))
-            val selectedIndex = externalDirs.map(File::toString).indexOfFirst { it in currentDir }
 
-            MaterialDialog.Builder(activity)
-                    .items(externalDirs)
-                    .itemsCallbackSingleChoice(selectedIndex, { dialog, view, which, text ->
-                        if (which == externalDirs.lastIndex) {
-                            if (Build.VERSION.SDK_INT < 21) {
-                                // Custom dir selected, open directory selector
-                                val i = Intent(activity, CustomLayoutPickerActivity::class.java)
-                                i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
-                                i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
-                                i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
-                                i.putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
+            if (Build.VERSION.SDK_INT < 21) {
+                // Custom dir selected, open directory selector
+                val i = Intent(activity, CustomLayoutPickerActivity::class.java)
+                i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
+                i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
+                i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
+                i.putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
 
-                                startActivityForResult(i, BACKUP_DIR)
-                            } else {
-                                val i = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-                                startActivityForResult(i, BACKUP_DIR)
-                            }
-                        } else {
-                            // One of the predefined folders was selected
-                            val path = Uri.fromFile(File(text.toString()))
-                            preferences.backupsDirectory().set(path.toString())
-                        }
-                        true
-                    })
-                    .show()
+                startActivityForResult(i, BACKUP_DIR)
+            } else {
+                val i = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+                startActivityForResult(i, BACKUP_DIR)
+            }
 
             true
         }
@@ -365,7 +327,6 @@ class SettingsBackupFragment : SettingsFragment() {
         subscriptions += preferences.backupsDirectory().asObservable()
                 .subscribe { path ->
                     backupDir = UniFile.fromUri(context, Uri.parse(path))
-
                     backupDirPref.summary = backupDir.filePath ?: path
                 }
 
@@ -374,15 +335,6 @@ class SettingsBackupFragment : SettingsFragment() {
                     backupDirPref.isVisible = it > 0
                     backupSlots.isVisible = it > 0
                 }
-    }
-
-    fun getExternalFilesDirs(): List<File> {
-        val defaultDir = Environment.getExternalStorageDirectory().absolutePath +
-                File.separator + getString(R.string.app_name) +
-                File.separator + "backup"
-
-        return mutableListOf(File(defaultDir)) +
-                ContextCompat.getExternalFilesDirs(activity, "").filterNotNull()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -404,9 +356,8 @@ class SettingsBackupFragment : SettingsFragment() {
             }
             BACKUP_CREATE -> if (data != null && resultCode == Activity.RESULT_OK) {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-                    val date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
                     val dir = data.data.path
-                    val file = File(dir, getString(R.string.backup_file_name, date))
+                    val file = File(dir, Backup.getDefaultFilename())
 
                     backupDialog.show()
                     BackupCreateService.makeBackup(context, file.toURI().toString(), backup_flags)
@@ -427,10 +378,10 @@ class SettingsBackupFragment : SettingsFragment() {
                     val uri = Uri.fromFile(File(data.data.path))
 
                     MaterialDialog.Builder(context)
-                            .title(getString(R.string.backup_restore))
+                            .title(getString(R.string.pref_restore_backup))
                             .content(getString(R.string.backup_restore_content))
                             .positiveText(getString(R.string.action_restore))
-                            .onPositive { materialDialog, dialogAction ->
+                            .onPositive { materialDialog, _ ->
                                 materialDialog.dismiss()
                                 restoreDialog.show()
                                 BackupRestoreService.start(context, uri.toString())
@@ -445,10 +396,10 @@ class SettingsBackupFragment : SettingsFragment() {
                     val file = UniFile.fromUri(context, uri)
 
                     MaterialDialog.Builder(context)
-                            .title(getString(R.string.backup_restore))
+                            .title(getString(R.string.pref_restore_backup))
                             .content(getString(R.string.backup_restore_content))
                             .positiveText(getString(R.string.action_restore))
-                            .onPositive { materialDialog, dialogAction ->
+                            .onPositive { materialDialog, _ ->
                                 materialDialog.dismiss()
                                 restoreDialog.show()
                                 BackupRestoreService.start(context, file.uri.toString())
@@ -459,19 +410,4 @@ class SettingsBackupFragment : SettingsFragment() {
         }
     }
 
-    /**
-     * Requests read and write permissions on Android M and higher.
-     */
-    fun requestPermissionsOnMarshmallow() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(activity,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
-                ActivityCompat.requestPermissions(activity,
-                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE),
-                        1)
-
-            }
-        }
-    }
 }
