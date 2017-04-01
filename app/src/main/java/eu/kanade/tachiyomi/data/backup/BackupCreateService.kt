@@ -4,17 +4,15 @@ import android.app.IntentService
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import com.github.salomonbrys.kotson.toJson
+import com.github.salomonbrys.kotson.set
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.backup.models.JSON
-import eu.kanade.tachiyomi.data.backup.models.JSON.AMOUNT
 import eu.kanade.tachiyomi.data.backup.models.JSON.CATEGORIES
-import eu.kanade.tachiyomi.data.backup.models.JSON.CURRENT_VERSION
-import eu.kanade.tachiyomi.data.backup.models.JSON.INFORMATION
 import eu.kanade.tachiyomi.data.backup.models.JSON.MANGAS
+import eu.kanade.tachiyomi.data.backup.models.JSON.VERSION
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.setting.SettingsBackupFragment
 import eu.kanade.tachiyomi.util.sendLocalBroadcast
@@ -68,11 +66,7 @@ class BackupCreateService : IntentService(NAME) {
         }
     }
 
-    private val backupManager by lazy {
-        BackupManager(this).apply {
-            setVersion(CURRENT_VERSION)
-        }
-    }
+    private val backupManager by lazy { BackupManager(this) }
 
     override fun onHandleIntent(intent: Intent?) {
         if (intent == null) return
@@ -105,17 +99,13 @@ class BackupCreateService : IntentService(NAME) {
         val categoryEntries = JsonArray()
 
         // Add value's to root
-        root.add(INFORMATION, information)
-        root.add(MANGAS, mangaEntries)
-        root.add(CATEGORIES, categoryEntries)
+        root[VERSION] = JSON.CURRENT_VERSION
+        root[MANGAS] = mangaEntries
+        root[CATEGORIES] = categoryEntries
 
         backupManager.databaseHelper.inTransaction {
             // Get manga from database
             val mangas = backupManager.getFavoriteManga()
-
-            // Set information needed for restore
-            information.add(JSON.VERSION, CURRENT_VERSION.toJson())
-            information.add(AMOUNT, mangas.size.toJson())
 
             // Backup library manga and its dependencies
             mangas.forEach { manga ->
@@ -134,7 +124,7 @@ class BackupCreateService : IntentService(NAME) {
                 // Get dir of file
                 val dir = UniFile.fromUri(this, uri)
 
-                // Delete oldest backups
+                // Delete older backups
                 val numberOfBackups = backupManager.numberOfBackups()
                 val backupRegex = Regex("""tachiyomi_\d+-\d+-\d+_\d+-\d+.json""")
                 dir.listFiles { _, filename -> backupRegex.matches(filename) }

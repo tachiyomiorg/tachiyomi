@@ -14,28 +14,25 @@ import com.google.gson.stream.JsonReader
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.backup.models.DHistory
-import eu.kanade.tachiyomi.data.backup.models.JSON.AMOUNT
 import eu.kanade.tachiyomi.data.backup.models.JSON.CATEGORIES
 import eu.kanade.tachiyomi.data.backup.models.JSON.CHAPTERS
 import eu.kanade.tachiyomi.data.backup.models.JSON.HISTORY
-import eu.kanade.tachiyomi.data.backup.models.JSON.INFORMATION
 import eu.kanade.tachiyomi.data.backup.models.JSON.MANGA
 import eu.kanade.tachiyomi.data.backup.models.JSON.MANGAS
 import eu.kanade.tachiyomi.data.backup.models.JSON.TRACK
+import eu.kanade.tachiyomi.data.backup.models.JSON.VERSION
 import eu.kanade.tachiyomi.data.database.models.*
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.setting.SettingsBackupFragment
 import eu.kanade.tachiyomi.util.AndroidComponentUtil
 import eu.kanade.tachiyomi.util.chop
 import eu.kanade.tachiyomi.util.sendLocalBroadcast
-import eu.kanade.tachiyomi.util.writeLn
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import timber.log.Timber
 import java.io.File
-import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
@@ -123,21 +120,24 @@ class BackupRestoreService : Service() {
     private lateinit var backupManager: BackupManager
 
     /**
-     * Method called when the service is created. It injects dagger dependencies and acquire
-     * the wake lock.
+     * Method called when the service is created. It injects dependencies and acquire the wake lock.
      */
     override fun onCreate() {
         super.onCreate()
-        createAndAcquireWakeLock()
+        wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager).newWakeLock(
+                PowerManager.PARTIAL_WAKE_LOCK, "BackupRestoreService:WakeLock")
+        wakeLock.acquire()
     }
 
     /**
-     * Method called when the service is destroyed. It destroys the running subscription, resets
-     * the alarm and release the wake lock.
+     * Method called when the service is destroyed. It destroys the running subscription and
+     * releases the wake lock.
      */
     override fun onDestroy() {
         subscription?.unsubscribe()
-        destroyWakeLock()
+        if (wakeLock.isHeld) {
+            wakeLock.release()
+        }
         super.onDestroy()
     }
 
@@ -159,13 +159,10 @@ class BackupRestoreService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent == null) return Service.START_NOT_STICKY
 
-        backupManager = BackupManager(this)
-
         // Unsubscribe from any previous subscription if needed.
         subscription?.unsubscribe()
 
-
-        val startTime = Calendar.getInstance().timeInMillis
+        val startTime = System.currentTimeMillis()
         subscription = Observable.defer {
             // Get URI
             val uri = Uri.parse(intent.getStringExtra(EXTRA_URI))
@@ -184,27 +181,27 @@ class BackupRestoreService : Service() {
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({
-        }, {
-            Timber.e(it)
+        }, { error ->
+            Timber.e(error)
             writeErrorLog()
             val errorIntent = Intent(SettingsBackupFragment.INTENT_FILTER).apply {
                 putExtra(SettingsBackupFragment.ACTION, SettingsBackupFragment.ACTION_ERROR_RESTORE_DIALOG)
-                putExtra(SettingsBackupFragment.EXTRA_ERROR_MESSAGE, it.message)
+                putExtra(SettingsBackupFragment.EXTRA_ERROR_MESSAGE, error.message)
             }
-            this.sendLocalBroadcast(errorIntent)
+            sendLocalBroadcast(errorIntent)
             stopSelf(startId)
         }, {
-            val endTime = Calendar.getInstance().timeInMillis
+            val endTime = System.currentTimeMillis()
             val time = endTime - startTime
             val file = writeErrorLog()
-            val CompleteIntent = Intent(SettingsBackupFragment.INTENT_FILTER).apply {
+            val completeIntent = Intent(SettingsBackupFragment.INTENT_FILTER).apply {
                 putExtra(SettingsBackupFragment.EXTRA_TIME, time)
                 putExtra(SettingsBackupFragment.EXTRA_ERRORS,errorsFound)
                 putExtra(SettingsBackupFragment.EXTRA_ERROR_FILE_PATH, file.parent)
                 putExtra(SettingsBackupFragment.EXTRA_ERROR_FILE, file.name)
                 putExtra(SettingsBackupFragment.ACTION, SettingsBackupFragment.ACTION_RESTORE_COMPLETED_DIALOG)
             }
-            this.sendLocalBroadcast(CompleteIntent)
+            sendLocalBroadcast(completeIntent)
             stopSelf(startId)
         })
         return Service.START_NOT_STICKY
@@ -216,71 +213,68 @@ class BackupRestoreService : Service() {
      * @param file restore file
      * @return [Observable<Manga>]
      */
-    private fun getRestoreObservable(file: UniFile): Observable<Manga>? {
-        return Observable.just(JsonReader(file.openInputStream().bufferedReader()))
-                .map { JsonParser().parse(it).asJsonObject }
-                .doOnNext {
-                    // Get basic information
-                    it.get(INFORMATION)?.let {
-                        backupManager.setVersion(it)
-                        it.asJsonObject.get(AMOUNT)?.let { amountJSON ->
-                            restoreAmount = backupManager.parser.fromJson<Int>(amountJSON) + 1
-                        }
-                    }
+    private fun getRestoreObservable(file: UniFile): Observable<Manga> {
+        val reader = JsonReader(file.openInputStream().bufferedReader())
+        val json = JsonParser().parse(reader).asJsonObject
 
-                    // Restore categories
-                    it.get(CATEGORIES)?.let {
-                        backupManager.restoreCategories(it.asJsonArray)
-                        restoreProgress += 1
-                        showRestoreProgress(restoreProgress, restoreAmount, "Categories added", errorsFound)
-                    }
-                }
-                .flatMap {
-                    // Get manga and map it to single object
-                    it.get(MANGAS)?.let {
-                        Observable.from(it.asJsonArray)
-                    }
-                }
-                .map { it.asJsonObject }
+        // Get parser version
+        val version = json.get(VERSION)?.asInt ?: 1
+
+        // Initialize manager
+        backupManager = BackupManager(this, version)
+
+        val mangasJson = json.get(MANGAS).asJsonArray
+
+        restoreAmount = mangasJson.size() + 1 // +1 for categories
+
+        // Restore categories
+        json.get(CATEGORIES)?.let {
+            backupManager.restoreCategories(it.asJsonArray)
+            restoreProgress += 1
+            showRestoreProgress(restoreProgress, restoreAmount, "Categories added", errorsFound)
+        }
+
+        return Observable.from(mangasJson)
                 .concatMap {
-                    it.get(MANGA)?.let { mangaJson ->
-                        val manga = backupManager.parser.fromJson<MangaImpl>(mangaJson)
-                        val chapters = backupManager.parser.fromJson<List<ChapterImpl>>(it.get(CHAPTERS) ?: JsonArray())
-                        val categories = backupManager.parser.fromJson<List<String>>(it.get(CATEGORIES) ?: JsonArray())
-                        val history = backupManager.parser.fromJson<List<DHistory>>(it.get(HISTORY) ?: JsonArray())
-                        val tracks = backupManager.parser.fromJson<List<TrackImpl>>(it.get(TRACK) ?: JsonArray())
+                    val obj = it.asJsonObject
+                    val manga = backupManager.parser.fromJson<MangaImpl>(obj.get(MANGA))
+                    val chapters = backupManager.parser.fromJson<List<ChapterImpl>>(obj.get(CHAPTERS) ?: JsonArray())
+                    val categories = backupManager.parser.fromJson<List<String>>(obj.get(CATEGORIES) ?: JsonArray())
+                    val history = backupManager.parser.fromJson<List<DHistory>>(obj.get(HISTORY) ?: JsonArray())
+                    val tracks = backupManager.parser.fromJson<List<TrackImpl>>(obj.get(TRACK) ?: JsonArray())
 
-                        val observable = getMangaRestoreObservable(manga, chapters, categories, history, tracks)
-                        if (observable != null) {
-                            observable
-                        } else {
-                            errorMap.put(Date(), "${manga.title} - ${getString(R.string.source_not_found)}")
-                            errorsFound += 1
-                            restoreProgress += 1
-                            showRestoreProgress(restoreProgress, restoreAmount, manga.title, errorsFound, getString(R.string.dialog_restoring_source_not_found, manga.title.chop(15)))
-                            Observable.just(manga)
-                        }
+                    val observable = getMangaRestoreObservable(manga, chapters, categories, history, tracks)
+                    if (observable != null) {
+                        observable
+                    } else {
+                        errorMap.put(Date(), "${manga.title} - ${getString(R.string.source_not_found)}")
+                        errorsFound += 1
+                        restoreProgress += 1
+                        val content = getString(R.string.dialog_restoring_source_not_found, manga.title.chop(15))
+                        showRestoreProgress(restoreProgress, restoreAmount, manga.title, errorsFound, content)
+                        Observable.just(manga)
                     }
                 }
     }
 
     /**
      * Write errors to error log
-     *
-     * @throws [IOException]
      */
-    @Throws(IOException::class)
     private fun writeErrorLog(): File {
-        if (errorMap.isNotEmpty()) {
-            val destFile = File(cacheDir, "tachiyomi_restore.log")
-            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault())
+        try {
+            if (errorMap.isNotEmpty()) {
+                val destFile = File(cacheDir, "tachiyomi_restore.log")
+                val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault())
 
-            destFile.bufferedWriter().use { out ->
-                errorMap.forEach {
-                    out.writeLn("[${sdf.format(it.key)}] ${it.value}")
+                destFile.bufferedWriter().use { out ->
+                    errorMap.forEach {
+                        out.write("[${sdf.format(it.key)}] ${it.value}\n")
+                    }
                 }
+                return destFile
             }
-            return destFile
+        } catch (e: Exception) {
+            // Empty
         }
         return File("")
     }
@@ -295,33 +289,40 @@ class BackupRestoreService : Service() {
      * @param tracks tracking data from json
      * @return [Observable] containing manga restore information
      */
-    private fun getMangaRestoreObservable(manga: Manga, chapters: List<Chapter>, categories: List<String>, history: List<DHistory>, tracks: List<Track>): Observable<Manga>? {
+    private fun getMangaRestoreObservable(manga: Manga, chapters: List<Chapter>,
+                                          categories: List<String>, history: List<DHistory>,
+                                          tracks: List<Track>): Observable<Manga>? {
         // Get source
-        val source = backupManager.getSource(manga.source) ?: return null
+        val source = backupManager.sourceManager.get(manga.source) ?: return null
         val dbManga = backupManager.getMangaFromDatabase(manga)
 
         if (dbManga == null) {
             // Manga not in database
-            return mangaFetchSubscription(source, manga, chapters, categories, history, tracks)
+            return mangaFetchObservable(source, manga, chapters, categories, history, tracks)
         } else { // Manga in database
             // Copy information from manga already in database
             backupManager.restoreMangaNoFetch(manga, dbManga)
             // Fetch rest of manga information
-            return mangaNoFetchSubscription(source, manga, chapters, categories, history, tracks)
+            return mangaNoFetchObservable(source, manga, chapters, categories, history, tracks)
         }
     }
 
     /**
-     * [Subscription] that fetches manga information
+     * [Observable] that fetches manga information
      *
-     * @param mangaBackup manga that needs updating
+     * @param manga manga that needs updating
      * @param chapters chapters of manga that needs updating
      * @param categories categories that need updating
-     * @return [Subscription]
      */
-    private fun mangaFetchSubscription(source: Source, mangaBackup: Manga, chapters: List<Chapter>, categories: List<String>, history: List<DHistory>,
-                                       tracks: List<Track>): Observable<Manga> {
-        return mangaFetchObservable(source, mangaBackup)
+    private fun mangaFetchObservable(source: Source, manga: Manga, chapters: List<Chapter>,
+                                     categories: List<String>, history: List<DHistory>,
+                                     tracks: List<Track>): Observable<Manga> {
+        return backupManager.restoreMangaFetchObservable(source, manga)
+                .onErrorReturn {
+                    errorMap.put(Date(), "${manga.title} - ${it.message}")
+                    errorsFound += 1
+                    manga
+                }
                 .filter { it.id != null }
                 .flatMap { manga ->
                     chapterFetchObservable(source, manga, chapters)
@@ -340,12 +341,14 @@ class BackupRestoreService : Service() {
                 }
                 .doOnCompleted {
                     restoreProgress += 1
-                    showRestoreProgress(restoreProgress, restoreAmount, mangaBackup.title, errorsFound)
+                    showRestoreProgress(restoreProgress, restoreAmount, manga.title, errorsFound)
                 }
     }
 
+    private fun mangaNoFetchObservable(source: Source, backupManga: Manga, chapters: List<Chapter>,
+                                       categories: List<String>, history: List<DHistory>,
+                                       tracks: List<Track>): Observable<Manga> {
 
-    private fun mangaNoFetchSubscription(source: Source, backupManga: Manga, chapters: List<Chapter>, categories: List<String>, history: List<DHistory>, tracks: List<Track>): Observable<Manga> {
         return Observable.just(backupManga)
                 .flatMap { manga ->
                     if (!backupManager.restoreChaptersForManga(manga, chapters)) {
@@ -368,23 +371,6 @@ class BackupRestoreService : Service() {
                 .doOnCompleted {
                     restoreProgress += 1
                     showRestoreProgress(restoreProgress, restoreAmount, backupManga.title, errorsFound)
-                }
-    }
-
-
-    /**
-     * [Observable] that fetches manga information
-     *
-     * @param source source of manga
-     * @param manga manga that needs updating
-     * @return [Observable] that contains manga
-     */
-    private fun mangaFetchObservable(source: Source, manga: Manga): Observable<Manga> {
-        return backupManager.restoreMangaFetchObservable(source, manga)
-                .onErrorReturn {
-                    errorMap.put(Date(), "${manga.title} - ${it.message}")
-                    errorsFound += 1
-                    manga
                 }
     }
 
@@ -422,25 +408,7 @@ class BackupRestoreService : Service() {
             putExtra(SettingsBackupFragment.EXTRA_ERRORS, errors)
             putExtra(SettingsBackupFragment.ACTION, SettingsBackupFragment.ACTION_SET_PROGRESS_DIALOG)
         }
-        this.sendLocalBroadcast(intent)
-    }
-
-    /**
-     * Creates and acquires a wake lock until the library is updated.
-     */
-    private fun createAndAcquireWakeLock() {
-        wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager).newWakeLock(
-                PowerManager.PARTIAL_WAKE_LOCK, "BackupRestoreService:WakeLock")
-        wakeLock.acquire()
-    }
-
-    /**
-     * Releases the wake lock if it's held.
-     */
-    private fun destroyWakeLock() {
-        if (wakeLock.isHeld) {
-            wakeLock.release()
-        }
+        sendLocalBroadcast(intent)
     }
 
 }

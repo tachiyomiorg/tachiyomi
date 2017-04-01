@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Build
 import android.support.v4.content.FileProvider
 import eu.kanade.tachiyomi.BuildConfig
-import java.io.BufferedWriter
 import java.io.File
 
 /**
@@ -20,10 +19,3 @@ fun File.getUriCompat(context: Context): Uri {
     return uri
 }
 
-/**
- * Write line with \n
- */
-fun BufferedWriter.writeLn(line: String) {
-    this.write(line)
-    this.newLine()
-}

@@ -42,16 +42,6 @@ object TrackTypeAdapter {
                             SYNC -> track.sync_id = nextInt()
                             REMOTE -> track.remote_id = nextInt()
                             LAST_READ -> track.last_chapter_read = nextInt()
-                            else -> {
-                                if (peek() == JsonToken.NAME)
-                                    nextName()
-                                else if (peek() == JsonToken.BOOLEAN)
-                                    nextBoolean()
-                                else if (peek() == JsonToken.NUMBER)
-                                    nextLong()
-                                else if (peek() == JsonToken.STRING)
-                                    nextString()
-                            }
                         }
                     }
                 }

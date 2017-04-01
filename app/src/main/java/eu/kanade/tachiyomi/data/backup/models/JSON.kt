@@ -11,7 +11,5 @@ object JSON {
     const val CHAPTERS = "chapters"
     const val CATEGORIES = "categories"
     const val HISTORY = "history"
-    const val INFORMATION = "information"
-    const val AMOUNT = "amount"
     const val VERSION = "version"
 }

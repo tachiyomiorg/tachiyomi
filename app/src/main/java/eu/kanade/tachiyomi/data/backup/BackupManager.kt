@@ -1,10 +1,7 @@
 package eu.kanade.tachiyomi.data.backup
 
 import android.content.Context
-import com.github.salomonbrys.kotson.fromJson
-import com.github.salomonbrys.kotson.registerTypeAdapter
-import com.github.salomonbrys.kotson.registerTypeHierarchyAdapter
-import com.github.salomonbrys.kotson.typedToJsonTree
+import com.github.salomonbrys.kotson.*
 import com.google.gson.*
 import eu.kanade.tachiyomi.data.backup.BackupCreateService.Companion.BACKUP_CATEGORY
 import eu.kanade.tachiyomi.data.backup.BackupCreateService.Companion.BACKUP_CATEGORY_MASK
@@ -15,9 +12,9 @@ import eu.kanade.tachiyomi.data.backup.BackupCreateService.Companion.BACKUP_HIST
 import eu.kanade.tachiyomi.data.backup.BackupCreateService.Companion.BACKUP_TRACK
 import eu.kanade.tachiyomi.data.backup.BackupCreateService.Companion.BACKUP_TRACK_MASK
 import eu.kanade.tachiyomi.data.backup.models.DHistory
-import eu.kanade.tachiyomi.data.backup.models.JSON
 import eu.kanade.tachiyomi.data.backup.models.JSON.CATEGORIES
 import eu.kanade.tachiyomi.data.backup.models.JSON.CHAPTERS
+import eu.kanade.tachiyomi.data.backup.models.JSON.CURRENT_VERSION
 import eu.kanade.tachiyomi.data.backup.models.JSON.HISTORY
 import eu.kanade.tachiyomi.data.backup.models.JSON.MANGA
 import eu.kanade.tachiyomi.data.backup.models.JSON.TRACK
@@ -26,16 +23,14 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.*
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
-import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
-import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.util.syncChaptersWithSource
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
 import java.util.*
 
-class BackupManager(val context: Context) {
+class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
 
     /**
      * Database.
@@ -50,28 +45,13 @@ class BackupManager(val context: Context) {
     /**
      * Version of parser
      */
-    private var version = 1
+    var version: Int = version
+        private set
 
     /**
      * Json Parser
      */
-    var parser: Gson = GsonBuilder().create()
-        private set
-        get() {
-            return when (version) {
-                1 -> GsonBuilder().create()
-                2 -> {
-                    GsonBuilder()
-                            .registerTypeAdapter<MangaImpl>(MangaTypeAdapter.build())
-                            .registerTypeHierarchyAdapter<ChapterImpl>(ChapterTypeAdapter.build())
-                            .registerTypeAdapter<CategoryImpl>(CategoryTypeAdapter.build())
-                            .registerTypeAdapter<DHistory>(HistoryTypeAdapter.build())
-                            .registerTypeHierarchyAdapter<TrackImpl>(TrackTypeAdapter.build())
-                            .create()
-                }
-                else -> throw Exception("Json version unknown")
-            }
-        }
+    var parser: Gson = initParser()
 
     /**
      * Preferences
@@ -85,16 +65,20 @@ class BackupManager(val context: Context) {
      */
     internal fun setVersion(version: Int) {
         this.version = version
+        initParser()
     }
 
-    /**
-     * Set version of parser
-     *
-     * @param root element containing version
-     */
-    internal fun setVersion(root: JsonElement) {
-        root.asJsonObject.get(JSON.VERSION)?.let { versionJSON ->
-            version = parser.fromJson<Int>(versionJSON)
+    private fun initParser(): Gson {
+        return when (version) {
+            1 -> GsonBuilder().create()
+            2 -> GsonBuilder()
+                    .registerTypeAdapter<MangaImpl>(MangaTypeAdapter.build())
+                    .registerTypeHierarchyAdapter<ChapterImpl>(ChapterTypeAdapter.build())
+                    .registerTypeAdapter<CategoryImpl>(CategoryTypeAdapter.build())
+                    .registerTypeAdapter<DHistory>(HistoryTypeAdapter.build())
+                    .registerTypeHierarchyAdapter<TrackImpl>(TrackTypeAdapter.build())
+                    .create()
+            else -> throw Exception("Json version unknown")
         }
     }
 
@@ -119,14 +103,17 @@ class BackupManager(val context: Context) {
         val entry = JsonObject()
 
         // Backup manga fields
-        entry.add(MANGA, parser.toJsonTree(manga))
+        entry[MANGA] = parser.toJsonTree(manga)
 
         // Check if user wants chapter information in backup
         if (options and BACKUP_CHAPTER_MASK == BACKUP_CHAPTER) {
             // Backup all the chapters
             val chapters = databaseHelper.getChapters(manga).executeAsBlocking()
             if (!chapters.isEmpty()) {
-                entry.add(CHAPTERS, parser.typedToJsonTree(chapters))
+                val chaptersJson = parser.toJsonTree(chapters)
+                if (chaptersJson.asJsonArray.size() > 0) {
+                    entry[CHAPTERS] = chaptersJson
+                }
             }
         }
 
@@ -136,7 +123,7 @@ class BackupManager(val context: Context) {
             val categoriesForManga = databaseHelper.getCategoriesForManga(manga).executeAsBlocking()
             if (!categoriesForManga.isEmpty()) {
                 val categoriesNames = categoriesForManga.map { it.name }
-                entry.add(CATEGORIES, parser.toJsonTree(categoriesNames))
+                entry[CATEGORIES] = parser.toJsonTree(categoriesNames)
             }
         }
 
@@ -144,7 +131,7 @@ class BackupManager(val context: Context) {
         if (options and BACKUP_TRACK_MASK == BACKUP_TRACK) {
             val tracks = databaseHelper.getTracks(manga).executeAsBlocking()
             if (!tracks.isEmpty()) {
-                entry.add(TRACK, parser.toJsonTree(tracks))
+                entry[TRACK] = parser.toJsonTree(tracks)
             }
         }
 
@@ -152,14 +139,14 @@ class BackupManager(val context: Context) {
         if (options and BACKUP_HISTORY_MASK == BACKUP_HISTORY) {
             val historyForManga = databaseHelper.getHistoryByMangaId(manga.id!!).executeAsBlocking()
             if (!historyForManga.isEmpty()) {
-                val historyData = ArrayList<DHistory>()
-                historyForManga.forEach { history ->
+                val historyData = historyForManga.mapNotNull { history ->
                     val url = databaseHelper.getChapter(history.chapter_id).executeAsBlocking()?.url
-                    url?.let {
-                        historyData.add(DHistory(url, history.last_read))
-                    }
+                    url?.let { DHistory(url, history.last_read) }
                 }
-                entry.add(HISTORY, parser.typedToJsonTree(historyData))
+                val historyJson = parser.toJsonTree(historyData)
+                if (historyJson.asJsonArray.size() > 0) {
+                    entry[HISTORY] = historyJson
+                }
             }
         }
 
@@ -181,16 +168,13 @@ class BackupManager(val context: Context) {
      * @return [Observable] that contains manga
      */
     fun restoreMangaFetchObservable(source: Source, manga: Manga): Observable<Manga> {
-        return Observable.just(manga)
-                .concatMap { manga ->
-                    source.fetchMangaDetails(manga)
-                            .map { networkManga ->
-                                manga.copyFrom(networkManga)
-                                manga.favorite = true
-                                manga.initialized = true
-                                manga.id = databaseHelper.insertManga(manga).executeAsBlocking().insertedId()
-                                manga
-                            }
+        return source.fetchMangaDetails(manga)
+                .map { networkManga ->
+                    manga.copyFrom(networkManga)
+                    manga.favorite = true
+                    manga.initialized = true
+                    manga.id = insertManga(manga)
+                    manga
                 }
     }
 
@@ -206,7 +190,7 @@ class BackupManager(val context: Context) {
                 .map { syncChaptersWithSource(databaseHelper, it, manga, source) }
                 .doOnNext {
                     if (it.first.isNotEmpty()) {
-                        chapters.map { it.manga_id = manga.id }
+                        chapters.forEach { it.manga_id = manga.id }
                         insertChapters(chapters)
                     }
                 }
@@ -371,20 +355,6 @@ class BackupManager(val context: Context) {
 
         insertChapters(chapters)
         return true
-    }
-
-    /**
-     * Returns source
-     *
-     * @return [HttpSource], null if not found
-     */
-    internal fun getSource(sourceId: Long): Source? {
-        val source = sourceManager.get(sourceId)
-        if (source is HttpSource)
-            return source
-        else if (source is LocalSource)
-            return source
-        return source
     }
 
     /**

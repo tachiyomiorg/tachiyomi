@@ -24,11 +24,11 @@ object ChapterTypeAdapter {
                     value(it.url)
                     if (it.read) {
                         name(READ)
-                        value(it.read)
+                        value(1)
                     }
                     if (it.bookmark) {
                         name(BOOKMARK)
-                        value(it.bookmark)
+                        value(1)
                     }
                     if (it.last_page_read != 0) {
                         name(LAST_READ)
@@ -47,19 +47,9 @@ object ChapterTypeAdapter {
 
                         when (name) {
                             URL -> chapter.url = nextString()
-                            READ -> chapter.read = nextBoolean()
-                            BOOKMARK -> chapter.bookmark = nextBoolean()
+                            READ -> chapter.read = nextInt() == 1
+                            BOOKMARK -> chapter.bookmark = nextInt() == 1
                             LAST_READ -> chapter.last_page_read = nextInt()
-                            else -> {
-                                if (peek() == JsonToken.NAME)
-                                    nextName()
-                                else if (peek() == JsonToken.BOOLEAN)
-                                    nextBoolean()
-                                else if (peek() == JsonToken.NUMBER)
-                                    nextLong()
-                                else if (peek() == JsonToken.STRING)
-                                    nextString()
-                            }
                         }
                     }
                 }
