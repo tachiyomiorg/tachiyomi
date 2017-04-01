@@ -65,7 +65,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
      */
     internal fun setVersion(version: Int) {
         this.version = version
-        initParser()
+        parser = initParser()
     }
 
     private fun initParser(): Gson {
