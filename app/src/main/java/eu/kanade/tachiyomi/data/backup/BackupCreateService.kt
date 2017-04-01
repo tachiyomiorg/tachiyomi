@@ -19,13 +19,14 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.setting.SettingsBackupFragment
 import eu.kanade.tachiyomi.util.sendLocalBroadcast
 import timber.log.Timber
-import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
 
 /**
  * [IntentService] used to backup [Manga] information to [JsonArray]
  */
-class BackupCreateService : IntentService(BackupCreateService::class.java.name) {
+class BackupCreateService : IntentService(NAME) {
 
     companion object {
         // Name of class
@@ -73,16 +74,15 @@ class BackupCreateService : IntentService(BackupCreateService::class.java.name) 
         }
     }
 
-
     override fun onHandleIntent(intent: Intent?) {
         if (intent == null) return
 
         // Get values
         val uri = intent.getStringExtra(EXTRA_URI)
-        val isService = intent.getBooleanExtra(EXTRA_IS_JOB, false)
-        val options = intent.getIntExtra(EXTRA_FLAGS, 0)
+        val isJob = intent.getBooleanExtra(EXTRA_IS_JOB, false)
+        val flags = intent.getIntExtra(EXTRA_FLAGS, 0)
         // Create backup
-        createBackupFromApp(Uri.parse(uri), options, isService)
+        createBackupFromApp(Uri.parse(uri), flags, isJob)
     }
 
     /**
@@ -90,10 +90,8 @@ class BackupCreateService : IntentService(BackupCreateService::class.java.name) 
      *
      * @param uri path of Uri
      * @param isJob backup called from job
-     * @exception IOException
      */
-    @Throws(IOException::class)
-    fun createBackupFromApp(uri: Uri, options: Int, isJob: Boolean) {
+    fun createBackupFromApp(uri: Uri, flags: Int, isJob: Boolean) {
         // Create root object
         val root = JsonObject()
 
@@ -120,10 +118,12 @@ class BackupCreateService : IntentService(BackupCreateService::class.java.name) 
             information.add(AMOUNT, mangas.size.toJson())
 
             // Backup library manga and its dependencies
-            mangas.forEach { manga -> mangaEntries.add((backupManager.backupMangaObject(manga, options))) }
+            mangas.forEach { manga ->
+                mangaEntries.add(backupManager.backupMangaObject(manga, flags))
+            }
 
             // Backup categories
-            if ((options and BACKUP_CATEGORY_MASK) == BACKUP_CATEGORY) {
+            if ((flags and BACKUP_CATEGORY_MASK) == BACKUP_CATEGORY) {
                 backupManager.backupCategories(categoryEntries)
             }
         }
@@ -134,41 +134,36 @@ class BackupCreateService : IntentService(BackupCreateService::class.java.name) 
                 // Get dir of file
                 val dir = UniFile.fromUri(this, uri)
 
-                // Delete oldest backup if exist
+                // Delete oldest backups
                 val numberOfBackups = backupManager.numberOfBackups()
-                val fileToDelete = dir.findFile(getString(R.string.backup_file_name, numberOfBackups.toString()))
-                fileToDelete?.delete()
-
-                // Rename existing backups
-                for (i in numberOfBackups - 1 downTo 1) {
-                    val fileToRename = dir.findFile(getString(R.string.backup_file_name, i.toString()))
-                    fileToRename?.let {
-                        if (it.exists()) {
-                            it.renameTo(getString(R.string.backup_file_name, (i + 1).toString()))
-                        }
-                    }
-                }
+                val backupRegex = Regex("""tachiyomi_\d+-\d+-\d+_\d+-\d+.json""")
+                dir.listFiles { _, filename -> backupRegex.matches(filename) }
+                        .orEmpty()
+                        .sortedByDescending { it.name }
+                        .drop(numberOfBackups - 1)
+                        .forEach { it.delete() }
 
                 // Create new file to place backup
-                var fileToCreate = dir.findFile(getString(R.string.backup_file_name, "1"))
-                if (fileToCreate == null) {
-                    fileToCreate = dir.createFile(getString(R.string.backup_file_name, "1"))
-                }
-                fileToCreate?.openOutputStream()?.bufferedWriter()?.use {
+                val date = SimpleDateFormat("yyyy-MM-dd_HH-mm", Locale.getDefault()).format(Date())
+                val newFile = dir.createFile(getString(R.string.backup_file_name, date))
+                        ?: throw Exception("Couldn't create backup file")
+
+                newFile.openOutputStream().bufferedWriter().use {
                     backupManager.parser.toJson(root, it)
                 }
             } else {
                 val file = UniFile.fromUri(this, uri)
-                file?.openOutputStream()?.bufferedWriter()?.use {
+                        ?: throw Exception("Couldn't create backup file")
+                file.openOutputStream().bufferedWriter().use {
                     backupManager.parser.toJson(root, it)
                 }
 
                 // Show completed dialog
                 val intent = Intent(SettingsBackupFragment.INTENT_FILTER).apply {
                     putExtra(SettingsBackupFragment.ACTION, SettingsBackupFragment.ACTION_BACKUP_COMPLETED_DIALOG)
-                    putExtra(SettingsBackupFragment.EXTRA_URI, file?.uri.toString())
+                    putExtra(SettingsBackupFragment.EXTRA_URI, file.uri.toString())
                 }
-                this.sendLocalBroadcast(intent)
+                sendLocalBroadcast(intent)
             }
         } catch (e: Exception) {
             Timber.e(e)
@@ -178,7 +173,7 @@ class BackupCreateService : IntentService(BackupCreateService::class.java.name) 
                     putExtra(SettingsBackupFragment.ACTION, SettingsBackupFragment.ACTION_ERROR_BACKUP_DIALOG)
                     putExtra(SettingsBackupFragment.EXTRA_ERROR_MESSAGE, e.message)
                 }
-                this.sendLocalBroadcast(intent)
+                sendLocalBroadcast(intent)
             }
         }
     }

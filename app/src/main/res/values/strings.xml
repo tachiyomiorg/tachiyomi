@@ -214,7 +214,7 @@
     <string name="restore_completed_content">Restore took %1$s.\n%2$s errors found.</string>
     <string name="backup_restore">Restore backup</string>
     <string name="backup_restore_content">Restore uses source to fetch data, carrier costs may apply</string>
-    <string name="backup_file_name">tachiyomi-%1$s.json</string>
+    <string name="backup_file_name">tachiyomi_%1$s.json</string>
     <string name="file_saved">File saved at %1$s</string>
     <string name="create_backup">Create Backup</string>
     <string name="backup_choice">What do you want to backup?</string>

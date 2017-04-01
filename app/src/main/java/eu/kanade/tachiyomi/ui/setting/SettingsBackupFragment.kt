@@ -59,9 +59,9 @@ class SettingsBackupFragment : SettingsFragment() {
         internal const val EXTRA_ERROR_FILE = "$ID.$INTENT_FILTER.EXTRA_ERROR_FILE"
 
 
-        private const val BACKUP_CREATE = 101
-        private const val BACKUP_RESTORE = 102
-        private const val BACKUP_DIR = 103
+        private const val BACKUP_CREATE = 201
+        private const val BACKUP_RESTORE = 202
+        private const val BACKUP_DIR = 203
 
         fun newInstance(rootKey: String): SettingsBackupFragment {
             val args = Bundle()
@@ -269,7 +269,7 @@ class SettingsBackupFragment : SettingsFragment() {
                                         } else {
                                             val dir = File(charSequence.toString())
                                             dir.mkdirs()
-                                            val date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+                                            val date = SimpleDateFormat("yyyy-MM-dd_HH-mm", Locale.getDefault()).format(Date())
                                             val file = File(dir, getString(R.string.backup_file_name, date))
                                             backupDialog.show()
                                             BackupCreateService.makeBackup(context, file.toURI().toString(), backup_flags)
@@ -283,7 +283,7 @@ class SettingsBackupFragment : SettingsFragment() {
 
                             // TODO create custom MIMI data type? Will make older backups deprecated
                             intent.type = "application/*"
-                            val date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+                            val date = SimpleDateFormat("yyyy-MM-dd_HH-mm", Locale.getDefault()).format(Date())
                             intent.putExtra(Intent.EXTRA_TITLE, getString(R.string.backup_file_name, date))
                             startActivityForResult(intent, BACKUP_CREATE)
                         }
