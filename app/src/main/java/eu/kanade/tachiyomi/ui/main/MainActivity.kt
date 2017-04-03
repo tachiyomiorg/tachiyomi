@@ -81,10 +81,10 @@ class MainActivity : BaseActivity() {
         if (savedState == null) {
             // Set start screen
             when(intent.action){
-                "eu.kanade.tachiyomi.SHOW_LIBRARY" -> setSelectedDrawerItem(R.id.nav_drawer_library)
-                "eu.kanade.tachiyomi.SHOW_RECENTLY_UPDATED" -> setSelectedDrawerItem(R.id.nav_drawer_recent_updates)
-                "eu.kanade.tachiyomi.SHOW_RECENTLY_READ" -> setSelectedDrawerItem(R.id.nav_drawer_recently_read)
-                "eu.kanade.tachiyomi.SHOW_CATALOGUES" -> setSelectedDrawerItem(R.id.nav_drawer_catalogues)
+                SHORTCUT_LIBRARY -> setSelectedDrawerItem(R.id.nav_drawer_library)
+                SHORTCUT_RECENTLY_UPDATED -> setSelectedDrawerItem(R.id.nav_drawer_recent_updates)
+                SHORTCUT_RECENTLY_READ -> setSelectedDrawerItem(R.id.nav_drawer_recently_read)
+                SHORTCUT_CATALOGUES -> setSelectedDrawerItem(R.id.nav_drawer_catalogues)
                 else ->  setSelectedDrawerItem(startScreenId)
             }
 
@@ -153,5 +153,10 @@ class MainActivity : BaseActivity() {
 
     companion object {
         private const val REQUEST_OPEN_SETTINGS = 200
+        // Shortcut actions
+        private const val SHORTCUT_LIBRARY = "eu.kanade.tachiyomi.SHOW_LIBRARY"
+        private const val SHORTCUT_RECENTLY_UPDATED = "eu.kanade.tachiyomi.SHOW_RECENTLY_UPDATED"
+        private const val SHORTCUT_RECENTLY_READ = "eu.kanade.tachiyomi.RECENTLY_READ"
+        private const val SHORTCUT_CATALOGUES = "eu.kanade.tachiyomi.SHOW_CATALOGUES"
     }
 }
