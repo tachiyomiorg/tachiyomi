@@ -65,10 +65,10 @@
 
         <eu.kanade.tachiyomi.widget.preference.IntListPreference
             android:defaultValue="-1"
-            android:entries="@array/default_longpress_entry"
-            android:entryValues="@array/default_longpress_entry_value"
-            android:key="@string/pref_default_longpress_category_key"
-            android:title="@string/pref_default_longpress_category"/>
+            android:entries="@array/default_long_press_entry"
+            android:entryValues="@array/default_long_press_entry_value"
+            android:key="@string/default_long_press_category_key"
+            android:title="@string/default_long_press_category"/>
 
     </PreferenceScreen>
 

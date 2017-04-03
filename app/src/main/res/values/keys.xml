@@ -21,7 +21,7 @@
     <string name="pref_library_update_restriction_key" translatable="false">library_update_restriction</string>
     <string name="pref_start_screen_key" translatable="false">start_screen</string>
     <string name="pref_language_key" translatable="false">app_language</string>
-    <string name="pref_default_longpress_category_key" translatable="false">pref_default_longpress_category</string>
+    <string name="default_long_press_category_key" translatable="false">default_long_press_category</string>
 
     <string name="pref_default_viewer_key" translatable="false">pref_default_viewer_key</string>
     <string name="pref_image_scale_type_key" translatable="false">pref_image_scale_type_key</string>

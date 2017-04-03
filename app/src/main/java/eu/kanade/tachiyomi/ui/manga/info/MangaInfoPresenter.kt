@@ -151,16 +151,27 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
         downloadManager.findMangaDir(source, manga)?.delete()
     }
 
+    /**
+     * Get the default, and user categories.
+     *
+     * @return List of categories, default plus user categories
+     */
     fun getCategories(): List<Category> {
         return arrayListOf(Category.createDefault()) + db.getCategories().executeAsBlocking()
     }
 
+    /**
+     * Gets the category id's the manga is in, if the manga is not in a category, returns the default id.
+     *
+     * @param manga the manga to get categories from.
+     * @return Array of category ids the manga is in, if none returns default id
+     */
     fun getMangaCategoryIds(manga: Manga): Array<Int?> {
         val categories = db.getCategoriesForManga(manga).executeAsBlocking()
         if(categories.isEmpty()) {
             return arrayListOf(Category.createDefault().id).toTypedArray()
         }
-        return db.getCategoriesForManga(manga).executeAsBlocking().map { it.id }.toTypedArray()
+        return categories.map { it.id }.toTypedArray()
     }
 
     /**
@@ -170,15 +181,17 @@ class MangaInfoPresenter : BasePresenter<MangaInfoFragment>() {
      * @param manga the manga to move.
      */
     fun moveMangaToCategories(categories: List<Category>, manga: Manga) {
-        val mc = ArrayList<MangaCategory>()
-
-        for (cat in categories) {
-            mc.add(MangaCategory.create(manga, cat))
-        }
+        val mc = categories.map { MangaCategory.create(manga, it) }
 
         db.setMangaCategories(mc, arrayListOf(manga))
     }
 
+    /**
+     * Move the given manga to the category.
+     *
+     * @param category the selected category.
+     * @param manga the manga to move.
+     */
     fun moveMangaToCategory(category: Category, manga: Manga) {
         moveMangaToCategories(arrayListOf(category), manga)
     }

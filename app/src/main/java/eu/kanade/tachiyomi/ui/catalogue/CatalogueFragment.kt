@@ -35,6 +35,7 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.subjects.PublishSubject
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import android.widget.Toast
+import eu.kanade.tachiyomi.data.database.models.Category
 
 /**
  * Fragment that shows the manga from the catalogue.
@@ -530,6 +531,9 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(),
 
     /**
      * Called when a manga is long clicked.
+     * Shows a list of categories for the user to put the manga in, the list consists of the default category plus
+     * the user's categories. The default category is preselected on new manga, and on already favorited manga the
+     *  manga's categories are preselected.
      *
      * @param position the position of the element clicked.
      */
@@ -540,35 +544,42 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(),
         MaterialDialog.Builder(activity)
                 .title(R.string.action_move_category)
                 .items(categories.map { it.name })
-                .itemsCallbackMultiChoice(presenter.getMangaCategoryIds(manga), object: MaterialDialog.ListCallbackMultiChoice {
-                    override fun onSelection(dialog: MaterialDialog, position: Array<Int>, text: Array<CharSequence>): Boolean {
-                        if (position.contains(0) && position.count() > 1) {
-                            dialog.setSelectedIndices(position.filter {it > 0}.toTypedArray())
-                            Toast.makeText(dialog.context, R.string.invalid_combination, Toast.LENGTH_SHORT).show()
-                        }
-
-                        return true
+                .itemsCallbackMultiChoice(presenter.getMangaCategoryIds(manga)) { dialog, position, _ ->
+                    if (defaultSelectedWithOtherCategory(position)) {
+                        // Deselect default category
+                        dialog.setSelectedIndices(position.filter {it > 0}.toTypedArray())
+                        Toast.makeText(dialog.context, R.string.invalid_combination, Toast.LENGTH_SHORT).show()
                     }
-                })
+
+                    true
+                }
                 .alwaysCallMultiChoiceCallback()
                 .positiveText(android.R.string.ok)
                 .negativeText(android.R.string.cancel)
-                .onPositive { dialog, action ->
-                    val selectedCategories = dialog.selectedIndices?.map { categories[it] } ?: emptyList()
-
-                    if(!selectedCategories.isEmpty()) {
-                        if(!manga.favorite) {
-                            presenter.changeMangaFavorite(manga)
-                        }
-                        presenter.moveMangaToCategories(selectedCategories.filter { it.id != 0}, manga)
-                    } else {
-                        presenter.changeMangaFavorite(manga)
-                    }
-                    adapter.notifyItemChanged(position)
+                .onPositive { dialog, _ ->
+                    updateMangaCategories(manga, dialog, categories, position)
                 }
                 .build()
                 .show()
 
+    }
+
+    private fun defaultSelectedWithOtherCategory(position: Array<Int>): Boolean {
+        return position.contains(0) && position.count() > 1
+    }
+
+    private fun updateMangaCategories(manga: Manga, dialog: MaterialDialog, categories: List<Category>, position: Int) {
+        val selectedCategories = dialog.selectedIndices?.map { categories[it] } ?: emptyList()
+
+        if(!selectedCategories.isEmpty()) {
+            if(!manga.favorite) {
+                presenter.changeMangaFavorite(manga)
+            }
+            presenter.moveMangaToCategories(selectedCategories.filter { it.id != 0}, manga)
+        } else {
+            presenter.changeMangaFavorite(manga)
+        }
+        adapter.notifyItemChanged(position)
     }
 
 }

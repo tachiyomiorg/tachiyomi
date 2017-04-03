@@ -363,20 +363,18 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
         MaterialDialog.Builder(activity)
                 .title(R.string.action_move_category)
                 .items(categories.map { it.name })
-                .itemsCallbackMultiChoice(presenter.getMangaCategoryIds(presenter.manga), object: MaterialDialog.ListCallbackMultiChoice {
-                    override fun onSelection(dialog: MaterialDialog, position: Array<Int>, text: Array<CharSequence>): Boolean {
-                        if (position.contains(0) && position.count() > 1) {
-                            dialog.setSelectedIndices(position.filter {it > 0}.toTypedArray())
-                            Toast.makeText(dialog.context, R.string.invalid_combination, Toast.LENGTH_SHORT).show()
-                        }
-
-                        return true
+                .itemsCallbackMultiChoice(presenter.getMangaCategoryIds(presenter.manga)) { dialog, position, text ->
+                    if (position.contains(0) && position.count() > 1) {
+                        dialog.setSelectedIndices(position.filter {it > 0}.toTypedArray())
+                        Toast.makeText(dialog.context, R.string.invalid_combination, Toast.LENGTH_SHORT).show()
                     }
-                })
+
+                    true
+                }
                 .alwaysCallMultiChoiceCallback()
                 .positiveText(android.R.string.ok)
                 .negativeText(android.R.string.cancel)
-                .onPositive { dialog, action ->
+                .onPositive { dialog, _ ->
                     val selectedCategories = dialog.selectedIndices?.map { categories[it] } ?: emptyList()
 
                     if(!selectedCategories.isEmpty()) {

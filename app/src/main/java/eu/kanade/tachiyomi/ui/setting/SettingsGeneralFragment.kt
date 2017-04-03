@@ -47,7 +47,7 @@ class SettingsGeneralFragment : SettingsFragment(),
 
     val categoryUpdate: MultiSelectListPreference by bindPref(R.string.pref_library_update_categories_key)
 
-    val defaultLongpressCategory: IntListPreference by bindPref(R.string.pref_default_longpress_category_key)
+    val defaultLongPressCategory: IntListPreference by bindPref(R.string.default_long_press_category_key)
 
     val langPreference: ListPreference by bindPref(R.string.pref_language_key)
 
@@ -103,7 +103,7 @@ class SettingsGeneralFragment : SettingsFragment(),
                     categoryUpdate.summary = summary
                 }
 
-        defaultLongpressCategory.apply {
+        defaultLongPressCategory.apply {
             value = dbCategories.find { it.id == preferences.defaultLongpressCategory()}?.id?.toString() ?: value
             entries += dbCategories.map { it.name }.toTypedArray()
             entryValues += dbCategories.map { it.id.toString() }.toTypedArray()
