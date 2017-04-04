@@ -6,14 +6,12 @@ import android.content.Intent
 import android.net.Uri
 import android.os.IBinder
 import android.os.PowerManager
-import android.support.v4.util.ArrayMap
 import com.github.salomonbrys.kotson.fromJson
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.google.gson.stream.JsonReader
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.backup.models.DHistory
 import eu.kanade.tachiyomi.data.backup.models.Backup.CATEGORIES
 import eu.kanade.tachiyomi.data.backup.models.Backup.CHAPTERS
 import eu.kanade.tachiyomi.data.backup.models.Backup.HISTORY
@@ -21,6 +19,8 @@ import eu.kanade.tachiyomi.data.backup.models.Backup.MANGA
 import eu.kanade.tachiyomi.data.backup.models.Backup.MANGAS
 import eu.kanade.tachiyomi.data.backup.models.Backup.TRACK
 import eu.kanade.tachiyomi.data.backup.models.Backup.VERSION
+import eu.kanade.tachiyomi.data.backup.models.DHistory
+import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.*
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.setting.SettingsBackupFragment
@@ -29,9 +29,9 @@ import eu.kanade.tachiyomi.util.chop
 import eu.kanade.tachiyomi.util.sendLocalBroadcast
 import rx.Observable
 import rx.Subscription
-import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import timber.log.Timber
+import uy.kohesive.injekt.injectLazy
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -105,19 +105,19 @@ class BackupRestoreService : Service() {
     private var restoreAmount = 0
 
     /**
-     * Numbers of errors found
-     */
-    private var errorsFound = 0
-
-    /**
      * List containing errors
      */
-    private val errorMap = ArrayMap<Date, String>()
+    private val errors = mutableListOf<Pair<Date, String>>()
 
     /**
      * Backup manager
      */
     private lateinit var backupManager: BackupManager
+
+    /**
+     * Database
+     */
+    private val db: DatabaseHelper by injectLazy()
 
     /**
      * Method called when the service is created. It injects dependencies and acquire the wake lock.
@@ -170,18 +170,18 @@ class BackupRestoreService : Service() {
             val file = UniFile.fromUri(this, uri)
 
             // Clear errors
-            errorMap.clear()
-            errorsFound = 0
+            errors.clear()
 
             // Reset progress
             restoreProgress = 0
 
+            db.lowLevel().beginTransaction()
             getRestoreObservable(file)
         }
         .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
         .subscribe({
         }, { error ->
+            db.lowLevel().endTransaction()
             Timber.e(error)
             writeErrorLog()
             val errorIntent = Intent(SettingsBackupFragment.INTENT_FILTER).apply {
@@ -191,12 +191,14 @@ class BackupRestoreService : Service() {
             sendLocalBroadcast(errorIntent)
             stopSelf(startId)
         }, {
+            db.lowLevel().setTransactionSuccessful()
+            db.lowLevel().endTransaction()
             val endTime = System.currentTimeMillis()
             val time = endTime - startTime
             val file = writeErrorLog()
             val completeIntent = Intent(SettingsBackupFragment.INTENT_FILTER).apply {
                 putExtra(SettingsBackupFragment.EXTRA_TIME, time)
-                putExtra(SettingsBackupFragment.EXTRA_ERRORS,errorsFound)
+                putExtra(SettingsBackupFragment.EXTRA_ERRORS, errors.size)
                 putExtra(SettingsBackupFragment.EXTRA_ERROR_FILE_PATH, file.parent)
                 putExtra(SettingsBackupFragment.EXTRA_ERROR_FILE, file.name)
                 putExtra(SettingsBackupFragment.ACTION, SettingsBackupFragment.ACTION_RESTORE_COMPLETED_DIALOG)
@@ -231,7 +233,7 @@ class BackupRestoreService : Service() {
         json.get(CATEGORIES)?.let {
             backupManager.restoreCategories(it.asJsonArray)
             restoreProgress += 1
-            showRestoreProgress(restoreProgress, restoreAmount, "Categories added", errorsFound)
+            showRestoreProgress(restoreProgress, restoreAmount, "Categories added", errors.size)
         }
 
         return Observable.from(mangasJson)
@@ -247,11 +249,10 @@ class BackupRestoreService : Service() {
                     if (observable != null) {
                         observable
                     } else {
-                        errorMap.put(Date(), "${manga.title} - ${getString(R.string.source_not_found)}")
-                        errorsFound += 1
+                        errors.add(Date() to "${manga.title} - ${getString(R.string.source_not_found)}")
                         restoreProgress += 1
                         val content = getString(R.string.dialog_restoring_source_not_found, manga.title.chop(15))
-                        showRestoreProgress(restoreProgress, restoreAmount, manga.title, errorsFound, content)
+                        showRestoreProgress(restoreProgress, restoreAmount, manga.title, errors.size, content)
                         Observable.just(manga)
                     }
                 }
@@ -262,13 +263,13 @@ class BackupRestoreService : Service() {
      */
     private fun writeErrorLog(): File {
         try {
-            if (errorMap.isNotEmpty()) {
-                val destFile = File(cacheDir, "tachiyomi_restore.log")
+            if (errors.isNotEmpty()) {
+                val destFile = File(externalCacheDir, "tachiyomi_restore.log")
                 val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault())
 
                 destFile.bufferedWriter().use { out ->
-                    errorMap.forEach {
-                        out.write("[${sdf.format(it.key)}] ${it.value}\n")
+                    errors.forEach { (date, message) ->
+                        out.write("[${sdf.format(date)}] $message\n")
                     }
                 }
                 return destFile
@@ -319,8 +320,7 @@ class BackupRestoreService : Service() {
                                      tracks: List<Track>): Observable<Manga> {
         return backupManager.restoreMangaFetchObservable(source, manga)
                 .onErrorReturn {
-                    errorMap.put(Date(), "${manga.title} - ${it.message}")
-                    errorsFound += 1
+                    errors.add(Date() to "${manga.title} - ${it.message}")
                     manga
                 }
                 .filter { it.id != null }
@@ -341,7 +341,7 @@ class BackupRestoreService : Service() {
                 }
                 .doOnCompleted {
                     restoreProgress += 1
-                    showRestoreProgress(restoreProgress, restoreAmount, manga.title, errorsFound)
+                    showRestoreProgress(restoreProgress, restoreAmount, manga.title, errors.size)
                 }
     }
 
@@ -370,7 +370,7 @@ class BackupRestoreService : Service() {
                 }
                 .doOnCompleted {
                     restoreProgress += 1
-                    showRestoreProgress(restoreProgress, restoreAmount, backupManga.title, errorsFound)
+                    showRestoreProgress(restoreProgress, restoreAmount, backupManga.title, errors.size)
                 }
     }
 
@@ -385,8 +385,7 @@ class BackupRestoreService : Service() {
         return backupManager.restoreChapterFetchObservable(source, manga, chapters)
                 // If there's any error, return empty update and continue.
                 .onErrorReturn {
-                    errorMap.put(Date(), "${manga.title} - ${it.message}")
-                    errorsFound += 1
+                    errors.add(Date() to "${manga.title} - ${it.message}")
                     Pair(emptyList<Chapter>(), emptyList<Chapter>())
                 }
     }

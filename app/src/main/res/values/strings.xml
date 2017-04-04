@@ -212,7 +212,7 @@
     <string name="restore_completed">Restore completed</string>
     <string name="error_opening_log">Could not open log</string>
     <string name="restore_completed_content">Restore took %1$s.\n%2$s errors found.</string>
-    <string name="backup_restore_content">Restore uses source to fetch data, carrier costs may apply</string>
+    <string name="backup_restore_content">Restore uses source to fetch data, carrier costs may apply.\nAlso make sure you are properly logged in sources that require so before restoring.</string>
     <string name="file_saved">File saved at %1$s</string>
     <string name="backup_choice">What do you want to backup?</string>
     <string name="restoring_backup">Restoring backup</string>
