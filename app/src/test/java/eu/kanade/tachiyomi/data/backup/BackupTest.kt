@@ -8,8 +8,8 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.CustomRobolectricGradleTestRunner
-import eu.kanade.tachiyomi.data.backup.models.DHistory
 import eu.kanade.tachiyomi.data.backup.models.Backup
+import eu.kanade.tachiyomi.data.backup.models.DHistory
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.*
 import eu.kanade.tachiyomi.source.SourceManager
@@ -74,7 +74,6 @@ class BackupTest {
         source = mock(HttpSource::class.java)
         `when`(backupManager.sourceManager.get(anyLong())).thenReturn(source)
 
-        root.add(Backup.INFORMATION, information)
         root.add(Backup.MANGAS, mangaEntries)
         root.add(Backup.CATEGORIES, categoryEntries)
     }
