@@ -36,6 +36,8 @@ import rx.subjects.PublishSubject
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import android.widget.Toast
 import eu.kanade.tachiyomi.data.database.models.Category
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import uy.kohesive.injekt.injectLazy
 
 /**
  * Fragment that shows the manga from the catalogue.
@@ -46,6 +48,11 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(),
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
         FlexibleAdapter.EndlessScrollListener<ProgressItem> {
+
+    /**
+     * Preferences helper.
+     */
+    private val preferences: PreferencesHelper by injectLazy()
 
     /**
      * Spinner shown in the toolbar to change the selected source.
@@ -531,9 +538,10 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(),
 
     /**
      * Called when a manga is long clicked.
-     * Shows a list of categories for the user to put the manga in, the list consists of the default category plus
-     * the user's categories. The default category is preselected on new manga, and on already favorited manga the
-     *  manga's categories are preselected.
+     *
+     * Adds the manga to the default category if none is set it shows a list of categories for the user to put the manga
+     * in, the list consists of the default category plus the user's categories. The default category is preselected on
+     * new manga, and on already favorited manga the manga's categories are preselected.
      *
      * @param position the position of the element clicked.
      */
@@ -541,27 +549,34 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(),
         val manga = (adapter.getItem(position) as? CatalogueItem?)?.manga ?: return
         val categories = presenter.getCategories()
 
-        MaterialDialog.Builder(activity)
-                .title(R.string.action_move_category)
-                .items(categories.map { it.name })
-                .itemsCallbackMultiChoice(presenter.getMangaCategoryIds(manga)) { dialog, position, _ ->
-                    if (defaultSelectedWithOtherCategory(position)) {
-                        // Deselect default category
-                        dialog.setSelectedIndices(position.filter {it > 0}.toTypedArray())
-                        Toast.makeText(dialog.context, R.string.invalid_combination, Toast.LENGTH_SHORT).show()
+        val defaultLongPressCategory = categories.find { it.id == preferences.defaultLongpressCategory()}
+        if(defaultLongPressCategory != null) {
+            if(!manga.favorite) {
+                presenter.changeMangaFavorite(manga)
+            }
+            presenter.moveMangaToCategory(defaultLongPressCategory, manga)
+        } else {
+            MaterialDialog.Builder(activity)
+                    .title(R.string.action_move_category)
+                    .items(categories.map { it.name })
+                    .itemsCallbackMultiChoice(presenter.getMangaCategoryIds(manga)) { dialog, position, _ ->
+                        if (defaultSelectedWithOtherCategory(position)) {
+                            // Deselect default category
+                            dialog.setSelectedIndices(position.filter {it > 0}.toTypedArray())
+                            Toast.makeText(dialog.context, R.string.invalid_combination, Toast.LENGTH_SHORT).show()
+                        }
+
+                        true
                     }
-
-                    true
-                }
-                .alwaysCallMultiChoiceCallback()
-                .positiveText(android.R.string.ok)
-                .negativeText(android.R.string.cancel)
-                .onPositive { dialog, _ ->
-                    updateMangaCategories(manga, dialog, categories, position)
-                }
-                .build()
-                .show()
-
+                    .alwaysCallMultiChoiceCallback()
+                    .positiveText(android.R.string.ok)
+                    .negativeText(android.R.string.cancel)
+                    .onPositive { dialog, _ ->
+                        updateMangaCategories(manga, dialog, categories, position)
+                    }
+                    .build()
+                    .show()
+        }
     }
 
     private fun defaultSelectedWithOtherCategory(position: Array<Int>): Boolean {

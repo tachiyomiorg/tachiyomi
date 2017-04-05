@@ -434,4 +434,14 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         db.setMangaCategories(mc, arrayListOf(manga))
     }
 
+    /**
+     * Move the given manga to the category.
+     *
+     * @param category the selected category.
+     * @param manga the manga to move.
+     */
+    fun moveMangaToCategory(category: Category, manga: Manga) {
+        moveMangaToCategories(arrayListOf(category), manga)
+    }
+
 }

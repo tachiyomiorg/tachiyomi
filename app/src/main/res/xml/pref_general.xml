@@ -68,7 +68,8 @@
             android:entries="@array/default_long_press_entry"
             android:entryValues="@array/default_long_press_entry_value"
             android:key="@string/default_long_press_category_key"
-            android:title="@string/default_long_press_category"/>
+            android:title="@string/default_long_press_category"
+            android:summary="@string/default_long_press_entry"/>
 
     </PreferenceScreen>
 

@@ -104,9 +104,19 @@ class SettingsGeneralFragment : SettingsFragment(),
                 }
 
         defaultLongPressCategory.apply {
-            value = dbCategories.find { it.id == preferences.defaultLongpressCategory()}?.id?.toString() ?: value
+            val selectedCategory = dbCategories.find { it.id == preferences.defaultLongpressCategory()}
+            value = selectedCategory?.id?.toString() ?: value
             entries += dbCategories.map { it.name }.toTypedArray()
             entryValues += dbCategories.map { it.id.toString() }.toTypedArray()
+            summary = selectedCategory?.name ?: summary
+        }
+
+        defaultLongPressCategory.setOnPreferenceChangeListener { _, newValue ->
+            defaultLongPressCategory.summary = dbCategories.find {
+                it.id == (newValue as String).toInt()
+            }?.name ?: getString(R.string.default_long_press_entry)
+
+            true
         }
 
         themePreference.setOnPreferenceChangeListener { preference, newValue ->

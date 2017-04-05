@@ -71,18 +71,18 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
 
     override fun onViewCreated(view: View?, savedState: Bundle?) {
         // Set onclickListener to toggle favorite when FAB clicked.
-        fab_favorite.setOnClickListener { toggleFavorite() }
-        fab_favorite.setOnLongClickListener {
-            val defaultLongPressCategory = presenter.getCategories().find { it.id == preferences.defaultLongpressCategory()}
-            if(defaultLongPressCategory == null) {
-                onFabLongClick()
-            } else {
-                if(!presenter.manga.favorite) {
+        fab_favorite.setOnClickListener {
+            if(!presenter.manga.favorite) {
+                val defaultLongPressCategory = presenter.getCategories().find { it.id == preferences.defaultLongpressCategory()}
+                if(defaultLongPressCategory == null) {
+                    onFabClick()
+                } else {
                     toggleFavorite()
+                    presenter.moveMangaToCategory(defaultLongPressCategory, presenter.manga)
                 }
-                presenter.moveMangaToCategory(defaultLongPressCategory, presenter.manga)
+            } else {
+                toggleFavorite()
             }
-            true
         }
 
         // Set SwipeRefresh to refresh manga data.
@@ -355,9 +355,9 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
     }
 
     /**
-     * Called when the fab is long clicked.
+     * Called when the fab is clicked.
      */
-    private fun onFabLongClick() {
+    private fun onFabClick() {
         val categories = presenter.getCategories()
 
         MaterialDialog.Builder(activity)
