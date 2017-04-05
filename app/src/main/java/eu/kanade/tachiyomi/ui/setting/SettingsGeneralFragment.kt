@@ -7,6 +7,7 @@ import android.support.v7.preference.XpPreferenceFragment
 import android.view.View
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.LocaleHelper
@@ -45,6 +46,8 @@ class SettingsGeneralFragment : SettingsFragment(),
     val themePreference: IntListPreference by bindPref(R.string.pref_theme_key)
 
     val categoryUpdate: MultiSelectListPreference by bindPref(R.string.pref_library_update_categories_key)
+
+    val defaultLongPressCategory: IntListPreference by bindPref(R.string.default_long_press_category_key)
 
     val langPreference: ListPreference by bindPref(R.string.pref_language_key)
 
@@ -99,6 +102,22 @@ class SettingsGeneralFragment : SettingsFragment(),
 
                     categoryUpdate.summary = summary
                 }
+
+        defaultLongPressCategory.apply {
+            val selectedCategory = dbCategories.find { it.id == preferences.defaultLongpressCategory()}
+            value = selectedCategory?.id?.toString() ?: value
+            entries += dbCategories.map { it.name }.toTypedArray()
+            entryValues += dbCategories.map { it.id.toString() }.toTypedArray()
+            summary = selectedCategory?.name ?: summary
+        }
+
+        defaultLongPressCategory.setOnPreferenceChangeListener { _, newValue ->
+            defaultLongPressCategory.summary = dbCategories.find {
+                it.id == (newValue as String).toInt()
+            }?.name ?: getString(R.string.default_long_press_entry)
+
+            true
+        }
 
         themePreference.setOnPreferenceChangeListener { preference, newValue ->
             (activity as SettingsActivity).parentFlags = SettingsActivity.FLAG_THEME_CHANGED
