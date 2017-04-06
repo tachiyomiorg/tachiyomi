@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.customtabs.CustomTabsIntent
 import android.view.*
+import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bumptech.glide.BitmapRequestBuilder
 import com.bumptech.glide.BitmapTypeRequest
@@ -14,6 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
@@ -31,6 +33,7 @@ import nucleus.factory.RequiresPresenter
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import uy.kohesive.injekt.injectLazy
 
 /**
  * Fragment that shows manga information.
@@ -52,6 +55,11 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
 
     }
 
+    /**
+     * Preferences helper.
+     */
+    private val preferences: PreferencesHelper by injectLazy()
+
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
         setHasOptionsMenu(true)
@@ -63,7 +71,19 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
 
     override fun onViewCreated(view: View?, savedState: Bundle?) {
         // Set onclickListener to toggle favorite when FAB clicked.
-        fab_favorite.setOnClickListener { toggleFavorite() }
+        fab_favorite.setOnClickListener {
+            if(!presenter.manga.favorite) {
+                val defaultLongPressCategory = presenter.getCategories().find { it.id == preferences.defaultLongpressCategory()}
+                if(defaultLongPressCategory == null) {
+                    onFabClick()
+                } else {
+                    toggleFavorite()
+                    presenter.moveMangaToCategory(defaultLongPressCategory, presenter.manga)
+                }
+            } else {
+                toggleFavorite()
+            }
+        }
 
         // Set SwipeRefresh to refresh manga data.
         swipe_refresh.setOnRefreshListener { fetchMangaFromSource() }
@@ -332,6 +352,42 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
      */
     private fun setRefreshing(value: Boolean) {
         swipe_refresh.isRefreshing = value
+    }
+
+    /**
+     * Called when the fab is clicked.
+     */
+    private fun onFabClick() {
+        val categories = presenter.getCategories()
+
+        MaterialDialog.Builder(activity)
+                .title(R.string.action_move_category)
+                .items(categories.map { it.name })
+                .itemsCallbackMultiChoice(presenter.getMangaCategoryIds(presenter.manga)) { dialog, position, text ->
+                    if (position.contains(0) && position.count() > 1) {
+                        dialog.setSelectedIndices(position.filter {it > 0}.toTypedArray())
+                        Toast.makeText(dialog.context, R.string.invalid_combination, Toast.LENGTH_SHORT).show()
+                    }
+
+                    true
+                }
+                .alwaysCallMultiChoiceCallback()
+                .positiveText(android.R.string.ok)
+                .negativeText(android.R.string.cancel)
+                .onPositive { dialog, _ ->
+                    val selectedCategories = dialog.selectedIndices?.map { categories[it] } ?: emptyList()
+
+                    if(!selectedCategories.isEmpty()) {
+                        if(!presenter.manga.favorite) {
+                            toggleFavorite()
+                        }
+                        presenter.moveMangaToCategories(selectedCategories.filter { it.id != 0}, presenter.manga)
+                    } else {
+                        toggleFavorite()
+                    }
+                }
+                .build()
+                .show()
     }
 
 }
