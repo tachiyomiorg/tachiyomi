@@ -549,12 +549,12 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(),
         val manga = (adapter.getItem(position) as? CatalogueItem?)?.manga ?: return
         val categories = presenter.getCategories()
 
-        val defaultLongPressCategory = categories.find { it.id == preferences.defaultLongpressCategory()}
-        if(defaultLongPressCategory != null) {
+        val defaultCategory = categories.find { it.id == preferences.defaultCategory()}
+        if(defaultCategory != null) {
             if(!manga.favorite) {
                 presenter.changeMangaFavorite(manga)
             }
-            presenter.moveMangaToCategory(defaultLongPressCategory, manga)
+            presenter.moveMangaToCategory(defaultCategory, manga)
         } else {
             MaterialDialog.Builder(activity)
                     .title(R.string.action_move_category)

@@ -200,11 +200,11 @@
         <item>vi</item>
     </string-array>
 
-    <string-array name="default_long_press_entry">
-        <item>@string/default_long_press_entry</item>
+    <string-array name="default_category_entry">
+        <item>@string/default_category_summary</item>
     </string-array>
 
-    <string-array name="default_long_press_entry_value">
+    <string-array name="default_category_entry_value">
         <item>-1</item>
     </string-array>
 

@@ -73,12 +73,12 @@ class MangaInfoFragment : BaseRxFragment<MangaInfoPresenter>() {
         // Set onclickListener to toggle favorite when FAB clicked.
         fab_favorite.setOnClickListener {
             if(!presenter.manga.favorite) {
-                val defaultLongPressCategory = presenter.getCategories().find { it.id == preferences.defaultLongpressCategory()}
-                if(defaultLongPressCategory == null) {
+                val defaultCategory = presenter.getCategories().find { it.id == preferences.defaultCategory()}
+                if(defaultCategory == null) {
                     onFabClick()
                 } else {
                     toggleFavorite()
-                    presenter.moveMangaToCategory(defaultLongPressCategory, presenter.manga)
+                    presenter.moveMangaToCategory(defaultCategory, presenter.manga)
                 }
             } else {
                 toggleFavorite()
