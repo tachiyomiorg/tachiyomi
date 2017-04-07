@@ -26,7 +26,6 @@ import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
-import java.util.ArrayList
 
 /**
  * Presenter of [CatalogueFragment].
@@ -416,7 +415,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      */
     fun getMangaCategoryIds(manga: Manga): Array<Int?> {
         val categories = db.getCategoriesForManga(manga).executeAsBlocking()
-        if(categories.isEmpty()) {
+        if (categories.isEmpty()) {
             return arrayListOf(Category.createDefault().id).toTypedArray()
         }
         return categories.map { it.id }.toTypedArray()
@@ -442,6 +441,23 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
      */
     fun moveMangaToCategory(category: Category, manga: Manga) {
         moveMangaToCategories(arrayListOf(category), manga)
+    }
+
+    /**
+     * Update manga to use selected categories.
+     *
+     * @param manga needed to change
+     * @param selectedCategories selected categories
+     */
+    fun updateMangaCategories(manga: Manga, selectedCategories: List<Category>) {
+        if (!selectedCategories.isEmpty()) {
+            if (!manga.favorite)
+                changeMangaFavorite(manga)
+
+            moveMangaToCategories(selectedCategories.filter { it.id != 0 }, manga)
+        } else {
+            changeMangaFavorite(manga)
+        }
     }
 
 }

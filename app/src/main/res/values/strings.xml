@@ -272,6 +272,7 @@
     <string name="no_more_results">No more results</string>
     <string name="local_source">Local manga</string>
     <string name="invalid_combination">Default can\'t be selected with other categories</string>
+    <string name="added_to_library">The manga has been added to your library</string>
 
     <!-- Manga activity -->
     <string name="manga_not_in_db">This manga was removed from the database!</string>
