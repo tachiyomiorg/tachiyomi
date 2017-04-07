@@ -7,9 +7,7 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.ReaderChapter
-import eu.kanade.tachiyomi.ui.reader.ReaderEvent
 import eu.kanade.tachiyomi.ui.reader.viewer.base.BaseReader
-import eu.kanade.tachiyomi.util.SharedData
 import eu.kanade.tachiyomi.widget.PreCachingLayoutManager
 import rx.subscriptions.CompositeSubscription
 
@@ -90,8 +88,6 @@ class WebtoonReader : BaseReader() {
             }
         })
 
-        scrollToLastPageRead()
-
         subscriptions = CompositeSubscription()
         subscriptions.add(readerActivity.preferences.imageDecoder()
                 .asObservable()
@@ -112,14 +108,12 @@ class WebtoonReader : BaseReader() {
     /**
      * Uses two ways to scroll to the last page read.
      */
-    private fun scrollToLastPageRead() {
-        val last_page_read = SharedData.get(ReaderEvent::class.java)?.chapter?.last_page_read?.minus(1) ?: 0
-
+    private fun scrollToLastPageRead(last_page_read: Int) {
         // Scrolls to the correct page initially, but isn't reliable beyond that.
         recycler.addOnLayoutChangeListener(object: View.OnLayoutChangeListener {
             override fun onLayoutChange(p0: View?, p1: Int, p2: Int, p3: Int, p4: Int, p5: Int, p6: Int, p7: Int, p8: Int) {
                 if(pages.isEmpty()) {
-                    recycler.scrollToPosition(last_page_read)
+                    setActivePage(last_page_read)
                 } else {
                     recycler.removeOnLayoutChangeListener(this)
                 }
@@ -127,7 +121,7 @@ class WebtoonReader : BaseReader() {
         })
 
         // Scrolls to the correct page after app has been in use, but can't do it the very first time.
-        recycler.post { recycler.scrollToPosition(last_page_read) }
+        recycler.post { setActivePage(last_page_read) }
     }
 
     override fun onDestroyView() {
@@ -169,6 +163,7 @@ class WebtoonReader : BaseReader() {
      */
     override fun onChapterSet(chapter: ReaderChapter, currentPage: Page) {
         this.currentPage = currentPage.index
+        scrollToLastPageRead(this.currentPage)
 
         // Make sure the view is already initialized.
         if (view != null) {
