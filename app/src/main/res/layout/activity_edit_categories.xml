@@ -2,27 +2,17 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:fitsSystemWindows="true">
 
     <include layout="@layout/toolbar"/>
 
-    <android.support.v7.widget.RecyclerView
+    <com.bluelinelabs.conductor.ChangeHandlerFrameLayout
+        android:id="@+id/controller_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:id="@+id/recycler"
-        android:choiceMode="multipleChoice"
-        tools:listitem="@layout/item_edit_categories"
-    />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        app:layout_anchor="@id/recycler"
-        app:srcCompat="@drawable/ic_add_white_24dp"
-        style="@style/Theme.Widget.FAB"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
 
 </android.support.design.widget.CoordinatorLayout>

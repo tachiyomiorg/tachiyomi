@@ -10,14 +10,14 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
  * @param activity activity that created adapter
  * @constructor Creates a CategoryAdapter object
  */
-class CategoryAdapter(private val activity: CategoryActivity) :
-        FlexibleAdapter<CategoryItem>(null, activity, true) {
+class CategoryAdapter(private val controller: CategoryController) :
+        FlexibleAdapter<CategoryItem>(null, controller, true) {
 
     /**
      * Called when item is released.
      */
     fun onItemReleased() {
-        activity.onItemReleased()
+        controller.onItemReleased()
     }
 
     override fun clearSelection() {

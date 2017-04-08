@@ -4,7 +4,7 @@ import android.content.Context
 import nucleus.presenter.RxPresenter
 import rx.Observable
 
-open class BasePresenter<V> : RxPresenter<V>() {
+open class ConductorPresenter<V> : RxPresenter<V>() {
 
     lateinit var context: Context
 
@@ -37,5 +37,4 @@ open class BasePresenter<V> : RxPresenter<V>() {
      */
     fun <T> Observable<T>.subscribeReplay(onNext: (V, T) -> Unit, onError: ((V, Throwable) -> Unit)? = null)
             = compose(deliverReplay<T>()).subscribe(split(onNext, onError)).apply { add(this) }
-
 }

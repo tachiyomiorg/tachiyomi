@@ -4,7 +4,7 @@ import android.os.Bundle
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
-import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
+import eu.kanade.tachiyomi.ui.base.presenter.ConductorPresenter
 import eu.kanade.tachiyomi.util.toast
 import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.injectLazy
@@ -14,7 +14,7 @@ import uy.kohesive.injekt.injectLazy
  * Contains information and data for activity.
  * Observable updates should be called from here.
  */
-class CategoryPresenter : BasePresenter<CategoryActivity>() {
+class CategoryPresenter : ConductorPresenter<CategoryController>() {
 
     /**
      * Used to connect to database.
@@ -33,7 +33,7 @@ class CategoryPresenter : BasePresenter<CategoryActivity>() {
                 .doOnNext { categories = it }
                 .map { it.map(::CategoryItem) }
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeLatestCache(CategoryActivity::setCategories)
+                .subscribeLatestCache(CategoryController::setCategories)
     }
 
     /**

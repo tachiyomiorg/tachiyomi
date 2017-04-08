@@ -264,7 +264,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
                 LibraryUpdateService.start(activity)
             }
             R.id.action_edit_categories -> {
-                val intent = CategoryActivity.newIntent(activity)
+                val intent = Intent(context, CategoryActivity::class.java)
                 startActivity(intent)
             }
             else -> return super.onOptionsItemSelected(item)
