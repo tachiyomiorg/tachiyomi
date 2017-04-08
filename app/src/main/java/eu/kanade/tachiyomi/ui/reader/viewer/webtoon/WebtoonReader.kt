@@ -163,11 +163,11 @@ class WebtoonReader : BaseReader() {
      */
     override fun onChapterSet(chapter: ReaderChapter, currentPage: Page) {
         this.currentPage = currentPage.index
-        scrollToLastPageRead(this.currentPage)
 
         // Make sure the view is already initialized.
         if (view != null) {
             setPagesOnAdapter()
+            scrollToLastPageRead(this.currentPage)
         }
     }
 
