@@ -7,9 +7,9 @@ import android.view.View;
 
 import com.bluelinelabs.conductor.Controller;
 
-import eu.kanade.tachiyomi.ui.base.presenter.ConductorPresenter;
+import nucleus.presenter.Presenter;
 
-public abstract class NucleusController<P extends ConductorPresenter> extends BaseController {
+public abstract class NucleusController<P extends Presenter> extends BaseController {
 
     private static final String PRESENTER_STATE_KEY = "presenter_state";
 
@@ -45,7 +45,7 @@ public abstract class NucleusController<P extends ConductorPresenter> extends Ba
         public P getPresenter() {
             if (presenter == null) {
                 presenter = createPresenter();
-                presenter.create(bundle == null ? null : bundle.getBundle(PRESENTER_STATE_KEY));
+                presenter.create(bundle);
             }
             bundle = null;
             return presenter;
@@ -63,7 +63,7 @@ public abstract class NucleusController<P extends ConductorPresenter> extends Ba
         void onRestoreInstanceState(Bundle presenterState) {
             if (presenter != null)
                 throw new IllegalArgumentException("onRestoreInstanceState() should be called before onResume()");
-            this.bundle = presenterState;
+            bundle = presenterState;
         }
 
         void onTakeView(Object view) {
@@ -95,27 +95,21 @@ public abstract class NucleusController<P extends ConductorPresenter> extends Ba
 
         @Override
         public void postAttach(@NonNull Controller controller, @NonNull View view) {
-            //noinspection unchecked
-            getPresenter().takeView(NucleusController.this);
             delegate.onTakeView(NucleusController.this);
         }
 
         @Override
-        public void preDetach(@NonNull Controller controller, @NonNull View view) {
-            getPresenter().dropView();
+        public void preDestroyView(@NonNull Controller controller, @NonNull View view) {
             delegate.onDropView();
         }
 
         @Override
         public void preDestroy(@NonNull Controller controller) {
-            getPresenter().destroy();
             delegate.onDestroy();
         }
 
         @Override
         public void onSaveInstanceState(@NonNull Controller controller, @NonNull Bundle outState) {
-            Bundle presenterBundle = new Bundle();
-            getPresenter().save(presenterBundle);
             outState.putBundle(PRESENTER_STATE_KEY, delegate.onSaveInstanceState());
         }
 
