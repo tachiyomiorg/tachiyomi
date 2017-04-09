@@ -1,11 +1,9 @@
 package eu.kanade.tachiyomi.ui.category
 
 import android.os.Bundle
-import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.ui.base.presenter.ConductorPresenter
-import eu.kanade.tachiyomi.util.toast
 import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.injectLazy
 
@@ -44,7 +42,7 @@ class CategoryPresenter : ConductorPresenter<CategoryController>() {
     fun createCategory(name: String) {
         // Do not allow duplicate categories.
         if (categories.any { it.name.equals(name, true) }) {
-            context.toast(R.string.error_category_exists)
+//            context.toast(R.string.error_category_exists)
             return
         }
 
@@ -89,11 +87,12 @@ class CategoryPresenter : ConductorPresenter<CategoryController>() {
     fun renameCategory(category: Category, name: String) {
         // Do not allow duplicate categories.
         if (categories.any { it.name.equals(name, true) }) {
-            context.toast(R.string.error_category_exists)
+//            context.toast(R.string.error_category_exists)
             return
         }
 
         category.name = name
         db.insertCategory(category).asRxObservable().subscribe()
     }
+
 }

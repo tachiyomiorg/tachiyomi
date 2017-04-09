@@ -6,6 +6,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import com.afollestad.materialdialogs.MaterialDialog
+import com.bluelinelabs.conductor.RouterTransaction
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.helpers.UndoHelper
 import eu.kanade.tachiyomi.R
@@ -61,7 +63,7 @@ class CategoryController : NucleusController<CategoryPresenter>(),
     }
 
     override fun getTitle(): String? {
-        return applicationContext!!.getString(R.string.action_edit_categories)
+        return applicationContext?.getString(R.string.action_edit_categories)
     }
 
     /**
@@ -84,12 +86,11 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      * @param category category that will be edited.
      */
     private fun editCategory(category: Category) {
-        MaterialDialog.Builder(activity!!)
-                .title(R.string.action_rename_category)
-                .negativeText(android.R.string.cancel)
-                .input(applicationContext!!.getString(R.string.name), category.name, false)
-                { dialog, input -> presenter.renameCategory(category, input.toString()) }
-                .show()
+        router.pushController(RouterTransaction.with(CategoryRenameDialog(category, this))
+                .pushChangeHandler(FadeChangeHandler(false))
+                .popChangeHandler(FadeChangeHandler()))
+
+        targetController
     }
 
     /**
