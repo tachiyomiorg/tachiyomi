@@ -9,7 +9,7 @@ import com.bluelinelabs.conductor.Controller;
 
 import nucleus.presenter.Presenter;
 
-public abstract class NucleusController<P extends Presenter> extends BaseController {
+public abstract class NucleusController<P extends Presenter> extends RxController {
 
     private static final String PRESENTER_STATE_KEY = "presenter_state";
 

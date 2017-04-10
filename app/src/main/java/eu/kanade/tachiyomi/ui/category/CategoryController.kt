@@ -33,8 +33,12 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      */
     private var adapter: CategoryAdapter? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
-        val view = inflater.inflate(R.layout.categories_controller, container, false)
+    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
+        return inflater.inflate(R.layout.categories_controller, container, false)
+    }
+
+    override fun onViewCreated(view: View) {
+        super.onViewCreated(view)
 
         with(view) {
             adapter = CategoryAdapter(this@CategoryController)
@@ -51,9 +55,8 @@ class CategoryController : NucleusController<CategoryPresenter>(),
                         { _, input -> presenter.createCategory(input.toString()) }
                         .show()
             }
-        }
 
-        return view
+        }
     }
 
     override fun onDestroyView(view: View) {
