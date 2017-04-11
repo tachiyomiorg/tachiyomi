@@ -40,4 +40,8 @@ abstract class BaseController(bundle: Bundle? = null) : Controller(bundle) {
         (activity as? AppCompatActivity)?.supportActionBar?.title = getTitle()
     }
 
+    inline fun withView(block: View.() -> Unit) {
+        view?.let { block(it) }
+    }
+
 }

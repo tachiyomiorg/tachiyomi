@@ -5,9 +5,7 @@ import android.support.v7.view.ActionMode
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
-import com.afollestad.materialdialogs.MaterialDialog
-import com.bluelinelabs.conductor.RouterTransaction
-import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
+import com.jakewharton.rxbinding.view.clicks
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.helpers.UndoHelper
 import eu.kanade.tachiyomi.R
@@ -21,17 +19,17 @@ class CategoryController : NucleusController<CategoryPresenter>(),
         FlexibleAdapter.OnItemLongClickListener,
         UndoHelper.OnUndoListener {
 
-    override fun createPresenter() = CategoryPresenter()
-
     /**
      * Object used to show actionMode toolbar.
      */
-    var actionMode: ActionMode? = null
+    private var actionMode: ActionMode? = null
 
     /**
      * Adapter containing category items.
      */
     private var adapter: CategoryAdapter? = null
+
+    override fun createPresenter() = CategoryPresenter()
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
         return inflater.inflate(R.layout.categories_controller, container, false)
@@ -45,28 +43,22 @@ class CategoryController : NucleusController<CategoryPresenter>(),
             recycler.layoutManager = LinearLayoutManager(context)
             recycler.setHasFixedSize(true)
             recycler.adapter = adapter
-            adapter!!.isHandleDragEnabled = true
+            adapter?.isHandleDragEnabled = true
 
-            fab.setOnClickListener {
-                MaterialDialog.Builder(context)
-                        .title(R.string.action_add_category)
-                        .negativeText(android.R.string.cancel)
-                        .input(R.string.name, 0, false)
-                        { _, input -> presenter.createCategory(input.toString()) }
-                        .show()
+            fab.clicks().subscribeUntilDestroy {
+                CategoryCreateDialog(this@CategoryController).showDialog(router, null)
             }
-
         }
     }
 
     override fun onDestroyView(view: View) {
+        super.onDestroyView(view)
         actionMode = null
         adapter = null
-        super.onDestroyView(view)
     }
 
     override fun getTitle(): String? {
-        return applicationContext?.getString(R.string.action_edit_categories)
+        return resources?.getString(R.string.action_edit_categories)
     }
 
     /**
@@ -76,7 +68,7 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      */
     fun setCategories(categories: List<CategoryItem>) {
         actionMode?.finish()
-        adapter!!.updateDataSet(categories.toMutableList())
+        adapter?.updateDataSet(categories.toMutableList())
         val selected = categories.filter { it.isSelected }
         if (selected.isNotEmpty()) {
             selected.forEach { onItemLongClick(categories.indexOf(it)) }
@@ -84,16 +76,12 @@ class CategoryController : NucleusController<CategoryPresenter>(),
     }
 
     /**
-     * Show MaterialDialog which let user change category name.
+     * Show dialog which let user change category name.
      *
      * @param category category that will be edited.
      */
     private fun editCategory(category: Category) {
-        router.pushController(RouterTransaction.with(CategoryRenameDialog(category, this))
-                .pushChangeHandler(FadeChangeHandler(false))
-                .popChangeHandler(FadeChangeHandler()))
-
-        targetController
+        CategoryRenameDialog(category, this).showDialog(router, null)
     }
 
     /**
@@ -105,12 +93,14 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      * @return action mode item clicked exist status
      */
     override fun onActionItemClicked(actionMode: ActionMode, menuItem: MenuItem): Boolean {
+        val adapter = adapter ?: return false
+
         when (menuItem.itemId) {
             R.id.action_delete -> {
                 UndoHelper(adapter, this)
                         .withAction(UndoHelper.ACTION_REMOVE, object : UndoHelper.OnActionListener {
                             override fun onPreAction(): Boolean {
-                                adapter!!.selectedPositions.forEach { adapter!!.getItem(it).isSelected = false }
+                                adapter.selectedPositions.forEach { adapter.getItem(it).isSelected = false }
                                 return false
                             }
 
@@ -118,14 +108,14 @@ class CategoryController : NucleusController<CategoryPresenter>(),
                                 actionMode.finish()
                             }
                         })
-                        .remove(adapter!!.selectedPositions, view!!.recycler.parent as View,
+                        .remove(adapter.selectedPositions, view!!,
                                 R.string.snack_categories_deleted, R.string.action_undo, 3000)
             }
             R.id.action_edit -> {
                 // Edit selected category
-                if (adapter!!.selectedItemCount == 1) {
-                    val position = adapter!!.selectedPositions.first()
-                    editCategory(adapter!!.getItem(position).category)
+                if (adapter.selectedItemCount == 1) {
+                    val position = adapter.selectedPositions.first()
+                    editCategory(adapter.getItem(position).category)
                 }
             }
             else -> return false
@@ -145,7 +135,7 @@ class CategoryController : NucleusController<CategoryPresenter>(),
         // Inflate menu.
         mode.menuInflater.inflate(R.menu.category_selection, menu)
         // Enable adapter multi selection.
-        adapter!!.mode = FlexibleAdapter.MODE_MULTI
+        adapter?.mode = FlexibleAdapter.MODE_MULTI
         return true
     }
 
@@ -156,8 +146,9 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      * @return false
      */
     override fun onPrepareActionMode(actionMode: ActionMode, menu: Menu): Boolean {
-        val count = adapter!!.selectedItemCount
-        actionMode.title = applicationContext!!.getString(R.string.label_selected, count)
+        val adapter = adapter ?: return false
+        val count = adapter.selectedItemCount
+        actionMode.title = resources?.getString(R.string.label_selected, count)
 
         // Show edit button only when one item is selected
         val editItem = actionMode.menu.findItem(R.id.action_edit)
@@ -172,8 +163,8 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      */
     override fun onDestroyActionMode(mode: ActionMode?) {
         // Reset adapter to single selection
-        adapter!!.mode = FlexibleAdapter.MODE_IDLE
-        adapter!!.clearSelection()
+        adapter?.mode = FlexibleAdapter.MODE_IDLE
+        adapter?.clearSelection()
         actionMode = null
     }
 
@@ -198,10 +189,12 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      * @param position position of clicked item.
      */
     override fun onItemLongClick(position: Int) {
+        val activity = activity as? AppCompatActivity ?: return
+
         // Check if action mode is initialized.
         if (actionMode == null) {
             // Initialize action mode
-            actionMode = (activity!! as AppCompatActivity).startSupportActionMode(this)
+            actionMode = activity.startSupportActionMode(this)
         }
 
         // Set item as selected
@@ -213,10 +206,12 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      * If the item was the last one in the selection and is unselected, the ActionMode is finished.
      */
     private fun toggleSelection(position: Int) {
-        //Mark the position selected
-        adapter!!.toggleSelection(position)
+        val adapter = adapter ?: return
 
-        if (adapter!!.selectedItemCount == 0) {
+        //Mark the position selected
+        adapter.toggleSelection(position)
+
+        if (adapter.selectedItemCount == 0) {
             actionMode?.finish()
         } else {
             actionMode?.invalidate()
@@ -227,7 +222,8 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      * Called when an item is released from a drag.
      */
     fun onItemReleased() {
-        val categories = (0..adapter!!.itemCount-1).map { adapter!!.getItem(it).category }
+        val adapter = adapter ?: return
+        val categories = (0..adapter.itemCount-1).map { adapter.getItem(it).category }
         presenter.reorderCategories(categories)
     }
 
@@ -235,14 +231,15 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      * Called when the undo action is clicked in the snackbar.
      */
     override fun onUndoConfirmed(action: Int) {
-        adapter!!.restoreDeletedItems()
+        adapter?.restoreDeletedItems()
     }
 
     /**
      * Called when the time to restore the items expires.
      */
     override fun onDeleteConfirmed(action: Int) {
-        presenter.deleteCategories(adapter!!.deletedItems.map { it.category })
+        val adapter = adapter ?: return
+        presenter.deleteCategories(adapter.deletedItems.map { it.category })
     }
 
 }
