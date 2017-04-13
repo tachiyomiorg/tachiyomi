@@ -23,7 +23,7 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/Theme.Tachiyomi">
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name=".ui.main.MainActivity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

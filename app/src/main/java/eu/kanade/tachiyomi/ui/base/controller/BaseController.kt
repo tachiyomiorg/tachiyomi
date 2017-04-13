@@ -17,7 +17,7 @@ abstract class BaseController(bundle: Bundle? = null) : Controller(bundle) {
 
     abstract fun inflateView(inflater: LayoutInflater, container: ViewGroup): View
 
-    abstract fun onViewCreated(view: View)
+    open fun onViewCreated(view: View) { }
 
     override fun onAttach(view: View) {
         setTitle()
