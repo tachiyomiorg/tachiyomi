@@ -31,7 +31,9 @@ import uy.kohesive.injekt.injectLazy
 
 
 class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPresenter>(bundle),
-        ActionMode.Callback {
+        ActionMode.Callback,
+        ChangeMangaCategoriesDialog.Listener,
+        DeleteLibraryMangasDialog.Listener {
 
     private val preferences: PreferencesHelper by injectLazy()
 
@@ -277,8 +279,8 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
 //                changeSelectedCover(presenter.selectedMangas)
 //                destroyActionModeIfNeeded()
 //            }
-//            R.id.action_move_to_category -> moveMangasToCategories(presenter.selectedMangas)
-//            R.id.action_delete -> showDeleteMangaDialog()
+            R.id.action_move_to_category -> showChangeMangaCategoriesDialog()
+            R.id.action_delete -> showDeleteMangaDialog()
             else -> return false
         }
         return true
@@ -296,6 +298,38 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
         // Create a new activity with the manga.
         val intent = MangaActivity.newIntent(activity!!, manga)
         activity!!.startActivity(intent)
+    }
+
+    /**
+     * Move the selected manga to a list of categories.
+     */
+    private fun showChangeMangaCategoriesDialog() {
+        val mangas = presenter.selectedMangas
+
+        // Hide the default category because it has a different behavior than the ones from db.
+        val categories = presenter.categories.filter { it.id != 0 }
+
+        // Get indexes of the common categories to preselect.
+        val commonCategoriesIndexes = presenter.getCommonCategories(mangas)
+                .map { categories.indexOf(it) }
+                .toTypedArray()
+
+        ChangeMangaCategoriesDialog(this, mangas, categories, commonCategoriesIndexes)
+                .showDialog(router, null)
+    }
+
+    override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>) {
+        presenter.moveMangasToCategories(categories, mangas)
+        destroyActionModeIfNeeded()
+    }
+
+    private fun showDeleteMangaDialog() {
+        DeleteLibraryMangasDialog(this, presenter.selectedMangas).showDialog(router, null)
+    }
+
+    override fun deleteMangasFromLibrary(mangas: List<Manga>, deleteChapters: Boolean) {
+        presenter.removeMangaFromLibrary(mangas, deleteChapters)
+        destroyActionModeIfNeeded()
     }
 
 }

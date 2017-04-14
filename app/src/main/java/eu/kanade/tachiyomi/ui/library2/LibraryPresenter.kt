@@ -290,11 +290,12 @@ class LibraryPresenter(
     /**
      * Remove the selected manga from the library.
      *
+     * @param mangas the list of manga to delete.
      * @param deleteChapters whether to also delete downloaded chapters.
      */
-    fun removeMangaFromLibrary(deleteChapters: Boolean) {
+    fun removeMangaFromLibrary(mangas: List<Manga>, deleteChapters: Boolean) {
         // Create a set of the list
-        val mangaToDelete = selectedMangas.distinctBy { it.id }
+        val mangaToDelete = mangas.distinctBy { it.id }
         mangaToDelete.forEach { it.favorite = false }
 
         Observable.fromCallable { db.insertMangas(mangaToDelete).executeAsBlocking() }
