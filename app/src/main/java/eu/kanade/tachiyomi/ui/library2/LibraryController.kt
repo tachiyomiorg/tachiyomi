@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.library2
 
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -12,6 +13,7 @@ import android.support.v7.widget.SearchView
 import android.view.*
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
+import com.f2prateek.rx.preferences.Preference
 import com.jakewharton.rxbinding.support.v7.widget.queryTextChanges
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
@@ -48,7 +50,7 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
     /**
      * Number of manga per row in grid mode.
      */
-    var mangaPerRow = 3
+    var mangaPerRow = 0
         private set
 
     private val ui
@@ -116,6 +118,13 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
             })
             tabs?.setupWithViewPager(this)
 
+            getColumnsPreferenceForCurrentOrientation().asObservable()
+                    .doOnNext { mangaPerRow = it }
+                    .skip(1)
+                    // Set again the adapter to recalculate the covers height
+                    .subscribeUntilDestroy { reattachAdapter() }
+
+
             // Inflate and prepare drawer
             navView = drawer?.inflate(R.layout.library_drawer) as LibraryNavigationView
             drawer?.addView(navView)
@@ -159,6 +168,18 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
 
         // Send the manga map to child fragments after the adapter is updated.
         presenter.libraryMangaSubject.call(LibraryMangaEvent(mangaMap))
+    }
+
+    /**
+     * Returns a preference for the number of manga per row based on the current orientation.
+     *
+     * @return the preference.
+     */
+    private fun getColumnsPreferenceForCurrentOrientation(): Preference<Int> {
+        return if (resources?.configuration?.orientation == Configuration.ORIENTATION_PORTRAIT)
+            preferences.portraitColumns()
+        else
+            preferences.landscapeColumns()
     }
 
     /**
@@ -292,12 +313,14 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
     }
 
     fun openManga(manga: Manga) {
+        val activity = activity ?: return
+
         // Notify the presenter a manga is being opened.
         presenter.onOpenManga()
 
         // Create a new activity with the manga.
-        val intent = MangaActivity.newIntent(activity!!, manga)
-        activity!!.startActivity(intent)
+        val intent = MangaActivity.newIntent(activity, manga)
+        activity.startActivity(intent)
     }
 
     /**
