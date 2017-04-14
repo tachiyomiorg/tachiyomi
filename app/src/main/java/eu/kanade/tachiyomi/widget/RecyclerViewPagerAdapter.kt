@@ -1,11 +1,11 @@
 package eu.kanade.tachiyomi.widget
 
-import android.support.v4.view.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
+import com.nightlynexus.viewstatepageradapter.ViewStatePagerAdapter
 import java.util.*
 
-abstract class RecyclerViewPagerAdapter : PagerAdapter() {
+abstract class RecyclerViewPagerAdapter : ViewStatePagerAdapter() {
 
     private val pool = Stack<View>()
 
@@ -21,22 +21,16 @@ abstract class RecyclerViewPagerAdapter : PagerAdapter() {
 
     protected open fun recycleView(view: View, position: Int) {}
 
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+    override fun createView(container: ViewGroup, position: Int): View {
         val view = if (pool.isNotEmpty()) pool.pop() else createView(container)
         bindView(view, position)
-        container.addView(view)
         return view
     }
 
-    override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {
-        val view = obj as View
+    override fun destroyView(container: ViewGroup, position: Int, view: View) {
         recycleView(view, position)
-        container.removeView(view)
         if (recycle) pool.push(view)
     }
 
-    override fun isViewFromObject(view: View, obj: Any): Boolean {
-        return view === obj
-    }
 
 }

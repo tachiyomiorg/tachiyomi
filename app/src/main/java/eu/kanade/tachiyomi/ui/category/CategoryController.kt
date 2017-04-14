@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.category
 
+import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.view.ActionMode
 import android.support.v7.widget.LinearLayoutManager
@@ -35,8 +36,8 @@ class CategoryController : NucleusController<CategoryPresenter>(),
         return inflater.inflate(R.layout.categories_controller, container, false)
     }
 
-    override fun onViewCreated(view: View) {
-        super.onViewCreated(view)
+    override fun onViewCreated(view: View, savedViewState: Bundle?) {
+        super.onViewCreated(view, savedViewState)
 
         with(view) {
             adapter = CategoryAdapter(this@CategoryController)

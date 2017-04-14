@@ -5,19 +5,19 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bluelinelabs.conductor.Controller
+import com.bluelinelabs.conductor.RestoreViewOnCreateController
 
-abstract class BaseController(bundle: Bundle? = null) : Controller(bundle) {
+abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateController(bundle) {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup, savedViewState: Bundle?): View {
         val view = inflateView(inflater, container)
-        onViewCreated(view)
+        onViewCreated(view, savedViewState)
         return view
     }
 
     abstract fun inflateView(inflater: LayoutInflater, container: ViewGroup): View
 
-    open fun onViewCreated(view: View) { }
+    open fun onViewCreated(view: View, savedViewState: Bundle?) { }
 
     override fun onAttach(view: View) {
         setTitle()

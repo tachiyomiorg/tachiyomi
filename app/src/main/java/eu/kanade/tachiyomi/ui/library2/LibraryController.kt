@@ -102,8 +102,8 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
         return LibraryView(this)
     }
 
-    override fun onViewCreated(view: View) {
-        super.onViewCreated(view)
+    override fun onViewCreated(view: View, savedViewState: Bundle?) {
+        super.onViewCreated(view, savedViewState)
         with(view as ViewPager) {
             addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
                 override fun onPageSelected(position: Int) {

@@ -22,7 +22,6 @@ import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
-import eu.kanade.tachiyomi.ui.category.CategoryActivity
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.util.toast
@@ -264,8 +263,8 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
                 LibraryUpdateService.start(activity)
             }
             R.id.action_edit_categories -> {
-                val intent = Intent(context, CategoryActivity::class.java)
-                startActivity(intent)
+//                val intent = Intent(context, CategoryActivity::class.java)
+//                startActivity(intent)
             }
             else -> return super.onOptionsItemSelected(item)
         }
