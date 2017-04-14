@@ -104,6 +104,7 @@ dependencies {
 
     final rxbindings_version = '1.0.1'
     compile "com.jakewharton.rxbinding:rxbinding-kotlin:$rxbindings_version"
+    compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$rxbindings_version"
 
     // Modified dependencies
     compile 'com.github.inorichi:subsampling-scale-image-view:01e5385'

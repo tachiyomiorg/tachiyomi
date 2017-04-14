@@ -1,24 +1,31 @@
 package eu.kanade.tachiyomi.ui.library2
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.view.ActionMode
+import android.support.v7.widget.SearchView
 import android.view.*
+import com.bluelinelabs.conductor.RouterTransaction
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
+import com.jakewharton.rxbinding.support.v7.widget.queryTextChanges
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.ui.category.CategoryController
 import eu.kanade.tachiyomi.ui.library.LibraryMangaEvent
 import eu.kanade.tachiyomi.ui.library.LibraryNavigationView
 import eu.kanade.tachiyomi.ui.main.MainActivity2
 import eu.kanade.tachiyomi.util.inflate
 import kotlinx.android.synthetic.main.activity_main2.*
-import kotlinx.android.synthetic.main.fragment_library.view.*
 import uy.kohesive.injekt.injectLazy
 
 
@@ -27,12 +34,11 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
 
     private val preferences: PreferencesHelper by injectLazy()
 
-    private var adapter: LibraryAdapter? = null
-
     /**
      * Position of the active category.
      */
-    private var activeCategory = preferences.lastUsedCategory().getOrDefault()
+    var activeCategory = preferences.lastUsedCategory().getOrDefault()
+        private set
 
     private var actionMode: ActionMode? = null
 
@@ -42,14 +48,19 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
     var mangaPerRow = 3
         private set
 
+    private val ui
+        get() = view as? LibraryView
+
     /**
      * TabLayout of the categories.
      */
-    private val tabs: TabLayout
-        get() = (activity as MainActivity2).tabs
+    private val tabs: TabLayout?
+        get() = (activity as? MainActivity2)?.tabs
 
     private val drawer: DrawerLayout?
         get() = (activity as? MainActivity2)?.drawer
+
+    private var query = ""
 
     /**
      * Navigation view containing filter/sort/display items.
@@ -75,6 +86,10 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
         }
     }
 
+    init {
+        setHasOptionsMenu(true)
+    }
+
     override fun createPresenter(): LibraryPresenter {
         return LibraryPresenter()
     }
@@ -84,20 +99,19 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.fragment_library, container, false)
+        return LibraryView(this)
     }
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
-        adapter = LibraryAdapter(this)
-        with(view) {
-            view_pager.adapter = adapter
-            view_pager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+        with(view as ViewPager) {
+            addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
                 override fun onPageSelected(position: Int) {
                     preferences.lastUsedCategory().set(position)
+                    activeCategory = position
                 }
             })
-            tabs.setupWithViewPager(view_pager)
+            tabs?.setupWithViewPager(this)
 
             // Inflate and prepare drawer
             navView = drawer?.inflate(R.layout.library_drawer) as LibraryNavigationView
@@ -127,33 +141,21 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
 
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
-        adapter = null
         drawer?.removeDrawerListener(drawerListener)
         drawer?.removeView(navView)
-        with(view) {
-            tabs.setupWithViewPager(null)
-            tabs.visibility = View.GONE
-        }
+        tabs?.setupWithViewPager(null)
+        tabs?.visibility = View.GONE
     }
 
     fun onNextLibraryUpdate(categories: List<Category>, mangaMap: Map<Int, List<Manga>>) {
-        val adapter = adapter ?: return
-        withView {
-            // Get the current active category.
-            val activeCat = if (adapter.categories.isNotEmpty()) view_pager.currentItem else activeCategory
+        ui?.setCategories(categories)
 
-            // Set the categories
-            adapter.categories = categories
-            tabs.visibility = if (categories.size <= 1) View.GONE else View.VISIBLE
+        tabs?.visibility = if (categories.size <= 1) View.GONE else View.VISIBLE
+        // Delay the scroll position to allow the view to be properly measured.
+        ui?.post { tabs?.setScrollPosition(ui!!.currentItem, 0f, true) }
 
-            // Restore active category.
-            view_pager.setCurrentItem(activeCat, false)
-            // Delay the scroll position to allow the view to be properly measured.
-            view_pager.post { if (isAttached) tabs.setScrollPosition(view_pager.currentItem, 0f, true) }
-
-            // Send the manga map to child fragments after the adapter is updated.
-            presenter.libraryMangaSubject.call(LibraryMangaEvent(mangaMap))
-        }
+        // Send the manga map to child fragments after the adapter is updated.
+        presenter.libraryMangaSubject.call(LibraryMangaEvent(mangaMap))
     }
 
     /**
@@ -175,14 +177,7 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
      * Reattaches the adapter to the view pager to recreate fragments
      */
     private fun reattachAdapter() {
-        val adapter = adapter ?: return
-        with(view!!) {
-            val position = view_pager.currentItem
-            adapter.recycle = false
-            view_pager.adapter = adapter
-            view_pager.currentItem = position
-            adapter.recycle = true
-        }
+        ui?.reattachAdapter()
     }
 
     /**
@@ -199,6 +194,56 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
      */
     fun destroyActionModeIfNeeded() {
         actionMode?.finish()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.library, menu)
+
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+
+        if (!query.isNullOrEmpty()) {
+            searchItem.expandActionView()
+            searchView.setQuery(query, true)
+            searchView.clearFocus()
+        }
+
+        // Mutate the filter icon because it needs to be tinted and the resource is shared.
+        menu.findItem(R.id.action_filter).icon.mutate()
+
+        searchView.queryTextChanges().subscribeUntilDestroy {
+            query = it.toString()
+            presenter.searchSubject.call(query)
+        }
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        val navView = navView ?: return
+
+        val filterItem = menu.findItem(R.id.action_filter)
+
+        // Tint icon if there's a filter active
+        val filterColor = if (navView.hasActiveFilters()) Color.rgb(255, 238, 7) else Color.WHITE
+        DrawableCompat.setTint(filterItem.icon, filterColor)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_filter -> {
+                drawer?.openDrawer(Gravity.END)
+            }
+            R.id.action_update_library -> {
+                activity?.let { LibraryUpdateService.start(it) }
+            }
+            R.id.action_edit_categories -> {
+                router.pushController(RouterTransaction.with(CategoryController())
+                        .pushChangeHandler(FadeChangeHandler())
+                        .popChangeHandler(FadeChangeHandler()))
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+
+        return true
     }
 
     /**

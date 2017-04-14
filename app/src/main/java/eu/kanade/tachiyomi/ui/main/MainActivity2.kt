@@ -11,7 +11,7 @@ import com.bluelinelabs.conductor.*
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.library2.LibraryController
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 
@@ -54,10 +54,6 @@ class MainActivity2 : BaseActivity() {
 
         router.addChangeListener(object : ControllerChangeHandler.ControllerChangeListener {
             override fun onChangeStarted(to: Controller?, from: Controller?, isPush: Boolean, container: ViewGroup, handler: ControllerChangeHandler) {
-
-            }
-
-            override fun onChangeCompleted(to: Controller?, from: Controller?, isPush: Boolean, container: ViewGroup, handler: ControllerChangeHandler) {
                 val showHamburger = router.backstackSize == 1
                 if (showHamburger) {
                     drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -66,6 +62,10 @@ class MainActivity2 : BaseActivity() {
                 }
 
                 ObjectAnimator.ofFloat(drawerArrow, "progress", if (showHamburger) 0f else 1f).start()
+            }
+
+            override fun onChangeCompleted(to: Controller?, from: Controller?, isPush: Boolean, container: ViewGroup, handler: ControllerChangeHandler) {
+
             }
 
         })
