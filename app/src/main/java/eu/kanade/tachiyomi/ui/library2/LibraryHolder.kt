@@ -1,8 +1,9 @@
 package eu.kanade.tachiyomi.ui.library2
 
 import android.view.View
+import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
 
 /**
  * Generic class used to hold the displayed data of a manga in the library.
@@ -11,10 +12,10 @@ import eu.kanade.tachiyomi.ui.base.adapter.FlexibleViewHolder
  * @param listener a listener to react to the single tap and long tap events.
  */
 
-abstract class LibraryHolder(private val view: View,
-                             adapter: LibraryCategoryAdapter,
-                             listener: FlexibleViewHolder.OnListItemClickListener)
-: FlexibleViewHolder(view, adapter, listener) {
+abstract class LibraryHolder(
+        view: View,
+        adapter: FlexibleAdapter<*>
+) : FlexibleViewHolder(view, adapter) {
 
     /**
      * Method called from [LibraryCategoryAdapter.onBindViewHolder]. It updates the data for this

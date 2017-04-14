@@ -24,6 +24,7 @@ import eu.kanade.tachiyomi.ui.category.CategoryController
 import eu.kanade.tachiyomi.ui.library.LibraryMangaEvent
 import eu.kanade.tachiyomi.ui.library.LibraryNavigationView
 import eu.kanade.tachiyomi.ui.main.MainActivity2
+import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.util.inflate
 import kotlinx.android.synthetic.main.activity_main2.*
 import uy.kohesive.injekt.injectLazy
@@ -147,7 +148,7 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
         tabs?.visibility = View.GONE
     }
 
-    fun onNextLibraryUpdate(categories: List<Category>, mangaMap: Map<Int, List<Manga>>) {
+    fun onNextLibraryUpdate(categories: List<Category>, mangaMap: Map<Int, List<LibraryItem>>) {
         ui?.setCategories(categories)
 
         tabs?.visibility = if (categories.size <= 1) View.GONE else View.VISIBLE
@@ -286,6 +287,15 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
     override fun onDestroyActionMode(mode: ActionMode?) {
         presenter.clearSelections()
         actionMode = null
+    }
+
+    fun openManga(manga: Manga) {
+        // Notify the presenter a manga is being opened.
+        presenter.onOpenManga()
+
+        // Create a new activity with the manga.
+        val intent = MangaActivity.newIntent(activity!!, manga)
+        activity!!.startActivity(intent)
     }
 
 }

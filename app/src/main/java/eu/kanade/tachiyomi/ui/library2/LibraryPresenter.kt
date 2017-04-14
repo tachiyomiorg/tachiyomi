@@ -17,7 +17,6 @@ import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import eu.kanade.tachiyomi.ui.library.LibraryFragment
 import eu.kanade.tachiyomi.ui.library.LibraryMangaEvent
 import eu.kanade.tachiyomi.ui.library.LibrarySelectionEvent
 import eu.kanade.tachiyomi.ui.library.LibrarySort
@@ -34,7 +33,7 @@ import java.io.InputStream
 import java.util.*
 
 /**
- * Presenter of [LibraryFragment].
+ * Presenter of [LibraryController].
  */
 class LibraryPresenter(
         private val db: DatabaseHelper = Injekt.get(),
@@ -96,9 +95,10 @@ class LibraryPresenter(
         if (librarySubscription.isNullOrUnsubscribed()) {
             librarySubscription = getLibraryObservable()
                     .combineLatest(filterTriggerRelay.observeOn(Schedulers.io()),
-                            { lib, tick -> Pair(lib.first, applyFilters(lib.second)) })
+                            { lib, _ -> Pair(lib.first, applyFilters(lib.second)) })
                     .combineLatest(sortTriggerRelay.observeOn(Schedulers.io()),
-                            { lib, tick -> Pair(lib.first, applySort(lib.second)) })
+                            { lib, _ -> Pair(lib.first, applySort(lib.second)) })
+                    .map { Pair(it.first, it.second.mapValues { it.value.map(::LibraryItem) }) }
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeLatestCache({ view, pair ->
                         view.onNextLibraryUpdate(pair.first, pair.second)
