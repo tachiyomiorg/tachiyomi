@@ -14,6 +14,7 @@ import android.view.*
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.f2prateek.rx.preferences.Preference
+import com.jakewharton.rxbinding.support.v4.view.pageSelections
 import com.jakewharton.rxbinding.support.v7.widget.queryTextChanges
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
@@ -22,6 +23,7 @@ import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.category.CategoryController
 import eu.kanade.tachiyomi.ui.library.LibraryMangaEvent
 import eu.kanade.tachiyomi.ui.library.LibraryNavigationView
@@ -33,6 +35,7 @@ import uy.kohesive.injekt.injectLazy
 
 
 class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPresenter>(bundle),
+        TabbedController,
         ActionMode.Callback,
         ChangeMangaCategoriesDialog.Listener,
         DeleteLibraryMangasDialog.Listener {
@@ -110,12 +113,11 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
     override fun onViewCreated(view: View, savedViewState: Bundle?) {
         super.onViewCreated(view, savedViewState)
         with(view as ViewPager) {
-            addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
-                override fun onPageSelected(position: Int) {
-                    preferences.lastUsedCategory().set(position)
-                    activeCategory = position
-                }
-            })
+            pageSelections().subscribeUntilDestroy { position ->
+                preferences.lastUsedCategory().set(position)
+                activeCategory = position
+            }
+
             tabs?.setupWithViewPager(this)
 
             getColumnsPreferenceForCurrentOrientation().asObservable()
@@ -155,7 +157,6 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
         super.onDestroyView(view)
         drawer?.removeDrawerListener(drawerListener)
         drawer?.removeView(navView)
-        tabs?.visibility = View.GONE
         tabs?.setupWithViewPager(null)
         navView = null
         actionMode = null

@@ -13,8 +13,11 @@ import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
+import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.library2.LibraryController
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity
+import eu.kanade.tachiyomi.util.gone
+import eu.kanade.tachiyomi.util.visible
 import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.toolbar.*
 import uy.kohesive.injekt.injectLazy
@@ -102,6 +105,12 @@ class MainActivity2 : BaseActivity() {
                 }
 
                 ObjectAnimator.ofFloat(drawerArrow, "progress", if (showHamburger) 0f else 1f).start()
+
+                if (to is TabbedController) {
+                    tabs.visible()
+                } else {
+                    tabs.gone()
+                }
             }
 
             override fun onChangeCompleted(to: Controller?, from: Controller?, isPush: Boolean, container: ViewGroup, handler: ControllerChangeHandler) {
