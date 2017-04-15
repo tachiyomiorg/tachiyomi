@@ -15,10 +15,11 @@ import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.library.LibraryMangaEvent
 import eu.kanade.tachiyomi.ui.library.LibrarySelectionEvent
 import eu.kanade.tachiyomi.util.inflate
+import eu.kanade.tachiyomi.util.plusAssign
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import kotlinx.android.synthetic.main.item_library_category.view.*
-import rx.Subscription
+import rx.subscriptions.CompositeSubscription
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -57,19 +58,9 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
     private lateinit var adapter: LibraryCategoryAdapter
 
     /**
-     * Subscription for the library manga.
+     * Subscriptions while the view is bound.
      */
-    private var libraryMangaSubscription: Subscription? = null
-
-    /**
-     * Subscription of the library search.
-     */
-    private var searchSubscription: Subscription? = null
-
-    /**
-     * Subscription of the library selections.
-     */
-    private var selectionSubscription: Subscription? = null
+    private var subscriptions = CompositeSubscription()
 
     fun onCreate(controller: LibraryController) {
         this.controller = controller
@@ -114,7 +105,7 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
     fun onBind(category: Category) {
         this.category = category
 
-        searchSubscription = controller.searchSubject.subscribe { text ->
+        subscriptions += controller.searchRelay.subscribe { text ->
             adapter.searchText = text
             adapter.performFilter()
         }
@@ -125,22 +116,21 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
             FlexibleAdapter.MODE_SINGLE
         }
 
-        libraryMangaSubscription = controller.libraryMangaSubject
+        subscriptions += controller.libraryMangaRelay
                 .subscribe { onNextLibraryManga(it) }
 
-        selectionSubscription = controller.selectionSubject
+        subscriptions += controller.selectionRelay
                 .subscribe { onSelectionChanged(it) }
     }
 
     fun onRecycle() {
         adapter.setItems(emptyList())
         adapter.clearSelection()
+        subscriptions.clear()
     }
 
     override fun onDetachedFromWindow() {
-        searchSubscription?.unsubscribe()
-        libraryMangaSubscription?.unsubscribe()
-        selectionSubscription?.unsubscribe()
+        subscriptions.clear()
         super.onDetachedFromWindow()
     }
 

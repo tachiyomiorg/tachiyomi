@@ -1,11 +1,13 @@
 package eu.kanade.tachiyomi.ui.library2
 
+import android.annotation.SuppressLint
 import android.support.v4.view.ViewPager
 import android.view.ViewGroup.LayoutParams
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 
+@SuppressLint("ViewConstructor")
 class LibraryView(private val controller: LibraryController) : ViewPager(controller.activity) {
 
     private var lAdapter = LibraryAdapter(controller)

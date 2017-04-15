@@ -70,17 +70,17 @@ class LibraryController(
     /**
      * Relay to notify the UI of selection updates.
      */
-    val selectionSubject: PublishRelay<LibrarySelectionEvent> = PublishRelay.create()
+    val selectionRelay: PublishRelay<LibrarySelectionEvent> = PublishRelay.create()
 
     /**
-     * Search query of the library.
+     * Relay to notify search query changes.
      */
-    val searchSubject: BehaviorRelay<String> = BehaviorRelay.create()
+    val searchRelay: BehaviorRelay<String> = BehaviorRelay.create()
 
     /**
      * Relay to notify the library's viewpager for updates.
      */
-    val libraryMangaSubject: BehaviorRelay<LibraryMangaEvent> = BehaviorRelay.create()
+    val libraryMangaRelay: BehaviorRelay<LibraryMangaEvent> = BehaviorRelay.create()
 
     /**
      * Number of manga per row in grid mode.
@@ -204,7 +204,7 @@ class LibraryController(
         ui?.post { tabs?.setScrollPosition(ui!!.currentItem, 0f, true) }
 
         // Send the manga map to child fragments after the adapter is updated.
-        libraryMangaSubject.call(LibraryMangaEvent(mangaMap))
+        libraryMangaRelay.call(LibraryMangaEvent(mangaMap))
     }
 
     /**
@@ -274,7 +274,7 @@ class LibraryController(
 
         searchView.queryTextChanges().subscribeUntilDestroy {
             query = it.toString()
-            searchSubject.call(query)
+            searchRelay.call(query)
         }
     }
 
@@ -347,7 +347,7 @@ class LibraryController(
     override fun onDestroyActionMode(mode: ActionMode?) {
         // Clear all the manga selections and notify child views.
         selectedMangas.clear()
-        selectionSubject.call(LibrarySelectionEvent.Cleared())
+        selectionRelay.call(LibrarySelectionEvent.Cleared())
         actionMode = null
     }
 
@@ -371,10 +371,10 @@ class LibraryController(
     fun setSelection(manga: Manga, selected: Boolean) {
         if (selected) {
             selectedMangas.add(manga)
-            selectionSubject.call(LibrarySelectionEvent.Selected(manga))
+            selectionRelay.call(LibrarySelectionEvent.Selected(manga))
         } else {
             selectedMangas.remove(manga)
-            selectionSubject.call(LibrarySelectionEvent.Unselected(manga))
+            selectionRelay.call(LibrarySelectionEvent.Unselected(manga))
         }
     }
 
