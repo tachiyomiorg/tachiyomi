@@ -9,7 +9,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.widget.DialogCheckboxView
 
-class DeleteLibraryMangasDialog<T> private constructor(bundle: Bundle? = null) :
+class DeleteLibraryMangasDialog<T>(bundle: Bundle? = null) :
         DialogController(bundle) where T : Controller, T: DeleteLibraryMangasDialog.Listener {
 
     private var mangas = emptyList<Manga>()

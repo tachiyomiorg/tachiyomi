@@ -13,6 +13,7 @@ import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
+import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.library2.LibraryController
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity
@@ -106,10 +107,12 @@ class MainActivity2 : BaseActivity() {
 
                 ObjectAnimator.ofFloat(drawerArrow, "progress", if (showHamburger) 0f else 1f).start()
 
-                if (to is TabbedController) {
-                    tabs.visible()
-                } else {
-                    tabs.gone()
+                if (to !is DialogController) {
+                    if (to is TabbedController) {
+                        tabs.visible()
+                    } else {
+                        tabs.gone()
+                    }
                 }
             }
 

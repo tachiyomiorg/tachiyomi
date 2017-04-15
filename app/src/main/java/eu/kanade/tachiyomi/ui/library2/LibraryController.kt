@@ -16,6 +16,8 @@ import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.f2prateek.rx.preferences.Preference
 import com.jakewharton.rxbinding.support.v4.view.pageSelections
 import com.jakewharton.rxbinding.support.v7.widget.queryTextChanges
+import com.jakewharton.rxrelay.BehaviorRelay
+import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -27,28 +29,58 @@ import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.category.CategoryController
 import eu.kanade.tachiyomi.ui.library.LibraryMangaEvent
 import eu.kanade.tachiyomi.ui.library.LibraryNavigationView
-import eu.kanade.tachiyomi.ui.main.MainActivity2
+import eu.kanade.tachiyomi.ui.library.LibrarySelectionEvent
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.util.inflate
 import kotlinx.android.synthetic.main.activity_main2.*
-import uy.kohesive.injekt.injectLazy
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 
-class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPresenter>(bundle),
+class LibraryController(
+        bundle: Bundle? = null,
+        private val preferences: PreferencesHelper = Injekt.get()
+) : NucleusController<LibraryPresenter>(bundle),
         TabbedController,
         ActionMode.Callback,
         ChangeMangaCategoriesDialog.Listener,
         DeleteLibraryMangasDialog.Listener {
 
-    private val preferences: PreferencesHelper by injectLazy()
-
     /**
      * Position of the active category.
      */
-    var activeCategory = preferences.lastUsedCategory().getOrDefault()
+    var activeCategory: Int = preferences.lastUsedCategory().getOrDefault()
         private set
 
+    /**
+     * Action mode for selections.
+     */
     private var actionMode: ActionMode? = null
+
+    /**
+     * Library search query.
+     */
+    private var query = ""
+
+    /**
+     * Currently selected manga.
+     */
+    val selectedMangas = mutableListOf<Manga>()
+
+    /**
+     * Relay to notify the UI of selection updates.
+     */
+    val selectionSubject: PublishRelay<LibrarySelectionEvent> = PublishRelay.create()
+
+    /**
+     * Search query of the library.
+     */
+    val searchSubject: BehaviorRelay<String> = BehaviorRelay.create()
+
+    /**
+     * Relay to notify the library's viewpager for updates.
+     */
+    val libraryMangaSubject: BehaviorRelay<LibraryMangaEvent> = BehaviorRelay.create()
 
     /**
      * Number of manga per row in grid mode.
@@ -63,12 +95,10 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
      * TabLayout of the categories.
      */
     private val tabs: TabLayout?
-        get() = (activity as? MainActivity2)?.tabs
+        get() = activity?.tabs
 
     private val drawer: DrawerLayout?
-        get() = (activity as? MainActivity2)?.drawer
-
-    private var query = ""
+        get() = activity?.drawer
 
     /**
      * Navigation view containing filter/sort/display items.
@@ -98,12 +128,12 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
         setHasOptionsMenu(true)
     }
 
-    override fun createPresenter(): LibraryPresenter {
-        return LibraryPresenter()
-    }
-
     override fun getTitle(): String? {
         return resources?.getString(R.string.label_library)
+    }
+
+    override fun createPresenter(): LibraryPresenter {
+        return LibraryPresenter()
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
@@ -145,6 +175,10 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
                     is LibraryNavigationView.DisplayGroup -> reattachAdapter()
                 }
             }
+
+            if (selectedMangas.isNotEmpty()) {
+                createActionModeIfNeeded()
+            }
         }
     }
 
@@ -170,7 +204,7 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
         ui?.post { tabs?.setScrollPosition(ui!!.currentItem, 0f, true) }
 
         // Send the manga map to child fragments after the adapter is updated.
-        presenter.libraryMangaSubject.call(LibraryMangaEvent(mangaMap))
+        libraryMangaSubject.call(LibraryMangaEvent(mangaMap))
     }
 
     /**
@@ -240,7 +274,7 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
 
         searchView.queryTextChanges().subscribeUntilDestroy {
             query = it.toString()
-            presenter.searchSubject.call(query)
+            searchSubject.call(query)
         }
     }
 
@@ -286,7 +320,7 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
     }
 
     override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
-        val count = presenter.selectedMangas.size
+        val count = selectedMangas.size
         if (count == 0) {
             // Destroy action mode if there are no items selected.
             destroyActionModeIfNeeded()
@@ -311,7 +345,9 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {
-        presenter.clearSelections()
+        // Clear all the manga selections and notify child views.
+        selectedMangas.clear()
+        selectionSubject.call(LibrarySelectionEvent.Cleared())
         actionMode = null
     }
 
@@ -327,10 +363,27 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
     }
 
     /**
+     * Sets the selection for a given manga.
+     *
+     * @param manga the manga whose selection has changed.
+     * @param selected whether it's now selected or not.
+     */
+    fun setSelection(manga: Manga, selected: Boolean) {
+        if (selected) {
+            selectedMangas.add(manga)
+            selectionSubject.call(LibrarySelectionEvent.Selected(manga))
+        } else {
+            selectedMangas.remove(manga)
+            selectionSubject.call(LibrarySelectionEvent.Unselected(manga))
+        }
+    }
+
+    /**
      * Move the selected manga to a list of categories.
      */
     private fun showChangeMangaCategoriesDialog() {
-        val mangas = presenter.selectedMangas
+        // Create a copy of selected manga
+        val mangas = selectedMangas.toList()
 
         // Hide the default category because it has a different behavior than the ones from db.
         val categories = presenter.categories.filter { it.id != 0 }
@@ -344,13 +397,13 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
                 .showDialog(router, null)
     }
 
+    private fun showDeleteMangaDialog() {
+        DeleteLibraryMangasDialog(this, selectedMangas.toList()).showDialog(router, null)
+    }
+
     override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>) {
         presenter.moveMangasToCategories(categories, mangas)
         destroyActionModeIfNeeded()
-    }
-
-    private fun showDeleteMangaDialog() {
-        DeleteLibraryMangasDialog(this, presenter.selectedMangas).showDialog(router, null)
     }
 
     override fun deleteMangasFromLibrary(mangas: List<Manga>, deleteChapters: Boolean) {

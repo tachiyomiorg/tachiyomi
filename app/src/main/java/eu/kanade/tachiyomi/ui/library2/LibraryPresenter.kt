@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Pair
 import com.hippo.unifile.UniFile
 import com.jakewharton.rxrelay.BehaviorRelay
-import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
@@ -17,8 +16,6 @@ import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import eu.kanade.tachiyomi.ui.library.LibraryMangaEvent
-import eu.kanade.tachiyomi.ui.library.LibrarySelectionEvent
 import eu.kanade.tachiyomi.ui.library.LibrarySort
 import eu.kanade.tachiyomi.util.combineLatest
 import eu.kanade.tachiyomi.util.isNullOrUnsubscribed
@@ -47,26 +44,7 @@ class LibraryPresenter(
      * Categories of the library.
      */
     var categories: List<Category> = emptyList()
-
-    /**
-     * Currently selected manga.
-     */
-    val selectedMangas = mutableListOf<Manga>()
-
-    /**
-     * Search query of the library.
-     */
-    val searchSubject: BehaviorRelay<String> = BehaviorRelay.create()
-
-    /**
-     * Subject to notify the library's viewpager for updates.
-     */
-    val libraryMangaSubject: BehaviorRelay<LibraryMangaEvent> = BehaviorRelay.create()
-
-    /**
-     * Subject to notify the UI of selection updates.
-     */
-    val selectionSubject: PublishRelay<LibrarySelectionEvent> = PublishRelay.create()
+        private set
 
     /**
      * Relay used to apply the UI filters to the last emission of the library.
@@ -249,30 +227,6 @@ class LibraryPresenter(
     fun onOpenManga() {
         // Avoid further db updates for the library when it's not needed
         librarySubscription?.let { remove(it) }
-    }
-
-    /**
-     * Sets the selection for a given manga.
-     *
-     * @param manga the manga whose selection has changed.
-     * @param selected whether it's now selected or not.
-     */
-    fun setSelection(manga: Manga, selected: Boolean) {
-        if (selected) {
-            selectedMangas.add(manga)
-            selectionSubject.call(LibrarySelectionEvent.Selected(manga))
-        } else {
-            selectedMangas.remove(manga)
-            selectionSubject.call(LibrarySelectionEvent.Unselected(manga))
-        }
-    }
-
-    /**
-     * Clears all the manga selections and notifies the UI.
-     */
-    fun clearSelections() {
-        selectedMangas.clear()
-        selectionSubject.call(LibrarySelectionEvent.Cleared())
     }
 
     /**

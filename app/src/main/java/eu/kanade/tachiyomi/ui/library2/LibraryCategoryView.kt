@@ -114,23 +114,21 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
     fun onBind(category: Category) {
         this.category = category
 
-        val presenter = controller.presenter
-
-        searchSubscription = presenter.searchSubject.subscribe { text ->
+        searchSubscription = controller.searchSubject.subscribe { text ->
             adapter.searchText = text
             adapter.performFilter()
         }
 
-        adapter.mode = if (presenter.selectedMangas.isNotEmpty()) {
+        adapter.mode = if (controller.selectedMangas.isNotEmpty()) {
             FlexibleAdapter.MODE_MULTI
         } else {
             FlexibleAdapter.MODE_SINGLE
         }
 
-        libraryMangaSubscription = presenter.libraryMangaSubject
+        libraryMangaSubscription = controller.libraryMangaSubject
                 .subscribe { onNextLibraryManga(it) }
 
-        selectionSubscription = presenter.selectionSubject
+        selectionSubscription = controller.selectionSubject
                 .subscribe { onSelectionChanged(it) }
     }
 
@@ -160,7 +158,7 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
         adapter.setItems(mangaForCategory)
 
         if (adapter.mode == FlexibleAdapter.MODE_MULTI) {
-            controller.presenter.selectedMangas.forEach { manga ->
+            controller.selectedMangas.forEach { manga ->
                 val position = adapter.indexOf(manga)
                 if (position != -1 && !adapter.isSelected(position)) {
                     adapter.toggleSelection(position)
@@ -186,7 +184,7 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
             }
             is LibrarySelectionEvent.Unselected -> {
                 findAndToggleSelection(event.manga)
-                if (controller.presenter.selectedMangas.isEmpty()) {
+                if (controller.selectedMangas.isEmpty()) {
                     adapter.mode = FlexibleAdapter.MODE_SINGLE
                 }
             }
@@ -255,7 +253,7 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
     private fun toggleSelection(position: Int) {
         val item = adapter.getItem(position) ?: return
 
-        controller.presenter.setSelection(item.manga, !adapter.isSelected(position))
+        controller.setSelection(item.manga, !adapter.isSelected(position))
         controller.invalidateActionMode()
     }
 
