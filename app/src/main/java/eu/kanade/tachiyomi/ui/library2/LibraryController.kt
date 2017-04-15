@@ -79,13 +79,13 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
         object : DrawerLayout.SimpleDrawerListener() {
             override fun onDrawerClosed(drawerView: View) {
                 if (drawerView == navView) {
-                    activity?.drawer?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
+                    drawer?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
                 }
             }
 
             override fun onDrawerOpened(drawerView: View) {
                 if (drawerView == navView) {
-                    activity?.drawer?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, navView)
+                    drawer?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, navView)
                 }
             }
         }
@@ -155,8 +155,10 @@ class LibraryController(bundle: Bundle? = null) : NucleusController<LibraryPrese
         super.onDestroyView(view)
         drawer?.removeDrawerListener(drawerListener)
         drawer?.removeView(navView)
-        tabs?.setupWithViewPager(null)
         tabs?.visibility = View.GONE
+        tabs?.setupWithViewPager(null)
+        navView = null
+        actionMode = null
     }
 
     fun onNextLibraryUpdate(categories: List<Category>, mangaMap: Map<Int, List<LibraryItem>>) {
