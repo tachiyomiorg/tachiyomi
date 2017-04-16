@@ -94,6 +94,14 @@ public abstract class DialogController extends RestoreViewOnCreateController {
     /**
      * Display the dialog, create a transaction and pushing the controller.
      * @param router The router on which the transaction will be applied
+     */
+    public void showDialog(@NonNull Router router) {
+        showDialog(router, null);
+    }
+
+    /**
+     * Display the dialog, create a transaction and pushing the controller.
+     * @param router The router on which the transaction will be applied
      * @param tag The tag for this controller
      */
     public void showDialog(@NonNull Router router, @Nullable String tag) {

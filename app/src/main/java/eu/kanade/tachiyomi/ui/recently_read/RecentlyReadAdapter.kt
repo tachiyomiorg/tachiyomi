@@ -1,11 +1,7 @@
 package eu.kanade.tachiyomi.ui.recently_read
 
-import android.view.ViewGroup
-import eu.davidea.flexibleadapter4.FlexibleAdapter
-import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.MangaChapterHistory
+import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.source.SourceManager
-import eu.kanade.tachiyomi.util.inflate
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -13,45 +9,29 @@ import uy.kohesive.injekt.injectLazy
  * Connection between Fragment and Holder
  * Holder updates should be called from here.
  *
- * @param fragment a RecentlyReadFragment object
+ * @param controller a RecentlyReadController object
  * @constructor creates an instance of the adapter.
  */
-class RecentlyReadAdapter(val fragment: RecentlyReadFragment)
-: FlexibleAdapter<RecentlyReadHolder, MangaChapterHistory>() {
+class RecentlyReadAdapter(val controller: RecentlyReadController)
+: FlexibleAdapter<RecentlyReadItem>(null, controller, true) {
 
     val sourceManager by injectLazy<SourceManager>()
 
-    /**
-     * Called when ViewHolder is created
-     * @param parent parent View
-     * @param viewType int containing viewType
-     */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentlyReadHolder {
-        val view = parent.inflate(R.layout.item_recently_read)
-        return RecentlyReadHolder(view, this)
+    val resumeClickListener: OnResumeClickListener = controller
+
+    val removeClickListener: OnRemoveClickListener = controller
+
+    val coverClickListener: OnCoverClickListener = controller
+
+    interface OnResumeClickListener {
+        fun onResumeClick(position: Int)
     }
 
-    /**
-     * Called when ViewHolder is bind
-     * @param holder bind holder
-     * @param position position of holder
-     */
-    override fun onBindViewHolder(holder: RecentlyReadHolder, position: Int) {
-        val item = getItem(position)
-        holder.onSetValues(item)
+    interface OnRemoveClickListener {
+        fun onRemoveClick(position: Int)
     }
 
-    /**
-     * Update items
-     * @param items items
-     */
-    fun setItems(items: List<MangaChapterHistory>) {
-        mItems = items
-        notifyDataSetChanged()
+    interface OnCoverClickListener {
+        fun onCoverClick(position: Int)
     }
-
-    override fun updateDataSet(param: String?) {
-        // Empty function
-    }
-
 }

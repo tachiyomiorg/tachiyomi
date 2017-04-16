@@ -5,7 +5,6 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.History
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.database.models.MangaChapterHistory
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -18,7 +17,7 @@ import java.util.*
  * Contains information and data for fragment.
  * Observable updates should be called from here.
  */
-class RecentlyReadPresenter : BasePresenter<RecentlyReadFragment>() {
+class RecentlyReadPresenter : BasePresenter<RecentlyReadController>() {
 
     /**
      * Used to connect to database
@@ -30,22 +29,21 @@ class RecentlyReadPresenter : BasePresenter<RecentlyReadFragment>() {
 
         // Used to get a list of recently read manga
         getRecentMangaObservable()
-                .subscribeLatestCache({ view, historyList ->
-                    view.onNextManga(historyList)
-                })
+                .subscribeLatestCache(RecentlyReadController::onNextManga)
     }
 
     /**
      * Get recent manga observable
      * @return list of history
      */
-    fun getRecentMangaObservable(): Observable<List<MangaChapterHistory>> {
+    fun getRecentMangaObservable(): Observable<List<RecentlyReadItem>> {
         // Set date for recent manga
         val cal = Calendar.getInstance()
         cal.time = Date()
         cal.add(Calendar.MONTH, -1)
 
         return db.getRecentManga(cal.time).asRxObservable()
+                .map { it.map(::RecentlyReadItem) }
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
@@ -114,7 +112,7 @@ class RecentlyReadPresenter : BasePresenter<RecentlyReadFragment>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeFirst({ view, chapter ->
                     view.onOpenNextChapter(chapter, manga)
-                }, { view, error ->
+                }, { _, error ->
                     Timber.e(error)
                 })
     }

@@ -13,7 +13,6 @@ import eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment
 import eu.kanade.tachiyomi.ui.download.DownloadActivity
 import eu.kanade.tachiyomi.ui.latest_updates.LatestUpdatesFragment
 import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersFragment
-import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadFragment
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -61,7 +60,7 @@ class MainActivity : BaseActivity() {
                 when (id) {
 //                    R.id.nav_drawer_library -> setFragment(LibraryFragment.newInstance(), id)
                     R.id.nav_drawer_recent_updates -> setFragment(RecentChaptersFragment.newInstance(), id)
-                    R.id.nav_drawer_recently_read -> setFragment(RecentlyReadFragment.newInstance(), id)
+//                    R.id.nav_drawer_recently_read -> setFragment(RecentlyReadFragment.newInstance(), id)
                     R.id.nav_drawer_catalogues -> setFragment(CatalogueFragment.newInstance(), id)
                     R.id.nav_drawer_latest_updates -> setFragment(LatestUpdatesFragment.newInstance(), id)
                     R.id.nav_drawer_downloads -> startActivity(Intent(this, DownloadActivity::class.java))

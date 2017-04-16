@@ -16,6 +16,7 @@ import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.library2.LibraryController
+import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity
 import eu.kanade.tachiyomi.util.gone
 import eu.kanade.tachiyomi.util.visible
@@ -66,7 +67,7 @@ class MainActivity2 : BaseActivity() {
                 when (id) {
                     R.id.nav_drawer_library -> setRoot(LibraryController(), id)
 //                    R.id.nav_drawer_recent_updates -> router.replaceTopController(RouterTransaction.with(RecentUpdatesController()))
-//                    R.id.nav_drawer_recently_read -> setFragment(RecentlyReadFragment.newInstance(), id)
+                    R.id.nav_drawer_recently_read -> setRoot(RecentlyReadController(), id)
 //                    R.id.nav_drawer_catalogues -> setFragment(CatalogueFragment.newInstance(), id)
 //                    R.id.nav_drawer_latest_updates -> setFragment(LatestUpdatesFragment.newInstance(), id)
 //                    R.id.nav_drawer_downloads -> startActivity(Intent(this, DownloadActivity::class.java))

@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.item_catalogue_grid.view.*
 class LibraryItem(val manga: Manga) : AbstractFlexibleItem<LibraryHolder>(), IFilterable {
 
     override fun getLayoutRes(): Int {
-        return R.layout.library_grid_recycler
+        return R.layout.item_catalogue_grid
     }
 
     override fun createViewHolder(adapter: FlexibleAdapter<*>,
