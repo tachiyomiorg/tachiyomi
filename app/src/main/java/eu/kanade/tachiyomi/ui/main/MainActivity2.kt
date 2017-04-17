@@ -150,8 +150,19 @@ class MainActivity2 : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        if (!router.handleBack()) {
+        if (drawer.isDrawerOpen(GravityCompat.START) || drawer.isDrawerOpen(GravityCompat.END)) {
+            drawer.closeDrawers()
+        } else if (router.backstackSize == 1 && router.getControllerWithTag("$startScreenId") == null) {
+            setSelectedDrawerItem(startScreenId)
+        } else if (router.backstackSize == 1 || !router.handleBack()) {
             super.onBackPressed()
+        }
+    }
+
+    private fun setSelectedDrawerItem(itemId: Int) {
+        if (!isFinishing) {
+            nav_view.setCheckedItem(itemId)
+            nav_view.menu.performIdentifierAction(itemId, 0)
         }
     }
 

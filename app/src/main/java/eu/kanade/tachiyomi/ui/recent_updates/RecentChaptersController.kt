@@ -6,7 +6,6 @@ import android.support.v7.view.ActionMode
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
-import com.afollestad.materialdialogs.MaterialDialog
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import com.jakewharton.rxbinding.support.v7.widget.scrollStateChanges
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -32,7 +31,8 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
         NoToolbarElevationController,
         ActionMode.Callback,
         FlexibleAdapter.OnItemClickListener,
-        FlexibleAdapter.OnItemLongClickListener {
+        FlexibleAdapter.OnItemLongClickListener,
+        ConfirmDeleteChaptersDialog.Listener {
 
     /**
      * Action mode for multiple selection.
@@ -211,15 +211,10 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
         }
     }
 
-    /**
-     * Delete selected chapters
-     * @param chapters list of [RecentChapter] objects
-     */
-    fun deleteChapters(chapters: List<RecentChapterItem>) {
+    override fun deleteChapters(chaptersToDelete: List<RecentChapterItem>) {
         destroyActionModeIfNeeded()
-        //TODO
-//        DeletingChaptersDialog().show(childFragmentManager, DeletingChaptersDialog.TAG)
-        presenter.deleteChapters(chapters)
+        DeletingChaptersDialog().showDialog(router)
+        presenter.deleteChapters(chaptersToDelete)
     }
 
     /**
@@ -250,8 +245,7 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
      * @param chapter selected chapter with manga
      */
     fun deleteChapter(chapter: RecentChapterItem) {
-        // TODO
-//        DeletingChaptersDialog().show(childFragmentManager, DeletingChaptersDialog.TAG)
+        DeletingChaptersDialog().showDialog(router)
         presenter.deleteChapters(listOf(chapter))
     }
 
@@ -276,34 +270,10 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
      * Called to dismiss deleting dialog
      */
     fun dismissDeletingDialog() {
-        // TODO
-//        (childFragmentManager.findFragmentByTag(DeletingChaptersDialog.TAG) as? DialogFragment)
-//                ?.dismissAllowingStateLoss()
-    }
-
-    /**
-     * Called when ActionMode item clicked
-     * @param mode the ActionMode object
-     * @param item item from ActionMode.
-     */
-    override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
-        val activity = activity ?: return true
-
-        when (item.itemId) {
-            R.id.action_mark_as_read -> markAsRead(getSelectedChapters())
-            R.id.action_mark_as_unread -> markAsUnread(getSelectedChapters())
-            R.id.action_download -> downloadChapters(getSelectedChapters())
-            R.id.action_delete -> {
-                MaterialDialog.Builder(activity)
-                        .content(R.string.confirm_delete_chapters)
-                        .positiveText(android.R.string.yes)
-                        .negativeText(android.R.string.no)
-                        .onPositive { _, _ -> deleteChapters(getSelectedChapters()) }
-                        .show()
-            }
-            else -> return false
+        val dialog = router.getControllerWithTag(DeletingChaptersDialog.TAG)
+        if (dialog != null) {
+            router.popController(dialog)
         }
-        return true
     }
 
     /**
@@ -317,8 +287,33 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
         return true
     }
 
-    override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+    override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
+        val count = adapter?.selectedItemCount ?: 0
+        if (count == 0) {
+            // Destroy action mode if there are no items selected.
+            destroyActionModeIfNeeded()
+        } else {
+            mode.title = resources?.getString(R.string.label_selected, count)
+            menu.findItem(R.id.action_edit_cover)?.isVisible = count == 1
+        }
         return false
+    }
+
+    /**
+     * Called when ActionMode item clicked
+     * @param mode the ActionMode object
+     * @param item item from ActionMode.
+     */
+    override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_mark_as_read -> markAsRead(getSelectedChapters())
+            R.id.action_mark_as_unread -> markAsUnread(getSelectedChapters())
+            R.id.action_download -> downloadChapters(getSelectedChapters())
+            R.id.action_delete -> ConfirmDeleteChaptersDialog(this, getSelectedChapters())
+                    .showDialog(router)
+            else -> return false
+        }
+        return true
     }
 
     /**
