@@ -14,29 +14,16 @@ import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import timber.log.Timber
-import uy.kohesive.injekt.injectLazy
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 import java.util.*
 
-class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
-    /**
-     * Used to connect to database
-     */
-    val db: DatabaseHelper by injectLazy()
-
-    /**
-     * Used to get settings
-     */
-    val preferences: PreferencesHelper by injectLazy()
-
-    /**
-     * Used to get information from download manager
-     */
-    val downloadManager: DownloadManager by injectLazy()
-
-    /**
-     * Used to get source from source id
-     */
-    val sourceManager: SourceManager by injectLazy()
+class RecentChaptersPresenter(
+        val preferences: PreferencesHelper = Injekt.get(),
+        private val db: DatabaseHelper = Injekt.get(),
+        private val downloadManager: DownloadManager = Injekt.get(),
+        private val sourceManager: SourceManager = Injekt.get()
+) : BasePresenter<RecentChaptersController>() {
 
     /**
      * List containing chapter and manga information
@@ -48,11 +35,11 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
 
         getRecentChaptersObservable()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeLatestCache(RecentChaptersFragment::onNextRecentChapters)
+                .subscribeLatestCache(RecentChaptersController::onNextRecentChapters)
 
         getChapterStatusObservable()
-                .subscribeLatestCache(RecentChaptersFragment::onChapterStatusChange,
-                        { view, error -> Timber.e(error) })
+                .subscribeLatestCache(RecentChaptersController::onChapterStatusChange,
+                        { _, error -> Timber.e(error) })
     }
 
     /**
@@ -207,9 +194,9 @@ class RecentChaptersPresenter : BasePresenter<RecentChaptersFragment>() {
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeFirst({ view, result ->
+                .subscribeFirst({ view, _ ->
                     view.onChaptersDeleted()
-                }, RecentChaptersFragment::onChaptersDeletedError)
+                }, RecentChaptersController::onChaptersDeletedError)
     }
 
     /**

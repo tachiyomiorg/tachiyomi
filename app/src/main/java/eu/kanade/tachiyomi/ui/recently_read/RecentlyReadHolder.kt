@@ -7,9 +7,6 @@ import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.MangaChapterHistory
 import kotlinx.android.synthetic.main.item_recently_read.view.*
-import java.text.DateFormat
-import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
 import java.util.*
 
 /**
@@ -25,13 +22,6 @@ class RecentlyReadHolder(
         view: View,
         val adapter: RecentlyReadAdapter
 ) : FlexibleViewHolder(view, adapter) {
-
-    /**
-     * DecimalFormat used to display correct chapter number
-     */
-    private val decimalFormat = DecimalFormat("#.###", DecimalFormatSymbols().apply { decimalSeparator = '.' })
-
-    private val df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT)
 
     init {
         itemView.remove.setOnClickListener {
@@ -60,12 +50,12 @@ class RecentlyReadHolder(
         itemView.manga_title.text = manga.title
 
         // Set source + chapter title
-        val formattedNumber = decimalFormat.format(chapter.chapter_number.toDouble())
+        val formattedNumber = adapter.decimalFormat.format(chapter.chapter_number.toDouble())
         itemView.manga_source.text = itemView.context.getString(R.string.recent_manga_source)
                 .format(adapter.sourceManager.get(manga.source)?.toString(), formattedNumber)
 
         // Set last read timestamp title
-        itemView.last_read.text = df.format(Date(history.last_read))
+        itemView.last_read.text = adapter.dateFormat.format(Date(history.last_read))
 
         // Set cover
         Glide.clear(itemView.cover)

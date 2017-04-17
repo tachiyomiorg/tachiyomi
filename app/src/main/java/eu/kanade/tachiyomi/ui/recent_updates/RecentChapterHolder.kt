@@ -115,7 +115,7 @@ class RecentChapterHolder(private val view: View, private val adapter: RecentCha
 
         // Set a listener so we are notified if a menu item is clicked
         popup.setOnMenuItemClickListener { menuItem ->
-            with(adapter.fragment) {
+            with(adapter.controller) {
                 when (menuItem.itemId) {
                     R.id.action_download -> downloadChapter(item)
                     R.id.action_delete -> deleteChapter(item)

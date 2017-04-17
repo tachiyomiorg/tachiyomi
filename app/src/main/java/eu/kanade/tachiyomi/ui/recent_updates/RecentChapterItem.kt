@@ -27,11 +27,19 @@ class RecentChapterItem(val chapter: Chapter, val manga: Manga, header: DateItem
         return R.layout.item_recent_chapters
     }
 
-    override fun createViewHolder(adapter: FlexibleAdapter<*>, inflater: LayoutInflater, parent: ViewGroup): RecentChapterHolder {
-        return RecentChapterHolder(inflater.inflate(layoutRes, parent, false), adapter as RecentChaptersAdapter)
+    override fun createViewHolder(adapter: FlexibleAdapter<*>,
+                                  inflater: LayoutInflater,
+                                  parent: ViewGroup): RecentChapterHolder {
+
+        val view = inflater.inflate(layoutRes, parent, false)
+        return RecentChapterHolder(view , adapter as RecentChaptersAdapter)
     }
 
-    override fun bindViewHolder(adapter: FlexibleAdapter<*>, holder: RecentChapterHolder, position: Int, payloads: List<Any?>?) {
+    override fun bindViewHolder(adapter: FlexibleAdapter<*>,
+                                holder: RecentChapterHolder,
+                                position: Int,
+                                payloads: List<Any?>?) {
+
         holder.bind(this)
     }
 

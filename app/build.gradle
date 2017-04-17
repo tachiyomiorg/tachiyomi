@@ -106,6 +106,7 @@ dependencies {
     compile "com.jakewharton.rxbinding:rxbinding-kotlin:$rxbindings_version"
     compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$rxbindings_version"
     compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$rxbindings_version"
+    compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$rxbindings_version"
 
     compile 'com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.0.4'
 

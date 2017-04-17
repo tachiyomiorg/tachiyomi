@@ -14,8 +14,10 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
+import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.library2.LibraryController
+import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersController
 import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity
 import eu.kanade.tachiyomi.util.gone
@@ -66,7 +68,7 @@ class MainActivity2 : BaseActivity() {
             if (currentRoot?.tag()?.toInt() != id) {
                 when (id) {
                     R.id.nav_drawer_library -> setRoot(LibraryController(), id)
-//                    R.id.nav_drawer_recent_updates -> router.replaceTopController(RouterTransaction.with(RecentUpdatesController()))
+                    R.id.nav_drawer_recent_updates -> setRoot(RecentChaptersController(), id)
                     R.id.nav_drawer_recently_read -> setRoot(RecentlyReadController(), id)
 //                    R.id.nav_drawer_catalogues -> setFragment(CatalogueFragment.newInstance(), id)
 //                    R.id.nav_drawer_latest_updates -> setFragment(LatestUpdatesFragment.newInstance(), id)
@@ -98,7 +100,8 @@ class MainActivity2 : BaseActivity() {
         }
 
         router.addChangeListener(object : ControllerChangeHandler.ControllerChangeListener {
-            override fun onChangeStarted(to: Controller?, from: Controller?, isPush: Boolean, container: ViewGroup, handler: ControllerChangeHandler) {
+            override fun onChangeStarted(to: Controller?, from: Controller?, isPush: Boolean,
+                                         container: ViewGroup, handler: ControllerChangeHandler) {
                 val showHamburger = router.backstackSize == 1
                 if (showHamburger) {
                     drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -114,10 +117,18 @@ class MainActivity2 : BaseActivity() {
                     } else {
                         tabs.gone()
                     }
+
+                    if (to is NoToolbarElevationController) {
+                        appbar.disableElevation()
+                    } else {
+                        appbar.enableElevation()
+                    }
                 }
+
             }
 
-            override fun onChangeCompleted(to: Controller?, from: Controller?, isPush: Boolean, container: ViewGroup, handler: ControllerChangeHandler) {
+            override fun onChangeCompleted(to: Controller?, from: Controller?, isPush: Boolean,
+                                           container: ViewGroup, handler: ControllerChangeHandler) {
 
             }
 
