@@ -126,8 +126,13 @@ open class SourceManager(private val context: Context) {
         }
 
         val classLoader = PathClassLoader(ext.appInfo.sourceDir, null, context.classLoader)
-        return ext.sourceClasses.map {
-            Class.forName(it, false, classLoader).newInstance() as Source
+        return ext.sourceClasses.flatMap {
+            val obj = Class.forName(it, false, classLoader).newInstance()
+            when(obj) {
+                is Source -> listOf(obj)
+                is SourceFactory -> obj.createSources()
+                else -> throw Exception("Unknown source class type!")
+            }
         }
     }
 
@@ -140,7 +145,7 @@ open class SourceManager(private val context: Context) {
         const val EXTENSION_FEATURE = "tachiyomi.extension"
         const val METADATA_SOURCE_CLASS = "tachiyomi.extension.class"
         const val LIB_VERSION_MIN = 1
-        const val LIB_VERSION_MAX = 1
+        const val LIB_VERSION_MAX = 2
     }
 
 }
