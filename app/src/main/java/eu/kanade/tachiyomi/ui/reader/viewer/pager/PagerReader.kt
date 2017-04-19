@@ -210,6 +210,7 @@ abstract class PagerReader : BaseReader() {
         // Make sure the view is already initialized.
         if (view != null) {
             setPagesOnAdapter()
+            onPageChanged(getPageIndex(currentPage))
         }
     }
 
