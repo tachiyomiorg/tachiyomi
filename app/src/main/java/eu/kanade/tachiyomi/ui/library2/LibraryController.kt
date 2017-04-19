@@ -30,7 +30,7 @@ import eu.kanade.tachiyomi.ui.category.CategoryController
 import eu.kanade.tachiyomi.ui.library.LibraryMangaEvent
 import eu.kanade.tachiyomi.ui.library.LibraryNavigationView
 import eu.kanade.tachiyomi.ui.library.LibrarySelectionEvent
-import eu.kanade.tachiyomi.ui.manga.MangaActivity
+import eu.kanade.tachiyomi.ui.manga2.MangaController
 import eu.kanade.tachiyomi.util.inflate
 import kotlinx.android.synthetic.main.activity_main2.*
 import uy.kohesive.injekt.Injekt
@@ -191,7 +191,7 @@ class LibraryController(
         super.onDestroyView(view)
         drawer?.removeDrawerListener(drawerListener)
         drawer?.removeView(navView)
-        tabs?.setupWithViewPager(null)
+//        tabs?.setupWithViewPager(null)
         navView = null
         actionMode = null
     }
@@ -352,14 +352,10 @@ class LibraryController(
     }
 
     fun openManga(manga: Manga) {
-        val activity = activity ?: return
-
         // Notify the presenter a manga is being opened.
         presenter.onOpenManga()
 
-        // Create a new activity with the manga.
-        val intent = MangaActivity.newIntent(activity, manga)
-        activity.startActivity(intent)
+        router.pushController(RouterTransaction.with(MangaController(manga)))
     }
 
     /**

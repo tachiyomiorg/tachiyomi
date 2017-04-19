@@ -101,6 +101,7 @@ android {
 dependencies {
 
     compile 'com.bluelinelabs:conductor:2.1.2'
+    compile 'com.bluelinelabs:conductor-support:2.1.2'
 
     final rxbindings_version = '1.0.1'
     compile "com.jakewharton.rxbinding:rxbinding-kotlin:$rxbindings_version"

@@ -116,6 +116,7 @@ class MainActivity2 : BaseActivity() {
                         tabs.visible()
                     } else {
                         tabs.gone()
+                        tabs.setupWithViewPager(null)
                     }
 
                     if (to is NoToolbarElevationController) {
