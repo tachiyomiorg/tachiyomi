@@ -9,9 +9,11 @@ import rx.subscriptions.CompositeSubscription
 
 abstract class RxController(bundle: Bundle? = null) : BaseController(bundle) {
 
-    private var untilDetachSubscriptions = CompositeSubscription()
+    var untilDetachSubscriptions = CompositeSubscription()
+        private set
 
-    private var untilDestroySubscriptions = CompositeSubscription()
+    var untilDestroySubscriptions = CompositeSubscription()
+        private set
 
     @CallSuper
     override fun onAttach(view: View) {

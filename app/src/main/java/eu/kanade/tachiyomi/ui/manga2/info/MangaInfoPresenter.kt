@@ -174,7 +174,6 @@ class MangaInfoPresenter(var manga: Manga) : BasePresenter<MangaInfoController>(
      */
     fun moveMangaToCategories(manga: Manga, categories: List<Category>) {
         val mc = categories.filter { it.id != 0 }.map { MangaCategory.create(manga, it) }
-
         db.setMangaCategories(mc, listOf(manga))
     }
 

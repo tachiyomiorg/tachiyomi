@@ -6,9 +6,12 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.customtabs.CustomTabsIntent
 import android.view.*
+import com.afollestad.materialdialogs.MaterialDialog
+import com.bumptech.glide.BitmapRequestBuilder
 import com.bumptech.glide.BitmapTypeRequest
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import com.jakewharton.rxbinding.view.clicks
 import eu.kanade.tachiyomi.R
@@ -20,11 +23,20 @@ import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.library2.ChangeMangaCategoriesDialog
+import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.ui.manga2.MangaController
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
+import jp.wasabeef.glide.transformations.CropCircleTransformation
+import jp.wasabeef.glide.transformations.CropSquareTransformation
+import jp.wasabeef.glide.transformations.MaskTransformation
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.fragment_manga_info.view.*
+import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
+import rx.subscriptions.Subscriptions
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -295,74 +307,88 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
      * Add the manga to the home screen
      */
     fun addToHomeScreen() {
-//        if (!isAdded) return
-//
-//        val shortcutIntent = activity.intent
-//        shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//                .putExtra(MangaActivity.FROM_LAUNCHER_EXTRA, true)
-//
-//        val addIntent = Intent()
-//        addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
-//                .action = "com.android.launcher.action.INSTALL_SHORTCUT"
-//
-//        //Set shortcut title
-//        MaterialDialog.Builder(activity)
-//                .title(R.string.shortcut_title)
-//                .input("", presenter.manga.title, { md, text ->
-//                    //Set shortcut title
-//                    addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, text.toString())
-//
-//                    reshapeIconBitmap(addIntent,
-//                            Glide.with(context).load(presenter.manga).asBitmap())
-//                })
-//                .negativeText(android.R.string.cancel)
-//                .onNegative { materialDialog, dialogAction -> materialDialog.cancel() }
-//                .show()
+        val activity = activity ?: return
+
+        val shortcutIntent = activity.intent
+        shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .putExtra(MangaActivity.FROM_LAUNCHER_EXTRA, true)
+
+        val addIntent = Intent()
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
+                .action = "com.android.launcher.action.INSTALL_SHORTCUT"
+
+        //Set shortcut title
+        val dialog = MaterialDialog.Builder(activity)
+                .title(R.string.shortcut_title)
+                .input("", presenter.manga.title, { _, text ->
+                    //Set shortcut title
+                    addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, text.toString())
+
+                    reshapeIconBitmap(addIntent,
+                            Glide.with(activity).load(presenter.manga).asBitmap())
+                })
+                .negativeText(android.R.string.cancel)
+                .show()
+
+        untilDestroySubscriptions.add(Subscriptions.create { dialog.dismiss() })
     }
 
     fun reshapeIconBitmap(addIntent: Intent, request: BitmapTypeRequest<out Any>) {
-//        val modes = intArrayOf(R.string.circular_icon,
-//                R.string.rounded_icon,
-//                R.string.square_icon,
-//                R.string.star_icon)
-//
-//        fun BitmapRequestBuilder<out Any, Bitmap>.toIcon(): Bitmap {
-//            return this.into(96, 96).get()
-//        }
-//
-//        MaterialDialog.Builder(activity)
-//                .title(R.string.icon_shape)
-//                .negativeText(android.R.string.cancel)
-//                .items(modes.map { getString(it) })
-//                .itemsCallback { dialog, view, i, charSequence ->
-//                    Observable.fromCallable {
-//                        // i = 0: Circular icon
-//                        // i = 1: Rounded icon
-//                        // i = 2: Square icon
-//                        // i = 3: Star icon (because boredom)
-//                        when (i) {
-//                            0 -> request.transform(CropCircleTransformation(context)).toIcon()
-//                            1 -> request.transform(RoundedCornersTransformation(context, 5, 0)).toIcon()
-//                            2 -> request.transform(CropSquareTransformation(context)).toIcon()
-//                            3 -> request.transform(CenterCrop(context), MaskTransformation(context, R.drawable.mask_star)).toIcon()
-//                            else -> null
-//                        }
-//                    }.subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe({ if (it != null) createShortcut(addIntent, it) },
-//                            { context.toast(R.string.icon_creation_fail) })
-//                }.show()
+        val activity = activity ?: return
+
+        val modes = intArrayOf(R.string.circular_icon,
+                R.string.rounded_icon,
+                R.string.square_icon,
+                R.string.star_icon)
+
+        fun BitmapRequestBuilder<out Any, Bitmap>.toIcon(): Bitmap {
+            return this.into(96, 96).get()
+        }
+
+        // i = 0: Circular icon
+        // i = 1: Rounded icon
+        // i = 2: Square icon
+        // i = 3: Star icon (because boredom)
+        fun getIcon(i: Int): Bitmap? {
+            return when (i) {
+                0 -> request.transform(CropCircleTransformation(activity)).toIcon()
+                1 -> request.transform(RoundedCornersTransformation(activity, 5, 0)).toIcon()
+                2 -> request.transform(CropSquareTransformation(activity)).toIcon()
+                3 -> request.transform(CenterCrop(activity),
+                        MaskTransformation(activity, R.drawable.mask_star)).toIcon()
+                else -> null
+            }
+        }
+
+        val dialog = MaterialDialog.Builder(activity)
+                .title(R.string.icon_shape)
+                .negativeText(android.R.string.cancel)
+                .items(modes.map { activity.getString(it) })
+                .itemsCallback { _, _, i, _ ->
+                    Observable.fromCallable { getIcon(i) }
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ icon ->
+                                if (icon != null) createShortcut(addIntent, icon)
+                            }, {
+                                activity.toast(R.string.icon_creation_fail)
+                            })
+                }
+                .show()
+
+        untilDestroySubscriptions.add(Subscriptions.create { dialog.dismiss() })
     }
 
     fun createShortcut(addIntent: Intent, icon: Bitmap) {
-//        //Send shortcut intent
-//        addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon)
-//        context.sendBroadcast(addIntent)
-//        //Go to launcher to show this shiny new shortcut!
-//        val startMain = Intent(Intent.ACTION_MAIN)
-//        startMain.addCategory(Intent.CATEGORY_HOME).flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//        startActivity(startMain)
-    }
+        val activity = activity ?: return
 
+        //Send shortcut intent
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon)
+        activity.sendBroadcast(addIntent)
+        //Go to launcher to show this shiny new shortcut!
+        val startMain = Intent(Intent.ACTION_MAIN)
+        startMain.addCategory(Intent.CATEGORY_HOME).flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(startMain)
+    }
 
 }
