@@ -3,9 +3,7 @@ package eu.kanade.tachiyomi.ui.recently_read
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.History
@@ -32,6 +30,14 @@ class RecentlyReadController : NucleusController<RecentlyReadPresenter>(),
      */
     var adapter: RecentlyReadAdapter? = null
         private set
+
+    init {
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.chapters, menu)
+    }
 
     override fun getTitle(): String? {
         return resources?.getString(R.string.label_recent_manga)

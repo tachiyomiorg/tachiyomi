@@ -2,82 +2,77 @@ package eu.kanade.tachiyomi.ui.manga2
 
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bluelinelabs.conductor.ControllerChangeHandler
+import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
-import com.bluelinelabs.conductor.support.RouterPagerAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.source.Source
+import eu.kanade.tachiyomi.source.SourceManager
+import eu.kanade.tachiyomi.ui.base.controller.RouterPagerAdapter
 import eu.kanade.tachiyomi.ui.base.controller.RxController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.manga2.info.MangaInfoController
 import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
-import eu.kanade.tachiyomi.util.SharedData
+import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.manga_controller.view.*
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
-class MangaController(bundle: Bundle? = null) : RxController(bundle),
-        TabbedController {
+class MangaController : RxController, TabbedController {
 
-    private val trackManager: TrackManager = Injekt.get()
-
-    lateinit var manga: Manga
-
-    private var adapter: MangaDetailAdapter? = null
-
-    val fromCatalogue: Boolean = bundle?.getBoolean(FROM_CATALOGUE_EXTRA) ?: false
-
-    constructor(manga: Manga?) : this(Bundle().apply {
-        putLong(MANGA_EXTRA, manga?.id!!)
-    }) {
-        this.manga = manga!!
+    constructor(manga: Manga?) : super(Bundle().apply { putLong(MANGA_EXTRA, manga?.id!!) }) {
+        this.manga = manga
+        if (manga != null) {
+            source = Injekt.get<SourceManager>().get(manga.source)
+        }
     }
 
     constructor(mangaId: Long) : this(
             Injekt.get<DatabaseHelper>().getManga(mangaId).executeAsBlocking())
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-    }
+    @Suppress("unused")
+    constructor(bundle: Bundle) : this(bundle.getLong(MANGA_EXTRA))
 
-    companion object {
+    var manga: Manga? = null
+        private set
 
-        const val FROM_CATALOGUE_EXTRA = "from_catalogue"
-        const val MANGA_EXTRA = "manga"
-        const val FROM_LAUNCHER_EXTRA = "from_launcher"
-        const val INFO_FRAGMENT = 0
-        const val CHAPTERS_FRAGMENT = 1
-        const val TRACK_FRAGMENT = 2
+    var source: Source? = null
+        private set
 
-        fun newIntent(context: Context, manga: Manga, fromCatalogue: Boolean = false): Intent {
-            SharedData.put(MangaEvent(manga))
-            return Intent(context, MangaController::class.java).apply {
-                putExtra(FROM_CATALOGUE_EXTRA, fromCatalogue)
-                putExtra(MANGA_EXTRA, manga.id)
-            }
-        }
-    }
+    private var adapter: MangaDetailAdapter? = null
+
+    val fromCatalogue = args.getBoolean(FROM_CATALOGUE_EXTRA, false)
 
     override fun getTitle(): String? {
-        return manga.title
+        return manga?.title
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
         return inflater.inflate(R.layout.manga_controller, container, false)
     }
 
+    override fun onChangeEnded(handler: ControllerChangeHandler, type: ControllerChangeType) {
+        if (manga == null || source == null) {
+            activity?.toast(R.string.manga_not_in_db)
+            router.popController(this)
+        }
+    }
+
     override fun onViewCreated(view: View, savedViewState: Bundle?) {
         super.onViewCreated(view, savedViewState)
+
+        if (manga == null || source == null) return
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(arrayOf(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE), 301)
@@ -90,14 +85,21 @@ class MangaController(bundle: Bundle? = null) : RxController(bundle),
 
             activity?.tabs?.setupWithViewPager(view_pager)
 
-            if (!fromCatalogue)
-                view_pager.currentItem = CHAPTERS_FRAGMENT
+//            if (!fromCatalogue)
+//                view_pager.currentItem = CHAPTERS_FRAGMENT
         }
     }
 
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
-//        activity?.tabs?.setupWithViewPager(null)
+        adapter = null
+    }
+
+    override fun configureTabs(tabs: TabLayout) {
+        with(tabs) {
+            tabGravity = TabLayout.GRAVITY_FILL
+            tabMode = TabLayout.MODE_FIXED
+        }
     }
 
 //    fun setTrackingIcon(visible: Boolean) {
@@ -125,6 +127,7 @@ class MangaController(bundle: Bundle? = null) : RxController(bundle),
                 .map { resources!!.getString(it) }
 
         init {
+            val trackManager: TrackManager = Injekt.get()
             if (!fromCatalogue && trackManager.hasLoggedServices())
                 tabCount++
         }
@@ -135,7 +138,7 @@ class MangaController(bundle: Bundle? = null) : RxController(bundle),
 
         override fun configureRouter(router: Router, position: Int) {
             val controller = when (position) {
-                1 -> MangaInfoController()
+                0 -> MangaInfoController()
                 else -> RecentlyReadController()
             }
             router.setRoot(RouterTransaction.with(controller))
@@ -145,6 +148,16 @@ class MangaController(bundle: Bundle? = null) : RxController(bundle),
             return tabTitles[position]
         }
 
+    }
+
+    companion object {
+
+        const val FROM_CATALOGUE_EXTRA = "from_catalogue"
+        const val MANGA_EXTRA = "manga"
+        const val FROM_LAUNCHER_EXTRA = "from_launcher"
+        const val INFO_FRAGMENT = 0
+        const val CHAPTERS_FRAGMENT = 1
+        const val TRACK_FRAGMENT = 2
     }
 
 }

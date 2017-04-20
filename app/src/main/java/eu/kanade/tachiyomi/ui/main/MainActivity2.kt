@@ -33,6 +33,8 @@ class MainActivity2 : BaseActivity() {
 
     val preferences: PreferencesHelper by injectLazy()
 
+    private var drawerArrow: DrawerArrowDrawable? = null
+
     private val startScreenId by lazy {
         when (preferences.startScreen()) {
             1 -> R.id.nav_drawer_library
@@ -56,8 +58,8 @@ class MainActivity2 : BaseActivity() {
 
         setSupportActionBar(toolbar)
 
-        val drawerArrow = DrawerArrowDrawable(this)
-        drawerArrow.color = Color.WHITE
+        drawerArrow = DrawerArrowDrawable(this)
+        drawerArrow?.color = Color.WHITE
         toolbar.navigationIcon = drawerArrow
 
         // Set behavior of Navigation drawer
@@ -102,30 +104,8 @@ class MainActivity2 : BaseActivity() {
         router.addChangeListener(object : ControllerChangeHandler.ControllerChangeListener {
             override fun onChangeStarted(to: Controller?, from: Controller?, isPush: Boolean,
                                          container: ViewGroup, handler: ControllerChangeHandler) {
-                val showHamburger = router.backstackSize == 1
-                if (showHamburger) {
-                    drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-                } else {
-                    drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-                }
 
-                ObjectAnimator.ofFloat(drawerArrow, "progress", if (showHamburger) 0f else 1f).start()
-
-                if (to !is DialogController) {
-                    if (to is TabbedController) {
-                        tabs.visible()
-                    } else {
-                        tabs.gone()
-                        tabs.setupWithViewPager(null)
-                    }
-
-                    if (to is NoToolbarElevationController) {
-                        appbar.disableElevation()
-                    } else {
-                        appbar.enableElevation()
-                    }
-                }
-
+                syncTopController(to)
             }
 
             override fun onChangeCompleted(to: Controller?, from: Controller?, isPush: Boolean,
@@ -135,6 +115,36 @@ class MainActivity2 : BaseActivity() {
 
         })
 
+        if (savedInstanceState != null) {
+            syncTopController(router.backstack.lastOrNull()?.controller())
+        }
+    }
+
+    private fun syncTopController(controller: Controller?) {
+        val showHamburger = router.backstackSize == 1
+        if (showHamburger) {
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        } else {
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        }
+
+        ObjectAnimator.ofFloat(drawerArrow, "progress", if (showHamburger) 0f else 1f).start()
+
+        if (controller !is DialogController) {
+            if (controller is TabbedController) {
+                controller.configureTabs(tabs)
+                tabs.visible()
+            } else {
+                tabs.gone()
+                tabs.setupWithViewPager(null)
+            }
+
+            if (controller is NoToolbarElevationController) {
+                appbar.disableElevation()
+            } else {
+                appbar.enableElevation()
+            }
+        }
     }
 
     private fun setRoot(controller: Controller, id: Int) {

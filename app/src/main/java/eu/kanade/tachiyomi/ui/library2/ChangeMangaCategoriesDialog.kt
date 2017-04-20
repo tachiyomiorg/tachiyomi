@@ -31,8 +31,9 @@ class ChangeMangaCategoriesDialog<T>(bundle: Bundle? = null) :
         return MaterialDialog.Builder(activity!!)
                 .title(R.string.action_move_category)
                 .items(categories.map { it.name })
-                .itemsCallbackMultiChoice(preselected) { _, _, _ ->
-                    (targetController as? Listener)?.updateCategoriesForMangas(mangas, categories)
+                .itemsCallbackMultiChoice(preselected) { dialog, _, _ ->
+                    val newCategories = dialog.selectedIndices?.map { categories[it] }.orEmpty()
+                    (targetController as? Listener)?.updateCategoriesForMangas(mangas, newCategories)
                     true
                 }
                 .positiveText(android.R.string.ok)

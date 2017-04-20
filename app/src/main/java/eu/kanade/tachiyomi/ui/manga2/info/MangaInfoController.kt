@@ -2,7 +2,9 @@ package eu.kanade.tachiyomi.ui.manga2.info
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.support.customtabs.CustomTabsIntent
 import android.view.*
 import com.bumptech.glide.BitmapTypeRequest
 import com.bumptech.glide.Glide
@@ -10,12 +12,18 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import com.jakewharton.rxbinding.view.clicks
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.SManga
+import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.ui.library2.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.manga2.MangaController
+import eu.kanade.tachiyomi.util.getResourceColor
+import eu.kanade.tachiyomi.util.snack
+import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.fragment_manga_info.view.*
 import uy.kohesive.injekt.injectLazy
 
@@ -24,7 +32,8 @@ import uy.kohesive.injekt.injectLazy
  * Uses R.layout.fragment_manga_info.
  * UI related actions should be called from here.
  */
-class MangaInfoController : NucleusController<MangaInfoPresenter>() {
+class MangaInfoController : NucleusController<MangaInfoPresenter>(),
+        ChangeMangaCategoriesDialog.Listener {
 
     /**
      * Preferences helper.
@@ -36,7 +45,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>() {
     }
 
     override fun createPresenter(): MangaInfoPresenter {
-        val manga = (parentController as MangaController).manga
+        val manga = (parentController as MangaController).manga!!
         return MangaInfoPresenter(manga)
     }
 
@@ -49,19 +58,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>() {
 
         with(view) {
             // Set onclickListener to toggle favorite when FAB clicked.
-            fab_favorite.clicks().subscribeUntilDestroy {
-                if (!presenter.manga.favorite) {
-                    val defaultCategory = presenter.getCategories().find { it.id == preferences.defaultCategory()}
-                    if (defaultCategory == null) {
-                        onFabClick()
-                    } else {
-                        toggleFavorite()
-                        presenter.moveMangaToCategory(defaultCategory, presenter.manga)
-                    }
-                } else {
-                    toggleFavorite()
-                }
-            }
+            fab_favorite.clicks().subscribeUntilDestroy { onFabClick() }
 
             // Set SwipeRefresh to refresh manga data.
             swipe_refresh.refreshes().subscribeUntilDestroy { fetchMangaFromSource() }
@@ -167,53 +164,131 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>() {
      * Toggles the favorite status and asks for confirmation to delete downloaded chapters.
      */
     fun toggleFavorite() {
-//        if (!isAdded) return
-//
-//        val isNowFavorite = presenter.toggleFavorite()
-//        if (!isNowFavorite && presenter.hasDownloads()) {
-//            view!!.snack(getString(R.string.delete_downloads_for_manga)) {
-//                setAction(R.string.action_delete) {
-//                    presenter.deleteDownloads()
-//                }
-//            }
-//        }
+        val view = view
+
+        val isNowFavorite = presenter.toggleFavorite()
+        if (view != null && !isNowFavorite && presenter.hasDownloads()) {
+            view.snack(view.context.getString(R.string.delete_downloads_for_manga)) {
+                setAction(R.string.action_delete) {
+                    presenter.deleteDownloads()
+                }
+            }
+        }
     }
 
     /**
      * Open the manga in browser.
      */
     fun openInBrowser() {
-//        if (!isAdded) return
-//
-//        val source = presenter.source as? HttpSource ?: return
-//        try {
-//            val url = Uri.parse(source.mangaDetailsRequest(presenter.manga).url().toString())
-//            val intent = CustomTabsIntent.Builder()
-//                    .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
-//                    .build()
-//            intent.launchUrl(activity, url)
-//        } catch (e: Exception) {
-//            context.toast(e.message)
-//        }
+        val context = view?.context ?: return
+        val source = presenter.source as? HttpSource ?: return
+
+        try {
+            val url = Uri.parse(source.mangaDetailsRequest(presenter.manga).url().toString())
+            val intent = CustomTabsIntent.Builder()
+                    .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
+                    .build()
+            intent.launchUrl(activity, url)
+        } catch (e: Exception) {
+            context.toast(e.message)
+        }
     }
 
     /**
      * Called to run Intent with [Intent.ACTION_SEND], which show share dialog.
      */
     private fun shareManga() {
-//        if (!isAdded) return
-//
-//        val source = presenter.source as? HttpSource ?: return
-//        try {
-//            val url = source.mangaDetailsRequest(presenter.manga).url().toString()
-//            val sharingIntent = Intent(Intent.ACTION_SEND).apply {
-//                type = "text/plain"
-//                putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text, presenter.manga.title, url))
-//            }
-//            startActivity(Intent.createChooser(sharingIntent, getString(R.string.action_share)))
-//        } catch (e: Exception) {
-//            context.toast(e.message)
-//        }
+        val context = view?.context ?: return
+
+        val source = presenter.source as? HttpSource ?: return
+        try {
+            val url = source.mangaDetailsRequest(presenter.manga).url().toString()
+            val title = presenter.manga.title
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, context.getString(R.string.share_text, title, url))
+            }
+            startActivity(Intent.createChooser(intent, context.getString(R.string.action_share)))
+        } catch (e: Exception) {
+            context.toast(e.message)
+        }
+    }
+
+    /**
+     * Update FAB with correct drawable.
+     *
+     * @param isFavorite determines if manga is favorite or not.
+     */
+    private fun setFavoriteDrawable(isFavorite: Boolean) {
+        // Set the Favorite drawable to the correct one.
+        // Border drawable if false, filled drawable if true.
+        view?.fab_favorite?.setImageResource(if (isFavorite)
+            R.drawable.ic_bookmark_white_24dp
+        else
+            R.drawable.ic_bookmark_border_white_24dp)
+    }
+
+    /**
+     * Start fetching manga information from source.
+     */
+    private fun fetchMangaFromSource() {
+        setRefreshing(true)
+        // Call presenter and start fetching manga information
+        presenter.fetchMangaFromSource()
+    }
+
+
+    /**
+     * Update swipe refresh to stop showing refresh in progress spinner.
+     */
+    fun onFetchMangaDone() {
+        setRefreshing(false)
+    }
+
+    /**
+     * Update swipe refresh to start showing refresh in progress spinner.
+     */
+    fun onFetchMangaError() {
+        setRefreshing(false)
+    }
+
+    /**
+     * Set swipe refresh status.
+     *
+     * @param value whether it should be refreshing or not.
+     */
+    private fun setRefreshing(value: Boolean) {
+        view?.swipe_refresh?.isRefreshing = value
+    }
+
+    /**
+     * Called when the fab is clicked.
+     */
+    private fun onFabClick() {
+        val manga = presenter.manga
+        toggleFavorite()
+        if (manga.favorite) {
+            val categories = presenter.getCategories()
+            val defaultCategory = categories.find { it.id == preferences.defaultCategory() }
+            if (defaultCategory != null) {
+                presenter.moveMangaToCategory(manga, defaultCategory)
+            } else if (categories.size <= 1) { // default or the one from the user
+                presenter.moveMangaToCategory(manga, categories.firstOrNull())
+            } else {
+                val ids = presenter.getMangaCategoryIds(manga)
+                val preselected = ids.mapNotNull { id ->
+                    categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
+                }.toTypedArray()
+
+                ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
+                        .showDialog(router)
+            }
+        }
+    }
+
+    override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>) {
+        val manga = mangas.firstOrNull() ?: return
+        presenter.moveMangaToCategories(manga, categories)
     }
 
     /**
@@ -289,87 +364,5 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>() {
 //        startActivity(startMain)
     }
 
-    /**
-     * Update FAB with correct drawable.
-     *
-     * @param isFavorite determines if manga is favorite or not.
-     */
-    private fun setFavoriteDrawable(isFavorite: Boolean) {
-        // Set the Favorite drawable to the correct one.
-        // Border drawable if false, filled drawable if true.
-        view?.fab_favorite?.setImageResource(if (isFavorite)
-            R.drawable.ic_bookmark_white_24dp
-        else
-            R.drawable.ic_bookmark_border_white_24dp)
-    }
-
-    /**
-     * Start fetching manga information from source.
-     */
-    private fun fetchMangaFromSource() {
-        setRefreshing(true)
-        // Call presenter and start fetching manga information
-        presenter.fetchMangaFromSource()
-    }
-
-
-    /**
-     * Update swipe refresh to stop showing refresh in progress spinner.
-     */
-    fun onFetchMangaDone() {
-        setRefreshing(false)
-    }
-
-    /**
-     * Update swipe refresh to start showing refresh in progress spinner.
-     */
-    fun onFetchMangaError() {
-        setRefreshing(false)
-    }
-
-    /**
-     * Set swipe refresh status.
-     *
-     * @param value whether it should be refreshing or not.
-     */
-    private fun setRefreshing(value: Boolean) {
-        view?.swipe_refresh?.isRefreshing = value
-    }
-
-    /**
-     * Called when the fab is clicked.
-     */
-    private fun onFabClick() {
-//        val categories = presenter.getCategories()
-//
-//        MaterialDialog.Builder(activity)
-//                .title(R.string.action_move_category)
-//                .items(categories.map { it.name })
-//                .itemsCallbackMultiChoice(presenter.getMangaCategoryIds(presenter.manga)) { dialog, position, text ->
-//                    if (position.contains(0) && position.count() > 1) {
-//                        dialog.setSelectedIndices(position.filter {it > 0}.toTypedArray())
-//                        Toast.makeText(dialog.context, R.string.invalid_combination, Toast.LENGTH_SHORT).show()
-//                    }
-//
-//                    true
-//                }
-//                .alwaysCallMultiChoiceCallback()
-//                .positiveText(android.R.string.ok)
-//                .negativeText(android.R.string.cancel)
-//                .onPositive { dialog, _ ->
-//                    val selectedCategories = dialog.selectedIndices?.map { categories[it] } ?: emptyList()
-//
-//                    if(!selectedCategories.isEmpty()) {
-//                        if(!presenter.manga.favorite) {
-//                            toggleFavorite()
-//                        }
-//                        presenter.moveMangaToCategories(selectedCategories.filter { it.id != 0}, presenter.manga)
-//                    } else {
-//                        toggleFavorite()
-//                    }
-//                }
-//                .build()
-//                .show()
-    }
 
 }

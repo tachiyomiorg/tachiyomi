@@ -143,9 +143,9 @@ class LibraryController(
     override fun onViewCreated(view: View, savedViewState: Bundle?) {
         super.onViewCreated(view, savedViewState)
         with(view as ViewPager) {
-            pageSelections().subscribeUntilDestroy { position ->
-                preferences.lastUsedCategory().set(position)
-                activeCategory = position
+            pageSelections().skip(1).subscribeUntilDestroy {
+                preferences.lastUsedCategory().set(it)
+                activeCategory = it
             }
 
             tabs?.setupWithViewPager(this)
@@ -239,6 +239,13 @@ class LibraryController(
      */
     private fun reattachAdapter() {
         ui?.reattachAdapter()
+    }
+
+    override fun configureTabs(tabs: TabLayout) {
+        with(tabs) {
+            tabGravity = TabLayout.GRAVITY_CENTER
+            tabMode = TabLayout.MODE_SCROLLABLE
+        }
     }
 
     /**
@@ -355,7 +362,9 @@ class LibraryController(
         // Notify the presenter a manga is being opened.
         presenter.onOpenManga()
 
-        router.pushController(RouterTransaction.with(MangaController(manga)))
+        router.pushController(RouterTransaction.with(MangaController(manga))
+                .pushChangeHandler(FadeChangeHandler())
+                .popChangeHandler(FadeChangeHandler()))
     }
 
     /**

@@ -1,3 +1,8 @@
 package eu.kanade.tachiyomi.ui.base.controller
 
-interface TabbedController
+import android.support.design.widget.TabLayout
+
+interface TabbedController {
+
+    fun configureTabs(tabs: TabLayout) {}
+}

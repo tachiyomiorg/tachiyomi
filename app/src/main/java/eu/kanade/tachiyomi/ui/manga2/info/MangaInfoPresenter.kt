@@ -152,7 +152,7 @@ class MangaInfoPresenter(var manga: Manga) : BasePresenter<MangaInfoController>(
      * @return List of categories, default plus user categories
      */
     fun getCategories(): List<Category> {
-        return arrayListOf(Category.createDefault()) + db.getCategories().executeAsBlocking()
+        return db.getCategories().executeAsBlocking()
     }
 
     /**
@@ -161,34 +161,31 @@ class MangaInfoPresenter(var manga: Manga) : BasePresenter<MangaInfoController>(
      * @param manga the manga to get categories from.
      * @return Array of category ids the manga is in, if none returns default id
      */
-    fun getMangaCategoryIds(manga: Manga): Array<Int?> {
+    fun getMangaCategoryIds(manga: Manga): Array<Int> {
         val categories = db.getCategoriesForManga(manga).executeAsBlocking()
-        if(categories.isEmpty()) {
-            return arrayListOf(Category.createDefault().id).toTypedArray()
-        }
-        return categories.map { it.id }.toTypedArray()
+        return categories.mapNotNull { it.id }.toTypedArray()
     }
 
     /**
      * Move the given manga to categories.
      *
-     * @param categories the selected categories.
      * @param manga the manga to move.
+     * @param categories the selected categories.
      */
-    fun moveMangaToCategories(categories: List<Category>, manga: Manga) {
-        val mc = categories.map { MangaCategory.create(manga, it) }
+    fun moveMangaToCategories(manga: Manga, categories: List<Category>) {
+        val mc = categories.filter { it.id != 0 }.map { MangaCategory.create(manga, it) }
 
-        db.setMangaCategories(mc, arrayListOf(manga))
+        db.setMangaCategories(mc, listOf(manga))
     }
 
     /**
      * Move the given manga to the category.
      *
-     * @param category the selected category.
      * @param manga the manga to move.
+     * @param category the selected category, or null for default category.
      */
-    fun moveMangaToCategory(category: Category, manga: Manga) {
-        moveMangaToCategories(arrayListOf(category), manga)
+    fun moveMangaToCategory(manga: Manga, category: Category?) {
+        moveMangaToCategories(manga, listOfNotNull(category))
     }
 
 }
