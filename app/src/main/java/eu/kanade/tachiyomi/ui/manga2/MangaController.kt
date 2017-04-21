@@ -21,6 +21,7 @@ import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.controller.RouterPagerAdapter
 import eu.kanade.tachiyomi.ui.base.controller.RxController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
+import eu.kanade.tachiyomi.ui.manga2.chapter.ChaptersController
 import eu.kanade.tachiyomi.ui.manga2.info.MangaInfoController
 import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
 import eu.kanade.tachiyomi.util.toast
@@ -137,11 +138,14 @@ class MangaController : RxController, TabbedController {
         }
 
         override fun configureRouter(router: Router, position: Int) {
-            val controller = when (position) {
-                0 -> MangaInfoController()
-                else -> RecentlyReadController()
+            if (!router.hasRootController()) {
+                val controller = when (position) {
+                    INFO_FRAGMENT -> MangaInfoController()
+                    CHAPTERS_FRAGMENT -> ChaptersController()
+                    else -> RecentlyReadController()
+                }
+                router.setRoot(RouterTransaction.with(controller))
             }
-            router.setRoot(RouterTransaction.with(controller))
         }
 
         override fun getPageTitle(position: Int): CharSequence {

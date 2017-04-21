@@ -54,6 +54,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
 
     init {
         setHasOptionsMenu(true)
+        setOptionsMenuHidden(true)
     }
 
     override fun createPresenter(): MangaInfoPresenter {
