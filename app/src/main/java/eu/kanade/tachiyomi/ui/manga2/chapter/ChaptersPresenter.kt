@@ -63,6 +63,10 @@ class ChaptersPresenter(
      */
     private var observeDownloadsSubscription: Subscription? = null
 
+    init {
+        context = preferences.context
+    }
+
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 

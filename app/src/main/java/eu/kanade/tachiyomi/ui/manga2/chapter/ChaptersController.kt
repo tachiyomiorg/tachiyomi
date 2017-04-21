@@ -10,7 +10,6 @@ import android.support.v7.view.ActionMode
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
-import com.afollestad.materialdialogs.MaterialDialog
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import com.jakewharton.rxbinding.view.clicks
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -30,7 +29,11 @@ import timber.log.Timber
 class ChaptersController : NucleusController<ChaptersPresenter>(),
         ActionMode.Callback,
         FlexibleAdapter.OnItemClickListener,
-        FlexibleAdapter.OnItemLongClickListener {
+        FlexibleAdapter.OnItemLongClickListener,
+        SetDisplayModeDialog.Listener,
+        SetSortingDialog.Listener,
+        DownloadChaptersDialog.Listener,
+        DeleteChaptersDialog.Listener {
 
     /**
      * Adapter containing a list of chapters.
@@ -213,85 +216,59 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     }
 
     private fun showDisplayModeDialog() {
-        val activity = activity ?: return
-        val adapter = adapter ?: return
+        val preselected = if (presenter.manga.displayMode == Manga.DISPLAY_NAME) 0 else 1
+        SetDisplayModeDialog(this, preselected).showDialog(router)
+    }
 
-        // Get available modes, ids and the selected mode
-        val modes = intArrayOf(R.string.show_title, R.string.show_chapter_number)
-        val ids = intArrayOf(Manga.DISPLAY_NAME, Manga.DISPLAY_NUMBER)
-        val selectedIndex = if (presenter.manga.displayMode == Manga.DISPLAY_NAME) 0 else 1
-
-        MaterialDialog.Builder(activity)
-                .title(R.string.action_display_mode)
-                .items(modes.map { activity.getString(it) })
-                .itemsIds(ids)
-                .itemsCallbackSingleChoice(selectedIndex) { _, itemView, _, _ ->
-                    // Save the new display mode
-                    presenter.setDisplayMode(itemView.id)
-                    // Refresh ui
-                    adapter.notifyItemRangeChanged(0, adapter.itemCount)
-                    true
-                }
-                .show()
+    override fun setDisplayMode(id: Int) {
+        presenter.setDisplayMode(id)
+        adapter?.notifyDataSetChanged()
     }
 
     private fun showSortingDialog() {
-        val activity = activity ?: return
+        val preselected = if (presenter.manga.sorting == Manga.SORTING_SOURCE) 0 else 1
+        SetSortingDialog(this, preselected).showDialog(router)
+    }
 
-        // Get available modes, ids and the selected mode
-        val modes = intArrayOf(R.string.sort_by_source, R.string.sort_by_number)
-        val ids = intArrayOf(Manga.SORTING_SOURCE, Manga.SORTING_NUMBER)
-        val selectedIndex = if (presenter.manga.sorting == Manga.SORTING_SOURCE) 0 else 1
-
-        MaterialDialog.Builder(activity)
-                .title(R.string.sorting_mode)
-                .items(modes.map { activity.getString(it) })
-                .itemsIds(ids)
-                .itemsCallbackSingleChoice(selectedIndex) { _, itemView, _, _ ->
-                    // Save the new sorting mode
-                    presenter.setSorting(itemView.id)
-                    true
-                }
-                .show()
+    override fun setSorting(id: Int) {
+        presenter.setSorting(id)
     }
 
     private fun showDownloadDialog() {
-        val activity = activity ?: return
+        DownloadChaptersDialog(this).showDialog(router)
+    }
 
-        // Get available modes
-        val modes = intArrayOf(R.string.download_1, R.string.download_5, R.string.download_10,
-                R.string.download_unread, R.string.download_all)
+    override fun downloadChapters(choice: Int) {
+        fun getUnreadChaptersSorted() = presenter.chapters
+                .filter { !it.read && it.status == Download.NOT_DOWNLOADED }
+                .distinctBy { it.name }
+                .sortedByDescending { it.source_order }
 
-        MaterialDialog.Builder(activity)
-                .title(R.string.manga_download)
-                .negativeText(android.R.string.cancel)
-                .items(modes.map { activity.getString(it) })
-                .itemsCallback { _, _, i, _ ->
+        // i = 0: Download 1
+        // i = 1: Download 5
+        // i = 2: Download 10
+        // i = 3: Download unread
+        // i = 4: Download all
+        val chaptersToDownload = when (choice) {
+            0 -> getUnreadChaptersSorted().take(1)
+            1 -> getUnreadChaptersSorted().take(5)
+            2 -> getUnreadChaptersSorted().take(10)
+            3 -> presenter.chapters.filter { !it.read }
+            4 -> presenter.chapters
+            else -> emptyList()
+        }
 
-                    fun getUnreadChaptersSorted() = presenter.chapters
-                            .filter { !it.read && it.status == Download.NOT_DOWNLOADED }
-                            .distinctBy { it.name }
-                            .sortedByDescending { it.source_order }
+        if (chaptersToDownload.isNotEmpty()) {
+            downloadChapters(chaptersToDownload)
+        }
+    }
 
-                    // i = 0: Download 1
-                    // i = 1: Download 5
-                    // i = 2: Download 10
-                    // i = 3: Download unread
-                    // i = 4: Download all
-                    val chaptersToDownload = when (i) {
-                        0 -> getUnreadChaptersSorted().take(1)
-                        1 -> getUnreadChaptersSorted().take(5)
-                        2 -> getUnreadChaptersSorted().take(10)
-                        3 -> presenter.chapters.filter { !it.read }
-                        4 -> presenter.chapters
-                        else -> emptyList()
-                    }
+    private fun showDeleteChaptersDialog() {
+        DeleteChaptersDialog(this).showDialog(router)
+    }
 
-                    if (chaptersToDownload.isNotEmpty()) {
-                        downloadChapters(chaptersToDownload)
-                    }
-                }
-                .show()
+    override fun deleteChapters() {
+        deleteChapters(getSelectedChapters())
     }
 
     fun onChapterStatusChange(download: Download) {
@@ -326,15 +303,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
             R.id.action_mark_as_read -> markAsRead(getSelectedChapters())
             R.id.action_mark_as_unread -> markAsUnread(getSelectedChapters())
             R.id.action_download -> downloadChapters(getSelectedChapters())
-            R.id.action_delete -> {
-                val activity = activity ?: return false
-                MaterialDialog.Builder(activity)
-                        .content(R.string.confirm_delete_chapters)
-                        .positiveText(android.R.string.yes)
-                        .negativeText(android.R.string.no)
-                        .onPositive { _, _ -> deleteChapters(getSelectedChapters()) }
-                        .show()
-            }
+            R.id.action_delete -> showDeleteChaptersDialog()
             else -> return false
         }
         return true
@@ -401,14 +370,15 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
 
     fun deleteChapters(chapters: List<ChapterItem>) {
         destroyActionModeIfNeeded()
-//        DeletingChaptersDialog().show(childFragmentManager, DeletingChaptersDialog.TAG)
+        if (chapters.isEmpty()) return
+
+        DeletingChaptersDialog().showDialog(router)
         presenter.deleteChapters(chapters)
     }
 
     fun onChaptersDeleted() {
-        val adapter = adapter ?: return
         dismissDeletingDialog()
-        adapter.notifyItemRangeChanged(0, adapter.itemCount)
+        adapter?.notifyDataSetChanged()
     }
 
     fun onChaptersDeletedError(error: Throwable) {
@@ -417,8 +387,10 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     }
 
     fun dismissDeletingDialog() {
-//        (childFragmentManager.findFragmentByTag(DeletingChaptersDialog.TAG) as? DialogFragment)
-//                ?.dismissAllowingStateLoss()
+        val dialog = router.getControllerWithTag(DeletingChaptersDialog.TAG)
+        if (dialog != null) {
+            router.popController(dialog)
+        }
     }
 
     override fun onItemClick(position: Int): Boolean {
