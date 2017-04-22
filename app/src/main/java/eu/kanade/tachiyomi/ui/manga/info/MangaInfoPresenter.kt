@@ -1,6 +1,8 @@
 package eu.kanade.tachiyomi.ui.manga.info
 
 import android.os.Bundle
+import com.jakewharton.rxrelay.BehaviorRelay
+import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
@@ -8,45 +10,29 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.source.Source
-import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import eu.kanade.tachiyomi.util.SharedData
 import eu.kanade.tachiyomi.util.isNullOrUnsubscribed
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import uy.kohesive.injekt.injectLazy
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 /**
  * Presenter of MangaInfoFragment.
  * Contains information and data for fragment.
  * Observable updates should be called from here.
  */
-class MangaInfoPresenter(var manga: Manga) : BasePresenter<MangaInfoController>() {
-
-    /**
-     * Source of the manga.
-     */
-    lateinit var source: Source
-        private set
-
-    /**
-     * Used to connect to database.
-     */
-    val db: DatabaseHelper by injectLazy()
-
-    /**
-     * Used to connect to different manga sources.
-     */
-    val sourceManager: SourceManager by injectLazy()
-
-    /**
-     * Used to connect to cache.
-     */
-    val coverCache: CoverCache by injectLazy()
-
-    private val downloadManager: DownloadManager by injectLazy()
+class MangaInfoPresenter(
+        val manga: Manga,
+        val source: Source,
+        private val chapterCountRelay: BehaviorRelay<Int>,
+        private val mangaFavoriteRelay: PublishRelay<Boolean>,
+        private val db: DatabaseHelper = Injekt.get(),
+        private val downloadManager: DownloadManager = Injekt.get(),
+        private val coverCache: CoverCache = Injekt.get()
+) : BasePresenter<MangaInfoController>() {
 
     /**
      * Subscription to send the manga to the view.
@@ -60,23 +46,16 @@ class MangaInfoPresenter(var manga: Manga) : BasePresenter<MangaInfoController>(
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
-
-//        manga = SharedData.get(MangaEvent::class.java)?.manga ?: return
-        source = sourceManager.get(manga.source)!!
         sendMangaToView()
 
         // Update chapter count
-        SharedData.get(ChapterCountEvent::class.java)?.observable
-                ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribeLatestCache(MangaInfoController::setChapterCount)
+        chapterCountRelay.observeOn(AndroidSchedulers.mainThread())
+                .subscribeLatestCache(MangaInfoController::setChapterCount)
 
         // Update favorite status
-        SharedData.get(MangaFavoriteEvent::class.java)?.let {
-            it.observable
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe { setFavorite(it) }
-                    .apply { add(this) }
-        }
+        mangaFavoriteRelay.observeOn(AndroidSchedulers.mainThread())
+                .subscribe { setFavorite(it) }
+                .apply { add(this) }
     }
 
     /**
@@ -103,9 +82,9 @@ class MangaInfoPresenter(var manga: Manga) : BasePresenter<MangaInfoController>(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext { sendMangaToView() }
-                .subscribeFirst({ view, manga ->
+                .subscribeFirst({ view, _ ->
                     view.onFetchMangaDone()
-                }, { view, error ->
+                }, { view, _ ->
                     view.onFetchMangaError()
                 })
     }

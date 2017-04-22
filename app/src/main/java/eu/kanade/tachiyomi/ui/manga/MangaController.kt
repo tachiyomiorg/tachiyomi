@@ -15,6 +15,8 @@ import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
+import com.jakewharton.rxrelay.BehaviorRelay
+import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -57,6 +59,10 @@ class MangaController : RxController, TabbedController {
     private var adapter: MangaDetailAdapter? = null
 
     val fromCatalogue = args.getBoolean(FROM_CATALOGUE_EXTRA, false)
+
+    val chapterCountRelay: BehaviorRelay<Int> = BehaviorRelay.create()
+
+    val mangaFavoriteRelay: PublishRelay<Boolean> = PublishRelay.create()
 
     override fun getTitle(): String? {
         return manga?.title

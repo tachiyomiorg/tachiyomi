@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.manga.chapter
 
 import android.os.Bundle
+import com.jakewharton.rxrelay.BehaviorRelay
 import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -11,9 +12,6 @@ import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import eu.kanade.tachiyomi.ui.manga.info.ChapterCountEvent
-import eu.kanade.tachiyomi.ui.manga.info.MangaFavoriteEvent
-import eu.kanade.tachiyomi.util.SharedData
 import eu.kanade.tachiyomi.util.isNullOrUnsubscribed
 import eu.kanade.tachiyomi.util.syncChaptersWithSource
 import rx.Observable
@@ -30,6 +28,8 @@ import uy.kohesive.injekt.api.get
 class ChaptersPresenter(
         val manga: Manga,
         val source: Source,
+        private val chapterCountRelay: BehaviorRelay<Int>,
+        private val mangaFavoriteRelay: PublishRelay<Boolean>,
         val preferences: PreferencesHelper = Injekt.get(),
         private val db: DatabaseHelper = Injekt.get(),
         private val downloadManager: DownloadManager = Injekt.get()
@@ -94,7 +94,7 @@ class ChaptersPresenter(
                     observeDownloads()
 
                     // Emit the number of chapters to the info tab.
-                    SharedData.get(ChapterCountEvent::class.java)?.emit(chapters.size)
+                    chapterCountRelay.call(chapters.size)
                 }
                 .subscribe { chaptersRelay.call(it) })
     }
@@ -357,7 +357,7 @@ class ChaptersPresenter(
      * Adds manga to library
      */
     fun addToLibrary() {
-        SharedData.get(MangaFavoriteEvent::class.java)?.call(true)
+        mangaFavoriteRelay.call(true)
     }
 
     /**
