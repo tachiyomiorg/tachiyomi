@@ -21,7 +21,6 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
-import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.util.connectivityManager
 import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.util.snack
@@ -528,10 +527,10 @@ open class CatalogueFragment : BaseRxFragment<CataloguePresenter>(),
      * @return true if the item should be selected, false otherwise.
      */
     override fun onItemClick(position: Int): Boolean {
-        val item = adapter.getItem(position) as? CatalogueItem ?: return false
+//        val item = adapter.getItem(position) as? CatalogueItem ?: return false
 
-        val intent = MangaActivity.newIntent(activity, item.manga, true)
-        startActivity(intent)
+//        val intent = MangaActivity.newIntent(activity, item.manga, true)
+//        startActivity(intent)
         return false
     }
 

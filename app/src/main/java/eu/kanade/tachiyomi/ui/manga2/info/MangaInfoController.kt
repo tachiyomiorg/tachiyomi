@@ -23,7 +23,6 @@ import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.library2.ChangeMangaCategoriesDialog
-import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.ui.manga2.MangaController
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.snack
@@ -312,7 +311,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
 
         val shortcutIntent = activity.intent
         shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .putExtra(MangaActivity.FROM_LAUNCHER_EXTRA, true)
+                .putExtra(MangaController.FROM_LAUNCHER_EXTRA, true)
 
         val addIntent = Intent()
         addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)

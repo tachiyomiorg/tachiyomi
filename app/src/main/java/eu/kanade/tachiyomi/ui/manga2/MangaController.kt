@@ -24,7 +24,6 @@ import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.controller.RouterPagerAdapter
 import eu.kanade.tachiyomi.ui.base.controller.RxController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
-import eu.kanade.tachiyomi.ui.manga.MangaActivity.Companion.TRACK_FRAGMENT
 import eu.kanade.tachiyomi.ui.manga2.chapter.ChaptersController
 import eu.kanade.tachiyomi.ui.manga2.info.MangaInfoController
 import eu.kanade.tachiyomi.ui.manga2.track.TrackController
@@ -112,7 +111,7 @@ class MangaController : RxController, TabbedController {
     }
 
     fun setTrackingIcon(visible: Boolean) {
-        val tab = activity?.tabs?.getTabAt(TRACK_FRAGMENT) ?: return
+        val tab = activity?.tabs?.getTabAt(TRACK_CONTROLLER) ?: return
         val drawable = if (visible)
             VectorDrawableCompat.create(resources!!, R.drawable.ic_done_white_18dp, null)
         else null

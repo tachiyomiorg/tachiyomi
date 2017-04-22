@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
+import com.bluelinelabs.conductor.RouterTransaction
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.History
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.ui.manga.MangaActivity
+import eu.kanade.tachiyomi.ui.manga2.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.fragment_recently_read.view.*
@@ -129,13 +131,10 @@ class RecentlyReadController : NucleusController<RecentlyReadPresenter>(),
     }
 
     override fun onCoverClick(position: Int) {
-        val activity = activity ?: return
-        val adapter = adapter ?: return
-        if (position == RecyclerView.NO_POSITION) return
-
-        val manga = adapter.getItem(position).mch.manga
-        val intent = MangaActivity.newIntent(activity, manga, true)
-        startActivity(intent)
+        val manga = adapter?.getItem(position)?.mch?.manga ?: return
+        router.pushController(RouterTransaction.with(MangaController(manga))
+                .pushChangeHandler(FadeChangeHandler())
+                .popChangeHandler(FadeChangeHandler()))
     }
 
     override fun removeHistory(manga: Manga, history: History, all: Boolean) {
