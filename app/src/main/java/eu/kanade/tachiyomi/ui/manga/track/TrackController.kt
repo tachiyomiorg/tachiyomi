@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.manga2.track
+package eu.kanade.tachiyomi.ui.manga.track
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -9,7 +9,7 @@ import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.ui.manga2.MangaController
+import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.fragment_track.view.*
 

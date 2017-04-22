@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.manga2.info
+package eu.kanade.tachiyomi.ui.manga.info
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -23,7 +23,7 @@ import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.library2.ChangeMangaCategoriesDialog
-import eu.kanade.tachiyomi.ui.manga2.MangaController
+import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast

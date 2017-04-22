@@ -30,7 +30,7 @@ import eu.kanade.tachiyomi.ui.category.CategoryController
 import eu.kanade.tachiyomi.ui.library.LibraryMangaEvent
 import eu.kanade.tachiyomi.ui.library.LibraryNavigationView
 import eu.kanade.tachiyomi.ui.library.LibrarySelectionEvent
-import eu.kanade.tachiyomi.ui.manga2.MangaController
+import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.inflate
 import kotlinx.android.synthetic.main.activity_main2.*
 import uy.kohesive.injekt.Injekt
