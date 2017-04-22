@@ -33,10 +33,6 @@
                 android:resource="@xml/shortcuts"/>
         </activity>
         <activity
-            android:name=".ui.manga.MangaActivity"
-            android:exported="true"
-            android:parentActivityName=".ui.main.MainActivity" />
-        <activity
             android:name=".ui.reader.ReaderActivity"
             android:theme="@style/Theme.Reader" />
         <activity

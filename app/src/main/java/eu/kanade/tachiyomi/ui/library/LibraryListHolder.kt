@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.library2
+package eu.kanade.tachiyomi.ui.library
 
 import android.view.View
 import com.bumptech.glide.Glide
