@@ -47,6 +47,11 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
      */
     private var actionMode: ActionMode? = null
 
+    /**
+     * Selected items. Used to restore selections after a rotation.
+     */
+    private val selectedItems = mutableSetOf<ChapterItem>()
+
     init {
         setHasOptionsMenu(true)
         setOptionsMenuHidden(true)
@@ -182,13 +187,26 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         if (presenter.chapters.isEmpty())
             initialFetchChapters()
 
-        destroyActionModeIfNeeded()
-        adapter?.updateDataSet(chapters)
+        val adapter = adapter ?: return
+        adapter.updateDataSet(chapters)
+
+        if (selectedItems.isNotEmpty()) {
+            adapter.clearSelection() // we need to start from a clean state, index may have changed
+            createActionModeIfNeeded()
+            selectedItems.forEach { item ->
+                val position = adapter.indexOf(item)
+                if (position != -1 && !adapter.isSelected(position)) {
+                    adapter.toggleSelection(position)
+                }
+            }
+            actionMode?.invalidate()
+        }
+
     }
 
     private fun initialFetchChapters() {
         // Only fetch if this view is from the catalog and it hasn't requested previously
-        if (isCatalogueManga && !presenter.hasRequested) {
+        if ((parentController as MangaController).fromCatalogue && !presenter.hasRequested) {
             fetchChaptersFromSource()
         }
     }
@@ -207,8 +225,13 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         activity?.toast(error.message)
     }
 
-    val isCatalogueManga: Boolean
-        get() = (parentController as MangaController).fromCatalogue
+    fun onChapterStatusChange(download: Download) {
+        getHolder(download.chapter)?.notifyStatus(download.status)
+    }
+
+    private fun getHolder(chapter: Chapter): ChapterHolder? {
+        return view?.recycler?.findViewHolderForItemId(chapter.id!!) as? ChapterHolder
+    }
 
     fun openChapter(chapter: Chapter, hasAnimation: Boolean = false) {
         val activity = activity ?: return
@@ -218,6 +241,182 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         }
         startActivity(intent)
     }
+
+    override fun onItemClick(position: Int): Boolean {
+        val adapter = adapter ?: return false
+        val item = adapter.getItem(position) ?: return false
+        if (actionMode != null && adapter.mode == FlexibleAdapter.MODE_MULTI) {
+            toggleSelection(position)
+            return true
+        } else {
+            openChapter(item.chapter)
+            return false
+        }
+    }
+
+    override fun onItemLongClick(position: Int) {
+        createActionModeIfNeeded()
+        toggleSelection(position)
+    }
+
+    // SELECTIONS & ACTION MODE
+
+    private fun toggleSelection(position: Int) {
+        val adapter = adapter ?: return
+        val item = adapter.getItem(position) ?: return
+        adapter.toggleSelection(position)
+        if (adapter.isSelected(position)) {
+            selectedItems.add(item)
+        } else {
+            selectedItems.remove(item)
+        }
+        actionMode?.invalidate()
+    }
+
+    fun getSelectedChapters(): List<ChapterItem> {
+        val adapter = adapter ?: return emptyList()
+        return adapter.selectedPositions.map { adapter.getItem(it) }
+    }
+
+    fun createActionModeIfNeeded() {
+        if (actionMode == null) {
+            actionMode = (activity as? AppCompatActivity)?.startSupportActionMode(this)
+        }
+    }
+
+    fun destroyActionModeIfNeeded() {
+        actionMode?.finish()
+    }
+
+    override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
+        mode.menuInflater.inflate(R.menu.chapter_selection, menu)
+        adapter?.mode = FlexibleAdapter.MODE_MULTI
+        return true
+    }
+
+    override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
+        val count = adapter?.selectedItemCount ?: 0
+        if (count == 0) {
+            // Destroy action mode if there are no items selected.
+            destroyActionModeIfNeeded()
+        } else {
+            mode.title = resources?.getString(R.string.label_selected, count)
+        }
+        return false
+    }
+
+    override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_select_all -> selectAll()
+            R.id.action_mark_as_read -> markAsRead(getSelectedChapters())
+            R.id.action_mark_as_unread -> markAsUnread(getSelectedChapters())
+            R.id.action_download -> downloadChapters(getSelectedChapters())
+            R.id.action_delete -> showDeleteChaptersConfirmationDialog()
+            else -> return false
+        }
+        return true
+    }
+
+    override fun onDestroyActionMode(mode: ActionMode) {
+        adapter?.mode = FlexibleAdapter.MODE_SINGLE
+        adapter?.clearSelection()
+        selectedItems.clear()
+        actionMode = null
+    }
+
+    override fun onMenuItemClick(position: Int, item: MenuItem) {
+        val chapter = adapter?.getItem(position) ?: return
+        val chapters = listOf(chapter)
+
+        when (item.itemId) {
+            R.id.action_download -> downloadChapters(chapters)
+            R.id.action_bookmark -> bookmarkChapters(chapters, true)
+            R.id.action_remove_bookmark -> bookmarkChapters(chapters, false)
+            R.id.action_delete -> deleteChapters(chapters)
+            R.id.action_mark_as_read -> markAsRead(chapters)
+            R.id.action_mark_as_unread -> markAsUnread(chapters)
+            R.id.action_mark_previous_as_read -> markPreviousAsRead(chapter)
+        }
+    }
+
+    // SELECTION MODE ACTIONS
+
+    fun selectAll() {
+        val adapter = adapter ?: return
+        adapter.selectAll()
+        selectedItems.addAll(adapter.items)
+        actionMode?.invalidate()
+    }
+
+    fun markAsRead(chapters: List<ChapterItem>) {
+        presenter.markChaptersRead(chapters, true)
+        if (presenter.preferences.removeAfterMarkedAsRead()) {
+            deleteChapters(chapters)
+        }
+    }
+
+    fun markAsUnread(chapters: List<ChapterItem>) {
+        presenter.markChaptersRead(chapters, false)
+    }
+
+    fun downloadChapters(chapters: List<ChapterItem>) {
+        val view = view
+        destroyActionModeIfNeeded()
+        presenter.downloadChapters(chapters)
+        if (view != null && !presenter.manga.favorite) {
+            view.recycler?.snack(view.context.getString(R.string.snack_add_to_library), Snackbar.LENGTH_INDEFINITE) {
+                setAction(R.string.action_add) {
+                    presenter.addToLibrary()
+                }
+            }
+        }
+    }
+
+    private fun showDeleteChaptersConfirmationDialog() {
+        DeleteChaptersDialog(this).showDialog(router)
+    }
+
+    override fun deleteChapters() {
+        deleteChapters(getSelectedChapters())
+    }
+
+    fun markPreviousAsRead(chapter: ChapterItem) {
+        val adapter = adapter ?: return
+        val chapters = if (presenter.sortDescending()) adapter.items.reversed() else adapter.items
+        val chapterPos = chapters.indexOf(chapter)
+        if (chapterPos != -1) {
+            presenter.markChaptersRead(chapters.take(chapterPos), true)
+        }
+    }
+
+    fun bookmarkChapters(chapters: List<ChapterItem>, bookmarked: Boolean) {
+        destroyActionModeIfNeeded()
+        presenter.bookmarkChapters(chapters, bookmarked)
+    }
+
+    fun deleteChapters(chapters: List<ChapterItem>) {
+        destroyActionModeIfNeeded()
+        if (chapters.isEmpty()) return
+
+        DeletingChaptersDialog().showDialog(router)
+        presenter.deleteChapters(chapters)
+    }
+
+    fun onChaptersDeleted() {
+        dismissDeletingDialog()
+        adapter?.notifyDataSetChanged()
+    }
+
+    fun onChaptersDeletedError(error: Throwable) {
+        dismissDeletingDialog()
+        Timber.e(error)
+    }
+
+    fun dismissDeletingDialog() {
+        router.popControllerWithTag(DeletingChaptersDialog.TAG)
+    }
+
+    // OVERFLOW MENU DIALOGS
 
     private fun showDisplayModeDialog() {
         val preselected = if (presenter.manga.displayMode == Manga.DISPLAY_NAME) 0 else 1
@@ -265,172 +464,6 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         if (chaptersToDownload.isNotEmpty()) {
             downloadChapters(chaptersToDownload)
         }
-    }
-
-    private fun showDeleteChaptersDialog() {
-        DeleteChaptersDialog(this).showDialog(router)
-    }
-
-    override fun deleteChapters() {
-        deleteChapters(getSelectedChapters())
-    }
-
-    fun onChapterStatusChange(download: Download) {
-        getHolder(download.chapter)?.notifyStatus(download.status)
-    }
-
-    private fun getHolder(chapter: Chapter): ChapterHolder? {
-        return view?.recycler?.findViewHolderForItemId(chapter.id!!) as? ChapterHolder
-    }
-
-    override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
-        mode.menuInflater.inflate(R.menu.chapter_selection, menu)
-        adapter?.mode = FlexibleAdapter.MODE_MULTI
-        return true
-    }
-
-    override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
-        val count = adapter?.selectedItemCount ?: 0
-        if (count == 0) {
-            // Destroy action mode if there are no items selected.
-            destroyActionModeIfNeeded()
-        } else {
-            mode.title = resources?.getString(R.string.label_selected, count)
-        }
-        return false
-    }
-
-    override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_select_all -> selectAll()
-            R.id.action_mark_as_read -> markAsRead(getSelectedChapters())
-            R.id.action_mark_as_unread -> markAsUnread(getSelectedChapters())
-            R.id.action_download -> downloadChapters(getSelectedChapters())
-            R.id.action_delete -> showDeleteChaptersDialog()
-            else -> return false
-        }
-        return true
-    }
-
-    override fun onDestroyActionMode(mode: ActionMode) {
-        adapter?.mode = FlexibleAdapter.MODE_SINGLE
-        adapter?.clearSelection()
-        actionMode = null
-    }
-
-    fun getSelectedChapters(): List<ChapterItem> {
-        val adapter = adapter ?: return emptyList()
-        return adapter.selectedPositions.map { adapter.getItem(it) }
-    }
-
-    fun destroyActionModeIfNeeded() {
-        actionMode?.finish()
-    }
-
-    fun selectAll() {
-        val adapter = adapter ?: return
-        adapter.selectAll()
-        actionMode?.invalidate()
-    }
-
-    fun markAsRead(chapters: List<ChapterItem>) {
-        presenter.markChaptersRead(chapters, true)
-        if (presenter.preferences.removeAfterMarkedAsRead()) {
-            deleteChapters(chapters)
-        }
-    }
-
-    fun markAsUnread(chapters: List<ChapterItem>) {
-        presenter.markChaptersRead(chapters, false)
-    }
-
-    fun markPreviousAsRead(chapter: ChapterItem) {
-        val adapter = adapter ?: return
-        val chapters = if (presenter.sortDescending()) adapter.items.reversed() else adapter.items
-        val chapterPos = chapters.indexOf(chapter)
-        if (chapterPos != -1) {
-            presenter.markChaptersRead(chapters.take(chapterPos), true)
-        }
-    }
-
-    fun downloadChapters(chapters: List<ChapterItem>) {
-        val view = view
-        destroyActionModeIfNeeded()
-        presenter.downloadChapters(chapters)
-        if (view != null && !presenter.manga.favorite) {
-            view.recycler?.snack(view.context.getString(R.string.snack_add_to_library), Snackbar.LENGTH_INDEFINITE) {
-                setAction(R.string.action_add) {
-                    presenter.addToLibrary()
-                }
-            }
-        }
-    }
-
-    fun bookmarkChapters(chapters: List<ChapterItem>, bookmarked: Boolean) {
-        destroyActionModeIfNeeded()
-        presenter.bookmarkChapters(chapters, bookmarked)
-    }
-
-    fun deleteChapters(chapters: List<ChapterItem>) {
-        destroyActionModeIfNeeded()
-        if (chapters.isEmpty()) return
-
-        DeletingChaptersDialog().showDialog(router)
-        presenter.deleteChapters(chapters)
-    }
-
-    fun onChaptersDeleted() {
-        dismissDeletingDialog()
-        adapter?.notifyDataSetChanged()
-    }
-
-    fun onChaptersDeletedError(error: Throwable) {
-        dismissDeletingDialog()
-        Timber.e(error)
-    }
-
-    fun dismissDeletingDialog() {
-        router.popControllerWithTag(DeletingChaptersDialog.TAG)
-    }
-
-    override fun onItemClick(position: Int): Boolean {
-        val adapter = adapter ?: return false
-        val item = adapter.getItem(position) ?: return false
-        if (actionMode != null && adapter.mode == FlexibleAdapter.MODE_MULTI) {
-            toggleSelection(position)
-            return true
-        } else {
-            openChapter(item.chapter)
-            return false
-        }
-    }
-
-    override fun onItemLongClick(position: Int) {
-        if (actionMode == null)
-            actionMode = (activity as? AppCompatActivity)?.startSupportActionMode(this)
-
-        toggleSelection(position)
-    }
-
-    override fun onMenuItemClick(position: Int, item: MenuItem) {
-        val chapter = adapter?.getItem(position) ?: return
-        val chapters = listOf(chapter)
-
-        when (item.itemId) {
-            R.id.action_download -> downloadChapters(chapters)
-            R.id.action_bookmark -> bookmarkChapters(chapters, true)
-            R.id.action_remove_bookmark -> bookmarkChapters(chapters, false)
-            R.id.action_delete -> deleteChapters(chapters)
-            R.id.action_mark_as_read -> markAsRead(chapters)
-            R.id.action_mark_as_unread -> markAsUnread(chapters)
-            R.id.action_mark_previous_as_read -> markPreviousAsRead(chapter)
-        }
-    }
-
-    private fun toggleSelection(position: Int) {
-        val adapter = adapter ?: return
-        adapter.toggleSelection(position)
-        actionMode?.invalidate()
     }
 
 }

@@ -27,11 +27,18 @@ class ChapterItem(val chapter: Chapter, val manga: Manga) : AbstractFlexibleItem
         return R.layout.item_chapter
     }
 
-    override fun createViewHolder(adapter: FlexibleAdapter<*>, inflater: LayoutInflater, parent: ViewGroup): ChapterHolder {
+    override fun createViewHolder(adapter: FlexibleAdapter<*>,
+                                  inflater: LayoutInflater,
+                                  parent: ViewGroup): ChapterHolder {
+
         return ChapterHolder(inflater.inflate(layoutRes, parent, false), adapter as ChaptersAdapter)
     }
 
-    override fun bindViewHolder(adapter: FlexibleAdapter<*>, holder: ChapterHolder, position: Int, payloads: List<Any?>?) {
+    override fun bindViewHolder(adapter: FlexibleAdapter<*>,
+                                holder: ChapterHolder,
+                                position: Int,
+                                payloads: List<Any?>?) {
+
         holder.bind(this, manga)
     }
 

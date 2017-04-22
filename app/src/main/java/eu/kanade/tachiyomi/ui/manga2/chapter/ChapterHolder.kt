@@ -26,8 +26,8 @@ class ChapterHolder(
 
         chapter_title.text = when (manga.displayMode) {
             Manga.DISPLAY_NUMBER -> {
-                val formattedNumber = adapter.decimalFormat.format(chapter.chapter_number.toDouble())
-                context.getString(R.string.display_mode_chapter, formattedNumber)
+                val number = adapter.decimalFormat.format(chapter.chapter_number.toDouble())
+                context.getString(R.string.display_mode_chapter, number)
             }
             else -> chapter.name
         }

@@ -34,6 +34,10 @@ class ChaptersAdapter(
         super.updateDataSet(items.toList())
     }
 
+    fun indexOf(item: ChapterItem): Int {
+        return items.indexOf(item)
+    }
+
     interface OnMenuItemClickListener {
         fun onMenuItemClick(position: Int, item: MenuItem)
     }
