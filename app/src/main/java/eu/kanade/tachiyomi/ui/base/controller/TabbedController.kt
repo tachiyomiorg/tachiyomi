@@ -5,4 +5,6 @@ import android.support.design.widget.TabLayout
 interface TabbedController {
 
     fun configureTabs(tabs: TabLayout) {}
+
+    fun resetTabs(tabs: TabLayout) {}
 }

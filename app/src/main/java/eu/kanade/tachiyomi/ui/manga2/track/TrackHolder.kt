@@ -1,25 +1,24 @@
 package eu.kanade.tachiyomi.ui.manga2.track
 
+import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import eu.kanade.tachiyomi.R
 import kotlinx.android.synthetic.main.item_track.view.*
 
-class TrackHolder(private val view: View, private val fragment: TrackFragment)
-: RecyclerView.ViewHolder(view) {
+class TrackHolder(view: View, adapter: TrackAdapter) : RecyclerView.ViewHolder(view) {
     
-    private lateinit var item: TrackItem
-
     init {
-        view.title_container.setOnClickListener { fragment.onTitleClick(item) }
-        view.status_container.setOnClickListener { fragment.onStatusClick(item) }
-        view.chapters_container.setOnClickListener { fragment.onChaptersClick(item) }
-        view.score_container.setOnClickListener { fragment.onScoreClick(item) }
+        val listener = adapter.rowClickListener
+        view.title_container.setOnClickListener { listener.onTitleClick(adapterPosition) }
+        view.status_container.setOnClickListener { listener.onStatusClick(adapterPosition) }
+        view.chapters_container.setOnClickListener { listener.onChaptersClick(adapterPosition) }
+        view.score_container.setOnClickListener { listener.onScoreClick(adapterPosition) }
     }
 
+    @SuppressLint("SetTextI18n")
     @Suppress("DEPRECATION")
-    fun onSetValues(item: TrackItem) = with(view) {
-        this@TrackHolder.item = item
+    fun bind(item: TrackItem) = with(itemView) {
         val track = item.track
         track_logo.setImageResource(item.service.getLogo())
         logo.setBackgroundColor(item.service.getLogoColor())

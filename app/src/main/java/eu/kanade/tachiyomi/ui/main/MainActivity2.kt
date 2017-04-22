@@ -105,7 +105,7 @@ class MainActivity2 : BaseActivity() {
             override fun onChangeStarted(to: Controller?, from: Controller?, isPush: Boolean,
                                          container: ViewGroup, handler: ControllerChangeHandler) {
 
-                syncTopController(to)
+                syncActivityViewWithController(to, from)
             }
 
             override fun onChangeCompleted(to: Controller?, from: Controller?, isPush: Boolean,
@@ -116,11 +116,11 @@ class MainActivity2 : BaseActivity() {
         })
 
         if (savedInstanceState != null) {
-            syncTopController(router.backstack.lastOrNull()?.controller())
+            syncActivityViewWithController(router.backstack.lastOrNull()?.controller())
         }
     }
 
-    private fun syncTopController(controller: Controller?) {
+    private fun syncActivityViewWithController(to: Controller?, from: Controller? = null) {
         val showHamburger = router.backstackSize == 1
         if (showHamburger) {
             drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -130,20 +130,25 @@ class MainActivity2 : BaseActivity() {
 
         ObjectAnimator.ofFloat(drawerArrow, "progress", if (showHamburger) 0f else 1f).start()
 
-        if (controller !is DialogController) {
-            if (controller is TabbedController) {
-                controller.configureTabs(tabs)
-                tabs.visible()
-            } else {
-                tabs.gone()
-                tabs.setupWithViewPager(null)
-            }
+        if (from is DialogController || to is DialogController) {
+            return
+        }
 
-            if (controller is NoToolbarElevationController) {
-                appbar.disableElevation()
-            } else {
-                appbar.enableElevation()
-            }
+        if (from is TabbedController) {
+            from.resetTabs(tabs)
+        }
+        if (to is TabbedController) {
+            to.configureTabs(tabs)
+            tabs.visible()
+        } else {
+            tabs.gone()
+            tabs.setupWithViewPager(null)
+        }
+
+        if (to is NoToolbarElevationController) {
+            appbar.disableElevation()
+        } else {
+            appbar.enableElevation()
         }
     }
 

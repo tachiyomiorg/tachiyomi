@@ -4,32 +4,28 @@ import android.os.Bundle
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.Track
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import eu.kanade.tachiyomi.ui.manga.MangaEvent
-import eu.kanade.tachiyomi.util.SharedData
 import eu.kanade.tachiyomi.util.toast
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import uy.kohesive.injekt.injectLazy
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
-class TrackPresenter : BasePresenter<TrackFragment>() {
-
-    private val db: DatabaseHelper by injectLazy()
-
-    private val trackManager: TrackManager by injectLazy()
-
-    lateinit var manga: Manga
-        private set
+class TrackPresenter(
+        val manga: Manga,
+        preferences: PreferencesHelper = Injekt.get(),
+        private val db: DatabaseHelper = Injekt.get(),
+        private val trackManager: TrackManager = Injekt.get()
+) : BasePresenter<TrackController>() {
 
     private var trackList: List<TrackItem> = emptyList()
 
     private val loggedServices by lazy { trackManager.services.filter { it.isLogged } }
-
-    var selectedService: TrackService? = null
 
     private var trackSubscription: Subscription? = null
 
@@ -37,10 +33,12 @@ class TrackPresenter : BasePresenter<TrackFragment>() {
 
     private var refreshSubscription: Subscription? = null
 
+    init {
+        context = preferences.context
+    }
+
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
-
-        manga = SharedData.get(MangaEvent::class.java)?.manga ?: return
         fetchTrackings()
     }
 
@@ -55,7 +53,7 @@ class TrackPresenter : BasePresenter<TrackFragment>() {
                 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext { trackList = it }
-                .subscribeLatestCache(TrackFragment::onNextTrackings)
+                .subscribeLatestCache(TrackController::onNextTrackings)
     }
 
     fun refresh() {
@@ -72,23 +70,19 @@ class TrackPresenter : BasePresenter<TrackFragment>() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeFirst({ view, result -> view.onRefreshDone() },
-                        TrackFragment::onRefreshError)
+                        TrackController::onRefreshError)
     }
 
-    fun search(query: String) {
-        val service = selectedService ?: return
-
+    fun search(query: String, service: TrackService) {
         searchSubscription?.let { remove(it) }
         searchSubscription = service.search(query)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeLatestCache(TrackFragment::onSearchResults,
-                        TrackFragment::onSearchResultsError)
+                .subscribeLatestCache(TrackController::onSearchResults,
+                        TrackController::onSearchResultsError)
     }
 
-    fun registerTracking(item: Track?) {
-        val service = selectedService ?: return
-
+    fun registerTracking(item: Track?, service: TrackService) {
         if (item != null) {
             item.manga_id = manga.id!!
             add(service.bind(item)

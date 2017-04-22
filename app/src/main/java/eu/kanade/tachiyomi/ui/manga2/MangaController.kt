@@ -5,9 +5,12 @@ import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.support.graphics.drawable.VectorDrawableCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.TextView
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.Router
@@ -21,9 +24,10 @@ import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.controller.RouterPagerAdapter
 import eu.kanade.tachiyomi.ui.base.controller.RxController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
+import eu.kanade.tachiyomi.ui.manga.MangaActivity.Companion.TRACK_FRAGMENT
 import eu.kanade.tachiyomi.ui.manga2.chapter.ChaptersController
 import eu.kanade.tachiyomi.ui.manga2.info.MangaInfoController
-import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
+import eu.kanade.tachiyomi.ui.manga2.track.TrackController
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.manga_controller.view.*
@@ -87,7 +91,7 @@ class MangaController : RxController, TabbedController {
             activity?.tabs?.setupWithViewPager(view_pager)
 
             if (!fromCatalogue)
-                view_pager.currentItem = CHAPTERS_FRAGMENT
+                view_pager.currentItem = CHAPTERS_CONTROLLER
         }
     }
 
@@ -103,35 +107,33 @@ class MangaController : RxController, TabbedController {
         }
     }
 
-//    fun setTrackingIcon(visible: Boolean) {
-//        val tab = tabs.getTabAt(TRACK_FRAGMENT) ?: return
-//        val drawable = if (visible)
-//            VectorDrawableCompat.create(resources, R.drawable.ic_done_white_18dp, null)
-//        else null
-//
-//        // I had no choice but to use reflection...
-//        val field = tab.javaClass.getDeclaredField("mView").apply { isAccessible = true }
-//        val view = field.get(tab) as LinearLayout
-//        val textView = view.getChildAt(1) as TextView
-//        textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
-//        textView.compoundDrawablePadding = 4
-//    }
+    override fun resetTabs(tabs: TabLayout) {
+        setTrackingIcon(false)
+    }
+
+    fun setTrackingIcon(visible: Boolean) {
+        val tab = activity?.tabs?.getTabAt(TRACK_FRAGMENT) ?: return
+        val drawable = if (visible)
+            VectorDrawableCompat.create(resources!!, R.drawable.ic_done_white_18dp, null)
+        else null
+
+        // I had no choice but to use reflection...
+        val view = tabField.get(tab) as LinearLayout
+        val textView = view.getChildAt(1) as TextView
+        textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
+        textView.compoundDrawablePadding = if (visible) 4 else 0
+    }
 
     private inner class MangaDetailAdapter : RouterPagerAdapter(this@MangaController) {
 
-        private var tabCount = 2
+        private val tabCount =
+                if (!fromCatalogue && Injekt.get<TrackManager>().hasLoggedServices()) 3 else 2
 
         private val tabTitles = listOf(
                 R.string.manga_detail_tab,
                 R.string.manga_chapters_tab,
                 R.string.manga_tracking_tab)
                 .map { resources!!.getString(it) }
-
-        init {
-            val trackManager: TrackManager = Injekt.get()
-            if (!fromCatalogue && trackManager.hasLoggedServices())
-                tabCount++
-        }
 
         override fun getCount(): Int {
             return tabCount
@@ -140,9 +142,10 @@ class MangaController : RxController, TabbedController {
         override fun configureRouter(router: Router, position: Int) {
             if (!router.hasRootController()) {
                 val controller = when (position) {
-                    INFO_FRAGMENT -> MangaInfoController()
-                    CHAPTERS_FRAGMENT -> ChaptersController()
-                    else -> RecentlyReadController()
+                    INFO_CONTROLLER -> MangaInfoController()
+                    CHAPTERS_CONTROLLER -> ChaptersController()
+                    TRACK_CONTROLLER -> TrackController()
+                    else -> error("Wrong position $position")
                 }
                 router.setRoot(RouterTransaction.with(controller))
             }
@@ -159,9 +162,12 @@ class MangaController : RxController, TabbedController {
         const val FROM_CATALOGUE_EXTRA = "from_catalogue"
         const val MANGA_EXTRA = "manga"
         const val FROM_LAUNCHER_EXTRA = "from_launcher"
-        const val INFO_FRAGMENT = 0
-        const val CHAPTERS_FRAGMENT = 1
-        const val TRACK_FRAGMENT = 2
+        const val INFO_CONTROLLER = 0
+        const val CHAPTERS_CONTROLLER = 1
+        const val TRACK_CONTROLLER = 2
+
+        private val tabField = TabLayout.Tab::class.java.getDeclaredField("mView")
+                .apply { isAccessible = true }
     }
 
 }
