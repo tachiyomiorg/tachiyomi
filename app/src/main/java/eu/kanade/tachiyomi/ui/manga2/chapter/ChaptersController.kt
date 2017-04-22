@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.manga2.chapter
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -30,6 +31,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         ActionMode.Callback,
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
+        ChaptersAdapter.OnMenuItemClickListener,
         SetDisplayModeDialog.Listener,
         SetSortingDialog.Listener,
         DownloadChaptersDialog.Listener,
@@ -51,7 +53,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     }
 
     override fun createPresenter(): ChaptersPresenter {
-        val mangaController = (parentController as MangaController)
+        val mangaController = parentController as MangaController
         return ChaptersPresenter(mangaController.manga!!, mangaController.source!!)
     }
 
@@ -63,18 +65,18 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         super.onViewCreated(view, savedViewState)
 
         // Init RecyclerView and adapter
-        adapter = ChaptersAdapter(this)
+        adapter = ChaptersAdapter(this, view.context)
 
         with(view) {
             recycler.adapter = adapter
-            recycler.layoutManager = LinearLayoutManager(activity)
+            recycler.layoutManager = LinearLayoutManager(context)
             recycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             recycler.setHasFixedSize(true)
             // TODO enable in a future commit
 //             adapter.setFastScroller(fast_scroller, context.getResourceColor(R.attr.colorAccent))
 //             adapter.toggleFastScroller()
 
-            swipe_refresh.refreshes().subscribeUntilDestroy { fetchChapters() }
+            swipe_refresh.refreshes().subscribeUntilDestroy { fetchChaptersFromSource() }
 
             fab.clicks().subscribeUntilDestroy {
                 val item = presenter.getNextUnreadChapter()
@@ -104,15 +106,17 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         actionMode = null
     }
 
-//    override fun onResume() {
-//        // Check if animation view is visible
-//        if (reveal_view.visibility == View.VISIBLE) {
-//            // Show the unReveal effect
-//            val coordinates = fab.getCoordinates()
-//            reveal_view.hideRevealEffect(coordinates.x, coordinates.y, 1920)
-//        }
-//        super.onResume()
-//    }
+    override fun onActivityResumed(activity: Activity) {
+        val view = view ?: return
+
+        // Check if animation view is visible
+        if (view.reveal_view.visibility == View.VISIBLE) {
+            // Show the unReveal effect
+            val coordinates = view.fab.getCoordinates()
+            view.reveal_view.hideRevealEffect(coordinates.x, coordinates.y, 1920)
+        }
+        super.onActivityResumed(activity)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.chapters, menu)
@@ -185,11 +189,11 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     private fun initialFetchChapters() {
         // Only fetch if this view is from the catalog and it hasn't requested previously
         if (isCatalogueManga && !presenter.hasRequested) {
-            fetchChapters()
+            fetchChaptersFromSource()
         }
     }
 
-    fun fetchChapters() {
+    fun fetchChaptersFromSource() {
         view?.swipe_refresh?.isRefreshing = true
         presenter.fetchChaptersFromSource()
     }
@@ -292,7 +296,6 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
             destroyActionModeIfNeeded()
         } else {
             mode.title = resources?.getString(R.string.label_selected, count)
-            menu.findItem(R.id.action_edit_cover)?.isVisible = count == 1
         }
         return false
     }
@@ -387,10 +390,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     }
 
     fun dismissDeletingDialog() {
-        val dialog = router.getControllerWithTag(DeletingChaptersDialog.TAG)
-        if (dialog != null) {
-            router.popController(dialog)
-        }
+        router.popControllerWithTag(DeletingChaptersDialog.TAG)
     }
 
     override fun onItemClick(position: Int): Boolean {
@@ -412,31 +412,25 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         toggleSelection(position)
     }
 
-    fun onItemMenuClick(position: Int, item: MenuItem) {
-        val adapter = adapter ?: return
-        val chapter = adapter.getItem(position)?.let { listOf(it) } ?: return
+    override fun onMenuItemClick(position: Int, item: MenuItem) {
+        val chapter = adapter?.getItem(position) ?: return
+        val chapters = listOf(chapter)
 
         when (item.itemId) {
-            R.id.action_download -> downloadChapters(chapter)
-            R.id.action_bookmark -> bookmarkChapters(chapter, true)
-            R.id.action_remove_bookmark -> bookmarkChapters(chapter, false)
-            R.id.action_delete -> deleteChapters(chapter)
-            R.id.action_mark_as_read -> markAsRead(chapter)
-            R.id.action_mark_as_unread -> markAsUnread(chapter)
-            R.id.action_mark_previous_as_read -> markPreviousAsRead(chapter[0])
+            R.id.action_download -> downloadChapters(chapters)
+            R.id.action_bookmark -> bookmarkChapters(chapters, true)
+            R.id.action_remove_bookmark -> bookmarkChapters(chapters, false)
+            R.id.action_delete -> deleteChapters(chapters)
+            R.id.action_mark_as_read -> markAsRead(chapters)
+            R.id.action_mark_as_unread -> markAsUnread(chapters)
+            R.id.action_mark_previous_as_read -> markPreviousAsRead(chapter)
         }
     }
 
     private fun toggleSelection(position: Int) {
         val adapter = adapter ?: return
         adapter.toggleSelection(position)
-
-        val count = adapter.selectedItemCount
-        if (count == 0) {
-            actionMode?.finish()
-        } else {
-            actionMode?.invalidate()
-        }
+        actionMode?.invalidate()
     }
 
 }

@@ -86,8 +86,8 @@ class MangaController : RxController, TabbedController {
 
             activity?.tabs?.setupWithViewPager(view_pager)
 
-//            if (!fromCatalogue)
-//                view_pager.currentItem = CHAPTERS_FRAGMENT
+            if (!fromCatalogue)
+                view_pager.currentItem = CHAPTERS_FRAGMENT
         }
     }
 

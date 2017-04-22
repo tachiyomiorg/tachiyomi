@@ -143,13 +143,7 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
     private fun toggleSelection(position: Int) {
         val adapter = adapter ?: return
         adapter.toggleSelection(position)
-
-        val count = adapter.selectedItemCount
-        if (count == 0) {
-            actionMode?.finish()
-        } else {
-            actionMode?.invalidate()
-        }
+        actionMode?.invalidate()
     }
 
     /**
@@ -270,10 +264,7 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
      * Called to dismiss deleting dialog
      */
     fun dismissDeletingDialog() {
-        val dialog = router.getControllerWithTag(DeletingChaptersDialog.TAG)
-        if (dialog != null) {
-            router.popController(dialog)
-        }
+        router.popControllerWithTag(DeletingChaptersDialog.TAG)
     }
 
     /**
@@ -294,7 +285,6 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
             destroyActionModeIfNeeded()
         } else {
             mode.title = resources?.getString(R.string.label_selected, count)
-            menu.findItem(R.id.action_edit_cover)?.isVisible = count == 1
         }
         return false
     }

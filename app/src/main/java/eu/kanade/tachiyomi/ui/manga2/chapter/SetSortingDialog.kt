@@ -9,7 +9,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 
 class SetSortingDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
-where T : Controller, T : SetSortingDialog.Listener {
+        where T : Controller, T : SetSortingDialog.Listener {
 
     private val selectedIndex = args.getInt("selected", -1)
 

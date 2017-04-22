@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bluelinelabs.conductor.RestoreViewOnCreateController
+import com.bluelinelabs.conductor.Router
 
 abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateController(bundle) {
 
@@ -42,6 +43,15 @@ abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateContr
 
     inline fun withView(block: View.() -> Unit) {
         view?.let { block(it) }
+    }
+
+    fun Router.popControllerWithTag(tag: String): Boolean {
+        val controller = getControllerWithTag(tag)
+        if (controller != null) {
+            popController(controller)
+            return true
+        }
+        return false
     }
 
 }

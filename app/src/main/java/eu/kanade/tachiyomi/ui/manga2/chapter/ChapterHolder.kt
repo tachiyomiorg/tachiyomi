@@ -6,23 +6,13 @@ import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
-import eu.kanade.tachiyomi.util.getResourceColor
 import kotlinx.android.synthetic.main.item_chapter.view.*
-import java.text.DateFormat
-import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
 import java.util.*
 
 class ChapterHolder(
         private val view: View,
-        private val adapter: ChaptersAdapter)
-: FlexibleViewHolder(view, adapter) {
-
-    private val readColor = view.context.getResourceColor(android.R.attr.textColorHint)
-    private val unreadColor = view.context.getResourceColor(android.R.attr.textColorPrimary)
-    private val bookmarkedColor = view.context.getResourceColor(R.attr.colorAccent)
-    private val decimalFormat = DecimalFormat("#.###", DecimalFormatSymbols().apply { decimalSeparator = '.' })
-    private val df = DateFormat.getDateInstance(DateFormat.SHORT)
+        private val adapter: ChaptersAdapter
+) : FlexibleViewHolder(view, adapter) {
 
     init {
         // We need to post a Runnable to show the popup to make sure that the PopupMenu is
@@ -36,19 +26,19 @@ class ChapterHolder(
 
         chapter_title.text = when (manga.displayMode) {
             Manga.DISPLAY_NUMBER -> {
-                val formattedNumber = decimalFormat.format(chapter.chapter_number.toDouble())
+                val formattedNumber = adapter.decimalFormat.format(chapter.chapter_number.toDouble())
                 context.getString(R.string.display_mode_chapter, formattedNumber)
             }
             else -> chapter.name
         }
 
         // Set correct text color
-        chapter_title.setTextColor(if (chapter.read) readColor else unreadColor)
-        if (chapter.bookmark) chapter_title.setTextColor(bookmarkedColor)
+        chapter_title.setTextColor(if (chapter.read) adapter.readColor else adapter.unreadColor)
+        if (chapter.bookmark) chapter_title.setTextColor(adapter.bookmarkedColor)
 
         if (chapter.date_upload > 0) {
-            chapter_date.text = df.format(Date(chapter.date_upload))
-            chapter_date.setTextColor(if (chapter.read) readColor else unreadColor)
+            chapter_date.text = adapter.dateFormat.format(Date(chapter.date_upload))
+            chapter_date.setTextColor(if (chapter.read) adapter.readColor else adapter.unreadColor)
         } else {
             chapter_date.text = ""
         }
@@ -105,7 +95,7 @@ class ChapterHolder(
 
         // Set a listener so we are notified if a menu item is clicked
         popup.setOnMenuItemClickListener { menuItem ->
-            adapter.menuItemListener(adapterPosition, menuItem)
+            adapter.menuItemListener.onMenuItemClick(adapterPosition, menuItem)
             true
         }
 
