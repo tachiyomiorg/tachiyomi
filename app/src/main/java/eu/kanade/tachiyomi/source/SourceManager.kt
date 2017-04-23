@@ -145,7 +145,7 @@ open class SourceManager(private val context: Context) {
         const val EXTENSION_FEATURE = "tachiyomi.extension"
         const val METADATA_SOURCE_CLASS = "tachiyomi.extension.class"
         const val LIB_VERSION_MIN = 1
-        const val LIB_VERSION_MAX = 2
+        const val LIB_VERSION_MAX = 1
     }
 
 }
