@@ -9,11 +9,11 @@ import android.support.v7.widget.*
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ProgressBar
 import android.widget.Spinner
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.f2prateek.rx.preferences.Preference
+import com.jakewharton.rxbinding.support.v7.widget.queryTextChangeEvents
 import com.jakewharton.rxbinding.widget.itemSelections
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
@@ -24,21 +24,20 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.SecondaryDrawerController
-import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
-import eu.kanade.tachiyomi.util.connectivityManager
-import eu.kanade.tachiyomi.util.inflate
-import eu.kanade.tachiyomi.util.snack
-import eu.kanade.tachiyomi.util.toast
+import eu.kanade.tachiyomi.util.*
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
+import eu.kanade.tachiyomi.widget.DrawerSwipeCloseListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_catalogue.view.*
 import kotlinx.android.synthetic.main.toolbar.*
+import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
-import rx.subjects.PublishSubject
+import rx.subscriptions.Subscriptions
+import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
-import java.util.concurrent.TimeUnit.MILLISECONDS
+import java.util.concurrent.TimeUnit
 
 /**
  * Fragment that shows the manga from the catalogue.
@@ -57,14 +56,31 @@ open class CatalogueController(bundle: Bundle? = null) :
     private val preferences: PreferencesHelper by injectLazy()
 
     /**
+     * Adapter containing the list of manga from the catalogue.
+     */
+    private var adapter: FlexibleAdapter<IFlexible<*>>? = null
+
+    /**
      * Spinner shown in the toolbar to change the selected source.
      */
     private var spinner: Spinner? = null
 
     /**
-     * Adapter containing the list of manga from the catalogue.
+     * Snackbar containing an error message when a request fails.
      */
-    private lateinit var adapter: FlexibleAdapter<IFlexible<*>>
+    private var snack: Snackbar? = null
+
+    /**
+     * Navigation view containing filter items.
+     */
+    private var navView: CatalogueNavigationView? = null
+
+    /**
+     * Recycler view with the list of results.
+     */
+    private var recycler: RecyclerView? = null
+
+    private var drawerListener: DrawerLayout.DrawerListener? = null
 
     /**
      * Query of the search box.
@@ -78,63 +94,11 @@ open class CatalogueController(bundle: Bundle? = null) :
     private var selectedIndex: Int = 0
 
     /**
-     * Time in milliseconds to wait for input events in the search query before doing network calls.
+     * Subscription for the search view.
      */
-    private val SEARCH_TIMEOUT = 1000L
+    private var searchViewSubscription: Subscription? = null
 
-    /**
-     * Subject to debounce the query.
-     */
-    private val queryDebouncerSubject = PublishSubject.create<String>()
-
-    /**
-     * Subscription of the number of manga per row.
-     */
     private var numColumnsSubscription: Subscription? = null
-
-    /**
-     * Search item.
-     */
-    private var searchItem: MenuItem? = null
-
-    /**
-     * Property to get the toolbar from the containing activity.
-     */
-    private val toolbar: Toolbar
-        get() = (activity as MainActivity).toolbar
-
-    private var drawer: DrawerLayout? = null
-
-    /**
-     * Snackbar containing an error message when a request fails.
-     */
-    private var snack: Snackbar? = null
-
-    /**
-     * Navigation view containing filter items.
-     */
-    private var navView: CatalogueNavigationView? = null
-
-    /**
-     * Drawer listener to allow swipe only for closing the drawer.
-     */
-    private val drawerListener by lazy {
-        object : DrawerLayout.SimpleDrawerListener() {
-            override fun onDrawerClosed(drawerView: View) {
-                if (drawerView == navView) {
-                    drawer?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
-                }
-            }
-
-            override fun onDrawerOpened(drawerView: View) {
-                if (drawerView == navView) {
-                    drawer?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, navView)
-                }
-            }
-        }
-    }
-
-    lateinit var recycler: RecyclerView
 
     private var progressItem: ProgressItem? = null
 
@@ -162,7 +126,8 @@ open class CatalogueController(bundle: Bundle? = null) :
         setupRecycler(view)
 
         // Create toolbar spinner
-        val themedContext = (activity as AppCompatActivity).supportActionBar?.themedContext ?: activity
+        val themedContext = (activity as AppCompatActivity).supportActionBar?.themedContext
+                ?: activity
 
         val spinnerAdapter = ArrayAdapter(themedContext,
                 android.R.layout.simple_spinner_item, presenter.sources)
@@ -176,7 +141,7 @@ open class CatalogueController(bundle: Bundle? = null) :
             } else if (source != presenter.source) {
                 selectedIndex = position
                 showProgressBar()
-                adapter.clear()
+                adapter?.clear()
                 presenter.setActiveSource(source)
                 navView?.setFilters(presenter.filterItems)
                 activity?.invalidateOptionsMenu()
@@ -196,47 +161,39 @@ open class CatalogueController(bundle: Bundle? = null) :
 
         activity?.toolbar?.addView(spinner)
 
-//        showProgressBar()
-        view.progress?.visibility = ProgressBar.VISIBLE
+        view.progress?.visible()
     }
 
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
-        val activity = activity!!
-        with(view) {
-            navView?.let {
-                activity.drawer.removeDrawerListener(drawerListener)
-                activity.drawer.removeView(it)
-            }
-            numColumnsSubscription?.unsubscribe()
-            searchItem?.let {
-                if (it.isActionViewExpanded) it.collapseActionView()
-            }
-            spinner?.let { toolbar.removeView(it) }
-        }
+        activity?.toolbar?.removeView(spinner)
+        numColumnsSubscription?.unsubscribe()
+        numColumnsSubscription = null
+        searchViewSubscription = null
+        adapter = null
         spinner = null
-        navView = null
-        searchItem = null
+        snack = null
+        recycler = null
     }
 
     override fun createSecondaryDrawer(drawer: DrawerLayout): ViewGroup {
         // Inflate and prepare drawer
         val navView = drawer.inflate(R.layout.catalogue_drawer) as CatalogueNavigationView
         this.navView = navView
-        this.drawer = drawer
-        drawer.addDrawerListener(drawerListener)
+        drawerListener = DrawerSwipeCloseListener(drawer, navView).also {
+            drawer.addDrawerListener(it)
+        }
         navView.setFilters(presenter.filterItems)
 
         navView.post {
-            val activity = activity
-            if (activity != null && !activity.drawer.isDrawerOpen(navView))
-                activity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
+            if (isAttached && !drawer.isDrawerOpen(navView))
+                drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
         }
 
         navView.onSearchClicked = {
             val allDefault = presenter.sourceFilters == presenter.source.getFilterList()
             showProgressBar()
-            adapter.clear()
+            adapter?.clear()
             presenter.setSourceFilter(if (allDefault) FilterList() else presenter.sourceFilters)
         }
 
@@ -250,8 +207,8 @@ open class CatalogueController(bundle: Bundle? = null) :
     }
 
     override fun cleanupSecondaryDrawer(drawer: DrawerLayout) {
-        drawer.removeDrawerListener(drawerListener)
-        this.drawer = null
+        drawerListener?.let { drawer.removeDrawerListener(it) }
+        drawerListener = null
         navView = null
     }
 
@@ -259,17 +216,15 @@ open class CatalogueController(bundle: Bundle? = null) :
         numColumnsSubscription?.unsubscribe()
 
         var oldPosition = RecyclerView.NO_POSITION
-        with(view) {
-            val oldRecycler = catalogue_view?.getChildAt(1)
+            val oldRecycler = view.catalogue_view?.getChildAt(1)
             if (oldRecycler is RecyclerView) {
                 oldPosition = (oldRecycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
                 oldRecycler.adapter = null
 
-                catalogue_view?.removeView(oldRecycler)
+                view.catalogue_view?.removeView(oldRecycler)
             }
-        }
 
-        recycler = if (presenter.isListMode) {
+        val recycler = if (presenter.isListMode) {
             RecyclerView(view.context).apply {
                 layoutManager = LinearLayoutManager(context)
                 addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
@@ -300,13 +255,14 @@ open class CatalogueController(bundle: Bundle? = null) :
         if (oldPosition != RecyclerView.NO_POSITION) {
             recycler.layoutManager.scrollToPosition(oldPosition)
         }
+        this.recycler = recycler
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.catalogue_list, menu)
 
         // Initialize search menu
-        searchItem = menu.findItem(R.id.action_search).apply {
+        menu.findItem(R.id.action_search).apply {
             val searchView = actionView as SearchView
 
             if (!query.isBlank()) {
@@ -314,17 +270,24 @@ open class CatalogueController(bundle: Bundle? = null) :
                 searchView.setQuery(query, true)
                 searchView.clearFocus()
             }
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    onSearchEvent(query, true)
-                    return true
-                }
 
-                override fun onQueryTextChange(newText: String): Boolean {
-                    onSearchEvent(newText, false)
-                    return true
-                }
-            })
+            val searchEventsObservable = searchView.queryTextChangeEvents()
+                    .skip(1)
+                    .share()
+            val writingObservable = searchEventsObservable
+                    .filter { !it.isSubmitted }
+                    .debounce(1250, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+            val submitObservable = searchEventsObservable
+                    .filter { it.isSubmitted }
+
+            searchViewSubscription?.unsubscribe()
+            searchViewSubscription = Observable.merge(writingObservable, submitObservable)
+                    .map { it.queryText().toString() }
+                    .distinctUntilChanged()
+                    .subscribeUntilDestroy { searchWithQuery(it) }
+
+            untilDestroySubscriptions.add(
+                    Subscriptions.create { if (isActionViewExpanded) collapseActionView() })
         }
 
         // Setup filters button
@@ -358,27 +321,6 @@ open class CatalogueController(bundle: Bundle? = null) :
         return true
     }
 
-    override fun onAttach(view: View) {
-        super.onAttach(view)
-        queryDebouncerSubject.debounce(SEARCH_TIMEOUT, MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeUntilDetach { searchWithQuery(it) }
-    }
-
-    /**
-     * Called when the input text changes or is submitted.
-     *
-     * @param query the new query.
-     * @param now whether to send the network call now or debounce it by [SEARCH_TIMEOUT].
-     */
-    private fun onSearchEvent(query: String, now: Boolean) {
-        if (now) {
-            searchWithQuery(query)
-        } else {
-            queryDebouncerSubject.onNext(query)
-        }
-    }
-
     /**
      * Restarts the request with a new query.
      *
@@ -390,7 +332,7 @@ open class CatalogueController(bundle: Bundle? = null) :
             return
 
         showProgressBar()
-        adapter.clear()
+        adapter?.clear()
 
         presenter.restartPager(newQuery)
     }
@@ -402,6 +344,7 @@ open class CatalogueController(bundle: Bundle? = null) :
      * @param mangas the list of manga of the page.
      */
     fun onAddPage(page: Int, mangas: List<CatalogueItem>) {
+        val adapter = adapter ?: return
         hideProgressBar()
         if (page == 1) {
             adapter.clear()
@@ -416,6 +359,8 @@ open class CatalogueController(bundle: Bundle? = null) :
      * @param error the error received.
      */
     fun onAddPageError(error: Throwable) {
+        Timber.e(error)
+        val adapter = adapter ?: return
         adapter.onLoadMoreComplete(null)
         hideProgressBar()
 
@@ -441,19 +386,20 @@ open class CatalogueController(bundle: Bundle? = null) :
      */
     private fun resetProgressItem() {
         progressItem = ProgressItem()
-        adapter.endlessTargetCount = 0
-        adapter.setEndlessScrollListener(this, progressItem!!)
+        adapter?.endlessTargetCount = 0
+        adapter?.setEndlessScrollListener(this, progressItem!!)
     }
 
     /**
      * Called by the adapter when scrolled near the bottom.
      */
     override fun onLoadMore(lastPosition: Int, currentPage: Int) {
+        Timber.e("onLoadMore")
         if (presenter.hasNextPage()) {
             presenter.requestNext()
         } else {
-            adapter.onLoadMoreComplete(null)
-            adapter.endlessTargetCount = 1
+            adapter?.onLoadMoreComplete(null)
+            adapter?.endlessTargetCount = 1
         }
     }
 
@@ -474,6 +420,7 @@ open class CatalogueController(bundle: Bundle? = null) :
      */
     fun swapDisplayMode() {
         val view = view ?: return
+        val adapter = adapter ?: return
 
         presenter.swapDisplayMode()
         val isListMode = presenter.isListMode
@@ -507,6 +454,8 @@ open class CatalogueController(bundle: Bundle? = null) :
      * @return the holder of the manga or null if it's not bound.
      */
     private fun getHolder(manga: Manga): CatalogueHolder? {
+        val adapter = adapter ?: return null
+
         adapter.allBoundViewHolders.forEach { holder ->
             val item = adapter.getItem(holder.adapterPosition) as? CatalogueItem
             if (item != null && item.manga.id!! == manga.id!!) {
@@ -521,7 +470,7 @@ open class CatalogueController(bundle: Bundle? = null) :
      * Shows the progress bar.
      */
     private fun showProgressBar() {
-        view?.progress?.visibility = ProgressBar.VISIBLE
+        view?.progress?.visible()
         snack?.dismiss()
         snack = null
     }
@@ -530,7 +479,7 @@ open class CatalogueController(bundle: Bundle? = null) :
      * Hides active progress bars.
      */
     private fun hideProgressBar() {
-        view?.progress?.visibility = ProgressBar.GONE
+        view?.progress?.gone()
     }
 
     /**
@@ -540,7 +489,7 @@ open class CatalogueController(bundle: Bundle? = null) :
      * @return true if the item should be selected, false otherwise.
      */
     override fun onItemClick(position: Int): Boolean {
-        val item = adapter.getItem(position) as? CatalogueItem ?: return false
+        val item = adapter?.getItem(position) as? CatalogueItem ?: return false
         router.pushController(RouterTransaction.with(MangaController(item.manga))
                 .pushChangeHandler(FadeChangeHandler())
                 .popChangeHandler(FadeChangeHandler()))
@@ -616,7 +565,7 @@ open class CatalogueController(bundle: Bundle? = null) :
      */
     private fun updateMangaCategories(manga: Manga, selectedCategories: List<Category>, position: Int) {
         presenter.updateMangaCategories(manga,selectedCategories)
-        adapter.notifyItemChanged(position)
+        adapter?.notifyItemChanged(position)
     }
 
 }

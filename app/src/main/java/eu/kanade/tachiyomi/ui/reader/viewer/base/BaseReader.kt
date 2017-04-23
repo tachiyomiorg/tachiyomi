@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment
 import com.davemorrissey.labs.subscaleview.decoder.*
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.model.Page
-import eu.kanade.tachiyomi.ui.base.fragment.BaseFragment
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.reader.ReaderChapter
 import java.util.*

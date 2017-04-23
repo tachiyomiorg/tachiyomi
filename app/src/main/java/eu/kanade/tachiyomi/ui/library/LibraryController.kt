@@ -30,6 +30,7 @@ import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.category.CategoryController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.inflate
+import eu.kanade.tachiyomi.widget.DrawerSwipeCloseListener
 import kotlinx.android.synthetic.main.activity_main.*
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -107,21 +108,7 @@ class LibraryController(
     /**
      * Drawer listener to allow swipe only for closing the drawer.
      */
-    private val drawerListener by lazy {
-        object : DrawerLayout.SimpleDrawerListener() {
-            override fun onDrawerClosed(drawerView: View) {
-                if (drawerView == navView) {
-                    drawer?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
-                }
-            }
-
-            override fun onDrawerOpened(drawerView: View) {
-                if (drawerView == navView) {
-                    drawer?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, navView)
-                }
-            }
-        }
-    }
+    private var drawerListener: DrawerLayout.DrawerListener? = null
 
     init {
         setHasOptionsMenu(true)
@@ -155,26 +142,6 @@ class LibraryController(
                     // Set again the adapter to recalculate the covers height
                     .subscribeUntilDestroy { reattachAdapter() }
 
-
-            // Inflate and prepare drawer
-//            navView = drawer?.inflate(R.layout.library_drawer) as LibraryNavigationView
-//            drawer?.addView(navView)
-//            drawer?.addDrawerListener(drawerListener)
-
-            navView?.post {
-                val drawer = drawer ?: return@post
-                if (drawer.isDrawerOpen(navView))
-                    drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
-            }
-
-            navView?.onGroupClicked = { group ->
-                when (group) {
-                    is LibraryNavigationView.FilterGroup -> onFilterChanged()
-                    is LibraryNavigationView.SortGroup -> onSortChanged()
-                    is LibraryNavigationView.DisplayGroup -> reattachAdapter()
-                }
-            }
-
             if (selectedMangas.isNotEmpty()) {
                 createActionModeIfNeeded()
             }
@@ -188,23 +155,36 @@ class LibraryController(
 
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
-//        drawer?.removeDrawerListener(drawerListener)
-//        drawer?.removeView(navView)
-//        tabs?.setupWithViewPager(null)
-//        navView = null
         actionMode = null
     }
 
     override fun createSecondaryDrawer(drawer: DrawerLayout): ViewGroup {
         val view = drawer.inflate(R.layout.library_drawer) as LibraryNavigationView
-        drawer.addDrawerListener(drawerListener)
+        drawerListener = DrawerSwipeCloseListener(drawer, view).also {
+            drawer.addDrawerListener(it)
+        }
         navView = view
+
+        navView?.post {
+            if (isAttached && drawer.isDrawerOpen(navView))
+                drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, navView)
+        }
+
+        navView?.onGroupClicked = { group ->
+            when (group) {
+                is LibraryNavigationView.FilterGroup -> onFilterChanged()
+                is LibraryNavigationView.SortGroup -> onSortChanged()
+                is LibraryNavigationView.DisplayGroup -> reattachAdapter()
+            }
+        }
+
         return view
     }
 
     override fun cleanupSecondaryDrawer(drawer: DrawerLayout) {
+        drawerListener?.let { drawer.removeDrawerListener(it) }
+        drawerListener = null
         navView = null
-        drawer.removeDrawerListener(drawerListener)
     }
 
     fun onNextLibraryUpdate(categories: List<Category>, mangaMap: Map<Int, List<LibraryItem>>) {
