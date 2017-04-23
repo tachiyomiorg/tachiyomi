@@ -1,25 +1,41 @@
 package eu.kanade.tachiyomi.ui.main
 
+import android.animation.ObjectAnimator
+import android.app.TaskStackBuilder
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.TaskStackBuilder
 import android.support.v4.view.GravityCompat
-import android.view.MenuItem
+import android.support.v4.widget.DrawerLayout
+import android.support.v7.graphics.drawable.DrawerArrowDrawable
+import android.view.ViewGroup
+import com.bluelinelabs.conductor.*
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
-import eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment
+import eu.kanade.tachiyomi.ui.base.controller.DialogController
+import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
+import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.download.DownloadActivity
-import eu.kanade.tachiyomi.ui.latest_updates.LatestUpdatesFragment
+import eu.kanade.tachiyomi.ui.library.LibraryController
+import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersController
+import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import eu.kanade.tachiyomi.util.gone
+import eu.kanade.tachiyomi.util.visible
+import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.toolbar.*
 import uy.kohesive.injekt.injectLazy
 
+
 class MainActivity : BaseActivity() {
 
+    private lateinit var router: Router
+
     val preferences: PreferencesHelper by injectLazy()
+
+    private var drawerArrow: DrawerArrowDrawable? = null
 
     private val startScreenId by lazy {
         when (preferences.startScreen()) {
@@ -30,9 +46,9 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    override fun onCreate(savedState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         setAppTheme()
-        super.onCreate(savedState)
+        super.onCreate(savedInstanceState)
 
         // Do not let the launcher create a new activity http://stackoverflow.com/questions/16283079
         if (!isTaskRoot) {
@@ -40,29 +56,29 @@ class MainActivity : BaseActivity() {
             return
         }
 
-        // Inflate activity_main.xml.
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main2)
 
-        // Handle Toolbar
-        setupToolbar(toolbar, backNavigation = false)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)
+        setSupportActionBar(toolbar)
+
+        drawerArrow = DrawerArrowDrawable(this)
+        drawerArrow?.color = Color.WHITE
+        toolbar.navigationIcon = drawerArrow
 
         // Set behavior of Navigation drawer
         nav_view.setNavigationItemSelectedListener { item ->
-            // Make information view invisible
-            empty_view.hide()
-
             val id = item.itemId
 
-            val oldFragment = supportFragmentManager.findFragmentById(R.id.frame_container)
-            if (oldFragment == null || oldFragment.tag.toInt() != id) {
+            val currentRoot = router.backstack.firstOrNull()
+            if (currentRoot?.tag()?.toIntOrNull() != id) {
                 when (id) {
-//                    R.id.nav_drawer_library -> setFragment(LibraryFragment.newInstance(), id)
-//                    R.id.nav_drawer_recent_updates -> setFragment(RecentChaptersController.newInstance(), id)
-//                    R.id.nav_drawer_recently_read -> setFragment(RecentlyReadFragment.newInstance(), id)
-                    R.id.nav_drawer_catalogues -> setFragment(CatalogueFragment.newInstance(), id)
-                    R.id.nav_drawer_latest_updates -> setFragment(LatestUpdatesFragment.newInstance(), id)
-                    R.id.nav_drawer_downloads -> startActivity(Intent(this, DownloadActivity::class.java))
+                    R.id.nav_drawer_library -> setRoot(LibraryController(), id)
+                    R.id.nav_drawer_recent_updates -> setRoot(RecentChaptersController(), id)
+                    R.id.nav_drawer_recently_read -> setRoot(RecentlyReadController(), id)
+//                    R.id.nav_drawer_catalogues -> setFragment(CatalogueFragment.newInstance(), id)
+//                    R.id.nav_drawer_latest_updates -> setFragment(LatestUpdatesFragment.newInstance(), id)
+                    R.id.nav_drawer_downloads -> {
+                        startActivity(Intent(this, DownloadActivity::class.java))
+                    }
                     R.id.nav_drawer_settings -> {
                         val intent = Intent(this, SettingsActivity::class.java)
                         startActivityForResult(intent, REQUEST_OPEN_SETTINGS)
@@ -73,7 +89,10 @@ class MainActivity : BaseActivity() {
             true
         }
 
-        if (savedState == null) {
+        val container = findViewById(R.id.controller_container) as ViewGroup
+
+        router = Conductor.attachRouter(this, container, savedInstanceState)
+        if (!router.hasRootController()) {
             // Set start screen
             when (intent.action) {
                 SHORTCUT_LIBRARY -> setSelectedDrawerItem(R.id.nav_drawer_library)
@@ -82,32 +101,98 @@ class MainActivity : BaseActivity() {
                 SHORTCUT_CATALOGUES -> setSelectedDrawerItem(R.id.nav_drawer_catalogues)
                 else ->  setSelectedDrawerItem(startScreenId)
             }
+        }
 
+        toolbar.setNavigationOnClickListener {
+            if (router.backstackSize == 1) {
+                drawer.openDrawer(GravityCompat.START)
+            } else {
+                onBackPressed()
+            }
+        }
+
+        router.addChangeListener(object : ControllerChangeHandler.ControllerChangeListener {
+            override fun onChangeStarted(to: Controller?, from: Controller?, isPush: Boolean,
+                                         container: ViewGroup, handler: ControllerChangeHandler) {
+
+                syncActivityViewWithController(to, from)
+            }
+
+            override fun onChangeCompleted(to: Controller?, from: Controller?, isPush: Boolean,
+                                           container: ViewGroup, handler: ControllerChangeHandler) {
+
+            }
+
+        })
+
+        syncActivityViewWithController(router.backstack.lastOrNull()?.controller())
+
+        if (savedInstanceState != null) {
             // Show changelog if needed
             ChangelogDialogFragment.show(this, preferences, supportFragmentManager)
         }
-
-
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> drawer.openDrawer(GravityCompat.START)
-            else -> return super.onOptionsItemSelected(item)
-        }
-        return true
+    override fun onDestroy() {
+        super.onDestroy()
+        nav_view?.setNavigationItemSelectedListener(null)
+        toolbar?.setNavigationOnClickListener(null)
     }
 
     override fun onBackPressed() {
-        val fragment = supportFragmentManager.findFragmentById(R.id.frame_container)
+        val backstackSize = router.backstackSize
         if (drawer.isDrawerOpen(GravityCompat.START) || drawer.isDrawerOpen(GravityCompat.END)) {
             drawer.closeDrawers()
-        } else if (fragment != null && fragment.tag.toInt() != startScreenId) {
-            if (resumed) {
-                setSelectedDrawerItem(startScreenId)
-            }
-        } else {
+        } else if (backstackSize == 1 && router.getControllerWithTag("$startScreenId") == null) {
+            setSelectedDrawerItem(startScreenId)
+        } else if (backstackSize == 1 || !router.handleBack()) {
             super.onBackPressed()
+        }
+    }
+
+    private fun setSelectedDrawerItem(itemId: Int) {
+        if (!isFinishing) {
+            nav_view.setCheckedItem(itemId)
+            nav_view.menu.performIdentifierAction(itemId, 0)
+        }
+    }
+
+    private fun setRoot(controller: Controller, id: Int) {
+        router.setRoot(RouterTransaction.with(controller)
+                .popChangeHandler(FadeChangeHandler())
+                .pushChangeHandler(FadeChangeHandler())
+                .tag(id.toString()))
+    }
+
+    private fun syncActivityViewWithController(to: Controller?, from: Controller? = null) {
+        val showHamburger = router.backstackSize == 1
+        if (showHamburger) {
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        } else {
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        }
+
+        ObjectAnimator.ofFloat(drawerArrow, "progress", if (showHamburger) 0f else 1f).start()
+
+        if (from is DialogController || to is DialogController) {
+            return
+        }
+
+        if (from is TabbedController) {
+            from.resetTabs(tabs)
+        }
+        if (to is TabbedController) {
+            to.configureTabs(tabs)
+            tabs.visible()
+        } else {
+            tabs.gone()
+            tabs.setupWithViewPager(null)
+        }
+
+        if (to is NoToolbarElevationController) {
+            appbar.disableElevation()
+        } else {
+            appbar.enableElevation()
         }
     }
 
@@ -129,23 +214,6 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun setSelectedDrawerItem(itemId: Int, triggerAction: Boolean = true) {
-        nav_view.setCheckedItem(itemId)
-        if (triggerAction) {
-            nav_view.menu.performIdentifierAction(itemId, 0)
-        }
-    }
-
-    private fun setFragment(fragment: Fragment, itemId: Int) {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.frame_container, fragment, "$itemId")
-                .commit()
-    }
-
-    fun updateEmptyView(show: Boolean, textResource: Int, drawable: Int) {
-        if (show) empty_view.show(drawable, textResource) else empty_view.hide()
-    }
-
     companion object {
         private const val REQUEST_OPEN_SETTINGS = 200
         // Shortcut actions
@@ -154,4 +222,5 @@ class MainActivity : BaseActivity() {
         private const val SHORTCUT_RECENTLY_READ = "eu.kanade.tachiyomi.SHOW_RECENTLY_READ"
         private const val SHORTCUT_CATALOGUES = "eu.kanade.tachiyomi.SHOW_CATALOGUES"
     }
+
 }

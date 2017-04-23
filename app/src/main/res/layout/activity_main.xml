@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,6 +16,7 @@
         <eu.kanade.tachiyomi.widget.ElevationAppBarLayout
             android:id="@+id/appbar"
             android:layout_width="match_parent"
+            android:animateLayoutChanges="true"
             android:layout_height="wrap_content">
 
             <include layout="@layout/toolbar"/>
@@ -32,22 +34,12 @@
 
         </eu.kanade.tachiyomi.widget.ElevationAppBarLayout>
 
-
-        <FrameLayout
-            android:id="@+id/frame_container"
+        <com.bluelinelabs.conductor.ChangeHandlerFrameLayout
+            android:id="@+id/controller_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/appbar">
+            android:layout_height="match_parent" />
 
-            <eu.kanade.tachiyomi.widget.EmptyView
-                android:id="@+id/empty_view"
-                android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content"/>
-
-        </FrameLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -58,4 +50,5 @@
         android:theme="?attr/navigation_view_theme"
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/menu_navigation"/>
+
 </android.support.v4.widget.DrawerLayout>
