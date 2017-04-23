@@ -7,7 +7,7 @@ import eu.kanade.tachiyomi.ui.catalogue.CataloguePresenter
 import eu.kanade.tachiyomi.ui.catalogue.Pager
 
 /**
- * Presenter of [LatestUpdatesFragment]. Inherit CataloguePresenter.
+ * Presenter of [LatestUpdatesController]. Inherit CataloguePresenter.
  */
 class LatestUpdatesPresenter : CataloguePresenter() {
 

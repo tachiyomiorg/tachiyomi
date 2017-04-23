@@ -3,10 +3,10 @@ package eu.kanade.tachiyomi.ui.catalogue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.FrameLayout
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
-import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.util.inflate
@@ -19,11 +19,16 @@ class CatalogueItem(val manga: Manga) : AbstractFlexibleItem<CatalogueHolder>() 
         return R.layout.item_catalogue_grid
     }
 
-    override fun createViewHolder(adapter: FlexibleAdapter<IFlexible<*>>, inflater: LayoutInflater, parent: ViewGroup): CatalogueHolder {
+    override fun createViewHolder(adapter: FlexibleAdapter<*>,
+                                  inflater: LayoutInflater,
+                                  parent: ViewGroup): CatalogueHolder {
+
         if (parent is AutofitRecyclerView) {
             val view = parent.inflate(R.layout.item_catalogue_grid).apply {
-                card.layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, parent.itemWidth / 3 * 4)
-                gradient.layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, parent.itemWidth / 3 * 4 / 2, Gravity.BOTTOM)
+                card.layoutParams = FrameLayout.LayoutParams(
+                        MATCH_PARENT, parent.itemWidth / 3 * 4)
+                gradient.layoutParams = FrameLayout.LayoutParams(
+                        MATCH_PARENT, parent.itemWidth / 3 * 4 / 2, Gravity.BOTTOM)
             }
             return CatalogueGridHolder(view, adapter)
         } else {
@@ -32,7 +37,11 @@ class CatalogueItem(val manga: Manga) : AbstractFlexibleItem<CatalogueHolder>() 
         }
     }
 
-    override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<*>>, holder: CatalogueHolder, position: Int, payloads: List<Any?>?) {
+    override fun bindViewHolder(adapter: FlexibleAdapter<*>,
+                                holder: CatalogueHolder,
+                                position: Int,
+                                payloads: List<Any?>?) {
+
         holder.onSetValues(manga)
     }
 

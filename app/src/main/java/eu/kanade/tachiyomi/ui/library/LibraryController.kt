@@ -25,11 +25,12 @@ import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.ui.base.controller.SecondaryDrawerController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.category.CategoryController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.inflate
-import kotlinx.android.synthetic.main.activity_main2.*
+import kotlinx.android.synthetic.main.activity_main.*
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -39,6 +40,7 @@ class LibraryController(
         private val preferences: PreferencesHelper = Injekt.get()
 ) : NucleusController<LibraryPresenter>(bundle),
         TabbedController,
+        SecondaryDrawerController,
         ActionMode.Callback,
         ChangeMangaCategoriesDialog.Listener,
         DeleteLibraryMangasDialog.Listener {
@@ -155,9 +157,9 @@ class LibraryController(
 
 
             // Inflate and prepare drawer
-            navView = drawer?.inflate(R.layout.library_drawer) as LibraryNavigationView
-            drawer?.addView(navView)
-            drawer?.addDrawerListener(drawerListener)
+//            navView = drawer?.inflate(R.layout.library_drawer) as LibraryNavigationView
+//            drawer?.addView(navView)
+//            drawer?.addDrawerListener(drawerListener)
 
             navView?.post {
                 val drawer = drawer ?: return@post
@@ -186,11 +188,23 @@ class LibraryController(
 
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
-        drawer?.removeDrawerListener(drawerListener)
-        drawer?.removeView(navView)
+//        drawer?.removeDrawerListener(drawerListener)
+//        drawer?.removeView(navView)
 //        tabs?.setupWithViewPager(null)
-        navView = null
+//        navView = null
         actionMode = null
+    }
+
+    override fun createSecondaryDrawer(drawer: DrawerLayout): ViewGroup {
+        val view = drawer.inflate(R.layout.library_drawer) as LibraryNavigationView
+        drawer.addDrawerListener(drawerListener)
+        navView = view
+        return view
+    }
+
+    override fun cleanupSecondaryDrawer(drawer: DrawerLayout) {
+        navView = null
+        drawer.removeDrawerListener(drawerListener)
     }
 
     fun onNextLibraryUpdate(categories: List<Category>, mangaMap: Map<Int, List<LibraryItem>>) {
@@ -198,7 +212,11 @@ class LibraryController(
 
         tabs?.visibility = if (categories.size <= 1) View.GONE else View.VISIBLE
         // Delay the scroll position to allow the view to be properly measured.
-        ui?.post { tabs?.setScrollPosition(ui!!.currentItem, 0f, true) }
+        ui?.post {
+            if (ui != null) {
+                tabs?.setScrollPosition(ui!!.currentItem, 0f, true)
+            }
+        }
 
         // Send the manga map to child fragments after the adapter is updated.
         libraryMangaRelay.call(LibraryMangaEvent(mangaMap))

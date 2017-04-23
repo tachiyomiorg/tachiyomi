@@ -35,6 +35,8 @@ class ChaptersPresenter(
         private val downloadManager: DownloadManager = Injekt.get()
 ) : BasePresenter<ChaptersController>() {
 
+    private val context = preferences.context
+
     /**
      * List of chapters of the manga. It's always unfiltered and unsorted.
      */
@@ -62,10 +64,6 @@ class ChaptersPresenter(
      * Subscription to observe download status changes.
      */
     private var observeDownloadsSubscription: Subscription? = null
-
-    init {
-        context = preferences.context
-    }
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)

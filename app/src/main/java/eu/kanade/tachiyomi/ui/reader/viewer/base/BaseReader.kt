@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.base
 
+import android.support.v4.app.Fragment
 import com.davemorrissey.labs.subscaleview.decoder.*
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.model.Page
@@ -12,7 +13,7 @@ import java.util.*
  * Base reader containing the common data that can be used by its implementations. It does not
  * contain any UI related action.
  */
-abstract class BaseReader : BaseFragment() {
+abstract class BaseReader : Fragment() {
 
     companion object {
         /**

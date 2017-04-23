@@ -10,7 +10,6 @@ import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.base.activity.BaseRxActivity
 import eu.kanade.tachiyomi.util.plusAssign
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_download_queue.*
 import kotlinx.android.synthetic.main.toolbar.*
 import nucleus.factory.RequiresPresenter
@@ -242,6 +241,6 @@ class DownloadActivity : BaseRxActivity<DownloadPresenter>() {
     }
 
     fun updateEmptyView(show: Boolean, textResource: Int, drawable: Int) {
-        if (show) empty_view.show(drawable, textResource) else empty_view.hide()
+//        if (show) empty_view.show(drawable, textResource) else empty_view.hide()
     }
 }

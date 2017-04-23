@@ -23,6 +23,8 @@ class TrackPresenter(
         private val trackManager: TrackManager = Injekt.get()
 ) : BasePresenter<TrackController>() {
 
+    private val context = preferences.context
+
     private var trackList: List<TrackItem> = emptyList()
 
     private val loggedServices by lazy { trackManager.services.filter { it.isLogged } }
@@ -32,10 +34,6 @@ class TrackPresenter(
     private var searchSubscription: Subscription? = null
 
     private var refreshSubscription: Subscription? = null
-
-    init {
-        context = preferences.context
-    }
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)

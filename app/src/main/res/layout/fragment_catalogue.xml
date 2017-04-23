@@ -11,7 +11,7 @@
           android:fitsSystemWindows="true"
           android:orientation="vertical"
           android:id="@+id/catalogue_view"
-          tools:context="eu.kanade.tachiyomi.ui.catalogue.CatalogueFragment">
+          tools:context="eu.kanade.tachiyomi.ui.catalogue.CatalogueController">
 
         <ProgressBar
             android:id="@+id/progress"

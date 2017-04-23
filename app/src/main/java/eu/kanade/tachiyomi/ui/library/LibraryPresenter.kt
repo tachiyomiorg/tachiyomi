@@ -16,7 +16,6 @@ import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import eu.kanade.tachiyomi.ui.library.LibrarySort
 import eu.kanade.tachiyomi.util.combineLatest
 import eu.kanade.tachiyomi.util.isNullOrUnsubscribed
 import rx.Observable
@@ -39,6 +38,8 @@ class LibraryPresenter(
         private val sourceManager: SourceManager = Injekt.get(),
         private val downloadManager: DownloadManager = Injekt.get()
 ) : BasePresenter<LibraryController>() {
+
+    private val context = preferences.context
 
     /**
      * Categories of the library.

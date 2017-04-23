@@ -16,15 +16,18 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
+import eu.kanade.tachiyomi.ui.base.controller.SecondaryDrawerController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
+import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
 import eu.kanade.tachiyomi.ui.download.DownloadActivity
+import eu.kanade.tachiyomi.ui.latest_updates.LatestUpdatesController
 import eu.kanade.tachiyomi.ui.library.LibraryController
 import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersController
 import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity
 import eu.kanade.tachiyomi.util.gone
 import eu.kanade.tachiyomi.util.visible
-import kotlinx.android.synthetic.main.activity_main2.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import uy.kohesive.injekt.injectLazy
 
@@ -36,6 +39,8 @@ class MainActivity : BaseActivity() {
     val preferences: PreferencesHelper by injectLazy()
 
     private var drawerArrow: DrawerArrowDrawable? = null
+
+    private var secondaryDrawer: ViewGroup? = null
 
     private val startScreenId by lazy {
         when (preferences.startScreen()) {
@@ -56,7 +61,7 @@ class MainActivity : BaseActivity() {
             return
         }
 
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
 
@@ -74,8 +79,8 @@ class MainActivity : BaseActivity() {
                     R.id.nav_drawer_library -> setRoot(LibraryController(), id)
                     R.id.nav_drawer_recent_updates -> setRoot(RecentChaptersController(), id)
                     R.id.nav_drawer_recently_read -> setRoot(RecentlyReadController(), id)
-//                    R.id.nav_drawer_catalogues -> setFragment(CatalogueFragment.newInstance(), id)
-//                    R.id.nav_drawer_latest_updates -> setFragment(LatestUpdatesFragment.newInstance(), id)
+                    R.id.nav_drawer_catalogues -> setRoot(CatalogueController(), id)
+                    R.id.nav_drawer_latest_updates -> setRoot(LatestUpdatesController(), id)
                     R.id.nav_drawer_downloads -> {
                         startActivity(Intent(this, DownloadActivity::class.java))
                     }
@@ -187,6 +192,16 @@ class MainActivity : BaseActivity() {
         } else {
             tabs.gone()
             tabs.setupWithViewPager(null)
+        }
+        if (from is SecondaryDrawerController) {
+            if (secondaryDrawer != null) {
+                from.cleanupSecondaryDrawer(drawer)
+                drawer.removeView(secondaryDrawer)
+                secondaryDrawer = null
+            }
+        }
+        if (to is SecondaryDrawerController) {
+            secondaryDrawer = to.createSecondaryDrawer(drawer).also { drawer.addView(it) }
         }
 
         if (to is NoToolbarElevationController) {

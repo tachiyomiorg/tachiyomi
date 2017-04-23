@@ -1,23 +1,27 @@
 package eu.kanade.tachiyomi.ui.category
 
 import android.os.Bundle
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
-import eu.kanade.tachiyomi.ui.base.presenter.ConductorPresenter
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
+import eu.kanade.tachiyomi.util.toast
 import rx.android.schedulers.AndroidSchedulers
-import uy.kohesive.injekt.injectLazy
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 /**
  * Presenter of CategoryActivity.
  * Contains information and data for activity.
  * Observable updates should be called from here.
  */
-class CategoryPresenter : ConductorPresenter<CategoryController>() {
+class CategoryPresenter(
+        private val db: DatabaseHelper = Injekt.get(),
+        preferences: PreferencesHelper = Injekt.get()
+) : BasePresenter<CategoryController>() {
 
-    /**
-     * Used to connect to database.
-     */
-    private val db: DatabaseHelper by injectLazy()
+    private val context = preferences.context
 
     /**
      * List containing categories.
@@ -42,7 +46,7 @@ class CategoryPresenter : ConductorPresenter<CategoryController>() {
     fun createCategory(name: String) {
         // Do not allow duplicate categories.
         if (categories.any { it.name.equals(name, true) }) {
-//            context.toast(R.string.error_category_exists)
+            context.toast(R.string.error_category_exists)
             return
         }
 
@@ -87,7 +91,7 @@ class CategoryPresenter : ConductorPresenter<CategoryController>() {
     fun renameCategory(category: Category, name: String) {
         // Do not allow duplicate categories.
         if (categories.any { it.name.equals(name, true) }) {
-//            context.toast(R.string.error_category_exists)
+            context.toast(R.string.error_category_exists)
             return
         }
 

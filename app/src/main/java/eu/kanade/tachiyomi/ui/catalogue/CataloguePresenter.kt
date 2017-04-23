@@ -25,32 +25,18 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import rx.subjects.PublishSubject
 import timber.log.Timber
-import uy.kohesive.injekt.injectLazy
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 /**
- * Presenter of [CatalogueFragment].
+ * Presenter of [CatalogueController].
  */
-open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
-
-    /**
-     * Source manager.
-     */
-    val sourceManager: SourceManager by injectLazy()
-
-    /**
-     * Database.
-     */
-    val db: DatabaseHelper by injectLazy()
-
-    /**
-     * Preferences.
-     */
-    val prefs: PreferencesHelper by injectLazy()
-
-    /**
-     * Cover cache.
-     */
-    val coverCache: CoverCache by injectLazy()
+open class CataloguePresenter(
+        val sourceManager: SourceManager = Injekt.get(),
+        val db: DatabaseHelper = Injekt.get(),
+        val prefs: PreferencesHelper = Injekt.get(),
+        val coverCache: CoverCache = Injekt.get()
+) : BasePresenter<CatalogueController>() {
 
     /**
      * Enabled sources.
@@ -182,7 +168,7 @@ open class CataloguePresenter : BasePresenter<CatalogueFragment>() {
         pageSubscription = Observable.defer { pager.requestNext() }
                 .subscribeFirst({ view, page ->
                     // Nothing to do when onNext is emitted.
-                }, CatalogueFragment::onAddPageError)
+                }, CatalogueController::onAddPageError)
     }
 
     /**

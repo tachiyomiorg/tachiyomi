@@ -25,9 +25,7 @@ class RecentChaptersPresenter(
         private val sourceManager: SourceManager = Injekt.get()
 ) : BasePresenter<RecentChaptersController>() {
 
-    init {
-        context = preferences.context
-    }
+    private val context = preferences.context
 
     /**
      * List containing chapter and manga information

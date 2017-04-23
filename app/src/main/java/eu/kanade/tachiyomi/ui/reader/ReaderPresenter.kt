@@ -28,7 +28,8 @@ import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import timber.log.Timber
-import uy.kohesive.injekt.injectLazy
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 import java.io.File
 import java.net.URLConnection
 import java.util.*
@@ -36,41 +37,17 @@ import java.util.*
 /**
  * Presenter of [ReaderActivity].
  */
-class ReaderPresenter : BasePresenter<ReaderActivity>() {
-    /**
-     * Preferences.
-     */
-    val prefs: PreferencesHelper by injectLazy()
+class ReaderPresenter(
+        val prefs: PreferencesHelper = Injekt.get(),
+        val db: DatabaseHelper = Injekt.get(),
+        val downloadManager: DownloadManager = Injekt.get(),
+        val trackManager: TrackManager = Injekt.get(),
+        val sourceManager: SourceManager = Injekt.get(),
+        val chapterCache: ChapterCache = Injekt.get(),
+        val coverCache: CoverCache = Injekt.get()
+) : BasePresenter<ReaderActivity>() {
 
-    /**
-     * Database.
-     */
-    val db: DatabaseHelper by injectLazy()
-
-    /**
-     * Download manager.
-     */
-    val downloadManager: DownloadManager by injectLazy()
-
-    /**
-     * Tracking manager.
-     */
-    val trackManager: TrackManager by injectLazy()
-
-    /**
-     * Source manager.
-     */
-    val sourceManager: SourceManager by injectLazy()
-
-    /**
-     * Chapter cache.
-     */
-    val chapterCache: ChapterCache by injectLazy()
-
-    /**
-     * Cover cache.
-     */
-    val coverCache: CoverCache by injectLazy()
+    private val context = prefs.context
 
     /**
      * Manga being read.

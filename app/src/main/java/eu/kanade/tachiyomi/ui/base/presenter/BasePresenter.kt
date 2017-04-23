@@ -1,12 +1,9 @@
 package eu.kanade.tachiyomi.ui.base.presenter
 
-import android.content.Context
 import nucleus.presenter.RxPresenter
 import rx.Observable
 
 open class BasePresenter<V> : RxPresenter<V>() {
-
-    lateinit var context: Context
 
     /**
      * Subscribes an observable with [deliverFirst] and adds it to the presenter's lifecycle

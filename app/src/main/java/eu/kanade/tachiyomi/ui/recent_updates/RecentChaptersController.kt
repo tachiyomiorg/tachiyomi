@@ -26,7 +26,6 @@ import timber.log.Timber
  * Uses [R.layout.fragment_recent_chapters].
  * UI related actions should be called from here.
  */
-@RequiresPresenter(RecentChaptersPresenter::class)
 class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
         NoToolbarElevationController,
         ActionMode.Callback,
