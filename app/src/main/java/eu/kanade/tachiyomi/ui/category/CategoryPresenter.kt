@@ -28,14 +28,12 @@ class CategoryPresenter : BasePresenter<CategoryActivity>() {
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
-
         db.getCategories().asRxObservable()
                 .doOnNext { categories = it }
                 .map { it.map(::CategoryItem) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeLatestCache(CategoryActivity::setCategories)
     }
-
     /**
      * Create category and add it to database
      *
