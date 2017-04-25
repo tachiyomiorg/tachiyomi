@@ -23,7 +23,6 @@ import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 import java.io.IOException
 import java.io.InputStream
@@ -372,7 +371,6 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
     }
 
     fun refreshLibrary() {
-        Timber.d("refresh library")
         librarySubscription?.unsubscribe()
         subscribeLibrary()
     }

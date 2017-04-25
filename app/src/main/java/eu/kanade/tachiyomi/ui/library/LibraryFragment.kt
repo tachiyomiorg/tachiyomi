@@ -122,7 +122,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
 
 
         /**
-         * Key to trigger refresh after category edit in [onActivityResult]
+         * Key to trigger refresh of library after category delete in [onActivityResult]
          */
         const val REFRESH_LIBRARY_AFTER_CATEGORY = 102
 
@@ -438,9 +438,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Timber.d("request code: %s",requestCode)
         if(requestCode == REFRESH_LIBRARY_AFTER_CATEGORY){
-            Timber.d("calling refresh")
             presenter.refreshLibrary();
         }
 
