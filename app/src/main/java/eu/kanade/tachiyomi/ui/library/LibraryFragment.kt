@@ -120,6 +120,13 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
          */
         const val REQUEST_IMAGE_OPEN = 101
 
+
+        /**
+         * Key to trigger refresh after category edit in [onActivityResult]
+         */
+        const val REFRESH_LIBRARY_AFTER_CATEGORY = 102
+
+
         /**
          * Key to save and restore [query] from a [Bundle].
          */
@@ -265,7 +272,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
             }
             R.id.action_edit_categories -> {
                 val intent = CategoryActivity.newIntent(activity)
-                startActivity(intent)
+                startActivityForResult(intent, REFRESH_LIBRARY_AFTER_CATEGORY)
             }
             else -> return super.onOptionsItemSelected(item)
         }
@@ -431,6 +438,12 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Timber.d("request code: %s",requestCode)
+        if(requestCode == REFRESH_LIBRARY_AFTER_CATEGORY){
+            Timber.d("calling refresh")
+            presenter.refreshLibrary();
+        }
+
         if (data != null && resultCode == Activity.RESULT_OK && requestCode == REQUEST_IMAGE_OPEN) {
             selectedCoverManga?.let { manga ->
 

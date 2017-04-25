@@ -28,7 +28,11 @@ class CategoryPresenter : BasePresenter<CategoryActivity>() {
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
+        refreshCategories();
+    }
 
+
+    fun refreshCategories(){
         db.getCategories().asRxObservable()
                 .doOnNext { categories = it }
                 .map { it.map(::CategoryItem) }
