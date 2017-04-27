@@ -15,7 +15,6 @@ import eu.davidea.flexibleadapter.helpers.UndoHelper
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.ui.base.activity.BaseRxActivity
-import eu.kanade.tachiyomi.ui.library.LibraryFragment
 import kotlinx.android.synthetic.main.activity_edit_categories.*
 import kotlinx.android.synthetic.main.toolbar.*
 import nucleus.factory.RequiresPresenter
@@ -262,4 +261,5 @@ class CategoryActivity :
     override fun onDeleteConfirmed(action: Int) {
         presenter.deleteCategories(adapter.deletedItems.map { it.category })
     }
+
 }
