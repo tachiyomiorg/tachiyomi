@@ -120,13 +120,6 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
          */
         const val REQUEST_IMAGE_OPEN = 101
 
-
-        /**
-         * Key to trigger refresh of library after category delete in [onActivityResult]
-         */
-        const val REFRESH_LIBRARY_AFTER_CATEGORY = 102
-
-
         /**
          * Key to save and restore [query] from a [Bundle].
          */
@@ -272,7 +265,7 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
             }
             R.id.action_edit_categories -> {
                 val intent = CategoryActivity.newIntent(activity)
-                startActivityForResult(intent, REFRESH_LIBRARY_AFTER_CATEGORY)
+                startActivity(intent)
             }
             else -> return super.onOptionsItemSelected(item)
         }
@@ -438,9 +431,6 @@ class LibraryFragment : BaseRxFragment<LibraryPresenter>(), ActionMode.Callback 
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if(requestCode == REFRESH_LIBRARY_AFTER_CATEGORY){
-            presenter.refreshLibrary();
-        }
 
         if (data != null && resultCode == Activity.RESULT_OK && requestCode == REQUEST_IMAGE_OPEN) {
             selectedCoverManga?.let { manga ->

@@ -369,10 +369,4 @@ class LibraryPresenter : BasePresenter<LibraryFragment>() {
         }
         return false
     }
-
-    fun refreshLibrary() {
-        librarySubscription?.unsubscribe()
-        subscribeLibrary()
-    }
-
 }

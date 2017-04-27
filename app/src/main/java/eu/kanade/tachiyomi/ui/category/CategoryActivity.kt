@@ -133,7 +133,6 @@ class CategoryActivity :
                             }
 
                             override fun onPostAction() {
-                                setResult(LibraryFragment.REFRESH_LIBRARY_AFTER_CATEGORY)
                                 actionMode.finish()
                             }
                         })
