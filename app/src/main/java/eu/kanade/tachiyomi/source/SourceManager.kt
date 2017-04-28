@@ -74,7 +74,7 @@ open class SourceManager(private val context: Context) {
                     val map = file.inputStream().use { yaml.loadAs(it, Map::class.java) }
                     sources.add(YamlHttpSource(map))
                 } catch (e: Exception) {
-                    Timber.e("Error loading source from file. Bad format?")
+                    Timber.e("Error loading source from file. Bad format?", e)
                 }
             }
         }
@@ -95,25 +95,29 @@ open class SourceManager(private val context: Context) {
             val extName = pkgManager.getApplicationLabel(appInfo).toString()
                     .substringAfter("Tachiyomi: ")
             val version = pkgInfo.versionName
-            var sourceClass = appInfo.metaData.getString(METADATA_SOURCE_CLASS)
-            if (sourceClass.startsWith(".")) {
-                sourceClass = pkgInfo.packageName + sourceClass
-            }
+            val sourceClasses = appInfo.metaData.getString(METADATA_SOURCE_CLASS)
+                    .split(";")
+                    .map {
+                        val sourceClass = it.trim()
+                        if(sourceClass.startsWith("."))
+                            pkgInfo.packageName + sourceClass
+                        else
+                            sourceClass
+                    }
 
-            val extension = Extension(extName, appInfo, version, sourceClass)
+            val extension = Extension(extName, appInfo, version, sourceClasses)
             try {
-                val instance = loadExtension(extension)
-                sources.add(instance)
+                sources += loadExtension(extension)
             } catch (e: Exception) {
-                Timber.e("Extension load error: $extName. Reason: ${e.message}")
+                Timber.e("Extension load error: $extName.", e)
             } catch (e: LinkageError) {
-                Timber.e("Extension load error: $extName. Reason: ${e.message}")
+                Timber.e("Extension load error: $extName.", e)
             }
         }
         return sources
     }
 
-    private fun loadExtension(ext: Extension): Source {
+    private fun loadExtension(ext: Extension): List<Source> {
         // Validate lib version
         val majorLibVersion = ext.version.substringBefore('.').toInt()
         if (majorLibVersion < LIB_VERSION_MIN || majorLibVersion > LIB_VERSION_MAX) {
@@ -122,13 +126,20 @@ open class SourceManager(private val context: Context) {
         }
 
         val classLoader = PathClassLoader(ext.appInfo.sourceDir, null, context.classLoader)
-        return Class.forName(ext.sourceClass, false, classLoader).newInstance() as Source
+        return ext.sourceClasses.flatMap {
+            val obj = Class.forName(it, false, classLoader).newInstance()
+            when(obj) {
+                is Source -> listOf(obj)
+                is SourceFactory -> obj.createSources()
+                else -> throw Exception("Unknown source class type!")
+            }
+        }
     }
 
     class Extension(val name: String,
                     val appInfo: ApplicationInfo,
                     val version: String,
-                    val sourceClass: String)
+                    val sourceClasses: List<String>)
 
     private companion object {
         const val EXTENSION_FEATURE = "tachiyomi.extension"
