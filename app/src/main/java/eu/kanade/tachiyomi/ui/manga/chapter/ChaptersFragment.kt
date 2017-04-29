@@ -21,7 +21,6 @@ import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.getCoordinates
-import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.DeletingChaptersDialog
@@ -74,8 +73,9 @@ class ChaptersFragment : BaseRxFragment<ChaptersPresenter>(),
         recycler.layoutManager = LinearLayoutManager(activity)
         recycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         recycler.setHasFixedSize(true)
-        adapter.setFastScroller(fast_scroller, context.getResourceColor(R.attr.colorAccent))
-        adapter.toggleFastScroller()
+//        TODO enable in a future commit
+//        adapter.setFastScroller(fast_scroller, context.getResourceColor(R.attr.colorAccent))
+//        adapter.toggleFastScroller()
 
         swipe_refresh.setOnRefreshListener { fetchChapters() }
 
