@@ -16,6 +16,7 @@ import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.ui.base.fragment.BaseRxFragment
 import eu.kanade.tachiyomi.ui.main.MainActivity
+import eu.kanade.tachiyomi.ui.manga.MangaActivity
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.DeletingChaptersDialog
@@ -251,6 +252,12 @@ class RecentChaptersFragment:
      */
     fun downloadChapter(chapter: RecentChapterItem) {
         presenter.downloadChapters(listOf(chapter))
+    }
+
+    fun openManga(chapter: RecentChapterItem){
+        val intent = MangaActivity.newIntent(activity, chapter.manga, true)
+        startActivity(intent)
+
     }
 
     /**

@@ -130,6 +130,7 @@ class RecentChapterHolder(private val view: View, private val adapter: RecentCha
                 when (menuItem.itemId) {
                     R.id.action_download -> downloadChapter(item)
                     R.id.action_delete -> deleteChapter(item)
+                    R.id.action_open_manga -> openManga(item)
                     R.id.action_mark_as_read -> markAsRead(listOf(item))
                     R.id.action_mark_as_unread -> markAsUnread(listOf(item))
                 }

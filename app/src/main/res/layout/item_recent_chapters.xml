@@ -96,7 +96,6 @@
         android:id="@+id/manga_cover"
         android:layout_width="50dp"
         android:layout_height="50dp"
-
         app:srcCompat="@drawable/branded_logo_icon"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
