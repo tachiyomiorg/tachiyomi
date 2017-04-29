@@ -6,14 +6,15 @@
                 android:layout_height="?android:attr/listPreferredItemHeight"
                 android:background="?attr/selectable_list_drawable">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
         android:paddingRight="?android:attr/listPreferredItemPaddingRight"
-        android:paddingStart="?android:attr/listPreferredItemPaddingStart">
+        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/manga_cover">
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -43,6 +44,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp"
             android:orientation="vertical">
+
 
             <TextView
                 android:id="@+id/manga_title"
@@ -90,5 +92,14 @@
 
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/manga_cover"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+
+        app:srcCompat="@drawable/branded_logo_icon"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"/>
 
 </RelativeLayout>
