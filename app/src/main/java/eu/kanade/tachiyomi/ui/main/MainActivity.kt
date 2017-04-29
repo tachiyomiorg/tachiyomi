@@ -132,7 +132,8 @@ class MainActivity : BaseActivity() {
 
         syncActivityViewWithController(router.backstack.lastOrNull()?.controller())
 
-        if (savedInstanceState != null) {
+        // TODO changelog controller
+        if (savedInstanceState == null) {
             // Show changelog if needed
             ChangelogDialogFragment.show(this, preferences, supportFragmentManager)
         }
@@ -183,6 +184,8 @@ class MainActivity : BaseActivity() {
             return
         }
 
+        // TODO calling setupWithPager should be done here, otherwise state is inconsistent with
+        // fast transactions.
         if (from is TabbedController) {
             from.resetTabs(tabs)
         }
@@ -193,6 +196,7 @@ class MainActivity : BaseActivity() {
             tabs.gone()
             tabs.setupWithViewPager(null)
         }
+
         if (from is SecondaryDrawerController) {
             if (secondaryDrawer != null) {
                 from.cleanupSecondaryDrawer(drawer)

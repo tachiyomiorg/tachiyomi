@@ -1,11 +1,12 @@
 package eu.kanade.tachiyomi.ui.library
 
+import android.app.Activity
+import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.view.ActionMode
@@ -30,10 +31,14 @@ import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.category.CategoryController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.inflate
+import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.DrawerSwipeCloseListener
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.library_controller.view.*
+import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.io.IOException
 
 
 class LibraryController(
@@ -63,9 +68,11 @@ class LibraryController(
     private var query = ""
 
     /**
-     * Currently selected manga.
+     * Currently selected mangas.
      */
     val selectedMangas = mutableListOf<Manga>()
+
+    private var selectedCoverManga: Manga? = null
 
     /**
      * Relay to notify the UI of selection updates.
@@ -88,9 +95,6 @@ class LibraryController(
     var mangaPerRow = 0
         private set
 
-    private val ui
-        get() = view as? LibraryView
-
     /**
      * TabLayout of the categories.
      */
@@ -99,6 +103,8 @@ class LibraryController(
 
     private val drawer: DrawerLayout?
         get() = activity?.drawer
+
+    private var adapter: LibraryAdapter? = null
 
     /**
      * Navigation view containing filter/sort/display items.
@@ -123,18 +129,21 @@ class LibraryController(
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return LibraryView(this)
+        return inflater.inflate(R.layout.library_controller, container, false)
     }
 
     override fun onViewCreated(view: View, savedViewState: Bundle?) {
         super.onViewCreated(view, savedViewState)
-        with(view as ViewPager) {
-            pageSelections().skip(1).subscribeUntilDestroy {
+
+        adapter = LibraryAdapter(this)
+        with(view) {
+            view_pager.adapter = adapter
+            view_pager.pageSelections().skip(1).subscribeUntilDestroy {
                 preferences.lastUsedCategory().set(it)
                 activeCategory = it
             }
 
-            tabs?.setupWithViewPager(this)
+            tabs?.setupWithViewPager(view_pager)
 
             getColumnsPreferenceForCurrentOrientation().asObservable()
                     .doOnNext { mangaPerRow = it }
@@ -155,6 +164,7 @@ class LibraryController(
 
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
+        adapter = null
         actionMode = null
     }
 
@@ -188,13 +198,34 @@ class LibraryController(
     }
 
     fun onNextLibraryUpdate(categories: List<Category>, mangaMap: Map<Int, List<LibraryItem>>) {
-        ui?.setCategories(categories)
+        val view = view ?: return
+        val adapter = adapter ?: return
+
+        // Show empty view if needed
+        if (mangaMap.isNotEmpty()) {
+            view.empty_view.hide()
+        } else {
+            view.empty_view.show(R.drawable.ic_book_black_128dp, R.string.information_empty_library)
+        }
+
+        // Get the current active category.
+        val activeCat = if (adapter.categories.isNotEmpty())
+            view.view_pager.currentItem
+        else
+            activeCategory
+
+        // Set the categories
+        adapter.categories = categories
+
+        // Restore active category.
+        view.view_pager.setCurrentItem(activeCat, false)
 
         tabs?.visibility = if (categories.size <= 1) View.GONE else View.VISIBLE
+
         // Delay the scroll position to allow the view to be properly measured.
-        ui?.post {
-            if (ui != null) {
-                tabs?.setScrollPosition(ui!!.currentItem, 0f, true)
+        view.post {
+            if (isAttached) {
+                tabs?.setScrollPosition(view.view_pager.currentItem, 0f, true)
             }
         }
 
@@ -233,7 +264,15 @@ class LibraryController(
      * Reattaches the adapter to the view pager to recreate fragments
      */
     private fun reattachAdapter() {
-        ui?.reattachAdapter()
+        val pager = view?.view_pager ?: return
+        val adapter = adapter ?: return
+
+        val position = pager.currentItem
+
+        adapter.recycle = false
+        pager.adapter = adapter
+        pager.currentItem = position
+        adapter.recycle = true
     }
 
     override fun configureTabs(tabs: TabLayout) {
@@ -335,10 +374,10 @@ class LibraryController(
 
     override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
         when (item.itemId) {
-//            R.id.action_edit_cover -> {
-//                changeSelectedCover(presenter.selectedMangas)
-//                destroyActionModeIfNeeded()
-//            }
+            R.id.action_edit_cover -> {
+                changeSelectedCover()
+                destroyActionModeIfNeeded()
+            }
             R.id.action_move_to_category -> showChangeMangaCategoriesDialog()
             R.id.action_delete -> showDeleteMangaDialog()
             else -> return false
@@ -409,6 +448,56 @@ class LibraryController(
     override fun deleteMangasFromLibrary(mangas: List<Manga>, deleteChapters: Boolean) {
         presenter.removeMangaFromLibrary(mangas, deleteChapters)
         destroyActionModeIfNeeded()
+    }
+
+    /**
+     * Changes the cover for the selected manga.
+     *
+     * @param mangas a list of selected manga.
+     */
+    private fun changeSelectedCover() {
+        val manga = selectedMangas.firstOrNull() ?: return
+        selectedCoverManga = manga
+
+        if (manga.favorite) {
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "image/*"
+            startActivityForResult(Intent.createChooser(intent,
+                    resources?.getString(R.string.file_select_cover)), REQUEST_IMAGE_OPEN)
+        } else {
+            activity?.toast(R.string.notification_first_add_to_library)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_IMAGE_OPEN) {
+            if (data == null || resultCode != Activity.RESULT_OK) return
+            val activity = activity ?: return
+            val manga = selectedCoverManga ?: return
+
+            try {
+                // Get the file's input stream from the incoming Intent
+                activity.contentResolver.openInputStream(data.data).use {
+                    // Update cover to selected file, show error if something went wrong
+                    if (presenter.editCoverWithStream(it, manga)) {
+                        // TODO refresh cover
+                    } else {
+                        activity.toast(R.string.notification_cover_update_failed)
+                    }
+                }
+            } catch (error: IOException) {
+                activity.toast(R.string.notification_cover_update_failed)
+                Timber.e(error)
+            }
+            selectedCoverManga = null
+        }
+    }
+
+    private companion object {
+        /**
+         * Key to change the cover of a manga in [onActivityResult].
+         */
+        const val REQUEST_IMAGE_OPEN = 101
     }
 
 }

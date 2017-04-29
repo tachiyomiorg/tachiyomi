@@ -18,7 +18,6 @@ import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.fragment_recent_chapters.view.*
-import nucleus.factory.RequiresPresenter
 import timber.log.Timber
 
 /**
@@ -31,6 +30,7 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
         ActionMode.Callback,
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
+        FlexibleAdapter.OnUpdateListener,
         ConfirmDeleteChaptersDialog.Listener {
 
     /**
@@ -169,12 +169,17 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
      * @param chapters list of [Any]
      */
     fun onNextRecentChapters(chapters: List<IFlexible<*>>) {
-        // TODO
-//        (activity as MainActivity).updateEmptyView(chapters.isEmpty(),
-//                R.string.information_no_recent, R.drawable.ic_update_black_128dp)
-
         destroyActionModeIfNeeded()
         adapter?.updateDataSet(chapters.toMutableList())
+    }
+
+    override fun onUpdateEmptyView(size: Int) {
+        val emptyView = view?.empty_view ?: return
+        if (size > 0) {
+            emptyView.hide()
+        } else {
+            emptyView.show(R.drawable.ic_update_black_128dp, R.string.information_no_recent)
+        }
     }
 
     /**

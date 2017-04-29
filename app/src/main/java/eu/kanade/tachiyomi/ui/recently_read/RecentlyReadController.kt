@@ -3,11 +3,13 @@ package eu.kanade.tachiyomi.ui.recently_read
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
+import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.History
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
@@ -22,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_recently_read.view.*
  * UI related actions should be called from here.
  */
 class RecentlyReadController : NucleusController<RecentlyReadPresenter>(),
+        FlexibleAdapter.OnUpdateListener,
         RecentlyReadAdapter.OnRemoveClickListener,
         RecentlyReadAdapter.OnResumeClickListener,
         RecentlyReadAdapter.OnCoverClickListener,
@@ -32,14 +35,6 @@ class RecentlyReadController : NucleusController<RecentlyReadPresenter>(),
      */
     var adapter: RecentlyReadAdapter? = null
         private set
-
-    init {
-        setHasOptionsMenu(true)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.chapters, menu)
-    }
 
     override fun getTitle(): String? {
         return resources?.getString(R.string.label_recent_manga)
@@ -82,42 +77,31 @@ class RecentlyReadController : NucleusController<RecentlyReadPresenter>(),
      * @param mangaHistory list of manga history
      */
     fun onNextManga(mangaHistory: List<RecentlyReadItem>) {
-//        (activity as MainActivity2).updateEmptyView(mangaHistory.isEmpty(),
-//                R.string.information_no_recent_manga, R.drawable.ic_glasses_black_128dp)
-
         adapter?.updateDataSet(mangaHistory.toList())
     }
 
-    /**
-     * Called from the presenter when wanting to open the next chapter of the current one.
-     *
-     * @param chapter the next chapter or null if it doesn't exist.
-     * @param manga the manga of the chapter.
-     */
-    fun onOpenNextChapter(chapter: Chapter?, manga: Manga) {
-        val activity = activity ?: return
-        if (chapter == null) {
-            activity.toast(R.string.no_next_chapter)
-            return
+    override fun onUpdateEmptyView(size: Int) {
+        val emptyView = view?.empty_view ?: return
+        if (size > 0) {
+            emptyView.hide()
+        } else {
+            emptyView.show(R.drawable.ic_glasses_black_128dp, R.string.information_no_recent_manga)
         }
-
-        val intent = ReaderActivity.newIntent(activity, manga, chapter)
-        startActivity(intent)
     }
 
     override fun onResumeClick(position: Int) {
-        val activity = activity ?: return // TODO probably not needed in the future
+        val activity = activity ?: return
         val adapter = adapter ?: return
         if (position == RecyclerView.NO_POSITION) return
 
         val (manga, chapter, _) = adapter.getItem(position).mch
 
-        // TODO single presenter call
-        if (!chapter.read) {
-            val intent = ReaderActivity.newIntent(activity, manga, chapter)
+        val nextChapter = presenter.getNextChapter(chapter, manga)
+        if (nextChapter != null) {
+            val intent = ReaderActivity.newIntent(activity, manga, nextChapter)
             startActivity(intent)
         } else {
-            presenter.openNextChapter(chapter, manga)
+            activity.toast(R.string.no_next_chapter)
         }
     }
 
