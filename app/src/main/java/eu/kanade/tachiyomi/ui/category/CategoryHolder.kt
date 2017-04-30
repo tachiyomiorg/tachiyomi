@@ -10,14 +10,10 @@ import eu.kanade.tachiyomi.data.database.models.Category
 import kotlinx.android.synthetic.main.item_edit_categories.view.*
 
 /**
- * Holder that contains category item.
- * Uses R.layout.item_edit_categories.
- * UI related actions should be called from here.
+ * Holder used to display category items.
  *
- * @param view view of category item.
- * @param adapter adapter belonging to holder.
- *
- * @constructor Create CategoryHolder object
+ * @param view The view used by category items.
+ * @param adapter The adapter containing this holder.
  */
 class CategoryHolder(view: View, val adapter: CategoryAdapter) : FlexibleViewHolder(view, adapter) {
 
@@ -32,9 +28,9 @@ class CategoryHolder(view: View, val adapter: CategoryAdapter) : FlexibleViewHol
     }
 
     /**
-     * Update category item values.
+     * Binds this holder with the given category.
      *
-     * @param category category of item.
+     * @param category The category to bind.
      */
     fun bind(category: Category) {
         // Set capitalized title.
@@ -47,9 +43,9 @@ class CategoryHolder(view: View, val adapter: CategoryAdapter) : FlexibleViewHol
     }
 
     /**
-     * Returns circle letter image
+     * Returns circle letter image.
      *
-     * @param text first letter of string
+     * @param text The first letter of string.
      */
     private fun getRound(text: String): TextDrawable {
         val size = Math.min(itemView.image.width, itemView.image.height)
@@ -63,9 +59,14 @@ class CategoryHolder(view: View, val adapter: CategoryAdapter) : FlexibleViewHol
                 .buildRound(text, ColorGenerator.MATERIAL.getColor(text))
     }
 
+    /**
+     * Called when an item is released.
+     *
+     * @param position The position of the released item.
+     */
     override fun onItemReleased(position: Int) {
         super.onItemReleased(position)
-        adapter.onItemReleased()
+        adapter.onItemReleaseListener.onItemReleased(position)
     }
 
 }

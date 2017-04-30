@@ -3,31 +3,48 @@ package eu.kanade.tachiyomi.ui.category
 import eu.davidea.flexibleadapter.FlexibleAdapter
 
 /**
- * Adapter of CategoryHolder.
- * Connection between Activity and Holder
- * Holder updates should be called from here.
+ * Custom adapter for categories.
  *
- * @param activity activity that created adapter
- * @constructor Creates a CategoryAdapter object
+ * @param controller The containing controller.
  */
-class CategoryAdapter(private val controller: CategoryController) :
+class CategoryAdapter(controller: CategoryController) :
         FlexibleAdapter<CategoryItem>(null, controller, true) {
 
     /**
-     * Called when item is released.
+     * Listener called when an item of the list is released.
      */
-    fun onItemReleased() {
-        controller.onItemReleased()
-    }
+    val onItemReleaseListener: OnItemReleaseListener = controller
 
+    /**
+     * Clears the active selections from the list and the model.
+     */
     override fun clearSelection() {
         super.clearSelection()
-        (0..itemCount-1).forEach { getItem(it).isSelected = false }
+        (0 until itemCount).forEach { getItem(it).isSelected = false }
     }
 
+    /**
+     * Clears the active selections from the model.
+     */
+    fun clearModelSelection() {
+        selectedPositions.forEach { getItem(it).isSelected = false }
+    }
+
+    /**
+     * Toggles the selection of the given position.
+     *
+     * @param position The position to toggle.
+     */
     override fun toggleSelection(position: Int) {
         super.toggleSelection(position)
         getItem(position).isSelected = isSelected(position)
+    }
+
+    interface OnItemReleaseListener {
+        /**
+         * Called when an item of the list is released.
+         */
+        fun onItemReleased(position: Int)
     }
 
 }

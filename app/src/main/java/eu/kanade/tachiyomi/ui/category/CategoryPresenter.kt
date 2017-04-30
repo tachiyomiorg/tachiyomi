@@ -1,33 +1,31 @@
 package eu.kanade.tachiyomi.ui.category
 
 import android.os.Bundle
-import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import eu.kanade.tachiyomi.util.toast
+import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 /**
- * Presenter of CategoryActivity.
- * Contains information and data for activity.
- * Observable updates should be called from here.
+ * Presenter of [CategoryController]. Used to manage the categories of the library.
  */
 class CategoryPresenter(
-        private val db: DatabaseHelper = Injekt.get(),
-        preferences: PreferencesHelper = Injekt.get()
+        private val db: DatabaseHelper = Injekt.get()
 ) : BasePresenter<CategoryController>() {
-
-    private val context = preferences.context
 
     /**
      * List containing categories.
      */
     private var categories: List<Category> = emptyList()
 
+    /**
+     * Called when the presenter is created.
+     *
+     * @param savedState The saved state of this presenter.
+     */
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
@@ -39,14 +37,14 @@ class CategoryPresenter(
     }
 
     /**
-     * Create category and add it to database
+     * Creates and adds a new category to the database.
      *
-     * @param name name of category
+     * @param name The name of the category to create.
      */
     fun createCategory(name: String) {
         // Do not allow duplicate categories.
-        if (categories.any { it.name.equals(name, true) }) {
-            context.toast(R.string.error_category_exists)
+        if (categoryExists(name)) {
+            Observable.just(Unit).subscribeFirst({ view, _ -> view.onCategoryExistsError() })
             return
         }
 
@@ -61,18 +59,18 @@ class CategoryPresenter(
     }
 
     /**
-     * Delete category from database
+     * Deletes the given categories from the database.
      *
-     * @param categories list of categories
+     * @param categories The list of categories to delete.
      */
     fun deleteCategories(categories: List<Category>) {
         db.deleteCategories(categories).asRxObservable().subscribe()
     }
 
     /**
-     * Reorder categories in database
+     * Reorders the given categories in the database.
      *
-     * @param categories list of categories
+     * @param categories The list of categories to reorder.
      */
     fun reorderCategories(categories: List<Category>) {
         categories.forEachIndexed { i, category ->
@@ -83,20 +81,27 @@ class CategoryPresenter(
     }
 
     /**
-     * Rename a category
+     * Renames a category.
      *
-     * @param category category that gets renamed
-     * @param name new name of category
+     * @param category The category to rename.
+     * @param name The new name of the category.
      */
     fun renameCategory(category: Category, name: String) {
         // Do not allow duplicate categories.
-        if (categories.any { it.name.equals(name, true) }) {
-            context.toast(R.string.error_category_exists)
+        if (categoryExists(name)) {
+            Observable.just(Unit).subscribeFirst({ view, _ -> view.onCategoryExistsError() })
             return
         }
 
         category.name = name
         db.insertCategory(category).asRxObservable().subscribe()
+    }
+
+    /**
+     * Returns true if a category with the given name already exists.
+     */
+    fun categoryExists(name: String): Boolean {
+        return categories.any { it.name.equals(name, true) }
     }
 
 }

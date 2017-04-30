@@ -3,26 +3,36 @@ package eu.kanade.tachiyomi.ui.category
 import android.app.Dialog
 import android.os.Bundle
 import com.afollestad.materialdialogs.MaterialDialog
+import com.bluelinelabs.conductor.Controller
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 
-class CategoryRenameDialog(bundle: Bundle) : DialogController(bundle) {
+/**
+ * Dialog to rename an existing category of the library.
+ */
+class CategoryRenameDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
+        where T : Controller, T : CategoryRenameDialog.Listener {
 
-    private lateinit var category: Category
+    private var category: Category? = null
 
+    /**
+     * Name of the new category. Value updated with each input from the user.
+     */
     private var currentName = ""
 
-    constructor(category: Category, categoryController: CategoryController) : this(Bundle()) {
+    constructor(target: T, category: Category) : this() {
+        targetController = target
         this.category = category
-        targetController = categoryController
         currentName = category.name
     }
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        router.popController(this)
-    }
-
+    /**
+     * Called when creating the dialog for this controller.
+     *
+     * @param savedViewState The saved state of this dialog.
+     * @return a new dialog instance.
+     */
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialDialog.Builder(activity!!)
                 .title(R.string.action_rename_category)
@@ -35,9 +45,38 @@ class CategoryRenameDialog(bundle: Bundle) : DialogController(bundle) {
                 .build()
     }
 
+    /**
+     * Called to save this Controller's state in the event that its host Activity is destroyed.
+     *
+     * @param outState The Bundle into which data should be saved
+     */
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putSerializable("category", category)
+        super.onSaveInstanceState(outState)
+    }
+
+    /**
+     * Restores data that was saved in the [onSaveInstanceState] method.
+     *
+     * @param savedInstanceState The bundle that has data to be restored
+     */
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        category = savedInstanceState.getSerializable("category") as? Category
+    }
+
+    /**
+     * Called when the positive button of the dialog is clicked.
+     */
     private fun onPositive() {
-        val target = targetController as? CategoryController ?: return
-        target.presenter.renameCategory(category, currentName)
+        val target = targetController as? Listener ?: return
+        val category = category ?: return
+
+        target.renameCategory(category, currentName)
+    }
+
+    interface Listener {
+        fun renameCategory(category: Category, name: String)
     }
 
 }
