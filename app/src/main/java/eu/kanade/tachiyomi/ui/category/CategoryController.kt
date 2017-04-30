@@ -8,11 +8,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.*
 import com.jakewharton.rxbinding.view.clicks
 import eu.davidea.flexibleadapter.FlexibleAdapter
-import eu.davidea.flexibleadapter.helpers.UndoHelper
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.util.toast
+import eu.kanade.tachiyomi.widget.UndoHelper
 import kotlinx.android.synthetic.main.categories_controller.view.*
 
 /**
@@ -36,6 +36,11 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      * Adapter containing category items.
      */
     private var adapter: CategoryAdapter? = null
+
+    /**
+     * Undo helper for deleting categories.
+     */
+    private var undoHelper: UndoHelper? = null
 
     /**
      * Creates the presenter for this controller. Not to be manually called.
@@ -88,6 +93,8 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      */
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
+        undoHelper?.dismissNow() // confirm categories deletion if required
+        undoHelper = null
         actionMode = null
         adapter = null
     }
@@ -154,20 +161,20 @@ class CategoryController : NucleusController<CategoryPresenter>(),
 
         when (item.itemId) {
             R.id.action_delete -> {
-                // TODO doesn't delete if user goes back before the snackbar is dismissed.
-                UndoHelper(adapter, this)
-                        .withAction(UndoHelper.ACTION_REMOVE, object : UndoHelper.OnActionListener {
-                            override fun onPreAction(): Boolean {
-                                adapter.clearModelSelection()
-                                return false
-                            }
+                undoHelper = UndoHelper(adapter, this).apply {
+                    withAction(UndoHelper.ACTION_REMOVE, object : UndoHelper.OnActionListener {
+                        override fun onPreAction(): Boolean {
+                            adapter.clearModelSelection()
+                            return false
+                        }
 
-                            override fun onPostAction() {
-                                mode.finish()
-                            }
-                        })
-                        .remove(adapter.selectedPositions, view!!,
-                                R.string.snack_categories_deleted, R.string.action_undo, 3000)
+                        override fun onPostAction() {
+                            mode.finish()
+                        }
+                    })
+                    remove(adapter.selectedPositions, view!!,
+                            R.string.snack_categories_deleted, R.string.action_undo, 3000)
+                }
             }
             R.id.action_edit -> {
                 // Edit selected category

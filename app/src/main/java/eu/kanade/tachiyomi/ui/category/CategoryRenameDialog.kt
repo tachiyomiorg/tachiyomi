@@ -51,7 +51,7 @@ class CategoryRenameDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
      * @param outState The Bundle into which data should be saved
      */
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putSerializable("category", category)
+        outState.putSerializable(CATEGORY_KEY, category)
         super.onSaveInstanceState(outState)
     }
 
@@ -62,7 +62,7 @@ class CategoryRenameDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
      */
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        category = savedInstanceState.getSerializable("category") as? Category
+        category = savedInstanceState.getSerializable(CATEGORY_KEY) as? Category
     }
 
     /**
@@ -77,6 +77,10 @@ class CategoryRenameDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
 
     interface Listener {
         fun renameCategory(category: Category, name: String)
+    }
+
+    private companion object {
+        const val CATEGORY_KEY = "CategoryRenameDialog.category"
     }
 
 }
