@@ -390,7 +390,7 @@ open class CataloguePresenter(
      * @return List of categories, default plus user categories
      */
     fun getCategories(): List<Category> {
-        return arrayListOf(Category.createDefault()) + db.getCategories().executeAsBlocking()
+        return db.getCategories().executeAsBlocking()
     }
 
     /**
@@ -401,10 +401,7 @@ open class CataloguePresenter(
      */
     fun getMangaCategoryIds(manga: Manga): Array<Int?> {
         val categories = db.getCategoriesForManga(manga).executeAsBlocking()
-        if (categories.isEmpty()) {
-            return arrayListOf(Category.createDefault().id).toTypedArray()
-        }
-        return categories.map { it.id }.toTypedArray()
+        return categories.mapNotNull { it.id }.toTypedArray()
     }
 
     /**
@@ -413,10 +410,9 @@ open class CataloguePresenter(
      * @param categories the selected categories.
      * @param manga the manga to move.
      */
-    fun moveMangaToCategories(categories: List<Category>, manga: Manga) {
-        val mc = categories.map { MangaCategory.create(manga, it) }
-
-        db.setMangaCategories(mc, arrayListOf(manga))
+    fun moveMangaToCategories(manga: Manga, categories: List<Category>) {
+        val mc = categories.filter { it.id != 0 }.map { MangaCategory.create(manga, it) }
+        db.setMangaCategories(mc, listOf(manga))
     }
 
     /**
@@ -425,8 +421,8 @@ open class CataloguePresenter(
      * @param category the selected category.
      * @param manga the manga to move.
      */
-    fun moveMangaToCategory(category: Category, manga: Manga) {
-        moveMangaToCategories(arrayListOf(category), manga)
+    fun moveMangaToCategory(manga: Manga, category: Category?) {
+        moveMangaToCategories(manga, listOfNotNull(category))
     }
 
     /**
@@ -440,7 +436,7 @@ open class CataloguePresenter(
             if (!manga.favorite)
                 changeMangaFavorite(manga)
 
-            moveMangaToCategories(selectedCategories.filter { it.id != 0 }, manga)
+            moveMangaToCategories(manga, selectedCategories.filter { it.id != 0 })
         } else {
             changeMangaFavorite(manga)
         }

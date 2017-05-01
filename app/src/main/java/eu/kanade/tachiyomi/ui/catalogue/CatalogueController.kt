@@ -10,6 +10,7 @@ import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import com.afollestad.materialdialogs.MaterialDialog
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.f2prateek.rx.preferences.Preference
@@ -24,6 +25,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.SecondaryDrawerController
+import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.*
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
@@ -40,15 +42,15 @@ import uy.kohesive.injekt.injectLazy
 import java.util.concurrent.TimeUnit
 
 /**
- * Fragment that shows the manga from the catalogue.
- * Uses R.layout.fragment_catalogue.
+ * Controller to manage the catalogues available in the app.
  */
 open class CatalogueController(bundle: Bundle? = null) :
         NucleusController<CataloguePresenter>(bundle),
         SecondaryDrawerController,
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
-        FlexibleAdapter.EndlessScrollListener<ProgressItem> {
+        FlexibleAdapter.EndlessScrollListener<ProgressItem>,
+        ChangeMangaCategoriesDialog.Listener {
 
     /**
      * Preferences helper.
@@ -507,65 +509,50 @@ open class CatalogueController(bundle: Bundle? = null) :
      * @param position the position of the element clicked.
      */
     override fun onItemLongClick(position: Int) {
-//        // Get manga
-//        val manga = (adapter.getItem(position) as? CatalogueItem?)?.manga ?: return
-//        // Fetch categories
-//        val categories = presenter.getCategories()
-//
-//        if (manga.favorite){
-//            MaterialDialog.Builder(activity)
-//                    .items(getString(R.string.remove_from_library ))
-//                    .itemsCallback { _, _, which, _ ->
-//                        when (which) {
-//                            0 -> {
-//                                presenter.changeMangaFavorite(manga)
-//                                adapter.notifyItemChanged(position)
-//                            }
-//                        }
-//                    }.show()
-//        }else{
-//            val defaultCategory = categories.find { it.id == preferences.defaultCategory()}
-//            if(defaultCategory != null) {
-//                presenter.changeMangaFavorite(manga)
-//                presenter.moveMangaToCategory(defaultCategory, manga)
-//                // Show manga has been added
-//                context.toast(R.string.added_to_library)
-//                adapter.notifyItemChanged(position)
-//            } else {
-//                MaterialDialog.Builder(activity)
-//                        .title(R.string.action_move_category)
-//                        .items(categories.map { it.name })
-//                        .itemsCallbackMultiChoice(presenter.getMangaCategoryIds(manga)) { dialog, position, _ ->
-//                            if (position.contains(0) && position.count() > 1) {
-//                                // Deselect default category
-//                                dialog.setSelectedIndices(position.filter {it > 0}.toTypedArray())
-//                                dialog.context.toast(R.string.invalid_combination)
-//                            }
-//                            true
-//                        }
-//                        .alwaysCallMultiChoiceCallback()
-//                        .positiveText(android.R.string.ok)
-//                        .negativeText(android.R.string.cancel)
-//                        .onPositive { dialog, _ ->
-//                            val selectedCategories = dialog.selectedIndices?.map { categories[it] } ?: emptyList()
-//                            updateMangaCategories(manga, selectedCategories, position)
-//                        }
-//                        .build()
-//                        .show()
-//            }
-//        }
+        val manga = (adapter?.getItem(position) as? CatalogueItem?)?.manga ?: return
+        if (manga.favorite) {
+            MaterialDialog.Builder(activity!!)
+                    .items(resources?.getString(R.string.remove_from_library))
+                    .itemsCallback { _, _, which, _ ->
+                        when (which) {
+                            0 -> {
+                                presenter.changeMangaFavorite(manga)
+                                adapter?.notifyItemChanged(position)
+                            }
+                        }
+                    }.show()
+        } else {
+            presenter.changeMangaFavorite(manga)
+            adapter?.notifyItemChanged(position)
+
+            val categories = presenter.getCategories()
+            val defaultCategory = categories.find { it.id == preferences.defaultCategory() }
+            if (defaultCategory != null) {
+                presenter.moveMangaToCategory(manga, defaultCategory)
+            } else if (categories.size <= 1) { // default or the one from the user
+                presenter.moveMangaToCategory(manga, categories.firstOrNull())
+            } else {
+                val ids = presenter.getMangaCategoryIds(manga)
+                val preselected = ids.mapNotNull { id ->
+                    categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
+                }.toTypedArray()
+
+                ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
+                        .showDialog(router)
+            }
+        }
+
     }
 
     /**
      * Update manga to use selected categories.
      *
-     * @param manga needed to change
-     * @param selectedCategories selected categories
-     * @param position position of adapter
+     * @param mangas The list of manga to move to categories.
+     * @param categories The list of categories where manga will be placed.
      */
-    private fun updateMangaCategories(manga: Manga, selectedCategories: List<Category>, position: Int) {
-        presenter.updateMangaCategories(manga,selectedCategories)
-        adapter?.notifyItemChanged(position)
+    override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>) {
+        val manga = mangas.firstOrNull() ?: return
+        presenter.updateMangaCategories(manga, categories)
     }
 
 }
