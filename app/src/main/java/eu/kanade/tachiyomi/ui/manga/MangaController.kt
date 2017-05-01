@@ -72,13 +72,6 @@ class MangaController : RxController, TabbedController {
         return inflater.inflate(R.layout.manga_controller, container, false)
     }
 
-    override fun onChangeEnded(handler: ControllerChangeHandler, type: ControllerChangeType) {
-        if (manga == null || source == null) {
-            activity?.toast(R.string.manga_not_in_db)
-            router.popController(this)
-        }
-    }
-
     override fun onViewCreated(view: View, savedViewState: Bundle?) {
         super.onViewCreated(view, savedViewState)
 
@@ -93,8 +86,6 @@ class MangaController : RxController, TabbedController {
             view_pager.offscreenPageLimit = 3
             view_pager.adapter = adapter
 
-            activity?.tabs?.setupWithViewPager(view_pager)
-
             if (!fromCatalogue)
                 view_pager.currentItem = CHAPTERS_CONTROLLER
         }
@@ -103,6 +94,19 @@ class MangaController : RxController, TabbedController {
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
         adapter = null
+    }
+
+    override fun onChangeStarted(changeHandler: ControllerChangeHandler, changeType: ControllerChangeType) {
+        if (changeType.isEnter) {
+            activity?.tabs?.setupWithViewPager(view?.view_pager)
+        }
+    }
+
+    override fun onChangeEnded(handler: ControllerChangeHandler, type: ControllerChangeType) {
+        if (manga == null || source == null) {
+            activity?.toast(R.string.manga_not_in_db)
+            router.popController(this)
+        }
     }
 
     override fun configureTabs(tabs: TabLayout) {

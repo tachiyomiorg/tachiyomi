@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.view.ActionMode
 import android.support.v7.widget.SearchView
 import android.view.*
+import com.bluelinelabs.conductor.ControllerChangeHandler
+import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.f2prateek.rx.preferences.Preference
@@ -154,6 +156,12 @@ class LibraryController(
             if (selectedMangas.isNotEmpty()) {
                 createActionModeIfNeeded()
             }
+        }
+    }
+
+    override fun onChangeStarted(changeHandler: ControllerChangeHandler, changeType: ControllerChangeType) {
+        if (changeType.isEnter) {
+            activity?.tabs?.setupWithViewPager(view?.view_pager)
         }
     }
 

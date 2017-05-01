@@ -184,8 +184,6 @@ class MainActivity : BaseActivity() {
             return
         }
 
-        // TODO calling setupWithPager should be done here, otherwise state is inconsistent with
-        // fast transactions.
         if (from is TabbedController) {
             from.resetTabs(tabs)
         }
