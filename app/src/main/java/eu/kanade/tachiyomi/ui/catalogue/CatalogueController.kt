@@ -178,7 +178,7 @@ open class CatalogueController(bundle: Bundle? = null) :
         recycler = null
     }
 
-    override fun createSecondaryDrawer(drawer: DrawerLayout): ViewGroup {
+    override fun createSecondaryDrawer(drawer: DrawerLayout): ViewGroup? {
         // Inflate and prepare drawer
         val navView = drawer.inflate(R.layout.catalogue_drawer) as CatalogueNavigationView
         this.navView = navView

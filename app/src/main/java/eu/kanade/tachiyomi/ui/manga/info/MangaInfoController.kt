@@ -23,6 +23,7 @@ import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
+import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.snack
@@ -309,14 +310,16 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
      */
     fun addToHomeScreen() {
         val activity = activity ?: return
+        val mangaControllerArgs = parentController?.args ?: return
 
         val shortcutIntent = activity.intent
-        shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .putExtra(MangaController.FROM_LAUNCHER_EXTRA, true)
+                .setAction(MainActivity.SHORTCUT_MANGA)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .putExtra(MangaController.MANGA_EXTRA,
+                        mangaControllerArgs.getLong(MangaController.MANGA_EXTRA))
 
-        val addIntent = Intent()
-        addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
-                .action = "com.android.launcher.action.INSTALL_SHORTCUT"
+        val addIntent = Intent("com.android.launcher.action.INSTALL_SHORTCUT")
+                .putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
 
         //Set shortcut title
         val dialog = MaterialDialog.Builder(activity)

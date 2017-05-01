@@ -22,6 +22,7 @@ import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
 import eu.kanade.tachiyomi.ui.download.DownloadActivity
 import eu.kanade.tachiyomi.ui.latest_updates.LatestUpdatesController
 import eu.kanade.tachiyomi.ui.library.LibraryController
+import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersController
 import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity
@@ -104,6 +105,8 @@ class MainActivity : BaseActivity() {
                 SHORTCUT_RECENTLY_UPDATED -> setSelectedDrawerItem(R.id.nav_drawer_recent_updates)
                 SHORTCUT_RECENTLY_READ -> setSelectedDrawerItem(R.id.nav_drawer_recently_read)
                 SHORTCUT_CATALOGUES -> setSelectedDrawerItem(R.id.nav_drawer_catalogues)
+                SHORTCUT_MANGA -> router.setRoot(
+                        RouterTransaction.with(MangaController(intent.extras)))
                 else ->  setSelectedDrawerItem(startScreenId)
             }
         }
@@ -203,7 +206,7 @@ class MainActivity : BaseActivity() {
             }
         }
         if (to is SecondaryDrawerController) {
-            secondaryDrawer = to.createSecondaryDrawer(drawer).also { drawer.addView(it) }
+            secondaryDrawer = to.createSecondaryDrawer(drawer)?.also { drawer.addView(it) }
         }
 
         if (to is NoToolbarElevationController) {
@@ -238,6 +241,7 @@ class MainActivity : BaseActivity() {
         private const val SHORTCUT_RECENTLY_UPDATED = "eu.kanade.tachiyomi.SHOW_RECENTLY_UPDATED"
         private const val SHORTCUT_RECENTLY_READ = "eu.kanade.tachiyomi.SHOW_RECENTLY_READ"
         private const val SHORTCUT_CATALOGUES = "eu.kanade.tachiyomi.SHOW_CATALOGUES"
+        const val SHORTCUT_MANGA = "eu.kanade.tachiyomi.SHOW_MANGA"
     }
 
 }

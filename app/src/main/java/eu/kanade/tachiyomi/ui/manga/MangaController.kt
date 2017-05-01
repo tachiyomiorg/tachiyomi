@@ -135,8 +135,7 @@ class MangaController : RxController, TabbedController {
 
     private inner class MangaDetailAdapter : RouterPagerAdapter(this@MangaController) {
 
-        private val tabCount =
-                if (!fromCatalogue && Injekt.get<TrackManager>().hasLoggedServices()) 3 else 2
+        private val tabCount = if (Injekt.get<TrackManager>().hasLoggedServices()) 3 else 2
 
         private val tabTitles = listOf(
                 R.string.manga_detail_tab,
@@ -170,7 +169,7 @@ class MangaController : RxController, TabbedController {
 
         const val FROM_CATALOGUE_EXTRA = "from_catalogue"
         const val MANGA_EXTRA = "manga"
-        const val FROM_LAUNCHER_EXTRA = "from_launcher"
+
         const val INFO_CONTROLLER = 0
         const val CHAPTERS_CONTROLLER = 1
         const val TRACK_CONTROLLER = 2

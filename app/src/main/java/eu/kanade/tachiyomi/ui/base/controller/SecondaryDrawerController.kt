@@ -5,7 +5,7 @@ import android.view.ViewGroup
 
 interface SecondaryDrawerController {
 
-    fun createSecondaryDrawer(drawer: DrawerLayout): ViewGroup
+    fun createSecondaryDrawer(drawer: DrawerLayout): ViewGroup?
 
     fun cleanupSecondaryDrawer(drawer: DrawerLayout)
 }

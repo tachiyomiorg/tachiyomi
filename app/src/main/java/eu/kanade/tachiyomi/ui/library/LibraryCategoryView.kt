@@ -103,16 +103,16 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
     fun onBind(category: Category) {
         this.category = category
 
-        subscriptions += controller.searchRelay.subscribe { text ->
-            adapter.searchText = text
-            adapter.performFilter()
-        }
-
         adapter.mode = if (controller.selectedMangas.isNotEmpty()) {
             FlexibleAdapter.MODE_MULTI
         } else {
             FlexibleAdapter.MODE_SINGLE
         }
+
+        subscriptions += controller.searchRelay
+                .doOnNext { adapter.searchText = it }
+                .skip(1)
+                .subscribe { adapter.performFilter() }
 
         subscriptions += controller.libraryMangaRelay
                 .subscribe { onNextLibraryManga(it) }
