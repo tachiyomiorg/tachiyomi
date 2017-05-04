@@ -16,7 +16,6 @@
         <eu.kanade.tachiyomi.widget.ElevationAppBarLayout
             android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:animateLayoutChanges="true"
             android:layout_height="wrap_content">
 
             <include layout="@layout/toolbar"/>

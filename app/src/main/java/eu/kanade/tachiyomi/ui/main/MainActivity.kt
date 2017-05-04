@@ -26,8 +26,6 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersController
 import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
 import eu.kanade.tachiyomi.ui.setting.SettingsActivity
-import eu.kanade.tachiyomi.util.gone
-import eu.kanade.tachiyomi.util.visible
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import uy.kohesive.injekt.injectLazy
@@ -51,6 +49,8 @@ class MainActivity : BaseActivity() {
             else -> R.id.nav_drawer_library
         }
     }
+
+    private val tabAnimator by lazy { TabsAnimator(tabs) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setAppTheme()
@@ -192,9 +192,9 @@ class MainActivity : BaseActivity() {
         }
         if (to is TabbedController) {
             to.configureTabs(tabs)
-            tabs.visible()
+            tabAnimator.expand()
         } else {
-            tabs.gone()
+            tabAnimator.collapse()
             tabs.setupWithViewPager(null)
         }
 

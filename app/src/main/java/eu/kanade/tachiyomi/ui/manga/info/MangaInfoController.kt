@@ -384,7 +384,6 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     }
 
     fun createShortcut(addIntent: Intent, icon: Bitmap) {
-        // TODO redirect to this screen
         val activity = activity ?: return
 
         //Send shortcut intent

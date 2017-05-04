@@ -145,8 +145,6 @@ class LibraryController(
                 activeCategory = it
             }
 
-            tabs?.setupWithViewPager(view_pager)
-
             getColumnsPreferenceForCurrentOrientation().asObservable()
                     .doOnNext { mangaPerRow = it }
                     .skip(1)
