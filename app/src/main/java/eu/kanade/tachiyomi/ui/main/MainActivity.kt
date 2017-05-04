@@ -174,6 +174,10 @@ class MainActivity : BaseActivity() {
     }
 
     private fun syncActivityViewWithController(to: Controller?, from: Controller? = null) {
+        if (from is DialogController || to is DialogController) {
+            return
+        }
+
         val showHamburger = router.backstackSize == 1
         if (showHamburger) {
             drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
@@ -182,10 +186,6 @@ class MainActivity : BaseActivity() {
         }
 
         ObjectAnimator.ofFloat(drawerArrow, "progress", if (showHamburger) 0f else 1f).start()
-
-        if (from is DialogController || to is DialogController) {
-            return
-        }
 
         if (from is TabbedController) {
             from.resetTabs(tabs)

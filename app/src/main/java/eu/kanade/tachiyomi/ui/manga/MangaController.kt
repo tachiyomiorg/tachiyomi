@@ -96,13 +96,15 @@ class MangaController : RxController, TabbedController {
         adapter = null
     }
 
-    override fun onChangeStarted(changeHandler: ControllerChangeHandler, changeType: ControllerChangeType) {
-        if (changeType.isEnter) {
+    override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
+        super.onChangeStarted(handler, type)
+        if (type.isEnter) {
             activity?.tabs?.setupWithViewPager(view?.view_pager)
         }
     }
 
     override fun onChangeEnded(handler: ControllerChangeHandler, type: ControllerChangeType) {
+        super.onChangeEnded(handler, type)
         if (manga == null || source == null) {
             activity?.toast(R.string.manga_not_in_db)
             router.popController(this)

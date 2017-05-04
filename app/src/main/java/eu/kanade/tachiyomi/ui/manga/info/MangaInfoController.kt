@@ -119,7 +119,8 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
      * @param source the source of the manga.
      */
     private fun setMangaInfo(manga: Manga, source: Source?) {
-        withView {
+        val view = view ?: return
+        with(view) {
             // Update artist TextView.
             manga_artist.text = manga.artist
 

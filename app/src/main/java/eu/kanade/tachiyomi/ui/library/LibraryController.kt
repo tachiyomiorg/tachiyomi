@@ -157,8 +157,9 @@ class LibraryController(
         }
     }
 
-    override fun onChangeStarted(changeHandler: ControllerChangeHandler, changeType: ControllerChangeType) {
-        if (changeType.isEnter) {
+    override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
+        super.onChangeStarted(handler, type)
+        if (type.isEnter) {
             activity?.tabs?.setupWithViewPager(view?.view_pager)
         }
     }

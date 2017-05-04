@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bluelinelabs.conductor.ControllerChangeHandler
+import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RestoreViewOnCreateController
 import com.bluelinelabs.conductor.Router
 
@@ -20,9 +22,11 @@ abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateContr
 
     open fun onViewCreated(view: View, savedViewState: Bundle?) { }
 
-    override fun onAttach(view: View) {
-        setTitle()
-        super.onAttach(view)
+    override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
+        if (type.isEnter) {
+            setTitle()
+        }
+        super.onChangeStarted(handler, type)
     }
 
     open fun getTitle(): String? {
@@ -39,10 +43,6 @@ abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateContr
         }
 
         (activity as? AppCompatActivity)?.supportActionBar?.title = getTitle()
-    }
-
-    inline fun withView(block: View.() -> Unit) {
-        view?.let { block(it) }
     }
 
     fun Router.popControllerWithTag(tag: String): Boolean {
