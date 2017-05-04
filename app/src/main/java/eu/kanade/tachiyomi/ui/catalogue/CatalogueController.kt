@@ -492,7 +492,7 @@ open class CatalogueController(bundle: Bundle? = null) :
      */
     override fun onItemClick(position: Int): Boolean {
         val item = adapter?.getItem(position) as? CatalogueItem ?: return false
-        router.pushController(RouterTransaction.with(MangaController(item.manga))
+        router.pushController(RouterTransaction.with(MangaController(item.manga, true))
                 .pushChangeHandler(FadeChangeHandler())
                 .popChangeHandler(FadeChangeHandler()))
 

@@ -37,7 +37,10 @@ import uy.kohesive.injekt.api.get
 
 class MangaController : RxController, TabbedController {
 
-    constructor(manga: Manga?) : super(Bundle().apply { putLong(MANGA_EXTRA, manga?.id!!) }) {
+    constructor(manga: Manga?, fromCatalogue: Boolean = false) : super(Bundle().apply {
+        putLong(MANGA_EXTRA, manga?.id!!)
+        putBoolean(FROM_CATALOGUE_EXTRA, fromCatalogue)
+    }) {
         this.manga = manga
         if (manga != null) {
             source = Injekt.get<SourceManager>().get(manga.source)

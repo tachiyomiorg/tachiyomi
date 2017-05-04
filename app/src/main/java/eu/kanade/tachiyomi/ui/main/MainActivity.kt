@@ -107,7 +107,7 @@ class MainActivity : BaseActivity() {
                 SHORTCUT_CATALOGUES -> setSelectedDrawerItem(R.id.nav_drawer_catalogues)
                 SHORTCUT_MANGA -> router.setRoot(
                         RouterTransaction.with(MangaController(intent.extras)))
-                else ->  setSelectedDrawerItem(startScreenId)
+                else -> setSelectedDrawerItem(startScreenId)
             }
         }
 
