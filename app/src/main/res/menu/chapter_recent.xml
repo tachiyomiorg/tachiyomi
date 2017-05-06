@@ -10,6 +10,12 @@
         app:showAsAction="ifRoom"/>
 
     <item
+        android:id="@+id/action_open_manga"
+        android:title="@string/action_open_manga"
+        android:visible="true"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/action_delete"
         android:title="@string/action_delete"
         android:visible="false"

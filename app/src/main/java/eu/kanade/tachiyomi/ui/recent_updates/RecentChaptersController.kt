@@ -6,6 +6,8 @@ import android.support.v7.view.ActionMode
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
+import com.bluelinelabs.conductor.RouterTransaction
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import com.jakewharton.rxbinding.support.v7.widget.scrollStateChanges
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -15,6 +17,7 @@ import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.fragment_recent_chapters.view.*
@@ -31,7 +34,8 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
         FlexibleAdapter.OnUpdateListener,
-        ConfirmDeleteChaptersDialog.Listener {
+        ConfirmDeleteChaptersDialog.Listener,
+        RecentChaptersAdapter.OnCoverClickListener {
 
     /**
      * Action mode for multiple selection.
@@ -245,6 +249,18 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
     fun deleteChapter(chapter: RecentChapterItem) {
         DeletingChaptersDialog().showDialog(router)
         presenter.deleteChapters(listOf(chapter))
+    }
+
+    override fun onCoverClick(position: Int) {
+        val chapterClicked = (adapter?.getItem(position) as RecentChapterItem)
+        openManga(chapterClicked)
+
+    }
+
+    fun openManga(chapter: RecentChapterItem) {
+        router.pushController(RouterTransaction.with(MangaController(chapter.manga))
+                .pushChangeHandler(FadeChangeHandler())
+                .popChangeHandler(FadeChangeHandler()))
     }
 
     /**

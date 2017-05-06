@@ -13,7 +13,9 @@
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
         android:paddingRight="?android:attr/listPreferredItemPaddingRight"
-        android:paddingStart="?android:attr/listPreferredItemPaddingStart">
+        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/manga_cover">
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -90,5 +92,15 @@
 
     </RelativeLayout>
 
+    <ImageView
+        android:id="@+id/manga_cover"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/branded_logo_icon"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:clickable="true"
+        android:layout_marginStart="10dp"
+        android:contentDescription="@string/description_cover"/>
 
 </RelativeLayout>
