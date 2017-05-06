@@ -34,8 +34,8 @@ class TrackController : NucleusController<TrackPresenter>(),
 
         adapter = TrackAdapter(this)
         with(view) {
-            recycler.layoutManager = LinearLayoutManager(context)
-            recycler.adapter = adapter
+            track_recycler.layoutManager = LinearLayoutManager(context)
+            track_recycler.adapter = adapter
             swipe_refresh.isEnabled = false
             swipe_refresh.refreshes().subscribeUntilDestroy { presenter.refresh() }
         }

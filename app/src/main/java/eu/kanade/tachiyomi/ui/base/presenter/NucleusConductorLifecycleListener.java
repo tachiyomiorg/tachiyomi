@@ -17,7 +17,7 @@ public class NucleusConductorLifecycleListener extends Controller.LifecycleListe
     }
 
     @Override
-    public void postAttach(@NonNull Controller controller, @NonNull View view) {
+    public void postCreateView(@NonNull Controller controller, @NonNull View view) {
         delegate.onTakeView(controller);
     }
 

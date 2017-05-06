@@ -339,7 +339,7 @@ class LibraryController(
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_filter -> {
-                drawer?.openDrawer(Gravity.END)
+                navView?.let { drawer?.openDrawer(Gravity.END) }
             }
             R.id.action_update_library -> {
                 activity?.let { LibraryUpdateService.start(it) }
