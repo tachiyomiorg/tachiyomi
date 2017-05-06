@@ -188,7 +188,7 @@ class MainActivity : BaseActivity() {
         ObjectAnimator.ofFloat(drawerArrow, "progress", if (showHamburger) 0f else 1f).start()
 
         if (from is TabbedController) {
-            from.resetTabs(tabs)
+            from.cleanupTabs(tabs)
         }
         if (to is TabbedController) {
             to.configureTabs(tabs)

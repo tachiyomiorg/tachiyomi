@@ -6,5 +6,5 @@ interface TabbedController {
 
     fun configureTabs(tabs: TabLayout) {}
 
-    fun resetTabs(tabs: TabLayout) {}
+    fun cleanupTabs(tabs: TabLayout) {}
 }

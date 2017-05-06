@@ -121,7 +121,7 @@ class MangaController : RxController, TabbedController {
         }
     }
 
-    override fun resetTabs(tabs: TabLayout) {
+    override fun cleanupTabs(tabs: TabLayout) {
         setTrackingIcon(false)
     }
 
