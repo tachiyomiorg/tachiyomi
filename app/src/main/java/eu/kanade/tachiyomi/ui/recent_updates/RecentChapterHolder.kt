@@ -2,6 +2,8 @@ package eu.kanade.tachiyomi.ui.recent_updates
 
 import android.view.View
 import android.widget.PopupMenu
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
@@ -56,6 +58,15 @@ class RecentChapterHolder(private val view: View, private val adapter: RecentCha
 
         // Set manga title
         view.manga_title.text = item.manga.title
+
+        // Update the cover.
+        Glide.clear(view.manga_cover)
+        Glide.with(view.context)
+                .load(item.manga)
+                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .centerCrop()
+                .into(view.manga_cover)
+
 
         // Check if chapter is read and set correct color
         if (item.chapter.read) {
@@ -119,6 +130,7 @@ class RecentChapterHolder(private val view: View, private val adapter: RecentCha
                 when (menuItem.itemId) {
                     R.id.action_download -> downloadChapter(item)
                     R.id.action_delete -> deleteChapter(item)
+                    R.id.action_open_manga -> openManga(item)
                     R.id.action_mark_as_read -> markAsRead(listOf(item))
                     R.id.action_mark_as_unread -> markAsUnread(listOf(item))
                 }
