@@ -11,6 +11,8 @@
         android:layout_height="match_parent"
         android:paddingBottom="4dp"
         android:paddingTop="4dp"
+        android:paddingStart="2dp"
+        android:paddingEnd="2dp"
         tools:listitem="@layout/item_recently_read">
 
     </android.support.v7.widget.RecyclerView>
