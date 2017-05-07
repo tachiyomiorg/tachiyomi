@@ -94,13 +94,13 @@
 
     <ImageView
         android:id="@+id/manga_cover"
-        android:layout_width="100dp"
+        android:layout_width="56dp"
         android:layout_height="match_parent"
         app:srcCompat="@drawable/branded_logo_icon"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
         android:clickable="true"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="16dp"
         android:contentDescription="@string/description_cover"/>
 
 </RelativeLayout>

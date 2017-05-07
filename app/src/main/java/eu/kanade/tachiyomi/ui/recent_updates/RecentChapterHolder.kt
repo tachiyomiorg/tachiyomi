@@ -8,6 +8,7 @@ import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.util.getResourceColor
+import jp.wasabeef.glide.transformations.CropCircleTransformation
 import kotlinx.android.synthetic.main.item_recent_chapters.view.*
 
 /**
@@ -68,7 +69,7 @@ class RecentChapterHolder(private val view: View, private val adapter: RecentCha
             Glide.with(itemView.context)
                     .load(item.manga)
                     .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                    .centerCrop()
+                    .bitmapTransform(CropCircleTransformation(view.context))
                     .into(itemView.manga_cover)
         }
 
@@ -133,7 +134,6 @@ class RecentChapterHolder(private val view: View, private val adapter: RecentCha
             with(adapter.controller) {
                 when (menuItem.itemId) {
                     R.id.action_download -> downloadChapter(item)
-                    R.id.action_open_manga -> openManga(item)
                     R.id.action_delete -> deleteChapter(item)
                     R.id.action_mark_as_read -> markAsRead(listOf(item))
                     R.id.action_mark_as_unread -> markAsUnread(listOf(item))
