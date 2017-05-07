@@ -131,6 +131,7 @@
     <string name="pref_theme">Application theme</string>
     <string name="light_theme">Main theme</string>
     <string name="dark_theme">Dark theme</string>
+    <string name="amoled_theme">AMOLED theme</string>
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>
     <string name="system_default">System default</string>

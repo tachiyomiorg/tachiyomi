@@ -85,6 +85,22 @@
     </style>
 
     <!--==============-->
+    <!-- Amoled Theme -->
+    <!--==============-->
+    <style name="Theme.Base.Amoled" parent="Theme.Base.Dark">
+        <item name="android:colorBackground">@color/md_black_1000</item>
+
+        <!-- Custom Attributes-->
+        <item name="selectable_list_drawable">@drawable/list_item_selector_amoled</item>
+        <item name="selectable_library_drawable">@drawable/library_item_selector_amoled</item>
+        <item name="background_card">@color/md_black_1000</item>
+    </style>
+
+    <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled">
+        <!-- Attributes specific for SDK 16 to SDK 20 -->
+    </style>
+
+    <!--==============-->
     <!-- Reader Theme -->
     <!--==============-->
     <style name="Theme.Base.Reader" parent="Theme.Base.Dark">

@@ -32,6 +32,7 @@ interface ActivityMixin {
     fun setAppTheme() {
         setTheme(when (Injekt.get<PreferencesHelper>().theme()) {
             2 -> R.style.Theme_Tachiyomi_Dark
+            3 -> R.style.Theme_Tachiyomi_Amoled
             else -> R.style.Theme_Tachiyomi
         })
     }
