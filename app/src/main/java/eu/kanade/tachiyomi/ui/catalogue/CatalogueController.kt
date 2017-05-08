@@ -22,6 +22,8 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.source.CatalogueSource
+import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.SecondaryDrawerController
@@ -43,7 +45,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Controller to manage the catalogues available in the app.
  */
-open class CatalogueController(bundle: Bundle? = null) :
+open class CatalogueController(bundle: Bundle? = null, val source: CatalogueSource? = null) :
         NucleusController<CataloguePresenter>(bundle),
         SecondaryDrawerController,
         FlexibleAdapter.OnItemClickListener,
@@ -148,6 +150,9 @@ open class CatalogueController(bundle: Bundle? = null) :
                 activity?.invalidateOptionsMenu()
             }
         }
+
+        if (source != null)
+            presenter.setActiveSource(source)
 
         selectedIndex = presenter.sources.indexOf(presenter.source)
 

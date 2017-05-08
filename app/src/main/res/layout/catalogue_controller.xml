@@ -6,12 +6,12 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:fitsSystemWindows="true"
-          android:orientation="vertical"
-          android:id="@+id/catalogue_view"
-          tools:context="eu.kanade.tachiyomi.ui.catalogue.CatalogueController">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:id="@+id/catalogue_view"
+        tools:context="eu.kanade.tachiyomi.ui.catalogue.CatalogueController">
 
         <ProgressBar
             android:id="@+id/progress"
