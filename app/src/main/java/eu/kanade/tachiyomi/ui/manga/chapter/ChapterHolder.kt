@@ -46,6 +46,13 @@ class ChapterHolder(
         //add scanlator if exists
         chapter_scanlator.text = chapter.scanlator
 
+        //allow longer titles if there is no scanlator (most sources)
+        if(chapter_scanlator.text.isNullOrBlank()){
+            chapter_title.setMaxLines(2)
+        }else{
+            chapter_title.setMaxLines(1)
+        }
+
         chapter_pages.text = if (!chapter.read && chapter.last_page_read > 0) {
             context.getString(R.string.chapter_progress, chapter.last_page_read + 1)
         } else {

@@ -31,7 +31,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:ellipsize="marquee"
-                android:singleLine="true"
+                android:maxLines="1"
                 tools:text="Pages: 45"/>
 
             <TextView
@@ -71,13 +71,13 @@
 
         <TextView
             android:id="@+id/chapter_scanlator"
-            style="@style/TextAppearance.Regular.Body1.Secondary"
+            style="@style/TextAppearance.Regular.Caption.Hint"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            tools:text="Scanlator"
-            android:maxLines="1"
-            android:layout_below="@+id/chapter_title"
             android:layout_alignParentStart="true"
+            android:layout_below="@+id/chapter_title"
+            android:maxLines="1"
+            tools:text="Scanlator"
             android:layout_above="@+id/relativeLayout"/>
     </RelativeLayout>
 
