@@ -10,4 +10,6 @@ class SChapterImpl : SChapter {
 
     override var chapter_number: Float = -1f
 
+    override lateinit var scanlator: String
+
 }

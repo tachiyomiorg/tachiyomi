@@ -43,6 +43,9 @@ class ChapterHolder(
             chapter_date.text = ""
         }
 
+        //add scanlator if exists
+        chapter_scanlator.text = chapter.scanlator
+
         chapter_pages.text = if (!chapter.read && chapter.last_page_read > 0) {
             context.getString(R.string.chapter_progress, chapter.last_page_read + 1)
         } else {

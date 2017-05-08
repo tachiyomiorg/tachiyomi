@@ -10,6 +10,8 @@ class ChapterImpl : Chapter {
 
     override lateinit var name: String
 
+    override var scanlator: String = ""
+
     override var read: Boolean = false
 
     override var bookmark: Boolean = false
@@ -23,6 +25,9 @@ class ChapterImpl : Chapter {
     override var chapter_number: Float = 0f
 
     override var source_order: Int = 0
+
+
+
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

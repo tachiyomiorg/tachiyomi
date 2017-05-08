@@ -57,20 +57,25 @@
             style="@style/TextAppearance.Regular.Body1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/relativeLayout"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:layout_alignWithParentIfMissing="true"
             android:layout_marginRight="30dp"
             android:ellipsize="middle"
             android:gravity="center_vertical"
             android:maxLines="2"
-            tools:text="Title"/>
+            tools:text="Title"
+            android:layout_marginTop="12dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"/>
 
-
+        <TextView
+            android:id="@+id/chapter_scanlator"
+            style="@style/TextAppearance.Regular.Body1.Secondary"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            tools:text="Scanlator"
+            android:maxLines="1"
+            android:layout_below="@+id/chapter_title"
+            android:layout_alignParentStart="true"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -95,6 +100,7 @@
             app:srcCompat="@drawable/ic_more_horiz_black_24dp"/>
 
     </RelativeLayout>
+
 
 
 </RelativeLayout>

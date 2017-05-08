@@ -185,6 +185,7 @@ class Batoto : ParsedHttpSource(), LoginSource {
         chapter.date_upload = element.select("td").getOrNull(4)?.let {
             parseDateFromElement(it)
         } ?: 0
+        chapter.scanlator = element.select("td").getOrNull(2)?.let { it.text() }?: ""
         return chapter
     }
 

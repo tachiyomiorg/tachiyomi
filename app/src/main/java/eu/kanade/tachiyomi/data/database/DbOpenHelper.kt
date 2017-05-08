@@ -17,7 +17,7 @@ class DbOpenHelper(context: Context)
         /**
          * Version of the database.
          */
-        const val DATABASE_VERSION = 4
+        const val DATABASE_VERSION = 5
     }
 
     override fun onCreate(db: SQLiteDatabase) = with(db) {
@@ -50,6 +50,9 @@ class DbOpenHelper(context: Context)
         }
         if (oldVersion < 4) {
             db.execSQL(ChapterTable.bookmarkUpdateQuery)
+        }
+        if (oldVersion < 5){
+            db.execSQL(ChapterTable.addScanlator)
         }
     }
 
