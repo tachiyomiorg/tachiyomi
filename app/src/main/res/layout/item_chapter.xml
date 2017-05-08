@@ -11,7 +11,9 @@
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
         android:paddingRight="?android:attr/listPreferredItemPaddingRight"
-        android:paddingStart="?android:attr/listPreferredItemPaddingStart">
+        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -38,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:ellipsize="marquee"
-                android:singleLine="true"
+                android:maxLines="1"
                 tools:text="22/02/2016"/>
 
             <TextView
@@ -61,7 +63,7 @@
             android:layout_marginRight="30dp"
             android:ellipsize="middle"
             android:gravity="center_vertical"
-            android:maxLines="2"
+            android:maxLines="1"
             tools:text="Title"
             android:layout_marginTop="12dp"
             android:layout_alignParentTop="true"
@@ -75,7 +77,8 @@
             tools:text="Scanlator"
             android:maxLines="1"
             android:layout_below="@+id/chapter_title"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/relativeLayout"/>
     </RelativeLayout>
 
     <RelativeLayout

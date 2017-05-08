@@ -35,7 +35,7 @@ class ChapterImpl : Chapter {
 
         val chapter = other as Chapter
 
-        return url == chapter.url
+        return url == chapter.url && scanlator == chapter.scanlator
 
     }
 
