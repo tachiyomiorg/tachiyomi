@@ -36,7 +36,6 @@ import kotlinx.android.synthetic.main.toolbar.*
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Timestamped
 import rx.subscriptions.Subscriptions
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
@@ -279,14 +278,14 @@ open class CatalogueController(bundle: Bundle? = null) :
                     .share()
             val writingObservable = searchEventsObservable
                     .filter { !it.isSubmitted }
-                    .debounce(1250, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread()).sample(5000, TimeUnit.MILLISECONDS)
+                    .debounce(1250, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
             val submitObservable = searchEventsObservable
                     .filter { it.isSubmitted }
 
             searchViewSubscription?.unsubscribe()
             searchViewSubscription = Observable.merge(writingObservable, submitObservable)
                     .map { it.queryText().toString() }
-                    .distinctUntilChanged().timestamp()
+                    .distinctUntilChanged()
                     .subscribeUntilDestroy { searchWithQuery(it) }
 
             untilDestroySubscriptions.add(
@@ -329,19 +328,16 @@ open class CatalogueController(bundle: Bundle? = null) :
      *
      * @param newQuery the new query.
      */
-    private fun searchWithQuery(newQuery: Timestamped<String>) {
+    private fun searchWithQuery(newQuery: String) {
         // If text didn't change, do nothing
 
-        if (query == newQuery.value)
+        if (query == newQuery)
             return
 
-        if(presenter.timeStamp.timestampMillis !=0L && newQuery.timestampMillis-presenter.timeStamp.timestampMillis< 4999L )
-            return
         showProgressBar()
         adapter?.clear()
 
-        presenter.timeStamp = newQuery
-        presenter.restartPager(newQuery.value)
+        presenter.restartPager(newQuery)
     }
 
     /**
