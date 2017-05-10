@@ -23,6 +23,7 @@ import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import rx.schedulers.Timestamped
 import rx.subjects.PublishSubject
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
@@ -55,6 +56,7 @@ open class CataloguePresenter(
     var query = ""
         private set
 
+    var timeStamp = Timestamped<String>(0, "")
     /**
      * Modifiable list of filters.
      */
