@@ -6,7 +6,6 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.online.HttpSource
-import timber.log.Timber
 import java.util.*
 
 /**
@@ -41,7 +40,6 @@ fun syncChaptersWithSource(db: DatabaseHelper,
     // Chapters from the source not in db.
     val toAdd = sourceChapters.filterNot { it in dbChapters }
 
-    Timber.d("to add size: %s", toAdd.size)
     // Recognize number for new chapters.
     toAdd.forEach {
         if (source is HttpSource) {

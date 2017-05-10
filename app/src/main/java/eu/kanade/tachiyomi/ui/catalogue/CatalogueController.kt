@@ -330,7 +330,6 @@ open class CatalogueController(bundle: Bundle? = null) :
      */
     private fun searchWithQuery(newQuery: String) {
         // If text didn't change, do nothing
-
         if (query == newQuery)
             return
 
