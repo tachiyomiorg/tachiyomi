@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cv_manga"
-    style="@style/Theme.Widget.CardView"
-    >
+    style="@style/Theme.Widget.CardView.Item"
+    android:padding="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +15,7 @@
             android:layout_height="match_parent"
             android:clickable="true"
             android:contentDescription="@string/description_cover"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -27,28 +26,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="@dimen/card_margin">
+                android:padding="@dimen/material_component_cards_primary_title_top_padding">
 
                 <TextView
                     android:id="@+id/manga_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
-                    android:textAppearance="@style/TextAppearance.Medium.Title"/>
+                    android:textAppearance="@style/TextAppearance.Medium.Title" />
 
                 <TextView
                     android:id="@+id/manga_source"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/manga_title"
-                    android:textAppearance="@style/TextAppearance.Medium.Body2"/>
+                    android:textAppearance="@style/TextAppearance.Medium.Body2" />
 
                 <TextView
                     android:id="@+id/last_read"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/manga_source"
-                    android:textAppearance="@style/TextAppearance.Medium.Body2.Hint"/>
+                    android:textAppearance="@style/TextAppearance.Medium.Body2.Hint" />
             </RelativeLayout>
 
             <TextView
@@ -62,7 +61,7 @@
                 android:clickable="true"
                 android:padding="8dp"
                 android:text="@string/action_remove"
-                android:textAppearance="@style/TextAppearance.Medium.Button.Negative"/>
+                android:textAppearance="@style/TextAppearance.Medium.Button.Negative" />
 
             <TextView
                 android:id="@+id/resume"
@@ -74,7 +73,7 @@
                 android:background="?attr/selectable_list_drawable"
                 android:padding="8dp"
                 android:text="@string/action_resume"
-                android:textAppearance="@style/TextAppearance.Medium.Button"/>
+                android:textAppearance="@style/TextAppearance.Medium.Button" />
         </RelativeLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

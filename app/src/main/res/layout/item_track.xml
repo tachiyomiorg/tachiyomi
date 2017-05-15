@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/track"
-    style="@style/Theme.Widget.CardView">
+    style="@style/Theme.Widget.CardView.Item"
+    android:padding="0dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,10 +14,10 @@
             android:id="@+id/logo"
             android:layout_width="48dp"
             android:layout_height="0dp"
-            tools:background="#2E51A2"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            tools:background="#2E51A2">
 
             <ImageView
                 android:id="@+id/track_logo"
@@ -32,29 +32,29 @@
             android:id="@+id/title_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:background="?attr/selectable_list_drawable"
             android:clickable="true"
-            app:layout_constraintTop_toTopOf="parent"
+            android:padding="16dp"
             app:layout_constraintLeft_toRightOf="@+id/logo"
-            app:layout_constraintRight_toRightOf="parent">
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 style="@style/TextAppearance.Regular.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/title"/>
+                android:text="@string/title" />
 
             <TextView
                 android:id="@+id/track_title"
                 style="@style/TextAppearance.Medium.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:ellipsize="middle"
                 android:gravity="end"
                 android:maxLines="1"
-                android:ellipsize="middle"
                 android:text="@string/action_edit" />
 
         </LinearLayout>
@@ -63,25 +63,25 @@
             android:id="@+id/divider1"
             android:layout_width="0dp"
             android:layout_height="1dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
             android:background="?android:attr/divider"
-            app:layout_constraintTop_toBottomOf="@+id/title_container"
             app:layout_constraintLeft_toRightOf="@+id/logo"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp" />
+            app:layout_constraintTop_toBottomOf="@+id/title_container" />
 
         <LinearLayout
             android:id="@+id/status_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:background="?attr/selectable_list_drawable"
             android:clickable="true"
-            app:layout_constraintTop_toBottomOf="@+id/divider1"
+            android:padding="16dp"
             app:layout_constraintLeft_toRightOf="@+id/logo"
-            app:layout_constraintRight_toRightOf="parent">
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider1">
 
             <TextView
                 style="@style/TextAppearance.Regular.Body1"
@@ -94,8 +94,8 @@
                 style="@style/TextAppearance.Regular.Body1.Secondary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
                 android:gravity="end"
                 tools:text="Reading" />
 
@@ -105,25 +105,25 @@
             android:id="@+id/divider2"
             android:layout_width="0dp"
             android:layout_height="1dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
             android:background="?android:attr/divider"
-            app:layout_constraintTop_toBottomOf="@+id/status_container"
             app:layout_constraintLeft_toRightOf="@+id/logo"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp" />
+            app:layout_constraintTop_toBottomOf="@+id/status_container" />
 
         <LinearLayout
             android:id="@+id/chapters_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:background="?attr/selectable_list_drawable"
             android:clickable="true"
-            app:layout_constraintTop_toBottomOf="@+id/divider2"
+            android:padding="16dp"
             app:layout_constraintLeft_toRightOf="@+id/logo"
-            app:layout_constraintRight_toRightOf="parent">
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider2">
 
             <TextView
                 style="@style/TextAppearance.Regular.Body1"
@@ -136,8 +136,8 @@
                 style="@style/TextAppearance.Regular.Body1.Secondary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
                 android:gravity="end"
                 tools:text="12/24" />
 
@@ -147,25 +147,25 @@
             android:id="@+id/divider3"
             android:layout_width="0dp"
             android:layout_height="1dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
             android:background="?android:attr/divider"
-            app:layout_constraintTop_toBottomOf="@+id/chapters_container"
             app:layout_constraintLeft_toRightOf="@+id/logo"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp" />
+            app:layout_constraintTop_toBottomOf="@+id/chapters_container" />
 
         <LinearLayout
             android:id="@+id/score_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             android:background="?attr/selectable_list_drawable"
             android:clickable="true"
-            app:layout_constraintTop_toBottomOf="@+id/divider3"
+            android:padding="16dp"
             app:layout_constraintLeft_toRightOf="@+id/logo"
-            app:layout_constraintRight_toRightOf="parent">
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider3">
 
             <TextView
                 style="@style/TextAppearance.Regular.Body1"
@@ -178,8 +178,8 @@
                 style="@style/TextAppearance.Regular.Body1.Secondary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
                 android:gravity="end"
                 tools:text="10" />
 
