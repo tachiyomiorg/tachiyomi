@@ -10,6 +10,8 @@ class ChapterImpl : Chapter {
 
     override lateinit var name: String
 
+    override var scanlator: String = ""
+
     override var read: Boolean = false
 
     override var bookmark: Boolean = false
@@ -29,8 +31,8 @@ class ChapterImpl : Chapter {
         if (other == null || javaClass != other.javaClass) return false
 
         val chapter = other as Chapter
-
-        return url == chapter.url
+        //forces updates on manga if scanlator changes.  This will allow existing manga in library with scanlator to update
+        return url == chapter.url && scanlator == chapter.scanlator
 
     }
 

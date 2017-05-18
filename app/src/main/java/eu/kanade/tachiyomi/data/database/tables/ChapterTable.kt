@@ -14,6 +14,8 @@ object ChapterTable {
 
     const val COL_READ = "read"
 
+    const val COL_SCANLATOR ="scanlator"
+
     const val COL_BOOKMARK = "bookmark"
 
     const val COL_DATE_FETCH = "date_fetch"
@@ -32,6 +34,7 @@ object ChapterTable {
             $COL_MANGA_ID INTEGER NOT NULL,
             $COL_URL TEXT NOT NULL,
             $COL_NAME TEXT NOT NULL,
+            $COL_SCANLATOR TEXT NOT NULL,
             $COL_READ BOOLEAN NOT NULL,
             $COL_BOOKMARK BOOLEAN NOT NULL,
             $COL_LAST_PAGE_READ INT NOT NULL,
@@ -51,5 +54,8 @@ object ChapterTable {
 
     val bookmarkUpdateQuery: String
         get() = "ALTER TABLE $TABLE ADD COLUMN $COL_BOOKMARK BOOLEAN DEFAULT FALSE"
+
+    val addScanlator:String
+        get ()= "ALTER TABLE $TABLE ADD COLUMN $COL_SCANLATOR  TEXT DEFAULT ''"
 
 }
