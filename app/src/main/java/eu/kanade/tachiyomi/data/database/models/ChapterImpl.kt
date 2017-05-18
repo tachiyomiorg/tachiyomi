@@ -10,7 +10,7 @@ class ChapterImpl : Chapter {
 
     override lateinit var name: String
 
-    override var scanlator: String = ""
+    override var scanlator: String? = null
 
     override var read: Boolean = false
 

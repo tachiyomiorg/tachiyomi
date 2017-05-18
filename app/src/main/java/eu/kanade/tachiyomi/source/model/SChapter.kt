@@ -12,7 +12,7 @@ interface SChapter : Serializable {
 
     var chapter_number: Float
 
-    var scanlator: String
+    var scanlator: String?
 
     fun copyFrom(other: SChapter) {
         name = other.name
