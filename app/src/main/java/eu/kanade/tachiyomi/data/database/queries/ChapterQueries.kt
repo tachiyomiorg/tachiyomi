@@ -24,6 +24,15 @@ interface ChapterQueries : DbProvider {
                     .build())
             .prepare()
 
+    fun getChapterCount(manga: Manga) = db.get()
+            .numberOfResults()
+            .withQuery(Query.builder()
+                    .table(ChapterTable.TABLE)
+                    .where("${ChapterTable.COL_MANGA_ID} = ?")
+                    .whereArgs(manga.id)
+                    .build())
+            .prepare()
+
     fun getRecentChapters(date: Date) = db.get()
             .listOfObjects(MangaChapter::class.java)
             .withQuery(RawQuery.builder()

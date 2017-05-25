@@ -158,6 +158,7 @@ class LibraryPresenter(
                 }
                 LibrarySort.LAST_UPDATED -> manga2.last_update.compareTo(manga1.last_update)
                 LibrarySort.UNREAD -> manga1.unread.compareTo(manga2.unread)
+                LibrarySort.TOTAL -> db.getChapterCount(manga1).executeAsBlocking().compareTo(db.getChapterCount(manga2).executeAsBlocking())
                 else -> throw Exception("Unknown sorting mode")
             }
         }
