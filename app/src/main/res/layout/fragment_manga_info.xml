@@ -255,6 +255,8 @@
                     style="@style/TextAppearance.Regular.Body1.Secondary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:ellipsize="none"
+                    android:maxLines="100"
                     android:textIsSelectable="false"/>
 
             </LinearLayout>
