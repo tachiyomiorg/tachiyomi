@@ -121,7 +121,7 @@
     <string name="error_category_exists">Категория с таким именем уже существует!</string>
     <string name="fetch_chapters_error">Ошибка при извлечении глав</string>
     <string name="fifth_to_last">Пятую от прочитанной главы</string>
-    <string name="file_select_backup">Выбрать файл резервной копии</string>
+    <string name="file_select_backup">Выбрать файл бэкапа</string>
     <string name="file_select_cover">Выбрать обложку</string>
     <string name="file_select_icon">Выбрать ярлык</string>
     <string name="font_roboto_medium"></string>
@@ -133,7 +133,7 @@
     <string name="information_no_recent">Нет новых глав</string>
     <string name="information_no_recent_manga">Нет недавно прочитанных глав</string>
     <string name="invalid_login">Ошибка авторизации</string>
-    <string name="label_backup">Резервное копирование</string>
+    <string name="label_backup">Бэкап</string>
     <string name="label_catalogues">Каталоги</string>
     <string name="label_categories">Категории</string>
     <string name="label_download_queue">Очередь загрузки</string>
@@ -240,7 +240,7 @@
     <string name="recent_manga_source">%1$s - Гл.%2$s</string>
     <string name="remove_from_library">Удалить из библиотеки</string>
     <string name="restore">Восстановить</string>
-    <string name="restore_please_wait">Восстановление резервной копии. Подождите пожалуйста...</string>
+    <string name="restore_please_wait">Восстановление бэкапа. Подождите пожалуйста...</string>
     <string name="right_to_left_viewer">Справа налево</string>
     <string name="rotation_force_landscape">Горизонтальная</string>
     <string name="rotation_force_portrait">Вертикальная</string>
