@@ -32,7 +32,7 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation
 import jp.wasabeef.glide.transformations.CropSquareTransformation
 import jp.wasabeef.glide.transformations.MaskTransformation
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
-import kotlinx.android.synthetic.main.fragment_manga_info.view.*
+import kotlinx.android.synthetic.main.manga_info_controller.view.*
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -42,7 +42,7 @@ import java.text.DecimalFormat
 
 /**
  * Fragment that shows manga information.
- * Uses R.layout.fragment_manga_info.
+ * Uses R.layout.manga_info_controller.
  * UI related actions should be called from here.
  */
 class MangaInfoController : NucleusController<MangaInfoPresenter>(),
@@ -65,7 +65,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.fragment_manga_info, container, false)
+        return inflater.inflate(R.layout.manga_info_controller, container, false)
     }
 
     override fun onViewCreated(view: View, savedViewState: Bundle?) {
@@ -158,11 +158,13 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
                         .centerCrop()
                         .into(manga_cover)
 
-                Glide.with(context)
-                        .load(manga)
-                        .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                        .centerCrop()
-                        .into(backdrop)
+                if (backdrop != null) {
+                    Glide.with(context)
+                            .load(manga)
+                            .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                            .centerCrop()
+                            .into(backdrop)
+                }
             }
         }
     }

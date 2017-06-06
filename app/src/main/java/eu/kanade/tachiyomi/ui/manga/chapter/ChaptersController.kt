@@ -25,7 +25,7 @@ import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.getCoordinates
 import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
-import kotlinx.android.synthetic.main.fragment_manga_chapters.view.*
+import kotlinx.android.synthetic.main.chapters_controller.view.*
 import timber.log.Timber
 
 class ChaptersController : NucleusController<ChaptersPresenter>(),
@@ -65,7 +65,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.fragment_manga_chapters, container, false)
+        return inflater.inflate(R.layout.chapters_controller, container, false)
     }
 
     override fun onViewCreated(view: View, savedViewState: Bundle?) {

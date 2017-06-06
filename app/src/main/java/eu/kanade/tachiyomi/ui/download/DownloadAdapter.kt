@@ -1,8 +1,7 @@
 package eu.kanade.tachiyomi.ui.download
 
-import android.content.Context
+import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import eu.davidea.flexibleadapter4.FlexibleAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.util.inflate
@@ -12,7 +11,9 @@ import eu.kanade.tachiyomi.util.inflate
  *
  * @param context the context of the fragment containing this adapter.
  */
-class DownloadAdapter(private val context: Context) : FlexibleAdapter<DownloadHolder, Download>() {
+class DownloadAdapter : RecyclerView.Adapter<DownloadHolder>() {
+
+    private var items = emptyList<Download>()
 
     init {
         setHasStableIds(true)
@@ -24,8 +25,15 @@ class DownloadAdapter(private val context: Context) : FlexibleAdapter<DownloadHo
      * @param downloads the list to set.
      */
     fun setItems(downloads: List<Download>) {
-        mItems = downloads
+        items = downloads
         notifyDataSetChanged()
+    }
+
+    /**
+     * Returns the number of downloads in the adapter
+     */
+    override fun getItemCount(): Int {
+        return items.size
     }
 
     /**
@@ -35,7 +43,7 @@ class DownloadAdapter(private val context: Context) : FlexibleAdapter<DownloadHo
      * @return an identifier for the item.
      */
     override fun getItemId(position: Int): Long {
-        return getItem(position).chapter.id!!
+        return items[position].chapter.id!!
     }
 
     /**
@@ -46,7 +54,7 @@ class DownloadAdapter(private val context: Context) : FlexibleAdapter<DownloadHo
      * @return a new view holder for a manga.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DownloadHolder {
-        val view = parent.inflate(R.layout.item_download)
+        val view = parent.inflate(R.layout.download_item)
         return DownloadHolder(view)
     }
 
@@ -57,14 +65,8 @@ class DownloadAdapter(private val context: Context) : FlexibleAdapter<DownloadHo
      * @param position the position to bind.
      */
     override fun onBindViewHolder(holder: DownloadHolder, position: Int) {
-        val download = getItem(position)
+        val download = items[position]
         holder.onSetValues(download)
-    }
-
-    /**
-     * Used to filter the list. Not used.
-     */
-    override fun updateDataSet(param: String) {
     }
 
 }

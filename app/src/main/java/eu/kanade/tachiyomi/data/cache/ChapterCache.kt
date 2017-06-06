@@ -187,12 +187,12 @@ class ChapterCache(private val context: Context) {
             editor = diskCache.edit(key) ?: throw IOException("Unable to edit key")
 
             // Get OutputStream and write image with Okio.
-            response.body().source().saveTo(editor.newOutputStream(0))
+            response.body()!!.source().saveTo(editor.newOutputStream(0))
 
             diskCache.flush()
             editor.commit()
         } finally {
-            response.body().close()
+            response.body()?.close()
             editor?.abortUnlessCommitted()
         }
     }

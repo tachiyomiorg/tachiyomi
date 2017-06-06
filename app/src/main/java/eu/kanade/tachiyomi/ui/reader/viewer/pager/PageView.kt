@@ -16,8 +16,7 @@ import eu.kanade.tachiyomi.ui.reader.viewer.base.PageDecodeErrorLayout
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.horizontal.RightToLeftReader
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.vertical.VerticalReader
 import eu.kanade.tachiyomi.util.inflate
-import kotlinx.android.synthetic.main.chapter_image.view.*
-import kotlinx.android.synthetic.main.item_pager_reader.view.*
+import kotlinx.android.synthetic.main.reader_pager_item.view.*
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -259,7 +258,7 @@ class PageView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 
         val activity = reader.activity as ReaderActivity
 
-        val layout = inflate(R.layout.page_decode_error)
+        val layout = inflate(R.layout.reader_page_decode_error)
         PageDecodeErrorLayout(layout, page, activity.readerTheme, {
             if (reader.isAdded) {
                 activity.presenter.retryPage(page)

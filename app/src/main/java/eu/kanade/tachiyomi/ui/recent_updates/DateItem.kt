@@ -14,7 +14,7 @@ import java.util.*
 class DateItem(val date: Date) : AbstractHeaderItem<DateItem.Holder>() {
 
     override fun getLayoutRes(): Int {
-        return R.layout.item_recent_chapter_section
+        return R.layout.recent_chapters_section_item
     }
 
     override fun createViewHolder(adapter: FlexibleAdapter<*>, inflater: LayoutInflater, parent: ViewGroup): Holder {

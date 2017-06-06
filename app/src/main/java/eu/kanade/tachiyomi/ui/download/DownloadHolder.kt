@@ -3,11 +3,11 @@ package eu.kanade.tachiyomi.ui.download
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import eu.kanade.tachiyomi.data.download.model.Download
-import kotlinx.android.synthetic.main.item_download.view.*
+import kotlinx.android.synthetic.main.download_item.view.*
 
 /**
  * Class used to hold the data of a download.
- * All the elements from the layout file "item_download" are available in this class.
+ * All the elements from the layout file "download_item" are available in this class.
  *
  * @param view the inflated view for this holder.
  * @constructor creates a new download holder.

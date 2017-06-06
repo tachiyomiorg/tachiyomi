@@ -30,6 +30,7 @@
     <string name="action_filter_read">Read</string>
     <string name="action_filter_empty">Remove filter</string>
     <string name="action_sort_alpha">Alphabetically</string>
+    <string name="action_sort_total">Total chapters</string>
     <string name="action_sort_last_read">Last read</string>
     <string name="action_sort_last_updated">Last updated</string>
     <string name="action_search">Search</string>

@@ -17,7 +17,7 @@ class ProgressItem : AbstractFlexibleItem<ProgressItem.Holder>() {
     var loadMore = true
 
     override fun getLayoutRes(): Int {
-        return R.layout.progress_item
+        return R.layout.catalogue_progress_item
     }
 
     override fun createViewHolder(adapter: FlexibleAdapter<IFlexible<*>>, inflater: LayoutInflater, parent: ViewGroup): Holder {

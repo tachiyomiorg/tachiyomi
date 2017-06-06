@@ -12,7 +12,7 @@ class ProgressResponseBody(private val responseBody: ResponseBody, private val p
     }
 
     override fun contentType(): MediaType {
-        return responseBody.contentType()
+        return responseBody.contentType()!!
     }
 
     override fun contentLength(): Long {

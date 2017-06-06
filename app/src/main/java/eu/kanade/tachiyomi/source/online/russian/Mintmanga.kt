@@ -120,7 +120,7 @@ class Mintmanga : ParsedHttpSource() {
     }
 
     override fun pageListParse(response: Response): List<Page> {
-        val html = response.body().string()
+        val html = response.body()!!.string()
         val beginIndex = html.indexOf("rm_h.init( [")
         val endIndex = html.indexOf("], 0, false);", beginIndex)
         val trimmedHtml = html.substring(beginIndex, endIndex)

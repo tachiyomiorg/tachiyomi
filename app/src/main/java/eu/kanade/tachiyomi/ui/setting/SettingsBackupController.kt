@@ -177,11 +177,11 @@ class SettingsBackupController : SettingsController() {
             }
             CODE_BACKUP_CREATE -> if (data != null && resultCode == Activity.RESULT_OK) {
                 val activity = activity ?: return
-                val path = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                val uri = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                     val dir = data.data.path
                     val file = File(dir, Backup.getDefaultFilename())
 
-                    file.absolutePath
+                    Uri.fromFile(file)
                 } else {
                     val uri = data.data
                     val flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or
@@ -190,11 +190,11 @@ class SettingsBackupController : SettingsController() {
                     activity.contentResolver.takePersistableUriPermission(uri, flags)
                     val file = UniFile.fromUri(activity, uri)
 
-                    file.uri.toString()
+                    file.uri
                 }
 
                 CreatingBackupDialog().showDialog(router, TAG_CREATING_BACKUP_DIALOG)
-                BackupCreateService.makeBackup(activity, path, backupFlags)
+                BackupCreateService.makeBackup(activity, uri, backupFlags)
             }
             CODE_BACKUP_RESTORE -> if (data != null && resultCode == Activity.RESULT_OK) {
                 val uri = data.data

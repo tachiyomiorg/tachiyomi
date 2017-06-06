@@ -24,7 +24,7 @@ class RecentChapterItem(val chapter: Chapter, val manga: Manga, header: DateItem
         get() = status == Download.DOWNLOADED
 
     override fun getLayoutRes(): Int {
-        return R.layout.item_recent_chapters
+        return R.layout.recent_chapters_item
     }
 
     override fun createViewHolder(adapter: FlexibleAdapter<*>,

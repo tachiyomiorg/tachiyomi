@@ -30,9 +30,8 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.*
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import eu.kanade.tachiyomi.widget.DrawerSwipeCloseListener
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_catalogue.view.*
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.main_activity.*
+import kotlinx.android.synthetic.main.catalogue_controller.view.*
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -117,7 +116,7 @@ open class CatalogueController(bundle: Bundle? = null) :
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.fragment_catalogue, container, false)
+        return inflater.inflate(R.layout.catalogue_controller, container, false)
     }
 
     override fun onViewCreated(view: View, savedViewState: Bundle?) {
@@ -133,7 +132,7 @@ open class CatalogueController(bundle: Bundle? = null) :
 
         val spinnerAdapter = ArrayAdapter(themedContext,
                 android.R.layout.simple_spinner_item, presenter.sources)
-        spinnerAdapter.setDropDownViewResource(R.layout.spinner_item)
+        spinnerAdapter.setDropDownViewResource(R.layout.common_spinner_item)
 
         val onItemSelected: (Int) -> Unit = { position ->
             val source = spinnerAdapter.getItem(position)
@@ -232,7 +231,7 @@ open class CatalogueController(bundle: Bundle? = null) :
                 addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             }
         } else {
-            (view.catalogue_view.inflate(R.layout.recycler_autofit) as AutofitRecyclerView).apply {
+            (view.catalogue_view.inflate(R.layout.catalogue_recycler_autofit) as AutofitRecyclerView).apply {
                 numColumnsSubscription = getColumnsPreferenceForCurrentOrientation().asObservable()
                         .doOnNext { spanCount = it }
                         .skip(1)
@@ -242,7 +241,7 @@ open class CatalogueController(bundle: Bundle? = null) :
                 (layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
                         return when (adapter?.getItemViewType(position)) {
-                            R.layout.item_catalogue_grid, null -> 1
+                            R.layout.catalogue_grid_item, null -> 1
                             else -> spanCount
                         }
                     }

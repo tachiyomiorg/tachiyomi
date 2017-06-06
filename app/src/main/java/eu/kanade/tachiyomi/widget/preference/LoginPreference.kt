@@ -5,13 +5,13 @@ import android.support.v7.preference.Preference
 import android.support.v7.preference.PreferenceViewHolder
 import android.util.AttributeSet
 import eu.kanade.tachiyomi.R
-import kotlinx.android.synthetic.main.preference_widget_imageview.view.*
+import kotlinx.android.synthetic.main.pref_widget_imageview.view.*
 
 class LoginPreference @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
         Preference(context, attrs) {
 
     init {
-        widgetLayoutResource = R.layout.preference_widget_imageview
+        widgetLayoutResource = R.layout.pref_widget_imageview
     }
 
     override fun onBindViewHolder(holder: PreferenceViewHolder) {

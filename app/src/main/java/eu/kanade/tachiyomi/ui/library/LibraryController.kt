@@ -31,12 +31,14 @@ import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.SecondaryDrawerController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.category.CategoryController
+import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.DrawerSwipeCloseListener
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.library_controller.view.*
+import rx.Subscription
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -118,6 +120,10 @@ class LibraryController(
      */
     private var drawerListener: DrawerLayout.DrawerListener? = null
 
+    private var tabsVisibilityRelay: BehaviorRelay<Boolean> = BehaviorRelay.create(false)
+
+    private var tabsVisibilitySubscription: Subscription? = null
+
     init {
         setHasOptionsMenu(true)
     }
@@ -173,6 +179,8 @@ class LibraryController(
         super.onDestroyView(view)
         adapter = null
         actionMode = null
+        tabsVisibilitySubscription?.unsubscribe()
+        tabsVisibilitySubscription = null
     }
 
     override fun createSecondaryDrawer(drawer: DrawerLayout): ViewGroup {
@@ -204,6 +212,27 @@ class LibraryController(
         navView = null
     }
 
+    override fun configureTabs(tabs: TabLayout) {
+        with(tabs) {
+            tabGravity = TabLayout.GRAVITY_CENTER
+            tabMode = TabLayout.MODE_SCROLLABLE
+        }
+        tabsVisibilitySubscription?.unsubscribe()
+        tabsVisibilitySubscription = tabsVisibilityRelay.subscribe { visible ->
+            val tabAnimator = (activity as? MainActivity)?.tabAnimator
+            if (visible) {
+                tabAnimator?.expand()
+            } else {
+                tabAnimator?.collapse()
+            }
+        }
+    }
+
+    override fun cleanupTabs(tabs: TabLayout) {
+        tabsVisibilitySubscription?.unsubscribe()
+        tabsVisibilitySubscription = null
+    }
+
     fun onNextLibraryUpdate(categories: List<Category>, mangaMap: Map<Int, List<LibraryItem>>) {
         val view = view ?: return
         val adapter = adapter ?: return
@@ -227,7 +256,7 @@ class LibraryController(
         // Restore active category.
         view.view_pager.setCurrentItem(activeCat, false)
 
-        tabs?.visibility = if (categories.size <= 1) View.GONE else View.VISIBLE
+        tabsVisibilityRelay.call(categories.size > 1)
 
         // Delay the scroll position to allow the view to be properly measured.
         view.post {
@@ -280,13 +309,6 @@ class LibraryController(
         pager.adapter = adapter
         pager.currentItem = position
         adapter.recycle = true
-    }
-
-    override fun configureTabs(tabs: TabLayout) {
-        with(tabs) {
-            tabGravity = TabLayout.GRAVITY_CENTER
-            tabMode = TabLayout.MODE_SCROLLABLE
-        }
     }
 
     /**

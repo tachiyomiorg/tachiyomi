@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.data.notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import eu.kanade.tachiyomi.ui.download.DownloadActivity
+import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.getUriCompat
 import java.io.File
 
@@ -17,8 +17,9 @@ object NotificationHandler {
      * @param context context of application
      */
     internal fun openDownloadManagerPendingActivity(context: Context): PendingIntent {
-        val intent = Intent(context, DownloadActivity::class.java).apply {
+        val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            action = MainActivity.SHORTCUT_DOWNLOADS
         }
         return PendingIntent.getActivity(context, 0, intent, 0)
     }

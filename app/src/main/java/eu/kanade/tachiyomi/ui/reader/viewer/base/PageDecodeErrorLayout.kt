@@ -6,7 +6,7 @@ import android.view.View
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
-import kotlinx.android.synthetic.main.page_decode_error.view.*
+import kotlinx.android.synthetic.main.reader_page_decode_error.view.*
 
 class PageDecodeErrorLayout(
         val view: View,

@@ -6,7 +6,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.MangaChapterHistory
-import kotlinx.android.synthetic.main.item_recently_read.view.*
+import kotlinx.android.synthetic.main.recently_read_item.view.*
 import java.util.*
 
 /**

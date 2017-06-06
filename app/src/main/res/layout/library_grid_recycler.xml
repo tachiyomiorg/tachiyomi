@@ -7,4 +7,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:columnWidth="140dp"
-    tools:listitem="@layout/item_catalogue_grid" />
+    tools:listitem="@layout/catalogue_grid_item" />

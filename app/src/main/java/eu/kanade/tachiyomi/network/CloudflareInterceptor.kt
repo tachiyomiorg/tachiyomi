@@ -8,13 +8,10 @@ import okhttp3.Response
 
 class CloudflareInterceptor : Interceptor {
 
-    //language=RegExp
     private val operationPattern = Regex("""setTimeout\(function\(\)\{\s+(var (?:\w,)+f.+?\r?\n[\s\S]+?a\.value =.+?)\r?\n""")
     
-    //language=RegExp
     private val passPattern = Regex("""name="pass" value="(.+?)"""")
 
-    //language=RegExp
     private val challengePattern = Regex("""name="jschl_vc" value="(\w+)"""")
 
     @Synchronized
@@ -34,7 +31,7 @@ class CloudflareInterceptor : Interceptor {
             val originalRequest = response.request()
             val url = originalRequest.url()
             val domain = url.host()
-            val content = response.body().string()
+            val content = response.body()!!.string()
 
             // CloudFlare requires waiting 4 seconds before resolving the challenge
             Thread.sleep(4000)
@@ -48,9 +45,7 @@ class CloudflareInterceptor : Interceptor {
             }
 
             val js = operation
-                    //language=RegExp
                     .replace(Regex("""a\.value =(.+?) \+.*"""), "$1")
-                    //language=RegExp
                     .replace(Regex("""\s{3,}[a-z](?: = |\.).+"""), "")
                     .replace("\n", "")
 
@@ -58,7 +53,7 @@ class CloudflareInterceptor : Interceptor {
 
             val answer = "${result + domain.length}"
 
-            val cloudflareUrl = HttpUrl.parse("${url.scheme()}://$domain/cdn-cgi/l/chk_jschl")
+            val cloudflareUrl = HttpUrl.parse("${url.scheme()}://$domain/cdn-cgi/l/chk_jschl")!!
                     .newBuilder()
                     .addQueryParameter("jschl_vc", challenge)
                     .addQueryParameter("pass", pass)

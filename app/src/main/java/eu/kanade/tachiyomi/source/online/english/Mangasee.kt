@@ -54,7 +54,7 @@ class Mangasee : ParsedHttpSource() {
     override fun searchMangaSelector() = "div.requested > div.row"
 
     override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
-        val url = HttpUrl.parse("$baseUrl/search/request.php").newBuilder()
+        val url = HttpUrl.parse("$baseUrl/search/request.php")!!.newBuilder()
         if (!query.isEmpty()) url.addQueryParameter("keyword", query)
         val genres = mutableListOf<String>()
         val genresNo = mutableListOf<String>()
@@ -84,7 +84,7 @@ class Mangasee : ParsedHttpSource() {
     }
 
     private fun convertQueryToPost(page: Int, url: String): Pair<FormBody.Builder, String> {
-        val url = HttpUrl.parse(url)
+        val url = HttpUrl.parse(url)!!
         val body = FormBody.Builder().add("page", page.toString())
         for (i in 0..url.querySize() - 1) {
             body.add(url.queryParameterName(i), url.queryParameterValue(i))

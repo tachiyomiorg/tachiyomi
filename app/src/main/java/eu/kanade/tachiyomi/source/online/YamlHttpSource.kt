@@ -171,7 +171,7 @@ class YamlHttpSource(mappings: Map<*, *>) : HttpSource() {
     }
 
     override fun pageListParse(response: Response): List<Page> {
-        val body = response.body().string()
+        val body = response.body()!!.string()
         val url = response.request().url().toString()
 
         val pages = mutableListOf<Page>()
@@ -216,7 +216,7 @@ class YamlHttpSource(mappings: Map<*, *>) : HttpSource() {
     }
 
     override fun imageUrlParse(response: Response): String {
-        val body = response.body().string()
+        val body = response.body()!!.string()
         val url = response.request().url().toString()
 
         with(map.pages) {

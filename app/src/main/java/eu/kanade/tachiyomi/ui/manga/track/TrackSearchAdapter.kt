@@ -7,11 +7,11 @@ import android.widget.ArrayAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.util.inflate
-import kotlinx.android.synthetic.main.item_track_search.view.*
+import kotlinx.android.synthetic.main.track_search_item.view.*
 import java.util.*
 
 class TrackSearchAdapter(context: Context)
-: ArrayAdapter<Track>(context, R.layout.item_track_search, ArrayList<Track>()) {
+: ArrayAdapter<Track>(context, R.layout.track_search_item, ArrayList<Track>()) {
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         var v = view
@@ -20,7 +20,7 @@ class TrackSearchAdapter(context: Context)
         // Check if an existing view is being reused, otherwise inflate the view
         val holder: TrackSearchHolder // view lookup cache stored in tag
         if (v == null) {
-            v = parent.inflate(R.layout.item_track_search)
+            v = parent.inflate(R.layout.track_search_item)
             holder = TrackSearchHolder(v)
             v.tag = holder
         } else {

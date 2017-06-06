@@ -5,7 +5,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.database.models.Manga
-import kotlinx.android.synthetic.main.item_catalogue_list.view.*
+import kotlinx.android.synthetic.main.catalogue_list_item.view.*
 
 /**
  * Class used to hold the displayed data of a manga in the library, like the cover or the title.

@@ -12,7 +12,7 @@ import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.util.plusAssign
-import kotlinx.android.synthetic.main.dialog_track_search.view.*
+import kotlinx.android.synthetic.main.track_search_dialog.view.*
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.subscriptions.CompositeSubscription
@@ -51,7 +51,7 @@ class TrackSearchDialog : DialogController {
 
     override fun onCreateDialog(savedState: Bundle?): Dialog {
         val dialog = MaterialDialog.Builder(activity!!)
-                .customView(R.layout.dialog_track_search, false)
+                .customView(R.layout.track_search_dialog, false)
                 .positiveText(android.R.string.ok)
                 .negativeText(android.R.string.cancel)
                 .onPositive { _, _ -> onPositiveButtonClick() }

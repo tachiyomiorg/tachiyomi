@@ -16,7 +16,7 @@ import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.toast
-import kotlinx.android.synthetic.main.fragment_recently_read.view.*
+import kotlinx.android.synthetic.main.recently_read_controller.view.*
 
 /**
  * Fragment that shows recently read manga.
@@ -45,7 +45,7 @@ class RecentlyReadController : NucleusController<RecentlyReadPresenter>(),
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.fragment_recently_read, container, false)
+        return inflater.inflate(R.layout.recently_read_controller, container, false)
     }
 
     /**

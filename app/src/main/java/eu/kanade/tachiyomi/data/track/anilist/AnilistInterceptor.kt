@@ -28,7 +28,7 @@ class AnilistInterceptor(private var refreshToken: String?) : Interceptor {
         if (oauth == null || oauth!!.isExpired()) {
             val response = chain.proceed(AnilistApi.refreshTokenRequest(refreshToken!!))
             oauth = if (response.isSuccessful) {
-                Gson().fromJson(response.body().string(), OAuth::class.java)
+                Gson().fromJson(response.body()!!.string(), OAuth::class.java)
             } else {
                 response.close()
                 null

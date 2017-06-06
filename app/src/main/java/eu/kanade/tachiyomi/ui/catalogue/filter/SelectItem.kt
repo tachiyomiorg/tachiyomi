@@ -30,7 +30,7 @@ open class SelectItem(val filter: Filter.Select<*>) : AbstractFlexibleItem<Selec
         spinner.prompt = filter.name
         spinner.adapter = ArrayAdapter<Any>(holder.itemView.context,
                 android.R.layout.simple_spinner_item, filter.values).apply {
-            setDropDownViewResource(R.layout.spinner_item)
+            setDropDownViewResource(R.layout.common_spinner_item)
         }
         spinner.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
             filter.state = position

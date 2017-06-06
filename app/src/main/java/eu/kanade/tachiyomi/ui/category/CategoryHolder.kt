@@ -7,7 +7,7 @@ import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.data.database.models.Category
-import kotlinx.android.synthetic.main.item_edit_categories.view.*
+import kotlinx.android.synthetic.main.categories_item.view.*
 
 /**
  * Holder used to display category items.

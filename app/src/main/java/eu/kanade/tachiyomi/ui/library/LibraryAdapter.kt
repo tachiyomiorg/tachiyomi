@@ -32,7 +32,7 @@ class LibraryAdapter(private val controller: LibraryController) : RecyclerViewPa
      * @return a new view.
      */
     override fun createView(container: ViewGroup): View {
-        val view = container.inflate(R.layout.item_library_category2) as LibraryCategoryView
+        val view = container.inflate(R.layout.library_category) as LibraryCategoryView
         view.onCreate(controller)
         return view
     }

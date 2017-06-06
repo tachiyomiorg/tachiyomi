@@ -26,7 +26,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
     fun addLibManga(track: Track): Observable<Track> {
         return rest.addLibManga(track.remote_id, track.last_chapter_read, track.toAnilistStatus())
                 .map { response ->
-                    response.body().close()
+                    response.body()?.close()
                     if (!response.isSuccessful) {
                         throw Exception("Could not add manga")
                     }
@@ -38,7 +38,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
         return rest.updateLibManga(track.remote_id, track.last_chapter_read, track.toAnilistStatus(),
                 track.toAnilistScore())
                 .map { response ->
-                    response.body().close()
+                    response.body()?.close()
                     if (!response.isSuccessful) {
                         throw Exception("Could not update manga")
                     }

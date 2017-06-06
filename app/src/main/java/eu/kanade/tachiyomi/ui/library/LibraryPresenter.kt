@@ -146,6 +146,10 @@ class LibraryPresenter(
             var counter = 0
             db.getLastReadManga().executeAsBlocking().associate { it.id!! to counter++ }
         }
+        val totalChapterManga by lazy {
+            var counter = 0
+            db.getTotalChapterManga().executeAsBlocking().associate { it.id!! to counter++ }
+        }
 
         val sortFn: (Manga, Manga) -> Int = { manga1, manga2 ->
             when (sortingMode) {
@@ -158,6 +162,11 @@ class LibraryPresenter(
                 }
                 LibrarySort.LAST_UPDATED -> manga2.last_update.compareTo(manga1.last_update)
                 LibrarySort.UNREAD -> manga1.unread.compareTo(manga2.unread)
+                LibrarySort.TOTAL -> {
+                    val manga1TotalChapter = totalChapterManga[manga1.id!!] ?: 0
+                    val mange2TotalChapter = totalChapterManga[manga2.id!!] ?: 0
+                    manga1TotalChapter.compareTo(mange2TotalChapter)
+                }
                 else -> throw Exception("Unknown sorting mode")
             }
         }

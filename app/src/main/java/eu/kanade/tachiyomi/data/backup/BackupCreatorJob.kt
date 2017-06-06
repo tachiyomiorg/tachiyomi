@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.data.backup
 
+import android.net.Uri
 import com.evernote.android.job.Job
 import com.evernote.android.job.JobManager
 import com.evernote.android.job.JobRequest
@@ -7,14 +8,15 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.io.File
 
 class BackupCreatorJob : Job() {
 
     override fun onRunJob(params: Params): Result {
         val preferences = Injekt.get<PreferencesHelper>()
-        val path = preferences.backupsDirectory().getOrDefault()
+        val uri = Uri.fromFile(File(preferences.backupsDirectory().getOrDefault()))
         val flags = BackupCreateService.BACKUP_ALL
-        BackupCreateService.makeBackup(context, path, flags, true)
+        BackupCreateService.makeBackup(context, uri, flags, true)
         return Result.SUCCESS
     }
 

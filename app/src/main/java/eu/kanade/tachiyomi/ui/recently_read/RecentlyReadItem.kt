@@ -11,7 +11,7 @@ import eu.kanade.tachiyomi.util.inflate
 class RecentlyReadItem(val mch: MangaChapterHistory) : AbstractFlexibleItem<RecentlyReadHolder>() {
 
     override fun getLayoutRes(): Int {
-        return R.layout.item_recently_read
+        return R.layout.recently_read_item
     }
 
     override fun createViewHolder(adapter: FlexibleAdapter<*>,

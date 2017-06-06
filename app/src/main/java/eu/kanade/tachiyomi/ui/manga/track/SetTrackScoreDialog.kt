@@ -36,7 +36,7 @@ class SetTrackScoreDialog<T> : DialogController
 
         val dialog = MaterialDialog.Builder(activity!!)
                 .title(R.string.score)
-                .customView(R.layout.dialog_track_score, false)
+                .customView(R.layout.track_score_dialog, false)
                 .positiveText(android.R.string.ok)
                 .negativeText(android.R.string.cancel)
                 .onPositive { dialog, _ ->

@@ -3,24 +3,11 @@ package eu.kanade.tachiyomi.ui.base.activity
 import android.support.v7.app.AppCompatActivity
 import eu.kanade.tachiyomi.util.LocaleHelper
 
-abstract class BaseActivity : AppCompatActivity(), ActivityMixin {
-
-    override var resumed = false
+abstract class BaseActivity : AppCompatActivity() {
 
     init {
+        @Suppress("LeakingThis")
         LocaleHelper.updateConfiguration(this)
-    }
-
-    override fun getActivity() = this
-
-    override fun onResume() {
-        super.onResume()
-        resumed = true
-    }
-
-    override fun onPause() {
-        resumed = false
-        super.onPause()
     }
 
 }

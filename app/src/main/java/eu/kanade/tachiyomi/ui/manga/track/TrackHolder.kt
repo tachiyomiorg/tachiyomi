@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import eu.kanade.tachiyomi.R
-import kotlinx.android.synthetic.main.item_track.view.*
+import kotlinx.android.synthetic.main.track_item.view.*
 
 class TrackHolder(view: View, adapter: TrackAdapter) : RecyclerView.ViewHolder(view) {
     

@@ -53,9 +53,6 @@
                     android:scheme="tachiyomi" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.download.DownloadActivity"
-            android:launchMode="singleTop" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

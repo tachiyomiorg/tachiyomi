@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:id="@+id/recycler"
         android:choiceMode="multipleChoice"
-        tools:listitem="@layout/item_edit_categories"
+        tools:listitem="@layout/categories_item"
         />
 
     <android.support.design.widget.FloatingActionButton

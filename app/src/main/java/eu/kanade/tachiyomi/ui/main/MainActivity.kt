@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.ui.main
 
 import android.animation.ObjectAnimator
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
@@ -10,6 +9,7 @@ import android.support.v7.graphics.drawable.DrawerArrowDrawable
 import android.view.ViewGroup
 import com.bluelinelabs.conductor.*
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
+import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
@@ -18,15 +18,14 @@ import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.SecondaryDrawerController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
-import eu.kanade.tachiyomi.ui.download.DownloadActivity
+import eu.kanade.tachiyomi.ui.download.DownloadController
 import eu.kanade.tachiyomi.ui.latest_updates.LatestUpdatesController
 import eu.kanade.tachiyomi.ui.library.LibraryController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersController
 import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
 import eu.kanade.tachiyomi.ui.setting.SettingsMainController
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.main_activity.*
 import uy.kohesive.injekt.injectLazy
 
 
@@ -42,17 +41,20 @@ class MainActivity : BaseActivity() {
 
     private val startScreenId by lazy {
         when (preferences.startScreen()) {
-            1 -> R.id.nav_drawer_library
             2 -> R.id.nav_drawer_recently_read
             3 -> R.id.nav_drawer_recent_updates
             else -> R.id.nav_drawer_library
         }
     }
 
-    private val tabAnimator by lazy { TabsAnimator(tabs) }
+    lateinit var tabAnimator: TabsAnimator
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setAppTheme()
+        setTheme(when (preferences.theme()) {
+            2 -> R.style.Theme_Tachiyomi_Dark
+            3 -> R.style.Theme_Tachiyomi_Amoled
+            else -> R.style.Theme_Tachiyomi
+        })
         super.onCreate(savedInstanceState)
 
         // Do not let the launcher create a new activity http://stackoverflow.com/questions/16283079
@@ -61,13 +63,15 @@ class MainActivity : BaseActivity() {
             return
         }
 
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.main_activity)
 
         setSupportActionBar(toolbar)
 
         drawerArrow = DrawerArrowDrawable(this)
         drawerArrow?.color = Color.WHITE
         toolbar.navigationIcon = drawerArrow
+
+        tabAnimator = TabsAnimator(tabs)
 
         // Set behavior of Navigation drawer
         nav_view.setNavigationItemSelectedListener { item ->
@@ -82,7 +86,9 @@ class MainActivity : BaseActivity() {
                     R.id.nav_drawer_catalogues -> setRoot(CatalogueController(), id)
                     R.id.nav_drawer_latest_updates -> setRoot(LatestUpdatesController(), id)
                     R.id.nav_drawer_downloads -> {
-                        startActivity(Intent(this, DownloadActivity::class.java))
+                        router.pushController(RouterTransaction.with(DownloadController())
+                                .pushChangeHandler(FadeChangeHandler())
+                                .popChangeHandler(FadeChangeHandler()))
                     }
                     R.id.nav_drawer_settings ->
                         router.pushController(RouterTransaction.with(SettingsMainController())
@@ -106,6 +112,7 @@ class MainActivity : BaseActivity() {
                 SHORTCUT_CATALOGUES -> setSelectedDrawerItem(R.id.nav_drawer_catalogues)
                 SHORTCUT_MANGA -> router.setRoot(
                         RouterTransaction.with(MangaController(intent.extras)))
+                SHORTCUT_DOWNLOADS -> setSelectedDrawerItem(R.id.nav_drawer_downloads)
                 else -> setSelectedDrawerItem(startScreenId)
             }
         }
@@ -134,10 +141,11 @@ class MainActivity : BaseActivity() {
 
         syncActivityViewWithController(router.backstack.lastOrNull()?.controller())
 
-        // TODO changelog controller
         if (savedInstanceState == null) {
             // Show changelog if needed
-            ChangelogDialogFragment.show(this, preferences, supportFragmentManager)
+            if (Migrations.upgrade(preferences)) {
+                ChangelogDialogController().showDialog(router)
+            }
         }
     }
 
@@ -190,8 +198,8 @@ class MainActivity : BaseActivity() {
             from.cleanupTabs(tabs)
         }
         if (to is TabbedController) {
-            to.configureTabs(tabs)
             tabAnimator.expand()
+            to.configureTabs(tabs)
         } else {
             tabAnimator.collapse()
             tabs.setupWithViewPager(null)
@@ -217,10 +225,11 @@ class MainActivity : BaseActivity() {
 
     companion object {
         // Shortcut actions
-        private const val SHORTCUT_LIBRARY = "eu.kanade.tachiyomi.SHOW_LIBRARY"
-        private const val SHORTCUT_RECENTLY_UPDATED = "eu.kanade.tachiyomi.SHOW_RECENTLY_UPDATED"
-        private const val SHORTCUT_RECENTLY_READ = "eu.kanade.tachiyomi.SHOW_RECENTLY_READ"
-        private const val SHORTCUT_CATALOGUES = "eu.kanade.tachiyomi.SHOW_CATALOGUES"
+        const val SHORTCUT_LIBRARY = "eu.kanade.tachiyomi.SHOW_LIBRARY"
+        const val SHORTCUT_RECENTLY_UPDATED = "eu.kanade.tachiyomi.SHOW_RECENTLY_UPDATED"
+        const val SHORTCUT_RECENTLY_READ = "eu.kanade.tachiyomi.SHOW_RECENTLY_READ"
+        const val SHORTCUT_CATALOGUES = "eu.kanade.tachiyomi.SHOW_CATALOGUES"
+        const val SHORTCUT_DOWNLOADS = "eu.kanade.tachiyomi.SHOW_DOWNLOADS"
         const val SHORTCUT_MANGA = "eu.kanade.tachiyomi.SHOW_MANGA"
     }
 

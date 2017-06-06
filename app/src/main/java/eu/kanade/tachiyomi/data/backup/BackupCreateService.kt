@@ -50,9 +50,9 @@ class BackupCreateService : IntentService(NAME) {
          * @param flags determines what to backup
          * @param isJob backup called from job
          */
-        fun makeBackup(context: Context, path: String, flags: Int, isJob: Boolean = false) {
+        fun makeBackup(context: Context, uri: Uri, flags: Int, isJob: Boolean = false) {
             val intent = Intent(context, BackupCreateService::class.java).apply {
-                putExtra(BackupConst.EXTRA_URI, path)
+                putExtra(BackupConst.EXTRA_URI, uri)
                 putExtra(EXTRA_IS_JOB, isJob)
                 putExtra(EXTRA_FLAGS, flags)
             }
@@ -67,11 +67,11 @@ class BackupCreateService : IntentService(NAME) {
         if (intent == null) return
 
         // Get values
-        val uri = intent.getStringExtra(BackupConst.EXTRA_URI)
+        val uri = intent.getParcelableExtra<Uri>(BackupConst.EXTRA_URI)
         val isJob = intent.getBooleanExtra(EXTRA_IS_JOB, false)
         val flags = intent.getIntExtra(EXTRA_FLAGS, 0)
         // Create backup
-        createBackupFromApp(Uri.parse(uri), flags, isJob)
+        createBackupFromApp(uri, flags, isJob)
     }
 
     /**

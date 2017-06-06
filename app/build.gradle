@@ -100,17 +100,6 @@ android {
 
 dependencies {
 
-    compile "com.bluelinelabs:conductor:2.1.3"
-    compile 'com.github.inorichi:conductor-support-preference:master-SNAPSHOT'
-
-    final rxbindings_version = '1.0.1'
-    compile "com.jakewharton.rxbinding:rxbinding-kotlin:$rxbindings_version"
-    compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$rxbindings_version"
-    compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$rxbindings_version"
-    compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$rxbindings_version"
-
-    compile 'com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.0.4'
-
     // Modified dependencies
     compile 'com.github.inorichi:subsampling-scale-image-view:01e5385'
     compile 'com.github.inorichi:junrar-android:634c1f5'
@@ -131,17 +120,17 @@ dependencies {
 
     // ReactiveX
     compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.2.9'
+    compile 'io.reactivex:rxjava:1.3.0'
     compile 'com.jakewharton.rxrelay:rxrelay:1.2.0'
     compile 'com.f2prateek.rx.preferences:rx-preferences:1.0.2'
     compile 'com.github.pwittchen:reactivenetwork:0.7.0'
 
     // Network client
-    compile "com.squareup.okhttp3:okhttp:3.6.0"
-    compile 'com.squareup.okio:okio:1.11.0'
+    compile "com.squareup.okhttp3:okhttp:3.8.0"
+    compile 'com.squareup.okio:okio:1.13.0'
 
     // REST
-    final retrofit_version = '2.2.0'
+    final retrofit_version = '2.3.0'
     compile "com.squareup.retrofit2:retrofit:$retrofit_version"
     compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
     compile "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
@@ -171,7 +160,7 @@ dependencies {
     compile 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
 
     // Database
-    compile "com.pushtorefresh.storio:sqlite:1.12.3"
+    compile "com.pushtorefresh.storio:sqlite:1.13.0"
 
     // Model View Presenter
     final nucleus_version = '3.0.0'
@@ -183,8 +172,8 @@ dependencies {
     compile "uy.kohesive.injekt:injekt-core:1.16.1"
 
     // Image library
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+    compile 'com.github.bumptech.glide:glide:3.8.0'
+    compile 'com.github.bumptech.glide:okhttp3-integration:1.5.0@aar'
     // Transformations
     compile 'jp.wasabeef:glide-transformations:2.0.2'
 
@@ -201,12 +190,23 @@ dependencies {
     compile 'com.dmitrymalkovich.android:material-design-dimens:1.4'
     compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
     compile 'eu.davidea:flexible-adapter:5.0.0-rc1'
-    compile 'com.github.inorichi:FlexibleAdapter:93985fe' // v4.2.0 to be removed
     compile 'com.nononsenseapps:filepicker:2.5.2'
     compile 'com.github.amulyakhare:TextDrawable:558677e'
-    compile 'com.afollestad.material-dialogs:core:0.9.4.2'
+    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
     compile 'me.zhanghai.android.systemuihelper:library:1.0.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.0.4'
+
+    // Conductor
+    compile "com.bluelinelabs:conductor:2.1.3"
+    compile 'com.github.inorichi:conductor-support-preference:9e36460'
+
+    // RxBindings
+    final rxbindings_version = '1.0.1'
+    compile "com.jakewharton.rxbinding:rxbinding-kotlin:$rxbindings_version"
+    compile "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$rxbindings_version"
+    compile "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$rxbindings_version"
+    compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7-kotlin:$rxbindings_version"
 
     // Tests
     testCompile 'junit:junit:4.12'
@@ -222,7 +222,7 @@ dependencies {
 }
 
 buildscript {
-    ext.kotlin_version = '1.1.2'
+    ext.kotlin_version = '1.1.2-3'
     repositories {
         mavenCentral()
     }

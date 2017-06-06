@@ -85,7 +85,7 @@ class Batoto : ParsedHttpSource(), LoginSource {
     override fun latestUpdatesNextPageSelector() = "#show_more_row"
 
     override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
-        val url = HttpUrl.parse("$baseUrl/search_ajax").newBuilder()
+        val url = HttpUrl.parse("$baseUrl/search_ajax")!!.newBuilder()
         if (!query.isEmpty()) url.addQueryParameter("name", query).addQueryParameter("name_cond", "c")
         var genres = ""
         filters.forEach { filter ->
@@ -162,7 +162,7 @@ class Batoto : ParsedHttpSource(), LoginSource {
     }
 
     override fun chapterListParse(response: Response): List<SChapter> {
-        val body = response.body().string()
+        val body = response.body()!!.string()
         val matcher = staffNotice.matcher(body)
         if (matcher.find()) {
             @Suppress("DEPRECATION")
@@ -272,7 +272,7 @@ class Batoto : ParsedHttpSource(), LoginSource {
     }
 
     override fun isAuthenticationSuccessful(response: Response) =
-            response.priorResponse() != null && response.priorResponse().code() == 302
+            response.priorResponse() != null && response.priorResponse()!!.code() == 302
 
     override fun isLogged(): Boolean {
         return network.cookies.get(URI(baseUrl)).any { it.name() == "pass_hash" }

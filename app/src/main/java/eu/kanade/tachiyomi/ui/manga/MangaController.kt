@@ -30,7 +30,7 @@ import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersController
 import eu.kanade.tachiyomi.ui.manga.info.MangaInfoController
 import eu.kanade.tachiyomi.ui.manga.track.TrackController
 import eu.kanade.tachiyomi.util.toast
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.manga_controller.view.*
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get

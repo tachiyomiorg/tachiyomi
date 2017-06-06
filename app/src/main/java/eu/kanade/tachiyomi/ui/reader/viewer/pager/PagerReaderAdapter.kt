@@ -23,7 +23,7 @@ class PagerReaderAdapter(private val reader: PagerReader) : ViewPagerAdapter() {
         }
 
     override fun createView(container: ViewGroup, position: Int): View {
-        val view = container.inflate(R.layout.item_pager_reader) as PageView
+        val view = container.inflate(R.layout.reader_pager_item) as PageView
         view.initialize(reader, pages[position])
         return view
     }

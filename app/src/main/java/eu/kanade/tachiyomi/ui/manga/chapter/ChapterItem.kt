@@ -24,7 +24,7 @@ class ChapterItem(val chapter: Chapter, val manga: Manga) : AbstractFlexibleItem
         get() = status == Download.DOWNLOADED
 
     override fun getLayoutRes(): Int {
-        return R.layout.item_chapter
+        return R.layout.chapters_item
     }
 
     override fun createViewHolder(adapter: FlexibleAdapter<*>,

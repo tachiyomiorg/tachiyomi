@@ -33,7 +33,7 @@ import eu.kanade.tachiyomi.util.plusAssign
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.SimpleAnimationListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
-import kotlinx.android.synthetic.main.activity_reader.*
+import kotlinx.android.synthetic.main.reader_activity.*
 import me.zhanghai.android.systemuihelper.SystemUiHelper
 import me.zhanghai.android.systemuihelper.SystemUiHelper.*
 import nucleus.factory.RequiresPresenter
@@ -92,14 +92,18 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
-        setContentView(R.layout.activity_reader)
+        setContentView(R.layout.reader_activity)
 
         if (savedState == null && SharedData.get(ReaderEvent::class.java) == null) {
             finish()
             return
         }
 
-        setupToolbar(toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
 
         initializeSettings()
         initializeBottomMenu()
@@ -131,6 +135,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     }
 
     override fun onDestroy() {
+        toolbar.setNavigationOnClickListener(null)
         subscriptions.unsubscribe()
         viewer = null
         super.onDestroy()
@@ -256,7 +261,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             // Invert the seekbar for the right to left reader
             page_seekbar.rotation = 180f
         }
-        setToolbarTitle(manga.title)
+        supportActionBar?.title = manga.title
         please_wait.visibility = View.VISIBLE
         please_wait.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in_long))
     }
@@ -288,10 +293,10 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         page_seekbar.max = numPages - 1
         page_seekbar.progress = currentPage
 
-        setToolbarSubtitle(if (chapter.isRecognizedNumber)
+        supportActionBar?.subtitle = if (chapter.isRecognizedNumber)
             getString(R.string.chapter_subtitle, decimalFormat.format(chapter.chapter_number.toDouble()))
         else
-            chapter.name)
+            chapter.name
     }
 
     fun onAppendChapter(chapter: ReaderChapter) {

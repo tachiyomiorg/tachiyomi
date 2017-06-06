@@ -61,7 +61,7 @@ fun OkHttpClient.newCallWithProgress(request: Request, listener: ProgressListene
             .addNetworkInterceptor { chain ->
                 val originalResponse = chain.proceed(chain.request())
                 originalResponse.newBuilder()
-                        .body(ProgressResponseBody(originalResponse.body(), listener))
+                        .body(ProgressResponseBody(originalResponse.body()!!, listener))
                         .build()
             }
             .build()

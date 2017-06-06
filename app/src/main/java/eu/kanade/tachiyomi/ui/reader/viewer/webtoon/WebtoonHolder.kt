@@ -14,8 +14,7 @@ import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.reader.viewer.base.PageDecodeErrorLayout
 import eu.kanade.tachiyomi.util.inflate
-import kotlinx.android.synthetic.main.chapter_image.view.*
-import kotlinx.android.synthetic.main.item_webtoon_reader.view.*
+import kotlinx.android.synthetic.main.reader_webtoon_item.view.*
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -25,7 +24,7 @@ import java.util.concurrent.TimeUnit
 
 /**
  * Holder for webtoon reader for a single page of a chapter.
- * All the elements from the layout file "item_webtoon_reader" are available in this class.
+ * All the elements from the layout file "reader_webtoon_item" are available in this class.
  *
  * @param view the inflated view for this holder.
  * @param adapter the adapter handling this holder.
@@ -287,7 +286,7 @@ class WebtoonHolder(private val view: View, private val adapter: WebtoonAdapter)
         val page = page ?: return
         if (decodeErrorLayout != null || !webtoonReader.isAdded) return
 
-        val layout = (view as ViewGroup).inflate(R.layout.page_decode_error)
+        val layout = (view as ViewGroup).inflate(R.layout.reader_page_decode_error)
         PageDecodeErrorLayout(layout, page, readerActivity.readerTheme, {
             if (webtoonReader.isAdded) {
                 readerActivity.presenter.retryPage(page)

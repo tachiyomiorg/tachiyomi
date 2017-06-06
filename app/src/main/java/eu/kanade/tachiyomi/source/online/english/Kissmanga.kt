@@ -115,13 +115,13 @@ class Kissmanga : ParsedHttpSource() {
     override fun pageListRequest(chapter: SChapter) = POST(baseUrl + chapter.url, headers)
 
     override fun pageListParse(response: Response): List<Page> {
-        val body = response.body().string()
+        val body = response.body()!!.string()
 
         val pages = mutableListOf<Page>()
 
         // Kissmanga now encrypts the urls, so we need to execute these two scripts in JS.
-        val ca = client.newCall(GET("$baseUrl/Scripts/ca.js", headers)).execute().body().string()
-        val lo = client.newCall(GET("$baseUrl/Scripts/lo.js", headers)).execute().body().string()
+        val ca = client.newCall(GET("$baseUrl/Scripts/ca.js", headers)).execute().body()!!.string()
+        val lo = client.newCall(GET("$baseUrl/Scripts/lo.js", headers)).execute().body()!!.string()
 
         Duktape.create().use {
             it.evaluate(ca)

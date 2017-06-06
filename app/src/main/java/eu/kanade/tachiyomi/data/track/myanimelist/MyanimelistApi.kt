@@ -46,7 +46,7 @@ class MyanimelistApi(private val client: OkHttpClient, username: String, passwor
         } else {
             client.newCall(GET(getSearchUrl(query), headers))
                     .asObservable()
-                    .map { Jsoup.parse(it.body().string()) }
+                    .map { Jsoup.parse(it.body()!!.string()) }
                     .flatMap { Observable.from(it.select("entry")) }
                     .filter { it.select("type").text() != "Novel" }
                     .map {
@@ -64,7 +64,7 @@ class MyanimelistApi(private val client: OkHttpClient, username: String, passwor
         return client
                 .newCall(GET(getListUrl(username), headers))
                 .asObservable()
-                .map { Jsoup.parse(it.body().string()) }
+                .map { Jsoup.parse(it.body()!!.string()) }
                 .flatMap { Observable.from(it.select("manga")) }
                 .map {
                     Track.create(TrackManager.MYANIMELIST).apply {

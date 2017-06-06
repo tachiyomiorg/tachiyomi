@@ -12,12 +12,12 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
-import kotlinx.android.synthetic.main.item_catalogue_grid.view.*
+import kotlinx.android.synthetic.main.catalogue_grid_item.view.*
 
 class LibraryItem(val manga: Manga) : AbstractFlexibleItem<LibraryHolder>(), IFilterable {
 
     override fun getLayoutRes(): Int {
-        return R.layout.item_catalogue_grid
+        return R.layout.catalogue_grid_item
     }
 
     override fun createViewHolder(adapter: FlexibleAdapter<*>,
@@ -25,7 +25,7 @@ class LibraryItem(val manga: Manga) : AbstractFlexibleItem<LibraryHolder>(), IFi
                                   parent: ViewGroup): LibraryHolder {
 
         return if (parent is AutofitRecyclerView) {
-            val view = parent.inflate(R.layout.item_catalogue_grid).apply {
+            val view = parent.inflate(R.layout.catalogue_grid_item).apply {
                 val coverHeight = parent.itemWidth / 3 * 4
                 card.layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, coverHeight)
                 gradient.layoutParams = FrameLayout.LayoutParams(
@@ -33,7 +33,7 @@ class LibraryItem(val manga: Manga) : AbstractFlexibleItem<LibraryHolder>(), IFi
             }
             LibraryGridHolder(view, adapter)
         } else {
-            val view = parent.inflate(R.layout.item_catalogue_list)
+            val view = parent.inflate(R.layout.catalogue_list_item)
             LibraryListHolder(view, adapter)
         }
     }

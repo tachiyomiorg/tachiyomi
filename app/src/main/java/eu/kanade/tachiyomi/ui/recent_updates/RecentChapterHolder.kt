@@ -9,7 +9,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.util.getResourceColor
 import jp.wasabeef.glide.transformations.CropCircleTransformation
-import kotlinx.android.synthetic.main.item_recent_chapters.view.*
+import kotlinx.android.synthetic.main.recent_chapters_item.view.*
 
 /**
  * Holder that contains chapter item

@@ -12,9 +12,9 @@ import uy.kohesive.injekt.injectLazy
 import java.util.*
 
 /**
- * Presenter of [DownloadActivity].
+ * Presenter of [DownloadController].
  */
-class DownloadPresenter : BasePresenter<DownloadActivity>() {
+class DownloadPresenter : BasePresenter<DownloadController>() {
 
     /**
      * Download manager.
@@ -33,7 +33,7 @@ class DownloadPresenter : BasePresenter<DownloadActivity>() {
         downloadQueue.getUpdatedObservable()
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { ArrayList(it) }
-                .subscribeLatestCache(DownloadActivity::onNextDownloads, { view, error ->
+                .subscribeLatestCache(DownloadController::onNextDownloads, { view, error ->
                     Timber.e(error)
                 })
     }

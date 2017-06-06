@@ -16,13 +16,12 @@ import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.util.plusAssign
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
-import kotlinx.android.synthetic.main.item_library_category.view.*
+import kotlinx.android.synthetic.main.library_category.view.*
 import rx.subscriptions.CompositeSubscription
 import uy.kohesive.injekt.injectLazy
 
 /**
  * Fragment containing the library manga for a certain category.
- * Uses R.layout.fragment_library_category.
  */
 class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
         FrameLayout(context, attrs),

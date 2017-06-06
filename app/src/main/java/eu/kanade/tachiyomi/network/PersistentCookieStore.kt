@@ -18,7 +18,7 @@ class PersistentCookieStore(context: Context) {
             if (cookies != null) {
                 try {
                     val url = HttpUrl.parse("http://$key")
-                    val nonExpiredCookies = cookies.map { Cookie.parse(url, it) }
+                    val nonExpiredCookies = cookies.mapNotNull { Cookie.parse(url, it) }
                             .filter { !it.hasExpired() }
                     cookieMap.put(key, nonExpiredCookies)
                 } catch (e: Exception) {

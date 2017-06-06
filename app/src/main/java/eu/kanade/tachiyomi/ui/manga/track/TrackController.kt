@@ -11,7 +11,7 @@ import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.toast
-import kotlinx.android.synthetic.main.fragment_track.view.*
+import kotlinx.android.synthetic.main.track_controller.view.*
 
 class TrackController : NucleusController<TrackPresenter>(),
         TrackAdapter.OnRowClickListener,
@@ -26,7 +26,7 @@ class TrackController : NucleusController<TrackPresenter>(),
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.fragment_track, container, false)
+        return inflater.inflate(R.layout.track_controller, container, false)
     }
 
     override fun onViewCreated(view: View, savedViewState: Bundle?) {

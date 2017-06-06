@@ -21,12 +21,12 @@ import eu.kanade.tachiyomi.ui.base.controller.popControllerWithTag
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.toast
-import kotlinx.android.synthetic.main.fragment_recent_chapters.view.*
+import kotlinx.android.synthetic.main.recent_chapters_controller.view.*
 import timber.log.Timber
 
 /**
  * Fragment that shows recent chapters.
- * Uses [R.layout.fragment_recent_chapters].
+ * Uses [R.layout.recent_chapters_controller].
  * UI related actions should be called from here.
  */
 class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
@@ -58,7 +58,7 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.fragment_recent_chapters, container, false)
+        return inflater.inflate(R.layout.recent_chapters_controller, container, false)
     }
 
     /**

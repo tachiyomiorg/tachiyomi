@@ -22,7 +22,7 @@ class CategoryItem(val category: Category) : AbstractFlexibleItem<CategoryHolder
      * Returns the layout resource for this item.
      */
     override fun getLayoutRes(): Int {
-        return R.layout.item_edit_categories
+        return R.layout.categories_item
     }
 
     /**
