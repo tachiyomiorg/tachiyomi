@@ -6,6 +6,7 @@ import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
+import eu.kanade.tachiyomi.util.gone
 import kotlinx.android.synthetic.main.chapters_item.view.*
 import java.util.*
 
@@ -41,6 +42,16 @@ class ChapterHolder(
             chapter_date.setTextColor(if (chapter.read) adapter.readColor else adapter.unreadColor)
         } else {
             chapter_date.text = ""
+        }
+
+        //add scanlator if exists
+        chapter_scanlator.text = chapter.scanlator
+        //allow longer titles if there is no scanlator (most sources)
+        if (chapter_scanlator.text.isNullOrBlank()) {
+            chapter_title.setMaxLines(2)
+            chapter_scanlator.gone()
+        } else {
+            chapter_title.setMaxLines(1)
         }
 
         chapter_pages.text = if (!chapter.read && chapter.last_page_read > 0) {
