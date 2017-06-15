@@ -187,4 +187,5 @@
     <string name="username">Gebruikersnaam</string>
     <string name="password">Wachtwoord</string>
     <string name="show_password">Toon wachtwoord</string>
+    <string name="login">Log in</string>
     </resources>
