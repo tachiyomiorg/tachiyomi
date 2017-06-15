@@ -316,4 +316,7 @@
 
     <string name="label_latest_updates">Últimas actualizaciones</string>
     <string name="action_filter_bookmarked">Marcado</string>
+    <string name="action_filter_read">Leído</string>
+    <string name="action_sort_alpha">Alfabéticamente</string>
+    <string name="action_sort_total">Numero de capítulos</string>
     </resources>
