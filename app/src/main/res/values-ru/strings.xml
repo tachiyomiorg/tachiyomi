@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="action_add">Добавить</string>
     <string name="action_add_category">Добавить категорию</string>
@@ -124,7 +124,7 @@
     <string name="file_select_backup">Выбрать файл бэкапа</string>
     <string name="file_select_cover">Выбрать обложку</string>
     <string name="file_select_icon">Выбрать ярлык</string>
-    <string name="font_roboto_medium"></string>
+    <string name="font_roboto_medium"/>
     <string name="fourth_to_last">Четвертую от прочитанной</string>
     <string name="icon_creation_fail">Невозможно создать ярлык!</string>
     <string name="icon_shape">Форма иконки</string>
@@ -187,7 +187,7 @@
     <string name="portrait">Вертикальная</string>
     <string name="pref_acra_summary">Помогает исправлять любые баги. Личные данные не передаются</string>
     <string name="pref_ask_update_manga_sync">Подтвердите перед обновлением</string>
-    <string name="pref_ask_update_manga_sync_key"></string>
+    <string name="pref_ask_update_manga_sync_key"/>
     <string name="pref_auto_update_manga_sync">Синхронизировать главы после прочтения</string>
     <string name="pref_category_about">Информация</string>
     <string name="pref_category_advanced">Дополнительно</string>
@@ -360,4 +360,5 @@
     <string name="track">Отслеживание</string>
     <string name="update_monthly">Ежемесячно</string>
     <string name="update_weekly">Еженедельно</string>
-</resources>
+<string name="action_sort_total">По количеству глав</string>
+    </resources>
