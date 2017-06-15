@@ -37,10 +37,10 @@
     <string name="action_edit">Bewerken</string>
     <string name="action_add">Toevoegen</string>
     <string name="action_add_category">Categorie toevoegen</string>
-    <string name="action_edit_categories">Categorieeën aanpassen</string>
+    <string name="action_edit_categories">Categorieën bewerken</string>
     <string name="action_rename_category">Categorie hernoemen</string>
     <string name="action_move_category">Verplaatsen naar categorieën</string>
-    <string name="action_edit_cover">Omslagfoto wijzigen</string>
+    <string name="action_edit_cover">Omslag wijzigen</string>
     <string name="action_show_unread">Ongelezen</string>
     <string name="action_show_downloaded">Gedownload</string>
     <string name="action_next_unread">Volgende ongelezen</string>
