@@ -319,4 +319,9 @@
     <string name="action_filter_read">Leído</string>
     <string name="action_sort_alpha">Alfabéticamente</string>
     <string name="action_sort_total">Numero de capítulos</string>
+    <string name="action_sort_last_read">Ultimo leído</string>
+    <string name="action_sort_last_updated">Ultimo actualizado</string>
+    <string name="action_bookmark">Marcar</string>
+    <string name="action_remove_bookmark">Desmarcar</string>
+    <string name="action_add">Añadir</string>
     </resources>
