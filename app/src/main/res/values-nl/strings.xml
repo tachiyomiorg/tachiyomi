@@ -188,4 +188,32 @@
     <string name="password">Wachtwoord</string>
     <string name="show_password">Toon wachtwoord</string>
     <string name="login">Log in</string>
+    <string name="unknown_error">Onbekende fout</string>
+
+    <string name="library_search_hint">Titel of auteur…</string>
+    <string name="updating_category">Categorie bijwerken</string>
+    <string name="confirm_delete_manga">Ben je zeker dat je de geselecteerde manga wil verwijderen?</string>
+    <string name="also_delete_chapters">Verwijder ook gedownloade hoofdstukken</string>
+
+    <string name="select_source">Selecteer een bron</string>
+    <string name="no_valid_sources">Gelieve zeker één geldige bron te kiezen</string>
+    <string name="no_more_results">Geen verdere resultaten</string>
+    <string name="local_source">Lokale manga</string>
+    <string name="invalid_combination">Standaard kan niet geselecteerd worden met andere categorieën</string>
+    <string name="added_to_library">De manga is toegevoegd aan je bibliotheek</string>
+
+    <string name="manga_not_in_db">Deze manga is verwijderd uit de databank!</string>
+
+    <string name="manga_detail_tab">Info</string>
+    <string name="description">Beschrijving</string>
+    <string name="unknown">Onbekend</string>
+    <string name="add_to_library">Toevoegen aan bibliotheek</string>
+    <string name="remove_from_library">Verwijderen uit bibliotheek</string>
+    <string name="manga_info_author_label">Auteur</string>
+    <string name="manga_info_artist_label">Artiest</string>
+    <string name="manga_info_chapters_label">Hoofdstukken</string>
+    <string name="manga_info_last_chapter_label">Laatste hoofdstuk</string>
+    <string name="manga_info_status_label">Status</string>
+    <string name="manga_info_source_label">Bron</string>
+    <string name="display_mode_chapter">Hoofdstuk %1$s</string>
     </resources>
