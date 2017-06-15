@@ -310,7 +310,7 @@
     <string name="charging">Aan het opladen</string>
     <string name="pref_ask_update_manga_sync">Vraag om bevestiging alvorens te updaten</string>
     <string name="pref_theme">Thema</string>
-    <string name="light_theme">Voornaamste thema</string>
+    <string name="light_theme">Hoofdthema</string>
     <string name="pref_reader_navigation">Navigatie</string>
     <string name="pref_read_with_volume_keys_inverted">Keer volumeknoppen om</string>
     <string name="pref_image_decoder">Afbeeldingdecoder</string>
