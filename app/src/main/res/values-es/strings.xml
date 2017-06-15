@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="name">Nombre</string>
 
@@ -308,4 +309,6 @@
     <string name="download_notifier_page_ready_error">No se ha cargado una página</string>
     <string name="download_notifier_text_only_wifi">Conexión Wi-Fi no disponible</string>
 
-</resources>
+<string name="categories">Categorías</string>
+    <string name="manga">Manga</string>
+    </resources>
