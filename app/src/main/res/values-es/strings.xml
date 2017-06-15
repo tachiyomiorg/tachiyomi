@@ -312,4 +312,6 @@
 <string name="categories">Categorías</string>
     <string name="manga">Manga</string>
     <string name="track">Seguimiento</string>
+    <string name="history">Historial</string>
+
     </resources>
