@@ -7,7 +7,7 @@
     <string name="label_download_queue">Cola de descargas</string>
     <string name="label_library">Mi librería</string>
     <string name="label_recent_manga">Leído Recientemente</string>
-    <string name="label_recent_updates">Actualizaciones recientes</string>
+    <string name="label_recent_updates">Actualizaciones de librería</string>
     <string name="label_catalogues">Catálogos</string>
     <string name="label_categories">Categorías</string>
     <string name="label_selected">Seleccionados: %1$d</string>
