@@ -315,4 +315,5 @@
     <string name="history">Historial</string>
 
     <string name="label_latest_updates">Últimas actualizaciones</string>
+    <string name="action_filter_bookmarked">Marcado</string>
     </resources>
