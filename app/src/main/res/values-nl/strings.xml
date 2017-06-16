@@ -8,7 +8,7 @@
 
     <string name="label_settings">Instellingen</string>
     <string name="label_library">Mijn bibliotheek</string>
-    <string name="label_recent_manga">Recent gelezen</string>
+    <string name="label_recent_manga">Recentelijk gelezen</string>
     <string name="label_catalogues">Catalogen</string>
     <string name="label_latest_updates">Laatste updates</string>
     <string name="label_categories">Categorieën</string>
@@ -45,8 +45,8 @@
     <string name="action_show_downloaded">Gedownload</string>
     <string name="action_next_unread">Volgende ongelezen</string>
     <string name="action_start">Start</string>
-    <string name="action_stop">Stoppen</string>
-    <string name="action_pause">Pauzeren</string>
+    <string name="action_stop">Stop</string>
+    <string name="action_pause">Pauzeer</string>
     <string name="action_close">Sluiten</string>
     <string name="action_previous_chapter">Vorige hoofdstuk</string>
     <string name="action_next_chapter">Volgende hoofdstuk</string>
