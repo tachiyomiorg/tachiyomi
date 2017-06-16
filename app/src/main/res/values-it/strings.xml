@@ -389,4 +389,6 @@
 
     <string name="update_weekly">Settimanalmente</string>
     <string name="update_monthly">Mensilmente</string>
+    <string name="amoled_theme">Tema AMOLED</string>
+    <string name="default_category">Categoria predefinita</string>
     </resources>
