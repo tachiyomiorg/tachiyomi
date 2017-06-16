@@ -294,8 +294,8 @@
     <string name="download_notifier_no_network">Geen netwerkverbinding beschikbaar</string>
     <string name="download_notifier_download_paused">Download gepauzeerd</string>
 
-<string name="label_recent_updates">Bibliotheekupdates</string>
-    <string name="action_sort_total">Totaal aantal hoofdstukken</string>
+<string name="label_recent_updates">Bibliotheek updates</string>
+    <string name="action_sort_total">Aantal hoofdstukken</string>
     <string name="action_sort_up">Sorteer oplopend</string>
     <string name="action_sort_down">Sorteer aflopend</string>
     <string name="app_not_available">Applicatie niet beschikbaar</string>
@@ -324,7 +324,7 @@
     <string name="disabled">Uitgeschakeld</string>
     <string name="fourth_to_last">Op 3 na laatste</string>
     <string name="fifth_to_last">Op 4 na laatste</string>
-    <string name="pref_clear_chapter_cache">Hoofdstukcache legen</string>
+    <string name="pref_clear_chapter_cache">Leeg hoofdstuk cache</string>
     <string name="cache_deleted">Cache geleegd. %1$d bestanden zijn verwijderd</string>
     <string name="cache_delete_error">Er is een fout opgetreden bij het legen van de cache</string>
     <string name="pref_clear_database">Database legen</string>
@@ -346,7 +346,7 @@
     <string name="pref_update_only_non_completed">Update alleen lopende manga</string>
     <string name="pref_auto_update_manga_sync">Synchroniseer hoofdstukken na lezen</string>
     <string name="pref_lock_orientation">Vergrendel oriëntatie</string>
-    <string name="pref_keep_screen_on">Laat het scherm aan</string>
+    <string name="pref_keep_screen_on">Automatisch dimmen uitschakelen</string>
     <string name="pref_download_new_categories">Categorieën om op te nemen in de download</string>
 
       <string name="clear_database_confirmation">Ben je zeker? Gelezen hoofdstukken en voortgang voor manga niet in de bibliotheek zullen verloren gaan</string>
