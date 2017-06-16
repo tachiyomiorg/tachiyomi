@@ -50,7 +50,7 @@
     <string name="action_close">Sluiten</string>
     <string name="action_previous_chapter">Vorige hoofdstuk</string>
     <string name="action_next_chapter">Volgende hoofdstuk</string>
-    <string name="label_download_queue">Downloadwachtrij</string>
+    <string name="label_download_queue">Downloads</string>
     <string name="action_update_library">Bibliotheek bijwerken</string>
     <string name="action_retry">Opnieuw proberen</string>
     <string name="action_remove">Verwijderen</string>
