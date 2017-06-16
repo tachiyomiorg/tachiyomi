@@ -8,7 +8,7 @@
 
     <string name="label_settings">Instellingen</string>
     <string name="label_library">Mijn bibliotheek</string>
-    <string name="label_recent_manga">Recentelijk gelezen</string>
+    <string name="label_recent_manga">Onlangs gelezen</string>
     <string name="label_catalogues">Catalogen</string>
     <string name="label_latest_updates">Laatste updates</string>
     <string name="label_categories">Categorieën</string>
