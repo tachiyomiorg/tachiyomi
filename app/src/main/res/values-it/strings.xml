@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="name">Nome</string>
 
@@ -369,4 +370,18 @@
     <string name="download_notifier_text_only_wifi">Nessuna connessione Wi-Fi disponibile</string>
     <string name="download_notifier_no_network">Nessuna connessione di rete disponibile</string>
 
-</resources>
+<string name="categories">Categorie</string>
+    <string name="manga">Manga</string>
+    <string name="history">Cronologia</string>
+
+    <string name="action_sort_total">Capitoli totali</string>
+    <string name="action_add">Aggiungi</string>
+    <string name="action_close">Chiudi</string>
+    <string name="action_move">Sposta</string>
+    <string name="action_undo">Annulla</string>
+    <string name="action_export">Esporta</string>
+    <string name="action_open_log">Apri log</string>
+    <string name="action_create">Crea</string>
+    <string name="action_restore">Ripristina</string>
+
+    </resources>
