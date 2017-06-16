@@ -391,4 +391,22 @@
     <string name="update_monthly">Mensilmente</string>
     <string name="amoled_theme">Tema AMOLED</string>
     <string name="default_category">Categoria predefinita</string>
+    <string name="track">Monitoraggio</string>
+    <string name="pref_category_tracking">Monitoraggio</string>
+    <string name="default_category_summary">Chiedi sempre</string>
+
+      <string name="pref_crop_borders">Ritaglia i bordi</string>
+    <string name="pref_read_with_volume_keys_inverted">Inverti i tasti del volume</string>
+    <string name="pref_download_new_categories">Categorie da includere nel download</string>
+
+      <string name="pref_create_backup">Crea backup</string>
+    <string name="pref_create_backup_summ">Può essere usato per ripristinare la libreria attuale</string>
+    <string name="pref_restore_backup">Ripristina backup</string>
+    <string name="pref_restore_backup_summ">Ripristina la libreria da un file di backup</string>
+    <string name="pref_backup_directory">Cartella di backup</string>
+    <string name="pref_backup_interval">Frequenza di backup</string>
+    <string name="pref_backup_slots">Backup automatici massimi</string>
+    <string name="backup_created">Backup creato</string>
+    <string name="restore_completed">Ripristino completato</string>
+    <string name="error_opening_log">Impossibile aprire log</string>
     </resources>
