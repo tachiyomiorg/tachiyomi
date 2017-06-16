@@ -220,7 +220,7 @@
     <string name="no_valid_sources">Per favore abilita almeno una fonte valida</string>
 
     <!-- Manga activity -->
-    <string name="manga_not_in_db">Questo manga è stato rimosso dal database</string>
+    <string name="manga_not_in_db">Questo manga è stato rimosso dal database!</string>
 
     <!-- Manga info fragment -->
     <string name="manga_detail_tab">Informazioni</string>
@@ -281,7 +281,7 @@
     <string name="chapters">Capitoli</string>
 
     <!-- Category activity -->
-    <string name="error_category_exists">Esiste già una categoria con questo nome</string>
+    <string name="error_category_exists">Esiste già una categoria con questo nome!</string>
 
     <!-- Dialog remove recently view -->
     <string name="dialog_with_checkbox_remove_description">Questo rimuoverà la data lettura di questo capitolo. Sei sicuro?</string>
@@ -409,4 +409,37 @@
     <string name="backup_created">Backup creato</string>
     <string name="restore_completed">Ripristino completato</string>
     <string name="error_opening_log">Impossibile aprire log</string>
-    </resources>
+    <string name="pref_backup_service_category">Servizio</string>
+    <string name="dialog_restoring_backup">Ripristino backup
+%1$s aggiunto alla libreria</string>
+    <string name="source_not_found">Sorgente non trovata</string>
+    <string name="dialog_restoring_source_not_found">Ripristino backup
+%1$s sorgente non trovata</string>
+    <string name="restore_completed_content">Il ripristino ha impiegato %1$s.
+%2$s errori.</string>
+    <string name="backup_restore_content">Il ripristino usa la sorgente per recuperare i dati, potrebbero essere applicati costi dell\'operatore.
+Prima del ripristino assicurati anche di avere effettuato l\'accesso per le sorgenti che lo richiedono.</string>
+    <string name="file_saved">File salvato in %1$s</string>
+    <string name="backup_choice">Di cosa vuoi effettuare il backup?</string>
+    <string name="restoring_backup">Ripristino backup</string>
+    <string name="creating_backup">Creazione backup</string>
+
+      <string name="pref_refresh_library_tracking">Ricarica metadati di monitoraggio</string>
+    <string name="pref_refresh_library_tracking_summary">Aggiorna stato, punteggio e ultimo capitolo letto a partire dai servizi di monotoraggio</string>
+
+      <string name="also_delete_chapters">Elimina anche i capitoli scaricati</string>
+
+    <string name="no_more_results">Non ci sono altri risultati</string>
+    <string name="local_source">Manga locale</string>
+    <string name="added_to_library">Il manga è stato aggiunto alla tua libreria</string>
+
+    <string name="manga_info_last_chapter_label">Ultimo capitolo</string>
+    <string name="delete_downloads_for_manga">Eliminare i capitoli scaricati?</string>
+
+    <string name="chapter_paused">In pausa</string>
+    <string name="manga_tracking_tab">Monitoraggio</string>
+    <string name="snack_add_to_library">Aggiungi manga alla libreria?</string>
+
+    <string name="download_notifier_download_paused">Download in pausa</string>
+
+</resources>
