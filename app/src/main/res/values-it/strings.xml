@@ -387,4 +387,6 @@
     <string name="app_not_available">Applicazione non disponibile</string>
     <string name="short_recent_updates">Aggiornamenti</string>
 
+    <string name="update_weekly">Settimanalmente</string>
+    <string name="update_monthly">Mensilmente</string>
     </resources>
