@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue_new.search_result
+package eu.kanade.tachiyomi.ui.catalogue.global_search
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager

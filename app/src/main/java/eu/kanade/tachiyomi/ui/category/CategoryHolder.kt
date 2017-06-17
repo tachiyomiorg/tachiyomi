@@ -7,6 +7,7 @@ import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.data.database.models.Category
+import eu.kanade.tachiyomi.util.getRound
 import kotlinx.android.synthetic.main.categories_item.view.*
 
 /**
@@ -38,25 +39,8 @@ class CategoryHolder(view: View, val adapter: CategoryAdapter) : FlexibleViewHol
 
         // Update circle letter image.
         itemView.post {
-            itemView.image.setImageDrawable(getRound(category.name.take(1).toUpperCase()))
+            itemView.image.setImageDrawable(itemView.image.getRound(category.name.take(1).toUpperCase(),false))
         }
-    }
-
-    /**
-     * Returns circle letter image.
-     *
-     * @param text The first letter of string.
-     */
-    private fun getRound(text: String): TextDrawable {
-        val size = Math.min(itemView.image.width, itemView.image.height)
-        return TextDrawable.builder()
-                .beginConfig()
-                .width(size)
-                .height(size)
-                .textColor(Color.WHITE)
-                .useFont(Typeface.DEFAULT)
-                .endConfig()
-                .buildRound(text, ColorGenerator.MATERIAL.getColor(text))
     }
 
     /**

@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue_new.search_result
+package eu.kanade.tachiyomi.ui.catalogue.global_search
 
 import android.os.Bundle
 import eu.kanade.tachiyomi.data.cache.CoverCache
@@ -12,10 +12,7 @@ import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
-import eu.kanade.tachiyomi.ui.catalogue.CataloguePager
 import eu.kanade.tachiyomi.ui.catalogue.CataloguePresenter
-import eu.kanade.tachiyomi.ui.catalogue.Pager
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -80,7 +77,6 @@ class CatalogueSearchPresenter(
                 .flatMap {
                     val source = it
                     it.fetchSearchManga(1, query, FilterList())
-                            .observeOn(Schedulers.io())
                             .flatMap { Observable.from(it.mangas) }
                             .take(10)
                             .map { networkToLocalManga(it, source.id) }

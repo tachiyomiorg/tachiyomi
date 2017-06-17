@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue_new.search_result
+package eu.kanade.tachiyomi.ui.catalogue.global_search
 
 import android.annotation.SuppressLint
 import android.support.v7.widget.LinearLayoutManager
@@ -8,6 +8,7 @@ import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import kotlinx.android.synthetic.main.catalogue_search_item.view.*
@@ -50,12 +51,12 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : F
 
 
 
-    fun bind(searchResult: Pair<List<Manga>, Source>) {
+    fun bind(searchResult: Pair<List<Manga>, CatalogueSource>) {
         val source = searchResult.second
         val mangas = searchResult.first
 
         with(itemView) {
-            title.text = source.name
+            title.text = "${source.name} (${source.lang})"
 
             if (!mangas.isEmpty()) {
                 itemView.nothing_found.visibility = View.GONE

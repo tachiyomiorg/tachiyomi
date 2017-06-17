@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue_new.search_result
+package eu.kanade.tachiyomi.ui.catalogue.global_search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,50 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/material_component_lists_two_line_height"
     android:background="?attr/selectable_list_drawable">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/image"
         android:layout_width="48dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/round_icon_content_description"
         android:paddingEnd="0dp"
         android:paddingStart="16dp"
         android:src="@drawable/branded_logo_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#FF000000"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ellipsize="end"
         android:maxLines="1"
+        android:paddingEnd="0dp"
+        android:paddingStart="16dp"
         android:textAppearance="@style/TextAppearance.Regular.Body1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/image"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
         tools:text="Manga title" />
+
+    <TextView
+        android:id="@+id/source_browse"
+        style="@style/TextAppearance.Medium.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/material_component_dialogs_padding_around_buttons"
+        android:text="Latest"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/source_option"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/source_option"
         style="@style/TextAppearance.Medium.Button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:scaleType="center"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="Open"
-        android:padding="@dimen/material_component_button_text_left_and_right_padding"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_marginEnd="8dp"
+        android:padding="@dimen/material_component_dialogs_padding_around_buttons"
+        android:text="Browse"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

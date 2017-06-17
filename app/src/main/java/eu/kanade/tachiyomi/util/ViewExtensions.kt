@@ -4,9 +4,12 @@ package eu.kanade.tachiyomi.util
 
 import android.graphics.Color
 import android.graphics.Point
+import android.graphics.Typeface
 import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.TextView
+import com.amulyakhare.textdrawable.TextDrawable
+import com.amulyakhare.textdrawable.util.ColorGenerator
 
 /**
  * Returns coordinates of view.
@@ -42,4 +45,22 @@ inline fun View.invisible() {
 
 inline fun View.gone() {
     visibility = View.GONE
+}
+
+/**
+ * Returns a TextDrawable determined by input
+ *
+ * @param text text of [TextDrawable]
+ * @param random random color
+ */
+fun View.getRound(text: String, random : Boolean = true): TextDrawable {
+    val size = Math.min(this.width, this.height)
+    return TextDrawable.builder()
+            .beginConfig()
+            .width(size)
+            .height(size)
+            .textColor(Color.WHITE)
+            .useFont(Typeface.DEFAULT)
+            .endConfig()
+            .buildRound(text, if (random) ColorGenerator.MATERIAL.randomColor else ColorGenerator.MATERIAL.getColor(text))
 }

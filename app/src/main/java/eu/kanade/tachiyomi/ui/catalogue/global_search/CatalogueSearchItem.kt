@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue_new.search_result
+package eu.kanade.tachiyomi.ui.catalogue.global_search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,10 +6,11 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.util.inflate
 
-class CatalogueSearchItem(val searchResult: Pair<List<Manga>, Source>) : AbstractFlexibleItem<CatalogueSearchHolder>() {
+class CatalogueSearchItem(val searchResult: Pair<List<Manga>, CatalogueSource>) : AbstractFlexibleItem<CatalogueSearchHolder>() {
 
     override fun getLayoutRes(): Int {
         return R.layout.catalogue_search_item

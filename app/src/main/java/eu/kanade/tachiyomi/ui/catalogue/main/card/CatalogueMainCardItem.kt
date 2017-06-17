@@ -1,31 +1,29 @@
-package eu.kanade.tachiyomi.ui.catalogue_new
+package eu.kanade.tachiyomi.ui.catalogue.main.card
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import eu.davidea.flexibleadapter.FlexibleAdapter
-import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.util.inflate
 
-class CatalogueItem(val source: Source) : AbstractFlexibleItem<CatalogueHolder>() {
+class CatalogueMainCardItem(val source: eu.kanade.tachiyomi.source.CatalogueSource) : eu.davidea.flexibleadapter.items.AbstractFlexibleItem<CatalogueMainCardHolder>() {
 
     override fun getLayoutRes(): Int {
-        return R.layout.catalogue_item
+        return R.layout.catalogue_main_controller_card_item
     }
 
     override fun createViewHolder(adapter: FlexibleAdapter<*>, inflater: LayoutInflater,
-                                  parent: ViewGroup): CatalogueHolder {
-        return CatalogueHolder(parent.inflate(layoutRes), adapter as CatalogueAdapter)
+                                  parent: ViewGroup): CatalogueMainCardHolder {
+        return CatalogueMainCardHolder(parent.inflate(layoutRes), adapter as CatalogueMainCardAdapter)
     }
 
-    override fun bindViewHolder(adapter: FlexibleAdapter<*>, holder: CatalogueHolder,
+    override fun bindViewHolder(adapter: FlexibleAdapter<*>, holder: CatalogueMainCardHolder,
                                 position: Int, payloads: List<Any?>?) {
         holder.bind(source)
     }
 
     override fun equals(other: Any?): Boolean {
-        if (other is CatalogueItem) {
+        if (other is CatalogueMainCardItem) {
             return source.id == other.source.id
         }
         return false
