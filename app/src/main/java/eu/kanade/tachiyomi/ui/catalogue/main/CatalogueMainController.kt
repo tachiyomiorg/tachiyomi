@@ -7,15 +7,10 @@ import android.view.*
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.getOrDefault
-import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
 import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
-import eu.kanade.tachiyomi.util.getRound
 import eu.kanade.tachiyomi.widget.preference.SourceLoginDialog
-import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.view.*
 import kotlinx.android.synthetic.main.catalogue_main_controller.view.*
 
 class CatalogueMainController : NucleusController<CatalogueMainPresenter>(), SourceLoginDialog.Listener {

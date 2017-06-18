@@ -7,6 +7,7 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.viewholders.FlexibleViewHolder
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.online.LoginSource
@@ -58,6 +59,7 @@ class CatalogueMainHolder(view: View, val adapter: CatalogueMainAdapter) : Flexi
             val lang = sourcePair.first
 
             when (lang){
+                "" -> title.text = context.getString(R.string.local)
                 "recent" -> title.gone()
                 else -> {
                     val locale = Locale(sourcePair.first)
