@@ -77,6 +77,7 @@ class CatalogueSearchPresenter(
                 .flatMap {
                     val source = it
                     it.fetchSearchManga(1, query, FilterList())
+                            .onExceptionResumeNext(Observable.empty())
                             .flatMap { Observable.from(it.mangas) }
                             .take(10)
                             .map { networkToLocalManga(it, source.id) }

@@ -23,6 +23,7 @@
         <item name="android:listSelector">?colorAccent</item>
         <item name="android:divider">@color/dividerLight</item>
         <item name="android:listDivider">@drawable/line_divider_light</item>
+        <item name="rippleColor">@color/rippleColorLight</item>
 
         <!-- Themes -->
         <item name="windowActionModeOverlay">true</item>
@@ -32,8 +33,6 @@
 
 
         <!-- Custom Attributes-->
-        <item name="selectable_list_drawable">@drawable/list_item_selector_light</item>
-        <item name="selectable_library_drawable">@drawable/library_item_selector_light</item>
         <item name="text_color_primary">@color/textColorPrimaryLight</item>
         <item name="background_card">@color/dialogLight</item>
     </style>
@@ -59,6 +58,7 @@
         <item name="android:listSelector">?colorAccent</item>
         <item name="android:divider">@color/dividerDark</item>
         <item name="android:listDivider">@drawable/line_divider_dark</item>
+        <item name="rippleColor">@color/rippleColorDark</item>
 
         <!-- Themes -->
         <item name="windowActionModeOverlay">true</item>
@@ -70,8 +70,6 @@
 
         <!-- Custom Attributes-->
         <item name="navigation_view_theme">@style/Theme.Widget.NavigationView.Dark</item>
-        <item name="selectable_list_drawable">@drawable/list_item_selector_dark</item>
-        <item name="selectable_library_drawable">@drawable/library_item_selector_dark</item>
         <item name="text_color_primary">@color/textColorPrimaryDark</item>
         <item name="background_card">@color/dialogDark</item>
     </style>
@@ -87,8 +85,6 @@
         <item name="android:colorBackground">@color/md_black_1000</item>
 
         <!-- Custom Attributes-->
-        <item name="selectable_list_drawable">@drawable/list_item_selector_amoled</item>
-        <item name="selectable_library_drawable">@drawable/library_item_selector_amoled</item>
         <item name="background_card">@color/md_black_1000</item>
     </style>
 

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/material_component_lists_two_line_height"
-    android:background="?attr/selectable_list_drawable">
+    android:background="@drawable/list_item_selector">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image"
@@ -35,7 +35,7 @@
         tools:text="Manga title" />
 
     <TextView
-        android:id="@+id/source_option"
+        android:id="@+id/source_browse"
         style="@style/TextAppearance.Medium.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

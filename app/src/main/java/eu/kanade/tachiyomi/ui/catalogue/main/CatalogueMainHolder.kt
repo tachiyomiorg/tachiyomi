@@ -8,7 +8,6 @@ import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
@@ -17,42 +16,16 @@ import eu.kanade.tachiyomi.ui.catalogue.main.card.CatalogueMainCardItem
 import eu.kanade.tachiyomi.util.gone
 import eu.kanade.tachiyomi.widget.preference.SourceLoginDialog
 import kotlinx.android.synthetic.main.catalogue_main_controller_card.view.*
-import uy.kohesive.injekt.Injekt
-import uy.kohesive.injekt.api.get
 import java.util.*
 
-class CatalogueMainHolder(view: View, val adapter: CatalogueMainAdapter) : FlexibleViewHolder(view, adapter), FlexibleAdapter.OnItemClickListener {
+/**
+ * Binds the [CatalogueMainItem] to the view.
+ */
+class CatalogueMainHolder(view: View, val adapter: CatalogueMainAdapter) : FlexibleViewHolder(view, adapter) {
     /**
      * Adapter containing sources
      */
-    private var adapterSource = CatalogueMainCardAdapter(this)
-
-    val prefs: PreferencesHelper = Injekt.get()
-    val controller = adapter.controller
-
-    override fun onItemClick(position: Int): Boolean {
-        val item = adapterSource.getItem(position)
-        val source = item.source
-        if (source is LoginSource && !source.isLogged()) {
-            val dialog = SourceLoginDialog(source)
-            dialog.targetController = controller
-            dialog.showDialog(controller.router)
-        } else {
-            // Update last used
-            setLastUsedSource(item.source.id)
-            if (controller.firstUse)
-                controller.presenter.loadRecentSources()
-            // Open the catalogue view.
-            controller.router.pushController(RouterTransaction.with(CatalogueController(null, item.source))
-                    .pushChangeHandler(FadeChangeHandler())
-                    .popChangeHandler(FadeChangeHandler()))
-        }
-        return false
-    }
-
-    fun setLastUsedSource(key: Long) {
-        prefs.lastUsedCatalogueSource().set(key)
-    }
+    private var adapterSource = CatalogueMainCardAdapter(adapter.controller)
 
     fun bind(sourcePair: Pair<String, List<CatalogueSource>>) {
         with(itemView) {

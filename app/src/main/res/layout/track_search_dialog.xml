@@ -40,7 +40,7 @@
         android:clipToPadding="false"
         android:divider="@null"
         android:dividerHeight="0dp"
-        android:listSelector="?attr/selectable_list_drawable"
+        android:listSelector="@drawable/list_item_selector"
         android:scrollbarStyle="outsideOverlay"
         android:visibility="gone"/>
 

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/material_component_lists_two_line_height"
-    android:background="?attr/selectable_list_drawable">
+    android:background="@drawable/list_item_selector">
 
     <ImageView
         android:id="@+id/image"
         android:layout_width="48dp"
-        android:layout_height="0dp"
+        android:layout_height="48dp"
         android:contentDescription="@string/round_icon_content_description"
         android:paddingEnd="0dp"
-        android:paddingStart="16dp"
-        android:src="@drawable/branded_logo_icon"
+        android:paddingStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -25,26 +25,28 @@
         android:maxLines="1"
         android:paddingEnd="0dp"
         android:paddingStart="16dp"
-        android:textAppearance="@style/TextAppearance.Regular.Body1"
+        android:textAppearance="@style/TextAppearance.Regular.SubHeading"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/image"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Manga title" />
 
     <TextView
-        android:id="@+id/source_browse"
+        android:id="@+id/source_latest"
+        android:background="@drawable/list_item_selector"
         style="@style/TextAppearance.Medium.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="@dimen/material_component_dialogs_padding_around_buttons"
         android:text="Latest"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/source_option"
+        app:layout_constraintEnd_toStartOf="@+id/source_browse"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/source_option"
+        android:id="@+id/source_browse"
         style="@style/TextAppearance.Medium.Button"
+        android:background="@drawable/list_item_selector"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"

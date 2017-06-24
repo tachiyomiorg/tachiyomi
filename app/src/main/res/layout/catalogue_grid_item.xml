@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectable_library_drawable">
+    android:background="@drawable/lib_item_selector">
 
     <FrameLayout
         android:layout_width="wrap_content"

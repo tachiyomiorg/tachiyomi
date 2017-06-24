@@ -198,7 +198,7 @@
 
     <style name="Theme.Widget.SpinnerItem" parent="Widget.AppCompat.DropDownItem.Spinner">
         <item name="android:textColor">?attr/text_color_primary</item>
-        <item name="android:background">?attr/selectable_list_drawable</item>
+        <item name="android:background">@drawable/list_item_selector</item>
     </style>
 
     <!--===-->

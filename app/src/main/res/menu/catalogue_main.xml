@@ -8,4 +8,9 @@
         android:icon="@drawable/ic_search_white_24dp"
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.support.v7.widget.SearchView"/>
+
+    <item android:id="@+id/action_settings"
+        android:title="@string/pref_category_sources"
+        android:icon="@drawable/ic_settings_white_24dp"
+        app:showAsAction="never"/>
 </menu>

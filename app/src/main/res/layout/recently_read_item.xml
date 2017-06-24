@@ -57,7 +57,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
-                android:background="?attr/selectable_list_drawable"
+                android:background="@drawable/list_item_selector"
                 android:clickable="true"
                 android:padding="8dp"
                 android:text="@string/action_remove"
@@ -70,7 +70,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@id/remove"
                 android:layout_toRightOf="@id/remove"
-                android:background="?attr/selectable_list_drawable"
+                android:background="@drawable/list_item_selector"
                 android:padding="8dp"
                 android:text="@string/action_resume"
                 android:textAppearance="@style/TextAppearance.Medium.Button" />
