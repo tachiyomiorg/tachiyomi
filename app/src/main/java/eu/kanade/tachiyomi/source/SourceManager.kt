@@ -58,7 +58,8 @@ open class SourceManager(private val context: Context) {
             Mangachan(),
             Readmangatoday(),
             Mangasee(),
-            WieManga()
+            WieManga(),
+            Mangazuki()
     )
 
     private fun createYamlSources(): List<Source> {
