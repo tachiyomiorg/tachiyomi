@@ -159,7 +159,7 @@
     <string name="pref_backup_directory">Back-up map</string>
     <string name="pref_backup_service_category">Service</string>
     <string name="pref_backup_interval">Back-up frequentie</string>
-    <string name="pref_backup_slots">Max aantal back-ups</string>
+    <string name="pref_backup_slots">Max aantal automatische back-ups</string>
     <string name="dialog_restoring_backup">Back-up terugzetten
 %1$s toegevoegd aan bibliotheek</string>
     <string name="source_not_found">Bron niet gevonden</string>
