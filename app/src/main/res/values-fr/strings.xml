@@ -57,7 +57,7 @@
     <string name="action_retry">Réessayer</string>
     <string name="action_remove">Supprimer</string>
     <string name="action_resume">Reprendre</string>
-    <string name="action_open_in_browser">Ouvrir dans le navigateur</string>
+    <string name="action_open_in_browser">Ouvre dans le navigateur</string>
     <string name="action_add_to_home_screen">Ajouter à l\'écran d\'accueil</string>
     <string name="action_display_mode">Changer le mode d\'affichage</string>
     <string name="action_display">Affichage</string>
