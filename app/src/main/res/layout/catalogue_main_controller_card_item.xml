@@ -11,12 +11,12 @@
         android:id="@+id/image"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:contentDescription="@string/round_icon_content_description"
         android:paddingEnd="0dp"
         android:paddingStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/ic_launcher_round"/>
 
     <TextView
         android:id="@+id/title"

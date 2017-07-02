@@ -22,11 +22,14 @@ import kotlinx.android.synthetic.main.catalogue_main_controller.view.*
  * This controller shows and manages the different catalogues enabled by the user.
  * This controller should only handle UI actions, IO actions should be done by [CatalogueMainPresenter]
  * [SourceLoginDialog.Listener] refreshes the adapter on successful login of catalogues.
+ * [CatalogueMainCardAdapter.OnBrowseClickListener] call function data on browse item click.
+ * [CatalogueMainCardAdapter.OnLatestClickListener] call function data on latest item click
  */
 class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
         SourceLoginDialog.Listener,
         CatalogueMainCardAdapter.OnBrowseClickListener,
         CatalogueMainCardAdapter.OnLatestClickListener {
+
     /**
      * Adapter containing sources.
      */
@@ -55,13 +58,16 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
      *
      * @param inflater used to load the layout xml.
      * @param container containing parent views.
+     * @return inflated view.
      */
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
         return inflater.inflate(R.layout.catalogue_main_controller, container, false)
     }
 
     /**
-     * Set  the title of controller
+     * Set  the title of controller.
+     *
+     * @return title.
      */
     override fun getTitle(): String? {
         return applicationContext?.getString(R.string.label_catalogues)
@@ -69,13 +75,17 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
 
     /**
      * Create the [CatalogueMainPresenter] used in controller.
+     *
+     * @return instance of [CatalogueMainPresenter]
      */
     override fun createPresenter(): CatalogueMainPresenter {
         return CatalogueMainPresenter()
     }
 
     /**
-     * Called when login dialog is closed, refreshes the adapter
+     * Called when login dialog is closed, refreshes the adapter.
+     *
+     * @param source clicked item containing source information.
      */
     override fun loginDialogClosed(source: LoginSource) {
         adapter.clear()
@@ -84,17 +94,18 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
         presenter.loadRecentSources()
     }
 
+    /**
+     * Called when browse or item is clicked in [CatalogueMainCardAdapter]
+     */
     override fun OnBrowseClickListener(item: CatalogueMainCardItem) {
         val source = item.source
         if (source is LoginSource && !source.isLogged()) {
             val dialog = SourceLoginDialog(source)
-            dialog.targetController = this@CatalogueMainController
+            dialog.targetController = this
             dialog.showDialog(router)
         } else {
             // Update last used
-            presenter.prefs.lastUsedCatalogueSource().set(item.source.id)
-            if (isAdded)
-                presenter.loadRecentSources()
+            presenter.setLastUsedSource(item.source.id)
             // Open the catalogue view.
             router.pushController(RouterTransaction.with(CatalogueController(null, item.source))
                     .pushChangeHandler(FadeChangeHandler())
@@ -102,6 +113,9 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
         }
     }
 
+    /**
+     * Called when latest is clicked in [CatalogueMainCardAdapter]
+     */
     override fun OnLatestClickListener(item: CatalogueMainCardItem) {
         router.pushController((RouterTransaction.with(LatestUpdatesController(null, item.source)))
                 .popChangeHandler(FadeChangeHandler())
@@ -109,12 +123,13 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
     }
 
     /**
-     * Adds option items to the options menu.
+     * Adds items to the options menu.
      *
      * @param menu menu containing options.
      * @param inflater used to load the menu xml.
      */
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        // Inflate menu
         inflater.inflate(R.menu.catalogue_main, menu)
 
         // Initialize search option.
@@ -143,14 +158,13 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
 
     /**
      * Called when an option menu item has been selected by the user.
-
+     *
      * @param item The selected item.
-     * *
      * @return True if this event has been consumed, false if it has not.
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-        // Initialize option to open catalogue settings.
+            // Initialize option to open catalogue settings.
             R.id.action_settings -> {
                 router.pushController((RouterTransaction.with(SettingsSourcesController()))
                         .popChangeHandler(FadeChangeHandler())
@@ -172,7 +186,6 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
         with(view) {
             // Create recycler and set adapter.
             recycler.layoutManager = LinearLayoutManager(context)
-            recycler.setHasFixedSize(true)
             recycler.adapter = adapter
         }
     }
@@ -200,6 +213,5 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
                 adapter.updateItem(0, it, null)
             }
         }
-
     }
 }

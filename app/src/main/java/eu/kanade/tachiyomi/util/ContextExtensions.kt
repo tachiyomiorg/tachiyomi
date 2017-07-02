@@ -9,7 +9,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.content.res.Resources
-import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.os.PowerManager
 import android.support.annotation.StringRes
@@ -17,8 +16,6 @@ import android.support.v4.app.NotificationCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.LocalBroadcastManager
 import android.widget.Toast
-import com.jwang123.flagkit.FlagKit
-import eu.kanade.tachiyomi.R
 
 /**
  * Display a toast in this context.
@@ -147,23 +144,4 @@ fun Context.isServiceRunning(serviceClass: Class<*>): Boolean {
     val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
     return manager.getRunningServices(Integer.MAX_VALUE)
             .any { className == it.service.className }
-}
-
-/**
- * Returns drawable of flag code
- */
-fun Context.getFlagDrawable(iso: String): Drawable {
-    var lang = iso
-    when (lang) {
-        "en" -> lang = "gb"
-    }
-
-    var resource = getDrawable(R.drawable.ww)
-    try {
-        resource = FlagKit.drawableWithFlag(this, lang)
-    } catch (exception: Resources.NotFoundException) {
-
-    }
-
-    return resource
 }

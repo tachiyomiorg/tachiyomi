@@ -435,9 +435,4 @@
     <string name="download_notifier_text_only_wifi">No wifi connection available</string>
     <string name="download_notifier_no_network">No network connection available</string>
     <string name="download_notifier_download_paused">Download paused</string>
-
-    <!-- catalogue_item.xml -->
-    <string name="round_icon_content_description">Round icon containing first letter of catalogue</string>
-
-
 </resources>

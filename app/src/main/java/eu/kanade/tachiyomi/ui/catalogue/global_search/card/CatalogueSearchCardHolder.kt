@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue.global_search
+package eu.kanade.tachiyomi.ui.catalogue.global_search.card
 
 import android.annotation.SuppressLint
 import android.view.View
@@ -7,10 +7,18 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.widget.StateImageViewTarget
-import kotlinx.android.synthetic.main.catalogue_search_single.view.*
+import kotlinx.android.synthetic.main.catalogue_global_search_controller_card_item.view.*
 
 @SuppressLint("ViewConstructor")
-class CatalogueSearchSingleHolder(view: View, val adapter: CatalogueSearchSingleAdapter) : FlexibleViewHolder(view, adapter) {
+class CatalogueSearchCardHolder(view: View, val adapter: CatalogueSearchCardAdapter) : FlexibleViewHolder(view, adapter) {
+
+    init {
+        // Call onMangaClickListener when item is pressed.
+        itemView.setOnClickListener {
+            val item = adapter.getItem(adapterPosition)
+            adapter.mangaClickListener.OnMangaClickListener(item.manga)
+        }
+    }
 
     fun bind(manga: Manga) {
         itemView.tvTitle.text = manga.title

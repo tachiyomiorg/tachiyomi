@@ -1,32 +1,65 @@
 package eu.kanade.tachiyomi.ui.catalogue.global_search
 
-import android.annotation.SuppressLint
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.bluelinelabs.conductor.RouterTransaction
-import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
-import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.source.CatalogueSource
-import eu.kanade.tachiyomi.source.Source
-import eu.kanade.tachiyomi.ui.manga.MangaController
-import kotlinx.android.synthetic.main.catalogue_search_item.view.*
+import eu.kanade.tachiyomi.ui.catalogue.global_search.card.CatalogueSearchCardAdapter
+import eu.kanade.tachiyomi.ui.catalogue.global_search.card.CatalogueSearchCardHolder
+import eu.kanade.tachiyomi.ui.catalogue.global_search.card.CatalogueSearchCardItem
+import kotlinx.android.synthetic.main.catalogue_global_search_controller_card.view.*
 
-@SuppressLint("ViewConstructor")
-class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : FlexibleViewHolder(view, adapter), FlexibleAdapter.OnItemClickListener {
+/**
+ * Holder that binds the [CatalogueSearchItem] containing catalogue cards.
+ *
+ * @param view view of [CatalogueSearchItem]
+ * @param adapter instance of [CatalogueSearchAdapter]
+ */
+class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : FlexibleViewHolder(view, adapter) {
 
-    private var mangaAdapter: CatalogueSearchSingleAdapter? = null
+    /**
+     * Adapter containing manga from search results.
+     */
+    private var mangaAdapter: CatalogueSearchCardAdapter? = null
 
-    override fun onItemClick(position: Int): Boolean {
-        val item = mangaAdapter?.getItem(position) as? CatalogueSearchSingleItem ?: return false
-        adapter.controller.router.pushController(RouterTransaction.with(MangaController(item.manga, true))
-                .pushChangeHandler(FadeChangeHandler())
-                .popChangeHandler(FadeChangeHandler()))
-        return true
+
+    fun bind(searchResult: Pair<List<Manga>, CatalogueSource>) {
+        val source = searchResult.second
+        val mangas = searchResult.first
+
+        with(itemView) {
+            // Set Title witch country code if available.
+            title.text = if (!source.lang.isEmpty()) "${source.name} (${source.lang})" else source.name
+
+            if (!mangas.isEmpty()) {
+                // Show search results.
+                itemView.nothing_found.visibility = View.GONE
+                itemView.recycler.visibility = View.VISIBLE
+
+                // Set layout horizontal.
+                recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                recycler.isNestedScrollingEnabled = false
+
+                // Set adapter.
+                mangaAdapter = CatalogueSearchCardAdapter(adapter.controller)
+                recycler.adapter = mangaAdapter
+
+                // Update data set.
+                mangaAdapter?.updateDataSet(searchResult.first.map(::CatalogueSearchCardItem))
+            } else {
+                itemView.nothing_found.visibility = View.VISIBLE
+                itemView.recycler.visibility = View.GONE
+            }
+        }
     }
 
-    fun setImage(manga: Manga){
+    /**
+     * Called from the presenter when a manga is initialized.
+     *
+     * @param manga the initialized manga.
+     */
+    fun setImage(manga: Manga) {
         getHolder(manga)?.setImage(manga)
     }
 
@@ -36,45 +69,16 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : F
      * @param manga the manga to find.
      * @return the holder of the manga or null if it's not bound.
      */
-    private fun getHolder(manga: Manga): CatalogueSearchSingleHolder? {
+    private fun getHolder(manga: Manga): CatalogueSearchCardHolder? {
         val adapter = mangaAdapter ?: return null
 
         adapter.allBoundViewHolders.forEach { holder ->
             val item = adapter.getItem(holder.adapterPosition)
             if (item != null && item.manga.id!! == manga.id!!) {
-                return holder as CatalogueSearchSingleHolder
+                return holder as CatalogueSearchCardHolder
             }
         }
 
         return null
-    }
-
-
-
-    fun bind(searchResult: Pair<List<Manga>, CatalogueSource>) {
-        val source = searchResult.second
-        val mangas = searchResult.first
-
-        with(itemView) {
-            title.text = "${source.name} (${source.lang})"
-
-            if (!mangas.isEmpty()) {
-                itemView.nothing_found.visibility = View.GONE
-                itemView.recycler.visibility = View.VISIBLE
-                recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                recycler.isNestedScrollingEnabled = false
-                mangaAdapter = CatalogueSearchSingleAdapter(this@CatalogueSearchHolder)
-                recycler.adapter = mangaAdapter
-                mangaAdapter?.updateDataSet(searchResult.first.map(::CatalogueSearchSingleItem))
-            }else{
-                itemView.nothing_found.visibility = View.VISIBLE
-                itemView.recycler.visibility = View.GONE
-            }
-        }
-
-        // Update circle letter image.
-//        itemView.post {
-//            itemView.image.setImageDrawable(getRound(source.name.take(1).toUpperCase()))
-//        }
     }
 }

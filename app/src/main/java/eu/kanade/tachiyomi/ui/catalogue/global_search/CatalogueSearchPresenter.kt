@@ -1,16 +1,17 @@
 package eu.kanade.tachiyomi.ui.catalogue.global_search
 
 import android.os.Bundle
-import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.CatalogueSource
+import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.source.model.SManga
+import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.catalogue.CataloguePresenter
 import rx.Observable
@@ -22,11 +23,17 @@ import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
+/**
+ * Presenter of [CatalogueSearchController]
+ * Function calls should be done from here. UI calls should be done from the controller.
+ *
+ * @param sourceManager manages the different sources.
+ * @param preferencesHelper manages the database calls.
+ */
 class CatalogueSearchPresenter(
         val sourceManager: SourceManager = Injekt.get(),
         val db: DatabaseHelper = Injekt.get(),
-        val prefs: PreferencesHelper = Injekt.get(),
-        val coverCache: CoverCache = Injekt.get()
+        val preferencesHelper: PreferencesHelper = Injekt.get()
 ) : BasePresenter<CatalogueSearchController>() {
 
     /**
@@ -48,16 +55,13 @@ class CatalogueSearchPresenter(
     /**
      * Subscription for the pager.
      */
-    private var pagerSubscription: Subscription? = null
+    private var searchSubscription: Subscription? = null
 
     /**
      * Subscription to initialize manga details.
      */
     private var initializerSubscription: Subscription? = null
 
-    /**
-     * {@inheritDoc}
-     */
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
@@ -66,33 +70,10 @@ class CatalogueSearchPresenter(
         }
     }
 
-    fun globalSource(query: String) {
-        subscribeToMangaInitializer()
-        this.query = query
-
-        // Prepare the pager.
-        pagerSubscription?.let { remove(it) }
-        pagerSubscription = Observable.from(sources)
-                .observeOn(Schedulers.io())
-                .flatMap {
-                    val source = it
-                    it.fetchSearchManga(1, query, FilterList())
-                            .onExceptionResumeNext(Observable.empty())
-                            .flatMap { Observable.from(it.mangas) }
-                            .take(10)
-                            .map { networkToLocalManga(it, source.id) }
-                            .toList()
-                            .doOnNext { initializeMangas(it, source) }
-                            .map { Pair(it, source) }
-                            .map(::CatalogueSearchItem)
-
-                }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeReplay({ view, manga ->
-                    view.updateList(manga)
-                }, { _, error ->
-                    Timber.e(error)
-                })
+    override fun onDestroy() {
+        initializerSubscription?.unsubscribe()
+        searchSubscription?.unsubscribe()
+        super.onDestroy()
     }
 
     override fun onSave(state: Bundle) {
@@ -100,41 +81,61 @@ class CatalogueSearchPresenter(
         super.onSave(state)
     }
 
-
-
-
     /**
      * Returns a list of enabled sources ordered by language and name.
+     *
+     * @return list containing enabled sources.
      */
-    private fun getEnabledSources(): List<CatalogueSource> {
-        val languages = prefs.enabledLanguages().getOrDefault()
-        val hiddenCatalogues = prefs.hiddenCatalogues().getOrDefault()
-
-        // Ensure at least one language
-        if (languages.isEmpty()) {
-            languages.add("en")
-        }
+    fun getEnabledSources(): List<CatalogueSource> {
+        val languages = preferencesHelper.enabledLanguages().getOrDefault()
+        val hiddenCatalogues = preferencesHelper.hiddenCatalogues().getOrDefault()
 
         return sourceManager.getCatalogueSources()
                 .filter { it.lang in languages }
+                .filterNot { it is LoginSource && !it.isLogged() }
                 .filterNot { it.id.toString() in hiddenCatalogues }
-                .sortedBy { "(${it.lang}) ${it.name}" }
+                .sortedBy { "(${it.lang}) ${it.name}" } +
+                sourceManager.get(LocalSource.ID) as LocalSource
     }
 
+    fun startGlobalSearch(query: String) {
+        subscribeToMangaInitializer()
+
+        searchSubscription?.unsubscribe()
+        searchSubscription = Observable.from(sources)
+                .observeOn(Schedulers.io())
+                .flatMap {
+                    val source = it
+                    it.fetchSearchManga(1, query, FilterList())
+                            .onExceptionResumeNext(Observable.empty()) // Ignore timeouts.
+                            .flatMap { Observable.from(it.mangas).take(10) } // Get at most 10 manga from search result.
+                            .map { networkToLocalManga(it, source.id) } // Convert to local manga.
+                            .toList()
+                            .doOnNext { initializeManga(it, source) } // Load manga covers.
+                            .map { Pair(it, source) } // Create pair
+                            .map(::CatalogueSearchItem) // Map to CatalogueItem.
+                }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeReplay({ view, manga ->
+                    view.addSearchResult(manga)
+                }, { _, error ->
+                    Timber.e(error)
+                })
+    }
     /**
      * Initialize a list of manga.
      *
-     * @param mangas the list of manga to initialize.
+     * @param manga the list of manga to initialize.
      */
-    fun initializeMangas(mangas: List<Manga>, source: Source) {
-        mangaDetailSubject.onNext(Pair(mangas, source))
+    fun initializeManga(manga: List<Manga>, source: Source) {
+        mangaDetailSubject.onNext(Pair(manga, source))
     }
 
     /**
      * Subscribes to the initializer of manga details and updates the view if needed.
      */
     private fun subscribeToMangaInitializer() {
-        initializerSubscription?.let { remove(it) }
+        initializerSubscription?.unsubscribe()
         initializerSubscription = mangaDetailSubject.observeOn(Schedulers.io())
                 .flatMap {
                     val source = it.second
@@ -151,7 +152,6 @@ class CatalogueSearchPresenter(
                 }, { error ->
                     Timber.e(error)
                 })
-                .apply { add(this) }
     }
 
     /**
@@ -189,9 +189,4 @@ class CatalogueSearchPresenter(
         }
         return localManga
     }
-
-    fun getSource(key: Long): Source? {
-        return sourceManager.get(key)
-    }
-
 }

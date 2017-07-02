@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.ui.catalogue.main
 
 import android.os.Bundle
-import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.CatalogueSource
@@ -14,11 +13,16 @@ import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
-
+/**
+ * Presenter of [CatalogueMainController]
+ * Function calls should be done from here. UI calls should be done from the controller.
+ *
+ * @param sourceManager manages the different sources.
+ * @param preferencesHelper manages the database calls.
+ */
 class CatalogueMainPresenter(
         val sourceManager: SourceManager = Injekt.get(),
-        val db: DatabaseHelper = Injekt.get(),
-        val prefs: PreferencesHelper = Injekt.get()
+        val preferencesHelper: PreferencesHelper = Injekt.get()
 ) : BasePresenter<CatalogueMainController>() {
 
     /**
@@ -26,54 +30,75 @@ class CatalogueMainPresenter(
      */
     val sources by lazy { getEnabledSources() }
 
+    /**
+     * Subscription for retrieving enabled sources.
+     */
     private var sourceSubscription: Subscription? = null
-    private var recentSourceSubscription: Subscription? = null
 
     /**
-     * {@inheritDoc}
+     * Subscription for retrieving most recent used source.
      */
+    private var recentSourceSubscription: Subscription? = null
+
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
+        // Load enabled sources
         loadSources()
 
+        // Load most recently used source.
         loadRecentSources()
     }
 
-    fun loadSources() {
-        sourceSubscription?.unsubscribe()
-        sourceSubscription = Observable.from(sources)
-                .groupBy { it.lang }.flatMap { group -> group.toList().map { group.key to it } }
-                .map(::CatalogueMainItem).toList()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeLatestCache(CatalogueMainController::setSources)
-    }
-
-    fun loadRecentSources(){
-        recentSourceSubscription?.unsubscribe()
-        recentSourceSubscription = prefs.lastUsedCatalogueSource().asObservable()
-                .map { sourceManager.get(it) as CatalogueSource }
-                .map { Pair("recent", listOf(it)) }
-                .map (::CatalogueMainItem)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeLatestCache(CatalogueMainController::setLastUsedSource)
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     override fun onDestroy() {
+        // Unsubscribe subscriptions.
         recentSourceSubscription?.unsubscribe()
         sourceSubscription?.unsubscribe()
         super.onDestroy()
     }
 
     /**
+     * Unsubscribe and create a new subscription to fetch enabled sources.
+     */
+    fun loadSources() {
+        sourceSubscription?.unsubscribe()
+        sourceSubscription = Observable.from(sources)
+                .groupBy { it.lang }.flatMap{ group -> group.toList().map { group.key to it } } //Group by language.
+                .map(::CatalogueMainItem).toList() // Map to CatalogueMainItem.
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeLatestCache(CatalogueMainController::setSources)
+    }
+
+    /**
+     * Unsubscribe and create a new subscription to fetch most recent catalogue.
+     */
+    fun loadRecentSources(){
+        recentSourceSubscription?.unsubscribe()
+        recentSourceSubscription = preferencesHelper.lastUsedCatalogueSource().asObservable()
+                .map { sourceManager.get(it) as CatalogueSource } // Retrieve catalogue.
+                .map { Pair("recent", listOf(it)) } // Create recent item pair.
+                .map (::CatalogueMainItem) // Map to CatalogueMainItem.
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeLatestCache(CatalogueMainController::setLastUsedSource)
+    }
+
+    /**
+     * Update the last used source
+     *
+     * @param id id of source.
+     */
+    fun setLastUsedSource(id: Long){
+        preferencesHelper.lastUsedCatalogueSource().set(id)
+    }
+
+    /**
      * Returns a list of enabled sources ordered by language and name.
+     *
+     * @return list containing enabled sources.
      */
     fun getEnabledSources(): List<CatalogueSource> {
-        val languages = prefs.enabledLanguages().getOrDefault()
-        val hiddenCatalogues = prefs.hiddenCatalogues().getOrDefault()
+        val languages = preferencesHelper.enabledLanguages().getOrDefault()
+        val hiddenCatalogues = preferencesHelper.hiddenCatalogues().getOrDefault()
 
         return sourceManager.getCatalogueSources()
                 .filter { it.lang in languages }
