@@ -3,4 +3,16 @@
     <string name="categories">카테고리</string>
     <string name="manga">만화</string>
     <string name="chapters">챕터</string>
+    <string name="track">동기화</string>
+    <string name="label_latest_updates">다운로드 목록</string>
+    <string name="label_categories">카테고리</string>
+    <string name="label_selected">%1$d 선택됨</string>
+    <string name="label_backup">백업</string>
+
+    <string name="action_settings">세팅</string>
+    <string name="action_filter">필터</string>
+    <string name="action_filter_downloaded">다운로드됨</string>
+    <string name="action_filter_bookmarked">북마크됨</string>
+    <string name="action_filter_unread">아직 안 읽음</string>
+    <string name="action_filter_read">읽음</string>
     </resources>
