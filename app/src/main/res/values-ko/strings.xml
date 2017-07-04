@@ -1,2 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="name">이름</string>
+    <string name="categories">카테고리</string>
+    <string name="manga">만화</string>
+    <string name="chapters">챕터</string>
+    </resources>
