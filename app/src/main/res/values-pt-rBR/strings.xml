@@ -77,7 +77,7 @@
     <string name="action_reset">Redefinir</string>
     <string name="action_undo">Desfazer</string>
     <string name="action_export">Exportar</string>
-    <string name="action_open_log">Abrir registro de eventosc</string>
+    <string name="action_open_log">Abrir registro de eventos</string>
     <string name="action_create">Criar</string>
     <string name="action_restore">Restaurar</string>
 
