@@ -19,7 +19,7 @@
 
     <string name="action_settings">Configurações</string>
     <string name="action_filter">Filtrar</string>
-    <string name="action_filter_downloaded">Baixados</string>
+    <string name="action_filter_downloaded">Download concluído</string>
     <string name="action_filter_bookmarked">Favoritos</string>
     <string name="action_filter_unread">Não lidos</string>
     <string name="action_filter_read">Lidos</string>
@@ -49,7 +49,7 @@
     <string name="action_sort_up">Ordem ascendente</string>
     <string name="action_sort_down">Ordem decrescente</string>
     <string name="action_show_unread">Não lido</string>
-    <string name="action_show_downloaded">Baixado</string>
+    <string name="action_show_downloaded">Download concluído</string>
     <string name="action_next_unread">Próximo não lido</string>
     <string name="action_start">Iniciar</string>
     <string name="action_stop">Parar</string>
@@ -176,7 +176,7 @@
 
       <string name="pref_download_directory">Pasta de downloads</string>
     <string name="pref_download_slots">Downloads simultâneos</string>
-    <string name="pref_download_only_over_wifi">Baixar apenas no Wi-Fi</string>
+    <string name="pref_download_only_over_wifi">Fazer download apenas no Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Excluir ao marcar como lido</string>
     <string name="pref_remove_after_read">Excluir depois de ler</string>
     <string name="custom_dir">Pasta personalizada</string>
@@ -253,7 +253,7 @@ Além disso, certifique-se de ter configurado as fontes que requerem uma conta a
     <string name="library_search_hint">Título ou autor…</string>
     <string name="updating_category">Atualizando categoria</string>
     <string name="confirm_delete_manga">Tem certeza de que deseja remover o mangá selecionado?</string>
-    <string name="also_delete_chapters">Também excluí capítulos baixados</string>
+    <string name="also_delete_chapters">Também excluir os downloads</string>
 
     <string name="source_requires_login">Esta fonte requer uma conta</string>
     <string name="select_source">Selecione uma fonte</string>
@@ -283,4 +283,119 @@ Além disso, certifique-se de ter configurado as fontes que requerem uma conta a
     <string name="rounded_icon">Ícone redondo</string>
     <string name="square_icon">Ícone quadrado</string>
     <string name="star_icon">Ícone de estrela</string>
+    <string name="shortcut_title">Título do atalho</string>
+    <string name="icon_shape">Formato do ícone</string>
+    <string name="icon_creation_fail">"Erro  ao criar o atalho!"</string>
+    <string name="delete_downloads_for_manga">Excluir os downloads dos capítulos?</string>
+
+    <string name="manga_chapters_tab">Capítulos</string>
+    <string name="manga_chapter_no_title">Sem título</string>
+    <string name="display_mode_chapter">Capítulo %1$s</string>
+    <string name="chapter_downloaded">Download concluído</string>
+    <string name="chapter_queued">Na fila</string>
+    <string name="chapter_downloading">Fazendo download</string>
+    <string name="chapter_downloading_progress">Fazendo download (%1$d/%2$d)</string>
+    <string name="chapter_error">Erro</string>
+    <string name="chapter_paused">Pausado</string>
+    <string name="fetch_chapters_error">Erro ao obter capítulos</string>
+    <string name="show_title">Mostrar título</string>
+    <string name="show_chapter_number">Mostrar número do capítulo</string>
+    <string name="sorting_mode">Modo de classificação</string>
+    <string name="sort_by_source">Pela fonte</string>
+    <string name="sort_by_number">Pelo número do capítulo</string>
+    <string name="manga_download">Fazer download</string>
+    <string name="download_1">Fazer download do próximo capítulo</string>
+    <string name="download_5">Fazer download dos próximos 5 capítulos</string>
+    <string name="download_10">Fazer download dos próximos 10 capítulo</string>
+    <string name="download_all">Fazer download de tudo</string>
+    <string name="download_unread">Fazer download dos não lidos</string>
+    <string name="confirm_delete_chapters">Tem certeza de que deseja excluir os capítulos selecionados?</string>
+
+    <string name="manga_tracking_tab">Monitoramento</string>
+    <string name="reading">Lendo</string>
+    <string name="completed">Concluído</string>
+    <string name="dropped">Abandonado</string>
+    <string name="on_hold">Em espera</string>
+    <string name="plan_to_read">Ler depois</string>
+    <string name="score">Avaliação</string>
+    <string name="title">Título</string>
+    <string name="status">Estado</string>
+
+    <string name="error_category_exists">Já existe uma categoria com este nome!</string>
+    <string name="snack_categories_deleted">Categorias excluídas</string>
+
+    <string name="dialog_with_checkbox_remove_description">Esta ação removerá a data de leitura deste capítulo. Tem certeza?</string>
+    <string name="dialog_with_checkbox_reset">Restaurar todos os capítulos deste mangá</string>
+
+    <string name="snack_add_to_library">Adicionar mangá a biblioteca?</string>
+
+    <string name="picture_saved">Imagem salva</string>
+    <string name="saving_picture">Salvando imagem</string>
+    <string name="options">Opções</string>
+
+    <string name="custom_filter">Filtro personalizado</string>
+    <string name="set_as_cover">Usar como capa</string>
+    <string name="cover_updated">Capa atualizada</string>
+    <string name="page_downloaded">Página copiada para %1$s</string>
+    <string name="downloading">Fazendo download…</string>
+    <string name="download_progress">Fazendo download (%1$d%%)</string>
+    <string name="chapter_progress">Página: %1$d</string>
+    <string name="chapter_subtitle">Capítulo %1$s</string>
+    <string name="no_next_chapter">Próximo capítulo não encontrado</string>
+    <string name="no_previous_chapter">Capítulo anterior não encontrado</string>
+    <string name="decode_image_error">A imagem não pôde ser carregada.
+Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</string>
+    <string name="confirm_update_manga_sync">Atualizar o último capítulo de %1$d lido nos serviços ativos?</string>
+    <string name="confirm_set_image_as_cover">Deseja usar esta imagem como capa?</string>
+    <string name="viewer_for_this_series">Visualizador para está série</string>
+
+    <string name="recent_manga_source">%1$s - Cap.%2$s</string>
+
+    <string name="download_queue_error">Ocorreu um erro ao fazer download dos capítulos. Você pode tentar novamente na seção de downloads</string>
+
+    <string name="notification_update_progress">Progresso da atualização: %1$d/%2$d</string>
+    <string name="notification_new_chapters">Novos capítulos encontrados</string>
+    <string name="notification_new_chapters_text">Para %1$d títulos</string>
+    <string name="notification_cover_update_failed">Erro ao atualizar a capa</string>
+    <string name="notification_first_add_to_library">Por favor, adicione o mangá à sua biblioteca antes de fazer isso</string>
+    <string name="notification_not_connected_to_ac_title">Sincronização cancelada</string>
+    <string name="notification_not_connected_to_ac_body">O dispositivo não está conectado à energia</string>
+    <string name="notification_no_connection_title">Sincronização cancelada</string>
+    <string name="notification_no_connection_body">Conexão indisponível</string>
+
+    <string name="file_select_cover">Selecionar imagem de capa</string>
+    <string name="file_select_backup">Selecionar arquivo de backup</string>
+    <string name="file_select_icon">Selecionar ícone do atalho</string>
+
+    <string name="update_check_title">Nova atualização disponível!</string>
+    <string name="update_check_confirm">Fazer download</string>
+    <string name="update_check_ignore">Ignorar</string>
+    <string name="update_check_no_new_updates">Sem atualizações disponíveis</string>
+    <string name="update_check_download_started">Download iniciado</string>
+    <string name="update_check_look_for_updates">Procurando por atualizações</string>
+
+    <string name="update_check_notification_file_download">Fazer download da atualização</string>
+    <string name="update_check_notification_download_in_progress">Download em progresso</string>
+    <string name="update_check_notification_download_complete">Download concluído</string>
+    <string name="update_check_notification_download_error">Erro ao fazer download</string>
+    <string name="update_check_notification_update_available">Atualização disponível</string>
+
+    <string name="description_backdrop">Imagem de fundo do mangá</string>
+    <string name="description_cover">Capa do mangá</string>
+
+    <string name="information_no_downloads">Nenhum download</string>
+    <string name="information_no_recent">Sem capítulos recentes</string>
+    <string name="information_no_recent_manga">Sem mangás lidos recentemente</string>
+    <string name="information_empty_library">Biblioteca vazia</string>
+
+    <string name="download_notifier_downloader_title">Gerenciador de downloads</string>
+    <string name="download_notifier_title_error">Erro</string>
+    <string name="download_notifier_unkown_error">Ocorreu um erro inesperado ao fazer download do capítulo</string>
+    <string name="download_notifier_page_error">Página em falta na pasta</string>
+    <string name="download_notifier_page_ready_error">Página não carregada</string>
+    <string name="download_notifier_text_only_wifi">Nenhuma conexão Wi-Fi disponível</string>
+    <string name="download_notifier_no_network">Conexão à rede indisponível</string>
+    <string name="download_notifier_download_paused">Download pausado</string>
+
+<string name="invalid_combination">O padrão não pode ser selecionado com outras categorias</string>
     </resources>
