@@ -9,7 +9,7 @@
     <string name="label_settings">Configurações</string>
     <string name="label_download_queue">Fila de download</string>
     <string name="label_library">Minha biblioteca</string>
-    <string name="label_recent_manga">Lido recentemente</string>
+    <string name="label_recent_manga">Lidos recentemente</string>
     <string name="label_catalogues">Catálogos</string>
     <string name="label_recent_updates">Atualizações da biblioteca</string>
     <string name="label_latest_updates">Últimas atualizações</string>
@@ -19,7 +19,7 @@
 
     <string name="action_settings">Configurações</string>
     <string name="action_filter">Filtrar</string>
-    <string name="action_filter_downloaded">Download concluído</string>
+    <string name="action_filter_downloaded">Disponível offline</string>
     <string name="action_filter_bookmarked">Favoritos</string>
     <string name="action_filter_unread">Não lidos</string>
     <string name="action_filter_read">Lidos</string>
@@ -49,7 +49,7 @@
     <string name="action_sort_up">Ordem ascendente</string>
     <string name="action_sort_down">Ordem decrescente</string>
     <string name="action_show_unread">Não lido</string>
-    <string name="action_show_downloaded">Download concluído</string>
+    <string name="action_show_downloaded">Disponível offline</string>
     <string name="action_next_unread">Próximo não lido</string>
     <string name="action_start">Iniciar</string>
     <string name="action_stop">Parar</string>
@@ -149,7 +149,7 @@
     <string name="left_to_right_viewer">Esquerda para direita</string>
     <string name="right_to_left_viewer">Direita para esquerda</string>
     <string name="vertical_viewer">Vertical</string>
-    <string name="webtoon_viewer">Vertical continuo</string>
+    <string name="webtoon_viewer">Vertical contínuo</string>
     <string name="pref_image_decoder">Decodificador de imagem</string>
     <string name="pref_image_scale_type">Tipo de escala</string>
     <string name="scale_type_fit_screen">Ajustar à tela</string>
@@ -210,10 +210,10 @@
     <string name="error_opening_log">Não foi possível abrir o registro de eventos</string>
     <string name="restore_completed_content">A restauração levou %1$s.
 %2$s erros encontrados.</string>
-    <string name="backup_restore_content">A restauração usa as fontes para recuperar os dados, cobranças poderão ser feitas pela sua operadora.
-Além disso, certifique-se de ter configurado as fontes que requerem uma conta antes de iniciar a restauração.</string>
+    <string name="backup_restore_content">A restauração usa as fontes para obter os dados, logo cobranças poderão ser efetuadas pela sua operadora devido ao uso de dados móveis.
+Além disso, verifique se as fontes que requerem uma conta foram configuradas corretamente antes de iniciar a restauração.</string>
     <string name="file_saved">Arquivo salvo em %1$s</string>
-    <string name="backup_choice">Do que você fazer backup?</string>
+    <string name="backup_choice">Do que você deseja fazer backup?</string>
     <string name="restoring_backup">Restaurando backup</string>
     <string name="creating_backup">Fazendo backup</string>
 
@@ -229,9 +229,9 @@ Além disso, certifique-se de ter configurado as fontes que requerem uma conta a
     <string name="clear_database_confirmation">Tem certeza? Os capítulos lidos e o progresso em mangás que não estão na sua biblioteca serão perdidos</string>
     <string name="clear_database_completed">Entradas excluídas</string>
     <string name="pref_refresh_library_metadata">Atualizar metadados da biblioteca</string>
-    <string name="pref_refresh_library_metadata_summary">Atualiza informações como as capas, gêneros, descrições e estado dos mangás</string>
+    <string name="pref_refresh_library_metadata_summary">Atualiza informações como as capas, gêneros, descrições e situação dos mangás</string>
     <string name="pref_refresh_library_tracking">Atualizar metadados do monitoramento</string>
-    <string name="pref_refresh_library_tracking_summary">Atualiza informações como estado, avaliações e últimos capítulos lidos dos serviços de monitoramento</string>
+    <string name="pref_refresh_library_tracking_summary">Atualiza informações como situação, avaliações e últimos capítulos lidos dos serviços de monitoramento</string>
 
       <string name="version">Versão</string>
     <string name="build_time">Data de compilação</string>
@@ -253,7 +253,7 @@ Além disso, certifique-se de ter configurado as fontes que requerem uma conta a
     <string name="library_search_hint">Título ou autor…</string>
     <string name="updating_category">Atualizando categoria</string>
     <string name="confirm_delete_manga">Tem certeza de que deseja remover o mangá selecionado?</string>
-    <string name="also_delete_chapters">Também excluir os downloads</string>
+    <string name="also_delete_chapters">Também excluir os capítulos disponíveis offline</string>
 
     <string name="source_requires_login">Esta fonte requer uma conta</string>
     <string name="select_source">Selecione uma fonte</string>
@@ -274,8 +274,8 @@ Além disso, certifique-se de ter configurado as fontes que requerem uma conta a
     <string name="manga_info_author_label">Autor</string>
     <string name="manga_info_artist_label">Artista</string>
     <string name="manga_info_chapters_label">Capítulos</string>
-    <string name="manga_info_last_chapter_label">Último capítulo</string>
-    <string name="manga_info_status_label">Estado</string>
+    <string name="manga_info_last_chapter_label">Capítulo mais recente</string>
+    <string name="manga_info_status_label">Situação</string>
     <string name="manga_info_source_label">Fonte</string>
     <string name="manga_info_genres_label">Gêneros</string>
     <string name="share_text">Confira %1$s! em %2$s</string>
@@ -285,13 +285,13 @@ Além disso, certifique-se de ter configurado as fontes que requerem uma conta a
     <string name="star_icon">Ícone de estrela</string>
     <string name="shortcut_title">Título do atalho</string>
     <string name="icon_shape">Formato do ícone</string>
-    <string name="icon_creation_fail">"Erro  ao criar o atalho!"</string>
-    <string name="delete_downloads_for_manga">Excluir os downloads dos capítulos?</string>
+    <string name="icon_creation_fail">Erro ao criar o atalho!</string>
+    <string name="delete_downloads_for_manga">Excluir os capítulos disponíveis offline?</string>
 
     <string name="manga_chapters_tab">Capítulos</string>
     <string name="manga_chapter_no_title">Sem título</string>
     <string name="display_mode_chapter">Capítulo %1$s</string>
-    <string name="chapter_downloaded">Download concluído</string>
+    <string name="chapter_downloaded">Disponível offline</string>
     <string name="chapter_queued">Na fila</string>
     <string name="chapter_downloading">Fazendo download</string>
     <string name="chapter_downloading_progress">Fazendo download (%1$d/%2$d)</string>
@@ -319,7 +319,7 @@ Além disso, certifique-se de ter configurado as fontes que requerem uma conta a
     <string name="plan_to_read">Ler depois</string>
     <string name="score">Avaliação</string>
     <string name="title">Título</string>
-    <string name="status">Estado</string>
+    <string name="status">Situação</string>
 
     <string name="error_category_exists">Já existe uma categoria com este nome!</string>
     <string name="snack_categories_deleted">Categorias excluídas</string>
