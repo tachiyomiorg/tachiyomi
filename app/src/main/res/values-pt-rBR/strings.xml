@@ -252,7 +252,7 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
 
     <string name="library_search_hint">Título ou autor…</string>
     <string name="updating_category">Atualizando categoria</string>
-    <string name="confirm_delete_manga">Tem certeza de que deseja remover o mangá selecionado?</string>
+    <string name="confirm_delete_manga">Tem certeza de que deseja remover os mangás selecionados?</string>
     <string name="also_delete_chapters">Também excluir os capítulos disponíveis offline</string>
 
     <string name="source_requires_login">Esta fonte requer uma conta</string>
