@@ -51,4 +51,48 @@
     <string name="action_install">설치</string>
     <string name="label_settings">세팅</string>
     <string name="action_display">디스플레이</string>
+    <string name="history">기록</string>
+
+    <string name="label_download_queue">다운로드 큐</string>
+    <string name="label_library">내 서재</string>
+    <string name="label_recent_manga">최근 읽음</string>
+    <string name="label_catalogues">카탈로그</string>
+    <string name="label_recent_updates">서재 업데이트</string>
+    <string name="action_sort_total">모든 챕터</string>
+    <string name="action_sort_up">위로 정렬</string>
+    <string name="action_sort_down">아래로 정렬</string>
+    <string name="action_next_unread">다음 안 읽은 챕터로</string>
+    <string name="action_start">읽기 시작</string>
+    <string name="action_clear">기록 지우기</string>
+    <string name="action_close">닫기</string>
+    <string name="action_previous_chapter">이전 챕터</string>
+    <string name="action_next_chapter">다음 챕터</string>
+    <string name="action_retry">재시도</string>
+    <string name="action_move">이동</string>
+    <string name="action_add_to_home_screen">홈스크린에 추가</string>
+    <string name="action_set_filter">필터 설정</string>
+    <string name="action_share">공유</string>
+    <string name="action_save">저장</string>
+    <string name="action_reset">리셋</string>
+    <string name="action_undo">되돌리기</string>
+    <string name="action_export">내보내기</string>
+    <string name="action_open_log">로그 열기</string>
+    <string name="action_create">만들기</string>
+    <string name="action_restore">복구하기</string>
+
+    <string name="deleting">삭제 중…</string>
+    <string name="loading">로딩 중.…</string>
+
+    <string name="app_not_available">어플리케이션 이용 불가</string>
+    <string name="short_recent_updates">업데이트</string>
+
+    <string name="pref_category_general">일반</string>
+    <string name="pref_category_reader">리더</string>
+    <string name="pref_category_downloads">다운로드</string>
+    <string name="pref_category_sources">소스</string>
+    <string name="pref_category_tracking">트래킹</string>
+    <string name="pref_category_advanced">고급 설정</string>
+    <string name="pref_category_about">정보</string>
+
+      <string name="pref_library_columns">가로로 서재 정렬</string>
     </resources>
