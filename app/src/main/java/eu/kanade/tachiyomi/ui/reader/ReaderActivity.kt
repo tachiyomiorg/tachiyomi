@@ -84,6 +84,8 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private val volumeKeysEnabled by lazy { preferences.readWithVolumeKeys().getOrDefault() }
 
+    private val volumeKeysInverted by lazy { preferences.readWithVolumeKeysInverted().getOrDefault() }
+
     val preferences by injectLazy<PreferencesHelper>()
 
     private var systemUi: SystemUiHelper? = null
@@ -194,7 +196,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 KeyEvent.KEYCODE_VOLUME_DOWN -> {
                     if (volumeKeysEnabled) {
                         if (event.action == KeyEvent.ACTION_UP) {
-                            viewer?.moveDown()
+                            if (!volumeKeysInverted) viewer?.moveDown() else viewer?.moveUp()
                         }
                         return true
                     }
@@ -202,7 +204,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 KeyEvent.KEYCODE_VOLUME_UP -> {
                     if (volumeKeysEnabled) {
                         if (event.action == KeyEvent.ACTION_UP) {
-                            viewer?.moveUp()
+                            if (!volumeKeysInverted) viewer?.moveUp() else viewer?.moveDown()
                         }
                         return true
                     }

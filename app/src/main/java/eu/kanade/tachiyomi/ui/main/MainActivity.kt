@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.main
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
@@ -105,15 +106,8 @@ class MainActivity : BaseActivity() {
         router = Conductor.attachRouter(this, container, savedInstanceState)
         if (!router.hasRootController()) {
             // Set start screen
-            when (intent.action) {
-                SHORTCUT_LIBRARY -> setSelectedDrawerItem(R.id.nav_drawer_library)
-                SHORTCUT_RECENTLY_UPDATED -> setSelectedDrawerItem(R.id.nav_drawer_recent_updates)
-                SHORTCUT_RECENTLY_READ -> setSelectedDrawerItem(R.id.nav_drawer_recently_read)
-                SHORTCUT_CATALOGUES -> setSelectedDrawerItem(R.id.nav_drawer_catalogues)
-                SHORTCUT_MANGA -> router.setRoot(
-                        RouterTransaction.with(MangaController(intent.extras)))
-                SHORTCUT_DOWNLOADS -> setSelectedDrawerItem(R.id.nav_drawer_downloads)
-                else -> setSelectedDrawerItem(startScreenId)
+            if (!handleIntentAction(intent)) {
+                setSelectedDrawerItem(startScreenId)
             }
         }
 
@@ -147,6 +141,29 @@ class MainActivity : BaseActivity() {
                 ChangelogDialogController().showDialog(router)
             }
         }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        if (!handleIntentAction(intent)) {
+            super.onNewIntent(intent)
+        }
+    }
+
+    private fun handleIntentAction(intent: Intent): Boolean {
+        when (intent.action) {
+            SHORTCUT_LIBRARY -> setSelectedDrawerItem(R.id.nav_drawer_library)
+            SHORTCUT_RECENTLY_UPDATED -> setSelectedDrawerItem(R.id.nav_drawer_recent_updates)
+            SHORTCUT_RECENTLY_READ -> setSelectedDrawerItem(R.id.nav_drawer_recently_read)
+            SHORTCUT_CATALOGUES -> setSelectedDrawerItem(R.id.nav_drawer_catalogues)
+            SHORTCUT_MANGA -> router.setRoot(RouterTransaction.with(MangaController(intent.extras)))
+            SHORTCUT_DOWNLOADS -> {
+                if (router.backstack.none { it.controller() is DownloadController }) {
+                    setSelectedDrawerItem(R.id.nav_drawer_downloads)
+                }
+            }
+            else -> return false
+        }
+        return true
     }
 
     override fun onDestroy() {

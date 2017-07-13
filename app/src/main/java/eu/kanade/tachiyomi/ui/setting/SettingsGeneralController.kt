@@ -29,7 +29,8 @@ class SettingsGeneralController : SettingsController() {
         listPreference {
             key = Keys.lang
             titleRes = R.string.pref_language
-            entryValues = arrayOf("", "bg", "en", "es", "fr", "it", "pt", "ru", "vi")
+            entryValues = arrayOf("", "bg", "en", "es", "fr", "it", "lv", "nl", "pt", "pt-BR", "ru",
+                    "vi")
             entries = entryValues.map { value ->
                 val locale = LocaleHelper.getLocaleFromString(value.toString())
                 locale?.getDisplayName(locale)?.capitalize() ?:

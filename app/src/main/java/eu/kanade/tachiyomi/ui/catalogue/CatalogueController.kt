@@ -30,8 +30,8 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.*
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import eu.kanade.tachiyomi.widget.DrawerSwipeCloseListener
-import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.catalogue_controller.view.*
+import kotlinx.android.synthetic.main.main_activity.*
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -170,6 +170,7 @@ open class CatalogueController(bundle: Bundle? = null) :
         activity?.toolbar?.removeView(spinner)
         numColumnsSubscription?.unsubscribe()
         numColumnsSubscription = null
+        searchViewSubscription?.unsubscribe()
         searchViewSubscription = null
         adapter = null
         spinner = null

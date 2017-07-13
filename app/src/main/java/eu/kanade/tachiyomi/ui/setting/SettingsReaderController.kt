@@ -100,6 +100,11 @@ class SettingsReaderController : SettingsController() {
                 titleRes = R.string.pref_read_with_volume_keys
                 defaultValue = false
             }
+            switchPreference {
+                key = Keys.readWithVolumeKeysInverted
+                titleRes = R.string.pref_read_with_volume_keys_inverted
+                defaultValue = false
+            }.apply { dependency = Keys.readWithVolumeKeys }
         }
     }
 

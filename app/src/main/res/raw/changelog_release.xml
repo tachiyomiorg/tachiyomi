@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="true">
 
+    <changelogversion versionName="v0.6.1" changeDate="">
+        <changelogtext>Bugfix release.</changelogtext>
+    </changelogversion>
+
+    <changelogversion versionName="v0.6.0" changeDate="">
+        <changelogtext>Added sorting by total chapters.</changelogtext>
+
+        <changelogtext>Added an option to reverse volume keys navigation.</changelogtext>
+
+        <changelogtext>Added AMOLED theme.</changelogtext>
+
+        <changelogtext>Improved recent chapters view.</changelogtext>
+
+        <changelogtext>Improved UI with a single activity approach.</changelogtext>
+
+        <changelogtext>Fixed backup restore issues.</changelogtext>
+
+        <changelogtext>Fixed Kitsu http 400 errors.</changelogtext>
+
+        <changelogtext>Fixed Batoto catalogue.</changelogtext>
+    </changelogversion>
+
     <changelogversion versionName="v0.5.2" changeDate="">
         <changelogtext>New backup system. Smaller file size but requires a network connection to restore.</changelogtext>
 

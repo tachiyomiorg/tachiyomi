@@ -95,6 +95,7 @@ import java.util.List;
  * {@sample development/samples/Support13Demos/src/com/example/android/supportv13/app/ActionBarTabsPager.java
  *      complete}
  */
+@SuppressWarnings("deprecation")
 public class VerticalViewPagerImpl extends ViewGroup {
     private static final String TAG = "ViewPager";
     private static final boolean DEBUG = false;

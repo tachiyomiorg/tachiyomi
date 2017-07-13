@@ -28,7 +28,7 @@ class Batoto : ParsedHttpSource(), LoginSource {
 
     override val name = "Batoto"
 
-    override val baseUrl = "http://bato.to"
+    override val baseUrl = "https://bato.to"
 
     override val lang = "en"
 
@@ -52,7 +52,7 @@ class Batoto : ParsedHttpSource(), LoginSource {
             .add("Cookie", "lang_option=English")
 
     private val pageHeaders = super.headersBuilder()
-            .add("Referer", "http://bato.to/reader")
+            .add("Referer", "$baseUrl/reader")
             .build()
 
     override fun popularMangaRequest(page: Int): Request {
@@ -69,7 +69,7 @@ class Batoto : ParsedHttpSource(), LoginSource {
 
     override fun popularMangaFromElement(element: Element): SManga {
         val manga = SManga.create()
-        element.select("a[href^=http://bato.to]").first().let {
+        element.select("a[href^=$baseUrl]").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text().trim()
         }
@@ -161,6 +161,18 @@ class Batoto : ParsedHttpSource(), LoginSource {
         else -> SManga.UNKNOWN
     }
 
+    override fun chapterListRequest(manga: SManga): Request {
+        // Https is currently very slow. The replace also saves a redirection.
+        var newUrl = "http://bato.to" + manga.url
+        if ("/comic/_/comics/" !in newUrl) {
+            newUrl = newUrl.replace("/comic/_/", "/comic/_/comics/")
+        }
+
+        return super.chapterListRequest(manga).newBuilder()
+                .url(newUrl)
+                .build()
+    }
+
     override fun chapterListParse(response: Response): List<SChapter> {
         val body = response.body()!!.string()
         val matcher = staffNotice.matcher(body)
@@ -177,7 +189,7 @@ class Batoto : ParsedHttpSource(), LoginSource {
     override fun chapterListSelector() = "tr.row.lang_English.chapter_row"
 
     override fun chapterFromElement(element: Element): SChapter {
-        val urlElement = element.select("a[href^=http://bato.to/reader").first()
+        val urlElement = element.select("a[href^=$baseUrl/reader").first()
 
         val chapter = SChapter.create()
         chapter.setUrlWithoutDomain(urlElement.attr("href"))

@@ -32,6 +32,7 @@ import eu.kanade.tachiyomi.ui.manga.track.TrackController
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.manga_controller.view.*
+import rx.Subscription
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -66,6 +67,10 @@ class MangaController : RxController, TabbedController {
     val chapterCountRelay: BehaviorRelay<Float> = BehaviorRelay.create()
 
     val mangaFavoriteRelay: PublishRelay<Boolean> = PublishRelay.create()
+
+    private val trackingIconRelay: BehaviorRelay<Boolean> = BehaviorRelay.create()
+
+    private var trackingIconSubscription: Subscription? = null
 
     override fun getTitle(): String? {
         return manga?.title
@@ -103,6 +108,7 @@ class MangaController : RxController, TabbedController {
         super.onChangeStarted(handler, type)
         if (type.isEnter) {
             activity?.tabs?.setupWithViewPager(view?.view_pager)
+            trackingIconSubscription = trackingIconRelay.subscribe { setTrackingIconInternal(it) }
         }
     }
 
@@ -122,16 +128,20 @@ class MangaController : RxController, TabbedController {
     }
 
     override fun cleanupTabs(tabs: TabLayout) {
-        setTrackingIcon(false)
+        trackingIconSubscription?.unsubscribe()
+        setTrackingIconInternal(false)
     }
 
     fun setTrackingIcon(visible: Boolean) {
+        trackingIconRelay.call(visible)
+    }
+
+    private fun setTrackingIconInternal(visible: Boolean) {
         val tab = activity?.tabs?.getTabAt(TRACK_CONTROLLER) ?: return
         val drawable = if (visible)
             VectorDrawableCompat.create(resources!!, R.drawable.ic_done_white_18dp, null)
         else null
 
-        // I had no choice but to use reflection...
         val view = tabField.get(tab) as LinearLayout
         val textView = view.getChildAt(1) as TextView
         textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)

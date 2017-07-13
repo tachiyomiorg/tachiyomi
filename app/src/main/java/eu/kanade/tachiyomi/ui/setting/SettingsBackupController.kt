@@ -97,7 +97,7 @@ class SettingsBackupController : SettingsController() {
                 entriesRes = arrayOf(R.string.update_never, R.string.update_6hour,
                         R.string.update_12hour, R.string.update_24hour,
                         R.string.update_48hour, R.string.update_weekly)
-                entryValues = arrayOf("0", "6", "12", "24", "168")
+                entryValues = arrayOf("0", "6", "12", "24", "48", "168")
                 defaultValue = "0"
                 summary = "%s"
 

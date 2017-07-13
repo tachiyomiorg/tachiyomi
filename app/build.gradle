@@ -38,8 +38,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 25
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode 22
-        versionName "0.5.2"
+        versionCode 24
+        versionName "0.6.1"
 
         buildConfigField "String", "COMMIT_COUNT", "\"${getCommitCount()}\""
         buildConfigField "String", "COMMIT_SHA", "\"${getGitSha()}\""
@@ -92,10 +92,6 @@ android {
         checkReleaseBuilds false
     }
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
-
 }
 
 dependencies {
@@ -105,7 +101,7 @@ dependencies {
     compile 'com.github.inorichi:junrar-android:634c1f5'
 
     // Android support library
-    final support_library_version = '25.3.1'
+    final support_library_version = '25.4.0'
     compile "com.android.support:support-v4:$support_library_version"
     compile "com.android.support:appcompat-v7:$support_library_version"
     compile "com.android.support:cardview-v7:$support_library_version"
@@ -126,7 +122,7 @@ dependencies {
     compile 'com.github.pwittchen:reactivenetwork:0.7.0'
 
     // Network client
-    compile "com.squareup.okhttp3:okhttp:3.8.0"
+    compile "com.squareup.okhttp3:okhttp:3.8.1"
     compile 'com.squareup.okio:okio:1.13.0'
 
     // REST
@@ -136,7 +132,7 @@ dependencies {
     compile "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
 
     // JSON
-    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.google.code.gson:gson:2.8.1'
     compile 'com.github.salomonbrys.kotson:kotson:2.5.0'
 
     // YAML
@@ -153,8 +149,8 @@ dependencies {
     compile 'org.jsoup:jsoup:1.10.2'
 
     // Job scheduling
-    compile 'com.evernote:android-job:1.1.8'
-    compile 'com.google.android.gms:play-services-gcm:10.2.0'
+    compile 'com.evernote:android-job:1.1.11'
+    compile 'com.google.android.gms:play-services-gcm:11.0.1'
 
     // Changelog
     compile 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
@@ -165,7 +161,6 @@ dependencies {
     // Model View Presenter
     final nucleus_version = '3.0.0'
     compile "info.android15.nucleus:nucleus:$nucleus_version"
-    compile "info.android15.nucleus:nucleus-support-v4:$nucleus_version"
     compile "info.android15.nucleus:nucleus-support-v7:$nucleus_version"
 
     // Dependency injection
@@ -198,7 +193,7 @@ dependencies {
     compile 'com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.0.4'
 
     // Conductor
-    compile "com.bluelinelabs:conductor:2.1.3"
+    compile "com.bluelinelabs:conductor:2.1.4"
     compile 'com.github.inorichi:conductor-support-preference:9e36460'
 
     // RxBindings
@@ -222,7 +217,7 @@ dependencies {
 }
 
 buildscript {
-    ext.kotlin_version = '1.1.2-3'
+    ext.kotlin_version = '1.1.3'
     repositories {
         mavenCentral()
     }
@@ -241,7 +236,7 @@ configurations.all {
         def requested = details.requested
         if (requested.group == 'com.android.support') {
             if (!requested.name.startsWith("multidex")) {
-                details.useVersion '25.3.1'
+                details.useVersion '25.4.0'
             }
         }
     }

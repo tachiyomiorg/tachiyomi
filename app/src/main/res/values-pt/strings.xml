@@ -66,7 +66,6 @@
     <string name="pref_category_reader">Leitor</string>
     <string name="pref_category_downloads">Transferências</string>
     <string name="pref_category_sources">Fontes</string>
-    <string name="pref_category_sync">Sincronização</string>
     <string name="pref_category_advanced">Avançado</string>
     <string name="pref_category_about">Sobre</string>
 
@@ -259,10 +258,6 @@
 
     <!-- Backup fragment -->
     <string name="backup">Cópia de segurança</string>
-    <string name="restore">Restaurar</string>
-    <string name="backup_please_wait">Cópia de segurança em curso. Por favor aguarde…</string>
-    <string name="backup_completed">Cópia de segurança restaurada com sucesso</string>
-    <string name="restore_please_wait">A restaurar cópia de segurança. Por favor aguarde…</string>
 
     <!-- Recent manga fragment -->
     <string name="recent_manga_source">%1$s - Cap.%2$s</string>

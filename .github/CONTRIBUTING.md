@@ -31,5 +31,4 @@ DON'T: https://github.com/inorichi/tachiyomi/issues/75
 
 # Translations
 
-File `app/src/main/res/values/strings.xml` should be copied over to appropriate directories and then translated.
-Consult [Android.com](http://developer.android.com/training/basics/supporting-devices/languages.html#CreateDirs)
+[Wiki](https://github.com/inorichi/tachiyomi/wiki/Translation)

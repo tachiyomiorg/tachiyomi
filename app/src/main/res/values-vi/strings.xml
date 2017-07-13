@@ -319,10 +319,6 @@
 
     <!-- Backup fragment -->
     <string name="backup">Sao lưu</string>
-    <string name="restore">Khôi phục</string>
-    <string name="backup_please_wait">Đang sao lưu. Vui lòng đợi…</string>
-    <string name="backup_completed">Đã sao lưu thành công</string>
-    <string name="restore_please_wait">Đang khôi phục. Vui lòng đợi…</string>
 
     <!-- Recent manga fragment -->
     <string name="recent_manga_source">%1$s - Ch.%2$s</string>

@@ -21,6 +21,12 @@ class TrackController : NucleusController<TrackPresenter>(),
 
     private var adapter: TrackAdapter? = null
 
+    init {
+        // There's no menu, but this avoids a bug when coming from the catalogue, where the menu
+        // disappears if the searchview is expanded
+        setHasOptionsMenu(true)
+    }
+
     override fun createPresenter(): TrackPresenter {
         return TrackPresenter((parentController as MangaController).manga!!)
     }

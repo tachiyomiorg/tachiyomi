@@ -150,6 +150,7 @@
     <string name="pref_keep_screen_on">Keep screen on</string>
     <string name="pref_reader_navigation">Navigation</string>
     <string name="pref_read_with_volume_keys">Volume keys</string>
+    <string name="pref_read_with_volume_keys_inverted">Invert volume keys</string>
     <string name="pref_read_with_tapping">Tapping</string>
     <string name="pref_reader_theme">Background color</string>
     <string name="white_background">White</string>
