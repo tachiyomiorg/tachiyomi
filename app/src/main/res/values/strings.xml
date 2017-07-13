@@ -21,6 +21,7 @@
     <string name="label_selected">Selected: %1$d</string>
     <string name="label_backup">Backup</string>
 
+
     <!-- Actions -->
     <string name="action_settings">Settings</string>
     <string name="action_filter">Filter</string>
@@ -270,6 +271,7 @@
     <!-- Library fragment -->
     <string name="library_search_hint">Title or author…</string>
     <string name="updating_category">Updating category</string>
+    <string name="local_source_badge">Local</string>
     <string name="confirm_delete_manga">Are you sure you want to remove selected manga?</string>
     <string name="also_delete_chapters">Also delete downloaded chapters</string>
 

@@ -18,6 +18,8 @@ interface Manga : SManga {
 
     var unread: Int
 
+    var downloadTotal: Int
+
     var category: Int
 
     fun setChapterOrder(order: Int) {

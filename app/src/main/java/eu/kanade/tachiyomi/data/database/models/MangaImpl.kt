@@ -34,6 +34,8 @@ class MangaImpl : Manga {
 
     @Transient override var unread: Int = 0
 
+    @Transient override var downloadTotal: Int = 0
+
     @Transient override var category: Int = 0
 
     override fun equals(other: Any?): Boolean {
