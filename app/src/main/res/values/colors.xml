@@ -19,6 +19,8 @@
     <color name="backgroundLight">@color/md_grey_50</color>
     <color name="dialogLight">@color/md_white_1000</color>
 
+    <color name="selectorColorLight">@color/md_blue_A400_38</color>
+
     <!-- Dark Theme -->
     <color name="colorAccentDark">#3399ff</color>
     <color name="textColorPrimaryDark">@color/md_white_1000</color>
@@ -31,6 +33,8 @@
     <color name="appBarDark">@color/md_grey_900</color>
     <color name="backgroundDark">#303030</color>
     <color name="dialogDark">@color/md_grey_800</color>
+
+    <color name="selectorColorDark">@color/md_blue_A200_50</color>
 
     <!-- Reader Theme -->
     <color name="pageNumberBackgroundLight">@color/md_grey_50_75</color>

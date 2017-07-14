@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/list_item_selector">
+    android:background="?attr/selectable_list_drawable">
 
     <TextView
         android:id="@+id/track_search_title"

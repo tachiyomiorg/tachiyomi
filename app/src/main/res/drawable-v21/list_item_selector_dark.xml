@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-        android:color="?colorAccent">
+    android:color="@color/rippleColorDark">
     <item>
         <selector>
             <item android:state_selected="true">
-                <color android:color="?colorAccent"/>
+                <color android:color="@color/rippleColorDark"/>
             </item>
 
             <item android:state_activated="true">
-                <color android:color="?colorAccent"/>
+                <color android:color="@color/rippleColorDark"/>
             </item>
 
             <item>
-                <color android:color="?android:colorBackground"/>
+                <color android:color="@color/dialogDark"/>
             </item>
         </selector>
     </item>

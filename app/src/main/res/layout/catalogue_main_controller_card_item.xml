@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/material_component_lists_two_line_height"
-    android:background="@drawable/list_item_selector">
+    android:background="?attr/selectable_list_drawable">
 
     <ImageView
         android:id="@+id/image"
@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/source_latest"
-        android:background="@drawable/list_item_selector"
+        android:background="?attr/selectable_list_drawable"
         style="@style/TextAppearance.Medium.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
     <TextView
         android:id="@+id/source_browse"
         style="@style/TextAppearance.Medium.Button"
-        android:background="@drawable/list_item_selector"
+        android:background="?attr/selectable_list_drawable"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
