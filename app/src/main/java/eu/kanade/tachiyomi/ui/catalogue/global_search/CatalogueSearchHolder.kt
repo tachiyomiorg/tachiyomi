@@ -3,11 +3,14 @@ package eu.kanade.tachiyomi.ui.catalogue.global_search
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import eu.davidea.viewholders.FlexibleViewHolder
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.ui.catalogue.global_search.card.CatalogueSearchCardAdapter
 import eu.kanade.tachiyomi.ui.catalogue.global_search.card.CatalogueSearchCardHolder
 import eu.kanade.tachiyomi.ui.catalogue.global_search.card.CatalogueSearchCardItem
+import eu.kanade.tachiyomi.util.getResourceColor
+import eu.kanade.tachiyomi.util.setVectorCompat
 import kotlinx.android.synthetic.main.catalogue_global_search_controller_card.view.*
 
 /**
@@ -23,16 +26,37 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : F
      */
     private var mangaAdapter: CatalogueSearchCardAdapter? = null
 
-
-    fun bind(searchResult: Pair<List<Manga>, CatalogueSource>) {
-        val source = searchResult.second
-        val mangas = searchResult.first
-
+    /**
+     * Show the loading of source search result.
+     *
+     * @param source source of card.
+     */
+    fun bind(source: CatalogueSource) {
         with(itemView) {
             // Set Title witch country code if available.
             title.text = if (!source.lang.isEmpty()) "${source.name} (${source.lang})" else source.name
+            progress.visibility = View.VISIBLE
+        }
+    }
 
-            if (!mangas.isEmpty()) {
+    /**
+     * Called from the presenter when a manga is initialized.
+     *
+     * @param manga the initialized manga.
+     */
+    fun setImage(manga: Manga) {
+        getHolder(manga)?.setImage(manga)
+    }
+
+    /**
+     * Show the results from search.
+     *
+     * @param result manga returned from search.
+     */
+    fun updateSourceFetch(result: List<Manga>) {
+        with(itemView) {
+            progress.visibility = View.GONE
+            if (!result.isEmpty()) {
                 // Show search results.
                 itemView.nothing_found.visibility = View.GONE
                 itemView.recycler.visibility = View.VISIBLE
@@ -46,21 +70,14 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : F
                 recycler.adapter = mangaAdapter
 
                 // Update data set.
-                mangaAdapter?.updateDataSet(searchResult.first.map(::CatalogueSearchCardItem))
+                mangaAdapter?.updateDataSet(result.map(::CatalogueSearchCardItem))
             } else {
+                // Show no results found
+                itemView.nothing_found_icon.setVectorCompat(R.drawable.ic_search_black_112dp, context.getResourceColor(android.R.attr.textColorHint))
                 itemView.nothing_found.visibility = View.VISIBLE
                 itemView.recycler.visibility = View.GONE
             }
         }
-    }
-
-    /**
-     * Called from the presenter when a manga is initialized.
-     *
-     * @param manga the initialized manga.
-     */
-    fun setImage(manga: Manga) {
-        getHolder(manga)?.setImage(manga)
     }
 
     /**
@@ -80,5 +97,9 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : F
         }
 
         return null
+    }
+
+    fun clear() {
+        mangaAdapter?.clear()
     }
 }

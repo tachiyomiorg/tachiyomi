@@ -6,7 +6,6 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.CatalogueSource
-import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.FilterList
@@ -28,7 +27,8 @@ import uy.kohesive.injekt.api.get
  * Function calls should be done from here. UI calls should be done from the controller.
  *
  * @param sourceManager manages the different sources.
- * @param preferencesHelper manages the database calls.
+ * @param db manages the database calls.
+ * @param preferencesHelper manages the preference calls.
  */
 class CatalogueSearchPresenter(
         val sourceManager: SourceManager = Injekt.get(),
@@ -48,19 +48,30 @@ class CatalogueSearchPresenter(
         private set
 
     /**
-     * Subject that initializes a list of manga.
+     * Fetches the different sources by user settings.
      */
-    private val mangaDetailSubject = PublishSubject.create<Pair<List<Manga>, Source>>()
+    private var fetchSourcesSubscription: Subscription? = null
 
     /**
-     * Subscription for the pager.
+     * Subject which fetches image of given manga.
      */
-    private var searchSubscription: Subscription? = null
+    private val fetchImageSubject = PublishSubject.create<Pair<List<Manga>, Source>>()
 
     /**
-     * Subscription to initialize manga details.
+     * Subscription for fetching images of manga.
      */
-    private var initializerSubscription: Subscription? = null
+    private var fetchImageSubscription: Subscription? = null
+
+    /**
+     * Subject for fetching query result.
+     */
+    private val fetchSearchResultSubject = PublishSubject.create<Pair<String, CatalogueSource>>()
+
+    /**
+     * Subscription for fetching result from query.
+     */
+    private var fetchSearchResultSubscription: Subscription? = null
+
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
@@ -71,8 +82,9 @@ class CatalogueSearchPresenter(
     }
 
     override fun onDestroy() {
-        initializerSubscription?.unsubscribe()
-        searchSubscription?.unsubscribe()
+        fetchSearchResultSubscription?.unsubscribe()
+        fetchSourcesSubscription?.unsubscribe()
+        fetchImageSubscription?.unsubscribe()
         super.onDestroy()
     }
 
@@ -86,7 +98,7 @@ class CatalogueSearchPresenter(
      *
      * @return list containing enabled sources.
      */
-    fun getEnabledSources(): List<CatalogueSource> {
+    private fun getEnabledSources(): List<CatalogueSource> {
         val languages = preferencesHelper.enabledLanguages().getOrDefault()
         val hiddenCatalogues = preferencesHelper.hiddenCatalogues().getOrDefault()
 
@@ -94,61 +106,105 @@ class CatalogueSearchPresenter(
                 .filter { it.lang in languages }
                 .filterNot { it is LoginSource && !it.isLogged() }
                 .filterNot { it.id.toString() in hiddenCatalogues }
-                .sortedBy { "(${it.lang}) ${it.name}" } +
-                sourceManager.get(LocalSource.ID) as LocalSource
+                .sortedBy { "(${it.lang}) ${it.name}" }
     }
 
-    fun startGlobalSearch(query: String) {
-        subscribeToMangaInitializer()
+    /**
+     * Initiates a search for mnaga per catalogue.
+     *
+     * @param query query on which to search.
+     */
+    fun getSearchResults(query: String) {
+        // Update query
+        this.query = query
 
-        searchSubscription?.unsubscribe()
-        searchSubscription = Observable.from(sources)
+        // Create source information fetch subscription
+        initializeFetchSearchResultSubscription()
+
+        //Fetch sources
+        fetchSourcesSubscription?.unsubscribe()
+        fetchSourcesSubscription = Observable.from(sources)
                 .observeOn(Schedulers.io())
-                .flatMap {
-                    val source = it
-                    it.fetchSearchManga(1, query, FilterList())
-                            .onExceptionResumeNext(Observable.empty()) // Ignore timeouts.
-                            .flatMap { Observable.from(it.mangas).take(10) } // Get at most 10 manga from search result.
-                            .map { networkToLocalManga(it, source.id) } // Convert to local manga.
-                            .toList()
-                            .doOnNext { initializeManga(it, source) } // Load manga covers.
-                            .map { Pair(it, source) } // Create pair
-                            .map(::CatalogueSearchItem) // Map to CatalogueItem.
-                }
+                .doOnNext { fetchSearchResult(query, it) }
+                .map(::CatalogueSearchItem)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeReplay({ view, manga ->
                     view.addSearchResult(manga)
                 }, { _, error ->
                     Timber.e(error)
                 })
+
     }
+
     /**
      * Initialize a list of manga.
      *
      * @param manga the list of manga to initialize.
      */
-    fun initializeManga(manga: List<Manga>, source: Source) {
-        mangaDetailSubject.onNext(Pair(manga, source))
+    private fun fetchImage(manga: List<Manga>, source: Source) {
+        fetchImageSubject.onNext(Pair(manga, source))
+    }
+
+    /**
+     * Initialize a list of manga.
+     *
+     * @param query query used to fetch from source.
+     * @param source source from which to fetch.
+     */
+    private fun fetchSearchResult(query: String, source: CatalogueSource) {
+        fetchSearchResultSubject.onNext(Pair(query, source))
+    }
+
+    /**
+     * Initialize the search subscription.
+     */
+    private fun initializeFetchSearchResultSubscription() {
+        // Create image fetch subscription
+        initializeFetchImageSubscription()
+
+        fetchSearchResultSubscription?.unsubscribe()
+        fetchSearchResultSubscription = fetchSearchResultSubject
+                .observeOn(Schedulers.io())
+                .flatMap {
+                    val source = it.second
+                    source.fetchSearchManga(1, it.first, FilterList())
+                            .onExceptionResumeNext(Observable.empty()) // Ignore timeouts.
+                            .flatMap { Observable.from(it.mangas).take(10) } // Get at most 10 manga from search result.
+                            .map { networkToLocalManga(it, source.id) } // Convert to local manga.
+                            .toList()
+                            .doOnNext { fetchImage(it, source) } // Load manga covers.
+                            .map { Pair(it, source) }
+                }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ (source, manga) ->
+                    @Suppress("DEPRECATION")
+                    view?.onSourceResults(manga, source)
+                }, { error ->
+                    Timber.e(error)
+                })
+
     }
 
     /**
      * Subscribes to the initializer of manga details and updates the view if needed.
      */
-    private fun subscribeToMangaInitializer() {
-        initializerSubscription?.unsubscribe()
-        initializerSubscription = mangaDetailSubject.observeOn(Schedulers.io())
+    private fun initializeFetchImageSubscription() {
+        fetchImageSubscription?.unsubscribe()
+        fetchImageSubscription = fetchImageSubject.observeOn(Schedulers.io())
                 .flatMap {
                     val source = it.second
                     Observable.from(it.first).filter { it.thumbnail_url == null && !it.initialized }
                             .map { Pair(it, source) }
+                            .concatMap { getMangaDetailsObservable(it.first, it.second) }
+                            .map { Pair(source as CatalogueSource, it) }
 
                 }
-                .concatMap { getMangaDetailsObservable(it.first, it.second) }
+
                 .onBackpressureBuffer()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ manga ->
+                .subscribe({ (source, manga) ->
                     @Suppress("DEPRECATION")
-                    view?.onMangaInitialized(manga)
+                    view?.onMangaInitialized(source, manga)
                 }, { error ->
                     Timber.e(error)
                 })

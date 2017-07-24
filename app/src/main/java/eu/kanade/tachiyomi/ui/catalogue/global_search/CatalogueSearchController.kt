@@ -8,6 +8,7 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.catalogue.global_search.card.CatalogueSearchCardAdapter
 import eu.kanade.tachiyomi.ui.manga.MangaController
@@ -33,7 +34,6 @@ CatalogueSearchCardAdapter.OnMangaClickListener{
      */
     init {
         setHasOptionsMenu(true)
-        presenter.startGlobalSearch(query)
     }
 
     /**
@@ -95,7 +95,8 @@ CatalogueSearchCardAdapter.OnMangaClickListener{
                 override fun onQueryTextSubmit(query: String): Boolean {
                     if (query != presenter.query){
                         adapter?.clear()
-                        presenter.startGlobalSearch(query)
+                        clearHolder()
+                        presenter.getSearchResults(query)
                     }
                     collapseActionView()
                     return true
@@ -124,34 +125,35 @@ CatalogueSearchCardAdapter.OnMangaClickListener{
             recycler.adapter = adapter
             adapter?.isHandleDragEnabled = true
         }
-    }
 
-    /**
-     * Called from the presenter when a manga is initialized.
-     *
-     * @param manga the initialized manga.
-     */
-    fun onMangaInitialized(manga: Manga) {
-        getHolder(manga)?.setImage(manga)
+        presenter.getSearchResults(query)
     }
 
     /**
      * Returns the view holder for the given manga.
      *
-     * @param manga the manga to find.
+     * @param source used to find holder containing source
      * @return the holder of the manga or null if it's not bound.
      */
-    private fun getHolder(manga: Manga): CatalogueSearchHolder? {
+    private fun getHolder(source: CatalogueSource): CatalogueSearchHolder? {
         val adapter = adapter ?: return null
 
         adapter.allBoundViewHolders.forEach { holder ->
             val item = adapter.getItem(holder.adapterPosition)
-            if (item != null && manga in item.searchResult.first) {
+            if (item != null && source.id == item.searchResult.id) {
                 return holder as CatalogueSearchHolder
             }
         }
 
         return null
+    }
+
+    private fun clearHolder() {
+        val adapter = adapter ?: return
+
+        adapter.allBoundViewHolders.forEach { holder ->
+            (holder as CatalogueSearchHolder).clear()
+        }
     }
 
     /**
@@ -161,6 +163,20 @@ CatalogueSearchCardAdapter.OnMangaClickListener{
      */
     fun addSearchResult(searchResult: CatalogueSearchItem) {
         adapter?.addItem(searchResult)
+    }
+
+    fun onSourceResults(source: CatalogueSource, result: List<Manga>) {
+        getHolder(source)?.updateSourceFetch(result)
+    }
+
+
+    /**
+     * Called from the presenter when a manga is initialized.
+     *
+     * @param manga the initialized manga.
+     */
+    fun onMangaInitialized(source: CatalogueSource, manga: Manga) {
+        getHolder(source)?.setImage(manga)
     }
 
 }

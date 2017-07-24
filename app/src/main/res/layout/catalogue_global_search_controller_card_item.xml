@@ -7,43 +7,46 @@
     android:layout_height="wrap_content"
     android:background="?attr/selectable_list_drawable"
     android:orientation="vertical"
-    android:padding="4dp">
+    android:paddingBottom="8dp"
+    android:paddingEnd="4dp"
+    android:paddingStart="4dp"
+    android:paddingTop="8dp">
 
     <ProgressBar
-        android:visibility="gone"
         android:id="@+id/progress"
         style="?android:attr/progressBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/itemImage"
-        android:layout_width="112dp"
-        android:layout_height="112dp"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:paddingBottom="8dp"
         android:scaleType="fitCenter"
-        android:padding="8dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription"
         tools:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/tvTitle"
+        style="@style/TextAppearance.Regular.Body1"
         android:layout_width="96dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
-        android:ellipsize="end"
-        app:layout_constraintTop_toBottomOf="@+id/itemImage"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/TextAppearance.Regular.Body1"
-        tools:text="Sample title"
-        android:layout_marginTop="0dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemImage"
+        tools:text="Sample title" />
 
 </android.support.constraint.ConstraintLayout>

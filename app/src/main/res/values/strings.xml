@@ -283,6 +283,7 @@
     <string name="added_to_library">The manga has been added to your library</string>
     <string name="action_global_search_hint">Global search…</string>
     <string name="local">Local</string>
+    <string name="no_results">No results found!</string>
 
     <!-- Manga activity -->
     <string name="manga_not_in_db">This manga was removed from the database!</string>

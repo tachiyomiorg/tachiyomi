@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.util.inflate
 
@@ -14,7 +13,7 @@ import eu.kanade.tachiyomi.util.inflate
  *
  * @param searchResult contains information about search result.
  */
-class CatalogueSearchItem(val searchResult: Pair<List<Manga>, CatalogueSource>) : AbstractFlexibleItem<CatalogueSearchHolder>() {
+class CatalogueSearchItem(val searchResult: CatalogueSource) : AbstractFlexibleItem<CatalogueSearchHolder>() {
 
     /**
      * Set view.
@@ -50,7 +49,7 @@ class CatalogueSearchItem(val searchResult: Pair<List<Manga>, CatalogueSource>) 
      */
     override fun equals(other: Any?): Boolean {
         if (other is CatalogueSearchItem) {
-            return searchResult.second.id == other.searchResult.second.id
+            return searchResult.id == other.searchResult.id
         }
         return false
     }
@@ -61,7 +60,7 @@ class CatalogueSearchItem(val searchResult: Pair<List<Manga>, CatalogueSource>) 
      * @return hashcode
      */
     override fun hashCode(): Int {
-        return searchResult.second.id.toInt()
+        return searchResult.id.toInt()
     }
 
 }
