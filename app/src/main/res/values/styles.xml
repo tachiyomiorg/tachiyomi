@@ -175,17 +175,20 @@
     </style>
 
     <style name="Theme.Widget.GridView">
+        <item name="android:smoothScrollbar">true</item>
+        <item name="android:numColumns">auto_fit</item>
+        <item name="android:stretchMode">columnWidth</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+    </style>
+
+    <style name="Theme.Widget.GridView.Catalogue">
         <item name="android:padding">5dp</item>
-        <item name="android:clipToPadding">false</item>
         <item name="android:gravity">top|left</item>
         <item name="android:smoothScrollbar">true</item>
         <item name="android:cacheColorHint">?android:attr/textColorHint</item>
         <item name="android:fastScrollEnabled">true</item>
         <item name="android:horizontalSpacing">0dp</item>
         <item name="android:verticalSpacing">0dp</item>
-        <item name="android:numColumns">auto_fit</item>
-        <item name="android:stretchMode">columnWidth</item>
-        <item name="android:scrollbarStyle">outsideOverlay</item>
     </style>
 
 

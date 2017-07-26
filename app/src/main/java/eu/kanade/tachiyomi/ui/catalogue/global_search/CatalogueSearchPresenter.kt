@@ -121,6 +121,9 @@ class CatalogueSearchPresenter(
         // Create source information fetch subscription
         initializeFetchSearchResultSubscription()
 
+        // Create image fetch subscription
+        initializeFetchImageSubscription()
+
         //Fetch sources
         fetchSourcesSubscription?.unsubscribe()
         fetchSourcesSubscription = Observable.from(sources)
@@ -159,9 +162,6 @@ class CatalogueSearchPresenter(
      * Initialize the search subscription.
      */
     private fun initializeFetchSearchResultSubscription() {
-        // Create image fetch subscription
-        initializeFetchImageSubscription()
-
         fetchSearchResultSubscription?.unsubscribe()
         fetchSearchResultSubscription = fetchSearchResultSubject
                 .observeOn(Schedulers.io())

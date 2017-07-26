@@ -36,6 +36,14 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : F
             // Set Title witch country code if available.
             title.text = if (!source.lang.isEmpty()) "${source.name} (${source.lang})" else source.name
             progress.visibility = View.VISIBLE
+
+            // Set layout horizontal.
+            recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            recycler.isNestedScrollingEnabled = false
+
+            // Set adapter.
+            mangaAdapter = CatalogueSearchCardAdapter(adapter.controller)
+            recycler.adapter = mangaAdapter
         }
     }
 
@@ -54,26 +62,18 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : F
      * @param result manga returned from search.
      */
     fun updateSourceFetch(result: List<Manga>) {
-        with(itemView) {
-            progress.visibility = View.GONE
+        itemView.post {
+            itemView.progress.visibility = View.GONE
             if (!result.isEmpty()) {
                 // Show search results.
                 itemView.nothing_found.visibility = View.GONE
                 itemView.recycler.visibility = View.VISIBLE
 
-                // Set layout horizontal.
-                recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                recycler.isNestedScrollingEnabled = false
-
-                // Set adapter.
-                mangaAdapter = CatalogueSearchCardAdapter(adapter.controller)
-                recycler.adapter = mangaAdapter
-
                 // Update data set.
                 mangaAdapter?.updateDataSet(result.map(::CatalogueSearchCardItem))
             } else {
                 // Show no results found
-                itemView.nothing_found_icon.setVectorCompat(R.drawable.ic_search_black_112dp, context.getResourceColor(android.R.attr.textColorHint))
+                itemView.nothing_found_icon.setVectorCompat(R.drawable.ic_search_black_112dp, itemView.context.getResourceColor(android.R.attr.textColorHint))
                 itemView.nothing_found.visibility = View.VISIBLE
                 itemView.recycler.visibility = View.GONE
             }
