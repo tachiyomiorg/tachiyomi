@@ -114,6 +114,9 @@ class Downloader(private val context: Context, private val provider: DownloadPro
         val pending = queue.filter { it.status != Download.DOWNLOADED }
         pending.forEach { if (it.status != Download.QUEUE) it.status = Download.QUEUE }
 
+        // Show download notification when simultaneous download > 1.
+        notifier.onProgressChange(queue)
+
         downloadsRelay.call(pending)
         return !pending.isEmpty()
     }
