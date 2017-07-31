@@ -440,4 +440,15 @@ class ChapterRecognitionTest {
         ChapterRecognition.parseChapterNumber(chapter, manga)
         assertThat(chapter.chapter_number).isEqualTo(20f)
     }
+
+    /**
+     * Test for chapters ending with s
+     */
+    @Test fun chaptersEndingWithS() {
+        createManga("One Outs")
+
+        createChapter("One Outs 001")
+        ChapterRecognition.parseChapterNumber(chapter, manga)
+        assertThat(chapter.chapter_number).isEqualTo(1f)
+    }
 }
