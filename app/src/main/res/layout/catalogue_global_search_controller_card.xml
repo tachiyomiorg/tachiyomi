@@ -22,7 +22,7 @@
         style="@style/Theme.Widget.CardView.Item"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:minHeight="156dp"
+        android:minHeight="164dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="wrap"

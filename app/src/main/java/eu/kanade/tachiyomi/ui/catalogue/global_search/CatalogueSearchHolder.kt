@@ -26,6 +26,18 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : F
      */
     private var mangaAdapter: CatalogueSearchCardAdapter? = null
 
+    init {
+        with(itemView) {
+            // Set layout horizontal.
+            recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            recycler.isNestedScrollingEnabled = false
+
+            // Set adapter.
+            mangaAdapter = CatalogueSearchCardAdapter(adapter.controller)
+            recycler.adapter = mangaAdapter
+        }
+    }
+
     /**
      * Show the loading of source search result.
      *
@@ -36,14 +48,6 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : F
             // Set Title witch country code if available.
             title.text = if (!source.lang.isEmpty()) "${source.name} (${source.lang})" else source.name
             progress.visibility = View.VISIBLE
-
-            // Set layout horizontal.
-            recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            recycler.isNestedScrollingEnabled = false
-
-            // Set adapter.
-            mangaAdapter = CatalogueSearchCardAdapter(adapter.controller)
-            recycler.adapter = mangaAdapter
         }
     }
 
