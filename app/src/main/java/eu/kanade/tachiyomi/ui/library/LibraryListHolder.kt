@@ -8,6 +8,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.LocalSource
+import jp.wasabeef.glide.transformations.CropCircleTransformation
 import kotlinx.android.synthetic.main.catalogue_list_item.view.*
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get

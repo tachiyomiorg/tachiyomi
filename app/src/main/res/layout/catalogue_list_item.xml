@@ -6,6 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
         android:layout_gravity="center_vertical"
+    android:background="?attr/selectable_list_drawable"
+    tools:layout_editor_absoluteY="25dp"
+    tools:layout_editor_absoluteX="0dp">
+   <ImageView
+       android:id="@+id/thumbnail"
+       android:layout_width="@dimen/material_component_lists_single_line_with_avatar_height"
+       android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+       android:layout_gravity="center_vertical"
+       tools:src="@mipmap/ic_launcher"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       android:paddingTop="8dp"
+       android:paddingBottom="8dp"
+       android:layout_marginLeft="8dp"/>
+    <TextView
+        android:id="@+id/title"
+        style="@style/TextAppearance.Regular.SubHeading"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
