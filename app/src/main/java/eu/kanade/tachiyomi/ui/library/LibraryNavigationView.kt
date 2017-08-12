@@ -25,7 +25,7 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
     /**
      * List of groups shown in the view.
      */
-    private val groups = listOf(FilterGroup(), SortGroup(),  DisplayGroup())
+    private val groups = listOf(FilterGroup(), SortGroup(),  DisplayGroup(), BadgeGroup())
 
     /**
      * Adapter instance.
@@ -164,6 +164,23 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
             item.group.items.forEach { adapter.notifyItemChanged(it) }
         }
 
+    }
+
+    inner class BadgeGroup : Group {
+        private val downloadBadge = Item.CheckboxGroup(R.string.action_display_download_badge, this)
+        override val header = null
+        override val footer= null
+        override val items = listOf(downloadBadge)
+        override fun initModels() {
+            downloadBadge.checked = preferences.downloadBadge().getOrDefault()
+        }
+
+        override fun onItemClicked(item: Item) {
+            item as Item.CheckboxGroup
+            item.checked = !item.checked
+            preferences.downloadBadge().set((item.checked))
+            adapter.notifyItemChanged(item)
+        }
     }
 
     /**

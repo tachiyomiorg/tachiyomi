@@ -75,6 +75,7 @@
     <string name="action_display">Display</string>
     <string name="action_display_grid">Grid</string>
     <string name="action_display_list">List</string>
+    <string name="action_display_download_badge">Download Badges</string>
     <string name="action_set_filter">Set filter</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_sort">Sort</string>

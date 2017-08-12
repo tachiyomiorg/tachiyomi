@@ -155,14 +155,16 @@ class LibraryPresenter(
      */
     private fun addDownloadTotal(map: Map<Int, List<Manga>>): Map<Int, List<Manga>> {
         // Cached list of downloaded manga directories given a source id.
-        val mangaDirsForSource = mutableMapOf<Long, Map<String?, UniFile>>()
+        if (preferences.downloadBadge().getOrDefault()) {
+            val mangaDirsForSource = mutableMapOf<Long, Map<String?, UniFile>>()
 
-        // Cached list of downloaded chapter directories for a manga.
-        val chapterDirectories = mutableMapOf<Long, Int>()
+            // Cached list of downloaded chapter directories for a manga.
+            val chapterDirectories = mutableMapOf<Long, Int>()
 
-        for ((key, mangaList) in map) {
-            for (manga in mangaList) {
-                manga.downloadTotal = getDownloadedCountFromDirectory(manga, mangaDirsForSource, chapterDirectories)
+            for ((key, mangaList) in map) {
+                for (manga in mangaList) {
+                    manga.downloadTotal = getDownloadedCountFromDirectory(manga, mangaDirsForSource, chapterDirectories)
+                }
             }
         }
         return map;
@@ -281,6 +283,13 @@ class LibraryPresenter(
      */
     fun requestFilterUpdate() {
         filterTriggerRelay.call(Unit)
+    }
+
+    /**
+     * Requests the library to have download badges added.
+     */
+    fun requestDownloadBadgesUpdate() {
+        downloadTriggerRelay.call(Unit)
     }
 
     /**
