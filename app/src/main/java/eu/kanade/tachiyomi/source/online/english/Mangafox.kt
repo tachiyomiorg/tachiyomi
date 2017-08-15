@@ -114,6 +114,7 @@ class Mangafox : ParsedHttpSource() {
         val chapter = SChapter.create()
         chapter.setUrlWithoutDomain(urlElement.attr("href"))
         chapter.name = urlElement.text()
+        chapter.name = element.select("span.title.nowrap").first()?.text()?.let {urlElement.text() + ": " + it}?: urlElement.text()
         chapter.date_upload = element.select("span.date").first()?.text()?.let { parseChapterDate(it) } ?: 0
         return chapter
     }
