@@ -202,11 +202,16 @@ abstract class HttpSource : CatalogueSource {
      * @param manga the manga to look for chapters.
      */
     override fun fetchChapterList(manga: SManga): Observable<List<SChapter>> {
-        return client.newCall(chapterListRequest(manga))
-                .asObservableSuccess()
-                .map { response ->
-                    chapterListParse(response)
-                }
+        if(manga.status  != SManga.LICENSED) {
+            return client.newCall(chapterListRequest(manga))
+                    .asObservableSuccess()
+                    .map { response ->
+                        chapterListParse(response)
+                    }
+        }else{
+            val chapters : List<SChapter> = emptyList()
+            return Observable.just(chapters)
+        }
     }
 
     /**
