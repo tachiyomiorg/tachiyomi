@@ -113,7 +113,7 @@ class LibraryPresenter(
                 return@f false
             }
 
-            if(filterCompleted && manga.status != SManga.COMPLETED){
+            if (filterCompleted && manga.status != SManga.COMPLETED) {
                 return@f false
             }
 

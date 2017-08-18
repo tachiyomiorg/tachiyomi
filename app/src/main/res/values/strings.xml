@@ -26,7 +26,6 @@
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Downloaded</string>
     <string name="action_filter_bookmarked">Bookmarked</string>
-    <string name="action_filter_completed">Completed</string>
     <string name="action_filter_unread">Unread</string>
     <string name="action_filter_read">Read</string>
     <string name="action_filter_empty">Remove filter</string>
