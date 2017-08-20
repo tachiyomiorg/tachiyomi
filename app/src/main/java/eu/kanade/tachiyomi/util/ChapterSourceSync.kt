@@ -38,7 +38,7 @@ fun syncChaptersWithSource(db: DatabaseHelper,
     }
 
     // Chapters from the source not in db.
-    val toAdd = sourceChapters.filterNot { it in dbChapters }
+    val toAdd = sourceChapters.filterNot { dbChapters.find {chapter -> chapter.url == it.url && chapter.name == it.name && chapter.scanlator == it.scanlator}?.let { true }?:false}
 
     // Recognize number for new chapters.
     toAdd.forEach {
@@ -49,7 +49,7 @@ fun syncChaptersWithSource(db: DatabaseHelper,
     }
 
     // Chapters from the db not in the source.
-    val toDelete = dbChapters.filterNot { it in sourceChapters }
+    val toDelete = dbChapters.filterNot { sourceChapters.find {chapter -> chapter.url == it.url && chapter.name == it.name && chapter.scanlator == it.scanlator}?.let { true }?:false}
 
     // Return if there's nothing to add or delete, avoiding unnecessary db transactions.
     if (toAdd.isEmpty() && toDelete.isEmpty()) {
@@ -94,4 +94,5 @@ fun syncChaptersWithSource(db: DatabaseHelper,
         db.fixChaptersSourceOrder(sourceChapters).executeAsBlocking()
     }
     return Pair(toAdd.subtract(readded).toList(), toDelete.subtract(readded).toList())
+
 }

@@ -31,10 +31,8 @@ class ChapterImpl : Chapter {
         if (other == null || javaClass != other.javaClass) return false
 
         val chapter = other as Chapter
-        // Forces updates on manga if url, scanlator, or chapter name changes.
-        //this allows existing libraries to be updated with chapter name changes/scanlator changes
-        //from the source site
-        return url == chapter.url && scanlator == chapter.scanlator  && name == chapter.name
+
+        return url == chapter.url
 
     }
 
