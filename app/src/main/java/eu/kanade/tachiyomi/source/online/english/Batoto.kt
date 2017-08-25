@@ -28,7 +28,7 @@ class Batoto : ParsedHttpSource(), LoginSource {
 
     override val name = "Batoto"
 
-    override val baseUrl = "https://bato.to"
+    override val baseUrl = "http://bato.to"
 
     override val lang = "en"
 
