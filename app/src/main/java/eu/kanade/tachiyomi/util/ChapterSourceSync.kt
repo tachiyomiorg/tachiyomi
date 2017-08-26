@@ -38,7 +38,6 @@ fun syncChaptersWithSource(db: DatabaseHelper,
     }
 
     // Chapters from the source not in db.
-    // Chapters from the db not in the source.
     val toAdd = mutableListOf<Chapter>()
 
     // Chapters whose metadata have changed.
@@ -59,6 +58,7 @@ fun syncChaptersWithSource(db: DatabaseHelper,
             toChange.add(dbChapter)
         }
     }
+
     // Recognize number for new chapters.
     toAdd.forEach {
         if (source is HttpSource) {
@@ -73,6 +73,7 @@ fun syncChaptersWithSource(db: DatabaseHelper,
             dbChapter.url == sourceChapter.url
         }
     }
+
     // Return if there's nothing to add, delete or change, avoiding unnecessary db transactions.
     if (toAdd.isEmpty() && toDelete.isEmpty() && toChange.isEmpty()) {
         return Pair(emptyList(), emptyList())

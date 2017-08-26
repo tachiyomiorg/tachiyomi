@@ -31,9 +31,7 @@ class ChapterImpl : Chapter {
         if (other == null || javaClass != other.javaClass) return false
 
         val chapter = other as Chapter
-
         return url == chapter.url
-
     }
 
     override fun hashCode(): Int {

@@ -69,7 +69,7 @@ class Batoto : ParsedHttpSource(), LoginSource {
 
     override fun popularMangaFromElement(element: Element): SManga {
         val manga = SManga.create()
-        element.select("a[href^=$baseUrl]").first().let {
+        element.select("a[href*=bato.to]").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text().trim()
         }
@@ -189,7 +189,7 @@ class Batoto : ParsedHttpSource(), LoginSource {
     override fun chapterListSelector() = "tr.row.lang_English.chapter_row"
 
     override fun chapterFromElement(element: Element): SChapter {
-        val urlElement = element.select("a[href^=$baseUrl/reader").first()
+        val urlElement = element.select("a[href*=bato.to/reader").first()
 
         val chapter = SChapter.create()
         chapter.setUrlWithoutDomain(urlElement.attr("href"))
