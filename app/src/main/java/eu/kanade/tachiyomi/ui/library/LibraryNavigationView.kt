@@ -74,7 +74,9 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
 
         private val unread = Item.CheckboxGroup(R.string.action_filter_unread, this)
 
-        override val items = listOf(downloaded, unread)
+        private val completed = Item.CheckboxGroup(R.string.completed, this)
+
+        override val items = listOf(downloaded, unread, completed)
 
         override val header = Item.Header(R.string.action_filter)
 
@@ -83,6 +85,7 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
         override fun initModels() {
             downloaded.checked = preferences.filterDownloaded().getOrDefault()
             unread.checked = preferences.filterUnread().getOrDefault()
+            completed.checked = preferences.filterCompleted().getOrDefault()
         }
 
         override fun onItemClicked(item: Item) {
@@ -91,6 +94,7 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
             when (item) {
                 downloaded -> preferences.filterDownloaded().set(item.checked)
                 unread -> preferences.filterUnread().set(item.checked)
+                completed -> preferences.filterCompleted().set(item.checked)
             }
 
             adapter.notifyItemChanged(item)

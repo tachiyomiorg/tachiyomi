@@ -145,6 +145,8 @@ class PreferencesHelper(val context: Context) {
 
     fun filterUnread() = rxPrefs.getBoolean(Keys.filterUnread, false)
 
+    fun filterCompleted() = rxPrefs.getBoolean(Keys.filterCompleted, false)
+
     fun librarySortingMode() = rxPrefs.getInteger(Keys.librarySortingMode, 0)
 
     fun librarySortingAscending() = rxPrefs.getBoolean("library_sorting_ascending", true)

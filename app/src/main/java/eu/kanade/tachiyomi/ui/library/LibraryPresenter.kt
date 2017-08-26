@@ -14,6 +14,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.SourceManager
+import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.util.combineLatest
@@ -101,12 +102,18 @@ class LibraryPresenter(
 
         val filterUnread = preferences.filterUnread().getOrDefault()
 
+        val filterCompleted = preferences.filterCompleted().getOrDefault()
+
         val filterFn: (Manga) -> Boolean = f@ { manga ->
             // Filter out manga without source.
             val source = sourceManager.get(manga.source) ?: return@f false
 
             // Filter when there isn't unread chapters.
             if (filterUnread && manga.unread == 0) {
+                return@f false
+            }
+
+            if (filterCompleted && manga.status != SManga.COMPLETED) {
                 return@f false
             }
 
