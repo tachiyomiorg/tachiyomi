@@ -20,7 +20,7 @@ import java.util.*
 fun syncChaptersWithSource(db: DatabaseHelper,
                            rawSourceChapters: List<SChapter>,
                            manga: Manga,
-                           source: Source) : Pair<List<Chapter>, List<Chapter>> {
+                           source: Source): Pair<List<Chapter>, List<Chapter>> {
 
     if (rawSourceChapters.isEmpty()) {
         throw Exception("No chapters found")
@@ -38,8 +38,27 @@ fun syncChaptersWithSource(db: DatabaseHelper,
     }
 
     // Chapters from the source not in db.
-    val toAdd = sourceChapters.filterNot { dbChapters.find {chapter -> chapter.url == it.url && chapter.name == it.name && chapter.scanlator == it.scanlator}?.let { true }?:false}
+    // Chapters from the db not in the source.
+    val toAdd = mutableListOf<Chapter>()
 
+    // Chapters whose metadata have changed.
+    val toChange = mutableListOf<Chapter>()
+
+    for (sourceChapter in sourceChapters) {
+        val dbChapter = dbChapters.find { it.url == sourceChapter.url }
+
+        // Add the chapter if not in db already, or update if the metadata changed.
+        if (dbChapter == null) {
+            toAdd.add(sourceChapter)
+        } else if (dbChapter.scanlator != sourceChapter.scanlator ||
+                dbChapter.name != sourceChapter.name) {
+
+            dbChapter.scanlator = sourceChapter.scanlator
+            dbChapter.name = sourceChapter.name
+
+            toChange.add(dbChapter)
+        }
+    }
     // Recognize number for new chapters.
     toAdd.forEach {
         if (source is HttpSource) {
@@ -49,10 +68,13 @@ fun syncChaptersWithSource(db: DatabaseHelper,
     }
 
     // Chapters from the db not in the source.
-    val toDelete = dbChapters.filterNot { sourceChapters.find {chapter -> chapter.url == it.url && chapter.name == it.name && chapter.scanlator == it.scanlator}?.let { true }?:false}
-
-    // Return if there's nothing to add or delete, avoiding unnecessary db transactions.
-    if (toAdd.isEmpty() && toDelete.isEmpty()) {
+    val toDelete = dbChapters.filterNot { dbChapter ->
+        sourceChapters.any { sourceChapter ->
+            dbChapter.url == sourceChapter.url
+        }
+    }
+    // Return if there's nothing to add, delete or change, avoiding unnecessary db transactions.
+    if (toAdd.isEmpty() && toDelete.isEmpty() && toChange.isEmpty()) {
         return Pair(emptyList(), emptyList())
     }
 
@@ -88,6 +110,10 @@ fun syncChaptersWithSource(db: DatabaseHelper,
                 }
             }
             db.insertChapters(toAdd).executeAsBlocking()
+        }
+
+        if (!toChange.isEmpty()) {
+            db.insertChapters(toChange).executeAsBlocking()
         }
 
         // Fix order in source.
