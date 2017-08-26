@@ -21,7 +21,7 @@ interface Category : Serializable {
             this.name = name
         }
 
-        fun createDefault(): Category = create("Default").apply { id = 0 }
+        fun createDefault(): Category = create("All").apply { id = 0 }
     }
 
 }
