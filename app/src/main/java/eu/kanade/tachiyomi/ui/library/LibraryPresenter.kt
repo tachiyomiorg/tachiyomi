@@ -23,6 +23,7 @@ import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.io.IOException
@@ -194,12 +195,7 @@ class LibraryPresenter(
     private fun getLibraryObservable(): Observable<Pair<List<Category>, Map<Int, List<Manga>>>> {
         return Observable.combineLatest(getCategoriesObservable(), getLibraryMangasObservable(),
                 { dbCategories, libraryManga ->
-                    val categories = if (libraryManga.containsKey(0))
-                        arrayListOf(Category.createDefault()) + dbCategories
-                    else
-                        dbCategories
-
-                    this.categories = categories
+                    this.categories = arrayListOf(Category.createDefault()) + dbCategories
                     Pair(categories, libraryManga)
                 })
     }
@@ -221,7 +217,30 @@ class LibraryPresenter(
      */
     private fun getLibraryMangasObservable(): Observable<Map<Int, List<Manga>>> {
         return db.getLibraryMangas().asRxObservable()
-                .map { list -> list.groupBy { it.category } }
+                .map { list ->
+                    var map = mutableMapOf<Int, MutableList<Manga>>()
+                    val default = 0
+                    list.forEach {
+
+                        if (map.get(default) == null) {
+                            map.put(default, mutableListOf())
+                        }
+                        if (!map.get(default)!!.contains(it)) {
+                            map.get(default)!!.add(it)
+                        }
+
+                        if (it.category != default) {
+                            if (map.get(it.category) == null) {
+                                map.put(it.category, mutableListOf())
+                            }
+                            if (!map.get(it.category)!!.contains(it)) {
+                                map.get(it.category)!!.add(it)
+                            }
+                        }
+                    }
+                    map.keys.forEach { k -> Timber.d("carlos category id %s, map size %s", k, map.get(k)!!.size)}
+                    return@map map
+                }
     }
 
     /**
