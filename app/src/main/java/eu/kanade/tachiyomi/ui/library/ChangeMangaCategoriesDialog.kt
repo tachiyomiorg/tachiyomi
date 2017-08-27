@@ -35,9 +35,8 @@ class ChangeMangaCategoriesDialog<T>(bundle: Bundle? = null) :
                     val newCategories = dialog.selectedIndices?.map { categories[it] }.orEmpty()
                     (targetController as? Listener)?.updateCategoriesForMangas(mangas, newCategories)
                     true
-                }
-                .positiveText(android.R.string.ok)
-                .negativeText(android.R.string.cancel)
+                }.alwaysCallMultiChoiceCallback()
+                .positiveText(R.string.category_chooser_finished)
                 .build()
     }
 

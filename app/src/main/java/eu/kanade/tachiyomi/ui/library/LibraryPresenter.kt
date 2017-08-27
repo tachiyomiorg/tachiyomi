@@ -21,7 +21,6 @@ import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.io.IOException
@@ -247,17 +246,16 @@ class LibraryPresenter(
         return db.getLibraryMangas().asRxObservable()
                 .map { list ->
                     var map = mutableMapOf<Int, MutableList<Manga>>()
-                    val default = 0
                     list.forEach {
 
-                        if (map.get(default) == null) {
-                            map.put(default, mutableListOf())
+                        if (map.get(Category.ALL_CATEGORY_ID) == null) {
+                            map.put(Category.ALL_CATEGORY_ID, mutableListOf())
                         }
-                        if (!map.get(default)!!.contains(it)) {
-                            map.get(default)!!.add(it)
+                        if (!map.get(Category.ALL_CATEGORY_ID)!!.contains(it)) {
+                            map.get(Category.ALL_CATEGORY_ID)!!.add(it)
                         }
 
-                        if (it.category != default) {
+                        if (it.category != Category.ALL_CATEGORY_ID) {
                             if (map.get(it.category) == null) {
                                 map.put(it.category, mutableListOf())
                             }
@@ -266,7 +264,6 @@ class LibraryPresenter(
                             }
                         }
                     }
-                    map.keys.forEach { k -> Timber.d("carlos category id %s, map size %s", k, map.get(k)!!.size)}
                     return@map map
                 }
     }

@@ -17,11 +17,13 @@ interface Category : Serializable {
 
     companion object {
 
+        const val ALL_CATEGORY_ID = 0
+
         fun create(name: String): Category = CategoryImpl().apply {
             this.name = name
         }
 
-        fun createDefault(): Category = create("All").apply { id = 0 }
+        fun createDefault(): Category = create("All").apply { id = ALL_CATEGORY_ID }
     }
 
 }
