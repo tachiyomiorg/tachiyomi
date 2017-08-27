@@ -210,7 +210,7 @@ abstract class HttpSource : CatalogueSource {
                         chapterListParse(response)
                     }
         } else {
-           return Observable.error(Exception("Licensed - No chapters to show"))
+            return Observable.error(Exception("Licensed - No chapters to show"))
         }
     }
 
