@@ -13,6 +13,7 @@ import okhttp3.Request
 import okhttp3.Response
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
+import java.lang.Exception
 import java.net.URI
 import java.net.URISyntaxException
 import java.security.MessageDigest
@@ -209,8 +210,7 @@ abstract class HttpSource : CatalogueSource {
                         chapterListParse(response)
                     }
         } else {
-            val chapters: List<SChapter> = emptyList()
-            return Observable.just(chapters)
+           return Observable.error(Exception("Licensed - No chapters to show"))
         }
     }
 
