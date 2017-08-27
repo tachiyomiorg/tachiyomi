@@ -534,6 +534,7 @@ open class CatalogueController(bundle: Bundle? = null) :
                 presenter.moveMangaToCategory(manga, defaultCategory)
             } else {
                 val ids = presenter.getMangaCategoryIds(manga)
+                //if only 1 user category then show the dialog with just 1 checkbox
                 var preselected = emptyArray<Int>()
                 if (categories.size > 1) {
                     preselected = ids.mapNotNull { id ->

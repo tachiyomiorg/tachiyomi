@@ -219,14 +219,14 @@ class LibraryPresenter(
                 .map { list ->
                     var map = mutableMapOf<Int, MutableList<Manga>>()
                     list.forEach {
-
+                        //This adds every Manga no matter its category to the ALL category
                         if (map.get(Category.ALL_CATEGORY_ID) == null) {
                             map.put(Category.ALL_CATEGORY_ID, mutableListOf())
                         }
                         if (!map.get(Category.ALL_CATEGORY_ID)!!.contains(it)) {
                             map.get(Category.ALL_CATEGORY_ID)!!.add(it)
                         }
-
+                        //this adds manga to its own category assuming it was not assigned to ALL
                         if (it.category != Category.ALL_CATEGORY_ID) {
                             if (map.get(it.category) == null) {
                                 map.put(it.category, mutableListOf())
