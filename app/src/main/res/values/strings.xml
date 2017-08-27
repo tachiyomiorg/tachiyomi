@@ -138,6 +138,7 @@
     <string name="system_default">System default</string>
     <string name="default_category">Default category</string>
     <string name="default_category_summary">Always ask</string>
+    <string name="category_chooser_finished">Done</string>
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>
