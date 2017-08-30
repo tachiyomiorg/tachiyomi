@@ -36,7 +36,8 @@ class CatalogueMainHolder(view: View, adapter: CatalogueMainAdapter) : FlexibleV
 
             // Update card header by language.
             when (lang){
-                "" -> title.text = context.getString(R.string.local)
+                "" -> title.text = context.getString(R.string.other_source)
+                "local" -> title.text = context.getString(R.string.local_source)
                 "recent" -> title.gone()
                 else -> {
                     val locale = Locale(sourcePair.first)

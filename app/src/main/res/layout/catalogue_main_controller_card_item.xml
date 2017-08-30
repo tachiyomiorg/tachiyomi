@@ -9,13 +9,13 @@
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="@dimen/material_component_lists_single_line_with_avatar_height"
+        android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+        android:clickable="true"
+        android:paddingLeft="@dimen/material_component_lists_icon_left_padding"
+        android:paddingStart="@dimen/material_component_lists_icon_left_padding"
+        android:paddingRight="0dp"
         android:paddingEnd="0dp"
-        android:paddingStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:src="@mipmap/ic_launcher_round"/>
 
     <TextView
@@ -33,12 +33,12 @@
 
     <TextView
         android:id="@+id/source_latest"
-        android:background="?attr/selectable_list_drawable"
+        android:background="@drawable/list_item_selector_trans"
         style="@style/TextAppearance.Medium.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="@dimen/material_component_dialogs_padding_around_buttons"
-        android:text="Latest"
+        android:text="@string/latest"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/source_browse"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,12 +46,12 @@
     <TextView
         android:id="@+id/source_browse"
         style="@style/TextAppearance.Medium.Button"
-        android:background="?attr/selectable_list_drawable"
+        android:background="@drawable/list_item_selector_trans"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:text="@string/browse"
         android:layout_marginEnd="8dp"
         android:padding="@dimen/material_component_dialogs_padding_around_buttons"
-        android:text="Browse"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

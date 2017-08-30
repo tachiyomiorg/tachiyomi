@@ -22,7 +22,7 @@
         style="@style/Theme.Widget.CardView.Item"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:minHeight="164dp"
+        android:minHeight="144dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="wrap"
@@ -44,8 +44,8 @@
 
             <ImageView
                 android:id="@+id/nothing_found_icon"
-                android:layout_width="114dp"
-                android:layout_height="114dp"
+                android:layout_width="112dp"
+                android:layout_height="112dp"
                 android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,8 +55,8 @@
 
             <TextView
                 android:id="@+id/nothing_found_text"
-                style="@style/TextAppearance.Regular.Body1"
-                android:layout_width="96dp"
+                style="@style/TextAppearance.Regular.Caption.Hint"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:ellipsize="end"
@@ -64,7 +64,6 @@
                 android:maxLines="1"
                 android:paddingBottom="8dp"
                 android:text="@string/no_results"
-                android:textColor="?android:textColorHint"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nothing_found_icon" />

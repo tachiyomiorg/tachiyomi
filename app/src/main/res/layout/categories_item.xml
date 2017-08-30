@@ -15,7 +15,8 @@
         android:paddingLeft="@dimen/material_component_lists_icon_left_padding"
         android:paddingStart="@dimen/material_component_lists_icon_left_padding"
         android:paddingRight="0dp"
-        android:paddingEnd="0dp"/>
+        android:paddingEnd="0dp"
+        tools:src="@mipmap/ic_launcher_round"/>
 
     <TextView
         android:id="@+id/title"

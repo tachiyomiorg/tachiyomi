@@ -22,13 +22,13 @@ import uy.kohesive.injekt.api.get
  */
 class CatalogueMainPresenter(
         val sourceManager: SourceManager = Injekt.get(),
-        val preferencesHelper: PreferencesHelper = Injekt.get()
+        private val preferencesHelper: PreferencesHelper = Injekt.get()
 ) : BasePresenter<CatalogueMainController>() {
 
     /**
      * Enabled sources.
      */
-    val sources by lazy { getEnabledSources() }
+    var sources = getEnabledSources()
 
     /**
      * Subscription for retrieving enabled sources.
@@ -91,12 +91,17 @@ class CatalogueMainPresenter(
         preferencesHelper.lastUsedCatalogueSource().set(id)
     }
 
+    fun updateSources() {
+        sources = getEnabledSources()
+        loadSources()
+    }
+
     /**
      * Returns a list of enabled sources ordered by language and name.
      *
      * @return list containing enabled sources.
      */
-    fun getEnabledSources(): List<CatalogueSource> {
+    private fun getEnabledSources(): List<CatalogueSource> {
         val languages = preferencesHelper.enabledLanguages().getOrDefault()
         val hiddenCatalogues = preferencesHelper.hiddenCatalogues().getOrDefault()
 

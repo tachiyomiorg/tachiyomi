@@ -25,8 +25,8 @@
 
     <ImageView
         android:id="@+id/itemImage"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="112dp"
+        android:layout_height="112dp"
         android:paddingBottom="8dp"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,8 +37,8 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        style="@style/TextAppearance.Regular.Body1"
-        android:layout_width="96dp"
+        style="@style/TextAppearance.Regular.Caption"
+        android:layout_width="104dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:ellipsize="end"

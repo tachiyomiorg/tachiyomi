@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.*
+import com.bluelinelabs.conductor.Controller
+import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.kanade.tachiyomi.R
@@ -29,7 +31,6 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
         SourceLoginDialog.Listener,
         CatalogueMainCardAdapter.OnBrowseClickListener,
         CatalogueMainCardAdapter.OnLatestClickListener {
-
     /**
      * Adapter containing sources.
      */
@@ -38,12 +39,12 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
     /**
      * Boolean which is true when recent catalog is added to adapter.
      */
-    var isAdded = false
+    private var isAdded = false
 
     /**
      * Most recently used catalogues.
      */
-    var recentCatalogue: CatalogueMainItem? = null
+    private var recentCatalogue: CatalogueMainItem? = null
 
     /**
      * Called when controller is initialized.
@@ -52,6 +53,7 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
         // Enable the option menu
         setHasOptionsMenu(true)
     }
+
 
     /**
      * Initiate the view with [R.layout.catalogue_main_controller].
@@ -188,6 +190,23 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
             recycler.layoutManager = LinearLayoutManager(context)
             recycler.adapter = adapter
         }
+
+        // Listen for changes in the source list and update view accordingly.
+        router.addChangeListener(object : ControllerChangeHandler.ControllerChangeListener {
+            override fun onChangeStarted(to: Controller?, from: Controller?, isPush: Boolean,
+                                         container: ViewGroup, handler: ControllerChangeHandler) {
+
+                if (from is SettingsSourcesController){
+                    presenter.updateSources()
+                }
+            }
+
+            override fun onChangeCompleted(to: Controller?, from: Controller?, isPush: Boolean,
+                                           container: ViewGroup, handler: ControllerChangeHandler) {
+
+            }
+
+        })
     }
 
     /**

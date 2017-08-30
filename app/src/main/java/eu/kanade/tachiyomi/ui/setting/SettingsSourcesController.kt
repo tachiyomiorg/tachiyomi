@@ -3,6 +3,8 @@ package eu.kanade.tachiyomi.ui.setting
 import android.graphics.drawable.Drawable
 import android.support.v7.preference.PreferenceGroup
 import android.support.v7.preference.PreferenceScreen
+import com.bluelinelabs.conductor.ControllerChangeHandler
+import com.bluelinelabs.conductor.ControllerChangeType
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.SourceManager
