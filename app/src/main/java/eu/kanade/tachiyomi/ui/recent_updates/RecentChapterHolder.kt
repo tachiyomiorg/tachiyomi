@@ -8,6 +8,7 @@ import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.util.getResourceColor
+import eu.kanade.tachiyomi.util.setVectorCompat
 import jp.wasabeef.glide.transformations.CropCircleTransformation
 import kotlinx.android.synthetic.main.recent_chapters_item.view.*
 
@@ -40,6 +41,9 @@ class RecentChapterHolder(private val view: View, private val adapter: RecentCha
     private var item: RecentChapterItem? = null
 
     init {
+        // Set the correct drawable for dropdown and update the tint to match theme.
+        view.chapter_menu_icon.setVectorCompat(R.drawable.ic_more_horiz_black_24dp, view.context.getResourceColor(R.attr.icon_color))
+
         // We need to post a Runnable to show the popup to make sure that the PopupMenu is
         // correctly positioned. The reason being that the view may change position before the
         // PopupMenu is shown.

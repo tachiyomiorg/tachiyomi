@@ -20,6 +20,7 @@
     <color name="dialogLight">@color/md_white_1000</color>
 
     <color name="selectorColorLight">@color/md_blue_A400_38</color>
+    <color name="iconColorLight">@color/md_black_1000</color>
 
     <!-- Dark Theme -->
     <color name="colorAccentDark">#3399ff</color>
@@ -35,6 +36,7 @@
     <color name="dialogDark">@color/md_grey_800</color>
 
     <color name="selectorColorDark">@color/md_blue_A200_50</color>
+    <color name="iconColorDark">@color/md_white_1000_54</color>
 
     <!-- Reader Theme -->
     <color name="pageNumberBackgroundLight">@color/md_grey_50_75</color>
@@ -48,6 +50,7 @@
 
     <color name="md_white_1000">#FFFFFFFF</color>
     <color name="md_white_1000_70">#B3FFFFFF</color>
+    <color name="md_white_1000_54">#8AFFFFFF</color>
     <color name="md_white_1000_50">#80FFFFFF</color>
     <color name="md_white_1000_20">#33FFFFFF</color>
     <color name="md_white_1000_12">#1FFFFFFF</color>

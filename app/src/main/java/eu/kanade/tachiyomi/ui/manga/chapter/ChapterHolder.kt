@@ -6,7 +6,9 @@ import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
+import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.gone
+import eu.kanade.tachiyomi.util.setVectorCompat
 import kotlinx.android.synthetic.main.chapters_item.view.*
 import java.util.*
 
@@ -16,6 +18,9 @@ class ChapterHolder(
 ) : FlexibleViewHolder(view, adapter) {
 
     init {
+        // Set the correct drawable for dropdown and update the tint to match theme.
+        view.chapter_menu.setVectorCompat(R.drawable.ic_more_horiz_black_24dp, view.context.getResourceColor(R.attr.icon_color))
+
         // We need to post a Runnable to show the popup to make sure that the PopupMenu is
         // correctly positioned. The reason being that the view may change position before the
         // PopupMenu is shown.

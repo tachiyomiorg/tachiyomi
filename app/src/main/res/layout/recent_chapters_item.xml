@@ -76,12 +76,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/chapter_menu_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="center|end"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            app:srcCompat="@drawable/ic_more_horiz_black_24dp" />
+            android:layout_marginRight="16dp" />
 
     </FrameLayout>
 
