@@ -18,9 +18,6 @@ class ChapterHolder(
 ) : FlexibleViewHolder(view, adapter) {
 
     init {
-        // Set the correct drawable for dropdown and update the tint to match theme.
-        view.chapter_menu.setVectorCompat(R.drawable.ic_more_horiz_black_24dp, view.context.getResourceColor(R.attr.icon_color))
-
         // We need to post a Runnable to show the popup to make sure that the PopupMenu is
         // correctly positioned. The reason being that the view may change position before the
         // PopupMenu is shown.
@@ -37,6 +34,9 @@ class ChapterHolder(
             }
             else -> chapter.name
         }
+
+        // Set the correct drawable for dropdown and update the tint to match theme.
+        view.chapter_menu.setVectorCompat(R.drawable.ic_more_horiz_black_24dp, view.context.getResourceColor(R.attr.icon_color))
 
         // Set correct text color
         chapter_title.setTextColor(if (chapter.read) adapter.readColor else adapter.unreadColor)

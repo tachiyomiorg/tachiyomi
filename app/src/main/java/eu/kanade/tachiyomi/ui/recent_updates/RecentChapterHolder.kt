@@ -41,9 +41,6 @@ class RecentChapterHolder(private val view: View, private val adapter: RecentCha
     private var item: RecentChapterItem? = null
 
     init {
-        // Set the correct drawable for dropdown and update the tint to match theme.
-        view.chapter_menu_icon.setVectorCompat(R.drawable.ic_more_horiz_black_24dp, view.context.getResourceColor(R.attr.icon_color))
-
         // We need to post a Runnable to show the popup to make sure that the PopupMenu is
         // correctly positioned. The reason being that the view may change position before the
         // PopupMenu is shown.
@@ -66,6 +63,9 @@ class RecentChapterHolder(private val view: View, private val adapter: RecentCha
 
         // Set manga title
         view.manga_title.text = item.manga.title
+
+        // Set the correct drawable for dropdown and update the tint to match theme.
+        view.chapter_menu_icon.setVectorCompat(R.drawable.ic_more_horiz_black_24dp, view.context.getResourceColor(R.attr.icon_color))
 
         // Set cover
         Glide.clear(itemView.manga_cover)
