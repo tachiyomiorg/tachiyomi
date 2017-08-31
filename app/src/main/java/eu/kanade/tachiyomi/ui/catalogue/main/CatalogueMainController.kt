@@ -98,10 +98,12 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
      * @param source clicked item containing source information.
      */
     override fun loginDialogClosed(source: LoginSource) {
-        adapter.clear()
-        isAdded = false
-        presenter.loadSources()
-        presenter.loadRecentSources()
+        if (source.isLogged()){
+            adapter.clear()
+            isAdded = false
+            presenter.loadSources()
+            presenter.loadRecentSources()
+        }
     }
 
     /**
