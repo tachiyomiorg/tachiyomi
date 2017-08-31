@@ -6,6 +6,7 @@ import android.support.v7.widget.SearchView
 import android.view.*
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
+import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.kanade.tachiyomi.R
@@ -82,6 +83,13 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
      */
     override fun createPresenter(): CatalogueMainPresenter {
         return CatalogueMainPresenter()
+    }
+
+    override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
+        super.onChangeStarted(handler, type)
+        if (!type.isPush && handler is SettingsSourceFadeChangeHandler) {
+            presenter.updateSources()
+        }
     }
 
     /**
@@ -169,7 +177,7 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
             // Initialize option to open catalogue settings.
             R.id.action_settings -> {
                 router.pushController((RouterTransaction.with(SettingsSourcesController()))
-                        .popChangeHandler(FadeChangeHandler())
+                        .popChangeHandler(SettingsSourceFadeChangeHandler())
                         .pushChangeHandler(FadeChangeHandler()))
             }
             else -> return super.onOptionsItemSelected(item)
@@ -190,23 +198,6 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
             recycler.layoutManager = LinearLayoutManager(context)
             recycler.adapter = adapter
         }
-
-        // Listen for changes in the source list and update view accordingly.
-        router.addChangeListener(object : ControllerChangeHandler.ControllerChangeListener {
-            override fun onChangeStarted(to: Controller?, from: Controller?, isPush: Boolean,
-                                         container: ViewGroup, handler: ControllerChangeHandler) {
-
-                if (from is SettingsSourcesController){
-                    presenter.updateSources()
-                }
-            }
-
-            override fun onChangeCompleted(to: Controller?, from: Controller?, isPush: Boolean,
-                                           container: ViewGroup, handler: ControllerChangeHandler) {
-
-            }
-
-        })
     }
 
     /**
@@ -233,4 +224,6 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
             }
         }
     }
+
+    private class SettingsSourceFadeChangeHandler : FadeChangeHandler()
 }

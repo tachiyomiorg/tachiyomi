@@ -31,12 +31,6 @@ class SettingsMainController : SettingsController() {
             onClick { navigateTo(SettingsDownloadController()) }
         }
         preference {
-            iconRes = R.drawable.ic_language_black_24dp
-            iconTint = tintColor
-            titleRes = R.string.pref_category_sources
-            onClick { navigateTo(SettingsSourcesController()) }
-        }
-        preference {
             iconRes = R.drawable.ic_sync_black_24dp
             iconTint = tintColor
             titleRes = R.string.pref_category_tracking
