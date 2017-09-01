@@ -35,26 +35,11 @@ class CatalogueMainPresenter(
      */
     private var sourceSubscription: Subscription? = null
 
-    /**
-     * Subscription for retrieving most recent used source.
-     */
-    private var recentSourceSubscription: Subscription? = null
-
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
         // Load enabled sources
         loadSources()
-
-        // Load most recently used source.
-        loadRecentSources()
-    }
-
-    override fun onDestroy() {
-        // Unsubscribe subscriptions.
-        recentSourceSubscription?.unsubscribe()
-        sourceSubscription?.unsubscribe()
-        super.onDestroy()
     }
 
     /**
@@ -67,28 +52,6 @@ class CatalogueMainPresenter(
                 .map(::CatalogueMainItem).toList() // Map to CatalogueMainItem.
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeLatestCache(CatalogueMainController::setSources)
-    }
-
-    /**
-     * Unsubscribe and create a new subscription to fetch most recent catalogue.
-     */
-    fun loadRecentSources(){
-        recentSourceSubscription?.unsubscribe()
-        recentSourceSubscription = preferencesHelper.lastUsedCatalogueSource().asObservable()
-                .map { sourceManager.get(it) as CatalogueSource } // Retrieve catalogue.
-                .map { Pair("recent", listOf(it)) } // Create recent item pair.
-                .map (::CatalogueMainItem) // Map to CatalogueMainItem.
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeLatestCache(CatalogueMainController::setLastUsedSource)
-    }
-
-    /**
-     * Update the last used source
-     *
-     * @param id id of source.
-     */
-    fun setLastUsedSource(id: Long){
-        preferencesHelper.lastUsedCatalogueSource().set(id)
     }
 
     fun updateSources() {

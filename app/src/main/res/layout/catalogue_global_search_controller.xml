@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eu.kanade.tachiyomi.widget.AutofitRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="wrap_content">
+
+<android.support.v7.widget.RecyclerView
     android:id="@+id/recycler"
-    style="@style/Theme.Widget.GridView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingBottom="4dp"
     android:paddingTop="4dp"
     tools:listitem="@layout/catalogue_global_search_controller_card" />
+</android.support.v4.widget.NestedScrollView>

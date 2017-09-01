@@ -118,15 +118,23 @@ CatalogueSearchCardAdapter.OnMangaClickListener{
      */
     override fun onViewCreated(view: View, savedViewState: Bundle?) {
         super.onViewCreated(view, savedViewState)
+
+        adapter = CatalogueSearchAdapter(this)
+
         with(view) {
-            adapter = CatalogueSearchAdapter(this@CatalogueSearchController)
+            // Create recycler and set adapter.
             recycler.layoutManager = LinearLayoutManager(context)
-            recycler.setHasFixedSize(true)
+            recycler.isNestedScrollingEnabled = false
             recycler.adapter = adapter
-            adapter?.isHandleDragEnabled = true
         }
 
         presenter.getSearchResults(query)
+    }
+
+    override fun onDestroyView(view: View) {
+        adapter = null
+
+        super.onDestroyView(view)
     }
 
     /**

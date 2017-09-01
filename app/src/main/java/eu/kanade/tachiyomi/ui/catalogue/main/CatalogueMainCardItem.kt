@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue.main.card
+package eu.kanade.tachiyomi.ui.catalogue.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue.main.card
+package eu.kanade.tachiyomi.ui.catalogue.main
 
 import android.view.View
 import eu.davidea.viewholders.FlexibleViewHolder
@@ -21,13 +21,13 @@ class CatalogueMainCardHolder(view: View, adapter: CatalogueMainCardAdapter) : F
         // Call onBrowseClickListener when item is pressed.
         itemView.setOnClickListener {
             val item = adapter.getItem(adapterPosition)
-            adapter.browseClickListener.OnBrowseClickListener(item)
+            adapter.browseClickListener.onBrowseClickListener(item)
         }
 
         // Call onBrowseClickListener when browse is pressed.
         itemView.source_browse.setOnClickListener {
             val item = adapter.getItem(adapterPosition)
-            adapter.browseClickListener.OnBrowseClickListener(item)
+            adapter.browseClickListener.onBrowseClickListener(item)
         }
 
         // Call OnLatestClickListener when latest is pressed.

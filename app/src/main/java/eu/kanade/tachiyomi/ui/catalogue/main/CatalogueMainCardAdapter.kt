@@ -1,6 +1,6 @@
-package eu.kanade.tachiyomi.ui.catalogue.main.card
+package eu.kanade.tachiyomi.ui.catalogue.main
 
-import eu.kanade.tachiyomi.ui.catalogue.main.CatalogueMainController
+import eu.davidea.flexibleadapter.FlexibleAdapter
 
 /**
  * Adapter that holds the catalogue items.
@@ -8,7 +8,7 @@ import eu.kanade.tachiyomi.ui.catalogue.main.CatalogueMainController
  * @param controller instance of [CatalogueMainController].
  */
 class CatalogueMainCardAdapter(controller: CatalogueMainController) :
-        eu.davidea.flexibleadapter.FlexibleAdapter<CatalogueMainCardItem>(null, controller, true) {
+        FlexibleAdapter<CatalogueMainCardItem>(null, controller, true) {
 
     /**
      * Listen for browse item clicks.
@@ -25,7 +25,7 @@ class CatalogueMainCardAdapter(controller: CatalogueMainController) :
      * Note: Should only be handled by [CatalogueMainController]
      */
     interface OnBrowseClickListener {
-        fun OnBrowseClickListener(item: CatalogueMainCardItem)
+        fun onBrowseClickListener(item: CatalogueMainCardItem)
     }
 
     /**

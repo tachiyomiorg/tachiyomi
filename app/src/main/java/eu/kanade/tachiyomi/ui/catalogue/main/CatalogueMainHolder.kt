@@ -6,8 +6,6 @@ import android.view.View
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.CatalogueSource
-import eu.kanade.tachiyomi.ui.catalogue.main.card.CatalogueMainCardAdapter
-import eu.kanade.tachiyomi.ui.catalogue.main.card.CatalogueMainCardItem
 import eu.kanade.tachiyomi.util.gone
 import kotlinx.android.synthetic.main.catalogue_main_controller_card.view.*
 import java.util.*

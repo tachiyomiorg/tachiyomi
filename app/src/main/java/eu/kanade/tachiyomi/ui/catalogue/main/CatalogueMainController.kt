@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.*
-import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RouterTransaction
@@ -14,8 +13,6 @@ import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
 import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
-import eu.kanade.tachiyomi.ui.catalogue.main.card.CatalogueMainCardAdapter
-import eu.kanade.tachiyomi.ui.catalogue.main.card.CatalogueMainCardItem
 import eu.kanade.tachiyomi.ui.latest_updates.LatestUpdatesController
 import eu.kanade.tachiyomi.ui.setting.SettingsSourcesController
 import eu.kanade.tachiyomi.widget.preference.SourceLoginDialog
@@ -35,17 +32,7 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
     /**
      * Adapter containing sources.
      */
-    private var adapter = CatalogueMainAdapter(this)
-
-    /**
-     * Boolean which is true when recent catalog is added to adapter.
-     */
-    private var isAdded = false
-
-    /**
-     * Most recently used catalogues.
-     */
-    private var recentCatalogue: CatalogueMainItem? = null
+    private var adapter : CatalogueMainAdapter? = null
 
     /**
      * Called when controller is initialized.
@@ -99,25 +86,21 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
      */
     override fun loginDialogClosed(source: LoginSource) {
         if (source.isLogged()){
-            adapter.clear()
-            isAdded = false
+            adapter?.clear()
             presenter.loadSources()
-            presenter.loadRecentSources()
         }
     }
 
     /**
      * Called when browse or item is clicked in [CatalogueMainCardAdapter]
      */
-    override fun OnBrowseClickListener(item: CatalogueMainCardItem) {
+    override fun onBrowseClickListener(item: CatalogueMainCardItem) {
         val source = item.source
         if (source is LoginSource && !source.isLogged()) {
             val dialog = SourceLoginDialog(source)
             dialog.targetController = this
             dialog.showDialog(router)
         } else {
-            // Update last used
-            presenter.setLastUsedSource(item.source.id)
             // Open the catalogue view.
             router.pushController(RouterTransaction.with(CatalogueController(null, item.source))
                     .pushChangeHandler(FadeChangeHandler())
@@ -195,36 +178,28 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
      */
     override fun onViewCreated(view: View, savedViewState: Bundle?) {
         super.onViewCreated(view, savedViewState)
+
+        adapter = CatalogueMainAdapter(this)
+
         with(view) {
             // Create recycler and set adapter.
             recycler.layoutManager = LinearLayoutManager(context)
+            recycler.isNestedScrollingEnabled = false
             recycler.adapter = adapter
         }
+    }
+
+    override fun onDestroyView(view: View) {
+        adapter = null
+
+        super.onDestroyView(view)
     }
 
     /**
      * Called to update adapter containing sources.
      */
     fun setSources(sources: List<CatalogueMainItem>) {
-        adapter.updateDataSet(sources)
-    }
-
-    /**
-     * Called to update most recently uses source.
-     */
-    fun setLastUsedSource(source: CatalogueMainItem) {
-        // Update most recent catalogue
-        recentCatalogue = source
-        recentCatalogue?.let {
-            // If not yet added, add it to the adapter.
-            if (!isAdded) {
-                adapter.addItem(0, it)
-                isAdded = true
-            } else {
-                // Update most recent catalogue in adapter.
-                adapter.updateItem(0, it, null)
-            }
-        }
+        adapter?.updateDataSet(sources)
     }
 
     private class SettingsSourceFadeChangeHandler : FadeChangeHandler()
