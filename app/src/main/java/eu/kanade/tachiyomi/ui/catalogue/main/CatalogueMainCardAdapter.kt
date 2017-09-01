@@ -33,6 +33,6 @@ class CatalogueMainCardAdapter(controller: CatalogueMainController) :
      * Note: Should only be handled by [CatalogueMainController]
      */
     interface OnLatestClickListener {
-        fun OnLatestClickListener(item: CatalogueMainCardItem)
+        fun onLatestClickListener(item: CatalogueMainCardItem)
     }
 }

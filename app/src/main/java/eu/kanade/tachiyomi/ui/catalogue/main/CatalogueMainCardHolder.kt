@@ -30,10 +30,10 @@ class CatalogueMainCardHolder(view: View, adapter: CatalogueMainCardAdapter) : F
             adapter.browseClickListener.onBrowseClickListener(item)
         }
 
-        // Call OnLatestClickListener when latest is pressed.
+        // Call onLatestClickListener when latest is pressed.
         itemView.source_latest.setOnClickListener {
             val item = adapter.getItem(adapterPosition)
-            adapter.latestClickListener.OnLatestClickListener(item)
+            adapter.latestClickListener.onLatestClickListener(item)
         }
     }
 

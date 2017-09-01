@@ -111,7 +111,7 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
     /**
      * Called when latest is clicked in [CatalogueMainCardAdapter]
      */
-    override fun OnLatestClickListener(item: CatalogueMainCardItem) {
+    override fun onLatestClickListener(item: CatalogueMainCardItem) {
         router.pushController((RouterTransaction.with(LatestUpdatesController(null, item.source)))
                 .popChangeHandler(FadeChangeHandler())
                 .pushChangeHandler(FadeChangeHandler()))
