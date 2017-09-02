@@ -89,7 +89,6 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
         with(view) {
             // Create recycler and set adapter.
             recycler.layoutManager = LinearLayoutManager(context)
-            recycler.isNestedScrollingEnabled = false
             recycler.adapter = adapter
             recycler.addItemDecoration(SourceDividerItemDecoration(context))
         }
