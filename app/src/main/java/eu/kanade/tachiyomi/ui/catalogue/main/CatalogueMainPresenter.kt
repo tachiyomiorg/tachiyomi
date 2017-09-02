@@ -12,6 +12,7 @@ import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.*
 
 /**
  * Presenter of [CatalogueMainController]
@@ -47,9 +48,16 @@ class CatalogueMainPresenter(
      */
     fun loadSources() {
         sourceSubscription?.unsubscribe()
-        sourceSubscription = Observable.from(sources)
-                .groupBy { it.lang }.flatMap{ group -> group.toList().map { group.key to it } } //Group by language.
-                .map(::CatalogueMainItem).toList() // Map to CatalogueMainItem.
+        sourceSubscription = Observable.just(sources)
+                .map {
+                    val map = TreeMap<String, MutableList<CatalogueSource>> { d1, d2 -> d1.compareTo(d2) }
+                    val byLang = it.groupByTo(map, { it.lang })
+                    byLang.flatMap {
+                        val langItem = LangItem(it.key)
+                        val count = it.value.size
+                        it.value.mapIndexed { index, source -> SourceItem(source, langItem, index, count) }
+                    }
+                }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeLatestCache(CatalogueMainController::setSources)
     }

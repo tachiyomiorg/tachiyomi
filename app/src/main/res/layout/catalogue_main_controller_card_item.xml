@@ -1,62 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/material_component_lists_two_line_height"
-    android:background="?attr/selectable_list_drawable">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="@dimen/material_component_lists_single_line_with_avatar_height"
-        android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
-        android:clickable="true"
-        android:paddingLeft="@dimen/material_component_lists_icon_left_padding"
-        android:paddingStart="@dimen/material_component_lists_icon_left_padding"
-        android:paddingRight="0dp"
-        android:paddingEnd="0dp"
-        tools:src="@mipmap/ic_launcher_round"/>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/material_component_lists_two_line_height"
+        android:background="?attr/selectable_list_drawable">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:maxLines="1"
-        android:paddingEnd="0dp"
-        android:paddingStart="16dp"
-        app:layout_constraintHeight_default="wrap"
-        android:textAppearance="@style/TextAppearance.Regular.SubHeading"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/image"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Manga title" />
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="48dp"
+            android:layout_height="56dp"
+            android:clickable="true"
+            android:paddingLeft="8dp"
+            android:paddingStart="8dp"
+            android:paddingRight="0dp"
+            android:paddingEnd="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@mipmap/ic_launcher_round"
+            app:layout_constraintLeft_toLeftOf="parent"/>
 
-    <TextView
-        android:id="@+id/source_latest"
-        android:background="@drawable/list_item_selector_trans"
-        style="@style/TextAppearance.Medium.Button"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_default="wrap"
-        android:padding="@dimen/material_component_dialogs_padding_around_buttons"
-        android:text="@string/latest"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/source_browse"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:maxLines="1"
+            android:paddingLeft="16dp"
+            android:paddingStart="16dp"
+            android:paddingRight="0dp"
+            android:paddingEnd="0dp"
+            app:layout_constraintHeight_default="wrap"
+            android:textAppearance="@style/TextAppearance.Regular.SubHeading"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Manga title"/>
 
-    <TextView
-        android:id="@+id/source_browse"
-        style="@style/TextAppearance.Medium.Button"
-        android:background="@drawable/list_item_selector_trans"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/browse"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintHeight_default="wrap"
-        android:padding="@dimen/material_component_dialogs_padding_around_buttons"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/source_latest"
+            android:background="@drawable/list_item_selector_trans"
+            style="@style/TextAppearance.Medium.Button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_default="wrap"
+            android:padding="@dimen/material_component_dialogs_padding_around_buttons"
+            android:text="@string/latest"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/source_browse"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/source_browse"
+            style="@style/TextAppearance.Medium.Button"
+            android:background="@drawable/list_item_selector_trans"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/browse"
+            app:layout_constraintHeight_default="wrap"
+            android:padding="@dimen/material_component_dialogs_padding_around_buttons"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

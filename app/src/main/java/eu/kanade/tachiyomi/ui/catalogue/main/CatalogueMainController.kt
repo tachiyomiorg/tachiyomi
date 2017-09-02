@@ -8,6 +8,8 @@ import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
+import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
@@ -22,13 +24,15 @@ import kotlinx.android.synthetic.main.catalogue_main_controller.view.*
  * This controller shows and manages the different catalogues enabled by the user.
  * This controller should only handle UI actions, IO actions should be done by [CatalogueMainPresenter]
  * [SourceLoginDialog.Listener] refreshes the adapter on successful login of catalogues.
- * [CatalogueMainCardAdapter.OnBrowseClickListener] call function data on browse item click.
- * [CatalogueMainCardAdapter.OnLatestClickListener] call function data on latest item click
+ * [CatalogueMainAdapter.OnBrowseClickListener] call function data on browse item click.
+ * [CatalogueMainAdapter.OnLatestClickListener] call function data on latest item click
  */
 class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
         SourceLoginDialog.Listener,
-        CatalogueMainCardAdapter.OnBrowseClickListener,
-        CatalogueMainCardAdapter.OnLatestClickListener {
+        FlexibleAdapter.OnItemClickListener,
+        CatalogueMainAdapter.OnBrowseClickListener,
+        CatalogueMainAdapter.OnLatestClickListener {
+
     /**
      * Adapter containing sources.
      */
@@ -42,20 +46,8 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
         setHasOptionsMenu(true)
     }
 
-
     /**
-     * Initiate the view with [R.layout.catalogue_main_controller].
-     *
-     * @param inflater used to load the layout xml.
-     * @param container containing parent views.
-     * @return inflated view.
-     */
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.catalogue_main_controller, container, false)
-    }
-
-    /**
-     * Set  the title of controller.
+     * Set the title of controller.
      *
      * @return title.
      */
@@ -72,9 +64,45 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
         return CatalogueMainPresenter()
     }
 
+    /**
+     * Initiate the view with [R.layout.catalogue_main_controller].
+     *
+     * @param inflater used to load the layout xml.
+     * @param container containing parent views.
+     * @return inflated view.
+     */
+    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
+        return inflater.inflate(R.layout.catalogue_main_controller, container, false)
+    }
+
+    /**
+     * Called when the view is created
+     *
+     * @param view view of controller
+     * @param savedViewState information from previous state.
+     */
+    override fun onViewCreated(view: View, savedViewState: Bundle?) {
+        super.onViewCreated(view, savedViewState)
+
+        adapter = CatalogueMainAdapter(this)
+
+        with(view) {
+            // Create recycler and set adapter.
+            recycler.layoutManager = LinearLayoutManager(context)
+            recycler.isNestedScrollingEnabled = false
+            recycler.adapter = adapter
+            recycler.addItemDecoration(SourceDividerItemDecoration(context))
+        }
+    }
+
+    override fun onDestroyView(view: View) {
+        adapter = null
+        super.onDestroyView(view)
+    }
+
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         super.onChangeStarted(handler, type)
-        if (!type.isPush && handler is SettingsSourceFadeChangeHandler) {
+        if (!type.isPush && handler is SettingsSourcesFadeChangeHandler) {
             presenter.updateSources()
         }
     }
@@ -85,16 +113,17 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
      * @param source clicked item containing source information.
      */
     override fun loginDialogClosed(source: LoginSource) {
-        if (source.isLogged()){
+        if (source.isLogged()) {
             adapter?.clear()
             presenter.loadSources()
         }
     }
 
     /**
-     * Called when browse or item is clicked in [CatalogueMainCardAdapter]
+     * Called when item is clicked
      */
-    override fun onBrowseClickListener(item: CatalogueMainCardItem) {
+    override fun onItemClick(position: Int): Boolean {
+        val item = adapter?.getItem(position) as? SourceItem ?: return false
         val source = item.source
         if (source is LoginSource && !source.isLogged()) {
             val dialog = SourceLoginDialog(source)
@@ -102,16 +131,25 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
             dialog.showDialog(router)
         } else {
             // Open the catalogue view.
-            router.pushController(RouterTransaction.with(CatalogueController(null, item.source))
+            router.pushController(RouterTransaction.with(CatalogueController(null, source))
                     .pushChangeHandler(FadeChangeHandler())
                     .popChangeHandler(FadeChangeHandler()))
         }
+        return false
     }
 
     /**
-     * Called when latest is clicked in [CatalogueMainCardAdapter]
+     * Called when browse is clicked in [CatalogueMainAdapter]
      */
-    override fun onLatestClickListener(item: CatalogueMainCardItem) {
+    override fun onBrowseClick(position: Int) {
+        onItemClick(position)
+    }
+
+    /**
+     * Called when latest is clicked in [CatalogueMainAdapter]
+     */
+    override fun onLatestClick(position: Int) {
+        val item = adapter?.getItem(position) as? SourceItem ?: return
         router.pushController((RouterTransaction.with(LatestUpdatesController(null, item.source)))
                 .popChangeHandler(FadeChangeHandler())
                 .pushChangeHandler(FadeChangeHandler()))
@@ -162,7 +200,7 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
             // Initialize option to open catalogue settings.
             R.id.action_settings -> {
                 router.pushController((RouterTransaction.with(SettingsSourcesController()))
-                        .popChangeHandler(SettingsSourceFadeChangeHandler())
+                        .popChangeHandler(SettingsSourcesFadeChangeHandler())
                         .pushChangeHandler(FadeChangeHandler()))
             }
             else -> return super.onOptionsItemSelected(item)
@@ -171,36 +209,11 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
     }
 
     /**
-     * Called when the view is created
-     *
-     * @param view view of controller
-     * @param savedViewState information from previous state.
-     */
-    override fun onViewCreated(view: View, savedViewState: Bundle?) {
-        super.onViewCreated(view, savedViewState)
-
-        adapter = CatalogueMainAdapter(this)
-
-        with(view) {
-            // Create recycler and set adapter.
-            recycler.layoutManager = LinearLayoutManager(context)
-            recycler.isNestedScrollingEnabled = false
-            recycler.adapter = adapter
-        }
-    }
-
-    override fun onDestroyView(view: View) {
-        adapter = null
-
-        super.onDestroyView(view)
-    }
-
-    /**
      * Called to update adapter containing sources.
      */
-    fun setSources(sources: List<CatalogueMainItem>) {
-        adapter?.updateDataSet(sources)
+    fun setSources(sources: List<IFlexible<*>>) {
+        adapter?.updateDataSet(sources.toMutableList())
     }
 
-    private class SettingsSourceFadeChangeHandler : FadeChangeHandler()
+    private class SettingsSourcesFadeChangeHandler : FadeChangeHandler()
 }

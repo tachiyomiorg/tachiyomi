@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.catalogue.main
 
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter.items.IFlexible
 
 /**
  * Adapter that holds the catalogue cards.
@@ -8,5 +9,36 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
  * @param controller instance of [CatalogueMainController].
  */
 class CatalogueMainAdapter(val controller: CatalogueMainController) :
-        FlexibleAdapter<CatalogueMainItem>(null, controller, true)
+        FlexibleAdapter<IFlexible<*>>(null, controller, true) {
+
+    init {
+        setDisplayHeadersAtStartUp(true)
+    }
+
+    /**
+     * Listener for browse item clicks.
+     */
+    val browseClickListener: OnBrowseClickListener = controller
+
+    /**
+     * Listener for latest item clicks.
+     */
+    val latestClickListener: OnLatestClickListener = controller
+
+    /**
+     * Listener which should be called when user clicks browse.
+     * Note: Should only be handled by [CatalogueMainController]
+     */
+    interface OnBrowseClickListener {
+        fun onBrowseClick(position: Int)
+    }
+
+    /**
+     * Listener which should be called when user clicks latest.
+     * Note: Should only be handled by [CatalogueMainController]
+     */
+    interface OnLatestClickListener {
+        fun onLatestClick(position: Int)
+    }
+}
 

@@ -3,17 +3,17 @@ package eu.kanade.tachiyomi.ui.catalogue.main
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import eu.davidea.flexibleadapter.FlexibleAdapter
-import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
+import eu.davidea.flexibleadapter.items.AbstractSectionableItem
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.CatalogueSource
-import eu.kanade.tachiyomi.util.inflate
 
 /**
  * Item that contains source information.
  *
  * @param source instance of [CatalogueSource] containing source information.
  */
-class CatalogueMainCardItem(val source: CatalogueSource) : AbstractFlexibleItem<CatalogueMainCardHolder>() {
+class SourceItem(val source: CatalogueSource, header: LangItem, val index: Int, val count: Int) :
+        AbstractSectionableItem<SourceHolder, LangItem>(header) {
 
     /**
      * Set view.
@@ -25,21 +25,24 @@ class CatalogueMainCardItem(val source: CatalogueSource) : AbstractFlexibleItem<
     }
 
     /**
-     * Create view holder (see [CatalogueMainCardHolder].
+     * Create view holder (see [SourceHolder]).
      *
      * @return holder of view.
      */
     override fun createViewHolder(adapter: FlexibleAdapter<*>, inflater: LayoutInflater,
-                                  parent: ViewGroup): CatalogueMainCardHolder {
-        return CatalogueMainCardHolder(parent.inflate(layoutRes), adapter as CatalogueMainCardAdapter)
+                                  parent: ViewGroup): SourceHolder {
+
+        val view = inflater.inflate(layoutRes, parent, false)
+        return SourceHolder(view, adapter as CatalogueMainAdapter)
     }
 
     /**
-     * Bind item to view.
+     * Bind item to holder.
      */
-    override fun bindViewHolder(adapter: FlexibleAdapter<*>, holder: CatalogueMainCardHolder,
+    override fun bindViewHolder(adapter: FlexibleAdapter<*>, holder: SourceHolder,
                                 position: Int, payloads: List<Any?>?) {
-        holder.bind(source)
+
+        holder.bind(this)
     }
 
     /**
@@ -48,10 +51,11 @@ class CatalogueMainCardItem(val source: CatalogueSource) : AbstractFlexibleItem<
      * @return items are equal?
      */
     override fun equals(other: Any?): Boolean {
-        if (other is CatalogueMainCardItem) {
-            return source.id == other.source.id
+        return when {
+            this === other -> true
+            other is SourceItem -> source.id == other.source.id
+            else -> false
         }
-        return false
     }
 
     /**

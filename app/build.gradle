@@ -191,6 +191,7 @@ dependencies {
     compile 'com.afollestad.material-dialogs:core:0.9.4.5'
     compile 'me.zhanghai.android.systemuihelper:library:1.0.0'
     compile 'com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.0.4'
+    compile 'com.github.mthli:Slice:v1.2'
 
     // Conductor
     compile "com.bluelinelabs:conductor:2.1.4"
