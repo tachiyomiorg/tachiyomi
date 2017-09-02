@@ -15,7 +15,7 @@ class LastSourceItem(source: CatalogueSource) : SourceItem(source, null, 0, 1) {
     }
 
     override fun hashCode(): Int {
-        return id.hashCode()
+        return source.hashCode() + id.hashCode()
     }
 
     companion object {
