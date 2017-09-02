@@ -8,6 +8,7 @@ import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.util.dpToPx
 import eu.kanade.tachiyomi.util.getRound
 import eu.kanade.tachiyomi.util.gone
+import eu.kanade.tachiyomi.util.visible
 import io.github.mthli.slice.Slice
 import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.view.*
 
@@ -38,8 +39,11 @@ class SourceHolder(view: View, adapter: CatalogueMainAdapter) : FlexibleViewHold
 
             // If source is login, show only login option
             if (source is LoginSource && !source.isLogged()) {
-                source_browse.text = context.getString(R.string.login)
+                source_browse.setText(R.string.login)
                 source_latest.gone()
+            } else {
+                source_browse.setText(R.string.browse)
+                source_latest.visible()
             }
         }
     }
@@ -51,7 +55,7 @@ class SourceHolder(view: View, adapter: CatalogueMainAdapter) : FlexibleViewHold
         when {
             // Only one item in the card
             item.count == 1 -> {
-                slice.setRadius(2.0f)
+                slice.setRadius(2f)
                 slice.showLeftTopRect(false)
                 slice.showRightTopRect(false)
                 slice.showRightBottomRect(true)
@@ -62,7 +66,7 @@ class SourceHolder(view: View, adapter: CatalogueMainAdapter) : FlexibleViewHold
             }
             // First item of the card
             item.index == 0 -> {
-                slice.setRadius(2.0f)
+                slice.setRadius(2f)
                 slice.showLeftTopRect(false)
                 slice.showRightTopRect(false)
                 slice.showRightBottomRect(true)
@@ -73,7 +77,7 @@ class SourceHolder(view: View, adapter: CatalogueMainAdapter) : FlexibleViewHold
             }
             // Last item of the card
             item.index == item.count - 1 -> {
-                slice.setRadius(2.0f)
+                slice.setRadius(2f)
                 slice.showLeftTopRect(true)
                 slice.showRightTopRect(true)
                 slice.showRightBottomRect(false)

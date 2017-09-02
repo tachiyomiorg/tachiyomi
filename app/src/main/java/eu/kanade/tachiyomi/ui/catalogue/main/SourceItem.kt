@@ -12,7 +12,7 @@ import eu.kanade.tachiyomi.source.CatalogueSource
  *
  * @param source instance of [CatalogueSource] containing source information.
  */
-class SourceItem(val source: CatalogueSource, header: LangItem, val index: Int, val count: Int) :
+open class SourceItem(val source: CatalogueSource, header: LangItem?, val index: Int, val count: Int) :
         AbstractSectionableItem<SourceHolder, LangItem>(header) {
 
     /**
@@ -53,7 +53,7 @@ class SourceItem(val source: CatalogueSource, header: LangItem, val index: Int, 
     override fun equals(other: Any?): Boolean {
         return when {
             this === other -> true
-            other is SourceItem -> source.id == other.source.id
+            javaClass == other?.javaClass -> source.id == (other as SourceItem).source.id
             else -> false
         }
     }

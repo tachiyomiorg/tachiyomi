@@ -215,5 +215,15 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
         adapter?.updateDataSet(sources.toMutableList())
     }
 
+    /**
+     * Called to set the last used catalogue at the top of the view.
+     */
+    fun setLastUsedSource(source: LastSourceItem?) {
+        adapter?.removeAllScrollableHeaders()
+        if (source != null) {
+            adapter?.addScrollableHeader(source)
+        }
+    }
+
     private class SettingsSourcesFadeChangeHandler : FadeChangeHandler()
 }
