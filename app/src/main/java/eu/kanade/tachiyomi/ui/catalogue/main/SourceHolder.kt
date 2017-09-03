@@ -52,9 +52,21 @@ class SourceHolder(view: View, adapter: CatalogueMainAdapter) : FlexibleViewHold
         val slice = Slice(itemView.frame)
         slice.setElevation(2f)
 
+        // Position of this item in its header. Defaults to 0 when header is null.
+        var position = 0
+
+        // Number of items in the header of this item. Defaults to 1 when header is null.
+        var count = 1
+
+        if (item.header != null) {
+            val sectionItems = mAdapter.getSectionItems(item.header)
+            position = sectionItems.indexOf(item)
+            count = sectionItems.size
+        }
+
         when {
             // Only one item in the card
-            item.count == 1 -> {
+            count == 1 -> {
                 slice.setRadius(2f)
                 slice.showLeftTopRect(false)
                 slice.showRightTopRect(false)
@@ -65,7 +77,7 @@ class SourceHolder(view: View, adapter: CatalogueMainAdapter) : FlexibleViewHold
                 setMargins(margins, margins, margins, margins)
             }
             // First item of the card
-            item.index == 0 -> {
+            position == 0 -> {
                 slice.setRadius(2f)
                 slice.showLeftTopRect(false)
                 slice.showRightTopRect(false)
@@ -76,7 +88,7 @@ class SourceHolder(view: View, adapter: CatalogueMainAdapter) : FlexibleViewHold
                 setMargins(margins, margins, margins, 0)
             }
             // Last item of the card
-            item.index == item.count - 1 -> {
+            position == count - 1 -> {
                 slice.setRadius(2f)
                 slice.showLeftTopRect(true)
                 slice.showRightTopRect(true)

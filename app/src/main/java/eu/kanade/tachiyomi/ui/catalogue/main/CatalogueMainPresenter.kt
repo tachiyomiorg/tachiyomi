@@ -55,8 +55,7 @@ class CatalogueMainPresenter(
         val byLang = sources.groupByTo(map, { it.lang })
         val sourceItems = byLang.flatMap {
             val langItem = LangItem(it.key)
-            val count = it.value.size
-            it.value.mapIndexed { index, source -> SourceItem(source, langItem, index, count) }
+            it.value.map { source -> SourceItem(source, langItem) }
         }
 
         sourceSubscription = Observable.just(sourceItems)
