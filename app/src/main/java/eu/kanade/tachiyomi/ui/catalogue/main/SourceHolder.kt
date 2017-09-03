@@ -12,7 +12,8 @@ import eu.kanade.tachiyomi.util.visible
 import io.github.mthli.slice.Slice
 import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.view.*
 
-class SourceHolder(view: View, adapter: CatalogueMainAdapter) : FlexibleViewHolder(view, adapter) {
+class SourceHolder(view: View, private val adapter: CatalogueMainAdapter) :
+        FlexibleViewHolder(view, adapter) {
 
     init {
         itemView.source_browse.setOnClickListener {
@@ -50,6 +51,7 @@ class SourceHolder(view: View, adapter: CatalogueMainAdapter) : FlexibleViewHold
 
     private fun setCardEdges(item: SourceItem) {
         val slice = Slice(itemView.frame)
+        slice.setColor(adapter.cardBackground)
         slice.setElevation(2f)
 
         // Position of this item in its header. Defaults to 0 when header is null.
@@ -59,7 +61,7 @@ class SourceHolder(view: View, adapter: CatalogueMainAdapter) : FlexibleViewHold
         var count = 1
 
         if (item.header != null) {
-            val sectionItems = mAdapter.getSectionItems(item.header)
+            val sectionItems = adapter.getSectionItems(item.header)
             position = sectionItems.indexOf(item)
             count = sectionItems.size
         }

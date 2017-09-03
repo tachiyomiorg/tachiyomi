@@ -9,8 +9,6 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="4dp"
-        android:paddingTop="4dp"
         tools:listitem="@layout/catalogue_main_controller_card" />
 
 </FrameLayout>
