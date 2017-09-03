@@ -10,24 +10,24 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 /**
  * Item that contains source information.
  *
- * @param source instance of [CatalogueSource] containing source information.
+ * @param source Instance of [CatalogueSource] containing source information.
+ * @param header The header for this item.
+ * @param index The index of this item in its header.
+ * @param count The number of items in its header.
  */
-open class SourceItem(val source: CatalogueSource, header: LangItem?, val index: Int, val count: Int) :
+data class SourceItem(val source: CatalogueSource, val header: LangItem? = null,
+                      val index: Int = 0, val count: Int = 1) :
         AbstractSectionableItem<SourceHolder, LangItem>(header) {
 
     /**
-     * Set view.
-     *
-     * @return id of view
+     * Returns the layout resource of this item.
      */
     override fun getLayoutRes(): Int {
         return R.layout.catalogue_main_controller_card_item
     }
 
     /**
-     * Create view holder (see [SourceHolder]).
-     *
-     * @return holder of view.
+     * Creates a new view holder for this item.
      */
     override fun createViewHolder(adapter: FlexibleAdapter<*>, inflater: LayoutInflater,
                                   parent: ViewGroup): SourceHolder {
@@ -37,34 +37,12 @@ open class SourceItem(val source: CatalogueSource, header: LangItem?, val index:
     }
 
     /**
-     * Bind item to holder.
+     * Binds this item to the given view holder.
      */
     override fun bindViewHolder(adapter: FlexibleAdapter<*>, holder: SourceHolder,
                                 position: Int, payloads: List<Any?>?) {
 
         holder.bind(this)
-    }
-
-    /**
-     * Used to check if two items are equal.
-     *
-     * @return items are equal?
-     */
-    override fun equals(other: Any?): Boolean {
-        return when {
-            this === other -> true
-            javaClass == other?.javaClass -> source.id == (other as SourceItem).source.id
-            else -> false
-        }
-    }
-
-    /**
-     * Return hash code of item.
-     *
-     * @return hashcode
-     */
-    override fun hashCode(): Int {
-        return source.id.toInt()
     }
 
 }

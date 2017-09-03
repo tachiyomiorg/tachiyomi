@@ -71,7 +71,7 @@ class CatalogueMainPresenter(
                 sharedObs.take(1),
                 sharedObs.skip(1).delay(500, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread()))
                 .distinctUntilChanged()
-                .map { (sourceManager.get(it) as? CatalogueSource)?.let { LastSourceItem(it) } }
+                .map { (sourceManager.get(it) as? CatalogueSource)?.let { SourceItem(it) } }
                 .subscribeLatestCache(CatalogueMainController::setLastUsedSource)
     }
 

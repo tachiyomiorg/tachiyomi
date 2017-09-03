@@ -217,10 +217,10 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
     /**
      * Called to set the last used catalogue at the top of the view.
      */
-    fun setLastUsedSource(source: LastSourceItem?) {
+    fun setLastUsedSource(item: SourceItem?) {
         adapter?.removeAllScrollableHeaders()
-        if (source != null) {
-            adapter?.addScrollableHeader(source)
+        if (item != null) {
+            adapter?.addScrollableHeader(item)
         }
     }
 
