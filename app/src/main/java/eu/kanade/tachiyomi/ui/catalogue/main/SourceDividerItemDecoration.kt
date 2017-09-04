@@ -18,8 +18,8 @@ class SourceDividerItemDecoration(context: Context) : RecyclerView.ItemDecoratio
     }
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-        val left = parent.paddingLeft + SourceHolder.margins
-        val right = parent.width - parent.paddingRight - SourceHolder.margins
+        val left = parent.paddingLeft + SourceHolder.margin
+        val right = parent.width - parent.paddingRight - SourceHolder.margin
 
         val childCount = parent.childCount
         for (i in 0 until childCount - 1) {

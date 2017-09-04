@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/frame"
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="@dimen/material_component_lists_two_line_height"
         android:background="?attr/selectable_list_drawable">
@@ -40,39 +40,32 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/image"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/source_buttons"
-            tools:text="Manga title"/>
+            app:layout_constraintRight_toLeftOf="@+id/source_latest"
+            tools:text="Source title"/>
 
-        <!-- Maybe flatten this with a barrier once 1.1 is released -->
-        <LinearLayout
-            android:id="@+id/source_buttons"
+        <TextView
+            android:id="@+id/source_latest"
+            style="@style/TextAppearance.Medium.Button"
+            android:background="@drawable/list_item_selector_trans"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:text="@string/latest"
+            android:padding="@dimen/material_component_dialogs_padding_around_buttons"
+            app:layout_constraintRight_toLeftOf="@+id/source_browse"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/source_browse"
+            style="@style/TextAppearance.Medium.Button"
+            android:background="@drawable/list_item_selector_trans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/browse"
+            android:padding="@dimen/material_component_dialogs_padding_around_buttons"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <TextView
-                android:id="@+id/source_latest"
-                style="@style/TextAppearance.Medium.Button"
-                android:background="@drawable/list_item_selector_trans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/latest"
-                android:padding="@dimen/material_component_dialogs_padding_around_buttons"/>
-
-            <TextView
-                android:id="@+id/source_browse"
-                style="@style/TextAppearance.Medium.Button"
-                android:background="@drawable/list_item_selector_trans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/browse"
-                android:padding="@dimen/material_component_dialogs_padding_around_buttons"/>
-
-        </LinearLayout>
-
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     </android.support.constraint.ConstraintLayout>
 

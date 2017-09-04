@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.catalogue.main
 
+import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import eu.davidea.viewholders.FlexibleViewHolder
@@ -12,8 +13,11 @@ import eu.kanade.tachiyomi.util.visible
 import io.github.mthli.slice.Slice
 import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.view.*
 
-class SourceHolder(view: View, private val adapter: CatalogueMainAdapter) :
-        FlexibleViewHolder(view, adapter) {
+class SourceHolder(view: View, adapter: CatalogueMainAdapter) : FlexibleViewHolder(view, adapter) {
+
+    private val slice = Slice(itemView.card).apply {
+        setColor(adapter.cardBackground)
+    }
 
     init {
         itemView.source_browse.setOnClickListener {
@@ -50,10 +54,6 @@ class SourceHolder(view: View, private val adapter: CatalogueMainAdapter) :
     }
 
     private fun setCardEdges(item: SourceItem) {
-        val slice = Slice(itemView.frame)
-        slice.setColor(adapter.cardBackground)
-        slice.setElevation(2f)
-
         // Position of this item in its header. Defaults to 0 when header is null.
         var position = 0
 
@@ -61,65 +61,47 @@ class SourceHolder(view: View, private val adapter: CatalogueMainAdapter) :
         var count = 1
 
         if (item.header != null) {
-            val sectionItems = adapter.getSectionItems(item.header)
+            val sectionItems = mAdapter.getSectionItems(item.header)
             position = sectionItems.indexOf(item)
             count = sectionItems.size
         }
 
         when {
             // Only one item in the card
-            count == 1 -> {
-                slice.setRadius(2f)
-                slice.showLeftTopRect(false)
-                slice.showRightTopRect(false)
-                slice.showRightBottomRect(true)
-                slice.showLeftBottomRect(true)
-                slice.showTopEdgeShadow(true)
-                slice.showBottomEdgeShadow(true)
-                setMargins(margins, margins, margins, margins)
-            }
+            count == 1 -> applySlice(2f, false, false, true, true)
             // First item of the card
-            position == 0 -> {
-                slice.setRadius(2f)
-                slice.showLeftTopRect(false)
-                slice.showRightTopRect(false)
-                slice.showRightBottomRect(true)
-                slice.showLeftBottomRect(true)
-                slice.showTopEdgeShadow(true)
-                slice.showBottomEdgeShadow(false)
-                setMargins(margins, margins, margins, 0)
-            }
+            position == 0 -> applySlice(2f, false, true, true, false)
             // Last item of the card
-            position == count - 1 -> {
-                slice.setRadius(2f)
-                slice.showLeftTopRect(true)
-                slice.showRightTopRect(true)
-                slice.showRightBottomRect(false)
-                slice.showLeftBottomRect(false)
-                slice.showTopEdgeShadow(false)
-                slice.showBottomEdgeShadow(true)
-                setMargins(margins, 0, margins, margins)
-            }
+            position == count - 1 -> applySlice(2f, true, false, false, true)
             // Middle item
-            else -> {
-                slice.setRadius(0.0f)
-                slice.showTopEdgeShadow(false)
-                slice.showBottomEdgeShadow(false)
-                setMargins(margins, 0, margins, 0)
-            }
+            else -> applySlice(0f, false, false, false, false)
         }
     }
 
+    private fun applySlice(radius: Float, topRect: Boolean, bottomRect: Boolean,
+                           topShadow: Boolean, bottomShadow: Boolean) {
+
+        slice.setRadius(radius)
+        slice.showLeftTopRect(topRect)
+        slice.showRightTopRect(topRect)
+        slice.showLeftBottomRect(bottomRect)
+        slice.showRightBottomRect(bottomRect)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            slice.showTopEdgeShadow(topShadow)
+            slice.showBottomEdgeShadow(bottomShadow)
+        }
+        setMargins(margin, if (topShadow) margin else 0, margin, if (bottomShadow) margin else 0)
+    }
+
     private fun setMargins(left: Int, top: Int, right: Int, bottom: Int) {
-        val v = itemView.frame
+        val v = itemView.card
         if (v.layoutParams is ViewGroup.MarginLayoutParams) {
             val p = v.layoutParams as ViewGroup.MarginLayoutParams
             p.setMargins(left, top, right, bottom)
-            v.requestLayout()
         }
     }
 
     companion object {
-        val margins = 8.dpToPx
+        val margin = 8.dpToPx
     }
 }
