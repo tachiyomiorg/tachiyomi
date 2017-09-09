@@ -10,8 +10,8 @@
     <string name="label_library">Meine Bibliothek</string>
     <string name="label_recent_manga">Kürzlich gelesen</string>
     <string name="label_catalogues">Alle Mangas</string>
-    <string name="label_latest_updates">neuste Updated</string>
-    <string name="label_categories">Kategorie</string>
+    <string name="label_latest_updates">Neueste Updates</string>
+    <string name="label_categories">Kategorien</string>
     <string name="label_selected">Ausgewählt: %1$d</string>
     <string name="label_backup">Backup</string>
 
@@ -19,18 +19,18 @@
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Heruntergeladen</string>
     <string name="action_filter_bookmarked">Lesezeichen</string>
-    <string name="action_filter_unread">ungelesen</string>
-    <string name="action_filter_read">gelesen</string>
-    <string name="action_filter_empty">lösche Filter</string>
+    <string name="action_filter_unread">Ungelesen</string>
+    <string name="action_filter_read">Gelesen</string>
+    <string name="action_filter_empty">Filter löschen</string>
     <string name="action_sort_alpha">Alphabetisch</string>
-    <string name="action_sort_total">Kapitel Anzahl</string>
-    <string name="action_sort_last_read">zuletzt gelesen</string>
-    <string name="action_sort_last_updated">letzes Update</string>
+    <string name="action_sort_total">Kapitelanzahl</string>
+    <string name="action_sort_last_read">Zuletzt gelesen</string>
+    <string name="action_sort_last_updated">Letztes Update</string>
     <string name="action_search">Suche</string>
     <string name="action_select_all">Alle auswählen</string>
     <string name="action_mark_as_read">Als gelesen markieren</string>
     <string name="action_mark_as_unread">Als ungelesen markieren</string>
-    <string name="action_mark_previous_as_read">voherige Kapitel als gelesen markieren</string>
+    <string name="action_mark_previous_as_read">Voherige Kapitel als gelesen markieren</string>
     <string name="action_download">Herunterladen</string>
     <string name="action_bookmark">Lessezeichen hinzufügen</string>
     <string name="action_remove_bookmark">Entferne Lesezeichen</string>
