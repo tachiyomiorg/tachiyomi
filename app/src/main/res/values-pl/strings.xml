@@ -40,14 +40,14 @@
     <string name="action_rename_category">Zmień nazwę kategorii</string>
     <string name="action_move_category">Przenieś do kategorii</string>
     <string name="action_edit_cover">Edytuj okładkę</string>
-    <string name="action_sort_total">Wszystkich rozdziałów</string>
+    <string name="action_sort_total">Ilość rozdziałów</string>
     <string name="action_sort_up">Sortuj rosnąco</string>
     <string name="action_sort_down">Sortuj malejąco</string>
     <string name="action_show_unread">Nieprzeczytane</string>
     <string name="action_show_downloaded">Pobrane</string>
     <string name="action_next_unread">Następne nieprzeczytane</string>
     <string name="action_start">Start</string>
-    <string name="action_stop">Stop</string>
+    <string name="action_stop">Zatrzymaj</string>
     <string name="action_pause">Wstrzymaj</string>
     <string name="action_clear">Wyczyść</string>
     <string name="action_close">Zamknij</string>
@@ -155,7 +155,7 @@
     <string name="download_notifier_unkown_error">Podczas pobierania rozdziału wystąpił nieoczekiwany błąd</string>
     <string name="download_notifier_download_paused">Pobieranie wstrzymane</string>
 
-<string name="label_latest_updates">Ostatnio aktualizowane</string>
+<string name="label_latest_updates">Ostatnio zaktualizowane</string>
     <string name="label_selected">Zaznaczono: %1$d</string>
     <string name="action_sort_alpha">Alfabetycznie</string>
     <string name="track">Śledzenie</string>
@@ -296,8 +296,8 @@
     <string name="pref_backup_interval">Częstotliwość tworzenia kopii</string>
     <string name="pref_backup_slots">Maks. automatycznych kopii</string>
     <string name="pref_backup_service_category">Serwisowe</string>
-    <string name="dialog_restoring_backup">Przywracanie kopii zapasowej
-%1$s dodano do biblioteki</string>
+    <string name="dialog_restoring_backup">Przywracanie z kopii zapasowej
+\n%1$s dodano do biblioteki</string>
     <string name="source_not_found">Nie znaleziono źródła</string>
     <string name="dialog_restoring_source_not_found">Przywracanie kopii zapasowej
 Nie znaleziono źródła %1$s</string>
