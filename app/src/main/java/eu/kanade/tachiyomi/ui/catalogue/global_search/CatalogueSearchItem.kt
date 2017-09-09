@@ -11,9 +11,10 @@ import eu.kanade.tachiyomi.util.inflate
 /**
  * Item that contains search result information.
  *
- * @param searchResult contains information about search result.
+ * @param source contains information about search result.
  */
-class CatalogueSearchItem(val searchResult: CatalogueSource) : AbstractFlexibleItem<CatalogueSearchHolder>() {
+class CatalogueSearchItem(val source: CatalogueSource, val results: List<CatalogueSearchCardItem>?)
+    : AbstractFlexibleItem<CatalogueSearchHolder>() {
 
     /**
      * Set view.
@@ -39,7 +40,7 @@ class CatalogueSearchItem(val searchResult: CatalogueSource) : AbstractFlexibleI
      */
     override fun bindViewHolder(adapter: FlexibleAdapter<*>, holder: CatalogueSearchHolder,
                                 position: Int, payloads: List<Any?>?) {
-        holder.bind(searchResult)
+        holder.bind(this)
     }
 
     /**
@@ -49,7 +50,7 @@ class CatalogueSearchItem(val searchResult: CatalogueSource) : AbstractFlexibleI
      */
     override fun equals(other: Any?): Boolean {
         if (other is CatalogueSearchItem) {
-            return searchResult.id == other.searchResult.id
+            return source.id == other.source.id
         }
         return false
     }
@@ -60,7 +61,7 @@ class CatalogueSearchItem(val searchResult: CatalogueSource) : AbstractFlexibleI
      * @return hashcode
      */
     override fun hashCode(): Int {
-        return searchResult.id.toInt()
+        return source.id.toInt()
     }
 
 }

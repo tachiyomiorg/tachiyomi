@@ -5,12 +5,10 @@ import android.view.View
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.source.CatalogueSource
-import eu.kanade.tachiyomi.ui.catalogue.global_search.card.CatalogueSearchCardAdapter
-import eu.kanade.tachiyomi.ui.catalogue.global_search.card.CatalogueSearchCardHolder
-import eu.kanade.tachiyomi.ui.catalogue.global_search.card.CatalogueSearchCardItem
 import eu.kanade.tachiyomi.util.getResourceColor
+import eu.kanade.tachiyomi.util.gone
 import eu.kanade.tachiyomi.util.setVectorCompat
+import eu.kanade.tachiyomi.util.visible
 import kotlinx.android.synthetic.main.catalogue_global_search_controller_card.view.*
 
 /**
@@ -24,30 +22,53 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : F
     /**
      * Adapter containing manga from search results.
      */
-    private var mangaAdapter: CatalogueSearchCardAdapter? = null
+    private val mangaAdapter = CatalogueSearchCardAdapter(adapter.controller)
+
+    private var lastBoundResults: List<CatalogueSearchCardItem>? = null
 
     init {
         with(itemView) {
             // Set layout horizontal.
             recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             recycler.isNestedScrollingEnabled = false
-
-            // Set adapter.
-            mangaAdapter = CatalogueSearchCardAdapter(adapter.controller)
             recycler.adapter = mangaAdapter
+
+            nothing_found_icon.setVectorCompat(R.drawable.ic_search_black_112dp,
+                    context.getResourceColor(android.R.attr.textColorHint))
         }
     }
 
     /**
      * Show the loading of source search result.
      *
-     * @param source source of card.
+     * @param item item of card.
      */
-    fun bind(source: CatalogueSource) {
+    fun bind(item: CatalogueSearchItem) {
+        val source = item.source
+        val results = item.results
+
         with(itemView) {
             // Set Title witch country code if available.
             title.text = if (!source.lang.isEmpty()) "${source.name} (${source.lang})" else source.name
-            progress.visibility = View.VISIBLE
+
+            when {
+                results == null -> {
+                    progress.visible()
+                    nothing_found.gone()
+                }
+                results.isEmpty() -> {
+                    progress.gone()
+                    nothing_found.visible()
+                }
+                else -> {
+                    progress.gone()
+                    nothing_found.gone()
+                }
+            }
+            if (results != lastBoundResults) {
+                mangaAdapter.updateDataSet(results)
+                lastBoundResults = results
+            }
         }
     }
 
@@ -61,40 +82,14 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : F
     }
 
     /**
-     * Show the results from search.
-     *
-     * @param result manga returned from search.
-     */
-    fun updateSourceFetch(result: List<Manga>) {
-        itemView.post {
-            itemView.progress.visibility = View.GONE
-            if (!result.isEmpty()) {
-                // Show search results.
-                itemView.nothing_found.visibility = View.GONE
-                itemView.recycler.visibility = View.VISIBLE
-
-                // Update data set.
-                mangaAdapter?.updateDataSet(result.map(::CatalogueSearchCardItem))
-            } else {
-                // Show no results found
-                itemView.nothing_found_icon.setVectorCompat(R.drawable.ic_search_black_112dp, itemView.context.getResourceColor(android.R.attr.textColorHint))
-                itemView.nothing_found.visibility = View.VISIBLE
-                itemView.recycler.visibility = View.GONE
-            }
-        }
-    }
-
-    /**
      * Returns the view holder for the given manga.
      *
      * @param manga the manga to find.
      * @return the holder of the manga or null if it's not bound.
      */
     private fun getHolder(manga: Manga): CatalogueSearchCardHolder? {
-        val adapter = mangaAdapter ?: return null
-
-        adapter.allBoundViewHolders.forEach { holder ->
-            val item = adapter.getItem(holder.adapterPosition)
+        mangaAdapter.allBoundViewHolders.forEach { holder ->
+            val item = mangaAdapter.getItem(holder.adapterPosition)
             if (item != null && item.manga.id!! == manga.id!!) {
                 return holder as CatalogueSearchCardHolder
             }
@@ -103,7 +98,4 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : F
         return null
     }
 
-    fun clear() {
-        mangaAdapter?.clear()
-    }
 }

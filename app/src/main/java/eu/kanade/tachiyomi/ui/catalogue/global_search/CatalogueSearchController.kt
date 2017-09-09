@@ -10,7 +10,6 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.ui.catalogue.global_search.card.CatalogueSearchCardAdapter
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import kotlinx.android.synthetic.main.catalogue_global_search_controller.view.*
 
@@ -21,7 +20,7 @@ import kotlinx.android.synthetic.main.catalogue_global_search_controller.view.*
  *
  * @param query query used for global search.
  */
-class CatalogueSearchController(val query:  String = "") : NucleusController<CatalogueSearchPresenter>(),
+class CatalogueSearchController(val query: String = "") : NucleusController<CatalogueSearchPresenter>(),
 CatalogueSearchCardAdapter.OnMangaClickListener{
 
     /**
@@ -70,7 +69,7 @@ CatalogueSearchCardAdapter.OnMangaClickListener{
      *
      * @param manga clicked item containing manga information.
      */
-    override fun OnMangaClickListener(manga: Manga) {
+    override fun onMangaClick(manga: Manga) {
         // Open MangaController.
         router.pushController(RouterTransaction.with(MangaController(manga, true))
                 .pushChangeHandler(FadeChangeHandler())
@@ -93,11 +92,7 @@ CatalogueSearchCardAdapter.OnMangaClickListener{
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
-                    if (query != presenter.query){
-                        adapter?.clear()
-                        clearHolder()
-                        presenter.getSearchResults(query)
-                    }
+                    presenter.getSearchResults(query)
                     collapseActionView()
                     return true
                 }
@@ -147,7 +142,7 @@ CatalogueSearchCardAdapter.OnMangaClickListener{
 
         adapter.allBoundViewHolders.forEach { holder ->
             val item = adapter.getItem(holder.adapterPosition)
-            if (item != null && source.id == item.searchResult.id) {
+            if (item != null && source.id == item.source.id) {
                 return holder as CatalogueSearchHolder
             }
         }
@@ -155,27 +150,14 @@ CatalogueSearchCardAdapter.OnMangaClickListener{
         return null
     }
 
-    private fun clearHolder() {
-        val adapter = adapter ?: return
-
-        adapter.allBoundViewHolders.forEach { holder ->
-            (holder as CatalogueSearchHolder).clear()
-        }
-    }
-
     /**
      * Add search result to adapter.
      *
      * @param searchResult result of search.
      */
-    fun addSearchResult(searchResult: CatalogueSearchItem) {
-        adapter?.addItem(searchResult)
+    fun setItems(searchResult: List<CatalogueSearchItem>) {
+        adapter?.updateDataSet(searchResult)
     }
-
-    fun onSourceResults(source: CatalogueSource, result: List<Manga>) {
-        getHolder(source)?.updateSourceFetch(result)
-    }
-
 
     /**
      * Called from the presenter when a manga is initialized.

@@ -62,17 +62,6 @@ class CatalogueSearchPresenter(
      */
     private var fetchImageSubscription: Subscription? = null
 
-    /**
-     * Subject for fetching query result.
-     */
-    private val fetchSearchResultSubject = PublishSubject.create<Pair<String, CatalogueSource>>()
-
-    /**
-     * Subscription for fetching result from query.
-     */
-    private var fetchSearchResultSubscription: Subscription? = null
-
-
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
@@ -82,7 +71,6 @@ class CatalogueSearchPresenter(
     }
 
     override fun onDestroy() {
-        fetchSearchResultSubscription?.unsubscribe()
         fetchSourcesSubscription?.unsubscribe()
         fetchImageSubscription?.unsubscribe()
         super.onDestroy()
@@ -115,28 +103,44 @@ class CatalogueSearchPresenter(
      * @param query query on which to search.
      */
     fun getSearchResults(query: String) {
+        // Return if there's nothing to do
+        if (this.query == query) return
+
         // Update query
         this.query = query
-
-        // Create source information fetch subscription
-        initializeFetchSearchResultSubscription()
 
         // Create image fetch subscription
         initializeFetchImageSubscription()
 
-        //Fetch sources
+        // Create items with the initial state
+        val initialItems = sources.map { CatalogueSearchItem(it, null) }
+        var items = initialItems
+
         fetchSourcesSubscription?.unsubscribe()
         fetchSourcesSubscription = Observable.from(sources)
                 .observeOn(Schedulers.io())
-                .doOnNext { fetchSearchResult(query, it) }
-                .map(::CatalogueSearchItem)
+                .flatMap { source ->
+                    source.fetchSearchManga(1, query, FilterList())
+                            .onExceptionResumeNext(Observable.empty()) // Ignore timeouts.
+                            .map { it.mangas.take(10) } // Get at most 10 manga from search result.
+                            .map { it.map { networkToLocalManga(it, source.id) } } // Convert to local manga.
+                            .doOnNext { fetchImage(it, source) } // Load manga covers.
+                            .map { CatalogueSearchItem(source, it.map { CatalogueSearchCardItem(it) }) }
+                }
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeReplay({ view, manga ->
-                    view.addSearchResult(manga)
+                // Update matching source with the obtained results
+                .map { result ->
+                    items.map { item -> if (item.source == result.source) result else item }
+                }
+                // Update current state
+                .doOnNext { items = it }
+                // Deliver initial state
+                .startWith(initialItems)
+                .subscribeLatestCache({ view, manga ->
+                    view.setItems(manga)
                 }, { _, error ->
                     Timber.e(error)
                 })
-
     }
 
     /**
@@ -146,43 +150,6 @@ class CatalogueSearchPresenter(
      */
     private fun fetchImage(manga: List<Manga>, source: Source) {
         fetchImageSubject.onNext(Pair(manga, source))
-    }
-
-    /**
-     * Initialize a list of manga.
-     *
-     * @param query query used to fetch from source.
-     * @param source source from which to fetch.
-     */
-    private fun fetchSearchResult(query: String, source: CatalogueSource) {
-        fetchSearchResultSubject.onNext(Pair(query, source))
-    }
-
-    /**
-     * Initialize the search subscription.
-     */
-    private fun initializeFetchSearchResultSubscription() {
-        fetchSearchResultSubscription?.unsubscribe()
-        fetchSearchResultSubscription = fetchSearchResultSubject
-                .observeOn(Schedulers.io())
-                .flatMap {
-                    val source = it.second
-                    source.fetchSearchManga(1, it.first, FilterList())
-                            .onExceptionResumeNext(Observable.empty()) // Ignore timeouts.
-                            .flatMap { Observable.from(it.mangas).take(10) } // Get at most 10 manga from search result.
-                            .map { networkToLocalManga(it, source.id) } // Convert to local manga.
-                            .toList()
-                            .doOnNext { fetchImage(it, source) } // Load manga covers.
-                            .map { Pair(it, source) }
-                }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ (source, manga) ->
-                    @Suppress("DEPRECATION")
-                    view?.onSourceResults(manga, source)
-                }, { error ->
-                    Timber.e(error)
-                })
-
     }
 
     /**
