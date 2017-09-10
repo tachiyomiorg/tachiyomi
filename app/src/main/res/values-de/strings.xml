@@ -30,7 +30,7 @@
     <string name="action_select_all">Alle auswählen</string>
     <string name="action_mark_as_read">Als gelesen markieren</string>
     <string name="action_mark_as_unread">Als ungelesen markieren</string>
-    <string name="action_mark_previous_as_read">Voherige Kapitel als gelesen markieren</string>
+    <string name="action_mark_previous_as_read">Vorherige Kapitel als gelesen markieren</string>
     <string name="action_download">Herunterladen</string>
     <string name="action_bookmark">Lessezeichen hinzufügen</string>
     <string name="action_remove_bookmark">Entferne Lesezeichen</string>
