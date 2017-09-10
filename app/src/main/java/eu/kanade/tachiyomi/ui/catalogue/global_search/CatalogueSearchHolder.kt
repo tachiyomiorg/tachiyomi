@@ -65,7 +65,7 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : F
                     nothing_found.gone()
                 }
             }
-            if (results != lastBoundResults) {
+            if (results !== lastBoundResults) {
                 mangaAdapter.updateDataSet(results)
                 lastBoundResults = results
             }
