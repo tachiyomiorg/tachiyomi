@@ -39,6 +39,8 @@ class PreferencesHelper(val context: Context) {
 
     fun pageTransitions() = rxPrefs.getBoolean(Keys.enableTransitions, true)
 
+    fun doubleTapAnimDuration() = rxPrefs.getString(Keys.doubleTapAnimationDuration, "500")
+
     fun showPageNumber() = rxPrefs.getBoolean(Keys.showPageNumber, true)
 
     fun fullscreen() = rxPrefs.getBoolean(Keys.fullscreen, true)

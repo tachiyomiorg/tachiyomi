@@ -11,6 +11,8 @@ object PreferenceKeys {
 
     const val enableTransitions = "pref_enable_transitions_key"
 
+    const val doubleTapAnimationDuration = "pref_double_tap_anim_duration"
+
     const val showPageNumber = "pref_show_page_number_key"
 
     const val fullscreen = "fullscreen"

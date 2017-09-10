@@ -62,6 +62,7 @@ class PageView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
         with(image_view) {
             setMaxTileSize((reader.activity as ReaderActivity).maxBitmapSize)
             setDoubleTapZoomStyle(SubsamplingScaleImageView.ZOOM_FOCUS_FIXED)
+            setDoubleTapZoomDuration(reader.doubleTapAnimDuration.toInt())
             setPanLimit(SubsamplingScaleImageView.PAN_LIMIT_INSIDE)
             setMinimumScaleType(reader.scaleType)
             setMinimumDpi(90)

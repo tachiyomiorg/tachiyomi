@@ -62,6 +62,14 @@ class SettingsReaderController : SettingsController() {
             defaultValue = "0"
             summary = "%s"
         }
+        listPreference {
+            key = Keys.doubleTapAnimationDuration
+            titleRes = R.string.pref_double_tap_anim_duration
+            entries = arrayOf("No animation", "Fast", "Normal")
+            entryValues = arrayOf("1", "250", "500") // using a value of 0 breaks the image viewer
+            defaultValue = "500"
+            summary = "%s"
+        }
         switchPreference {
             key = Keys.fullscreen
             titleRes = R.string.pref_fullscreen
