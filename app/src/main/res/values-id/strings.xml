@@ -17,7 +17,7 @@
     <string name="label_backup">Cadangan</string>
 
     <string name="action_settings">Pengaturan</string>
-    <string name="action_filter">Menyaring</string>
+    <string name="action_filter">Saring</string>
     <string name="action_filter_downloaded">Terunduh</string>
     <string name="action_filter_bookmarked">Tertandai</string>
     <string name="action_filter_unread">Belum dibaca</string>
@@ -98,7 +98,7 @@
       <string name="pref_library_columns">Pustaka manga per baris</string>
     <string name="portrait">Tegak</string>
     <string name="landscape">Menyamping</string>
-    <string name="default_columns">Awal</string>
+    <string name="default_columns">Bawaan</string>
     <string name="pref_library_update_interval">Frekuensi pembaharuan pustaka</string>
     <string name="update_never">Manual</string>
     <string name="update_1hour">Tiap jam</string>
@@ -144,7 +144,7 @@
     <string name="pref_reader_theme">Warna latar</string>
     <string name="white_background">Putih</string>
     <string name="black_background">Hitam</string>
-    <string name="pref_viewer_type">Penampil bawaan</string>
+    <string name="pref_viewer_type">Bawaan penampil</string>
     <string name="default_viewer">Bawaan</string>
     <string name="left_to_right_viewer">Kiri ke kanan</string>
     <string name="right_to_left_viewer">Kanan ke kiri</string>
