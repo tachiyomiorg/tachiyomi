@@ -215,13 +215,13 @@ open class CatalogueController(bundle: Bundle? = null) :
         numColumnsSubscription?.unsubscribe()
 
         var oldPosition = RecyclerView.NO_POSITION
-            val oldRecycler = view.catalogue_view?.getChildAt(1)
-            if (oldRecycler is RecyclerView) {
-                oldPosition = (oldRecycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-                oldRecycler.adapter = null
+        val oldRecycler = view.catalogue_view?.getChildAt(1)
+        if (oldRecycler is RecyclerView) {
+            oldPosition = (oldRecycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+            oldRecycler.adapter = null
 
-                view.catalogue_view?.removeView(oldRecycler)
-            }
+            view.catalogue_view?.removeView(oldRecycler)
+        }
 
         val recycler = if (presenter.isListMode) {
             RecyclerView(view.context).apply {
@@ -433,7 +433,7 @@ open class CatalogueController(bundle: Bundle? = null) :
         setupRecycler(view)
         if (!isListMode || !view.context.connectivityManager.isActiveNetworkMetered) {
             // Initialize mangas if going to grid view or if over wifi when going to list view
-            val mangas = (0..adapter.itemCount-1).mapNotNull {
+            val mangas = (0..adapter.itemCount - 1).mapNotNull {
                 (adapter.getItem(it) as? CatalogueItem)?.manga
             }
             presenter.initializeMangas(mangas)
@@ -532,13 +532,15 @@ open class CatalogueController(bundle: Bundle? = null) :
             val defaultCategory = categories.find { it.id == preferences.defaultCategory() }
             if (defaultCategory != null) {
                 presenter.moveMangaToCategory(manga, defaultCategory)
-            } else if (categories.size <= 1) { // default or the one from the user
-                presenter.moveMangaToCategory(manga, categories.firstOrNull())
             } else {
                 val ids = presenter.getMangaCategoryIds(manga)
-                val preselected = ids.mapNotNull { id ->
-                    categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
-                }.toTypedArray()
+                //if only 1 user category then show the dialog with just 1 checkbox
+                var preselected = emptyArray<Int>()
+                if (categories.size > 1) {
+                    preselected = ids.mapNotNull { id ->
+                        categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
+                    }.toTypedArray()
+                }
 
                 ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
                         .showDialog(router)

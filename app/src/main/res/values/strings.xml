@@ -49,7 +49,7 @@
     <string name="action_add_category">Add category</string>
     <string name="action_edit_categories">Edit categories</string>
     <string name="action_rename_category">Rename category</string>
-    <string name="action_move_category">Move to categories</string>
+    <string name="action_move_category">Choose categories</string>
     <string name="action_edit_cover">Edit the cover picture</string>
     <string name="action_sort_up">Sort up</string>
     <string name="action_sort_down">Sort down</string>
@@ -138,6 +138,7 @@
     <string name="system_default">System default</string>
     <string name="default_category">Default category</string>
     <string name="default_category_summary">Always ask</string>
+    <string name="category_chooser_finished">Done</string>
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>

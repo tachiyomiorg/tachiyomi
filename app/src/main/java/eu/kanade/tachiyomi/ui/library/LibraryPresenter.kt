@@ -194,12 +194,7 @@ class LibraryPresenter(
     private fun getLibraryObservable(): Observable<Pair<List<Category>, Map<Int, List<Manga>>>> {
         return Observable.combineLatest(getCategoriesObservable(), getLibraryMangasObservable(),
                 { dbCategories, libraryManga ->
-                    val categories = if (libraryManga.containsKey(0))
-                        arrayListOf(Category.createDefault()) + dbCategories
-                    else
-                        dbCategories
-
-                    this.categories = categories
+                    this.categories = arrayListOf(Category.createDefault()) + dbCategories
                     Pair(categories, libraryManga)
                 })
     }
@@ -221,7 +216,28 @@ class LibraryPresenter(
      */
     private fun getLibraryMangasObservable(): Observable<Map<Int, List<Manga>>> {
         return db.getLibraryMangas().asRxObservable()
-                .map { list -> list.groupBy { it.category } }
+                .map { list ->
+                    var map = mutableMapOf<Int, MutableList<Manga>>()
+                    list.forEach {
+                        //This adds every Manga no matter its category to the ALL category
+                        if (map.get(Category.ALL_CATEGORY_ID) == null) {
+                            map.put(Category.ALL_CATEGORY_ID, mutableListOf())
+                        }
+                        if (!map.get(Category.ALL_CATEGORY_ID)!!.contains(it)) {
+                            map.get(Category.ALL_CATEGORY_ID)!!.add(it)
+                        }
+                        //this adds manga to its own category assuming it was not assigned to ALL
+                        if (it.category != Category.ALL_CATEGORY_ID) {
+                            if (map.get(it.category) == null) {
+                                map.put(it.category, mutableListOf())
+                            }
+                            if (!map.get(it.category)!!.contains(it)) {
+                                map.get(it.category)!!.add(it)
+                            }
+                        }
+                    }
+                    return@map map
+                }
     }
 
     /**
