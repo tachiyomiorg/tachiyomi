@@ -144,9 +144,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
                         } else {
                             chapterFile.nameWithoutExtension
                         }
-
-                        var chapNameCut = chapName.replace(manga.title, "").trim()
-                        chapNameCut=chapNameCut.replace("[^A-Za-z0-9\\s+]+".toRegex(), "").trim()
+                        val chapNameCut = chapName.replace(manga.title, "").trim(' ', '-', '_')
                         name = if (chapNameCut.isEmpty()) chapName else chapNameCut
                         date_upload = chapterFile.lastModified()
                         ChapterRecognition.parseChapterNumber(this, manga)
