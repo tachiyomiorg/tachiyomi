@@ -23,13 +23,11 @@ class Mintmanga : ParsedHttpSource() {
 
     override val supportsLatest = true
 
-    override fun popularMangaRequest(page: Int): Request {
-        return GET("$baseUrl/list?sortType=rate&offset=${70 * (page - 1)}&max=70", headers)
-    }
+    override fun popularMangaRequest(page: Int): Request =
+            GET("$baseUrl/list?sortType=rate&offset=${70 * (page - 1)}&max=70", headers)
 
-    override fun latestUpdatesRequest(page: Int): Request {
-        return GET("$baseUrl/list?sortType=updated&offset=${70 * (page - 1)}&max=70", headers)
-    }
+    override fun latestUpdatesRequest(page: Int): Request =
+            GET("$baseUrl/list?sortType=updated&offset=${70 * (page - 1)}&max=70", headers)
 
     override fun popularMangaSelector() = "div.desc"
 
@@ -44,9 +42,8 @@ class Mintmanga : ParsedHttpSource() {
         return manga
     }
 
-    override fun latestUpdatesFromElement(element: Element): SManga {
-        return popularMangaFromElement(element)
-    }
+    override fun latestUpdatesFromElement(element: Element): SManga =
+            popularMangaFromElement(element)
 
     override fun popularMangaNextPageSelector() = "a.nextLink"
 
@@ -54,14 +51,12 @@ class Mintmanga : ParsedHttpSource() {
 
     override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
         val genres = filters.filterIsInstance<Genre>().map { it.id + arrayOf("=", "=in", "=ex")[it.state] }.joinToString("&")
-        return GET("$baseUrl/search?q=$query&$genres", headers)
+        return GET("$baseUrl/search/advanced?q=$query&$genres", headers)
     }
 
     override fun searchMangaSelector() = popularMangaSelector()
 
-    override fun searchMangaFromElement(element: Element): SManga {
-        return popularMangaFromElement(element)
-    }
+    override fun searchMangaFromElement(element: Element): SManga = popularMangaFromElement(element)
 
     // max 200 results
     override fun searchMangaNextPageSelector() = null
@@ -149,7 +144,7 @@ class Mintmanga : ParsedHttpSource() {
     /* [...document.querySelectorAll("tr.advanced_option:nth-child(1) > td:nth-child(3) span.js-link")].map((el,i) => {
     *  const onClick=el.getAttribute('onclick');const id=onClick.substr(31,onClick.length-33);
     *  return `Genre("${el.textContent.trim()}", "${id}")` }).join(',\n')
-    *  on http://mintmanga.com/search
+    *  on http://mintmanga.com/search/advanced
     */
     override fun getFilterList() = FilterList(
             Genre("арт", "el_2220"),
@@ -171,6 +166,7 @@ class Mintmanga : ParsedHttpSource() {
             Genre("меха", "el_1318"),
             Genre("мистика", "el_1324"),
             Genre("научная фантастика", "el_1325"),
+            Genre("омегаверс", "el_5676"),
             Genre("повседневность", "el_1327"),
             Genre("постапокалиптика", "el_1342"),
             Genre("приключения", "el_1322"),
