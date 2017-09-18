@@ -174,6 +174,11 @@ class LibraryPresenter(
                     val mange2TotalChapter = totalChapterManga[manga2.id!!] ?: 0
                     manga1TotalChapter.compareTo(mange2TotalChapter)
                 }
+                LibrarySort.SOURCE -> {
+                    val source1Name = sourceManager.get(manga1.source)!!.name
+                    val source2Name = sourceManager.get(manga2.source)!!.name
+                    source1Name.compareTo(source2Name)
+                }
                 else -> throw Exception("Unknown sorting mode")
             }
         }
