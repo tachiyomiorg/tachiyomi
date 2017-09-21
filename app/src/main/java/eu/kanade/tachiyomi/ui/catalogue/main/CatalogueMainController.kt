@@ -11,6 +11,8 @@ import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
@@ -19,6 +21,8 @@ import eu.kanade.tachiyomi.ui.latest_updates.LatestUpdatesController
 import eu.kanade.tachiyomi.ui.setting.SettingsSourcesController
 import eu.kanade.tachiyomi.widget.preference.SourceLoginDialog
 import kotlinx.android.synthetic.main.catalogue_main_controller.view.*
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 /**
  * This controller shows and manages the different catalogues enabled by the user.
@@ -32,6 +36,11 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
         FlexibleAdapter.OnItemClickListener,
         CatalogueMainAdapter.OnBrowseClickListener,
         CatalogueMainAdapter.OnLatestClickListener {
+
+    /**
+     * Application preferences.
+     */
+    private val preferences: PreferencesHelper = Injekt.get()
 
     /**
      * Adapter containing sources.
@@ -130,9 +139,7 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
             dialog.showDialog(router)
         } else {
             // Open the catalogue view.
-            router.pushController(RouterTransaction.with(CatalogueController(null, source))
-                    .pushChangeHandler(FadeChangeHandler())
-                    .popChangeHandler(FadeChangeHandler()))
+            openCatalogue(source, CatalogueController(source))
         }
         return false
     }
@@ -149,7 +156,15 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
      */
     override fun onLatestClick(position: Int) {
         val item = adapter?.getItem(position) as? SourceItem ?: return
-        router.pushController((RouterTransaction.with(LatestUpdatesController(null, item.source)))
+        openCatalogue(item.source, LatestUpdatesController(item.source))
+    }
+
+    /**
+     * Opens a catalogue with the given controller.
+     */
+    private fun openCatalogue(source: CatalogueSource, controller: CatalogueController) {
+        preferences.lastUsedCatalogueSource().set(source.id)
+        router.pushController(RouterTransaction.with(controller)
                 .popChangeHandler(FadeChangeHandler())
                 .pushChangeHandler(FadeChangeHandler()))
     }

@@ -10,12 +10,16 @@ import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
 import eu.kanade.tachiyomi.ui.catalogue.CataloguePresenter
 
 /**
- * Fragment that shows the manga from the catalogue. Inherit CatalogueFragment.
+ * Controller that shows the latest manga from the catalogue. Inherit [CatalogueController].
  */
-class LatestUpdatesController(bundle: Bundle? = null, source: CatalogueSource? = null) : CatalogueController(bundle,source) {
+class LatestUpdatesController(bundle: Bundle) : CatalogueController(bundle) {
+
+    constructor(source: CatalogueSource) : this(Bundle().apply {
+        putLong(SOURCE_ID_KEY, source.id)
+    })
 
     override fun createPresenter(): CataloguePresenter {
-        return LatestUpdatesPresenter()
+        return LatestUpdatesPresenter(args.getLong(SOURCE_ID_KEY))
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {

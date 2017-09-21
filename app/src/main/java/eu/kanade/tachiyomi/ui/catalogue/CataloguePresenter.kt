@@ -9,15 +9,11 @@ import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.CatalogueSource
-import eu.kanade.tachiyomi.source.LocalSource
-import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.Filter
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.source.model.SManga
-import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.catalogue.filter.*
 import rx.Observable
@@ -33,22 +29,17 @@ import uy.kohesive.injekt.api.get
  * Presenter of [CatalogueController].
  */
 open class CataloguePresenter(
-        val sourceManager: SourceManager = Injekt.get(),
-        val db: DatabaseHelper = Injekt.get(),
-        val prefs: PreferencesHelper = Injekt.get(),
-        val coverCache: CoverCache = Injekt.get()
+        sourceId: Long,
+        sourceManager: SourceManager = Injekt.get(),
+        private val db: DatabaseHelper = Injekt.get(),
+        private val prefs: PreferencesHelper = Injekt.get(),
+        private val coverCache: CoverCache = Injekt.get()
 ) : BasePresenter<CatalogueController>() {
 
     /**
-     * Enabled sources.
+     * Selected source.
      */
-    val sources by lazy { getEnabledSources() }
-
-    /**
-     * Active source.
-     */
-    lateinit var source: CatalogueSource
-        private set
+    val source = sourceManager.get(sourceId) as CatalogueSource
 
     /**
      * Query from the view.
@@ -106,7 +97,6 @@ open class CataloguePresenter(
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
-        source = getLastUsedSource()
         sourceFilters = source.getFilterList()
 
         if (savedState != null) {
@@ -149,9 +139,9 @@ open class CataloguePresenter(
                 .doOnNext { initializeMangas(it.second) }
                 .map { it.first to it.second.map(::CatalogueItem) }
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeReplay({ view, pair ->
-                    view.onAddPage(pair.first, pair.second)
-                }, { view, error ->
+                .subscribeReplay({ view, (page, mangas) ->
+                    view.onAddPage(page, mangas)
+                }, { _, error ->
                     Timber.e(error)
                 })
 
@@ -167,7 +157,7 @@ open class CataloguePresenter(
 
         pageSubscription?.let { remove(it) }
         pageSubscription = Observable.defer { pager.requestNext() }
-                .subscribeFirst({ view, page ->
+                .subscribeFirst({ _, _ ->
                     // Nothing to do when onNext is emitted.
                 }, CatalogueController::onAddPageError)
     }
@@ -177,19 +167,6 @@ open class CataloguePresenter(
      */
     fun hasNextPage(): Boolean {
         return pager.hasNextPage
-    }
-
-    /**
-     * Sets the active source and restarts the pager.
-     *
-     * @param source the new active source.
-     */
-    fun setActiveSource(source: CatalogueSource) {
-        prefs.lastUsedCatalogueSource().set(source.id)
-        this.source = source
-        sourceFilters = source.getFilterList()
-
-        restartPager(query = "", filters = FilterList())
     }
 
     /**
@@ -268,50 +245,6 @@ open class CataloguePresenter(
     }
 
     /**
-     * Returns the last used source from preferences or the first valid source.
-     *
-     * @return a source.
-     */
-    fun getLastUsedSource(): CatalogueSource {
-        val id = prefs.lastUsedCatalogueSource().get() ?: -1
-        val source = sourceManager.get(id)
-        if (!isValidSource(source) || source !in sources) {
-            return sources.first { isValidSource(it) }
-        }
-        return source as CatalogueSource
-    }
-
-    /**
-     * Checks if the given source is valid.
-     *
-     * @param source the source to check.
-     * @return true if the source is valid, false otherwise.
-     */
-    open fun isValidSource(source: Source?): Boolean {
-        if (source == null) return false
-
-        if (source is LoginSource) {
-            return source.isLogged() ||
-                    (prefs.sourceUsername(source) != "" && prefs.sourcePassword(source) != "")
-        }
-        return true
-    }
-
-    /**
-     * Returns a list of enabled sources ordered by language and name.
-     */
-    open protected fun getEnabledSources(): List<CatalogueSource> {
-        val languages = prefs.enabledLanguages().getOrDefault()
-        val hiddenCatalogues = prefs.hiddenCatalogues().getOrDefault()
-
-        return sourceManager.getCatalogueSources()
-                .filter { it.lang in languages }
-                .filterNot { it.id.toString() in hiddenCatalogues }
-                .sortedBy { "(${it.lang}) ${it.name}" } +
-                sourceManager.get(LocalSource.ID) as LocalSource
-    }
-
-    /**
      * Adds or removes a manga from the library.
      *
      * @param manga the manga to update.
@@ -370,13 +303,12 @@ open class CataloguePresenter(
                 }
                 is Filter.Sort -> {
                     val group = SortGroup(it)
-                    val subItems = it.values.mapNotNull {
+                    val subItems = it.values.map {
                         SortItem(it, group)
                     }
                     group.subItems = subItems
                     group
                 }
-                else -> null
             }
         }
     }
@@ -407,7 +339,7 @@ open class CataloguePresenter(
      * @param categories the selected categories.
      * @param manga the manga to move.
      */
-    fun moveMangaToCategories(manga: Manga, categories: List<Category>) {
+    private fun moveMangaToCategories(manga: Manga, categories: List<Category>) {
         val mc = categories.filter { it.id != 0 }.map { MangaCategory.create(manga, it) }
         db.setMangaCategories(mc, listOf(manga))
     }
