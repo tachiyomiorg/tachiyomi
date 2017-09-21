@@ -34,7 +34,7 @@ abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateContr
         return null
     }
 
-    private fun setTitle() {
+    fun setTitle() {
         var parentController = parentController
         while (parentController != null) {
             if (parentController is BaseController && parentController.getTitle() != null) {

@@ -8,6 +8,7 @@ import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
+import com.jakewharton.rxbinding.support.v7.widget.queryTextChangeEvents
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
@@ -180,27 +181,21 @@ class CatalogueMainController : NucleusController<CatalogueMainPresenter>(),
         inflater.inflate(R.menu.catalogue_main, menu)
 
         // Initialize search option.
-        menu.findItem(R.id.action_search).apply {
-            val searchView = actionView as SearchView
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
 
-            // Change hint to show global search.
-            searchView.queryHint = applicationContext?.getString(R.string.action_global_search_hint)
+        // Change hint to show global search.
+        searchView.queryHint = applicationContext?.getString(R.string.action_global_search_hint)
 
-            // Create query listener which opens the global search view.s
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
+        // Create query listener which opens the global search view.
+        searchView.queryTextChangeEvents()
+                .filter { it.isSubmitted }
+                .subscribeUntilDestroy {
+                    val query = it.queryText().toString()
                     router.pushController((RouterTransaction.with(CatalogueSearchController(query)))
                             .popChangeHandler(FadeChangeHandler())
                             .pushChangeHandler(FadeChangeHandler()))
-                    return true
                 }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    // TODO suggestions?
-                    return true
-                }
-            })
-        }
     }
 
     /**

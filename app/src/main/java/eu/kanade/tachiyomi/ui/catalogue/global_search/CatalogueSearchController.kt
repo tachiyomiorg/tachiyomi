@@ -6,6 +6,7 @@ import android.support.v7.widget.SearchView
 import android.view.*
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
+import com.jakewharton.rxbinding.support.v7.widget.queryTextChangeEvents
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.source.CatalogueSource
@@ -17,11 +18,10 @@ import kotlinx.android.synthetic.main.catalogue_global_search_controller.view.*
  * This controller shows and manages the different search result in global search.
  * This controller should only handle UI actions, IO actions should be done by [CatalogueSearchPresenter]
  * [CatalogueSearchCardAdapter.OnMangaClickListener] called when manga is clicked in global search
- *
- * @param query query used for global search.
  */
-class CatalogueSearchController(val query: String = "") : NucleusController<CatalogueSearchPresenter>(),
-CatalogueSearchCardAdapter.OnMangaClickListener{
+class CatalogueSearchController(private val initialQuery: String? = null) :
+        NucleusController<CatalogueSearchPresenter>(),
+        CatalogueSearchCardAdapter.OnMangaClickListener {
 
     /**
      * Adapter containing search results grouped by lang.
@@ -47,12 +47,12 @@ CatalogueSearchCardAdapter.OnMangaClickListener{
     }
 
     /**
-     * Set  the title of controller.
+     * Set the title of controller.
      *
      * @return title.
      */
     override fun getTitle(): String? {
-        return applicationContext?.getString(R.string.action_global_search)
+        return presenter.query
     }
 
     /**
@@ -61,7 +61,7 @@ CatalogueSearchCardAdapter.OnMangaClickListener{
      * @return instance of [CatalogueSearchPresenter]
      */
     override fun createPresenter(): CatalogueSearchPresenter {
-        return CatalogueSearchPresenter()
+        return CatalogueSearchPresenter(initialQuery)
     }
 
     /**
@@ -87,22 +87,15 @@ CatalogueSearchCardAdapter.OnMangaClickListener{
         inflater.inflate(R.menu.catalogue_new_list, menu)
 
         // Initialize search menu
-        menu.findItem(R.id.action_search).apply {
-            val searchView = actionView as SearchView
-
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    presenter.getSearchResults(query)
-                    collapseActionView()
-                    return true
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+        searchView.queryTextChangeEvents()
+                .filter { it.isSubmitted }
+                .subscribeUntilDestroy {
+                    presenter.search(it.queryText().toString())
+                    searchItem.collapseActionView()
+                    setTitle() // Update toolbar title
                 }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    // TODO suggestions?
-                    return true
-                }
-            })
-        }
     }
 
     /**
@@ -121,14 +114,21 @@ CatalogueSearchCardAdapter.OnMangaClickListener{
             recycler.layoutManager = LinearLayoutManager(context)
             recycler.adapter = adapter
         }
-
-        presenter.getSearchResults(query)
     }
 
     override fun onDestroyView(view: View) {
         adapter = null
-
         super.onDestroyView(view)
+    }
+
+    override fun onSaveViewState(view: View, outState: Bundle) {
+        super.onSaveViewState(view, outState)
+        adapter?.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreViewState(view: View, savedViewState: Bundle) {
+        super.onRestoreViewState(view, savedViewState)
+        adapter?.onRestoreInstanceState(savedViewState)
     }
 
     /**

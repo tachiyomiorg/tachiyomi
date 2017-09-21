@@ -30,7 +30,6 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) : F
         with(itemView) {
             // Set layout horizontal.
             recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            recycler.isNestedScrollingEnabled = false
             recycler.adapter = mangaAdapter
 
             nothing_found_icon.setVectorCompat(R.drawable.ic_search_black_112dp,

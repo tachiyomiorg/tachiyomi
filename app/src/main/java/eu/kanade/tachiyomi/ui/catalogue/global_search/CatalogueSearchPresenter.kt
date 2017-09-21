@@ -31,6 +31,7 @@ import uy.kohesive.injekt.api.get
  * @param preferencesHelper manages the preference calls.
  */
 class CatalogueSearchPresenter(
+        val initialQuery: String? = "",
         val sourceManager: SourceManager = Injekt.get(),
         val db: DatabaseHelper = Injekt.get(),
         val preferencesHelper: PreferencesHelper = Injekt.get()
@@ -65,9 +66,8 @@ class CatalogueSearchPresenter(
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
-        if (savedState != null) {
-            query = savedState.getString(CataloguePresenter::query.name, "")
-        }
+        // Perform a search with previous or initial state
+        search(savedState?.getString(CataloguePresenter::query.name) ?: initialQuery.orEmpty())
     }
 
     override fun onDestroy() {
@@ -102,7 +102,7 @@ class CatalogueSearchPresenter(
      *
      * @param query query on which to search.
      */
-    fun getSearchResults(query: String) {
+    fun search(query: String) {
         // Return if there's nothing to do
         if (this.query == query) return
 
