@@ -20,5 +20,24 @@ object MangaCategoryTable {
             FOREIGN KEY($COL_MANGA_ID) REFERENCES ${MangaTable.TABLE} (${MangaTable.COL_ID})
             ON DELETE CASCADE
             )"""
-
+    /**
+     * Query to update uncategorized manga to a category when updating to All Category version
+     */
+    val addMangaCategoryOnUpdateToAll: String
+        get() = """INSERT INTO ${MangaCategoryTable.TABLE}(
+			${MangaCategoryTable.COL_MANGA_ID},
+			${MangaCategoryTable.COL_CATEGORY_ID}
+			)
+        select
+             ${MangaTable.TABLE}.${MangaTable.COL_ID},
+            9999
+         from
+                ${MangaTable.TABLE}
+          where
+          ${MangaTable.TABLE}.${MangaTable.COL_ID} in (
+				SELECT ${MangaTable.TABLE}.${MangaTable.COL_ID} FROM ${MangaTable.TABLE}
+				LEFT JOIN ${MangaCategoryTable.TABLE} ON
+                    ${MangaTable.TABLE}.${MangaTable.COL_ID} = ${MangaCategoryTable.TABLE}.${MangaCategoryTable.COL_MANGA_ID}
+				WHERE ${MangaCategoryTable.TABLE}.${MangaCategoryTable.COL_MANGA_ID} IS NULL)
+        """
 }

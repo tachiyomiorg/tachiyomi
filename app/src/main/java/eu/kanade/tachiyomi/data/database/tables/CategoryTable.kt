@@ -20,4 +20,17 @@ object CategoryTable {
             $COL_FLAGS INTEGER NOT NULL
             )"""
 
+    val createUnCategorized: String
+        get() = """INSERT INTO $TABLE(
+            $COL_ID,
+            $COL_NAME,
+            $COL_ORDER,
+            $COL_FLAGS
+            )
+            VALUES(
+            9999,
+            'Original Default',
+            0,
+            0
+            )"""
 }
