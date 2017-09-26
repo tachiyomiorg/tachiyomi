@@ -159,7 +159,7 @@ class Mangahere : ParsedHttpSource() {
 
         val pages = mutableListOf<Page>()
         document.select("select.wid60").first()?.getElementsByTag("option")?.forEach {
-            pages.add(Page(pages.size, it.attr("value")))
+            pages.add(Page(pages.size, "http:" + it.attr("value")))
         }
         pages.getOrNull(0)?.imageUrl = imageUrlParse(document)
         return pages
@@ -174,6 +174,7 @@ class Mangahere : ParsedHttpSource() {
     private class OrderBy : Filter.Sort("Order by",
             arrayOf("Series name", "Rating", "Views", "Total chapters", "Last chapter"),
             Filter.Sort.Selection(2, false))
+
     private class GenreList(genres: List<Genre>) : Filter.Group<Genre>("Genres", genres)
 
     override fun getFilterList() = FilterList(
