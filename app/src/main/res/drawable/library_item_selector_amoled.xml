@@ -2,9 +2,9 @@
 <selector android:exitFadeDuration="@android:integer/config_longAnimTime"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_focused="true" android:drawable="@color/selectorColorDark"/>
-    <item android:state_pressed="true" android:drawable="@color/selectorColorDark"/>
-    <item android:state_activated="true" android:drawable="@color/selectorColorDark"/>
+    <item android:state_focused="true" android:drawable="@color/md_blue_grey_800"/>
+    <item android:state_pressed="true" android:drawable="@color/md_blue_grey_800"/>
+    <item android:state_activated="true" android:drawable="@color/md_blue_grey_900"/>
     <item android:drawable="@color/md_black_1000"/>
 
 </selector>

@@ -43,26 +43,22 @@
             app:layout_constraintRight_toLeftOf="@+id/source_latest"
             tools:text="Source title"/>
 
-        <TextView
+        <Button
             android:id="@+id/source_latest"
-            style="@style/TextAppearance.Medium.Button"
-            android:background="@drawable/list_item_selector_trans"
+            style="@style/Theme.Widget.Button.Borderless.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/latest"
-            android:padding="@dimen/material_component_dialogs_padding_around_buttons"
             app:layout_constraintRight_toLeftOf="@+id/source_browse"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
+        <Button
             android:id="@+id/source_browse"
-            style="@style/TextAppearance.Medium.Button"
-            android:background="@drawable/list_item_selector_trans"
+            style="@style/Theme.Widget.Button.Borderless.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/browse"
-            android:padding="@dimen/material_component_dialogs_padding_around_buttons"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

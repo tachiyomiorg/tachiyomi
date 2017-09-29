@@ -131,10 +131,6 @@
         <item name="android:textColor">?attr/colorAccent</item>
     </style>
 
-    <style name="TextAppearance.Medium.Button.Negative">
-        <item name="android:textColor">@color/md_red_500</item>
-    </style>
-
     <!--=======-->
     <!--Widgets-->
     <!--=======-->
@@ -202,6 +198,26 @@
     <style name="Theme.Widget.SpinnerItem" parent="Widget.AppCompat.DropDownItem.Spinner">
         <item name="android:textColor">?attr/text_color_primary</item>
         <item name="android:background">?attr/selectable_list_drawable</item>
+    </style>
+
+    <!--==============-->
+    <!--Widgets.Button-->
+    <!--==============-->
+    <style name="Theme.Widget.Button" parent="Widget.AppCompat.Button"/>
+
+    <style name="Theme.Widget.Button.Colored" parent="Widget.AppCompat.Button.Colored"/>
+
+    <style name="Theme.Widget.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">?attr/colorAccent</item>
+    </style>
+
+    <style name="Theme.Widget.Button.Borderless.Negative">
+        <item name="android:textColor">@color/md_red_500</item>
+    </style>
+
+    <style name="Theme.Widget.Button.Borderless.Small">
+        <item name="android:minHeight">48dip</item>
+        <item name="android:minWidth">48dip</item>
     </style>
 
     <!--===-->

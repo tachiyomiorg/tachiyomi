@@ -26,7 +26,7 @@
     <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled">
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/md_black_1000</item>
     </style>
 
     <!--==============-->

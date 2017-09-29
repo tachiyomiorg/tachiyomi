@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="@dimen/material_component_cards_primary_title_top_padding">
+                android:padding="16dp">
 
                 <TextView
                     android:id="@+id/manga_title"
@@ -50,30 +50,23 @@
                     android:textAppearance="@style/TextAppearance.Medium.Body2.Hint" />
             </RelativeLayout>
 
-            <TextView
+            <Button
+                style="@style/Theme.Widget.Button.Borderless.Negative"
                 android:id="@+id/remove"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:background="?attr/selectable_list_drawable"
-                android:clickable="true"
-                android:padding="8dp"
-                android:text="@string/action_remove"
-                android:textAppearance="@style/TextAppearance.Medium.Button.Negative" />
+                android:text="@string/action_remove" />
 
-            <TextView
+            <Button
+                style="@style/Theme.Widget.Button.Borderless"
                 android:id="@+id/resume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@id/remove"
                 android:layout_toRightOf="@id/remove"
-                android:background="?attr/selectable_list_drawable"
-                android:padding="8dp"
-                android:text="@string/action_resume"
-                android:textAppearance="@style/TextAppearance.Medium.Button" />
+                android:text="@string/action_resume"/>
         </RelativeLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>
