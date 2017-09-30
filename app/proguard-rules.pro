@@ -6,6 +6,7 @@
 
 -keep class com.hippo.image.** { *; }
 -keep interface com.hippo.image.** { *; }
+-dontwarn nucleus.view.NucleusActionBarActivity
 
 # Extensions may require methods unused in the core app
 -keep class org.jsoup.** { *; }
