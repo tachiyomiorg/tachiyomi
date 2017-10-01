@@ -87,14 +87,11 @@
     <!--==============-->
     <style name="Theme.Base.Amoled" parent="Theme.Base.Dark">
         <item name="android:colorBackground">@color/md_black_1000</item>
-        <item name="colorPrimary">@color/appBarDark</item>
-        <item name="colorPrimaryDark">@color/md_blue_grey_900</item>
-        <item name="colorAccent">@color/md_grey_800</item>
 
         <!-- Custom Attributes-->
         <item name="selectable_list_drawable">@drawable/list_item_selector_amoled</item>
         <item name="selectable_library_drawable">@drawable/library_item_selector_amoled</item>
-        <item name="background_card">@color/dialog_oled</item>
+        <item name="background_card">@color/dialog_amoled</item>
     </style>
 
     <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled">

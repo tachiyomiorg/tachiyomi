@@ -34,7 +34,7 @@
     <color name="appBarDark">@color/md_grey_900</color>
     <color name="backgroundDark">#303030</color>
     <color name="dialogDark">@color/md_grey_800</color>
-    <color name="dialog_oled">#141414</color>
+    <color name="dialog_amoled">#141414</color>
 
     <color name="selectorColorDark">@color/md_blue_A200_50</color>
     <color name="iconColorDark">@color/md_white_1000_54</color>
