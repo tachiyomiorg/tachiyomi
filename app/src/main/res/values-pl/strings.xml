@@ -211,9 +211,9 @@
     <string name="pref_library_update_restriction">Warunki aktualizacji biblioteki</string>
     <string name="pref_library_update_restriction_summary">Aktualizuje tylko, kiedy spełnione są te warunki</string>
     <string name="wifi">Wi-Fi</string>
-    <string name="charging">Ładowanie</string>
-    <string name="pref_update_only_non_completed">Aktualizuj tylko wychodzące mangi</string>
-    <string name="pref_auto_update_manga_sync">Synchronizuj rozdziały po przeczytaniu</string>
+    <string name="charging">Ładowanie baterii</string>
+    <string name="pref_update_only_non_completed">Tylko aktualizuj nieukończone mangi</string>
+    <string name="pref_auto_update_manga_sync">Aktualizuj postęp po przeczytaniu rozdziału</string>
     <string name="pref_ask_update_manga_sync">Potwierdź przed aktualizacją</string>
     <string name="pref_theme">Motyw aplikacji</string>
     <string name="light_theme">Główny motyw</string>
@@ -227,12 +227,12 @@
 
       <string name="pref_fullscreen">Pełny ekran</string>
     <string name="pref_lock_orientation">Zablokuj orientację</string>
-    <string name="pref_page_transitions">Przejścia stron</string>
+    <string name="pref_page_transitions">Animacje przejścia stron</string>
     <string name="pref_show_page_number">Pokazuj numer strony</string>
     <string name="pref_crop_borders">Przycinaj krawędzie</string>
     <string name="pref_custom_brightness">Niestandardowa jasność</string>
     <string name="pref_keep_screen_on">Nie wyłączaj ekranu</string>
-    <string name="pref_custom_color_filter">Używaj własnych filtrów kolorów</string>
+    <string name="pref_custom_color_filter">Niestandardowy filtr kolorów</string>
     <string name="pref_read_with_volume_keys">Przyciski głośności</string>
     <string name="pref_read_with_volume_keys_inverted">Odwróć przyciski głośności</string>
     <string name="pref_read_with_tapping">Stukanie</string>
@@ -243,7 +243,7 @@
     <string name="left_to_right_viewer">Od lewej do prawej</string>
     <string name="right_to_left_viewer">Od prawej do lewej</string>
     <string name="vertical_viewer">Pionowo</string>
-    <string name="webtoon_viewer">Do webtoons</string>
+    <string name="webtoon_viewer">Webtoon</string>
     <string name="pref_viewer_type">Domyślny styl czytania</string>
     <string name="pref_image_decoder">Dekoder obrazków</string>
     <string name="scale_type_fit_screen">Dopasuj do ekranu</string>
@@ -252,15 +252,15 @@
     <string name="scale_type_fit_height">Dopasuj do wysokości</string>
     <string name="pref_image_scale_type">Rodzaj powiększenia</string>
     <string name="scale_type_original_size">Oryginalny rozmiar</string>
-    <string name="scale_type_smart_fit">Inteligentnie</string>
+    <string name="scale_type_smart_fit">Inteligentne</string>
     <string name="pref_zoom_start">Początkowa pozycja przybliżenia</string>
     <string name="zoom_start_automatic">Automatycznie</string>
     <string name="zoom_start_left">Po lewej</string>
     <string name="zoom_start_right">Po prawej</string>
     <string name="zoom_start_center">Wyśrodkuj</string>
-    <string name="pref_rotation_type">Obrót ekranu</string>
-    <string name="rotation_free">Dowolnie</string>
-    <string name="rotation_lock">Zablokuj</string>
+    <string name="pref_rotation_type">Orientacja ekranu</string>
+    <string name="rotation_free">Dowolna</string>
+    <string name="rotation_lock">Zablokowana</string>
     <string name="rotation_force_portrait">Wymuś pionowo</string>
     <string name="rotation_force_landscape">Wymuś poziomo</string>
     <string name="color_filter_r_value">R</string>
