@@ -98,7 +98,7 @@
     <string name="manga_chapter_no_title">Brak tytułu</string>
     <string name="display_mode_chapter">Rozdział %1$s</string>
     <string name="chapter_error">Błąd</string>
-    <string name="chapter_paused">Wstrzymano</string>
+    <string name="chapter_paused">Wstrzymane</string>
     <string name="manga_download">Pobierz</string>
     <string name="download_1">Pobierz kolejny rozdział</string>
     <string name="download_5">Pobierz kolejne 5 rozdziałów</string>
@@ -261,8 +261,8 @@
     <string name="pref_rotation_type">Orientacja ekranu</string>
     <string name="rotation_free">Dowolna</string>
     <string name="rotation_lock">Zablokowana</string>
-    <string name="rotation_force_portrait">Wymuś pionowo</string>
-    <string name="rotation_force_landscape">Wymuś poziomo</string>
+    <string name="rotation_force_portrait">Wymuś pionową</string>
+    <string name="rotation_force_landscape">Wymuś poziomą</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
@@ -270,12 +270,12 @@
 
 
       <string name="pref_download_directory">Katalog pobierania</string>
-    <string name="pref_download_slots">Jednoczesne pobieranie</string>
+    <string name="pref_download_slots">Liczba równoczesnych pobierań</string>
     <string name="pref_download_only_over_wifi">Pobieraj tylko przez Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Usuwaj po oznaczeniu jako przeczytane</string>
     <string name="pref_remove_after_read">Usuwaj rozdziały po przeczytaniu</string>
-    <string name="custom_dir">Własny katalog</string>
-    <string name="disabled">Wyłączone</string>
+    <string name="custom_dir">Folder niestandardowy</string>
+    <string name="disabled">Nie usuwaj</string>
     <string name="last_read_chapter">Ostatnio czytany rozdział</string>
     <string name="second_to_last">Przedostatnio czytany rozdział</string>
     <string name="third_to_last">3 rozdziały do tyłu</string>
@@ -302,15 +302,15 @@
     <string name="dialog_restoring_source_not_found">Przywracanie kopii zapasowej
 Nie znaleziono źródła %1$s</string>
     <string name="restore_completed_content">Przywracanie trwało %1$s.
-Znalezionych błędów: %2$s.</string>
-    <string name="backup_choice">Czego kopię chcesz zrobić?</string>
+\nNapotkane błędy: %2$s.</string>
+    <string name="backup_choice">Co zawrzeć w kopii zapasowej?</string>
     <string name="restoring_backup">Przywracanie kopii zapasowej</string>
     <string name="creating_backup">Tworzenie kopii zapasowej</string>
 
       <string name="pref_clear_chapter_cache">Wyczyść cache rozdziałów</string>
     <string name="used_cache">W użyciu: %1$s</string>
     <string name="cache_deleted">Wyczyszczono cache. Usunięto plików: %1$d</string>
-    <string name="cache_delete_error">Podczas czyszczenie cache wystąpił błąd</string>
+    <string name="cache_delete_error">Podczas czyszczenia cache wystąpił błąd</string>
     <string name="pref_clear_cookies">Usuń ciasteczka</string>
     <string name="cookies_cleared">Ciasteczka usunięte</string>
     <string name="pref_clear_database_summary">Usuń mangi i rozdziały, których nie ma w twojej bibliotece</string>
@@ -319,8 +319,8 @@ Znalezionych błędów: %2$s.</string>
     <string name="pref_acra_summary">Pomaga naprawiać błędy. Żadne wrażliwe dane nie będą wysyłane</string>
 
 
-    <string name="backup_created">Utworzono kopię zapasową</string>
-    <string name="restore_completed">Ukończono przywracanie</string>
+    <string name="backup_created">Kopia zapasowa utworzona</string>
+    <string name="restore_completed">Przywracanie ukończone</string>
     <string name="error_opening_log">Nie udało się otworzyć logu</string>
     <string name="backup_restore_content">Przywracanie używa źródeł do pobierania danych, operator może naliczać opłaty.
 Przed przywróceniem upewnij się też, że jesteś poprawnie zalogowany do źródeł.</string>
@@ -335,7 +335,7 @@ Przed przywróceniem upewnij się też, że jesteś poprawnie zalogowany do źr�
       <string name="build_time">Build utworzony</string>
     <string name="login_success">Logowanie udane</string>
     <string name="local_source">Lokalne mangi</string>
-    <string name="ongoing">Wychodzące</string>
+    <string name="ongoing">Nieukończone</string>
     <string name="unknown">Nieznane</string>
     <string name="licensed">Licencjonowane</string>
     <string name="manga_info_chapters_label">Rozdziały</string>
@@ -365,16 +365,16 @@ Przed przywróceniem upewnij się też, że jesteś poprawnie zalogowany do źr�
 
     <string name="snack_categories_deleted">Kategorie usunięte</string>
 
-    <string name="dialog_with_checkbox_remove_description">To usunie datę przeczytania tego rozdziały. Na pewno?</string>
+    <string name="dialog_with_checkbox_remove_description">To usunie datę przeczytania tego rozdziału. Na pewno?</string>
     <string name="dialog_with_checkbox_reset">Resetuj wszystkie rozdziały tej mangi</string>
 
     <string name="snack_add_to_library">Dodać mangę do biblioteki?</string>
 
-    <string name="custom_filter">Własny filtr</string>
+    <string name="custom_filter">Filtr niestandardowy</string>
     <string name="page_downloaded">Strona skopiowana do %1$s</string>
     <string name="decode_image_error">Nie można załadować obrazka.
 Spróbuj zmienić dekoder lub skorzystaj z jednej z opcji poniżej</string>
-    <string name="confirm_update_manga_sync">Zaktualizować ostatni przeczytany rozdział na %1$d we włączonych usługach?</string>
+    <string name="confirm_update_manga_sync">Zaktualizować ostatni przeczytany rozdział na %1$d?</string>
     <string name="confirm_set_image_as_cover">Czy chcesz ustawić ten obrazek jako okładkę?</string>
     <string name="viewer_for_this_series">Widok dla tej serii</string>
 
@@ -383,7 +383,7 @@ Spróbuj zmienić dekoder lub skorzystaj z jednej z opcji poniżej</string>
     <string name="notification_update_progress">Stan aktualizacji: %1$d/%2$d</string>
     <string name="notification_new_chapters_text">Dla %1$d tytułów</string>
     <string name="notification_cover_update_failed">Nie udało się zaktualizować okładki</string>
-    <string name="notification_first_add_to_library">Dodaj tę mangę do biblioteki, zanim to zrobisz</string>
+    <string name="notification_first_add_to_library">Zanim to zrobisz, dodaj tę mangę do biblioteki</string>
     <string name="file_select_backup">Wybierz plik kopii zapasowej</string>
     <string name="file_select_icon">Wybierz ikonę skrótu</string>
 
