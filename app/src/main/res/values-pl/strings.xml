@@ -206,7 +206,7 @@
     <string name="update_48hour">Co 2 dni</string>
     <string name="update_weekly">Co tydzień</string>
     <string name="update_monthly">Co miesiąc</string>
-    <string name="pref_library_update_categories">Kategorie do zawarcia w aktualizacji globalnej</string>
+    <string name="pref_library_update_categories">Kategorie zawierane w aktualizacji globalnej</string>
     <string name="all">Wszystko</string>
     <string name="pref_library_update_restriction">Warunki aktualizacji biblioteki</string>
     <string name="pref_library_update_restriction_summary">Aktualizuje tylko, kiedy spełnione są te warunki</string>
