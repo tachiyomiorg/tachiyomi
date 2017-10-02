@@ -87,7 +87,7 @@
     <string name="pref_category_advanced">Zaawansowane</string>
     <string name="pref_category_about">O aplikacji</string>
 
-      <string name="pref_library_columns">Mang na rząd biblioteki</string>
+      <string name="pref_library_columns">Mangi na rząd biblioteki</string>
     <string name="pref_refresh_library_metadata_summary">Aktualizuje okładki, gatunki, opisy i informacje o statusie mang</string>
     <string name="add_to_library">Dodaj do biblioteki</string>
     <string name="remove_from_library">Usuń z biblioteki</string>
