@@ -9,7 +9,7 @@
     <string name="label_catalogues">Katalogi</string>
     <string name="label_recent_manga">Ostatnio czytane</string>
     <string name="action_settings">Ustawienia</string>
-    <string name="action_filter">Filtruj</string>
+    <string name="action_filter">Filtrowanie</string>
     <string name="action_filter_downloaded">Pobrane</string>
     <string name="action_filter_unread">Nieprzeczytane</string>
     <string name="action_filter_read">Przeczytane</string>
@@ -21,7 +21,7 @@
     <string name="label_backup">Kopia zapasowa</string>
 
     <string name="action_filter_bookmarked">Zakładki</string>
-    <string name="action_filter_empty">Usuń filtry</string>
+    <string name="action_filter_empty">Usuń filtrowanie</string>
     <string name="action_sort_last_read">Ostatnio czytane</string>
     <string name="action_sort_last_updated">Ostatnio zaktualizowane</string>
     <string name="action_mark_as_read">Oznacz jako przeczytane</string>
@@ -38,7 +38,7 @@
     <string name="action_add_category">Dodaj kategorię</string>
     <string name="action_edit_categories">Edytuj kategorie</string>
     <string name="action_rename_category">Zmień nazwę kategorii</string>
-    <string name="action_move_category">Przenieś do kategorii</string>
+    <string name="action_move_category">Zmień kategorie</string>
     <string name="action_edit_cover">Edytuj okładkę</string>
     <string name="action_sort_total">Ilość rozdziałów</string>
     <string name="action_sort_up">Sortuj rosnąco</string>
@@ -63,7 +63,7 @@
     <string name="action_display">Widok</string>
     <string name="action_display_grid">Siatka</string>
     <string name="action_display_list">Lista</string>
-    <string name="action_set_filter">Ustaw filtry</string>
+    <string name="action_set_filter">Ustaw filtrowanie</string>
     <string name="action_cancel">Anuluj</string>
     <string name="action_sort">Sortuj</string>
     <string name="action_install">Zainstaluj</string>
@@ -230,7 +230,7 @@
     <string name="pref_page_transitions">Przejścia stron</string>
     <string name="pref_show_page_number">Pokazuj numer strony</string>
     <string name="pref_crop_borders">Przycinaj krawędzie</string>
-    <string name="pref_custom_brightness">Używaj własnej jasności</string>
+    <string name="pref_custom_brightness">Niestandardowa jasność</string>
     <string name="pref_keep_screen_on">Nie wyłączaj ekranu</string>
     <string name="pref_custom_color_filter">Używaj własnych filtrów kolorów</string>
     <string name="pref_read_with_volume_keys">Przyciski głośności</string>
@@ -296,7 +296,7 @@
     <string name="pref_backup_interval">Częstotliwość tworzenia kopii</string>
     <string name="pref_backup_slots">Maks. automatycznych kopii</string>
     <string name="pref_backup_service_category">Serwisowe</string>
-    <string name="dialog_restoring_backup">Przywracanie z kopii zapasowej
+    <string name="dialog_restoring_backup">Przywracanie kopii zapasowej
 \n%1$s dodano do biblioteki</string>
     <string name="source_not_found">Nie znaleziono źródła</string>
     <string name="dialog_restoring_source_not_found">Przywracanie kopii zapasowej
