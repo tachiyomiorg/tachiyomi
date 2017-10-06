@@ -1,17 +1,16 @@
 package eu.kanade.tachiyomi.ui.manga.info
 
+import android.app.PendingIntent
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.support.customtabs.CustomTabsIntent
+import android.support.v4.content.pm.ShortcutInfoCompat
+import android.support.v4.content.pm.ShortcutManagerCompat
+import android.support.v4.graphics.drawable.IconCompat
 import android.view.*
-import com.afollestad.materialdialogs.MaterialDialog
-import com.bumptech.glide.BitmapRequestBuilder
-import com.bumptech.glide.BitmapTypeRequest
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import com.jakewharton.rxbinding.view.clicks
 import eu.kanade.tachiyomi.R
@@ -28,15 +27,10 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
-import jp.wasabeef.glide.transformations.CropCircleTransformation
-import jp.wasabeef.glide.transformations.CropSquareTransformation
-import jp.wasabeef.glide.transformations.MaskTransformation
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.manga_info_controller.view.*
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import rx.subscriptions.Subscriptions
 import uy.kohesive.injekt.injectLazy
 import java.text.DecimalFormat
 
@@ -309,94 +303,54 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         presenter.moveMangaToCategories(manga, categories)
     }
 
+
     /**
      * Add the manga to the home screen
      */
-    fun addToHomeScreen() {
+    private fun addToHomeScreen() {
         val activity = activity ?: return
         val mangaControllerArgs = parentController?.args ?: return
 
-        val shortcutIntent = activity.intent
-                .setAction(MainActivity.SHORTCUT_MANGA)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .putExtra(MangaController.MANGA_EXTRA,
-                        mangaControllerArgs.getLong(MangaController.MANGA_EXTRA))
+        if (ShortcutManagerCompat.isRequestPinShortcutSupported(activity)) {
+            val shortcutIntent = activity.intent
+                    .setAction(MainActivity.SHORTCUT_MANGA)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    .putExtra(MangaController.MANGA_EXTRA,
+                            mangaControllerArgs.getLong(MangaController.MANGA_EXTRA))
 
-        val addIntent = Intent("com.android.launcher.action.INSTALL_SHORTCUT")
-                .putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
+            Observable.fromCallable {
+                Glide.with(activity.baseContext)
+                        .load(presenter.manga)
+                        .asBitmap()
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(true)
+                        .into(90, 90)
+                        .get() }
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ icon ->
+                        // Assumes there's already a shortcut with the ID "my-shortcut".
+                        // The shortcut must be enabled.
+                        val pinShortcutInfo = ShortcutInfoCompat.Builder(activity, "manga-shortcut-${presenter.manga.title}-${presenter.source.name}")
+                                .setShortLabel(presenter.manga.title)
+                                .setIcon(IconCompat.createWithBitmap(icon))
+                                .setIntent(shortcutIntent).build()
 
-        //Set shortcut title
-        val dialog = MaterialDialog.Builder(activity)
-                .title(R.string.shortcut_title)
-                .input("", presenter.manga.title, { _, text ->
-                    //Set shortcut title
-                    addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, text.toString())
+                        // Create the PendingIntent object only if your app needs to be notified
+                        // that the user allowed the shortcut to be pinned. Note that, if the
+                        // pinning operation fails, your app isn't notified. We assume here that the
+                        // app has implemented a method called createShortcutResultIntent() that
+                        // returns a broadcast intent.
+                        val pinnedShortcutCallbackIntent = ShortcutManagerCompat.createShortcutResultIntent(activity, pinShortcutInfo)
 
-                    reshapeIconBitmap(addIntent,
-                            Glide.with(activity).load(presenter.manga).asBitmap())
-                })
-                .negativeText(android.R.string.cancel)
-                .show()
+                        // Configure the intent so that your app's broadcast receiver gets
+                        // the callback successfully.
+                        val successCallback = PendingIntent.getBroadcast(activity.baseContext, 0,
+                                pinnedShortcutCallbackIntent, 0)
 
-        untilDestroySubscriptions.add(Subscriptions.create { dialog.dismiss() })
-    }
-
-    fun reshapeIconBitmap(addIntent: Intent, request: BitmapTypeRequest<out Any>) {
-        val activity = activity ?: return
-
-        val modes = intArrayOf(R.string.circular_icon,
-                R.string.rounded_icon,
-                R.string.square_icon,
-                R.string.star_icon)
-
-        fun BitmapRequestBuilder<out Any, Bitmap>.toIcon(): Bitmap {
-            return this.into(96, 96).get()
+                        ShortcutManagerCompat.requestPinShortcut(activity, pinShortcutInfo,
+                                successCallback.intentSender)
+                    })
         }
-
-        // i = 0: Circular icon
-        // i = 1: Rounded icon
-        // i = 2: Square icon
-        // i = 3: Star icon (because boredom)
-        fun getIcon(i: Int): Bitmap? {
-            return when (i) {
-                0 -> request.transform(CropCircleTransformation(activity)).toIcon()
-                1 -> request.transform(RoundedCornersTransformation(activity, 5, 0)).toIcon()
-                2 -> request.transform(CropSquareTransformation(activity)).toIcon()
-                3 -> request.transform(CenterCrop(activity),
-                        MaskTransformation(activity, R.drawable.mask_star)).toIcon()
-                else -> null
-            }
-        }
-
-        val dialog = MaterialDialog.Builder(activity)
-                .title(R.string.icon_shape)
-                .negativeText(android.R.string.cancel)
-                .items(modes.map { activity.getString(it) })
-                .itemsCallback { _, _, i, _ ->
-                    Observable.fromCallable { getIcon(i) }
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({ icon ->
-                                if (icon != null) createShortcut(addIntent, icon)
-                            }, {
-                                activity.toast(R.string.icon_creation_fail)
-                            })
-                }
-                .show()
-
-        untilDestroySubscriptions.add(Subscriptions.create { dialog.dismiss() })
     }
-
-    fun createShortcut(addIntent: Intent, icon: Bitmap) {
-        val activity = activity ?: return
-
-        //Send shortcut intent
-        addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon)
-        activity.sendBroadcast(addIntent)
-        //Go to launcher to show this shiny new shortcut!
-        val startMain = Intent(Intent.ACTION_MAIN)
-        startMain.addCategory(Intent.CATEGORY_HOME).flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(startMain)
-    }
-
 }
