@@ -2,20 +2,26 @@ package eu.kanade.tachiyomi.ui.manga.info
 
 import android.app.PendingIntent
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.support.customtabs.CustomTabsIntent
 import android.support.v4.content.pm.ShortcutInfoCompat
 import android.support.v4.content.pm.ShortcutManagerCompat
 import android.support.v4.graphics.drawable.IconCompat
 import android.view.*
+import com.afollestad.materialdialogs.MaterialDialog
+import com.bumptech.glide.BitmapRequestBuilder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import com.jakewharton.rxbinding.view.clicks
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.SManga
@@ -27,10 +33,15 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
+import jp.wasabeef.glide.transformations.CropCircleTransformation
+import jp.wasabeef.glide.transformations.CropSquareTransformation
+import jp.wasabeef.glide.transformations.MaskTransformation
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.manga_info_controller.view.*
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import rx.subscriptions.Subscriptions
 import uy.kohesive.injekt.injectLazy
 import java.text.DecimalFormat
 
@@ -175,7 +186,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     /**
      * Toggles the favorite status and asks for confirmation to delete downloaded chapters.
      */
-    fun toggleFavorite() {
+    private fun toggleFavorite() {
         val view = view
 
         val isNowFavorite = presenter.toggleFavorite()
@@ -191,7 +202,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     /**
      * Open the manga in browser.
      */
-    fun openInBrowser() {
+    private fun openInBrowser() {
         val context = view?.context ?: return
         val source = presenter.source as? HttpSource ?: return
 
@@ -282,18 +293,19 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         if (manga.favorite) {
             val categories = presenter.getCategories()
             val defaultCategory = categories.find { it.id == preferences.defaultCategory() }
-            if (defaultCategory != null) {
-                presenter.moveMangaToCategory(manga, defaultCategory)
-            } else if (categories.size <= 1) { // default or the one from the user
-                presenter.moveMangaToCategory(manga, categories.firstOrNull())
-            } else {
-                val ids = presenter.getMangaCategoryIds(manga)
-                val preselected = ids.mapNotNull { id ->
-                    categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
-                }.toTypedArray()
+            when {
+                defaultCategory != null -> presenter.moveMangaToCategory(manga, defaultCategory)
+                categories.size <= 1 -> // default or the one from the user
+                    presenter.moveMangaToCategory(manga, categories.firstOrNull())
+                else -> {
+                    val ids = presenter.getMangaCategoryIds(manga)
+                    val preselected = ids.mapNotNull { id ->
+                        categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
+                    }.toTypedArray()
 
-                ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
-                        .showDialog(router)
+                    ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
+                            .showDialog(router)
+                }
             }
         }
     }
@@ -303,54 +315,109 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         presenter.moveMangaToCategories(manga, categories)
     }
 
+    /**
+     * Choose the shape of the icon
+     * Only use for pre Oreo devices.
+     */
+    private fun chooseIconDialog() {
+        val activity = activity ?: return
+
+        val modes = intArrayOf(R.string.circular_icon,
+                R.string.rounded_icon,
+                R.string.square_icon,
+                R.string.star_icon)
+
+        val request = Glide.with(activity).load(presenter.manga).asBitmap()
+
+        fun getIcon(i: Int): Bitmap? = when (i) {
+            0 -> request.transform(CropCircleTransformation(activity)).toIcon()
+            1 -> request.transform(RoundedCornersTransformation(activity, 5, 0)).toIcon()
+            2 -> request.transform(CropSquareTransformation(activity)).toIcon()
+            3 -> request.transform(CenterCrop(activity),
+                    MaskTransformation(activity, R.drawable.mask_star)).toIcon()
+            else -> null
+        }
+
+        val dialog = MaterialDialog.Builder(activity)
+                .title(R.string.icon_shape)
+                .negativeText(android.R.string.cancel)
+                .items(modes.map { activity.getString(it) })
+                .itemsCallback { _, _, i, _ ->
+                    Observable.fromCallable { getIcon(i) }
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ icon ->
+                                if (icon != null) createShortcut(icon)
+                            }, {
+                                activity.toast(R.string.icon_creation_fail)
+                            })
+                }
+                .show()
+
+        untilDestroySubscriptions.add(Subscriptions.create { dialog.dismiss() })
+    }
+
+    private fun BitmapRequestBuilder<out Any, Bitmap>.toIcon() = this.into(96,96).get()
 
     /**
-     * Add the manga to the home screen
+     * Create shortcut using ShortcutManager.
      */
-    private fun addToHomeScreen() {
+    private fun createShortcut(icon: Bitmap) {
         val activity = activity ?: return
         val mangaControllerArgs = parentController?.args ?: return
 
-        if (ShortcutManagerCompat.isRequestPinShortcutSupported(activity)) {
-            val shortcutIntent = activity.intent
-                    .setAction(MainActivity.SHORTCUT_MANGA)
-                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    .putExtra(MangaController.MANGA_EXTRA,
-                            mangaControllerArgs.getLong(MangaController.MANGA_EXTRA))
+        // Create the shortcut intent.
+        val shortcutIntent = activity.intent
+                .setAction(MainActivity.SHORTCUT_MANGA)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                .putExtra(MangaController.MANGA_EXTRA,
+                        mangaControllerArgs.getLong(MangaController.MANGA_EXTRA))
 
+        // Check if shortcut placement is supported
+        if (ShortcutManagerCompat.isRequestPinShortcutSupported(activity)) {
+
+            // Create shortcut info
+            val pinShortcutInfo = ShortcutInfoCompat.Builder(activity, "manga-shortcut-${presenter.manga.title}-${presenter.source.name}")
+                    .setShortLabel(presenter.manga.title)
+                    .setIcon(IconCompat.createWithBitmap(icon))
+                    .setIntent(shortcutIntent).build()
+
+            val successCallback: PendingIntent
+
+            successCallback = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                // Create the CallbackIntent.
+                val pinnedShortcutCallbackIntent = ShortcutManagerCompat.createShortcutResultIntent(activity, pinShortcutInfo)
+
+                // Configure the intent so that the broadcast receiver gets the callback successfully.
+                PendingIntent.getBroadcast(activity, 0, pinnedShortcutCallbackIntent, 0)
+            } else{
+                NotificationReceiver.shortcutCreatedBroadcast(activity)
+            }
+
+            // Request shortcut.
+            ShortcutManagerCompat.requestPinShortcut(activity, pinShortcutInfo,
+                    successCallback.intentSender)
+        }
+    }
+
+    /**
+     * Add a shortcut of the manga to the home screen
+     */
+    private fun addToHomeScreen() {
+        // Get bitmap icon
+        val bitmap = Glide.with(activity).load(presenter.manga).asBitmap()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             Observable.fromCallable {
-                Glide.with(activity.baseContext)
-                        .load(presenter.manga)
-                        .asBitmap()
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(true)
-                        .into(90, 90)
-                        .get() }
+                bitmap.toIcon()
+            }
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ icon ->
-                        // Assumes there's already a shortcut with the ID "my-shortcut".
-                        // The shortcut must be enabled.
-                        val pinShortcutInfo = ShortcutInfoCompat.Builder(activity, "manga-shortcut-${presenter.manga.title}-${presenter.source.name}")
-                                .setShortLabel(presenter.manga.title)
-                                .setIcon(IconCompat.createWithBitmap(icon))
-                                .setIntent(shortcutIntent).build()
-
-                        // Create the PendingIntent object only if your app needs to be notified
-                        // that the user allowed the shortcut to be pinned. Note that, if the
-                        // pinning operation fails, your app isn't notified. We assume here that the
-                        // app has implemented a method called createShortcutResultIntent() that
-                        // returns a broadcast intent.
-                        val pinnedShortcutCallbackIntent = ShortcutManagerCompat.createShortcutResultIntent(activity, pinShortcutInfo)
-
-                        // Configure the intent so that your app's broadcast receiver gets
-                        // the callback successfully.
-                        val successCallback = PendingIntent.getBroadcast(activity.baseContext, 0,
-                                pinnedShortcutCallbackIntent, 0)
-
-                        ShortcutManagerCompat.requestPinShortcut(activity, pinShortcutInfo,
-                                successCallback.intentSender)
+                    .subscribe({icon ->
+                        createShortcut(icon)
                     })
+        }else{
+            chooseIconDialog()
         }
     }
 }

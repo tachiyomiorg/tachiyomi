@@ -311,6 +311,7 @@
     <string name="square_icon">Square icon</string>
     <string name="star_icon">Star icon</string>
     <string name="shortcut_title">Shortcut title</string>
+    <string name="shortcut_created">Shortcut was added to home screen.</string>
     <string name="icon_shape">Icon shape</string>
     <string name="icon_creation_fail">Failed to create shortcut!</string>
     <string name="delete_downloads_for_manga">Delete downloaded chapters?</string>
