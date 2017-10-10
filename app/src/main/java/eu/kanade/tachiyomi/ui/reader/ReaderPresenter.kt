@@ -13,6 +13,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.SourceManager
@@ -89,7 +90,10 @@ class ReaderPresenter(
             else -> throw NotImplementedError("Unknown sorting method")
         }
 
-        dbChapters.sortedWith(Comparator<Chapter> { c1, c2 -> sortFunction(c1, c2) })
+        val skip = prefs.skipReadChapters().getOrDefault()
+        dbChapters
+                .filter { if (skip && !chapter.read) !it.read else true }
+                .sortedWith(Comparator<Chapter> { c1, c2 -> sortFunction(c1, c2) })
     }
 
     /**

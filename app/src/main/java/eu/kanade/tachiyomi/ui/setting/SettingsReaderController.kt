@@ -62,30 +62,39 @@ class SettingsReaderController : SettingsController() {
             defaultValue = "0"
             summary = "%s"
         }
-        switchPreference {
-            key = Keys.fullscreen
-            titleRes = R.string.pref_fullscreen
-            defaultValue = true
-        }
-        switchPreference {
-            key = Keys.enableTransitions
-            titleRes = R.string.pref_page_transitions
-            defaultValue = true
-        }
-        switchPreference {
-            key = Keys.showPageNumber
-            titleRes = R.string.pref_show_page_number
-            defaultValue = true
-        }
-        switchPreference {
-            key = Keys.cropBorders
-            titleRes = R.string.pref_crop_borders
-            defaultValue = false
-        }
-        switchPreference {
-            key = Keys.keepScreenOn
-            titleRes = R.string.pref_keep_screen_on
-            defaultValue = true
+        preferenceCategory {
+            titleRes = R.string.pref_reader_utility
+            switchPreference {
+                key = Keys.fullscreen
+                titleRes = R.string.pref_fullscreen
+                defaultValue = true
+            }
+            switchPreference {
+                key = Keys.enableTransitions
+                titleRes = R.string.pref_page_transitions
+                defaultValue = true
+            }
+            switchPreference {
+                key = Keys.showPageNumber
+                titleRes = R.string.pref_show_page_number
+                defaultValue = true
+            }
+            switchPreference {
+                key = Keys.cropBorders
+                titleRes = R.string.pref_crop_borders
+                defaultValue = false
+            }
+            switchPreference {
+                key = Keys.keepScreenOn
+                titleRes = R.string.pref_keep_screen_on
+                defaultValue = true
+            }
+            switchPreference {
+                key = Keys.skipReadChapters
+                titleRes = R.string.pref_skip_read_chapters
+                summaryRes = R.string.pref_skip_read_chapters_summary
+                defaultValue = false
+            }
         }
         preferenceCategory {
             titleRes = R.string.pref_reader_navigation
