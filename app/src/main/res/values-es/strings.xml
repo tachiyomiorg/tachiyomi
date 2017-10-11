@@ -72,7 +72,7 @@
     <string name="pref_library_columns">Mangas por fila</string>
     <string name="portrait">Retrato</string>
     <string name="landscape">Apaisado</string>
-    <string name="default_columns">Por defecto</string>
+    <string name="default_columns">Predefinido</string>
     <string name="pref_library_update_interval">Frecuencia de actualización de la librería</string>
     <string name="update_never">Manual</string>
     <string name="update_1hour">Cada hora</string>
@@ -106,7 +106,7 @@
     <string name="pref_reader_theme">Color de fondo</string>
     <string name="white_background">Blanco</string>
     <string name="black_background">Negro</string>
-    <string name="pref_viewer_type">Visor por defecto</string>
+    <string name="pref_viewer_type">Visor predefinido</string>
     <string name="default_viewer">Predefinido</string>
     <string name="left_to_right_viewer">Izquierda a derecha</string>
     <string name="right_to_left_viewer">Derecha a izquierda</string>
@@ -350,8 +350,8 @@
     <string name="amoled_theme">Tema AMOLED</string>
     <string name="pref_start_screen">Pantalla inicial</string>
     <string name="pref_language">Idioma</string>
-    <string name="system_default">Por defecto del sistema</string>
-    <string name="default_category">Categoría por defecto</string>
+    <string name="system_default">Predefinido del sistema</string>
+    <string name="default_category">Categoría predefinida</string>
     <string name="default_category_summary">Siempre preguntar</string>
 
       <string name="pref_crop_borders">Recortar bordes</string>
@@ -443,5 +443,5 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="file_select_icon">Seleccionar icono de acceso directo</string>
 
     <string name="download_notifier_downloader_title">Descargador</string>
-    <string name="invalid_combination">\'Por defecto\' no puede ser seleccionada con otras categorías</string>
+    <string name="invalid_combination">Predefinido no puede ser seleccionada con otras categorías</string>
     </resources>
