@@ -107,7 +107,7 @@
     <string name="white_background">Blanco</string>
     <string name="black_background">Negro</string>
     <string name="pref_viewer_type">Visor por defecto</string>
-    <string name="default_viewer">Por defecto</string>
+    <string name="default_viewer">Predefinido</string>
     <string name="left_to_right_viewer">Izquierda a derecha</string>
     <string name="right_to_left_viewer">Derecha a izquierda</string>
     <string name="vertical_viewer">Vertical</string>
@@ -443,4 +443,5 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="file_select_icon">Seleccionar icono de acceso directo</string>
 
     <string name="download_notifier_downloader_title">Descargador</string>
+    <string name="invalid_combination">Predefinido no puede ser seleccionada junto a otras categorías</string>
     </resources>
