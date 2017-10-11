@@ -443,5 +443,5 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="file_select_icon">Seleccionar icono de acceso directo</string>
 
     <string name="download_notifier_downloader_title">Descargador</string>
-    <string name="invalid_combination">Por defecto no puede ser seleccionado junto a otras categorías</string>
+    <string name="invalid_combination">\'Por defecto\' no puede ser seleccionada con otras categorías</string>
     </resources>
