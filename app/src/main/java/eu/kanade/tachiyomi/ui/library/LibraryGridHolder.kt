@@ -5,7 +5,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.source.LocalSource
 import kotlinx.android.synthetic.main.catalogue_grid_item.view.*
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 /**
  * Class used to hold the displayed data of a manga in the library, like the cover or the title.
@@ -19,7 +24,9 @@ import kotlinx.android.synthetic.main.catalogue_grid_item.view.*
 class LibraryGridHolder(
         private val view: View,
         private val adapter: FlexibleAdapter<*>
+
 ) : LibraryHolder(view, adapter) {
+    private val preferences: PreferencesHelper = Injekt.get()
 
     /**
      * Method called from [LibraryCategoryAdapter.onBindViewHolder]. It updates the data for this
@@ -35,6 +42,15 @@ class LibraryGridHolder(
         with(view.unread_text) {
             visibility = if (manga.unread > 0) View.VISIBLE else View.GONE
             text = manga.unread.toString()
+        }
+        // Update the download count and its visibility.
+        with(view.download_text) {
+            visibility = if (manga.downloadTotal > 0 && preferences.downloadBadge().getOrDefault()) View.VISIBLE else View.GONE
+            text = manga.downloadTotal.toString()
+        }
+        //set local visibility if its local manga
+        with(view.local_text){
+            visibility = if(manga.source == LocalSource.ID) View.VISIBLE else View.GONE
         }
 
         // Update the cover.

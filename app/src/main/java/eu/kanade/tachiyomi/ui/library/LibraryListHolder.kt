@@ -5,8 +5,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.source.LocalSource
 import jp.wasabeef.glide.transformations.CropCircleTransformation
 import kotlinx.android.synthetic.main.catalogue_list_item.view.*
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 /**
  * Class used to hold the displayed data of a manga in the library, like the cover or the title.
@@ -22,6 +27,7 @@ class LibraryListHolder(
         private val view: View,
         private val adapter: FlexibleAdapter<*>
 ) : LibraryHolder(view, adapter) {
+    private val preferences: PreferencesHelper = Injekt.get()
 
     /**
      * Method called from [LibraryCategoryAdapter.onBindViewHolder]. It updates the data for this
@@ -37,6 +43,15 @@ class LibraryListHolder(
         with(itemView.unread_text) {
             visibility = if (manga.unread > 0) View.VISIBLE else View.GONE
             text = manga.unread.toString()
+        }
+        // Update the download count and its visibility.
+        with(itemView.download_text) {
+            visibility = if (manga.downloadTotal > 0 && preferences.downloadBadge().getOrDefault()) View.VISIBLE else View.GONE
+            text = manga.downloadTotal.toString()
+        }
+        //show local text badge if local manga
+        with(itemView.local_text) {
+            visibility = if (manga.source == LocalSource.ID) View.VISIBLE else View.GONE
         }
 
         // Create thumbnail onclick to simulate long click

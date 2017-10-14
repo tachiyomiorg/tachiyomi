@@ -54,6 +54,11 @@ class LibraryPresenter(
     private val filterTriggerRelay = BehaviorRelay.create(Unit)
 
     /**
+     * Relay used to apply the UI update to the last emission of the library.
+     */
+    private val downloadTriggerRelay = BehaviorRelay.create(Unit)
+
+    /**
      * Relay used to apply the selected sorting method to the last emission of the library.
      */
     private val sortTriggerRelay = BehaviorRelay.create(Unit)
@@ -76,6 +81,8 @@ class LibraryPresenter(
             librarySubscription = getLibraryObservable()
                     .combineLatest(filterTriggerRelay.observeOn(Schedulers.io()),
                             { lib, _ -> Pair(lib.first, applyFilters(lib.second)) })
+                    .combineLatest(downloadTriggerRelay.observeOn(Schedulers.io()),
+                            { lib, _ -> Pair(lib.first, addDownloadTotal(lib.second)) })
                     .combineLatest(sortTriggerRelay.observeOn(Schedulers.io()),
                             { lib, _ -> Pair(lib.first, applySort(lib.second)) })
                     .map { Pair(it.first, it.second.mapValues { it.value.map(::LibraryItem) }) }
@@ -139,6 +146,48 @@ class LibraryPresenter(
         }
 
         return map.mapValues { entry -> entry.value.filter(filterFn) }
+    }
+
+    /**
+     * Adds Downloaded chapter count to manga
+     *
+     * @param map the map to filter.
+     */
+    private fun addDownloadTotal(map: Map<Int, List<Manga>>): Map<Int, List<Manga>> {
+        // Cached list of downloaded manga directories given a source id.
+        if (preferences.downloadBadge().getOrDefault()) {
+            val mangaDirsForSource = mutableMapOf<Long, Map<String?, UniFile>>()
+
+            // Cached list of downloaded chapter directories for a manga.
+            val chapterDirectories = mutableMapOf<Long, Int>()
+
+            for ((key, mangaList) in map) {
+                for (manga in mangaList) {
+                    manga.downloadTotal = getDownloadedCountFromDirectory(manga, mangaDirsForSource, chapterDirectories)
+                }
+            }
+        }
+        return map;
+    }
+
+    //Get count of downloaded chapters for a manga
+    fun getDownloadedCountFromDirectory(manga: Manga, mangaDirsForSource: MutableMap<Long, Map<String?, UniFile>>, chapterDirectories: MutableMap<Long, Int>): Int {
+        val source = sourceManager.get(manga.source) ?: return 0;
+        // Get the directories for the source of the manga.
+        val dirsForSource = mangaDirsForSource.getOrPut(source.id) {
+            val sourceDir = downloadManager.findSourceDir(source)
+            sourceDir?.listFiles()?.associateBy { it.name }.orEmpty()
+        }
+        val mangaDirName = downloadManager.getMangaDirName(manga)
+        val mangaDir = dirsForSource[mangaDirName] ?: return 0
+
+        chapterDirectories.getOrPut(manga.id!!) {
+            if (mangaDir.listFiles()?.isNotEmpty() ?: false) {
+                return mangaDir.listFiles()!!.size
+            }
+            return 0;
+        }
+        return 0;
     }
 
     /**
@@ -234,6 +283,13 @@ class LibraryPresenter(
      */
     fun requestFilterUpdate() {
         filterTriggerRelay.call(Unit)
+    }
+
+    /**
+     * Requests the library to have download badges added.
+     */
+    fun requestDownloadBadgesUpdate() {
+        downloadTriggerRelay.call(Unit)
     }
 
     /**
