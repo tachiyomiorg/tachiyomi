@@ -27,4 +27,9 @@
     <string name="action_sort_alpha">أبجديا</string>
     <string name="action_sort_total">كامل الفصول</string>
     <string name="action_sort_last_read">آخر قراءة</string>
+    <string name="action_sort_last_updated">آخر تحديث</string>
+    <string name="action_search">بحث</string>
+    <string name="action_select_all">اختر الكل
+\n</string>
+    <string name="action_mark_as_read">ضع إشارة مقروء</string>
     </resources>
