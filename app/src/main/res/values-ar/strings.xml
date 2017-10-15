@@ -23,4 +23,6 @@
     <string name="action_filter_bookmarked">المحفوظة</string>
     <string name="action_filter_unread">الغير مقروءة</string>
     <string name="action_filter_read">المقروءة</string>
+    <string name="action_filter_empty">إزالة الفلتر</string>
+    <string name="action_sort_alpha">أبجديا</string>
     </resources>
