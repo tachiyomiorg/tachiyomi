@@ -89,4 +89,11 @@
     <string name="short_recent_updates">التحديثات</string>
 
     <string name="pref_category_general">عام</string>
-    </resources>
+    <string name="pref_category_reader">قارئ المانجا</string>
+    <string name="pref_category_downloads">التحميلات</string>
+    <string name="pref_category_sources">المصادر</string>
+    <string name="pref_category_tracking">التتبع</string>
+    <string name="pref_category_advanced">اﻹعدادات المتقدمة</string>
+    <string name="pref_category_about">حول التطبيق</string>
+
+      </resources>
