@@ -108,4 +108,6 @@
     <string name="update_6hour">كل 6 ساعات</string>
     <string name="update_12hour">كل 12 ساعة</string>
     <string name="update_24hour">يوميا</string>
+    <string name="update_48hour">كل يومان</string>
+    <string name="update_weekly">أسبوعيا</string>
     </resources>
