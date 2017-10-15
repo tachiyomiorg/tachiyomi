@@ -101,4 +101,5 @@
     <string name="landscape">رأسي</string>
     <string name="default_columns">الافتراضي</string>
     <string name="pref_library_update_interval">فترة تحديث المكتبة</string>
+    <string name="update_never">يدويا</string>
     </resources>
