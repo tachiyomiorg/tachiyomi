@@ -125,4 +125,6 @@
     <string name="dark_theme">السمة الليلية</string>
     <string name="amoled_theme">سمة شاشات AMOLED</string>
     <string name="pref_start_screen">شاشة البداية</string>
+    <string name="pref_language">اللغة</string>
+    <string name="system_default">لغة النظام الافتراضية</string>
     </resources>
