@@ -59,4 +59,6 @@
     <string name="action_close">إغلاق</string>
     <string name="action_previous_chapter">الفصل السابق</string>
     <string name="action_next_chapter">الفصل التالى</string>
+    <string name="action_retry">إعادة المحاولة</string>
+    <string name="action_remove">إزالة</string>
     </resources>
