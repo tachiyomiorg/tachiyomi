@@ -110,4 +110,5 @@
     <string name="update_24hour">يوميا</string>
     <string name="update_48hour">كل يومان</string>
     <string name="update_weekly">أسبوعيا</string>
+    <string name="update_monthly">شهريا</string>
     </resources>
