@@ -31,5 +31,7 @@
     <string name="action_search">بحث</string>
     <string name="action_select_all">اختر الكل
 \n</string>
-    <string name="action_mark_as_read">ضع إشارة مقروء</string>
+    <string name="action_mark_as_read">تحديد كمقروء</string>
+    <string name="action_mark_as_unread">تحديد كغير مقروء</string>
+    <string name="action_mark_previous_as_read">تحديد السابق كمقروء</string>
     </resources>
