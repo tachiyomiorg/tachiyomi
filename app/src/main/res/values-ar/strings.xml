@@ -114,4 +114,5 @@
     <string name="pref_library_update_categories">الفئات المتضمنة فى التحديث الشامل</string>
     <string name="all">الكل</string>
     <string name="pref_library_update_restriction">قيود تحديثات المكتبة</string>
+    <string name="pref_library_update_restriction_summary">تحديث فقط عندما يتم استيفاء الشروط</string>
     </resources>
