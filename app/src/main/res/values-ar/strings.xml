@@ -134,4 +134,6 @@
     <string name="pref_lock_orientation">قفل التدوير</string>
     <string name="pref_page_transitions">الانتقال بين الصفحات</string>
     <string name="pref_show_page_number">عرض رقم الصفحة</string>
+    <string name="pref_crop_borders">اقتصاص الحدود</string>
+    <string name="pref_custom_brightness">استخدام سطوع مخصص</string>
     </resources>
