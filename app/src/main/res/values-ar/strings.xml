@@ -104,6 +104,7 @@
     <string name="update_never">يدويا</string>
     <string name="update_1hour">كل ساعة</string>
     <string name="update_2hour">كل ساعتين</string>
-    <string name="update_3hour">كل ثلاثة ساعات</string>
+    <string name="update_3hour">كل 3 ساعات</string>
     <string name="update_6hour">كل 6 ساعات</string>
+    <string name="update_12hour">كل 12 ساعة</string>
     </resources>
