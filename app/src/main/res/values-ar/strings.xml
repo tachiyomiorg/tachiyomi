@@ -102,4 +102,7 @@
     <string name="default_columns">الافتراضي</string>
     <string name="pref_library_update_interval">فترة تحديث المكتبة</string>
     <string name="update_never">يدويا</string>
+    <string name="update_1hour">كل ساعة</string>
+    <string name="update_2hour">كل ساعتين</string>
+    <string name="update_3hour">كل ثلاثة ساعات</string>
     </resources>
