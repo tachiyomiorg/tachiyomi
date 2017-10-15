@@ -17,4 +17,10 @@
     <string name="label_selected">المحدد</string>
     <string name="label_backup">النسخ الاحتياطي</string>
 
+    <string name="action_settings">اﻹعدادات</string>
+    <string name="action_filter">المرشح</string>
+    <string name="action_filter_downloaded">مكتملة التحميل</string>
+    <string name="action_filter_bookmarked">المحفوظة</string>
+    <string name="action_filter_unread">الغير مقروءة</string>
+    <string name="action_filter_read">المقروءة</string>
     </resources>
