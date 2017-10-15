@@ -67,4 +67,8 @@
     <string name="action_add_to_home_screen">إضافة إلى الشاشة الرئيسية</string>
     <string name="action_display_mode">تغيير طريقة العرض</string>
     <string name="action_display">طريقة العرض</string>
+    <string name="action_display_grid">شبكة</string>
+    <string name="action_display_list">قائمة</string>
+    <string name="action_set_filter">تعيين فلتر</string>
+    <string name="action_cancel">إلغاء</string>
     </resources>
