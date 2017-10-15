@@ -82,4 +82,5 @@
     <string name="action_create">إنشاء</string>
     <string name="action_restore">استعادة</string>
 
+    <string name="deleting">جار الحذف…</string>
     </resources>
