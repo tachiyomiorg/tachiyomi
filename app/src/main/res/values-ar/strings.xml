@@ -34,4 +34,10 @@
     <string name="action_mark_as_read">تحديد كمقروء</string>
     <string name="action_mark_as_unread">تحديد كغير مقروء</string>
     <string name="action_mark_previous_as_read">تحديد السابق كمقروء</string>
+    <string name="action_download">تحميل</string>
+    <string name="action_bookmark">الإشارة المرجعية</string>
+    <string name="action_remove_bookmark">إزالة الإشارة المرجعية</string>
+    <string name="action_delete">حذف</string>
+    <string name="action_update">تحديث</string>
+    <string name="action_update_library">تحديث المكتبة</string>
     </resources>
