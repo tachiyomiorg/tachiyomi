@@ -41,4 +41,8 @@
     <string name="action_update">تحديث</string>
     <string name="action_update_library">تحديث المكتبة</string>
     <string name="action_edit">تعديل</string>
+    <string name="action_add">إضافة</string>
+    <string name="action_add_category">إضافة فئة</string>
+    <string name="action_edit_categories">تعديل الفئات</string>
+    <string name="action_rename_category">إعادة تسمية الفئة</string>
     </resources>
