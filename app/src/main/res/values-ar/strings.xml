@@ -71,4 +71,11 @@
     <string name="action_display_list">قائمة</string>
     <string name="action_set_filter">تعيين فلتر</string>
     <string name="action_cancel">إلغاء</string>
+    <string name="action_sort">فرز</string>
+    <string name="action_install">تثبيت</string>
+    <string name="action_share">مشاركة</string>
+    <string name="action_save">حفظ</string>
+    <string name="action_reset">إعادة تعيين</string>
+    <string name="action_undo">تراجع</string>
+    <string name="action_export">تصدير</string>
     </resources>
