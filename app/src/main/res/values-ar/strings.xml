@@ -12,4 +12,6 @@
     <string name="label_recent_manga">المقروءة حديثا</string>
     <string name="label_catalogues">قائمة المانجا</string>
     <string name="label_recent_updates">تحديثات المكتبة</string>
+    <string name="label_latest_updates">آخر التحديثات</string>
+    <string name="label_categories">الأقسام</string>
     </resources>
