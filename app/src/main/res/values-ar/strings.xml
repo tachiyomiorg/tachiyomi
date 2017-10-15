@@ -46,5 +46,17 @@
     <string name="action_edit_categories">تعديل الفئات</string>
     <string name="action_rename_category">إعادة تسمية الفئة</string>
     <string name="action_move_category">النقل إلى فئة</string>
-    <string name="action_edit_cover">قم بتعديل صورة الغلاف</string>
+    <string name="action_edit_cover">تعديل صورة الغلاف</string>
+    <string name="action_sort_down">الترتيب لأسفل</string>
+    <string name="action_sort_up">الترتيب لأعلى</string>
+    <string name="action_show_unread">الغير مقروءة</string>
+    <string name="action_show_downloaded">مكتملة التحميل</string>
+    <string name="action_next_unread">الغير مقروءة التالية</string>
+    <string name="action_start">بدء</string>
+    <string name="action_stop">إيقاف</string>
+    <string name="action_pause">إيقاف موقت</string>
+    <string name="action_clear">مسح</string>
+    <string name="action_close">إغلاق</string>
+    <string name="action_previous_chapter">الفصل السابق</string>
+    <string name="action_next_chapter">الفصل التالى</string>
     </resources>
