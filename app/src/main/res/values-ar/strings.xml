@@ -107,4 +107,5 @@
     <string name="update_3hour">كل 3 ساعات</string>
     <string name="update_6hour">كل 6 ساعات</string>
     <string name="update_12hour">كل 12 ساعة</string>
+    <string name="update_24hour">يوميا</string>
     </resources>
