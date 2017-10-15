@@ -25,4 +25,6 @@
     <string name="action_filter_read">المقروءة</string>
     <string name="action_filter_empty">إزالة الفلتر</string>
     <string name="action_sort_alpha">أبجديا</string>
+    <string name="action_sort_total">كامل الفصول</string>
+    <string name="action_sort_last_read">آخر قراءة</string>
     </resources>
