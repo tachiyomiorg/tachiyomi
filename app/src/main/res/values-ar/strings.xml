@@ -40,4 +40,5 @@
     <string name="action_delete">حذف</string>
     <string name="action_update">تحديث</string>
     <string name="action_update_library">تحديث المكتبة</string>
+    <string name="action_edit">تعديل</string>
     </resources>
