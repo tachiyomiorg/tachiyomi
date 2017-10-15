@@ -96,5 +96,9 @@
     <string name="pref_category_advanced">اﻹعدادات المتقدمة</string>
     <string name="pref_category_about">حول التطبيق</string>
 
-      <string name="pref_library_columns">مكتبة المانجا في الصف</string>
+      <string name="pref_library_columns">مكتبة المانجا لكل صف</string>
+    <string name="portrait">أفقى</string>
+    <string name="landscape">رأسي</string>
+    <string name="default_columns">الافتراضي</string>
+    <string name="pref_library_update_interval">فترة تحديث المكتبة</string>
     </resources>
