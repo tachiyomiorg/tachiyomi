@@ -119,5 +119,9 @@
     <string name="charging">أثناء الشحن</string>
     <string name="pref_update_only_non_completed">تحديث المانجا المستمرة فقط</string>
     <string name="pref_auto_update_manga_sync">مزامنة الفصول بعد القراءة</string>
-    <string name="pref_ask_update_manga_sync">تأكيد قبل التحديث</string>
+    <string name="pref_ask_update_manga_sync">التأكيد قبل التحديث</string>
+    <string name="pref_theme">سمة التطبيق</string>
+    <string name="light_theme">السمة الرئيسية</string>
+    <string name="dark_theme">السمة الليلية</string>
+    <string name="amoled_theme">سمة شاشات AMOLED</string>
     </resources>
