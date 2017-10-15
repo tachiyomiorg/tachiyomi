@@ -62,4 +62,6 @@
     <string name="action_retry">إعادة المحاولة</string>
     <string name="action_remove">إزالة</string>
     <string name="action_resume">استئناف</string>
+    <string name="action_move">نقل</string>
+    <string name="action_open_in_browser">افتح فى المتصفح</string>
     </resources>
