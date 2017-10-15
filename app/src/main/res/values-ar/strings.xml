@@ -65,5 +65,6 @@
     <string name="action_move">نقل</string>
     <string name="action_open_in_browser">فتح فى المتصفح</string>
     <string name="action_add_to_home_screen">إضافة إلى الشاشة الرئيسية</string>
-    <string name="action_display_mode">تغيير وضع العرض</string>
+    <string name="action_display_mode">تغيير طريقة العرض</string>
+    <string name="action_display">طريقة العرض</string>
     </resources>
