@@ -78,4 +78,8 @@
     <string name="action_reset">إعادة تعيين</string>
     <string name="action_undo">تراجع</string>
     <string name="action_export">تصدير</string>
+    <string name="action_open_log">فتح السجل</string>
+    <string name="action_create">إنشاء</string>
+    <string name="action_restore">استعادة</string>
+
     </resources>
