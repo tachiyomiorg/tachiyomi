@@ -83,4 +83,10 @@
     <string name="action_restore">استعادة</string>
 
     <string name="deleting">جار الحذف…</string>
+    <string name="loading">جار التحميل…</string>
+
+    <string name="app_not_available">التطبيق غير متوفر</string>
+    <string name="short_recent_updates">التحديثات</string>
+
+    <string name="pref_category_general">عام</string>
     </resources>
