@@ -7,5 +7,8 @@
     <string name="history">السجل</string>
 
     <string name="label_settings">اﻹعدادات</string>
-    <string name="label_download_queue">تحميل قائمة الانتظار</string>
+    <string name="label_download_queue">التحميلات المنتظرة</string>
+    <string name="label_library">مكتبتي</string>
+    <string name="label_recent_manga">المقروءة حديثا</string>
+    <string name="label_catalogues">قائمة المانجا</string>
     </resources>
