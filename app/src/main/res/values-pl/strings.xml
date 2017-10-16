@@ -28,8 +28,8 @@
     <string name="action_mark_as_unread">Oznacz jako nieprzeczytane</string>
     <string name="action_mark_previous_as_read">Oznacz poprzednie jako przeczytane</string>
     <string name="action_download">Pobierz</string>
-    <string name="action_bookmark">Dodaj do zakładek</string>
-    <string name="action_remove_bookmark">Usuń z zakładek</string>
+    <string name="action_bookmark">Dodaj zakładkę</string>
+    <string name="action_remove_bookmark">Usuń zakładkę</string>
     <string name="action_delete">Usuń</string>
     <string name="action_update">Aktualizuj</string>
     <string name="action_update_library">Aktualizuj bibliotekę</string>
@@ -75,7 +75,7 @@
     <string name="action_restore">Przywróć</string>
 
     <string name="deleting">Usuwanie…</string>
-    <string name="loading">Ładowanie…</string>
+    <string name="loading">Wczytywanie…</string>
 
     <string name="app_not_available">Aplikacja niedostępna</string>
     <string name="short_recent_updates">Aktualizacje</string>
@@ -87,7 +87,7 @@
     <string name="pref_category_advanced">Zaawansowane</string>
     <string name="pref_category_about">O aplikacji</string>
 
-      <string name="pref_library_columns">Mangi na rząd biblioteki</string>
+      <string name="pref_library_columns">Ilość rzędów biblioteki</string>
     <string name="pref_refresh_library_metadata_summary">Aktualizuje okładki, gatunki, opisy i informacje o statusie mang</string>
     <string name="add_to_library">Dodaj do biblioteki</string>
     <string name="remove_from_library">Usuń z biblioteki</string>
@@ -100,9 +100,9 @@
     <string name="chapter_error">Błąd</string>
     <string name="chapter_paused">Wstrzymane</string>
     <string name="manga_download">Pobierz</string>
-    <string name="download_1">Pobierz kolejny rozdział</string>
-    <string name="download_5">Pobierz kolejne 5 rozdziałów</string>
-    <string name="download_10">Pobierz kolejne 10 rozdziałów</string>
+    <string name="download_1">Pobierz następny rozdział</string>
+    <string name="download_5">Pobierz 5 następnych rozdziałów</string>
+    <string name="download_10">Pobierz 10 następnych rozdziałów</string>
     <string name="download_all">Pobierz wszystko</string>
     <string name="download_unread">Pobierz nieprzeczytane</string>
     <string name="confirm_delete_chapters">Czy na pewno chcesz usunąć wybrane rozdziały?</string>
@@ -131,7 +131,7 @@
 
     <string name="notification_new_chapters">Znaleziono nowe rozdziały</string>
     <string name="notification_not_connected_to_ac_title">Synchronizacja anulowana</string>
-    <string name="notification_not_connected_to_ac_body">Nie podłączono ładowarki</string>
+    <string name="notification_not_connected_to_ac_body">Nie podłączono do ładowarki</string>
     <string name="notification_no_connection_title">Synchronizacja anulowana</string>
     <string name="notification_no_connection_body">Brak połączenia</string>
 
@@ -160,7 +160,7 @@
     <string name="action_sort_alpha">Alfabetycznie</string>
     <string name="track">Śledzenie</string>
     <string name="action_reset">Reset</string>
-    <string name="services">Usługi</string>
+    <string name="services">Usługi śledzenia</string>
 
     <string name="version">Wersja</string>
     <string name="pref_enable_automatic_updates">Sprawdź aktualizacje</string>
@@ -192,8 +192,8 @@
     <string name="action_open_log">Otwórz log</string>
     <string name="show_title">Pokaż tytuł</string>
     <string name="show_chapter_number">Pokaż numer rozdziału</string>
-    <string name="portrait">Pionowo</string>
-    <string name="landscape">Poziomo</string>
+    <string name="portrait">Orientacja pionowa</string>
+    <string name="landscape">Orientacja pozioma</string>
     <string name="default_columns">Domyślnie</string>
     <string name="pref_library_update_interval">Częstotliwość aktualizacji biblioteki</string>
     <string name="update_never">Ręcznie</string>
@@ -206,7 +206,7 @@
     <string name="update_48hour">Co 2 dni</string>
     <string name="update_weekly">Co tydzień</string>
     <string name="update_monthly">Co miesiąc</string>
-    <string name="pref_library_update_categories">Kategorie zawierane w aktualizacji globalnej</string>
+    <string name="pref_library_update_categories">Kategorie zawarte w globalnej aktualizacji</string>
     <string name="all">Wszystko</string>
     <string name="pref_library_update_restriction">Warunki aktualizacji biblioteki</string>
     <string name="pref_library_update_restriction_summary">Aktualizuje tylko, kiedy spełnione są te warunki</string>
@@ -243,21 +243,21 @@
     <string name="left_to_right_viewer">Od lewej do prawej</string>
     <string name="right_to_left_viewer">Od prawej do lewej</string>
     <string name="vertical_viewer">Pionowo</string>
-    <string name="webtoon_viewer">Webtoon</string>
+    <string name="webtoon_viewer">Web-komiks</string>
     <string name="pref_viewer_type">Domyślny styl czytania</string>
-    <string name="pref_image_decoder">Dekoder obrazków</string>
+    <string name="pref_image_decoder">Dekoder obrazów</string>
     <string name="scale_type_fit_screen">Dopasuj do ekranu</string>
     <string name="scale_type_stretch">Rozciągnij</string>
-    <string name="scale_type_fit_width">Dopasuj do szerokości</string>
-    <string name="scale_type_fit_height">Dopasuj do wysokości</string>
+    <string name="scale_type_fit_width">Dopasuj na szerokość</string>
+    <string name="scale_type_fit_height">Dopasuj na wysokość</string>
     <string name="pref_image_scale_type">Rodzaj powiększenia</string>
     <string name="scale_type_original_size">Oryginalny rozmiar</string>
     <string name="scale_type_smart_fit">Inteligentne</string>
     <string name="pref_zoom_start">Początkowa pozycja przybliżenia</string>
     <string name="zoom_start_automatic">Automatycznie</string>
-    <string name="zoom_start_left">Po lewej</string>
-    <string name="zoom_start_right">Po prawej</string>
-    <string name="zoom_start_center">Wyśrodkuj</string>
+    <string name="zoom_start_left">Od lewej</string>
+    <string name="zoom_start_right">Od prawej</string>
+    <string name="zoom_start_center">Od środka</string>
     <string name="pref_rotation_type">Orientacja ekranu</string>
     <string name="rotation_free">Dowolna</string>
     <string name="rotation_lock">Zablokowana</string>
@@ -269,7 +269,7 @@
     <string name="color_filter_a_value">A</string>
 
 
-      <string name="pref_download_directory">Katalog pobierania</string>
+      <string name="pref_download_directory">Folder pobierania</string>
     <string name="pref_download_slots">Liczba równoczesnych pobierań</string>
     <string name="pref_download_only_over_wifi">Pobieraj tylko przez Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Usuwaj po oznaczeniu jako przeczytane</string>
@@ -285,17 +285,17 @@
     <string name="backup">Kopia zapasowa</string>
     <string name="manga">Mangi</string>
     <string name="pref_category_tracking">Śledzenie</string>
-    <string name="pref_reader_navigation">Obsługa</string>
-    <string name="pref_download_new_categories">Kategorie do pobierania</string>
+    <string name="pref_reader_navigation">Przewracaj strony poprzez</string>
+    <string name="pref_download_new_categories">Kategorie do auto-pobierania</string>
 
       <string name="pref_create_backup">Utwórz kopię zapasową</string>
     <string name="pref_create_backup_summ">Może być użyta do przywrócenia aktualnej biblioteki</string>
     <string name="pref_restore_backup">Przywróć kopię zapasową</string>
     <string name="pref_restore_backup_summ">Przywraca bibliotekę z pliku kopii zapasowej</string>
-    <string name="pref_backup_directory">Katalog kopii zapasowych</string>
+    <string name="pref_backup_directory">Folder kopii zapasowych</string>
     <string name="pref_backup_interval">Częstotliwość tworzenia kopii</string>
-    <string name="pref_backup_slots">Maks. automatycznych kopii</string>
-    <string name="pref_backup_service_category">Serwisowe</string>
+    <string name="pref_backup_slots">Maks. ilosć kopii automatycznych</string>
+    <string name="pref_backup_service_category">Cykliczna kopia zapasowa</string>
     <string name="dialog_restoring_backup">Przywracanie kopii zapasowej
 \n%1$s dodano do biblioteki</string>
     <string name="source_not_found">Nie znaleziono źródła</string>
@@ -322,15 +322,15 @@ Nie znaleziono źródła %1$s</string>
     <string name="backup_created">Kopia zapasowa utworzona</string>
     <string name="restore_completed">Przywracanie ukończone</string>
     <string name="error_opening_log">Nie udało się otworzyć logu</string>
-    <string name="backup_restore_content">Przywracanie używa źródeł do pobierania danych, operator może naliczać opłaty.
-Przed przywróceniem upewnij się też, że jesteś poprawnie zalogowany do źródeł.</string>
+    <string name="backup_restore_content">Przywracanie używa źródeł do pobierania danych, operator może naliczać dodatkowe opłaty.
+\nPrzed przywróceniem upewnij się też, że jesteś poprawnie zalogowany do źródeł.</string>
     <string name="file_saved">Plik zapisano do %1$s</string>
     <string name="choices_reset">Resetuj wybory okien dialogowych</string>
     <string name="clear_database_confirmation">Na pewno? Przeczytane rozdziały i postęp w mangach spoza biblioteki zostaną utracone</string>
     <string name="clear_database_completed">Pozycje usunięte</string>
     <string name="pref_refresh_library_metadata">Odśwież metadane biblioteki</string>
     <string name="pref_refresh_library_tracking">Odśwież metadane śledzenia</string>
-    <string name="pref_refresh_library_tracking_summary">Aktualizuje status, ocenę i ostatnio czytany rozdział na podst. usług sychronizacji</string>
+    <string name="pref_refresh_library_tracking_summary">Aktualizuje status, ocenę i ostatnio czytany rozdział na podst. usług śledzenia</string>
 
       <string name="build_time">Build utworzony</string>
     <string name="login_success">Logowanie udane</string>
@@ -397,5 +397,19 @@ Spróbuj zmienić dekoder lub skorzystaj z jednej z opcji poniżej</string>
     <string name="download_notifier_page_error">Brakuje strony w katalogu</string>
     <string name="download_notifier_page_ready_error">Strona nie jest załadowana</string>
     <string name="download_notifier_text_only_wifi">Brak połączenia Wi-Fi</string>
-    <string name="download_notifier_no_network">Brak połączenia sieciowego</string>
-    </resources>
+    <string name="download_notifier_no_network">Brak połączenia z internetem</string>
+    <string name="action_global_search">Wyszukiwanie globalne</string>
+    <string name="action_open">Otwórz</string>
+    <string name="action_login">Zaloguj</string>
+
+    <string name="other_source">Inne</string>
+    <string name="action_global_search_hint">Wyszukiwanie globalne…</string>
+    <string name="no_results">Brak wyników!</string>
+    <string name="browse">Przeglądaj</string>
+
+    <string name="shortcut_created">Skrót został dodany do ekranu głównego.</string>
+    <string name="channel_common">Zwykły</string>
+    <string name="channel_library">Biblioteka</string>
+    <string name="latest">Ostatnie</string>
+    <string name="channel_downloader">Menadżer pobierania</string>
+</resources>
