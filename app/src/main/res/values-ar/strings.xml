@@ -212,4 +212,204 @@
     <string name="restoring_backup">جار استعادة النسخة الاحتياطية</string>
     <string name="creating_backup">جار إنشاء النسخة الاحتياطية</string>
 
-      </resources>
+      <string name="action_global_search">بحث شامل</string>
+    <string name="action_open">فتح</string>
+    <string name="action_login">تسجيل الدخول</string>
+
+    <string name="color_filter_r_value">R</string>
+    <string name="color_filter_g_value">G</string>
+    <string name="color_filter_b_value">B</string>
+    <string name="color_filter_a_value">A</string>
+
+
+      <string name="pref_clear_chapter_cache">مسح الذاكرة المؤقتة للفصل</string>
+    <string name="used_cache">المستخدمة: %1$s</string>
+    <string name="cache_deleted">تم محو الذاكرة المؤقتة. %1$d ملف تم محوه</string>
+    <string name="cache_delete_error">حدث خطأ أثناء محو ذاكرة التخزين المؤقت</string>
+    <string name="pref_clear_cookies">محو ملفات تعريف الارتباط</string>
+    <string name="cookies_cleared">تم محو ملفات تعريف الارتباط</string>
+    <string name="choices_reset">إعادة ضبط خيارات الحوار</string>
+    <string name="pref_clear_database">محو قاعدة البيانات</string>
+    <string name="pref_clear_database_summary">مسح المانجا والفصول التى ليست فى مكتبتك</string>
+    <string name="clear_database_confirmation">هل أنت متأكد؟ الفصول المقروءة ومستوي التقدم للمانجا الغير موجودة فى مكتبتك سيتم فقده</string>
+    <string name="clear_database_completed">تم حذف المدخلات</string>
+    <string name="pref_refresh_library_metadata">تحديث البيانات الوصفية للمكتبة</string>
+    <string name="pref_refresh_library_metadata_summary">تحديث اﻷغلفة، التصنيفات، الوصف ومعلومات حالة المانجا</string>
+    <string name="pref_refresh_library_tracking">تحديث البيانات الوصفية للتتبع</string>
+    <string name="pref_refresh_library_tracking_summary">تحديث الحالة، والتقييم وآخر فصل عن طريق خدمات التتبع</string>
+
+      <string name="version">اﻹصدار</string>
+    <string name="build_time">تاريخ ووقت البناء</string>
+    <string name="pref_enable_automatic_updates">تحقق من التحديثات</string>
+    <string name="pref_enable_automatic_updates_summary">التحقق تلقائيا من تحديثات التطبيق</string>
+    <string name="pref_enable_acra">إرسال تقارير الأعطال</string>
+    <string name="pref_acra_summary">هذا يساعد فى حل أى مشاكل، لن يتم إرسال أية بيانات حساسة</string>
+
+
+    <string name="login_title">تسجيل الدخول إلى %1$s</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="password">كلمة المرور</string>
+    <string name="show_password">عرض كلمة المرور</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="login_success">تم تسجيل الدخول بنجاح</string>
+    <string name="invalid_login">حدث خطأ في تسجيل الدخول</string>
+    <string name="unknown_error">خطأ غير معروف</string>
+
+    <string name="library_search_hint">العنوان أو المؤلف…</string>
+    <string name="updating_category">جار تحديث الفئات</string>
+    <string name="confirm_delete_manga">هل أنت متأكد أنك ترغب فى مسح المانجا المحددة؟</string>
+    <string name="also_delete_chapters">مسح الفصول المحمله أيضا</string>
+
+    <string name="source_requires_login">يتطلب هذا المصدر تسجيل الدخول</string>
+    <string name="select_source">اختر مصدر</string>
+    <string name="no_valid_sources">من فضلك قم بتفعيل مصدر صالح واحد على الأقل</string>
+    <string name="no_more_results">لا يوجد نتائج أخرى</string>
+    <string name="local_source">المانجا المحلية</string>
+    <string name="other_source">أخرى</string>
+    <string name="invalid_combination">لا يمكن تحديد الإعداد الافتراضي مع الفئات الأخرى</string>
+    <string name="added_to_library">تم إضافة المانجا إلى مكتبتك</string>
+    <string name="action_global_search_hint">البحث الشامل…</string>
+    <string name="no_results">لا توجد نتائج!</string>
+    <string name="latest">اﻷخيرة</string>
+    <string name="browse">تصفح</string>
+
+    <string name="manga_not_in_db">هذه المانجا تمت إزالتها من قاعدة البيانات!</string>
+
+    <string name="manga_detail_tab">معلومات</string>
+    <string name="description">الوصف</string>
+    <string name="ongoing">المستمرة</string>
+    <string name="unknown">الغير معروف</string>
+    <string name="licensed">المرخصة</string>
+    <string name="add_to_library">إضافة إلى المكتبة</string>
+    <string name="remove_from_library">إزالة من المكتبة</string>
+    <string name="manga_info_author_label">المؤلف</string>
+    <string name="manga_info_artist_label">الفنان</string>
+    <string name="manga_info_chapters_label">الفصول</string>
+    <string name="manga_info_last_chapter_label">آخر فصل</string>
+    <string name="manga_info_status_label">الحالة</string>
+    <string name="manga_info_source_label">المصدر</string>
+    <string name="manga_info_genres_label">التصنيفات</string>
+    <string name="share_text">التحقق من %1$s! خلال %2$s</string>
+    <string name="circular_icon">أيقونة دائرية</string>
+    <string name="rounded_icon">أيقونة مدوره</string>
+    <string name="square_icon">أيقونة مربعة</string>
+    <string name="star_icon">أيقونة نجمة</string>
+    <string name="shortcut_title">عنوان الاختصار</string>
+    <string name="shortcut_created">تمت إضافة الاختصار إلى الشاشة الرئيسية.</string>
+    <string name="icon_shape">شكل اﻷيقونة</string>
+    <string name="icon_creation_fail">فشل إنشاء الاختصار!</string>
+    <string name="delete_downloads_for_manga">حذف الفصول المحمله؟</string>
+
+    <string name="manga_chapters_tab">الفصول</string>
+    <string name="manga_chapter_no_title">بدون عنوان</string>
+    <string name="display_mode_chapter">الفصل %1$s</string>
+    <string name="chapter_downloaded">المحمله</string>
+    <string name="chapter_queued">المنتظرة</string>
+    <string name="chapter_downloading">جاري التحميل</string>
+    <string name="chapter_downloading_progress">جاري التحميل (%1$d/%2$d)</string>
+    <string name="chapter_error">خطأ</string>
+    <string name="chapter_paused">المتوقفة</string>
+    <string name="fetch_chapters_error">حدث خطأ أثناء جلب الفصول</string>
+    <string name="show_title">عرض العنوان</string>
+    <string name="show_chapter_number">عرض رقم الفصل</string>
+    <string name="sorting_mode">كيفية الفرز</string>
+    <string name="sort_by_source">حسب المصدر</string>
+    <string name="sort_by_number">حسب رقم الفصل</string>
+    <string name="manga_download">تحميل</string>
+    <string name="download_1">تحميل الفصل التالي</string>
+    <string name="download_5">تحميل الفصول الخمسة التالية</string>
+    <string name="download_10">تحميل الفصول 10 التالية</string>
+    <string name="download_all">تحميل الكل</string>
+    <string name="download_unread">تحميل غير المقروءة</string>
+    <string name="confirm_delete_chapters">هل أنت متأكد من أنك تريد حذف الفصول المحددة؟</string>
+
+    <string name="manga_tracking_tab">التتبع</string>
+    <string name="reading">أقرأها</string>
+    <string name="completed">مكتملة</string>
+    <string name="dropped">متروكة</string>
+    <string name="on_hold">في الانتظار</string>
+    <string name="plan_to_read">أنوي قرأتها</string>
+    <string name="score">التقييم</string>
+    <string name="title">العنوان</string>
+    <string name="status">الحالة</string>
+
+    <string name="error_category_exists">توجد بالفعل فئة بهذا الاسم!</string>
+    <string name="snack_categories_deleted">تم حذف الفئات</string>
+
+    <string name="dialog_with_checkbox_remove_description">سيؤدي هذا إلى إزالة تاريخ قراءة هذا الفصل. هل أنت متأكد؟</string>
+    <string name="dialog_with_checkbox_reset">إعادة تعيين جميع الفصول لهذه المانجا</string>
+
+    <string name="snack_add_to_library">إضافة المانجا إلى المكتبة؟</string>
+
+    <string name="picture_saved">تم حفظ الصورة</string>
+    <string name="saving_picture">جار حفظ الصورة</string>
+    <string name="options">الخيارات</string>
+
+    <string name="custom_filter">فلتر مخصص</string>
+    <string name="set_as_cover">تعيين كغلاف</string>
+    <string name="cover_updated">تم تحديث الغلاف</string>
+    <string name="page_downloaded">تم نسخ الصفحة إلى %1$s</string>
+    <string name="downloading">جارى التحميل…</string>
+    <string name="download_progress">تم التحميل %1$d%%</string>
+    <string name="chapter_progress">الصفحة: %1$d</string>
+    <string name="chapter_subtitle">الفصل %1$s</string>
+    <string name="no_next_chapter">لم يتم العثور على الفصل التالي</string>
+    <string name="no_previous_chapter">لم يتم العثور على الفصل السابق</string>
+    <string name="decode_image_error">لا يمكن تحميل الصورة.
+\nيمكنك تجربة تغيير إعدادت فك تشفير الصورة عن طريق الخيارات باﻷسفل</string>
+    <string name="confirm_update_manga_sync">تحديث الفصل اﻷخير فى الخدمات المفعلة إلى %1$d؟</string>
+    <string name="confirm_set_image_as_cover">هل تريد تعيين هذه الصورة كغلاف؟</string>
+    <string name="viewer_for_this_series">العارض لهذه السلسلة</string>
+
+    <string name="recent_manga_source">%1$s - الفصل %2$s</string>
+
+    <string name="download_queue_error">حدث خطأ أثناء تنزيل الفصول. يمكنك إعادة المحاولة في قسم التحميلات</string>
+
+    <string name="notification_update_progress">تقدم التحديث: %1$d/%2$d</string>
+    <string name="notification_new_chapters">تم إيجاد فصول جديدة</string>
+    <string name="notification_new_chapters_text">من %1$d العناوين</string>
+    <string name="notification_cover_update_failed">فشل تحديث الغلاف</string>
+    <string name="notification_first_add_to_library">من فضلك أضف المانجا إلى مكتبتك قبل القيام بذلك</string>
+    <string name="notification_not_connected_to_ac_title">تم إلغاء المزامنة</string>
+    <string name="notification_not_connected_to_ac_body">غير متصل بمصدر الطاقة</string>
+    <string name="notification_no_connection_title">تم إلغاء المزامنة</string>
+    <string name="notification_no_connection_body">الاتصال غير متوفر</string>
+
+    <string name="file_select_cover">اختر صورة الغلاف</string>
+    <string name="file_select_backup">اختر ملف النسخ الاحتياطي</string>
+    <string name="file_select_icon">اختر أيقونة الاختصار</string>
+
+    <string name="update_check_title">تحديث جديد متاح!</string>
+    <string name="update_check_confirm">تحميل</string>
+    <string name="update_check_ignore">تجاهل</string>
+    <string name="update_check_no_new_updates">لا تتوفر تحديثات جديدة</string>
+    <string name="update_check_download_started">بدأ التحميل</string>
+    <string name="update_check_look_for_updates">البحث عن التحديثات</string>
+
+    <string name="update_check_notification_file_download">تحميل التحديث</string>
+    <string name="update_check_notification_download_in_progress">جار التحميل</string>
+    <string name="update_check_notification_download_complete">اكتمل التحميل</string>
+    <string name="update_check_notification_download_error">حدث خطأ فى التحميل</string>
+    <string name="update_check_notification_update_available">يتوفر تحديث</string>
+
+    <string name="description_backdrop">خلفية المانجا</string>
+    <string name="description_cover">غلاف المانجا</string>
+
+    <string name="information_no_downloads">لا توجد تحميلات</string>
+    <string name="information_no_recent">لا توجد فصول حديثة</string>
+    <string name="information_no_recent_manga">لا توجد مانجا مقروءة مؤخرا</string>
+    <string name="information_empty_library">المكتبة فارغة</string>
+
+    <string name="download_notifier_downloader_title">مدير التحميل</string>
+    <string name="download_notifier_title_error">خطأ</string>
+    <string name="download_notifier_unkown_error">حدث خطأ غير متوقع أثناء تحميل الفصل</string>
+    <string name="download_notifier_page_error">هناك صفحة مفقودة في المجلد</string>
+    <string name="download_notifier_page_ready_error">لم يتم تحميل الصفحة</string>
+    <string name="download_notifier_text_only_wifi">لا يتوفر اتصال واي فاي</string>
+    <string name="download_notifier_no_network">لا يتوفر اتصال بالشبكة</string>
+    <string name="download_notifier_download_paused">تم إيقاف التحميل مؤقتا</string>
+
+    <string name="channel_common">عام</string>
+    <string name="channel_library">المكتبة</string>
+    <string name="channel_downloader">مدير التحميل</string>
+</resources>
