@@ -443,4 +443,18 @@
 
 <string name="backup_restore_content">За възстановяването се използват данни от източника, може да са включени допълнителни такси от доставчика.
 Също проверете дали сте влезли коректно в източниците, които го изискват, преди възстановяването.</string>
-    </resources>
+    <string name="action_global_search">Глобално търсене</string>
+    <string name="action_open">Отвори</string>
+    <string name="action_login">Влизане</string>
+
+    <string name="other_source">Други</string>
+    <string name="action_global_search_hint">Глобално търсене…</string>
+    <string name="no_results">Не бяха открити резултати!</string>
+    <string name="latest">Последни</string>
+    <string name="browse">Търсене</string>
+
+    <string name="shortcut_created">Прекият път беше добавен към началния екран.</string>
+    <string name="channel_common">Общи</string>
+    <string name="channel_library">Библиотека</string>
+    <string name="channel_downloader">Изтегляния</string>
+</resources>
