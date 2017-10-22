@@ -398,4 +398,18 @@ Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</s
     <string name="download_notifier_download_paused">Download pausado</string>
 
 <string name="invalid_combination">O padrão não pode ser selecionado com outras categorias</string>
-    </resources>
+    <string name="action_global_search">Pesquisa global</string>
+    <string name="action_open">Abrir</string>
+    <string name="action_login">Entrar</string>
+
+    <string name="other_source">Outras</string>
+    <string name="action_global_search_hint">Pesquisa global…</string>
+    <string name="no_results">Nenhum resultado encontrado!</string>
+    <string name="latest">Mais recente</string>
+    <string name="browse">Navegar</string>
+
+    <string name="shortcut_created">O atalho foi adicionado à sua tela inicial.</string>
+    <string name="channel_common">Comum</string>
+    <string name="channel_library">Biblioteca</string>
+    <string name="channel_downloader">Fila de download</string>
+</resources>
