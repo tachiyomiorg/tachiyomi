@@ -9,7 +9,7 @@
     <string name="label_download_queue">Downloadwarteschlange</string>
     <string name="label_library">Meine Bibliothek</string>
     <string name="label_recent_manga">Vor kurzem gelesen</string>
-    <string name="label_catalogues">Alle Mangas</string>
+    <string name="label_catalogues">Alle Manga</string>
     <string name="label_latest_updates">Neueste Updates</string>
     <string name="label_categories">Kategorien</string>
     <string name="label_selected">Ausgewählt: %1$d</string>
