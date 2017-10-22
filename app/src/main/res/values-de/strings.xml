@@ -398,4 +398,16 @@
 
 <string name="track">Synchronisation</string>
     <string name="label_recent_updates">Bibliothek Updates</string>
+    <string name="action_global_search">Globale Suche</string>
+    <string name="action_open">Öffnen</string>
+    <string name="action_login">Anmeldung</string>
+
+    <string name="other_source">Andere</string>
+    <string name="action_global_search_hint">Globale Suche…</string>
+    <string name="no_results">Keine Treffer gefunden!</string>
+    <string name="latest">Letzte</string>
+    <string name="browse">Umsehen</string>
+
+    <string name="shortcut_created">Abkürzung zum Startbildschirm beigefügt.</string>
+    <string name="channel_library">Bibliothek</string>
     </resources>
