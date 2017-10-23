@@ -131,9 +131,11 @@ class ChaptersPresenter(
         val files = downloadManager.findMangaDir(source, manga)?.listFiles() ?: return
         val cached = mutableMapOf<Chapter, String>()
         files.mapNotNull { it.name }
-                .mapNotNull { name -> chapters.find {
-                    name == cached.getOrPut(it) { downloadManager.getChapterDirName(it) }
-                } }
+                .mapNotNull { name ->
+                    chapters.find {
+                        name == cached.getOrPut(it) { downloadManager.getChapterDirName(it) }
+                    }
+                }
                 .forEach { it.status = Download.DOWNLOADED }
     }
 
@@ -169,8 +171,7 @@ class ChaptersPresenter(
         var observable = Observable.from(chapters).subscribeOn(Schedulers.io())
         if (onlyUnread()) {
             observable = observable.filter { !it.read }
-        }
-        else if (onlyRead()) {
+        } else if (onlyRead()) {
             observable = observable.filter { it.read }
         }
         if (onlyDownloaded()) {
@@ -188,6 +189,19 @@ class ChaptersPresenter(
                 true -> { c1, c2 -> c2.chapter_number.compareTo(c1.chapter_number) }
                 false -> { c1, c2 -> c1.chapter_number.compareTo(c2.chapter_number) }
             }
+            Manga.SORTING_SCANLATOR ->
+                when (sortDescending()) {
+                    true -> { c1, c2 ->
+                        val scanlator1 = c2.scanlator ?: ""
+                        val scanlator2 = c1.scanlator ?: ""
+                        scanlator1.compareTo(scanlator2)
+                    }
+                    false -> { c1, c2 ->
+                        val scanlator1 = c1.scanlator ?: ""
+                        val scanlator2 = c2.scanlator ?: ""
+                        scanlator1.compareTo(scanlator2)
+                    }
+                }
             else -> throw NotImplementedError("Unimplemented sorting method")
         }
         return observable.toSortedList(sortFunction)

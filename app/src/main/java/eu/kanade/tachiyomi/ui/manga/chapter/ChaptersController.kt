@@ -431,7 +431,12 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     }
 
     private fun showSortingDialog() {
-        val preselected = if (presenter.manga.sorting == Manga.SORTING_SOURCE) 0 else 1
+        val preselected = when (presenter.manga.sorting) {
+            Manga.SORTING_SOURCE -> 0
+            Manga.SORTING_NUMBER -> 1
+            Manga.SORTING_SCANLATOR -> 2
+            else -> throw NotImplementedError("Unimplemented sorting method")
+        }
         SetSortingDialog(this, preselected).showDialog(router)
     }
 

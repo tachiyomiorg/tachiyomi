@@ -332,6 +332,7 @@
     <string name="sorting_mode">Sorting mode</string>
     <string name="sort_by_source">By source</string>
     <string name="sort_by_number">By chapter number</string>
+    <string name="sort_by_scanlator">By scanlator group</string>
     <string name="manga_download">Download</string>
     <string name="download_1">Download next chapter</string>
     <string name="download_5">Download next 5 chapters</string>

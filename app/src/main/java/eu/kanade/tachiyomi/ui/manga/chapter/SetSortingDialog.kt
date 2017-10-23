@@ -21,8 +21,8 @@ class SetSortingDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         val activity = activity!!
-        val ids = intArrayOf(Manga.SORTING_SOURCE, Manga.SORTING_NUMBER)
-        val choices = intArrayOf(R.string.sort_by_source, R.string.sort_by_number)
+        val ids = intArrayOf(Manga.SORTING_SOURCE, Manga.SORTING_NUMBER, Manga.SORTING_SCANLATOR)
+        val choices = intArrayOf(R.string.sort_by_source, R.string.sort_by_number, R.string.sort_by_scanlator)
                 .map { activity.getString(it) }
 
         return MaterialDialog.Builder(activity)
