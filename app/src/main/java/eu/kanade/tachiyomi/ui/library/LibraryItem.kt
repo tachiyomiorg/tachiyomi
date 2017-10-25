@@ -9,12 +9,14 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.davidea.flexibleadapter.items.IFilterable
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.database.models.LibraryManga
 import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import kotlinx.android.synthetic.main.catalogue_grid_item.view.*
 
-class LibraryItem(val manga: Manga) : AbstractFlexibleItem<LibraryHolder>(), IFilterable {
+class LibraryItem(val manga: LibraryManga) : AbstractFlexibleItem<LibraryHolder>(), IFilterable {
+
+    var downloadCount = -1
 
     override fun getLayoutRes(): Int {
         return R.layout.catalogue_grid_item
@@ -43,7 +45,7 @@ class LibraryItem(val manga: Manga) : AbstractFlexibleItem<LibraryHolder>(), IFi
                                 position: Int,
                                 payloads: List<Any?>?) {
 
-        holder.onSetValues(manga)
+        holder.onSetValues(this)
     }
 
     /**

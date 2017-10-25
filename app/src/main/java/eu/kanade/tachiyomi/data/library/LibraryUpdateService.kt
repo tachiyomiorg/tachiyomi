@@ -14,6 +14,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Chapter
+import eu.kanade.tachiyomi.data.database.models.LibraryManga
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.download.DownloadService
@@ -231,7 +232,7 @@ class LibraryUpdateService(
      * @param target the target to update.
      * @return a list of manga to update
      */
-    fun getMangaToUpdate(intent: Intent, target: Target): List<Manga> {
+    fun getMangaToUpdate(intent: Intent, target: Target): List<LibraryManga> {
         val categoryId = intent.getIntExtra(KEY_CATEGORY, -1)
 
         var listToUpdate = if (categoryId != -1)
@@ -262,7 +263,7 @@ class LibraryUpdateService(
      * @param mangaToUpdate the list to update
      * @return an observable delivering the progress of each update.
      */
-    fun updateChapterList(mangaToUpdate: List<Manga>): Observable<Manga> {
+    fun updateChapterList(mangaToUpdate: List<LibraryManga>): Observable<LibraryManga> {
         // Initialize the variables holding the progress of the updates.
         val count = AtomicInteger(0)
         // List containing new updates
@@ -286,7 +287,7 @@ class LibraryUpdateService(
                             // If there's any error, return empty update and continue.
                             .onErrorReturn {
                                 failedUpdates.add(manga)
-                                Pair(emptyList<Chapter>(), emptyList<Chapter>())
+                                Pair(emptyList(), emptyList())
                             }
                             // Filter out mangas without new chapters (or failed).
                             .filter { pair -> pair.first.isNotEmpty() }
@@ -354,7 +355,7 @@ class LibraryUpdateService(
      * @param mangaToUpdate the list to update
      * @return an observable delivering the progress of each update.
      */
-    fun updateDetails(mangaToUpdate: List<Manga>): Observable<Manga> {
+    fun updateDetails(mangaToUpdate: List<LibraryManga>): Observable<LibraryManga> {
         // Initialize the variables holding the progress of the updates.
         val count = AtomicInteger(0)
 
@@ -365,7 +366,7 @@ class LibraryUpdateService(
                 // Update the details of the manga.
                 .concatMap { manga ->
                     val source = sourceManager.get(manga.source) as? HttpSource
-                            ?: return@concatMap Observable.empty<Manga>()
+                            ?: return@concatMap Observable.empty<LibraryManga>()
 
                     source.fetchMangaDetails(manga)
                             .map { networkManga ->
@@ -384,7 +385,7 @@ class LibraryUpdateService(
      * Method that updates the metadata of the connected tracking services. It's called in a
      * background thread, so it's safe to do heavy operations or network calls here.
      */
-    private fun updateTrackings(mangaToUpdate: List<Manga>): Observable<Manga> {
+    private fun updateTrackings(mangaToUpdate: List<LibraryManga>): Observable<LibraryManga> {
         // Initialize the variables holding the progress of the updates.
         var count = 0
 

@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.data.database.models
 
-class MangaImpl : Manga {
+open class MangaImpl : Manga {
 
     override var id: Long? = null
 
@@ -31,10 +31,6 @@ class MangaImpl : Manga {
     override var viewer: Int = 0
 
     override var chapter_flags: Int = 0
-
-    @Transient override var unread: Int = 0
-
-    @Transient override var category: Int = 0
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

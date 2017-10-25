@@ -4,6 +4,7 @@ import com.pushtorefresh.storio.sqlite.queries.DeleteQuery
 import com.pushtorefresh.storio.sqlite.queries.Query
 import com.pushtorefresh.storio.sqlite.queries.RawQuery
 import eu.kanade.tachiyomi.data.database.DbProvider
+import eu.kanade.tachiyomi.data.database.models.LibraryManga
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.resolvers.LibraryMangaGetResolver
 import eu.kanade.tachiyomi.data.database.resolvers.MangaFlagsPutResolver
@@ -23,7 +24,7 @@ interface MangaQueries : DbProvider {
             .prepare()
 
     fun getLibraryMangas() = db.get()
-            .listOfObjects(Manga::class.java)
+            .listOfObjects(LibraryManga::class.java)
             .withQuery(RawQuery.builder()
                     .query(libraryQuery)
                     .observesTables(MangaTable.TABLE, ChapterTable.TABLE, MangaCategoryTable.TABLE, CategoryTable.TABLE)

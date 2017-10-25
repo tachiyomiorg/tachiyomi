@@ -7,7 +7,7 @@ import android.os.Build
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.CustomRobolectricGradleTestRunner
 import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.database.models.LibraryManga
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.online.HttpSource
@@ -85,7 +85,7 @@ class LibraryUpdateServiceTest {
     fun testContinuesUpdatingWhenAMangaFails() {
         var favManga = createManga("/manga1", "/manga2", "/manga3")
         service.db.insertMangas(favManga).executeAsBlocking()
-        favManga = service.db.getFavoriteMangas().executeAsBlocking()
+        favManga = service.db.getLibraryMangas().executeAsBlocking()
 
         val chapters = createChapters("/chapter1", "/chapter2")
         val chapters3 = createChapters("/achapter1", "/achapter2")
@@ -116,10 +116,12 @@ class LibraryUpdateServiceTest {
         return list
     }
 
-    private fun createManga(vararg urls: String): List<Manga> {
-        val list = ArrayList<Manga>()
+    private fun createManga(vararg urls: String): List<LibraryManga> {
+        val list = ArrayList<LibraryManga>()
         for (url in urls) {
-            val m = Manga.create(url, url.substring(1))
+            val m = LibraryManga()
+            m.url = url
+            m.title = url.substring(1)
             m.favorite = true
             list.add(m)
         }

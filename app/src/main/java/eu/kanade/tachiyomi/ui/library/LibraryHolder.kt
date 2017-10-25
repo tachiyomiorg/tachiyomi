@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.ui.library
 import android.view.View
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.viewholders.FlexibleViewHolder
-import eu.kanade.tachiyomi.data.database.models.Manga
 
 /**
  * Generic class used to hold the displayed data of a manga in the library.
@@ -21,8 +20,8 @@ abstract class LibraryHolder(
      * Method called from [LibraryCategoryAdapter.onBindViewHolder]. It updates the data for this
      * holder with the given manga.
      *
-     * @param manga the manga to bind.
+     * @param item the manga item to bind.
      */
-    abstract fun onSetValues(manga: Manga)
+    abstract fun onSetValues(item: LibraryItem)
 
 }

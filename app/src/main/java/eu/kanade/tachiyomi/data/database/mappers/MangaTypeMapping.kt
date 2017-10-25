@@ -65,9 +65,8 @@ class MangaPutResolver : DefaultPutResolver<Manga>() {
     }
 }
 
-open class MangaGetResolver : DefaultGetResolver<Manga>() {
-
-    override fun mapFromCursor(cursor: Cursor): Manga = MangaImpl().apply {
+interface BaseMangaGetResolver {
+    fun mapBaseFromCursor(manga: Manga, cursor: Cursor) = manga.apply {
         id = cursor.getLong(cursor.getColumnIndex(COL_ID))
         source = cursor.getLong(cursor.getColumnIndex(COL_SOURCE))
         url = cursor.getString(cursor.getColumnIndex(COL_URL))
@@ -83,6 +82,13 @@ open class MangaGetResolver : DefaultGetResolver<Manga>() {
         initialized = cursor.getInt(cursor.getColumnIndex(COL_INITIALIZED)) == 1
         viewer = cursor.getInt(cursor.getColumnIndex(COL_VIEWER))
         chapter_flags = cursor.getInt(cursor.getColumnIndex(COL_CHAPTER_FLAGS))
+    }
+}
+
+open class MangaGetResolver : DefaultGetResolver<Manga>(), BaseMangaGetResolver {
+
+    override fun mapFromCursor(cursor: Cursor): Manga {
+        return mapBaseFromCursor(MangaImpl(), cursor)
     }
 }
 

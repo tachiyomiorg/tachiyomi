@@ -16,10 +16,6 @@ interface Manga : SManga {
 
     var chapter_flags: Int
 
-    var unread: Int
-
-    var category: Int
-
     fun setChapterOrder(order: Int) {
         setFlags(order, SORT_MASK)
     }
