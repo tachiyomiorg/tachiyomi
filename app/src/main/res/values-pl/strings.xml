@@ -412,4 +412,6 @@ Spróbuj zmienić dekoder lub skorzystaj z jednej z opcji poniżej</string>
     <string name="channel_library">Biblioteka</string>
     <string name="latest">Ostatnie</string>
     <string name="channel_downloader">Menadżer pobierania</string>
-</resources>
+<string name="action_display_download_badge">Plakietki pobrań</string>
+    <string name="local_source_badge">Lokalna</string>
+    </resources>
