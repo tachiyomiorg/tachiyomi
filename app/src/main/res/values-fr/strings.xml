@@ -441,4 +441,11 @@
     <string name="pref_crop_borders">Rogner les bordures</string>
     <string name="backup_restore_content">La restauration utilise le source pour obtenir des données, des frais de l\'opérateur peuvent s\'appliquer.
 Assurez-vous que vous êtes connecté à des sources qui le demande avant de commencer la restauration.</string>
+    <string name="action_global_search">Recherche globale</string>
+    <string name="action_open">Ouvrir</string>
+    <string name="action_login">Connexion</string>
+
+    <string name="other_source">Autre</string>
+    <string name="action_global_search_hint">Recherche globale...</string>
+    <string name="no_results">Aucun résultat !</string>
     </resources>
