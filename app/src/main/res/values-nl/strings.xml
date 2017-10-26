@@ -398,4 +398,5 @@ Zorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het teru
     <string name="confirm_update_manga_sync">Update het laatst gelezen hoofdstuk in de ingeschakelde services op %1$d?</string>
     <string name="licensed">Gelicenseerd</string>
     <string name="plan_to_read">Van plan te lezen</string>
+    <string name="action_global_search">Globaal zoeken</string>
     </resources>
