@@ -403,4 +403,5 @@ Zorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het teru
     <string name="action_open">Open</string>
     <string name="action_login">Inloggen</string>
 
+    <string name="local_source_badge">Lokaal</string>
     </resources>
