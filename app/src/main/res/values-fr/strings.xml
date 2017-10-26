@@ -447,5 +447,5 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
 
     <string name="other_source">Autre</string>
     <string name="action_global_search_hint">Recherche globale...</string>
-    <string name="no_results">Aucun résultat !</string>
+    <string name="no_results">Aucun résultat!</string>
     </resources>
