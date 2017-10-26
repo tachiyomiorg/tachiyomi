@@ -399,4 +399,5 @@ Zorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het teru
     <string name="licensed">Gelicenseerd</string>
     <string name="plan_to_read">Van plan te lezen</string>
     <string name="action_global_search">Globaal zoeken</string>
+    <string name="action_display_download_badge">Download badges</string>
     </resources>
