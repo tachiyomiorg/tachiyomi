@@ -324,7 +324,7 @@
     <string name="file_select_icon">Sélectionner une icône de raccourci</string>
 
     <!--UpdateCheck-->
-    <string name="update_check_title">Nouvelle mise à jour disponible</string>
+    <string name="update_check_title">Nouvelle mise à jour disponible!</string>
     <string name="update_check_confirm">Télécharger</string>
     <string name="update_check_ignore">Ignorer</string>
     <string name="update_check_no_new_updates">Aucun mise à jour disponible</string>
@@ -446,11 +446,15 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="action_login">Connexion</string>
 
     <string name="other_source">Autre</string>
-    <string name="action_global_search_hint">Recherche globale...</string>
+    <string name="action_global_search_hint">Recherche globale…</string>
     <string name="no_results">Aucun résultat!</string>
     <string name="latest">Récents</string>
     <string name="browse">Explorer</string>
 
-    <string name="shortcut_created">Un raccourci a été ajouté à la page d\'accueil</string>
+    <string name="shortcut_created">Un raccourci a été ajouté à la page d\'accueil.</string>
     <string name="channel_library">Bibliothèque</string>
-    </resources>
+    <string name="action_display_download_badge">Badges des téléchargements</string>
+    <string name="local_source_badge">Local</string>
+    <string name="channel_common">Général</string>
+    <string name="channel_downloader">Téléchargeur</string>
+</resources>
