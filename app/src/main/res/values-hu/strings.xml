@@ -103,4 +103,5 @@
     <string name="no_next_chapter">Nem található a következő fejezet</string>
     <string name="no_previous_chapter">Nem található az előző fejezet</string>
     <string name="download_notifier_no_network">A hálózat nem érhető el</string>
+    <string name="label_download_queue">Letöltési sor</string>
     </resources>
