@@ -50,7 +50,7 @@ class Readmanga : ParsedHttpSource() {
     override fun latestUpdatesNextPageSelector() = "a.nextLink"
 
     override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
-        val genres = filters.filterIsInstance<Genre>().map { it.id + arrayOf("=", "=in", "=ex")[it.state] }.joinToString("&")
+        val genres = filters.filterIsInstance<Genre>().joinToString("&") { it.id + arrayOf("=", "=in", "=ex")[it.state] }
         return GET("$baseUrl/search/advanced?q=$query&$genres", headers)
     }
 
@@ -73,13 +73,11 @@ class Readmanga : ParsedHttpSource() {
         return manga
     }
 
-    private fun parseStatus(element: String): Int {
-        when {
-            element.contains("<h3>Запрещена публикация произведения по копирайту</h3>") -> return SManga.LICENSED
-            element.contains("<h1 class=\"names\"> Сингл") || element.contains("<b>Перевод:</b> завершен") -> return SManga.COMPLETED
-            element.contains("<b>Перевод:</b> продолжается") -> return SManga.ONGOING
-            else -> return SManga.UNKNOWN
-        }
+    private fun parseStatus(element: String): Int = when {
+        element.contains("<h3>Запрещена публикация произведения по копирайту</h3>") -> SManga.LICENSED
+        element.contains("<h1 class=\"names\"> Сингл") || element.contains("<b>Перевод:</b> завершен") -> SManga.COMPLETED
+        element.contains("<b>Перевод:</b> продолжается") -> SManga.ONGOING
+        else -> SManga.UNKNOWN
     }
 
     override fun chapterListSelector() = "div.chapters-link tbody tr"

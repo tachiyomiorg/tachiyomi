@@ -23,9 +23,8 @@ class Mangachan : ParsedHttpSource() {
 
     override val supportsLatest = true
 
-    override fun popularMangaRequest(page: Int): Request {
-        return GET("$baseUrl/mostfavorites?offset=${20 * (page - 1)}", headers)
-    }
+    override fun popularMangaRequest(page: Int): Request =
+            GET("$baseUrl/mostfavorites?offset=${20 * (page - 1)}", headers)
 
     override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
         var pageNum = 1
@@ -48,9 +47,7 @@ class Mangachan : ParsedHttpSource() {
         return GET(url, headers)
     }
 
-    override fun latestUpdatesRequest(page: Int): Request {
-        return GET("$baseUrl/newestch?page=$page")
-    }
+    override fun latestUpdatesRequest(page: Int): Request = GET("$baseUrl/newestch?page=$page")
 
     override fun popularMangaSelector() = "div.content_row"
 
@@ -76,9 +73,7 @@ class Mangachan : ParsedHttpSource() {
         return manga
     }
 
-    override fun searchMangaFromElement(element: Element): SManga {
-        return popularMangaFromElement(element)
-    }
+    override fun searchMangaFromElement(element: Element): SManga = popularMangaFromElement(element)
 
     override fun popularMangaNextPageSelector() = "a:contains(Вперед)"
 
@@ -125,16 +120,14 @@ class Mangachan : ParsedHttpSource() {
         manga.genre = infoElement.select("tr:eq(5) > td:eq(1)").text()
         manga.status = parseStatus(infoElement.select("tr:eq(4) > td:eq(1)").text())
         manga.description = descElement.textNodes().first().text()
-        manga.thumbnail_url = baseUrl + imgElement.attr("src")
+        manga.thumbnail_url = imgElement.attr("src")
         return manga
     }
 
-    private fun parseStatus(element: String): Int {
-        when {
-            element.contains("перевод завершен") -> return SManga.COMPLETED
-            element.contains("перевод продолжается") -> return SManga.ONGOING
-            else -> return SManga.UNKNOWN
-        }
+    private fun parseStatus(element: String): Int = when {
+        element.contains("перевод завершен") -> SManga.COMPLETED
+        element.contains("перевод продолжается") -> SManga.ONGOING
+        else -> SManga.UNKNOWN
     }
 
     override fun chapterListSelector() = "table.table_cha tr:gt(1)"
