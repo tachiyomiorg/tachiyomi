@@ -121,4 +121,14 @@
     <string name="action_mark_as_read">Olvasottnak jelölés</string>
     <string name="action_mark_as_unread">Olvasatlannak jelölés</string>
     <string name="action_mark_previous_as_read">Előző olvasottnak jelölése</string>
+    <string name="action_download">Letöltés</string>
+    <string name="action_bookmark">Könyvjelzőzés</string>
+    <string name="action_remove_bookmark">Könyvjelző eltávolítása</string>
+    <string name="action_delete">Törlés</string>
+    <string name="action_update">Frissítés</string>
+    <string name="action_update_library">Könyvtár frissítése</string>
+    <string name="action_edit">Szerkesztés</string>
+    <string name="action_add">Hozzáadás</string>
+    <string name="action_add_category">Kategóriához adás</string>
+    <string name="action_edit_categories">Kategóriák szerkesztése</string>
     </resources>
