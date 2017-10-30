@@ -149,4 +149,5 @@
     <string name="action_display">Megjelenítés</string>
     <string name="action_sort">Rendezés</string>
     <string name="chapter_downloading">Letöltődik</string>
+    <string name="chapter_queued">Várakozik</string>
     </resources>
