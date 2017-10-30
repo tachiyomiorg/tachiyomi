@@ -146,4 +146,5 @@
     <string name="action_retry">Újra</string>
     <string name="action_resume">Folytatás</string>
     <string name="action_display_mode">Megjelenítési mód módosítása</string>
+    <string name="action_display">Megjelenítés</string>
     </resources>
