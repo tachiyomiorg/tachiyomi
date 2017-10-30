@@ -358,4 +358,20 @@
     <string name="action_open_log">Открыть лог</string>
     <string name="app_not_available">Приложение не доступно</string>
     <string name="pref_read_with_volume_keys_inverted">Инвертировать клавиши громкости</string>
-    </resources>
+    <string name="action_global_search">Глобальный поиск</string>
+    <string name="action_display_download_badge">Значок загруженных</string>
+    <string name="action_open">Открыть</string>
+    <string name="action_login">Логин</string>
+
+    <string name="local_source_badge">Локальная</string>
+    <string name="other_source">Другие</string>
+    <string name="action_global_search_hint">Глобальный поиск…</string>
+    <string name="no_results">Результат не найден!</string>
+    <string name="latest">Последняя</string>
+    <string name="browse">Смотреть</string>
+
+    <string name="shortcut_created">Ярлык был добавлен на главный экран.</string>
+    <string name="channel_common">Обычный</string>
+    <string name="channel_library">Библиотека</string>
+    <string name="channel_downloader">Загрузчик</string>
+</resources>
