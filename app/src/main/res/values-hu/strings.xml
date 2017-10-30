@@ -134,4 +134,16 @@
     <string name="action_rename_category">Kategória átnevezése</string>
     <string name="action_move_category">Áthelyezés kategóriákba</string>
     <string name="action_edit_cover">Borítókép szerkesztése</string>
+    <string name="action_sort_up">Rendezés növekvő sorrendben</string>
+    <string name="action_sort_down">Rendezés csökkenő sorrendben</string>
+    <string name="action_next_unread">Következő olvasatlan</string>
+    <string name="action_start">Kezdés</string>
+    <string name="action_stop">Megállítás</string>
+    <string name="action_pause">Szüneteltetés</string>
+    <string name="action_clear">Törlés</string>
+    <string name="action_previous_chapter">Előző fejezet</string>
+    <string name="action_next_chapter">Következő fejezet</string>
+    <string name="action_retry">Újra</string>
+    <string name="action_resume">Folytatás</string>
+    <string name="action_display_mode">Megjelenítési mód módosítása</string>
     </resources>
