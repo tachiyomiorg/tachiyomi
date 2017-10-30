@@ -104,4 +104,21 @@
     <string name="no_previous_chapter">Nem található az előző fejezet</string>
     <string name="download_notifier_no_network">A hálózat nem érhető el</string>
     <string name="label_download_queue">Letöltési sor</string>
+    <string name="label_library">Könyvtár</string>
+    <string name="label_recent_updates">Könyvtár frissítések</string>
+    <string name="label_selected">%1$d kiválasztva</string>
+    <string name="action_filter">Szűrők</string>
+    <string name="action_filter_downloaded">Letöltve</string>
+    <string name="action_filter_bookmarked">Könyvjelzőzött</string>
+    <string name="action_filter_unread">Olvasatlan</string>
+    <string name="action_filter_read">Aktuális</string>
+    <string name="action_filter_empty">Szűrők eltávolítása</string>
+    <string name="action_sort_alpha">Betűrendben</string>
+    <string name="action_sort_total">Összes fejezet</string>
+    <string name="action_sort_last_read">Legutóbb olvasott</string>
+    <string name="action_sort_last_updated">Legutóbb frissített</string>
+    <string name="action_global_search">Globális keresés</string>
+    <string name="action_mark_as_read">Olvasottnak jelölés</string>
+    <string name="action_mark_as_unread">Olvasatlannak jelölés</string>
+    <string name="action_mark_previous_as_read">Legutóbb olvasottnak jelölés</string>
     </resources>
