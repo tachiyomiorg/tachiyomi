@@ -147,4 +147,6 @@
     <string name="action_resume">Folytatás</string>
     <string name="action_display_mode">Megjelenítési mód módosítása</string>
     <string name="action_display">Megjelenítés</string>
+    <string name="action_sort">Rendezés</string>
+    <string name="chapter_downloading">Letöltődik</string>
     </resources>
