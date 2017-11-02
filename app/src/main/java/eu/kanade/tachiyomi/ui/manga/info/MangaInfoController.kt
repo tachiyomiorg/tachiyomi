@@ -38,7 +38,7 @@ import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
-import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
+import eu.kanade.tachiyomi.ui.library.AddToLibraryDialog
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.getResourceColor
@@ -59,7 +59,7 @@ import java.util.*
  * UI related actions should be called from here.
  */
 class MangaInfoController : NucleusController<MangaInfoPresenter>(),
-        ChangeMangaCategoriesDialog.Listener {
+        AddToLibraryDialog.Listener {
 
     /**
      * Preferences helper.
@@ -369,25 +369,25 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         if (manga.favorite) {
             val categories = presenter.getCategories()
             val defaultCategory = categories.find { it.id == preferences.defaultCategory() }
-            when {
-                defaultCategory != null -> presenter.moveMangaToCategory(manga, defaultCategory)
-                categories.size <= 1 -> // default or the one from the user
-                    presenter.moveMangaToCategory(manga, categories.firstOrNull())
-                else -> {
-                    val ids = presenter.getMangaCategoryIds(manga)
-                    val preselected = ids.mapNotNull { id ->
+            if (defaultCategory != null) {
+                presenter.moveMangaToCategory(manga, defaultCategory)
+            } else {
+                val ids = presenter.getMangaCategoryIds(manga)
+                //if only 1 user category then show the dialog with just 1 checkbox
+                var preselected = emptyArray<Int>()
+                if (categories.size > 1) {
+                    preselected = ids.mapNotNull { id ->
                         categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
                     }.toTypedArray()
-
-                    ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
-                            .showDialog(router)
                 }
+
+                AddToLibraryDialog(this, listOf(manga), categories, preselected)
+                        .showDialog(router)
             }
             activity?.toast(activity?.getString(R.string.manga_added_library))
         } else {
             activity?.toast(activity?.getString(R.string.manga_removed_library))
         }
-    }
 
     override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>) {
         val manga = mangas.firstOrNull() ?: return

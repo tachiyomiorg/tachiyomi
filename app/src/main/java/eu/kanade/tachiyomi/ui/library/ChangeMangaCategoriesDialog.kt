@@ -29,7 +29,7 @@ class ChangeMangaCategoriesDialog<T>(bundle: Bundle? = null) :
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialDialog.Builder(activity!!)
-                .title(R.string.action_move_category)
+                .title(R.string.action_choose_category)
                 .items(categories.map { it.name })
                 .itemsCallbackMultiChoice(preselected) { dialog, _, _ ->
                     val newCategories = dialog.selectedIndices?.map { categories[it] }.orEmpty()

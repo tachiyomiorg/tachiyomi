@@ -245,22 +245,22 @@ class LibraryPresenter(
         val libraryAsList = preferences.libraryAsList()
         return db.getLibraryMangas().asRxObservable()
                 .map { list ->
-                    var map = mutableMapOf<Int, MutableList<Manga>>()
+                    var map = mutableMapOf<Int, MutableList<LibraryItem>>()
                     list.forEach {
                         //This adds every Manga no matter its category to the ALL category
                         if (map.get(Category.ALL_CATEGORY_ID) == null) {
                             map.put(Category.ALL_CATEGORY_ID, mutableListOf())
                         }
-                        if (!map.get(Category.ALL_CATEGORY_ID)!!.contains(it)) {
-                            map.get(Category.ALL_CATEGORY_ID)!!.add(it)
+                        if (!map.get(Category.ALL_CATEGORY_ID)!!.contains(LibraryItem(it, libraryAsList))) {
+                            map.get(Category.ALL_CATEGORY_ID)!!.add(LibraryItem(it, libraryAsList))
                         }
                         //this adds manga to its own category assuming it was not assigned to ALL
                         if (it.category != Category.ALL_CATEGORY_ID) {
                             if (map.get(it.category) == null) {
                                 map.put(it.category, mutableListOf())
                             }
-                            if (!map.get(it.category)!!.contains(it)) {
-                                map.get(it.category)!!.add(it)
+                            if (!map.get(it.category)!!.contains(LibraryItem(it, libraryAsList))) {
+                                map.get(it.category)!!.add(LibraryItem(it, libraryAsList))
                             }
                         }
                     }
