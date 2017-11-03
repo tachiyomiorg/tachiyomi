@@ -78,7 +78,7 @@ android {
             dimension "default"
         }
         dev {
-            minSdkVersion 16
+            minSdkVersion 21
             resConfigs "en", "xxhdpi"
             dimension "default"
         }
