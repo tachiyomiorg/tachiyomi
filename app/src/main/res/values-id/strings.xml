@@ -405,8 +405,8 @@
 
     <string name="local_source_badge">Lokal</string>
     <string name="other_source">Lainnya</string>
-    <string name="action_global_search_hint">Pencarian global…</string>
-    <string name="no_results">Hasil tidak ditemukan!</string>
+    <string name="action_global_search_hint">Pencarian global...</string>
+    <string name="no_results">Tiada hasil!</string>
     <string name="latest">Terbaru</string>
     <string name="browse">Jelajahi</string>
 
