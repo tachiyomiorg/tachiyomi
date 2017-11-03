@@ -411,4 +411,7 @@
     <string name="browse">Jelajahi</string>
 
     <string name="shortcut_created">Pintasan telah ditambahkan ke layar utama.</string>
-    </resources>
+    <string name="channel_common">Kanal notifikasi</string>
+    <string name="channel_library">Pustaka</string>
+    <string name="channel_downloader">Pengunduh</string>
+</resources>
