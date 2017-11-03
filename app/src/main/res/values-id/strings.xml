@@ -398,4 +398,13 @@
     <string name="download_notifier_no_network">Tidak ada koneksi jaringan yang tersedia</string>
     <string name="download_notifier_download_paused">Unduhan Dijeda</string>
 
-</resources>
+<string name="action_global_search">Pencarian Global</string>
+    <string name="action_display_download_badge">Penanda unduhan</string>
+    <string name="action_open">Buka</string>
+    <string name="action_login">Masuk</string>
+
+    <string name="local_source_badge">Lokal</string>
+    <string name="other_source">Lainnya</string>
+    <string name="action_global_search_hint">Pencarian global…</string>
+    <string name="no_results">Hasil tidak ditemukan!</string>
+    </resources>
