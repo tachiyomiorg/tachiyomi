@@ -183,7 +183,9 @@ class Mangahere : ParsedHttpSource() {
 
         val pages = mutableListOf<Page>()
         document.select("select.wid60").first()?.getElementsByTag("option")?.forEach {
-            pages.add(Page(pages.size, "http:" + it.attr("value")))
+            if (!it.attr("value").contains("featured.html")) {
+                pages.add(Page(pages.size, "http:" + it.attr("value")))
+            }
         }
         pages.getOrNull(0)?.imageUrl = imageUrlParse(document)
         return pages
