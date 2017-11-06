@@ -11,6 +11,7 @@ import okhttp3.Request
 import okhttp3.Response
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.regex.Pattern
 
@@ -44,7 +45,33 @@ class Kissmanga : ParsedHttpSource() {
         val manga = SManga.create()
         element.select("td a:eq(0)").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
-            manga.title = it.text()
+            val title = it.text()
+            //check if cloudfire email obfuscation is affecting title name
+            if (title.contains("[email protected]", true)) {
+                try {
+                    var str: String = it.html()
+                    //get the  number
+                    str = str.substringAfter("data-cfemail=\"")
+                    str = str.substringBefore("\">[email")
+                    val sb = StringBuilder()
+                    //convert number to char
+                    val r = Integer.valueOf(str.substring(0, 2), 16)!!
+                    var i = 2
+                    while (i < str.length) {
+                        val c = (Integer.valueOf(str.substring(i, i + 2), 16) xor r).toChar()
+                        sb.append(c)
+                        i += 2
+                    }
+                    //replace the new word into the title
+                    manga.title = title.replace("[email protected]", sb.toString())
+                } catch (e: Exception) {
+                    //on error just default to obfuscated title
+                    Timber.e("error parsing [email protected]", e)
+                    manga.title = title
+                }
+            } else {
+                manga.title = title
+            }
         }
         return manga
     }
