@@ -63,7 +63,7 @@ class Kissmanga : ParsedHttpSource() {
                         i += 2
                     }
                     //replace the new word into the title
-                    manga.title = title.replace("[email protected]", sb.toString())
+                    manga.title = title.replace("[email protected]", sb.toString(), true)
                 } catch (e: Exception) {
                     //on error just default to obfuscated title
                     Timber.e("error parsing [email protected]", e)
