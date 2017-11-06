@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|start"
             android:background="?android:attr/colorBackground"
-            android:padding="4dp"/>
+            android:padding="8dp"/>
 
     </FrameLayout>
 
