@@ -5,22 +5,22 @@
   <g
      id="layer2"
      transform="translate(5.7142944,-815.79078)"
-     style="display:inline;stroke:#ff0000;stroke-opacity:1;stroke-width:0.6;stroke-miterlimit:4;stroke-dasharray:none">
+     style="display:inline">
     <g
-       style="fill:#ffffff;stroke:#ff0000;stroke-width:10.60714221;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#ffffff;stroke:#ce2828;stroke-width:44.99999619;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="a4156"
        transform="matrix(0.05656566,0,0,0.05656566,-1.7546994,811.29353)">
       <path
-         style="opacity:0.98000004;fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:10.60714221;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="opacity:0.98000004;fill:#ffffff;fill-opacity:1;stroke:#ce2828;stroke-width:44.99999619;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 579.2857,503.79072 a 224.99999,224.99999 0 0 1 -224.99998,224.99999 224.99999,224.99999 0 0 1 -225,-224.99999 224.99999,224.99999 0 0 1 225,-224.99998 224.99999,224.99999 0 0 1 224.99998,224.99998 z"
-         id="path4136" />
+         id="path4136"/>
     </g>
     <path
        d="m 10.785706,847.17468 0,-1.92488 7.931424,0 q 1.841797,-3.73341 2.804188,-8.313 l 2.240061,0.4316 q -0.896033,4.33054 -2.6217,7.8814 l 4.646026,0 0,1.92486 -14.999999,0 z m 8.644912,-12.80965 6.006634,0 0,1.89153 -14.303094,0 0,-1.89153 6.006637,0 0,-1.95815 2.289823,0 0,1.95815 z m -6.305306,3.1193 2.15707,-0.49779 q 1.061947,3.65041 1.725672,7.1019 l -2.157086,0.3815 q -0.680302,-3.40138 -1.725656,-6.98561 z"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:500px;line-height:125%;font-family:NicoKaku;-inkscape-font-specification:NicoKaku;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#ff0000;stroke-width:0.6;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:500px;line-height:125%;font-family:NicoKaku;-inkscape-font-specification:NicoKaku;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="path4139" />
   </g>
-  <g
+   <g
      style="font-style:normal;font-weight:normal;font-size:3.20822477px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      id="text4148">
     <path
