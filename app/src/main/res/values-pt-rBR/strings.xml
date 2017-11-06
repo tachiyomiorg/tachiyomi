@@ -412,4 +412,6 @@ Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</s
     <string name="channel_common">Comum</string>
     <string name="channel_library">Biblioteca</string>
     <string name="channel_downloader">Fila de download</string>
-</resources>
+<string name="action_display_download_badge">Contador de downloads</string>
+    <string name="local_source_badge">Local</string>
+    </resources>
