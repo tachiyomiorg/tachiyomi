@@ -61,7 +61,7 @@
     <string name="action_resume">Fortfahren</string>
     <string name="action_move">Verschieben</string>
     <string name="action_open_in_browser">Im Browser öffnen</string>
-    <string name="action_add_to_home_screen">Zum Startbildschrim hinzufügen</string>
+    <string name="action_add_to_home_screen">Zum Startbildschirm hinzufügen</string>
     <string name="action_display_mode">Anzeigemodus ändern</string>
     <string name="action_display">Anzeige</string>
     <string name="action_display_grid">Kacheln</string>
@@ -249,7 +249,7 @@
     <string name="unknown_error">Unbekannter Fehler</string>
 
     <string name="library_search_hint">Titel oder Author…</string>
-    <string name="updating_category">Kategorie Aktualisieren</string>
+    <string name="updating_category">Kategorie wird geupdatet</string>
     <string name="confirm_delete_manga">Bist du sicher, dass du diesen Manga entfernen willst?</string>
     <string name="also_delete_chapters">Auch heruntergeladene Kapitel löschen</string>
 
@@ -265,7 +265,7 @@
 
     <string name="manga_detail_tab">Info</string>
     <string name="description">Beschreibung</string>
-    <string name="ongoing">Fortlaufend</string>
+    <string name="ongoing">Laufend</string>
     <string name="unknown">Unbekannt</string>
     <string name="licensed">Lizenziert</string>
     <string name="add_to_library">Zur Bibliothek hinzufügen</string>
@@ -412,4 +412,6 @@
     <string name="channel_library">Bibliothek</string>
     <string name="channel_common">Allgemein</string>
     <string name="channel_downloader">Downloader</string>
-</resources>
+<string name="action_display_download_badge">Downloadzähler</string>
+    <string name="local_source_badge">Lokal</string>
+    </resources>
