@@ -138,7 +138,7 @@
     <string name="pref_reader_navigation">Navigation</string>
     <string name="pref_read_with_volume_keys">Lautstärketasten</string>
     <string name="pref_read_with_volume_keys_inverted">Lautstärketasten umstellen</string>
-    <string name="pref_read_with_tapping">Tippen</string>
+    <string name="pref_read_with_tapping">Streifen</string>
     <string name="pref_reader_theme">Hintergrundfarbe</string>
     <string name="white_background">Weiß</string>
     <string name="black_background">Schwarz</string>
@@ -222,14 +222,14 @@
     <string name="pref_clear_cookies">Cookies löschen</string>
     <string name="cookies_cleared">Cookies gelöscht</string>
     <string name="choices_reset">Standardantworten zurücksetzen</string>
-    <string name="pref_clear_database">Datenbank löschen</string>
+    <string name="pref_clear_database">Datenbank leeren</string>
     <string name="pref_clear_database_summary">Alle Mangas und Kapitel die nicht in der Bibliothek sind löschen</string>
     <string name="clear_database_confirmation">Bist du sicher? Lesestatus aller Mangas die nicht in der Bibliothek sind wird gelöscht</string>
     <string name="clear_database_completed">Einträge gelöscht</string>
     <string name="pref_refresh_library_metadata">Bibliotheksmetadaten erneuern</string>
     <string name="pref_refresh_library_metadata_summary">Neue Cover, Genres, Beschreibungen und andere Mangainformationen herunterladen</string>
     <string name="pref_refresh_library_tracking">Synchronisationsmetadaten erneuern</string>
-    <string name="pref_refresh_library_tracking_summary">Synchronisiert den Lesestatus, die Berwertung und das zuletz gelesen Kapitel mit den angemeldeten Synchronisationsanbietern</string>
+    <string name="pref_refresh_library_tracking_summary">Synchronisiert den Lesestatus, die Bewertung und das zuletzt gelesene Kapitel mit den angemeldeten Synchronisationsanbietern</string>
 
       <string name="version">Version</string>
     <string name="build_time">Erstellt am</string>
