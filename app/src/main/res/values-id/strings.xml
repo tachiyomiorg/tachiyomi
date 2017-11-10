@@ -27,7 +27,7 @@
     <string name="action_sort_total">Total bab</string>
     <string name="action_sort_last_read">Terakhir baca</string>
     <string name="action_sort_last_updated">Terakhir diperbarui</string>
-    <string name="action_search">Cari</string>
+    <string name="action_search">Carian</string>
     <string name="action_select_all">Pilih semua</string>
     <string name="action_mark_as_read">tandai sebagai dibaca</string>
     <string name="action_mark_as_unread">Tandai sebagai belum dibaca</string>
