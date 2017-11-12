@@ -264,7 +264,7 @@
 
     <string name="source_requires_login">Sumber ini mengharuskan anda log masuk</string>
     <string name="select_source">Pilih sumber</string>
-    <string name="no_valid_sources">Mohon aktifkan sekurangnya-kurangnya satu sumber yang sah</string>
+    <string name="no_valid_sources">Sila aktifkan sekurang-kurangnya satu sumber yang sah</string>
     <string name="no_more_results">Tiada lagi hasil</string>
     <string name="local_source">Manga setempat</string>
     <string name="other_source">Lain</string>
@@ -272,15 +272,15 @@
     <string name="added_to_library">Manga ini telah ditambahkan ke koleksi anda</string>
     <string name="action_global_search_hint">Carian keseluruhan…</string>
     <string name="no_results">Tiada sebarang hasil!</string>
-    <string name="latest">Terbaru</string>
+    <string name="latest">Terkini</string>
     <string name="browse">Semak imbas</string>
 
     <string name="manga_not_in_db">Manga ini telah dikeluarkan daripada pangkalan data!</string>
 
-    <string name="manga_detail_tab">Informasi</string>
+    <string name="manga_detail_tab">Info</string>
     <string name="description">Keterangan</string>
     <string name="ongoing">Berterusan</string>
-    <string name="unknown">Tidak diketahui</string>
+    <string name="unknown">"Tidak diketahui "</string>
     <string name="licensed">Berlesen</string>
     <string name="add_to_library">Tambahkan kepada koleksi</string>
     <string name="remove_from_library">Keluarkan daripada koleksi</string>
