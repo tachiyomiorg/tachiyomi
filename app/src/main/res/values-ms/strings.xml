@@ -256,4 +256,91 @@
     <string name="invalid_login">Log masuk gagal</string>
     <string name="unknown_error">Ralat tidak diketahui</string>
 
+    <string name="library_search_hint">Tajuk atau pengarang…</string>
+    <string name="updating_category">Kemaskini kategori…</string>
+    <string name="local_source_badge">Setempat</string>
+    <string name="confirm_delete_manga">Adakah anda pasti mahu keluarkan manga yang dipilih?</string>
+    <string name="also_delete_chapters">Juga padamkan bab yang telah dimuat turun</string>
+
+    <string name="source_requires_login">Sumber ini mengharuskan anda log masuk</string>
+    <string name="select_source">Pilih sumber</string>
+    <string name="no_valid_sources">Mohon aktifkan sekurangnya-kurangnya satu sumber yang sah</string>
+    <string name="no_more_results">Tiada lagi hasil</string>
+    <string name="local_source">Manga setempat</string>
+    <string name="other_source">Lain</string>
+    <string name="invalid_combination">Lalai tidak boleh dipilih bersama kategori lain</string>
+    <string name="added_to_library">Manga ini telah ditambahkan ke koleksi anda</string>
+    <string name="action_global_search_hint">Carian keseluruhan…</string>
+    <string name="no_results">Tiada sebarang hasil!</string>
+    <string name="latest">Terbaru</string>
+    <string name="browse">Semak imbas</string>
+
+    <string name="manga_not_in_db">Manga ini telah dikeluarkan daripada pangkalan data!</string>
+
+    <string name="manga_detail_tab">Informasi</string>
+    <string name="description">Keterangan</string>
+    <string name="ongoing">Berterusan</string>
+    <string name="unknown">Tidak diketahui</string>
+    <string name="licensed">Berlesen</string>
+    <string name="add_to_library">Tambahkan kepada koleksi</string>
+    <string name="remove_from_library">Keluarkan daripada koleksi</string>
+    <string name="manga_info_author_label">Pengarang</string>
+    <string name="manga_info_artist_label">Artis</string>
+    <string name="manga_info_chapters_label">Bab</string>
+    <string name="manga_info_last_chapter_label">Bab terakhir</string>
+    <string name="manga_info_status_label">Status</string>
+    <string name="manga_info_source_label">Sumber</string>
+    <string name="manga_info_genres_label">Genre</string>
+    <string name="share_text">Lihat %1$s! pada %2$s</string>
+    <string name="circular_icon">Ikon melingkar</string>
+    <string name="rounded_icon">Ikon berbulat</string>
+    <string name="square_icon">Ikon bersegi</string>
+    <string name="star_icon">Ikon bintang</string>
+    <string name="shortcut_title">Tajuk pintasan</string>
+    <string name="shortcut_created">Pintasan telah ditambah kepada skrin utama</string>
+    <string name="icon_shape">Bentuk ikon</string>
+    <string name="icon_creation_fail">Gagal untuk membuat pintasan!</string>
+    <string name="delete_downloads_for_manga">Padam bab-bab yang dimuat turun?</string>
+
+    <string name="manga_chapters_tab">Bab</string>
+    <string name="manga_chapter_no_title">Tiada tajuk</string>
+    <string name="display_mode_chapter">Bab %1$s</string>
+    <string name="chapter_downloaded">Dimuat turun</string>
+    <string name="chapter_queued">Diaturkan</string>
+    <string name="chapter_downloading">Muat turun…</string>
+    <string name="chapter_downloading_progress">Muat turun (%1$d/%2$d)…</string>
+    <string name="chapter_error">Ralat</string>
+    <string name="chapter_paused">Dihenti sebentar</string>
+    <string name="fetch_chapters_error">Ralat ketika mendapatkan bab</string>
+    <string name="show_title">Perlihatkan tajuk</string>
+    <string name="show_chapter_number">Perlihatkan nombor bab</string>
+    <string name="sorting_mode">Mod susunan</string>
+    <string name="sort_by_source">Mengikut sumber</string>
+    <string name="sort_by_number">Mengikut nombor bab</string>
+    <string name="manga_download">Muat turun</string>
+    <string name="download_1">Muat turun bab seterusnya</string>
+    <string name="download_5">Muat turun 5 bab seterusnya</string>
+    <string name="download_10">Muat turun 10 bab seterusnya</string>
+    <string name="download_all">Muat turun semua</string>
+    <string name="download_unread">Muat turun yang belum dibaca</string>
+    <string name="confirm_delete_chapters">Adakah anda pasti ingin padamkan bab-bab yang dipilih?</string>
+
+    <string name="manga_tracking_tab">Penjejakan</string>
+    <string name="reading">Sedang baca</string>
+    <string name="completed">Selesai</string>
+    <string name="dropped">Diabaikan</string>
+    <string name="on_hold">Ditangguh</string>
+    <string name="plan_to_read">Ingin baca</string>
+    <string name="score">Skor</string>
+    <string name="title">Tajuk</string>
+    <string name="status">Status</string>
+
+    <string name="error_category_exists">Kategori dengan nama ini sudah wujud!</string>
+    <string name="snack_categories_deleted">Kategori dipadam</string>
+
+    <string name="dialog_with_checkbox_remove_description">Adakah anda pasti? Tarikh bacaan bab ini akan dipadam</string>
+    <string name="dialog_with_checkbox_reset">Set semula semua bab bagi manga ini</string>
+
+    <string name="snack_add_to_library">Tambah manga kepada koleksi?</string>
+
     </resources>
