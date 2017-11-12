@@ -28,7 +28,7 @@
     <string name="action_sort_alpha">Abjad</string>
     <string name="action_sort_total">Jumlah bab</string>
     <string name="action_sort_last_read">Bacaan terakhir</string>
-    <string name="action_sort_last_updated">Kemaskini terakhir</string>
+    <string name="action_sort_last_updated">Kemas kini terakhir</string>
     <string name="action_search">Carian</string>
     <string name="action_global_search">Carian keseluruhan</string>
     <string name="action_select_all">Pilih semua</string>
@@ -39,8 +39,8 @@
     <string name="action_bookmark">Tambah kepada koleksi</string>
     <string name="action_remove_bookmark">Keluarkan daripada koleksi</string>
     <string name="action_delete">Padam</string>
-    <string name="action_update">Kemaskini</string>
-    <string name="action_update_library">Kemaskini koleksi</string>
+    <string name="action_update">Kemas kini</string>
+    <string name="action_update_library">Kemas kini koleksi</string>
     <string name="action_edit">Ubah</string>
     <string name="action_add">Tambah</string>
     <string name="action_add_category">Tambah kategori</string>
@@ -103,7 +103,7 @@
     <string name="portrait">Potret</string>
     <string name="landscape">Landskap</string>
     <string name="default_columns">Lalai</string>
-    <string name="pref_library_update_interval">Kekerapan kemaskini koleksi</string>
+    <string name="pref_library_update_interval">Kekerapan kemas kini koleksi</string>
     <string name="update_never">Manual</string>
     <string name="update_1hour">Setiap jam</string>
     <string name="update_2hour">Setiap 2 jam</string>
@@ -121,7 +121,7 @@
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Ketika mengecas</string>
     <string name="pref_update_only_non_completed">Hanya kemas kini manga yang masih berterusan</string>
-    <string name="pref_auto_update_manga_sync">Selaraskan bab setelah dibaca</string>
+    <string name="pref_auto_update_manga_sync">Sinkronkan bab setelah dibaca</string>
     <string name="pref_ask_update_manga_sync">Minta pengesahan sebelum kemas kini</string>
     <string name="pref_theme">Tema aplikasi</string>
     <string name="light_theme">Tema utama</string>
@@ -232,12 +232,12 @@
     <string name="choices_reset">Pilihan dialog diset semula</string>
     <string name="pref_clear_database">Hapus pangkalan data</string>
     <string name="pref_clear_database_summary">Hapus manga dan bab yang tidak ada di dalam koleksi</string>
-    <string name="clear_database_confirmation">Adakah anda pasti? Status bab dibaca dan progress bacaan manga yang tidak ada di dalam koleksi akan hilang</string>
+    <string name="clear_database_confirmation">Adakah anda pasti? Status bab dibaca dan progres bacaan manga yang tidak ada di dalam koleksi akan hilang</string>
     <string name="clear_database_completed">Pangkalan data dihapuskan</string>
     <string name="pref_refresh_library_metadata">Muat semula metadata koleksi</string>
-    <string name="pref_refresh_library_metadata_summary">Kemaskini muka hadapan, genre, keterangan dan maklumat status manga</string>
+    <string name="pref_refresh_library_metadata_summary">Kemas kini muka hadapan, genre, keterangan dan maklumat status manga</string>
     <string name="pref_refresh_library_tracking">Muat semula metadata penjejakan</string>
-    <string name="pref_refresh_library_tracking_summary">Kemaskini status, skor dan bab terakhir dibaca dari perkhidmatan penjejakan</string>
+    <string name="pref_refresh_library_tracking_summary">Kemas kini status, skor dan bab terakhir dibaca dari perkhidmatan penjejakan</string>
 
       <string name="version">Versi</string>
     <string name="build_time">Masa binaan aplikasi</string>
@@ -257,7 +257,7 @@
     <string name="unknown_error">Ralat tidak diketahui</string>
 
     <string name="library_search_hint">Tajuk atau pengarang…</string>
-    <string name="updating_category">Kemaskini kategori…</string>
+    <string name="updating_category">Kemaskini kategori dalam progres</string>
     <string name="local_source_badge">Setempat</string>
     <string name="confirm_delete_manga">Adakah anda pasti mahu keluarkan manga yang dipilih?</string>
     <string name="also_delete_chapters">Juga padamkan bab yang telah dimuat turun</string>
@@ -297,7 +297,7 @@
     <string name="square_icon">Ikon bersegi</string>
     <string name="star_icon">Ikon bintang</string>
     <string name="shortcut_title">Tajuk pintasan</string>
-    <string name="shortcut_created">Pintasan telah ditambah kepada skrin utama</string>
+    <string name="shortcut_created">Pintasan telah ditambah kepada skrin utama.</string>
     <string name="icon_shape">Bentuk ikon</string>
     <string name="icon_creation_fail">Gagal untuk membuat pintasan!</string>
     <string name="delete_downloads_for_manga">Padam bab-bab yang dimuat turun?</string>
@@ -307,8 +307,8 @@
     <string name="display_mode_chapter">Bab %1$s</string>
     <string name="chapter_downloaded">Dimuat turun</string>
     <string name="chapter_queued">Diaturkan</string>
-    <string name="chapter_downloading">Muat turun…</string>
-    <string name="chapter_downloading_progress">Muat turun (%1$d/%2$d)…</string>
+    <string name="chapter_downloading">Muat turun dalam progres</string>
+    <string name="chapter_downloading_progress">Muat turun dalam progres (%1$d/%2$d)</string>
     <string name="chapter_error">Ralat</string>
     <string name="chapter_paused">Dihenti sebentar</string>
     <string name="fetch_chapters_error">Ralat ketika mendapatkan bab</string>
@@ -338,10 +338,81 @@
     <string name="error_category_exists">Kategori dengan nama ini sudah wujud!</string>
     <string name="snack_categories_deleted">Kategori dipadam</string>
 
-    <string name="dialog_with_checkbox_remove_description">Adakah anda pasti? Tarikh bacaan bab ini akan dipadam</string>
+    <string name="dialog_with_checkbox_remove_description">Tarikh bacaan bab ini akan dipadam. Adakah anda pasti?</string>
     <string name="dialog_with_checkbox_reset">Set semula semua bab bagi manga ini</string>
 
     <string name="snack_add_to_library">Tambah manga kepada koleksi?</string>
 
     <string name="action_display_download_badge">Lambang muat turun</string>
-    </resources>
+    <string name="picture_saved">Gambar disimpan</string>
+    <string name="saving_picture">Simpan gambar…</string>
+    <string name="options">Pilihan</string>
+
+    <string name="custom_filter">Tapisan khusus</string>
+    <string name="set_as_cover">Set sebagai muka hadapan</string>
+    <string name="cover_updated">Muka hadapan dikemas kini</string>
+    <string name="page_downloaded">Halaman disalin ke %1$s</string>
+    <string name="downloading">Muat turun…</string>
+    <string name="download_progress">%1$d%% dimuat turun</string>
+    <string name="chapter_progress">Halaman: %1$d</string>
+    <string name="chapter_subtitle">Bab %1$s</string>
+    <string name="no_next_chapter">Bab seterusnya tidak dijumpai</string>
+    <string name="no_previous_chapter">Bab sebelumnya tidak dijumpai</string>
+    <string name="decode_image_error">Imej tidak dapat dimuat
+\nCuba tukar penyahkod imej atau mana-mana pilihan dibawah</string>
+    <string name="confirm_update_manga_sync">Kemas kini bab terakhir dibaca di perkhidmatan kepada %1$d?</string>
+    <string name="confirm_set_image_as_cover">Adakah anda ingin set imej ini sebagai muka hadapan?</string>
+    <string name="viewer_for_this_series">Pemapar bagi siri ini</string>
+
+    <string name="recent_manga_source">%1$s - Bab.%2$s</string>
+
+    <string name="download_queue_error">Ralat ketika memuat turun bab. Anda boleh mencuba lagi di bahagian muat turun</string>
+
+    <string name="notification_update_progress">Progres kemas kini: %1$d/%2$d</string>
+    <string name="notification_new_chapters">Bab baharu dijumpai</string>
+    <string name="notification_new_chapters_text">Bagi %1$d judul</string>
+    <string name="notification_cover_update_failed">Gagal untuk kemas kini muka hadapan</string>
+    <string name="notification_first_add_to_library">Mohon tambahkan manga kepada koleksi sebelum melakukan ini</string>
+    <string name="notification_not_connected_to_ac_title">Sinkronisasi dibatalkan</string>
+    <string name="notification_not_connected_to_ac_body">Tidak bersambung dengan bekalan kuasa</string>
+    <string name="notification_no_connection_title">Sinkronisasi dibatalkan</string>
+    <string name="notification_no_connection_body">Sambungan tidak tersedia</string>
+
+    <string name="file_select_cover">Pilih imej muka hadapan</string>
+    <string name="file_select_backup">Pilih fail sandaran</string>
+    <string name="file_select_icon">Pilih ikon pintasan</string>
+
+    <string name="update_check_title">Versi baharu boleh didapati!</string>
+    <string name="update_check_confirm">Muat turun</string>
+    <string name="update_check_ignore">Abaikan</string>
+    <string name="update_check_no_new_updates">Tiada versi baharu tersedia</string>
+    <string name="update_check_download_started">Muat turun dimulakan</string>
+    <string name="update_check_look_for_updates">Dalam progres mencari versi baharu</string>
+
+    <string name="update_check_notification_file_download">Muat turun versi baharu</string>
+    <string name="update_check_notification_download_in_progress">Muat turun dalam progres</string>
+    <string name="update_check_notification_download_complete">Muat turun selesai</string>
+    <string name="update_check_notification_download_error">Ralat muat turun</string>
+    <string name="update_check_notification_update_available">Versi baharu boleh didapati</string>
+
+    <string name="description_backdrop">Gambar latar belakang manga</string>
+    <string name="description_cover">Muka hadapan manga</string>
+
+    <string name="information_no_downloads">Tiada muat turun</string>
+    <string name="information_no_recent">Tiada bab baru dibaca</string>
+    <string name="information_no_recent_manga">Tiada manga baru dibaca</string>
+    <string name="information_empty_library">Koleksi kosong</string>
+
+    <string name="download_notifier_downloader_title">Pemuat turun</string>
+    <string name="download_notifier_title_error">Ralat</string>
+    <string name="download_notifier_unkown_error">Ralat tidak diketahui ketika memuat turun bab</string>
+    <string name="download_notifier_page_error">Halaman hilang dalam direktori</string>
+    <string name="download_notifier_page_ready_error">Halaman tidak dimuat</string>
+    <string name="download_notifier_text_only_wifi">Tiada sambungan Wi-Fi yang tersedia</string>
+    <string name="download_notifier_no_network">Tiada sambungan rangkaian tersedia</string>
+    <string name="download_notifier_download_paused">Muat turun dihentikan sebentar</string>
+
+    <string name="channel_common">Biasa</string>
+    <string name="channel_library">Koleksi</string>
+    <string name="channel_downloader">Pemuat turun</string>
+</resources>
