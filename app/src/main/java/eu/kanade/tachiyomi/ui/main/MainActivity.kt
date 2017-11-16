@@ -50,19 +50,14 @@ class MainActivity : BaseActivity() {
     lateinit var tabAnimator: TabsAnimator
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (eu.kanade.tachiyomi.BuildConfig.DEBUG) {
-            setTheme(when (preferences.theme()) {
-                2 -> R.style.Theme_Tachiyomi_Dark_Dev
-                3 -> R.style.Theme_Tachiyomi_Amoled_Dev
-                else -> R.style.Theme_Tachiyomi_Dev
-            })
-        } else {
-            setTheme(when (preferences.theme()) {
-                2 -> R.style.Theme_Tachiyomi_Dark
-                3 -> R.style.Theme_Tachiyomi_Amoled
-                else -> R.style.Theme_Tachiyomi
-            })
-        }
+        setTheme(when (preferences.theme()) {
+            2 -> R.style.Theme_Tachiyomi_Dark_Blue
+            3 -> R.style.Theme_Tachiyomi_Amoled_Blue
+            4 -> R.style.Theme_Tachiyomi_Teal
+            5 -> R.style.Theme_Tachiyomi_Dark_Teal
+            6 -> R.style.Theme_Tachiyomi_Amoled_Teal
+            else -> R.style.Theme_Tachiyomi_Blue
+        })
         super.onCreate(savedInstanceState)
 
         // Do not let the launcher create a new activity http://stackoverflow.com/questions/16283079

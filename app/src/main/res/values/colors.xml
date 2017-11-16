@@ -4,11 +4,11 @@
     <color name="colorPrimary">#54759e</color>
     <color name="colorPrimaryDark">#435e7e</color>
 
-    <!--Debug colors -->
-    <color name="colorPrimaryDebug">#26a69a</color>
-    <color name="colorPrimaryDarkDebug">@color/md_teal_500</color>
-    <color name="colorAccentLightDebug">@color/md_teal_A400</color>
-    <color name="colorAccentDarkDebug">#64ffda</color>
+    <!--Teal colors -->
+    <color name="colorPrimaryTeal">#26a69a</color>
+    <color name="colorPrimaryDarkTeal">#00766c</color>
+    <color name="colorAccentLightTeal">#64d8cb</color>
+    <color name="colorAccentDarkTeal">#82e9de</color>
 
 
     <!-- Light Theme -->
@@ -86,6 +86,5 @@
     <color name="md_red_500">#F44336</color>
 
     <color name="md_teal_500">#009688</color>
-    <color name="md_teal_A400">#1de9b6</color>
 
 </resources>
