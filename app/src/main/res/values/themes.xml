@@ -13,6 +13,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccentLight</item>
+        <item name="navigation_drawer_background">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@color/textColorPrimaryLight</item>
         <item name="android:textColorSecondary">@color/textColorSecondaryLight</item>
         <item name="android:textColorHint">@color/textColorHintLight</item>
@@ -39,7 +40,19 @@
         <item name="icon_color">@color/iconColorLight</item>
     </style>
 
+    <style name="Theme.Base.Dev" parent="Theme.Tachiyomi">
+        <item name="colorPrimary">@color/colorPrimaryDebug</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkDebug</item>
+        <item name="colorAccent">@color/colorAccentLightDebug</item>
+        <item name="navigation_drawer_background">@color/colorPrimaryDebug</item>
+
+    </style>
+
     <style name="Theme.Tachiyomi" parent="Theme.Base">
+        <!-- Attributes specific for SDK 16 to SDK 20 -->
+    </style>
+
+    <style name="Theme.Tachiyomi.Dev" parent="Theme.Base">
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 
@@ -50,6 +63,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccentDark</item>
+        <item name="navigation_drawer_background">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@color/textColorPrimaryDark</item>
         <item name="android:textColorSecondary">@color/textColorSecondaryDark</item>
         <item name="android:textColorHint">@color/textColorHintDark</item>
@@ -78,7 +92,19 @@
         <item name="icon_color">@color/iconColorDark</item>
     </style>
 
-    <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
+    <style name="Theme.Base.Dark.Dev" parent="Theme.Tachiyomi.Dark">
+        <item name="colorPrimary">@color/colorPrimaryDebug</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkDebug</item>
+        <item name="colorAccent">@color/colorAccentDarkDebug</item>
+        <item name="navigation_drawer_background">@color/colorPrimaryDebug</item>
+
+    </style>
+
+    <style name="Theme.Tachiyomi.Dark" parent="Theme.Tachiyomi.Dark">
+        <!-- Attributes specific for SDK 16 to SDK 20 -->
+    </style>
+
+    <style name="Theme.Tachiyomi.Dark.Dev" parent="Theme.Base.Dark">
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 
@@ -94,7 +120,18 @@
         <item name="background_card">@color/dialog_amoled</item>
     </style>
 
+    <style name="Theme.Base.Amoled.Dev" parent="Theme.Tachiyomi.Amoled">
+        <item name="colorPrimary">@color/colorPrimaryDebug</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkDebug</item>
+        <item name="colorAccent">@color/colorAccentDarkDebug</item>
+        <item name="navigation_drawer_background">@color/colorPrimaryDebug</item>
+    </style>
+
     <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled">
+        <!-- Attributes specific for SDK 16 to SDK 20 -->
+    </style>
+
+    <style name="Theme.Tachiyomi.Amoled.Dev" parent="Theme.Base.Amoled">
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 

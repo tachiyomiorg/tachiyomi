@@ -9,6 +9,12 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
     </style>
+    <style name="Theme.Tachiyomi.Dev" parent="Theme.Base.Dev">
+        <!-- Attributes specific for SDK 21 and up  -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDarkDebug</item>
+    </style>
 
     <!--============-->
     <!-- Dark Theme -->
@@ -19,11 +25,22 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
     </style>
+    <style name="Theme.Tachiyomi.Dark.Dev" parent="Theme.Base.Dark">
+        <!-- Attributes specific for SDK 21 and up  -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDarkDebug</item>
+    </style>
 
     <!--==============-->
     <!-- Amoled Theme -->
     <!--==============-->
     <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled">
+        <!-- Attributes specific for SDK 21 and up  -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <style name="Theme.Tachiyomi.Amoled.Dev" parent="Theme.Base.Amoled">
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
