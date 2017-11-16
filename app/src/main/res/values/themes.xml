@@ -10,10 +10,6 @@
     <!-- Light Themes -->
     <!--=======-======-->
     <style name="Theme.Base" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccentLight</item>
-        <item name="navigation_drawer_background">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@color/textColorPrimaryLight</item>
         <item name="android:textColorSecondary">@color/textColorSecondaryLight</item>
         <item name="android:textColorHint">@color/textColorHintLight</item>
@@ -39,20 +35,25 @@
         <item name="background_card">@color/dialogLight</item>
         <item name="icon_color">@color/iconColorLight</item>
     </style>
-
-    <style name="Theme.Base.Dev" parent="Theme.Tachiyomi">
-        <item name="colorPrimary">@color/colorPrimaryDebug</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkDebug</item>
-        <item name="colorAccent">@color/colorAccentLightDebug</item>
-        <item name="navigation_drawer_background">@color/colorPrimaryDebug</item>
-
+    <style name="Theme.Base.Blue" parent="Theme.Base">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccentLight</item>
+        <item name="navigation_drawer_background">@color/colorPrimary</item>
+    </style>
+    <style name="Theme.Base.Teal" parent="Theme.Base">
+        <item name="colorPrimary">@color/colorPrimaryTeal</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkTeal</item>
+        <item name="colorAccent">@color/colorAccentLightTeal</item>
+        <item name="navigation_drawer_background">@color/colorPrimaryTeal</item>
     </style>
 
-    <style name="Theme.Tachiyomi" parent="Theme.Base">
+    <style name="Theme.Tachiyomi.Blue" parent="Theme.Base.Blue">
+
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 
-    <style name="Theme.Tachiyomi.Dev" parent="Theme.Base">
+    <style name="Theme.Tachiyomi.Teal" parent="Theme.Base.Teal">
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 
@@ -60,10 +61,6 @@
     <!-- Dark Themes -->
     <!--=============-->
     <style name="Theme.Base.Dark" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccentDark</item>
-        <item name="navigation_drawer_background">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@color/textColorPrimaryDark</item>
         <item name="android:textColorSecondary">@color/textColorSecondaryDark</item>
         <item name="android:textColorHint">@color/textColorHintDark</item>
@@ -92,19 +89,26 @@
         <item name="icon_color">@color/iconColorDark</item>
     </style>
 
-    <style name="Theme.Base.Dark.Dev" parent="Theme.Tachiyomi.Dark">
-        <item name="colorPrimary">@color/colorPrimaryDebug</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkDebug</item>
-        <item name="colorAccent">@color/colorAccentDarkDebug</item>
-        <item name="navigation_drawer_background">@color/colorPrimaryDebug</item>
+    <style name="Theme.Base.Dark.Blue" parent="Theme.Base.Dark">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccentDark</item>
+        <item name="navigation_drawer_background">@color/colorPrimary</item>
 
     </style>
 
-    <style name="Theme.Tachiyomi.Dark" parent="Theme.Tachiyomi.Dark">
+    <style name="Theme.Base.Dark.Teal" parent="Theme.Base.Dark">
+        <item name="colorPrimary">@color/colorPrimaryTeal</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkTeal</item>
+        <item name="colorAccent">@color/colorAccentDarkTeal</item>
+        <item name="navigation_drawer_background">@color/colorPrimaryTeal</item>
+    </style>
+
+    <style name="Theme.Tachiyomi.Dark.Blue" parent="Theme.Base.Dark.Blue">
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 
-    <style name="Theme.Tachiyomi.Dark.Dev" parent="Theme.Base.Dark">
+    <style name="Theme.Tachiyomi.Dark.Teal" parent="Theme.Base.Dark.Teal">
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 
@@ -120,18 +124,25 @@
         <item name="background_card">@color/dialog_amoled</item>
     </style>
 
-    <style name="Theme.Base.Amoled.Dev" parent="Theme.Tachiyomi.Amoled">
-        <item name="colorPrimary">@color/colorPrimaryDebug</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkDebug</item>
-        <item name="colorAccent">@color/colorAccentDarkDebug</item>
-        <item name="navigation_drawer_background">@color/colorPrimaryDebug</item>
+    <style name="Theme.Base.Amoled.Blue" parent="Theme.Base.Amoled">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccentDark</item>
+        <item name="navigation_drawer_background">@color/colorPrimary</item>
     </style>
 
-    <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled">
+    <style name="Theme.Base.Amoled.Teal" parent="Theme.Base.Amoled">
+        <item name="colorPrimary">@color/colorPrimaryTeal</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkTeal</item>
+        <item name="colorAccent">@color/colorAccentDarkTeal</item>
+        <item name="navigation_drawer_background">@color/colorPrimaryTeal</item>
+    </style>
+
+    <style name="Theme.Tachiyomi.Amoled.Blue" parent="Theme.Base.Amoled.Blue">
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 
-    <style name="Theme.Tachiyomi.Amoled.Dev" parent="Theme.Base.Amoled">
+    <style name="Theme.Tachiyomi.Amoled.Teal" parent="Theme.Base.Amoled.Teal">
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 

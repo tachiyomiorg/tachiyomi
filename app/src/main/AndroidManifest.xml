@@ -17,7 +17,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:theme="@style/Theme.Tachiyomi">
+        android:theme="@style/Theme.Tachiyomi.Blue">
         <activity
             android:name=".ui.main.MainActivity"
             android:launchMode="singleTop">
