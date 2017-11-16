@@ -25,7 +25,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
     </style>
-    <style name="Theme.Tachiyomi.Dark.Dev" parent="Theme.Base.Dark">
+    <style name="Theme.Tachiyomi.Dark.Dev" parent="Theme.Base.Dark.Dev">
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
@@ -40,7 +40,7 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 
-    <style name="Theme.Tachiyomi.Amoled.Dev" parent="Theme.Base.Amoled">
+    <style name="Theme.Tachiyomi.Amoled.Dev" parent="Theme.Base.Amoled.Dev">
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
