@@ -25,8 +25,6 @@
         <item name="windowActionModeOverlay">true</item>
         <item name="actionBarTheme">@style/Theme.ActionBar.Light</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Material</item>
-        <item name="alertDialogTheme">@style/Theme.AlertDialog.Light</item>
-
 
         <!-- Custom Attributes-->
         <item name="selectable_list_drawable">@drawable/list_item_selector_light</item>
@@ -40,12 +38,16 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccentLight</item>
         <item name="navigation_drawer_background">@color/colorPrimary</item>
+        <!--Themes -->
+        <item name="alertDialogTheme">@style/Theme.AlertDialog.Light.Blue</item>
     </style>
     <style name="Theme.Base.Teal" parent="Theme.Base">
         <item name="colorPrimary">@color/colorPrimaryTeal</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkTeal</item>
         <item name="colorAccent">@color/colorAccentLightTeal</item>
         <item name="navigation_drawer_background">@color/colorPrimaryTeal</item>
+        <!--Themes -->
+        <item name="alertDialogTheme">@style/Theme.AlertDialog.Light.Teal</item>
     </style>
 
     <style name="Theme.Tachiyomi.Blue" parent="Theme.Base.Blue">
@@ -77,7 +79,6 @@
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Material</item>
-        <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
 
 
         <!-- Custom Attributes-->
@@ -94,6 +95,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccentDark</item>
         <item name="navigation_drawer_background">@color/colorPrimary</item>
+        <!--Themes -->
+        <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark.Blue</item>
 
     </style>
 
@@ -102,6 +105,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDarkTeal</item>
         <item name="colorAccent">@color/colorAccentDarkTeal</item>
         <item name="navigation_drawer_background">@color/colorPrimaryTeal</item>
+        <!--Themes -->
+        <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark.Teal</item>
     </style>
 
     <style name="Theme.Tachiyomi.Dark.Blue" parent="Theme.Base.Dark.Blue">
