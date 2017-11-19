@@ -161,7 +161,7 @@ class Readmangatoday : ParsedHttpSource() {
         return pages
     }
 
-    override fun imageUrlParse(document: Document) = document.select("img.img-responsive-2").first().attr("src")
+    override fun imageUrlParse(document: Document) = document.select("#chapter_img").first().attr("src")
 
     private class Status : Filter.TriState("Completed")
     private class Genre(name: String, val id: Int) : Filter.TriState(name)
