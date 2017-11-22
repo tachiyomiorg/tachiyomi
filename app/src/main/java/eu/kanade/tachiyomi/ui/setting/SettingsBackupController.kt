@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.ui.setting
 
-import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.Activity
 import android.app.Dialog
@@ -161,7 +160,7 @@ class SettingsBackupController : SettingsController() {
             CODE_BACKUP_DIR -> if (data != null && resultCode == Activity.RESULT_OK) {
                 val activity = activity ?: return
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                    val uri = Uri.fromFile(File(data.data.path))
+                    val uri = data.data
                     preferences.backupsDirectory().set(uri.toString())
                 } else {
                     val uri = data.data
@@ -170,8 +169,7 @@ class SettingsBackupController : SettingsController() {
 
                     activity.contentResolver.takePersistableUriPermission(uri, flags)
 
-                    val file = UniFile.fromUri(activity, uri)
-                    preferences.backupsDirectory().set(file.uri.toString())
+                    preferences.backupsDirectory().set(uri.toString())
                 }
             }
             CODE_BACKUP_CREATE -> if (data != null && resultCode == Activity.RESULT_OK) {

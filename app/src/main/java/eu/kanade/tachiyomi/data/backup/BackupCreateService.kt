@@ -8,6 +8,7 @@ import com.github.salomonbrys.kotson.set
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.hippo.unifile.UniFile
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.backup.models.Backup
 import eu.kanade.tachiyomi.data.backup.models.Backup.CATEGORIES
 import eu.kanade.tachiyomi.data.backup.models.Backup.MANGAS
@@ -113,20 +114,21 @@ class BackupCreateService : IntentService(NAME) {
         try {
             // When BackupCreatorJob
             if (isJob) {
-                // Get dir of file
+                // Get dir of file and create
                 val dir = UniFile.fromUri(this, uri)
+                val autoDir = dir.createDirectory(getString(R.string.automatic_backup))
 
                 // Delete older backups
                 val numberOfBackups = backupManager.numberOfBackups()
                 val backupRegex = Regex("""tachiyomi_\d+-\d+-\d+_\d+-\d+.json""")
-                dir.listFiles { _, filename -> backupRegex.matches(filename) }
+                autoDir.listFiles { _, filename -> backupRegex.matches(filename) }
                         .orEmpty()
                         .sortedByDescending { it.name }
                         .drop(numberOfBackups - 1)
                         .forEach { it.delete() }
 
                 // Create new file to place backup
-                val newFile = dir.createFile(Backup.getDefaultFilename())
+                val newFile = autoDir.createFile(Backup.getDefaultFilename())
                         ?: throw Exception("Couldn't create backup file")
 
                 newFile.openOutputStream().bufferedWriter().use {

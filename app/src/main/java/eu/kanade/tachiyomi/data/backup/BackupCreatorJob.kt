@@ -8,13 +8,12 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.io.File
 
 class BackupCreatorJob : Job() {
 
     override fun onRunJob(params: Params): Result {
         val preferences = Injekt.get<PreferencesHelper>()
-        val uri = Uri.fromFile(File(preferences.backupsDirectory().getOrDefault()))
+        val uri = Uri.parse(preferences.backupsDirectory().getOrDefault())
         val flags = BackupCreateService.BACKUP_ALL
         BackupCreateService.makeBackup(context, uri, flags, true)
         return Result.SUCCESS

@@ -231,6 +231,7 @@
     <string name="backup_choice">What do you want to backup?</string>
     <string name="restoring_backup">Restoring backup</string>
     <string name="creating_backup">Creating backup</string>
+    <string name="automatic_backup">automatic</string>
 
       <!-- Advanced section -->
     <string name="pref_clear_chapter_cache">Clear chapter cache</string>
