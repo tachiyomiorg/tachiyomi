@@ -457,4 +457,6 @@
     <string name="channel_common">Общи</string>
     <string name="channel_library">Библиотека</string>
     <string name="channel_downloader">Изтегляния</string>
-</resources>
+<string name="action_display_download_badge">Изтегли значки</string>
+    <string name="local_source_badge">На устройството</string>
+    </resources>
