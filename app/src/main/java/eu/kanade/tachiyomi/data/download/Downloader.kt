@@ -434,9 +434,9 @@ class Downloader(private val context: Context, private val provider: DownloadPro
         // Only rename the directory if it's downloaded.
         if (download.status == Download.DOWNLOADED) {
             tmpDir.renameTo(dirname)
-                 //update download count
-                download.manga.download_count++
-                db.updateDownloadCount(download.manga).executeAsBlocking()
+            //update download count
+            download.manga.download_count++
+            db.updateDownloadCount(download.manga).executeAsBlocking()
         }
     }
 

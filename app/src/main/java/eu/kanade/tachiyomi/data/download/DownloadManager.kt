@@ -10,7 +10,6 @@ import eu.kanade.tachiyomi.data.download.model.DownloadQueue
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.Page
 import rx.Observable
-import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -183,11 +182,8 @@ class DownloadManager(context: Context) {
      * @param chapter the chapter to delete.
      */
     fun deleteChapter(source: Source, manga: Manga, chapter: Chapter) {
-        Timber.d("delete chapter")
         provider.findChapterDir(source, manga, chapter)?.delete()
-        manga.download_count = manga.download_count -1
+        manga.download_count = manga.download_count - 1
         db.updateDownloadCount(manga).executeAsBlocking()
-
-
     }
 }

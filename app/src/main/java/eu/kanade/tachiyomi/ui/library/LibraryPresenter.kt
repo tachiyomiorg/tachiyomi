@@ -168,9 +168,7 @@ class LibraryPresenter(
      * @param map the map of manga.
      */
     private fun setDownloadCount(map: LibraryMap) {
-        Timber.d("set download count")
         if (!preferences.downloadBadge().getOrDefault()) {
-            Timber.d("download badge disabled")
             // Unset download count if the preference is not enabled.
             for ((_, itemList) in map) {
                 for (item in itemList) {
@@ -179,9 +177,7 @@ class LibraryPresenter(
             }
             return
         }
-        Timber.d("download badge enabled")
         if (preferences.downloadBadgeUpdate().getOrDefault() != 0L) {
-            Timber.d("download badge update not 0")
             for ((_, itemList) in map) {
                 for (item in itemList) {
                     Timber.d(item.manga.title)
@@ -190,7 +186,6 @@ class LibraryPresenter(
                 }
             }
         } else {
-            Timber.d("download badge update  0")
             // Cached list of downloaded manga directories given a source id.
             val mangaDirsForSource = mutableMapOf<Long, Map<String?, UniFile>>()
 
@@ -223,7 +218,6 @@ class LibraryPresenter(
                     db.updateDownloadCount(item.manga).executeAsBlocking()
                 }
             }
-            Timber.d("set update time")
             preferences.downloadBadgeUpdate().set(System.currentTimeMillis());
         }
     }
@@ -345,7 +339,7 @@ class LibraryPresenter(
      */
     fun onOpenManga() {
         // Avoid further db updates for the library when it's not needed
-      //    librarySubscription?.let { remove(it) }
+        //    librarySubscription?.let { remove(it) }
     }
 
     /**
