@@ -54,6 +54,9 @@ class DbOpenHelper(context: Context)
         if (oldVersion < 5) {
             db.execSQL(ChapterTable.addScanlator)
         }
+        if (oldVersion <6){
+            db.execSQL(MangaTable.addDownloadCount)
+        }
     }
 
     override fun onConfigure(db: SQLiteDatabase) {

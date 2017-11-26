@@ -15,6 +15,7 @@ import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_ARTIST
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_AUTHOR
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_CHAPTER_FLAGS
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_DESCRIPTION
+import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_DOWNLOAD_COUNT
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_FAVORITE
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_GENRE
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_ID
@@ -62,6 +63,7 @@ class MangaPutResolver : DefaultPutResolver<Manga>() {
         put(COL_INITIALIZED, obj.initialized)
         put(COL_VIEWER, obj.viewer)
         put(COL_CHAPTER_FLAGS, obj.chapter_flags)
+        put(COL_DOWNLOAD_COUNT, obj.download_count)
     }
 }
 
@@ -82,6 +84,7 @@ interface BaseMangaGetResolver {
         initialized = cursor.getInt(cursor.getColumnIndex(COL_INITIALIZED)) == 1
         viewer = cursor.getInt(cursor.getColumnIndex(COL_VIEWER))
         chapter_flags = cursor.getInt(cursor.getColumnIndex(COL_CHAPTER_FLAGS))
+        download_count = cursor.getInt(cursor.getColumnIndex(COL_DOWNLOAD_COUNT))
     }
 }
 
