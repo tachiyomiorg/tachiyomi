@@ -94,6 +94,8 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
             if (!LibraryUpdateService.isRunning(context)) {
                 LibraryUpdateService.start(context, category)
                 context.toast(R.string.updating_category)
+                preferences.downloadBadgeUpdate().set(0)
+                controller.onDownloadBadgeChanged()
             }
             // It can be a very long operation, so we disable swipe refresh and show a toast.
             swipe_refresh.isRefreshing = false

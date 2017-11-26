@@ -3,12 +3,13 @@
              android:layout_width="match_parent"
              android:layout_height="@dimen/navigation_drawer_header_height"
              android:gravity="bottom"
-             android:theme="@style/ThemeOverlay.AppCompat.Dark">
+             android:theme="@style/ThemeOverlay.AppCompat.Dark"
+             xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="?attr/navigation_drawer_background"
         android:scaleType="centerCrop"/>
 
     <ImageView
@@ -17,6 +18,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="@dimen/navigation_drawer_header_margin"
         android:scaleType="centerCrop"
-        android:src="@drawable/tachiyomi_circle"/>
+        app:srcCompat="@mipmap/ic_launcher"/>
 
 </FrameLayout>

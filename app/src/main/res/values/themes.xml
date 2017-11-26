@@ -10,9 +10,6 @@
     <!-- Light Themes -->
     <!--=======-======-->
     <style name="Theme.Base" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccentLight</item>
         <item name="android:textColorPrimary">@color/textColorPrimaryLight</item>
         <item name="android:textColorSecondary">@color/textColorSecondaryLight</item>
         <item name="android:textColorHint">@color/textColorHintLight</item>
@@ -28,8 +25,6 @@
         <item name="windowActionModeOverlay">true</item>
         <item name="actionBarTheme">@style/Theme.ActionBar.Light</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Material</item>
-        <item name="alertDialogTheme">@style/Theme.AlertDialog.Light</item>
-
 
         <!-- Custom Attributes-->
         <item name="selectable_list_drawable">@drawable/list_item_selector_light</item>
@@ -38,8 +33,29 @@
         <item name="background_card">@color/dialogLight</item>
         <item name="icon_color">@color/iconColorLight</item>
     </style>
+    <style name="Theme.Base.Blue" parent="Theme.Base">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccentLight</item>
+        <item name="navigation_drawer_background">@color/colorPrimary</item>
+        <!--Themes -->
+        <item name="alertDialogTheme">@style/Theme.AlertDialog.Light.Blue</item>
+    </style>
+    <style name="Theme.Base.Teal" parent="Theme.Base">
+        <item name="colorPrimary">@color/colorPrimaryTeal</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkTeal</item>
+        <item name="colorAccent">@color/colorAccentLightTeal</item>
+        <item name="navigation_drawer_background">@color/colorPrimaryTeal</item>
+        <!--Themes -->
+        <item name="alertDialogTheme">@style/Theme.AlertDialog.Light.Teal</item>
+    </style>
 
-    <style name="Theme.Tachiyomi" parent="Theme.Base">
+    <style name="Theme.Tachiyomi.Blue" parent="Theme.Base.Blue">
+
+        <!-- Attributes specific for SDK 16 to SDK 20 -->
+    </style>
+
+    <style name="Theme.Tachiyomi.Teal" parent="Theme.Base.Teal">
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 
@@ -47,9 +63,6 @@
     <!-- Dark Themes -->
     <!--=============-->
     <style name="Theme.Base.Dark" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccentDark</item>
         <item name="android:textColorPrimary">@color/textColorPrimaryDark</item>
         <item name="android:textColorSecondary">@color/textColorSecondaryDark</item>
         <item name="android:textColorHint">@color/textColorHintDark</item>
@@ -66,7 +79,6 @@
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Material</item>
-        <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
 
 
         <!-- Custom Attributes-->
@@ -78,7 +90,30 @@
         <item name="icon_color">@color/iconColorDark</item>
     </style>
 
-    <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
+    <style name="Theme.Base.Dark.Blue" parent="Theme.Base.Dark">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccentDark</item>
+        <item name="navigation_drawer_background">@color/colorPrimary</item>
+        <!--Themes -->
+        <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark.Blue</item>
+
+    </style>
+
+    <style name="Theme.Base.Dark.Teal" parent="Theme.Base.Dark">
+        <item name="colorPrimary">@color/colorPrimaryTeal</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkTeal</item>
+        <item name="colorAccent">@color/colorAccentDarkTeal</item>
+        <item name="navigation_drawer_background">@color/colorPrimaryTeal</item>
+        <!--Themes -->
+        <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark.Teal</item>
+    </style>
+
+    <style name="Theme.Tachiyomi.Dark.Blue" parent="Theme.Base.Dark.Blue">
+        <!-- Attributes specific for SDK 16 to SDK 20 -->
+    </style>
+
+    <style name="Theme.Tachiyomi.Dark.Teal" parent="Theme.Base.Dark.Teal">
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 
@@ -94,7 +129,25 @@
         <item name="background_card">@color/dialog_amoled</item>
     </style>
 
-    <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled">
+    <style name="Theme.Base.Amoled.Blue" parent="Theme.Base.Amoled">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccentDark</item>
+        <item name="navigation_drawer_background">@color/colorPrimary</item>
+    </style>
+
+    <style name="Theme.Base.Amoled.Teal" parent="Theme.Base.Amoled">
+        <item name="colorPrimary">@color/colorPrimaryTeal</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkTeal</item>
+        <item name="colorAccent">@color/colorAccentDarkTeal</item>
+        <item name="navigation_drawer_background">@color/colorPrimaryTeal</item>
+    </style>
+
+    <style name="Theme.Tachiyomi.Amoled.Blue" parent="Theme.Base.Amoled.Blue">
+        <!-- Attributes specific for SDK 16 to SDK 20 -->
+    </style>
+
+    <style name="Theme.Tachiyomi.Amoled.Teal" parent="Theme.Base.Amoled.Teal">
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 

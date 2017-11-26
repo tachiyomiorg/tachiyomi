@@ -40,6 +40,7 @@ open class App : Application() {
         LocaleHelper.updateConfiguration(this, resources.configuration)
     }
 
+
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         if (BuildConfig.DEBUG) {

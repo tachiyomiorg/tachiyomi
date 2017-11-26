@@ -3,27 +3,44 @@
     <!--===========-->
     <!-- Main Theme-->
     <!--===========-->
-    <style name="Theme.Tachiyomi" parent="Theme.Base">
+    <style name="Theme.Tachiyomi.Blue" parent="Theme.Base.Blue">
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+    </style>
+    <style name="Theme.Tachiyomi.Teal" parent="Theme.Base.Teal">
+        <!-- Attributes specific for SDK 21 and up  -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDarkTeal</item>
     </style>
 
     <!--============-->
     <!-- Dark Theme -->
     <!--============-->
-    <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
+    <style name="Theme.Tachiyomi.Dark.Blue" parent="Theme.Base.Dark.Blue">
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
     </style>
+    <style name="Theme.Tachiyomi.Dark.Teal" parent="Theme.Base.Dark.Teal">
+        <!-- Attributes specific for SDK 21 and up  -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDarkTeal</item>
+    </style>
 
     <!--==============-->
     <!-- Amoled Theme -->
     <!--==============-->
-    <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled">
+    <style name="Theme.Tachiyomi.Amoled.Blue" parent="Theme.Base.Amoled.Blue">
+        <!-- Attributes specific for SDK 21 and up  -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <style name="Theme.Tachiyomi.Amoled.Teal" parent="Theme.Base.Amoled.Teal">
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
