@@ -286,7 +286,7 @@ class LibraryController(
         activity?.invalidateOptionsMenu()
     }
 
-    private fun onDownloadBadgeChanged(){
+    fun onDownloadBadgeChanged() {
         presenter.requestDownloadBadgesUpdate()
     }
 
@@ -367,7 +367,11 @@ class LibraryController(
                 navView?.let { drawer?.openDrawer(Gravity.END) }
             }
             R.id.action_update_library -> {
-                activity?.let { LibraryUpdateService.start(it) }
+                activity?.let {
+                    preferences.downloadBadgeUpdate().set(0)
+                    onDownloadBadgeChanged()
+                    LibraryUpdateService.start(it)
+                }
             }
             R.id.action_edit_categories -> {
                 router.pushController(RouterTransaction.with(CategoryController())

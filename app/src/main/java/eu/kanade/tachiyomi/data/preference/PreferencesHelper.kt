@@ -143,6 +143,8 @@ class PreferencesHelper(val context: Context) {
 
     fun downloadBadge() = rxPrefs.getBoolean(Keys.downloadBadge, false)
 
+    fun downloadBadgeUpdate() = rxPrefs.getLong(Keys.downloadBadgeUpdate, 0)
+
     fun filterDownloaded() = rxPrefs.getBoolean(Keys.filterDownloaded, false)
 
     fun filterUnread() = rxPrefs.getBoolean(Keys.filterUnread, false)

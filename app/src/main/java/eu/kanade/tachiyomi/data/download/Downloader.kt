@@ -5,6 +5,7 @@ import android.webkit.MimeTypeMap
 import com.hippo.unifile.UniFile
 import com.jakewharton.rxrelay.BehaviorRelay
 import com.jakewharton.rxrelay.PublishRelay
+import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
@@ -59,6 +60,11 @@ class Downloader(private val context: Context, private val provider: DownloadPro
      * Preferences.
      */
     private val preferences: PreferencesHelper by injectLazy()
+
+    /*
+        DB helper
+     */
+    private val db: DatabaseHelper by injectLazy()
 
     /**
      * Notifier for the downloader state and progress.
@@ -192,7 +198,8 @@ class Downloader(private val context: Context, private val provider: DownloadPro
                 .lift(DynamicConcurrentMergeOperator<Download, Download>({ downloadChapter(it) }, threadsSubject))
                 .onBackpressureBuffer()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ completeDownload(it)
+                .subscribe({
+                    completeDownload(it)
                 }, { error ->
                     DownloadService.stop(context)
                     Timber.e(error)
@@ -399,10 +406,10 @@ class Downloader(private val context: Context, private val provider: DownloadPro
     private fun getImageExtension(response: Response, file: UniFile): String {
         // Read content type if available.
         val mime = response.body()?.contentType()?.let { ct -> "${ct.type()}/${ct.subtype()}" }
-            // Else guess from the uri.
-            ?: context.contentResolver.getType(file.uri)
-            // Else read magic numbers.
-            ?: DiskUtil.findImageMime { file.openInputStream() }
+                // Else guess from the uri.
+                ?: context.contentResolver.getType(file.uri)
+                // Else read magic numbers.
+                ?: DiskUtil.findImageMime { file.openInputStream() }
 
         return MimeTypeMap.getSingleton().getExtensionFromMimeType(mime) ?: "jpg"
     }
@@ -427,6 +434,9 @@ class Downloader(private val context: Context, private val provider: DownloadPro
         // Only rename the directory if it's downloaded.
         if (download.status == Download.DOWNLOADED) {
             tmpDir.renameTo(dirname)
+            //update download count
+            download.manga.download_count++
+            db.updateDownloadCount(download.manga).executeAsBlocking()
         }
     }
 

@@ -22,6 +22,7 @@ import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.io.IOException
@@ -176,33 +177,48 @@ class LibraryPresenter(
             }
             return
         }
-
-        // Cached list of downloaded manga directories given a source id.
-        val mangaDirsForSource = mutableMapOf<Long, Map<String?, UniFile>>()
-
-        // Cached list of downloaded chapter directories for a manga.
-        val chapterDirectories = mutableMapOf<Long, Int>()
-
-        val downloadCountFn: (LibraryItem) -> Int = f@ { item ->
-            val source = sourceManager.get(item.manga.source) ?: return@f 0
-
-            // Get the directories for the source of the manga.
-            val dirsForSource = mangaDirsForSource.getOrPut(source.id) {
-                val sourceDir = downloadManager.findSourceDir(source)
-                sourceDir?.listFiles()?.associateBy { it.name }.orEmpty()
+        if (preferences.downloadBadgeUpdate().getOrDefault() != 0L) {
+            for ((_, itemList) in map) {
+                for (item in itemList) {
+                    Timber.d(item.manga.title)
+                    Timber.d(item.manga.download_count.toString())
+                    item.downloadCount = item.manga.download_count
+                }
             }
-            val mangaDirName = downloadManager.getMangaDirName(item.manga)
-            val mangaDir = dirsForSource[mangaDirName] ?: return@f 0
+        } else {
+            // Cached list of downloaded manga directories given a source id.
+            val mangaDirsForSource = mutableMapOf<Long, Map<String?, UniFile>>()
 
-            chapterDirectories.getOrPut(item.manga.id!!) {
-                mangaDir.listFiles()?.size ?: 0
-            }
-        }
+            // Cached list of downloaded chapter directories for a manga.
+            val chapterDirectories = mutableMapOf<Long, Int>()
 
-        for ((_, itemList) in map) {
-            for (item in itemList) {
-                item.downloadCount = downloadCountFn(item)
+            val downloadCountFn: (LibraryItem) -> Int = f@ { item ->
+                val source = sourceManager.get(item.manga.source) ?: return@f 0
+
+                // Get the directories for the source of the manga.
+                val dirsForSource = mangaDirsForSource.getOrPut(source.id) {
+                    val sourceDir = downloadManager.findSourceDir(source)
+                    sourceDir?.listFiles()?.associateBy { it.name }.orEmpty()
+                }
+                val mangaDirName = downloadManager.getMangaDirName(item.manga)
+                val mangaDir = dirsForSource[mangaDirName] ?: return@f 0
+
+                chapterDirectories.getOrPut(item.manga.id!!) {
+                    mangaDir.listFiles()?.size ?: 0
+                }
             }
+
+            for ((_, itemList) in map) {
+                for (item in itemList) {
+                    item.downloadCount = downloadCountFn(item)
+                    item.manga.download_count = item.downloadCount
+                    Timber.d(item.manga.title)
+                    Timber.d(item.downloadCount.toString())
+                    Timber.d(item.manga.download_count.toString())
+                    db.updateDownloadCount(item.manga).executeAsBlocking()
+                }
+            }
+            preferences.downloadBadgeUpdate().set(System.currentTimeMillis());
         }
     }
 
@@ -323,7 +339,7 @@ class LibraryPresenter(
      */
     fun onOpenManga() {
         // Avoid further db updates for the library when it's not needed
-        librarySubscription?.let { remove(it) }
+        //    librarySubscription?.let { remove(it) }
     }
 
     /**
