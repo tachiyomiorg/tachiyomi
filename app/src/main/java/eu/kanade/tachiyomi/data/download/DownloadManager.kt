@@ -3,12 +3,15 @@ package eu.kanade.tachiyomi.data.download
 import android.content.Context
 import com.hippo.unifile.UniFile
 import com.jakewharton.rxrelay.BehaviorRelay
+import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.DownloadQueue
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.Page
 import rx.Observable
+import timber.log.Timber
+import uy.kohesive.injekt.injectLazy
 
 /**
  * This class is used to manage chapter downloads in the application. It must be instantiated once
@@ -28,6 +31,11 @@ class DownloadManager(context: Context) {
      * Downloader whose only task is to download chapters.
      */
     private val downloader = Downloader(context, provider)
+
+    /*
+        DB helper
+     */
+    private val db: DatabaseHelper by injectLazy()
 
     /**
      * Downloads queue, where the pending chapters are stored.
@@ -175,6 +183,11 @@ class DownloadManager(context: Context) {
      * @param chapter the chapter to delete.
      */
     fun deleteChapter(source: Source, manga: Manga, chapter: Chapter) {
+        Timber.d("delete chapter")
         provider.findChapterDir(source, manga, chapter)?.delete()
+        manga.download_count = manga.download_count -1
+        db.updateDownloadCount(manga).executeAsBlocking()
+
+
     }
 }
