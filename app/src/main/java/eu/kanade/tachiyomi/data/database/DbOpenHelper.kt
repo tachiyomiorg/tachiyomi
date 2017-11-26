@@ -17,7 +17,7 @@ class DbOpenHelper(context: Context)
         /**
          * Version of the database.
          */
-        const val DATABASE_VERSION = 5
+        const val DATABASE_VERSION = 6
     }
 
     override fun onCreate(db: SQLiteDatabase) = with(db) {
