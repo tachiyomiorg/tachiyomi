@@ -166,6 +166,7 @@ class MainActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        preferences.downloadBadgeUpdate().set(0)
         nav_view?.setNavigationItemSelectedListener(null)
         toolbar?.setNavigationOnClickListener(null)
     }
