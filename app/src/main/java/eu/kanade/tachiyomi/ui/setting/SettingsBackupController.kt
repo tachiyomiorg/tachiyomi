@@ -134,7 +134,7 @@ class SettingsBackupController : SettingsController() {
                 preferences.backupsDirectory().asObservable()
                         .subscribeUntilDestroy { path ->
                             val dir = UniFile.fromUri(context, Uri.parse(path))
-                            summary = dir.filePath ?: path
+                            summary = dir.filePath + "/automatic"
                         }
             }
             val backupNumber = intListPreference {
@@ -163,7 +163,7 @@ class SettingsBackupController : SettingsController() {
                 val uri = data.data
 
                 // Get UriPermission so it's possible to write files post kitkat.
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
                     val flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or
                             Intent.FLAG_GRANT_WRITE_URI_PERMISSION
 
