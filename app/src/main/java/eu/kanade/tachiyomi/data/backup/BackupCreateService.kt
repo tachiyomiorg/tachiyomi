@@ -8,7 +8,6 @@ import com.github.salomonbrys.kotson.set
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.hippo.unifile.UniFile
-import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.backup.models.Backup
 import eu.kanade.tachiyomi.data.backup.models.Backup.CATEGORIES
 import eu.kanade.tachiyomi.data.backup.models.Backup.MANGAS
@@ -47,7 +46,7 @@ class BackupCreateService : IntentService(NAME) {
          * Make a backup from library
          *
          * @param context context of application
-         * @param path path of Uri
+         * @param uri path of Uri
          * @param flags determines what to backup
          * @param isJob backup called from job
          */
@@ -81,7 +80,7 @@ class BackupCreateService : IntentService(NAME) {
      * @param uri path of Uri
      * @param isJob backup called from job
      */
-    fun createBackupFromApp(uri: Uri, flags: Int, isJob: Boolean) {
+    private fun createBackupFromApp(uri: Uri, flags: Int, isJob: Boolean) {
         // Create root object
         val root = JsonObject()
 
@@ -115,20 +114,20 @@ class BackupCreateService : IntentService(NAME) {
             // When BackupCreatorJob
             if (isJob) {
                 // Get dir of file and create
-                val dir = UniFile.fromUri(this, uri)
-                val autoDir = dir.createDirectory(getString(R.string.automatic_backup))
+                var dir = UniFile.fromUri(this, uri)
+                dir = dir.createDirectory("automatic")
 
                 // Delete older backups
                 val numberOfBackups = backupManager.numberOfBackups()
                 val backupRegex = Regex("""tachiyomi_\d+-\d+-\d+_\d+-\d+.json""")
-                autoDir.listFiles { _, filename -> backupRegex.matches(filename) }
+                dir.listFiles { _, filename -> backupRegex.matches(filename) }
                         .orEmpty()
                         .sortedByDescending { it.name }
                         .drop(numberOfBackups - 1)
                         .forEach { it.delete() }
 
                 // Create new file to place backup
-                val newFile = autoDir.createFile(Backup.getDefaultFilename())
+                val newFile = dir.createFile(Backup.getDefaultFilename())
                         ?: throw Exception("Couldn't create backup file")
 
                 newFile.openOutputStream().bufferedWriter().use {
