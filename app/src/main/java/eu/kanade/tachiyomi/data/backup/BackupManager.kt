@@ -23,6 +23,7 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.*
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.util.syncChaptersWithSource
@@ -40,6 +41,11 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
      * Source manager.
      */
     internal val sourceManager: SourceManager by injectLazy()
+
+    /**
+     * Tracking manager
+     */
+    internal val trackManager: TrackManager by injectLazy()
 
     /**
      * Version of parser
@@ -67,18 +73,16 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
         parser = initParser()
     }
 
-    private fun initParser(): Gson {
-        return when (version) {
-            1 -> GsonBuilder().create()
-            2 -> GsonBuilder()
-                    .registerTypeAdapter<MangaImpl>(MangaTypeAdapter.build())
-                    .registerTypeHierarchyAdapter<ChapterImpl>(ChapterTypeAdapter.build())
-                    .registerTypeAdapter<CategoryImpl>(CategoryTypeAdapter.build())
-                    .registerTypeAdapter<DHistory>(HistoryTypeAdapter.build())
-                    .registerTypeHierarchyAdapter<TrackImpl>(TrackTypeAdapter.build())
-                    .create()
-            else -> throw Exception("Json version unknown")
-        }
+    private fun initParser(): Gson = when (version) {
+        1 -> GsonBuilder().create()
+        2 -> GsonBuilder()
+                .registerTypeAdapter<MangaImpl>(MangaTypeAdapter.build())
+                .registerTypeHierarchyAdapter<ChapterImpl>(ChapterTypeAdapter.build())
+                .registerTypeAdapter<CategoryImpl>(CategoryTypeAdapter.build())
+                .registerTypeAdapter<DHistory>(HistoryTypeAdapter.build())
+                .registerTypeHierarchyAdapter<TrackImpl>(TrackTypeAdapter.build())
+                .create()
+        else -> throw Exception("Json version unknown")
     }
 
     /**
@@ -300,23 +304,26 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
         val trackToUpdate = ArrayList<Track>()
 
         for (track in tracks) {
-            var isInDatabase = false
-            for (dbTrack in dbTracks) {
-                if (track.sync_id == dbTrack.sync_id) {
-                    // The sync is already in the db, only update its fields
-                    if (track.remote_id != dbTrack.remote_id) {
-                        dbTrack.remote_id = track.remote_id
+            val service = trackManager.getService(track.sync_id)
+            if (service != null && service.isLogged) {
+                var isInDatabase = false
+                for (dbTrack in dbTracks) {
+                    if (track.sync_id == dbTrack.sync_id) {
+                        // The sync is already in the db, only update its fields
+                        if (track.remote_id != dbTrack.remote_id) {
+                            dbTrack.remote_id = track.remote_id
+                        }
+                        dbTrack.last_chapter_read = Math.max(dbTrack.last_chapter_read, track.last_chapter_read)
+                        isInDatabase = true
+                        trackToUpdate.add(dbTrack)
+                        break
                     }
-                    dbTrack.last_chapter_read = Math.max(dbTrack.last_chapter_read, track.last_chapter_read)
-                    isInDatabase = true
-                    trackToUpdate.add(dbTrack)
-                    break
                 }
-            }
-            if (!isInDatabase) {
-                // Insert new sync. Let the db assign the id
-                track.id = null
-                trackToUpdate.add(track)
+                if (!isInDatabase) {
+                    // Insert new sync. Let the db assign the id
+                    track.id = null
+                    trackToUpdate.add(track)
+                }
             }
         }
         // Update database
@@ -361,32 +368,29 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
      *
      * @return [Manga], null if not found
      */
-    internal fun getMangaFromDatabase(manga: Manga): Manga? {
-        return databaseHelper.getManga(manga.url, manga.source).executeAsBlocking()
-    }
+    internal fun getMangaFromDatabase(manga: Manga): Manga? =
+            databaseHelper.getManga(manga.url, manga.source).executeAsBlocking()
 
     /**
      * Returns list containing manga from library
      *
      * @return [Manga] from library
      */
-    internal fun getFavoriteManga(): List<Manga> {
-        return databaseHelper.getFavoriteMangas().executeAsBlocking()
-    }
+    internal fun getFavoriteManga(): List<Manga> =
+            databaseHelper.getFavoriteMangas().executeAsBlocking()
 
     /**
      * Inserts manga and returns id
      *
      * @return id of [Manga], null if not found
      */
-    internal fun insertManga(manga: Manga): Long? {
-        return databaseHelper.insertManga(manga).executeAsBlocking().insertedId()
-    }
+    internal fun insertManga(manga: Manga): Long? =
+            databaseHelper.insertManga(manga).executeAsBlocking().insertedId()
 
     /**
      * Inserts list of chapters
      */
-    internal fun insertChapters(chapters: List<Chapter>) {
+    private fun insertChapters(chapters: List<Chapter>) {
         databaseHelper.updateChaptersBackup(chapters).executeAsBlocking()
     }
 
@@ -395,7 +399,5 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
      *
      * @return number of backups selected by user
      */
-    fun numberOfBackups(): Int {
-        return preferences.numberOfBackups().getOrDefault()
-    }
+    fun numberOfBackups(): Int = preferences.numberOfBackups().getOrDefault()
 }

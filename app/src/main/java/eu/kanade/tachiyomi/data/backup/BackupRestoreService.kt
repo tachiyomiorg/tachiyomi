@@ -21,6 +21,7 @@ import eu.kanade.tachiyomi.data.backup.models.Backup.VERSION
 import eu.kanade.tachiyomi.data.backup.models.DHistory
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.*
+import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.util.chop
 import eu.kanade.tachiyomi.util.isServiceRunning
@@ -49,9 +50,8 @@ class BackupRestoreService : Service() {
          * @param context the application context.
          * @return true if the service is running, false otherwise.
          */
-        fun isRunning(context: Context): Boolean {
-            return context.isServiceRunning(BackupRestoreService::class.java)
-        }
+        private fun isRunning(context: Context): Boolean =
+                context.isServiceRunning(BackupRestoreService::class.java)
 
         /**
          * Starts a service to restore a backup from Json
@@ -113,7 +113,13 @@ class BackupRestoreService : Service() {
      */
     private val db: DatabaseHelper by injectLazy()
 
-    lateinit var executor: ExecutorService
+    /**
+     * Tracking manager
+     */
+    internal val trackManager: TrackManager by injectLazy()
+
+
+    private lateinit var executor: ExecutorService
 
     /**
      * Method called when the service is created. It injects dependencies and acquire the wake lock.
@@ -142,9 +148,7 @@ class BackupRestoreService : Service() {
     /**
      * This method needs to be implemented, but it's not used/needed.
      */
-    override fun onBind(intent: Intent): IBinder? {
-        return null
-    }
+    override fun onBind(intent: Intent): IBinder? = null
 
     /**
      * Method called when the service receives an intent.
@@ -164,7 +168,7 @@ class BackupRestoreService : Service() {
 
         subscription = Observable.using(
                 { db.lowLevel().beginTransaction() },
-                { getRestoreObservable(uri).doOnNext{ db.lowLevel().setTransactionSuccessful() } },
+                { getRestoreObservable(uri).doOnNext { db.lowLevel().setTransactionSuccessful() } },
                 { executor.execute { db.lowLevel().endTransaction() } })
                 .doAfterTerminate { stopSelf(startId) }
                 .subscribeOn(Schedulers.from(executor))
@@ -294,14 +298,14 @@ class BackupRestoreService : Service() {
         val source = backupManager.sourceManager.get(manga.source) ?: return null
         val dbManga = backupManager.getMangaFromDatabase(manga)
 
-        if (dbManga == null) {
+        return if (dbManga == null) {
             // Manga not in database
-            return mangaFetchObservable(source, manga, chapters, categories, history, tracks)
+            mangaFetchObservable(source, manga, chapters, categories, history, tracks)
         } else { // Manga in database
             // Copy information from manga already in database
             backupManager.restoreMangaNoFetch(manga, dbManga)
             // Fetch rest of manga information
-            return mangaNoFetchObservable(source, manga, chapters, categories, history, tracks)
+            mangaNoFetchObservable(source, manga, chapters, categories, history, tracks)
         }
     }
 
@@ -327,14 +331,12 @@ class BackupRestoreService : Service() {
                             .map { manga }
                 }
                 .doOnNext {
-                    // Restore categories
-                    backupManager.restoreCategoriesForManga(it, categories)
-
-                    // Restore history
-                    backupManager.restoreHistoryForManga(history)
-
-                    // Restore tracking
-                    backupManager.restoreTrackForManga(it, tracks)
+                    restoreExtraForManga(it, categories, history, tracks)
+                }
+                .flatMap {
+                    trackingFetchObservable(it, tracks)
+                            // Convert to the manga that contains new chapters.
+                            .map { manga }
                 }
                 .doOnCompleted {
                     restoreProgress += 1
@@ -356,19 +358,28 @@ class BackupRestoreService : Service() {
                     }
                 }
                 .doOnNext {
-                    // Restore categories
-                    backupManager.restoreCategoriesForManga(it, categories)
-
-                    // Restore history
-                    backupManager.restoreHistoryForManga(history)
-
-                    // Restore tracking
-                    backupManager.restoreTrackForManga(it, tracks)
+                    restoreExtraForManga(it, categories, history, tracks)
+                }
+                .flatMap { manga ->
+                    trackingFetchObservable(manga, tracks)
+                            // Convert to the manga that contains new chapters.
+                            .map { manga }
                 }
                 .doOnCompleted {
                     restoreProgress += 1
                     showRestoreProgress(restoreProgress, restoreAmount, backupManga.title, errors.size)
                 }
+    }
+
+    private fun restoreExtraForManga(manga: Manga, categories: List<String>, history: List<DHistory>, tracks: List<Track>) {
+        // Restore categories
+        backupManager.restoreCategoriesForManga(manga, categories)
+
+        // Restore history
+        backupManager.restoreHistoryForManga(history)
+
+        // Restore tracking
+        backupManager.restoreTrackForManga(manga, tracks)
     }
 
     /**
@@ -383,10 +394,33 @@ class BackupRestoreService : Service() {
                 // If there's any error, return empty update and continue.
                 .onErrorReturn {
                     errors.add(Date() to "${manga.title} - ${it.message}")
-                    Pair(emptyList<Chapter>(), emptyList<Chapter>())
+                    Pair(emptyList(), emptyList())
                 }
     }
 
+    /**
+     * [Observable] that refreshes tracking information
+     * @param manga manga that needs updating.
+     * @param tracks list containing tracks from restore file.
+     * @return [Observable] that contains updated track item
+     */
+    private fun trackingFetchObservable(manga: Manga, tracks: List<Track>): Observable<Track> {
+        return Observable.from(tracks)
+                .concatMap { track ->
+                    val service = trackManager.getService(track.sync_id)
+                    if (service != null && service.isLogged) {
+                        service.refresh(track)
+                                .doOnNext { db.insertTrack(it).executeAsBlocking() }
+                                .onErrorReturn {
+                                    errors.add(Date() to "${manga.title} - ${it.message}")
+                                    track
+                                }
+                    } else {
+                        errors.add(Date() to "${manga.title} - ${service?.name} not logged in")
+                        Observable.empty()
+                    }
+                }
+    }
 
     /**
      * Called to update dialog in [BackupConst]

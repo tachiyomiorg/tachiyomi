@@ -201,7 +201,7 @@
     <string name="dialog_restoring_backup">Backup wird wiederhergestellt
 %1$s zur Bibliothek hinzugefügt</string>
     <string name="source_not_found">Quelle nicht gefunden</string>
-    <string name="dialog_restoring_source_not_found">Backup wird wiederhergestellt %1%s
+    <string name="dialog_restoring_source_not_found">Backup wird wiederhergestellt %1$s
 \nQuelle nicht gefunden</string>
     <string name="backup_created">Backup erstellt</string>
     <string name="restore_completed">Wiederherstellen erfolgreich</string>
