@@ -82,7 +82,7 @@
     <string name="pref_category_reader">Четец</string>
     <string name="pref_category_downloads">Изтегляния</string>
     <string name="pref_category_sources">Източници</string>
-    <string name="pref_category_tracking">Проследяване</string>
+    <string name="pref_category_tracking">Следене</string>
     <string name="pref_category_advanced">Разширени настройки</string>
     <string name="pref_category_about">За приложението</string>
 
@@ -274,11 +274,11 @@
     <string name="confirm_delete_chapters">Сигурни ли сте, че искате да изтриете избраните глави?</string>
 
     <!-- MyAnimeList fragment -->
-    <string name="manga_tracking_tab">Проследяване</string>
+    <string name="manga_tracking_tab">Следене</string>
     <string name="reading">В прочит</string>
     <string name="completed">Завършена</string>
     <string name="dropped">Изоставена</string>
-    <string name="on_hold">На изчакване</string>
+    <string name="on_hold">На заден план</string>
     <string name="plan_to_read">Планирам да чета</string>
     <string name="score">Оценка</string>
     <string name="title">Заглавие</string>
@@ -303,7 +303,7 @@
 
     <!-- Reader activity -->
     <string name="custom_filter">Персонализиран филтър</string>
-    <string name="set_as_cover">Постави като корица</string>
+    <string name="set_as_cover">Постави за корица</string>
     <string name="cover_updated">Корицата обновена</string>
     <string name="page_downloaded">Страницата копирана на %1$s</string>
     <string name="downloading">Изтегляне…</string>
@@ -378,7 +378,7 @@
 
 <string name="categories">Категории</string>
     <string name="manga">Манга</string>
-    <string name="track">Проследяване</string>
+    <string name="track">Следене</string>
     <string name="history">История</string>
 
     <string name="action_sort_total">Общо глави</string>
@@ -430,12 +430,12 @@
 
       <string name="also_delete_chapters">Също изтрий изтеглените глави</string>
 
-    <string name="local_source">Манга на устройството</string>
+    <string name="local_source">Локална манга</string>
     <string name="invalid_combination">\"По подразбиране\" не може да се избира с други категории</string>
     <string name="added_to_library">Мангата беше добавена към библиотеката Ви</string>
 
     <string name="manga_info_last_chapter_label">Последна глава</string>
-    <string name="delete_downloads_for_manga">Изтрий изтеглените глави?</string>
+    <string name="delete_downloads_for_manga">Да се изтрият ли изтеглените глави?</string>
 
     <string name="chapter_paused">На пауза</string>
     <string name="notification_new_chapters_text">За %1$d заглавия</string>
@@ -458,5 +458,5 @@
     <string name="channel_library">Библиотека</string>
     <string name="channel_downloader">Изтегляния</string>
 <string name="action_display_download_badge">Изтегли значки</string>
-    <string name="local_source_badge">На устройството</string>
+    <string name="local_source_badge">Локална</string>
     </resources>
