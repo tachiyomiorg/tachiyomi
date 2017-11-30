@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.catalogue
+package eu.kanade.tachiyomi.ui.extension
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
 import android.view.View
 
-class SourceDividerItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
+class ExtensionDividerItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
     private val divider: Drawable
 
@@ -22,8 +22,8 @@ class SourceDividerItemDecoration(context: Context) : RecyclerView.ItemDecoratio
         for (i in 0 until childCount - 1) {
             val child = parent.getChildAt(i)
             val holder = parent.getChildViewHolder(child)
-            if (holder is SourceHolder &&
-                    parent.getChildViewHolder(parent.getChildAt(i + 1)) is SourceHolder) {
+            if (holder is ExtensionHolder &&
+                    parent.getChildViewHolder(parent.getChildAt(i + 1)) is ExtensionHolder) {
                 val params = child.layoutParams as RecyclerView.LayoutParams
                 val top = child.bottom + params.bottomMargin
                 val bottom = top + divider.intrinsicHeight

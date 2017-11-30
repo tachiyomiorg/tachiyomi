@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.source.online.english
 
 import android.text.Html
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.POST
 import eu.kanade.tachiyomi.network.asObservable
@@ -9,14 +10,11 @@ import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.source.online.ParsedHttpSource
 import eu.kanade.tachiyomi.util.asJsoup
 import eu.kanade.tachiyomi.util.selectText
-import okhttp3.FormBody
-import okhttp3.HttpUrl
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
+import okhttp3.*
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import rx.Observable
+import uy.kohesive.injekt.injectLazy
 import java.net.URI
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -24,6 +22,9 @@ import java.util.*
 import java.util.regex.Pattern
 
 class Batoto : ParsedHttpSource(), LoginSource {
+
+    // TODO remove
+    private val preferences: PreferencesHelper by injectLazy()
 
     override val id: Long = 1
 

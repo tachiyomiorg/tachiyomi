@@ -8,33 +8,49 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.source.SourceManager
-import uy.kohesive.injekt.api.InjektModule
-import uy.kohesive.injekt.api.InjektRegistrar
-import uy.kohesive.injekt.api.addSingletonFactory
+import kotlinx.coroutines.experimental.async
+import uy.kohesive.injekt.api.*
 
 class AppModule(val app: Application) : InjektModule {
 
     override fun InjektRegistrar.registerInjectables() {
 
-            addSingletonFactory { PreferencesHelper(app) }
+        addSingleton(app)
 
-            addSingletonFactory { DatabaseHelper(app) }
+        addSingletonFactory { PreferencesHelper(app) }
 
-            addSingletonFactory { ChapterCache(app) }
+        addSingletonFactory { DatabaseHelper(app) }
 
-            addSingletonFactory { CoverCache(app) }
+        addSingletonFactory { ChapterCache(app) }
 
-            addSingletonFactory { NetworkHelper(app) }
+        addSingletonFactory { CoverCache(app) }
 
-            addSingletonFactory { SourceManager(app) }
+        addSingletonFactory { NetworkHelper(app) }
 
-            addSingletonFactory { DownloadManager(app) }
+        addSingletonFactory { SourceManager(app).also { get<ExtensionManager>().init(it) } }
 
-            addSingletonFactory { TrackManager(app) }
+        addSingletonFactory { ExtensionManager(app) }
 
-            addSingletonFactory { Gson() }
+        addSingletonFactory { DownloadManager(app) }
+
+        addSingletonFactory { TrackManager(app) }
+
+        addSingletonFactory { Gson() }
+
+        // Asynchronously init expensive components for a faster cold start
+
+        async { get<PreferencesHelper>() }
+
+        async { get<NetworkHelper>() }
+
+        async { get<SourceManager>() }
+
+        async { get<DatabaseHelper>() }
+
+        async { get<DownloadManager>() }
 
     }
 

@@ -109,9 +109,13 @@ object PreferenceKeys {
 
     const val downloadBadge = "display_download_badge"
 
+    @Deprecated("Use the preferences of the source")
     fun sourceUsername(sourceId: Long) = "pref_source_username_$sourceId"
 
+    @Deprecated("Use the preferences of the source")
     fun sourcePassword(sourceId: Long) = "pref_source_password_$sourceId"
+
+    fun sourceSharedPref(sourceId: Long) = "source_$sourceId"
 
     fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 
