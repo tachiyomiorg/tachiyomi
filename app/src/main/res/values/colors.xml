@@ -4,6 +4,13 @@
     <color name="colorPrimary">#54759e</color>
     <color name="colorPrimaryDark">#435e7e</color>
 
+    <!--Teal colors -->
+    <color name="colorPrimaryTeal">#26a69a</color>
+    <color name="colorPrimaryDarkTeal">#00766c</color>
+    <color name="colorAccentLightTeal">#64d8cb</color>
+    <color name="colorAccentDarkTeal">#82e9de</color>
+
+
     <!-- Light Theme -->
     <color name="colorAccentLight">@color/md_blue_A400</color>
     <color name="textColorPrimaryLight">@color/md_black_1000_87</color>

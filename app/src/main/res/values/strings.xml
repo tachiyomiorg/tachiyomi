@@ -135,9 +135,12 @@
     <string name="pref_auto_update_manga_sync">Sync chapters after reading</string>
     <string name="pref_ask_update_manga_sync">Confirm before updating</string>
     <string name="pref_theme">Application theme</string>
-    <string name="light_theme">Main theme</string>
-    <string name="dark_theme">Dark theme</string>
-    <string name="amoled_theme">AMOLED theme</string>
+    <string name="light_theme_blue">Light theme with blue</string>
+    <string name="dark_theme_blue">Dark theme with blue</string>
+    <string name="amoled_theme_blue">AMOLED theme with blue</string>
+    <string name="light_theme_teal">Main theme with teal</string>
+    <string name="dark_theme_teal">Dark theme with teal</string>
+    <string name="amoled_theme_teal">AMOLED theme with teal</string>
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>
     <string name="system_default">System default</string>

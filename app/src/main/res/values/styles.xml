@@ -20,16 +20,27 @@
     <!--===========-->
     <style name="Theme.AlertDialog" />
 
-    <style name="Theme.AlertDialog.Light" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="Theme.AlertDialog.Light.Base" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
         <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+    </style>
+    <style name="Theme.AlertDialog.Light.Blue" parent="Theme.AlertDialog.Light.Base">
         <item name="colorAccent">@color/colorAccentLight</item>
     </style>
+    <style name="Theme.AlertDialog.Light.Teal" parent="Theme.AlertDialog.Light.Base">
+        <item name="colorAccent">@color/colorAccentLightTeal</item>
+    </style>
 
-    <style name="Theme.AlertDialog.Dark" parent="Theme.AppCompat.Dialog.Alert">
+    <style name="Theme.AlertDialog.Dark.Base" parent="Theme.AppCompat.Dialog.Alert">
         <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
         <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
         <item name="colorAccent">@color/colorAccentDark</item>
+    </style>
+    <style name="Theme.AlertDialog.Dark.Blue" parent="Theme.AlertDialog.Dark.Base">
+        <item name="colorAccent">@color/colorAccentDark</item>
+    </style>
+    <style name="Theme.AlertDialog.Dark.Teal" parent="Theme.AlertDialog.Dark.Base">
+        <item name="colorAccent">@color/colorAccentDarkTeal</item>
     </style>
 
     <!--==============-->
