@@ -118,7 +118,7 @@ class Readmanga : ParsedHttpSource() {
         val endIndex = html.indexOf("], 0, false);", beginIndex)
         val trimmedHtml = html.substring(beginIndex, endIndex)
 
-        val p = Pattern.compile("'.+?','.+?',\".+?\"")
+        val p = Pattern.compile("'.*?','.*?',\".*?\"")
         val m = p.matcher(trimmedHtml)
 
         val pages = mutableListOf<Page>()
