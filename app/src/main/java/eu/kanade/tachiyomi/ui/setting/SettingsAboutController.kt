@@ -71,7 +71,7 @@ class SettingsAboutController : SettingsController() {
         }
         preference {
             title = "Discord"
-            val url = "https://discord.gg/WrBkRk4"
+            val url = "https://discord.gg/2dDQBv2"
             summary = url
             onClick {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
