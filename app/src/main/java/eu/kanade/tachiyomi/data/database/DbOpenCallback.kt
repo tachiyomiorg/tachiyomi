@@ -6,6 +6,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import eu.kanade.tachiyomi.data.database.tables.*
+import eu.kanade.tachiyomi.data.database.models.UpdateTarget
 
 class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
 
@@ -28,6 +29,7 @@ class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
         execSQL(CategoryTable.createTableQuery)
         execSQL(MangaCategoryTable.createTableQuery)
         execSQL(HistoryTable.createTableQuery)
+        execSQL(SyncUpdatesTable.createTableQuery)
 
         // DB indexes
         execSQL(MangaTable.createUrlIndexQuery)
@@ -35,6 +37,16 @@ class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
         execSQL(ChapterTable.createMangaIdIndexQuery)
         execSQL(ChapterTable.createUnreadChaptersIndexQuery)
         execSQL(HistoryTable.createChapterIdIndexQuery)
+    
+        // Gen triggers
+        val triggerGen = TriggerGenerator()
+        UpdateTarget.registeredObjects.forEach {
+            it.fields.forEach {
+                triggerGen.genTriggers(it).forEach {
+                    execSQL(it)
+                }
+            }
+        }
     }
 
     override fun onUpgrade(db: SupportSQLiteDatabase, oldVersion: Int, newVersion: Int) {
