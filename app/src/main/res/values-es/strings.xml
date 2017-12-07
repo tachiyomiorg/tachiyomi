@@ -444,4 +444,20 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
 
     <string name="download_notifier_downloader_title">Descargador</string>
     <string name="invalid_combination">Predefinido no puede ser seleccionada con otras categorías</string>
-    </resources>
+    <string name="action_global_search">Búsqueda global</string>
+    <string name="action_display_download_badge">Icono de descargas</string>
+    <string name="action_open">Abrir</string>
+    <string name="action_login">Iniciar sesión</string>
+
+    <string name="local_source_badge">Local</string>
+    <string name="other_source">Otros</string>
+    <string name="action_global_search_hint">Búsqueda global…</string>
+    <string name="no_results">Ningún resultado encontrado!</string>
+    <string name="latest">Recientes</string>
+    <string name="browse">Explorar</string>
+
+    <string name="shortcut_created">Acceso directo fue agregado a la pantalla de inicio.</string>
+    <string name="channel_common">Común</string>
+    <string name="channel_library">Librería</string>
+    <string name="channel_downloader">Descargador</string>
+</resources>
