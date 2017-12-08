@@ -17,7 +17,7 @@ class Mangafox : ParsedHttpSource() {
 
     override val name = "Mangafox"
 
-    override val baseUrl = "http://mangafox.me"
+    override val baseUrl = "http://mangafox.la"
 
     override val lang = "en"
 
