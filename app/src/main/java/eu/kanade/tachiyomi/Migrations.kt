@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
-import eu.kanade.tachiyomi.data.updater.UpdateCheckerJob
+import eu.kanade.tachiyomi.data.updater.UpdaterJob
 import java.io.File
 
 object Migrations {
@@ -25,7 +25,7 @@ object Migrations {
             if (oldVersion < 14) {
                 // Restore jobs after upgrading to evernote's job scheduler.
                 if (BuildConfig.INCLUDE_UPDATER && preferences.automaticUpdates()) {
-                    UpdateCheckerJob.setupTask()
+                    UpdaterJob.setupTask()
                 }
                 LibraryUpdateJob.setupTask()
             }

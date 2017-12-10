@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.data.updater
 import eu.kanade.tachiyomi.BuildConfig
 import rx.Observable
 
-class GithubUpdateChecker() {
+class GithubUpdateChecker {
 
     private val service: GithubService = GithubService.create()
 

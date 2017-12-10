@@ -11,8 +11,8 @@ import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.updater.GithubUpdateChecker
 import eu.kanade.tachiyomi.data.updater.GithubUpdateResult
-import eu.kanade.tachiyomi.data.updater.UpdateCheckerJob
-import eu.kanade.tachiyomi.data.updater.UpdateDownloaderService
+import eu.kanade.tachiyomi.data.updater.UpdaterJob
+import eu.kanade.tachiyomi.data.updater.UpdaterService
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.util.toast
 import rx.Subscription
@@ -59,9 +59,9 @@ class SettingsAboutController : SettingsController() {
                 onChange { newValue ->
                     val checked = newValue as Boolean
                     if (checked) {
-                        UpdateCheckerJob.setupTask()
+                        UpdaterJob.setupTask()
                     } else {
-                        UpdateCheckerJob.cancelTask()
+                        UpdaterJob.cancelTask()
                     }
                     true
                 }
@@ -148,7 +148,7 @@ class SettingsAboutController : SettingsController() {
                         if (appContext != null) {
                             // Start download
                             val url = args.getString(URL_KEY)
-                            UpdateDownloaderService.downloadUpdate(appContext, url)
+                            UpdaterService.downloadUpdate(appContext, url)
                         }
                     }
                     .build()

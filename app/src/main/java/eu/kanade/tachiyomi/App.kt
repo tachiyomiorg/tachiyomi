@@ -8,7 +8,7 @@ import com.evernote.android.job.JobManager
 import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.notification.Notifications
-import eu.kanade.tachiyomi.data.updater.UpdateCheckerJob
+import eu.kanade.tachiyomi.data.updater.UpdaterJob
 import eu.kanade.tachiyomi.util.LocaleHelper
 import org.acra.ACRA
 import org.acra.annotation.ReportsCrashes
@@ -60,7 +60,7 @@ open class App : Application() {
         JobManager.create(this).addJobCreator { tag ->
             when (tag) {
                 LibraryUpdateJob.TAG -> LibraryUpdateJob()
-                UpdateCheckerJob.TAG -> UpdateCheckerJob()
+                UpdaterJob.TAG -> UpdaterJob()
                 BackupCreatorJob.TAG -> BackupCreatorJob()
                 else -> null
             }
