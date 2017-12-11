@@ -12,21 +12,31 @@ import eu.kanade.tachiyomi.util.notificationManager
 /**
  * DownloadNotifier is used to show notifications when downloading and update.
  *
- * @param context context of application
+ * @param context context of application.
  */
 internal class UpdaterNotifier(private val context: Context) {
 
     /**
-     * Builder to manage notifications
+     * Builder to manage notifications.
      */
     private val notification by lazy {
         NotificationCompat.Builder(context, Notifications.CHANNEL_COMMON)
     }
 
+    /**
+     * Call to show notification.
+     *
+     * @param id id of the notification channel.
+     */
     private fun NotificationCompat.Builder.show(id: Int = Notifications.ID_UPDATER) {
         context.notificationManager.notify(id, build())
     }
 
+    /**
+     * Call when apk download starts.
+     *
+     * @param title tile of notification.
+     */
     fun onDownloadStarted(title: String) {
         with(notification) {
             setContentTitle(title)
@@ -37,6 +47,11 @@ internal class UpdaterNotifier(private val context: Context) {
         notification.show()
     }
 
+    /**
+     * Call when apk download progress changes.
+     *
+     * @param progress progress of download (xx%/100).
+     */
     fun onProgressChange(progress: Int) {
         with(notification) {
             setProgress(100, progress, false)
@@ -45,6 +60,11 @@ internal class UpdaterNotifier(private val context: Context) {
         notification.show()
     }
 
+    /**
+     * Call when apk download is finished.
+     *
+     * @param uri path location of apk.
+     */
     fun onDownloadFinished(uri: Uri) {
         with(notification) {
             setContentText(context.getString(R.string.update_check_notification_download_complete))
@@ -64,6 +84,11 @@ internal class UpdaterNotifier(private val context: Context) {
         notification.show()
     }
 
+    /**
+     * Call when apk download throws a error
+     *
+     * @param url web location of apk to download.
+     */
     fun onDownloadError(url: String) {
         with(notification) {
             setContentText(context.getString(R.string.update_check_notification_download_error))
