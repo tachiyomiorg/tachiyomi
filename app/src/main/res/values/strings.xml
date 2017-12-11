@@ -447,5 +447,4 @@
     <string name="channel_common">Common</string>
     <string name="channel_library">Library</string>
     <string name="channel_downloader">Downloader</string>
-    <string name="channel_updater">Updater</string>
 </resources>
