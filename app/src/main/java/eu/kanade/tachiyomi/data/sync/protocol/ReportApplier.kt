@@ -17,7 +17,7 @@ class ReportApplier {
     fun apply(report: SyncReport) {
         //TODO Match sources
         db.inTransaction {
-            //Must be in order as some entites depend on previous entities to already be
+            //Must be in order as some entities depend on previous entities to already be
             //in DB!
             applyManga(report)
             applyChapters(report)

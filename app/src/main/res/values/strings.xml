@@ -506,8 +506,8 @@
     <string name="channel_downloader">Downloader</string>
 
     <!-- Sync -->
-    <string name="sync_account_label">TachiWeb Server</string>
-    <string name="sync_authorize_activity_title">Add Server</string>
+    <string name="sync_account_label">Sync server</string>
+    <string name="sync_authorize_activity_title">Add server</string>
     <string name="sync_server_url">Server URL</string>
     <string name="sync_password">Password</string>
 
