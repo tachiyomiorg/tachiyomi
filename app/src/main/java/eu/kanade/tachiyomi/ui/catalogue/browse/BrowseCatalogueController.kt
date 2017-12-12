@@ -20,7 +20,7 @@ import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.SecondaryDrawerController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
-import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
+import eu.kanade.tachiyomi.ui.library.AddToLibraryDialog
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.*
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
@@ -43,7 +43,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
         FlexibleAdapter.EndlessScrollListener,
-        ChangeMangaCategoriesDialog.Listener {
+        AddToLibraryDialog.Listener {
 
     constructor(source: CatalogueSource) : this(Bundle().apply {
         putLong(SOURCE_ID_KEY, source.id)
@@ -478,15 +478,16 @@ open class BrowseCatalogueController(bundle: Bundle) :
             val defaultCategory = categories.find { it.id == preferences.defaultCategory() }
             if (defaultCategory != null) {
                 presenter.moveMangaToCategory(manga, defaultCategory)
-            } else if (categories.size <= 1) { // default or the one from the user
-                presenter.moveMangaToCategory(manga, categories.firstOrNull())
             } else {
                 val ids = presenter.getMangaCategoryIds(manga)
-                val preselected = ids.mapNotNull { id ->
-                    categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
-                }.toTypedArray()
+                var preselected = emptyArray<Int>()
+                if (categories.size > 1) {
+                    preselected = ids.mapNotNull { id ->
+                        categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
+                    }.toTypedArray()
+                }
 
-                ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
+                AddToLibraryDialog(this, listOf(manga), categories, preselected)
                         .showDialog(router)
             }
             activity?.toast(activity?.getString(R.string.manga_added_library))
