@@ -189,6 +189,7 @@ class LibraryController(
                 is LibraryNavigationView.SortGroup -> onSortChanged()
                 is LibraryNavigationView.DisplayGroup -> reattachAdapter()
                 is LibraryNavigationView.BadgeGroup -> onDownloadBadgeChanged()
+                is LibraryNavigationView.AllGroup -> onCategoryChange()
             }
         }
 
@@ -240,7 +241,11 @@ class LibraryController(
             activeCategory
 
         // Set the categories
-        adapter.categories = categories
+        if (preferences.showAllCategory().getOrDefault()) {
+            adapter.categories = categories
+        } else {
+            adapter.categories = presenter.categories.filter { it.id != 0 }
+        }
 
         // Restore active category.
         library_pager.setCurrentItem(activeCat, false)
@@ -278,7 +283,7 @@ class LibraryController(
         activity?.invalidateOptionsMenu()
     }
 
-    private fun onDownloadBadgeChanged(){
+    private fun onDownloadBadgeChanged() {
         presenter.requestDownloadBadgesUpdate()
     }
 
@@ -287,6 +292,10 @@ class LibraryController(
      */
     private fun onSortChanged() {
         presenter.requestSortUpdate()
+    }
+
+    private fun onCategoryChange(){
+        presenter.requestAllCategoryUpdate()
     }
 
     /**

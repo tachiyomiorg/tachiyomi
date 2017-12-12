@@ -107,6 +107,8 @@ object PreferenceKeys {
 
     const val downloadBadge = "display_download_badge"
 
+    const val showAllCategory = "display_all_category"
+
     fun sourceUsername(sourceId: Long) = "pref_source_username_$sourceId"
 
     fun sourcePassword(sourceId: Long) = "pref_source_password_$sourceId"

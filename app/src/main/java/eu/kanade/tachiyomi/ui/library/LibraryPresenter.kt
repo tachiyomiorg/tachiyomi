@@ -72,6 +72,11 @@ class LibraryPresenter(
     private val sortTriggerRelay = BehaviorRelay.create(Unit)
 
     /**
+     * Relay used to apply the show all category  to the last emission of the library.
+     */
+    private val allCategoryTriggerRelay = BehaviorRelay.create(Unit)
+
+    /**
      * Library subscription.
      */
     private var librarySubscription: Subscription? = null
@@ -93,6 +98,7 @@ class LibraryPresenter(
                             { lib, _ -> lib.copy(mangaMap = applyFilters(lib.mangaMap)) })
                     .combineLatest(sortTriggerRelay.observeOn(Schedulers.io()),
                             { lib, _ -> lib.copy(mangaMap = applySort(lib.mangaMap)) })
+                    .combineLatest(allCategoryTriggerRelay.observeOn(Schedulers.io()), { lib, _ -> lib.copy(mangaMap = lib.mangaMap) })
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeLatestCache({ view, (categories, mangaMap) ->
                         view.onNextLibraryUpdate(categories, mangaMap)
@@ -287,6 +293,13 @@ class LibraryPresenter(
      */
     fun requestSortUpdate() {
         sortTriggerRelay.call(Unit)
+    }
+
+    /**
+     * Requests the all category to be shown or removed
+     */
+    fun requestAllCategoryUpdate() {
+        allCategoryTriggerRelay.call(Unit)
     }
 
     /**

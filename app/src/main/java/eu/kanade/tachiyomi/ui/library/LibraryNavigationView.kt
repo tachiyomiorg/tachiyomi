@@ -15,7 +15,7 @@ import uy.kohesive.injekt.injectLazy
  * The navigation view shown in a drawer with the different options to show the library.
  */
 class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null)
-: ExtendedNavigationView(context, attrs) {
+    : ExtendedNavigationView(context, attrs) {
 
     /**
      * Preferences helper.
@@ -25,7 +25,7 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
     /**
      * List of groups shown in the view.
      */
-    private val groups = listOf(FilterGroup(), SortGroup(),  DisplayGroup(), BadgeGroup())
+    private val groups = listOf(FilterGroup(), SortGroup(), DisplayGroup(), BadgeGroup(), AllGroup())
 
     /**
      * Adapter instance.
@@ -62,7 +62,7 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
                 onGroupClicked(item.group)
             }
         }
-        
+
     }
 
     /**
@@ -169,7 +169,7 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
     inner class BadgeGroup : Group {
         private val downloadBadge = Item.CheckboxGroup(R.string.action_display_download_badge, this)
         override val header = null
-        override val footer= null
+        override val footer = null
         override val items = listOf(downloadBadge)
         override fun initModels() {
             downloadBadge.checked = preferences.downloadBadge().getOrDefault()
@@ -182,6 +182,24 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
             adapter.notifyItemChanged(item)
         }
     }
+
+    inner class AllGroup : Group {
+        private val allCategory = Item.CheckboxGroup(R.string.action_display_all_category, this)
+        override val header = null
+        override val footer = null
+        override val items = listOf(allCategory)
+        override fun initModels() {
+            allCategory.checked = preferences.showAllCategory().getOrDefault()
+        }
+
+        override fun onItemClicked(item: Item) {
+            item as Item.CheckboxGroup
+            item.checked = !item.checked
+            preferences.showAllCategory().set((item.checked))
+            adapter.notifyItemChanged(item)
+        }
+    }
+
 
     /**
      * Display group, to show the library as a list or a grid.

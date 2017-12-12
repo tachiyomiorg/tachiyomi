@@ -167,4 +167,6 @@ class PreferencesHelper(val context: Context) {
 
     fun migrateFlags() = rxPrefs.getInteger("migrate_flags", Int.MAX_VALUE)
 
+    fun showAllCategory() = rxPrefs.getBoolean(Keys.downloadBadge, true)
+
 }
