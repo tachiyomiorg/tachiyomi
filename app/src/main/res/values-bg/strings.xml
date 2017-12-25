@@ -27,8 +27,8 @@
     <string name="action_sort_last_updated">По обновления</string>
     <string name="action_search">Търсене</string>
     <string name="action_select_all">Избери всички</string>
-    <string name="action_mark_as_read">Отбележи като прочетена</string>
-    <string name="action_mark_as_unread">Отбележи като непрочетена</string>
+    <string name="action_mark_as_read">Отбележи като прочетена/и</string>
+    <string name="action_mark_as_unread">Отбележи като непрочетена/и</string>
     <string name="action_mark_previous_as_read">Отбележи предната като прочетена</string>
     <string name="action_download">Изтегли</string>
     <string name="action_bookmark">Отметни</string>
@@ -261,10 +261,10 @@
     <string name="chapter_error">Грешка</string>
     <string name="fetch_chapters_error">Възникна грешка при показването на главите</string>
     <string name="show_title">Покажи заглавие</string>
-    <string name="show_chapter_number">Покажи номер на глава</string>
+    <string name="show_chapter_number">Показвай номера на главата</string>
     <string name="sorting_mode">Сортиране</string>
     <string name="sort_by_source">По източника</string>
-    <string name="sort_by_number">По номер на главата</string>
+    <string name="sort_by_number">По ред на главите</string>
     <string name="manga_download">Изтегли</string>
     <string name="download_1">Изтегли следващата глава</string>
     <string name="download_5">Изтегли следващите 5 глави</string>
@@ -423,7 +423,7 @@
     <string name="file_saved">Файлът запазен на %1$s</string>
     <string name="backup_choice">Какво искате да запазите?</string>
     <string name="restoring_backup">Възстановяване на копие</string>
-    <string name="creating_backup">Създаване на копие</string>
+    <string name="creating_backup">Създаване на резервно копие</string>
 
       <string name="pref_refresh_library_tracking">Обнови метаданните на проследяването</string>
     <string name="pref_refresh_library_tracking_summary">Обновява статус, оценка и последно прочетена глава от услугите за проследяване</string>
@@ -457,6 +457,6 @@
     <string name="channel_common">Общи</string>
     <string name="channel_library">Библиотека</string>
     <string name="channel_downloader">Изтегляния</string>
-<string name="action_display_download_badge">Изтегли значки</string>
+<string name="action_display_download_badge">Показвай изтеглени глави</string>
     <string name="local_source_badge">Локална</string>
     </resources>
