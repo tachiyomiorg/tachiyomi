@@ -35,13 +35,48 @@ class Mangachan : ParsedHttpSource() {
         val url = if (query.isNotEmpty()) {
             "$baseUrl/?do=search&subaction=search&story=$query&search_start=$pageNum"
         } else {
-            val filt = filters.filterIsInstance<Genre>().filter { !it.isIgnored() }
-            if (filt.isNotEmpty()) {
-                var genres = ""
-                filt.forEach { genres += (if (it.isExcluded()) "-" else "") + it.id + '+' }
-                "$baseUrl/tags/${genres.dropLast(1)}?offset=${20 * (pageNum - 1)}"
+
+            var genres = ""
+            var order = ""
+            var status = ""
+            for (filter in if (filters.isEmpty()) getFilterList() else filters) {
+                when (filter) {
+                    is GenreList -> {
+                        filter.state.forEach { f ->
+                            if (!f.isIgnored()) {
+                                genres += (if (f.isExcluded()) "-" else "") + f.id + '+'
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (genres.isNotEmpty()) {
+                for (filter in filters) {
+                    when (filter) {
+                        is OrderBy -> {
+                            order = if (filter.state!!.ascending) {
+                                arrayOf("", "&n=favasc", "&n=abcdesc", "&n=chasc")[filter.state!!.index]
+                            } else {
+                                arrayOf("&n=dateasc", "&n=favdesc", "&n=abcasc", "&n=chdesc")[filter.state!!.index]
+                            }
+                        }
+                    }
+                }
+                "$baseUrl/tags/${genres.dropLast(1)}$order?offset=${20 * (pageNum - 1)}"
             } else {
-                "$baseUrl/?do=search&subaction=search&story=$query&search_start=$pageNum"
+                for (filter in filters) {
+                    when (filter) {
+                        is OrderBy -> {
+                            order = if (filter.state!!.ascending) {
+                                arrayOf("manga/new", "manga/new&n=favasc", "manga/new&n=abcdesc", "manga/new&n=chasc")[filter.state!!.index]
+                            } else {
+                                arrayOf("manga/new&n=dateasc", "mostfavorites", "catalog", "sortch")[filter.state!!.index]
+                            }
+                        }
+                    }
+                }
+                "$baseUrl/$order?offset=${20 * (pageNum - 1)}"
             }
         }
         return GET(url, headers)
@@ -162,12 +197,32 @@ class Mangachan : ParsedHttpSource() {
 
     private class Genre(name: String, val id: String = name.replace(' ', '_')) : Filter.TriState(name)
 
+    private class OrderBy : Filter.Sort("Сортировка",
+            arrayOf("Дата", "Популярность", "Имя", "Главы"),
+            Filter.Sort.Selection(1, false))
+
+    private class StatusTranslateOver(val id: String = "/all_done") : Filter.CheckBox("Перевод завершен", false)
+    private class StatusOver(val id: String = "/end") : Filter.CheckBox("Выпуск завершен", false)
+    private class StatusOngoing(val id: String = "/ongoing") : Filter.CheckBox("Онгоинг", false)
+    private class StatusNewCharapter(val id: String = "/new_ch") : Filter.CheckBox("Новые главы", false)
+
+    override fun getFilterList() = FilterList(
+//            StatusTranslateOver(),
+//            StatusOver(),
+//            StatusOngoing(),
+//            StatusNewCharapter(),
+            OrderBy(),
+            GenreList(getGenreList())
+    )
+
+    private class GenreList(genres: List<Genre>) : Filter.Group<Genre>("Тэги", genres)
+
     /* [...document.querySelectorAll("li.sidetag > a:nth-child(1)")].map((el,i) =>
     *  { const link=el.getAttribute('href');const id=link.substr(6,link.length);
     *  return `Genre("${id.replace("_", " ")}")` }).join(',\n')
     *  on http://mangachan.me/
     */
-    override fun getFilterList() = FilterList(
+    private fun getGenreList() = listOf(
             Genre("18 плюс"),
             Genre("bdsm"),
             Genre("арт"),
@@ -211,6 +266,7 @@ class Mangachan : ParsedHttpSource() {
             Genre("сёдзё-ай"),
             Genre("сёнэн"),
             Genre("сёнэн-ай"),
+            Genre("темное фэнтези"),
             Genre("тентакли"),
             Genre("трагедия"),
             Genre("триллер"),
