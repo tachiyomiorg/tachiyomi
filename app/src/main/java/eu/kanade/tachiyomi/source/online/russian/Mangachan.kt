@@ -38,6 +38,7 @@ class Mangachan : ParsedHttpSource() {
 
             var genres = ""
             var order = ""
+            var statusParam = true
             var status = ""
             for (filter in if (filters.isEmpty()) getFilterList() else filters) {
                 when (filter) {
@@ -48,6 +49,8 @@ class Mangachan : ParsedHttpSource() {
                             }
                         }
                     }
+                    is OrderBy -> { if (filter.state!!.ascending && filter.state!!.index == 0) { statusParam = false } }
+                    is Status ->  status = arrayOf("", "all_done", "end", "ongoing", "new_ch")[filter.state]
                 }
             }
 
@@ -63,7 +66,11 @@ class Mangachan : ParsedHttpSource() {
                         }
                     }
                 }
-                "$baseUrl/tags/${genres.dropLast(1)}$order?offset=${20 * (pageNum - 1)}"
+                if (statusParam) {
+                    "$baseUrl/tags/${genres.dropLast(1)}$order?offset=${20 * (pageNum - 1)}&status=$status"
+                } else {
+                    "$baseUrl/tags/$status/${genres.dropLast(1)}/$order?offset=${20 * (pageNum - 1)}"
+                }
             } else {
                 for (filter in filters) {
                     when (filter) {
@@ -76,7 +83,11 @@ class Mangachan : ParsedHttpSource() {
                         }
                     }
                 }
-                "$baseUrl/$order?offset=${20 * (pageNum - 1)}"
+                if (statusParam) {
+                    "$baseUrl/$order?offset=${20 * (pageNum - 1)}&status=$status"
+                } else {
+                    "$baseUrl/$order/$status?offset=${20 * (pageNum - 1)}"
+                }
             }
         }
         return GET(url, headers)
@@ -195,27 +206,29 @@ class Mangachan : ParsedHttpSource() {
 
     override fun imageUrlParse(document: Document) = ""
 
+    private class GenreList(genres: List<Genre>) : Filter.Group<Genre>("Тэги", genres)
     private class Genre(name: String, val id: String = name.replace(' ', '_')) : Filter.TriState(name)
-
+    private class Status : Filter.Select<String>("Статус", arrayOf("Все", "Перевод завершен", "Выпуск завершен", "Онгоинг", "Новые главы"))
     private class OrderBy : Filter.Sort("Сортировка",
             arrayOf("Дата", "Популярность", "Имя", "Главы"),
             Filter.Sort.Selection(1, false))
 
-    private class StatusTranslateOver(val id: String = "/all_done") : Filter.CheckBox("Перевод завершен", false)
-    private class StatusOver(val id: String = "/end") : Filter.CheckBox("Выпуск завершен", false)
-    private class StatusOngoing(val id: String = "/ongoing") : Filter.CheckBox("Онгоинг", false)
-    private class StatusNewCharapter(val id: String = "/new_ch") : Filter.CheckBox("Новые главы", false)
 
     override fun getFilterList() = FilterList(
-//            StatusTranslateOver(),
-//            StatusOver(),
-//            StatusOngoing(),
-//            StatusNewCharapter(),
+            Status(),
             OrderBy(),
             GenreList(getGenreList())
     )
 
-    private class GenreList(genres: List<Genre>) : Filter.Group<Genre>("Тэги", genres)
+//    private class StatusList(status: List<Status>) : Filter.Group<Status>("Статус", status)
+//    private class Status(name: String, val id: String) : Filter.CheckBox(name, false)
+//    private fun getStatusList() = listOf(
+//        Status("Перевод завершен", "/all_done"),
+//        Status("Выпуск завершен", "/end"),
+//        Status("Онгоинг", "/ongoing"),
+//        Status("Новые главы", "/new_ch")
+//    )
+
 
     /* [...document.querySelectorAll("li.sidetag > a:nth-child(1)")].map((el,i) =>
     *  { const link=el.getAttribute('href');const id=link.substr(6,link.length);
