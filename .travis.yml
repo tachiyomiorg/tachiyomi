@@ -38,14 +38,14 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    repo: inorichi/tachiyomi
+    repo: pavkazzz/tachiyomi
 - provider: script
   script: ".travis/deploy.sh"
   skip_cleanup: true
   on:
     branch: master
     condition: "-z $TRAVIS_TAG"
-    repo: inorichi/tachiyomi
+    repo: pavkazzz/tachiyomi
 env:
   global:
   - secure: Ita1+tzo7P5IC2yqU3KgRcXt+5DTpP0103Hx/ECYi42/7rLt+TC7PMjl2yH3Z189+tGwLq0Ol1KJ2Z5Rn3q7EaQgD0+WRkH/ijtrjKoVh7dyItIBp7yowZpA0TJHQ4EZpGSxZakKbIP4di8XMxJ2+5VzEivYUt04LCUpzugemL6b6XOfUmOZykVxV2UDAlPPggklITYBXkHUa0mwJhjS1aPPeeR3PhVXomkqfuOJOKejPXXXJope9fhAnmopHA7ISfjIrTuwDVQJqNSuco+O9kQShmlu0C8pob1vFGPEDvafaDS8SZ9A6gKT1ZfgSUqVmvDbx0WLX8XugBLrQedtZv63esOa1WUyGhgFVpeJjexlszXlhyfP1gH5QbzRr+EiSaagCyjf9II2veLAtU5cFY+nj6KBdKQsazIMRHf8SAQlWASyJYMED/N9RnUFxSf1rnLGqiY2ezjycx4ieFj7vhlbTgyao1GHjjR9cwNuntdMYWhY8+Vc7Fctmzm46xOyyz9oJGdyim76Y4w4MZvQNKeZOBAjdEgX6cXBk15scoM2Vj9ENox+MKZLaKRawXg2U1ujK+bWAQkXiVvPriv05/JtYsNUft8qAsm+69vtohDsUW7Wu0bBIKDL+v0W30ty1PpyNehBB2OquUE7fp53gitOmYl7TyuxktkMY8PXKKU=
