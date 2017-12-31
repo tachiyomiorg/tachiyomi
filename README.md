@@ -23,7 +23,7 @@ Features include:
 * Create backups locally or to your cloud service of choice
 
 ## Download 
-Get the stable build from our [releases page](https://github.com/inorichi/tachiyomi/releases) or from [f-droid](https://f-droid.org/packages/eu.kanade.tachiyomi/).
+Get the app from our [releases page](https://github.com/inorichi/tachiyomi/releases) or from [f-droid](https://f-droid.org/packages/eu.kanade.tachiyomi/).
 
 If you want the latest updates, you can download the dev branch [here](http://tachiyomi.kanade.eu/latest), or set up dev builds from [f-droid](https://github.com/inorichi/tachiyomi/wiki/FDroid-for-dev-versions).
 
