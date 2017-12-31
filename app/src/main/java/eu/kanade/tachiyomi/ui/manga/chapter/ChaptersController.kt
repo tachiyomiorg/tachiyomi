@@ -448,19 +448,14 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         // i = 0: Download 1
         // i = 1: Download 5
         // i = 2: Download 10
-        // i = 3: Download 30
-        // i = 4: Download 50
-        // i = 5: Download unread
-        // i = 6: Download all
+        // i = 3: Download unread
+        // i = 4: Download all
         val chaptersToDownload = when (choice) {
             0 -> getUnreadChaptersSorted().take(1)
             1 -> getUnreadChaptersSorted().take(5)
             2 -> getUnreadChaptersSorted().take(10)
-            3 -> getUnreadChaptersSorted().take(30)
-            4 -> getUnreadChaptersSorted().take(50)
-
-            5 -> presenter.chapters.filter { !it.read }
-            6 -> presenter.chapters
+            3 -> presenter.chapters.filter { !it.read }
+            4 -> presenter.chapters
             else -> emptyList()
         }
 

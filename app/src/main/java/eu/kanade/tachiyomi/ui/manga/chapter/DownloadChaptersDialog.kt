@@ -21,8 +21,6 @@ class DownloadChaptersDialog<T>(bundle: Bundle? = null) : DialogController(bundl
                 R.string.download_1,
                 R.string.download_5,
                 R.string.download_10,
-                R.string.download_30,
-                R.string.download_50,
                 R.string.download_unread,
                 R.string.download_all
         ).map { activity.getString(it) }

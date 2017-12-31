@@ -339,8 +339,6 @@
     <string name="download_1">Download next chapter</string>
     <string name="download_5">Download next 5 chapters</string>
     <string name="download_10">Download next 10 chapters</string>
-    <string name="download_30">Download next 30 chapters</string>
-    <string name="download_50">Download next 50 chapters</string>
     <string name="download_all">Download all</string>
     <string name="download_unread">Download unread</string>
     <string name="confirm_delete_chapters">Are you sure you want to delete selected chapters?</string>
