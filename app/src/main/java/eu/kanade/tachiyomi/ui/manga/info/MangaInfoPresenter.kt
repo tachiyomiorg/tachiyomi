@@ -37,7 +37,7 @@ class MangaInfoPresenter(
     /**
      * Subscription to send the manga to the view.
      */
-    private var viewMangaSubcription: Subscription? = null
+    private var viewMangaSubscription: Subscription? = null
 
     /**
      * Subscription to update the manga from the source.
@@ -62,8 +62,8 @@ class MangaInfoPresenter(
      * Sends the active manga to the view.
      */
     fun sendMangaToView() {
-        viewMangaSubcription?.let { remove(it) }
-        viewMangaSubcription = Observable.just(manga)
+        viewMangaSubscription?.let { remove(it) }
+        viewMangaSubscription = Observable.just(manga)
                 .subscribeLatestCache({ view, manga -> view.onNextManga(manga, source) })
     }
 

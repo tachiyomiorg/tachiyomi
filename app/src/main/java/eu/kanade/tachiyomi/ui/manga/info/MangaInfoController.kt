@@ -2,6 +2,9 @@ package eu.kanade.tachiyomi.ui.manga.info
 
 import android.app.Dialog
 import android.app.PendingIntent
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
@@ -13,6 +16,7 @@ import android.support.v4.content.pm.ShortcutInfoCompat
 import android.support.v4.content.pm.ShortcutManagerCompat
 import android.support.v4.graphics.drawable.IconCompat
 import android.view.*
+import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -20,6 +24,7 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import com.jakewharton.rxbinding.view.clicks
+import com.jakewharton.rxbinding.view.longClicks
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -34,6 +39,7 @@ import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.util.chop
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
@@ -79,6 +85,13 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
 
         // Set SwipeRefresh to refresh manga data.
         swipe_refresh.refreshes().subscribeUntilDestroy { fetchMangaFromSource() }
+
+        manga_artist.longClicks().subscribeUntilDestroy { copyToClipboard("artist", manga_artist.text.toString()) }
+        manga_author.longClicks().subscribeUntilDestroy { copyToClipboard("author", manga_author.text.toString()) }
+        manga_summary.longClicks().subscribeUntilDestroy { copyToClipboard("description", manga_summary.text.toString()) }
+
+        manga_cover.longClicks().subscribeUntilDestroy { copyToClipboard("title", presenter.manga.title) }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -107,6 +120,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         if (manga.initialized) {
             // Update view.
             setMangaInfo(manga, source)
+
         } else {
             // Initialize manga.
             fetchMangaFromSource()
@@ -375,6 +389,21 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
                         activity?.toast(R.string.icon_creation_fail)
                     }
                 })
+    }
+
+    /**
+     * Copies a string to clipboard
+     *
+     * @param label Label to show to the user describing the content
+     * @param content the actual text to copy to the board
+     */
+    private fun copyToClipboard(label: String, content: String){
+        if(content.isBlank()) return
+
+        val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        clipboard.primaryClip = ClipData.newPlainText(label, content)
+
+        activity?.toast("Copied ${content.chop(15)} to clipboard!", Toast.LENGTH_SHORT)
     }
 
     /**
