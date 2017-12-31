@@ -28,7 +28,6 @@ import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.chapters_controller.*
 import timber.log.Timber
-import java.util.*
 
 class ChaptersController : NucleusController<ChaptersPresenter>(),
         ActionMode.Callback,
