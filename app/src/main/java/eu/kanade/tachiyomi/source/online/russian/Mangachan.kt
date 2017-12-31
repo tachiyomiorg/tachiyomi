@@ -35,13 +35,59 @@ class Mangachan : ParsedHttpSource() {
         val url = if (query.isNotEmpty()) {
             "$baseUrl/?do=search&subaction=search&story=$query&search_start=$pageNum"
         } else {
-            val filt = filters.filterIsInstance<Genre>().filter { !it.isIgnored() }
-            if (filt.isNotEmpty()) {
-                var genres = ""
-                filt.forEach { genres += (if (it.isExcluded()) "-" else "") + it.id + '+' }
-                "$baseUrl/tags/${genres.dropLast(1)}?offset=${20 * (pageNum - 1)}"
+
+            var genres = ""
+            var order = ""
+            var statusParam = true
+            var status = ""
+            for (filter in if (filters.isEmpty()) getFilterList() else filters) {
+                when (filter) {
+                    is GenreList -> {
+                        filter.state.forEach { f ->
+                            if (!f.isIgnored()) {
+                                genres += (if (f.isExcluded()) "-" else "") + f.id + '+'
+                            }
+                        }
+                    }
+                    is OrderBy -> { if (filter.state!!.ascending && filter.state!!.index == 0) { statusParam = false } }
+                    is Status ->  status = arrayOf("", "all_done", "end", "ongoing", "new_ch")[filter.state]
+                }
+            }
+
+            if (genres.isNotEmpty()) {
+                for (filter in filters) {
+                    when (filter) {
+                        is OrderBy -> {
+                            order = if (filter.state!!.ascending) {
+                                arrayOf("", "&n=favasc", "&n=abcdesc", "&n=chasc")[filter.state!!.index]
+                            } else {
+                                arrayOf("&n=dateasc", "&n=favdesc", "&n=abcasc", "&n=chdesc")[filter.state!!.index]
+                            }
+                        }
+                    }
+                }
+                if (statusParam) {
+                    "$baseUrl/tags/${genres.dropLast(1)}$order?offset=${20 * (pageNum - 1)}&status=$status"
+                } else {
+                    "$baseUrl/tags/$status/${genres.dropLast(1)}/$order?offset=${20 * (pageNum - 1)}"
+                }
             } else {
-                "$baseUrl/?do=search&subaction=search&story=$query&search_start=$pageNum"
+                for (filter in filters) {
+                    when (filter) {
+                        is OrderBy -> {
+                            order = if (filter.state!!.ascending) {
+                                arrayOf("manga/new", "manga/new&n=favasc", "manga/new&n=abcdesc", "manga/new&n=chasc")[filter.state!!.index]
+                            } else {
+                                arrayOf("manga/new&n=dateasc", "mostfavorites", "catalog", "sortch")[filter.state!!.index]
+                            }
+                        }
+                    }
+                }
+                if (statusParam) {
+                    "$baseUrl/$order?offset=${20 * (pageNum - 1)}&status=$status"
+                } else {
+                    "$baseUrl/$order/$status?offset=${20 * (pageNum - 1)}"
+                }
             }
         }
         return GET(url, headers)
@@ -160,14 +206,36 @@ class Mangachan : ParsedHttpSource() {
 
     override fun imageUrlParse(document: Document) = ""
 
+    private class GenreList(genres: List<Genre>) : Filter.Group<Genre>("Тэги", genres)
     private class Genre(name: String, val id: String = name.replace(' ', '_')) : Filter.TriState(name)
+    private class Status : Filter.Select<String>("Статус", arrayOf("Все", "Перевод завершен", "Выпуск завершен", "Онгоинг", "Новые главы"))
+    private class OrderBy : Filter.Sort("Сортировка",
+            arrayOf("Дата", "Популярность", "Имя", "Главы"),
+            Filter.Sort.Selection(1, false))
+
+
+    override fun getFilterList() = FilterList(
+            Status(),
+            OrderBy(),
+            GenreList(getGenreList())
+    )
+
+//    private class StatusList(status: List<Status>) : Filter.Group<Status>("Статус", status)
+//    private class Status(name: String, val id: String) : Filter.CheckBox(name, false)
+//    private fun getStatusList() = listOf(
+//        Status("Перевод завершен", "/all_done"),
+//        Status("Выпуск завершен", "/end"),
+//        Status("Онгоинг", "/ongoing"),
+//        Status("Новые главы", "/new_ch")
+//    )
+
 
     /* [...document.querySelectorAll("li.sidetag > a:nth-child(1)")].map((el,i) =>
     *  { const link=el.getAttribute('href');const id=link.substr(6,link.length);
     *  return `Genre("${id.replace("_", " ")}")` }).join(',\n')
     *  on http://mangachan.me/
     */
-    override fun getFilterList() = FilterList(
+    private fun getGenreList() = listOf(
             Genre("18 плюс"),
             Genre("bdsm"),
             Genre("арт"),
@@ -211,6 +279,7 @@ class Mangachan : ParsedHttpSource() {
             Genre("сёдзё-ай"),
             Genre("сёнэн"),
             Genre("сёнэн-ай"),
+            Genre("темное фэнтези"),
             Genre("тентакли"),
             Genre("трагедия"),
             Genre("триллер"),
