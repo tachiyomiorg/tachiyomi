@@ -3,12 +3,10 @@
 | [![Travis](https://img.shields.io/travis/inorichi/tachiyomi.svg)](https://travis-ci.org/inorichi/tachiyomi) | [![stable release](https://img.shields.io/github/release/inorichi/tachiyomi.svg?maxAge=3600&label=stable)](https://github.com/inorichi/tachiyomi/releases) [![latest dev build](https://img.shields.io/badge/dev-latest%20build-blue.svg)](http://tachiyomi.kanade.eu/latest) | [![fdroid release](https://img.shields.io/badge/stable-f--droid.org-blue.svg)](https://f-droid.org/repository/browse/?fdid=eu.kanade.tachiyomi) [![fdroid dev](https://img.shields.io/badge/dev-wiki-blue.svg)](//github.com/inorichi/tachiyomi/wiki/FDroid-for-dev-versions) | [![Translation status](http://weblate.j2ghz.com/widgets/tachiyomi/-/svg-badge.svg)](https://github.com/inorichi/tachiyomi/wiki/Translation) | [![Discord](https://img.shields.io/discord/349436576037732353.svg)](https://discord.gg/2dDQBv2) |
 
 
-# ![app icon](./readme-images/app-icon.png)Tachiyomi
+# ![app icon](./.github/readme-images/app-icon.png)Tachiyomi
 Tachiyomi is a free and open source manga reader for Android.
 
-
-
-![screenshots of app](./readme-images/screens.png)
+![screenshots of app](./.github/readme-images/screens.png)
 
 ## Features
 
@@ -25,9 +23,9 @@ Features include:
 ## Download 
 Get the stable build from our [releases page](https://github.com/inorichi/tachiyomi/releases) or from [f-droid](https://f-droid.org/packages/eu.kanade.tachiyomi/).
 
-If you want the latest updates, you can download the dev branch [here](http://tachiyomi.kanade.eu/latest), or set up dev builds from [f-droid](https://github.com/inorichi/tachiyomi/wiki/FDroid-for-dev-versions).
+If you want to test new features before they get to the stable release, you can download the dev version [here](http://tachiyomi.kanade.eu/latest) (auto-updates not included), or add our [F-Droid repo](https://github.com/inorichi/tachiyomi/wiki/FDroid-for-dev-versions).
 
-## Contributing
+## Issues, Feature Requests and Contributing
 
 If you want to open an issue, please read [contributing guidelines](https://github.com/inorichi/tachiyomi/blob/master/.github/CONTRIBUTING.md). Your issue may be closed otherwise.
 
