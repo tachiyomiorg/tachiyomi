@@ -153,13 +153,36 @@
                     app:layout_constraintRight_toRightOf="parent"/>
 
                 <TextView
+                    android:id="@+id/manga_last_update_label"
+                    style="@style/TextAppearance.Medium.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/manga_info_latest_data_label"
+                    android:textIsSelectable="false"
+                    app:layout_constraintTop_toBottomOf="@+id/manga_chapters_label"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+                <TextView
+                    android:id="@+id/manga_last_update"
+                    style="@style/TextAppearance.Regular.Body1.Secondary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textIsSelectable="false"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/manga_last_update_label"
+                    app:layout_constraintLeft_toRightOf="@+id/manga_last_update_label"
+                    app:layout_constraintRight_toRightOf="parent"/>
+
+                <TextView
                     android:id="@+id/manga_status_label"
                     style="@style/TextAppearance.Medium.Body2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/manga_info_status_label"
                     android:textIsSelectable="false"
-                    app:layout_constraintTop_toBottomOf="@+id/manga_chapters_label"
+                    app:layout_constraintTop_toBottomOf="@+id/manga_last_update_label"
                     app:layout_constraintLeft_toLeftOf="parent"/>
 
                 <TextView
@@ -243,7 +266,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/manga_summary_label"
+                    android:id="@+id/manga_full_title"
                     style="@style/TextAppearance.Medium.Body2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

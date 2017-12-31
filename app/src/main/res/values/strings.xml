@@ -308,6 +308,8 @@
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Source</string>
     <string name="manga_info_genres_label">Genres</string>
+    <string name="manga_info_latest_data_label">Date</string>
+    <string name="manga_info_full_title_label">Title</string>
     <string name="share_text">Check out %1$s! at %2$s</string>
     <string name="circular_icon">Circular icon</string>
     <string name="rounded_icon">Rounded icon</string>
@@ -447,4 +449,5 @@
     <string name="channel_common">Common</string>
     <string name="channel_library">Library</string>
     <string name="channel_downloader">Downloader</string>
+
 </resources>

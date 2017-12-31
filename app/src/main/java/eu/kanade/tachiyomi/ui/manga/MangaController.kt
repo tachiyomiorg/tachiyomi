@@ -34,6 +34,7 @@ import kotlinx.android.synthetic.main.manga_controller.*
 import rx.Subscription
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.*
 
 class MangaController : RxController, TabbedController {
 
@@ -62,6 +63,8 @@ class MangaController : RxController, TabbedController {
     private var adapter: MangaDetailAdapter? = null
 
     val fromCatalogue = args.getBoolean(FROM_CATALOGUE_EXTRA, false)
+
+    val lastUpdateRelay: BehaviorRelay<Date> = BehaviorRelay.create()
 
     val chapterCountRelay: BehaviorRelay<Float> = BehaviorRelay.create()
 

@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.manga.chapter
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.support.design.widget.Snackbar
@@ -27,6 +28,7 @@ import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.chapters_controller.*
 import timber.log.Timber
+import java.util.*
 
 class ChaptersController : NucleusController<ChaptersPresenter>(),
         ActionMode.Callback,
@@ -61,7 +63,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     override fun createPresenter(): ChaptersPresenter {
         val ctrl = parentController as MangaController
         return ChaptersPresenter(ctrl.manga!!, ctrl.source!!,
-                ctrl.chapterCountRelay, ctrl.mangaFavoriteRelay)
+                ctrl.chapterCountRelay, ctrl.lastUpdateRelay, ctrl.mangaFavoriteRelay)
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
@@ -292,6 +294,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         return true
     }
 
+    @SuppressLint("StringFormatInvalid")
     override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
         val count = adapter?.selectedItemCount ?: 0
         if (count == 0) {

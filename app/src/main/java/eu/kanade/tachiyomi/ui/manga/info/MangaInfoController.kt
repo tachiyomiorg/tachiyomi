@@ -47,7 +47,9 @@ import jp.wasabeef.glide.transformations.CropSquareTransformation
 import jp.wasabeef.glide.transformations.MaskTransformation
 import kotlinx.android.synthetic.main.manga_info_controller.*
 import uy.kohesive.injekt.injectLazy
+import java.text.DateFormat
 import java.text.DecimalFormat
+import java.util.*
 
 /**
  * Fragment that shows manga information.
@@ -70,7 +72,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     override fun createPresenter(): MangaInfoPresenter {
         val ctrl = parentController as MangaController
         return MangaInfoPresenter(ctrl.manga!!, ctrl.source!!,
-                ctrl.chapterCountRelay, ctrl.mangaFavoriteRelay)
+                ctrl.chapterCountRelay, ctrl.lastUpdateRelay, ctrl.mangaFavoriteRelay)
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
@@ -86,6 +88,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         // Set SwipeRefresh to refresh manga data.
         swipe_refresh.refreshes().subscribeUntilDestroy { fetchMangaFromSource() }
 
+        manga_full_title.longClicks().subscribeUntilDestroy{ copyToClipboard("title", manga_full_title.text.toString()) }
         manga_artist.longClicks().subscribeUntilDestroy { copyToClipboard("artist", manga_artist.text.toString()) }
         manga_author.longClicks().subscribeUntilDestroy { copyToClipboard("author", manga_author.text.toString()) }
         manga_summary.longClicks().subscribeUntilDestroy { copyToClipboard("description", manga_summary.text.toString()) }
@@ -136,19 +139,35 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     private fun setMangaInfo(manga: Manga, source: Source?) {
         val view = view ?: return
 
+        //update full title TextView.
+        manga_full_title.text = when(manga.title.isBlank()){
+            false -> manga.title
+            true -> view.context.getString(R.string.unknown)
+        }
+
         // Update artist TextView.
-        manga_artist.text = manga.artist
+        manga_artist.text = when(manga.artist.isNullOrBlank()){
+            false -> manga.artist
+            true -> view.context.getString(R.string.unknown)
+        }
 
         // Update author TextView.
-        manga_author.text = manga.author
+        manga_author.text = when(manga.author.isNullOrBlank()){
+            false -> manga.author
+            true -> view.context.getString(R.string.unknown)
+        }
 
         // If manga source is known update source TextView.
-        if (source != null) {
-            manga_source.text = source.toString()
+        manga_source.text = when(source == null){
+            false -> source.toString()
+            true -> view.context.getString(R.string.unknown)
         }
 
         // Update genres TextView.
-        manga_genres.text = manga.genre
+        manga_genres.text = when(manga.genre.isNullOrBlank()){
+            false -> manga.genre
+            true -> view.context.getString(R.string.unknown)
+        }
 
         // Update status TextView.
         manga_status.setText(when (manga.status) {
@@ -159,7 +178,10 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         })
 
         // Update description TextView.
-        manga_summary.text = manga.description
+        manga_summary.text = when(manga.description.isNullOrBlank()){
+            false -> manga.description
+            true -> view.context.getString(R.string.unknown)
+        }
 
         // Set the favorite drawable to the correct one.
         setFavoriteDrawable(manga.favorite)
@@ -189,6 +211,10 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
      */
     fun setChapterCount(count: Float) {
         manga_chapters?.text = DecimalFormat("#.#").format(count)
+    }
+
+    fun setLastUpdateDate(date: Date){
+        manga_last_update?.text = DateFormat.getDateInstance(DateFormat.SHORT).format(date)
     }
 
     /**

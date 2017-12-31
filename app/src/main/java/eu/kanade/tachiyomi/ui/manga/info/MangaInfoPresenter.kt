@@ -18,6 +18,7 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.*
 
 /**
  * Presenter of MangaInfoFragment.
@@ -28,6 +29,7 @@ class MangaInfoPresenter(
         val manga: Manga,
         val source: Source,
         private val chapterCountRelay: BehaviorRelay<Float>,
+        private val lastUpdateRelay: BehaviorRelay<Date>,
         private val mangaFavoriteRelay: PublishRelay<Boolean>,
         private val db: DatabaseHelper = Injekt.get(),
         private val downloadManager: DownloadManager = Injekt.get(),
@@ -56,6 +58,10 @@ class MangaInfoPresenter(
         mangaFavoriteRelay.observeOn(AndroidSchedulers.mainThread())
                 .subscribe { setFavorite(it) }
                 .apply { add(this) }
+
+        //update last update date
+        lastUpdateRelay.observeOn(AndroidSchedulers.mainThread())
+                .subscribeLatestCache(MangaInfoController::setLastUpdateDate)
     }
 
     /**
