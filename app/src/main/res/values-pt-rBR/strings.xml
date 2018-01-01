@@ -386,7 +386,7 @@ Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</s
     <string name="information_no_downloads">Nenhum download</string>
     <string name="information_no_recent">Sem capítulos recentes</string>
     <string name="information_no_recent_manga">Sem mangás lidos recentemente</string>
-    <string name="information_empty_library">Biblioteca vazia</string>
+    <string name="information_empty_library">A sua biblioteca está vazia. Você pode adicionar séries à biblioteca pelo menu Catálogos.</string>
 
     <string name="download_notifier_downloader_title">Gerenciador de downloads</string>
     <string name="download_notifier_title_error">Erro</string>
@@ -414,4 +414,6 @@ Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</s
     <string name="channel_downloader">Fila de download</string>
 <string name="action_display_download_badge">Contadores de download</string>
     <string name="local_source_badge">Local</string>
+    <string name="information_empty_category">Você ainda não tem nenhuma categoria. Pressione o botão mais para criar uma e organizar a sua biblioteca.</string>
+
     </resources>
