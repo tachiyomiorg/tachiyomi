@@ -60,13 +60,25 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:text="@string/manga_info_full_title_label"
+                    android:id="@+id/manga_full_title"
+                    style="@style/TextAppearance.Medium.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textIsSelectable="false"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+                <TextView
                     android:id="@+id/manga_author_label"
                     style="@style/TextAppearance.Medium.Body2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/manga_info_author_label"
                     android:textIsSelectable="false"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/manga_full_title"
                     app:layout_constraintLeft_toLeftOf="parent"/>
 
                 <TextView
@@ -224,7 +236,7 @@
                     app:layout_constraintRight_toRightOf="parent"/>
 
                 <TextView
-                    android:id="@+id/manga_full_title"
+                    android:id="@+id/manga_summary_label"
                     style="@style/TextAppearance.Medium.Body2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -239,7 +251,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textIsSelectable="false"
-                    app:layout_constraintTop_toBottomOf="@+id/manga_full_title"
+                    app:layout_constraintTop_toBottomOf="@+id/manga_summary_label"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     android:layout_marginRight="64dp"/>

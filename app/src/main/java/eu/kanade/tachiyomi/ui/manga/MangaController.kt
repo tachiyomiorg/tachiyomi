@@ -21,10 +21,8 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
-import eu.kanade.tachiyomi.ui.base.controller.RouterPagerAdapter
-import eu.kanade.tachiyomi.ui.base.controller.RxController
-import eu.kanade.tachiyomi.ui.base.controller.TabbedController
-import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
+import eu.kanade.tachiyomi.ui.base.controller.*
+import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
 import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersController
 import eu.kanade.tachiyomi.ui.manga.info.MangaInfoController
 import eu.kanade.tachiyomi.ui.manga.track.TrackController
@@ -146,6 +144,12 @@ class MangaController : RxController, TabbedController {
         textView.compoundDrawablePadding = if (visible) 4 else 0
     }
 
+    fun performGlobalSearch(query: String){
+        router.pushController(CatalogueSearchController(query).withFadeTransaction())
+
+    }
+
+
     private inner class MangaDetailAdapter : RouterPagerAdapter(this@MangaController) {
 
         private val tabCount = if (Injekt.get<TrackManager>().hasLoggedServices()) 3 else 2
@@ -190,5 +194,6 @@ class MangaController : RxController, TabbedController {
         private val tabField = TabLayout.Tab::class.java.getDeclaredField("mView")
                 .apply { isAccessible = true }
     }
+
 
 }

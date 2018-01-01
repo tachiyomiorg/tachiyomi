@@ -84,13 +84,24 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:text="@string/manga_info_full_title_label"
+                    android:id="@+id/manga_full_title"
+                    style="@style/TextAppearance.Medium.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:textIsSelectable="false"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+                <TextView
                     android:id="@+id/manga_author_label"
                     style="@style/TextAppearance.Medium.Body2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/manga_info_author_label"
                     android:textIsSelectable="false"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/manga_full_title"
                     app:layout_constraintLeft_toLeftOf="parent"/>
 
                 <TextView
@@ -266,11 +277,12 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/manga_full_title"
+                    android:id="@+id/manga_summary_label"
                     style="@style/TextAppearance.Medium.Body2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/description"
+                    android:maxLines="2"
                     android:textIsSelectable="false"/>
 
                 <TextView

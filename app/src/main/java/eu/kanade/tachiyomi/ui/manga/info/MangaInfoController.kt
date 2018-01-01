@@ -39,10 +39,10 @@ import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
-import eu.kanade.tachiyomi.util.chop
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
+import eu.kanade.tachiyomi.util.truncateCenter
 import jp.wasabeef.glide.transformations.CropSquareTransformation
 import jp.wasabeef.glide.transformations.MaskTransformation
 import kotlinx.android.synthetic.main.manga_info_controller.*
@@ -88,12 +88,18 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         // Set SwipeRefresh to refresh manga data.
         swipe_refresh.refreshes().subscribeUntilDestroy { fetchMangaFromSource() }
 
-        manga_full_title.longClicks().subscribeUntilDestroy{ copyToClipboard("title", manga_full_title.text.toString()) }
-        manga_artist.longClicks().subscribeUntilDestroy { copyToClipboard("artist", manga_artist.text.toString()) }
-        manga_author.longClicks().subscribeUntilDestroy { copyToClipboard("author", manga_author.text.toString()) }
-        manga_summary.longClicks().subscribeUntilDestroy { copyToClipboard("description", manga_summary.text.toString()) }
+        manga_full_title.longClicks().subscribeUntilDestroy{ copyToClipboard(view.context.getString(R.string.title), manga_full_title.text.toString()) }
+        manga_full_title.clicks().subscribeUntilDestroy{ performSearch(manga_full_title.text.toString()) }
+        manga_artist.longClicks().subscribeUntilDestroy { copyToClipboard(manga_artist_label.text.toString(), manga_artist.text.toString()) }
+        manga_artist.clicks().subscribeUntilDestroy{ performSearch(manga_artist.text.toString()) }
+        manga_author.longClicks().subscribeUntilDestroy { copyToClipboard(manga_author.text.toString(), manga_author.text.toString()) }
+        manga_author.clicks().subscribeUntilDestroy{ performSearch(manga_author.text.toString()) }
+        manga_summary.longClicks().subscribeUntilDestroy { copyToClipboard(view.context.getString(R.string.description), manga_summary.text.toString()) }
 
-        manga_cover.longClicks().subscribeUntilDestroy { copyToClipboard("title", presenter.manga.title) }
+        //todo: there is probably a better way to setup genres so the user can do an individual search
+        manga_genres.clicks().subscribeUntilDestroy{ performSearch(manga_genres.text.toString().replace(",",  "")) }
+
+        manga_cover.longClicks().subscribeUntilDestroy { copyToClipboard(view.context.getString(R.string.title), presenter.manga.title) }
 
     }
 
@@ -319,6 +325,13 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     }
 
     /**
+     * Perform global search
+     * @param query string that is searched
+     */
+    private fun performSearch(query: String) =
+            (parentController as MangaController).performGlobalSearch(query)
+
+    /**
      * Called when the fab is clicked.
      */
     private fun onFabClick() {
@@ -429,7 +442,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         clipboard.primaryClip = ClipData.newPlainText(label, content)
 
-        activity?.toast("Copied ${content.chop(15)} to clipboard!", Toast.LENGTH_SHORT)
+        activity?.toast("Copied ${content.truncateCenter(20)} to clipboard!", Toast.LENGTH_SHORT)
     }
 
     /**

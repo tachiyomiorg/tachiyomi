@@ -21,6 +21,7 @@
        android:paddingTop="8dp"
        android:paddingBottom="8dp"
        android:layout_marginLeft="8dp"/>
+
     <TextView
         android:id="@+id/title"
         style="@style/TextAppearance.Regular.SubHeading"
@@ -41,6 +42,28 @@
         app:layout_constraintVertical_bias="0.523"
         app:layout_constraintHorizontal_bias="0.007"/>
 
+    <TextView
+        android:id="@+id/local_text"
+        style="@style/TextAppearance.Regular.Caption.Light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/md_teal_500"
+        android:paddingBottom="1dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:paddingTop="1dp"
+        android:layout_centerVertical="true"
+        android:maxLines="1"
+        android:text="@string/local_source_badge"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toLeftOf="@+id/unread_text"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"/>
+
         <TextView
             android:id="@+id/unread_text"
             style="@style/TextAppearance.Regular.Caption.Light"
@@ -58,6 +81,7 @@
             tools:text="130"
             tools:visibility="visible"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/download_text"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="8dp"
@@ -81,32 +105,11 @@
             tools:text="122"
             tools:visibility="visible"
             android:layout_marginEnd="8dp"
-            app:layout_constraintRight_toLeftOf="@+id/unread_text"
+            app:layout_constraintRight_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="8dp"/>
-    <TextView
-        android:id="@+id/local_text"
-        style="@style/TextAppearance.Regular.Caption.Light"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/md_teal_500"
-        android:paddingBottom="1dp"
-        android:paddingLeft="3dp"
-        android:paddingRight="3dp"
-        android:paddingTop="1dp"
-        android:layout_centerVertical="true"
-        android:maxLines="1"
-        android:text="@string/local_source_badge"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintRight_toLeftOf="@+id/download_text"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"/>
 
     </android.support.constraint.ConstraintLayout>
 
