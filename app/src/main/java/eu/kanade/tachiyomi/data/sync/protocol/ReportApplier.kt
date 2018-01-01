@@ -1,16 +1,15 @@
 package eu.kanade.tachiyomi.data.sync.protocol
 
+import android.content.Context
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.*
-import eu.kanade.tachiyomi.data.sync.protocol.models.SyncChapter
-import eu.kanade.tachiyomi.data.sync.protocol.models.SyncHistory
-import eu.kanade.tachiyomi.data.sync.protocol.models.SyncManga
-import eu.kanade.tachiyomi.data.sync.protocol.models.SyncReport
+import eu.kanade.tachiyomi.data.sync.protocol.models.*
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.ChangedField
+import eu.kanade.tachiyomi.data.sync.protocol.models.common.SyncRef
 import eu.kanade.tachiyomi.source.SourceManager
 import uy.kohesive.injekt.injectLazy
 
-class ReportApplier {
+class ReportApplier(val context: Context) {
     private val db: DatabaseHelper by injectLazy()
     private val sources: SourceManager by injectLazy()
 
@@ -22,6 +21,7 @@ class ReportApplier {
             applyManga(report)
             applyChapters(report)
             applyHistory(report)
+            applyCategories(report)
         }
     }
 
@@ -86,7 +86,63 @@ class ReportApplier {
             db.insertHistory(dbHistory).executeAsBlocking()
         }
     }
-
+    
+    private fun applyCategories(report: SyncReport) {
+        report.findEntities<SyncCategory>().forEach {
+            val dbCategory = db.getCategories().executeAsBlocking().find { dbCat ->
+                it.name == dbCat.name
+            } ?: run {
+                //Rename old category if required
+                if(it.oldName != null) {
+                    val oldCat = db.getCategories().executeAsBlocking().find { dbCat ->
+                        it.oldName!!.value == dbCat.name
+                    }
+                    
+                    if(oldCat != null) {
+                        oldCat.name = it.name
+                        return@run oldCat!!
+                    }
+                }
+                
+                //No old category, create new one
+                Category.create(it.name)
+            }
+            
+            //Delete category if necessary
+            if (it.deleted) {
+                db.deleteCategory(dbCategory).executeAsBlocking()
+                return@forEach
+            }
+            
+            //Apply other changes to category properties
+            val id = dbCategory.id
+    
+            it.flags.applyIfNewer(id?.toLong(), UpdateTarget.Category.flags) { dbCategory.flags = it }
+    
+            db.insertCategory(dbCategory).executeAsBlocking()
+            
+            fun List<SyncRef<SyncManga>>.toMangaCategories()
+                    = mapNotNull {
+                val manga = it.resolve(report)
+                val source = manga.source.resolve(report)
+                val dbManga = db.getManga(manga.url, source.id).executeAsBlocking()
+                
+                dbManga?.let {
+                    MangaCategory.create(it, dbCategory)
+                }
+            }
+            
+            //Add/delete manga categories
+            val addedMangaCategories = it.addedManga.toMangaCategories()
+            val removedMangaCategories = it.deletedManga.toMangaCategories()
+            
+            db.insertMangasCategories(addedMangaCategories).executeAsBlocking()
+            removedMangaCategories.forEach {
+                db.deleteMangaCategory(it).executeAsBlocking()
+            }
+        }
+    }
+    
     private fun <T> ChangedField<T>?.applyIfNewer(id: Long?,
                                                   field: UpdatableField,
                                                   exec: (T) -> Unit) {

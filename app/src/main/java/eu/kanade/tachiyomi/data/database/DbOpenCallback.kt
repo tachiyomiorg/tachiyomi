@@ -5,6 +5,7 @@ import android.arch.persistence.db.SupportSQLiteOpenHelper
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import eu.kanade.tachiyomi.data.database.models.Updatable
 import eu.kanade.tachiyomi.data.database.tables.*
 import eu.kanade.tachiyomi.data.database.models.UpdateTarget
 
@@ -39,13 +40,8 @@ class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
         execSQL(HistoryTable.createChapterIdIndexQuery)
     
         // Gen triggers
-        val triggerGen = TriggerGenerator()
-        UpdateTarget.registeredObjects.forEach {
-            it.fields.forEach {
-                triggerGen.genTriggers(it).forEach {
-                    execSQL(it)
-                }
-            }
+        UpdateTarget.registeredObjects.flatMap(Updatable::getTriggers).forEach {
+            execSQL(it)
         }
     }
 

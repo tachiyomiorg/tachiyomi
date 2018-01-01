@@ -6,9 +6,11 @@ import eu.kanade.tachiyomi.data.sync.protocol.models.common.SyncRef
 
 class SyncCategory : SyncEntity<SyncCategory>() {
     // Changes
-    var addedManga: ChangedField<List<SyncRef<SyncManga>>>? = null
-    var deletedManga: ChangedField<List<SyncRef<SyncManga>>>? = null
+    var addedManga: MutableList<SyncRef<SyncManga>> = mutableListOf()
+    var deletedManga: MutableList<SyncRef<SyncManga>> = mutableListOf()
     var flags: ChangedField<Int>? = null
+    var oldName: ChangedField<String>? = null
+    var deleted: Boolean = false
 
     // Identifiers
     lateinit var name: String

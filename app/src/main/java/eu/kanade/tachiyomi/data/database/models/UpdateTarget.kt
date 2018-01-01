@@ -1,15 +1,14 @@
 package eu.kanade.tachiyomi.data.database.models
 
-import eu.kanade.tachiyomi.data.database.tables.ChapterTable
-import eu.kanade.tachiyomi.data.database.tables.HistoryTable
-import eu.kanade.tachiyomi.data.database.tables.MangaTable
 import eu.kanade.tachiyomi.data.database.TriggerGenerator
+import eu.kanade.tachiyomi.data.database.tables.*
 
 object UpdateTarget {
     val registeredObjects = listOf(
             Manga,
             Chapter,
-            History
+            History,
+            Category
     )
 
     fun find(id: Int) = registeredObjects.flatMap {
@@ -41,13 +40,22 @@ object UpdateTarget {
         val lastPageRead = field(5, ChapterTable.COL_LAST_PAGE_READ, 0)
     }
     object History: Updatable() {
-        override val id = 1
+        override val id = 2
 
         override val tableName = HistoryTable.TABLE
 
         override val idColumn = HistoryTable.COL_ID
 
         val lastRead = field(6, HistoryTable.COL_LAST_READ, 0)
+    }
+    object Category: Updatable() {
+        override val id = 3
+        
+        override val tableName = CategoryTable.TABLE
+    
+        override val idColumn = CategoryTable.COL_ID
+    
+        val flags = field(7, CategoryTable.COL_FLAGS, 0)
     }
 }
 
@@ -65,7 +73,7 @@ abstract class Updatable {
         fields.add(this)
     }
 
-    fun getTriggers() = fields.map {
+    fun getTriggers() = fields.flatMap {
         TriggerGenerator().genTriggers(it)
     }
 }

@@ -14,6 +14,7 @@ import eu.kanade.tachiyomi.data.sync.account.SyncAccountAuthenticator
 import eu.kanade.tachiyomi.data.sync.api.TWApi
 import eu.kanade.tachiyomi.data.sync.protocol.ReportApplier
 import eu.kanade.tachiyomi.data.sync.protocol.ReportGenerator
+import eu.kanade.tachiyomi.data.sync.protocol.category.CategorySnapshotHelper
 import eu.kanade.tachiyomi.network.NetworkHelper
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
@@ -36,8 +37,9 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
     
     val jsonParser : JsonParser by lazy { JsonParser() }
     
-    val reportGenerator by lazy { ReportGenerator() }
-    val reportApplier by lazy { ReportApplier() }
+    val categorySnapshots by lazy { CategorySnapshotHelper(context) }
+    val reportGenerator by lazy { ReportGenerator(context) }
+    val reportApplier by lazy { ReportApplier(context) }
     
     //TODO Exception handling
     override fun onPerformSync(account: Account, extras: Bundle?, authority: String?, provider: ContentProviderClient?, syncResult: SyncResult?) {
@@ -74,5 +76,10 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
         //TODO Error handling
         val result = api.sync(token, diff).toBlocking().first()
         reportApplier.apply(result.serverChanges!!)
+        
+        //Take category snapshots
+        categorySnapshots.takeCategorySnapshots()
+        db.deleteMangaCategoriesSnapshot().executeAsBlocking()
+        db.takeMangaCategoriesSnapshot().executeAsBlocking()
     }
 }
