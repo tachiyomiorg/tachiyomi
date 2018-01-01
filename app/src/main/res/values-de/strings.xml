@@ -385,7 +385,7 @@
     <string name="information_no_downloads">Keine Downloads</string>
     <string name="information_no_recent">Keine neuen Kapitel</string>
     <string name="information_no_recent_manga">Keine kürzlich gelesene Manga</string>
-    <string name="information_empty_library">Leere Bibliothek</string>
+    <string name="information_empty_library">Ihre Bibliothek ist leer, Sie können vom Katalog aus neue Serien Hinzufügen.</string>
 
     <string name="download_notifier_downloader_title">Downloader</string>
     <string name="download_notifier_title_error">Fehler</string>
