@@ -1,4 +1,4 @@
-package xyz.nulldev.ts.sync.gson
+package eu.kanade.tachiyomi.data.sync.gson
 
 import com.google.gson.FieldAttributes
 import com.google.gson.ExclusionStrategy
