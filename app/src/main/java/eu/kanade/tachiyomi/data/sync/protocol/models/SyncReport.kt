@@ -6,6 +6,8 @@ class SyncReport {
     // Used when building report
     @Transient
     var lastId = 0L
+    
+    var deviceId: String = ""
 
     var entities: MutableList<SyncEntity<*>> = mutableListOf()
 

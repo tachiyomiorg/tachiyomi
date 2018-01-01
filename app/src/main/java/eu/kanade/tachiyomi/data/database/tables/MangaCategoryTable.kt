@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.data.database.tables
 object MangaCategoryTable {
 
     const val TABLE = "mangas_categories"
-    const val SNAPSHOT_TABLE = "mangas_categories_snapshot"
+    const val SNAPSHOT_TABLE_PREFIX = "mangas_categories_snapshot_"
 
     const val COL_ID = "_id"
 

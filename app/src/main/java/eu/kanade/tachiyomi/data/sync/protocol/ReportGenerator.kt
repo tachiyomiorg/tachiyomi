@@ -15,15 +15,16 @@ class ReportGenerator(val context: Context) {
     private val sources: SourceManager by injectLazy()
     private val categorySnapshots by lazy { CategorySnapshotHelper(context) }
 
-    fun gen(from: Long): SyncReport {
+    fun gen(currentDevice: String, targetDevice: String, from: Long): SyncReport {
         val report = SyncReport()
         report.from = from
         report.to = System.currentTimeMillis()
+        report.deviceId = currentDevice
 
         genManga(report)
         genChapters(report)
         genHistory(report)
-        genCategories(report)
+        genCategories(targetDevice, report)
 
         return report
     }
@@ -83,7 +84,7 @@ class ReportGenerator(val context: Context) {
         }
     }
     
-    private fun genCategories(report: SyncReport) {
+    private fun genCategories(deviceId: String, report: SyncReport) {
         val flagsChanges = db.getEntryUpdatesForField(report, UpdateTarget.Category.flags).executeAsBlocking()
         flagsChanges.forEach {
             findOrGenCategory(it.updatedRow.toInt(), report)?.apply {
@@ -92,7 +93,7 @@ class ReportGenerator(val context: Context) {
         }
         
         //Find name changes, removed and added categories
-        val snapshots = categorySnapshots.readCategorySnapshots()
+        val snapshots = categorySnapshots.readCategorySnapshots(deviceId)
         val categories = db.getCategories().executeAsBlocking()
         
         //Find added categories
@@ -136,7 +137,7 @@ class ReportGenerator(val context: Context) {
         }
         
         //Gen added manga categories
-        db.getAddedMangaCategories().executeAsBlocking().forEach {
+        db.getAddedMangaCategories(deviceId).executeAsBlocking().forEach {
             val category = findOrGenCategory(it.category_id, report)
             val manga = findOrGenManga(it.manga_id, report)
             
@@ -146,7 +147,7 @@ class ReportGenerator(val context: Context) {
         }
         
         //Gen removed manga categories
-        db.getDeletedMangaCategories().executeAsBlocking().forEach {
+        db.getDeletedMangaCategories(deviceId).executeAsBlocking().forEach {
             val category = findOrGenCategory(it.category_id, report)
             val manga = findOrGenManga(it.manga_id, report)
         

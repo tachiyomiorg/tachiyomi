@@ -10,6 +10,7 @@ import android.os.Bundle
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.sync.account.SyncAccountAuthenticator
 import eu.kanade.tachiyomi.data.sync.api.TWApi
 import eu.kanade.tachiyomi.data.sync.protocol.ReportApplier
@@ -44,7 +45,7 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
     //TODO Exception handling
     override fun onPerformSync(account: Account, extras: Bundle?, authority: String?, provider: ContentProviderClient?, syncResult: SyncResult?) {
         //Generate library diff
-        val diff = reportGenerator.gen(0)
+        val diff = reportGenerator.gen(syncManager.getDeviceId(), LibrarySyncManager.TARGET_DEVICE_ID, 0)
         
         //Upload diff
         val api = TWApi.apiFromAccount(account)
@@ -74,12 +75,15 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
         
         //Actually upload diff
         //TODO Error handling
-        val result = api.sync(token, diff).toBlocking().first()
+        val result = api.sync(token, diff, syncManager.getLastSync()).toBlocking().first()
         reportApplier.apply(result.serverChanges!!)
         
         //Take category snapshots
-        categorySnapshots.takeCategorySnapshots()
-        db.deleteMangaCategoriesSnapshot().executeAsBlocking()
-        db.takeMangaCategoriesSnapshot().executeAsBlocking()
+        categorySnapshots.takeCategorySnapshots(LibrarySyncManager.TARGET_DEVICE_ID)
+        db.deleteMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
+        db.takeMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
+        
+        //Finish sync
+        syncManager.setLastSync(System.currentTimeMillis())
     }
 }

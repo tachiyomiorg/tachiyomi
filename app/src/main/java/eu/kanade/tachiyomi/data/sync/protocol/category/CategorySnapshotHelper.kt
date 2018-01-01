@@ -8,22 +8,22 @@ import java.io.File
 class CategorySnapshotHelper(private val context: Context) {
     val db: DatabaseHelper by injectLazy()
     
-    private val snapshotFile
-        get() = File(context.filesDir, "sync_categories.snapshot")
+    private fun snapshotFile(id: String)
+        = File(context.filesDir, "sync_categories_$id.snapshot")
     
-    fun takeCategorySnapshots() {
+    fun takeCategorySnapshots(id: String) {
         //Take snapshots
         val snapshots = db.getCategories().executeAsBlocking().map {
             CategorySnapshot(it).serialize()
         }
         
         //Write snapshots to disk
-        snapshotFile.writeText(snapshots.joinToString("\n"), CHARSET)
+        snapshotFile(id).writeText(snapshots.joinToString("\n"), CHARSET)
     }
     
-    fun readCategorySnapshots(): List<CategorySnapshot> {
+    fun readCategorySnapshots(id: String): List<CategorySnapshot> {
         //Read snapshots from disk
-        return snapshotFile.useLines(CHARSET) {
+        return snapshotFile(id).useLines(CHARSET) {
             it.filterNot(String::isBlank).map {
                 CategorySnapshot.deserialize(it)
             }.toList()

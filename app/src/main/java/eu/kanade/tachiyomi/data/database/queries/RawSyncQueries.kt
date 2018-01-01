@@ -6,16 +6,16 @@ import eu.kanade.tachiyomi.data.database.tables.MangaCategoryTable
  * Take a snapshot of the manga category table
  */
 //language=sql
-val cloneMangaCategoriesQuery = """
-    CREATE TABLE ${MangaCategoryTable.SNAPSHOT_TABLE} SELECT * FROM ${MangaCategoryTable.TABLE}
+fun cloneMangaCategoriesQuery(id: String) = """
+    CREATE TABLE ${MangaCategoryTable.SNAPSHOT_TABLE_PREFIX}$id SELECT * FROM ${MangaCategoryTable.TABLE}
         """
 
 /**
  * Delete the snapshot of the manga category table
  */
 //language=sql
-val deleteClonedMangaCategoriesQuery = """
-    DROP TABLE IF EXISTS ${MangaCategoryTable.SNAPSHOT_TABLE}
+fun deleteClonedMangaCategoriesQuery(id: String) = """
+    DROP TABLE IF EXISTS ${MangaCategoryTable.SNAPSHOT_TABLE_PREFIX}$id
         """
 
 /**
@@ -33,8 +33,8 @@ private fun genDiffMangaCategoriesQuery(from: String,
  * Find manga categories that have been deleted since the last snapshot
  */
 //Deleted categories exist in last snapshot and are missing from current table
-val getDeletedMangaCategoriesQuery = genDiffMangaCategoriesQuery(
-        MangaCategoryTable.SNAPSHOT_TABLE,
+fun getDeletedMangaCategoriesQuery(id: String) = genDiffMangaCategoriesQuery(
+        MangaCategoryTable.SNAPSHOT_TABLE_PREFIX + id,
         MangaCategoryTable.TABLE
 )
 
@@ -42,7 +42,7 @@ val getDeletedMangaCategoriesQuery = genDiffMangaCategoriesQuery(
  * Find manga categories that have been added since the last snapshot
  */
 //Deleted categories exist in current table and are missing from last snapshot
-val getAddedMangaCategoriesQuery = genDiffMangaCategoriesQuery(
+fun getAddedMangaCategoriesQuery(id: String) = genDiffMangaCategoriesQuery(
         MangaCategoryTable.TABLE,
-        MangaCategoryTable.SNAPSHOT_TABLE
+        MangaCategoryTable.SNAPSHOT_TABLE_PREFIX + id
 )

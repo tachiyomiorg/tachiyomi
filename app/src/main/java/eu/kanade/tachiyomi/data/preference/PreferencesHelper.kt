@@ -159,6 +159,10 @@ class PreferencesHelper(val context: Context) {
 
     fun downloadNewCategories() = rxPrefs.getStringSet(Keys.downloadNewCategories, emptySet())
 
+    fun syncId() = rxPrefs.getString(Keys.syncId, null)
+
+    fun lastSync() = rxPrefs.getLong(Keys.lastSync, 0)
+
     fun lang() = prefs.getString(Keys.lang, "")
 
     fun defaultCategory() = prefs.getInt(Keys.defaultCategory, -1)

@@ -39,29 +39,29 @@ interface MangaCategoryQueries : DbProvider {
         }
     }
     
-    fun takeMangaCategoriesSnapshot() = db.executeSQL()
+    fun takeMangaCategoriesSnapshot(id: String) = db.executeSQL()
             .withQuery(RawQuery.builder()
-                    .query(cloneMangaCategoriesQuery)
+                    .query(cloneMangaCategoriesQuery(id))
                     .build())
             .prepare()
     
-    fun deleteMangaCategoriesSnapshot() = db.executeSQL()
+    fun deleteMangaCategoriesSnapshot(id: String) = db.executeSQL()
             .withQuery(RawQuery.builder()
-                    .query(deleteClonedMangaCategoriesQuery)
+                    .query(deleteClonedMangaCategoriesQuery(id))
                     .build())
             .prepare()
     
-    fun getAddedMangaCategories() = db.get()
+    fun getAddedMangaCategories(id: String) = db.get()
             .listOfObjects(MangaCategory::class.java)
             .withQuery(RawQuery.builder()
-                    .query(getAddedMangaCategoriesQuery)
+                    .query(getAddedMangaCategoriesQuery(id))
                     .build())
             .prepare()
     
-    fun getDeletedMangaCategories() = db.get()
+    fun getDeletedMangaCategories(id: String) = db.get()
             .listOfObjects(MangaCategory::class.java)
             .withQuery(RawQuery.builder()
-                    .query(getDeletedMangaCategoriesQuery)
+                    .query(getDeletedMangaCategoriesQuery(id))
                     .build())
             .prepare()
 }

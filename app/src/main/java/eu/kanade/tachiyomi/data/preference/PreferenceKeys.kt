@@ -104,6 +104,10 @@ object PreferenceKeys {
     const val defaultCategory = "default_category"
 
     const val downloadBadge = "display_download_badge"
+    
+    const val syncId = "sync_id"
+    
+    const val lastSync = "last_sync"
 
     @Deprecated("Use the preferences of the source")
     fun sourceUsername(sourceId: Long) = "pref_source_username_$sourceId"
