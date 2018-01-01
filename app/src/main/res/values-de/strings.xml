@@ -414,4 +414,6 @@
     <string name="channel_downloader">Downloader</string>
 <string name="action_display_download_badge">Downloadzähler</string>
     <string name="local_source_badge">Lokal</string>
+    <string name="information_empty_category">Keine Kategorien vorhanden. Tippe auf die Plus-Schaltfläche um, zum Sortieren deiner Bibliothek, eine neue zu erstellen.</string>
+
     </resources>
