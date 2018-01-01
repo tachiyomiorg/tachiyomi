@@ -14,7 +14,7 @@
     <string name="label_recent_updates">تحديثات المكتبة</string>
     <string name="label_latest_updates">آخر التحديثات</string>
     <string name="label_categories">الأقسام</string>
-    <string name="label_selected">المحدد</string>
+    <string name="label_selected">%1$d المحدد</string>
     <string name="label_backup">النسخ الاحتياطي</string>
 
     <string name="action_settings">اﻹعدادات</string>

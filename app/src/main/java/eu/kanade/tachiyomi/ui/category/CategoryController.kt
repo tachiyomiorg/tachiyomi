@@ -107,9 +107,14 @@ class CategoryController : NucleusController<CategoryPresenter>(),
     fun setCategories(categories: List<CategoryItem>) {
         actionMode?.finish()
         adapter?.updateDataSet(categories)
-        val selected = categories.filter { it.isSelected }
-        if (selected.isNotEmpty()) {
-            selected.forEach { onItemLongClick(categories.indexOf(it)) }
+        if (categories.isNotEmpty()) {
+            empty_view.hide()
+            val selected = categories.filter { it.isSelected }
+            if (selected.isNotEmpty()) {
+                selected.forEach { onItemLongClick(categories.indexOf(it)) }
+            }
+        } else {
+            empty_view.show(R.drawable.ic_shape_black_128dp, R.string.information_empty_category)
         }
     }
 
