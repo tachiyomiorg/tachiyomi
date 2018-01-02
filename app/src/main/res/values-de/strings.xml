@@ -32,7 +32,7 @@
     <string name="action_mark_as_unread">Als ungelesen markieren</string>
     <string name="action_mark_previous_as_read">Vorherige Kapitel als gelesen markieren</string>
     <string name="action_download">Herunterladen</string>
-    <string name="action_bookmark">Lessezeichen setzen</string>
+    <string name="action_bookmark">Lesezeichen setzen</string>
     <string name="action_remove_bookmark">Entferne Lesezeichen</string>
     <string name="action_delete">Löschen</string>
     <string name="action_update">Update</string>
