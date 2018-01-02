@@ -9,10 +9,12 @@ class LibrarySyncManager(val context: Context) {
     private val prefs: PreferencesHelper by injectLazy()
     
     fun getDeviceId()
-        = prefs.syncId().get() ?: run {
+        = prefs.syncId().get() ?: regenDeviceId()
+    
+    fun regenDeviceId(): String {
         val deviceId = UUID.randomUUID().toString().replace('-', '_')
         prefs.syncId().set(deviceId)
-        deviceId
+        return deviceId
     }
     
     fun getLastSync() = prefs.lastSync().get()!!

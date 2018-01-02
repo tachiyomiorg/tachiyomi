@@ -45,7 +45,7 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
     //TODO Exception handling
     override fun onPerformSync(account: Account, extras: Bundle?, authority: String?, provider: ContentProviderClient?, syncResult: SyncResult?) {
         //Generate library diff
-        val diff = reportGenerator.gen(syncManager.getDeviceId(), LibrarySyncManager.TARGET_DEVICE_ID, 0)
+        val diff = reportGenerator.gen(syncManager.getDeviceId(), LibrarySyncManager.TARGET_DEVICE_ID, syncManager.getLastSync())
         
         //Upload diff
         val api = TWApi.apiFromAccount(account)

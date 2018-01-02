@@ -27,6 +27,7 @@ import uy.kohesive.injekt.injectLazy
 @RequiresPresenter(SyncAccountAuthenticatorPresenter::class)
 class SyncAccountAuthenticatorActivity : BaseRxActivity<SyncAccountAuthenticatorPresenter>() {
     private val db: DatabaseHelper by injectLazy()
+    private val syncManager: LibrarySyncManager by injectLazy()
     private val categorySnapshots by lazy { CategorySnapshotHelper(applicationContext) }
     
     var loginSubscription: Subscription? = null
@@ -96,6 +97,10 @@ class SyncAccountAuthenticatorActivity : BaseRxActivity<SyncAccountAuthenticator
         db.deleteMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
         db.takeEmptyMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
         categorySnapshots.deleteCategorySnapshots(LibrarySyncManager.TARGET_DEVICE_ID)
+        
+        //Regen device ID and start sync from beginning
+        syncManager.regenDeviceId()
+        syncManager.setLastSync(0)
         
         setAccountAuthenticatorResult(res.extras)
         setResult(RESULT_OK, res)

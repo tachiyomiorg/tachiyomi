@@ -119,8 +119,11 @@ class ReportApplier(val context: Context) {
     
             it.flags.applyIfNewer(id?.toLong(), UpdateTarget.Category.flags) { dbCategory.flags = it }
     
-            db.insertCategory(dbCategory).executeAsBlocking()
-            
+            val res = db.insertCategory(dbCategory).executeAsBlocking()
+            res.insertedId()?.let {
+                dbCategory.id = it.toInt()
+            }
+    
             fun List<SyncRef<SyncManga>>.toMangaCategories()
                     = mapNotNull {
                 val manga = it.resolve(report)
