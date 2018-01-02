@@ -25,14 +25,14 @@
     <string name="action_sort_alpha">Alphabetisch</string>
     <string name="action_sort_total">Kapitelanzahl</string>
     <string name="action_sort_last_read">Zuletzt gelesen</string>
-    <string name="action_sort_last_updated">Letztes Update</string>
+    <string name="action_sort_last_updated">Zuletzt aktualisiert</string>
     <string name="action_search">Suche</string>
     <string name="action_select_all">Alle auswählen</string>
     <string name="action_mark_as_read">Als gelesen markieren</string>
     <string name="action_mark_as_unread">Als ungelesen markieren</string>
     <string name="action_mark_previous_as_read">Vorherige Kapitel als gelesen markieren</string>
     <string name="action_download">Herunterladen</string>
-    <string name="action_bookmark">Lessezeichen hinzufügen</string>
+    <string name="action_bookmark">Lessezeichen setzen</string>
     <string name="action_remove_bookmark">Entferne Lesezeichen</string>
     <string name="action_delete">Löschen</string>
     <string name="action_update">Update</string>
@@ -397,7 +397,7 @@
     <string name="download_notifier_download_paused">Herunterladen pausiert</string>
 
 <string name="track">Synchronisation</string>
-    <string name="label_recent_updates">Bibliotheksupdates</string>
+    <string name="label_recent_updates">Neu verfügbare Kapitel</string>
     <string name="action_global_search">Globale Suche</string>
     <string name="action_open">Öffnen</string>
     <string name="action_login">Anmeldung</string>
