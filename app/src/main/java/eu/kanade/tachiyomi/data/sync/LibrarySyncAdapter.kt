@@ -10,18 +10,14 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v4.app.NotificationCompat
 import com.google.gson.Gson
-import com.google.gson.JsonParser
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.R.string.manga
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.notification.Notifications
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.sync.account.SyncAccountAuthenticator
 import eu.kanade.tachiyomi.data.sync.api.TWApi
 import eu.kanade.tachiyomi.data.sync.protocol.ReportApplier
 import eu.kanade.tachiyomi.data.sync.protocol.ReportGenerator
-import eu.kanade.tachiyomi.data.sync.protocol.category.CategorySnapshotHelper
-import eu.kanade.tachiyomi.network.NetworkHelper
+import eu.kanade.tachiyomi.data.sync.protocol.snapshot.SnapshotHelper
 import eu.kanade.tachiyomi.util.notification
 import eu.kanade.tachiyomi.util.notificationManager
 import timber.log.Timber
@@ -39,7 +35,7 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
     
     private val accountManager: AccountManager by lazy { AccountManager.get(context) }
     
-    private val categorySnapshots by lazy { CategorySnapshotHelper(context) }
+    private val snapshots by lazy { SnapshotHelper(context) }
     private val reportGenerator by lazy { ReportGenerator(context) }
     private val reportApplier by lazy { ReportApplier(context) }
     
@@ -111,7 +107,7 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
             //Generate library diff
             updateSync(SyncStatus.GEN_DIFF)
             val diff = try {
-                reportGenerator.gen(syncManager.getDeviceId(), LibrarySyncManager.TARGET_DEVICE_ID, syncManager.lastSync)
+                reportGenerator.gen(syncManager.getDeviceId(), LibrarySyncManager.TARGET_DEVICE_ID, syncManager.lastSyncDateTime)
             } catch (e: Exception) {
                 throw HandledSyncException(SyncError.DATABASE_ERROR, e)
             }
@@ -119,7 +115,7 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
             //Actually upload diff
             updateSync(SyncStatus.NETWORK)
             val result = try {
-                api.sync(token, diff, syncManager.lastSync).toBlocking().first()
+                api.sync(token, diff, syncManager.lastSyncDateTime).toBlocking().first()
             } catch (e: Exception) {
                 throw HandledSyncException(SyncError.NETWORK_ERROR, e)
             }
@@ -132,14 +128,14 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
                 throw HandledSyncException(SyncError.DATABASE_ERROR, e)
             }
     
-            //Take category snapshots
+            //Take snapshots
             updateSync(SyncStatus.CLEANUP)
             try {
-                categorySnapshots.takeCategorySnapshots(LibrarySyncManager.TARGET_DEVICE_ID)
+                snapshots.takeSnapshots(LibrarySyncManager.TARGET_DEVICE_ID)
                 db.deleteMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
                 db.takeMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
                 //Update last sync time
-                syncManager.lastSync = System.currentTimeMillis()
+                syncManager.lastSyncDateTime = System.currentTimeMillis()
             } catch (e: Exception) {
                 throw HandledSyncException(SyncError.DATABASE_ERROR, e)
             }

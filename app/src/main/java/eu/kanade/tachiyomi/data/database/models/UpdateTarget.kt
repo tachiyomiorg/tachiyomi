@@ -8,7 +8,8 @@ object UpdateTarget {
             Manga,
             Chapter,
             History,
-            Category
+            Category,
+            Track
     )
 
     fun find(id: Int) = registeredObjects.flatMap {
@@ -56,6 +57,20 @@ object UpdateTarget {
         override val idColumn = CategoryTable.COL_ID
     
         val flags = field(7, CategoryTable.COL_FLAGS, 0)
+    }
+    object Track: Updatable() {
+        override val id = 4
+    
+        override val tableName = TrackTable.TABLE
+    
+        override val idColumn = TrackTable.COL_ID
+        
+        val remoteId = field(8, TrackTable.COL_REMOTE_ID, 0)
+        var title = field(9, TrackTable.COL_TITLE, "")
+        var lastChapterRead = field(10, TrackTable.COL_LAST_CHAPTER_READ, 0)
+        var totalChapters = field(11, TrackTable.COL_TOTAL_CHAPTERS, 0)
+        var score = field(12, TrackTable.COL_SCORE, 0f)
+        var status = field(13, TrackTable.COL_STATUS, 0)
     }
 }
 

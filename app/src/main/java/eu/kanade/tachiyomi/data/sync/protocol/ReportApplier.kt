@@ -6,16 +6,15 @@ import eu.kanade.tachiyomi.data.database.models.*
 import eu.kanade.tachiyomi.data.sync.protocol.models.*
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.ChangedField
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.SyncRef
-import eu.kanade.tachiyomi.data.sync.protocol.models.entities.SyncCategory
-import eu.kanade.tachiyomi.data.sync.protocol.models.entities.SyncChapter
-import eu.kanade.tachiyomi.data.sync.protocol.models.entities.SyncHistory
-import eu.kanade.tachiyomi.data.sync.protocol.models.entities.SyncManga
+import eu.kanade.tachiyomi.data.sync.protocol.models.entities.*
+import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.SourceManager
 import uy.kohesive.injekt.injectLazy
 
 class ReportApplier(val context: Context) {
     private val db: DatabaseHelper by injectLazy()
     private val sources: SourceManager by injectLazy()
+    private val tracks: TrackManager by injectLazy()
 
     fun apply(report: SyncReport) {
         //TODO Match sources
@@ -147,6 +146,40 @@ class ReportApplier(val context: Context) {
             removedMangaCategories.forEach {
                 db.deleteMangaCategory(it).executeAsBlocking()
             }
+        }
+    }
+    
+    private fun applyTracks(report: SyncReport) {
+        report.findEntities<SyncTrack>().forEach {
+            val service = tracks.getService(it.sync_id) ?: return@forEach
+            
+            val manga = it.manga.resolve(report)
+            val source = manga.source.resolve(report)
+            val dbManga = db.getManga(manga.url, source.id).executeAsBlocking() ?: return@forEach
+    
+            //Delete track if necessary
+            if (it.deleted) {
+                db.deleteTrackForManga(dbManga, service).executeAsBlocking()
+                return@forEach
+            }
+            
+            val dbTrack = db.getTracks().executeAsBlocking().find { dbTrack ->
+                dbTrack.manga_id == dbManga.id && dbTrack.sync_id == it.sync_id
+            } ?: Track.create(it.sync_id).apply {
+                manga_id = dbManga.id!!
+            }
+            
+            //Apply other changes to track properties
+            val id = dbTrack.id
+    
+            it.remote_id.applyIfNewer(id, UpdateTarget.Track.remoteId) { dbTrack.remote_id = it }
+            it.title.applyIfNewer(id, UpdateTarget.Track.title) { dbTrack.title = it }
+            it.last_chapter_read.applyIfNewer(id, UpdateTarget.Track.lastChapterRead) { dbTrack.last_chapter_read = it }
+            it.total_chapters.applyIfNewer(id, UpdateTarget.Track.totalChapters) { dbTrack.total_chapters = it }
+            it.score.applyIfNewer(id, UpdateTarget.Track.score) { dbTrack.score = it }
+            it.status.applyIfNewer(id, UpdateTarget.Track.status) { dbTrack.status = it }
+    
+            db.insertTrack(dbTrack).executeAsBlocking()
         }
     }
     

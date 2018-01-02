@@ -8,6 +8,15 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.tables.CategoryTable
 
 interface CategoryQueries : DbProvider {
+    
+    fun getCategory(id: Int) = db.get()
+            .`object`(Category::class.java)
+            .withQuery(Query.builder()
+                    .table(CategoryTable.TABLE)
+                    .where("${CategoryTable.COL_ID} = ?")
+                    .whereArgs(id)
+                    .build())
+            .prepare()
 
     fun getCategories() = db.get()
             .listOfObjects(Category::class.java)

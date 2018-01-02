@@ -17,7 +17,7 @@ class LibrarySyncManager(val context: Context) {
         return deviceId
     }
     
-    var lastSync
+    var lastSyncDateTime
         get() = prefs.lastSync().get()!!
         set(v) { prefs.lastSync().set(v) }
     

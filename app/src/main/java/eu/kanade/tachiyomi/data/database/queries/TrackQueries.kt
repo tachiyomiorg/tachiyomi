@@ -9,7 +9,23 @@ import eu.kanade.tachiyomi.data.database.tables.TrackTable
 import eu.kanade.tachiyomi.data.track.TrackService
 
 interface TrackQueries : DbProvider {
-
+    
+    fun getTrack(id: Long) = db.get()
+            .`object`(Track::class.java)
+            .withQuery(Query.builder()
+                    .table(TrackTable.TABLE)
+                    .where("${TrackTable.COL_ID} = ?")
+                    .whereArgs(id)
+                    .build())
+            .prepare()
+    
+    fun getTracks() = db.get()
+            .listOfObjects(Track::class.java)
+            .withQuery(Query.builder()
+                    .table(TrackTable.TABLE)
+                    .build())
+            .prepare()
+    
     fun getTracks(manga: Manga) = db.get()
             .listOfObjects(Track::class.java)
             .withQuery(Query.builder()

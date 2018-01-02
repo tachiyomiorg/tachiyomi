@@ -9,7 +9,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.sync.LibrarySyncManager
 import eu.kanade.tachiyomi.data.sync.account.SyncAccountAuthenticator
-import eu.kanade.tachiyomi.data.sync.protocol.category.CategorySnapshotHelper
+import eu.kanade.tachiyomi.data.sync.protocol.snapshot.SnapshotHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseRxActivity
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.activity_sync_auth.*
@@ -28,7 +28,7 @@ import uy.kohesive.injekt.injectLazy
 class SyncAccountAuthenticatorActivity : BaseRxActivity<SyncAccountAuthenticatorPresenter>() {
     private val db: DatabaseHelper by injectLazy()
     private val syncManager: LibrarySyncManager by injectLazy()
-    private val categorySnapshots by lazy { CategorySnapshotHelper(applicationContext) }
+    private val snapshots by lazy { SnapshotHelper(applicationContext) }
     
     var loginSubscription: Subscription? = null
     
@@ -96,11 +96,11 @@ class SyncAccountAuthenticatorActivity : BaseRxActivity<SyncAccountAuthenticator
         //Clear snapshots
         db.deleteMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
         db.takeEmptyMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
-        categorySnapshots.deleteCategorySnapshots(LibrarySyncManager.TARGET_DEVICE_ID)
+        snapshots.deleteSnapshots(LibrarySyncManager.TARGET_DEVICE_ID)
         
         //Regen device ID and start sync from beginning
         syncManager.regenDeviceId()
-        syncManager.lastSync = 0
+        syncManager.lastSyncDateTime = 0
         
         setAccountAuthenticatorResult(res.extras)
         setResult(RESULT_OK, res)
