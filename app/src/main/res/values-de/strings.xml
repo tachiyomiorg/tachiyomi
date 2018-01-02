@@ -370,12 +370,12 @@
     <string name="update_check_confirm">Herunterladen</string>
     <string name="update_check_ignore">Ignorieren</string>
     <string name="update_check_no_new_updates">Kein neues Update verfügbar</string>
-    <string name="update_check_download_started">Herunterladen gestartet</string>
+    <string name="update_check_download_started">Download gestartet</string>
     <string name="update_check_look_for_updates">Suche nach Updates</string>
 
-    <string name="update_check_notification_file_download">Lade Update runter</string>
+    <string name="update_check_notification_file_download">Lade Update herunter</string>
     <string name="update_check_notification_download_in_progress">Am Herunterladen</string>
-    <string name="update_check_notification_download_complete">Herunterladen erfolgreich</string>
+    <string name="update_check_notification_download_complete">Download abgeschlossen</string>
     <string name="update_check_notification_download_error">Fehler beim Herunterladen</string>
     <string name="update_check_notification_update_available">Update verfügbar</string>
 
@@ -392,7 +392,7 @@
     <string name="download_notifier_unkown_error">Während dem Herunterladen ist ein unerwarteter Fehler aufgetreten</string>
     <string name="download_notifier_page_error">Im Ordner fehlt eine Seite</string>
     <string name="download_notifier_page_ready_error">Eine Seite ist nicht geladen</string>
-    <string name="download_notifier_text_only_wifi">Keine Wi-Fi Verbindung verfügbar</string>
+    <string name="download_notifier_text_only_wifi">Keine WLAN-Verbindung verfügbar</string>
     <string name="download_notifier_no_network">Kein Netzwerk verfügbar</string>
     <string name="download_notifier_download_paused">Herunterladen pausiert</string>
 
