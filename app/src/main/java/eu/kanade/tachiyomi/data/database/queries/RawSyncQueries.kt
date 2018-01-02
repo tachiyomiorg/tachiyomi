@@ -7,8 +7,16 @@ import eu.kanade.tachiyomi.data.database.tables.MangaCategoryTable
  */
 //language=sql
 fun cloneMangaCategoriesQuery(id: String) = """
-    CREATE TABLE ${MangaCategoryTable.SNAPSHOT_TABLE_PREFIX}$id SELECT * FROM ${MangaCategoryTable.TABLE}
+    CREATE TABLE IF NOT EXISTS ${MangaCategoryTable.SNAPSHOT_TABLE_PREFIX}$id AS SELECT * FROM ${MangaCategoryTable.TABLE}
         """
+
+/**
+ * Take an empty snapshot of the manga category table
+ */
+//language=sql
+fun createEmptyClonedMangaCategoriesQuery(id: String) = """
+    CREATE TABLE IF NOT EXISTS ${MangaCategoryTable.SNAPSHOT_TABLE_PREFIX}$id AS SELECT * FROM ${MangaCategoryTable.TABLE} WHERE 0
+    """
 
 /**
  * Delete the snapshot of the manga category table
@@ -24,7 +32,7 @@ fun deleteClonedMangaCategoriesQuery(id: String) = """
 //language=sql
 private fun genDiffMangaCategoriesQuery(from: String,
                                         to: String) = """
-    SELECT * FROM $from WHERE NOT EXIST
+    SELECT * FROM $from WHERE NOT EXISTS
    (SELECT * FROM $to WHERE $from.${MangaCategoryTable.COL_MANGA_ID} = $to.${MangaCategoryTable.COL_MANGA_ID}
        AND $from.${MangaCategoryTable.COL_CATEGORY_ID} = $to.${MangaCategoryTable.COL_CATEGORY_ID})
     """

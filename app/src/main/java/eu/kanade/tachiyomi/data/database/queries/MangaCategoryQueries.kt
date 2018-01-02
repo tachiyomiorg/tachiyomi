@@ -45,6 +45,12 @@ interface MangaCategoryQueries : DbProvider {
                     .build())
             .prepare()
     
+    fun takeEmptyMangaCategoriesSnapshot(id: String) = db.executeSQL()
+            .withQuery(RawQuery.builder()
+                    .query(createEmptyClonedMangaCategoriesQuery(id))
+                    .build())
+            .prepare()
+    
     fun deleteMangaCategoriesSnapshot(id: String) = db.executeSQL()
             .withQuery(RawQuery.builder()
                     .query(deleteClonedMangaCategoriesQuery(id))

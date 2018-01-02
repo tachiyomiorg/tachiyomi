@@ -6,7 +6,10 @@ import android.content.Intent
 import android.os.Bundle
 import com.dd.processbutton.iml.ActionProcessButton
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.sync.LibrarySyncManager
 import eu.kanade.tachiyomi.data.sync.account.SyncAccountAuthenticator
+import eu.kanade.tachiyomi.data.sync.protocol.category.CategorySnapshotHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseRxActivity
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.activity_sync_auth.*
@@ -15,6 +18,7 @@ import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import timber.log.Timber
+import uy.kohesive.injekt.injectLazy
 
 /**
  * Sync authentication UI.
@@ -22,6 +26,8 @@ import timber.log.Timber
 
 @RequiresPresenter(SyncAccountAuthenticatorPresenter::class)
 class SyncAccountAuthenticatorActivity : BaseRxActivity<SyncAccountAuthenticatorPresenter>() {
+    private val db: DatabaseHelper by injectLazy()
+    private val categorySnapshots by lazy { CategorySnapshotHelper(applicationContext) }
     
     var loginSubscription: Subscription? = null
     
@@ -85,6 +91,11 @@ class SyncAccountAuthenticatorActivity : BaseRxActivity<SyncAccountAuthenticator
         val res = Intent().putExtra(AccountManager.KEY_ACCOUNT_NAME, url)
                 .putExtra(AccountManager.KEY_ACCOUNT_TYPE, SyncAccountAuthenticator.ACCOUNT_TYPE)
                 .putExtra(AccountManager.KEY_AUTHTOKEN, token)
+        
+        //Clear snapshots
+        db.deleteMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID)
+        db.takeEmptyMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID)
+        categorySnapshots.deleteCategorySnapshots(LibrarySyncManager.TARGET_DEVICE_ID)
         
         setAccountAuthenticatorResult(res.extras)
         setResult(RESULT_OK, res)

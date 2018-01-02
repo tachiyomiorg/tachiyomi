@@ -4,6 +4,7 @@ import android.content.Context
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import uy.kohesive.injekt.injectLazy
 import java.io.File
+import java.io.FileNotFoundException
 
 class CategorySnapshotHelper(private val context: Context) {
     val db: DatabaseHelper by injectLazy()
@@ -23,11 +24,19 @@ class CategorySnapshotHelper(private val context: Context) {
     
     fun readCategorySnapshots(id: String): List<CategorySnapshot> {
         //Read snapshots from disk
-        return snapshotFile(id).useLines(CHARSET) {
-            it.filterNot(String::isBlank).map {
-                CategorySnapshot.deserialize(it)
-            }.toList()
+        return try {
+            snapshotFile(id).useLines(CHARSET) {
+                it.filterNot(String::isBlank).map {
+                    CategorySnapshot.deserialize(it)
+                }.toList()
+            }
+        } catch(e: FileNotFoundException) {
+            emptyList()
         }
+    }
+    
+    fun deleteCategorySnapshots(id: String) {
+        snapshotFile(id).delete()
     }
     
     companion object {
