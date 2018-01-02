@@ -39,12 +39,12 @@
     <string name="action_update_library">Bibliothek aktualisieren</string>
     <string name="action_edit">Bearbeiten</string>
     <string name="action_add">Hinzufügen</string>
-    <string name="action_add_category">Füge eine Kategorie hinzu</string>
+    <string name="action_add_category">Kategorie hinzufügen</string>
     <string name="action_edit_categories">Kategorien bearbeiten</string>
     <string name="action_rename_category">Kategorie umbenennen</string>
     <string name="action_move_category">Zu Kategorien hinzufügen</string>
     <string name="action_edit_cover">Vorschaubild bearbeiten</string>
-    <string name="action_sort_up">aufsteigend Sortieren</string>
+    <string name="action_sort_up">Aufsteigend Sortieren</string>
     <string name="action_sort_down">Absteigend Sortieren</string>
     <string name="action_show_unread">Ungelesen</string>
     <string name="action_show_downloaded">Heruntergeladen</string>
