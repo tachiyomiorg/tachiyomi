@@ -100,7 +100,7 @@ class SyncAccountAuthenticatorActivity : BaseRxActivity<SyncAccountAuthenticator
         
         //Regen device ID and start sync from beginning
         syncManager.regenDeviceId()
-        syncManager.setLastSync(0)
+        syncManager.lastSync = 0
         
         setAccountAuthenticatorResult(res.extras)
         setResult(RESULT_OK, res)

@@ -6,6 +6,10 @@ import eu.kanade.tachiyomi.data.database.models.*
 import eu.kanade.tachiyomi.data.sync.protocol.models.*
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.ChangedField
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.SyncRef
+import eu.kanade.tachiyomi.data.sync.protocol.models.entities.SyncCategory
+import eu.kanade.tachiyomi.data.sync.protocol.models.entities.SyncChapter
+import eu.kanade.tachiyomi.data.sync.protocol.models.entities.SyncHistory
+import eu.kanade.tachiyomi.data.sync.protocol.models.entities.SyncManga
 import eu.kanade.tachiyomi.source.SourceManager
 import uy.kohesive.injekt.injectLazy
 

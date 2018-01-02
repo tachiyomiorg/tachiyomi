@@ -6,10 +6,15 @@ import android.content.AbstractThreadedSyncAdapter
 import android.content.ContentProviderClient
 import android.content.Context
 import android.content.SyncResult
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.support.v4.app.NotificationCompat
 import com.google.gson.Gson
 import com.google.gson.JsonParser
+import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.R.string.manga
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.sync.account.SyncAccountAuthenticator
 import eu.kanade.tachiyomi.data.sync.api.TWApi
@@ -17,6 +22,8 @@ import eu.kanade.tachiyomi.data.sync.protocol.ReportApplier
 import eu.kanade.tachiyomi.data.sync.protocol.ReportGenerator
 import eu.kanade.tachiyomi.data.sync.protocol.category.CategorySnapshotHelper
 import eu.kanade.tachiyomi.network.NetworkHelper
+import eu.kanade.tachiyomi.util.notification
+import eu.kanade.tachiyomi.util.notificationManager
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 
@@ -26,64 +33,191 @@ import uy.kohesive.injekt.injectLazy
 
 class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context, true, false) {
     
-    val db: DatabaseHelper by injectLazy()
+    private val db: DatabaseHelper by injectLazy()
+    private val gson: Gson by injectLazy()
+    private val syncManager: LibrarySyncManager by injectLazy()
     
-    val gson: Gson by injectLazy()
+    private val accountManager: AccountManager by lazy { AccountManager.get(context) }
     
-    val syncManager: LibrarySyncManager by injectLazy()
+    private val categorySnapshots by lazy { CategorySnapshotHelper(context) }
+    private val reportGenerator by lazy { ReportGenerator(context) }
+    private val reportApplier by lazy { ReportApplier(context) }
     
-    val networkService: NetworkHelper by injectLazy()
+    /**
+     * Bitmap of the app for notifications.
+     */
+    private val notificationBitmap by lazy {
+        BitmapFactory.decodeResource(context.resources, R.mipmap.ic_launcher)
+    }
     
-    val accountManager: AccountManager by lazy { AccountManager.get(context) }
-    
-    val jsonParser : JsonParser by lazy { JsonParser() }
-    
-    val categorySnapshots by lazy { CategorySnapshotHelper(context) }
-    val reportGenerator by lazy { ReportGenerator(context) }
-    val reportApplier by lazy { ReportApplier(context) }
+    /**
+     * Cached progress notification to avoid creating a lot.
+     */
+    private val progressNotification by lazy { NotificationCompat.Builder(context, Notifications.CHANNEL_SYNC)
+            .setContentTitle(context.getString(R.string.app_name))
+            .setSmallIcon(R.drawable.ic_sync_white_24dp)
+            .setLargeIcon(notificationBitmap)
+            .setOngoing(true)
+            .setOnlyAlertOnce(true)
+    }
     
     //TODO Exception handling
     override fun onPerformSync(account: Account, extras: Bundle?, authority: String?, provider: ContentProviderClient?, syncResult: SyncResult?) {
-        //Generate library diff
-        val diff = reportGenerator.gen(syncManager.getDeviceId(), LibrarySyncManager.TARGET_DEVICE_ID, syncManager.getLastSync())
-        
-        //Upload diff
+        try {
+            performSync(account)
+        } catch(e: HandledSyncException) {
+            updateSyncError(e.error)
+            Timber.e(e.cause, "Sync failed! Error type: %s", e.error.name)
+        } finally {
+            //Hide progress as sync is done
+            cancelProgressNotification()
+        }
+    }
+    
+    fun performSync(account: Account) {
+        //Auth with server (get token)
+        updateSync(SyncStatus.AUTH)
         val api = TWApi.apiFromAccount(account)
         var token: String? = null
-        //Three tries to authenticate
-        for(i in 1 .. 3) {
-            token = accountManager.blockingGetAuthToken(account,
-                    SyncAccountAuthenticator.AUTH_TOKEN_TYPE,
-                    true) ?: return
-            //Verify we are authenticated first
-            if (api.testAuthenticated(token)
-                    .toBlocking()
-                    .first()
-                    .success) {
-                break
-            } else {
-                //Unsuccessful, get a new auth token
-                accountManager.invalidateAuthToken(SyncAccountAuthenticator.ACCOUNT_TYPE,
-                        token)
-                token = null
-                Timber.w("Sync authentication token is invalid, retrieving a new one!")
+        try {
+            //Three tries
+            for (i in 1 .. 3) {
+                token = accountManager.blockingGetAuthToken(account,
+                        SyncAccountAuthenticator.AUTH_TOKEN_TYPE,
+                        true) ?: return
+                //Verify we are authenticated first
+                if (api.testAuthenticated(token)
+                        .toBlocking()
+                        .first()
+                        .success) {
+                    break
+                } else {
+                    //Unsuccessful, get a new auth token
+                    accountManager.invalidateAuthToken(SyncAccountAuthenticator.ACCOUNT_TYPE,
+                            token)
+                    token = null
+                    Timber.w("Sync authentication token is invalid, retrieving a new one!")
+                }
+            }
+            if (token == null) {
+                throw HandledSyncException(SyncError.AUTH_ERROR, null)
+            }
+        } catch(e: Exception) {
+            throw HandledSyncException(SyncError.AUTH_ERROR, e)
+        }
+        
+        //Lock database during sync
+        db.inTransaction {
+            //Generate library diff
+            updateSync(SyncStatus.GEN_DIFF)
+            val diff = try {
+                reportGenerator.gen(syncManager.getDeviceId(), LibrarySyncManager.TARGET_DEVICE_ID, syncManager.lastSync)
+            } catch (e: Exception) {
+                throw HandledSyncException(SyncError.DATABASE_ERROR, e)
+            }
+    
+            //Actually upload diff
+            updateSync(SyncStatus.NETWORK)
+            val result = try {
+                api.sync(token, diff, syncManager.lastSync).toBlocking().first()
+            } catch (e: Exception) {
+                throw HandledSyncException(SyncError.NETWORK_ERROR, e)
+            }
+    
+            //Apply server diff
+            updateSync(SyncStatus.APPLY_DIFF)
+            try {
+                reportApplier.apply(result.serverChanges!!)
+            } catch (e: Exception) {
+                throw HandledSyncException(SyncError.DATABASE_ERROR, e)
+            }
+    
+            //Take category snapshots
+            updateSync(SyncStatus.CLEANUP)
+            try {
+                categorySnapshots.takeCategorySnapshots(LibrarySyncManager.TARGET_DEVICE_ID)
+                db.deleteMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
+                db.takeMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
+                //Update last sync time
+                syncManager.lastSync = System.currentTimeMillis()
+            } catch (e: Exception) {
+                throw HandledSyncException(SyncError.DATABASE_ERROR, e)
             }
         }
-        if(token == null) {
-            return //Still no valid token, die
-        }
-        
-        //Actually upload diff
-        //TODO Error handling
-        val result = api.sync(token, diff, syncManager.getLastSync()).toBlocking().first()
-        reportApplier.apply(result.serverChanges!!)
-        
-        //Take category snapshots
-        categorySnapshots.takeCategorySnapshots(LibrarySyncManager.TARGET_DEVICE_ID)
-        db.deleteMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
-        db.takeMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
-        
-        //Finish sync
-        syncManager.setLastSync(System.currentTimeMillis())
     }
+    
+    override fun onSyncCanceled() {
+        super.onSyncCanceled()
+        
+        //Hide progress
+        cancelProgressNotification()
+    }
+    
+    fun updateSync(status: SyncStatus) {
+        showProgressNotification(status)
+    }
+    
+    fun updateSyncError(error: SyncError) {
+        showErrorNotification(error)
+    }
+    
+    /**
+     * Shows the notification describing a sync error
+     *
+     * @param error the sync error
+     */
+    private fun showErrorNotification(error: SyncError) {
+        context.notificationManager.notify(Notifications.ID_SYNC_ERROR, context.notification(Notifications.CHANNEL_SYNC) {
+            setSmallIcon(android.R.drawable.stat_sys_warning)
+            setLargeIcon(notificationBitmap)
+            setContentTitle(context.getString(R.string.sync_error, context.getString(error.message)))
+            setContentText(context.getString(R.string.sync_error_details))
+            priority = NotificationCompat.PRIORITY_HIGH
+            setAutoCancel(true)
+        })
+    }
+    
+    /**
+     * Shows the notification containing the current sync progress
+     *
+     * @param status the current sync status
+     */
+    private fun showProgressNotification(status: SyncStatus) {
+        context.notificationManager.notify(Notifications.ID_SYNC_PROGRESS, progressNotification
+                .setContentTitle(context.getString(status.status))
+                .setProgress(status.total, status.progress, false)
+                .build())
+    }
+    
+    /**
+     * Cancels the progress notification.
+     */
+    private fun cancelProgressNotification() {
+        context.notificationManager.cancel(Notifications.ID_SYNC_PROGRESS)
+    }
+    
+    /**
+     * Enum representing current sync status
+     */
+    enum class SyncStatus(val status: Int) {
+        AUTH(R.string.sync_status_auth),
+        GEN_DIFF(R.string.sync_status_gen_diff),
+        NETWORK(R.string.sync_status_network),
+        APPLY_DIFF(R.string.sync_status_apply_diff),
+        CLEANUP(R.string.sync_status_cleanup);
+        
+        val progress by lazy { values().indexOf(this) }
+        val total by lazy { values().size }
+    }
+    
+    /**
+     * Enum representing possible sync errors
+     */
+    enum class SyncError(val message: Int) {
+        AUTH_ERROR(R.string.sync_error_auth),
+        NETWORK_ERROR(R.string.sync_error_network),
+        DATABASE_ERROR(R.string.sync_error_database)
+    }
+    
+    class HandledSyncException(val error: SyncError, cause: Exception?) : RuntimeException(cause)
 }

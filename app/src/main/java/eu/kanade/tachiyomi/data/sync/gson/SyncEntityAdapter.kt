@@ -1,7 +1,8 @@
 package eu.kanade.tachiyomi.data.sync.gson
 
+import com.github.salomonbrys.kotson.obj
+import com.github.salomonbrys.kotson.string
 import com.google.gson.JsonParseException
-import com.google.gson.JsonPrimitive
 import com.google.gson.JsonObject
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonElement
@@ -9,14 +10,17 @@ import com.google.gson.JsonSerializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonSerializer
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.SyncEntity
+import eu.kanade.tachiyomi.data.sync.protocol.models.entities.*
 import java.lang.reflect.Type
 
 class SyncEntityAdapter : JsonSerializer<SyncEntity<*>>, JsonDeserializer<SyncEntity<*>> {
+    //Use SyncManga class to get sync entity package
+    val syncEntityPackage = SyncManga::class.java.`package`.name
+    
     override fun serialize(src: SyncEntity<*>, typeOfSrc: Type,
                            context: JsonSerializationContext): JsonElement {
         val retValue = JsonObject()
-        val className = src::class.java.name
-        retValue.addProperty(CLASSNAME, className)
+        retValue.addProperty(CLASSNAME, serializeClass(src::class.java))
         val elem = context.serialize(src)
         retValue.add(INSTANCE, elem)
         return retValue
@@ -24,23 +28,27 @@ class SyncEntityAdapter : JsonSerializer<SyncEntity<*>>, JsonDeserializer<SyncEn
 
     override fun deserialize(json: JsonElement, typeOfT: Type,
                     context: JsonDeserializationContext): SyncEntity<*> {
-        val jsonObject = json.asJsonObject
-        val prim = jsonObject.get(CLASSNAME) as JsonPrimitive
-        val className = prim.asString
+        val obj = json.obj
+        val className = obj[CLASSNAME].string
 
         val klass: Class<*>?
         try {
-            klass = Class.forName(className)
+            klass = deserializeClass(className)
         } catch (e: ClassNotFoundException) {
             throw JsonParseException(e)
         }
 
-        return context.deserialize<SyncEntity<*>>(jsonObject.get(INSTANCE), klass)
+        return context.deserialize<SyncEntity<*>>(obj[INSTANCE], klass)
     }
+    
+    private fun serializeClass(clazz: Class<*>)
+        = clazz.simpleName.removePrefix("Sync")
+    
+    private fun deserializeClass(string: String): Class<*>
+        = Class.forName("$syncEntityPackage.Sync$string")
 
     companion object {
-
-        private val CLASSNAME = "type"
-        private val INSTANCE = "value"
+        private val CLASSNAME = "t"
+        private val INSTANCE = "v"
     }
 }

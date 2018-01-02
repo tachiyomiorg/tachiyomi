@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.data.sync.protocol.models
+package eu.kanade.tachiyomi.data.sync.protocol.models.entities
 
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.ChangedField
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.SyncEntity

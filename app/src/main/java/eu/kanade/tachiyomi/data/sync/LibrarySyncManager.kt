@@ -17,8 +17,9 @@ class LibrarySyncManager(val context: Context) {
         return deviceId
     }
     
-    fun getLastSync() = prefs.lastSync().get()!!
-    fun setLastSync(lastSync: Long) = prefs.lastSync().set(lastSync)
+    var lastSync
+        get() = prefs.lastSync().get()!!
+        set(v) { prefs.lastSync().set(v) }
     
     companion object {
         val TARGET_DEVICE_ID = "server"

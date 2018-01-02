@@ -6,6 +6,7 @@ import eu.kanade.tachiyomi.data.database.models.*
 import eu.kanade.tachiyomi.data.sync.protocol.category.CategorySnapshotHelper
 import eu.kanade.tachiyomi.data.sync.protocol.models.*
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.ChangedField
+import eu.kanade.tachiyomi.data.sync.protocol.models.entities.*
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import uy.kohesive.injekt.injectLazy

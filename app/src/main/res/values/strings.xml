@@ -504,11 +504,24 @@
     <string name="channel_common">Common</string>
     <string name="channel_library">Library</string>
     <string name="channel_downloader">Downloader</string>
+    <string name="channel_sync">Sync</string>
 
     <!-- Sync -->
     <string name="sync_account_label">Sync server</string>
     <string name="sync_authorize_activity_title">Add server</string>
     <string name="sync_server_url">Server URL</string>
     <string name="sync_password">Password</string>
+
+    <string name="sync_status_auth">Authenticating with server…</string>
+    <string name="sync_status_gen_diff">Calculating changes…</string>
+    <string name="sync_status_network">Communicating with server…</string>
+    <string name="sync_status_apply_diff">Applying new changes…</string>
+    <string name="sync_status_cleanup">Finalizing sync…</string>
+
+    <string name="sync_error">Sync error: %s</string>
+    <string name="sync_error_details">Your library may not be up to date!</string>
+    <string name="sync_error_auth">Authentication error</string>
+    <string name="sync_error_network">Network error</string>
+    <string name="sync_error_database">Database error</string>
 
 </resources>
