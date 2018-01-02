@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.data.sync.protocol
 
 import android.content.Context
-import eu.kanade.tachiyomi.R.string.name
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.*
 import eu.kanade.tachiyomi.data.sync.protocol.snapshot.SnapshotHelper
