@@ -62,7 +62,7 @@
                 <TextView
                     android:text="@string/manga_info_full_title_label"
                     android:id="@+id/manga_full_title"
-                    style="@style/TextAppearance.Medium.Body2"
+                    style="@style/TextAppearance.Regular.Body1.Secondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
