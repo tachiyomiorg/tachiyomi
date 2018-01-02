@@ -62,11 +62,11 @@
                 <TextView
                     android:text="@string/manga_info_full_title_label"
                     android:id="@+id/manga_full_title"
-                    style="@style/TextAppearance.Regular.Body1.Secondary"
+                    style="@style/TextAppearance.Medium.Title.Secondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:ellipsize="marquee"
+                    android:ellipsize="end"
+                    android:maxLines="2"
                     android:textIsSelectable="false"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
