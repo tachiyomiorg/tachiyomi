@@ -93,8 +93,8 @@ class SyncAccountAuthenticatorActivity : BaseRxActivity<SyncAccountAuthenticator
                 .putExtra(AccountManager.KEY_AUTHTOKEN, token)
         
         //Clear snapshots
-        db.deleteMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID)
-        db.takeEmptyMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID)
+        db.deleteMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
+        db.takeEmptyMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
         categorySnapshots.deleteCategorySnapshots(LibrarySyncManager.TARGET_DEVICE_ID)
         
         setAccountAuthenticatorResult(res.extras)
