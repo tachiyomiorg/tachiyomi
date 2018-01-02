@@ -7,6 +7,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
@@ -32,7 +33,6 @@ import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.Source
-import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
@@ -96,8 +96,8 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         manga_author.clicks().subscribeUntilDestroy{ performSearch(manga_author.text.toString()) }
         manga_summary.longClicks().subscribeUntilDestroy { copyToClipboard(view.context.getString(R.string.description), manga_summary.text.toString()) }
 
-        //todo: there is probably a better way to setup genres so the user can do an individual search
-        manga_genres.clicks().subscribeUntilDestroy{ performSearch(manga_genres.text.toString().replace(",",  "")) }
+        //todo: make an rxbinding extension for this?
+        manga_genres_tags.setOnTagClickListener { tag -> performSearch(tag) }
 
         manga_cover.longClicks().subscribeUntilDestroy { copyToClipboard(view.context.getString(R.string.title), presenter.manga.title) }
 
@@ -169,19 +169,10 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
             true -> view.context.getString(R.string.unknown)
         }
 
-        // Update genres TextView.
-        manga_genres.text = when(manga.genre.isNullOrBlank()){
-            false -> manga.genre
-            true -> view.context.getString(R.string.unknown)
+        // Update genres list
+        if(manga.genre.isNullOrBlank().not()){
+            manga_genres_tags.setTags(manga.genre?.split(", "))
         }
-
-        // Update status TextView.
-        manga_status.setText(when (manga.status) {
-            SManga.ONGOING -> R.string.ongoing
-            SManga.COMPLETED -> R.string.completed
-            SManga.LICENSED -> R.string.licensed
-            else -> R.string.unknown
-        })
 
         // Update description TextView.
         manga_summary.text = when(manga.description.isNullOrBlank()){

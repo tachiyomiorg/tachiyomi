@@ -29,14 +29,14 @@ ext {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion "27.0.1"
     publishNonDefault true
 
     defaultConfig {
         applicationId "eu.kanade.tachiyomi"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 27
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         versionCode 29
         versionName "0.6.6"
@@ -202,6 +202,7 @@ dependencies {
     implementation 'me.zhanghai.android.systemuihelper:library:1.0.0'
     implementation 'com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.0.4'
     implementation 'com.github.mthli:Slice:v1.2'
+    implementation 'me.gujun.android.taggroup:library:1.4@aar'
 
     // Conductor
     implementation "com.bluelinelabs:conductor:2.1.4"

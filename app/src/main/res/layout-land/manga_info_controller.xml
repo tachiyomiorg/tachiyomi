@@ -62,7 +62,7 @@
                 <TextView
                     android:text="@string/manga_info_full_title_label"
                     android:id="@+id/manga_full_title"
-                    style="@style/TextAppearance.Medium.Title.Secondary"
+                    style="@style/TextAppearance.Medium.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -216,33 +216,13 @@
                     android:layout_marginStart="8dp"/>
 
                 <TextView
-                    android:id="@+id/manga_genres_label"
-                    style="@style/TextAppearance.Medium.Body2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/manga_info_genres_label"
-                    android:textIsSelectable="false"
-                    app:layout_constraintTop_toBottomOf="@+id/manga_source_label"
-                    app:layout_constraintLeft_toLeftOf="parent"/>
-
-                <TextView
-                    android:id="@+id/manga_genres"
-                    style="@style/TextAppearance.Regular.Body1.Secondary"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textIsSelectable="false"
-                    app:layout_constraintTop_toBottomOf="@+id/manga_genres_label"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"/>
-
-                <TextView
                     android:id="@+id/manga_summary_label"
                     style="@style/TextAppearance.Medium.Body2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/description"
                     android:textIsSelectable="false"
-                    app:layout_constraintTop_toBottomOf="@+id/manga_genres"
+                    app:layout_constraintTop_toBottomOf="@+id/manga_source"
                     app:layout_constraintLeft_toLeftOf="parent"/>
 
                 <TextView
@@ -255,6 +235,22 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     android:layout_marginRight="64dp"/>
+
+                <me.gujun.android.taggroup.TagGroup
+                    android:id="@+id/manga_genres_tags"
+                    style="@style/TagGroup"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/manga_summary"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:atg_borderStrokeWidth="1dp"
+                    app:atg_backgroundColor="@android:color/transparent"
+                    app:atg_borderColor="@color/md_blue_A400"
+                    app:atg_textColor="@color/md_blue_A400"
+                    android:layout_marginRight="64dp"/>
+
 
             </android.support.constraint.ConstraintLayout>
 

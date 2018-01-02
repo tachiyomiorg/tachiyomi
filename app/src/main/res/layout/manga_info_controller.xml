@@ -83,18 +83,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <!--
                 <TextView
                     android:text="@string/manga_info_full_title_label"
                     android:id="@+id/manga_full_title"
-                    style="@style/TextAppearance.Medium.Body2"
+                    style="@style/TextAppearance.Medium.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
                     android:textIsSelectable="false"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"/>
-                -->
                 <TextView
                     android:id="@+id/manga_author_label"
                     style="@style/TextAppearance.Medium.Body2"
@@ -102,11 +100,9 @@
                     android:layout_height="wrap_content"
                     android:text="@string/manga_info_author_label"
                     android:textIsSelectable="false"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"/>
-                    <!--
+
                     app:layout_constraintTop_toBottomOf="@+id/manga_full_title"
-                    app:layout_constraintLeft_toLeftOf="parent"-->
+                    app:layout_constraintLeft_toLeftOf="parent"/>
 
 
                 <TextView
@@ -236,7 +232,7 @@
                     app:layout_constraintBaseline_toBaselineOf="@+id/manga_source_label"
                     app:layout_constraintLeft_toRightOf="@+id/manga_source_label"
                     app:layout_constraintRight_toRightOf="parent"/>
-
+                <!--
                 <TextView
                     android:id="@+id/manga_genres_label"
                     style="@style/TextAppearance.Medium.Body2"
@@ -256,11 +252,13 @@
                     app:layout_constraintTop_toBottomOf="@+id/manga_genres_label"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"/>
+                -->
 
             </android.support.constraint.ConstraintLayout>
 
         </android.support.v4.widget.NestedScrollView>
 
+        <!--
         <android.widget.LinearLayout
             android:id="@+id/manga_full_title_layout"
             android:layout_width="0dp"
@@ -283,21 +281,23 @@
                 android:textIsSelectable="false"
                 />
         </android.widget.LinearLayout>
+        -->
 
         <android.support.v4.widget.NestedScrollView
             android:id="@+id/description_scrollview"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/manga_full_title_layout">
+            app:layout_constraintTop_toBottomOf="@+id/guideline">
+
+            <!--app:layout_constraintTop_toBottomOf="@id/manga_full_title_layout">-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -310,7 +310,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/description"
-                    android:maxLines="2"
                     android:textIsSelectable="false"/>
 
                 <TextView
@@ -323,6 +322,29 @@
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
+
+        <me.gujun.android.taggroup.TagGroup
+            android:id="@+id/manga_genres_tags"
+            style="@style/TagGroup"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description_scrollview"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:atg_borderStrokeWidth="1dp"
+            app:atg_backgroundColor="@android:color/transparent"
+            app:atg_borderColor="@color/md_blue_A400"
+            app:atg_textColor="@color/md_blue_A400"
+            />
+
 
     </android.support.constraint.ConstraintLayout>
 
