@@ -28,6 +28,9 @@ class ReportGenerator(val context: Context) {
         genHistory(report)
         genCategories(targetDevice, report)
         genTracks(targetDevice, report)
+        
+        //Apply intermediary report changes to final report
+        report.tmpGen.applyToReport()
 
         return report
     }
@@ -237,13 +240,13 @@ class ReportGenerator(val context: Context) {
     private fun findOrGenSource(id: Long, report: SyncReport): Pair<SyncSource, Source>? {
         val source = sources.get(id) ?: return null
         
-        return Pair(report.findEntity { it.id == id } ?: SyncSource().apply {
+        return Pair(report.tmpGen.sources.find { it.id == id } ?: SyncSource().apply {
             this.syncId = report.lastId++
             
             this.id = id
             this.name = source.name
             
-            report.entities.add(this)
+            report.tmpGen.sources.add(this)
         }, source)
     }
     
@@ -251,7 +254,7 @@ class ReportGenerator(val context: Context) {
         val manga = db.getManga(id).executeAsBlocking() ?: return null
         val source = findOrGenSource(manga.source, report)!!.first
         
-        return Pair(report.findEntity {
+        return Pair(report.tmpGen.mangas.find {
             it.source.targetId == source.syncId && it.url == manga.url
         } ?: SyncManga().apply {
             this.syncId = report.lastId++
@@ -261,7 +264,7 @@ class ReportGenerator(val context: Context) {
             this.name = manga.title
             this.thumbnailUrl = manga.thumbnail_url
             
-            report.entities.add(this)
+            report.tmpGen.mangas.add(this)
         }, manga)
     }
     
@@ -269,7 +272,7 @@ class ReportGenerator(val context: Context) {
         val chapter = db.getChapter(id).executeAsBlocking() ?: return null
         val manga = findOrGenManga(chapter.manga_id!!, report)!!.first
         
-        return Pair(report.findEntity {
+        return Pair(report.tmpGen.chapters.find {
             it.manga.targetId == manga.syncId && it.url == chapter.url
         } ?: SyncChapter().apply {
             this.syncId = report.lastId++
@@ -280,7 +283,7 @@ class ReportGenerator(val context: Context) {
             this.url = chapter.url
             this.name = chapter.name
             
-            report.entities.add(this)
+            report.tmpGen.chapters.add(this)
         }, chapter)
     }
     
@@ -288,28 +291,28 @@ class ReportGenerator(val context: Context) {
         val history = db.getHistory(id).executeAsBlocking() ?: return null
         val chapter = findOrGenChapter(history.chapter_id, report)!!.first
         
-        return Pair(report.findEntity {
+        return Pair(report.tmpGen.histories.find {
             it.chapter.targetId == chapter.syncId
         } ?: SyncHistory().apply {
             this.syncId = report.lastId++
             
             this.chapter = chapter.getRef()
             
-            report.entities.add(this)
+            report.tmpGen.histories.add(this)
         }, history)
     }
     
     private fun findOrGenCategory(id: Int, report: SyncReport): Pair<SyncCategory, Category>? {
         val category = db.getCategory(id).executeAsBlocking() ?: return null
         
-        return Pair(report.findEntity {
+        return Pair(report.tmpGen.categories.find {
             it.name == category.name
         } ?: SyncCategory().apply {
             this.syncId = report.lastId++
             
             this.name = category.name
             
-            report.entities.add(this)
+            report.tmpGen.categories.add(this)
         }, category)
     }
     
@@ -317,7 +320,7 @@ class ReportGenerator(val context: Context) {
         val track = db.getTrack(id).executeAsBlocking() ?: return null
         val manga = findOrGenManga(track.manga_id, report)?.first ?: return null
         
-        return Pair(report.findEntity {
+        return Pair(report.tmpGen.tracks.find {
             it.manga.targetId == manga.syncId && it.sync_id == track.sync_id
         } ?: SyncTrack().apply {
             this.syncId = report.lastId++
@@ -325,7 +328,7 @@ class ReportGenerator(val context: Context) {
             this.manga = manga.getRef()
             this.sync_id = track.sync_id
             
-            report.entities.add(this)
+            report.tmpGen.tracks.add(this)
         }, track)
     }
 }

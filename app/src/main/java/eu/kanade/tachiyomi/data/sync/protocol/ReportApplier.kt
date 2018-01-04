@@ -17,6 +17,9 @@ class ReportApplier(val context: Context) {
     private val tracks: TrackManager by injectLazy()
 
     fun apply(report: SyncReport) {
+        //Enable optimizations
+        report.tmpApply.setup()
+        
         //TODO Match sources
         db.inTransaction {
             //Must be in order as some entities depend on previous entities to already be
@@ -52,26 +55,33 @@ class ReportApplier(val context: Context) {
     }
 
     private fun applyChapters(report: SyncReport) {
-        report.findEntities<SyncChapter>().forEach {
-            val dbChapter = db.getChapter(it.url).executeAsBlocking() ?: Chapter.create().apply {
-                val manga = it.manga.resolve(report)
+        report.findEntities<SyncChapter>()
+                .groupBy(SyncChapter::manga) //Process all chapters of same manga at the same time (less DB load)
+                .forEach {
+            //Sometimes all chapters are already in DB, thus no need to resolve manga
+            val dbManga by lazy(LazyThreadSafetyMode.NONE) {
+                val manga = it.key.resolve(report)
                 val source = manga.source.resolve(report)
-                val dbManga = db.getManga(manga.url, source.id).executeAsBlocking()!! //TODO
-
-                url = it.url
-                name = it.name
-                chapter_number = it.chapterNum
-                manga_id = dbManga.id
-                source_order = it.sourceOrder
+                db.getManga(manga.url, source.id).executeAsBlocking()!! //TODO
             }
-
-            val id = dbChapter.id
-
-            it.read.applyIfNewer(id, UpdateTarget.Chapter.read) { dbChapter.read = it }
-            it.bookmark.applyIfNewer(id, UpdateTarget.Chapter.bookmark) { dbChapter.bookmark = it }
-            it.lastPageRead.applyIfNewer(id, UpdateTarget.Chapter.lastPageRead) { dbChapter.last_page_read = it }
-
-            db.insertChapter(dbChapter).executeAsBlocking()
+            
+            it.value.forEach {
+                val dbChapter = db.getChapter(it.url).executeAsBlocking() ?: Chapter.create().apply {
+                    url = it.url
+                    name = it.name
+                    chapter_number = it.chapterNum
+                    manga_id = dbManga.id
+                    source_order = it.sourceOrder
+                }
+    
+                val id = dbChapter.id
+    
+                it.read.applyIfNewer(id, UpdateTarget.Chapter.read) { dbChapter.read = it }
+                it.bookmark.applyIfNewer(id, UpdateTarget.Chapter.bookmark) { dbChapter.bookmark = it }
+                it.lastPageRead.applyIfNewer(id, UpdateTarget.Chapter.lastPageRead) { dbChapter.last_page_read = it }
+    
+                db.insertChapter(dbChapter).executeAsBlocking()
+            }
         }
     }
 
