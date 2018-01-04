@@ -387,7 +387,7 @@
     <string name="information_no_downloads">Tidak ada unduhan</string>
     <string name="information_no_recent">Tidak ada bab terbaru</string>
     <string name="information_no_recent_manga">Tidak ada manga yang baru dibaca</string>
-    <string name="information_empty_library">Perpustakaan kosong</string>
+    <string name="information_empty_library">Perpustakaan Anda kosong, Anda bisa menambahkan seri ke perpustakaan Anda dari katalog.</string>
 
     <string name="download_notifier_downloader_title">Pengunduh</string>
     <string name="download_notifier_title_error">Gagal</string>
@@ -414,4 +414,6 @@
     <string name="channel_common">Kanal notifikasi</string>
     <string name="channel_library">Pustaka</string>
     <string name="channel_downloader">Pengunduh</string>
-</resources>
+<string name="information_empty_category">Anda tidak memiliki kategori. Tekan tombol tambah untuk membuatnya untuk mengatur perpustakaan Anda.</string>
+
+    </resources>
