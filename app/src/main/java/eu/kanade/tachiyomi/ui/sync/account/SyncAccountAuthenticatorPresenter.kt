@@ -2,6 +2,9 @@ package eu.kanade.tachiyomi.ui.sync.account
 
 import android.accounts.Account
 import android.accounts.AccountManager
+import android.content.ContentResolver
+import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.sync.LibrarySyncManager
 import eu.kanade.tachiyomi.data.sync.account.SyncAccountAuthenticator
 import eu.kanade.tachiyomi.data.sync.api.TWApi
 import eu.kanade.tachiyomi.data.sync.api.models.AuthResponse
@@ -14,8 +17,9 @@ import uy.kohesive.injekt.injectLazy
  * Presenter of [SyncAccountAuthenticatorActivity].
  */
 class SyncAccountAuthenticatorPresenter : BasePresenter<SyncAccountAuthenticatorActivity>() {
-    
-    val network: NetworkHelper by injectLazy()
+    private val db: DatabaseHelper by injectLazy()
+    private val syncManager: LibrarySyncManager by injectLazy()
+    private val network: NetworkHelper by injectLazy()
     
     fun checkLogin(server: String, password: String): Observable<AuthResponse> {
         return TWApi.create(network.client, server)
@@ -27,10 +31,25 @@ class SyncAccountAuthenticatorPresenter : BasePresenter<SyncAccountAuthenticator
                       password: String,
                       token: String,
                       createNewAccount: Boolean) {
-        val account = Account(url, SyncAccountAuthenticator.ACCOUNT_TYPE)
+        val account = Account(url, LibrarySyncManager.ACCOUNT_TYPE)
         if (createNewAccount) {
+            //Add account
             accountManager.addAccountExplicitly(account, password, null)
             accountManager.setAuthToken(account, SyncAccountAuthenticator.AUTH_TOKEN_TYPE, token)
+    
+            //Clear snapshots
+            db.inTransaction {
+                db.deleteMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
+                db.takeEmptyMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
+                syncManager.snapshots.deleteSnapshots(LibrarySyncManager.TARGET_DEVICE_ID)
+            }
+    
+            //Regen device ID and start sync from beginning
+            syncManager.regenDeviceId()
+            syncManager.lastSyncDateTime = 0
+    
+            //Begin syncing automatically
+            ContentResolver.setSyncAutomatically(account, LibrarySyncManager.CONTENT_PROVIDER, true)
         } else {
             accountManager.setPassword(account, password)
         }

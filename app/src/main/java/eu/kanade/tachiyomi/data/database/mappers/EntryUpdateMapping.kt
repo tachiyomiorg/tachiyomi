@@ -9,14 +9,14 @@ import com.pushtorefresh.storio.sqlite.operations.put.DefaultPutResolver
 import com.pushtorefresh.storio.sqlite.queries.DeleteQuery
 import com.pushtorefresh.storio.sqlite.queries.InsertQuery
 import com.pushtorefresh.storio.sqlite.queries.UpdateQuery
+import eu.kanade.tachiyomi.data.database.models.EntryUpdate
+import eu.kanade.tachiyomi.data.database.models.EntryUpdateImpl
+import eu.kanade.tachiyomi.data.database.models.UpdateTarget
 import eu.kanade.tachiyomi.data.database.tables.SyncUpdatesTable.COL_DATETIME
 import eu.kanade.tachiyomi.data.database.tables.SyncUpdatesTable.COL_FIELD
 import eu.kanade.tachiyomi.data.database.tables.SyncUpdatesTable.COL_ID
 import eu.kanade.tachiyomi.data.database.tables.SyncUpdatesTable.COL_UPDATED_ROW
 import eu.kanade.tachiyomi.data.database.tables.SyncUpdatesTable.TABLE
-import eu.kanade.tachiyomi.data.database.models.EntryUpdate
-import eu.kanade.tachiyomi.data.database.models.EntryUpdateImpl
-import eu.kanade.tachiyomi.data.database.models.UpdateTarget
 
 class EntryUpdateMapping : SQLiteTypeMapping<EntryUpdate>(
         EntryUpdatePutResolver(),

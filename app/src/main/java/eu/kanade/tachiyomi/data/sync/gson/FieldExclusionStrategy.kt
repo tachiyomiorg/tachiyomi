@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.data.sync.gson
 
-import com.google.gson.FieldAttributes
 import com.google.gson.ExclusionStrategy
+import com.google.gson.FieldAttributes
 
 /**
  * Exclude fields by class and field name

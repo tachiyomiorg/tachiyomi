@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <account-authenticator xmlns:android="http://schemas.android.com/apk/res/android"
-    android:accountType="eu.kanade.tachiyomi.data.sync"
+    android:accountType="${applicationId}.sync-account"
     android:icon="@drawable/branded_logo_icon"
     android:smallIcon="@drawable/branded_logo_icon"
     android:label="@string/sync_account_label"/>

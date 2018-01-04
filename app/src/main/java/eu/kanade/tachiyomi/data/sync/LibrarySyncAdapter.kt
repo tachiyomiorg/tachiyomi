@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.data.sync
 
 import android.accounts.Account
-import android.accounts.AccountManager
 import android.content.AbstractThreadedSyncAdapter
 import android.content.ContentProviderClient
 import android.content.Context
@@ -17,7 +16,7 @@ import eu.kanade.tachiyomi.data.sync.account.SyncAccountAuthenticator
 import eu.kanade.tachiyomi.data.sync.api.TWApi
 import eu.kanade.tachiyomi.data.sync.protocol.ReportApplier
 import eu.kanade.tachiyomi.data.sync.protocol.ReportGenerator
-import eu.kanade.tachiyomi.data.sync.protocol.snapshot.SnapshotHelper
+import eu.kanade.tachiyomi.util.accountManager
 import eu.kanade.tachiyomi.util.notification
 import eu.kanade.tachiyomi.util.notificationManager
 import timber.log.Timber
@@ -33,9 +32,6 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
     private val gson: Gson by injectLazy()
     private val syncManager: LibrarySyncManager by injectLazy()
     
-    private val accountManager: AccountManager by lazy { AccountManager.get(context) }
-    
-    private val snapshots by lazy { SnapshotHelper(context) }
     private val reportGenerator by lazy { ReportGenerator(context) }
     private val reportApplier by lazy { ReportApplier(context) }
     
@@ -57,7 +53,6 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
             .setOnlyAlertOnce(true)
     }
     
-    //TODO Exception handling
     override fun onPerformSync(account: Account, extras: Bundle?, authority: String?, provider: ContentProviderClient?, syncResult: SyncResult?) {
         try {
             performSync(account)
@@ -70,7 +65,7 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
         }
     }
     
-    fun performSync(account: Account) {
+    private fun performSync(account: Account) {
         //Auth with server (get token)
         updateSync(SyncStatus.AUTH)
         val api = TWApi.apiFromAccount(account)
@@ -78,7 +73,7 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
         try {
             //Three tries
             for (i in 1 .. 3) {
-                token = accountManager.blockingGetAuthToken(account,
+                token = context.accountManager.blockingGetAuthToken(account,
                         SyncAccountAuthenticator.AUTH_TOKEN_TYPE,
                         true) ?: return
                 //Verify we are authenticated first
@@ -89,7 +84,7 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
                     break
                 } else {
                     //Unsuccessful, get a new auth token
-                    accountManager.invalidateAuthToken(SyncAccountAuthenticator.ACCOUNT_TYPE,
+                    context.accountManager.invalidateAuthToken(LibrarySyncManager.ACCOUNT_TYPE,
                             token)
                     token = null
                     Timber.w("Sync authentication token is invalid, retrieving a new one!")
@@ -131,7 +126,7 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
             //Take snapshots
             updateSync(SyncStatus.CLEANUP)
             try {
-                snapshots.takeSnapshots(LibrarySyncManager.TARGET_DEVICE_ID)
+                syncManager.snapshots.takeSnapshots(LibrarySyncManager.TARGET_DEVICE_ID)
                 db.deleteMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
                 db.takeMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
                 //Update last sync time
@@ -143,7 +138,8 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
     }
     
     override fun onSyncCanceled() {
-        super.onSyncCanceled()
+        //Do not all super as that will interrupt the sync process
+        //Currently sync is not a cancellable process so we do nothing
         
         //Hide progress
         cancelProgressNotification()
@@ -180,7 +176,7 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
      */
     private fun showProgressNotification(status: SyncStatus) {
         context.notificationManager.notify(Notifications.ID_SYNC_PROGRESS, progressNotification
-                .setContentTitle(context.getString(status.status))
+                .setContentTitle(context.getString(R.string.sync_status_prefix, context.getString(status.status)))
                 .setProgress(status.total, status.progress, false)
                 .build())
     }

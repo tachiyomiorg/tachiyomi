@@ -3,19 +3,18 @@ package eu.kanade.tachiyomi.data.sync.protocol
 import android.content.Context
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.*
-import eu.kanade.tachiyomi.data.sync.protocol.snapshot.SnapshotHelper
-import eu.kanade.tachiyomi.data.sync.protocol.models.*
+import eu.kanade.tachiyomi.data.sync.LibrarySyncManager
+import eu.kanade.tachiyomi.data.sync.protocol.models.SyncReport
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.ChangedField
 import eu.kanade.tachiyomi.data.sync.protocol.models.entities.*
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import uy.kohesive.injekt.injectLazy
 
-//TODO Cleanup !!
 class ReportGenerator(val context: Context) {
     private val db: DatabaseHelper by injectLazy()
     private val sources: SourceManager by injectLazy()
-    private val snapshots by lazy { SnapshotHelper(context) }
+    private val syncManager: LibrarySyncManager by injectLazy()
 
     fun gen(currentDevice: String, targetDevice: String, from: Long): SyncReport {
         val report = SyncReport()
@@ -99,7 +98,7 @@ class ReportGenerator(val context: Context) {
         }
         
         //Find name changes, removed and added categories
-        val categorySnapshots = snapshots.readCategorySnapshots(deviceId)
+        val categorySnapshots = syncManager.snapshots.readCategorySnapshots(deviceId)
         val categories = db.getCategories().executeAsBlocking()
         
         //Find added categories
@@ -107,7 +106,7 @@ class ReportGenerator(val context: Context) {
             !categorySnapshots.any { it.matches(category) }
         }
         added.forEach {
-            findOrGenCategory(it.id!!, report)
+            findOrGenCategory(it.id ?: return@forEach, report)
         }
         
         //Find deleted and name-changed categories
@@ -125,7 +124,7 @@ class ReportGenerator(val context: Context) {
         }
         
         nameChanged.forEach {
-            findOrGenCategory(it.second.id!!, report)?.apply {
+            findOrGenCategory(it.second.id ?: return@forEach, report)?.apply {
                 first.oldName = ChangedField(report.to, it.first)
             }
         }
@@ -207,7 +206,7 @@ class ReportGenerator(val context: Context) {
         }
         
         //Find added/removed tracks
-        val trackSnapshots = snapshots.readTrackSnapshots(deviceId)
+        val trackSnapshots = syncManager.snapshots.readTrackSnapshots(deviceId)
         val tracks = db.getTracks().executeAsBlocking()
     
         //Find added tracks
@@ -215,7 +214,7 @@ class ReportGenerator(val context: Context) {
             !trackSnapshots.any { it.matches(track) }
         }
         added.forEach {
-            findOrGenTrack(it.id!!, report)
+            findOrGenTrack(it.id ?: return@forEach, report)
         }
         
         //Find removed tracks
@@ -252,7 +251,7 @@ class ReportGenerator(val context: Context) {
     
     private fun findOrGenManga(id: Long, report: SyncReport): Pair<SyncManga, Manga>? {
         val manga = db.getManga(id).executeAsBlocking() ?: return null
-        val source = findOrGenSource(manga.source, report)!!.first
+        val source = findOrGenSource(manga.source, report)?.first ?: return null
         
         return Pair(report.tmpGen.mangas.find {
             it.source.targetId == source.syncId && it.url == manga.url
@@ -270,7 +269,7 @@ class ReportGenerator(val context: Context) {
     
     private fun findOrGenChapter(id: Long, report: SyncReport): Pair<SyncChapter, Chapter>? {
         val chapter = db.getChapter(id).executeAsBlocking() ?: return null
-        val manga = findOrGenManga(chapter.manga_id!!, report)!!.first
+        val manga = findOrGenManga(chapter.manga_id ?: return null, report)?.first ?: return null
         
         return Pair(report.tmpGen.chapters.find {
             it.manga.targetId == manga.syncId && it.url == chapter.url
@@ -289,7 +288,7 @@ class ReportGenerator(val context: Context) {
     
     private fun findOrGenHistory(id: Long, report: SyncReport): Pair<SyncHistory, History>? {
         val history = db.getHistory(id).executeAsBlocking() ?: return null
-        val chapter = findOrGenChapter(history.chapter_id, report)!!.first
+        val chapter = findOrGenChapter(history.chapter_id, report)?.first ?: return null
         
         return Pair(report.tmpGen.histories.find {
             it.chapter.targetId == chapter.syncId

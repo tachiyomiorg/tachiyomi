@@ -6,8 +6,6 @@ import com.pushtorefresh.storio.sqlite.impl.DefaultStorIOSQLite
 import eu.kanade.tachiyomi.data.database.mappers.*
 import eu.kanade.tachiyomi.data.database.models.*
 import eu.kanade.tachiyomi.data.database.queries.*
-import eu.kanade.tachiyomi.data.database.mappers.EntryUpdateMapping
-import eu.kanade.tachiyomi.data.database.models.EntryUpdate
 import eu.kanade.tachiyomi.data.database.resolvers.EntryUpdateQueries
 import io.requery.android.database.sqlite.RequerySQLiteOpenHelperFactory
 

@@ -3,24 +3,21 @@ package eu.kanade.tachiyomi.data.sync.protocol
 import android.content.Context
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.*
-import eu.kanade.tachiyomi.data.sync.protocol.models.*
+import eu.kanade.tachiyomi.data.sync.protocol.models.SyncReport
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.ChangedField
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.SyncRef
 import eu.kanade.tachiyomi.data.sync.protocol.models.entities.*
 import eu.kanade.tachiyomi.data.track.TrackManager
-import eu.kanade.tachiyomi.source.SourceManager
 import uy.kohesive.injekt.injectLazy
 
 class ReportApplier(val context: Context) {
     private val db: DatabaseHelper by injectLazy()
-    private val sources: SourceManager by injectLazy()
     private val tracks: TrackManager by injectLazy()
 
     fun apply(report: SyncReport) {
         //Enable optimizations
         report.tmpApply.setup()
         
-        //TODO Match sources
         db.inTransaction {
             //Must be in order as some entities depend on previous entities to already be
             //in DB!
@@ -53,50 +50,55 @@ class ReportApplier(val context: Context) {
             db.insertManga(dbManga).executeAsBlocking()
         }
     }
-
+    
     private fun applyChapters(report: SyncReport) {
         report.findEntities<SyncChapter>()
                 .groupBy(SyncChapter::manga) //Process all chapters of same manga at the same time (less DB load)
                 .forEach {
-            //Sometimes all chapters are already in DB, thus no need to resolve manga
-            val dbManga by lazy(LazyThreadSafetyMode.NONE) {
-                val manga = it.key.resolve(report)
-                val source = manga.source.resolve(report)
-                db.getManga(manga.url, source.id).executeAsBlocking()!! //TODO
-            }
-            
-            it.value.forEach {
-                val dbChapter = db.getChapter(it.url).executeAsBlocking() ?: Chapter.create().apply {
-                    url = it.url
-                    name = it.name
-                    chapter_number = it.chapterNum
-                    manga_id = dbManga.id
-                    source_order = it.sourceOrder
+                    //Sometimes all chapters are already in DB, thus no need to resolve manga
+                    val dbManga by lazy(LazyThreadSafetyMode.NONE) {
+                        val manga = it.key.resolve(report)
+                        val source = manga.source.resolve(report)
+                        db.getManga(manga.url, source.id).executeAsBlocking()
+                    }
+                    
+                    it.value.forEach {
+                        val dbChapter = db.getChapter(it.url).executeAsBlocking() ?:
+                                Chapter.create().apply {
+                                    url = it.url
+                                    name = it.name
+                                    chapter_number = it.chapterNum
+                                    manga_id = dbManga?.id
+                                    source_order = it.sourceOrder
+                                }
+                        
+                        //Ensure manga chapter is in DB
+                        if(dbChapter.manga_id != null) {
+                            val id = dbChapter.id
+    
+                            it.read.applyIfNewer(id, UpdateTarget.Chapter.read) { dbChapter.read = it }
+                            it.bookmark.applyIfNewer(id, UpdateTarget.Chapter.bookmark) { dbChapter.bookmark = it }
+                            it.lastPageRead.applyIfNewer(id, UpdateTarget.Chapter.lastPageRead) { dbChapter.last_page_read = it }
+    
+                            db.insertChapter(dbChapter).executeAsBlocking()
+                        }
+                    }
                 }
-    
-                val id = dbChapter.id
-    
-                it.read.applyIfNewer(id, UpdateTarget.Chapter.read) { dbChapter.read = it }
-                it.bookmark.applyIfNewer(id, UpdateTarget.Chapter.bookmark) { dbChapter.bookmark = it }
-                it.lastPageRead.applyIfNewer(id, UpdateTarget.Chapter.lastPageRead) { dbChapter.last_page_read = it }
-    
-                db.insertChapter(dbChapter).executeAsBlocking()
-            }
-        }
     }
-
+    
     private fun applyHistory(report: SyncReport) {
         report.findEntities<SyncHistory>().forEach {
             val chapter = it.chapter.resolve(report)
             val dbHistory = db.getHistoryByChapterUrl(chapter.url).executeAsBlocking() ?: run {
-                val dbChapter = db.getChapter(chapter.url).executeAsBlocking()!! //TODO
+                val dbChapter = db.getChapter(chapter.url).executeAsBlocking()
+                        ?: return@forEach // Chapter missing, do not sync this history
                 History.create(dbChapter)
             }
-
+            
             val id = dbHistory.id
-
+            
             it.lastRead.applyIfNewer(id, UpdateTarget.History.lastRead) { dbHistory.last_read = it }
-
+            
             db.insertHistory(dbHistory).executeAsBlocking()
         }
     }
@@ -114,7 +116,7 @@ class ReportApplier(val context: Context) {
                     
                     if(oldCat != null) {
                         oldCat.name = it.name
-                        return@run oldCat!!
+                        return@run oldCat!! // IDE bug reports this as useless (but refuses to compile without it)
                     }
                 }
                 
@@ -130,14 +132,14 @@ class ReportApplier(val context: Context) {
             
             //Apply other changes to category properties
             val id = dbCategory.id
-    
+            
             it.flags.applyIfNewer(id?.toLong(), UpdateTarget.Category.flags) { dbCategory.flags = it }
-    
+            
             val res = db.insertCategory(dbCategory).executeAsBlocking()
             res.insertedId()?.let {
                 dbCategory.id = it.toInt()
             }
-    
+            
             fun List<SyncRef<SyncManga>>.toMangaCategories()
                     = mapNotNull {
                 val manga = it.resolve(report)
@@ -171,7 +173,7 @@ class ReportApplier(val context: Context) {
             val manga = it.manga.resolve(report)
             val source = manga.source.resolve(report)
             val dbManga = db.getManga(manga.url, source.id).executeAsBlocking() ?: return@forEach
-    
+            
             //Delete track if necessary
             if (it.deleted) {
                 db.deleteTrackForManga(dbManga, service).executeAsBlocking()
@@ -181,19 +183,19 @@ class ReportApplier(val context: Context) {
             val dbTrack = db.getTracks().executeAsBlocking().find { dbTrack ->
                 dbTrack.manga_id == dbManga.id && dbTrack.sync_id == it.sync_id
             } ?: Track.create(it.sync_id).apply {
-                manga_id = dbManga.id!!
+                manga_id = dbManga.id ?: return@forEach
             }
             
             //Apply other changes to track properties
             val id = dbTrack.id
-    
+            
             it.remote_id.applyIfNewer(id, UpdateTarget.Track.remoteId) { dbTrack.remote_id = it }
             it.title.applyIfNewer(id, UpdateTarget.Track.title) { dbTrack.title = it }
             it.last_chapter_read.applyIfNewer(id, UpdateTarget.Track.lastChapterRead) { dbTrack.last_chapter_read = it }
             it.total_chapters.applyIfNewer(id, UpdateTarget.Track.totalChapters) { dbTrack.total_chapters = it }
             it.score.applyIfNewer(id, UpdateTarget.Track.score) { dbTrack.score = it }
             it.status.applyIfNewer(id, UpdateTarget.Track.status) { dbTrack.status = it }
-    
+            
             db.insertTrack(dbTrack).executeAsBlocking()
         }
     }

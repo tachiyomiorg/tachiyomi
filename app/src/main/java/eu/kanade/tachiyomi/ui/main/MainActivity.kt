@@ -1,17 +1,21 @@
 package eu.kanade.tachiyomi.ui.main
 
 import android.animation.ObjectAnimator
+import android.content.ContentResolver
 import android.content.Intent
+import android.content.SyncStatusObserver
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.graphics.drawable.DrawerArrowDrawable
 import android.view.ViewGroup
+import com.afollestad.materialdialogs.MaterialDialog
 import com.bluelinelabs.conductor.*
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.sync.LibrarySyncManager
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.base.controller.*
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
@@ -26,11 +30,11 @@ import kotlinx.android.synthetic.main.main_activity.*
 import uy.kohesive.injekt.injectLazy
 
 
-class MainActivity : BaseActivity() {
-
+class MainActivity : BaseActivity(), SyncStatusObserver {
     private lateinit var router: Router
 
     val preferences: PreferencesHelper by injectLazy()
+    val syncManager: LibrarySyncManager by injectLazy()
 
     private var drawerArrow: DrawerArrowDrawable? = null
 
@@ -45,6 +49,9 @@ class MainActivity : BaseActivity() {
     }
 
     lateinit var tabAnimator: TabsAnimator
+    
+    private var syncObserver: Any? = null
+    private var syncDialog: MaterialDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(when (preferences.theme()) {
@@ -168,7 +175,61 @@ class MainActivity : BaseActivity() {
         nav_view?.setNavigationItemSelectedListener(null)
         toolbar?.setNavigationOnClickListener(null)
     }
-
+    
+    override fun onStart() {
+        super.onStart()
+        
+        //Remove old sync observer if active
+        syncObserver?.let {
+            ContentResolver.removeStatusChangeListener(it)
+        }
+        
+        //Hook new sync observer
+        syncObserver = ContentResolver.addStatusChangeListener(
+                ContentResolver.SYNC_OBSERVER_TYPE_PENDING
+                        or ContentResolver.SYNC_OBSERVER_TYPE_ACTIVE,
+                this)
+    
+        //Immediately refresh sync status
+        onStatusChanged(0)
+    }
+    
+    override fun onStop() {
+        super.onStop()
+        
+        //Destroy sync observer hook
+        syncObserver?.let {
+            ContentResolver.removeStatusChangeListener(it)
+        }
+        
+        //Hide sync dialog (as user can't see it anyways)
+        updateSyncStatus(false)
+    }
+    
+    override fun onStatusChanged(which: Int) {
+        updateSyncStatus(syncManager.isSyncActive)
+    }
+    
+    private fun updateSyncStatus(syncing: Boolean) {
+        runOnUiThread {
+            if(syncing) {
+                //Only create new sync dialog if no dialog is showing
+                if(syncDialog == null) {
+                    syncDialog = MaterialDialog.Builder(this)
+                            .title(R.string.sync_progress_dialog_title)
+                            .content(R.string.sync_progress_dialog_body)
+                            .progress(true, 0)
+                            .cancelable(false)
+                            .show()
+                }
+            } else {
+                //Dismiss sync dialog
+                syncDialog?.dismiss()
+                syncDialog = null
+            }
+        }
+    }
+    
     override fun onBackPressed() {
         val backstackSize = router.backstackSize
         if (drawer.isDrawerOpen(GravityCompat.START) || drawer.isDrawerOpen(GravityCompat.END)) {
@@ -179,32 +240,32 @@ class MainActivity : BaseActivity() {
             super.onBackPressed()
         }
     }
-
+    
     private fun setSelectedDrawerItem(itemId: Int) {
         if (!isFinishing) {
             nav_view.setCheckedItem(itemId)
             nav_view.menu.performIdentifierAction(itemId, 0)
         }
     }
-
+    
     private fun setRoot(controller: Controller, id: Int) {
         router.setRoot(controller.withFadeTransaction().tag(id.toString()))
     }
-
+    
     private fun syncActivityViewWithController(to: Controller?, from: Controller? = null) {
         if (from is DialogController || to is DialogController) {
             return
         }
-
+        
         val showHamburger = router.backstackSize == 1
         if (showHamburger) {
             drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         } else {
             drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         }
-
+        
         ObjectAnimator.ofFloat(drawerArrow, "progress", if (showHamburger) 0f else 1f).start()
-
+        
         if (from is TabbedController) {
             from.cleanupTabs(tabs)
         }
@@ -215,7 +276,7 @@ class MainActivity : BaseActivity() {
             tabAnimator.collapse()
             tabs.setupWithViewPager(null)
         }
-
+        
         if (from is SecondaryDrawerController) {
             if (secondaryDrawer != null) {
                 from.cleanupSecondaryDrawer(drawer)
@@ -226,14 +287,14 @@ class MainActivity : BaseActivity() {
         if (to is SecondaryDrawerController) {
             secondaryDrawer = to.createSecondaryDrawer(drawer)?.also { drawer.addView(it) }
         }
-
+        
         if (to is NoToolbarElevationController) {
             appbar.disableElevation()
         } else {
             appbar.enableElevation()
         }
     }
-
+    
     companion object {
         // Shortcut actions
         const val SHORTCUT_LIBRARY = "eu.kanade.tachiyomi.SHOW_LIBRARY"
@@ -243,5 +304,5 @@ class MainActivity : BaseActivity() {
         const val SHORTCUT_DOWNLOADS = "eu.kanade.tachiyomi.SHOW_DOWNLOADS"
         const val SHORTCUT_MANGA = "eu.kanade.tachiyomi.SHOW_MANGA"
     }
-
+    
 }

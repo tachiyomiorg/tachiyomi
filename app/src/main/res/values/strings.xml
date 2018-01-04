@@ -49,6 +49,7 @@
     <string name="action_delete">Delete</string>
     <string name="action_update">Update</string>
     <string name="action_update_library">Update library</string>
+    <string name="action_sync_library">Sync now</string>
     <string name="action_edit">Edit</string>
     <string name="action_add">Add</string>
     <string name="action_add_category">Add category</string>
@@ -511,7 +512,10 @@
     <string name="sync_authorize_activity_title">Add server</string>
     <string name="sync_server_url">Server URL</string>
     <string name="sync_password">Password</string>
+    <string name="sync_progress_dialog_title">Library sync in progress</string>
+    <string name="sync_progress_dialog_body">Please wait until the sync completes…</string>
 
+    <string name="sync_status_prefix">Sync: %s</string>
     <string name="sync_status_auth">Authenticating with server…</string>
     <string name="sync_status_gen_diff">Calculating changes…</string>
     <string name="sync_status_network">Communicating with server…</string>
@@ -523,5 +527,9 @@
     <string name="sync_error_auth">Authentication error</string>
     <string name="sync_error_network">Network error</string>
     <string name="sync_error_database">Database error</string>
+
+    <string name="sync_error_account_exists">You can only add one sync server!</string>
+    <string name="sync_error_account_exists_short">Sync already configured</string>
+    <string name="sync_error_no_account">Cannot find old sync account!</string>
 
 </resources>

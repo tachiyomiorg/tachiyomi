@@ -1,5 +1,7 @@
 package eu.kanade.tachiyomi.ui.library
 
+import android.accounts.Account
+import android.accounts.OnAccountsUpdateListener
 import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
@@ -25,6 +27,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.data.sync.LibrarySyncManager
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.SecondaryDrawerController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
@@ -33,6 +36,7 @@ import eu.kanade.tachiyomi.ui.category.CategoryController
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.migration.MigrationController
+import eu.kanade.tachiyomi.util.accountManager
 import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.library_controller.*
@@ -46,14 +50,15 @@ import java.io.IOException
 
 class LibraryController(
         bundle: Bundle? = null,
-        private val preferences: PreferencesHelper = Injekt.get()
+        private val preferences: PreferencesHelper = Injekt.get(),
+        private val syncManager: LibrarySyncManager = Injekt.get()
 ) : NucleusController<LibraryPresenter>(bundle),
         TabbedController,
         SecondaryDrawerController,
         ActionMode.Callback,
         ChangeMangaCategoriesDialog.Listener,
-        DeleteLibraryMangasDialog.Listener {
-
+        DeleteLibraryMangasDialog.Listener,
+        OnAccountsUpdateListener {
     /**
      * Position of the active category.
      */
@@ -155,6 +160,12 @@ class LibraryController(
         if (selectedMangas.isNotEmpty()) {
             createActionModeIfNeeded()
         }
+
+        //Begin listening for account changes (for sync button)
+        //Note that we cannot use the 4-arg method as it requires a high SDK level
+        activity?.accountManager?.addOnAccountsUpdatedListener(this,
+                null, //Run listener on main thread
+                true) //Run listener immediately with current accounts
     }
 
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
@@ -171,6 +182,14 @@ class LibraryController(
         actionMode = null
         tabsVisibilitySubscription?.unsubscribe()
         tabsVisibilitySubscription = null
+
+        //Remove accounts listener
+        try {
+            activity?.accountManager?.removeOnAccountsUpdatedListener(this)
+        } catch(ignored: IllegalStateException) {
+            //Thrown if listener was never added (but doesn't matter)
+        }
+
         super.onDestroyView(view)
     }
 
@@ -348,6 +367,10 @@ class LibraryController(
         // Tint icon if there's a filter active
         val filterColor = if (navView.hasActiveFilters()) Color.rgb(255, 238, 7) else Color.WHITE
         DrawableCompat.setTint(filterItem.icon, filterColor)
+
+        // Show sync icon if sync account exists
+        val syncItem = menu.findItem(R.id.action_sync_library)
+        syncItem.isVisible = syncManager.account != null
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -360,6 +383,9 @@ class LibraryController(
             }
             R.id.action_edit_categories -> {
                 router.pushController(CategoryController().withFadeTransaction())
+            }
+            R.id.action_sync_library -> {
+                presenter.forceSync()
             }
             R.id.action_source_migration -> {
                 router.pushController(MigrationController().withFadeTransaction())
@@ -511,6 +537,11 @@ class LibraryController(
             }
             selectedCoverManga = null
         }
+    }
+
+    override fun onAccountsUpdated(accounts: Array<out Account>?) {
+        //Reload options menu (to hide/show sync button)
+        activity?.invalidateOptionsMenu()
     }
 
     private companion object {

@@ -23,6 +23,12 @@
         app:showAsAction="ifRoom"/>
 
     <item
+        android:id="@+id/action_sync_library"
+        android:icon="@drawable/ic_sync_white_24dp"
+        android:title="@string/action_sync_library"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/action_edit_categories"
         android:title="@string/action_edit_categories"
         app:showAsAction="never"/>

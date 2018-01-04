@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.data.sync.api
 import android.accounts.Account
 import eu.kanade.tachiyomi.data.sync.api.models.AuthResponse
 import eu.kanade.tachiyomi.data.sync.api.models.TestAuthenticatedResponse
+import eu.kanade.tachiyomi.data.sync.gson.SyncGsonProvider
 import eu.kanade.tachiyomi.data.sync.protocol.models.SyncReport
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.SyncResponse
 import okhttp3.OkHttpClient
@@ -11,7 +12,6 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 import rx.Observable
-import eu.kanade.tachiyomi.data.sync.gson.SyncGsonProvider
 import java.util.concurrent.TimeUnit
 
 /**

@@ -2,15 +2,9 @@ package eu.kanade.tachiyomi.data.sync.gson
 
 import com.github.salomonbrys.kotson.obj
 import com.github.salomonbrys.kotson.string
-import com.google.gson.JsonParseException
-import com.google.gson.JsonObject
-import com.google.gson.JsonDeserializationContext
-import com.google.gson.JsonElement
-import com.google.gson.JsonSerializationContext
-import com.google.gson.JsonDeserializer
-import com.google.gson.JsonSerializer
+import com.google.gson.*
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.SyncEntity
-import eu.kanade.tachiyomi.data.sync.protocol.models.entities.*
+import eu.kanade.tachiyomi.data.sync.protocol.models.entities.SyncManga
 import java.lang.reflect.Type
 
 class SyncEntityAdapter : JsonSerializer<SyncEntity<*>>, JsonDeserializer<SyncEntity<*>> {

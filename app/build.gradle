@@ -1,6 +1,7 @@
 import java.text.SimpleDateFormat
 
 apply plugin: 'com.android.application'
+apply plugin: 'de.timfreiheit.resourceplaceholders.plugin'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -96,7 +97,12 @@ android {
         abortOnError false
         checkReleaseBuilds false
     }
-
+    resourcePlaceholders {
+        files = [
+                'xml/sync_adapter.xml',
+                'xml/sync_authenticator.xml'
+        ]
+    }
 }
 
 dependencies {

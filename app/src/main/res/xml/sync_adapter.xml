@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sync-adapter
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:contentAuthority="eu.kanade.tachiyomi.data.sync.provider"
-    android:accountType="eu.kanade.tachiyomi.data.sync"
+    android:contentAuthority="${applicationId}.sync-provider"
+    android:accountType="${applicationId}.sync-account"
     android:userVisible="true"
     android:supportsUploading="true"
     android:allowParallelSyncs="false"

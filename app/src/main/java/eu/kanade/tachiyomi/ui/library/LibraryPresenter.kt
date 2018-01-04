@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.library
 
+import android.content.ContentResolver
 import android.os.Bundle
 import com.jakewharton.rxrelay.BehaviorRelay
 import eu.kanade.tachiyomi.data.cache.CoverCache
@@ -10,6 +11,7 @@ import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.data.sync.LibrarySyncManager
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SManga
@@ -47,11 +49,12 @@ class LibraryPresenter(
         private val preferences: PreferencesHelper = Injekt.get(),
         private val coverCache: CoverCache = Injekt.get(),
         private val sourceManager: SourceManager = Injekt.get(),
-        private val downloadManager: DownloadManager = Injekt.get()
+        private val downloadManager: DownloadManager = Injekt.get(),
+        private val syncManager: LibrarySyncManager = Injekt.get()
 ) : BasePresenter<LibraryController>() {
 
     private val context = preferences.context
-
+    
     /**
      * Categories of the library.
      */
@@ -367,5 +370,17 @@ class LibraryPresenter(
         }
         return false
     }
-
+    
+    /**
+     * Force a sync immediately
+     */
+    fun forceSync() {
+        val settingsBundle = Bundle().apply {
+            putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true)
+            putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true)
+        }
+        ContentResolver.requestSync(syncManager.account,
+                LibrarySyncManager.CONTENT_PROVIDER,
+                settingsBundle)
+    }
 }

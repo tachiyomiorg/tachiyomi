@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.util
 
+import android.accounts.AccountManager
 import android.app.ActivityManager
 import android.app.Notification
 import android.app.NotificationManager
@@ -116,6 +117,12 @@ val Context.connectivityManager: ConnectivityManager
  */
 val Context.powerManager: PowerManager
     get() = getSystemService(Context.POWER_SERVICE) as PowerManager
+
+/**
+ * Property to get the account manager from the context.
+ */
+val Context.accountManager: AccountManager
+    get() = AccountManager.get(this)
 
 /**
  * Function used to send a local broadcast asynchronous

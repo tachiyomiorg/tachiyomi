@@ -2,10 +2,10 @@ package eu.kanade.tachiyomi.data.database.resolvers
 
 import com.pushtorefresh.storio.sqlite.queries.Query
 import eu.kanade.tachiyomi.data.database.DbProvider
-import eu.kanade.tachiyomi.data.sync.protocol.models.SyncReport
-import eu.kanade.tachiyomi.data.database.tables.SyncUpdatesTable
 import eu.kanade.tachiyomi.data.database.models.EntryUpdate
 import eu.kanade.tachiyomi.data.database.models.UpdatableField
+import eu.kanade.tachiyomi.data.database.tables.SyncUpdatesTable
+import eu.kanade.tachiyomi.data.sync.protocol.models.SyncReport
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.ChangedField
 
 interface EntryUpdateQueries : DbProvider {

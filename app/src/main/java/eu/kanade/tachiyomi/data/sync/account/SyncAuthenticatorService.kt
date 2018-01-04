@@ -6,7 +6,7 @@ import android.content.Intent
 /**
  * Sync auth service.
  */
-
 class SyncAuthenticatorService: Service() {
-    override fun onBind(intent: Intent) = SyncAccountAuthenticator(this).iBinder
+    override fun onBind(intent: Intent)
+            = SyncAccountAuthenticator(this).iBinder
 }

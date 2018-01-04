@@ -2,15 +2,14 @@ package eu.kanade.tachiyomi.ui.sync.account
 
 import android.accounts.AccountAuthenticatorResponse
 import android.accounts.AccountManager
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import com.dd.processbutton.iml.ActionProcessButton
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.sync.LibrarySyncManager
-import eu.kanade.tachiyomi.data.sync.account.SyncAccountAuthenticator
-import eu.kanade.tachiyomi.data.sync.protocol.snapshot.SnapshotHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseRxActivity
+import eu.kanade.tachiyomi.util.accountManager
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.activity_sync_auth.*
 import nucleus.factory.RequiresPresenter
@@ -26,18 +25,18 @@ import uy.kohesive.injekt.injectLazy
 
 @RequiresPresenter(SyncAccountAuthenticatorPresenter::class)
 class SyncAccountAuthenticatorActivity : BaseRxActivity<SyncAccountAuthenticatorPresenter>() {
-    private val db: DatabaseHelper by injectLazy()
     private val syncManager: LibrarySyncManager by injectLazy()
-    private val snapshots by lazy { SnapshotHelper(applicationContext) }
     
-    var loginSubscription: Subscription? = null
+    private var loginSubscription: Subscription? = null
     
     companion object {
         val ARG_IS_ADDING_NEW_ACCOUNT = "new_acc"
     }
     
+    private val isAddingNewAccount
+        get() = intent.getBooleanExtra(ARG_IS_ADDING_NEW_ACCOUNT, true)
+    
     override fun onCreate(savedState: Bundle?) {
-        //TODO Set theme
         super.onCreate(savedState)
         
         authenticatorOnCreate(savedState)
@@ -48,20 +47,49 @@ class SyncAccountAuthenticatorActivity : BaseRxActivity<SyncAccountAuthenticator
         
         login.setMode(ActionProcessButton.Mode.ENDLESS)
         login.setOnClickListener { tryLogin() }
+        
+        //Fill in username if using old account
+        if(!isAddingNewAccount) {
+            server_input.setText(syncManager.account?.name ?: run {
+                //No old account???
+                toast(R.string.sync_error_no_account)
+                setResult(Activity.RESULT_CANCELED, Intent())
+                finish()
+                ""
+            })
+            server_input.isEnabled = false
+        }
+        
+        //Max one account
+        if(isAddingNewAccount && syncManager.account != null) {
+            toast(R.string.sync_error_account_exists)
+            setResult(Activity.RESULT_CANCELED, Intent())
+            finish()
+        }
     }
     
     fun tryLogin() {
-        login.progress = 1
-        
-        val url = server_input.text.toString()
-        val password = password_input.text.toString()
-        
         fun error(error: Int) {
             login.progress = -1
             login.setText(error)
         }
+    
+        //Max one account (again as account could have been added while activity is open)
+        if(isAddingNewAccount && syncManager.account != null) {
+            error(R.string.sync_error_account_exists_short)
+        }
+        
+        login.progress = 1
+        
+        val url = server_input.text.toString().let {
+            if(!it.endsWith('/'))
+                "$it/"
+            else it
+        }
+        val password = password_input.text.toString()
         
         try {
+            loginSubscription?.unsubscribe()
             loginSubscription = presenter.checkLogin(url, password)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -82,26 +110,22 @@ class SyncAccountAuthenticatorActivity : BaseRxActivity<SyncAccountAuthenticator
         }
     }
     
+    override fun onDestroy() {
+        super.onDestroy()
+        loginSubscription?.unsubscribe()
+    }
+    
     fun finishLogin(url: String, password: String, token: String) {
-        presenter.completeLogin(AccountManager.get(this),
+        presenter.completeLogin(accountManager,
                 url,
                 password,
                 token,
-                intent.getBooleanExtra(ARG_IS_ADDING_NEW_ACCOUNT, true))
+                isAddingNewAccount)
         
         val res = Intent().putExtra(AccountManager.KEY_ACCOUNT_NAME, url)
-                .putExtra(AccountManager.KEY_ACCOUNT_TYPE, SyncAccountAuthenticator.ACCOUNT_TYPE)
+                .putExtra(AccountManager.KEY_ACCOUNT_TYPE, LibrarySyncManager.ACCOUNT_TYPE)
                 .putExtra(AccountManager.KEY_AUTHTOKEN, token)
-        
-        //Clear snapshots
-        db.deleteMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
-        db.takeEmptyMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
-        snapshots.deleteSnapshots(LibrarySyncManager.TARGET_DEVICE_ID)
-        
-        //Regen device ID and start sync from beginning
-        syncManager.regenDeviceId()
-        syncManager.lastSyncDateTime = 0
-        
+    
         setAccountAuthenticatorResult(res.extras)
         setResult(RESULT_OK, res)
         finish()
@@ -116,7 +140,7 @@ class SyncAccountAuthenticatorActivity : BaseRxActivity<SyncAccountAuthenticator
     }
     
     fun authenticatorOnCreate(savedState: Bundle?) {
-        mAccountAuthenticatorResponse = intent.getParcelableExtra<AccountAuthenticatorResponse>(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE)
+        mAccountAuthenticatorResponse = intent.getParcelableExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE)
         mAccountAuthenticatorResponse?.onRequestContinued()
     }
     
