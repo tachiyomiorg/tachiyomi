@@ -54,3 +54,10 @@ fun getAddedMangaCategoriesQuery(id: String) = genDiffMangaCategoriesQuery(
         MangaCategoryTable.TABLE,
         MangaCategoryTable.SNAPSHOT_TABLE_PREFIX + id
 )
+
+//language=sql
+val countMangaCategoriesQuery = """
+    SELECT COUNT(1) FROM ${MangaCategoryTable.TABLE}
+        WHERE ${MangaCategoryTable.COL_MANGA_ID} = ?
+        AND ${MangaCategoryTable.COL_CATEGORY_ID} = ?
+    """

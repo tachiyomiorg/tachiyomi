@@ -10,6 +10,20 @@ import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.database.tables.MangaCategoryTable
 
 interface MangaCategoryQueries : DbProvider {
+    
+    fun hasMangaCategory(mangaId: Long, categoryId: Int) = db.get()
+            .cursor()
+            .withQuery(RawQuery.builder()
+                    .query(countMangaCategoriesQuery)
+                    .args(mangaId, categoryId)
+                    .build())
+            .prepare()
+            .executeAsBlocking().use {
+        //Move to first row (containing count)
+        it.moveToFirst()
+        //Get count from first column
+        it.getLong(0) > 0
+    }
 
     fun insertMangaCategory(mangaCategory: MangaCategory) = db.put().`object`(mangaCategory).prepare()
 
