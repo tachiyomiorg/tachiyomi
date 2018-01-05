@@ -23,7 +23,7 @@ interface TWApi {
     fun checkAuth(@Query("password") password: String): Observable<AuthResponse>
     
     @POST("sync")
-    fun sync(@Header("TW-Session") token: String, @Body diff: SyncReport, @Query("from") from: Long): Observable<SyncResponse>
+    fun sync(@Header("TW-Session") token: String, @Body diff: SyncReport): Observable<SyncResponse>
     
     @GET("test_auth")
     fun testAuthenticated(@Header("TW-Session") token: String): Observable<TestAuthenticatedResponse>

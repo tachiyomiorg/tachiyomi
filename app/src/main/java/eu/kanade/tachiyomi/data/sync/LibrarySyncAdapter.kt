@@ -112,7 +112,7 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
             //Actually upload diff
             updateSync(SyncStatus.NETWORK)
             val result = try {
-                api.sync(token, diff, syncManager.lastSyncDateTime).toBlocking().first()
+                api.sync(token, diff).toBlocking().first()
             } catch (e: Exception) {
                 throw HandledSyncException(SyncError.NETWORK_ERROR, e)
             }
