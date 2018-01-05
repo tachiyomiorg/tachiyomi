@@ -2,12 +2,15 @@ package eu.kanade.tachiyomi.data.sync
 
 import android.content.ContentResolver
 import android.content.Context
+import android.os.Bundle
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.sync.protocol.snapshot.SnapshotHelper
 import eu.kanade.tachiyomi.util.accountManager
 import uy.kohesive.injekt.injectLazy
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class LibrarySyncManager(private val context: Context) {
     private val prefs: PreferencesHelper by injectLazy()
@@ -48,6 +51,41 @@ class LibrarySyncManager(private val context: Context) {
      * Sync snapshots
      */
     val snapshots by lazy { SnapshotHelper(context) }
+    
+    /**
+     * Force a sync immediately
+     */
+    fun forceSync() {
+        account?.let {
+            val settingsBundle = Bundle().apply {
+                putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true)
+                putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true)
+            }
+            ContentResolver.requestSync(it,
+                    AUTHORITY,
+                    settingsBundle)
+        }
+    }
+    
+    /**
+     * Update periodic sync with system
+     *
+     * @param frequency Frequency in hours
+     */
+    fun updatePeriodicSync(frequency: Int = prefs.syncInterval().getOrDefault()) {
+        account?.let {
+            ContentResolver.setSyncAutomatically(it, AUTHORITY, true)
+            if(frequency == 0)
+                ContentResolver.removePeriodicSync(it,
+                        AUTHORITY,
+                        Bundle.EMPTY)
+            else
+                ContentResolver.addPeriodicSync(it,
+                        AUTHORITY,
+                        Bundle.EMPTY,
+                        TimeUnit.HOURS.toSeconds(frequency.toLong()))
+        }
+    }
     
     companion object {
         //Device ID, used to distinguish between devices when syncing with multiple servers

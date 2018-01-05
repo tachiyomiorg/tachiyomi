@@ -47,7 +47,7 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
      */
     private val progressNotification by lazy { NotificationCompat.Builder(context, Notifications.CHANNEL_SYNC)
             .setContentTitle(context.getString(R.string.app_name))
-            .setSmallIcon(R.drawable.ic_sync_white_24dp)
+            .setSmallIcon(R.drawable.ic_import_export_white_24dp)
             .setLargeIcon(notificationBitmap)
             .setOngoing(true)
             .setOnlyAlertOnce(true)

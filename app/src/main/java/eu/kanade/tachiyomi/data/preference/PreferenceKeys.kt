@@ -109,6 +109,10 @@ object PreferenceKeys {
     
     const val lastSync = "last_sync"
 
+    const val syncOnLaunch = "pref_sync_on_launch"
+
+    const val syncInterval = "pref_sync_interval"
+
     @Deprecated("Use the preferences of the source")
     fun sourceUsername(sourceId: Long) = "pref_source_username_$sourceId"
 

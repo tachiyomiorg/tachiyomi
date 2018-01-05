@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.ui.library
 
-import android.content.ContentResolver
 import android.os.Bundle
 import com.jakewharton.rxrelay.BehaviorRelay
 import eu.kanade.tachiyomi.data.cache.CoverCache
@@ -375,12 +374,6 @@ class LibraryPresenter(
      * Force a sync immediately
      */
     fun forceSync() {
-        val settingsBundle = Bundle().apply {
-            putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true)
-            putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true)
-        }
-        ContentResolver.requestSync(syncManager.account,
-                LibrarySyncManager.AUTHORITY,
-                settingsBundle)
+        syncManager.forceSync()
     }
 }

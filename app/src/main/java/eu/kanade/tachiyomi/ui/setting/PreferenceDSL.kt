@@ -100,3 +100,7 @@ var ListPreference.entriesRes: Array<Int>
 var MultiSelectListPreference.entriesRes: Array<Int>
     get() = emptyArray() // set only
     set(value) { entries = value.map { context.getString(it) }.toTypedArray() }
+
+var Preference.persistent: Boolean
+    get() = false // set only
+    set(value) { isPersistent = value }

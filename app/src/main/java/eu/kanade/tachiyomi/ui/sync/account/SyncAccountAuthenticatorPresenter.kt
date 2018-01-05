@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.ui.sync.account
 
 import android.accounts.Account
 import android.accounts.AccountManager
-import android.content.ContentResolver
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.sync.LibrarySyncManager
 import eu.kanade.tachiyomi.data.sync.account.SyncAccountAuthenticator
@@ -49,7 +48,7 @@ class SyncAccountAuthenticatorPresenter : BasePresenter<SyncAccountAuthenticator
             syncManager.lastSyncDateTime = 0
     
             //Begin syncing automatically
-            ContentResolver.setSyncAutomatically(account, LibrarySyncManager.AUTHORITY, true)
+            syncManager.updatePeriodicSync()
         } else {
             accountManager.setPassword(account, password)
         }
