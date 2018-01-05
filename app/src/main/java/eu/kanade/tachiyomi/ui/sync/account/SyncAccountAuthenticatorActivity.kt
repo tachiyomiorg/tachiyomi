@@ -37,6 +37,7 @@ class SyncAccountAuthenticatorActivity : BaseRxActivity<SyncAccountAuthenticator
         get() = intent.getBooleanExtra(ARG_IS_ADDING_NEW_ACCOUNT, true)
     
     override fun onCreate(savedState: Bundle?) {
+        setAppTheme()
         super.onCreate(savedState)
         
         authenticatorOnCreate(savedState)
