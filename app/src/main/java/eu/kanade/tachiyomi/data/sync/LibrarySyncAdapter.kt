@@ -8,7 +8,6 @@ import android.content.SyncResult
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v4.app.NotificationCompat
-import com.google.gson.Gson
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.notification.Notifications
@@ -31,7 +30,6 @@ import uy.kohesive.injekt.injectLazy
 class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context, true, false) {
     
     private val db: DatabaseHelper by injectLazy()
-    private val gson: Gson by injectLazy()
     private val syncManager: LibrarySyncManager by injectLazy()
     
     private val reportGenerator by lazy { ReportGenerator(context) }

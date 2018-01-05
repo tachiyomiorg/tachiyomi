@@ -3,7 +3,14 @@ package eu.kanade.tachiyomi.data.database.models
 import eu.kanade.tachiyomi.data.database.TriggerGenerator
 import eu.kanade.tachiyomi.data.database.tables.*
 
+/**
+ * Maps all properties of objects that can be changed
+ * in the database to unique IDs
+ */
 object UpdateTarget {
+    /**
+     * Objects that can have their properties changed
+     */
     val registeredObjects = listOf(
             Manga,
             Chapter,
@@ -12,6 +19,9 @@ object UpdateTarget {
             Track
     )
 
+    /**
+     * Find a property by it's ID
+     */
     fun find(id: Int) = registeredObjects.flatMap {
         it.fields
     }.find { it.id == id }
@@ -74,20 +84,50 @@ object UpdateTarget {
     }
 }
 
+/**
+ * An object type that can have it's properties changed in the DB
+ */
 abstract class Updatable {
+    /**
+     * The unique ID for this object type
+     * Each object type MUST have a different ID
+     * This ID MUST NOT change between app versions
+     */
     abstract val id: Int
 
+    /**
+     * The name of the table that holds this object type in the DB
+     */
     abstract val tableName: String
 
+    /**
+     * The column used to differentiate between instances of this object type in the DB
+     */
     abstract val idColumn: String
 
+    /**
+     * A list of the mutable properties of the object type
+     */
     val fields = mutableListOf<UpdatableField>()
-
+    
+    /**
+     * Define a mutable property for this object type
+     *
+     * @param id A unique ID for this property
+     *   Each field MUST have a different ID, even if they belong to different object types!
+     *   This ID MUST NOT change between app versions
+     * @param field The name of the column that holds this property in the DB
+     * @param defValue The default value of this property. Properties of newly inserted objects that match
+     *   this default value will not be recorded as 'changed'.
+     */
     fun field(id: Int, field: String, defValue: Any)
             = UpdatableField(this, id, field, defValue).apply {
         fields.add(this)
     }
-
+    
+    /**
+     * Generate the triggers required to listen for property changes for this object
+     */
     fun getTriggers() = fields.flatMap {
         TriggerGenerator().genTriggers(it)
     }

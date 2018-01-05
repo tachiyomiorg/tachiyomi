@@ -2,6 +2,9 @@ package eu.kanade.tachiyomi.data.sync.protocol.snapshot
 
 import eu.kanade.tachiyomi.data.database.models.Track
 
+/**
+ * A snapshot of a [Track]
+ */
 data class TrackSnapshot(val mangaId: Long,
                          val syncId: Int) {
     

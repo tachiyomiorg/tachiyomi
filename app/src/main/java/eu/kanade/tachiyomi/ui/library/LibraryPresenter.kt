@@ -380,7 +380,7 @@ class LibraryPresenter(
             putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true)
         }
         ContentResolver.requestSync(syncManager.account,
-                LibrarySyncManager.CONTENT_PROVIDER,
+                LibrarySyncManager.AUTHORITY,
                 settingsBundle)
     }
 }

@@ -2,6 +2,9 @@ package eu.kanade.tachiyomi.data.sync.protocol.snapshot
 
 import eu.kanade.tachiyomi.data.database.models.Category
 
+/**
+ * A snapshot of a [Category]
+ */
 data class CategorySnapshot(val dbId: Int,
                             val name: String) {
     

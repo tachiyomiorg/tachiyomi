@@ -19,12 +19,21 @@ import java.util.concurrent.TimeUnit
  */
 
 interface TWApi {
+    /**
+     * Get an token for a password
+     */
     @GET("auth")
     fun checkAuth(@Query("password") password: String): Observable<AuthResponse>
     
+    /**
+     * Submit a sync report to the server and receive a new sync report back
+     */
     @POST("sync")
     fun sync(@Header("TW-Session") token: String, @Body diff: SyncReport): Observable<SyncResponse>
     
+    /**
+     * Test whether or not an auth token is valid
+     */
     @GET("test_auth")
     fun testAuthenticated(@Header("TW-Session") token: String): Observable<TestAuthenticatedResponse>
     

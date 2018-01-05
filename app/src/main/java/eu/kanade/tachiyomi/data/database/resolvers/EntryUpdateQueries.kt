@@ -30,13 +30,13 @@ interface EntryUpdateQueries : DbProvider {
                     .build())
             .prepare()
     
-    fun getNewerEntryUpdates(id: Long, field: UpdatableField, value: ChangedField<*>) = db.get()
-            .listOfObjects(EntryUpdate::class.java)
+    fun getNewerEntryUpdate(id: Long, field: UpdatableField, value: ChangedField<*>) = db.get()
+            .`object`(EntryUpdate::class.java)
             .withQuery(Query.builder()
                     .table(SyncUpdatesTable.TABLE)
-                    .orderBy(SyncUpdatesTable.COL_DATETIME)
                     .where("${SyncUpdatesTable.COL_DATETIME} > ? AND ${SyncUpdatesTable.COL_FIELD} = ? AND ${SyncUpdatesTable.COL_UPDATED_ROW} = ?")
                     .whereArgs(value.date, field.id, id)
+                    .limit(1)
                     .build())
             .prepare()
 

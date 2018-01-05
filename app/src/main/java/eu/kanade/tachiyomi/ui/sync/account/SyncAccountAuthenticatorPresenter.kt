@@ -49,7 +49,7 @@ class SyncAccountAuthenticatorPresenter : BasePresenter<SyncAccountAuthenticator
             syncManager.lastSyncDateTime = 0
     
             //Begin syncing automatically
-            ContentResolver.setSyncAutomatically(account, LibrarySyncManager.CONTENT_PROVIDER, true)
+            ContentResolver.setSyncAutomatically(account, LibrarySyncManager.AUTHORITY, true)
         } else {
             accountManager.setPassword(account, password)
         }

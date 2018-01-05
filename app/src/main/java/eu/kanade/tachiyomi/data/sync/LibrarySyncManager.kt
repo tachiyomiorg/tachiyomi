@@ -21,23 +21,40 @@ class LibrarySyncManager(private val context: Context) {
         return deviceId
     }
     
+    /**
+     * The last time the library was synced
+     */
     var lastSyncDateTime
         get() = prefs.lastSync().get()!!
         set(v) { prefs.lastSync().set(v) }
     
+    /**
+     * The account associated with the current sync server
+     *
+     * Will be `null` if sync is not enabled
+     */
     val account
         get() = context.accountManager.getAccountsByType(ACCOUNT_TYPE).firstOrNull()
     
+    /**
+     * Whether or not a sync operation is currently ongoing
+     */
     val isSyncActive: Boolean
         get() = ContentResolver.getCurrentSyncs().any {
-            it.authority == LibrarySyncManager.CONTENT_PROVIDER
+            it.authority == LibrarySyncManager.AUTHORITY
         }
     
+    /**
+     * Sync snapshots
+     */
     val snapshots by lazy { SnapshotHelper(context) }
     
     companion object {
+        //Device ID, used to distinguish between devices when syncing with multiple servers
+        //Currently only one server is supported so a static device ID is used
         val TARGET_DEVICE_ID = "server"
+        
         val ACCOUNT_TYPE = "${BuildConfig.APPLICATION_ID}.sync-account"
-        val CONTENT_PROVIDER = "${BuildConfig.APPLICATION_ID}.sync-provider"
+        val AUTHORITY = "${BuildConfig.APPLICATION_ID}.sync-provider"
     }
 }

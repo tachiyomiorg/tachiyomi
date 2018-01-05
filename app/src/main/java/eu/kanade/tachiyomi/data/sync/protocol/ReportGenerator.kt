@@ -15,7 +15,15 @@ class ReportGenerator(val context: Context) {
     private val db: DatabaseHelper by injectLazy()
     private val sources: SourceManager by injectLazy()
     private val syncManager: LibrarySyncManager by injectLazy()
-
+    
+    /**
+     * Generate a sync report of all changes between [from] and the current time
+     *
+     * @param currentDevice The current device's device ID
+     * @param targetDevice The target's device ID
+     * @param from The earliest date of changes that will be included in this report
+     * @return The generated report
+     */
     fun gen(currentDevice: String, targetDevice: String, from: Long): SyncReport {
         val report = SyncReport()
         report.from = from

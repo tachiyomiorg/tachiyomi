@@ -7,9 +7,13 @@ import eu.kanade.tachiyomi.data.sync.protocol.models.common.SyncEntity
 import eu.kanade.tachiyomi.data.sync.protocol.models.entities.SyncManga
 import java.lang.reflect.Type
 
+/**
+ * Serializer for sync entities. Allows distinguishing between types of sync entities during
+ * serialization/deserialization.
+ */
 class SyncEntityAdapter : JsonSerializer<SyncEntity<*>>, JsonDeserializer<SyncEntity<*>> {
     //Use SyncManga class to get sync entity package
-    val syncEntityPackage = SyncManga::class.java.`package`.name
+    private val syncEntityPackage = SyncManga::class.java.`package`.name
     
     override fun serialize(src: SyncEntity<*>, typeOfSrc: Type,
                            context: JsonSerializationContext): JsonElement {

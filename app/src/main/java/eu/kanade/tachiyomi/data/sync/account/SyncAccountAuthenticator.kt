@@ -7,15 +7,16 @@ import android.accounts.AccountManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import eu.kanade.tachiyomi.data.sync.api.TWApi.Companion.apiFromAccount
 import eu.kanade.tachiyomi.ui.sync.account.SyncAccountAuthenticatorActivity
 import eu.kanade.tachiyomi.util.accountManager
 
 /**
- * Interfaces with Android system to manage the sync accounts.
+ * Interfaces with Android system to manage the sync account.
+ *
+ * Each account contains the credentials and API endpoint for one sync server.
+ * Currently, a maximum of one sync account is supported, and thus, only one sync server.
  */
-
 class SyncAccountAuthenticator(val context: Context) : AbstractAccountAuthenticator(context) {
     companion object {
         val AUTH_TOKEN_TYPE = "full"
@@ -34,7 +35,7 @@ class SyncAccountAuthenticator(val context: Context) : AbstractAccountAuthentica
         var authToken = context.accountManager.peekAuthToken(account, authTokenType)
         
         //No auth token!
-        if(TextUtils.isEmpty(authToken)) {
+        if(authToken == null || authToken.isEmpty()) {
             //Get auth token from server
             val apiResponse = apiFromAccount(account)
                     .checkAuth(context.accountManager.getPassword(account))
@@ -46,7 +47,7 @@ class SyncAccountAuthenticator(val context: Context) : AbstractAccountAuthentica
         }
         
         // If we get an authToken - we return it
-        if (!TextUtils.isEmpty(authToken)) {
+        if (authToken?.isNotEmpty() == true) {
             return Bundle().apply {
                 putString(AccountManager.KEY_ACCOUNT_NAME, account.name)
                 putString(AccountManager.KEY_ACCOUNT_TYPE, account.type)
@@ -54,7 +55,7 @@ class SyncAccountAuthenticator(val context: Context) : AbstractAccountAuthentica
             }
         }
     
-        //TODO Ask for authentication again
+        //Generate authentication intent again (as we could not obtain auth token)
         val intent = Intent(context, SyncAccountAuthenticatorActivity::class.java).apply {
             putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response)
             putExtra(SyncAccountAuthenticatorActivity.ARG_IS_ADDING_NEW_ACCOUNT, false)
@@ -73,6 +74,8 @@ class SyncAccountAuthenticator(val context: Context) : AbstractAccountAuthentica
         = throw UnsupportedOperationException("Unused method")
     
     override fun addAccount(response: AccountAuthenticatorResponse, accountType: String, authTokenType: String?, requiredFeatures: Array<out String>?, options: Bundle?): Bundle {
+        //Called from account settings when tapping on "Add new sync server account".
+        //Open the server login window
         val intent = Intent(context, SyncAccountAuthenticatorActivity::class.java).apply {
             putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response)
             putExtra(SyncAccountAuthenticatorActivity.ARG_IS_ADDING_NEW_ACCOUNT, true)
