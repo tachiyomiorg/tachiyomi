@@ -8,4 +8,14 @@ interface EntryUpdate {
     var datetime: Long //Millis since epoch in UTC
 
     var field: UpdatableField //The updated field
+    
+    companion object {
+        fun create(updatedRow: Long,
+                   datetime: Long,
+                   field: UpdatableField) = EntryUpdateImpl().apply {
+            this.updatedRow = updatedRow
+            this.datetime = datetime
+            this.field = field
+        }
+    }
 }

@@ -1,8 +1,10 @@
 package eu.kanade.tachiyomi.data.sync.protocol
 
 import android.content.Context
+import com.pushtorefresh.storio.sqlite.operations.put.PutResult
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.*
+import eu.kanade.tachiyomi.data.sync.protocol.models.IntermediaryApplySyncReport
 import eu.kanade.tachiyomi.data.sync.protocol.models.SyncReport
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.ChangedField
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.SyncRef
@@ -41,13 +43,13 @@ class ReportApplier(val context: Context) {
                 this.initialized = false //New manga, fetch metadata next time we view it in UI
             }
 
-            val id = dbManga.id
+            val id = dbManga.id ?: report.tmpApply.nextQueuedId()
 
-            it.favorite.applyIfNewer(id, UpdateTarget.Manga.favorite) { dbManga.favorite = it }
-            it.viewer.applyIfNewer(id, UpdateTarget.Manga.viewer) { dbManga.viewer = it }
-            it.chapterFlags.applyIfNewer(id, UpdateTarget.Manga.chapterFlags) { dbManga.chapter_flags = it }
+            it.favorite.applyIfNewer(report, id, UpdateTarget.Manga.favorite) { dbManga.favorite = it }
+            it.viewer.applyIfNewer(report, id, UpdateTarget.Manga.viewer) { dbManga.viewer = it }
+            it.chapterFlags.applyIfNewer(report, id, UpdateTarget.Manga.chapterFlags) { dbManga.chapter_flags = it }
 
-            db.insertManga(dbManga).executeAsBlocking()
+            db.insertManga(dbManga).executeAsBlocking().queueId(report, id)
         }
     }
     
@@ -74,13 +76,13 @@ class ReportApplier(val context: Context) {
                         
                         //Ensure manga chapter is in DB
                         if(dbChapter.manga_id != null) {
-                            val id = dbChapter.id
+                            val id = dbChapter.id ?: report.tmpApply.nextQueuedId()
     
-                            it.read.applyIfNewer(id, UpdateTarget.Chapter.read) { dbChapter.read = it }
-                            it.bookmark.applyIfNewer(id, UpdateTarget.Chapter.bookmark) { dbChapter.bookmark = it }
-                            it.lastPageRead.applyIfNewer(id, UpdateTarget.Chapter.lastPageRead) { dbChapter.last_page_read = it }
+                            it.read.applyIfNewer(report, id, UpdateTarget.Chapter.read) { dbChapter.read = it }
+                            it.bookmark.applyIfNewer(report, id, UpdateTarget.Chapter.bookmark) { dbChapter.bookmark = it }
+                            it.lastPageRead.applyIfNewer(report, id, UpdateTarget.Chapter.lastPageRead) { dbChapter.last_page_read = it }
     
-                            db.insertChapter(dbChapter).executeAsBlocking()
+                            db.insertChapter(dbChapter).executeAsBlocking().queueId(report, id)
                         }
                     }
                 }
@@ -95,11 +97,11 @@ class ReportApplier(val context: Context) {
                 History.create(dbChapter)
             }
             
-            val id = dbHistory.id
+            val id = dbHistory.id ?: report.tmpApply.nextQueuedId()
             
-            it.lastRead.applyIfNewer(id, UpdateTarget.History.lastRead) { dbHistory.last_read = it }
+            it.lastRead.applyIfNewer(report, id, UpdateTarget.History.lastRead) { dbHistory.last_read = it }
             
-            db.insertHistory(dbHistory).executeAsBlocking()
+            db.insertHistory(dbHistory).executeAsBlocking().queueId(report, id)
         }
     }
     
@@ -131,11 +133,11 @@ class ReportApplier(val context: Context) {
             }
             
             //Apply other changes to category properties
-            val id = dbCategory.id
+            val id = dbCategory.id?.toLong() ?: report.tmpApply.nextQueuedId()
             
-            it.flags.applyIfNewer(id?.toLong(), UpdateTarget.Category.flags) { dbCategory.flags = it }
+            it.flags.applyIfNewer(report, id, UpdateTarget.Category.flags) { dbCategory.flags = it }
             
-            val res = db.insertCategory(dbCategory).executeAsBlocking()
+            val res = db.insertCategory(dbCategory).executeAsBlocking().queueId(report, id)
             res.insertedId()?.let {
                 dbCategory.id = it.toInt()
             }
@@ -187,26 +189,42 @@ class ReportApplier(val context: Context) {
             }
             
             //Apply other changes to track properties
-            val id = dbTrack.id
+            val id = dbTrack.id ?: report.tmpApply.nextQueuedId()
             
-            it.remote_id.applyIfNewer(id, UpdateTarget.Track.remoteId) { dbTrack.remote_id = it }
-            it.title.applyIfNewer(id, UpdateTarget.Track.title) { dbTrack.title = it }
-            it.last_chapter_read.applyIfNewer(id, UpdateTarget.Track.lastChapterRead) { dbTrack.last_chapter_read = it }
-            it.total_chapters.applyIfNewer(id, UpdateTarget.Track.totalChapters) { dbTrack.total_chapters = it }
-            it.score.applyIfNewer(id, UpdateTarget.Track.score) { dbTrack.score = it }
-            it.status.applyIfNewer(id, UpdateTarget.Track.status) { dbTrack.status = it }
+            it.remote_id.applyIfNewer(report, id, UpdateTarget.Track.remoteId) { dbTrack.remote_id = it }
+            it.title.applyIfNewer(report, id, UpdateTarget.Track.title) { dbTrack.title = it }
+            it.last_chapter_read.applyIfNewer(report, id, UpdateTarget.Track.lastChapterRead) { dbTrack.last_chapter_read = it }
+            it.total_chapters.applyIfNewer(report, id, UpdateTarget.Track.totalChapters) { dbTrack.total_chapters = it }
+            it.score.applyIfNewer(report, id, UpdateTarget.Track.score) { dbTrack.score = it }
+            it.status.applyIfNewer(report, id, UpdateTarget.Track.status) { dbTrack.status = it }
             
-            db.insertTrack(dbTrack).executeAsBlocking()
+            db.insertTrack(dbTrack).executeAsBlocking().queueId(report, id)
         }
     }
     
-    private fun <T> ChangedField<T>?.applyIfNewer(id: Long?,
+    private fun PutResult.queueId(report: SyncReport, origId: Long): PutResult {
+        if(origId < 0) {
+            val insertedId = insertedId()
+            if(insertedId != null) {
+                report.tmpApply.queuedInsertedIds
+                        .add(IntermediaryApplySyncReport.QueuedInsertedId(origId, insertedId))
+            }
+        }
+        return this
+    }
+    
+    private fun <T> ChangedField<T>?.applyIfNewer(report: SyncReport,
+                                                  id: Long,
                                                   field: UpdatableField,
                                                   exec: (T) -> Unit) {
         if(this != null
-                && (id == null
+                && (id < 0
                 || db.getNewerEntryUpdates(id, field, this).executeAsBlocking().isEmpty())) {
             exec(value)
+            
+            //Queue applied entry for timestamp correction later
+            report.tmpApply.queuedTimestampEntries
+                    .add(IntermediaryApplySyncReport.QueuedTimestampEntry(id, field, date))
         }
     }
 }

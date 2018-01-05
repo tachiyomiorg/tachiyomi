@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.database.queries
 
 import eu.kanade.tachiyomi.data.database.tables.MangaCategoryTable
+import eu.kanade.tachiyomi.data.database.tables.SyncUpdatesTable
 
 /**
  * Take a snapshot of the manga category table
@@ -60,4 +61,12 @@ val countMangaCategoriesQuery = """
     SELECT COUNT(1) FROM ${MangaCategoryTable.TABLE}
         WHERE ${MangaCategoryTable.COL_MANGA_ID} = ?
         AND ${MangaCategoryTable.COL_CATEGORY_ID} = ?
+    """
+
+//language=sql
+val updateEntryUpdateQuery = """
+    UPDATE ${SyncUpdatesTable.TABLE}
+        SET ${SyncUpdatesTable.COL_DATETIME} = ?
+        WHERE ${SyncUpdatesTable.COL_UPDATED_ROW} = ?
+            AND ${SyncUpdatesTable.COL_FIELD} = ?
     """

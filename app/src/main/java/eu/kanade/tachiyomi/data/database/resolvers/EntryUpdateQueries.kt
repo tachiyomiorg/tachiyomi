@@ -1,9 +1,11 @@
 package eu.kanade.tachiyomi.data.database.resolvers
 
 import com.pushtorefresh.storio.sqlite.queries.Query
+import com.pushtorefresh.storio.sqlite.queries.RawQuery
 import eu.kanade.tachiyomi.data.database.DbProvider
 import eu.kanade.tachiyomi.data.database.models.EntryUpdate
 import eu.kanade.tachiyomi.data.database.models.UpdatableField
+import eu.kanade.tachiyomi.data.database.queries.updateEntryUpdateQuery
 import eu.kanade.tachiyomi.data.database.tables.SyncUpdatesTable
 import eu.kanade.tachiyomi.data.sync.protocol.models.SyncReport
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.ChangedField
@@ -39,6 +41,13 @@ interface EntryUpdateQueries : DbProvider {
             .prepare()
 
     fun insertEntryUpdate(update: EntryUpdate) = db.put().`object`(update).prepare()
+    
+    fun replaceEntryUpdate(update: EntryUpdate) = db.executeSQL()
+            .withQuery(RawQuery.builder()
+                    .query(updateEntryUpdateQuery)
+                    .args(update.datetime, update.updatedRow, update.field)
+                    .build())
+            .prepare()
 
     fun deleteEntryUpdate(update: EntryUpdate) = db.delete().`object`(update).prepare()
 }

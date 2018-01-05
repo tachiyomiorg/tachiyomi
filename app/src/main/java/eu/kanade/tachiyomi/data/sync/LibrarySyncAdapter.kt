@@ -20,6 +20,8 @@ import eu.kanade.tachiyomi.util.accountManager
 import eu.kanade.tachiyomi.util.notification
 import eu.kanade.tachiyomi.util.notificationManager
 import timber.log.Timber
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -118,7 +120,13 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
             //Apply server diff
             updateSync(SyncStatus.APPLY_DIFF)
             try {
-                reportApplier.apply(result.serverChanges!!)
+                val serverChanges = result.serverChanges!!
+                
+                //Apply report
+                reportApplier.apply(serverChanges)
+                
+                //Apply timestamp correction queue
+                serverChanges.tmpApply.applyQueuedTimestamps(Injekt.get())
             } catch (e: Exception) {
                 throw HandledSyncException(SyncError.DATABASE_ERROR, e)
             }
