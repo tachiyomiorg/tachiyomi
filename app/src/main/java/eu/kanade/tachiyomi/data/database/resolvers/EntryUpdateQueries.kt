@@ -45,7 +45,7 @@ interface EntryUpdateQueries : DbProvider {
     fun replaceEntryUpdate(update: EntryUpdate) = db.executeSQL()
             .withQuery(RawQuery.builder()
                     .query(updateEntryUpdateQuery)
-                    .args(update.datetime, update.updatedRow, update.field)
+                    .args(update.datetime, update.updatedRow, update.field.id)
                     .build())
             .prepare()
 
