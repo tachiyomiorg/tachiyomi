@@ -397,4 +397,20 @@
 
     <string name="information_no_downloads">ডাউনলোড নেই</string>
     <string name="information_no_recent">কোন সাম্প্রতিক অধ্যায় নেই</string>
-    </resources>
+    <string name="information_no_recent_manga">কোন সাম্প্রতিক পড়া মাংগা নেই</string>
+    <string name="information_empty_library">আপনার মাংগাশালা খালি, আপনি চাইলে মাংগাশালায় ক্যাটালগস থেকে মাংগা যোগ করতে পারেন।</string>
+    <string name="information_empty_category">আপনার কোন ধরণ নেই। যোগ চিহ্ন বাটনে ক্লিক করে একটি ধরণ তৈরী করুন এবং আপনার মাংগাশালা সাজান।</string>
+
+    <string name="download_notifier_downloader_title">ডাউনলোডার</string>
+    <string name="download_notifier_title_error">ত্রুটি</string>
+    <string name="download_notifier_unkown_error">অধ্যায় ডাউনলোডের সময় একটি অনাকাঙ্ক্ষিত ত্রুটি ঘটেছে</string>
+    <string name="download_notifier_page_error">নির্দেশকে একটি পৃষ্ঠা পাওয়া যাচ্ছে না</string>
+    <string name="download_notifier_page_ready_error">একটি পেজ লোড হয়নি</string>
+    <string name="download_notifier_text_only_wifi">কোন ওয়াই-ফাই সংযোগ খুঁজে পাওয়া যায়নি</string>
+    <string name="download_notifier_no_network">কোন নেটওয়ার্ক সংযোগ খুঁজে পাওয়া যায়নি</string>
+    <string name="download_notifier_download_paused">ডাউনলোড স্থগিত</string>
+
+    <string name="channel_common">সাধারণ</string>
+    <string name="channel_library">মাংগাশালা</string>
+    <string name="channel_downloader">ডাউনলোডার</string>
+</resources>
