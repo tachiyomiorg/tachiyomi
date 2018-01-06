@@ -78,6 +78,7 @@
             android:orientation="horizontal"
             android:paddingEnd="4dp"
             android:paddingStart="4dp"
+            android:clipToPadding="false"
             tools:listitem="@layout/catalogue_global_search_controller_card_item" />
     </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>

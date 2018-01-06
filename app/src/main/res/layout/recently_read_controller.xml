@@ -9,8 +9,9 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:clipToPadding="false"
         tools:listitem="@layout/recently_read_item">
 
     </android.support.v7.widget.RecyclerView>
