@@ -322,6 +322,11 @@ class LibraryController(
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
+        if(!presenter.query.isEmpty()){
+            query = presenter.query
+            presenter.query = ""
+        }
+
         if (!query.isEmpty()) {
             searchItem.expandActionView()
             searchView.setQuery(query, true)
@@ -331,7 +336,7 @@ class LibraryController(
         // Mutate the filter icon because it needs to be tinted and the resource is shared.
         menu.findItem(R.id.action_filter).icon.mutate()
 
-        searchView.queryTextChanges().subscribeUntilDestroy {
+        searchView.queryTextChanges().subscribeUntilDetach {
             query = it.toString()
             searchRelay.call(query)
         }
@@ -413,6 +418,9 @@ class LibraryController(
     fun openManga(manga: Manga) {
         // Notify the presenter a manga is being opened.
         presenter.onOpenManga()
+
+        // Save current search query
+        presenter.query = query
 
         router.pushController(MangaController(manga).withFadeTransaction())
     }
