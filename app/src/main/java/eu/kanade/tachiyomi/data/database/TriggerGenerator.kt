@@ -30,28 +30,20 @@ class TriggerGenerator {
         val triggerType: String
 
         val conditionBuilder = mutableListOf<String>()
-        if(type == "UPDATE") {
-            // language=sql
-            conditionBuilder += "old.${field.field} != new.${field.field}"
-            triggerType = "AFTER UPDATE"
-        } else if(type == "INSERT") {
-            //Ignore inserts if inserted values are the same as the default values
-            conditionBuilder += "new.${field.field} != " + when(field.defValue) {
-                //Wrap strings in quotes
-                is String, is Char -> "\"${field.defValue}\""
-
-                is Int, is Long, is Float, is Byte, is Short, is Double -> field.defValue
-
-                //SQL does not have boolean literals
-                false -> "0"
-                true -> "1"
-
-                else -> throw IllegalArgumentException("Unknown default value type: ${field.defValue::class.java.simpleName}!")
+        when (type) {
+            "UPDATE" -> {
+                // language=sql
+                conditionBuilder += "old.${field.field} != new.${field.field}"
+                triggerType = "AFTER UPDATE"
             }
-            triggerType = "AFTER INSERT"
-        } else if(type == "DELETE") {
-            triggerType = "BEFORE DELETE"
-        } else throw IllegalArgumentException("Unknown query type: $type!")
+            "INSERT" -> {
+                //Ignore inserts if inserted values are the same as the default values
+                conditionBuilder += "new.${field.field} != " + valueAsSQLiteLiteral(field.defValue)
+                triggerType = "AFTER INSERT"
+            }
+            "DELETE" -> triggerType = "BEFORE DELETE"
+            else -> throw IllegalArgumentException("Unknown query type: $type!")
+        }
 
         val condition = if(conditionBuilder.isNotEmpty())
             conditionBuilder.joinToString(prefix = "WHEN ", separator = " AND ")
@@ -83,13 +75,30 @@ class TriggerGenerator {
               END;
         """
     }
-
+    
     private fun triggerName(type: String, field: UpdatableField)
         = "sync_" + type.toLowerCase() + "_" + field.id + "_trigger"
 
     companion object {
         // Expression to get milliseconds since epoch in SQLITE
         //language=sql
-        private const val CURRENT_TIME_SQL = "CAST((julianday('now') - 2440587.5) * 86400000 AS INTEGER)"
+        const val CURRENT_TIME_SQL = "CAST((julianday('now') - 2440587.5) * 86400000 AS INTEGER)"
+    
+        /**
+         * Convert a primitives and Strings into SQL literals
+         */
+        fun valueAsSQLiteLiteral(value: Any)
+                = when(value) {
+            //Wrap strings in quotes
+            is String, is Char -> "\"$value\""
+        
+            is Int, is Long, is Float, is Byte, is Short, is Double -> value.toString()
+    
+            //SQL does not have boolean literals
+            false -> "0"
+            true -> "1"
+        
+            else -> throw IllegalArgumentException("Unknown default value type: ${value::class.java.simpleName}!")
+        }
     }
 }

@@ -1,5 +1,7 @@
 package eu.kanade.tachiyomi.data.database.queries
 
+import eu.kanade.tachiyomi.data.database.TriggerGenerator
+import eu.kanade.tachiyomi.data.database.models.Updatable
 import eu.kanade.tachiyomi.data.database.tables.MangaCategoryTable
 import eu.kanade.tachiyomi.data.database.tables.SyncUpdatesTable
 
@@ -70,3 +72,14 @@ val updateEntryUpdateQuery = """
         WHERE ${SyncUpdatesTable.COL_UPDATED_ROW} = ?
             AND ${SyncUpdatesTable.COL_FIELD} = ?
     """
+
+fun getGenerateAllEntryUpdatesQueries(updatable: Updatable) = updatable.fields.map {
+    //language=sql
+    """
+        INSERT INTO ${SyncUpdatesTable.TABLE} (${SyncUpdatesTable.COL_FIELD},
+            ${SyncUpdatesTable.COL_DATETIME},
+            ${SyncUpdatesTable.COL_UPDATED_ROW})
+        SELECT ${it.id}, ${TriggerGenerator.CURRENT_TIME_SQL}, ${updatable.idColumn}
+            FROM ${updatable.tableName} WHERE ${it.field} != ${TriggerGenerator.valueAsSQLiteLiteral(it.defValue)}
+        """
+}

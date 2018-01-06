@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import eu.kanade.tachiyomi.data.database.models.Updatable
 import eu.kanade.tachiyomi.data.database.models.UpdateTarget
+import eu.kanade.tachiyomi.data.database.queries.getGenerateAllEntryUpdatesQueries
 import eu.kanade.tachiyomi.data.database.tables.*
 
 class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
@@ -20,7 +21,7 @@ class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
         /**
          * Version of the database.
          */
-        const val DATABASE_VERSION = 8
+        const val DATABASE_VERSION = 9
     }
 
     override fun onCreate(db: SupportSQLiteDatabase) = with(db) {
@@ -39,7 +40,7 @@ class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
         execSQL(ChapterTable.createUnreadChaptersIndexQuery)
         execSQL(HistoryTable.createChapterIdIndexQuery)
     
-        // Gen triggers
+        // Gen and apply triggers for sync
         UpdateTarget.registeredObjects.flatMap(Updatable::getTriggers).forEach {
             execSQL(it)
         }
@@ -74,6 +75,22 @@ class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
             db.execSQL("DROP INDEX IF EXISTS mangas_favorite_index")
             db.execSQL(MangaTable.createLibraryIndexQuery)
             db.execSQL(ChapterTable.createUnreadChaptersIndexQuery)
+        }
+        if (oldVersion < 9) {
+            // Create sync updates table
+            db.execSQL(SyncUpdatesTable.createTableQuery)
+
+            // Add missing entry updates
+            UpdateTarget.registeredObjects.forEach {
+                getGenerateAllEntryUpdatesQueries(it).forEach {
+                    db.execSQL(it)
+                }
+            }
+
+            // Gen and apply triggers for sync
+            UpdateTarget.registeredObjects.flatMap(Updatable::getTriggers).forEach {
+                db.execSQL(it)
+            }
         }
     }
 
