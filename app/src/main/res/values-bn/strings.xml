@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="name">নাম</string>
-    <string name="categories">বিভাগ</string>
+    <string name="categories">ধরণ</string>
     <string name="manga">মাংগা</string>
-    <string name="chapters">অধ্যায়</string>
+    <string name="chapters">অধ্যায়গুলো</string>
     <string name="track">অনুসরণকরণ</string>
     <string name="history">ইতিহাস</string>
 
@@ -40,7 +40,7 @@
     <string name="action_remove_bookmark">বুকমার্ক সরান</string>
     <string name="action_delete">মুছুন</string>
     <string name="action_update">আপডেট</string>
-    <string name="action_update_library">পুস্তকশালা আপডেট</string>
+    <string name="action_update_library">মাংগাশালা আপডেট</string>
     <string name="action_edit">সম্পাদন</string>
     <string name="action_add">যোগ করুন</string>
     <string name="action_add_category">ধরণ যোগ করুন</string>
@@ -254,7 +254,7 @@
     <string name="invalid_login">লগ ইন ত্রুটি</string>
     <string name="unknown_error">অজানা ত্রুটি</string>
 
-    <string name="library_search_hint">লেখকের নাম</string>
+    <string name="library_search_hint">লেখকের নাম…</string>
     <string name="updating_category">ধরণ আপডেট হচ্ছে</string>
     <string name="local_source_badge">স্থানীয়</string>
     <string name="confirm_delete_manga">আপনি কি নিশ্চিত যে আপনি নির্বাচিত মাংগা মুছে ফেলতে চাচ্ছেন?</string>
@@ -268,7 +268,7 @@
     <string name="other_source">অন্যসব</string>
     <string name="invalid_combination">নির্ধারিতগুলো অন্যান্য ধরণের সাথে নির্বাচন করা যাবে না</string>
     <string name="added_to_library">মাংগাটি আপনার মাংগাশালায় যোগ হয়েছে</string>
-    <string name="action_global_search_hint">সার্বজনীন খোঁজ</string>
+    <string name="action_global_search_hint">সার্বজনীন খোঁজ…</string>
     <string name="no_results">কোন ফলাফল পাওয়া যায়নি!</string>
     <string name="latest">সর্বশেষ</string>
     <string name="browse">ব্রাউজ</string>
@@ -333,7 +333,7 @@
     <string name="title">শিরোনাম</string>
     <string name="status">স্ট্যাটাস</string>
 
-    <string name="error_category_exists">এই নামের ধরণ বিদ্যমান</string>
+    <string name="error_category_exists">এই নামে ধরণ বিদ্যমান!</string>
     <string name="snack_categories_deleted">ধরণগুলো মুছে ফেলা হয়েছে</string>
 
     <string name="dialog_with_checkbox_remove_description">এটা এই অধ্যায়ের পড়ার সময়কাল সরিয়ে ফেলবে। আপনি নিশ্চিত?</string>
