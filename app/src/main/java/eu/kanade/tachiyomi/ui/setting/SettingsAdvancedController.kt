@@ -12,6 +12,7 @@ import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService.Target
+import eu.kanade.tachiyomi.data.sync.LibrarySyncManager
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.library.LibraryController
@@ -19,16 +20,19 @@ import eu.kanade.tachiyomi.util.toast
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
 
 class SettingsAdvancedController : SettingsController() {
+    private val syncManager: LibrarySyncManager by injectLazy()
 
     private val network: NetworkHelper by injectLazy()
 
     private val chapterCache: ChapterCache by injectLazy()
 
     private val db: DatabaseHelper by injectLazy()
-
+    
     override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
         titleRes = R.string.pref_category_advanced
 
@@ -48,11 +52,12 @@ class SettingsAdvancedController : SettingsController() {
             }
         }
         preference {
+            key = CLEAR_DATABASE_KEY
             titleRes = R.string.pref_clear_database
             summaryRes = R.string.pref_clear_database_summary
 
             onClick {
-                val ctrl = ClearDatabaseDialogController()
+                val ctrl = ClearDatabaseDialogController(syncManager)
                 ctrl.targetController = this@SettingsAdvancedController
                 ctrl.showDialog(router)
             }
@@ -135,9 +140,17 @@ class SettingsAdvancedController : SettingsController() {
         }
     }
 
-    class ClearDatabaseDialogController : DialogController() {
+    class ClearDatabaseDialogController(private val syncManager: LibrarySyncManager = Injekt.get()):
+            DialogController() {
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog.Builder(activity!!)
+            //Do not allow clearing database while sync is enabled
+            return if(syncManager.account != null)
+                MaterialDialog.Builder(activity!!)
+                        .content(R.string.pref_clear_database_sync_error)
+                        .positiveText(android.R.string.ok)
+                        .build()
+            else
+                MaterialDialog.Builder(activity!!)
                     .content(R.string.clear_database_confirmation)
                     .positiveText(android.R.string.yes)
                     .negativeText(android.R.string.no)
@@ -155,12 +168,19 @@ class SettingsAdvancedController : SettingsController() {
 
         router.setBackstack(newBackstack, FadeChangeHandler())
 
-        db.deleteMangasNotInLibrary().executeAsBlocking()
-        db.deleteHistoryNoLastRead().executeAsBlocking()
-        activity?.toast(R.string.clear_database_completed)
+        // Check that sync is not active again, as user could have enabled sync
+        // after opening the clear database confirmation dialog
+        if(syncManager.account != null) {
+            activity?.toast(R.string.pref_clear_database_sync_error)
+        } else {
+            db.deleteMangasNotInLibrary().executeAsBlocking()
+            db.deleteHistoryNoLastRead().executeAsBlocking()
+            activity?.toast(R.string.clear_database_completed)
+        }
     }
 
     private companion object {
+        const val CLEAR_DATABASE_KEY = "pref_clear_database_key"
         const val CLEAR_CACHE_KEY = "pref_clear_cache_key"
     }
 }
