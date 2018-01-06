@@ -176,7 +176,7 @@
     <string name="color_filter_r_value">লাল</string>
     <string name="color_filter_g_value">সবুজ</string>
     <string name="color_filter_b_value">নীল</string>
-    <string name="color_filter_a_value">ধূসর</string>
+    <string name="color_filter_a_value">আল্ফা</string>
 
 
       <string name="pref_download_directory">ডাউনলোডের নির্দেশক</string>
