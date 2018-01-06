@@ -24,10 +24,10 @@ class ReportGenerator(val context: Context) {
      * @param from The earliest date of changes that will be included in this report
      * @return The generated report
      */
-    fun gen(currentDevice: String, targetDevice: String, from: Long): SyncReport {
+    fun gen(currentDevice: String, targetDevice: String, from: Long, to: Long): SyncReport {
         val report = SyncReport()
         report.from = from
-        report.to = System.currentTimeMillis()
+        report.to = to
         report.deviceId = currentDevice
 
         genManga(report)

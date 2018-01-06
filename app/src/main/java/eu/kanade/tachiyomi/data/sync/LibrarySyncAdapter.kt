@@ -102,7 +102,11 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
             //Generate library diff
             updateSync(SyncStatus.GEN_DIFF)
             val diff = try {
-                reportGenerator.gen(syncManager.getDeviceId(), LibrarySyncManager.TARGET_DEVICE_ID, syncManager.lastSyncDateTime)
+                //Generate diff from last sync time to current time
+                reportGenerator.gen(syncManager.getDeviceId(),
+                        LibrarySyncManager.TARGET_DEVICE_ID,
+                        syncManager.lastSyncDateTime,
+                        System.currentTimeMillis())
             } catch (e: Exception) {
                 throw HandledSyncException(SyncError.DATABASE_ERROR, e)
             }
