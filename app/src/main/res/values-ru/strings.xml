@@ -125,7 +125,7 @@
     <string name="fourth_to_last">Четвертую от прочитанной</string>
     <string name="icon_creation_fail">Невозможно создать ярлык!</string>
     <string name="icon_shape">Форма иконки</string>
-    <string name="information_empty_library">Пустая библиотека</string>
+    <string name="information_empty_library">Ваша библиотека пуста, вы можете добавить из Каталога.</string>
     <string name="information_no_downloads">Нет загрузок</string>
     <string name="information_no_recent">Нет новых глав</string>
     <string name="information_no_recent_manga">Нет недавно прочитанных глав</string>
@@ -374,4 +374,6 @@
     <string name="channel_common">Обычный</string>
     <string name="channel_library">Библиотека</string>
     <string name="channel_downloader">Загрузчик</string>
-</resources>
+<string name="information_empty_category">У вас нет категорий. Для того чтобы добавить новую, нажмите на кнопку +.</string>
+
+    </resources>
