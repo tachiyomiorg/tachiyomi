@@ -99,6 +99,9 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
         
         //Lock database during sync
         db.inTransaction {
+            //Take empty categories snapshot if missing
+            db.takeEmptyMangaCategoriesSnapshot(LibrarySyncManager.TARGET_DEVICE_ID).executeAsBlocking()
+            
             //Generate library diff
             updateSync(SyncStatus.GEN_DIFF)
             val diff = try {
