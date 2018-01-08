@@ -58,7 +58,7 @@
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_favorite"
             style="@style/Theme.Widget.FAB"
-            app:srcCompat="@drawable/ic_bookmark_border_white_24dp"
+            app:srcCompat="@drawable/ic_add_to_library_24dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
             android:layout_marginRight="8dp"
