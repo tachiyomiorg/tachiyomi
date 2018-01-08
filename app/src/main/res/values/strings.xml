@@ -300,8 +300,8 @@
     <string name="unknown">Unknown</string>
     <string name="licensed">Licensed</string>
     <string name="remove_from_library">Remove from library</string>
-    <string name="manga_added_library">Manga has been added to your library</string>
-    <string name="manga_removed_library">Manga has been removed from library</string>
+    <string name="manga_added_library">Added to library</string>
+    <string name="manga_removed_library">Removed from library</string>
     <string name="manga_info_author_label">Author</string>
     <string name="manga_info_artist_label">Artist</string>
     <string name="manga_info_chapters_label">Chapters</string>
