@@ -301,9 +301,9 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
                             .showDialog(router)
                 }
             }
-            activity?.toast("Removed From Library")
+            activity?.toast(activity?.getString(R.string.manga_added_library))
         }else{
-            activity?.toast("Added to Library")
+            activity?.toast(activity?.getString(R.string.manga_removed_library))
         }
     }
 

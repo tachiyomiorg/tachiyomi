@@ -171,13 +171,13 @@ open class BrowseCatalogueController(bundle: Bundle) :
         numColumnsSubscription?.unsubscribe()
 
         var oldPosition = RecyclerView.NO_POSITION
-            val oldRecycler = catalogue_view?.getChildAt(1)
-            if (oldRecycler is RecyclerView) {
-                oldPosition = (oldRecycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-                oldRecycler.adapter = null
+        val oldRecycler = catalogue_view?.getChildAt(1)
+        if (oldRecycler is RecyclerView) {
+            oldPosition = (oldRecycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+            oldRecycler.adapter = null
 
-                catalogue_view?.removeView(oldRecycler)
-            }
+            catalogue_view?.removeView(oldRecycler)
+        }
 
         val recycler = if (presenter.isListMode) {
             RecyclerView(view.context).apply {
@@ -476,6 +476,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
                             0 -> {
                                 presenter.changeMangaFavorite(manga)
                                 adapter?.notifyItemChanged(position)
+                                activity?.toast(activity?.getString(R.string.manga_removed_library))
                             }
                         }
                     }.show()
@@ -498,6 +499,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
                 ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
                         .showDialog(router)
             }
+            activity?.toast(activity?.getString(R.string.manga_added_library))
         }
 
     }
