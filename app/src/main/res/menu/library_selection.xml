@@ -8,6 +8,11 @@
           android:icon="@drawable/ic_create_white_24dp"
           app:showAsAction="ifRoom"/>
 
+    <item android:id="@+id/action_search_other_sources"
+          android:title="@string/action_search_other"
+          android:icon="@drawable/ic_search_white_24dp"
+          app:showAsAction="ifRoom"/>
+
     <item android:id="@+id/action_move_to_category"
           android:title="@string/action_move_category"
           android:icon="@drawable/ic_label_white_24dp"
@@ -17,5 +22,6 @@
           android:title="@string/action_delete"
           android:icon="@drawable/ic_delete_white_24dp"
           app:showAsAction="ifRoom"/>
+
 
 </menu>

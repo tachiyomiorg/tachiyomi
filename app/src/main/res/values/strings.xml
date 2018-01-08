@@ -44,6 +44,7 @@
     <string name="action_bookmark">Bookmark</string>
     <string name="action_remove_bookmark">Remove bookmark</string>
     <string name="action_delete">Delete</string>
+    <string name="action_search_other">Search other sources</string>
     <string name="action_update">Update</string>
     <string name="action_update_library">Update library</string>
     <string name="action_edit">Edit</string>

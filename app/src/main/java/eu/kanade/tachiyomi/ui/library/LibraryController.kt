@@ -29,6 +29,7 @@ import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.SecondaryDrawerController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
 import eu.kanade.tachiyomi.ui.category.CategoryController
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
@@ -398,6 +399,7 @@ class LibraryController(
             }
             R.id.action_move_to_category -> showChangeMangaCategoriesDialog()
             R.id.action_delete -> showDeleteMangaDialog()
+            R.id.action_search_other_sources -> searchOtherSource()
             else -> return false
         }
         return true
@@ -433,6 +435,13 @@ class LibraryController(
         }
     }
 
+    private fun searchOtherSource() {
+        // Create a copy of selected manga
+        val mangas = selectedMangas.toList()
+        mangas.forEach {
+            router.pushController(CatalogueSearchController(it.title).withFadeTransaction())
+        }
+    }
     /**
      * Move the selected manga to a list of categories.
      */
