@@ -457,4 +457,6 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="local_source_badge">Local</string>
     <string name="channel_common">Général</string>
     <string name="channel_downloader">Téléchargeur</string>
-</resources>
+<string name="information_empty_category">Vous n\'avez aucune catégorie. Appuyez sur le bouton plus pour en créeer un pour organiser votre bibliothèque.</string>
+
+    </resources>
