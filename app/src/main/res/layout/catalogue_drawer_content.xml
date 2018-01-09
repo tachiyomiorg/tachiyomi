@@ -5,6 +5,30 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/title_background"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/listPreferredItemHeightSmall"
+        android:background="?colorPrimary"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="?attr/listPreferredItemPaddingLeft"
+        android:paddingRight="?attr/listPreferredItemPaddingRight"
+        >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/source_search_options"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/textColorPrimaryDark"/>
+
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
