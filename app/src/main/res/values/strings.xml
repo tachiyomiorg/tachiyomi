@@ -277,7 +277,7 @@
     <string name="also_delete_chapters">Also delete downloaded chapters</string>
 
     <!-- Catalogue fragment -->
-    <string name="source_search_options">Search Options</string>
+    <string name="source_search_options">Search filters</string>
     <string name="source_requires_login">This source requires you to log in</string>
     <string name="select_source">Select a source</string>
     <string name="no_valid_sources">Please enable at least one valid source</string>
