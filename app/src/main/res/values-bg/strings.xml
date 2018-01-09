@@ -365,7 +365,7 @@
     <string name="information_no_downloads">Нямате изтегляния</string>
     <string name="information_no_recent">Нямате скорошни глави</string>
     <string name="information_no_recent_manga">Няматe наскоро прочетена манга</string>
-    <string name="information_empty_library">Празна библиотека</string>
+    <string name="information_empty_library">Библиотеката Ви е празна, можете да я допълните от секция Каталози.</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Изтегли</string>
@@ -459,4 +459,6 @@
     <string name="channel_downloader">Изтегляния</string>
 <string name="action_display_download_badge">Показвай изтеглени глави</string>
     <string name="local_source_badge">Локална</string>
+    <string name="information_empty_category">Нямате категории. Натиснете плюса, за да организирате библиотеката си.</string>
+
     </resources>
