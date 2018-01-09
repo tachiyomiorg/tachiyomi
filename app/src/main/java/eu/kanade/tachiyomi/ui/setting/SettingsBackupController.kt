@@ -204,17 +204,19 @@ class SettingsBackupController : SettingsController() {
     fun createBackup(flags: Int) {
         backupFlags = flags
 
-        // If API lower as KitKat use custom dir picker
-        val intent = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            // Get dirs
-            val preferences: PreferencesHelper = Injekt.get()
-            val currentDir = preferences.backupsDirectory().getOrDefault()
-
-            Intent(activity, CustomLayoutPickerActivity::class.java)
+        // Setup custom file picker intent
+        // Get dirs
+        val preferences: PreferencesHelper = Injekt.get()
+        val currentDir = preferences.backupsDirectory().getOrDefault()
+        val customPicker = Intent(activity, CustomLayoutPickerActivity::class.java)
                     .putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
                     .putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
                     .putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
                     .putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
+
+        // If API is lower than Lollipop use custom picker
+        val intent = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            customPicker
         } else {
             // Use Androids build in file creator
             Intent(Intent.ACTION_CREATE_DOCUMENT)
@@ -222,7 +224,13 @@ class SettingsBackupController : SettingsController() {
                     .setType("application/*")
                     .putExtra(Intent.EXTRA_TITLE, Backup.getDefaultFilename())
         }
-        startActivityForResult(intent, CODE_BACKUP_CREATE)
+        // Handle errors where the android ROM doesn't support the built in picker
+        try {
+            startActivityForResult(intent, CODE_BACKUP_CREATE)
+        } catch (e: ActivityNotFoundException) {
+            startActivityForResult(customPicker, CODE_BACKUP_CREATE)
+        }
+
     }
 
     class CreateBackupDialog : DialogController() {
