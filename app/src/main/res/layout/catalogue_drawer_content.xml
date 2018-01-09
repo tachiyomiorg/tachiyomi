@@ -35,7 +35,10 @@
         android:layout_height="0dp"
         android:layout_weight="3"
         android:layout_gravity="top"/>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/divider"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
