@@ -41,7 +41,7 @@
     <string name="action_add_category">Добави категория</string>
     <string name="action_edit_categories">Редактирай категории</string>
     <string name="action_rename_category">Преименувай категория</string>
-    <string name="action_move_category">Премести в категории</string>
+    <string name="action_move_category">Премести в категория</string>
     <string name="action_edit_cover">Промени корицата</string>
     <string name="action_sort_up">Сортирай по възходящ ред</string>
     <string name="action_sort_down">Сортирай по низходящ ред</string>
@@ -459,6 +459,6 @@
     <string name="channel_downloader">Изтегляния</string>
 <string name="action_display_download_badge">Показвай изтеглени глави</string>
     <string name="local_source_badge">Локална</string>
-    <string name="information_empty_category">Нямате категории. Натиснете плюса, за да организирате библиотеката си.</string>
+    <string name="information_empty_category">Нямате категории. Натиснете плюса, за да ги създадете и да организирате библиотеката си.</string>
 
     </resources>
