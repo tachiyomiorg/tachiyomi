@@ -95,7 +95,8 @@ class ChaptersPresenter(
                             ?: 0f)
 
                     // Emit the upload date of the most recent chapter
-                    lastUpdateRelay.call( Date(chapters.maxBy { it.date_upload }?.date_upload ?: 0))
+                    lastUpdateRelay.call(Date(chapters.maxBy { it.date_upload }?.date_upload
+                            ?: 0))
 
                 }
                 .subscribe { chaptersRelay.call(it) })

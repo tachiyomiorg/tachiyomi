@@ -32,7 +32,7 @@ import uy.kohesive.injekt.api.get
  * [CatalogueAdapter.OnBrowseClickListener] call function data on browse item click.
  * [CatalogueAdapter.OnLatestClickListener] call function data on latest item click
  */
-class CatalogueController() : NucleusController<CataloguePresenter>(),
+class CatalogueController : NucleusController<CataloguePresenter>(),
         SourceLoginDialog.Listener,
         FlexibleAdapter.OnItemClickListener,
         CatalogueAdapter.OnBrowseClickListener,
@@ -99,7 +99,6 @@ class CatalogueController() : NucleusController<CataloguePresenter>(),
         recycler.layoutManager = LinearLayoutManager(view.context)
         recycler.adapter = adapter
         recycler.addItemDecoration(SourceDividerItemDecoration(view.context))
-
     }
 
     override fun onDestroyView(view: View) {
@@ -186,7 +185,7 @@ class CatalogueController() : NucleusController<CataloguePresenter>(),
         // Create query listener which opens the global search view.
         searchView.queryTextChangeEvents()
                 .filter { it.isSubmitted }
-                .subscribeUntilDestroy { performGlobalSearch(it.queryText().toString())}
+                .subscribeUntilDestroy { performGlobalSearch(it.queryText().toString()) }
     }
 
     fun performGlobalSearch(query: String){

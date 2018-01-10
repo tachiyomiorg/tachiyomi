@@ -36,6 +36,8 @@ import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
@@ -88,18 +90,39 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         // Set SwipeRefresh to refresh manga data.
         swipe_refresh.refreshes().subscribeUntilDestroy { fetchMangaFromSource() }
 
-        manga_full_title.longClicks().subscribeUntilDestroy{ copyToClipboard(view.context.getString(R.string.title), manga_full_title.text.toString()) }
-        manga_full_title.clicks().subscribeUntilDestroy{ performSearch(manga_full_title.text.toString()) }
-        manga_artist.longClicks().subscribeUntilDestroy { copyToClipboard(manga_artist_label.text.toString(), manga_artist.text.toString()) }
-        manga_artist.clicks().subscribeUntilDestroy{ performSearch(manga_artist.text.toString()) }
-        manga_author.longClicks().subscribeUntilDestroy { copyToClipboard(manga_author.text.toString(), manga_author.text.toString()) }
-        manga_author.clicks().subscribeUntilDestroy{ performSearch(manga_author.text.toString()) }
-        manga_summary.longClicks().subscribeUntilDestroy { copyToClipboard(view.context.getString(R.string.description), manga_summary.text.toString()) }
+        manga_full_title.longClicks().subscribeUntilDestroy{
+            copyToClipboard(view.context.getString(R.string.title), manga_full_title.text.toString())
+        }
 
-        //todo: make an rxbinding extension for this?
-        manga_genres_tags.setOnTagClickListener { tag -> performSearch(tag) }
+        manga_full_title.clicks().subscribeUntilDestroy {
+            performGlobalSearch(manga_full_title.text.toString())
+        }
 
-        manga_cover.longClicks().subscribeUntilDestroy { copyToClipboard(view.context.getString(R.string.title), presenter.manga.title) }
+        manga_artist.longClicks().subscribeUntilDestroy {
+            copyToClipboard(manga_artist_label.text.toString(), manga_artist.text.toString())
+        }
+
+        manga_artist.clicks().subscribeUntilDestroy {
+            performGlobalSearch(manga_artist.text.toString())
+        }
+
+        manga_author.longClicks().subscribeUntilDestroy {
+            copyToClipboard(manga_author.text.toString(), manga_author.text.toString())
+        }
+
+        manga_author.clicks().subscribeUntilDestroy {
+            performGlobalSearch(manga_author.text.toString())
+        }
+
+        manga_summary.longClicks().subscribeUntilDestroy {
+            copyToClipboard(view.context.getString(R.string.description), manga_summary.text.toString())
+        }
+
+        manga_genres_tags.setOnTagClickListener { tag -> performGlobalSearch(tag) }
+
+        manga_cover.longClicks().subscribeUntilDestroy {
+            copyToClipboard(view.context.getString(R.string.title), presenter.manga.title)
+        }
 
     }
 
@@ -146,27 +169,31 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         val view = view ?: return
 
         //update full title TextView.
-        manga_full_title.text = when(manga.title.isBlank()){
-            false -> manga.title
-            true -> view.context.getString(R.string.unknown)
+        manga_full_title.text = if (manga.title.isBlank()) {
+            view.context.getString(R.string.unknown)
+        } else {
+            manga.title
         }
 
         // Update artist TextView.
-        manga_artist.text = when(manga.artist.isNullOrBlank()){
-            false -> manga.artist
-            true -> view.context.getString(R.string.unknown)
+        manga_artist.text = if (manga.artist.isNullOrBlank()) {
+            view.context.getString(R.string.unknown)
+        } else {
+            manga.artist
         }
 
         // Update author TextView.
-        manga_author.text = when(manga.author.isNullOrBlank()){
-            false -> manga.author
-            true -> view.context.getString(R.string.unknown)
+        manga_author.text = if (manga.author.isNullOrBlank()) {
+            view.context.getString(R.string.unknown)
+        } else {
+            manga.author
         }
 
         // If manga source is known update source TextView.
-        manga_source.text = when(source == null){
-            false -> source.toString()
-            true -> view.context.getString(R.string.unknown)
+        manga_source.text = if(source == null) {
+            view.context.getString(R.string.unknown)
+        } else {
+            source.toString()
         }
 
         // Update genres list
@@ -175,9 +202,10 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         }
 
         // Update description TextView.
-        manga_summary.text = when(manga.description.isNullOrBlank()){
-            false -> manga.description
-            true -> view.context.getString(R.string.unknown)
+        manga_summary.text = if (manga.description.isNullOrBlank()) {
+            view.context.getString(R.string.unknown)
+        } else {
+            manga.description
         }
 
         // Set the favorite drawable to the correct one.
@@ -199,6 +227,11 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
                         .into(backdrop)
             }
         }
+    }
+
+    override fun onDestroyView(view: View) {
+        manga_genres_tags.setOnTagClickListener(null)
+        super.onDestroyView(view)
     }
 
     /**
@@ -316,13 +349,6 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     }
 
     /**
-     * Perform global search
-     * @param query string that is searched
-     */
-    private fun performSearch(query: String) =
-            (parentController as MangaController).performGlobalSearch(query)
-
-    /**
      * Called when the fab is clicked.
      */
     private fun onFabClick() {
@@ -430,10 +456,24 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     private fun copyToClipboard(label: String, content: String){
         if(content.isBlank()) return
 
-        val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val activity = activity ?: return
+        val view = view ?: return
+
+        val clipboard = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         clipboard.primaryClip = ClipData.newPlainText(label, content)
 
-        activity?.toast("Copied ${content.truncateCenter(20)} to clipboard!", Toast.LENGTH_SHORT)
+        activity.toast( view.context.getString(R.string.copied_to_clipboard, content.truncateCenter(20)),
+                Toast.LENGTH_SHORT)
+    }
+
+    /**
+     * Perform a global search using the provided query.
+     *
+     * @param query the search query to pass to the search controller
+     */
+    fun performGlobalSearch(query: String){
+        val router = parentController?.router ?: return
+        router.pushController(CatalogueSearchController(query).withFadeTransaction())
     }
 
     /**
