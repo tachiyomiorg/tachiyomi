@@ -460,6 +460,6 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="channel_common">Común</string>
     <string name="channel_library">Librería</string>
     <string name="channel_downloader">Descargador</string>
-<string name="information_empty_category">No tienes categorías. Toca el botón más para crear una para organizar tu librería.</string>
+<string name="information_empty_category">No tienes categorías. Toca el botón más para crear una y organizar tu librería.</string>
 
     </resources>
