@@ -312,7 +312,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         fab_favorite?.setImageResource(if (isFavorite)
             R.drawable.ic_bookmark_white_24dp
         else
-            R.drawable.ic_bookmark_border_white_24dp)
+            R.drawable.ic_add_to_library_24dp)
     }
 
     /**
@@ -371,6 +371,9 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
                             .showDialog(router)
                 }
             }
+            activity?.toast(activity?.getString(R.string.manga_added_library))
+        }else{
+            activity?.toast(activity?.getString(R.string.manga_removed_library))
         }
     }
 

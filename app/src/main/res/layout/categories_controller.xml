@@ -19,4 +19,11 @@
         app:srcCompat="@drawable/ic_add_white_24dp"
         style="@style/Theme.Widget.FAB"/>
 
+    <eu.kanade.tachiyomi.widget.EmptyView
+        android:id="@+id/empty_view"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content" />
+
 </FrameLayout>

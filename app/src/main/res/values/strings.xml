@@ -299,9 +299,10 @@
     <string name="ongoing">Ongoing</string>
     <string name="unknown">Unknown</string>
     <string name="licensed">Licensed</string>
-    <string name="add_to_library">Add to library</string>
     <string name="remove_from_library">Remove from library</string>
     <string name="manga_info_full_title_label">Title</string>
+    <string name="manga_added_library">Added to library</string>
+    <string name="manga_removed_library">Removed from library</string>
     <string name="manga_info_author_label">Author</string>
     <string name="manga_info_artist_label">Artist</string>
     <string name="manga_info_chapters_label">Chapters</string>
@@ -434,7 +435,8 @@
     <string name="information_no_downloads">No downloads</string>
     <string name="information_no_recent">No recent chapters</string>
     <string name="information_no_recent_manga">No recently read manga</string>
-    <string name="information_empty_library">Empty library</string>
+    <string name="information_empty_library">Your library is empty, you can add series to your library from the Catalogues.</string>
+    <string name="information_empty_category">You have no categories. Hit the plus button to create one for organizing your library.</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Downloader</string>

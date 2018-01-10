@@ -9,7 +9,7 @@
     <string name="label_settings">Instellingen</string>
     <string name="label_library">Mijn bibliotheek</string>
     <string name="label_recent_manga">Onlangs gelezen</string>
-    <string name="label_catalogues">Catalogen</string>
+    <string name="label_catalogues">Catalogi</string>
     <string name="label_latest_updates">Laatste updates</string>
     <string name="label_categories">Categorieën</string>
     <string name="label_selected">Geselecteerd: %1$d</string>
@@ -285,7 +285,8 @@
 
     <string name="information_no_downloads">Geen downloads</string>
     <string name="information_no_recent">Geen recente hoofdstukken</string>
-    <string name="information_empty_library">Bibliotheek leeg</string>
+    <string name="information_empty_library">De bibliotheek is leeg, manga kunnen toegevoegd worden vanuit de catalogi.</string>
+    <string name="information_empty_category">Er zijn nog geen categorieën, druk op de plus knop om een categorie aan te maken.</string>
 
     <string name="download_notifier_downloader_title">Downloader</string>
     <string name="download_notifier_title_error">Error</string>

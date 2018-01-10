@@ -10,8 +10,11 @@ import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bluelinelabs.conductor.ControllerChangeHandler
+import com.bluelinelabs.conductor.ControllerChangeType
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.ui.base.controller.BaseController
 import rx.Observable
 import rx.Subscription
 import rx.subscriptions.CompositeSubscription
@@ -55,9 +58,23 @@ abstract class SettingsController : PreferenceController() {
         return preferenceScreen?.title?.toString()
     }
 
-    override fun onAttach(view: View) {
+    fun setTitle() {
+        var parentController = parentController
+        while (parentController != null) {
+            if (parentController is BaseController && parentController.getTitle() != null) {
+                return
+            }
+            parentController = parentController.parentController
+        }
+
         (activity as? AppCompatActivity)?.supportActionBar?.title = getTitle()
-        super.onAttach(view)
+    }
+
+    override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
+        if (type.isEnter) {
+            setTitle()
+        }
+        super.onChangeStarted(handler, type)
     }
 
     fun <T> Observable<T>.subscribeUntilDestroy(): Subscription {

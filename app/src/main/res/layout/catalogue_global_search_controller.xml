@@ -10,5 +10,6 @@ android:layout_height="wrap_content">
     android:layout_height="wrap_content"
     android:paddingBottom="4dp"
     android:paddingTop="4dp"
+    android:clipToPadding="false"
     tools:listitem="@layout/catalogue_global_search_controller_card" />
 </FrameLayout>

@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.ui.setting
 
-import android.content.Context
 import android.support.graphics.drawable.VectorDrawableCompat
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v7.preference.*
@@ -10,7 +9,7 @@ import eu.kanade.tachiyomi.widget.preference.IntListPreference
 @Target(AnnotationTarget.TYPE)
 annotation class DSL
 
-inline fun PreferenceManager.newScreen(context: Context, block: (@DSL PreferenceScreen).() -> Unit): PreferenceScreen {
+inline fun PreferenceManager.newScreen(block: (@DSL PreferenceScreen).() -> Unit): PreferenceScreen {
     return createPreferenceScreen(context).also { it.block() }
 }
 

@@ -18,16 +18,6 @@ class NetworkHelper(context: Context) {
             .cache(Cache(cacheDir, cacheSize))
             .build()
 
-    val forceCacheClient = client.newBuilder()
-            .addNetworkInterceptor { chain ->
-                val originalResponse = chain.proceed(chain.request())
-                originalResponse.newBuilder()
-                        .removeHeader("Pragma")
-                        .header("Cache-Control", "max-age=600")
-                        .build()
-            }
-            .build()
-
     val cloudflareClient = client.newBuilder()
             .addInterceptor(CloudflareInterceptor())
             .build()

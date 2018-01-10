@@ -14,12 +14,14 @@ class CloudflareInterceptor : Interceptor {
 
     private val challengePattern = Regex("""name="jschl_vc" value="(\w+)"""")
 
+    private val serverCheck = arrayOf("cloudflare-nginx", "cloudflare")
+
     @Synchronized
     override fun intercept(chain: Interceptor.Chain): Response {
         val response = chain.proceed(chain.request())
 
         // Check if Cloudflare anti-bot is on
-        if (response.code() == 503 && "cloudflare-nginx" == response.header("Server")) {
+        if (response.code() == 503 && serverCheck.contains(response.header("Server"))) {
             return chain.proceed(resolveChallenge(response))
         }
 

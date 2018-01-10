@@ -46,7 +46,7 @@ class CatalogueController : NucleusController<CataloguePresenter>(),
     /**
      * Adapter containing sources.
      */
-    private var adapter : CatalogueAdapter? = null
+    private var adapter: CatalogueAdapter? = null
 
     /**
      * Called when controller is initialized.

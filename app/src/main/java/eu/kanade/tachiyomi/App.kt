@@ -28,10 +28,10 @@ open class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
+
         Injekt = InjektScope(DefaultRegistrar())
         Injekt.importModule(AppModule(this))
-
-        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
 
         setupAcra()
         setupJobManager()

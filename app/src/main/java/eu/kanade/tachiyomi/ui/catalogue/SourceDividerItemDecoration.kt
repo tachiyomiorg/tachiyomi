@@ -12,7 +12,7 @@ class SourceDividerItemDecoration(context: Context) : RecyclerView.ItemDecoratio
     private val divider: Drawable
 
     init {
-        val a = context.obtainStyledAttributes(ATTRS)
+        val a = context.obtainStyledAttributes(intArrayOf(android.R.attr.listDivider))
         divider = a.getDrawable(0)
         a.recycle()
     }
@@ -41,7 +41,4 @@ class SourceDividerItemDecoration(context: Context) : RecyclerView.ItemDecoratio
         outRect.set(0, 0, 0, divider.intrinsicHeight)
     }
 
-    companion object {
-        private val ATTRS = intArrayOf(android.R.attr.listDivider)
-    }
 }
