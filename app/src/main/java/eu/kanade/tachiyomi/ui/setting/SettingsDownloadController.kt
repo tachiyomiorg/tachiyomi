@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.setting
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -150,17 +151,22 @@ class SettingsDownloadController : SettingsController() {
     }
 
     fun customDirectorySelected(currentDir: String) {
-        if (Build.VERSION.SDK_INT < 21) {
-            val i = Intent(activity, CustomLayoutPickerActivity::class.java)
-            i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
-            i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
-            i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
-            i.putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
+        val customPicker = Intent(activity, CustomLayoutPickerActivity::class.java)
+                .putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
+                .putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
+                .putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
+                .putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
 
-            startActivityForResult(i, DOWNLOAD_DIR_PRE_L)
+        if (Build.VERSION.SDK_INT < 21) {
+            startActivityForResult(customPicker, DOWNLOAD_DIR_PRE_L)
         } else {
             val i = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-            startActivityForResult(i, DOWNLOAD_DIR_L)
+            try {
+                startActivityForResult(i, DOWNLOAD_DIR_L)
+            } catch (e: ActivityNotFoundException) {
+                startActivityForResult(customPicker, DOWNLOAD_DIR_L)
+            }
+
         }
     }
 

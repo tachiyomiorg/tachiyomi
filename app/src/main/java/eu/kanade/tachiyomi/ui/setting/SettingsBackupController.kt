@@ -117,19 +117,25 @@ class SettingsBackupController : SettingsController() {
 
                 onClick {
                     val currentDir = preferences.backupsDirectory().getOrDefault()
+                    val customPicker = Intent(activity, CustomLayoutPickerActivity::class.java)
+                            .putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
+                            .putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
+                            .putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
+                            .putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
 
                     val intent = if (Build.VERSION.SDK_INT < 21) {
                         // Custom dir selected, open directory selector
-                        val i = Intent(activity, CustomLayoutPickerActivity::class.java)
-                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
-                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
-                        i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
-                        i.putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
-
+                        customPicker
                     } else {
                         Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
                     }
-                    startActivityForResult(intent, CODE_BACKUP_DIR)
+                    //Fall back to custom picker on error
+                    try{
+                        startActivityForResult(intent, CODE_BACKUP_DIR)
+                    } catch (e: ActivityNotFoundException){
+                        startActivityForResult(customPicker, CODE_BACKUP_DIR)
+                    }
+
                 }
 
                 preferences.backupsDirectory().asObservable()
