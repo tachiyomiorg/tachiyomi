@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
@@ -24,7 +25,7 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@string/source_search_options"
+            tools:text="Title"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@color/textColorPrimaryDark"/>
 
@@ -36,6 +37,7 @@
         android:layout_weight="3"
         android:layout_gravity="top"/>
     <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="?android:attr/divider"/>
