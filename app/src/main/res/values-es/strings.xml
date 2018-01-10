@@ -296,7 +296,7 @@
     <string name="information_no_downloads">No hay descargas</string>
     <string name="information_no_recent">No hay capítulos recientes</string>
     <string name="information_no_recent_manga">No hay mangas leídos recientes</string>
-    <string name="information_empty_library">Tu librería está vacía, puedes agregar series a tu librería desde los catálogos.</string>
+    <string name="information_empty_library">Tu librería está vacía, puedes agregar series a tu librería desde los Catálogos.</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_title_error">Error</string>
