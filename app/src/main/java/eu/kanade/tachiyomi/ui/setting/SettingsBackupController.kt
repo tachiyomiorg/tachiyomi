@@ -27,10 +27,7 @@ import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.popControllerWithTag
 import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
-import eu.kanade.tachiyomi.util.getUriCompat
-import eu.kanade.tachiyomi.util.registerLocalReceiver
-import eu.kanade.tachiyomi.util.toast
-import eu.kanade.tachiyomi.util.unregisterLocalReceiver
+import eu.kanade.tachiyomi.util.*
 import eu.kanade.tachiyomi.widget.CustomLayoutPickerActivity
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -117,23 +114,18 @@ class SettingsBackupController : SettingsController() {
 
                 onClick {
                     val currentDir = preferences.backupsDirectory().getOrDefault()
-                    val customPicker = Intent(activity, CustomLayoutPickerActivity::class.java)
-                            .putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
-                            .putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
-                            .putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
-                            .putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
-
-                    val intent = if (Build.VERSION.SDK_INT < 21) {
-                        // Custom dir selected, open directory selector
-                        customPicker
-                    } else {
-                        Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-                    }
-                    //Fall back to custom picker on error
                     try{
+                        val intent = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                        // Custom dir selected, open directory selector
+                        preferences.context.getFilePicker(currentDir)
+                        } else {
+                          Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+                        }
+
                         startActivityForResult(intent, CODE_BACKUP_DIR)
                     } catch (e: ActivityNotFoundException){
-                        startActivityForResult(customPicker, CODE_BACKUP_DIR)
+                        //Fall back to custom picker on error
+                        startActivityForResult(preferences.context.getFilePicker(currentDir), CODE_BACKUP_DIR)
                     }
 
                 }
@@ -213,29 +205,24 @@ class SettingsBackupController : SettingsController() {
 
         // Setup custom file picker intent
         // Get dirs
-        val preferences: PreferencesHelper = Injekt.get()
         val currentDir = preferences.backupsDirectory().getOrDefault()
-        val customPicker = Intent(activity, CustomLayoutPickerActivity::class.java)
-                    .putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
-                    .putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
-                    .putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
-                    .putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
 
-        // If API is lower than Lollipop use custom picker
-        val intent = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            customPicker
-        } else {
-            // Use Androids build in file creator
-            Intent(Intent.ACTION_CREATE_DOCUMENT)
+        try {
+            // If API is lower than Lollipop use custom picker
+            val intent = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                preferences.context.getFilePicker(currentDir)
+            } else {
+                // Use Androids build in file creator
+                Intent(Intent.ACTION_CREATE_DOCUMENT)
                     .addCategory(Intent.CATEGORY_OPENABLE)
                     .setType("application/*")
                     .putExtra(Intent.EXTRA_TITLE, Backup.getDefaultFilename())
-        }
-        // Handle errors where the android ROM doesn't support the built in picker
-        try {
+            }
+
             startActivityForResult(intent, CODE_BACKUP_CREATE)
         } catch (e: ActivityNotFoundException) {
-            startActivityForResult(customPicker, CODE_BACKUP_CREATE)
+            // Handle errors where the android ROM doesn't support the built in picker
+            startActivityForResult(preferences.context.getFilePicker(currentDir), CODE_BACKUP_CREATE)
         }
 
     }

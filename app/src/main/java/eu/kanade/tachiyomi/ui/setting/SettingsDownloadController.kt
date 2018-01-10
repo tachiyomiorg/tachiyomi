@@ -19,6 +19,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.util.DiskUtil
+import eu.kanade.tachiyomi.util.getFilePicker
 import eu.kanade.tachiyomi.widget.CustomLayoutPickerActivity
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -151,20 +152,15 @@ class SettingsDownloadController : SettingsController() {
     }
 
     fun customDirectorySelected(currentDir: String) {
-        val customPicker = Intent(activity, CustomLayoutPickerActivity::class.java)
-                .putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
-                .putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
-                .putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
-                .putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
 
-        if (Build.VERSION.SDK_INT < 21) {
-            startActivityForResult(customPicker, DOWNLOAD_DIR_PRE_L)
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            startActivityForResult(preferences.context.getFilePicker(currentDir), DOWNLOAD_DIR_PRE_L)
         } else {
-            val i = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
             try {
-                startActivityForResult(i, DOWNLOAD_DIR_L)
+                startActivityForResult(intent, DOWNLOAD_DIR_L)
             } catch (e: ActivityNotFoundException) {
-                startActivityForResult(customPicker, DOWNLOAD_DIR_L)
+                startActivityForResult(preferences.context.getFilePicker(currentDir), DOWNLOAD_DIR_L)
             }
 
         }

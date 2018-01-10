@@ -16,6 +16,8 @@ import android.support.v4.app.NotificationCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.LocalBroadcastManager
 import android.widget.Toast
+import com.nononsenseapps.filepicker.FilePickerActivity
+import eu.kanade.tachiyomi.widget.CustomLayoutPickerActivity
 
 /**
  * Display a toast in this context.
@@ -48,6 +50,19 @@ inline fun Context.notification(channelId: String, func: NotificationCompat.Buil
     val builder = NotificationCompat.Builder(this, channelId)
     builder.func()
     return builder.build()
+}
+
+/**
+ * Helper method to construct an Intent to use a custom file picker.
+ * @param currentDir the path the file picker will open with.
+ * @return an Intent to start the file picker activity.
+ */
+fun Context.getFilePicker(currentDir: String): Intent {
+    return Intent(this, CustomLayoutPickerActivity::class.java)
+            .putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
+            .putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
+            .putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
+            .putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
 }
 
 /**
