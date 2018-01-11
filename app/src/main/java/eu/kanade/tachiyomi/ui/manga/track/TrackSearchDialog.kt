@@ -8,6 +8,7 @@ import com.jakewharton.rxbinding.widget.itemClicks
 import com.jakewharton.rxbinding.widget.textChanges
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
+import eu.kanade.tachiyomi.data.database.models.TrackSearch
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
@@ -114,11 +115,10 @@ class TrackSearchDialog : DialogController {
         val view = dialogView ?: return
         view.progress.visibility = View.VISIBLE
         view.track_search_list.visibility = View.GONE
-
         trackController.presenter.search(query, service)
     }
 
-    fun onSearchResults(results: List<Track>) {
+    fun onSearchResults(results: List<TrackSearch>) {
         selectedItem = null
         val view = dialogView ?: return
         view.progress.visibility = View.GONE

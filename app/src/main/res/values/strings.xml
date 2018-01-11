@@ -492,4 +492,6 @@
     <string name="channel_library">Library</string>
     <string name="channel_downloader">Downloader</string>
 
+    <string name="url_not_set">Manga url is not set please click title and select manga again</string>
+
 </resources>

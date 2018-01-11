@@ -4,14 +4,16 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.Track
+import eu.kanade.tachiyomi.data.database.models.TrackSearch
+import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.util.inflate
 import kotlinx.android.synthetic.main.track_search_item.view.*
 import java.util.*
 
 class TrackSearchAdapter(context: Context)
-: ArrayAdapter<Track>(context, R.layout.track_search_item, ArrayList<Track>()) {
+: ArrayAdapter<TrackSearch>(context, R.layout.track_search_item, ArrayList<TrackSearch>()) {
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         var v = view
@@ -30,7 +32,7 @@ class TrackSearchAdapter(context: Context)
         return v
     }
 
-    fun setItems(syncs: List<Track>) {
+    fun setItems(syncs: List<TrackSearch>) {
         setNotifyOnChange(false)
         clear()
         addAll(syncs)
@@ -39,8 +41,18 @@ class TrackSearchAdapter(context: Context)
 
     class TrackSearchHolder(private val view: View) {
 
-        fun onSetValues(track: Track) {
+        fun onSetValues(track: TrackSearch) {
             view.track_search_title.text = track.title
+            view.track_search_summary.text = track.summary
+            GlideApp.with(view.context).clear(view.track_search_cover)
+            if (!track.cover_url.isNullOrEmpty()) {
+                GlideApp.with(view.context)
+                        .load(track.cover_url)
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                        .centerCrop()
+                        .into(view.track_search_cover)
+            }
+            view.track_search_cover
         }
     }
 

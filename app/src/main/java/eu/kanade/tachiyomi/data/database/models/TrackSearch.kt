@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.data.database.models
 
-class TrackImpl : Track {
+class TrackSearch : Track {
 
     override var id: Long? = null
 
@@ -21,6 +21,10 @@ class TrackImpl : Track {
     override var status: Int = 0
 
     override lateinit var tracking_url: String
+
+    var cover_url: String = ""
+
+    var summary: String = ""
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

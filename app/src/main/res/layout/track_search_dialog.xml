@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -35,13 +36,17 @@
     <ListView
         android:id="@+id/track_search_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:choiceMode="singleChoice"
+        android:layout_height="match_parent"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
         android:clipToPadding="false"
-        android:divider="@null"
-        android:dividerHeight="0dp"
+        tools:listitem="@layout/track_search_item"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:choiceMode="singleChoice"
+        style="@style/Theme.Widget.CardView"
         android:listSelector="?attr/selectable_list_drawable"
-        android:scrollbarStyle="outsideOverlay"
-        android:visibility="gone"/>
+
+        />
 
 </LinearLayout>

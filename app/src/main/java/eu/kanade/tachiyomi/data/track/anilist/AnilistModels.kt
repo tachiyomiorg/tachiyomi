@@ -9,13 +9,18 @@ import uy.kohesive.injekt.injectLazy
 data class ALManga(
         val id: Int,
         val title_romaji: String,
+        val image_url_lge: String,
+        val description : String,
         val type: String,
         val total_chapters: Int) {
 
-    fun toTrack() = Track.create(TrackManager.ANILIST).apply {
+    fun toTrack() = Track.createTrackSearch(TrackManager.ANILIST).apply {
         remote_id = this@ALManga.id
         title = title_romaji
         total_chapters = this@ALManga.total_chapters
+        cover_url = image_url_lge
+        summary = description
+        tracking_url = AnilistApi.mangaUrl(remote_id)
     }
 }
 

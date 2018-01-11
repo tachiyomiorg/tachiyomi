@@ -6,14 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.Track
+import eu.kanade.tachiyomi.data.database.models.TrackSearch
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.track_controller.*
+import timber.log.Timber
 
 class TrackController : NucleusController<TrackPresenter>(),
-        TrackAdapter.OnRowClickListener,
+        TrackAdapter.OnClickListener,
         SetTrackStatusDialog.Listener,
         SetTrackChaptersDialog.Listener,
         SetTrackScoreDialog.Listener {
@@ -58,12 +59,14 @@ class TrackController : NucleusController<TrackPresenter>(),
         (parentController as? MangaController)?.setTrackingIcon(atLeastOneLink)
     }
 
-    fun onSearchResults(results: List<Track>) {
+    fun onSearchResults(results: List<TrackSearch>) {
+        Timber.d("search result")
         getSearchDialog()?.onSearchResults(results)
     }
 
     @Suppress("UNUSED_PARAMETER")
     fun onSearchResultsError(error: Throwable) {
+        Timber.e(error)
         getSearchDialog()?.onSearchResultsError()
     }
 
@@ -78,6 +81,10 @@ class TrackController : NucleusController<TrackPresenter>(),
     fun onRefreshError(error: Throwable) {
         swipe_refresh?.isRefreshing = false
         activity?.toast(error.message)
+    }
+    override fun OnLogoClick(position: Int) {
+        val item = adapter?.getItem(position) ?: return
+        item.track?.let { presenter.openTrackerUrl(it, item.service) }
     }
 
     override fun onTitleClick(position: Int) {

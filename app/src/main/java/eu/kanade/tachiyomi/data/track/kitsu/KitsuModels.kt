@@ -11,12 +11,18 @@ open class KitsuManga(obj: JsonObject) {
     val canonicalTitle by obj["attributes"].byString
     val chapterCount = obj["attributes"].obj.get("chapterCount").nullInt
     val type = obj["attributes"].obj.get("mangaType").nullString
+    val original = obj["attributes"].obj["posterImage"].nullString
+    val synopsis by obj["attributes"].byString
 
     @CallSuper
-    open fun toTrack() = Track.create(TrackManager.KITSU).apply {
+    open fun toTrack() = Track.createTrackSearch(TrackManager.KITSU).apply {
         remote_id = this@KitsuManga.id
         title = canonicalTitle
         total_chapters = chapterCount ?: 0
+        cover_url =original ?: ""
+        summary = synopsis
+        tracking_url = KitsuApi.mangaUrl(remote_id)
+
     }
 }
 

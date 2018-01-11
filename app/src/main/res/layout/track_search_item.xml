@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="?attr/selectable_list_drawable">
+<android.support.v7.widget.CardView android:id="@+id/cv_manga"
+                                    style="@style/Theme.Widget.CardView.Item"
+                                    xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:padding="0dp">
 
-    <TextView
-        android:id="@+id/track_search_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="?attr/selectable_list_drawable"
+        android:orientation="horizontal">
+        >
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/track_search_cover"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:contentDescription="@string/description_cover"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/branded_logo_icon"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/track_search_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="3"
+                    android:textAppearance="@style/TextAppearance.Medium.Body2"
+                    tools:text="Manga Title"/>
+
+                <TextView
+                    android:id="@+id/track_search_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/track_search_title"
+                    android:ellipsize="end"
+                    android:maxLines="5"
+                    android:textAppearance="@style/TextAppearance.Medium.Body2.Hint"
+                    tools:text="This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits "/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

@@ -20,6 +20,7 @@ import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_STATUS
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_SYNC_ID
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_TITLE
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_TOTAL_CHAPTERS
+import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_TRACKING_URL
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.TABLE
 
 class TrackTypeMapping : SQLiteTypeMapping<Track>(
@@ -49,7 +50,11 @@ class TrackPutResolver : DefaultPutResolver<Track>() {
         put(COL_LAST_CHAPTER_READ, obj.last_chapter_read)
         put(COL_TOTAL_CHAPTERS, obj.total_chapters)
         put(COL_STATUS, obj.status)
+        put(COL_TRACKING_URL, obj.tracking_url)
         put(COL_SCORE, obj.score)
+        put(COL_STATUS, obj.status)
+        put(COL_SCORE, obj.score)
+
     }
 }
 
@@ -65,6 +70,7 @@ class TrackGetResolver : DefaultGetResolver<Track>() {
         total_chapters = cursor.getInt(cursor.getColumnIndex(COL_TOTAL_CHAPTERS))
         status = cursor.getInt(cursor.getColumnIndex(COL_STATUS))
         score = cursor.getFloat(cursor.getColumnIndex(COL_SCORE))
+        tracking_url = cursor.getString(cursor.getColumnIndex(COL_TRACKING_URL))
     }
 }
 

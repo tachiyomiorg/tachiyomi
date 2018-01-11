@@ -1,6 +1,9 @@
 package eu.kanade.tachiyomi.ui.manga.track
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.Track
@@ -15,6 +18,7 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+
 
 class TrackPresenter(
         val manga: Manga,
@@ -78,6 +82,14 @@ class TrackPresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeLatestCache(TrackController::onSearchResults,
                         TrackController::onSearchResultsError)
+    }
+
+    fun openTrackerUrl(item: Track, service: TrackService) {
+        if(item.tracking_url.isNullOrBlank()){
+            context.toast(R.string.url_not_set)
+        }else{
+        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(item.tracking_url)))
+        }
     }
 
     fun registerTracking(item: Track?, service: TrackService) {

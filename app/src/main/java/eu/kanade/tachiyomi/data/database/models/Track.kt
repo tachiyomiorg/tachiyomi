@@ -22,6 +22,8 @@ interface Track : Serializable {
 
     var status: Int
 
+    var tracking_url: String
+
     fun copyPersonalFrom(other: Track) {
         last_chapter_read = other.last_chapter_read
         score = other.score
@@ -33,6 +35,11 @@ interface Track : Serializable {
         fun create(serviceId: Int): Track = TrackImpl().apply {
             sync_id = serviceId
         }
+
+        fun createTrackSearch(serviceId: Int): TrackSearch = TrackSearch().apply {
+            sync_id = serviceId
+        }
+
     }
 
 }

@@ -17,7 +17,7 @@ class DbOpenHelper(context: Context)
         /**
          * Version of the database.
          */
-        const val DATABASE_VERSION = 5
+        const val DATABASE_VERSION = 6
     }
 
     override fun onCreate(db: SQLiteDatabase) = with(db) {
@@ -53,6 +53,9 @@ class DbOpenHelper(context: Context)
         }
         if (oldVersion < 5) {
             db.execSQL(ChapterTable.addScanlator)
+        }
+        if (oldVersion < 6) {
+            db.execSQL(TrackTable.addTrackingUrl)
         }
     }
 
