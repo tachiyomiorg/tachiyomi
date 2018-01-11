@@ -93,6 +93,30 @@ class ReaderPresenter(
     }
 
     /**
+     * Progress saver. Saves current page and chapter numbers on db if any of them changed since
+     * last try.
+     */
+    private val saveCurrentChapterProgress by lazy {
+        var lastChapter = chapter.chapter_number
+        var lastPage = chapter.last_page_read
+        {
+            val chapter = chapter
+            val currentChapter = chapter.chapter_number
+            val currentPage = chapter.requestedPage
+
+            if(currentChapter != lastChapter || currentPage != lastPage) {
+                Timber.d("SUB save current chapter")
+                lastChapter = currentChapter
+                lastPage = currentPage
+
+                Observable.fromCallable { updateProgressBlocking(chapter) }
+                        .subscribeOn(Schedulers.io())
+                        .subscribe()
+            }
+        }
+    }
+
+    /**
      * Map of chapters that have been loaded in the reader.
      */
     private val loadedChapters = hashMapOf<Long?, ReaderChapter>()
@@ -141,6 +165,9 @@ class ReaderPresenter(
             chapter = savedState.getSerializable(ReaderPresenter::chapter.name) as ReaderChapter
         }
 
+        // Initialize progress saver
+        saveCurrentChapterProgress
+
         // Send the active manga to the view to initialize the reader.
         Observable.just(manga)
                 .subscribeLatestCache({ view, manga -> view.onMangaOpen(manga) })
@@ -165,6 +192,7 @@ class ReaderPresenter(
         chapter.requestedPage = chapter.last_page_read
         state.putSerializable(ReaderPresenter::manga.name, manga)
         state.putSerializable(ReaderPresenter::chapter.name, chapter)
+        saveCurrentChapterProgress()
         super.onSave(state)
     }
 
@@ -336,6 +364,24 @@ class ReaderPresenter(
         }
     }
 
+
+    /**
+     * Update history and chapter progress on current thread
+     *
+     * @param chapter chapter which progress info will be saved on db.
+     */
+    fun updateProgressBlocking(chapter: ReaderChapter) {
+        db.updateChapterProgress(chapter).executeAsBlocking()
+
+        try {
+            val history = History.create(chapter).apply { last_read = Date().time }
+            db.updateHistoryLastRead(history).executeAsBlocking()
+        } catch (error: Exception) {
+            // TODO find out why it crashes
+            Timber.e(error)
+        }
+    }
+
     /**
      * Called before loading another chapter or leaving the reader. It allows to do operations
      * over the chapter read like saving progress
@@ -372,15 +418,7 @@ class ReaderPresenter(
                 Timber.e(error)
             }
 
-            db.updateChapterProgress(chapter).executeAsBlocking()
-
-            try {
-                val history = History.create(chapter).apply { last_read = Date().time }
-                db.updateHistoryLastRead(history).executeAsBlocking()
-            } catch (error: Exception) {
-                // TODO find out why it crashes
-                Timber.e(error)
-            }
+            updateProgressBlocking(chapter)
         }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
