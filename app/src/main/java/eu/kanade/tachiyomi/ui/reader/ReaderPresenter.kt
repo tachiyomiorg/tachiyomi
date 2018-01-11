@@ -105,7 +105,6 @@ class ReaderPresenter(
             val currentPage = chapter.requestedPage
 
             if(currentChapter != lastChapter || currentPage != lastPage) {
-                Timber.d("SUB save current chapter")
                 lastChapter = currentChapter
                 lastPage = currentPage
 
