@@ -125,7 +125,9 @@ class SettingsBackupController : SettingsController() {
                         startActivityForResult(intent, CODE_BACKUP_DIR)
                     } catch (e: ActivityNotFoundException){
                         //Fall back to custom picker on error
-                        startActivityForResult(preferences.context.getFilePicker(currentDir), CODE_BACKUP_DIR)
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                            startActivityForResult(preferences.context.getFilePicker(currentDir), CODE_BACKUP_DIR)
+                        }
                     }
 
                 }
@@ -222,7 +224,9 @@ class SettingsBackupController : SettingsController() {
             startActivityForResult(intent, CODE_BACKUP_CREATE)
         } catch (e: ActivityNotFoundException) {
             // Handle errors where the android ROM doesn't support the built in picker
-            startActivityForResult(preferences.context.getFilePicker(currentDir), CODE_BACKUP_CREATE)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                startActivityForResult(preferences.context.getFilePicker(currentDir), CODE_BACKUP_CREATE)
+            }
         }
 
     }

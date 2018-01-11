@@ -160,7 +160,9 @@ class SettingsDownloadController : SettingsController() {
             try {
                 startActivityForResult(intent, DOWNLOAD_DIR_L)
             } catch (e: ActivityNotFoundException) {
-                startActivityForResult(preferences.context.getFilePicker(currentDir), DOWNLOAD_DIR_L)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startActivityForResult(preferences.context.getFilePicker(currentDir), DOWNLOAD_DIR_L)
+                }
             }
 
         }
