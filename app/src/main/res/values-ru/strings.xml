@@ -374,6 +374,6 @@
     <string name="channel_common">Обычный</string>
     <string name="channel_library">Библиотека</string>
     <string name="channel_downloader">Загрузчик</string>
-<string name="information_empty_category">У вас нет категорий. Нажмите кнопку «плюс», чтобы создать ее для организации вашей библиотеки.</string>
+<string name="information_empty_category">You have no categories. Hit the plus button to create one for organizing your library.</string>
 
     </resources>
