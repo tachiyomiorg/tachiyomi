@@ -24,7 +24,7 @@
     <string name="action_install">Установить</string>
     <string name="action_mark_as_read">Отметить как прочитанное</string>
     <string name="action_mark_as_unread">Пометить как непрочитанное</string>
-    <string name="action_mark_previous_as_read">Отметить предыдущие как прочит.</string>
+    <string name="action_mark_previous_as_read">Отметить предыдущие как прочит</string>
     <string name="action_move_category">Изменить категорию</string>
     <string name="action_next_chapter">Следующая глава</string>
     <string name="action_next_unread">Следующая непрочитанная</string>
@@ -57,7 +57,7 @@
     <string name="action_update_library">Обновить библиотеку</string>
     <string name="add_to_library">Добавить в библиотеку</string>
     <string name="all">Все</string>
-    <string name="backup">Создать</string>
+    <string name="backup">Бэкап</string>
     <string name="black_background">Черный</string>
     <string name="build_time">Дата сборки</string>
     <string name="cache_delete_error">Возникла ошибка при удалении кэша</string>
