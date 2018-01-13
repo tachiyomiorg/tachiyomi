@@ -95,7 +95,7 @@ class ReaderPresenter(
     /**
      * Last chapter number saved by [updateCurrentChapterProgress]
      */
-    private var lastSavedChapter = -1f
+    private var lastSavedChapter = -1L
 
     /**
      * Last page number saved by [updateCurrentChapterProgress]
@@ -152,7 +152,7 @@ class ReaderPresenter(
         }
 
         // Initialize progress saver
-        lastSavedChapter = chapter.chapter_number
+        lastSavedChapter = chapter.id ?: -1L
         lastSavedPage = chapter.last_page_read
 
 
@@ -378,11 +378,11 @@ class ReaderPresenter(
      */
     private fun updateCurrentChapterProgress() {
         val chapter = chapter
-        val currentChapter = chapter.chapter_number
+        val currentChapter = chapter.id
         val currentPage = chapter.requestedPage
 
         if (currentChapter != lastSavedChapter || currentPage != lastSavedPage) {
-            lastSavedChapter = currentChapter
+            lastSavedChapter = currentChapter ?: -1L
             lastSavedPage = currentPage
 
             Observable.fromCallable { updateProgressBlocking(chapter) }
