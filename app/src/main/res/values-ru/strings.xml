@@ -356,7 +356,7 @@
     <string name="update_weekly">Еженедельно</string>
 <string name="action_sort_total">По количеству глав</string>
     <string name="action_open_log">Открыть лог</string>
-    <string name="app_not_available">Приложение не доступно</string>
+    <string name="app_not_available">Приложение не отвечает</string>
     <string name="pref_read_with_volume_keys_inverted">Инвертировать клавиши громкости</string>
     <string name="action_global_search">Глобальный поиск</string>
     <string name="action_display_download_badge">Значок загруженных</string>
