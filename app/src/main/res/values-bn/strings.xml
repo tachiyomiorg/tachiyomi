@@ -273,7 +273,7 @@
     <string name="latest">সর্বশেষ</string>
     <string name="browse">ব্রাউজ</string>
 
-    <string name="manga_not_in_db">এই মাংগাটি ডটাবেজ থেকে সরিয়ে ফেলা হয়েছিলো!</string>
+    <string name="manga_not_in_db">এই মাংগাটি ডাটাবেজ থেকে সরিয়ে ফেলা হয়েছিল!</string>
 
     <string name="manga_detail_tab">তথ্য</string>
     <string name="description">বিবরণ</string>
