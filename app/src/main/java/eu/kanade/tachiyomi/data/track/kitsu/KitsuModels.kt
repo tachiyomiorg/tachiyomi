@@ -13,6 +13,7 @@ open class KitsuManga(obj: JsonObject) {
     val type = obj["attributes"].obj.get("mangaType").nullString.orEmpty()
     val original by obj["attributes"].obj["posterImage"].byString
     val synopsis by obj["attributes"].byString
+    val startDate = obj["attributes"].obj.get("startDate").nullString.orEmpty()
     open val status = obj["attributes"].obj.get("status").nullString.orEmpty()
 
     @CallSuper
@@ -23,10 +24,9 @@ open class KitsuManga(obj: JsonObject) {
         cover_url = original
         summary = synopsis
         tracking_url = KitsuApi.mangaUrl(remote_id)
-        publishing_status = this@KitsuManga.status.capitalize()
-        publishing_type = type.capitalize()
-
-
+        publishing_status = this@KitsuManga.status
+        publishing_type = type
+        start_date = startDate.orEmpty()
     }
 }
 

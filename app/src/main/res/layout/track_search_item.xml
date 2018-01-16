@@ -72,10 +72,32 @@
                     tools:text="Manhwa"/>
 
                 <TextView
-                    android:id="@+id/track_search_status"
+                    android:id="@+id/track_search_start"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/track_search_type"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.Medium.Body2"
+                    android:textSize="13sp"
+                    android:text="@string/track_start_date"/>
+
+                <TextView
+                    android:id="@+id/track_search_start_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/track_search_start"
+                    android:layout_alignBottom="@+id/track_search_start"
+                    android:layout_toEndOf="@+id/track_search_start"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.Medium.Body2.Hint"
+                    android:textSize="13sp"
+                    tools:text="2018-10-01"/>
+
+                <TextView
+                    android:id="@+id/track_search_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/track_search_start"
                     android:maxLines="1"
                     android:textAppearance="@style/TextAppearance.Medium.Body2"
                     android:textSize="13sp"
@@ -102,7 +124,7 @@
                     android:layout_centerVertical="true"
                     android:layout_below="@id/track_search_status_result"
                     android:ellipsize="end"
-                    android:maxLines="10"
+                    android:maxLines="7"
                     android:textAppearance="@style/TextAppearance.Medium.Body2.Hint"
                     tools:text="This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits "/>
 

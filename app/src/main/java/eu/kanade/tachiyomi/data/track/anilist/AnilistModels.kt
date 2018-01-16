@@ -1,10 +1,14 @@
 package eu.kanade.tachiyomi.data.track.anilist
 
+import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.track.TrackManager
+import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
+import java.text.SimpleDateFormat
+import java.util.*
 
 data class ALManga(
         val id: Int,
@@ -13,6 +17,7 @@ data class ALManga(
         val description: String,
         val type: String,
         val publishing_status: String,
+        val start_date_fuzzy: String,
         val total_chapters: Int) {
 
     fun toTrack() = Track.createTrackSearch(TrackManager.ANILIST).apply {
@@ -24,6 +29,17 @@ data class ALManga(
         tracking_url = AnilistApi.mangaUrl(remote_id)
         publishing_status = this@ALManga.publishing_status
         publishing_type = type
+        Timber.d("start date %s", start_date_fuzzy)
+        if (!start_date_fuzzy.isNullOrBlank()) {
+            start_date = try {
+                val inputDf = SimpleDateFormat("yyyyMMdd", Locale.US)
+                val outputDf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+                val date = inputDf.parse(BuildConfig.BUILD_TIME)
+                outputDf.format(date)
+            } catch (e: Exception) {
+                start_date_fuzzy.orEmpty()
+            }
+        }
 
     }
 }

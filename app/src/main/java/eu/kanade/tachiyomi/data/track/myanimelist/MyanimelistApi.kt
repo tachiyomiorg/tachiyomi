@@ -61,6 +61,7 @@ class MyanimelistApi(private val client: OkHttpClient, username: String, passwor
                             tracking_url = MyanimelistApi.mangaUrl(remote_id)
                             publishing_status = it.selectText("status")!!
                             publishing_type = it.selectText("type")!!
+                            start_date = it.selectText("start_date")!!
                         }
                     }
                     .toList()

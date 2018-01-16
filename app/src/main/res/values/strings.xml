@@ -494,6 +494,7 @@
 
     <string name="url_not_set">Manga url is not set please click title and select manga again</string>
     <string name="track_status">Status:\u0020</string>
+    <string name="track_start_date">Started:\u0020</string>
     <string name="track_type">Type:\u0020</string>
 
 </resources>
