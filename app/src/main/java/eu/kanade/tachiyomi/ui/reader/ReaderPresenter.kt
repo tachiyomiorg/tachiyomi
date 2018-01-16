@@ -2,15 +2,13 @@ package eu.kanade.tachiyomi.ui.reader
 
 import android.os.Bundle
 import android.os.Environment
+import android.support.annotation.RequiresPermission
 import android.webkit.MimeTypeMap
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.History
-import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.database.models.Track
+import eu.kanade.tachiyomi.data.database.models.*
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
@@ -411,16 +409,9 @@ class ReaderPresenter(
 
             try {
                 if (chapter.read) {
-                    val removeAfterReadSlots = prefs.removeAfterReadSlots()
-                    when (removeAfterReadSlots) {
-                    // Setting disabled
-                        -1 -> { /* Empty function */
-                        }
-                    // Remove current read chapter
-                        0 -> deleteChapter(chapter, manga)
-                    // Remove previous chapter specified by user in settings.
-                        else -> getAdjacentChaptersStrategy(chapter, removeAfterReadSlots)
-                                .first?.let { deleteChapter(it, manga) }
+                    handleRemoveAfterRead(chapter) {
+                        deleteChapter(it, manga)
+                        db.deletePendingByChapter(it.id!!)
                     }
                 }
             } catch (error: Exception) {
@@ -435,6 +426,26 @@ class ReaderPresenter(
     }
 
     /**
+     * Handles remove after read preference
+     *
+     * @param chapter current read chapter
+     * @param action action on actual to_be_deleted chapter
+     */
+    fun handleRemoveAfterRead(chapter: ReaderChapter, action: (ReaderChapter) -> Unit) {
+        val removeAfterReadSlots = prefs.removeAfterReadSlots()
+        when (removeAfterReadSlots) {
+        // Setting disabled
+            -1 -> { /* Empty function */
+            }
+        // Remove current read chapter
+            0 -> action(chapter)
+        // Remove previous chapter specified by user in settings.
+            else -> getAdjacentChaptersStrategy(chapter, removeAfterReadSlots)
+                    .first?.let { action(chapter) }
+        }
+    }
+
+    /**
      * Called when the active page changes in the reader.
      *
      * @param page the active page
@@ -444,10 +455,26 @@ class ReaderPresenter(
         chapter.last_page_read = page.index
         if (chapter.pages!!.last() === page) {
             chapter.read = true
+
+            Observable.fromCallable {
+                handleRemoveAfterRead(chapter) { createPendingDeleteItem(it.id!!) }
+            }
+                    .subscribeOn(Schedulers.io())
+                    .subscribe()
         }
         if (!chapter.isDownloaded && page.status == Page.QUEUE) {
             loader.loadPriorizedPage(page)
         }
+    }
+
+    /**
+     * Creates `delete on start` task for target chapter
+     *
+     * @param chapterId target chapter
+     */
+    fun createPendingDeleteItem(chapterId: Long) {
+        val item = PendingDeleteItemImpl(chapterId)
+        db.insertPending(item)
     }
 
     /**
