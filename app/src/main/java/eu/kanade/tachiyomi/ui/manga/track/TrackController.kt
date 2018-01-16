@@ -60,7 +60,6 @@ class TrackController : NucleusController<TrackPresenter>(),
     }
 
     fun onSearchResults(results: List<TrackSearch>) {
-        Timber.d("search result")
         getSearchDialog()?.onSearchResults(results)
     }
 

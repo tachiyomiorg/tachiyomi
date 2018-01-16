@@ -7,16 +7,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="250dp"
         android:background="?attr/selectable_list_drawable"
         android:orientation="horizontal">
         >
 
         <ImageView
             android:id="@+id/track_search_cover"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:clickable="true"
+            android:layout_width="125dp"
+            android:layout_height="200dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
             android:contentDescription="@string/description_cover"
             android:scaleType="centerCrop"
             tools:src="@drawable/branded_logo_icon"/>
@@ -29,24 +31,78 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:paddingBottom="16dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="8dp">
 
                 <TextView
                     android:id="@+id/track_search_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="3"
+                    android:textAppearance="@style/TextAppearance.Medium.Title"
+                    android:textSize="15sp"
+                    tools:text="One Piece"/>
+
+                <TextView
+                    android:id="@+id/track_search_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/track_search_title"
+                    android:maxLines="1"
                     android:textAppearance="@style/TextAppearance.Medium.Body2"
-                    tools:text="Manga Title"/>
+                    android:textSize="13sp"
+                    android:text="@string/track_type"/>
+
+                <TextView
+                    android:id="@+id/track_search_type_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/track_search_type"
+                    android:layout_alignBottom="@+id/track_search_type"
+                    android:layout_toEndOf="@+id/track_search_status"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.Medium.Body2.Hint"
+                    android:textSize="13sp"
+                    tools:text="Manhwa"/>
+
+                <TextView
+                    android:id="@+id/track_search_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/track_search_type"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.Medium.Body2"
+                    android:textSize="13sp"
+                    android:text="@string/track_status"/>
+
+                <TextView
+                    android:id="@+id/track_search_status_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/track_search_status"
+                    android:layout_alignBottom="@+id/track_search_status"
+                    android:layout_toEndOf="@+id/track_search_status"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.Medium.Body2.Hint"
+                    android:textSize="13sp"
+                    tools:text="Ongoing"/>
+
 
                 <TextView
                     android:id="@+id/track_search_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/track_search_title"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_below="@id/track_search_status_result"
                     android:ellipsize="end"
-                    android:maxLines="5"
+                    android:maxLines="10"
                     android:textAppearance="@style/TextAppearance.Medium.Body2.Hint"
                     tools:text="This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits "/>
 

@@ -46,6 +46,11 @@
         android:choiceMode="singleChoice"
         style="@style/Theme.Widget.CardView"
         android:listSelector="?attr/selectable_list_drawable"
+        android:scrollbars="none"
+        android:divider="@null"
+        android:dividerHeight="10dp"
+        android:headerDividersEnabled="true"
+        android:footerDividersEnabled="true"
 
         />
 

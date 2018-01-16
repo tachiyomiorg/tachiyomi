@@ -10,8 +10,9 @@ data class ALManga(
         val id: Int,
         val title_romaji: String,
         val image_url_lge: String,
-        val description : String,
+        val description: String,
         val type: String,
+        val publishing_status: String,
         val total_chapters: Int) {
 
     fun toTrack() = Track.createTrackSearch(TrackManager.ANILIST).apply {
@@ -21,6 +22,9 @@ data class ALManga(
         cover_url = image_url_lge
         summary = description
         tracking_url = AnilistApi.mangaUrl(remote_id)
+        publishing_status = this@ALManga.publishing_status
+        publishing_type = type
+
     }
 }
 
@@ -65,11 +69,11 @@ fun Track.toAnilistStatus() = when (status) {
 private val preferences: PreferencesHelper by injectLazy()
 
 fun Track.toAnilistScore(): String = when (preferences.anilistScoreType().getOrDefault()) {
-    // 10 point
+// 10 point
     0 -> (score.toInt() / 10).toString()
-    // 100 point
+// 100 point
     1 -> score.toInt().toString()
-    // 5 stars
+// 5 stars
     2 -> when {
         score == 0f -> "0"
         score < 30 -> "1"
@@ -78,14 +82,14 @@ fun Track.toAnilistScore(): String = when (preferences.anilistScoreType().getOrD
         score < 90 -> "4"
         else -> "5"
     }
-    // Smiley
+// Smiley
     3 -> when {
         score == 0f -> "0"
         score <= 30 -> ":("
         score <= 60 -> ":|"
         else -> ":)"
     }
-    // 10 point decimal
+// 10 point decimal
     4 -> (score / 10).toString()
     else -> throw Exception("Unknown score type")
 }

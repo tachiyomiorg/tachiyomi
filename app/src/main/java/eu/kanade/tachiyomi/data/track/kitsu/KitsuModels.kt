@@ -10,25 +10,29 @@ open class KitsuManga(obj: JsonObject) {
     val id by obj.byInt
     val canonicalTitle by obj["attributes"].byString
     val chapterCount = obj["attributes"].obj.get("chapterCount").nullInt
-    val type = obj["attributes"].obj.get("mangaType").nullString
-    val original = obj["attributes"].obj["posterImage"].nullString
+    val type = obj["attributes"].obj.get("mangaType").nullString.orEmpty()
+    val original by obj["attributes"].obj["posterImage"].byString
     val synopsis by obj["attributes"].byString
+    open val status = obj["attributes"].obj.get("status").nullString.orEmpty()
 
     @CallSuper
     open fun toTrack() = Track.createTrackSearch(TrackManager.KITSU).apply {
         remote_id = this@KitsuManga.id
         title = canonicalTitle
         total_chapters = chapterCount ?: 0
-        cover_url =original ?: ""
+        cover_url = original
         summary = synopsis
         tracking_url = KitsuApi.mangaUrl(remote_id)
+        publishing_status = this@KitsuManga.status.capitalize()
+        publishing_type = type.capitalize()
+
 
     }
 }
 
 class KitsuLibManga(obj: JsonObject, manga: JsonObject) : KitsuManga(manga) {
     val remoteId by obj.byInt("id")
-    val status by obj["attributes"].byString
+    override val status by obj["attributes"].byString
     val ratingTwenty = obj["attributes"].obj.get("ratingTwenty").nullString
     val progress by obj["attributes"].byInt
 

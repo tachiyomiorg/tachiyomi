@@ -8,6 +8,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.TrackSearch
 import eu.kanade.tachiyomi.data.glide.GlideApp
+import eu.kanade.tachiyomi.util.gone
 import eu.kanade.tachiyomi.util.inflate
 import kotlinx.android.synthetic.main.track_search_item.view.*
 import java.util.*
@@ -52,6 +53,19 @@ class TrackSearchAdapter(context: Context)
                         .centerCrop()
                         .into(view.track_search_cover)
             }
+            if(track.publishing_status.isNullOrBlank()){
+                view.track_search_status.gone()
+                view.track_search_status_result.gone()
+            }else{
+                view.track_search_status_result.text = track.publishing_status
+            }
+            if(track.publishing_type.isNullOrBlank()){
+                view.track_search_type.gone()
+                view.track_search_type_result.gone()
+            }else{
+                view.track_search_type_result.text = track.publishing_type
+            }
+
             view.track_search_cover
         }
     }
