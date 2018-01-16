@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.ui.reader
 
 import android.os.Bundle
 import android.os.Environment
-import android.support.annotation.RequiresPermission
 import android.webkit.MimeTypeMap
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.cache.ChapterCache
@@ -407,19 +406,21 @@ class ReaderPresenter(
                 }
             }
 
-            try {
-                if (chapter.read) {
-                    handleRemoveAfterRead(chapter) {
-                        deleteChapter(it, manga)
-                        db.deletePendingByChapter(it.id!!)
+            db.inTransaction {
+                try {
+                    if (chapter.read) {
+                        handleRemoveAfterRead(chapter) {
+                            deleteChapter(it, manga)
+                            removePendingDeleteItemBlocking(it.id!!)
+                        }
                     }
+                } catch (error: Exception) {
+                    // TODO find out why it crashes
+                    Timber.e(error)
                 }
-            } catch (error: Exception) {
-                // TODO find out why it crashes
-                Timber.e(error)
-            }
 
-            updateProgressBlocking(chapter)
+                updateProgressBlocking(chapter)
+            }
         }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
@@ -457,7 +458,7 @@ class ReaderPresenter(
             chapter.read = true
 
             Observable.fromCallable {
-                handleRemoveAfterRead(chapter) { createPendingDeleteItem(it.id!!) }
+                handleRemoveAfterRead(chapter) { createPendingDeleteItemBlocking(it.id!!) }
             }
                     .subscribeOn(Schedulers.io())
                     .subscribe()
@@ -472,9 +473,18 @@ class ReaderPresenter(
      *
      * @param chapterId target chapter
      */
-    fun createPendingDeleteItem(chapterId: Long) {
+    fun createPendingDeleteItemBlocking(chapterId: Long) {
         val item = PendingDeleteItemImpl(chapterId)
-        db.insertPending(item)
+        db.insertPending(item).executeAsBlocking()
+    }
+
+    /**
+     * Remove `delete on start` task for target chapter
+     *
+     * @param chapterId target chapter
+     */
+    fun removePendingDeleteItemBlocking(chapterId: Long) {
+        db.deletePendingByChapter(chapterId).executeAsBlocking()
     }
 
     /**

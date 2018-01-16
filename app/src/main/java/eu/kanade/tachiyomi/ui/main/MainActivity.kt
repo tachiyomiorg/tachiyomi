@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import com.bluelinelabs.conductor.*
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.base.controller.*
@@ -21,7 +23,9 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersController
 import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
 import eu.kanade.tachiyomi.ui.setting.SettingsMainController
+import eu.kanade.tachiyomi.util.ProcessPendingDelete
 import kotlinx.android.synthetic.main.main_activity.*
+import rx.Observable
 import uy.kohesive.injekt.injectLazy
 
 
@@ -30,6 +34,8 @@ class MainActivity : BaseActivity() {
     private lateinit var router: Router
 
     val preferences: PreferencesHelper by injectLazy()
+
+    val pendingDelete = ProcessPendingDelete()
 
     private var drawerArrow: DrawerArrowDrawable? = null
 
@@ -132,6 +138,8 @@ class MainActivity : BaseActivity() {
                 ChangelogDialogController().showDialog(router)
             }
         }
+
+        pendingDelete.processOnStartup()
     }
 
     override fun onNewIntent(intent: Intent) {

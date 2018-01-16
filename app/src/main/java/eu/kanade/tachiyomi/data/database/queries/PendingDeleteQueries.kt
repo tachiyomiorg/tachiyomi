@@ -36,4 +36,10 @@ interface PendingDeleteQueries : DbProvider {
                     .whereArgs(chapterId)
                     .build())
             .prepare()
+
+    fun deleteAllPendingDeleteItems() = db.delete()
+            .byQuery(DeleteQuery.builder()
+                    .table(TABLE)
+                    .build())
+            .prepare()
 }
