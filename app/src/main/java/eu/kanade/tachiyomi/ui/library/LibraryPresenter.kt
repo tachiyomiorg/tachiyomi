@@ -57,11 +57,6 @@ class LibraryPresenter(
         private set
 
     /**
-     * Query from the view.
-     */
-    var query = ""
-
-    /**
      * Relay used to apply the UI filters to the last emission of the library.
      */
     private val filterTriggerRelay = BehaviorRelay.create(Unit)

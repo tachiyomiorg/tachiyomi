@@ -71,6 +71,11 @@ class LibraryController(
     private var query = ""
 
     /**
+     * We save the library search query when one manga is open.
+     */
+    private var backupQuery = ""
+
+    /**
      * Currently selected mangas.
      */
     val selectedMangas = mutableListOf<Manga>()
@@ -322,9 +327,9 @@ class LibraryController(
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
-        if(!presenter.query.isEmpty()){
-            query = presenter.query
-            presenter.query = ""
+        if(!backupQuery.isEmpty()){
+            query = backupQuery
+            backupQuery = ""
         }
 
         if (!query.isEmpty()) {
@@ -420,7 +425,7 @@ class LibraryController(
         presenter.onOpenManga()
 
         // Save current search query
-        presenter.query = query
+        backupQuery = query
 
         router.pushController(MangaController(manga).withFadeTransaction())
     }
