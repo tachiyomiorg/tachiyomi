@@ -28,4 +28,10 @@
     <item android:id="@+id/action_mark_previous_as_read"
           android:title="@string/action_mark_previous_as_read"/>
 
+    <item android:id="@+id/action_select_all_above"
+        android:title="@string/action_select_all_above" />
+
+    <item android:id="@+id/action_select_all_below"
+        android:title="@string/action_select_all_below"/>
+
 </menu>

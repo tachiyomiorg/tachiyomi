@@ -37,6 +37,8 @@
     <string name="action_search">Search</string>
     <string name="action_global_search">Global search</string>
     <string name="action_select_all">Select all</string>
+    <string name="action_select_all_above">Select all above</string>
+    <string name="action_select_all_below">Select all below</string>
     <string name="action_mark_as_read">Mark as read</string>
     <string name="action_mark_as_unread">Mark as unread</string>
     <string name="action_mark_previous_as_read">Mark previous as read</string>

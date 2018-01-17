@@ -334,6 +334,8 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
             R.id.action_mark_as_read -> markAsRead(chapters)
             R.id.action_mark_as_unread -> markAsUnread(chapters)
             R.id.action_mark_previous_as_read -> markPreviousAsRead(chapter)
+            R.id.action_select_all_above -> selectAbove(position)
+            R.id.action_select_all_below -> selectBelow(position)
         }
     }
 
@@ -343,6 +345,41 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         val adapter = adapter ?: return
         adapter.selectAll()
         selectedItems.addAll(adapter.items)
+        actionMode?.invalidate()
+    }
+
+    fun selectAbove(position: Int){
+        createActionModeIfNeeded()
+        val adapter = adapter ?: return
+        var x = position
+        while (x >= 0){
+            var item = adapter.getItem(x)
+            if(!adapter.isSelected(x)){
+                adapter.toggleSelection(x)
+            }
+            if (adapter.isSelected(x) && item != null) {
+                selectedItems.add(item)
+            }
+            x--
+        }
+        adapter.notifyDataSetChanged()
+        actionMode?.invalidate()
+    }
+    fun selectBelow(position: Int){
+        createActionModeIfNeeded()
+        val adapter = adapter ?: return
+        var x = position
+        while (x <= adapter.itemCount){
+            var item = adapter.getItem(x)
+            if(!adapter.isSelected(x)){
+                adapter.toggleSelection(x)
+            }
+            if (adapter.isSelected(x) && item != null) {
+                selectedItems.add(item)
+            }
+            x++
+        }
+        adapter.notifyDataSetChanged()
         actionMode?.invalidate()
     }
 
