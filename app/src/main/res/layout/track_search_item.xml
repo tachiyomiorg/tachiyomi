@@ -124,7 +124,6 @@
             tools:text="Ongoing"
             />
 
-
         <TextView
             android:id="@+id/track_search_summary"
             android:layout_width="0dp"
