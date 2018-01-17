@@ -5,7 +5,6 @@ import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.track.TrackManager
-import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,7 +28,6 @@ data class ALManga(
         tracking_url = AnilistApi.mangaUrl(remote_id)
         publishing_status = this@ALManga.publishing_status
         publishing_type = type
-        Timber.d("start date %s", start_date_fuzzy)
         if (!start_date_fuzzy.isNullOrBlank()) {
             start_date = try {
                 val inputDf = SimpleDateFormat("yyyyMMdd", Locale.US)

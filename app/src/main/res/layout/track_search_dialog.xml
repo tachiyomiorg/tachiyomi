@@ -35,23 +35,23 @@
 
     <ListView
         android:id="@+id/track_search_list"
+        style="@style/Theme.Widget.CardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="4dp"
-        android:paddingTop="4dp"
-        android:clipToPadding="false"
-        tools:listitem="@layout/track_search_item"
-        android:visibility="gone"
-        tools:visibility="visible"
+        android:layout_weight="1"
         android:choiceMode="singleChoice"
-        style="@style/Theme.Widget.CardView"
-        android:listSelector="?attr/selectable_list_drawable"
-        android:scrollbars="none"
+        android:clipToPadding="false"
         android:divider="@null"
         android:dividerHeight="10dp"
-        android:headerDividersEnabled="true"
         android:footerDividersEnabled="true"
-
+        android:headerDividersEnabled="true"
+        android:listSelector="?attr/selectable_list_drawable"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:scrollbars="none"
+        android:visibility="gone"
+        tools:listitem="@layout/track_search_item"
+        tools:visibility="visible"
         />
 
 </LinearLayout>
