@@ -442,7 +442,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     }
 
     private fun showCustomDownloadDialog() {
-        DownloadCustomChaptersDialog(this).showDialog(router)
+        DownloadCustomChaptersDialog(this, presenter.chapters.size).showDialog(router)
     }
 
 

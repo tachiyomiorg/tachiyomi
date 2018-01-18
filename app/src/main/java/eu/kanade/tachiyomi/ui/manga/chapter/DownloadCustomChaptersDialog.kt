@@ -2,38 +2,44 @@ package eu.kanade.tachiyomi.ui.manga.chapter
 
 import android.app.Dialog
 import android.os.Bundle
-import android.text.InputType
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bluelinelabs.conductor.Controller
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
+import eu.kanade.tachiyomi.widget.DialogCustomDownloadView
 
 
 class DownloadCustomChaptersDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
-        where T : Controller, T : DownloadChaptersDialog.Listener {
+        where T : Controller, T : DownloadCustomChaptersDialog.Listener {
 
-    constructor(target: T) : this() {
+    private var maxChapters = 10
+
+    constructor(target: T, maxChapters: Int) : this() {
+        this.maxChapters = maxChapters
         targetController = target
     }
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         val activity = activity!!
 
+        val view = DialogCustomDownloadView(activity).apply {
+            setMinMax(0, maxChapters)
+        }
+
         return MaterialDialog.Builder(activity)
                 .title(R.string.custom_download)
-                .inputRange(1, 3)
+                .customView(view, true)
+                .positiveText(android.R.string.ok)
                 .negativeText(android.R.string.cancel)
-                .inputType(InputType.TYPE_CLASS_NUMBER)
-                .input(
-                        activity.getString(R.string.custom_hint),
-                        "",
-                        false,
-                        { _, input -> (targetController as? Listener)?.downloadCustomChapters(Integer.parseInt(input.toString())) })
+                .onPositive { _, _ ->
+                    (targetController as? Listener)?.downloadCustomChapters(view.amount)
+                }
                 .build()
     }
 
     interface Listener {
         fun downloadCustomChapters(amount: Int)
     }
+
 
 }
