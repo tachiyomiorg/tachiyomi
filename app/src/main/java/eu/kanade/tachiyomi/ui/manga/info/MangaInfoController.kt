@@ -33,6 +33,7 @@ import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.Source
+import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
@@ -207,6 +208,14 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         } else {
             manga.description
         }
+
+        // Update status TextView.
+        manga_status.setText(when (manga.status) {
+            SManga.ONGOING -> R.string.ongoing
+            SManga.COMPLETED -> R.string.completed
+            SManga.LICENSED -> R.string.licensed
+            else -> R.string.unknown
+        })
 
         // Set the favorite drawable to the correct one.
         setFavoriteDrawable(manga.favorite)
