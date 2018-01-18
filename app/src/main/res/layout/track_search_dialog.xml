@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ProgressBar
@@ -35,7 +35,7 @@
         style="@style/Theme.Widget.CardView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         android:choiceMode="singleChoice"
         android:clipToPadding="false"
         android:divider="@null"
@@ -49,7 +49,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/track_search"
+        app:layout_constraintTop_toTopOf="@+id/track_search"
         tools:listitem="@layout/track_search_item"
         tools:visibility="visible"/>
 
