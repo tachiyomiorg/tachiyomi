@@ -408,21 +408,20 @@ class ReaderPresenter(
                 }
             }
 
-            db.inTransaction {
-                try {
-                    if (chapter.read) {
-                        handleRemoveAfterRead(chapter) {
-                            deleteChapter(it, manga)
-                            pendingDelete.removeChapter(it.id)
-                        }
+            try {
+                if (chapter.read) {
+                    handleRemoveAfterRead(chapter) {
+                        deleteChapter(it, manga)
+                        pendingDelete.removeChapter(it.id)
                     }
-                } catch (error: Exception) {
-                    // TODO find out why it crashes
-                    Timber.e(error)
                 }
-
-                updateProgressBlocking(chapter)
+            } catch (error: Exception) {
+                // TODO find out why it crashes
+                Timber.e(error)
             }
+
+            updateProgressBlocking(chapter)
+            
         }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
