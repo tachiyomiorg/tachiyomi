@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.bluelinelabs.conductor.*
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.PendingDeleteManager
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -35,7 +36,7 @@ class MainActivity : BaseActivity() {
 
     val preferences: PreferencesHelper by injectLazy()
 
-    val pendingDelete = ProcessPendingDelete()
+    val pendingDelete: PendingDeleteManager by injectLazy()
 
     private var drawerArrow: DrawerArrowDrawable? = null
 
@@ -139,7 +140,7 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        pendingDelete.processOnStartup()
+        pendingDelete.deleteListed()
     }
 
     override fun onNewIntent(intent: Intent) {

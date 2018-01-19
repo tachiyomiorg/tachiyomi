@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.webkit.MimeTypeMap
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.PendingDeleteManager
 import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
@@ -41,7 +42,8 @@ class ReaderPresenter(
         val trackManager: TrackManager = Injekt.get(),
         val sourceManager: SourceManager = Injekt.get(),
         val chapterCache: ChapterCache = Injekt.get(),
-        val coverCache: CoverCache = Injekt.get()
+        val coverCache: CoverCache = Injekt.get(),
+        val pendingDelete: PendingDeleteManager = Injekt.get()
 ) : BasePresenter<ReaderActivity>() {
 
     private val context = prefs.context
@@ -411,7 +413,7 @@ class ReaderPresenter(
                     if (chapter.read) {
                         handleRemoveAfterRead(chapter) {
                             deleteChapter(it, manga)
-                            removePendingDeleteItemBlocking(it.id!!)
+                            pendingDelete.removeChapter(it.id)
                         }
                     }
                 } catch (error: Exception) {
@@ -458,7 +460,7 @@ class ReaderPresenter(
             chapter.read = true
 
             Observable.fromCallable {
-                handleRemoveAfterRead(chapter) { createPendingDeleteItemBlocking(it.id!!) }
+                handleRemoveAfterRead(chapter) { pendingDelete.addChapter(it.id) }
             }
                     .subscribeOn(Schedulers.io())
                     .subscribe()
@@ -466,25 +468,6 @@ class ReaderPresenter(
         if (!chapter.isDownloaded && page.status == Page.QUEUE) {
             loader.loadPriorizedPage(page)
         }
-    }
-
-    /**
-     * Creates `delete on start` task for target chapter
-     *
-     * @param chapterId target chapter
-     */
-    fun createPendingDeleteItemBlocking(chapterId: Long) {
-        val item = PendingDeleteItemImpl(chapterId)
-        db.insertPending(item).executeAsBlocking()
-    }
-
-    /**
-     * Remove `delete on start` task for target chapter
-     *
-     * @param chapterId target chapter
-     */
-    fun removePendingDeleteItemBlocking(chapterId: Long) {
-        db.deletePendingByChapter(chapterId).executeAsBlocking()
     }
 
     /**

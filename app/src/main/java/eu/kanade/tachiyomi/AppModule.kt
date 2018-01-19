@@ -2,9 +2,11 @@ package eu.kanade.tachiyomi
 
 import android.app.Application
 import com.google.gson.Gson
+import eu.kanade.tachiyomi.data.PendingDeleteManager
 import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.database.tables.PendingDeleteTable
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
@@ -33,6 +35,8 @@ class AppModule(val app: Application) : InjektModule {
             addSingletonFactory { DownloadManager(app) }
 
             addSingletonFactory { TrackManager(app) }
+
+            addSingletonFactory { PendingDeleteManager(app) }
 
             addSingletonFactory { Gson() }
 
