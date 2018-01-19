@@ -358,14 +358,16 @@ class ReaderPresenter(
      * @param chapter chapter which progress info will be saved on db.
      */
     private fun updateProgressBlocking(chapter: ReaderChapter) {
-        db.updateChapterProgress(chapter).executeAsBlocking()
+        db.inTransaction {
+            db.updateChapterProgress(chapter).executeAsBlocking()
 
-        try {
-            val history = History.create(chapter).apply { last_read = Date().time }
-            db.updateHistoryLastRead(history).executeAsBlocking()
-        } catch (error: Exception) {
-            // TODO find out why it crashes
-            Timber.e(error)
+            try {
+                val history = History.create(chapter).apply { last_read = Date().time }
+                db.updateHistoryLastRead(history).executeAsBlocking()
+            } catch (error: Exception) {
+                // TODO find out why it crashes
+                Timber.e(error)
+            }
         }
     }
 

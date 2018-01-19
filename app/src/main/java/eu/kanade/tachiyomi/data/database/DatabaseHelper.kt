@@ -10,7 +10,8 @@ import eu.kanade.tachiyomi.data.database.queries.*
  * This class provides operations to manage the database through its interfaces.
  */
 open class DatabaseHelper(context: Context)
-: MangaQueries, ChapterQueries, TrackQueries, CategoryQueries, MangaCategoryQueries, HistoryQueries {
+: MangaQueries, ChapterQueries, TrackQueries, CategoryQueries, MangaCategoryQueries,
+        HistoryQueries {
 
     override val db = DefaultStorIOSQLite.builder()
             .sqliteOpenHelper(DbOpenHelper(context))
