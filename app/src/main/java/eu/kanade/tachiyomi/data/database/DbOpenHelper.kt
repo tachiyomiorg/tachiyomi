@@ -17,7 +17,7 @@ class DbOpenHelper(context: Context)
         /**
          * Version of the database.
          */
-        const val DATABASE_VERSION = 6
+        const val DATABASE_VERSION = 5
     }
 
     override fun onCreate(db: SQLiteDatabase) = with(db) {
@@ -27,7 +27,6 @@ class DbOpenHelper(context: Context)
         execSQL(CategoryTable.createTableQuery)
         execSQL(MangaCategoryTable.createTableQuery)
         execSQL(HistoryTable.createTableQuery)
-        execSQL(PendingDeleteTable.createTableQuery)
 
         // DB indexes
         execSQL(MangaTable.createUrlIndexQuery)
@@ -54,9 +53,6 @@ class DbOpenHelper(context: Context)
         }
         if (oldVersion < 5) {
             db.execSQL(ChapterTable.addScanlator)
-        }
-        if (oldVersion < 6) {
-            db.execSQL(PendingDeleteTable.createTableQuery)
         }
     }
 

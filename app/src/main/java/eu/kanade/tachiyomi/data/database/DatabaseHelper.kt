@@ -11,7 +11,7 @@ import eu.kanade.tachiyomi.data.database.queries.*
  */
 open class DatabaseHelper(context: Context)
 : MangaQueries, ChapterQueries, TrackQueries, CategoryQueries, MangaCategoryQueries,
-        HistoryQueries, PendingDeleteQueries {
+        HistoryQueries {
 
     override val db = DefaultStorIOSQLite.builder()
             .sqliteOpenHelper(DbOpenHelper(context))
@@ -21,7 +21,6 @@ open class DatabaseHelper(context: Context)
             .addTypeMapping(Category::class.java, CategoryTypeMapping())
             .addTypeMapping(MangaCategory::class.java, MangaCategoryTypeMapping())
             .addTypeMapping(History::class.java, HistoryTypeMapping())
-            .addTypeMapping(PendingDeleteItem::class.java, PendingDeleteTypeMapping())
             .build()
 
     inline fun inTransaction(block: () -> Unit) = db.inTransaction(block)
