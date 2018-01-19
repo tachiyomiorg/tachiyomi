@@ -19,9 +19,8 @@ import eu.kanade.tachiyomi.util.accountManager
 import eu.kanade.tachiyomi.util.notification
 import eu.kanade.tachiyomi.util.notificationManager
 import timber.log.Timber
-import uy.kohesive.injekt.Injekt
-import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
+import java.io.IOException
 
 /**
  * Core sync code
@@ -54,7 +53,10 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
     }
     
     override fun onPerformSync(account: Account, extras: Bundle?, authority: String?, provider: ContentProviderClient?, syncResult: SyncResult?) {
+        //Hide any previous error notifications
+        cancelErrorNotification()
         try {
+            //Actually perform sync
             performSync(account)
         } catch(e: HandledSyncException) {
             updateSyncError(e.error)
@@ -93,6 +95,8 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
             if (token == null) {
                 throw HandledSyncException(SyncError.AUTH_ERROR, null)
             }
+        } catch(e: IOException) {
+            throw HandledSyncException(SyncError.NETWORK_ERROR, e)
         } catch(e: Exception) {
             throw HandledSyncException(SyncError.AUTH_ERROR, e)
         }
@@ -131,7 +135,7 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
                 reportApplier.apply(serverChanges)
                 
                 //Apply timestamp correction queue
-                serverChanges.tmpApply.applyQueuedTimestamps(Injekt.get())
+                serverChanges.tmpApply.applyQueuedTimestamps(db)
             } catch (e: Exception) {
                 throw HandledSyncException(SyncError.DATABASE_ERROR, e)
             }
@@ -181,7 +185,14 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
             setAutoCancel(true)
         })
     }
-    
+
+    /**
+     * Cancels the error notification.
+     */
+    private fun cancelErrorNotification() {
+        context.notificationManager.cancel(Notifications.ID_SYNC_ERROR)
+    }
+
     /**
      * Shows the notification containing the current sync progress
      *
