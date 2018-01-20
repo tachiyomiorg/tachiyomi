@@ -69,7 +69,11 @@
                     android:maxLines="2"
                     android:textIsSelectable="false"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"/>
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeMaxTextSize="100sp"
+                    app:autoSizeStepGranularity="2sp"/>
 
                 <TextView
                     android:id="@+id/manga_author_label"
