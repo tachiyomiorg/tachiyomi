@@ -88,7 +88,7 @@ abstract class PagerReader : BaseReader() {
     /**
      * Duration of the double tap animation
      */
-    var doubleTapAnimDuration = "500"
+    var doubleTapAnimDuration = 500
         private set
 
     /**
@@ -173,7 +173,7 @@ abstract class PagerReader : BaseReader() {
                     .distinctUntilChanged()
                     .subscribe { refreshAdapter() })
 
-            add(preferences.doubleTapAnimDuration()
+            add(preferences.doubleTapAnimSpeed()
                     .asObservable()
                     .subscribe { doubleTapAnimDuration = it })
         }

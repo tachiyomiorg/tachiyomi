@@ -148,7 +148,7 @@
     <string name="pref_fullscreen">Fullscreen</string>
     <string name="pref_lock_orientation">Lock orientation</string>
     <string name="pref_page_transitions">Page transitions</string>
-    <string name="pref_double_tap_anim_duration">Double tap to zoom animation duration</string>
+    <string name="pref_double_tap_anim_speed">Double tap animation speed</string>
     <string name="pref_show_page_number">Show page number</string>
     <string name="pref_crop_borders">Crop borders</string>
     <string name="pref_custom_brightness">Use custom brightness</string>
@@ -180,6 +180,9 @@
     <string name="zoom_start_left">Left</string>
     <string name="zoom_start_right">Right</string>
     <string name="zoom_start_center">Center</string>
+    <string name="double_tap_anim_speed_0">No animation</string>
+    <string name="double_tap_anim_speed_normal">Normal</string>
+    <string name="double_tap_anim_speed_fast">Fast</string>
     <string name="pref_rotation_type">Rotation</string>
     <string name="rotation_free">Free</string>
     <string name="rotation_lock">Lock</string>

@@ -62,7 +62,7 @@ class WebtoonReader : BaseReader() {
     /**
      * Duration of the double tap animation
      */
-    var doubleTapAnimDuration = "500"
+    var doubleTapAnimDuration = 500
         private set
 
     /**
@@ -130,7 +130,7 @@ class WebtoonReader : BaseReader() {
                 .distinctUntilChanged()
                 .subscribe { refreshAdapter() })
 
-        subscriptions.add(readerActivity.preferences.doubleTapAnimDuration()
+        subscriptions.add(readerActivity.preferences.doubleTapAnimSpeed()
                 .asObservable()
                 .subscribe { doubleTapAnimDuration = it })
 
