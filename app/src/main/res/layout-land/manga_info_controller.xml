@@ -65,7 +65,6 @@
                     style="@style/TextAppearance.Medium.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
                     android:maxLines="2"
                     android:textIsSelectable="false"
                     app:layout_constraintTop_toTopOf="parent"
