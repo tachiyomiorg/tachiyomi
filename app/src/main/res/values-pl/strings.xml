@@ -149,7 +149,7 @@
     <string name="update_check_notification_download_error">Błąd pobierania</string>
     <string name="update_check_notification_update_available">Dostępna aktualizacja</string>
 
-    <string name="information_empty_library">Biblioteka pusta</string>
+    <string name="information_empty_library">Twoja biblioteka jest pusta, możesz dodać serie do biblioteki z Katalogów.</string>
 
     <string name="download_notifier_title_error">Błąd</string>
     <string name="download_notifier_unkown_error">Podczas pobierania rozdziału wystąpił nieoczekiwany błąd</string>
@@ -414,4 +414,6 @@ Spróbuj zmienić dekoder lub skorzystaj z jednej z opcji poniżej</string>
     <string name="channel_downloader">Menadżer pobierania</string>
 <string name="action_display_download_badge">Plakietki pobrań</string>
     <string name="local_source_badge">Lokalna</string>
+    <string name="information_empty_category">Nie masz żadnych kategorii. Dotknij plusa, aby je utworzyć i zorganizować swoją bibliotekę.</string>
+
     </resources>
