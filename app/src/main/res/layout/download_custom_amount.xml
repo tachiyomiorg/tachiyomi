@@ -26,14 +26,13 @@
 
     <EditText
         android:id="@+id/myNumber"
-        android:text="10"
         android:digits="0123456789"
         android:inputType="number"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content" />
 
 
-    <ImageButton
+    <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/btn_increase"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
