@@ -10,6 +10,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.source.online.YamlHttpSource
 import eu.kanade.tachiyomi.source.online.english.*
+import eu.kanade.tachiyomi.source.online.french.MangaLel
 import eu.kanade.tachiyomi.source.online.german.WieManga
 import eu.kanade.tachiyomi.source.online.russian.Mangachan
 import eu.kanade.tachiyomi.source.online.russian.Mintmanga
@@ -58,7 +59,8 @@ open class SourceManager(private val context: Context) {
             Mangachan(),
             Readmangatoday(),
             Mangasee(),
-            WieManga()
+            WieManga(),
+            MangaLel()
     )
 
     private fun createYamlSources(): List<Source> {
