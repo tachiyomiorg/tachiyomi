@@ -29,6 +29,8 @@
         android:digits="0123456789"
         android:inputType="number"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:padding="8dp"
         android:layout_width="wrap_content" />
 
 
