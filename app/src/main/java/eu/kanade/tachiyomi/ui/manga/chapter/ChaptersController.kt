@@ -462,7 +462,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         // i = 0: Download 1
         // i = 1: Download 5
         // i = 2: Download 10
-        // i = 3:"Download x
+        // i = 3: Download x
         // i = 4: Download unread
         // i = 5: Download all
         val chaptersToDownload = when (choice) {
