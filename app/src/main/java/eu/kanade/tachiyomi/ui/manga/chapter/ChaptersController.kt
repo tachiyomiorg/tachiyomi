@@ -459,27 +459,26 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
 
 
     override fun downloadChapters(choice: Int) {
-        if (choice == 3) {
-            showCustomDownloadDialog()
-        } else {
-            // i = 0: Download 1
-            // i = 1: Download 5
-            // i = 2: Download 10
-            // i = 3:"Download x
-            // i = 4: Download unread
-            // i = 5: Download all
-            val chaptersToDownload = when (choice) {
-                0 -> getUnreadChaptersSorted().take(1)
-                1 -> getUnreadChaptersSorted().take(5)
-                2 -> getUnreadChaptersSorted().take(10)
-                4 -> presenter.chapters.filter { !it.read }
-                5 -> presenter.chapters
-                else -> emptyList()
+        // i = 0: Download 1
+        // i = 1: Download 5
+        // i = 2: Download 10
+        // i = 3:"Download x
+        // i = 4: Download unread
+        // i = 5: Download all
+        val chaptersToDownload = when (choice) {
+            0 -> getUnreadChaptersSorted().take(1)
+            1 -> getUnreadChaptersSorted().take(5)
+            2 -> getUnreadChaptersSorted().take(10)
+            3 -> {
+                showCustomDownloadDialog()
+                return
             }
-            if (chaptersToDownload.isNotEmpty()) {
-                downloadChapters(chaptersToDownload)
-            }
+            4 -> presenter.chapters.filter { !it.read }
+            5 -> presenter.chapters
+            else -> emptyList()
+        }
+        if (chaptersToDownload.isNotEmpty()) {
+            downloadChapters(chaptersToDownload)
         }
     }
-
 }

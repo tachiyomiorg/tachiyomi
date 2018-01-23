@@ -28,7 +28,7 @@ class DialogCustomDownloadView @JvmOverloads constructor(context: Context, attrs
     private var min = 0
 
     /**
-     *
+     * Maximal value of custom download chooser.
      */
     private var max = 0
 
@@ -36,6 +36,7 @@ class DialogCustomDownloadView @JvmOverloads constructor(context: Context, attrs
         // Add view to stack
         addView(inflate(R.layout.download_custom_amount))
     }
+
 
     /**
      * Called when view is added

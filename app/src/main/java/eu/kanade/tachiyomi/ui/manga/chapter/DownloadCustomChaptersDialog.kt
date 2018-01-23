@@ -11,18 +11,35 @@ import eu.kanade.tachiyomi.widget.DialogCustomDownloadView
 /**
  * Dialog used to let user select amount of chapters to download.
  */
-class DownloadCustomChaptersDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
+class DownloadCustomChaptersDialog<T> : DialogController
         where T : Controller, T : DownloadCustomChaptersDialog.Listener {
 
-    private var maxChapters = 0
+    /**
+     * Maximum number of chapters to download in download chooser.
+     */
+    private val maxChapters: Int
 
     /**
      * Initialize dialog.
      * @param maxChapters maximal number of chapters that user can download.
      */
-    constructor(target: T, maxChapters: Int) : this() {
-        this.maxChapters = maxChapters
+    constructor(target: T, maxChapters: Int) : super(Bundle().apply {
+        // Add maximum number of chapters to download value to bundle.
+        putInt(KEY_ITEM_MAX, maxChapters)
+    }) {
         targetController = target
+        this.maxChapters = maxChapters
+    }
+
+    /**
+     * Restore dialog.
+     * @param bundle bundle containing data from state restore.
+     */
+    @Suppress("unused")
+    constructor(bundle: Bundle) : super(bundle) {
+        // Get maximum chapters to download from bundle
+        val maxChapters = bundle.getInt(KEY_ITEM_MAX, 0)
+        this.maxChapters = maxChapters
     }
 
     /**
@@ -53,5 +70,8 @@ class DownloadCustomChaptersDialog<T>(bundle: Bundle? = null) : DialogController
         fun downloadCustomChapters(amount: Int)
     }
 
-
+    private companion object {
+        // Key to retrieve max chapters from bundle on process death.
+        const val KEY_ITEM_MAX = "DownloadCustomChaptersDialog.int.maxChapters"
+    }
 }
