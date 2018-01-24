@@ -36,7 +36,7 @@ class ChapterHolder(
         }
 
         // Set the correct drawable for dropdown and update the tint to match theme.
-        chapter_menu.setVectorCompat(R.drawable.ic_more_horiz_black_24dp, view.context.getResourceColor(R.attr.icon_color))
+        chapter_menu.setVectorCompat(R.drawable.ic_more_vert_black_24dp, view.context.getResourceColor(R.attr.icon_color))
 
         // Set correct text color
         chapter_title.setTextColor(if (chapter.read) adapter.readColor else adapter.unreadColor)
