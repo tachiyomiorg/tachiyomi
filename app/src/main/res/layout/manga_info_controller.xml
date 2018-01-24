@@ -241,34 +241,37 @@
 
         </android.support.v4.widget.NestedScrollView>
 
+        <TextView
+            android:id="@+id/manga_summary_label"
+            style="@style/TextAppearance.Medium.Body2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/description"
+            app:layout_constraintTop_toBottomOf="@+id/guideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textIsSelectable="false"/>
+
         <android.support.v4.widget.NestedScrollView
             android:id="@+id/description_scrollview"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="16dp"
+            app:layout_constraintHeight_default="spread"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guideline"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/manga_summary_label"
+            app:layout_constraintBottom_toTopOf="@id/manga_genres_tags"
             >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/manga_summary_label"
-                    style="@style/TextAppearance.Medium.Body2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:text="@string/description"
-                    android:textIsSelectable="false"/>
 
                 <TextView
                     android:id="@+id/manga_summary"
@@ -279,27 +282,28 @@
                     android:layout_height="wrap_content"
                     android:textIsSelectable="false"/>
 
-                <me.gujun.android.taggroup.TagGroup
-                    android:id="@+id/manga_genres_tags"
-                    style="@style/TagGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="16dp"
-                    android:orientation="vertical"
-                    app:atg_borderStrokeWidth="1dp"
-                    app:atg_backgroundColor="@android:color/transparent"
-                    app:atg_borderColor="@color/md_blue_A400"
-                    app:atg_textColor="@color/md_blue_A400"
-                    />
-
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 
-
+        <me.gujun.android.taggroup.TagGroup
+            android:id="@+id/manga_genres_tags"
+            style="@style/TagGroup"
+            app:layout_constraintHeight_default="spread"
+            app:layout_constraintWidth_default="spread"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/description_scrollview"
+            app:atg_borderStrokeWidth="1dp"
+            app:atg_backgroundColor="@android:color/transparent"
+            app:atg_borderColor="@color/md_blue_A400"
+            app:atg_textColor="@color/md_blue_A400"
+            />
 
     </android.support.constraint.ConstraintLayout>
 
