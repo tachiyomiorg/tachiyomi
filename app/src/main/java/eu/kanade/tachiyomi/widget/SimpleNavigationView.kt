@@ -22,7 +22,7 @@ open class SimpleNavigationView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
         defStyleAttr: Int = 0)
-: ScrimInsetsFrameLayout(context, attrs, defStyleAttr) {
+    : ScrimInsetsFrameLayout(context, attrs, defStyleAttr) {
 
     /**
      * Max width of the navigation view.
@@ -88,8 +88,14 @@ open class SimpleNavigationView @JvmOverloads constructor(
     /**
      * Header view holder.
      */
-    class HeaderHolder(parent: ViewGroup)
-        : Holder(parent.inflate(R.layout.design_navigation_item_subheader))
+    class HeaderHolder(parent: ViewGroup, listener: View.OnClickListener?)
+        : ClickableHolder(parent.inflate(TR.layout.navigation_view_group), listener) {
+
+        val title: TextView = itemView.findViewById(TR.id.title)
+        //val icon: ImageView = itemView.findViewById(TR.id.expand_icon)
+        //var isExpanded = false
+    }
+
 
     /**
      * Clickable view holder.

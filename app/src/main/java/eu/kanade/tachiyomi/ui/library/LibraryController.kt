@@ -35,7 +35,6 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.migration.MigrationController
 import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.util.toast
-import eu.kanade.tachiyomi.widget.DrawerSwipeCloseListener
 import kotlinx.android.synthetic.main.library_controller.*
 import kotlinx.android.synthetic.main.main_activity.*
 import rx.Subscription
@@ -177,11 +176,8 @@ class LibraryController(
 
     override fun createSecondaryDrawer(drawer: DrawerLayout): ViewGroup {
         val view = drawer.inflate(R.layout.library_drawer) as LibraryNavigationView
-        drawerListener = DrawerSwipeCloseListener(drawer, view).also {
-            drawer.addDrawerListener(it)
-        }
         navView = view
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.END)
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, Gravity.END)
 
         navView?.onGroupClicked = { group ->
             when (group) {
@@ -196,8 +192,6 @@ class LibraryController(
     }
 
     override fun cleanupSecondaryDrawer(drawer: DrawerLayout) {
-        drawerListener?.let { drawer.removeDrawerListener(it) }
-        drawerListener = null
         navView = null
     }
 
@@ -278,7 +272,7 @@ class LibraryController(
         activity?.invalidateOptionsMenu()
     }
 
-    private fun onDownloadBadgeChanged(){
+    private fun onDownloadBadgeChanged() {
         presenter.requestDownloadBadgesUpdate()
     }
 
