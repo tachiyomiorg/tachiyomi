@@ -72,6 +72,11 @@ class LibraryController(
     private var query = ""
 
     /**
+     * We save the library search query when one manga is open.
+     */
+    private var backupQuery = ""
+
+    /**
      * Currently selected mangas.
      */
     val selectedMangas = mutableListOf<Manga>()
@@ -323,6 +328,11 @@ class LibraryController(
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
+        if(!backupQuery.isEmpty()){
+            query = backupQuery
+            backupQuery = ""
+        }
+
         if (!query.isEmpty()) {
             searchItem.expandActionView()
             searchView.setQuery(query, true)
@@ -332,7 +342,7 @@ class LibraryController(
         // Mutate the filter icon because it needs to be tinted and the resource is shared.
         menu.findItem(R.id.action_filter).icon.mutate()
 
-        searchView.queryTextChanges().subscribeUntilDestroy {
+        searchView.queryTextChanges().subscribeUntilDetach {
             query = it.toString()
             searchRelay.call(query)
         }
@@ -417,6 +427,9 @@ class LibraryController(
     fun openManga(manga: Manga) {
         // Notify the presenter a manga is being opened.
         presenter.onOpenManga()
+
+        // Save current search query
+        backupQuery = query
 
         router.pushController(MangaController(manga).withFadeTransaction())
     }
