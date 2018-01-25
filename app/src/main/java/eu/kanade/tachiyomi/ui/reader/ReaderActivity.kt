@@ -206,18 +206,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                         return true
                     }
                 }
-                KeyEvent.KEYCODE_PAGE_DOWN -> {
-                    if (event.action == KeyEvent.ACTION_UP) {
-                        if (!volumeKeysInverted) viewer?.moveDown() else viewer?.moveUp()
-                    }
-                    return true
-                }
-                KeyEvent.KEYCODE_PAGE_UP -> {
-                    if (event.action == KeyEvent.ACTION_UP) {
-                        if (!volumeKeysInverted) viewer?.moveUp() else viewer?.moveDown()
-                    }
-                    return true
-                }
             }
         }
         return super.dispatchKeyEvent(event)
@@ -230,6 +218,8 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 KeyEvent.KEYCODE_DPAD_LEFT -> viewer?.moveLeft()
                 KeyEvent.KEYCODE_DPAD_DOWN -> viewer?.moveDown()
                 KeyEvent.KEYCODE_DPAD_UP -> viewer?.moveUp()
+                KeyEvent.KEYCODE_PAGE_DOWN -> viewer?.moveDown()
+                KeyEvent.KEYCODE_PAGE_UP -> viewer?.moveUp()
                 KeyEvent.KEYCODE_MENU -> toggleMenu()
                 else -> return super.onKeyUp(keyCode, event)
             }
