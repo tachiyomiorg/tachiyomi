@@ -37,7 +37,6 @@ object ChapterRecognition {
      */
     private val unwantedWhiteSpace = Regex("""(\s)(extra|special|omake)""")
 
-
     fun parseChapterNumber(chapter: SChapter, manga: SManga) {
         // If chapter number is known return.
         if (chapter.chapter_number == -2f || chapter.chapter_number > -1f)

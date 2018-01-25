@@ -59,6 +59,17 @@ class ChapterRecognitionTest {
     }
 
     /**
+     * Ch. xx base case but space after period
+     */
+    @Test fun ChCaseBase2() {
+        createManga("Mokushiroku Alice")
+
+        createChapter("Mokushiroku Alice Vol. 1 Ch. 4: Misrepresentation")
+        ChapterRecognition.parseChapterNumber(chapter, manga)
+        assertThat(chapter.chapter_number).isEqualTo(4f)
+    }
+
+    /**
      * Ch.xx.x base case
      */
     @Test fun ChCaseDecimal() {
