@@ -251,7 +251,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         if (count > 0f) {
             manga_chapters?.text = DecimalFormat("#.#").format(count)
         } else {
-            manga_chapters?.text = resources?.getString(R.string.unknown)
+            manga_chapters?.text = resources!!.getString(R.string.unknown)
         }
     }
 
