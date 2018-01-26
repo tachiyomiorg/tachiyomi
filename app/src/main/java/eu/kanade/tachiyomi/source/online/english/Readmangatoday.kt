@@ -96,14 +96,19 @@ class Readmangatoday : ParsedHttpSource() {
 
     override fun mangaDetailsParse(document: Document): SManga {
         val detailElement = document.select("div.movie-meta").first()
+        val genreElement = detailElement.select("dl.dl-horizontal > dd:eq(5) a")
 
         val manga = SManga.create()
         manga.author = document.select("ul.cast-list li.director > ul a").first()?.text()
         manga.artist = document.select("ul.cast-list li:not(.director) > ul a").first()?.text()
-        manga.genre = detailElement.select("dl.dl-horizontal > dd:eq(5)").first()?.text()
         manga.description = detailElement.select("li.movie-detail").first()?.text()
         manga.status = detailElement.select("dl.dl-horizontal > dd:eq(3)").first()?.text().orEmpty().let { parseStatus(it) }
         manga.thumbnail_url = detailElement.select("img.img-responsive").first()?.attr("src")
+
+        var genres = mutableListOf<String>()
+        genreElement?.forEach { genres.add(it.text()) }
+        manga.genre = genres.joinToString(", ")
+
         return manga
     }
 
