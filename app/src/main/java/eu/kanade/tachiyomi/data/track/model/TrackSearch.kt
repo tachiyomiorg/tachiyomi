@@ -1,4 +1,6 @@
-package eu.kanade.tachiyomi.data.database.models
+package eu.kanade.tachiyomi.data.track.model
+
+import eu.kanade.tachiyomi.data.database.models.Track
 
 class TrackSearch : Track {
 

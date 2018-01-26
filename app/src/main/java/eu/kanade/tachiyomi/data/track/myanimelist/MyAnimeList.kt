@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.database.models.TrackSearch
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.data.track.TrackService
 import rx.Completable
 import rx.Observable

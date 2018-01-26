@@ -35,7 +35,7 @@ class TrackAdapter(controller: TrackController) : RecyclerView.Adapter<TrackHold
     }
 
     interface OnClickListener {
-        fun OnLogoClick(position: Int)
+        fun onLogoClick(position: Int)
         fun onTitleClick(position: Int)
         fun onStatusClick(position: Int)
         fun onChaptersClick(position: Int)

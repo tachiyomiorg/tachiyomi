@@ -5,8 +5,8 @@ import android.graphics.Color
 import com.google.gson.Gson
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.database.models.TrackSearch
 import eu.kanade.tachiyomi.data.track.TrackService
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import rx.Completable
 import rx.Observable
 import uy.kohesive.injekt.injectLazy

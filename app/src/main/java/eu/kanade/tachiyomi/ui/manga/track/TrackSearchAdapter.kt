@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.TrackSearch
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.util.gone
 import eu.kanade.tachiyomi.util.inflate

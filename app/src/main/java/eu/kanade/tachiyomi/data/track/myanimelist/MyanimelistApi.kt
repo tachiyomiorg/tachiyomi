@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.data.track.myanimelist
 import android.net.Uri
 import android.util.Xml
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.database.models.TrackSearch
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.POST

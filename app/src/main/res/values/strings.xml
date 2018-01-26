@@ -378,7 +378,7 @@
     <string name="download_unread">Download unread</string>
     <string name="confirm_delete_chapters">Are you sure you want to delete selected chapters?</string>
 
-    <!-- MyAnimeList fragment -->
+    <!-- Tracking Screen -->
     <string name="manga_tracking_tab">Tracking</string>
     <string name="reading">Reading</string>
     <string name="completed">Completed</string>
@@ -388,6 +388,11 @@
     <string name="score">Score</string>
     <string name="title">Title</string>
     <string name="status">Status</string>
+    <string name="track_status">Status</string>
+    <string name="track_start_date">Started</string>
+    <string name="track_type">Type</string>
+    <string name="track_author">Author</string>
+    <string name="url_not_set">Manga url is not set please click title and select manga again</string>
 
     <!-- Category activity -->
     <string name="error_category_exists">A category with this name already exists!</string>
@@ -491,11 +496,5 @@
     <string name="channel_common">Common</string>
     <string name="channel_library">Library</string>
     <string name="channel_downloader">Downloader</string>
-
-    <string name="url_not_set">Manga url is not set please click title and select manga again</string>
-    <string name="track_status">Status</string>
-    <string name="track_start_date">Started</string>
-    <string name="track_type">Type</string>
-    <string name="track_author">Author</string>
 
 </resources>

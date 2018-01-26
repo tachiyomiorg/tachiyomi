@@ -10,7 +10,7 @@ class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
 
     init {
         val listener = adapter.rowClickListener
-        logo_container.setOnClickListener { listener.OnLogoClick(adapterPosition) }
+        logo_container.setOnClickListener { listener.onLogoClick(adapterPosition) }
         title_container.setOnClickListener { listener.onTitleClick(adapterPosition) }
         status_container.setOnClickListener { listener.onStatusClick(adapterPosition) }
         chapters_container.setOnClickListener { listener.onChaptersClick(adapterPosition) }

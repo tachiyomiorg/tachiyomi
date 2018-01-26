@@ -1,12 +1,14 @@
 package eu.kanade.tachiyomi.ui.manga.track
 
+import android.content.Intent
+import android.net.Uri
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.models.TrackSearch
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.toast
@@ -81,9 +83,16 @@ class TrackController : NucleusController<TrackPresenter>(),
         swipe_refresh?.isRefreshing = false
         activity?.toast(error.message)
     }
-    override fun OnLogoClick(position: Int) {
+
+    override fun onLogoClick(position: Int) {
         val item = adapter?.getItem(position) ?: return
-        item.track?.let { presenter.openTrackerUrl(it, item.service) }
+        item.track?.let {
+            if (it.tracking_url.isNullOrBlank()) {
+                activity?.toast(R.string.url_not_set)
+            } else {
+                activity?.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.tracking_url)))
+            }
+        }
     }
 
     override fun onTitleClick(position: Int) {

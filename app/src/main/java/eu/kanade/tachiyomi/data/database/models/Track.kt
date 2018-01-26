@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.data.database.models
 
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import java.io.Serializable
 
 interface Track : Serializable {

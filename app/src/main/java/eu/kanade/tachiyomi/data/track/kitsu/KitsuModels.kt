@@ -14,7 +14,7 @@ open class KitsuManga(obj: JsonObject) {
     val original by obj["attributes"].obj["posterImage"].byString
     val synopsis by obj["attributes"].byString
     val startDate = obj["attributes"].obj.get("startDate").nullString.orEmpty()
-    open val status = obj["attributes"].obj.get("status").nullString.orEmpty()
+    val status = obj["attributes"].obj.get("status").nullString.orEmpty()
 
     @CallSuper
     open fun toTrack() = Track.createTrackSearch(TrackManager.KITSU).apply {
@@ -32,7 +32,7 @@ open class KitsuManga(obj: JsonObject) {
 
 class KitsuLibManga(obj: JsonObject, manga: JsonObject) : KitsuManga(manga) {
     val remoteId by obj.byInt("id")
-    override val status by obj["attributes"].byString
+    //override val status by obj["attributes"].byString
     val ratingTwenty = obj["attributes"].obj.get("ratingTwenty").nullString
     val progress by obj["attributes"].byInt
 

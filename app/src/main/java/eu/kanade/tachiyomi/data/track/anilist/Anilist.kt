@@ -4,9 +4,9 @@ import android.content.Context
 import android.graphics.Color
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.database.models.TrackSearch
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.track.TrackService
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import rx.Completable
 import rx.Observable
 
@@ -50,15 +50,15 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
 
     override fun getScoreList(): List<String> {
         return when (preferences.anilistScoreType().getOrDefault()) {
-        // 10 point
+            // 10 point
             0 -> IntRange(0, 10).map(Int::toString)
-        // 100 point
+            // 100 point
             1 -> IntRange(0, 100).map(Int::toString)
-        // 5 stars
+            // 5 stars
             2 -> IntRange(0, 5).map { "$it ★" }
-        // Smiley
+            // Smiley
             3 -> listOf("-", "😦", "😐", "😊")
-        // 10 point decimal
+            // 10 point decimal
             4 -> IntRange(0, 100).map { (it / 10f).toString() }
             else -> throw Exception("Unknown score type")
         }
@@ -66,15 +66,15 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
 
     override fun indexToScore(index: Int): Float {
         return when (preferences.anilistScoreType().getOrDefault()) {
-        // 10 point
+            // 10 point
             0 -> index * 10f
-        // 100 point
+            // 100 point
             1 -> index.toFloat()
-        // 5 stars
+            // 5 stars
             2 -> index * 20f
-        // Smiley
+            // Smiley
             3 -> index * 30f
-        // 10 point decimal
+            // 10 point decimal
             4 -> index.toFloat()
             else -> throw Exception("Unknown score type")
         }
