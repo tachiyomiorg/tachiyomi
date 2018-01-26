@@ -21,7 +21,7 @@ class Mangahere : ParsedHttpSource() {
 
     override val name = "Mangahere"
 
-    override val baseUrl = "http://www.mangahere.co"
+    override val baseUrl = "http://www.mangahere.cc"
 
     override val lang = "en"
 
@@ -109,14 +109,21 @@ class Mangahere : ParsedHttpSource() {
     override fun mangaDetailsParse(document: Document): SManga {
         val detailElement = document.select(".manga_detail_top").first()
         val infoElement = detailElement.select(".detail_topText").first()
+        val licensedElement = document.select(".mt10.color_ff00.mb10").first()
 
         val manga = SManga.create()
         manga.author = infoElement.select("a[href^=//www.mangahere.co/author/]").first()?.text()
         manga.artist = infoElement.select("a[href^=//www.mangahere.co/artist/]").first()?.text()
         manga.genre = infoElement.select("li:eq(3)").first()?.text()?.substringAfter("Genre(s):")
         manga.description = infoElement.select("#show").first()?.text()?.substringBeforeLast("Show less")
-        manga.status = infoElement.select("li:eq(6)").first()?.text().orEmpty().let { parseStatus(it) }
         manga.thumbnail_url = detailElement.select("img.img").first()?.attr("src")
+
+        if (licensedElement?.text()?.contains("licensed") == true) {
+            manga.status = SManga.LICENSED
+        } else {
+            manga.status = infoElement.select("li:eq(6)").first()?.text().orEmpty().let { parseStatus(it) }
+        }
+
         return manga
     }
 
