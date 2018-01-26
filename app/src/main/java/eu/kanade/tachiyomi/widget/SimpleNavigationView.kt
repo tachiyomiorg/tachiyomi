@@ -92,8 +92,6 @@ open class SimpleNavigationView @JvmOverloads constructor(
         : ClickableHolder(parent.inflate(TR.layout.navigation_view_group), listener) {
 
         val title: TextView = itemView.findViewById(TR.id.title)
-        //val icon: ImageView = itemView.findViewById(TR.id.expand_icon)
-        //var isExpanded = false
     }
 
 

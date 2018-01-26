@@ -207,10 +207,6 @@ open class ExtendedNavigationView @JvmOverloads constructor(
                 is HeaderHolder -> {
                     val item = items[position] as Item.Header
                     holder.title.setText(item.resTitle)
-                    /*holder.icon.setVectorCompat(if (holder.isExpanded)
-                        R.drawable.ic_expand_more_white_24dp
-                    else
-                        R.drawable.ic_chevron_right_white_24dp)*/
                 }
                 is SeparatorHolder -> {
                     val view = holder.itemView
