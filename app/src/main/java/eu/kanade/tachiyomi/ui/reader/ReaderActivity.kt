@@ -416,16 +416,16 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
     private fun setRotation(rotation: Int) {
         when (rotation) {
-        // Rotation free
+            // Rotation free
             1 -> requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-        // Lock in current rotation
+            // Lock in current rotation
             2 -> {
                 val currentOrientation = resources.configuration.orientation
                 setRotation(if (currentOrientation == Configuration.ORIENTATION_PORTRAIT) 3 else 4)
             }
-        // Lock in portrait
+            // Lock in portrait
             3 -> requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
-        // Lock in landscape
+            // Lock in landscape
             4 -> requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
         }
     }
