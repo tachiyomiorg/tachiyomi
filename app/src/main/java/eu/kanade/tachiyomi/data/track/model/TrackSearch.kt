@@ -51,5 +51,12 @@ class TrackSearch : Track {
         result = 31 * result + remote_id
         return result
     }
+    companion object {
+
+        fun create(serviceId: Int): TrackSearch = TrackSearch().apply {
+            sync_id = serviceId
+        }
+
+    }
 
 }

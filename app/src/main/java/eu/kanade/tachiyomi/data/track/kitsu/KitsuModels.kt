@@ -5,6 +5,7 @@ import com.github.salomonbrys.kotson.*
 import com.google.gson.JsonObject
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 
 open class KitsuManga(obj: JsonObject) {
     val id by obj.byInt
@@ -17,7 +18,7 @@ open class KitsuManga(obj: JsonObject) {
     val status = obj["attributes"].obj.get("status").nullString.orEmpty()
 
     @CallSuper
-    open fun toTrack() = Track.createTrackSearch(TrackManager.KITSU).apply {
+    open fun toTrack() = TrackSearch.create(TrackManager.KITSU).apply {
         remote_id = this@KitsuManga.id
         title = canonicalTitle
         total_chapters = chapterCount ?: 0

@@ -3,8 +3,8 @@ package eu.kanade.tachiyomi.data.track.myanimelist
 import android.net.Uri
 import android.util.Xml
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.POST
 import eu.kanade.tachiyomi.network.asObservable
@@ -52,7 +52,7 @@ class MyanimelistApi(private val client: OkHttpClient, username: String, passwor
                     .flatMap { Observable.from(it.select("entry")) }
                     .filter { it.select("type").text() != "Novel" }
                     .map {
-                        Track.createTrackSearch(TrackManager.MYANIMELIST).apply {
+                        TrackSearch.create(TrackManager.MYANIMELIST).apply {
                             title = it.selectText("title")!!
                             remote_id = it.selectInt("id")
                             total_chapters = it.selectInt("chapters")
@@ -75,7 +75,7 @@ class MyanimelistApi(private val client: OkHttpClient, username: String, passwor
                 .map { Jsoup.parse(Parser.unescapeEntities(it.body()!!.string(), false), "", Parser.xmlParser()) }
                 .flatMap { Observable.from(it.select("manga")) }
                 .map {
-                    Track.createTrackSearch(TrackManager.MYANIMELIST).apply {
+                    TrackSearch.create(TrackManager.MYANIMELIST).apply {
                         title = it.selectText("series_title")!!
                         remote_id = it.selectInt("series_mangadb_id")
                         last_chapter_read = it.selectInt("my_read_chapters")

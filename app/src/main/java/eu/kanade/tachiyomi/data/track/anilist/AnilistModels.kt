@@ -5,6 +5,7 @@ import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import uy.kohesive.injekt.injectLazy
 import java.text.SimpleDateFormat
 import java.util.*
@@ -19,7 +20,7 @@ data class ALManga(
         val start_date_fuzzy: String,
         val total_chapters: Int) {
 
-    fun toTrack() = Track.createTrackSearch(TrackManager.ANILIST).apply {
+    fun toTrack() = TrackSearch.create(TrackManager.ANILIST).apply {
         remote_id = this@ALManga.id
         title = title_romaji
         total_chapters = this@ALManga.total_chapters

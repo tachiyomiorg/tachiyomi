@@ -85,13 +85,12 @@ class TrackController : NucleusController<TrackPresenter>(),
     }
 
     override fun onLogoClick(position: Int) {
-        val item = adapter?.getItem(position) ?: return
-        item.track?.let {
-            if (it.tracking_url.isNullOrBlank()) {
-                activity?.toast(R.string.url_not_set)
-            } else {
-                activity?.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.tracking_url)))
-            }
+        val track = adapter?.getItem(position)?.track ?: return
+
+        if (track.tracking_url.isNullOrBlank()) {
+            activity?.toast(R.string.url_not_set)
+        } else {
+            activity?.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(track.tracking_url)))
         }
     }
 
