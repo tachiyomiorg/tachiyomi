@@ -68,6 +68,9 @@
         android:paddingStart="24dp"
         android:paddingEnd="16dp"
         android:layout_marginEnd="8dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="16dp"
+        android:layout_marginRight="8dp"
         android:paddingBottom="24dp"
         android:paddingTop="12dp"
         android:contentDescription="@string/description_cover"/>
