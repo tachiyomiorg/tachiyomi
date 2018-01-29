@@ -1,13 +1,10 @@
 package eu.kanade.tachiyomi.ui.catalogue
 
-import android.os.Build
 import android.view.View
-import android.view.ViewGroup
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.holder.SlicedHolder
-import eu.kanade.tachiyomi.util.dpToPx
 import eu.kanade.tachiyomi.util.getRound
 import eu.kanade.tachiyomi.util.gone
 import eu.kanade.tachiyomi.util.visible
@@ -44,7 +41,7 @@ class SourceHolder(view: View, override val adapter: CatalogueAdapter) :
 
         // Set circle letter image.
         itemView.post {
-            image.setImageDrawable(image.getRound(source.name.take(1).toUpperCase(),false))
+            image.setImageDrawable(image.getRound(source.name.take(1).toUpperCase(), false))
         }
 
         // If source is login, show only login option
@@ -53,7 +50,11 @@ class SourceHolder(view: View, override val adapter: CatalogueAdapter) :
             source_latest.gone()
         } else {
             source_browse.setText(R.string.browse)
-            source_latest.visible()
+            if (source.supportsLatest) {
+                source_latest.visible()
+            } else {
+                source_latest.gone()
+            }
         }
     }
 }

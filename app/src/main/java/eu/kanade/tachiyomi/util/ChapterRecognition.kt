@@ -11,7 +11,7 @@ object ChapterRecognition {
      * All cases with Ch.xx
      * Mokushiroku Alice Vol.1 Ch. 4: Misrepresentation -R> 4
      */
-    private val basic = Regex("""(?<=ch\.)([0-9]+)(\.[0-9]+)?(\.?[a-z]+)?""")
+    private val basic = Regex("""(?<=ch\.) *([0-9]+)(\.[0-9]+)?(\.?[a-z]+)?""")
 
     /**
      * Regex used when only one number occurrence

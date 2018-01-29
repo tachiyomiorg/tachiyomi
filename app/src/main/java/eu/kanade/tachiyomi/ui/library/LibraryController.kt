@@ -118,6 +118,8 @@ class LibraryController(
 
     private var tabsVisibilitySubscription: Subscription? = null
 
+    private var searchViewSubscription: Subscription? = null
+
     init {
         setHasOptionsMenu(true)
         retainViewMode = RetainViewMode.RETAIN_DETACH
@@ -332,10 +334,14 @@ class LibraryController(
         // Mutate the filter icon because it needs to be tinted and the resource is shared.
         menu.findItem(R.id.action_filter).icon.mutate()
 
-        searchView.queryTextChanges().subscribeUntilDestroy {
-            query = it.toString()
-            searchRelay.call(query)
-        }
+        searchViewSubscription?.unsubscribe()
+        searchViewSubscription = searchView.queryTextChanges()
+                // Ignore events if this controller isn't at the top
+                .filter { router.backstack.lastOrNull()?.controller() == this }
+                .subscribeUntilDestroy {
+                    query = it.toString()
+                    searchRelay.call(query)
+                }
 
         searchItem.fixExpand()
     }

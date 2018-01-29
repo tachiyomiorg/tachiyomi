@@ -60,6 +60,12 @@ class WebtoonReader : BaseReader() {
         private set
 
     /**
+     * Duration of the double tap animation
+     */
+    var doubleTapAnimDuration = 500
+        private set
+
+    /**
      * Gesture detector for image touch events.
      */
     val imageGestureDetector by lazy { GestureDetector(context, ImageGestureListener()) }
@@ -123,6 +129,10 @@ class WebtoonReader : BaseReader() {
                 .skip(1)
                 .distinctUntilChanged()
                 .subscribe { refreshAdapter() })
+
+        subscriptions.add(readerActivity.preferences.doubleTapAnimSpeed()
+                .asObservable()
+                .subscribe { doubleTapAnimDuration = it })
 
         setPagesOnAdapter()
         return recycler

@@ -10,6 +10,10 @@ import eu.kanade.tachiyomi.util.setVectorCompat
 
 class SortGroup(val filter: Filter.Sort) : AbstractExpandableHeaderItem<SortGroup.Holder, ISectionable<*, *>>() {
 
+    init {
+        isExpanded = false
+    }
+
     override fun getLayoutRes(): Int {
         return R.layout.navigation_view_group
     }
@@ -29,6 +33,9 @@ class SortGroup(val filter: Filter.Sort) : AbstractExpandableHeaderItem<SortGrou
             R.drawable.ic_expand_more_white_24dp
         else
             R.drawable.ic_chevron_right_white_24dp)
+
+        holder.itemView.setOnClickListener(holder)
+
     }
 
     override fun equals(other: Any?): Boolean {

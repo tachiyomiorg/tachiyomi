@@ -13,6 +13,10 @@ import eu.kanade.tachiyomi.util.setVectorCompat
 
 class GroupItem(val filter: Filter.Group<*>) : AbstractExpandableHeaderItem<GroupItem.Holder, ISectionable<*, *>>() {
 
+    init {
+        isExpanded = false
+    }
+
     override fun getLayoutRes(): Int {
         return R.layout.navigation_view_group
     }
@@ -32,6 +36,9 @@ class GroupItem(val filter: Filter.Group<*>) : AbstractExpandableHeaderItem<Grou
             R.drawable.ic_expand_more_white_24dp
         else
             R.drawable.ic_chevron_right_white_24dp)
+
+        holder.itemView.setOnClickListener(holder)
+
     }
 
     override fun equals(other: Any?): Boolean {
@@ -44,6 +51,7 @@ class GroupItem(val filter: Filter.Group<*>) : AbstractExpandableHeaderItem<Grou
         return filter.hashCode()
     }
 
+
     open class Holder(view: View, adapter: FlexibleAdapter<*>) : ExpandableViewHolder(view, adapter, true) {
 
         val title: TextView = itemView.findViewById(R.id.title)
@@ -52,5 +60,6 @@ class GroupItem(val filter: Filter.Group<*>) : AbstractExpandableHeaderItem<Grou
         override fun shouldNotifyParentOnClick(): Boolean {
             return true
         }
+
     }
 }

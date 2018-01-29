@@ -7,7 +7,6 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
@@ -91,7 +90,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         // Set SwipeRefresh to refresh manga data.
         swipe_refresh.refreshes().subscribeUntilDestroy { fetchMangaFromSource() }
 
-        manga_full_title.longClicks().subscribeUntilDestroy{
+        manga_full_title.longClicks().subscribeUntilDestroy {
             copyToClipboard(view.context.getString(R.string.title), manga_full_title.text.toString())
         }
 
@@ -191,14 +190,14 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         }
 
         // If manga source is known update source TextView.
-        manga_source.text = if(source == null) {
+        manga_source.text = if (source == null) {
             view.context.getString(R.string.unknown)
         } else {
             source.toString()
         }
 
         // Update genres list
-        if(manga.genre.isNullOrBlank().not()){
+        if (manga.genre.isNullOrBlank().not()) {
             manga_genres_tags.setTags(manga.genre?.split(", "))
         }
 
@@ -249,10 +248,14 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
      * @param count number of chapters.
      */
     fun setChapterCount(count: Float) {
-        manga_chapters?.text = DecimalFormat("#.#").format(count)
+        if (count > 0f) {
+            manga_chapters?.text = DecimalFormat("#.#").format(count)
+        } else {
+            manga_chapters?.text = resources?.getString(R.string.unknown)
+        }
     }
 
-    fun setLastUpdateDate(date: Date){
+    fun setLastUpdateDate(date: Date) {
         manga_last_update?.text = DateFormat.getDateInstance(DateFormat.SHORT).format(date)
     }
 
@@ -381,7 +384,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
                 }
             }
             activity?.toast(activity?.getString(R.string.manga_added_library))
-        }else{
+        } else {
             activity?.toast(activity?.getString(R.string.manga_removed_library))
         }
     }
@@ -465,8 +468,8 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
      * @param label Label to show to the user describing the content
      * @param content the actual text to copy to the board
      */
-    private fun copyToClipboard(label: String, content: String){
-        if(content.isBlank()) return
+    private fun copyToClipboard(label: String, content: String) {
+        if (content.isBlank()) return
 
         val activity = activity ?: return
         val view = view ?: return
@@ -474,7 +477,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         val clipboard = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         clipboard.primaryClip = ClipData.newPlainText(label, content)
 
-        activity.toast( view.context.getString(R.string.copied_to_clipboard, content.truncateCenter(20)),
+        activity.toast(view.context.getString(R.string.copied_to_clipboard, content.truncateCenter(20)),
                 Toast.LENGTH_SHORT)
     }
 
@@ -483,7 +486,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
      *
      * @param query the search query to pass to the search controller
      */
-    fun performGlobalSearch(query: String){
+    fun performGlobalSearch(query: String) {
         val router = parentController?.router ?: return
         router.pushController(CatalogueSearchController(query).withFadeTransaction())
     }

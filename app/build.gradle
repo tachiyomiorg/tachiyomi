@@ -193,7 +193,8 @@ dependencies {
     // UI
     implementation 'com.dmitrymalkovich.android:material-design-dimens:1.4'
     implementation 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
-    implementation 'eu.davidea:flexible-adapter:5.0.0-rc3'
+    implementation 'eu.davidea:flexible-adapter:5.0.0-rc4'
+    implementation 'eu.davidea:flexible-adapter-ui:1.0.0-b1'
     implementation 'com.nononsenseapps:filepicker:2.5.2'
     implementation 'com.github.amulyakhare:TextDrawable:558677e'
     implementation('com.afollestad.material-dialogs:core:0.9.4.7') {

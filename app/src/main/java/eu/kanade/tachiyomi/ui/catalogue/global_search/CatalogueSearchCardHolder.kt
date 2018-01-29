@@ -30,6 +30,8 @@ class CatalogueSearchCardHolder(view: View, adapter: CatalogueSearchCardAdapter)
 
     fun bind(manga: Manga) {
         tvTitle.text = manga.title
+        // Set alpha of thumbnail.
+        itemImage.alpha = if (manga.favorite) 0.3f else 1.0f
 
         setImage(manga)
     }

@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.catalogue
 
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.*
@@ -15,6 +16,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.catalogue.browse.BrowseCatalogueController
 import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
@@ -99,6 +101,8 @@ class CatalogueController : NucleusController<CataloguePresenter>(),
         recycler.layoutManager = LinearLayoutManager(view.context)
         recycler.adapter = adapter
         recycler.addItemDecoration(SourceDividerItemDecoration(view.context))
+
+        requestPermissionsSafe(arrayOf(WRITE_EXTERNAL_STORAGE), 301)
     }
 
     override fun onDestroyView(view: View) {
