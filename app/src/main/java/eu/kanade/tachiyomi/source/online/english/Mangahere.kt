@@ -112,8 +112,8 @@ class Mangahere : ParsedHttpSource() {
         val licensedElement = document.select(".mt10.color_ff00.mb10").first()
 
         val manga = SManga.create()
-        manga.author = infoElement.select("a[href^=//www.mangahere.co/author/]").first()?.text()
-        manga.artist = infoElement.select("a[href^=//www.mangahere.co/artist/]").first()?.text()
+        manga.author = infoElement.select("a[href*=author/]").first()?.text()
+        manga.artist = infoElement.select("a[href*=artist/]").first()?.text()
         manga.genre = infoElement.select("li:eq(3)").first()?.text()?.substringAfter("Genre(s):")
         manga.description = infoElement.select("#show").first()?.text()?.substringBeforeLast("Show less")
         manga.thumbnail_url = detailElement.select("img.img").first()?.attr("src")
