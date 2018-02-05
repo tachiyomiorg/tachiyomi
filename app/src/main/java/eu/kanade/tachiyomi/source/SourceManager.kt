@@ -7,7 +7,9 @@ import android.content.pm.PackageManager
 import android.os.Environment
 import dalvik.system.PathClassLoader
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.online.HttpSource
+import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.source.online.YamlHttpSource
 import eu.kanade.tachiyomi.source.online.english.*
 import eu.kanade.tachiyomi.source.online.german.WieManga
@@ -22,6 +24,8 @@ import java.io.File
 open class SourceManager(private val context: Context) {
 
     private val sourcesMap = mutableMapOf<Long, Source>()
+
+    private var prefs = PreferencesHelper(context)
 
     init {
         createSources()
@@ -112,6 +116,15 @@ open class SourceManager(private val context: Context) {
                 Timber.e("Extension load error: $extName.", e)
             } catch (e: LinkageError) {
                 Timber.e("Extension load error: $extName.", e)
+            }
+        }
+        for (source in sources) {
+            if (source is LoginSource) {
+                val username = prefs.sourceUsername(source)
+                val password = prefs.sourcePassword(source)
+                if (username.length > 0 || password.length > 0) {
+                    source.login(username, password)
+                }
             }
         }
         return sources
