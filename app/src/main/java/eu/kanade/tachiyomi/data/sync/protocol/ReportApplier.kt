@@ -179,18 +179,21 @@ class ReportApplier(val context: Context) {
                     dbCategory.id = it.toInt()
                 }
             }
-            
+
+            /**
+             * Bind a list of manga references to a category
+             */
             fun List<SyncRef<SyncManga>>.toMangaCategories()
                     = mapNotNull {
                 val manga = it.resolve(report)
                 val source = manga.source.resolve(report)
                 val dbManga = db.getManga(manga.url, source.id).executeAsBlocking()
-                
+
                 dbManga?.let {
                     MangaCategory.create(it, dbCategory)
                 }
             }
-            
+
             //Add/delete manga categories
             val addedMangaCategories = it.addedManga.toMangaCategories().filterNot {
                 //Ensure DB does not have manga category

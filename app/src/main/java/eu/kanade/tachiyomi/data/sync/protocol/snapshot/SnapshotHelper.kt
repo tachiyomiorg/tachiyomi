@@ -86,7 +86,7 @@ class SnapshotHelper(private val context: Context) {
     
     companion object {
         private val CHARSET = Charsets.UTF_8
-        private val CATEGORY_SNAPSHOTS = "categories"
-        private val TRACK_SNAPSHOTS = "tracks"
+        private const val CATEGORY_SNAPSHOTS = "categories"
+        private const val TRACK_SNAPSHOTS = "tracks"
     }
 }
