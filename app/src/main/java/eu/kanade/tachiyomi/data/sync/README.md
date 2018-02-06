@@ -106,3 +106,68 @@ Those timestamps are wrong, the actual correct time for those changes are presen
 Now is the time we fix the recorded timestamps to match the ones in the change fields.
 
 Why did we not just directly record the datetime in the change fields instead of deferring it to a separate step? We had to ensure that the changes applied in the sync report are not included in the sync report we generate to send back to the device. Since the generated sync report only includes changes that are made before sync started, we can exclude changes from the sync report by pretending they occurred after sync started. Once we have generated the sync report for the client, we can correct the timestamps.
+
+## Example sync report
+```
+{
+  "deviceId":"c38064cb_bf4b_4fb0_8ee0_268057f2a03e",
+  "entities":[
+    {
+      "t":"Chapter",
+      "v":{
+        "chapterNum":20,
+        "lastPageRead":{
+          "date":1517889504570,
+          "value":2
+        },
+        "manga":{
+          "targetId":1
+        },
+        "name":"Hachinan tte, Sore wa Nai Deshou! 20",
+        "sourceOrder":4,
+        "url":"/manga/hachinan_tte_sore_wa_nai_deshou/c020/",
+        "syncId":2
+      }
+    },
+    {
+      "t":"History",
+      "v":{
+        "chapter":{
+          "targetId":2
+        },
+        "lastRead":{
+          "date":1517889504588,
+          "value":1517889504584
+        },
+        "syncId":3
+      }
+    },
+    {
+      "t":"Manga",
+      "v":{
+        "name":"Hachinan tte, Sore wa Nai Deshou!",
+        "source":{
+          "targetId":0
+        },
+        "thumbnailUrl":"https://mhcdn.secure.footprint.net/store/manga/20863/cover.jpg?token=259ed1230ee4fda83cd8498e28410516dd538824&ttl=1515758400&v=1515348578",
+        "url":"/manga/hachinan_tte_sore_wa_nai_deshou/",
+        "syncId":1
+      }
+    },
+    {
+      "t":"Source",
+      "v":{
+        "id":2,
+        "name":"Mangahere",
+        "syncId":0
+      }
+    }
+  ],
+  "from":1517889477512,
+  "to":1517889506578
+}
+```
+#### Things to take note of:
+- Between this sync and the last sync, I read one page in a chapter
+- Notice how the `lastPageRead` field specifies a `date` as well as a `value`. The `date` represents the time that field was last changed and the `value` represents the current value of the field.
+- Notice how the chapter refers the manga, so the manga is included in the report and referenced by the chapter with: `"targetId":1`
