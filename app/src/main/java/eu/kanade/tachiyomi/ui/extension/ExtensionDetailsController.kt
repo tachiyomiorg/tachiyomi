@@ -22,6 +22,7 @@ import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.setting.preferenceCategory
+import eu.kanade.tachiyomi.util.LocaleHelper
 import eu.kanade.tachiyomi.widget.preference.LoginPreference
 import eu.kanade.tachiyomi.widget.preference.SourceLoginDialog
 import kotlinx.android.synthetic.main.extension_detail_controller.*
@@ -62,7 +63,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
 
         extension_title.text = extension.name
         extension_version.text = context.getString(R.string.ext_version_info, extension.versionName)
-        extension_lang.text = context.getString(R.string.ext_language_info, extension.getLocalizedLang(context))
+        extension_lang.text = context.getString(R.string.ext_language_info, LocaleHelper.getDisplayName(extension.lang, context))
         extension_pkg.text = extension.pkgName
         extension.getApplicationIcon(context)?.let { extension_icon.setImageDrawable(it) }
         extension_uninstall_button.clicks().subscribeUntilDestroy {
@@ -122,8 +123,8 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         val dataStore = SharedPreferencesDataStore(/*if (source is HttpSource) {
             source.preferences
         } else {*/
-            context.getSharedPreferences("source_${source.id}", Context.MODE_PRIVATE)
-        /*}*/)
+                context.getSharedPreferences("source_${source.id}", Context.MODE_PRIVATE)
+                /*}*/)
 
         if (source is ConfigurableSource) {
             if (multiSource) {

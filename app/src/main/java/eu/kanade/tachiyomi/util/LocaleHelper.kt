@@ -1,10 +1,12 @@
 package eu.kanade.tachiyomi.util
 
 import android.app.Application
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import android.os.LocaleList
 import android.view.ContextThemeWrapper
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import uy.kohesive.injekt.injectLazy
 import java.util.*
@@ -45,10 +47,33 @@ object LocaleHelper {
         if (pref.isNullOrEmpty()) {
             return null
         }
-        val parts = pref.split("_", "-")
-        val lang = parts[0]
-        val country = parts.getOrNull(1) ?: ""
-        return Locale(lang, country)
+        return getLocale(pref)
+    }
+
+    /**
+     * Returns the locale for the value stored in preferences, or null if it's system language.
+     *
+     * @param pref the string value stored in preferences.
+     */
+    fun getDisplayName(lang: String?, context: Context): String {
+        return when (lang) {
+            null -> ""
+            "" -> context.getString(R.string.other_source)
+            "all" -> context.getString(R.string.all_lang)
+            else -> {
+                val locale = getLocale(lang)
+                locale.getDisplayName(locale).capitalize()
+            }
+        }
+    }
+
+    private fun getLocale(lang: String): Locale {
+        val sp = lang!!.split("_", "-")
+        return when (sp.size) {
+            2 -> Locale(sp[0], sp[1])
+            3 -> Locale(sp[0], sp[1], sp[2])
+            else -> Locale(lang)
+        }
     }
 
     /**

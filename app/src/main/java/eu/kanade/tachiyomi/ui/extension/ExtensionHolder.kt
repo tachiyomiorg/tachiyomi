@@ -7,6 +7,7 @@ import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.InstallStep
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.holder.SlicedHolder
+import eu.kanade.tachiyomi.util.LocaleHelper
 import io.github.mthli.slice.Slice
 import kotlinx.android.synthetic.main.extension_card_item.*
 
@@ -35,7 +36,7 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
         ext_title.text = extension.name
         version.text = extension.versionName
         lang.text = if (extension !is Extension.Untrusted) {
-            extension.getLocalizedLang(itemView.context)
+            LocaleHelper.getDisplayName(extension.lang, itemView.context)
         } else {
             itemView.context.getString(R.string.ext_untrusted).toUpperCase()
         }
