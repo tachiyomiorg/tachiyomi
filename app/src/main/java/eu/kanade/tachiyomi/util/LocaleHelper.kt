@@ -51,9 +51,7 @@ object LocaleHelper {
     }
 
     /**
-     * Returns the locale for the value stored in preferences, or null if it's system language.
-     *
-     * @param pref the string value stored in preferences.
+     * Returns Display name of a string language code
      */
     fun getDisplayName(lang: String?, context: Context): String {
         return when (lang) {
@@ -67,8 +65,11 @@ object LocaleHelper {
         }
     }
 
+    /*Return Locale from string language code
+
+     */
     private fun getLocale(lang: String): Locale {
-        val sp = lang!!.split("_", "-")
+        val sp = lang.split("_", "-")
         return when (sp.size) {
             2 -> Locale(sp[0], sp[1])
             3 -> Locale(sp[0], sp[1], sp[2])
