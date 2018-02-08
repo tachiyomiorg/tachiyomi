@@ -11,7 +11,7 @@ Tachiyomi is a free and open source manga reader for Android.
 ## Features
 
 Features include:
-* Online reading from sources like Batoto, KissManga, MangaFox, [and more](https://github.com/inorichi/tachiyomi-extensions)
+* Online reading from sources such as KissManga, MangaFox, [and more](https://github.com/inorichi/tachiyomi-extensions)
 * Local reading of downloaded manga
 * Configurable reader with multiple viewers, reading directions and other settings
 * MyAnimeList, AniList, and Kitsu support
@@ -27,7 +27,39 @@ If you want to try new features before they get to the stable release, you can d
 
 ## Issues, Feature Requests and Contributing
 
-If you want to open an issue, please read [contributing guidelines](https://github.com/inorichi/tachiyomi/blob/master/.github/CONTRIBUTING.md). Your issue may be closed otherwise.
+Please me sure to read the full guidelines. Your issue may be closed without warning if you do not.
+
+<details><summary>Issues</summary>
+
+1. **Before reporting a new issue, take a look at the [FAQ](https://github.com/inorichi/tachiyomi/wiki/FAQ), the [changelog](https://github.com/inorichi/tachiyomi/releases) and the already opened [issues](https://github.com/inorichi/tachiyomi/issues).**
+2. If you are unsure, ask here: [![Discord](https://img.shields.io/discord/349436576037732353.svg)](https://discord.gg/WrBkRk4)
+
+</details>
+
+<details><summary>Bugs</summary>
+
+* Include version (Setting > About > Version)
+ * If not latest, try updating, it may have already been solved
+ * Dev version is equal to the number of commits as seen in the main page
+* Include steps to reproduce (if not obvious from description)
+* Include screenshot (if needed)
+* If it could be device-dependent, try reproducing on another device (if possible)
+* For large logs use http://pastebin.com/ (or similar)
+* Don't group unrelated requests into one issue
+
+DO: https://github.com/inorichi/tachiyomi/issues/24 https://github.com/inorichi/tachiyomi/issues/71
+
+DON'T: https://github.com/inorichi/tachiyomi/issues/75
+
+</details>
+
+<details><summary>Feature Requests</summary>
+
+* Write a detailed issue, explaning what it should do or how. Avoid writing just "like X app does"
+* Include screenshot (if needed)
+
+Catalogue requests should be created at https://github.com/inorichi/tachiyomi-extensions, they do not belong in this repository.
+</details>
 
 ## FAQ
 
