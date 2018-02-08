@@ -32,4 +32,10 @@
     <string name="action_global_search">グローバル検索</string>
     <string name="action_select_all">すべて選択
 \n</string>
+    <string name="action_download">ダウンロード</string>
+    <string name="action_bookmark">ブックマーク</string>
+    <string name="action_remove_bookmark">ブックマークを削除</string>
+    <string name="action_display_grid">グリッド</string>
+    <string name="action_display_list">リスト</string>
+    <string name="action_sort">ソート</string>
     </resources>
