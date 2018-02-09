@@ -416,4 +416,22 @@ Spróbuj zmienić dekoder lub skorzystaj z jednej z opcji poniżej</string>
     <string name="local_source_badge">Lokalna</string>
     <string name="information_empty_category">Nie masz żadnych kategorii. Dotknij plusa, aby je utworzyć i zorganizować swoją bibliotekę.</string>
 
+    <string name="label_extensions">Rozszerzenia</string>
+    <string name="all_lang">Wszystkie</string>
+    <string name="ext_details">Szczegóły</string>
+    <string name="ext_install">Zainstaluj</string>
+    <string name="ext_pending">Oczekujące</string>
+    <string name="ext_downloading">Pobieranie</string>
+    <string name="ext_installing">Instalowanie</string>
+    <string name="ext_installed">Zainstalowano</string>
+    <string name="ext_uninstall">Odinstaluj</string>
+    <string name="ext_version_info">Wersja: %1$s</string>
+    <string name="ext_language_info">Język: %1$s</string>
+    <string name="pref_double_tap_anim_speed">Szybkość animacji podwójnego dotknięcia</string>
+    <string name="double_tap_anim_speed_0">Bez animacji</string>
+    <string name="double_tap_anim_speed_normal">Normalna</string>
+    <string name="double_tap_anim_speed_fast">Szybka</string>
+    <string name="manga_info_full_title_label">Tytuł</string>
+    <string name="manga_added_library">Dodano do biblioteki</string>
+    <string name="manga_removed_library">Usunięto z biblioteki</string>
     </resources>
