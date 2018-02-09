@@ -434,4 +434,5 @@ Spróbuj zmienić dekoder lub skorzystaj z jednej z opcji poniżej</string>
     <string name="manga_info_full_title_label">Tytuł</string>
     <string name="manga_added_library">Dodano do biblioteki</string>
     <string name="manga_removed_library">Usunięto z biblioteki</string>
+    <string name="label_migration">Migracja źródła</string>
     </resources>
