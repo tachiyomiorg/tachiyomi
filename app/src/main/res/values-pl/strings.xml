@@ -435,4 +435,9 @@ Spróbuj zmienić dekoder lub skorzystaj z jednej z opcji poniżej</string>
     <string name="manga_added_library">Dodano do biblioteki</string>
     <string name="manga_removed_library">Usunięto z biblioteki</string>
     <string name="label_migration">Migracja źródła</string>
+    <string name="manga_info_latest_data_label">Zaktualizowano</string>
+    <string name="copied_to_clipboard">%1$s skopiowano do schowka</string>
+
+    <string name="custom_hint">ilość</string>
+    <string name="copy">Kopiuj</string>
     </resources>
