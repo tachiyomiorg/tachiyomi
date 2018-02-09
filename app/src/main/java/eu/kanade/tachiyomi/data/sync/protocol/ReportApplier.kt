@@ -10,12 +10,14 @@ import eu.kanade.tachiyomi.data.sync.protocol.models.common.ChangedField
 import eu.kanade.tachiyomi.data.sync.protocol.models.common.SyncRef
 import eu.kanade.tachiyomi.data.sync.protocol.models.entities.*
 import eu.kanade.tachiyomi.data.track.TrackManager
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
 
-class ReportApplier(val context: Context) {
-    private val db: DatabaseHelper by injectLazy()
+class ReportApplier(val context: Context,
+                    private val db: DatabaseHelper = Injekt.get()) {
     private val tracks: TrackManager by injectLazy()
-    
+
     /**
      * Apply a sync report
      *

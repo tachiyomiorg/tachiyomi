@@ -9,13 +9,15 @@ import eu.kanade.tachiyomi.data.sync.protocol.models.common.ChangedField
 import eu.kanade.tachiyomi.data.sync.protocol.models.entities.*
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
 
-class ReportGenerator(val context: Context) {
-    private val db: DatabaseHelper by injectLazy()
+class ReportGenerator(val context: Context,
+                      private val db: DatabaseHelper = Injekt.get(),
+                      private val syncManager: LibrarySyncManager = Injekt.get()) {
     private val sources: SourceManager by injectLazy()
-    private val syncManager: LibrarySyncManager by injectLazy()
-    
+
     /**
      * Generate a sync report of all changes between [from] and the current time
      *
