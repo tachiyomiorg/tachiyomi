@@ -414,6 +414,7 @@
     <string name="select">Выбрать</string>
     <string name="migrate">Мигрировать</string>
     <string name="copy">Копировать</string>
-    <string name="migrating">Мигрирую...</string>
+    <string name="migrating">Мигрирую…</string>
 
+    <string name="source_search_options">Поисковые фильтры</string>
     </resources>
