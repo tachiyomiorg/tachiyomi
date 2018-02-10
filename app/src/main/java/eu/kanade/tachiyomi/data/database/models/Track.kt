@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.data.database.models
 
-import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import java.io.Serializable
 
 interface Track : Serializable {
@@ -32,15 +31,9 @@ interface Track : Serializable {
     }
 
     companion object {
-
         fun create(serviceId: Int): Track = TrackImpl().apply {
             sync_id = serviceId
         }
-
-        fun createTrackSearch(serviceId: Int): TrackSearch = TrackSearch().apply {
-            sync_id = serviceId
-        }
-
     }
 
 }

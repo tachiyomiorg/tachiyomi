@@ -22,7 +22,7 @@ object TrackTable {
 
     const val COL_TOTAL_CHAPTERS = "total_chapters"
 
-    const val COL_TRACKING_URL = "url"
+    const val COL_TRACKING_URL = "remote_url"
 
     val createTableQuery: String
         get() = """CREATE TABLE $TABLE(
