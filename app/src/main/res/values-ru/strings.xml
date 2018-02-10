@@ -162,7 +162,7 @@
     <string name="manga_info_source_label">Источник</string>
     <string name="manga_not_in_db">Эта манга будет удалена из базы данных!</string>
     <string name="manga_tracking_tab">Отслеживать</string>
-    <string name="name">Имя</string>
+    <string name="name">Название</string>
     <string name="no_next_chapter">Следующая глава не найдена</string>
     <string name="no_previous_chapter">Предыдущая глава не найдена</string>
     <string name="no_valid_sources">Пожалуйста включите хотя бы один источник</string>
