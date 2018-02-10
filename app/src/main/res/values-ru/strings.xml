@@ -377,7 +377,7 @@
 <string name="information_empty_category">У вас нет категорий. Нажмите кнопку + для начала организации вашей библиотеки.</string>
     <string name="label_migration">Миграция источника</string>
     <string name="label_extensions">Дополнение</string>
-    <string name="label_extension_info">Информация о дополнение</string>
+    <string name="label_extension_info">Информация о дополнении</string>
     <string name="all_lang">Все</string>
     <string name="ext_details">Детали</string>
     <string name="ext_update">Обновление</string>
@@ -385,7 +385,7 @@
     <string name="ext_pending">Ожидается</string>
     <string name="ext_downloading">Скачивается</string>
     <string name="ext_installing">Устанавливается</string>
-    <string name="ext_installed">Установленно</string>
+    <string name="ext_installed">Установлено</string>
     <string name="ext_trust">Доверенное</string>
     <string name="ext_untrusted">Недоверяемое</string>
     <string name="ext_uninstall">Удалить</string>
