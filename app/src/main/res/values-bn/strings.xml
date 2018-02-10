@@ -413,4 +413,23 @@
     <string name="channel_common">সাধারণ</string>
     <string name="channel_library">মাংগাশালা</string>
     <string name="channel_downloader">ডাউনলোডার</string>
-</resources>
+<string name="label_migration">উৎস পরিবর্তন</string>
+    <string name="label_extensions">সংযোজিত অংশ</string>
+    <string name="label_extension_info">সংযোজিত অংশ তথ্য</string>
+
+
+    <string name="all_lang">সব</string>
+    <string name="ext_details">বিস্তারিত</string>
+    <string name="ext_update">আপডেট</string>
+    <string name="ext_install">ইন্সটল</string>
+    <string name="ext_pending">প্রক্রিয়াধীন</string>
+    <string name="ext_downloading">ডাউনলোড হচ্ছে</string>
+    <string name="ext_installing">ইন্সটল হচ্ছে</string>
+    <string name="ext_installed">ইন্সটল হয়েছে</string>
+    <string name="ext_trust">নির্ভর</string>
+    <string name="ext_untrusted">অনির্ভরযোগ্য</string>
+    <string name="ext_uninstall">আন ইন্সটল</string>
+    <string name="ext_preferences">পছন্দ</string>
+    <string name="ext_available">সহজলভ্য</string>
+    <string name="untrusted_extension">অনির্ভর‍যোগ্য অংশ</string>
+    </resources>
