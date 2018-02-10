@@ -404,7 +404,7 @@
     <string name="manga_info_full_title_label">Заголовок</string>
     <string name="manga_added_library">Добавить в библиотеку</string>
     <string name="manga_removed_library">Удалить из библиотеки</string>
-    <string name="manga_info_latest_data_label">Обнавлено</string>
+    <string name="manga_info_latest_data_label">Обновлено</string>
     <string name="copied_to_clipboard">%1$s скопорован в буфер</string>
     <string name="custom_download">Загрузить определенное количество</string>
     <string name="custom_hint">Количество</string>
