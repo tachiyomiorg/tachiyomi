@@ -432,4 +432,34 @@
     <string name="ext_preferences">পছন্দ</string>
     <string name="ext_available">সহজলভ্য</string>
     <string name="untrusted_extension">অনির্ভর‍যোগ্য অংশ</string>
+    <string name="untrusted_extension_message">এই অংশগুলো অনির্ভরযোগ্য সার্টিফিকেট দ্বারা নিবন্ধিত এবং এটি সক্রিয় নয়।
+\n
+\nএকটি ত্রুটিপূর্ণ অংশ তাচিয়োমিতে থাকা যে কোন লগিন তথ্য পড়তে পারে অথবা অবাধ কোডগুলোকে নিষ্পত্তি করতে পারে।
+\n
+\nএই সার্টিফিকেট টি বিশ্বাস করা মানে আপনি ঝুঁকি নিতে সম্মত আছেন।</string>
+    <string name="ext_version_info">ভার্সন: %1$s</string>
+    <string name="ext_language_info">ভাষা: %1$s</string>
+    <string name="ext_empty_preferences">এই অংশটিকে সম্পাদন করার জন্য কোন প্রকার পছন্দ নেই</string>
+
+      <string name="pref_double_tap_anim_speed">দুই টোকায় এনিমেশনের গতি</string>
+    <string name="double_tap_anim_speed_0">এনিমেশন নেই</string>
+    <string name="double_tap_anim_speed_normal">সাধারণ</string>
+    <string name="double_tap_anim_speed_fast">দ্রুত</string>
+    <string name="source_search_options">ফিল্টারগুলো খুঁজুন</string>
+    <string name="manga_info_full_title_label">শিরোনাম</string>
+    <string name="manga_added_library">মাংগাশালায় যোগ করা হয়েছে</string>
+    <string name="manga_removed_library">মাংগাশালা থেকে সরিয়ে ফেলা হয়েছে</string>
+    <string name="manga_info_latest_data_label">আপডেট হয়েছে</string>
+    <string name="copied_to_clipboard">%1$s ক্লিপবোর্ডে কপি হয়েছে</string>
+
+    <string name="custom_download">কাস্টম পরিমাণ ডাউনলোড করুন</string>
+    <string name="custom_hint">পরিমাণ</string>
+    <string name="download_custom">কাস্টম ডাউনলোড</string>
+    <string name="migration_info">সরিয়ে নেয়ার জন্য উৎস নির্বাচন করুন</string>
+    <string name="migration_dialog_what_to_include">যোগ করার জন্য উপাত্ত নির্বাচন করুন</string>
+    <string name="select">নির্বাচন</string>
+    <string name="migrate">সরিয়ে ফেলুন</string>
+    <string name="copy">কপি</string>
+    <string name="migrating">সরানো হচ্ছে…</string>
+
     </resources>
