@@ -414,4 +414,51 @@
     <string name="channel_common">सामान्य</string>
     <string name="channel_library">पुस्तकालय</string>
     <string name="channel_downloader">डाउनलोडर</string>
-</resources>
+<string name="label_migration">स्रोत प्रवास</string>
+    <string name="label_extensions">विस्तार</string>
+    <string name="label_extension_info">विस्तार की जानकारी</string>
+
+
+    <string name="all_lang">सभी</string>
+    <string name="ext_details">विवरण</string>
+    <string name="ext_update">अद्यतन</string>
+    <string name="ext_install">स्थापित करें</string>
+    <string name="ext_pending">अपूर्ण</string>
+    <string name="ext_downloading">डाउनलोड कर रहा है</string>
+    <string name="ext_installing">स्थापना</string>
+    <string name="ext_installed">स्थापित</string>
+    <string name="ext_trust">भरोसा</string>
+    <string name="ext_untrusted">अविश्वस्त</string>
+    <string name="ext_uninstall">स्थापना रद्द करें</string>
+    <string name="ext_preferences">पसंद</string>
+    <string name="ext_available">उपलब्ध</string>
+    <string name="untrusted_extension">अविश्वस्त एक्सटेंशन</string>
+    <string name="untrusted_extension_message">यह एक्सटेंशन एक अविश्वस्त प्रमाणपत्र के साथ हस्ताक्षरित हुआ था और यह सक्रिय नहीं हुआ था।
+\nदुर्भावनापूर्ण विस्तार, किसी भी लॉगिन क्रेडेंशियल्स को तचीयोमी में संग्रहीत या मनमाना कोड निष्पादित कर सकता है
+\nइस प्रमाणपत्र पर विश्वास करके आप इन जोखिमों को स्वीकार करते हैं।</string>
+    <string name="ext_version_info">संस्करण: %1$s</string>
+    <string name="ext_language_info">भाषा: %1$s</string>
+    <string name="ext_empty_preferences">इस एक्सटेंशन के लिए कोई प्राथमिकताएं संपादित नहीं हैं</string>
+
+      <string name="pref_double_tap_anim_speed">डबल टैप एनीमेशन गति</string>
+    <string name="double_tap_anim_speed_0">कोई एनीमेशन नहीं</string>
+    <string name="double_tap_anim_speed_normal">साधारण</string>
+    <string name="double_tap_anim_speed_fast">उपवास</string>
+    <string name="source_search_options">खोज फ़िल्टर</string>
+    <string name="manga_info_full_title_label">शीर्षक</string>
+    <string name="manga_added_library">पुस्तकालय में जोड़ा गया</string>
+    <string name="manga_removed_library">लाइब्रेरी से निकाला गया</string>
+    <string name="manga_info_latest_data_label">अपडेट किया गया</string>
+    <string name="copied_to_clipboard">%1$s क्लिपबोर्ड पर नकल</string>
+
+    <string name="custom_download">कस्टम राशि डाउनलोड करें</string>
+    <string name="custom_hint">रकम</string>
+    <string name="download_custom">कस्टम डाउनलोड करें</string>
+    <string name="migration_info">से माइग्रेट करने के लिए स्रोत का चयन करने के लिए टैप करें</string>
+    <string name="migration_dialog_what_to_include">शामिल करने के लिए डेटा का चयन करें</string>
+    <string name="select">चयन</string>
+    <string name="migrate">प्रवास</string>
+    <string name="copy">नकल</string>
+    <string name="migrating">प्रवास हो रहा है…</string>
+
+    </resources>
