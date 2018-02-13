@@ -150,4 +150,7 @@
     <string name="action_sort">Rendezés</string>
     <string name="chapter_downloading">Letöltődik</string>
     <string name="chapter_queued">Várakozik</string>
+    <string name="action_select_all">Összes kijelölése</string>
+    <string name="action_set_filter">Szűrő alkalmazása</string>
+    <string name="action_cancel">Mégse</string>
     </resources>
