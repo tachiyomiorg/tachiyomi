@@ -170,4 +170,9 @@
     <string name="white_background">Fehér</string>
     <string name="black_background">Fekete</string>
     <string name="pref_viewer_type">Alapértelmezett megjelenítő</string>
+    <string name="default_viewer">Alapértelmezett</string>
+    <string name="left_to_right_viewer">Balról jobbra</string>
+    <string name="right_to_left_viewer">Jobbról balra</string>
+    <string name="vertical_viewer">Függőlegesen</string>
+    <string name="webtoon_viewer">Folytonos</string>
     </resources>
