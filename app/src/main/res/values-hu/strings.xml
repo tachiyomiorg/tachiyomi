@@ -169,4 +169,5 @@
     <string name="pref_custom_color_filter">Egyéni színprofil használata</string>
     <string name="white_background">Fehér</string>
     <string name="black_background">Fekete</string>
+    <string name="pref_viewer_type">Alapértelmezett megjelenítő</string>
     </resources>
