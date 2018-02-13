@@ -146,7 +146,7 @@
     <string name="action_retry">Újra</string>
     <string name="action_resume">Folytatás</string>
     <string name="action_display_mode">Megjelenítési mód módosítása</string>
-    <string name="action_display">Megjelenítés</string>
+    <string name="action_display">Megjelenés</string>
     <string name="action_sort">Rendezés</string>
     <string name="chapter_downloading">Letöltődik</string>
     <string name="chapter_queued">Várakozik</string>
