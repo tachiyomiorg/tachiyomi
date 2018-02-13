@@ -153,4 +153,5 @@
     <string name="action_select_all">Összes kijelölése</string>
     <string name="action_set_filter">Szűrő alkalmazása</string>
     <string name="action_cancel">Mégse</string>
+    <string name="action_open_log">Napló megnyitása</string>
     </resources>
