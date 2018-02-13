@@ -175,4 +175,5 @@
     <string name="right_to_left_viewer">Jobbról balra</string>
     <string name="vertical_viewer">Függőlegesen</string>
     <string name="webtoon_viewer">Folytonos</string>
+    <string name="scale_type_fit_screen">Képernyőhöz igazítás</string>
     </resources>
