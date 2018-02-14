@@ -176,7 +176,7 @@
 
       <string name="pref_download_directory">Pasta de downloads</string>
     <string name="pref_download_slots">Downloads simultâneos</string>
-    <string name="pref_download_only_over_wifi">Fazer download apenas no Wi-Fi</string>
+    <string name="pref_download_only_over_wifi">Fazer download apenas via Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Excluir ao marcar como lido</string>
     <string name="pref_remove_after_read">Excluir depois de ler</string>
     <string name="custom_dir">Pasta personalizada</string>
@@ -426,7 +426,7 @@ Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</s
     <string name="ext_update">Atualizar</string>
     <string name="ext_install">Instalar</string>
     <string name="ext_pending">Pendente</string>
-    <string name="ext_downloading">Baixando</string>
+    <string name="ext_downloading">Fazendo download</string>
     <string name="ext_installing">Instalando</string>
     <string name="ext_installed">Instalada</string>
     <string name="ext_trust">Confiabilidade</string>
@@ -455,9 +455,9 @@ Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</s
     <string name="manga_info_latest_data_label">Última atualização</string>
     <string name="copied_to_clipboard">%1$s copiado para área de transferência</string>
 
-    <string name="custom_download">Baixar uma quantidade personalizada</string>
+    <string name="custom_download">Fazer download de uma quantidade personalizada</string>
     <string name="custom_hint">quantidade</string>
-    <string name="download_custom">Baixar personalização</string>
+    <string name="download_custom">Fazer download personalizado</string>
     <string name="migration_info">Toque para selecionar a fonte da qual migrar</string>
     <string name="migration_dialog_what_to_include">Selecione dados para incluir</string>
     <string name="select">Selecionar</string>
