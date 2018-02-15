@@ -88,12 +88,8 @@ open class SimpleNavigationView @JvmOverloads constructor(
     /**
      * Header view holder.
      */
-    class HeaderHolder(parent: ViewGroup, listener: View.OnClickListener?)
-        : ClickableHolder(parent.inflate(TR.layout.navigation_view_group), listener) {
-
-        val title: TextView = itemView.findViewById(TR.id.title)
-    }
-
+    class HeaderHolder(parent: ViewGroup)
+        : Holder(parent.inflate(R.layout.design_navigation_item_subheader))
 
     /**
      * Clickable view holder.

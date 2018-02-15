@@ -62,7 +62,6 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
                 onGroupClicked(item.group)
             }
         }
-
     }
 
     /**
@@ -214,7 +213,5 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
 
             item.group.items.forEach { adapter.notifyItemChanged(it) }
         }
-
     }
-
 }

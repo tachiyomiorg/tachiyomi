@@ -99,8 +99,8 @@ open class ExtendedNavigationView @JvmOverloads constructor(
 
             override fun getStateDrawable(context: Context): Drawable? {
                 return when (state) {
-                    SORT_ASC -> tintVector(context, R.drawable.ic_arrow_up_32dp)
-                    SORT_DESC -> tintVector(context, R.drawable.ic_arrow_down_32dp)
+                    SORT_ASC -> tintVector(context, R.drawable.ic_arrow_up_white_32dp)
+                    SORT_DESC -> tintVector(context, R.drawable.ic_arrow_down_white_32dp)
                     SORT_NONE -> ContextCompat.getDrawable(context, R.drawable.empty_drawable_32dp)
                     else -> null
                 }
@@ -192,7 +192,7 @@ open class ExtendedNavigationView @JvmOverloads constructor(
         @CallSuper
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
             return when (viewType) {
-                VIEW_TYPE_HEADER -> HeaderHolder(parent, onClick)
+                VIEW_TYPE_HEADER -> HeaderHolder(parent)
                 VIEW_TYPE_SEPARATOR -> SeparatorHolder(parent)
                 VIEW_TYPE_RADIO -> RadioHolder(parent, onClick)
                 VIEW_TYPE_CHECKBOX -> CheckboxHolder(parent, onClick)
