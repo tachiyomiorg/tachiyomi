@@ -49,13 +49,16 @@ fun syncChaptersWithSource(db: DatabaseHelper,
         // Add the chapter if not in db already, or update if the metadata changed.
         if (dbChapter == null) {
             toAdd.add(sourceChapter)
-        } else if (dbChapter.scanlator != sourceChapter.scanlator ||
-                dbChapter.name != sourceChapter.name) {
-
-            dbChapter.scanlator = sourceChapter.scanlator
-            dbChapter.name = sourceChapter.name
-
-            toChange.add(dbChapter)
+        } else {
+            //this forces metadata update for the main viewable things in the chapter list
+            ChapterRecognition.parseChapterNumber(sourceChapter, manga)
+            if (dbChapter.scanlator != sourceChapter.scanlator || dbChapter.name != sourceChapter.name || dbChapter.date_upload != sourceChapter.date_upload || dbChapter.chapter_number != sourceChapter.chapter_number) {
+                dbChapter.scanlator = sourceChapter.scanlator
+                dbChapter.name = sourceChapter.name
+                dbChapter.date_upload = sourceChapter.date_upload
+                dbChapter.chapter_number = sourceChapter.chapter_number
+                toChange.add(dbChapter)
+            }
         }
     }
 
