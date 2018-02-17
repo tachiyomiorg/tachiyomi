@@ -27,8 +27,8 @@
     <string name="action_sort_last_updated">По обновления</string>
     <string name="action_search">Търсене</string>
     <string name="action_select_all">Избери всички</string>
-    <string name="action_mark_as_read">Отбележи като прочетена/и</string>
-    <string name="action_mark_as_unread">Отбележи като непрочетена/и</string>
+    <string name="action_mark_as_read">Отбележи като прочетена</string>
+    <string name="action_mark_as_unread">Отбележи като непрочетена</string>
     <string name="action_mark_previous_as_read">Отбележи предната като прочетена</string>
     <string name="action_download">Изтегли</string>
     <string name="action_bookmark">Отметни</string>
@@ -263,7 +263,7 @@
     <string name="show_title">Покажи заглавие</string>
     <string name="show_chapter_number">Показвай номера на главата</string>
     <string name="sorting_mode">Сортиране</string>
-    <string name="sort_by_source">По източника</string>
+    <string name="sort_by_source">По източник</string>
     <string name="sort_by_number">По ред на главите</string>
     <string name="manga_download">Изтегли</string>
     <string name="download_1">Изтегли следващата глава</string>
@@ -365,7 +365,7 @@
     <string name="information_no_downloads">Нямате изтегляния</string>
     <string name="information_no_recent">Нямате скорошни глави</string>
     <string name="information_no_recent_manga">Няматe наскоро прочетена манга</string>
-    <string name="information_empty_library">Библиотеката Ви е празна, можете да я допълните от секция Каталози.</string>
+    <string name="information_empty_library">Библиотеката Ви е празна, можете да я напълните от менюто Каталози.</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Изтегли</string>
@@ -441,7 +441,7 @@
     <string name="notification_new_chapters_text">За %1$d заглавия</string>
     <string name="download_notifier_download_paused">Изтеглянето спряно</string>
 
-<string name="backup_restore_content">За възстановяването се изтеглят данни от източника, може да бъде отчетен разход на данни.
+<string name="backup_restore_content">За възстановяването се изтеглят данни от източника, за които може да бъде отчетен разход на данни. 
 \nСъщо проверете дали сте влезли коректно в източниците, които го изискват, преди възстановяването.</string>
     <string name="action_global_search">Глобално търсене</string>
     <string name="action_open">Отвори</string>
@@ -462,7 +462,7 @@
     <string name="information_empty_category">Нямате категории. Натиснете плюса, за да ги създадете и да организирате библиотеката си.</string>
 
     <string name="label_migration">Смяна на източник</string>
-    <string name="label_extensions">Приложения</string>
+    <string name="label_extensions">Разширения</string>
     <string name="label_extension_info">Информация</string>
 
 
@@ -470,21 +470,21 @@
     <string name="ext_details">Подробности</string>
     <string name="ext_update">Обнови</string>
     <string name="ext_install">Инсталирай</string>
-    <string name="ext_pending">Изчакващи</string>
+    <string name="ext_pending">На изчакване</string>
     <string name="ext_downloading">Изтегля се</string>
     <string name="ext_installing">Инсталира се</string>
-    <string name="ext_installed">Инсталирано</string>
+    <string name="ext_installed">Инсталирани</string>
     <string name="ext_trust">Потвърдени</string>
     <string name="ext_untrusted">Непотвърдени</string>
     <string name="ext_uninstall">Деинсталирай</string>
     <string name="ext_preferences">Предпочитания</string>
-    <string name="ext_available">Достъпно</string>
-    <string name="untrusted_extension">Непотвърдено приложение</string>
+    <string name="ext_available">Достъпни</string>
+    <string name="untrusted_extension">Непотвърдено разширение</string>
     <string name="untrusted_extension_message">Следното разширение имаше непотвърден сертификат и не беше активирано.
 \n
-\nЗлонамереното разширение може да види всичката информация за вход в системата на Tachiyomi или да изпълнява неблагонадежден код.
+\nЗлонамереното разширение може да види всичката информация за вход в системата на Tachiyomi или да компилира неблагонадежден код.
 \n
-\nПотвърждавайки този сертификат, вие поемате тези рискове.</string>
+\nПотвърждавайки този сертификат, вие приемате тези рискове.</string>
     <string name="ext_version_info">Версия: %1$s</string>
     <string name="ext_language_info">Език: %1$s</string>
     <string name="ext_empty_preferences">Няма предпочитания за това разширение</string>
@@ -503,7 +503,7 @@
     <string name="custom_download">Изтегли определен брой</string>
     <string name="custom_hint">брой</string>
     <string name="download_custom">Изтегли определен брой</string>
-    <string name="migration_info">Натисни, за да избереш кой източник ще смениш</string>
+    <string name="migration_info">Натисни, за да избереш от кой източник да мигрираш</string>
     <string name="migration_dialog_what_to_include">Изберете кои данни ще мигрирате</string>
     <string name="select">Избери</string>
     <string name="migrate">Мигрирай</string>
