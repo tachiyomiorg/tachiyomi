@@ -386,12 +386,10 @@
     <string name="ext_downloading">Скачивается</string>
     <string name="ext_installing">Устанавливается</string>
     <string name="ext_installed">Установлено</string>
-    <string name="ext_trust">Доверенное</string>
     <string name="ext_untrusted">Ненадежное</string>
     <string name="ext_uninstall">Удалить</string>
     <string name="ext_preferences">Настройки</string>
     <string name="ext_available">Доступно</string>
-    <string name="ext_trust">Надежное</string>
     <string name="untrusted_extension">Ненадежное расширение</string>
     <string name="untrusted_extension_message">Это расширение было подписано ненадежным сертификатом и не было активировано.  Вредоносное расширение может считывать любые учетные данные для входа, хранящиеся в Tachiyomi, или выполнять произвольный код.  Доверяя этому сертификату, вы принимаете эти риски.</string>
     <string name="ext_version_info">Версия: %1$s</string>
