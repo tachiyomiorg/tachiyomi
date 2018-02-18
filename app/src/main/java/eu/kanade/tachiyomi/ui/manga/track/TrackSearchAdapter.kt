@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.data.glide.GlideApp
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.util.gone
 import eu.kanade.tachiyomi.util.inflate
 import kotlinx.android.synthetic.main.track_search_item.view.*
@@ -53,7 +53,6 @@ class TrackSearchAdapter(context: Context)
                         .centerCrop()
                         .into(view.track_search_cover)
 
-
                 if (track.publishing_status.isNullOrBlank()) {
                     view.track_search_status.gone()
                     view.track_search_status_result.gone()
@@ -74,9 +73,7 @@ class TrackSearchAdapter(context: Context)
                 } else {
                     view.track_search_start_result.text = track.start_date
                 }
-
             }
         }
     }
-
 }

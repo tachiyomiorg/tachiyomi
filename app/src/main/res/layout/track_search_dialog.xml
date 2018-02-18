@@ -14,6 +14,7 @@
         android:hint="@string/title"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:maxLines="1"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ProgressBar
@@ -34,7 +35,7 @@
         android:id="@+id/track_search_list"
         style="@style/Theme.Widget.CardView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="40dp"
         android:choiceMode="singleChoice"
         android:clipToPadding="false"
