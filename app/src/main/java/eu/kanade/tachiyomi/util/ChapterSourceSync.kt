@@ -52,7 +52,7 @@ fun syncChaptersWithSource(db: DatabaseHelper,
         } else {
             //this forces metadata update for the main viewable things in the chapter list
             ChapterRecognition.parseChapterNumber(sourceChapter, manga)
-            if (dbChapter.scanlator != sourceChapter.scanlator || dbChapter.name != sourceChapter.name || dbChapter.date_upload != sourceChapter.date_upload || dbChapter.chapter_number != sourceChapter.chapter_number) {
+            if (shouldUpdateDbChapter(dbChapter, sourceChapter)) {
                 dbChapter.scanlator = sourceChapter.scanlator
                 dbChapter.name = sourceChapter.name
                 dbChapter.date_upload = sourceChapter.date_upload
@@ -125,4 +125,11 @@ fun syncChaptersWithSource(db: DatabaseHelper,
     }
     return Pair(toAdd.subtract(readded).toList(), toDelete.subtract(readded).toList())
 
+}
+
+//checks if the chapter in db needs updated
+private fun shouldUpdateDbChapter(dbChapter: Chapter, sourceChapter: SChapter): Boolean {
+    return dbChapter.scanlator != sourceChapter.scanlator || dbChapter.name != sourceChapter.name ||
+            dbChapter.date_upload != sourceChapter.date_upload ||
+            dbChapter.chapter_number != sourceChapter.chapter_number
 }
