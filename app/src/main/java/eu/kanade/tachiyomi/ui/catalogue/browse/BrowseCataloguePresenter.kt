@@ -30,6 +30,7 @@ import uy.kohesive.injekt.api.get
  */
 open class BrowseCataloguePresenter(
         sourceId: Long,
+        private val initialQuery: String = "",
         sourceManager: SourceManager = Injekt.get(),
         private val db: DatabaseHelper = Injekt.get(),
         private val prefs: PreferencesHelper = Injekt.get(),
@@ -101,6 +102,10 @@ open class BrowseCataloguePresenter(
 
         if (savedState != null) {
             query = savedState.getString(::query.name, "")
+        } else {
+            if (!initialQuery.isEmpty()) {
+                query = initialQuery
+            }
         }
 
         add(prefs.catalogueAsList().asObservable()
