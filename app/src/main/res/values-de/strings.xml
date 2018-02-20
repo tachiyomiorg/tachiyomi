@@ -453,4 +453,6 @@
     <string name="select">Auswählen</string>
     <string name="migrate">Migrieren</string>
     <string name="copy">Kopieren</string>
+    <string name="migrating">Migriere…</string>
+
     </resources>
