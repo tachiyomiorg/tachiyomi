@@ -456,4 +456,10 @@
     <string name="migrating">Migriere…</string>
 
     <string name="ext_trust">Vertrauen</string>
+    <string name="ext_untrusted">Nicht vertrauenswürdig</string>
+    <string name="untrusted_extension">Nicht vertrauenswürdige Erweiterung</string>
+    <string name="pref_double_tap_anim_speed">Doppeltipp Animationsgeschwindigkeit</string>
+    <string name="custom_download">Benutzerdefinierte Anzahl herunterladen</string>
+    <string name="migration_info">Wähle die Quelle von welcher Migriert werden soll</string>
+    <string name="migration_dialog_what_to_include">Wähle zu beinhaltende Daten</string>
     </resources>
