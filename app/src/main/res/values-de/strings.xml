@@ -446,4 +446,9 @@
     <string name="manga_info_full_title_label">Titel</string>
     <string name="manga_added_library">Zur Bibliothek hinzugefügt</string>
     <string name="manga_removed_library">Aus Bibliothek entfernt</string>
+    <string name="manga_info_latest_data_label">Aktualisiert</string>
+    <string name="copied_to_clipboard">%1$s in Zwischenablage gespeichert</string>
+
+    <string name="custom_hint">Anzahl</string>
+    <string name="select">Auswählen</string>
     </resources>
