@@ -445,5 +445,5 @@
     <string name="source_search_options">Suchfilter</string>
     <string name="manga_info_full_title_label">Titel</string>
     <string name="manga_added_library">Zur Bibliothek hinzugefügt</string>
-    <string name="manga_removed_library">Von Bibliothek entfernt</string>
+    <string name="manga_removed_library">Aus Bibliothek entfernt</string>
     </resources>
