@@ -29,7 +29,7 @@
 
     <item
         android:id="@+id/action_source_migration"
-        android:title="Source migration"
+        android:title="@string/label_migration"
         app:showAsAction="never"/>
 
 </menu>
