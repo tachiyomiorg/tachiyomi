@@ -451,4 +451,5 @@
 
     <string name="custom_hint">Anzahl</string>
     <string name="select">Auswählen</string>
+    <string name="migrate">Migrieren</string>
     </resources>
