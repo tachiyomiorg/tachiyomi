@@ -418,7 +418,7 @@
 
     <string name="label_migration">Quellmigration</string>
     <string name="label_extensions">Erweiterungen</string>
-    <string name="label_extension_info">Erweiterungsinfo</string>
+    <string name="label_extension_info">Erweiterungsinformationen</string>
 
 
     </resources>
