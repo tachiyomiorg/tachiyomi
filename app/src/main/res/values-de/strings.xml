@@ -44,7 +44,7 @@
     <string name="action_rename_category">Kategorie umbenennen</string>
     <string name="action_move_category">Zu Kategorien hinzufügen</string>
     <string name="action_edit_cover">Vorschaubild bearbeiten</string>
-    <string name="action_sort_up">Aufsteigend Sortieren</string>
+    <string name="action_sort_up">Aufsteigend sortieren</string>
     <string name="action_sort_down">Absteigend Sortieren</string>
     <string name="action_show_unread">Ungelesen</string>
     <string name="action_show_downloaded">Heruntergeladen</string>
