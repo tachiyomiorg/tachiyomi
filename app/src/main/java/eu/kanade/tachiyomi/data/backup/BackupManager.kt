@@ -406,6 +406,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
                             dbTrack.remote_id = track.remote_id
                         }
                         dbTrack.last_chapter_read = Math.max(dbTrack.last_chapter_read, track.last_chapter_read)
+                        dbTrack.tracking_url = track.tracking_url
                         isInDatabase = true
                         trackToUpdate.add(dbTrack)
                         break
