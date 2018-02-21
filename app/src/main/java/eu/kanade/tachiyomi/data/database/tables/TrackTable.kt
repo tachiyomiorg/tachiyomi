@@ -24,6 +24,8 @@ object TrackTable {
 
     const val COL_TRACKING_URL = "remote_url"
 
+    const val COL_COVER_URL = "cover_url"
+
     val createTableQuery: String
         get() = """CREATE TABLE $TABLE(
             $COL_ID INTEGER NOT NULL PRIMARY KEY,
@@ -36,6 +38,7 @@ object TrackTable {
             $COL_STATUS INTEGER NOT NULL,
             $COL_SCORE FLOAT NOT NULL,
             $COL_TRACKING_URL TEXT NOT NULL,
+            $COL_COVER_URL TEXT NOT NULL,
             UNIQUE ($COL_MANGA_ID, $COL_SYNC_ID) ON CONFLICT REPLACE,
             FOREIGN KEY($COL_MANGA_ID) REFERENCES ${MangaTable.TABLE} (${MangaTable.COL_ID})
             ON DELETE CASCADE
@@ -43,4 +46,7 @@ object TrackTable {
 
     val addTrackingUrl: String
         get() = "ALTER TABLE $TABLE ADD COLUMN $COL_TRACKING_URL TEXT DEFAULT ''"
+
+    val addCoverUrl: String
+        get() = "ALTER TABLE $TABLE ADD COLUMN $COL_COVER_URL TEXT DEFAULT ''"
 }

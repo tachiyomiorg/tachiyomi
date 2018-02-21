@@ -11,6 +11,7 @@ import com.pushtorefresh.storio.sqlite.queries.InsertQuery
 import com.pushtorefresh.storio.sqlite.queries.UpdateQuery
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.database.models.TrackImpl
+import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_COVER_URL
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_ID
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_LAST_CHAPTER_READ
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_MANGA_ID
@@ -51,6 +52,7 @@ class TrackPutResolver : DefaultPutResolver<Track>() {
         put(COL_TOTAL_CHAPTERS, obj.total_chapters)
         put(COL_STATUS, obj.status)
         put(COL_TRACKING_URL, obj.tracking_url)
+        put(COL_COVER_URL, obj.cover_url)
         put(COL_SCORE, obj.score)
 
     }
@@ -69,6 +71,7 @@ class TrackGetResolver : DefaultGetResolver<Track>() {
         status = cursor.getInt(cursor.getColumnIndex(COL_STATUS))
         score = cursor.getFloat(cursor.getColumnIndex(COL_SCORE))
         tracking_url = cursor.getString(cursor.getColumnIndex(COL_TRACKING_URL))
+        cover_url = cursor.getString(cursor.getColumnIndex(COL_COVER_URL))
     }
 }
 

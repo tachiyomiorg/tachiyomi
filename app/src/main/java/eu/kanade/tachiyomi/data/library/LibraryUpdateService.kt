@@ -81,13 +81,14 @@ class LibraryUpdateService(
     /**
      * Cached progress notification to avoid creating a lot.
      */
-    private val progressNotification by lazy { NotificationCompat.Builder(this, Notifications.CHANNEL_LIBRARY)
-            .setContentTitle(getString(R.string.app_name))
-            .setSmallIcon(R.drawable.ic_refresh_white_24dp_img)
-            .setLargeIcon(notificationBitmap)
-            .setOngoing(true)
-            .setOnlyAlertOnce(true)
-            .addAction(R.drawable.ic_clear_grey_24dp_img, getString(android.R.string.cancel), cancelIntent)
+    private val progressNotification by lazy {
+        NotificationCompat.Builder(this, Notifications.CHANNEL_LIBRARY)
+                .setContentTitle(getString(R.string.app_name))
+                .setSmallIcon(R.drawable.ic_refresh_white_24dp_img)
+                .setLargeIcon(notificationBitmap)
+                .setOngoing(true)
+                .setOnlyAlertOnce(true)
+                .addAction(R.drawable.ic_clear_grey_24dp_img, getString(android.R.string.cancel), cancelIntent)
     }
 
     /**
@@ -293,7 +294,7 @@ class LibraryUpdateService(
                             .filter { pair -> pair.first.isNotEmpty() }
                             .doOnNext {
                                 if (downloadNew && (categoriesToDownload.isEmpty() ||
-                                        manga.category in categoriesToDownload)) {
+                                                manga.category in categoriesToDownload)) {
 
                                     downloadChapters(manga, it.first)
                                     hasDownloads = true
@@ -362,6 +363,8 @@ class LibraryUpdateService(
         val count = AtomicInteger(0)
 
         // Emit each manga and update it sequentially.
+        val tracker = preferences.coverSource()
+
         return Observable.from(mangaToUpdate)
                 // Notify manga that will update.
                 .doOnNext { showProgressNotification(it, count.andIncrement, mangaToUpdate.size) }
@@ -372,6 +375,11 @@ class LibraryUpdateService(
 
                     source.fetchMangaDetails(manga)
                             .map { networkManga ->
+                                db.getTrack(manga, tracker).executeAsBlocking()?.let {
+                                    if (it.size > 0 && it[0].cover_url.isNotBlank()) {
+                                            networkManga.thumbnail_url = it[0].cover_url
+                                    }
+                                }
                                 manga.copyFrom(networkManga)
                                 db.insertManga(manga).executeAsBlocking()
                                 manga

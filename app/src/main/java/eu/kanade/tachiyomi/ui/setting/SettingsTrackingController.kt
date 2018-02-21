@@ -22,6 +22,15 @@ class SettingsTrackingController : SettingsController(),
     override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
         titleRes = R.string.pref_category_tracking
 
+        intListPreference {
+            key = Keys.cover_source
+            titleRes = R.string.pref_cover_source
+            entriesRes = arrayOf(R.string.source_covers, R.string.myanimelist, R.string.anilist, R.string.kitsu)
+            entryValues = arrayOf("0", "1", "2", "3")
+            defaultValue = "0"
+            summary = "%s"
+        }
+
         switchPreference {
             key = Keys.autoUpdateTrack
             titleRes = R.string.pref_auto_update_manga_sync

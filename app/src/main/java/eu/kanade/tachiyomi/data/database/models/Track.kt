@@ -24,6 +24,8 @@ interface Track : Serializable {
 
     var tracking_url: String
 
+    var cover_url: String
+
     fun copyPersonalFrom(other: Track) {
         last_chapter_read = other.last_chapter_read
         score = other.score

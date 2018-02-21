@@ -19,6 +19,15 @@ interface TrackQueries : DbProvider {
                     .build())
             .prepare()
 
+    fun getTrack(manga: Manga, syncId : Int) = db.get()
+            .listOfObjects(Track::class.java)
+            .withQuery(Query.builder()
+                    .table(TrackTable.TABLE)
+                    .where("${TrackTable.COL_MANGA_ID} = ? and ${TrackTable.COL_SYNC_ID} = ?")
+                    .whereArgs(manga.id, syncId)
+                    .build())
+            .prepare()
+
     fun insertTrack(track: Track) = db.put().`object`(track).prepare()
 
     fun insertTracks(tracks: List<Track>) = db.put().objects(tracks).prepare()

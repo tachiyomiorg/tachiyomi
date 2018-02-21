@@ -9,6 +9,7 @@ import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.download.DownloadManager
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.util.isNullOrUnsubscribed
@@ -35,6 +36,11 @@ class MangaInfoPresenter(
         private val downloadManager: DownloadManager = Injekt.get(),
         private val coverCache: CoverCache = Injekt.get()
 ) : BasePresenter<MangaInfoController>() {
+
+    /**
+     * Preferences
+     */
+    private val preferences: PreferencesHelper = Injekt.get()
 
     /**
      * Subscription to send the manga to the view.
@@ -78,8 +84,17 @@ class MangaInfoPresenter(
      */
     fun fetchMangaFromSource() {
         if (!fetchMangaSubscription.isNullOrUnsubscribed()) return
+        val tracker = preferences.coverSource()
         fetchMangaSubscription = Observable.defer { source.fetchMangaDetails(manga) }
                 .map { networkManga ->
+                    db.getTrack(manga, tracker).executeAsBlocking()?.let {
+                        if (it.size > 0 && it[0].cover_url.isNotBlank()) {
+                                networkManga.thumbnail_url = it[0].cover_url
+                        }
+                    }
+                    if (manga.thumbnail_url != networkManga.thumbnail_url) {
+                        coverCache.deleteFromCache(manga.thumbnail_url)
+                    }
                     manga.copyFrom(networkManga)
                     manga.initialized = true
                     db.insertManga(manga).executeAsBlocking()

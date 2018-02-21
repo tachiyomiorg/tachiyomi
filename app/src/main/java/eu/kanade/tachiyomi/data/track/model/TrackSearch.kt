@@ -24,7 +24,7 @@ class TrackSearch : Track {
 
     override lateinit var tracking_url: String
 
-    var cover_url: String = ""
+    override var cover_url: String = ""
 
     var summary: String = ""
 
