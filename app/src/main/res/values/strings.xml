@@ -182,7 +182,7 @@
     <string name="pref_read_with_volume_keys_inverted">Invert volume keys</string>
     <string name="pref_read_with_tapping">Tapping</string>
     <string name="pref_reader_theme">Background color</string>
-    <string name="pref_cover_source">Use tracker covers</string>
+    <string name="pref_cover_source">Cover source</string>
     <string name="source_covers">Use source covers</string>
     <string name="myanimelist">MyAnimeList</string>
     <string name="anilist">Anilist</string>
