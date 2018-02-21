@@ -423,7 +423,7 @@
 
     <string name="all_lang">Alle</string>
     <string name="ext_details">Details</string>
-    <string name="ext_update">Update</string>
+    <string name="ext_update">Aktualisierung</string>
     <string name="ext_install">Installieren</string>
     <string name="ext_pending">Anstehend</string>
     <string name="ext_downloading">Wird heruntergeladen</string>
