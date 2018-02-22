@@ -55,6 +55,7 @@ class LibraryListHolder(
         GlideApp.with(itemView.context).clear(thumbnail)
         GlideApp.with(itemView.context)
                 .load(item.manga)
+                .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .centerCrop()
                 .circleCrop()

@@ -48,7 +48,8 @@ class LibraryGridHolder(
         // Update the cover.
         GlideApp.with(view.context).clear(thumbnail)
         GlideApp.with(view.context)
-                .load(item.manga.thumbnail_url)
+                .load(item.manga)
+                .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .centerCrop()
                 .into(thumbnail)

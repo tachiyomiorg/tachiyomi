@@ -219,17 +219,19 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         // Set the favorite drawable to the correct one.
         setFavoriteDrawable(manga.favorite)
 
-        // Set cover if it wasn't already.
+        // Reset cover
         if (!manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(view.context)
-                    .load(manga.thumbnail_url)
+                    .load(manga)
+                    .skipMemoryCache(true)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .centerCrop()
                     .into(manga_cover)
 
             if (backdrop != null) {
                 GlideApp.with(view.context)
-                        .load(manga.thumbnail_url)
+                        .load(manga)
+                        .skipMemoryCache(true)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                         .centerCrop()
                         .into(backdrop)
