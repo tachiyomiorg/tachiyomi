@@ -37,7 +37,7 @@
     <color name="statusBarDark">@color/md_black_1000</color>
     <color name="appBarDark">@color/md_grey_900</color>
     <color name="backgroundDark">#1c1c1d</color>
-    <color name="dialogDark">@color/colorDarkPrimaryDark</color>
+    <color name="dialogDark">@color/colorDarkPrimary</color>
     <color name="dialog_amoled">@color/colorDarkPrimaryDark</color>
 
     <color name="selectorColorDark">@color/md_blue_A200_50</color>
