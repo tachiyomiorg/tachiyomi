@@ -47,8 +47,8 @@
     <!-- Dark Themes -->
     <!--=============-->
     <style name="Theme.Base.Dark" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorDarkPrimary</item>
+        <item name="colorPrimaryDark">@color/colorDarkPrimaryDark</item>
         <item name="colorAccent">@color/colorAccentDark</item>
         <item name="android:textColorPrimary">@color/textColorPrimaryDark</item>
         <item name="android:textColorSecondary">@color/textColorSecondaryDark</item>
@@ -86,6 +86,8 @@
     <!-- Amoled Theme -->
     <!--==============-->
     <style name="Theme.Base.Amoled" parent="Theme.Base.Dark">
+        <item name="colorPrimary">@color/colorAmoled</item>
+        <item name="colorPrimaryDark">@color/colorAmoled</item>
         <item name="android:colorBackground">@color/md_black_1000</item>
 
         <!-- Custom Attributes-->
@@ -102,8 +104,8 @@
     <!-- Reader Theme -->
     <!--==============-->
     <style name="Theme.Base.Reader" parent="Theme.Base.Dark">
-        <item name="colorPrimary">@color/md_blue_grey_900</item>
-        <item name="colorPrimaryDark">#171E22</item>
+        <item name="colorPrimary">@color/colorDarkPrimary</item>
+        <item name="colorPrimaryDark">@color/colorDarkPrimaryDark</item>
     </style>
 
     <style name="Theme.Reader" parent="Theme.Base.Reader">
