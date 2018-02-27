@@ -226,7 +226,6 @@ class Kissmanga : ParsedHttpSource() {
             Genre("Mystery"),
             Genre("One shot"),
             Genre("Psychological"),
-            Genre("Reincarnation"),
             Genre("Romance"),
             Genre("School Life"),
             Genre("Sci-fi"),
@@ -240,9 +239,7 @@ class Kissmanga : ParsedHttpSource() {
             Genre("Smut"),
             Genre("Sports"),
             Genre("Supernatural"),
-            Genre("Time Travel"),
             Genre("Tragedy"),
-            Genre("Transported"),
             Genre("Webtoon"),
             Genre("Yaoi"),
             Genre("Yuri")
