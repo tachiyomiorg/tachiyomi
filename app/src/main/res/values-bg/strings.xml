@@ -41,7 +41,7 @@
     <string name="action_add_category">Добави категория</string>
     <string name="action_edit_categories">Редактирай категории</string>
     <string name="action_rename_category">Преименувай категория</string>
-    <string name="action_move_category">Премести в категории</string>
+    <string name="action_move_category">Премести в категория</string>
     <string name="action_edit_cover">Промени корицата</string>
     <string name="action_sort_up">Сортирай по възходящ ред</string>
     <string name="action_sort_down">Сортирай по низходящ ред</string>
@@ -82,7 +82,7 @@
     <string name="pref_category_reader">Четец</string>
     <string name="pref_category_downloads">Изтегляния</string>
     <string name="pref_category_sources">Източници</string>
-    <string name="pref_category_tracking">Проследяване</string>
+    <string name="pref_category_tracking">Следене</string>
     <string name="pref_category_advanced">Разширени настройки</string>
     <string name="pref_category_about">За приложението</string>
 
@@ -261,10 +261,10 @@
     <string name="chapter_error">Грешка</string>
     <string name="fetch_chapters_error">Възникна грешка при показването на главите</string>
     <string name="show_title">Покажи заглавие</string>
-    <string name="show_chapter_number">Покажи номер на глава</string>
+    <string name="show_chapter_number">Показвай номера на главата</string>
     <string name="sorting_mode">Сортиране</string>
-    <string name="sort_by_source">По източника</string>
-    <string name="sort_by_number">По номер на главата</string>
+    <string name="sort_by_source">По източник</string>
+    <string name="sort_by_number">По ред на главите</string>
     <string name="manga_download">Изтегли</string>
     <string name="download_1">Изтегли следващата глава</string>
     <string name="download_5">Изтегли следващите 5 глави</string>
@@ -274,11 +274,11 @@
     <string name="confirm_delete_chapters">Сигурни ли сте, че искате да изтриете избраните глави?</string>
 
     <!-- MyAnimeList fragment -->
-    <string name="manga_tracking_tab">Проследяване</string>
+    <string name="manga_tracking_tab">Следене</string>
     <string name="reading">В прочит</string>
     <string name="completed">Завършена</string>
     <string name="dropped">Изоставена</string>
-    <string name="on_hold">На изчакване</string>
+    <string name="on_hold">На заден план</string>
     <string name="plan_to_read">Планирам да чета</string>
     <string name="score">Оценка</string>
     <string name="title">Заглавие</string>
@@ -303,7 +303,7 @@
 
     <!-- Reader activity -->
     <string name="custom_filter">Персонализиран филтър</string>
-    <string name="set_as_cover">Постави като корица</string>
+    <string name="set_as_cover">Постави за корица</string>
     <string name="cover_updated">Корицата обновена</string>
     <string name="page_downloaded">Страницата копирана на %1$s</string>
     <string name="downloading">Изтегляне…</string>
@@ -365,7 +365,7 @@
     <string name="information_no_downloads">Нямате изтегляния</string>
     <string name="information_no_recent">Нямате скорошни глави</string>
     <string name="information_no_recent_manga">Няматe наскоро прочетена манга</string>
-    <string name="information_empty_library">Празна библиотека</string>
+    <string name="information_empty_library">Библиотеката Ви е празна, можете да я напълните от менюто Каталози.</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Изтегли</string>
@@ -378,7 +378,7 @@
 
 <string name="categories">Категории</string>
     <string name="manga">Манга</string>
-    <string name="track">Проследяване</string>
+    <string name="track">Следене</string>
     <string name="history">История</string>
 
     <string name="action_sort_total">Общо глави</string>
@@ -423,25 +423,25 @@
     <string name="file_saved">Файлът запазен на %1$s</string>
     <string name="backup_choice">Какво искате да запазите?</string>
     <string name="restoring_backup">Възстановяване на копие</string>
-    <string name="creating_backup">Създаване на копие</string>
+    <string name="creating_backup">Създаване на резервно копие</string>
 
       <string name="pref_refresh_library_tracking">Обнови метаданните на проследяването</string>
     <string name="pref_refresh_library_tracking_summary">Обновява статус, оценка и последно прочетена глава от услугите за проследяване</string>
 
       <string name="also_delete_chapters">Също изтрий изтеглените глави</string>
 
-    <string name="local_source">Манга на устройството</string>
+    <string name="local_source">Локална манга</string>
     <string name="invalid_combination">\"По подразбиране\" не може да се избира с други категории</string>
     <string name="added_to_library">Мангата беше добавена към библиотеката Ви</string>
 
     <string name="manga_info_last_chapter_label">Последна глава</string>
-    <string name="delete_downloads_for_manga">Изтрий изтеглените глави?</string>
+    <string name="delete_downloads_for_manga">Да се изтрият ли изтеглените глави?</string>
 
     <string name="chapter_paused">На пауза</string>
     <string name="notification_new_chapters_text">За %1$d заглавия</string>
     <string name="download_notifier_download_paused">Изтеглянето спряно</string>
 
-<string name="backup_restore_content">За възстановяването се изтеглят данни от източника, може да бъде отчетен разход на данни.
+<string name="backup_restore_content">За възстановяването се изтеглят данни от източника, за които може да бъде отчетен разход на данни. 
 \nСъщо проверете дали сте влезли коректно в източниците, които го изискват, преди възстановяването.</string>
     <string name="action_global_search">Глобално търсене</string>
     <string name="action_open">Отвори</string>
@@ -457,4 +457,57 @@
     <string name="channel_common">Общи</string>
     <string name="channel_library">Библиотека</string>
     <string name="channel_downloader">Изтегляния</string>
-</resources>
+<string name="action_display_download_badge">Показвай изтеглени глави</string>
+    <string name="local_source_badge">Локална</string>
+    <string name="information_empty_category">Нямате категории. Натиснете плюса, за да ги създадете и да организирате библиотеката си.</string>
+
+    <string name="label_migration">Смяна на източник</string>
+    <string name="label_extensions">Разширения</string>
+    <string name="label_extension_info">Информация</string>
+
+
+    <string name="all_lang">Всички</string>
+    <string name="ext_details">Подробности</string>
+    <string name="ext_update">Обнови</string>
+    <string name="ext_install">Инсталирай</string>
+    <string name="ext_pending">На изчакване</string>
+    <string name="ext_downloading">Изтегля се</string>
+    <string name="ext_installing">Инсталира се</string>
+    <string name="ext_installed">Инсталирани</string>
+    <string name="ext_trust">Потвърдени</string>
+    <string name="ext_untrusted">Непотвърдени</string>
+    <string name="ext_uninstall">Деинсталирай</string>
+    <string name="ext_preferences">Предпочитания</string>
+    <string name="ext_available">Достъпни</string>
+    <string name="untrusted_extension">Непотвърдено разширение</string>
+    <string name="untrusted_extension_message">Следното разширение имаше непотвърден сертификат и не беше активирано.
+\n
+\nЗлонамереното разширение може да види всичката информация за вход в системата на Tachiyomi или да компилира неблагонадежден код.
+\n
+\nПотвърждавайки този сертификат, вие приемате тези рискове.</string>
+    <string name="ext_version_info">Версия: %1$s</string>
+    <string name="ext_language_info">Език: %1$s</string>
+    <string name="ext_empty_preferences">Няма предпочитания за това разширение</string>
+
+      <string name="pref_double_tap_anim_speed">Скорост на анимацията</string>
+    <string name="double_tap_anim_speed_0">Без анимация</string>
+    <string name="double_tap_anim_speed_normal">Нормална</string>
+    <string name="double_tap_anim_speed_fast">Бързо</string>
+    <string name="source_search_options">Филтри за търсене</string>
+    <string name="manga_info_full_title_label">Заглавие</string>
+    <string name="manga_added_library">Добавена към библиотеката</string>
+    <string name="manga_removed_library">Премахната от библиотеката</string>
+    <string name="manga_info_latest_data_label">Обновена</string>
+    <string name="copied_to_clipboard">%1$s копирано към клипборда</string>
+
+    <string name="custom_download">Изтегли определен брой</string>
+    <string name="custom_hint">брой</string>
+    <string name="download_custom">Изтегли определен брой</string>
+    <string name="migration_info">Натисни, за да избереш от кой източник да мигрираш</string>
+    <string name="migration_dialog_what_to_include">Изберете кои данни ще мигрирате</string>
+    <string name="select">Избери</string>
+    <string name="migrate">Мигрирай</string>
+    <string name="copy">Копирай</string>
+    <string name="migrating">Мигриране…</string>
+
+    </resources>

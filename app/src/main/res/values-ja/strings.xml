@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="name">名</string>
+    <string name="categories">カテゴリ</string>
+    <string name="manga">漫画</string>
+    <string name="chapters">章</string>
+    <string name="history">履歴</string>
+
+    <string name="label_settings">設定</string>
+    <string name="label_download_queue">ダウンロードキュー</string>
+    <string name="label_library">ライブラリ</string>
+    <string name="label_recent_manga">最近読んだ</string>
+    <string name="label_catalogues">カタログ</string>
+    <string name="label_recent_updates">ライブラリの更新歴</string>
+    <string name="label_latest_updates">最新漫画本章</string>
+    <string name="label_categories">カテゴリ</string>
+    <string name="label_selected">選択: %1$d</string>
+    <string name="label_backup">バックアップ</string>
+
+
+    <string name="action_settings">設定</string>
+    <string name="action_filter">フィルター</string>
+    <string name="action_filter_downloaded">ダウンロードした</string>
+    <string name="action_filter_bookmarked">お気に入り</string>
+    <string name="action_filter_unread">未読</string>
+    <string name="action_filter_read">既読</string>
+    <string name="action_filter_empty">フィルタを削除</string>
+    <string name="action_sort_alpha">アルファベット順</string>
+    <string name="action_sort_total">すべての章</string>
+    <string name="action_sort_last_read">最後に読んだ</string>
+    <string name="action_sort_last_updated">最終更新</string>
+    <string name="action_search">検索</string>
+    <string name="action_global_search">グローバル検索</string>
+    <string name="action_select_all">すべて選択</string>
+    <string name="action_download">ダウンロード</string>
+    <string name="action_bookmark">ブックマーク</string>
+    <string name="action_remove_bookmark">ブックマークを削除</string>
+    <string name="action_display_grid">グリッド</string>
+    <string name="action_display_list">リスト</string>
+    <string name="action_sort">ソート</string>
+    </resources>

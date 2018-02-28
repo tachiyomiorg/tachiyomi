@@ -201,7 +201,10 @@ dependencies {
     implementation 'me.gujun.android.taggroup:library:1.4@aar'
 
     // Conductor
-    implementation "com.bluelinelabs:conductor:2.1.4"
+    implementation "com.github.inorichi.Conductor:conductor:05c4d4d"
+    implementation ("com.bluelinelabs:conductor-support:2.1.5-SNAPSHOT") {
+        exclude group: "com.bluelinelabs", module: "conductor"
+    }
     implementation 'com.github.inorichi:conductor-support-preference:27.0.2'
 
     // RxBindings

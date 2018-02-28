@@ -146,8 +146,34 @@
     <string name="action_retry">Újra</string>
     <string name="action_resume">Folytatás</string>
     <string name="action_display_mode">Megjelenítési mód módosítása</string>
-    <string name="action_display">Megjelenítés</string>
+    <string name="action_display">Megjelenés</string>
     <string name="action_sort">Rendezés</string>
     <string name="chapter_downloading">Letöltődik</string>
     <string name="chapter_queued">Várakozik</string>
+    <string name="action_select_all">Összes kijelölése</string>
+    <string name="action_set_filter">Szűrő alkalmazása</string>
+    <string name="action_cancel">Mégse</string>
+    <string name="action_open_log">Napló megnyitása</string>
+    <string name="action_create">Létrehozás</string>
+    <string name="action_restore">Visszaállítás</string>
+    <string name="action_open">Megnyitás</string>
+    <string name="app_not_available">Az alkalmazás nem érhető el</string>
+    <string name="short_recent_updates">Frissítések</string>
+
+    <string name="pref_auto_update_manga_sync">Olvasás után a fejezetek szinkronizálása</string>
+    <string name="pref_ask_update_manga_sync">Megerősítést kér frissítés előtt</string>
+    <string name="pref_lock_orientation">Elforgatás zárolása</string>
+    <string name="pref_page_transitions">Áttűnés lapozáskor</string>
+    <string name="pref_crop_borders">Szegélyek vágása</string>
+    <string name="pref_custom_brightness">Egyéni fényerő használata</string>
+    <string name="pref_custom_color_filter">Egyéni színprofil használata</string>
+    <string name="white_background">Fehér</string>
+    <string name="black_background">Fekete</string>
+    <string name="pref_viewer_type">Alapértelmezett megjelenítő</string>
+    <string name="default_viewer">Alapértelmezett</string>
+    <string name="left_to_right_viewer">Balról jobbra</string>
+    <string name="right_to_left_viewer">Jobbról balra</string>
+    <string name="vertical_viewer">Függőlegesen</string>
+    <string name="webtoon_viewer">Folytonos</string>
+    <string name="scale_type_fit_screen">Képernyőhöz igazítás</string>
     </resources>

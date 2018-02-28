@@ -24,7 +24,7 @@
     <string name="action_install">Установить</string>
     <string name="action_mark_as_read">Отметить как прочитанное</string>
     <string name="action_mark_as_unread">Пометить как непрочитанное</string>
-    <string name="action_mark_previous_as_read">Отметить предыдущие как прочит.</string>
+    <string name="action_mark_previous_as_read">Отметить предыдущие как прочит</string>
     <string name="action_move_category">Изменить категорию</string>
     <string name="action_next_chapter">Следующая глава</string>
     <string name="action_next_unread">Следующая непрочитанная</string>
@@ -57,7 +57,7 @@
     <string name="action_update_library">Обновить библиотеку</string>
     <string name="add_to_library">Добавить в библиотеку</string>
     <string name="all">Все</string>
-    <string name="backup">Создать</string>
+    <string name="backup">Бэкап</string>
     <string name="black_background">Черный</string>
     <string name="build_time">Дата сборки</string>
     <string name="cache_delete_error">Возникла ошибка при удалении кэша</string>
@@ -125,7 +125,7 @@
     <string name="fourth_to_last">Четвертую от прочитанной</string>
     <string name="icon_creation_fail">Невозможно создать ярлык!</string>
     <string name="icon_shape">Форма иконки</string>
-    <string name="information_empty_library">Пустая библиотека</string>
+    <string name="information_empty_library">Ваша библиотека пуста, вы можете добавить из Каталога.</string>
     <string name="information_no_downloads">Нет загрузок</string>
     <string name="information_no_recent">Нет новых глав</string>
     <string name="information_no_recent_manga">Нет недавно прочитанных глав</string>
@@ -162,7 +162,7 @@
     <string name="manga_info_source_label">Источник</string>
     <string name="manga_not_in_db">Эта манга будет удалена из базы данных!</string>
     <string name="manga_tracking_tab">Отслеживать</string>
-    <string name="name">Имя</string>
+    <string name="name">Название</string>
     <string name="no_next_chapter">Следующая глава не найдена</string>
     <string name="no_previous_chapter">Предыдущая глава не найдена</string>
     <string name="no_valid_sources">Пожалуйста включите хотя бы один источник</string>
@@ -332,7 +332,7 @@
     <string name="manga">Манга</string>
     <string name="manga_info_last_chapter_label">Последняя глава</string>
     <string name="no_more_results">Больше нет результатов</string>
-    <string name="notification_new_chapters_text">Для %1$d</string>
+    <string name="notification_new_chapters_text">Для %1$d тайтлов</string>
     <string name="pref_backup_directory">Каталог бэкапа</string>
     <string name="pref_backup_interval">Частота бэкапа</string>
     <string name="pref_backup_service_category">Служба</string>
@@ -356,7 +356,7 @@
     <string name="update_weekly">Еженедельно</string>
 <string name="action_sort_total">По количеству глав</string>
     <string name="action_open_log">Открыть лог</string>
-    <string name="app_not_available">Приложение не доступно</string>
+    <string name="app_not_available">Приложение не отвечает</string>
     <string name="pref_read_with_volume_keys_inverted">Инвертировать клавиши громкости</string>
     <string name="action_global_search">Глобальный поиск</string>
     <string name="action_display_download_badge">Значок загруженных</string>
@@ -374,4 +374,45 @@
     <string name="channel_common">Обычный</string>
     <string name="channel_library">Библиотека</string>
     <string name="channel_downloader">Загрузчик</string>
-</resources>
+<string name="information_empty_category">У вас нет категорий. Нажмите кнопку + для начала организации вашей библиотеки.</string>
+    <string name="label_migration">Миграция источника</string>
+    <string name="label_extensions">Дополнение</string>
+    <string name="label_extension_info">Информация о дополнении</string>
+    <string name="all_lang">Все</string>
+    <string name="ext_details">Детали</string>
+    <string name="ext_update">Обновление</string>
+    <string name="ext_install">Установить</string>
+    <string name="ext_pending">Ожидается</string>
+    <string name="ext_downloading">Скачивается</string>
+    <string name="ext_installing">Устанавливается</string>
+    <string name="ext_installed">Установлено</string>
+    <string name="ext_untrusted">Ненадежное</string>
+    <string name="ext_uninstall">Удалить</string>
+    <string name="ext_preferences">Настройки</string>
+    <string name="ext_available">Доступно</string>
+    <string name="untrusted_extension">Ненадежное расширение</string>
+    <string name="untrusted_extension_message">Это расширение было подписано ненадежным сертификатом и не было активировано.  Вредоносное расширение может считывать любые учетные данные для входа, хранящиеся в Tachiyomi, или выполнять произвольный код.  Доверяя этому сертификату, вы принимаете эти риски.</string>
+    <string name="ext_version_info">Версия: %1$s</string>
+    <string name="ext_language_info">Язык: %1$s</string>
+    <string name="ext_empty_preferences">Нет настроек для редактирования этого расширения</string>
+    <string name="pref_double_tap_anim_speed">Скорость анимации при двойном нажатии</string>
+    <string name="double_tap_anim_speed_0">Без анимации</string>
+    <string name="double_tap_anim_speed_normal">Нормальная</string>
+    <string name="double_tap_anim_speed_fast">Быстрая</string>
+    <string name="manga_info_full_title_label">Заголовок</string>
+    <string name="manga_added_library">Добавить в библиотеку</string>
+    <string name="manga_removed_library">Удалить из библиотеки</string>
+    <string name="manga_info_latest_data_label">Обновлено</string>
+    <string name="copied_to_clipboard">%1$s скопорован в буфер</string>
+    <string name="custom_download">Загрузить определенное количество</string>
+    <string name="custom_hint">Количество</string>
+    <string name="download_custom">Загрузить другое кол-во</string>
+    <string name="migration_info">Нажмите, чтобы выбрать источник для миграции</string>
+    <string name="migration_dialog_what_to_include">Выберите данные для включения</string>
+    <string name="select">Выбрать</string>
+    <string name="migrate">Мигрировать</string>
+    <string name="copy">Копировать</string>
+    <string name="migrating">Мигрирую…</string>
+
+    <string name="source_search_options">Поисковые фильтры</string>
+    </resources>

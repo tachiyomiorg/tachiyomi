@@ -132,9 +132,6 @@ class ExtensionManager(
      * Returns the relay of the available extensions as an observable.
      */
     fun getAvailableExtensionsObservable(): Observable<List<Extension.Available>> {
-        if (!availableExtensionsRelay.hasValue()) {
-            findAvailableExtensions()
-        }
         return availableExtensionsRelay.asObservable()
     }
 

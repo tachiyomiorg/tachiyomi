@@ -346,7 +346,7 @@
     <string name="information_no_downloads">Aucun téléchargement</string>
     <string name="information_no_recent">Aucun chapitre récent</string>
     <string name="information_no_recent_manga">Aucun manga lu récemment</string>
-    <string name="information_empty_library">Bibliothèque vide</string>
+    <string name="information_empty_library">Votre bibliothèque est vide, vous pouvez ajouter des séries à votre bibliothèque depuis le Catalogue.</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Téléchargement</string>
@@ -457,4 +457,6 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="local_source_badge">Local</string>
     <string name="channel_common">Général</string>
     <string name="channel_downloader">Téléchargeur</string>
-</resources>
+<string name="information_empty_category">Vous n\'avez aucune catégorie. Appuyez sur le bouton plus pour en créeer un pour organiser votre bibliothèque.</string>
+
+    </resources>

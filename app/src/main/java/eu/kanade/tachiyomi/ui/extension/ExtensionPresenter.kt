@@ -29,6 +29,7 @@ open class ExtensionPresenter(
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
+        extensionManager.findAvailableExtensions()
         bindToExtensionsObservable()
     }
 
