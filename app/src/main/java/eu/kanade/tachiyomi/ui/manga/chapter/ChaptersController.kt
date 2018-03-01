@@ -387,7 +387,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         val chapters = if (presenter.sortDescending()) adapter.items.reversed() else adapter.items
         val chapterPos = chapters.indexOf(chapter)
         if (chapterPos != -1) {
-            presenter.markChaptersRead(chapters.take(chapterPos), true)
+            markAsRead(chapters.take(chapterPos))
         }
     }
 
