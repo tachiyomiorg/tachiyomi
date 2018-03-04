@@ -18,6 +18,20 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Title" />
 
+    <TextView
+        android:id="@+id/more"
+        android:text="@string/more_results"
+        style="@style/TextAppearance.Medium.Button"
+        android:background="?attr/selectable_list_drawable"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
+        app:layout_constraintBottom_toTopOf="@+id/source_card"
+        app:layout_constraintHeight_default="wrap"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <android.support.v7.widget.CardView
         android:id="@+id/source_card"
         style="@style/Theme.Widget.CardView.Item"

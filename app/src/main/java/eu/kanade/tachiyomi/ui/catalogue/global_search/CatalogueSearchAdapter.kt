@@ -5,6 +5,7 @@ import android.os.Parcelable
 import android.support.v7.widget.RecyclerView
 import android.util.SparseArray
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.kanade.tachiyomi.source.CatalogueSource
 
 /**
  * Adapter that holds the search cards.
@@ -66,6 +67,19 @@ class CatalogueSearchAdapter(val controller: CatalogueSearchController) :
             holder.itemView.restoreHierarchyState(holderState)
             bundle.remove(key)
         }
+    }
+
+    /**
+     * Listen for browse item clicks.
+     */
+    val moreClickListener: OnMoreClickListener = controller
+
+    /**
+     * Listener which should be called when user clicks more.
+     * Note: Should only be handled by [CatalogueSearchController]
+     */
+    interface OnMoreClickListener {
+        fun onMoreClick(source: CatalogueSource)
     }
 
     private companion object {

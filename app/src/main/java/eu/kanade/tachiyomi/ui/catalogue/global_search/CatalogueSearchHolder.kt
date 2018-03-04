@@ -34,6 +34,13 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) :
 
         nothing_found_icon.setVectorCompat(R.drawable.ic_search_black_112dp,
                 view.context.getResourceColor(android.R.attr.textColorHint))
+
+        more.setOnClickListener {
+            val item = adapter.getItem(adapterPosition)
+            if (item != null) {
+                adapter.moreClickListener.onMoreClick(item.source)
+            }
+        }
     }
 
     /**

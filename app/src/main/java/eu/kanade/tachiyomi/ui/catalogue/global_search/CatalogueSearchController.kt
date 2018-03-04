@@ -10,6 +10,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.catalogue.browse.BrowseCatalogueController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import kotlinx.android.synthetic.main.catalogue_global_search_controller.*
 
@@ -20,7 +21,8 @@ import kotlinx.android.synthetic.main.catalogue_global_search_controller.*
  */
 open class CatalogueSearchController(protected val initialQuery: String? = null) :
         NucleusController<CatalogueSearchPresenter>(),
-        CatalogueSearchCardAdapter.OnMangaClickListener {
+        CatalogueSearchCardAdapter.OnMangaClickListener,
+        CatalogueSearchAdapter.OnMoreClickListener {
 
     /**
      * Adapter containing search results grouped by lang.
@@ -82,6 +84,12 @@ open class CatalogueSearchController(protected val initialQuery: String? = null)
         // Delegate to single click by default.
         onMangaClick(manga)
     }
+
+    override fun onMoreClick(source: CatalogueSource) {
+        router.pushController(BrowseCatalogueController(source, initialQuery
+                ?: "").withFadeTransaction())
+    }
+
 
     /**
      * Adds items to the options menu.

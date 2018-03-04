@@ -313,6 +313,7 @@
     <string name="invalid_combination">Default can\'t be selected with other categories</string>
     <string name="added_to_library">The manga has been added to your library</string>
     <string name="action_global_search_hint">Global search…</string>
+    <string name="more_results">More</string>
     <string name="no_results">No results found!</string>
     <string name="latest">Latest</string>
     <string name="browse">Browse</string>
