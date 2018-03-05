@@ -21,7 +21,6 @@ data class ALManga(
         val total_chapters: Int) {
 
     fun toTrack() = TrackSearch.create(TrackManager.ANILIST).apply {
-
         remote_id = this@ALManga.id
         title = title_romaji
         total_chapters = this@ALManga.total_chapters
