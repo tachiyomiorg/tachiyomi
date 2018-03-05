@@ -14,18 +14,19 @@ data class ALManga(
         val id: Int,
         val title_romaji: String,
         val image_url_lge: String,
-        val description: String,
+        val description: String?,
         val type: String,
         val publishing_status: String,
         val start_date_fuzzy: String,
         val total_chapters: Int) {
 
     fun toTrack() = TrackSearch.create(TrackManager.ANILIST).apply {
+
         remote_id = this@ALManga.id
         title = title_romaji
         total_chapters = this@ALManga.total_chapters
         cover_url = image_url_lge
-        summary = description
+        summary = description ?: ""
         tracking_url = AnilistApi.mangaUrl(remote_id)
         publishing_status = this@ALManga.publishing_status
         publishing_type = type
@@ -39,7 +40,6 @@ data class ALManga(
                 start_date_fuzzy.orEmpty()
             }
         }
-
     }
 }
 
