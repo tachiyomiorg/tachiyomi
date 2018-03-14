@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Application Colors -->
-    <color name="colorPrimary">#54759e</color>
-    <color name="colorPrimaryDark">#435e7e</color>
+    <color name="colorPrimary">#54759E</color>
+    <color name="colorPrimaryDark">#435E7E</color>
     <!-- Dark Application Colors -->
     <color name="colorDarkPrimary">#212121</color>
-    <color name="colorDarkPrimaryDark">#1c1c1d</color>
-    <color name="colorAmoled">@color/md_black_1000</color>
+    <color name="colorDarkPrimaryDark">#1C1C1D</color>
+    <color name="colorAmoledPrimary">@color/md_black_1000</color>
 
     <!-- Light Theme -->
     <color name="colorAccentLight">@color/md_blue_A400</color>
@@ -27,7 +27,7 @@
     <color name="iconColorLight">@color/md_black_1000</color>
 
     <!-- Dark Theme -->
-    <color name="colorAccentDark">#3399ff</color>
+    <color name="colorAccentDark">#3399FF</color>
     <color name="textColorPrimaryDark">@color/md_white_1000</color>
     <color name="textColorSecondaryDark">@color/md_white_1000_70</color>
     <color name="textColorHintDark">@color/md_white_1000_50</color>
@@ -36,7 +36,7 @@
 
     <color name="statusBarDark">@color/md_black_1000</color>
     <color name="appBarDark">@color/md_grey_900</color>
-    <color name="backgroundDark">#1c1c1d</color>
+    <color name="backgroundDark">@color/colorDarkPrimaryDark</color>
     <color name="dialogDark">@color/colorDarkPrimary</color>
     <color name="dialog_amoled">@color/colorDarkPrimaryDark</color>
 

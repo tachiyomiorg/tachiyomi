@@ -66,6 +66,7 @@
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Material</item>
+        <item name="md_background_color">@color/dialogDark</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
 
 
@@ -86,8 +87,8 @@
     <!-- Amoled Theme -->
     <!--==============-->
     <style name="Theme.Base.Amoled" parent="Theme.Base.Dark">
-        <item name="colorPrimary">@color/colorAmoled</item>
-        <item name="colorPrimaryDark">@color/colorAmoled</item>
+        <item name="colorPrimary">@color/colorAmoledPrimary</item>
+        <item name="colorPrimaryDark">@color/colorAmoledPrimary</item>
         <item name="android:colorBackground">@color/md_black_1000</item>
 
         <!-- Custom Attributes-->
