@@ -94,5 +94,7 @@ class LibrarySyncManager(private val context: Context) {
         
         val ACCOUNT_TYPE = "${BuildConfig.APPLICATION_ID}.sync-account"
         val AUTHORITY = "${BuildConfig.APPLICATION_ID}.sync-provider"
+
+        const val PROTOCOL_VERSION = 1
     }
 }

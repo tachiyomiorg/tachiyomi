@@ -55,7 +55,5 @@ interface TWApi {
                 .readTimeout(5, TimeUnit.MINUTES)
                 .writeTimeout(5, TimeUnit.MINUTES)
                 .build(), account.name)
-
-        const val PROTOCOL_VERSION = 1
     }
 }
