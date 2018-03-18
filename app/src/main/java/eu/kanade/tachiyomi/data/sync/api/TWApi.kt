@@ -29,7 +29,9 @@ interface TWApi {
      * Submit a sync report to the server and receive a new sync report back
      */
     @POST("sync")
-    fun sync(@Header("TW-Session") token: String, @Body diff: SyncReport): Observable<SyncResponse>
+    fun sync(@Header("TW-Session") token: String,
+             @Query("protocol") protocol: Int,
+             @Body diff: SyncReport): Observable<SyncResponse>
     
     /**
      * Test whether or not an auth token is valid
@@ -53,5 +55,7 @@ interface TWApi {
                 .readTimeout(5, TimeUnit.MINUTES)
                 .writeTimeout(5, TimeUnit.MINUTES)
                 .build(), account.name)
+
+        const val PROTOCOL_VERSION = 1
     }
 }

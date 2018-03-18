@@ -121,7 +121,11 @@ class LibrarySyncAdapter(context: Context) : AbstractThreadedSyncAdapter(context
             //Actually upload diff
             updateSync(SyncStatus.NETWORK)
             val result = try {
-                api.sync(token, diff).toBlocking().first()
+                val res = api.sync(token, TWApi.PROTOCOL_VERSION, diff).toBlocking().first()
+                if(res.error != null)
+                    throw RuntimeException("Sync server returned error: " + res.error)
+
+                res
             } catch (e: Exception) {
                 throw HandledSyncException(SyncError.NETWORK_ERROR, e)
             }
