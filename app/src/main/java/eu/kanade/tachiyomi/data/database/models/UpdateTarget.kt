@@ -20,11 +20,14 @@ object UpdateTarget {
     )
 
     /**
+     * All possible fields
+     */
+    val fields = registeredObjects.flatMap { it.fields }.sortedBy { it.id }
+
+    /**
      * Find a property by it's ID
      */
-    fun find(id: Int) = registeredObjects.flatMap {
-        it.fields
-    }.find { it.id == id }
+    fun find(id: Int) = fields[fields.binarySearchBy(id) { it.id }]
 
     // Object definitions follow
 
@@ -76,11 +79,12 @@ object UpdateTarget {
         override val idColumn = TrackTable.COL_ID
         
         val remoteId = field(8, TrackTable.COL_REMOTE_ID, 0)
-        var title = field(9, TrackTable.COL_TITLE, "")
-        var lastChapterRead = field(10, TrackTable.COL_LAST_CHAPTER_READ, 0)
-        var totalChapters = field(11, TrackTable.COL_TOTAL_CHAPTERS, 0)
-        var score = field(12, TrackTable.COL_SCORE, 0f)
-        var status = field(13, TrackTable.COL_STATUS, 0)
+        val title = field(9, TrackTable.COL_TITLE, "")
+        val lastChapterRead = field(10, TrackTable.COL_LAST_CHAPTER_READ, 0)
+        val totalChapters = field(11, TrackTable.COL_TOTAL_CHAPTERS, 0)
+        val score = field(12, TrackTable.COL_SCORE, 0f)
+        val status = field(13, TrackTable.COL_STATUS, 0)
+        val trackingUrl = field(14, TrackTable.COL_TRACKING_URL, "")
     }
 }
 

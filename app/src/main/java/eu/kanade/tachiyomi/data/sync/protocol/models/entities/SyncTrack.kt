@@ -12,6 +12,7 @@ class SyncTrack : SyncEntity<SyncTrack>() {
     var total_chapters: ChangedField<Int>? = null
     var score: ChangedField<Float>? = null
     var status: ChangedField<Int>? = null
+    var tracking_url: ChangedField<String>? = null
     var deleted: Boolean = false
     
     // Identifiers

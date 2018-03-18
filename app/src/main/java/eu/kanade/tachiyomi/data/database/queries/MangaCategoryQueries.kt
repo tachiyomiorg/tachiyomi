@@ -2,9 +2,11 @@ package eu.kanade.tachiyomi.data.database.queries
 
 import com.pushtorefresh.storio.Queries
 import com.pushtorefresh.storio.sqlite.queries.DeleteQuery
+import com.pushtorefresh.storio.sqlite.queries.Query
 import com.pushtorefresh.storio.sqlite.queries.RawQuery
 import eu.kanade.tachiyomi.data.database.DbProvider
 import eu.kanade.tachiyomi.data.database.inTransaction
+import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.database.tables.MangaCategoryTable
@@ -81,6 +83,15 @@ interface MangaCategoryQueries : DbProvider {
             .listOfObjects(MangaCategory::class.java)
             .withQuery(RawQuery.builder()
                     .query(getDeletedMangaCategoriesQuery(id))
+                    .build())
+            .prepare()
+
+    fun getMangaCategoriesForCategory(category: Category) = db.get()
+            .listOfObjects(MangaCategory::class.java)
+            .withQuery(Query.builder()
+                    .table(MangaCategoryTable.TABLE)
+                    .where("${MangaCategoryTable.COL_CATEGORY_ID} = ?")
+                    .whereArgs(category.id)
                     .build())
             .prepare()
 }

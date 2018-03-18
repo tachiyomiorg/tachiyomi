@@ -14,7 +14,7 @@ data class SyncRef<out T : Any>(var targetId: Long) {
      * @param report The report to find the referred [SyncEntity] in
      */
     fun resolve(report: SyncReport): T {
-        val result = if(report.tmpApply.setup) {
+        val result = if(report.isTmpApplySetup()) {
             //Use binary search if intermediary data structure is set up
             val index = report.tmpApply.sortedEntities.binarySearchBy(targetId,
                     selector = SyncEntity<*>::syncId)

@@ -20,13 +20,13 @@ class SyncReport {
      * A temporary data structure used to build this sync report
      */
     @Transient
-    var tmpGen = IntermediaryGenSyncReport(this)
+    lateinit var tmpGen: IntermediaryGenSyncReport
     
     /**
      * A temporary data structure used to apply this sync report
      */
     @Transient
-    var tmpApply = IntermediaryApplySyncReport(this)
+    lateinit var tmpApply: IntermediaryApplySyncReport
     
     // Actual sync report follows
     
@@ -68,4 +68,6 @@ class SyncReport {
      */
     inline fun <reified M : SyncEntity<*>> findEntity(filter: (M) -> Boolean): M?
         = findEntities<M>().find(filter)
+
+    fun isTmpApplySetup() = ::tmpApply.isInitialized
 }

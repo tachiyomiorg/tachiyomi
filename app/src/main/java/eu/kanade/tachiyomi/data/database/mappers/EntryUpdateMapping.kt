@@ -50,7 +50,7 @@ class EntryUpdateGetResolver : DefaultGetResolver<EntryUpdate>() {
         id = cursor.getLong(cursor.getColumnIndex(COL_ID))
         updatedRow = cursor.getLong(cursor.getColumnIndex(COL_UPDATED_ROW))
         datetime = cursor.getLong(cursor.getColumnIndex(COL_DATETIME))
-        field = UpdateTarget.find(cursor.getInt(cursor.getColumnIndex(COL_FIELD)))!!
+        field = UpdateTarget.find(cursor.getInt(cursor.getColumnIndex(COL_FIELD)))
     }
 }
 

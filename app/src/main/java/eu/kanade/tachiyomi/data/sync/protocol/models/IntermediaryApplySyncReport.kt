@@ -9,8 +9,6 @@ import eu.kanade.tachiyomi.data.sync.protocol.models.common.SyncEntity
  * Intermediary data structure with various optimizations used to apply sync report
  */
 class IntermediaryApplySyncReport(val report: SyncReport) {
-    var setup = false
-    
     private var lastQueuedId = 0L
     
     lateinit var sortedEntities: List<SyncEntity<*>>
@@ -21,8 +19,6 @@ class IntermediaryApplySyncReport(val report: SyncReport) {
     
     fun setup() {
         sortedEntities = report.entities.sortedBy { it.syncId }
-        
-        setup = true
     }
     
     fun applyQueuedTimestamps(db: DatabaseHelper) {

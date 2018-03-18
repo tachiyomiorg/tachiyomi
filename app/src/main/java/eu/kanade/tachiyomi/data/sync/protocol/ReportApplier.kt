@@ -25,7 +25,7 @@ class ReportApplier(val context: Context,
      */
     fun apply(report: SyncReport) {
         //Enable optimizations
-        report.tmpApply.setup()
+        report.tmpApply = IntermediaryApplySyncReport(report).apply { setup() }
         
         db.inTransaction {
             //Must be in order as some entities depend on previous entities to already be
@@ -66,6 +66,7 @@ class ReportApplier(val context: Context,
                 changed = true
             }
 
+            // Insert/update manga if changed
             if(changed || id < 0)
                 db.insertManga(dbManga).executeAsBlocking().queueId(report, id)
         }
@@ -75,7 +76,7 @@ class ReportApplier(val context: Context,
         report.findEntities<SyncChapter>()
                 .groupBy(SyncChapter::manga) //Process all chapters of same manga at the same time (less DB load)
                 .forEach {
-                    //Sometimes all chapters are already in DB, thus no need to resolve manga
+                    //Sometimes all chapters are already in DB, thus no need to resolve manga (so do not resolve manga immediately)
                     val dbManga by lazy(LazyThreadSafetyMode.NONE) {
                         val manga = it.key.resolve(report)
                         val source = manga.source.resolve(report)
@@ -83,6 +84,7 @@ class ReportApplier(val context: Context,
                     }
                     
                     it.value.forEach {
+                        // Find existing chapter or create a new one
                         val dbChapter = db.getChapter(it.url).executeAsBlocking() ?:
                                 Chapter.create().apply {
                                     url = it.url
@@ -109,7 +111,8 @@ class ReportApplier(val context: Context,
                                 dbChapter.last_page_read = it
                                 changed = true
                             }
-    
+
+                            // Insert/update chapter if changed
                             if(changed || id < 0)
                                 db.insertChapter(dbChapter).executeAsBlocking().queueId(report, id)
                         }
@@ -120,6 +123,7 @@ class ReportApplier(val context: Context,
     private fun applyHistory(report: SyncReport) {
         report.findEntities<SyncHistory>().forEach {
             val chapter = it.chapter.resolve(report)
+            // Find existing history or create a new one
             val dbHistory = db.getHistoryByChapterUrl(chapter.url).executeAsBlocking() ?: run {
                 val dbChapter = db.getChapter(chapter.url).executeAsBlocking()
                         ?: return@forEach // Chapter missing, do not sync this history
@@ -133,7 +137,8 @@ class ReportApplier(val context: Context,
                 dbHistory.last_read = it
                 changed = true
             }
-    
+
+            // Insert/update history if changed
             if(changed || id < 0)
                 db.insertHistory(dbHistory).executeAsBlocking().queueId(report, id)
         }
@@ -141,40 +146,61 @@ class ReportApplier(val context: Context,
     
     private fun applyCategories(report: SyncReport) {
         report.findEntities<SyncCategory>().forEach {
-            val dbCategory = db.getCategories().executeAsBlocking().find { dbCat ->
+            val dbCategories = db.getCategories().executeAsBlocking()
+            // Find existing category
+            var dbCategory = dbCategories.find { dbCat ->
                 it.name == dbCat.name
-            } ?: run {
-                //Rename old category if required
-                if(it.oldName != null) {
-                    val oldCat = db.getCategories().executeAsBlocking().find { dbCat ->
-                        it.oldName!!.value == dbCat.name
-                    }
-                    
-                    if(oldCat != null) {
-                        oldCat.name = it.name
-                        return@run oldCat!! // IDE bug reports this as useless (but refuses to compile without it)
-                    }
-                }
-                
-                //No old category, create new one
-                Category.create(it.name)
             }
-            
+
             //Delete category if necessary
-            if (it.deleted) {
+            if (it.deleted && dbCategory != null) {
                 db.deleteCategory(dbCategory).executeAsBlocking()
                 return@forEach
             }
-            
+
+            var changed = false
+
+            // Perform renames
+            if (it.oldName != null) {
+                // Find category to rename
+                val oldCat = dbCategories.find { dbCat ->
+                    it.oldName!!.value == dbCat.name
+                }
+
+                if(oldCat != null) {
+                    // No existing category with new name, rename old category to new name
+                    if (dbCategory == null) {
+                        oldCat.name = it.name
+                        dbCategory = oldCat
+                        changed = true
+                    } else {
+                        // Category with new name already exists, delete category with old name and
+                        // move its manga into category with new name
+                        val oldMangaCategories = db.getMangaCategoriesForCategory(oldCat).executeAsBlocking()
+                        oldMangaCategories.map {
+                            MangaCategory().apply {
+                                manga_id = it.manga_id
+                                category_id = dbCategory!!.id!!
+                            }
+                        }
+                        db.deleteCategory(oldCat).executeAsBlocking()
+                    }
+                }
+            }
+
+            //No old category, create new one
+            if(dbCategory == null)
+                dbCategory = Category.create(it.name)
+
             //Apply other changes to category properties
             val id = dbCategory.id?.toLong() ?: report.tmpApply.nextQueuedId()
-            var changed = false
-            
+
             it.flags.applyIfNewer(report, id, UpdateTarget.Category.flags) {
                 dbCategory.flags = it
                 changed = true
             }
-    
+
+            // Insert/update category if changed
             if(changed || id < 0) {
                 val res = db.insertCategory(dbCategory).executeAsBlocking().queueId(report, id)
                 res.insertedId()?.let {
@@ -202,7 +228,7 @@ class ReportApplier(val context: Context,
                 db.hasMangaCategory(it.manga_id, it.category_id)
             }
             val removedMangaCategories = it.deletedManga.toMangaCategories()
-            
+
             if(addedMangaCategories.isNotEmpty())
                 db.insertMangasCategories(addedMangaCategories).executeAsBlocking()
             removedMangaCategories.forEach {
@@ -210,31 +236,34 @@ class ReportApplier(val context: Context,
             }
         }
     }
-    
+
     private fun applyTracks(report: SyncReport) {
+        val dbTracks = db.getTracks().executeAsBlocking()
+
         report.findEntities<SyncTrack>().forEach {
             val service = tracks.getService(it.sync_id) ?: return@forEach
-            
+
             val manga = it.manga.resolve(report)
             val source = manga.source.resolve(report)
             val dbManga = db.getManga(manga.url, source.id).executeAsBlocking() ?: return@forEach
-            
+
             //Delete track if necessary
             if (it.deleted) {
                 db.deleteTrackForManga(dbManga, service).executeAsBlocking()
                 return@forEach
             }
-            
-            val dbTrack = db.getTracks().executeAsBlocking().find { dbTrack ->
+
+            // Find existing track or create a new one
+            val dbTrack = dbTracks.find { dbTrack ->
                 dbTrack.manga_id == dbManga.id && dbTrack.sync_id == it.sync_id
             } ?: Track.create(it.sync_id).apply {
                 manga_id = dbManga.id ?: return@forEach
             }
-            
+
             //Apply other changes to track properties
             val id = dbTrack.id ?: report.tmpApply.nextQueuedId()
             var changed = false
-            
+
             it.remote_id.applyIfNewer(report, id, UpdateTarget.Track.remoteId) {
                 dbTrack.remote_id = it
                 changed = true
@@ -259,12 +288,17 @@ class ReportApplier(val context: Context,
                 dbTrack.status = it
                 changed = true
             }
-    
+            it.tracking_url.applyIfNewer(report, id, UpdateTarget.Track.trackingUrl) {
+                dbTrack.tracking_url = it
+                changed = true
+            }
+
+            // Insert/update track if changed
             if(changed || id < 0)
                 db.insertTrack(dbTrack).executeAsBlocking().queueId(report, id)
         }
     }
-    
+
     /**
      * Queue a negative ID generated by [IntermediaryApplySyncReport.nextQueuedId] for later
      * mapping to a positive ID
@@ -286,7 +320,7 @@ class ReportApplier(val context: Context,
         }
         return this
     }
-    
+
     /**
      * Apply the changes for a single property if the property change was newer
      * than the last time the property was changed in the DB or if the property never
@@ -306,9 +340,9 @@ class ReportApplier(val context: Context,
                                                   exec: (T) -> Unit) {
         if(this != null
                 && (id < 0
-                || db.getNewerEntryUpdate(id, field, this).executeAsBlocking() == null)) {
+                        || db.getNewerEntryUpdate(id, field, this).executeAsBlocking() == null)) {
             exec(value)
-            
+
             //Queue applied entry for timestamp correction later
             report.tmpApply.queuedTimestampEntries
                     .add(IntermediaryApplySyncReport.QueuedTimestampEntry(id, field, date))
