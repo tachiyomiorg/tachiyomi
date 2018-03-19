@@ -86,7 +86,7 @@ class NetworkHelper(context: Context) {
 
                             private fun enableTLSOnSocket(socket: Socket?): Socket? {
                                 if (socket != null && socket is SSLSocket) {
-                                    socket.enabledProtocols = arrayOf("TLSv1", "TLSv1.1", "TLSv1.2")
+                                    socket.enabledProtocols = socket.supportedProtocols
                                 }
                                 return socket
                             }
