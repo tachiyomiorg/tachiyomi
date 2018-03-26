@@ -11,7 +11,7 @@
     <string name="label_recent_updates">Nouveautés bibliothèque</string>
     <string name="label_latest_updates">Dernières nouveautés</string>
     <string name="label_categories">Catégories</string>
-    <string name="label_selected">Sélectionné: %1$d</string>
+    <string name="label_selected">Sélectionné : %1$d</string>
     <string name="label_backup">Sauvegarde</string>
 
     <!-- Actions -->
@@ -57,7 +57,7 @@
     <string name="action_retry">Réessayer</string>
     <string name="action_remove">Supprimer</string>
     <string name="action_resume">Reprendre</string>
-    <string name="action_open_in_browser">Ouvre dans le navigateur</string>
+    <string name="action_open_in_browser">Ouvrir dans le navigateur</string>
     <string name="action_add_to_home_screen">Ajouter à l\'écran d\'accueil</string>
     <string name="action_display_mode">Changer le mode d\'affichage</string>
     <string name="action_display">Affichage</string>
@@ -152,9 +152,9 @@
     <string name="rotation_force_portrait">Forcer portrait</string>
     <string name="rotation_force_landscape">Forcer paysage</string>
     <string name="color_filter_r_value">R</string>
-    <string name="color_filter_g_value">G</string>
+    <string name="color_filter_g_value">V</string>
     <string name="color_filter_b_value">B</string>
-    <string name="color_filter_a_value">A</string>
+    <string name="color_filter_a_value">O</string>
 
 
       <!-- Downloads section -->
@@ -164,7 +164,7 @@
     <string name="pref_remove_after_read">Supprimer après avoir lu</string>
     <string name="disabled">Désactivé</string>
     <string name="last_read_chapter">Dernier chapitre lu</string>
-    <string name="second_to_last">Avant-dernier chapiture lu</string>
+    <string name="second_to_last">Avant-dernier chapitre lu</string>
     <string name="third_to_last">Du troisième au dernier chapitre</string>
     <string name="fourth_to_last">Du quatrième au dernier chapitre</string>
     <string name="pref_download_new">Télécharger les nouveaux chapitres</string>
@@ -286,7 +286,7 @@
 
     <!-- Reader activity -->
     <string name="custom_filter">Filtre personnalisé</string>
-    <string name="set_as_cover">Mettre comme couverture</string>
+    <string name="set_as_cover">Ajouter comme couverture</string>
     <string name="cover_updated">Couverture mise à jour</string>
     <string name="page_downloaded">Page copiée vers %1$s</string>
     <string name="downloading">En cours de téléchargement…</string>
@@ -313,7 +313,7 @@
     <string name="notification_update_progress">Progression mise à jour: %1$d/%2$d</string>
     <string name="notification_new_chapters">Des nouveaux chapitres ont été trouvés</string>
     <string name="notification_cover_update_failed">La mise à jour de la couverture a échoué</string>
-    <string name="notification_first_add_to_library">Veuillez ajouter le manga dans votre bibliothèque avant de faire cela</string>
+    <string name="notification_first_add_to_library">Veuillez ajouter le manga dans votre bibliothèque avant</string>
     <string name="notification_not_connected_to_ac_body">Non branché</string>
     <string name="notification_no_connection_title">Synchronisation annulée</string>
     <string name="notification_no_connection_body">Connexion non disponible</string>
@@ -324,15 +324,15 @@
     <string name="file_select_icon">Sélectionner une icône de raccourci</string>
 
     <!--UpdateCheck-->
-    <string name="update_check_title">Nouvelle mise à jour disponible!</string>
+    <string name="update_check_title">Nouvelle mise à jour disponible !</string>
     <string name="update_check_confirm">Télécharger</string>
     <string name="update_check_ignore">Ignorer</string>
-    <string name="update_check_no_new_updates">Aucun mise à jour disponible</string>
+    <string name="update_check_no_new_updates">Aucune mise à jour disponible</string>
     <string name="update_check_download_started">Téléchargement commencé</string>
     <string name="update_check_look_for_updates">Vérification des mises à jour</string>
 
     <!--UpdateCheck Notifications-->
-    <string name="update_check_notification_file_download">Télécharger mise à jour</string>
+    <string name="update_check_notification_file_download">Télécharger la mise à jour</string>
     <string name="update_check_notification_download_in_progress">Téléchargement en cours</string>
     <string name="update_check_notification_download_complete">Téléchargement terminé</string>
     <string name="update_check_notification_download_error">Erreur lors du téléchargement</string>
@@ -400,12 +400,12 @@
     <string name="pref_backup_directory">Dossier de sauvegarde</string>
     <string name="pref_backup_service_category">Service</string>
     <string name="source_not_found">Source introuvable</string>
-    <string name="restore_completed">Restauration terminé</string>
+    <string name="restore_completed">Restauration terminée</string>
     <string name="error_opening_log">Impossible d\'ouvrir le fichier journal</string>
     <string name="file_saved">Fichier enregistré dans %1$s</string>
-    <string name="backup_choice">Que voulez-vous sauvegarder?</string>
+    <string name="backup_choice">Que voulez-vous sauvegarder ?</string>
     <string name="invalid_combination">Le défaut ne peut pas être selectionné avec des autres catégories</string>
-    <string name="delete_downloads_for_manga">Supprimer les chapitres téléchargés?</string>
+    <string name="delete_downloads_for_manga">Supprimer les chapitres téléchargés ?</string>
 
     <string name="notification_new_chapters_text">Pour %1$s chapitres</string>
     <string name="track">Suivi</string>
@@ -439,7 +439,7 @@
 
       <string name="pref_read_with_volume_keys_inverted">Inverse les boutons de volume</string>
     <string name="pref_crop_borders">Rogner les bordures</string>
-    <string name="backup_restore_content">La restauration utilise le source pour obtenir des données, des frais de l\'opérateur peuvent s\'appliquer.
+    <string name="backup_restore_content">La restauration utilise la source pour obtenir des données, des frais de l\'opérateur peuvent s\'appliquer.
 Assurez-vous que vous êtes connecté à des sources qui le demande avant de commencer la restauration.</string>
     <string name="action_global_search">Recherche globale</string>
     <string name="action_open">Ouvrir</string>
@@ -447,7 +447,7 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
 
     <string name="other_source">Autre</string>
     <string name="action_global_search_hint">Recherche globale…</string>
-    <string name="no_results">Aucun résultat!</string>
+    <string name="no_results">Aucun résultat !</string>
     <string name="latest">Récents</string>
     <string name="browse">Explorer</string>
 
