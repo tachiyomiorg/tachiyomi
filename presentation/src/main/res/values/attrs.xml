@@ -20,9 +20,8 @@
     <attr name="max_seek" format="integer"/>
   </declare-styleable>
 
+  <attr name="dialogColor" format="reference" />
   <attr name="navigation_view_theme" format="reference"/>
-  <attr name="selectable_list_drawable" format="reference|integer" />
-  <attr name="selectable_library_drawable" format="reference|integer"/>
   <attr name="text_color_primary" format="reference|integer"/>
   <attr name="background_card" format="reference|integer"/>
   <attr name="icon_color" format="reference|integer"/>

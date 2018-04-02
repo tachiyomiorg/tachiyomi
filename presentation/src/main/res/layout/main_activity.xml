@@ -29,7 +29,7 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.ActionBar.Tab"
+        android:theme="@style/Theme.ActionBar"
         app:tabIndicatorColor="@android:color/white"
         app:tabGravity="center"
         app:tabMode="scrollable"

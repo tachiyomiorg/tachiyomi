@@ -3,7 +3,7 @@
   <!--===========-->
   <!-- Main Theme-->
   <!--===========-->
-  <style name="Theme.Tachiyomi" parent="Theme.Base">
+  <style name="Theme.Tachiyomi" parent="Theme.Light">
     <!-- Attributes specific for SDK 21 and up  -->
     <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     <item name="android:statusBarColor">@android:color/transparent</item>
@@ -13,30 +13,11 @@
   <!--============-->
   <!-- Dark Theme -->
   <!--============-->
-  <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
+  <style name="Theme.Tachiyomi.Dark" parent="Theme.Dark">
     <!-- Attributes specific for SDK 21 and up  -->
     <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     <item name="android:statusBarColor">@android:color/transparent</item>
     <item name="android:navigationBarColor">@color/colorDarkPrimaryDark</item>
-  </style>
-
-  <!--==============-->
-  <!-- Amoled Theme -->
-  <!--==============-->
-  <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled">
-    <!-- Attributes specific for SDK 21 and up  -->
-    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-    <item name="android:statusBarColor">@android:color/transparent</item>
-    <item name="android:navigationBarColor">@color/colorAmoledPrimary</item>
-  </style>
-
-  <!--==============-->
-  <!-- Reader Theme -->
-  <!--==============-->
-  <style name="Theme.Reader" parent="Theme.Base.Reader">
-    <!-- Attributes specific for SDK 21 and up  -->
-    <item name="android:statusBarColor">?colorPrimaryDark</item>
-    <item name="android:navigationBarColor">?colorPrimaryDark</item>
   </style>
 
 </resources>

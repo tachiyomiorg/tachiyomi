@@ -5,7 +5,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:background="?selectable_library_drawable">
+  android:background="@drawable/background_ripple">
 
   <android.support.constraint.ConstraintLayout
     android:id="@+id/card"
@@ -42,7 +42,7 @@
       style="@style/TextAppearance.Regular.Caption.Light"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:background="@color/colorAccentDark"
+      android:background="@color/colorDarkAccent"
       android:paddingBottom="1dp"
       android:paddingLeft="3dp"
       android:paddingRight="3dp"
@@ -63,7 +63,7 @@
       android:ellipsize="end"
       android:lineSpacingExtra="-4dp"
       android:maxLines="2"
-      android:shadowColor="@color/textColorPrimaryLight"
+      android:shadowColor="@color/textColorPrimary"
       android:shadowDx="0"
       android:shadowDy="0"
       android:shadowRadius="4"
