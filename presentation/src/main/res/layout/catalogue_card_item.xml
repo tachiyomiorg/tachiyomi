@@ -43,7 +43,7 @@
       style="@style/Theme.Widget.Button.Borderless.Small"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Latest"
+      android:text="@string/action_latest"
       app:layout_constraintRight_toLeftOf="@+id/source_browse"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintTop_toTopOf="parent"/>
@@ -53,7 +53,7 @@
       style="@style/Theme.Widget.Button.Borderless.Small"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Browse"
+      android:text="@string/action_browse"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintTop_toTopOf="parent"/>

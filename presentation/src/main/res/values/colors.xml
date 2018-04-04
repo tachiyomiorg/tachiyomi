@@ -1,48 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--Light theme colors-->
-    <color name="colorPrimary">#54759E</color>
-    <color name="colorPrimaryDark">#435E7E</color>
-    <color name="colorAccent">@color/md_light_blue_500</color>
-    <color name="colorDialog">@color/md_white_1000</color>
-    <color name="colorRipple">@color/md_black_1000_12</color>
+  <!--Light theme colors-->
+  <color name="colorPrimary">#54759E</color>
+  <color name="colorPrimaryDark">#435E7E</color>
+  <color name="colorAccent">@color/md_light_blue_500</color>
+  <color name="colorDialog">@color/md_white_1000</color>
+  <color name="colorRipple">@color/md_black_1000_12</color>
 
-    <!--Dark theme colors-->
-    <color name="colorDarkPrimary">#212121</color>
-    <color name="colorDarkPrimaryDark">#1C1C1D</color>
-    <color name="colorDarkAccent">@color/md_light_blue_500</color>
-    <color name="colorDarkDialog">@color/colorDarkPrimary</color>
-    <color name="colorDarkRipple">@color/md_white_1000_20</color>
+  <!--Dark theme colors-->
+  <color name="colorDarkPrimary">@color/cstm_dark_primary</color>
+  <color name="colorDarkPrimaryDark">@color/cstm_dark_primary_dark</color>
+  <color name="colorDarkAccent">@color/md_light_blue_500</color>
+  <color name="colorDarkDialog">@color/cstm_dark_primary</color>
+  <color name="colorDarkRipple">@color/md_white_1000_20</color>
 
-    <!--Badge colors-->
-    <color name="colorBadgeUnread">#3399FF</color>
-    <color name="colorBadgeDownload">@color/md_red_500</color>
+  <!--Amoled theme colors-->
+  <color name="colorAmoledPrimary">@color/md_black_1000</color>
+  <color name="colorAmoledPrimaryDark">@color/md_black_1000</color>
+  <color name="colorAmoledAccent">@color/md_light_blue_500</color>
+  <color name="colorAmoledDialog">@color/cstm_dark_primary_dark</color>
+  <color name="colorAmoledBackground">@color/md_black_1000</color>
 
-    <!--Text colors-->
-    <color name="textColorPrimary">@color/md_black_1000_87</color>
-    <color name="textColorSecondary">@color/md_black_1000_54</color>
-    <color name="textColorHint">@color/md_black_1000_38</color>
+  <!--Badge colors-->
+  <color name="colorBadgeUnread">#3399FF</color>
+  <color name="colorBadgeDownload">@color/md_red_500</color>
 
-    <color name="textColorPrimaryInverse">@color/md_white_1000</color>
-    <color name="textColorSecondaryInverse">@color/md_white_1000_70</color>
-    <color name="textColorHintInverse">@color/md_white_1000_50</color>
+  <!--Text colors-->
+  <color name="textColorPrimary">@color/md_black_1000_87</color>
+  <color name="textColorSecondary">@color/md_black_1000_54</color>
+  <color name="textColorHint">@color/md_black_1000_38</color>
 
-    <!--Material colors (Should only be called in colors.xml)-->
-    <!--Black-->
-    <color name="md_black_1000_87">#DE000000</color>
-    <color name="md_black_1000_54">#8A000000</color>
-    <color name="md_black_1000_38">#61000000</color>
-    <color name="md_black_1000_12">#1F000000</color>
+  <color name="textColorPrimaryInverse">@color/md_white_1000</color>
+  <color name="textColorSecondaryInverse">@color/md_white_1000_70</color>
+  <color name="textColorHintInverse">@color/md_white_1000_50</color>
 
-    <!--White-->
-    <color name="md_white_1000">#FFFFFFFF</color>
-    <color name="md_white_1000_70">#B3FFFFFF</color>
-    <color name="md_white_1000_50">#80FFFFFF</color>
-    <color name="md_white_1000_20">#33FFFFFF</color>
+  <!--Material colors (Should only be called in colors.xml)-->
+  <!--Black-->
+  <color name="md_black_1000">#FF000000</color>
+  <color name="md_black_1000_87">#DE000000</color>
+  <color name="md_black_1000_54">#8A000000</color>
+  <color name="md_black_1000_38">#61000000</color>
+  <color name="md_black_1000_12">#1F000000</color>
 
-    <!--Light Blue-->
-    <color name="md_light_blue_500">#03A9F4</color>
+  <!--White-->
+  <color name="md_white_1000">#FFFFFFFF</color>
+  <color name="md_white_1000_70">#B3FFFFFF</color>
+  <color name="md_white_1000_50">#80FFFFFF</color>
+  <color name="md_white_1000_20">#33FFFFFF</color>
 
-    <!--Red-->
-    <color name="md_red_500">#F44336</color>
+  <!--Light Blue-->
+  <color name="md_light_blue_500">#03A9F4</color>
+
+  <!--Red-->
+  <color name="md_red_500">#F44336</color>
+
+  <!--Custom color (Should only be called in color.xml-->
+  <color name="cstm_dark_primary">#212121</color>
+  <color name="cstm_dark_primary_dark">#1C1C1D</color>
 </resources>

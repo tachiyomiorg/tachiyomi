@@ -14,8 +14,8 @@
     <item name="colorAccent">@color/colorAccent</item>
     <item name="rippleColor">@color/colorRipple</item>
 
-    <item name="dialogColor">@color/colorDialog</item>
     <item name="actionBarTheme">@style/Theme.ActionBar.Light</item>
+    <item name="dialogColor">@color/colorDialog</item>
   </style>
 
   <style name="Theme.Tachiyomi" parent="Theme.Light">
@@ -38,4 +38,19 @@
     <!-- Attributes specific for SDK 16 to SDK 20 -->
   </style>
 
+  <!--==============-->
+  <!-- Amoled Theme -->
+  <!--==============-->
+  <style name="Theme.Amoled" parent="Theme.Dark">
+    <item name="colorPrimary">@color/colorAmoledPrimary</item>
+    <item name="colorPrimaryDark">@color/colorAmoledPrimaryDark</item>
+    <item name="colorAccent">@color/colorDarkAccent</item>
+
+    <item name="dialogColor">@color/colorAmoledDialog</item>
+    <item name="android:colorBackground">@color/colorAmoledBackground</item>
+  </style>
+
+  <style name="Theme.Tachiyomi.Amoled" parent="Theme.Amoled">
+    <!-- Attributes specific for SDK 16 to SDK 20 -->
+  </style>
 </resources>

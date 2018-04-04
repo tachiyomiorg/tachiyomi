@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ripple xmlns:android="http://schemas.android.com/apk/res/android"
-  android:color="?attr/rippleColor">
-  <item>
-    <selector>
-      <item android:state_selected="true">
-        <color android:color="?attr/rippleColor" />
-      </item>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:exitFadeDuration="@android:integer/config_longAnimTime">
 
-      <item android:state_activated="true">
-        <color android:color="?attr/rippleColor" />
-      </item>
+  <item android:drawable="@color/colorRipple" android:state_focused="true" />
+  <item android:drawable="@color/colorRipple" android:state_pressed="true" />
+  <item android:drawable="@color/colorRipple" android:state_activated="true" />
+  <item android:drawable="@color/colorDialog" />
 
-      <item>
-        <color android:color="?attr/dialogColor" />
-      </item>
-    </selector>
-  </item>
-</ripple>
+</selector>
