@@ -43,6 +43,43 @@
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 
+    <!--==============-->
+    <!-- Light-Pink Theme -->
+    <!--=======-======-->
+    <style name="Theme.Base.Pink" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryPink</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkPink</item>
+        <item name="colorAccent">@color/colorAccentLightPink</item>
+        <item name="android:textColorPrimary">@color/textColorPrimaryLight</item>
+        <item name="android:textColorSecondary">@color/textColorSecondaryLight</item>
+        <item name="android:textColorHint">@color/textColorHintLight</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorPrimaryDark</item>
+        <item name="android:textColorSecondaryInverse">@color/textColorSecondaryDark</item>
+        <item name="android:textColorHintInverse">@color/textColorHintDark</item>
+        <item name="android:colorBackground">@color/backgroundLight</item>
+        <item name="android:listSelector">?colorAccent</item>
+        <item name="android:divider">@color/dividerLight</item>
+        <item name="android:listDivider">@drawable/line_divider_light</item>
+
+        <!-- Themes -->
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionBarTheme">@style/Theme.ActionBar.Light</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.Material</item>
+        <item name="alertDialogTheme">@style/Theme.AlertDialog.Light</item>
+
+
+        <!-- Custom Attributes-->
+        <item name="selectable_list_drawable">@drawable/list_item_selector_light</item>
+        <item name="selectable_library_drawable">@drawable/library_item_selector_light</item>
+        <item name="text_color_primary">@color/textColorPrimaryLight</item>
+        <item name="background_card">@color/dialogLight</item>
+        <item name="icon_color">@color/iconColorLight</item>
+    </style>
+
+    <style name="Theme.Tachiyomi.Pink" parent="Theme.Base.Pink">
+        <!-- Attributes specific for SDK 16 to SDK 20 -->
+    </style>
+
     <!--=============-->
     <!-- Dark Themes -->
     <!--=============-->
