@@ -50,6 +50,7 @@ class MainActivity : BaseActivity() {
         setTheme(when (preferences.theme()) {
             2 -> R.style.Theme_Tachiyomi_Dark
             3 -> R.style.Theme_Tachiyomi_Amoled
+            4 -> R.style.Theme_Tachiyomi_Pink
             else -> R.style.Theme_Tachiyomi
         })
         super.onCreate(savedInstanceState)

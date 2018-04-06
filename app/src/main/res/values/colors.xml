@@ -3,6 +3,8 @@
     <!-- Application Colors -->
     <color name="colorPrimary">#54759E</color>
     <color name="colorPrimaryDark">#435E7E</color>
+    <color name="colorPrimaryPink">#ff00e5</color>
+    <color name="colorPrimaryDarkPink">#9b108a</color>
     <!-- Dark Application Colors -->
     <color name="colorDarkPrimary">#212121</color>
     <color name="colorDarkPrimaryDark">#1C1C1D</color>
@@ -25,6 +27,24 @@
 
     <color name="selectorColorLight">@color/md_blue_A400_38</color>
     <color name="iconColorLight">@color/md_black_1000</color>
+
+    <!-- Pink Theme -->
+    <color name="colorAccentLightPink">#de4094</color>
+    <color name="textColorPrimaryLightPink">@color/md_black_1000_87</color>
+    <color name="textColorSecondaryLightPink">@color/md_black_1000_54</color>
+    <color name="textColorHintLightPink">@color/md_black_1000_38</color>
+    <color name="dividerLightPink">@color/md_black_1000_12</color>
+    <color name="rippleColorLightPink">@color/md_black_1000_12</color>
+
+    <color name="preference_fallback_accent_colorPink">@color/colorAccentLight</color>
+
+    <color name="statusBarLightPink">@color/md_grey_300</color>
+    <color name="appBarLightPink">@color/md_grey_100</color>
+    <color name="backgroundLightPink">@color/md_grey_50</color>
+    <color name="dialogLightPink">@color/md_white_1000</color>
+
+    <color name="selectorColorLightPink">@color/md_blue_A400_38</color>
+    <color name="iconColorLightPink">@color/md_black_1000</color>
 
     <!-- Dark Theme -->
     <color name="colorAccentDark">#3399FF</color>
