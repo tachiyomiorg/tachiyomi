@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.source
 
 import android.content.Context
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.model.SManga
@@ -13,19 +12,24 @@ import eu.kanade.tachiyomi.source.online.russian.Mangachan
 import eu.kanade.tachiyomi.source.online.russian.Mintmanga
 import eu.kanade.tachiyomi.source.online.russian.Readmanga
 import rx.Observable
-import uy.kohesive.injekt.Injekt
-import uy.kohesive.injekt.api.get
 
 open class SourceManager(private val context: Context) {
 
     private val sourcesMap = mutableMapOf<Long, Source>()
+    private val stubSourcesMap = mutableMapOf<Long, Source>(1L to stubSource(1L, "Batoto", "Batoto (EN)", "RIP Batoto"))
 
     init {
         createInternalSources().forEach { registerSource(it) }
     }
 
-    open fun get(sourceKey: Long): Source? {
-        return sourcesMap[sourceKey]
+    open fun get(sourceKey: Long): Source {
+        var source = sourcesMap[sourceKey] ?: stubSourcesMap[sourceKey]
+        if (source == null) {
+            val name = sourceKey.toString()
+            source = stubSource(sourceKey, name, name, context.getString(R.string.source_not_installed, name))
+            stubSourcesMap[sourceKey] = source
+        }
+        return source
     }
 
     fun getOnlineSources() = sourcesMap.values.filterIsInstance<HttpSource>()
@@ -42,40 +46,34 @@ open class SourceManager(private val context: Context) {
         sourcesMap.remove(source.id)
     }
 
-    private fun createInternalSources(): List<Source> {
-        val sources = listOf(
-                LocalSource(context),
-                Batoto(),
-                Mangahere(),
-                Mangafox(),
-                Kissmanga(),
-                Readmanga(),
-                Mintmanga(),
-                Mangachan(),
-                Readmangatoday(),
-                Mangasee(),
-                WieManga()
-        )
-        val dbIds = Injekt.get<DatabaseHelper>().getMangas().executeAsBlocking().map { it.source }.toHashSet()
-        dbIds.removeAll(sources.map { it.id })
-        return sources.plus(dbIds.map { mSource(it, context.getString(R.string.source_not_installed, it.toString())) })
-    }
+    private fun createInternalSources(): List<Source> = listOf(
+            LocalSource(context),
+            Mangahere(),
+            Mangafox(),
+            Kissmanga(),
+            Readmanga(),
+            Mintmanga(),
+            Mangachan(),
+            Readmangatoday(),
+            Mangasee(),
+            WieManga()
+    )
 
-    private class mSource(override val id: Long, override val name: String) : Source {
+    private class stubSource(override val id: Long, override val name : String, val toStr: String, var error : String) : Source {
         override fun fetchMangaDetails(manga: SManga): Observable<SManga> {
-            return Observable.error(Exception(name))
+            return Observable.error(Exception(error))
         }
 
         override fun fetchChapterList(manga: SManga): Observable<List<SChapter>> {
-            return Observable.error(Exception(name))
+            return Observable.error(Exception(error))
         }
 
         override fun fetchPageList(chapter: SChapter): Observable<List<Page>> {
-            return Observable.error(Exception(name))
+            return Observable.error(Exception(error))
         }
 
         override fun toString(): String {
-            return name
+            return toStr
         }
     }
 }

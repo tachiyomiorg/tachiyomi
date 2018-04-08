@@ -80,7 +80,7 @@ class MigrationPresenter(
     }
 
     fun migrateManga(prevManga: Manga, manga: Manga, replace: Boolean) {
-        val source = sourceManager.get(manga.source) ?: return
+        val source = sourceManager.get(manga.source)
 
         state = state.copy(isReplacingManga = true)
 
