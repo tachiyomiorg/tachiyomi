@@ -16,7 +16,7 @@ import rx.Observable
 open class SourceManager(private val context: Context) {
 
     private val sourcesMap = mutableMapOf<Long, Source>()
-    private val stubSourcesMap = mutableMapOf<Long, Source>(1L to stubSource(1L, "Batoto", "Batoto (EN)", "RIP Batoto"))
+    private val stubSourcesMap = mutableMapOf<Long, Source>()
 
     init {
         createInternalSources().forEach { registerSource(it) }
@@ -25,8 +25,8 @@ open class SourceManager(private val context: Context) {
     open fun get(sourceKey: Long): Source {
         var source = sourcesMap[sourceKey] ?: stubSourcesMap[sourceKey]
         if (source == null) {
-            val name = sourceKey.toString()
-            source = stubSource(sourceKey, name, name, context.getString(R.string.source_not_installed, name))
+            val name = if(sourceKey == 1L) "Batoto (EN)" else sourceKey.toString()
+            source = StubSource(sourceKey, context.getString(R.string.source_not_installed, name), name)
             stubSourcesMap[sourceKey] = source
         }
         return source
@@ -59,17 +59,17 @@ open class SourceManager(private val context: Context) {
             WieManga()
     )
 
-    private class stubSource(override val id: Long, override val name : String, val toStr: String, var error : String) : Source {
+    private class StubSource(override val id: Long, override val name: String, val toStr: String) : Source {
         override fun fetchMangaDetails(manga: SManga): Observable<SManga> {
-            return Observable.error(Exception(error))
+            return Observable.error(Exception(name))
         }
 
         override fun fetchChapterList(manga: SManga): Observable<List<SChapter>> {
-            return Observable.error(Exception(error))
+            return Observable.error(Exception(name))
         }
 
         override fun fetchPageList(chapter: SChapter): Observable<List<Page>> {
-            return Observable.error(Exception(error))
+            return Observable.error(Exception(name))
         }
 
         override fun toString(): String {
