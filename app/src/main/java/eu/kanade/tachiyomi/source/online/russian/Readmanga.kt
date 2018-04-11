@@ -24,14 +24,9 @@ class Readmanga : ParsedHttpSource() {
 
     override val supportsLatest = true
 
-    override fun headersBuilder() = Headers.Builder().apply {
-        add("User-Agent", "Mozilla/5.0 (Windows NT 6.3; WOW64)")
-        add("Referer", baseUrl)
-    }
+    override fun popularMangaSelector() = "div.tile"
 
-    override fun popularMangaSelector() = "div.desc"
-
-    override fun latestUpdatesSelector() = "div.desc"
+    override fun latestUpdatesSelector() = "div.tile"
 
     override fun popularMangaRequest(page: Int): Request =
             GET("$baseUrl/list?sortType=rate&offset=${70 * (page - 1)}&max=70", headers)
@@ -41,6 +36,7 @@ class Readmanga : ParsedHttpSource() {
 
     override fun popularMangaFromElement(element: Element): SManga {
         val manga = SManga.create()
+        manga.thumbnail_url = element.select("img.lazy").first().attr("data-original")
         element.select("h3 > a").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.attr("title")
@@ -90,10 +86,15 @@ class Readmanga : ParsedHttpSource() {
 
     override fun chapterFromElement(element: Element): SChapter {
         val urlElement = element.select("a").first()
+        val urlText = urlElement.text()
 
         val chapter = SChapter.create()
-        chapter.setUrlWithoutDomain(urlElement.attr("href") + "?mature=1")
-        chapter.name = urlElement.text().replace(" новое", "")
+        chapter.setUrlWithoutDomain(urlElement.attr("href") + "?mtr=1")
+        if (urlText.endsWith(" новое")) {
+            chapter.name = urlText.dropLast(6)
+        } else {
+            chapter.name = urlText
+        }
         chapter.date_upload = element.select("td:eq(1)").first()?.text()?.let {
             SimpleDateFormat("dd/MM/yy", Locale.US).parse(it).time
         } ?: 0
@@ -143,11 +144,19 @@ class Readmanga : ParsedHttpSource() {
 
     override fun imageUrlParse(document: Document) = ""
 
+    override fun imageRequest(page: Page): Request {
+        val imgHeader = Headers.Builder().apply {
+            add("User-Agent", "Mozilla/5.0 (Windows NT 6.3; WOW64)")
+            add("Referer", baseUrl)
+        }.build()
+        return GET(page.imageUrl!!, imgHeader)
+    }
+
     private class Genre(name: String, val id: String) : Filter.TriState(name)
 
-    /* [...document.querySelectorAll("tr.advanced_option:nth-child(1) > td:nth-child(3) span.js-link")].map((el,i) => {
-    *  const onClick=el.getAttribute('onclick');const id=onClick.substr(31,onClick.length-33);
-    *  return `Genre("${el.textContent.trim()}", "${id}")` }).join(',\n')
+    /* [...document.querySelectorAll("tr.advanced_option:nth-child(1) > td:nth-child(3) span.js-link")]
+    *  .map(el => `Genre("${el.textContent.trim()}", $"{el.getAttribute('onclick')
+    *  .substr(31,el.getAttribute('onclick').length-33)"})`).join(',\n')
     *  on http://readmanga.me/search/advanced
     */
     override fun getFilterList() = FilterList(
