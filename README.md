@@ -4,7 +4,7 @@
 
 
 # ![app icon](./.github/readme-images/app-icon.png)Tachiyomi
-Tachiyomi is a free and open source manga reader for Android.
+Tachiyomi is a libre software manga reader for Android.
 
 ![screenshots of app](./.github/readme-images/screens.png)
 
@@ -21,7 +21,7 @@ Features include:
 * Create backups locally or to your cloud service of choice
 
 ## Download
-Get the app from our [releases page](https://github.com/inorichi/tachiyomi/releases) or from [f-droid](https://f-droid.org/packages/eu.kanade.tachiyomi/).
+Get the app from our [releases page](https://github.com/inorichi/tachiyomi/releases) or from [F-Droid](https://f-droid.org/packages/eu.kanade.tachiyomi/).
 
 If you want to try new features before they get to the stable release, you can download the dev version [here](http://tachiyomi.kanade.eu/latest) (auto-updates not included), or add our [F-Droid repo](https://github.com/inorichi/tachiyomi/wiki/FDroid-for-dev-versions).
 
@@ -84,4 +84,4 @@ You can also reach out to us on [Discord](https://discord.gg/WrBkRk4).
 
 ## Disclaimer
 
-The developer of this application does not have any affiliation with the content providers available.
+The developer of this app does not have any affiliation with the content providers available.
