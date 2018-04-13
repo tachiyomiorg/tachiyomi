@@ -75,7 +75,7 @@
     <string name="action_open_in_browser">Open in browser</string>
     <string name="action_add_to_home_screen">Add to home screen</string>
     <string name="action_display_mode">Change display mode</string>
-    <string name="action_display">Display</string>
+    <string name="action_display">Screen</string>
     <string name="action_display_grid">Grid</string>
     <string name="action_display_list">List</string>
     <string name="action_display_download_badge">Download badges</string>
@@ -92,14 +92,14 @@
     <string name="action_create">Create</string>
     <string name="action_restore">Restore</string>
     <string name="action_open">Open</string>
-    <string name="action_login">Login</string>
+    <string name="action_login">Log in</string>
 
     <!-- Operations -->
     <string name="deleting">Deleting…</string>
     <string name="loading">Loading…</string>
 
     <!-- Shortcuts-->
-    <string name="app_not_available">Application not available</string>
+    <string name="app_not_available">App not available</string>
     <string name="short_recent_updates">Updates</string>
 
     <!-- Preferences -->
@@ -137,7 +137,7 @@
     <string name="pref_update_only_non_completed">Only update ongoing manga</string>
     <string name="pref_auto_update_manga_sync">Sync chapters after reading</string>
     <string name="pref_ask_update_manga_sync">Confirm before updating</string>
-    <string name="pref_theme">Application theme</string>
+    <string name="pref_theme">App theme</string>
     <string name="light_theme">Main theme</string>
     <string name="dark_theme">Dark theme</string>
     <string name="amoled_theme">AMOLED theme</string>
@@ -279,7 +279,7 @@
     <string name="version">Version</string>
     <string name="build_time">Build time</string>
     <string name="pref_enable_automatic_updates">Check for updates</string>
-    <string name="pref_enable_automatic_updates_summary">Automatically check for application updates</string>
+    <string name="pref_enable_automatic_updates_summary">Automatically check for new app versions</string>
     <!-- ACRA -->
     <string name="pref_enable_acra">Send crash reports</string>
     <string name="pref_acra_summary">Helps fix any bugs. No sensitive data will be sent</string>
@@ -291,8 +291,8 @@
     <string name="password">Password</string>
     <string name="show_password">Show password</string>
     <string name="login">Login</string>
-    <string name="login_success">Login successful</string>
-    <string name="invalid_login">Login error</string>
+    <string name="login_success">Now logged in</string>
+    <string name="invalid_login">Could not log in</string>
     <string name="unknown_error">Unknown error</string>
 
     <!-- Library fragment -->
@@ -313,12 +313,12 @@
     <string name="invalid_combination">Default can\'t be selected with other categories</string>
     <string name="added_to_library">The manga has been added to your library</string>
     <string name="action_global_search_hint">Global search…</string>
-    <string name="no_results">No results found!</string>
+    <string name="no_results">No results found.</string>
     <string name="latest">Latest</string>
     <string name="browse">Browse</string>
 
     <!-- Manga activity -->
-    <string name="manga_not_in_db">This manga was removed from the database!</string>
+    <string name="manga_not_in_db">This manga has been removed from the database.</string>
 
     <!-- Manga info fragment -->
     <string name="manga_detail_tab">Info</string>
@@ -346,7 +346,7 @@
     <string name="shortcut_title">Shortcut title</string>
     <string name="shortcut_created">Shortcut was added to home screen.</string>
     <string name="icon_shape">Icon shape</string>
-    <string name="icon_creation_fail">Failed to create shortcut!</string>
+    <string name="icon_creation_fail">Could not create shortcut.</string>
     <string name="delete_downloads_for_manga">Delete downloaded chapters?</string>
     <string name="copied_to_clipboard">%1$s copied to clipboard</string>
 
@@ -360,7 +360,7 @@
     <string name="chapter_downloading_progress">Downloading (%1$d/%2$d)</string>
     <string name="chapter_error">Error</string>
     <string name="chapter_paused">Paused</string>
-    <string name="fetch_chapters_error">Error while fetching chapters</string>
+    <string name="fetch_chapters_error">Could not fetch chapters</string>
     <string name="show_title">Show title</string>
     <string name="show_chapter_number">Show chapter number</string>
     <string name="sorting_mode">Sorting mode</string>
@@ -391,14 +391,14 @@
     <string name="track_start_date">Started</string>
     <string name="track_type">Type</string>
     <string name="track_author">Author</string>
-    <string name="url_not_set">Manga url is not set please click title and select manga again</string>
+    <string name="url_not_set">Manga URL not set, please click title and select manga again</string>
 
     <!-- Category activity -->
     <string name="error_category_exists">A category with this name already exists!</string>
     <string name="snack_categories_deleted">Categories deleted</string>
 
     <!-- Dialog option with checkbox view -->
-    <string name="dialog_with_checkbox_remove_description">This will remove the read date of this chapter. Are you sure?</string>
+    <string name="dialog_with_checkbox_remove_description">This will remove the reading date of this chapter. Are you sure?</string>
     <string name="dialog_with_checkbox_reset">Reset all chapters for this manga</string>
 
     <!-- SnackBar -->
@@ -420,9 +420,9 @@
     <string name="chapter_subtitle">Chapter %1$s</string>
     <string name="no_next_chapter">Next chapter not found</string>
     <string name="no_previous_chapter">Previous chapter not found</string>
-    <string name="decode_image_error">Image could not be loaded.\nTry changing the image decoder or with one of the options below</string>
+    <string name="decode_image_error">Could not load image.\nTry changing the image decoder, or use one of the options below:</string>
     <string name="confirm_update_manga_sync">Update last chapter read in enabled services to %1$d?</string>
-    <string name="confirm_set_image_as_cover">Do you want to set this image as the cover?</string>
+    <string name="confirm_set_image_as_cover">Use this image as coverart?</string>
     <string name="viewer_for_this_series">Viewer for this series</string>
 
     <!-- Recent manga fragment -->
@@ -437,7 +437,7 @@
     <string name="migrating">Migrating…</string>
 
     <!-- Downloads activity and service -->
-    <string name="download_queue_error">An error occurred while downloading chapters. You can try again in the downloads section</string>
+    <string name="download_queue_error">Could not download chapters. You can try again in the downloads section</string>
 
     <!-- Library update service notifications -->
     <string name="notification_update_progress">Update progress: %1$d/%2$d</string>
@@ -456,17 +456,17 @@
     <string name="file_select_icon">Select shortcut icon</string>
 
     <!--UpdateCheck-->
-    <string name="update_check_title">New update available!</string>
+    <string name="update_check_title">New version available!</string>
     <string name="update_check_confirm">Download</string>
     <string name="update_check_ignore">Ignore</string>
     <string name="update_check_no_new_updates">No new updates available</string>
     <string name="update_check_download_started">Download started</string>
-    <string name="update_check_look_for_updates">Looking for updates</string>
+    <string name="update_check_look_for_updates">Searching for updates…</string>
 
     <!--UpdateCheck Notifications-->
     <string name="update_check_notification_file_download">Download update</string>
-    <string name="update_check_notification_download_in_progress">Download in progress</string>
-    <string name="update_check_notification_download_complete">Download complete</string>
+    <string name="update_check_notification_download_in_progress">Downloading…</string>
+    <string name="update_check_notification_download_complete">Downloaded</string>
     <string name="update_check_notification_download_error">Download error</string>
     <string name="update_check_notification_update_available">Update available</string>
 
@@ -478,16 +478,16 @@
     <string name="information_no_downloads">No downloads</string>
     <string name="information_no_recent">No recent chapters</string>
     <string name="information_no_recent_manga">No recently read manga</string>
-    <string name="information_empty_library">Your library is empty, you can add series to your library from the Catalogues.</string>
+    <string name="information_empty_library">Your library is empty, add series to your library from the catalogues.</string>
     <string name="information_empty_category">You have no categories. Hit the plus button to create one for organizing your library.</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Downloader</string>
     <string name="download_notifier_title_error">Error</string>
-    <string name="download_notifier_unkown_error">An unexpected error occurred while downloading chapter</string>
+    <string name="download_notifier_unkown_error">Could not download chapter due to unexpected error</string>
     <string name="download_notifier_page_error">A page is missing in directory</string>
-    <string name="download_notifier_page_ready_error">A page is not loaded</string>
-    <string name="download_notifier_text_only_wifi">No wifi connection available</string>
+    <string name="download_notifier_page_ready_error">A page has not been loaded</string>
+    <string name="download_notifier_text_only_wifi">No Wi-Fi connection available</string>
     <string name="download_notifier_no_network">No network connection available</string>
     <string name="download_notifier_download_paused">Download paused</string>
 
