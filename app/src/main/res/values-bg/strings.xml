@@ -510,4 +510,10 @@
     <string name="copy">Копирай</string>
     <string name="migrating">Мигриране…</string>
 
+    <string name="track_status">Статус</string>
+    <string name="track_start_date">Започната на</string>
+    <string name="track_type">Тип</string>
+    <string name="track_author">Автор</string>
+    <string name="url_not_set">Не съществува хипервръзка към страницата на мангата! Натиснете заглавието и изберете мангата наново!</string>
+
     </resources>
