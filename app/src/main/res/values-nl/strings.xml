@@ -415,4 +415,59 @@ Zorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het teru
 <string name="browse">Bladeren</string>
 
     <string name="channel_common">Algemeen</string>
+    <string name="label_migration">Bron veranderen</string>
+    <string name="label_extensions">Extensies</string>
+    <string name="label_extension_info">Extensie info</string>
+
+
+    <string name="all_lang">Alles</string>
+    <string name="ext_details">Details</string>
+    <string name="ext_update">Bijwerken</string>
+    <string name="ext_install">Installeren</string>
+    <string name="ext_pending">In behandeling</string>
+    <string name="ext_downloading">Aan het downloaden</string>
+    <string name="ext_installing">Aan het installeren</string>
+    <string name="ext_installed">Geinstalleerd</string>
+    <string name="ext_trust">Vertrouwen</string>
+    <string name="ext_untrusted">Niet vertrouwd</string>
+    <string name="ext_uninstall">Verwijderen</string>
+    <string name="ext_preferences">Instellingen</string>
+    <string name="ext_available">Beschikbaar</string>
+    <string name="untrusted_extension">Niet vertrouwde extensie</string>
+    <string name="untrusted_extension_message">Deze extensie is getekend met een niet vertrouwd certificaat en is niet geactiveerd.
+\n
+\nEen kwaadaardige extensie zou alle opgeslagen logingegevens kunnen lezen of willekeurige code uitvoeren.
+\n
+\nDoor het vertrouwen van dit certificaat accepteer je deze risico\'s.</string>
+    <string name="ext_version_info">Versie: %1$s</string>
+    <string name="ext_language_info">Taal: %1$s</string>
+    <string name="ext_empty_preferences">Er zijn geen instellingen voor deze extensie</string>
+
+      <string name="pref_double_tap_anim_speed">Dubbeltik animatie snelheid</string>
+    <string name="double_tap_anim_speed_0">Geen animatie</string>
+    <string name="double_tap_anim_speed_normal">Normaal</string>
+    <string name="double_tap_anim_speed_fast">Snel</string>
+    <string name="source_search_options">Zoekfilters</string>
+    <string name="manga_info_full_title_label">Titel</string>
+    <string name="manga_added_library">Toegevoegd aan de bibliotheek</string>
+    <string name="manga_removed_library">Verwijderd uit de bibliotheek</string>
+    <string name="manga_info_latest_data_label">Bijgewerkt</string>
+    <string name="copied_to_clipboard">%1$s gekopieerd naar het klembord</string>
+
+    <string name="custom_download">Download een aangepast aantal</string>
+    <string name="custom_hint">aantal</string>
+    <string name="download_custom">Download een aangepast aantal</string>
+    <string name="track_status">Status</string>
+    <string name="track_start_date">Begonnen op</string>
+    <string name="track_type">Type</string>
+    <string name="track_author">Auteur</string>
+    <string name="url_not_set">Manga url is niet gespecifieerd, klik op de titel en selecteer de manga opnieuw</string>
+
+    <string name="migration_info">Selecteer de bron die moet veranderd worden</string>
+    <string name="migration_dialog_what_to_include">Selecteer de data om op te nemen</string>
+    <string name="select">Selecteren</string>
+    <string name="migrate">Veranderen</string>
+    <string name="copy">Kopieren</string>
+    <string name="migrating">Aan het veranderen…</string>
+
     </resources>
