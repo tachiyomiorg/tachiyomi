@@ -459,4 +459,59 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="channel_downloader">Téléchargeur</string>
 <string name="information_empty_category">Vous n\'avez aucune catégorie. Appuyez sur le bouton plus pour en créeer un pour organiser votre bibliothèque.</string>
 
+    <string name="label_migration">Changer de source</string>
+    <string name="label_extensions">Extensions</string>
+    <string name="label_extension_info">Détails de l\'extension</string>
+
+
+    <string name="all_lang">Toutes</string>
+    <string name="ext_details">Détails</string>
+    <string name="ext_update">Mettre à jour</string>
+    <string name="ext_install">Installer</string>
+    <string name="ext_pending">En attente</string>
+    <string name="ext_downloading">Téléchargement</string>
+    <string name="ext_installing">Installation</string>
+    <string name="ext_installed">Installées</string>
+    <string name="ext_trust">Faire confiance</string>
+    <string name="ext_untrusted">Non-fiable</string>
+    <string name="ext_uninstall">Désinstaller</string>
+    <string name="ext_preferences">Préférences</string>
+    <string name="ext_available">Disponibles</string>
+    <string name="untrusted_extension">Extension non-fiable</string>
+    <string name="untrusted_extension_message">Cette extension n\'a pas été signée avec un certificat de confiance et n\'a pas été activée.
+\n
+\nUne extension malveillante pourrait obtenir tout identifiant enregistré dans Tachiyomi, ou exécuter du code arbitraire (!).
+\n
+\nVous pouvez faire confiance à ce certificat vos risques et périls.</string>
+    <string name="ext_version_info">Version : %1$s</string>
+    <string name="ext_language_info">Langues : %1$s</string>
+    <string name="ext_empty_preferences">Cette extension ne propose pas de paramètres</string>
+
+      <string name="pref_double_tap_anim_speed">Vitesse du zoom au double toucher</string>
+    <string name="double_tap_anim_speed_0">Instantanée</string>
+    <string name="double_tap_anim_speed_normal">Normale</string>
+    <string name="double_tap_anim_speed_fast">Rapide</string>
+    <string name="source_search_options">Filtres de recherche</string>
+    <string name="manga_info_full_title_label">Titre</string>
+    <string name="manga_added_library">Ajouté à la bibliothèque</string>
+    <string name="manga_removed_library">Retiré de la bibliothèque</string>
+    <string name="manga_info_latest_data_label">MàJ le</string>
+    <string name="copied_to_clipboard">%1$1 copié dans le presse-papier</string>
+
+    <string name="custom_download">Télécharger plus de chapitres</string>
+    <string name="custom_hint">quantité</string>
+    <string name="download_custom">Télécharger plus de chapitres</string>
+    <string name="track_status">État</string>
+    <string name="track_start_date">Commencé le</string>
+    <string name="track_type">Type</string>
+    <string name="track_author">Auteur</string>
+    <string name="url_not_set">L\'addresse du manga n\'est pas spécifiée, veuillez cliquer sur le titre et sélectionner de nouveau le manga</string>
+
+    <string name="migration_info">Appuyez pour choisir la source à partir de laquelle migrer</string>
+    <string name="migration_dialog_what_to_include">Choisissez les données à inclure</string>
+    <string name="select">Choisir</string>
+    <string name="migrate">Migrer</string>
+    <string name="copy">Copier</string>
+    <string name="migrating">Migration en cours…</string>
+
     </resources>
