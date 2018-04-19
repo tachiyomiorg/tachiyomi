@@ -62,6 +62,14 @@ class SettingsReaderController : SettingsController() {
             defaultValue = "0"
             summary = "%s"
         }
+        intListPreference {
+            key = Keys.doubleTapAnimationSpeed
+            titleRes = R.string.pref_double_tap_anim_speed
+            entries = arrayOf(context.getString(R.string.double_tap_anim_speed_0), context.getString(R.string.double_tap_anim_speed_fast), context.getString(R.string.double_tap_anim_speed_normal))
+            entryValues = arrayOf("1", "250", "500") // using a value of 0 breaks the image viewer, so min is 1
+            defaultValue = "500"
+            summary = "%s"
+        }
         switchPreference {
             key = Keys.fullscreen
             titleRes = R.string.pref_fullscreen

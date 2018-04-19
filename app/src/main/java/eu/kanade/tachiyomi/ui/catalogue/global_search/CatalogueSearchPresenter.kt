@@ -30,7 +30,7 @@ import uy.kohesive.injekt.api.get
  * @param db manages the database calls.
  * @param preferencesHelper manages the preference calls.
  */
-class CatalogueSearchPresenter(
+open class CatalogueSearchPresenter(
         val initialQuery: String? = "",
         val sourceManager: SourceManager = Injekt.get(),
         val db: DatabaseHelper = Injekt.get(),
@@ -86,7 +86,7 @@ class CatalogueSearchPresenter(
      *
      * @return list containing enabled sources.
      */
-    private fun getEnabledSources(): List<CatalogueSource> {
+    protected open fun getEnabledSources(): List<CatalogueSource> {
         val languages = preferencesHelper.enabledLanguages().getOrDefault()
         val hiddenCatalogues = preferencesHelper.hiddenCatalogues().getOrDefault()
 

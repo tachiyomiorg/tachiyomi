@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.getResourceColor
 
@@ -21,7 +20,7 @@ open class ExtendedNavigationView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
         defStyleAttr: Int = 0)
-: SimpleNavigationView(context, attrs, defStyleAttr) {
+    : SimpleNavigationView(context, attrs, defStyleAttr) {
 
     /**
      * Every item of the nav view. Generic items must belong to this list, custom items could be
@@ -100,8 +99,8 @@ open class ExtendedNavigationView @JvmOverloads constructor(
 
             override fun getStateDrawable(context: Context): Drawable? {
                 return when (state) {
-                    SORT_ASC -> tintVector(context, R.drawable.ic_keyboard_arrow_up_black_32dp)
-                    SORT_DESC -> tintVector(context, R.drawable.ic_keyboard_arrow_down_black_32dp)
+                    SORT_ASC -> tintVector(context, R.drawable.ic_arrow_up_white_32dp)
+                    SORT_DESC -> tintVector(context, R.drawable.ic_arrow_down_white_32dp)
                     SORT_NONE -> ContextCompat.getDrawable(context, R.drawable.empty_drawable_32dp)
                     else -> null
                 }
@@ -206,9 +205,8 @@ open class ExtendedNavigationView @JvmOverloads constructor(
         override fun onBindViewHolder(holder: Holder, position: Int) {
             when (holder) {
                 is HeaderHolder -> {
-                    val view = holder.itemView as TextView
                     val item = items[position] as Item.Header
-                    view.setText(item.resTitle)
+                    holder.title.setText(item.resTitle)
                 }
                 is SeparatorHolder -> {
                     val view = holder.itemView

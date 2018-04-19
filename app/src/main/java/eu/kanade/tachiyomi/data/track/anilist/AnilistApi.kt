@@ -5,6 +5,7 @@ import com.github.salomonbrys.kotson.int
 import com.github.salomonbrys.kotson.string
 import com.google.gson.JsonObject
 import eu.kanade.tachiyomi.data.database.models.Track
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.POST
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
@@ -46,7 +47,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 }
     }
 
-    fun search(query: String): Observable<List<Track>> {
+    fun search(query: String): Observable<List<TrackSearch>> {
         return rest.search(query, 1)
                 .map { list ->
                     list.filter { it.type != "Novel" }.map { it.toTrack() }
@@ -140,6 +141,11 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
         private const val clientSecret = "nlGB5OmgE9YWq5dr3gIDbTQV0C"
         private const val clientUrl = "tachiyomi://anilist-auth"
         private const val baseUrl = "https://anilist.co/api/"
+        private const val baseMangaUrl = "https://anilist.co/manga/"
+
+        fun mangaUrl(remoteId: Int): String {
+            return baseMangaUrl + remoteId
+        }
 
         fun authUrl() = Uri.parse("${baseUrl}auth/authorize").buildUpon()
                 .appendQueryParameter("grant_type", "authorization_code")

@@ -106,7 +106,7 @@
     <string name="pref_reader_theme">Color de fondo</string>
     <string name="white_background">Blanco</string>
     <string name="black_background">Negro</string>
-    <string name="pref_viewer_type">Visor predefinido</string>
+    <string name="pref_viewer_type">Lectura predefinida</string>
     <string name="default_viewer">Predefinido</string>
     <string name="left_to_right_viewer">Izquierda a derecha</string>
     <string name="right_to_left_viewer">Derecha a izquierda</string>
@@ -249,7 +249,7 @@
     <string name="no_previous_chapter">Capítulo anterior no encontrado</string>
     <string name="decode_image_error">La imagen no se pudo decodificar. Intente de nuevo cambiándolo o seleccione una de las siguientes opciones</string>
     <string name="confirm_update_manga_sync">¿Actualizar el último capítulo leído a %1$d en los servicios activos?</string>
-    <string name="viewer_for_this_series">Lector para esta serie</string>
+    <string name="viewer_for_this_series">Lectura para esta serie</string>
 
     <!-- Backup fragment -->
     <string name="backup">Copia de seguridad</string>
@@ -296,7 +296,7 @@
     <string name="information_no_downloads">No hay descargas</string>
     <string name="information_no_recent">No hay capítulos recientes</string>
     <string name="information_no_recent_manga">No hay mangas leídos recientes</string>
-    <string name="information_empty_library">Librería vacía</string>
+    <string name="information_empty_library">Tu librería está vacía, puedes agregar series a tu librería desde los Catálogos.</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_title_error">Error</string>
@@ -444,4 +444,22 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
 
     <string name="download_notifier_downloader_title">Descargador</string>
     <string name="invalid_combination">Predefinido no puede ser seleccionada con otras categorías</string>
+    <string name="action_global_search">Búsqueda global</string>
+    <string name="action_display_download_badge">Icono de descargas</string>
+    <string name="action_open">Abrir</string>
+    <string name="action_login">Iniciar sesión</string>
+
+    <string name="local_source_badge">Local</string>
+    <string name="other_source">Otros</string>
+    <string name="action_global_search_hint">Búsqueda global…</string>
+    <string name="no_results">Ningún resultado encontrado!</string>
+    <string name="latest">Recientes</string>
+    <string name="browse">Explorar</string>
+
+    <string name="shortcut_created">Acceso directo fue agregado a la pantalla de inicio.</string>
+    <string name="channel_common">Común</string>
+    <string name="channel_library">Librería</string>
+    <string name="channel_downloader">Descargador</string>
+<string name="information_empty_category">No tienes categorías. Toca el botón más para crear una y organizar tu librería.</string>
+
     </resources>

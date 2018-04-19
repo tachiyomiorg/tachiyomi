@@ -14,25 +14,22 @@
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="48dp"
-            android:layout_height="56dp"
-            android:clickable="true"
-            android:paddingLeft="8dp"
-            android:paddingStart="8dp"
-            android:paddingRight="0dp"
-            android:paddingEnd="0dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintLeft_toLeftOf="parent"
-            tools:src="@mipmap/ic_launcher_round"/>
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/ic_launcher_round" />
 
         <TextView
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:paddingLeft="16dp"
-            android:paddingStart="16dp"
+            android:paddingLeft="0dp"
+            android:paddingStart="0dp"
             android:paddingRight="8dp"
             android:paddingEnd="8dp"
             android:ellipsize="end"

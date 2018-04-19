@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="name">Titlu</string>
+    <string name="categories">Categorii</string>
+    <string name="manga">Manga</string>
+    <string name="chapters">Capitole</string>
+    <string name="track">Tracking</string>
+    <string name="history">Istoric</string>
+
+    <string name="label_settings">Setări</string>
+    <string name="label_download_queue">Descărcări</string>
+    <string name="label_library">Biblioteca mea</string>
+    <string name="label_recent_manga">Citite recent</string>
+    <string name="label_catalogues">Surse</string>
+    <string name="label_recent_updates">Ieșite recent</string>
+    <string name="label_latest_updates">Actualizări recente</string>
+    <string name="label_categories">Categorii</string>
+    <string name="label_selected">Selectate: %1$d</string>
+    <string name="label_backup">Backup</string>
+    <string name="label_migration">Migrare între surse</string>
+    <string name="label_extensions">Extensii</string>
+    <string name="label_extension_info">Info extensie</string>
+
+
+    <string name="action_settings">Setări</string>
+    <string name="action_filter">Filtre</string>
+    <string name="action_filter_downloaded">Descărcate</string>
+    <string name="action_filter_bookmarked">Marcate</string>
+    <string name="action_filter_unread">Necitite</string>
+    <string name="action_filter_read">Citite</string>
+    <string name="action_filter_empty">Șterge filtre</string>
+    <string name="action_sort_alpha">Alfabetic</string>
+    <string name="action_sort_total">Total capitole</string>
+    <string name="action_sort_last_read">Citite recent</string>
+    <string name="action_sort_last_updated">Actualizate recent</string>
+    <string name="action_search">Caută</string>
+    <string name="action_global_search">Caută global</string>
+    <string name="action_select_all">Selecție totală</string>
+    <string name="action_mark_as_read">Marchează ca citit</string>
+    <string name="action_mark_as_unread">Marchează ca necitit</string>
+    <string name="action_mark_previous_as_read">Marchează capitolele precedente ca citite</string>
+    <string name="action_download">Descarcă</string>
+    <string name="action_bookmark">Semn de carte</string>
+    <string name="action_remove_bookmark">Eliminați semnul de carte</string>
+    <string name="action_delete">Șterge</string>
+    <string name="action_update">Actualizează</string>
+    <string name="action_update_library">Actualizează biblioteca</string>
+    <string name="action_edit">Modifică</string>
+    <string name="action_add">Adaugă</string>
+    <string name="action_add_category">Adaugă categorie</string>
+    <string name="action_edit_categories">Modifică categoriile</string>
+    <string name="action_rename_category">Redenumește categoria</string>
+    <string name="action_move_category">Mută în categorii</string>
+    <string name="action_edit_cover">Modifică coperta</string>
+    <string name="action_show_unread">Necitite</string>
+    <string name="action_show_downloaded">Descărcate</string>
+    <string name="action_next_unread">Următorul necitit</string>
+    <string name="action_start">Start</string>
+    <string name="action_stop">Stop</string>
+    <string name="action_pause">Pauză</string>
+    <string name="action_clear">Șterge</string>
+    <string name="action_close">Închide</string>
+    <string name="action_previous_chapter">Capitolul anterior</string>
+    <string name="action_next_chapter">Capitolul următor</string>
+    <string name="action_retry">Reîncearcă</string>
+    <string name="action_remove">Șterge</string>
+    <string name="action_resume">Continuă</string>
+    <string name="action_move">Mută</string>
+    <string name="action_open_in_browser">Deschide în browser</string>
+    <string name="action_add_to_home_screen">Adaugă în ecranul principal</string>
+    <string name="action_display_mode">Schimbă modul de afișare</string>
+    <string name="action_display">Afișare</string>
+    <string name="action_display_grid">Grilă</string>
+    <string name="action_display_list">Listă</string>
+    <string name="action_set_filter">Setează filtru</string>
+    <string name="action_cancel">Anulează</string>
+    <string name="action_sort">Sortare</string>
+    <string name="action_install">Instalează</string>
+    <string name="action_share">Distribuie</string>
+    <string name="action_save">Salvează</string>
+    <string name="action_reset">Resetează</string>
+    <string name="action_undo">Anulează</string>
+    <string name="action_export">Exportează</string>
+    <string name="action_open_log">Deschide jurnalul</string>
+    <string name="action_create">Creează</string>
+    <string name="action_restore">Restaurează</string>
+    <string name="action_open">Deschide</string>
+    <string name="action_login">Loghează-te</string>
+
+    <string name="deleting">Se șterge…</string>
+    <string name="loading">Se încarcă…</string>
+
+    <string name="app_not_available">Aplicația nu este accesibilă</string>
+    <string name="short_recent_updates">Actualizări</string>
+
+    <string name="pref_category_general">Generale</string>
+    <string name="pref_category_reader">Cititor</string>
+    <string name="pref_category_downloads">Descărcări</string>
+    <string name="pref_category_sources">Surse</string>
+    <string name="pref_category_tracking">Tracking</string>
+    <string name="pref_category_advanced">Avansat</string>
+    <string name="pref_category_about">Despre</string>
+
+      <string name="pref_library_columns">Număr manga pe rând</string>
+    <string name="portrait">Portret</string>
+    <string name="default_columns">Prestabilit</string>
+    <string name="pref_library_update_interval">Frecvență actualizări</string>
+    <string name="update_never">Manual</string>
+    <string name="update_1hour">Fiecare oră</string>
+    <string name="update_2hour">Fiecare 2 ore</string>
+    <string name="update_3hour">Fiecare 3 ore</string>
+    <string name="update_6hour">Fiecare 6 ore</string>
+    <string name="update_12hour">Fiecare 12 ore</string>
+    <string name="update_24hour">Fiecare zi</string>
+    <string name="update_48hour">Fiecare 2 zile</string>
+    <string name="update_weekly">Fiecare săptămână</string>
+    <string name="update_monthly">Fiecare lună</string>
+    <string name="pref_library_update_categories">Categorii incluse în actualizarea globală</string>
+    <string name="all">Toate</string>
+    <string name="pref_library_update_restriction">Restricții actualizare bibliotecă</string>
+    <string name="pref_library_update_restriction_summary">Actualizează doar când condițiile sunt împlinite</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="charging">Se încarcă</string>
+    <string name="pref_update_only_non_completed">Actualizează doar manga în curs de desfășurare</string>
+    <string name="pref_auto_update_manga_sync">Sincronizează capitolele după citire</string>
+    <string name="pref_ask_update_manga_sync">Confirmă înainte de actualizare</string>
+    <string name="pref_theme">Temă aplicație</string>
+    <string name="light_theme">Tema principală</string>
+    <string name="dark_theme">Tema întunecată</string>
+    <string name="amoled_theme">Tema AMOLED</string>
+    <string name="pref_start_screen">Ecran principal</string>
+    <string name="pref_language">Limbă</string>
+    <string name="system_default">Prestabilită de sistem</string>
+    <string name="default_category">Categoria principală</string>
+    <string name="default_category_summary">Întreabă mereu</string>
+
+    <string name="all_lang">Toate</string>
+    <string name="ext_details">Detalii</string>
+    <string name="ext_update">Actualizează</string>
+    <string name="ext_install">Instalează</string>
+    <string name="ext_pending">În așteptare</string>
+    <string name="ext_downloading">În curs de descărcare</string>
+    <string name="ext_installing">În curs de instalare</string>
+    <string name="ext_installed">Instalată</string>
+    <string name="ext_trust">Ai încredere</string>
+    <string name="ext_untrusted">Nesigură</string>
+    <string name="ext_uninstall">Dezinstalează</string>
+    <string name="ext_preferences">Preferințe</string>
+    <string name="ext_available">Valabilă</string>
+    <string name="untrusted_extension">Extensie nesigură</string>
+    <string name="untrusted_extension_message">Extensia a fost semnată cu un certificat nesigur și nu a fost activată.
+\n
+\nO extensie periculoasă ar putea citi orice date de logare stocate în Tachiyomi sau executa cod periculos.
+\n
+\nPrin acordarea încrederii acestui certificat acceptați riscurile menționate.</string>
+    <string name="ext_version_info">Versiune: %1$s</string>
+    <string name="ext_language_info">Limbă: %1$s</string>
+    <string name="ext_empty_preferences">Nu există preferințe pentru această extensie</string>
+
+      <string name="pref_fullscreen">Ecran complet</string>
+    <string name="pref_lock_orientation">Orientare blocată</string>
+    <string name="pref_page_transitions">Tranziții între pagini</string>
+    </resources>

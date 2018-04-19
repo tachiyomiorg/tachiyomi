@@ -1,5 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="true">
+    <changelogversion versionName="v0.7.2" changeDate="">
+        <changelogtext>Fixed missing downloaded label in chapters screen.</changelogtext>
+
+        <changelogtext>Fixed updater in KitKat and lower due to TLS.</changelogtext>
+    </changelogversion>
+
+    <changelogversion versionName="v0.7.1" changeDate="">
+        <changelogtext>Updated Cloudflare bypass.</changelogtext>
+
+        <changelogtext>Enabled TLS 1.1 and TLS 1.2 on Android KitKat and lower.</changelogtext>
+
+        <changelogtext>Minor UI changes.</changelogtext>
+    </changelogversion>
+
+    <changelogversion versionName="v0.7.0" changeDate="">
+        <changelogtext>Added extensions support. You can now install and update extensions within the app.
+            If you installed any extension previously through F-Droid, you'll have to uninstall them first.</changelogtext>
+
+        <changelogtext>Added a custom download option to download N chapters.</changelogtext>
+
+        <changelogtext>Updated manga info layout, with clickable components to copy to clipboard or perform a global search.</changelogtext>
+
+        <changelogtext>Added an option to change the animation speed of a double tap in the reader.</changelogtext>
+
+        <changelogtext>Improved tracking results UI with covers.</changelogtext>
+
+        <changelogtext>Dropped support for simultaneous downloads.</changelogtext>
+
+        <changelogtext>Batoto is now a legacy source, you can only use it to migrate.</changelogtext>
+
+        <changelogtext>Updated dark theme and reader theme.</changelogtext>
+
+        <changelogtext>Bugfixes and minor UI/UX improvements.</changelogtext>
+    </changelogversion>
+
+    <changelogversion versionName="v0.6.8" changeDate="">
+        <changelogtext>Added a new feature to help migrating manga from sources. You can find it in the library's toolbar.
+            In the search results, a tap will prompt to replace (or copy) the selected manga, while a long tap will let you
+            browse the manga before doing the migration.
+        </changelogtext>
+
+    </changelogversion>
+
     <changelogversion versionName="v0.6.7" changeDate="">
         <changelogtext>[b]Notice to Batoto users.[/b] As you may already know, Batoto will cease to work in a few days.
             We're working on a feature to help migrating the library to other sources and should be available shortly.
@@ -188,90 +231,6 @@
         <changelogtext>Added italian translation.</changelogtext>
 
         <changelogtext>Image is now the default decoder.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.3.2" changeDate="">
-        <changelogtext>Added a new image decoder. It should be faster than Rapid and more reliable than Skia.</changelogtext>
-
-        <changelogtext>Removed the advanced setting reencode images. Use the new image decoder instead.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.3.1" changeDate="">
-        <changelogtext>Fixed a crash when opening latest updates. ([a href="https://github.com/inorichi/tachiyomi/issues/495"]#495[/a])</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.3.0" changeDate="">
-        <changelogtext>Added a new tab to show latest manga updates from the catalogues. ([a href="https://github.com/inorichi/tachiyomi/issues/61"]#61[/a])</changelogtext>
-
-        <changelogtext>Added genre filter for catalogues. ([a href="https://github.com/inorichi/tachiyomi/issues/428"]#428[/a])</changelogtext>
-
-        <changelogtext>Added an optional auto updater (not available for F-Droid installs). ([a href="https://github.com/inorichi/tachiyomi/issues/449"]#449[/a])</changelogtext>
-
-        <changelogtext>Added an option to display the library as a list. ([a href="https://github.com/inorichi/tachiyomi/issues/224"]#224[/a])</changelogtext>
-
-        <changelogtext>Added a customizable color filter for the reader. ([a href="https://github.com/inorichi/tachiyomi/issues/432"]#432[/a])</changelogtext>
-
-        <changelogtext>Added share intent in the info tab of a manga. ([a href="https://github.com/inorichi/tachiyomi/issues/340"]#340[/a])</changelogtext>
-
-        <changelogtext>Allow to launcher shortcuts for manga. ([a href="https://github.com/inorichi/tachiyomi/issues/435"]#435[/a])</changelogtext>
-
-        <changelogtext>Allow to select categories to update in global update. ([a href="https://github.com/inorichi/tachiyomi/issues/461"]#461[/a])</changelogtext>
-
-        <changelogtext>Redesigned source tab in preferences, now it allows to hide unwanted sources and languages. ([a href="https://github.com/inorichi/tachiyomi/issues/447"]#447[/a])</changelogtext>
-
-        <changelogtext>Fixed single page chapters not appending the next one. ([a href="https://github.com/inorichi/tachiyomi/issues/468"]#468[/a])</changelogtext>
-
-        <changelogtext>Fixed reader status bar reappearing after focus restore. ([a href="https://github.com/inorichi/tachiyomi/issues/408"]#408[/a])</changelogtext>
-
-        <changelogtext>Fixed various crashes in the webtoon reader.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.2.3" changeDate="">
-        <changelogtext>Added a history of reading. ([a href="https://github.com/inorichi/tachiyomi/issues/316"]#316[/a])</changelogtext>
-
-        <changelogtext>Added an option to select the initial screen. ([a href="https://github.com/inorichi/tachiyomi/issues/395"]#395[/a])</changelogtext>
-
-        <changelogtext>Added spanish and portuguese translations. ([a href="https://github.com/inorichi/tachiyomi/issues/365"]#365[/a], [a href="https://github.com/inorichi/tachiyomi/issues/375"]#375[/a])</changelogtext>
-
-        <changelogtext>Added sources "Mangasee" and "Wie Manga!" ([a href="https://github.com/inorichi/tachiyomi/issues/355"]#355[/a], [a href="https://github.com/inorichi/tachiyomi/issues/379"]#379[/a])</changelogtext>
-
-        <changelogtext>New design for the reader's menu. ([a href="https://github.com/inorichi/tachiyomi/issues/368"]#368[/a])</changelogtext>
-
-        <changelogtext>When resuming chapters, the new loader starts from the page that was opened, instead of from the beginning. ([a href="https://github.com/inorichi/tachiyomi/issues/268"]#268[/a])</changelogtext>
-
-        <changelogtext>Custom brightness in the reader can be set even lower by applying a black layer on the top. ([a href="https://github.com/inorichi/tachiyomi/issues/362"]#362[/a])</changelogtext>
-
-        <changelogtext>Fixed reader's status bar reappearing in Android versions older than Kit Kat. ([a href="https://github.com/inorichi/tachiyomi/issues/359"]#359[/a])</changelogtext>
-
-        <changelogtext>Fixed UI bugs. ([a href="https://github.com/inorichi/tachiyomi/issues/332"]#332[/a], [a href="https://github.com/inorichi/tachiyomi/issues/333"]#333[/a], [a href="https://github.com/inorichi/tachiyomi/issues/351"]#351[/a], [a href="https://github.com/inorichi/tachiyomi/issues/361"]#361[/a])</changelogtext>
-
-        <changelogtext>Fixed empty library covers.</changelogtext>
-
-        <changelogtext>Fixed some random crashes (most of them when downloading chapters).</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.2.2" changeDate="">
-        <changelogtext>[b]Important![/b] Now chapters follow the order of the sources. [b]It's required that you update your entire library
-            before reading to sync them.[/b] Old behavior can be restored for a manga in the overflow menu of the chapters tab.
-        </changelogtext>
-
-        <changelogtext>Kissmanga now loads through CloudFlare.</changelogtext>
-
-        <changelogtext>Persistent cookies have been added for a better experience with CloudFlare sites.</changelogtext>
-
-        <changelogtext>Added link to manga website in the info page. [a href="https://github.com/inorichi/tachiyomi/issues/157"]#157[/a]</changelogtext>
-
-        <changelogtext>Added notifications for downloads. [a href="https://github.com/inorichi/tachiyomi/pull/289"]#289[/a]</changelogtext>
-
-        <changelogtext>Added more options to recent updates. [a href="https://github.com/inorichi/tachiyomi/pull/324"]#324[/a]</changelogtext>
-
-        <changelogtext>Remember last active category. [a href="https://github.com/inorichi/tachiyomi/issues/261"]#261[/a]</changelogtext>
-
-        <changelogtext>Fixed a bug with seamless mode for chapters with less than 5 pages. [a href="https://github.com/inorichi/tachiyomi/issues/291"]#291[/a]</changelogtext>
-
-        <changelogtext>Improved chapter recognition.</changelogtext>
-
-        <changelogtext>Bugfixes and more improvements.</changelogtext>
     </changelogversion>
 
 </changelog>

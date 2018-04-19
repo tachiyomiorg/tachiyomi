@@ -79,7 +79,7 @@ class MangaModelLoader : ModelLoader<Manga, InputStream> {
      * @param height the height of the view where the resource will be loaded.
      */
     override fun buildLoadData(manga: Manga, width: Int, height: Int,
-                               options: Options?): ModelLoader.LoadData<InputStream>? {
+                               options: Options): ModelLoader.LoadData<InputStream>? {
         // Check thumbnail is not null or empty
         val url = manga.thumbnail_url
         if (url == null || url.isEmpty()) {

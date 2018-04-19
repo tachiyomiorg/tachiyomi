@@ -12,6 +12,7 @@ import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RestoreViewOnCreateController
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.*
+import timber.log.Timber
 
 abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateController(bundle),
         LayoutContainer {
@@ -20,6 +21,22 @@ abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateContr
         addLifecycleListener(object : LifecycleListener() {
             override fun postCreateView(controller: Controller, view: View) {
                 onViewCreated(view)
+            }
+
+            override fun preCreateView(controller: Controller) {
+                Timber.d("Create view for ${controller.instance()}")
+            }
+
+            override fun preAttach(controller: Controller, view: View) {
+                Timber.d("Attach view for ${controller.instance()}")
+            }
+
+            override fun preDetach(controller: Controller, view: View) {
+                Timber.d("Detach view for ${controller.instance()}")
+            }
+
+            override fun preDestroyView(controller: Controller, view: View) {
+                Timber.d("Destroy view for ${controller.instance()}")
             }
         })
     }
@@ -61,6 +78,10 @@ abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateContr
         }
 
         (activity as? AppCompatActivity)?.supportActionBar?.title = getTitle()
+    }
+
+    private fun Controller.instance(): String {
+        return "${javaClass.simpleName}@${Integer.toHexString(hashCode())}"
     }
 
     /**

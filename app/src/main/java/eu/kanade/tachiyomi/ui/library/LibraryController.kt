@@ -32,9 +32,9 @@ import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.category.CategoryController
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.ui.migration.MigrationController
 import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.util.toast
-import eu.kanade.tachiyomi.widget.DrawerSwipeCloseListener
 import kotlinx.android.synthetic.main.library_controller.*
 import kotlinx.android.synthetic.main.main_activity.*
 import rx.Subscription
@@ -73,7 +73,7 @@ class LibraryController(
     /**
      * Currently selected mangas.
      */
-    val selectedMangas = mutableListOf<Manga>()
+    val selectedMangas = mutableSetOf<Manga>()
 
     private var selectedCoverManga: Manga? = null
 
@@ -116,6 +116,8 @@ class LibraryController(
     private var tabsVisibilityRelay: BehaviorRelay<Boolean> = BehaviorRelay.create(false)
 
     private var tabsVisibilitySubscription: Subscription? = null
+
+    private var searchViewSubscription: Subscription? = null
 
     init {
         setHasOptionsMenu(true)
@@ -174,11 +176,8 @@ class LibraryController(
 
     override fun createSecondaryDrawer(drawer: DrawerLayout): ViewGroup {
         val view = drawer.inflate(R.layout.library_drawer) as LibraryNavigationView
-        drawerListener = DrawerSwipeCloseListener(drawer, view).also {
-            drawer.addDrawerListener(it)
-        }
         navView = view
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, Gravity.END)
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, Gravity.END)
 
         navView?.onGroupClicked = { group ->
             when (group) {
@@ -193,8 +192,6 @@ class LibraryController(
     }
 
     override fun cleanupSecondaryDrawer(drawer: DrawerLayout) {
-        drawerListener?.let { drawer.removeDrawerListener(it) }
-        drawerListener = null
         navView = null
     }
 
@@ -275,7 +272,7 @@ class LibraryController(
         activity?.invalidateOptionsMenu()
     }
 
-    private fun onDownloadBadgeChanged(){
+    private fun onDownloadBadgeChanged() {
         presenter.requestDownloadBadgesUpdate()
     }
 
@@ -331,10 +328,14 @@ class LibraryController(
         // Mutate the filter icon because it needs to be tinted and the resource is shared.
         menu.findItem(R.id.action_filter).icon.mutate()
 
-        searchView.queryTextChanges().subscribeUntilDestroy {
-            query = it.toString()
-            searchRelay.call(query)
-        }
+        searchViewSubscription?.unsubscribe()
+        searchViewSubscription = searchView.queryTextChanges()
+                // Ignore events if this controller isn't at the top
+                .filter { router.backstack.lastOrNull()?.controller() == this }
+                .subscribeUntilDestroy {
+                    query = it.toString()
+                    searchRelay.call(query)
+                }
 
         searchItem.fixExpand()
     }
@@ -359,6 +360,9 @@ class LibraryController(
             }
             R.id.action_edit_categories -> {
                 router.pushController(CategoryController().withFadeTransaction())
+            }
+            R.id.action_source_migration -> {
+                router.pushController(MigrationController().withFadeTransaction())
             }
             else -> return super.onOptionsItemSelected(item)
         }
@@ -425,11 +429,13 @@ class LibraryController(
      */
     fun setSelection(manga: Manga, selected: Boolean) {
         if (selected) {
-            selectedMangas.add(manga)
-            selectionRelay.call(LibrarySelectionEvent.Selected(manga))
+            if (selectedMangas.add(manga)) {
+                selectionRelay.call(LibrarySelectionEvent.Selected(manga))
+            }
         } else {
-            selectedMangas.remove(manga)
-            selectionRelay.call(LibrarySelectionEvent.Unselected(manga))
+            if (selectedMangas.remove(manga)) {
+                selectionRelay.call(LibrarySelectionEvent.Unselected(manga))
+            }
         }
     }
 

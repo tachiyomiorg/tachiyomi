@@ -15,7 +15,7 @@ class TrackAdapter(controller: TrackController) : RecyclerView.Adapter<TrackHold
             }
         }
 
-    val rowClickListener: OnRowClickListener = controller
+    val rowClickListener: OnClickListener = controller
 
     fun getItem(index: Int): TrackItem? {
         return items.getOrNull(index)
@@ -34,7 +34,8 @@ class TrackAdapter(controller: TrackController) : RecyclerView.Adapter<TrackHold
         holder.bind(items[position])
     }
 
-    interface OnRowClickListener {
+    interface OnClickListener {
+        fun onLogoClick(position: Int)
         fun onTitleClick(position: Int)
         fun onStatusClick(position: Int)
         fun onChaptersClick(position: Int)

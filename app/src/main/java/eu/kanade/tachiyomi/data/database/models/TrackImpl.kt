@@ -20,6 +20,8 @@ class TrackImpl : Track {
 
     override var status: Int = 0
 
+    override var tracking_url: String = ""
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || javaClass != other.javaClass) return false

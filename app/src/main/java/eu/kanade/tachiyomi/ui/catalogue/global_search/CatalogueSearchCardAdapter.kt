@@ -22,6 +22,7 @@ class CatalogueSearchCardAdapter(controller: CatalogueSearchController) :
      */
     interface OnMangaClickListener {
         fun onMangaClick(manga: Manga)
+        fun onMangaLongClick(manga: Manga)
     }
 
 }

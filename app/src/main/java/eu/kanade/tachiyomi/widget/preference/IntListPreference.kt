@@ -12,10 +12,15 @@ class IntListPreference @JvmOverloads constructor(context: Context, attrs: Attri
     }
 
     override fun getPersistedString(defaultReturnValue: String?): String? {
-        if (sharedPreferences.contains(key)) {
-            return getPersistedInt(0).toString()
+        // When the underlying preference is using a PreferenceDataStore, there's no way (for now)
+        // to check if a value is in the store, so we use a most likely unused value as workaround
+        val defaultIntValue = Int.MIN_VALUE + 1
+
+        val value = getPersistedInt(defaultIntValue)
+        return if (value != defaultIntValue) {
+            value.toString()
         } else {
-            return defaultReturnValue
+            defaultReturnValue
         }
     }
 }

@@ -3,10 +3,7 @@ package eu.kanade.tachiyomi.ui.setting
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.Activity
 import android.app.Dialog
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -14,25 +11,17 @@ import android.support.v7.preference.PreferenceScreen
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.hippo.unifile.UniFile
-import com.nononsenseapps.filepicker.FilePickerActivity
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.backup.BackupConst
 import eu.kanade.tachiyomi.data.backup.BackupCreateService
 import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
 import eu.kanade.tachiyomi.data.backup.BackupRestoreService
 import eu.kanade.tachiyomi.data.backup.models.Backup
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.popControllerWithTag
 import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
-import eu.kanade.tachiyomi.util.getUriCompat
-import eu.kanade.tachiyomi.util.registerLocalReceiver
-import eu.kanade.tachiyomi.util.toast
-import eu.kanade.tachiyomi.util.unregisterLocalReceiver
-import eu.kanade.tachiyomi.widget.CustomLayoutPickerActivity
-import uy.kohesive.injekt.Injekt
-import uy.kohesive.injekt.api.get
+import eu.kanade.tachiyomi.util.*
 import java.io.File
 import java.util.concurrent.TimeUnit
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
@@ -116,19 +105,22 @@ class SettingsBackupController : SettingsController() {
 
                 onClick {
                     val currentDir = preferences.backupsDirectory().getOrDefault()
-
-                    val intent = if (Build.VERSION.SDK_INT < 21) {
+                    try{
+                        val intent = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                         // Custom dir selected, open directory selector
-                        val i = Intent(activity, CustomLayoutPickerActivity::class.java)
-                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
-                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
-                        i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
-                        i.putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
+                        preferences.context.getFilePicker(currentDir)
+                        } else {
+                          Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+                        }
 
-                    } else {
-                        Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+                        startActivityForResult(intent, CODE_BACKUP_DIR)
+                    } catch (e: ActivityNotFoundException){
+                        //Fall back to custom picker on error
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                            startActivityForResult(preferences.context.getFilePicker(currentDir), CODE_BACKUP_DIR)
+                        }
                     }
-                    startActivityForResult(intent, CODE_BACKUP_DIR)
+
                 }
 
                 preferences.backupsDirectory().asObservable()
@@ -204,25 +196,30 @@ class SettingsBackupController : SettingsController() {
     fun createBackup(flags: Int) {
         backupFlags = flags
 
-        // If API lower as KitKat use custom dir picker
-        val intent = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            // Get dirs
-            val preferences: PreferencesHelper = Injekt.get()
-            val currentDir = preferences.backupsDirectory().getOrDefault()
+        // Setup custom file picker intent
+        // Get dirs
+        val currentDir = preferences.backupsDirectory().getOrDefault()
 
-            Intent(activity, CustomLayoutPickerActivity::class.java)
-                    .putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
-                    .putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
-                    .putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
-                    .putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
-        } else {
-            // Use Androids build in file creator
-            Intent(Intent.ACTION_CREATE_DOCUMENT)
+        try {
+            // If API is lower than Lollipop use custom picker
+            val intent = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                preferences.context.getFilePicker(currentDir)
+            } else {
+                // Use Androids build in file creator
+                Intent(Intent.ACTION_CREATE_DOCUMENT)
                     .addCategory(Intent.CATEGORY_OPENABLE)
                     .setType("application/*")
                     .putExtra(Intent.EXTRA_TITLE, Backup.getDefaultFilename())
+            }
+
+            startActivityForResult(intent, CODE_BACKUP_CREATE)
+        } catch (e: ActivityNotFoundException) {
+            // Handle errors where the android ROM doesn't support the built in picker
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                startActivityForResult(preferences.context.getFilePicker(currentDir), CODE_BACKUP_CREATE)
+            }
         }
-        startActivityForResult(intent, CODE_BACKUP_CREATE)
+
     }
 
     class CreateBackupDialog : DialogController() {

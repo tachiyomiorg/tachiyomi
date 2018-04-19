@@ -9,8 +9,6 @@ import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.download.model.DownloadQueue
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.source.online.HttpSource
@@ -21,7 +19,6 @@ import okhttp3.Response
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import rx.subjects.BehaviorSubject
 import rx.subscriptions.CompositeSubscription
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
@@ -39,9 +36,11 @@ import uy.kohesive.injekt.injectLazy
  * @param provider the downloads directory provider.
  * @param cache the downloads cache, used to add the downloads to the cache after their completion.
  */
-class Downloader(private val context: Context,
-                 private val provider: DownloadProvider,
-                 private val cache: DownloadCache) {
+class Downloader(
+        private val context: Context,
+        private val provider: DownloadProvider,
+        private val cache: DownloadCache
+) {
 
     /**
      * Store for persisting downloads across restarts.
@@ -59,11 +58,6 @@ class Downloader(private val context: Context,
     private val sourceManager: SourceManager by injectLazy()
 
     /**
-     * Preferences.
-     */
-    private val preferences: PreferencesHelper by injectLazy()
-
-    /**
      * Notifier for the downloader state and progress.
      */
     private val notifier by lazy { DownloadNotifier(context) }
@@ -72,11 +66,6 @@ class Downloader(private val context: Context,
      * Downloader subscriptions.
      */
     private val subscriptions = CompositeSubscription()
-
-    /**
-     * Subject to do a live update of the number of simultaneous downloads.
-     */
-    private val threadsSubject = BehaviorSubject.create<Int>()
 
     /**
      * Relay to send a list of downloads to the downloader.
@@ -115,9 +104,6 @@ class Downloader(private val context: Context,
 
         val pending = queue.filter { it.status != Download.DOWNLOADED }
         pending.forEach { if (it.status != Download.QUEUE) it.status = Download.QUEUE }
-
-        // Show download notification when simultaneous download > 1.
-        notifier.onProgressChange(queue)
 
         downloadsRelay.call(pending)
         return !pending.isEmpty()
@@ -185,14 +171,8 @@ class Downloader(private val context: Context,
 
         subscriptions.clear()
 
-        subscriptions += preferences.downloadThreads().asObservable()
-                .subscribe {
-                    threadsSubject.onNext(it)
-                    notifier.multipleDownloadThreads = it > 1
-                }
-
-        subscriptions += downloadsRelay.flatMap { Observable.from(it) }
-                .lift(DynamicConcurrentMergeOperator<Download, Download>({ downloadChapter(it) }, threadsSubject))
+        subscriptions += downloadsRelay.concatMapIterable { it }
+                .concatMap { downloadChapter(it).subscribeOn(Schedulers.io()) }
                 .onBackpressureBuffer()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ completeDownload(it)
@@ -250,15 +230,9 @@ class Downloader(private val context: Context,
             // Initialize queue size.
             notifier.initialQueueSize = queue.size
 
-            // Initial multi-thread
-            notifier.multipleDownloadThreads = preferences.downloadThreads().getOrDefault() > 1
-
             if (isRunning) {
                 // Send the list of downloads to the downloader.
                 downloadsRelay.call(chaptersToQueue)
-            } else {
-                // Show initial notification.
-                notifier.onProgressChange(queue)
             }
 
             // Start downloader if needed
@@ -273,7 +247,7 @@ class Downloader(private val context: Context,
      *
      * @param download the chapter to be downloaded.
      */
-    private fun downloadChapter(download: Download): Observable<Download> {
+    private fun downloadChapter(download: Download): Observable<Download> = Observable.defer {
         val chapterDirname = provider.getChapterDirName(download.chapter)
         val mangaDir = provider.getMangaDir(download.manga, download.source)
         val tmpDir = mangaDir.createDirectory("${chapterDirname}_tmp")
@@ -292,7 +266,7 @@ class Downloader(private val context: Context,
             Observable.just(download.pages!!)
         }
 
-        return pageListObservable
+        pageListObservable
                 .doOnNext { _ ->
                     // Delete all temporary (unfinished) files
                     tmpDir.listFiles()
@@ -307,7 +281,7 @@ class Downloader(private val context: Context,
                 // Start downloading images, consider we can have downloaded images already
                 .concatMap { page -> getOrDownloadImage(page, download, tmpDir) }
                 // Do when page is downloaded.
-                .doOnNext { notifier.onProgressChange(download, queue) }
+                .doOnNext { notifier.onProgressChange(download) }
                 .toList()
                 .map { _ -> download }
                 // Do after download completes
@@ -318,7 +292,7 @@ class Downloader(private val context: Context,
                     notifier.onError(error.message, download.chapter.name)
                     download
                 }
-                .subscribeOn(Schedulers.io())
+
     }
 
     /**
@@ -448,7 +422,6 @@ class Downloader(private val context: Context,
         if (download.status == Download.DOWNLOADED) {
             // remove downloaded chapter from queue
             queue.remove(download)
-            notifier.onProgressChange(queue)
         }
         if (areAllDownloadsFinished()) {
             if (notifier.isSingleChapter && !notifier.errorThrown) {

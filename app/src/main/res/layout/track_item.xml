@@ -11,12 +11,13 @@
         android:layout_height="wrap_content">
 
         <FrameLayout
-            android:id="@+id/logo"
+            android:id="@+id/logo_container"
             android:layout_width="48dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:clickable="true"
             tools:background="#2E51A2">
 
             <ImageView
@@ -35,7 +36,7 @@
             android:background="?attr/selectable_list_drawable"
             android:clickable="true"
             android:padding="16dp"
-            app:layout_constraintLeft_toRightOf="@+id/logo"
+            app:layout_constraintLeft_toRightOf="@+id/logo_container"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -68,7 +69,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginStart="16dp"
             android:background="?android:attr/divider"
-            app:layout_constraintLeft_toRightOf="@+id/logo"
+            app:layout_constraintLeft_toRightOf="@+id/logo_container"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_container" />
 
@@ -79,7 +80,7 @@
             android:background="?attr/selectable_list_drawable"
             android:clickable="true"
             android:padding="16dp"
-            app:layout_constraintLeft_toRightOf="@+id/logo"
+            app:layout_constraintLeft_toRightOf="@+id/logo_container"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider1">
 
@@ -110,7 +111,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginStart="16dp"
             android:background="?android:attr/divider"
-            app:layout_constraintLeft_toRightOf="@+id/logo"
+            app:layout_constraintLeft_toRightOf="@+id/logo_container"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/status_container" />
 
@@ -121,7 +122,7 @@
             android:background="?attr/selectable_list_drawable"
             android:clickable="true"
             android:padding="16dp"
-            app:layout_constraintLeft_toRightOf="@+id/logo"
+            app:layout_constraintLeft_toRightOf="@+id/logo_container"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider2">
 
@@ -152,7 +153,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginStart="16dp"
             android:background="?android:attr/divider"
-            app:layout_constraintLeft_toRightOf="@+id/logo"
+            app:layout_constraintLeft_toRightOf="@+id/logo_container"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chapters_container" />
 
@@ -163,7 +164,7 @@
             android:background="?attr/selectable_list_drawable"
             android:clickable="true"
             android:padding="16dp"
-            app:layout_constraintLeft_toRightOf="@+id/logo"
+            app:layout_constraintLeft_toRightOf="@+id/logo_container"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider3">
 

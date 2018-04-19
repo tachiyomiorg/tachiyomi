@@ -10,6 +10,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.util.plusAssign
 import kotlinx.android.synthetic.main.track_search_dialog.view.*
@@ -113,15 +114,14 @@ class TrackSearchDialog : DialogController {
     private fun search(query: String) {
         val view = dialogView ?: return
         view.progress.visibility = View.VISIBLE
-        view.track_search_list.visibility = View.GONE
-
+        view.track_search_list.visibility = View.INVISIBLE
         trackController.presenter.search(query, service)
     }
 
-    fun onSearchResults(results: List<Track>) {
+    fun onSearchResults(results: List<TrackSearch>) {
         selectedItem = null
         val view = dialogView ?: return
-        view.progress.visibility = View.GONE
+        view.progress.visibility = View.INVISIBLE
         view.track_search_list.visibility = View.VISIBLE
         adapter?.setItems(results)
     }
@@ -129,7 +129,7 @@ class TrackSearchDialog : DialogController {
     fun onSearchResultsError() {
         val view = dialogView ?: return
         view.progress.visibility = View.VISIBLE
-        view.track_search_list.visibility = View.GONE
+        view.track_search_list.visibility = View.INVISIBLE
         adapter?.setItems(emptyList())
     }
 

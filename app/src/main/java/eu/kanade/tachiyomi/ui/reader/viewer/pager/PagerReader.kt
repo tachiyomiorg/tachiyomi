@@ -86,6 +86,12 @@ abstract class PagerReader : BaseReader() {
         private set
 
     /**
+     * Duration of the double tap animation
+     */
+    var doubleTapAnimDuration = 500
+        private set
+
+    /**
      * Scale type (fit width, fit screen, etc).
      */
     var scaleType = 1
@@ -166,6 +172,10 @@ abstract class PagerReader : BaseReader() {
                     .skip(1)
                     .distinctUntilChanged()
                     .subscribe { refreshAdapter() })
+
+            add(preferences.doubleTapAnimSpeed()
+                    .asObservable()
+                    .subscribe { doubleTapAnimDuration = it })
         }
 
         setPagesOnAdapter()

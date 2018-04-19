@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/btn_decrease_10"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="?selectable_list_drawable"
+        android:padding="8dp"
+        android:tint="?colorAccent"
+        app:srcCompat="@drawable/ic_chevron_left_double_black_24dp" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/btn_decrease"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="?selectable_list_drawable"
+        android:tint="?colorAccent"
+        android:padding="8dp"
+        app:srcCompat="@drawable/ic_chevron_left_black_24dp" />
+
+    <EditText
+        android:id="@+id/myNumber"
+        android:digits="0123456789"
+        android:inputType="number"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:layout_width="wrap_content" />
+
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/btn_increase"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="?selectable_list_drawable"
+        android:tint="?colorAccent"
+        android:padding="8dp"
+        app:srcCompat="@drawable/ic_chevron_right_black_24dp" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/btn_increase_10"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="?selectable_list_drawable"
+        android:tint="?colorAccent"
+        android:padding="8dp"
+        app:srcCompat="@drawable/ic_chevron_right_double_black_24dp" />
+
+</LinearLayout>

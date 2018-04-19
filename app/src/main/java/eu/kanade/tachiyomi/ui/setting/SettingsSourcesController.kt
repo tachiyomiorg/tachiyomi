@@ -8,6 +8,7 @@ import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.source.online.LoginSource
+import eu.kanade.tachiyomi.util.LocaleHelper
 import eu.kanade.tachiyomi.widget.preference.LoginCheckBoxPreference
 import eu.kanade.tachiyomi.widget.preference.SourceLoginDialog
 import eu.kanade.tachiyomi.widget.preference.SwitchPreferenceCategory
@@ -39,7 +40,7 @@ class SettingsSourcesController : SettingsController(),
             // Create a preference group and set initial state and change listener
             SwitchPreferenceCategory(context).apply {
                 preferenceScreen.addPreference(this)
-                title = Locale(lang).let { it.getDisplayLanguage(it).capitalize() }
+                title = LocaleHelper.getDisplayName(lang, context)
                 isPersistent = false
                 if (lang in activeLangsCodes) {
                     setChecked(true)

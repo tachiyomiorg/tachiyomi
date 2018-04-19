@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.data.track
 import android.support.annotation.CallSuper
 import android.support.annotation.DrawableRes
 import eu.kanade.tachiyomi.data.database.models.Track
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.network.NetworkHelper
 import okhttp3.OkHttpClient
@@ -44,7 +45,7 @@ abstract class TrackService(val id: Int) {
 
     abstract fun bind(track: Track): Observable<Track>
 
-    abstract fun search(query: String): Observable<List<Track>>
+    abstract fun search(query: String): Observable<List<TrackSearch>>
 
     abstract fun refresh(track: Track): Observable<Track>
 

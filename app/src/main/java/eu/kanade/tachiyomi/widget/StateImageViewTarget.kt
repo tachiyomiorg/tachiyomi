@@ -55,7 +55,7 @@ class StateImageViewTarget(view: ImageView,
         super.onLoadCleared(placeholder)
     }
 
-    override fun onResourceReady(resource: Drawable?, transition: Transition<in Drawable>?) {
+    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
         progress?.gone()
         view.scaleType = imageScaleType
         super.onResourceReady(resource, transition)

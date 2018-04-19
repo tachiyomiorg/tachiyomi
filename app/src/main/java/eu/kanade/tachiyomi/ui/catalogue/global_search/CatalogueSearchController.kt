@@ -18,14 +18,14 @@ import kotlinx.android.synthetic.main.catalogue_global_search_controller.*
  * This controller should only handle UI actions, IO actions should be done by [CatalogueSearchPresenter]
  * [CatalogueSearchCardAdapter.OnMangaClickListener] called when manga is clicked in global search
  */
-class CatalogueSearchController(private val initialQuery: String? = null) :
+open class CatalogueSearchController(protected val initialQuery: String? = null) :
         NucleusController<CatalogueSearchPresenter>(),
         CatalogueSearchCardAdapter.OnMangaClickListener {
 
     /**
      * Adapter containing search results grouped by lang.
      */
-    private var adapter: CatalogueSearchAdapter? = null
+    protected var adapter: CatalogueSearchAdapter? = null
 
     /**
      * Called when controller is initialized.
@@ -71,6 +71,16 @@ class CatalogueSearchController(private val initialQuery: String? = null) :
     override fun onMangaClick(manga: Manga) {
         // Open MangaController.
         router.pushController(MangaController(manga, true).withFadeTransaction())
+    }
+
+    /**
+     * Called when manga in global search is long clicked.
+     *
+     * @param manga clicked item containing manga information.
+     */
+    override fun onMangaLongClick(manga: Manga) {
+        // Delegate to single click by default.
+        onMangaClick(manga)
     }
 
     /**

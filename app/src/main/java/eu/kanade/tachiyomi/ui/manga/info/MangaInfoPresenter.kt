@@ -18,6 +18,7 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.*
 
 /**
  * Presenter of MangaInfoFragment.
@@ -28,6 +29,7 @@ class MangaInfoPresenter(
         val manga: Manga,
         val source: Source,
         private val chapterCountRelay: BehaviorRelay<Float>,
+        private val lastUpdateRelay: BehaviorRelay<Date>,
         private val mangaFavoriteRelay: PublishRelay<Boolean>,
         private val db: DatabaseHelper = Injekt.get(),
         private val downloadManager: DownloadManager = Injekt.get(),
@@ -37,7 +39,7 @@ class MangaInfoPresenter(
     /**
      * Subscription to send the manga to the view.
      */
-    private var viewMangaSubcription: Subscription? = null
+    private var viewMangaSubscription: Subscription? = null
 
     /**
      * Subscription to update the manga from the source.
@@ -56,14 +58,18 @@ class MangaInfoPresenter(
         mangaFavoriteRelay.observeOn(AndroidSchedulers.mainThread())
                 .subscribe { setFavorite(it) }
                 .apply { add(this) }
+
+        //update last update date
+        lastUpdateRelay.observeOn(AndroidSchedulers.mainThread())
+                .subscribeLatestCache(MangaInfoController::setLastUpdateDate)
     }
 
     /**
      * Sends the active manga to the view.
      */
     fun sendMangaToView() {
-        viewMangaSubcription?.let { remove(it) }
-        viewMangaSubcription = Observable.just(manga)
+        viewMangaSubscription?.let { remove(it) }
+        viewMangaSubscription = Observable.just(manga)
                 .subscribeLatestCache({ view, manga -> view.onNextManga(manga, source) })
     }
 

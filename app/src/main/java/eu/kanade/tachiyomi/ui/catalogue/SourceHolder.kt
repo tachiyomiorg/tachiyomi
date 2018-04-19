@@ -1,23 +1,26 @@
 package eu.kanade.tachiyomi.ui.catalogue
 
-import android.os.Build
 import android.view.View
-import android.view.ViewGroup
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
-import eu.kanade.tachiyomi.util.dpToPx
+import eu.kanade.tachiyomi.ui.base.holder.SlicedHolder
 import eu.kanade.tachiyomi.util.getRound
 import eu.kanade.tachiyomi.util.gone
 import eu.kanade.tachiyomi.util.visible
 import io.github.mthli.slice.Slice
 import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.*
 
-class SourceHolder(view: View, adapter: CatalogueAdapter) : BaseFlexibleViewHolder(view, adapter) {
+class SourceHolder(view: View, override val adapter: CatalogueAdapter) :
+        BaseFlexibleViewHolder(view, adapter),
+        SlicedHolder {
 
-    private val slice = Slice(card).apply {
+    override val slice = Slice(card).apply {
         setColor(adapter.cardBackground)
     }
+
+    override val viewToSlice: View
+        get() = card
 
     init {
         source_browse.setOnClickListener {
@@ -38,7 +41,7 @@ class SourceHolder(view: View, adapter: CatalogueAdapter) : BaseFlexibleViewHold
 
         // Set circle letter image.
         itemView.post {
-            image.setImageDrawable(image.getRound(source.name.take(1).toUpperCase(),false))
+            image.setImageDrawable(image.getRound(source.name.take(1).toUpperCase(), false))
         }
 
         // If source is login, show only login option
@@ -47,59 +50,11 @@ class SourceHolder(view: View, adapter: CatalogueAdapter) : BaseFlexibleViewHold
             source_latest.gone()
         } else {
             source_browse.setText(R.string.browse)
-            source_latest.visible()
+            if (source.supportsLatest) {
+                source_latest.visible()
+            } else {
+                source_latest.gone()
+            }
         }
-    }
-
-    private fun setCardEdges(item: SourceItem) {
-        // Position of this item in its header. Defaults to 0 when header is null.
-        var position = 0
-
-        // Number of items in the header of this item. Defaults to 1 when header is null.
-        var count = 1
-
-        if (item.header != null) {
-            val sectionItems = mAdapter.getSectionItems(item.header)
-            position = sectionItems.indexOf(item)
-            count = sectionItems.size
-        }
-
-        when {
-            // Only one item in the card
-            count == 1 -> applySlice(2f, false, false, true, true)
-            // First item of the card
-            position == 0 -> applySlice(2f, false, true, true, false)
-            // Last item of the card
-            position == count - 1 -> applySlice(2f, true, false, false, true)
-            // Middle item
-            else -> applySlice(0f, false, false, false, false)
-        }
-    }
-
-    private fun applySlice(radius: Float, topRect: Boolean, bottomRect: Boolean,
-                           topShadow: Boolean, bottomShadow: Boolean) {
-
-        slice.setRadius(radius)
-        slice.showLeftTopRect(topRect)
-        slice.showRightTopRect(topRect)
-        slice.showLeftBottomRect(bottomRect)
-        slice.showRightBottomRect(bottomRect)
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            slice.showTopEdgeShadow(topShadow)
-            slice.showBottomEdgeShadow(bottomShadow)
-        }
-        setMargins(margin, if (topShadow) margin else 0, margin, if (bottomShadow) margin else 0)
-    }
-
-    private fun setMargins(left: Int, top: Int, right: Int, bottom: Int) {
-        val v = card
-        if (v.layoutParams is ViewGroup.MarginLayoutParams) {
-            val p = v.layoutParams as ViewGroup.MarginLayoutParams
-            p.setMargins(left, top, right, bottom)
-        }
-    }
-
-    companion object {
-        val margin = 8.dpToPx
     }
 }

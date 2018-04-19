@@ -49,8 +49,12 @@ class Mangachan : ParsedHttpSource() {
                             }
                         }
                     }
-                    is OrderBy -> { if (filter.state!!.ascending && filter.state!!.index == 0) { statusParam = false } }
-                    is Status ->  status = arrayOf("", "all_done", "end", "ongoing", "new_ch")[filter.state]
+                    is OrderBy -> {
+                        if (filter.state!!.ascending && filter.state!!.index == 0) {
+                            statusParam = false
+                        }
+                    }
+                    is Status -> status = arrayOf("", "all_done", "end", "ongoing", "new_ch")[filter.state]
                 }
             }
 
@@ -103,6 +107,7 @@ class Mangachan : ParsedHttpSource() {
 
     override fun popularMangaFromElement(element: Element): SManga {
         val manga = SManga.create()
+        manga.thumbnail_url = element.select("div.manga_images img").first().attr("src")
         element.select("h2 > a").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.text()
@@ -220,32 +225,22 @@ class Mangachan : ParsedHttpSource() {
             GenreList(getGenreList())
     )
 
-//    private class StatusList(status: List<Status>) : Filter.Group<Status>("Статус", status)
-//    private class Status(name: String, val id: String) : Filter.CheckBox(name, false)
-//    private fun getStatusList() = listOf(
-//        Status("Перевод завершен", "/all_done"),
-//        Status("Выпуск завершен", "/end"),
-//        Status("Онгоинг", "/ongoing"),
-//        Status("Новые главы", "/new_ch")
-//    )
 
-
-    /* [...document.querySelectorAll("li.sidetag > a:nth-child(1)")].map((el,i) =>
-    *  { const link=el.getAttribute('href');const id=link.substr(6,link.length);
-    *  return `Genre("${id.replace("_", " ")}")` }).join(',\n')
+    /* [...document.querySelectorAll("li.sidetag > a:nth-child(1)")]
+    *  .map(el => `Genre("${el.getAttribute('href').substr(6)}")`).join(',\n')
     *  on http://mangachan.me/
     */
     private fun getGenreList() = listOf(
-            Genre("18 плюс"),
+            Genre("18_плюс"),
             Genre("bdsm"),
             Genre("арт"),
             Genre("боевик"),
-            Genre("боевые искусства"),
+            Genre("боевые_искусства"),
             Genre("вампиры"),
             Genre("веб"),
             Genre("гарем"),
-            Genre("гендерная интрига"),
-            Genre("героическое фэнтези"),
+            Genre("гендерная_интрига"),
+            Genre("героическое_фэнтези"),
             Genre("детектив"),
             Genre("дзёсэй"),
             Genre("додзинси"),
@@ -262,13 +257,13 @@ class Mangachan : ParsedHttpSource() {
             Genre("меха"),
             Genre("мистика"),
             Genre("музыка"),
-            Genre("научная фантастика"),
+            Genre("научная_фантастика"),
             Genre("повседневность"),
             Genre("постапокалиптика"),
             Genre("приключения"),
             Genre("психология"),
             Genre("романтика"),
-            Genre("самурайский боевик"),
+            Genre("самурайский_боевик"),
             Genre("сборник"),
             Genre("сверхъестественное"),
             Genre("сказка"),
@@ -279,7 +274,6 @@ class Mangachan : ParsedHttpSource() {
             Genre("сёдзё-ай"),
             Genre("сёнэн"),
             Genre("сёнэн-ай"),
-            Genre("темное фэнтези"),
             Genre("тентакли"),
             Genre("трагедия"),
             Genre("триллер"),

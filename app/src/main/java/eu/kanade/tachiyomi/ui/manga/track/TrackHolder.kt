@@ -7,9 +7,10 @@ import eu.kanade.tachiyomi.ui.base.holder.BaseViewHolder
 import kotlinx.android.synthetic.main.track_item.*
 
 class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
-    
+
     init {
         val listener = adapter.rowClickListener
+        logo_container.setOnClickListener { listener.onLogoClick(adapterPosition) }
         title_container.setOnClickListener { listener.onTitleClick(adapterPosition) }
         status_container.setOnClickListener { listener.onStatusClick(adapterPosition) }
         chapters_container.setOnClickListener { listener.onChaptersClick(adapterPosition) }
@@ -21,7 +22,7 @@ class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
     fun bind(item: TrackItem) {
         val track = item.track
         track_logo.setImageResource(item.service.getLogo())
-        logo.setBackgroundColor(item.service.getLogoColor())
+        logo_container.setBackgroundColor(item.service.getLogoColor())
         if (track != null) {
             track_title.setTextAppearance(itemView.context, R.style.TextAppearance_Regular_Body1_Secondary)
             track_title.setAllCaps(false)

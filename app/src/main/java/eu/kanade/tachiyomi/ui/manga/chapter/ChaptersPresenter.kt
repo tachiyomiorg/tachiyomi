@@ -20,6 +20,7 @@ import rx.schedulers.Schedulers
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.*
 
 /**
  * Presenter of [ChaptersController].
@@ -28,6 +29,7 @@ class ChaptersPresenter(
         val manga: Manga,
         val source: Source,
         private val chapterCountRelay: BehaviorRelay<Float>,
+        private val lastUpdateRelay: BehaviorRelay<Date>,
         private val mangaFavoriteRelay: PublishRelay<Boolean>,
         val preferences: PreferencesHelper = Injekt.get(),
         private val db: DatabaseHelper = Injekt.get(),
@@ -91,6 +93,11 @@ class ChaptersPresenter(
                     // Emit the number of chapters to the info tab.
                     chapterCountRelay.call(chapters.maxBy { it.chapter_number }?.chapter_number
                             ?: 0f)
+
+                    // Emit the upload date of the most recent chapter
+                    lastUpdateRelay.call(Date(chapters.maxBy { it.date_upload }?.date_upload
+                            ?: 0))
+
                 }
                 .subscribe { chaptersRelay.call(it) })
     }

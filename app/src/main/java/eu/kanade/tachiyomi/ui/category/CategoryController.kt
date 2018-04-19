@@ -26,7 +26,7 @@ class CategoryController : NucleusController<CategoryPresenter>(),
         CategoryAdapter.OnItemReleaseListener,
         CategoryCreateDialog.Listener,
         CategoryRenameDialog.Listener,
-        UndoHelper.OnUndoListener {
+        UndoHelper.OnActionListener {
 
     /**
      * Object used to show ActionMode toolbar.
@@ -168,7 +168,7 @@ class CategoryController : NucleusController<CategoryPresenter>(),
             R.id.action_delete -> {
                 undoHelper = UndoHelper(adapter, this)
                 undoHelper?.start(adapter.selectedPositions, view!!,
-                                R.string.snack_categories_deleted, R.string.action_undo, 3000)
+                        R.string.snack_categories_deleted, R.string.action_undo, 3000)
 
                 mode.finish()
             }
@@ -268,7 +268,7 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      *
      * @param action The action performed.
      */
-    override fun onActionCanceled(action: Int) {
+    override fun onActionCanceled(action: Int, positions: MutableList<Int>?) {
         adapter?.restoreDeletedItems()
         undoHelper = null
     }

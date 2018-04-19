@@ -4,6 +4,7 @@ import android.net.Uri
 import android.util.Xml
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.POST
 import eu.kanade.tachiyomi.network.asObservable
@@ -12,6 +13,7 @@ import eu.kanade.tachiyomi.util.selectInt
 import eu.kanade.tachiyomi.util.selectText
 import okhttp3.*
 import org.jsoup.Jsoup
+import org.jsoup.parser.Parser
 import org.xmlpull.v1.XmlSerializer
 import rx.Observable
 import java.io.StringWriter
@@ -36,7 +38,7 @@ class MyanimelistApi(private val client: OkHttpClient, username: String, passwor
         }
     }
 
-    fun search(query: String, username: String): Observable<List<Track>> {
+    fun search(query: String, username: String): Observable<List<TrackSearch>> {
         return if (query.startsWith(PREFIX_MY)) {
             val realQuery = query.substring(PREFIX_MY.length).toLowerCase().trim()
             getList(username)
@@ -46,34 +48,42 @@ class MyanimelistApi(private val client: OkHttpClient, username: String, passwor
         } else {
             client.newCall(GET(getSearchUrl(query), headers))
                     .asObservable()
-                    .map { Jsoup.parse(it.body()!!.string()) }
+                    .map { Jsoup.parse(Parser.unescapeEntities(it.body()!!.string(), false), "", Parser.xmlParser()) }
                     .flatMap { Observable.from(it.select("entry")) }
                     .filter { it.select("type").text() != "Novel" }
                     .map {
-                        Track.create(TrackManager.MYANIMELIST).apply {
+                        TrackSearch.create(TrackManager.MYANIMELIST).apply {
                             title = it.selectText("title")!!
                             remote_id = it.selectInt("id")
                             total_chapters = it.selectInt("chapters")
+                            summary = it.selectText("synopsis")!!
+                            cover_url = it.selectText("image")!!
+                            tracking_url = MyanimelistApi.mangaUrl(remote_id)
+                            publishing_status = it.selectText("status")!!
+                            publishing_type = it.selectText("type")!!
+                            start_date = it.selectText("start_date")!!
                         }
                     }
                     .toList()
         }
     }
 
-    fun getList(username: String): Observable<List<Track>> {
+    fun getList(username: String): Observable<List<TrackSearch>> {
         return client
                 .newCall(GET(getListUrl(username), headers))
                 .asObservable()
-                .map { Jsoup.parse(it.body()!!.string()) }
+                .map { Jsoup.parse(Parser.unescapeEntities(it.body()!!.string(), false), "", Parser.xmlParser()) }
                 .flatMap { Observable.from(it.select("manga")) }
                 .map {
-                    Track.create(TrackManager.MYANIMELIST).apply {
+                    TrackSearch.create(TrackManager.MYANIMELIST).apply {
                         title = it.selectText("series_title")!!
                         remote_id = it.selectInt("series_mangadb_id")
                         last_chapter_read = it.selectInt("my_read_chapters")
                         status = it.selectInt("my_status")
                         score = it.selectInt("my_score").toFloat()
                         total_chapters = it.selectInt("series_chapters")
+                        cover_url = it.selectText("series_image")!!
+                        tracking_url = MyanimelistApi.mangaUrl(remote_id)
                     }
                 }
                 .toList()
@@ -176,6 +186,11 @@ class MyanimelistApi(private val client: OkHttpClient, username: String, passwor
 
     companion object {
         const val baseUrl = "https://myanimelist.net"
+        const val baseMangaUrl = baseUrl + "/manga/"
+
+        fun mangaUrl(remoteId: Int): String {
+            return baseMangaUrl + remoteId
+        }
 
         private val ENTRY_TAG = "entry"
         private val CHAPTER_TAG = "chapter"

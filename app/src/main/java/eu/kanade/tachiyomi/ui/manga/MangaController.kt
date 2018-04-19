@@ -13,6 +13,7 @@ import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
+import com.bluelinelabs.conductor.support.RouterPagerAdapter
 import com.jakewharton.rxrelay.BehaviorRelay
 import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.R
@@ -21,7 +22,6 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
-import eu.kanade.tachiyomi.ui.base.controller.RouterPagerAdapter
 import eu.kanade.tachiyomi.ui.base.controller.RxController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
@@ -34,11 +34,12 @@ import kotlinx.android.synthetic.main.manga_controller.*
 import rx.Subscription
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import java.util.*
 
 class MangaController : RxController, TabbedController {
 
     constructor(manga: Manga?, fromCatalogue: Boolean = false) : super(Bundle().apply {
-        putLong(MANGA_EXTRA, manga?.id!!)
+        putLong(MANGA_EXTRA, manga?.id ?: 0)
         putBoolean(FROM_CATALOGUE_EXTRA, fromCatalogue)
     }) {
         this.manga = manga
@@ -62,6 +63,8 @@ class MangaController : RxController, TabbedController {
     private var adapter: MangaDetailAdapter? = null
 
     val fromCatalogue = args.getBoolean(FROM_CATALOGUE_EXTRA, false)
+
+    val lastUpdateRelay: BehaviorRelay<Date> = BehaviorRelay.create()
 
     val chapterCountRelay: BehaviorRelay<Float> = BehaviorRelay.create()
 
@@ -187,5 +190,6 @@ class MangaController : RxController, TabbedController {
         private val tabField = TabLayout.Tab::class.java.getDeclaredField("mView")
                 .apply { isAccessible = true }
     }
+
 
 }

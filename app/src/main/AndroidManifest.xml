@@ -52,6 +52,9 @@
                     android:scheme="tachiyomi" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".extension.util.ExtensionInstallActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

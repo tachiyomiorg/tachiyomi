@@ -16,6 +16,7 @@ import rx.schedulers.Schedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
+
 class TrackPresenter(
         val manga: Manga,
         preferences: PreferencesHelper = Injekt.get(),

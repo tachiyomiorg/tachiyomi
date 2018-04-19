@@ -19,10 +19,19 @@ class CatalogueSearchCardHolder(view: View, adapter: CatalogueSearchCardAdapter)
                 adapter.mangaClickListener.onMangaClick(item.manga)
             }
         }
+        itemView.setOnLongClickListener {
+            val item = adapter.getItem(adapterPosition)
+            if (item != null) {
+                adapter.mangaClickListener.onMangaLongClick(item.manga)
+            }
+            true
+        }
     }
 
     fun bind(manga: Manga) {
         tvTitle.text = manga.title
+        // Set alpha of thumbnail.
+        itemImage.alpha = if (manga.favorite) 0.3f else 1.0f
 
         setImage(manga)
     }

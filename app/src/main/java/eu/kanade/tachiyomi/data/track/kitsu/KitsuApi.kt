@@ -4,6 +4,7 @@ import com.github.salomonbrys.kotson.*
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import eu.kanade.tachiyomi.data.database.models.Track
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.POST
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
@@ -27,25 +28,25 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
         return Observable.defer {
             // @formatter:off
             val data = jsonObject(
-                "type" to "libraryEntries",
-                "attributes" to jsonObject(
-                    "status" to track.toKitsuStatus(),
-                    "progress" to track.last_chapter_read
-                ),
-                "relationships" to jsonObject(
-                    "user" to jsonObject(
-                        "data" to jsonObject(
-                            "id" to userId,
-                            "type" to "users"
-                        )
+                    "type" to "libraryEntries",
+                    "attributes" to jsonObject(
+                            "status" to track.toKitsuStatus(),
+                            "progress" to track.last_chapter_read
                     ),
-                    "media" to jsonObject(
-                        "data" to jsonObject(
-                            "id" to track.remote_id,
-                            "type" to "manga"
-                        )
+                    "relationships" to jsonObject(
+                            "user" to jsonObject(
+                                    "data" to jsonObject(
+                                            "id" to userId,
+                                            "type" to "users"
+                                    )
+                            ),
+                            "media" to jsonObject(
+                                    "data" to jsonObject(
+                                            "id" to track.remote_id,
+                                            "type" to "manga"
+                                    )
+                            )
                     )
-                )
             )
             // @formatter:on
 
@@ -61,13 +62,13 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
         return Observable.defer {
             // @formatter:off
             val data = jsonObject(
-                "type" to "libraryEntries",
-                "id" to track.remote_id,
-                "attributes" to jsonObject(
-                    "status" to track.toKitsuStatus(),
-                    "progress" to track.last_chapter_read,
-                    "ratingTwenty" to track.toKitsuScore()
-                )
+                    "type" to "libraryEntries",
+                    "id" to track.remote_id,
+                    "attributes" to jsonObject(
+                            "status" to track.toKitsuStatus(),
+                            "progress" to track.last_chapter_read,
+                            "ratingTwenty" to track.toKitsuScore()
+                    )
             )
             // @formatter:on
 
@@ -76,7 +77,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
         }
     }
 
-    fun search(query: String): Observable<List<Track>> {
+    fun search(query: String): Observable<List<TrackSearch>> {
         return rest.search(query)
                 .map { json ->
                     val data = json["data"].array
@@ -186,6 +187,11 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
         private const val clientSecret = "54d7307928f63414defd96399fc31ba847961ceaecef3a5fd93144e960c0e151"
         private const val baseUrl = "https://kitsu.io/api/edge/"
         private const val loginUrl = "https://kitsu.io/api/"
+        private const val baseMangaUrl = "https://kitsu.io/manga/"
+
+        fun mangaUrl(remoteId: Int): String {
+            return baseMangaUrl + remoteId
+        }
 
 
         fun refreshTokenRequest(token: String) = POST("${loginUrl}oauth/token",

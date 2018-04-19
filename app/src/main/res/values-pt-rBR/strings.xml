@@ -176,7 +176,7 @@
 
       <string name="pref_download_directory">Pasta de downloads</string>
     <string name="pref_download_slots">Downloads simultâneos</string>
-    <string name="pref_download_only_over_wifi">Fazer download apenas no Wi-Fi</string>
+    <string name="pref_download_only_over_wifi">Fazer download apenas via Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Excluir ao marcar como lido</string>
     <string name="pref_remove_after_read">Excluir depois de ler</string>
     <string name="custom_dir">Pasta personalizada</string>
@@ -386,7 +386,7 @@ Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</s
     <string name="information_no_downloads">Nenhum download</string>
     <string name="information_no_recent">Sem capítulos recentes</string>
     <string name="information_no_recent_manga">Sem mangás lidos recentemente</string>
-    <string name="information_empty_library">Biblioteca vazia</string>
+    <string name="information_empty_library">A sua biblioteca está vazia. Você pode adicionar séries à biblioteca pelo menu Catálogos.</string>
 
     <string name="download_notifier_downloader_title">Gerenciador de downloads</string>
     <string name="download_notifier_title_error">Erro</string>
@@ -414,4 +414,55 @@ Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</s
     <string name="channel_downloader">Fila de download</string>
 <string name="action_display_download_badge">Contadores de download</string>
     <string name="local_source_badge">Local</string>
+    <string name="information_empty_category">Você ainda não tem nenhuma categoria. Pressione o botão mais para criar uma e organizar a sua biblioteca.</string>
+
+    <string name="label_migration">Migrar fonte</string>
+    <string name="label_extensions">Extensões</string>
+    <string name="label_extension_info">Informações da extensão</string>
+
+
+    <string name="all_lang">Todas</string>
+    <string name="ext_details">Detalhes</string>
+    <string name="ext_update">Atualizar</string>
+    <string name="ext_install">Instalar</string>
+    <string name="ext_pending">Pendente</string>
+    <string name="ext_downloading">Fazendo download</string>
+    <string name="ext_installing">Instalando</string>
+    <string name="ext_installed">Instalada</string>
+    <string name="ext_trust">Confiabilidade</string>
+    <string name="ext_untrusted">Não confiável</string>
+    <string name="ext_uninstall">Desinstalar</string>
+    <string name="ext_preferences">Preferências</string>
+    <string name="ext_available">Disponível</string>
+    <string name="untrusted_extension">Extensão não confiável</string>
+    <string name="untrusted_extension_message">Esta extensão foi assinada com um certificado não confiável e não foi ativada.
+\n
+\nUma extensão maliciosa poderia ler qualquer credencial de contas armazenadas no Tachiyomi ou executar códigos arbitrários.
+\n
+\nAo confiar neste certificado, você estará aceitando estes riscos.</string>
+    <string name="ext_version_info">Versão: %1$s</string>
+    <string name="ext_language_info">Idioma: %1$s</string>
+    <string name="ext_empty_preferences">Não há preferências a serem editadas para esta extensão</string>
+
+      <string name="pref_double_tap_anim_speed">Velocidade da animação de toque duplo</string>
+    <string name="double_tap_anim_speed_0">Sem animação</string>
+    <string name="double_tap_anim_speed_normal">Normal</string>
+    <string name="double_tap_anim_speed_fast">Rápida</string>
+    <string name="source_search_options">Filtros de busca</string>
+    <string name="manga_info_full_title_label">Título</string>
+    <string name="manga_added_library">Adicionado à biblioteca</string>
+    <string name="manga_removed_library">Removido da biblioteca</string>
+    <string name="manga_info_latest_data_label">Última atualização</string>
+    <string name="copied_to_clipboard">%1$s copiado para área de transferência</string>
+
+    <string name="custom_download">Fazer download de uma quantidade personalizada</string>
+    <string name="custom_hint">quantidade</string>
+    <string name="download_custom">Fazer download personalizado</string>
+    <string name="migration_info">Toque para selecionar a fonte da qual migrar</string>
+    <string name="migration_dialog_what_to_include">Selecione dados para incluir</string>
+    <string name="select">Selecionar</string>
+    <string name="migrate">Migrar</string>
+    <string name="copy">Copiar</string>
+    <string name="migrating">Migrando…</string>
+
     </resources>

@@ -20,6 +20,9 @@
     <string name="label_categories">Categories</string>
     <string name="label_selected">Selected: %1$d</string>
     <string name="label_backup">Backup</string>
+    <string name="label_migration">Source migration</string>
+    <string name="label_extensions">Extensions</string>
+    <string name="label_extension_info">Extension info</string>
 
 
     <!-- Actions -->
@@ -144,10 +147,31 @@
     <string name="default_category">Default category</string>
     <string name="default_category_summary">Always ask</string>
 
+    <!-- Extension section -->
+    <string name="all_lang">All</string>
+    <string name="ext_details">Details</string>
+    <string name="ext_update">Update</string>
+    <string name="ext_install">Install</string>
+    <string name="ext_pending">Pending</string>
+    <string name="ext_downloading">Downloading</string>
+    <string name="ext_installing">Installing</string>
+    <string name="ext_installed">Installed</string>
+    <string name="ext_trust">Trust</string>
+    <string name="ext_untrusted">Untrusted</string>
+    <string name="ext_uninstall">Uninstall</string>
+    <string name="ext_preferences">Preferences</string>
+    <string name="ext_available">Available</string>
+    <string name="untrusted_extension">Untrusted extension</string>
+    <string name="untrusted_extension_message">This extension was signed with an untrusted certificate and it wasn\'t activated.\n\nA malicious extension could read any login credentials stored in Tachiyomi or execute arbitrary code.\n\nBy trusting this certificate you accept these risks.</string>
+    <string name="ext_version_info">Version: %1$s</string>
+    <string name="ext_language_info">Language: %1$s</string>
+    <string name="ext_empty_preferences">There are no preferences to edit for this extension</string>
+
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>
     <string name="pref_lock_orientation">Lock orientation</string>
     <string name="pref_page_transitions">Page transitions</string>
+    <string name="pref_double_tap_anim_speed">Double tap animation speed</string>
     <string name="pref_show_page_number">Show page number</string>
     <string name="pref_crop_borders">Crop borders</string>
     <string name="pref_custom_brightness">Use custom brightness</string>
@@ -179,6 +203,9 @@
     <string name="zoom_start_left">Left</string>
     <string name="zoom_start_right">Right</string>
     <string name="zoom_start_center">Center</string>
+    <string name="double_tap_anim_speed_0">No animation</string>
+    <string name="double_tap_anim_speed_normal">Normal</string>
+    <string name="double_tap_anim_speed_fast">Fast</string>
     <string name="pref_rotation_type">Rotation</string>
     <string name="rotation_free">Free</string>
     <string name="rotation_lock">Lock</string>
@@ -192,7 +219,6 @@
 
       <!-- Downloads section -->
     <string name="pref_download_directory">Downloads directory</string>
-    <string name="pref_download_slots">Simultaneous downloads</string>
     <string name="pref_download_only_over_wifi">Only download over Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Remove when marked as read</string>
     <string name="pref_remove_after_read">Remove after read</string>
@@ -277,6 +303,7 @@
     <string name="also_delete_chapters">Also delete downloaded chapters</string>
 
     <!-- Catalogue fragment -->
+    <string name="source_search_options">Search filters</string>
     <string name="source_requires_login">This source requires you to log in</string>
     <string name="select_source">Select a source</string>
     <string name="no_valid_sources">Please enable at least one valid source</string>
@@ -300,12 +327,14 @@
     <string name="unknown">Unknown</string>
     <string name="licensed">Licensed</string>
     <string name="remove_from_library">Remove from library</string>
+    <string name="manga_info_full_title_label">Title</string>
     <string name="manga_added_library">Added to library</string>
     <string name="manga_removed_library">Removed from library</string>
     <string name="manga_info_author_label">Author</string>
     <string name="manga_info_artist_label">Artist</string>
     <string name="manga_info_chapters_label">Chapters</string>
     <string name="manga_info_last_chapter_label">Last chapter</string>
+    <string name="manga_info_latest_data_label">Updated</string>
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Source</string>
     <string name="manga_info_genres_label">Genres</string>
@@ -319,6 +348,7 @@
     <string name="icon_shape">Icon shape</string>
     <string name="icon_creation_fail">Failed to create shortcut!</string>
     <string name="delete_downloads_for_manga">Delete downloaded chapters?</string>
+    <string name="copied_to_clipboard">%1$s copied to clipboard</string>
 
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapters</string>
@@ -337,14 +367,17 @@
     <string name="sort_by_source">By source</string>
     <string name="sort_by_number">By chapter number</string>
     <string name="manga_download">Download</string>
+    <string name="custom_download">Download custom amount</string>
+    <string name="custom_hint">amount</string>
     <string name="download_1">Download next chapter</string>
     <string name="download_5">Download next 5 chapters</string>
     <string name="download_10">Download next 10 chapters</string>
+    <string name="download_custom">Download custom</string>
     <string name="download_all">Download all</string>
     <string name="download_unread">Download unread</string>
     <string name="confirm_delete_chapters">Are you sure you want to delete selected chapters?</string>
 
-    <!-- MyAnimeList fragment -->
+    <!-- Tracking Screen -->
     <string name="manga_tracking_tab">Tracking</string>
     <string name="reading">Reading</string>
     <string name="completed">Completed</string>
@@ -354,6 +387,11 @@
     <string name="score">Score</string>
     <string name="title">Title</string>
     <string name="status">Status</string>
+    <string name="track_status">Status</string>
+    <string name="track_start_date">Started</string>
+    <string name="track_type">Type</string>
+    <string name="track_author">Author</string>
+    <string name="url_not_set">Manga url is not set please click title and select manga again</string>
 
     <!-- Category activity -->
     <string name="error_category_exists">A category with this name already exists!</string>
@@ -389,6 +427,14 @@
 
     <!-- Recent manga fragment -->
     <string name="recent_manga_source">%1$s - Ch.%2$s</string>
+
+    <!-- Source migration screen -->
+    <string name="migration_info">Tap to select the source to migrate from</string>
+    <string name="migration_dialog_what_to_include">Select data to include</string>
+    <string name="select">Select</string>
+    <string name="migrate">Migrate</string>
+    <string name="copy">Copy</string>
+    <string name="migrating">Migrating…</string>
 
     <!-- Downloads activity and service -->
     <string name="download_queue_error">An error occurred while downloading chapters. You can try again in the downloads section</string>
@@ -449,4 +495,5 @@
     <string name="channel_common">Common</string>
     <string name="channel_library">Library</string>
     <string name="channel_downloader">Downloader</string>
+
 </resources>

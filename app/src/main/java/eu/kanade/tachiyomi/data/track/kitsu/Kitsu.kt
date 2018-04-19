@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackService
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import rx.Completable
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
@@ -96,7 +97,7 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
                 }
     }
 
-    override fun search(query: String): Observable<List<Track>> {
+    override fun search(query: String): Observable<List<TrackSearch>> {
         return api.search(query)
     }
 
