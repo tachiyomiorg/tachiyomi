@@ -463,4 +463,10 @@
     <string name="copy">Salin</string>
     <string name="migrating">Memindah…</string>
 
+    <string name="track_status">Status</string>
+    <string name="track_start_date">Dimulai</string>
+    <string name="track_type">Tipe</string>
+    <string name="track_author">Penulis</string>
+    <string name="url_not_set">URL manga belum diatur, mohon tekan judul dan pilih manga kembali</string>
+
     </resources>
