@@ -385,6 +385,7 @@
     <string name="dropped">Dropped</string>
     <string name="on_hold">On hold</string>
     <string name="plan_to_read">Plan to read</string>
+    <string name="repeating">Re-reading</string>
     <string name="score">Score</string>
     <string name="title">Title</string>
     <string name="status">Status</string>

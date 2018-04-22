@@ -50,6 +50,7 @@ data class ALUserManga(
         val manga: ALManga) {
 
     fun toTrack() = Track.create(TrackManager.ANILIST).apply {
+        id = this@ALUserManga.id.toLong()
         remote_id = manga.id
         status = toTrackStatus()
         score = score_raw.toFloat()
@@ -57,11 +58,11 @@ data class ALUserManga(
     }
 
     fun toTrackStatus() = when (list_status) {
-        "reading" -> Anilist.READING
-        "completed" -> Anilist.COMPLETED
-        "on-hold" -> Anilist.ON_HOLD
-        "dropped" -> Anilist.DROPPED
-        "plan to read" -> Anilist.PLAN_TO_READ
+        "CURRENT" -> Anilist.READING
+        "COMPLETED" -> Anilist.COMPLETED
+        "PAUSED" -> Anilist.ON_HOLD
+        "DROPPED" -> Anilist.DROPPED
+        "PLANNING" -> Anilist.PLANNING
         else -> throw NotImplementedError("Unknown status")
     }
 }
@@ -72,11 +73,12 @@ data class ALUserLists(val lists: Map<String, List<ALUserManga>>) {
 }
 
 fun Track.toAnilistStatus() = when (status) {
-    Anilist.READING -> "reading"
-    Anilist.COMPLETED -> "completed"
-    Anilist.ON_HOLD -> "on-hold"
-    Anilist.DROPPED -> "dropped"
-    Anilist.PLAN_TO_READ -> "plan to read"
+    Anilist.READING -> "CURRENT"
+    Anilist.COMPLETED -> "COMPLETED"
+    Anilist.ON_HOLD -> "PAUSED"
+    Anilist.DROPPED -> "DROPPED"
+    Anilist.PLANNING -> "PLANNING"
+    Anilist.REPEATING -> "REPEATING"
     else -> throw NotImplementedError("Unknown status")
 }
 
@@ -84,11 +86,11 @@ private val preferences: PreferencesHelper by injectLazy()
 
 fun Track.toAnilistScore(): String = when (preferences.anilistScoreType().getOrDefault()) {
 // 10 point
-    0 -> (score.toInt() / 10).toString()
+    "POINT_10" -> (score.toInt() / 10).toString()
 // 100 point
-    1 -> score.toInt().toString()
+    "POINT_100" -> score.toInt().toString()
 // 5 stars
-    2 -> when {
+    "POINT_5" -> when {
         score == 0f -> "0"
         score < 30 -> "1"
         score < 50 -> "2"
@@ -97,13 +99,13 @@ fun Track.toAnilistScore(): String = when (preferences.anilistScoreType().getOrD
         else -> "5"
     }
 // Smiley
-    3 -> when {
+    "POINT_3" -> when {
         score == 0f -> "0"
         score <= 30 -> ":("
         score <= 60 -> ":|"
         else -> ":)"
     }
 // 10 point decimal
-    4 -> (score / 10).toString()
+    "POINT_10_DECIMAL" -> (score / 10).toString()
     else -> throw Exception("Unknown score type")
 }
