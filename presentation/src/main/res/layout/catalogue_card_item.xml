@@ -9,7 +9,7 @@
   <android.support.constraint.ConstraintLayout
     android:id="@+id/card"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/material_component_lists_two_line_height"
+    android:layout_height="@dimen/material_list_two_line_dense_height"
     android:background="@drawable/background_ripple">
 
     <ImageView

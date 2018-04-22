@@ -49,7 +49,7 @@ dependencies {
   implementation deps.toothpick.smoothie
   kapt deps.toothpick.compiler
 
-  implementation deps.materialDimens
+  implementation deps.materialValues
   implementation deps.materialDialog
 
   implementation deps.glide.core

@@ -24,7 +24,7 @@ import tachiyomi.util.setVisible
 class StateImageViewTarget(
   view: ImageView,
   val progress: View? = null,
-  val errorDrawableRes: Int = R.drawable.ic_broken_image_grey_24dp,
+  val errorDrawableRes: Int = R.drawable.ic_broken_image_24dp,
   val errorScaleType: ScaleType = ScaleType.CENTER
 ) : ImageViewTarget<Drawable>(view) {
 

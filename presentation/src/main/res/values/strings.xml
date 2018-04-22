@@ -15,5 +15,8 @@
   <string name="label_extensions">Extensions</string>
   <string name="label_extension_info">Extension info</string>
 
+  <string name="action_latest">Latest</string>
+  <string name="action_browse">Browse</string>
+
   <string name="no_more_results">No more results</string>
 </resources>

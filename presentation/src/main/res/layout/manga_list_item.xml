@@ -4,14 +4,14 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+  android:layout_height="@dimen/material_list_single_line_with_avatar_normal_height"
   android:layout_gravity="center_vertical"
   android:background="@drawable/background_ripple">
 
   <ImageView
     android:id="@+id/thumbnail"
-    android:layout_width="@dimen/material_component_lists_single_line_with_avatar_height"
-    android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
+    android:layout_width="@dimen/material_list_single_line_with_avatar_normal_height"
+    android:layout_height="@dimen/material_list_single_line_with_avatar_normal_height"
     android:layout_gravity="center_vertical"
     tools:src="@mipmap/ic_launcher"
     app:layout_constraintLeft_toLeftOf="parent"
