@@ -19,4 +19,7 @@
   <string name="action_browse">Browse</string>
 
   <string name="no_more_results">No more results</string>
+
+  <!--Content Description-->
+  <string name="content_description_thumbnail">Thumbnail of manga cover</string>
 </resources>
