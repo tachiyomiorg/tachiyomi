@@ -28,12 +28,11 @@
   </style>
 
   <!--Widget.Gridview-->
-  <style name="Theme.Widget.GridView">
+  <style name="Theme.Widget.RecyclerView">
     <item name="android:smoothScrollbar">true</item>
     <item name="android:numColumns">auto_fit</item>
     <item name="android:stretchMode">columnWidth</item>
     <item name="android:scrollbarStyle">outsideOverlay</item>
-    <item name="android:padding">@dimen/default_padding_margin_small</item>
   </style>
 
   <!--===============-->

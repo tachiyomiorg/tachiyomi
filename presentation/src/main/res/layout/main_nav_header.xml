@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="@dimen/navigation_drawer_header_height"
+  xmlns:tools="http://schemas.android.com/tools"
   android:gravity="bottom"
   android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
@@ -9,7 +10,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
-    android:scaleType="centerCrop"/>
+    android:scaleType="centerCrop"
+    tools:ignore="ContentDescription"/>
 
   <ImageView
     android:layout_width="64dp"
@@ -17,6 +19,7 @@
     android:layout_marginStart="16dp"
     android:layout_marginTop="@dimen/navigation_drawer_header_margin"
     android:scaleType="centerCrop"
-    android:src="@drawable/tachiyomi_circle"/>
+    android:src="@drawable/tachiyomi_circle"
+    tools:ignore="ContentDescription"/>
 
 </FrameLayout>

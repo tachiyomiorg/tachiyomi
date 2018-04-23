@@ -14,8 +14,8 @@
     android:layout_height="@dimen/material_list_avatar_size"
     android:layout_gravity="center_vertical"
     android:layout_marginStart="@dimen/material_list_avatar_margin_start"
-    android:contentDescription="@string/content_description_thumbnail"
     tools:src="@mipmap/ic_launcher"
+    tools:ignore="ContentDescription"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintTop_toTopOf="parent" />

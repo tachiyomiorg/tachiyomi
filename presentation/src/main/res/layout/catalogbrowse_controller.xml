@@ -11,7 +11,7 @@
     android:layout_height="match_parent"
     android:columnWidth="140dp"
     android:clipToPadding="false"
-    style="@style/Theme.Widget.GridView"
+    style="@style/Theme.Widget.RecyclerView"
     tools:listitem="@layout/manga_grid_item"/>
 
   <ProgressBar
