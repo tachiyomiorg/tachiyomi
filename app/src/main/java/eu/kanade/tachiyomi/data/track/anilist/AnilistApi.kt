@@ -45,6 +45,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 .asObservableSuccess()
                 .map { netResponse ->
                     val responseBody = netResponse.body()?.string().orEmpty()
+                    netResponse.close()
                     if (responseBody.isEmpty()) {
                         throw Exception("Null Response")
                     }
