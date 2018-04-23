@@ -149,12 +149,12 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
 
     override fun login(username: String, password: String) = login(password)
 
-    fun login(token: String): Completable{
-        val oauth = api.login(token)
+    fun login(token: String): Completable {
+        val oauth = api.createOAuth(token)
         interceptor.setAuth(oauth)
-        return api.getCurrentUser().map { pair ->
-            preferences.anilistScoreType().set(pair.second)
-            saveCredentials(pair.first.toString(), oauth.access_token)
+        return api.getCurrentUser().map { (username, scoreType) ->
+            preferences.anilistScoreType().set(scoreType)
+            saveCredentials(username.toString(), oauth.access_token)
          }.doOnError{
             logout()
         }.toCompletable()
@@ -166,14 +166,14 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
         interceptor.setAuth(null)
     }
 
-    fun saveOAuth(oAuth: OAuth?){
+    fun saveOAuth(oAuth: OAuth?) {
         preferences.trackToken(this).set(gson.toJson(oAuth))
     }
 
-    fun loadOAuth() : OAuth? {
-        return try{
+    fun loadOAuth(): OAuth? {
+        return try {
             gson.fromJson(preferences.trackToken(this).get(), OAuth::class.java)
-        } catch (e: Exception){
+        } catch (e: Exception) {
             null
         }
     }

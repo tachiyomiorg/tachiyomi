@@ -17,7 +17,7 @@ import rx.Observable
 class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
     private val parser = JsonParser()
-    private val json = MediaType.parse("application/json; charset=utf-8")
+    private val jsonMime = MediaType.parse("application/json; charset=utf-8")
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
 
@@ -36,7 +36,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 "query" to query,
                 "variables" to variables
         )
-        val body = RequestBody.create(json, payload.toString())
+        val body = RequestBody.create(jsonMime, payload.toString())
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
@@ -75,18 +75,14 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 "query" to query,
                 "variables" to variables
         )
-        val body = RequestBody.create(json, payload.toString())
+        val body = RequestBody.create(jsonMime, payload.toString())
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
                 .build()
         return authClient.newCall(request)
                 .asObservableSuccess()
-                .map { netResponse ->
-                    val responseBody = netResponse.body()?.string().orEmpty()
-                    if (responseBody.isEmpty()) {
-                        throw Exception("Null Response")
-                    }
+                .map {
                     track
                 }
     }
@@ -103,20 +99,10 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                       coverImage {
                         large
                       }
-                      format
                       type
-                      averageScore
                       status
-                      popularity
                       chapters
-                      volumes
-                      genres
                       startDate {
-                        year
-                        month
-                        day
-                      }
-                      endDate {
                         year
                         month
                         day
@@ -132,7 +118,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 "query" to query,
                 "variables" to variables
         )
-        val body = RequestBody.create(json, payload.toString())
+        val body = RequestBody.create(jsonMime, payload.toString())
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
@@ -161,10 +147,8 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                     mediaList(userId: ${'$'}id, type: MANGA, mediaId: ${'$'}manga_id) {
                       id
                       status
-                      score
                       scoreRaw: score(format: POINT_100)
                       progress
-                      progressVolumes
                       media{
                         id
                         title {
@@ -173,24 +157,14 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                       coverImage {
                         large
                       }
-                      format
                       type
-                      averageScore
                       status
-                      popularity
                       chapters
-                      volumes
-                      genres
                       startDate {
                        year
                        month
                        day
                        }
-                      endDate {
-                        year
-                        month
-                        day
-                      }
                       }
                     }
                   }
@@ -204,7 +178,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 "query" to query,
                 "variables" to variables
         )
-        val body = RequestBody.create(json, payload.toString())
+        val body = RequestBody.create(jsonMime, payload.toString())
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
@@ -221,11 +195,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                     val page = data["Page"].obj
                     val media = page["mediaList"].array
                     val entries = media.map { jsonToALUserManga(it.obj) }
-                    if (entries.isEmpty()){
-                        null
-                    } else {
-                        entries[0].toTrack()
-                    }
+                    entries.firstOrNull()?.toTrack()
 
                 }
     }
@@ -235,7 +205,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 .map { it ?: throw Exception("Could not find manga") }
     }
 
-    fun login(token: String): OAuth {
+    fun createOAuth(token: String): OAuth {
         return OAuth(token, "Bearer", System.currentTimeMillis() + 31536000000, 31536000000)
     }
 
@@ -254,7 +224,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
         val payload = jsonObject(
                 "query" to query
         )
-        val body = RequestBody.create(json, payload.toString())
+        val body = RequestBody.create(jsonMime, payload.toString())
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
@@ -286,7 +256,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
 
     companion object {
-        private const val clientId = "377"
+        private const val clientId = "385"
         private const val clientUrl = "tachiyomi://anilist-auth"
         private const val apiUrl = "https://graphql.anilist.co/"
         private const val baseUrl = "https://anilist.co/api/v2/"
