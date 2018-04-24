@@ -4,12 +4,12 @@
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   xmlns:tools="http://schemas.android.com/tools"
-  android:padding="8dp">
+  android:padding="@dimen/material_baseline_grid_1x">
 
   <ProgressBar
     android:id="@+id/catalogbrowse_footer_progress"
-    android:layout_width="24dp"
-    android:layout_height="24dp"
+    android:layout_width="@dimen/material_list_icon_size"
+    android:layout_height="@dimen/material_list_icon_size"
     android:layout_gravity="center"/>
 
   <TextView

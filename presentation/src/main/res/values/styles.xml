@@ -15,17 +15,10 @@
   <style name="Theme.Widget" />
 
   <!--Widget.Button-->
-  <style name="Theme.Widget.Button" parent="Widget.AppCompat.Button" />
+  <style name="Theme.Widget.Button" parent="Base.Widget.AppCompat.Button" />
 
   <!--Widget.Button.Borderless-->
-  <style name="Theme.Widget.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">
-    <item name="android:textColor">?attr/colorAccent</item>
-  </style>
-
-  <style name="Theme.Widget.Button.Borderless.Small">
-    <item name="android:minHeight">48dip</item>
-    <item name="android:minWidth">48dip</item>
-  </style>
+  <style name="Theme.Widget.Button.Flat" parent="Widget.AppCompat.Button.Borderless.Colored" />
 
   <!--Widget.Gridview-->
   <style name="Theme.Widget.RecyclerView">
@@ -38,90 +31,28 @@
   <!--===============-->
   <!--Text Appearance-->
   <!--===============-->
-  <style name="TextAppearance" parent="@android:style/TextAppearance">
-    <item name="android:textColor">?android:attr/textColorPrimary</item>
-  </style>
+  <style name="TextAppearance" />
 
-  <style name="TextAppearance.Regular">
-    <item name="android:fontFamily">@string/font_roboto_regular</item>
-  </style>
+  <style name="TextAppearance.Headline" parent="@style/MaterialTypography.Regular.Headline" />
 
-  <style name="TextAppearance.Regular.Body1">
-    <item name="android:textSize">14sp</item>
-  </style>
+  <style name="TextAppearance.Title" parent="@style/MaterialTypography.Regular.Title" />
 
-  <style name="TextAppearance.Regular.Body1.Bold">
-    <item name="android:textStyle">bold</item>
-  </style>
+  <style name="TextAppearance.Subheading" parent="@style/MaterialTypography.Regular.Subheading" />
 
-  <style name="TextAppearance.Regular.Body1.Light">
+  <style name="TextAppearance.Body2" parent="@style/MaterialTypography.Regular.Body2" />
+
+  <style name="TextAppearance.Body1" parent="@style/MaterialTypography.Regular.Body1" />
+
+  <style name="TextAppearance.Body1.Light">
     <item name="android:textColor">@color/textColorPrimaryInverse</item>
   </style>
 
-  <style name="TextAppearance.Regular.Body1.Secondary">
-    <item name="android:textColor">?android:attr/textColorSecondary</item>
-  </style>
+  <style name="TextAppearance.Caption" parent="@style/MaterialTypography.Regular.Caption" />
 
-  <style name="TextAppearance.Regular.Caption">
-    <item name="android:textSize">12sp</item>
-  </style>
-
-  <style name="TextAppearance.Regular.Caption.Light">
+  <style name="TextAppearance.Caption.Light">
     <item name="android:textColor">@color/textColorPrimaryInverse</item>
   </style>
 
-  <style name="TextAppearance.Regular.Caption.Hint">
-    <item name="android:textColor">?android:attr/textColorHint</item>
-  </style>
-
-  <style name="TextAppearance.Regular.SubHeading">
-    <item name="android:textSize">16sp</item>
-  </style>
-
-  <style name="TextAppearance.Regular.SubHeading.Upper">
-    <item name="android:textAllCaps">true</item>
-  </style>
-
-  <style name="TextAppearance.Regular.SubHeading.Secondary">
-    <item name="android:textColor">?android:attr/textColorSecondary</item>
-  </style>
-
-  <style name="TextAppearance.Regular.SubHeading.Light">
-    <item name="android:textColor">@color/textColorPrimaryInverse</item>
-  </style>
-
-  <style name="TextAppearance.Regular.SubHeading.Light.Bold">
-    <item name="android:textStyle">bold</item>
-  </style>
-
-  <style name="TextAppearance.Medium">
-    <item name="android:fontFamily">@string/font_roboto_medium</item>
-  </style>
-
-  <style name="TextAppearance.Medium.Title">
-    <item name="android:textSize">20sp</item>
-  </style>
-
-  <style name="TextAppearance.Medium.Title.Upper">
-    <item name="android:textAllCaps">true</item>
-  </style>
-
-  <style name="TextAppearance.Medium.Title.Secondary">
-    <item name="android:textColor">?android:attr/textColorSecondary</item>
-  </style>
-
-  <style name="TextAppearance.Medium.Body2">
-    <item name="android:textSize">14sp</item>
-  </style>
-
-  <style name="TextAppearance.Medium.Body2.Hint">
-    <item name="android:textColor">?android:attr/textColorHint</item>
-  </style>
-
-  <style name="TextAppearance.Medium.Button">
-    <item name="android:textSize">14sp</item>
-    <item name="android:textAllCaps">true</item>
-    <item name="android:textColor">?attr/colorAccent</item>
-  </style>
+  <style name="TextAppearance.Button" parent="@style/MaterialTypography.Regular.Button" />
 
 </resources>
