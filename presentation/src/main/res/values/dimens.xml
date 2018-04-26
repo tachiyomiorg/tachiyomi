@@ -1,4 +1,13 @@
 <resources>
+  <!--Default padding-->
+  <dimen name="default_padding_margin_extra_small">2dp</dimen>
+  <dimen name="default_padding_margin_small">4dp</dimen>
+  <dimen name="default_padding_margin">8dp</dimen>
+  <dimen name="default_padding_margin_large">16dp</dimen>
+  <dimen name="default_padding_margin_extra_large">24dp</dimen>
+  <dimen name="default_padding_margin_extra_extra_large">32dp</dimen>
+  <dimen name="default_padding_margin_extra_extra_extra_large">48dp</dimen>
+
   <!-- Default screen margins, per the Android Design guidelines. -->
   <dimen name="activity_horizontal_margin">16dp</dimen>
   <dimen name="activity_vertical_margin">16dp</dimen>
@@ -19,7 +28,6 @@
   <dimen name="text_large_body">18sp</dimen>
   <dimen name="text_body">16sp</dimen>
   <dimen name="text_small_body">14sp</dimen>
-
 
   <!--Nav header-->
   <dimen name="navigation_drawer_header_height">158dp</dimen>

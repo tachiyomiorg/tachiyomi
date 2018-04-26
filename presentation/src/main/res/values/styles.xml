@@ -1,261 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <!--========-->
+  <!--Toolbars-->
+  <!--========-->
+  <style name="Theme.ActionBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <!--========-->
-    <!--Toolbars-->
-    <!--========-->
-    <style name="Theme.ActionBar" parent="@style/ThemeOverlay.AppCompat.ActionBar" />
+  <style name="Theme.ActionBar.Light">
+    <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+  </style>
 
-    <style name="Theme.ActionBar.Light" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-    </style>
+  <!--=======-->
+  <!--Widgets-->
+  <!--=======-->
+  <style name="Theme.Widget" />
 
-    <!--====-->
-    <!--Tabs-->
-    <!--====-->
-    <style name="Theme.ActionBar.Tab" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+  <!--Widget.Button-->
+  <style name="Theme.Widget.Button" parent="Base.Widget.AppCompat.Button" />
 
-    <!--===========-->
-    <!--AlertDialog-->
-    <!--===========-->
-    <style name="Theme.AlertDialog" />
+  <!--Widget.Button.Borderless-->
+  <style name="Theme.Widget.Button.Flat" parent="Widget.AppCompat.Button.Borderless.Colored" />
 
-    <style name="Theme.AlertDialog.Light" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
-        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
-        <item name="colorAccent">@color/colorAccentLight</item>
-    </style>
+  <!--Widget.Gridview-->
+  <style name="Theme.Widget.RecyclerView">
+    <item name="android:smoothScrollbar">true</item>
+    <item name="android:numColumns">auto_fit</item>
+    <item name="android:stretchMode">columnWidth</item>
+    <item name="android:scrollbarStyle">outsideOverlay</item>
+  </style>
 
-    <style name="Theme.AlertDialog.Dark" parent="Theme.AppCompat.Dialog.Alert">
-        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
-        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
-        <item name="colorAccent">@color/colorAccentDark</item>
-    </style>
+  <!--===============-->
+  <!--Text Appearance-->
+  <!--===============-->
+  <style name="TextAppearance" />
 
-    <!--==============-->
-    <!--NavigationView-->
-    <!--==============-->
-    <style name="Theme.Widget.NavigationView" />
+  <style name="TextAppearance.Headline" parent="@style/MaterialTypography.Regular.Headline" />
 
-    <style name="Theme.Widget.NavigationView.Dark">
-        <item name="colorControlHighlight">@color/md_grey_900</item>
-        <item name="colorPrimary">?colorAccent</item>
-    </style>
+  <style name="TextAppearance.Title" parent="@style/MaterialTypography.Regular.Title" />
 
-    <!--===============-->
-    <!--Text Appearance-->
-    <!--===============-->
-    <style name="TextAppearance" parent="@android:style/TextAppearance">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-    </style>
+  <style name="TextAppearance.Subheading" parent="@style/MaterialTypography.Regular.Subheading" />
 
-    <style name="TextAppearance.Regular">
-        <item name="android:fontFamily">@string/font_roboto_regular</item>
-    </style>
+  <style name="TextAppearance.Body2" parent="@style/MaterialTypography.Regular.Body2" />
 
-    <style name="TextAppearance.Regular.Body1">
-        <item name="android:textSize">14sp</item>
-    </style>
+  <style name="TextAppearance.Body1" parent="@style/MaterialTypography.Regular.Body1" />
 
-    <style name="TextAppearance.Regular.Body1.Bold">
-        <item name="android:textStyle">bold</item>
-    </style>
+  <style name="TextAppearance.Body1.Light">
+    <item name="android:textColor">@color/textColorPrimaryInverse</item>
+  </style>
 
-    <style name="TextAppearance.Regular.Body1.Light">
-        <item name="android:textColor">@color/textColorPrimaryDark</item>
-    </style>
+  <style name="TextAppearance.Caption" parent="@style/MaterialTypography.Regular.Caption" />
 
-    <style name="TextAppearance.Regular.Body1.Secondary">
-        <item name="android:textColor">?android:attr/textColorSecondary</item>
-    </style>
+  <style name="TextAppearance.Caption.Light">
+    <item name="android:textColor">@color/textColorPrimaryInverse</item>
+  </style>
 
-    <style name="TextAppearance.Regular.Caption">
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="TextAppearance.Regular.Caption.Light">
-        <item name="android:textColor">@color/textColorPrimaryDark</item>
-    </style>
-
-    <style name="TextAppearance.Regular.Caption.Hint">
-        <item name="android:textColor">?android:attr/textColorHint</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading">
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading.Upper">
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading.Secondary">
-        <item name="android:textColor">?android:attr/textColorSecondary</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading.Light">
-        <item name="android:textColor">@color/textColorPrimaryDark</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading.Light.Bold">
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="TextAppearance.Medium">
-        <item name="android:fontFamily">@string/font_roboto_medium</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Title">
-        <item name="android:textSize">20sp</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Title.Upper">
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Title.Secondary">
-        <item name="android:textColor">?android:attr/textColorSecondary</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Body2">
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Body2.Hint">
-        <item name="android:textColor">?android:attr/textColorHint</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Button">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">?attr/colorAccent</item>
-    </style>
-
-    <!--=======-->
-    <!--Widgets-->
-    <!--=======-->
-    <style name="Theme.Widget" />
-
-    <style name="Theme.Widget.FAB">
-        <item name="android:layout_height">@dimen/fab_size</item>
-        <item name="android:layout_width">@dimen/fab_size</item>
-        <item name="android:layout_gravity">bottom|end</item>
-        <item name="android:layout_margin">@dimen/fab_margin</item>
-        <item name="android:scaleType">fitCenter</item>
-        <item name="layout_anchorGravity">bottom|right|end</item>
-        <item name="android:tint">@color/md_white_1000</item>
-        <!--<item name="layout_behavior">eu.kanade.tachiyomi.widget.FABAnimationUpDown</item>-->
-    </style>
-
-    <style name="Theme.Widget.CardView" parent="CardView">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/material_component_cards_top_and_bottom_padding</item>
-        <item name="android:layout_marginTop">@dimen/material_component_cards_space_between_cards
-        </item>
-        <item name="android:layout_marginBottom">
-            @dimen/material_component_cards_space_between_cards
-        </item>
-        <item name="android:layout_marginStart">
-            @dimen/material_component_cards_space_between_cards
-        </item>
-        <item name="android:layout_marginEnd">@dimen/material_component_cards_space_between_cards
-        </item>
-        <item name="cardBackgroundColor">?attr/background_card</item>
-        <item name="cardElevation">2dp</item>
-    </style>
-
-    <style name="Theme.Widget.CardView.Item">
-        <item name="android:layout_marginTop">@dimen/space_between_cards</item>
-        <item name="android:layout_marginBottom">@dimen/space_between_cards</item>
-    </style>
-
-    <style name="Theme.Widget.GridView">
-        <item name="android:smoothScrollbar">true</item>
-        <item name="android:numColumns">auto_fit</item>
-        <item name="android:stretchMode">columnWidth</item>
-        <item name="android:scrollbarStyle">outsideOverlay</item>
-    </style>
-
-    <style name="Theme.Widget.GridView.Catalogue">
-        <item name="android:padding">4dp</item>
-        <item name="android:gravity">top|left</item>
-        <item name="android:smoothScrollbar">true</item>
-        <item name="android:cacheColorHint">?android:attr/textColorHint</item>
-        <item name="android:fastScrollEnabled">true</item>
-        <item name="android:horizontalSpacing">0dp</item>
-        <item name="android:verticalSpacing">0dp</item>
-    </style>
-
-
-    <style name="Theme.Widget.CheckBox" />
-
-    <style name="Theme.Widget.CheckBox.Light" parent="TextAppearance.Regular.Body1.Light">
-        <item name="buttonTint">@color/md_white_1000</item>
-    </style>
-
-
-    <!--<style name="Theme.Widget.SpinnerItem" parent="Widget.AppCompat.DropDownItem.Spinner">-->
-        <!--<item name="android:textColor">?attr/text_color_primary</item>-->
-        <!--<item name="android:background">?attr/selectable_list_drawable</item>-->
-    <!--</style>-->
-
-    <!--==============-->
-    <!--Widgets.Button-->
-    <!--==============-->
-    <style name="Theme.Widget.Button" parent="Widget.AppCompat.Button"/>
-
-    <style name="Theme.Widget.Button.Colored" parent="Widget.AppCompat.Button.Colored"/>
-
-    <style name="Theme.Widget.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:textColor">?attr/colorAccent</item>
-    </style>
-
-    <style name="Theme.Widget.Button.Borderless.Negative">
-        <item name="android:textColor">@color/md_red_500</item>
-    </style>
-
-    <style name="Theme.Widget.Button.Borderless.Small">
-        <item name="android:minHeight">48dip</item>
-        <item name="android:minWidth">48dip</item>
-    </style>
-
-    <!--===-->
-    <!--OLD-->
-    <!--===-->
-    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowTitleStyle">@style/DialogTitleText</item>
-        <item name="colorAccent">?attr/colorPrimary</item>
-    </style>
-
-    <style name="DialogTitleText">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
-    </style>
-
-    <!--<style name="FilePickerTheme" parent="NNF_BaseTheme.Light">-->
-        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
-        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-        <!--<item name="colorAccent">@color/colorAccentLight</item>-->
-        <!--<item name="colorButtonNormal">@color/colorPrimary</item>-->
-        <!--<item name="android:textSize">14sp</item>-->
-
-        <!--<item name="alertDialogTheme">@style/FilePickerAlertDialogTheme</item>-->
-
-        <!--<item name="nnf_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>-->
-    <!--</style>-->
-
-    <!--<style name="FilePickerAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert"></style>-->
-
-    <!--<style name="reader_settings_popup_animation">-->
-        <!--<item name="android:windowEnterAnimation">@anim/enter_from_right</item>-->
-        <!--<item name="android:windowExitAnimation">@anim/exit_to_right</item>-->
-    <!--</style>-->
-
-    <!--<style name="reader_brightness_popup_animation">-->
-        <!--<item name="android:windowEnterAnimation">@anim/enter_from_left</item>-->
-        <!--<item name="android:windowExitAnimation">@anim/exit_to_left</item>-->
-    <!--</style>-->
-
+  <style name="TextAppearance.Button" parent="@style/MaterialTypography.Regular.Button" />
 
 </resources>

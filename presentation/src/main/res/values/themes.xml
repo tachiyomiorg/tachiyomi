@@ -1,125 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
   <!--============-->
   <!-- Base Theme -->
   <!--============-->
-  <style name="Theme"/>
+  <style name="Theme" parent="Theme.AppCompat.Light.NoActionBar" />
 
   <!--==============-->
-  <!-- Light Themes -->
+  <!-- Light Theme -->
   <!--=======-======-->
-  <style name="Theme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+  <style name="Theme.Light">
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccentLight</item>
-    <item name="android:textColorPrimary">@color/textColorPrimaryLight</item>
-    <item name="android:textColorSecondary">@color/textColorSecondaryLight</item>
-    <item name="android:textColorHint">@color/textColorHintLight</item>
-    <item name="android:textColorPrimaryInverse">@color/textColorPrimaryDark</item>
-    <item name="android:textColorSecondaryInverse">@color/textColorSecondaryDark</item>
-    <item name="android:textColorHintInverse">@color/textColorHintDark</item>
-    <item name="android:colorBackground">@color/backgroundLight</item>
-    <item name="android:listSelector">?colorAccent</item>
-    <item name="android:divider">@color/dividerLight</item>
-    <item name="android:listDivider">@drawable/line_divider_light</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="rippleColor">@color/colorRipple</item>
 
-    <!-- Themes -->
-    <item name="windowActionModeOverlay">true</item>
     <item name="actionBarTheme">@style/Theme.ActionBar.Light</item>
-    <!--<item name="preferenceTheme">@style/PreferenceThemeOverlay.Material</item>-->
-    <item name="alertDialogTheme">@style/Theme.AlertDialog.Light</item>
-
-
-    <!-- Custom Attributes-->
-    <item name="selectable_list_drawable">@drawable/list_item_selector_light</item>
-    <item name="selectable_library_drawable">@drawable/library_item_selector_light</item>
-    <item name="text_color_primary">@color/textColorPrimaryLight</item>
-    <item name="background_card">@color/dialogLight</item>
-    <item name="icon_color">@color/iconColorLight</item>
+    <item name="dialogColor">@color/colorDialog</item>
   </style>
 
-  <style name="Theme.Tachiyomi" parent="Theme.Base">
-    <!-- Attributes specific for SDK 16 to SDK 20 -->
+  <style name="Theme.Tachiyomi" parent="Theme.Light">
+    <!-- Attributes specific for SDK 19 to SDK 20 -->
   </style>
 
-  <!--=============-->
-  <!-- Dark Themes -->
-  <!--=============-->
-  <style name="Theme.Base.Dark" parent="Theme.AppCompat.NoActionBar">
+  <!--============-->
+  <!-- Dark Theme -->
+  <!--============-->
+  <style name="Theme.Dark" parent="Theme.AppCompat.NoActionBar">
     <item name="colorPrimary">@color/colorDarkPrimary</item>
     <item name="colorPrimaryDark">@color/colorDarkPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccentDark</item>
-    <item name="android:textColorPrimary">@color/textColorPrimaryDark</item>
-    <item name="android:textColorSecondary">@color/textColorSecondaryDark</item>
-    <item name="android:textColorHint">@color/textColorHintDark</item>
-    <item name="android:textColorPrimaryInverse">@color/textColorPrimaryLight</item>
-    <item name="android:textColorSecondaryInverse">@color/textColorSecondaryLight</item>
-    <item name="android:textColorHintInverse">@color/textColorHintLight</item>
-    <item name="android:colorBackground">@color/backgroundDark</item>
-    <item name="android:listSelector">?colorAccent</item>
-    <item name="android:divider">@color/dividerDark</item>
-    <item name="android:listDivider">@drawable/line_divider_dark</item>
+    <item name="colorAccent">@color/colorDarkAccent</item>
+    <item name="rippleColor">@color/colorDarkRipple</item>
 
-    <!-- Themes -->
-    <item name="windowActionModeOverlay">true</item>
-    <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-    <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat</item>
-    <!--<item name="preferenceTheme">@style/PreferenceThemeOverlay.Material</item>-->
-    <item name="md_background_color">@color/dialogDark</item>
-    <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
-
-
-    <!-- Custom Attributes-->
-    <item name="navigation_view_theme">@style/Theme.Widget.NavigationView.Dark</item>
-    <item name="selectable_list_drawable">@drawable/list_item_selector_dark</item>
-    <item name="selectable_library_drawable">@drawable/library_item_selector_dark</item>
-    <item name="text_color_primary">@color/textColorPrimaryDark</item>
-    <item name="background_card">@color/dialogDark</item>
-    <item name="icon_color">@color/iconColorDark</item>
+    <item name="dialogColor">@color/colorDarkDialog</item>
   </style>
 
-  <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
+  <style name="Theme.Tachiyomi.Dark" parent="Theme.Dark">
     <!-- Attributes specific for SDK 16 to SDK 20 -->
   </style>
 
   <!--==============-->
   <!-- Amoled Theme -->
   <!--==============-->
-  <style name="Theme.Base.Amoled" parent="Theme.Base.Dark">
+  <style name="Theme.Amoled" parent="Theme.Dark">
     <item name="colorPrimary">@color/colorAmoledPrimary</item>
-    <item name="colorPrimaryDark">@color/colorAmoledPrimary</item>
-    <item name="android:colorBackground">@color/md_black_1000</item>
+    <item name="colorPrimaryDark">@color/colorAmoledPrimaryDark</item>
+    <item name="colorAccent">@color/colorDarkAccent</item>
 
-    <!-- Custom Attributes-->
-    <item name="selectable_list_drawable">@drawable/list_item_selector_amoled</item>
-    <item name="selectable_library_drawable">@drawable/library_item_selector_amoled</item>
-    <item name="background_card">@color/dialog_amoled</item>
+    <item name="dialogColor">@color/colorAmoledDialog</item>
+    <item name="android:colorBackground">@color/colorAmoledBackground</item>
   </style>
 
-  <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled">
+  <style name="Theme.Tachiyomi.Amoled" parent="Theme.Amoled">
     <!-- Attributes specific for SDK 16 to SDK 20 -->
   </style>
-
-  <!--==============-->
-  <!-- Reader Theme -->
-  <!--==============-->
-  <style name="Theme.Base.Reader" parent="Theme.Base.Dark">
-    <item name="colorPrimary">@color/colorDarkPrimary</item>
-    <item name="colorPrimaryDark">@color/colorDarkPrimaryDark</item>
-  </style>
-
-  <style name="Theme.Reader" parent="Theme.Base.Reader">
-    <!-- Attributes specific for SDK 16 to SDK 20 -->
-  </style>
-
-
-  <!--===============-->
-  <!-- Launch Screen -->
-  <!--===============-->
-  <style name="Theme.BrandedLaunch">
-    <item name="android:windowBackground">@drawable/branded_logo</item>
-  </style>
-
-
 </resources>

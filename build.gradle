@@ -22,7 +22,7 @@ buildscript {
     'storio'        : '3.0.0',
     'conductor'     : '2.1.4',
     'timber'        : '4.6.1',
-    'materialDimens': '1.4',
+    'materialValues': '1.1.1',
     'materialDialog': '0.9.6.0',
     'glide'         : '4.6.1',
     'junit'         : '4.12',
@@ -63,7 +63,7 @@ buildscript {
     'okhttp': "com.squareup.okhttp3:okhttp:${versions.okhttp}",
     'timber': "com.jakewharton.timber:timber:${versions.timber}",
     'duktape': "com.squareup.duktape:duktape-android:1.2.0",
-    'materialDimens': "com.dmitrymalkovich.android:material-design-dimens:${versions.materialDimens}",
+    'materialValues': "blue.aodev:material-values:${versions.materialValues}",
     'materialDialog': "com.afollestad.material-dialogs:core:${versions.materialDialog}",
     'glide'  : [
       'core': "com.github.bumptech.glide:glide:${versions.glide}",
