@@ -2,7 +2,7 @@
 <resources><string name="name">নাম</string>
     <string name="categories">ধরণ</string>
     <string name="manga">মাংগা</string>
-    <string name="chapters">অধ্যায়গুলো</string>
+    <string name="chapters">অধ্যায়</string>
     <string name="track">অনুসরণকরণ</string>
     <string name="history">ইতিহাস</string>
 
