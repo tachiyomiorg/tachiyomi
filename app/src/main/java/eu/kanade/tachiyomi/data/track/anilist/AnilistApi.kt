@@ -11,6 +11,7 @@ import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import okhttp3.logging.HttpLoggingInterceptor
 import rx.Observable
 
 
@@ -18,7 +19,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
     private val parser = JsonParser()
     private val jsonMime = MediaType.parse("application/json; charset=utf-8")
-    private val authClient = client.newBuilder().addInterceptor(interceptor).build()
+    private val authClient = client.newBuilder().addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).addInterceptor(interceptor).build()
 
 
     fun addLibManga(track: Track): Observable<Track> {
@@ -28,7 +29,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                      { id status } }
                      """
         val variables = jsonObject(
-                "mangaId" to track.remote_id,
+                "mangaId" to track.media_id,
                 "progress" to track.last_chapter_read,
                 "status" to track.toAnilistStatus()
         )
@@ -50,8 +51,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                         throw Exception("Null Response")
                     }
                     val response = parser.parse(responseBody).obj
-                    val id = response["data"]["SaveMediaListEntry"]["id"].asLong
-                    track.id = id
+                    track.library_id = response["data"]["SaveMediaListEntry"]["id"].asLong
                     track
                 }
     }
@@ -67,7 +67,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                     }
             """
         val variables = jsonObject(
-                "listId" to track.id,
+                "listId" to track.library_id,
                 "progress" to track.last_chapter_read,
                 "status" to track.toAnilistStatus(),
                 "score" to track.toAnilistScore()
@@ -173,7 +173,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
             """
         val variables = jsonObject(
                 "id" to userid,
-                "manga_id" to track.remote_id
+                "manga_id" to track.media_id
         )
         val payload = jsonObject(
                 "query" to query,
@@ -252,7 +252,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
     }
 
     fun jsonToALUserManga(struct: JsonObject): ALUserManga{
-        return ALUserManga(struct["id"].asInt, struct["status"].asString, struct["scoreRaw"].asInt, struct["progress"].asInt, jsonToALManga(struct["media"].obj) )
+        return ALUserManga(struct["id"].asLong, struct["status"].asString, struct["scoreRaw"].asInt, struct["progress"].asInt, jsonToALManga(struct["media"].obj) )
     }
 
 
@@ -263,8 +263,8 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
         private const val baseUrl = "https://anilist.co/api/v2/"
         private const val baseMangaUrl = "https://anilist.co/manga/"
 
-        fun mangaUrl(remoteId: Int): String {
-            return baseMangaUrl + remoteId
+        fun mangaUrl(mediaId: Int): String {
+            return baseMangaUrl + mediaId
         }
 
         fun authUrl() = Uri.parse("${baseUrl}oauth/authorize").buildUpon()

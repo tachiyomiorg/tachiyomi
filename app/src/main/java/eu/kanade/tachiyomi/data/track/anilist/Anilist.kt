@@ -123,7 +123,7 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
                 .flatMap { remoteTrack ->
                     if (remoteTrack != null) {
                         track.copyPersonalFrom(remoteTrack)
-                        track.id = remoteTrack.id
+                        track.library_id = remoteTrack.library_id
                         update(track)
                     } else {
                         // Set default fields if it's not found in the list

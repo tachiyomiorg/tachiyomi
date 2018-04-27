@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 data class ALManga(
-        val id: Int,
+        val media_id: Int,
         val title_romaji: String,
         val image_url_lge: String,
         val description: String?,
@@ -21,12 +21,12 @@ data class ALManga(
         val total_chapters: Int) {
 
     fun toTrack() = TrackSearch.create(TrackManager.ANILIST).apply {
-        remote_id = this@ALManga.id
+        media_id = this@ALManga.media_id
         title = title_romaji
         total_chapters = this@ALManga.total_chapters
         cover_url = image_url_lge
         summary = description ?: ""
-        tracking_url = AnilistApi.mangaUrl(remote_id)
+        tracking_url = AnilistApi.mangaUrl(media_id)
         publishing_status = this@ALManga.publishing_status
         publishing_type = type
         if (!start_date_fuzzy.isNullOrBlank()) {
@@ -43,18 +43,18 @@ data class ALManga(
 }
 
 data class ALUserManga(
-        val id: Int,
+        val library_id: Long,
         val list_status: String,
         val score_raw: Int,
         val chapters_read: Int,
         val manga: ALManga) {
 
     fun toTrack() = Track.create(TrackManager.ANILIST).apply {
-        id = this@ALUserManga.id.toLong()
-        remote_id = manga.id
+        media_id = manga.media_id
         status = toTrackStatus()
         score = score_raw.toFloat()
         last_chapter_read = chapters_read
+        library_id = this@ALUserManga.library_id
     }
 
     fun toTrackStatus() = when (list_status) {

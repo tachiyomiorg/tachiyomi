@@ -6,6 +6,7 @@ import com.google.gson.JsonObject
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.POST
+import eu.kanade.tachiyomi.util.SharedData.map
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -42,7 +43,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
                             ),
                             "media" to jsonObject(
                                     "data" to jsonObject(
-                                            "id" to track.remote_id,
+                                            "id" to track.media_id,
                                             "type" to "manga"
                                     )
                             )
@@ -52,7 +53,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
 
             rest.addLibManga(jsonObject("data" to data))
                     .map { json ->
-                        track.remote_id = json["data"]["id"].int
+                        track.media_id = json["data"]["id"].int
                         track
                     }
         }
@@ -63,7 +64,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
             // @formatter:off
             val data = jsonObject(
                     "type" to "libraryEntries",
-                    "id" to track.remote_id,
+                    "id" to track.library_id,
                     "attributes" to jsonObject(
                             "status" to track.toKitsuStatus(),
                             "progress" to track.last_chapter_read,
@@ -72,7 +73,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
             )
             // @formatter:on
 
-            rest.updateLibManga(track.remote_id, jsonObject("data" to data))
+            rest.updateLibManga(track.library_id ?: throw Exception("Library Id not found"), jsonObject("data" to data))
                     .map { track }
         }
     }
@@ -88,7 +89,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
     }
 
     fun findLibManga(track: Track, userId: String): Observable<Track?> {
-        return rest.findLibManga(track.remote_id, userId)
+        return rest.findLibManga(track.media_id, userId)
                 .map { json ->
                     val data = json["data"].array
                     if (data.size() > 0) {
@@ -101,7 +102,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
     }
 
     fun getLibManga(track: Track): Observable<Track> {
-        return rest.getLibManga(track.remote_id)
+        return rest.getLibManga(track.media_id)
                 .map { json ->
                     val data = json["data"].array
                     if (data.size() > 0) {
@@ -139,7 +140,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
         @Headers("Content-Type: application/vnd.api+json")
         @PATCH("library-entries/{id}")
         fun updateLibManga(
-                @Path("id") remoteId: Int,
+                @Path("id") remoteId: Long,
                 @Body data: JsonObject
         ): Observable<JsonObject>
 

@@ -54,11 +54,11 @@ class MyanimelistApi(private val client: OkHttpClient, username: String, passwor
                     .map {
                         TrackSearch.create(TrackManager.MYANIMELIST).apply {
                             title = it.selectText("title")!!
-                            remote_id = it.selectInt("id")
+                            media_id = it.selectInt("id")
                             total_chapters = it.selectInt("chapters")
                             summary = it.selectText("synopsis")!!
                             cover_url = it.selectText("image")!!
-                            tracking_url = MyanimelistApi.mangaUrl(remote_id)
+                            tracking_url = MyanimelistApi.mangaUrl(media_id)
                             publishing_status = it.selectText("status")!!
                             publishing_type = it.selectText("type")!!
                             start_date = it.selectText("start_date")!!
@@ -77,13 +77,13 @@ class MyanimelistApi(private val client: OkHttpClient, username: String, passwor
                 .map {
                     TrackSearch.create(TrackManager.MYANIMELIST).apply {
                         title = it.selectText("series_title")!!
-                        remote_id = it.selectInt("series_mangadb_id")
+                        media_id = it.selectInt("series_mangadb_id")
                         last_chapter_read = it.selectInt("my_read_chapters")
                         status = it.selectInt("my_status")
                         score = it.selectInt("my_score").toFloat()
                         total_chapters = it.selectInt("series_chapters")
                         cover_url = it.selectText("series_image")!!
-                        tracking_url = MyanimelistApi.mangaUrl(remote_id)
+                        tracking_url = MyanimelistApi.mangaUrl(media_id)
                     }
                 }
                 .toList()
@@ -91,7 +91,7 @@ class MyanimelistApi(private val client: OkHttpClient, username: String, passwor
 
     fun findLibManga(track: Track, username: String): Observable<Track?> {
         return getList(username)
-                .map { list -> list.find { it.remote_id == track.remote_id } }
+                .map { list -> list.find { it.media_id == track.media_id } }
     }
 
     fun getLibManga(track: Track, username: String): Observable<Track> {
@@ -169,12 +169,12 @@ class MyanimelistApi(private val client: OkHttpClient, username: String, passwor
 
     fun getUpdateUrl(track: Track) = Uri.parse(baseUrl).buildUpon()
             .appendEncodedPath("api/mangalist/update")
-            .appendPath("${track.remote_id}.xml")
+            .appendPath("${track.media_id}.xml")
             .toString()
 
     fun getAddUrl(track: Track) = Uri.parse(baseUrl).buildUpon()
             .appendEncodedPath("api/mangalist/add")
-            .appendPath("${track.remote_id}.xml")
+            .appendPath("${track.media_id}.xml")
             .toString()
 
     fun createHeaders(username: String, password: String): Headers {
