@@ -415,4 +415,7 @@
     <string name="channel_common">Biasa</string>
     <string name="channel_library">Koleksi</string>
     <string name="channel_downloader">Pemuat turun</string>
-</resources>
+<string name="ext_details">Butiran</string>
+    <string name="ext_update">Kemas kini</string>
+    <string name="ext_install">Pasang</string>
+    </resources>
