@@ -158,7 +158,7 @@
     <string name="scale_type_fit_height">Pas tinggi</string>
     <string name="scale_type_original_size">Ukuran sebenarnya</string>
     <string name="scale_type_smart_fit">Pas pintar</string>
-    <string name="pref_zoom_start">Tingkat posisi awal</string>
+    <string name="pref_zoom_start">Posisi awal zoom</string>
     <string name="zoom_start_automatic">Otomatis</string>
     <string name="zoom_start_left">Kiri</string>
     <string name="zoom_start_right">Kanan</string>
@@ -174,20 +174,20 @@
     <string name="color_filter_a_value">A</string>
 
 
-      <string name="pref_download_directory">Tempat unduhan</string>
+      <string name="pref_download_directory">Lokasi penyimpanan unduhan</string>
     <string name="pref_download_slots">Unduh bersamaan</string>
     <string name="pref_download_only_over_wifi">Hanya unduh melalui Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Hapus ketika ditandai telah dibaca</string>
     <string name="pref_remove_after_read">Hapus setelah dibaca</string>
-    <string name="custom_dir">Tempat khusus</string>
-    <string name="disabled">Nonaktif</string>
+    <string name="custom_dir">Tetapkan lokasi penyimpanan sendiri</string>
+    <string name="disabled">Tidak aktif</string>
     <string name="last_read_chapter">Bab terakhir dibaca</string>
-    <string name="second_to_last">Kedua bab terakhir</string>
-    <string name="third_to_last">Ketiga bab terakhir</string>
-    <string name="fourth_to_last">Keempat bab terakhir</string>
-    <string name="fifth_to_last">Kelima bab terakhir</string>
+    <string name="second_to_last">Bab kedua dari terakhir</string>
+    <string name="third_to_last">Bab ketiga dari terakhir</string>
+    <string name="fourth_to_last">Bab keempat dari terakhir</string>
+    <string name="fifth_to_last">Bab kelima dari terakhir</string>
     <string name="pref_download_new">Unduh bab baru</string>
-    <string name="pref_download_new_categories">Kategori untuk disertakan dalam unduhan</string>
+    <string name="pref_download_new_categories">Kategori yang akan diunduh</string>
 
       <string name="services">Layanan</string>
 
@@ -196,13 +196,13 @@
     <string name="pref_create_backup_summ">Bisa digunakan untuk memulihkan perpustakaan saat ini</string>
     <string name="pref_restore_backup">Pulihkan cadangan</string>
     <string name="pref_restore_backup_summ">Pulihkan perpustakaan dari file cadangan</string>
-    <string name="pref_backup_directory">Tempat cadangan</string>
+    <string name="pref_backup_directory">Lokasi penyimpanan cadangan</string>
     <string name="pref_backup_service_category">Layanan</string>
     <string name="pref_backup_interval">Frekuensi cadangan</string>
     <string name="pref_backup_slots">Maksimum cadangan otomatis</string>
-    <string name="dialog_restoring_backup">Mengembalikan cadangan
+    <string name="dialog_restoring_backup">Memulihkan cadangan 
 \n%1$s ditambahkan pada perpustakaan</string>
-    <string name="source_not_found">Sumber tidak diketemukan</string>
+    <string name="source_not_found">Sumber tidak ditemukan</string>
     <string name="dialog_restoring_source_not_found">Mengembalikan cadangan
 \n%1$s sumber tidak diketemukan</string>
     <string name="backup_created">Cadangan dibuat</string>
@@ -210,10 +210,10 @@
     <string name="error_opening_log">Tidak bisa membuka log</string>
     <string name="restore_completed_content">Pemulihan membutuhkan waktu %1$s.
 \n%2$s kesalahan ditemukan.</string>
-    <string name="backup_restore_content">Pemulihan menggunakan sumber untuk mengambil data, biaya operator mungkin berlaku.
-\nPastikan juga Anda login dengan benar menggunakan sumber yang memerlukannya sebelum memulihkan.</string>
+    <string name="backup_restore_content">Pemulihan menggunakan sumber untuk mengunduh data, biaya operator mungkin berlaku. 
+\nPastikan Anda telah login dengan benar pada sumber yang memerlukannya sebelum memulihkan.</string>
     <string name="file_saved">File disimpan pada %1$s</string>
-    <string name="backup_choice">Apa yang ingin anda cadang?</string>
+    <string name="backup_choice">Apa yang ingin anda simpan sebagai cadangan?</string>
     <string name="restoring_backup">Memulihkan cadangan</string>
     <string name="creating_backup">Membuat cadangan</string>
 
@@ -221,44 +221,44 @@
     <string name="used_cache">Terpakai: %1$s</string>
     <string name="cache_deleted">Cache dibersihkan %1$d file telah dihapus</string>
     <string name="cache_delete_error">Terjadi kesalahan saat membersihkan cache</string>
-    <string name="pref_clear_cookies">Hapus kuki</string>
-    <string name="cookies_cleared">Kuki terhapus</string>
-    <string name="choices_reset">Pilihan dialog diulang</string>
-    <string name="pref_clear_database">Bersihkan database</string>
+    <string name="pref_clear_cookies">Hapus cookies</string>
+    <string name="cookies_cleared">Cookies terhapus</string>
+    <string name="choices_reset">Atur ulang pilihan dialog</string>
+    <string name="pref_clear_database">Hapus database</string>
     <string name="pref_clear_database_summary">Hapus manga dan bab yang tidak ada di perpustakaan Anda</string>
-    <string name="clear_database_confirmation">Apakah kamu yakin? Bab bacaan dan kemajuan manga non perpustakaan akan hilang</string>
+    <string name="clear_database_confirmation">Apakah Anda yakin? Bab yang telah dibaca dan progres bacaan yang tidak ada dalam perpustakaan akan dihapus</string>
     <string name="clear_database_completed">Entri dihapus</string>
-    <string name="pref_refresh_library_metadata">Segarkan metadata perpustakaan</string>
-    <string name="pref_refresh_library_metadata_summary">Pembaruan sampul, genre, deskripsi dan informasi status manga</string>
-    <string name="pref_refresh_library_tracking">Segarkan metadata pelacakan</string>
+    <string name="pref_refresh_library_metadata">Perbarui metadata perpustakaan</string>
+    <string name="pref_refresh_library_metadata_summary">Memperbarui sampul, genre, deskripsi dan informasi status manga</string>
+    <string name="pref_refresh_library_tracking">Perbarui metadata pelacakan</string>
     <string name="pref_refresh_library_tracking_summary">Perbaharui status, skor dan bab terakhir dibaca dari layanan pelacakan</string>
 
       <string name="version">Versi</string>
     <string name="build_time">Waktu pembuatan</string>
     <string name="pref_enable_automatic_updates">Periksa pembaruan</string>
     <string name="pref_enable_automatic_updates_summary">Periksa pembaruan aplikasi secara otomatis</string>
-    <string name="pref_enable_acra">Kirim laporan kerusakan</string>
+    <string name="pref_enable_acra">Kirim laporan bug dan error</string>
     <string name="pref_acra_summary">Bantu memperbaiki bug. Tidak ada data sensitif yang akan dikirim</string>
 
 
     <string name="login_title">Masuk untuk %1$s</string>
     <string name="username">Nama pengguna</string>
-    <string name="password">Kata kunci</string>
-    <string name="show_password">Perlihatkan kata kunci</string>
+    <string name="password">Kata sandi</string>
+    <string name="show_password">Perlihatkan kata sandi</string>
     <string name="login">Masuk</string>
-    <string name="login_success">Masuk berhasil</string>
-    <string name="invalid_login">Masuk gagal</string>
-    <string name="unknown_error">Kegagalan tidak diketahui</string>
+    <string name="login_success">Berhasil masuk</string>
+    <string name="invalid_login">Gagal masuk</string>
+    <string name="unknown_error">Terdapat kesalahan yang tidak diketahui</string>
 
     <string name="library_search_hint">Judul atau penulis…</string>
-    <string name="updating_category">Memperbaharui kategori</string>
+    <string name="updating_category">Memperbarui kategori</string>
     <string name="confirm_delete_manga">Yakin ingin menghapus manga terpilih?</string>
-    <string name="also_delete_chapters">Juga hapus bab yang telah diunduh</string>
+    <string name="also_delete_chapters">Hapus juga bab yang telah diunduh</string>
 
-    <string name="source_requires_login">Sumber ini mengharuskan anda masuk</string>
+    <string name="source_requires_login">Anda harus login untuk menggunakan sumber ini</string>
     <string name="select_source">Pilih sumber</string>
     <string name="no_valid_sources">Mohon aktifkan setidaknya satu sumber yang valid</string>
-    <string name="no_more_results">Tidak ada lagi hasil</string>
+    <string name="no_more_results">Tidak ada hasil lain</string>
     <string name="local_source">Manga lokal</string>
     <string name="invalid_combination">Bawaan tidak dapat dipilih dengan kategori lain</string>
     <string name="added_to_library">Manga ini telah ditambahkan ke perpustakaan anda</string>
@@ -273,7 +273,7 @@
     <string name="add_to_library">Tambahkan ke perpustakaan</string>
     <string name="remove_from_library">Hapus dari perpustakaan</string>
     <string name="manga_info_author_label">Penulis</string>
-    <string name="manga_info_artist_label">Artis</string>
+    <string name="manga_info_artist_label">Seniman</string>
     <string name="manga_info_chapters_label">Bab</string>
     <string name="manga_info_last_chapter_label">Bab terakhir</string>
     <string name="manga_info_status_label">Status</string>
@@ -281,13 +281,13 @@
     <string name="manga_info_genres_label">Genre</string>
     <string name="share_text">Lihat %1$s! pada %2$s</string>
     <string name="circular_icon">Ikon melingkar</string>
-    <string name="rounded_icon">Ikon dibulatkan</string>
+    <string name="rounded_icon">Ikon membulat</string>
     <string name="square_icon">Ikon persegi</string>
     <string name="star_icon">Ikon bintang</string>
     <string name="shortcut_title">Judul pintasan</string>
     <string name="icon_shape">Bentuk ikon</string>
     <string name="icon_creation_fail">Gagal membuat pintasan!</string>
-    <string name="delete_downloads_for_manga">Hapus bab terunduh?</string>
+    <string name="delete_downloads_for_manga">Hapus bab-bab terunduh?</string>
 
     <string name="manga_chapters_tab">Bab</string>
     <string name="manga_chapter_no_title">Tidak berjudul</string>
@@ -296,14 +296,14 @@
     <string name="chapter_queued">Antrian</string>
     <string name="chapter_downloading">Mengunduh</string>
     <string name="chapter_downloading_progress">Mengunduh (%1$d/%2$d)</string>
-    <string name="chapter_error">Kesalahan</string>
-    <string name="chapter_paused">Dijeda</string>
-    <string name="fetch_chapters_error">Kesalahan saat mengambil bab</string>
-    <string name="show_title">Perlihatkan judul</string>
-    <string name="show_chapter_number">Perlihatkan nomor bab</string>
+    <string name="chapter_error">Error</string>
+    <string name="chapter_paused">Berhenti sebentar</string>
+    <string name="fetch_chapters_error">Kesalahan saat memanggil bab</string>
+    <string name="show_title">Tampilkan judul</string>
+    <string name="show_chapter_number">Tampilkan nomor bab</string>
     <string name="sorting_mode">Mode sortir</string>
-    <string name="sort_by_source">Oleh sumber</string>
-    <string name="sort_by_number">Oleh nomor bab</string>
+    <string name="sort_by_source">Menurut sumber</string>
+    <string name="sort_by_number">Menurut nomor bab</string>
     <string name="manga_download">Unduh</string>
     <string name="download_1">Unduh bab berikutnya</string>
     <string name="download_5">Unduh 5 bab berikutnya</string>
@@ -312,31 +312,31 @@
     <string name="download_unread">Unduh yang belum dibaca</string>
     <string name="confirm_delete_chapters">Yakin ingin menghapus bab yang dipilih?</string>
 
-    <string name="manga_tracking_tab">Pelacakan</string>
+    <string name="manga_tracking_tab">Penelusuran</string>
     <string name="reading">Membaca</string>
     <string name="completed">Selesai</string>
     <string name="dropped">Tidak diselesaikan</string>
-    <string name="on_hold">Tertahan</string>
-    <string name="plan_to_read">Berencana membaca</string>
-    <string name="score">Skor</string>
+    <string name="on_hold">Berhenti sementara</string>
+    <string name="plan_to_read">Akan dibaca</string>
+    <string name="score">Nilai</string>
     <string name="title">Judul</string>
     <string name="status">Status</string>
 
     <string name="error_category_exists">Kategori dengan nama ini sudah ada!</string>
     <string name="snack_categories_deleted">Kategori dihapus</string>
 
-    <string name="dialog_with_checkbox_remove_description">Ini akan menghapus tanggal baca bab ini. Apakah kamu yakin?</string>
-    <string name="dialog_with_checkbox_reset">Setel ulang semua bab untuk manga ini</string>
+    <string name="dialog_with_checkbox_remove_description">Ini akan menghapus tanggal baca bab ini. Apakah Anda yakin?</string>
+    <string name="dialog_with_checkbox_reset">Setel ulang status baca untuk semua bab manga ini</string>
 
     <string name="snack_add_to_library">Tambahkan manga ke perpustakaan?</string>
 
-    <string name="picture_saved">Gambar disimpan</string>
+    <string name="picture_saved">Gambar telah disimpan</string>
     <string name="saving_picture">Menyimpan gambar</string>
     <string name="options">Pilihan</string>
 
-    <string name="custom_filter">Saringan khusus</string>
+    <string name="custom_filter">Filter khusus</string>
     <string name="set_as_cover">Tetapkan sebagai sampul</string>
-    <string name="cover_updated">Sampul diperbaharui</string>
+    <string name="cover_updated">Sampul diperbarui</string>
     <string name="page_downloaded">Halaman disalin ke %1$s</string>
     <string name="downloading">Mengunduh…</string>
     <string name="download_progress">Terunduh %1$d%%</string>
@@ -344,13 +344,13 @@
     <string name="chapter_subtitle">Bab %1$s</string>
     <string name="no_next_chapter">Bab berikutnya tidak ditemukan</string>
     <string name="no_previous_chapter">Bab sebelumnya tidak ditemukan</string>
-    <string name="decode_image_error">Gambar tidak dapat dimuat.
-\nCoba ganti dekoder gambar atau dengan salah satu opsi di bawah ini</string>
-    <string name="confirm_update_manga_sync">Perbaharui bab terakhir baca di layanan yang diaktifkan ke %1$d?</string>
-    <string name="confirm_set_image_as_cover">Apakah anda ingin mengatur gambar ini sebagai sampul?</string>
-    <string name="viewer_for_this_series">Penonton untuk seri yang ini</string>
+    <string name="decode_image_error">Gambar tidak dapat dimuat. 
+\nCobalah merubah pengurai gambar atau salah satu opsi di bawah ini</string>
+    <string name="confirm_update_manga_sync">Perbarui bab terakhir baca di layanan yang diaktifkan ke %1$d?</string>
+    <string name="confirm_set_image_as_cover">Apakah anda ingin menggubakan gambar ini sebagai sampul?</string>
+    <string name="viewer_for_this_series">Penonton seri ini</string>
 
-    <string name="recent_manga_source">%1$s - Ch.%2$s</string>
+    <string name="recent_manga_source">%1$s - Bab%2$s</string>
 
     <string name="download_queue_error">Terjadi kesalahan saat mengunduh bab. Anda bisa mencoba lagi di bagian unduh</string>
 
@@ -406,7 +406,7 @@
     <string name="local_source_badge">Lokal</string>
     <string name="other_source">Lainnya</string>
     <string name="action_global_search_hint">Pencarian global…</string>
-    <string name="no_results">Tidak ada hasil!</string>
+    <string name="no_results">Hasil pencarian tidak ditemukan!</string>
     <string name="latest">Terbaru</string>
     <string name="browse">Jelajahi</string>
 
@@ -445,19 +445,19 @@
     <string name="ext_empty_preferences">Tidak ada pengaturan tersedia untuk ekstensi ini</string>
 
       <string name="pref_double_tap_anim_speed">Kecepatan animasi dua ketukan</string>
-    <string name="double_tap_anim_speed_0">Tidak ada animasi</string>
+    <string name="double_tap_anim_speed_0">Tanpa animasi</string>
     <string name="double_tap_anim_speed_normal">Normal</string>
     <string name="double_tap_anim_speed_fast">Cepat</string>
-    <string name="source_search_options">Cari penyaringan</string>
+    <string name="source_search_options">Filter pencarian</string>
     <string name="manga_info_full_title_label">Judul</string>
     <string name="manga_added_library">Ditambahkan ke perpustakaan</string>
     <string name="manga_removed_library">Dihapus dari perpustakaan</string>
     <string name="manga_info_latest_data_label">Terbarui</string>
     <string name="copied_to_clipboard">%1$s tersalin ke clipboard</string>
 
-    <string name="custom_download">Unduh sejumlah tertentu</string>
+    <string name="custom_download">Unduh jumlah bab tertentu</string>
     <string name="custom_hint">jumlah</string>
-    <string name="download_custom">Unduh tertentu</string>
+    <string name="download_custom">Unduh jumlah tertentu</string>
     <string name="migration_info">Ketuk untuk memilih sumber awal</string>
     <string name="migration_dialog_what_to_include">Pilih data untuk dimasukkan</string>
     <string name="select">Pilih</string>
