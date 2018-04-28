@@ -94,6 +94,15 @@ class SettingsAboutController : SettingsController() {
             summary = getFormattedBuildTime()
         }
     }
+    preference {
+            title = "Github"
+            val url = "https://github.com/inorichi"
+            summary = url
+            onClick {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+            }
+        }
 
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
