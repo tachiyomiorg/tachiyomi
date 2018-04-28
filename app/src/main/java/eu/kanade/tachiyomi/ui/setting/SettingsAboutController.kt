@@ -93,8 +93,7 @@ class SettingsAboutController : SettingsController() {
             titleRes = R.string.build_time
             summary = getFormattedBuildTime()
         }
-    }
-    preference {
+        preference {
             title = "Github"
             val url = "https://github.com/inorichi"
             summary = url
