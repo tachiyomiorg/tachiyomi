@@ -19,7 +19,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
     private val parser = JsonParser()
     private val jsonMime = MediaType.parse("application/json; charset=utf-8")
-    private val authClient = client.newBuilder().addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).addInterceptor(interceptor).build()
+    private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
 
     fun addLibManga(track: Track): Observable<Track> {
