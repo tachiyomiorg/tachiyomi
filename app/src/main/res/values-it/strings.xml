@@ -16,7 +16,7 @@
 
     <!-- Actions -->
     <string name="action_settings">Impostazioni</string>
-    <string name="action_filter">Filtro</string>
+    <string name="action_filter">Filtra</string>
     <string name="action_filter_downloaded">Scaricati</string>
     <string name="action_filter_bookmarked">Con segnalibro</string>
     <string name="action_filter_unread">Non letti</string>
@@ -462,7 +462,7 @@
     <string name="untrusted_extension">Estensione non attendibile</string>
     <string name="untrusted_extension_message">Questa estensione è stata firmata con un certificato non attendibile e non è stata attivata.
 \n
-\nUn\'estensione malevole ha la possibilità di leggere qualsiasi credenziale d\'accesso salvata in Tachiyomi o di eseguire codice arbitrario.
+\nUn\'estensione malevola ha la possibilità di leggere qualsiasi credenziale d\'accesso salvata in Tachiyomi o di eseguire codice arbitrario.
 \n
 \nRitenendo il certificato attendibile accetti questi rischi.</string>
     <string name="ext_version_info">Versione: %1$s</string>
@@ -493,7 +493,7 @@
     <string name="track_status">Stato</string>
     <string name="track_type">Tipo</string>
     <string name="track_author">Autore</string>
-    <string name="url_not_set"></string>
+    <string name="url_not_set"/>
 
     <string name="snack_categories_deleted">Categorie eliminate</string>
 
