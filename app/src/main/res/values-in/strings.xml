@@ -458,7 +458,7 @@
     <string name="custom_download">Unduh jumlah bab tertentu</string>
     <string name="custom_hint">jumlah</string>
     <string name="download_custom">Unduh jumlah tertentu</string>
-    <string name="migration_info">Ketuk untuk memilih sumber awal</string>
+    <string name="migration_info">Pilih sumber awal untuk dimigrasi</string>
     <string name="migration_dialog_what_to_include">Pilih data untuk dimasukkan</string>
     <string name="select">Pilih</string>
     <string name="migrate">Migrasi</string>
