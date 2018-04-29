@@ -2,8 +2,11 @@ package eu.kanade.tachiyomi.data.track.anilist
 
 import android.content.Context
 import android.graphics.Color
+import android.provider.SyncStateContract.Helpers.update
+import android.widget.Toast
 import com.google.gson.Gson
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.R.string.score
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.track.TrackService
@@ -94,7 +97,13 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
 
     override fun displayScore(track: Track): String {
         val score = track.score
-        return when (preferences.anilistScoreType().getOrDefault()) {
+        // Preference is an int from APIv1
+        // Logout user to get correct score type on login
+        return when (try {
+            preferences.anilistScoreType().getOrDefault()
+        } catch (e: ClassCastException){
+            logout()
+        }) {
             POINT_5 -> "${(score / 20).toInt()} ★"
             POINT_3 -> when {
                 score == 0f -> "0"
@@ -113,6 +122,13 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
     override fun update(track: Track): Observable<Track> {
         if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
             track.status = COMPLETED
+        }
+        // If user was using API v1 fetch library_id
+        if (track.library_id == null || track.library_id!! == 0L){
+            return api.findLibManga(track, getUsername().toInt()).switchMap {
+                track.library_id = it?.library_id
+                api.updateLibManga(track)
+            }
         }
 
         return api.updateLibManga(track)
