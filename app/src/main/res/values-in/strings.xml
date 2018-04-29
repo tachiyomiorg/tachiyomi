@@ -354,13 +354,13 @@
 
     <string name="download_queue_error">Terjadi kesalahan saat mengunduh bab. Anda bisa mencoba lagi di bagian unduh</string>
 
-    <string name="notification_update_progress">Perbaharuan kemajuan: %1$d/%2$d</string>
+    <string name="notification_update_progress">Kemajuan pembaruan: %1$d/%2$d</string>
     <string name="notification_new_chapters">Bab baru ditemukan</string>
     <string name="notification_new_chapters_text">Untuk %1$d judul</string>
-    <string name="notification_cover_update_failed">Gagal memperbaharui sampul</string>
-    <string name="notification_first_add_to_library">Tolong tambahkan manga ke perpustakaan anda sebelum melakukan ini</string>
+    <string name="notification_cover_update_failed">Gagal memperbarui sampul</string>
+    <string name="notification_first_add_to_library">Tolong tambahkan manga ke perpustakaan Anda sebelum melakukan ini</string>
     <string name="notification_not_connected_to_ac_title">Sinkronisasi dibatalkan</string>
-    <string name="notification_not_connected_to_ac_body">Tidak terhubung ke listrik AC</string>
+    <string name="notification_not_connected_to_ac_body">Tidak terhubung ke pengisi daya</string>
     <string name="notification_no_connection_title">Sinkronisasi dibatalkan</string>
     <string name="notification_no_connection_body">Koneksi tidak tersedia</string>
 
@@ -368,34 +368,34 @@
     <string name="file_select_backup">Pilih file cadangan</string>
     <string name="file_select_icon">Pilih ikon pintasan</string>
 
-    <string name="update_check_title">Pembaharuan baru tersedia!</string>
+    <string name="update_check_title">Versi baru tersedia!</string>
     <string name="update_check_confirm">Unduh</string>
     <string name="update_check_ignore">Abaikan</string>
-    <string name="update_check_no_new_updates">Tidak tersedia pembaharuan baru</string>
+    <string name="update_check_no_new_updates">Anda sudah memiliki versi terbaru</string>
     <string name="update_check_download_started">Unduh dimulai</string>
-    <string name="update_check_look_for_updates">Mencari pembaharuan</string>
+    <string name="update_check_look_for_updates">Mencari versi terbaru</string>
 
-    <string name="update_check_notification_file_download">Unduh pembaharuan</string>
-    <string name="update_check_notification_download_in_progress">Unduh sedang berlangsung</string>
-    <string name="update_check_notification_download_complete">Mengunduh selesai</string>
-    <string name="update_check_notification_download_error">Kesalahan mengunduh</string>
-    <string name="update_check_notification_update_available">Pembaharuan tersedia</string>
+    <string name="update_check_notification_file_download">Unduh versi terbaru</string>
+    <string name="update_check_notification_download_in_progress">Sedang mengunduh</string>
+    <string name="update_check_notification_download_complete">Selesai mengunduh</string>
+    <string name="update_check_notification_download_error">Gagal mengunduh</string>
+    <string name="update_check_notification_update_available">Versi baru tersedia</string>
 
     <string name="description_backdrop">Gambar latar belakang manga</string>
     <string name="description_cover">Sampul manga</string>
 
-    <string name="information_no_downloads">Tidak ada unduhan</string>
-    <string name="information_no_recent">Tidak ada bab terbaru</string>
+    <string name="information_no_downloads">Tidak ada unduhan berlangsung</string>
+    <string name="information_no_recent">Tidak ada bab baru</string>
     <string name="information_no_recent_manga">Tidak ada manga yang baru dibaca</string>
-    <string name="information_empty_library">Perpustakaan Anda kosong, Anda bisa menambahkan seri ke perpustakaan Anda dari katalog.</string>
+    <string name="information_empty_library">Perpustakaan Anda masih kosong, Anda bisa menambahkan seri ke perpustakaan Anda dari katalog.</string>
 
     <string name="download_notifier_downloader_title">Pengunduh</string>
     <string name="download_notifier_title_error">Gagal</string>
     <string name="download_notifier_unkown_error">Terjadi kesalahan tak terduga saat mengunduh bab</string>
-    <string name="download_notifier_page_error">Halaman tidak ada dalam direktori</string>
-    <string name="download_notifier_page_ready_error">Halaman tidak dimuat</string>
+    <string name="download_notifier_page_error">Sebuah halaman tidak ditemukan dalam media penyimpan</string>
+    <string name="download_notifier_page_ready_error">Sebuah halaman tidak dimuat</string>
     <string name="download_notifier_text_only_wifi">Tidak ada koneksi wifi yang tersedia</string>
-    <string name="download_notifier_no_network">Tidak ada koneksi jaringan yang tersedia</string>
+    <string name="download_notifier_no_network">Tidak ada koneksi internet yang tersedia</string>
     <string name="download_notifier_download_paused">Unduhan berhenti</string>
 
 <string name="action_global_search">Pencarian Global</string>
@@ -412,9 +412,9 @@
 
     <string name="shortcut_created">Pintasan telah ditambahkan ke layar utama.</string>
     <string name="channel_common">Kanal notifikasi</string>
-    <string name="channel_library">Pustaka</string>
+    <string name="channel_library">Perpustakaan</string>
     <string name="channel_downloader">Pengunduh</string>
-<string name="information_empty_category">Anda tidak memiliki kategori. Tekan tombol tambah untuk membuatnya untuk mengatur perpustakaan Anda.</string>
+<string name="information_empty_category">Anda tidak memiliki kategori. Tekan tombol tambah untuk membuat kategori untuk mengatur perpustakaan Anda.</string>
 
     <string name="label_migration">Migrasi sumber</string>
     <string name="label_extensions">Ekstensi</string>
