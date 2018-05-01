@@ -12,7 +12,7 @@ import eu.kanade.tachiyomi.data.database.models.TrackImpl
 object TrackTypeAdapter {
 
     private const val SYNC = "s"
-    private const val MEDIA = "m"
+    private const val MEDIA = "r"
     private const val LIBRARY = "ml"
     private const val TITLE = "t"
     private const val LAST_READ = "l"

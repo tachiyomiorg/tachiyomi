@@ -58,10 +58,7 @@ class DbOpenHelper(context: Context)
             db.execSQL(TrackTable.addTrackingUrl)
         }
         if (oldVersion < 7) {
-            db.execSQL(TrackTable.copyOldTable)
-            db.execSQL(TrackTable.createTableQuery)
-            db.execSQL(TrackTable.copyOldData)
-            db.execSQL(TrackTable.dropOldTable)
+            db.execSQL(TrackTable.addLibraryId)
         }
     }
 

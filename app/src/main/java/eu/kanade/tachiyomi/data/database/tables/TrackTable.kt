@@ -10,7 +10,7 @@ object TrackTable {
 
     const val COL_SYNC_ID = "sync_id"
 
-    const val COL_MEDIA_ID = "media_id"
+    const val COL_MEDIA_ID = "remote_id"
 
     const val COL_LIBRARY_ID = "library_id"
 
@@ -47,36 +47,6 @@ object TrackTable {
     val addTrackingUrl: String
         get() = "ALTER TABLE $TABLE ADD COLUMN $COL_TRACKING_URL TEXT DEFAULT ''"
 
-    val copyOldTable: String
-        get() = """
-           ALTER TABLE $TABLE RENAME TO backup
-        """
-    val copyOldData: String
-        get() = """
-            INSERT INTO $TABLE(
-            $COL_ID,
-            $COL_MANGA_ID,
-            $COL_SYNC_ID,
-            $COL_MEDIA_ID,
-            $COL_TITLE,
-            $COL_LAST_CHAPTER_READ,
-            $COL_TOTAL_CHAPTERS,
-            $COL_STATUS,
-            $COL_SCORE,
-            $COL_TRACKING_URL)
-            SELECT $COL_ID,
-            $COL_MANGA_ID,
-            $COL_SYNC_ID,
-            remote_id,
-            $COL_TITLE,
-            $COL_LAST_CHAPTER_READ,
-            $COL_TOTAL_CHAPTERS,
-            $COL_STATUS,
-            $COL_SCORE,
-            $COL_TRACKING_URL
-            FROM backup
-            """
-
-    val dropOldTable: String
-        get() = "DROP TABLE backup"
+    val addLibraryId: String
+        get() = "ALTER TABLE $TABLE ADD COLUMN $COL_LIBRARY_ID INTEGER NULL"
 }
