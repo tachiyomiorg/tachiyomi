@@ -465,4 +465,10 @@ Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</s
     <string name="copy">Copiar</string>
     <string name="migrating">Migrando…</string>
 
+    <string name="track_status">Estado</string>
+    <string name="track_start_date">Data de início</string>
+    <string name="track_type">Tipo</string>
+    <string name="track_author">Autor</string>
+    <string name="url_not_set">URL não definida, por favor clique no título e selecione o manga novamente</string>
+
     </resources>
