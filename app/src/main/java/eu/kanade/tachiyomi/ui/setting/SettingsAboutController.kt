@@ -102,6 +102,7 @@ class SettingsAboutController : SettingsController() {
                 startActivity(intent)
             }
         }
+    }
 
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
