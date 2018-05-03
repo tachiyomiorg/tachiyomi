@@ -95,4 +95,6 @@
     <string name="pref_category_about">정보</string>
 
       <string name="pref_library_columns">가로로 서재 정렬</string>
+    <string name="wifi">와이파이</string>
+    <string name="pref_language">언어</string>
     </resources>
