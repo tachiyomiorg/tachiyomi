@@ -32,13 +32,13 @@ open class KitsuManga(obj: JsonObject) {
 }
 
 class KitsuLibManga(obj: JsonObject, manga: JsonObject) : KitsuManga(manga) {
-    val libraryId by obj.byLong("id")
+    val libraryId by obj.byInt("id")
     override val status by obj["attributes"].byString
     val ratingTwenty = obj["attributes"].obj.get("ratingTwenty").nullString
     val progress by obj["attributes"].byInt
 
     override fun toTrack() = super.toTrack().apply {
-        library_id = libraryId
+        media_id = libraryId // TODO migrate media ids to library ids
         status = toTrackStatus()
         score = ratingTwenty?.let { it.toInt() / 2f } ?: 0f
         last_chapter_read = progress

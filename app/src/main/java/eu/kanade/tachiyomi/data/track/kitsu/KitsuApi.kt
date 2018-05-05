@@ -6,7 +6,6 @@ import com.google.gson.JsonObject
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.POST
-import eu.kanade.tachiyomi.util.SharedData.map
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -64,7 +63,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
             // @formatter:off
             val data = jsonObject(
                     "type" to "libraryEntries",
-                    "id" to track.library_id,
+                    "id" to track.media_id,
                     "attributes" to jsonObject(
                             "status" to track.toKitsuStatus(),
                             "progress" to track.last_chapter_read,
@@ -73,7 +72,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
             )
             // @formatter:on
 
-            rest.updateLibManga(track.library_id ?: throw Exception("Library Id not found"), jsonObject("data" to data))
+            rest.updateLibManga(track.media_id, jsonObject("data" to data))
                     .map { track }
         }
     }
@@ -140,7 +139,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
         @Headers("Content-Type: application/vnd.api+json")
         @PATCH("library-entries/{id}")
         fun updateLibManga(
-                @Path("id") remoteId: Long,
+                @Path("id") remoteId: Int,
                 @Body data: JsonObject
         ): Observable<JsonObject>
 

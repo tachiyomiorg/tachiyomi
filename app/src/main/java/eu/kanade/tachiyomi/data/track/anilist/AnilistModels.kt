@@ -67,11 +67,6 @@ data class ALUserManga(
     }
 }
 
-data class ALUserLists(val lists: Map<String, List<ALUserManga>>) {
-
-    fun flatten() = lists.values.flatten()
-}
-
 fun Track.toAnilistStatus() = when (status) {
     Anilist.READING -> "CURRENT"
     Anilist.COMPLETED -> "COMPLETED"
