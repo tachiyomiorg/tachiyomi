@@ -2,11 +2,8 @@ package eu.kanade.tachiyomi.data.track.anilist
 
 import android.content.Context
 import android.graphics.Color
-import android.provider.SyncStateContract.Helpers.update
-import android.widget.Toast
 import com.google.gson.Gson
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.R.string.score
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.track.TrackService
@@ -43,6 +40,18 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
 
     private val api by lazy { AnilistApi(client, interceptor) }
 
+    private val scorePreference = preferences.anilistScoreType()
+
+    init {
+        // If the preference is an int from APIv1, logout user to force using APIv2
+        try {
+            scorePreference.get()
+        } catch (e: ClassCastException) {
+            logout()
+            scorePreference.delete()
+        }
+    }
+
     override fun getLogo() = R.drawable.al
 
     override fun getLogoColor() = Color.rgb(18, 25, 35)
@@ -64,7 +73,7 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun getScoreList(): List<String> {
-        return when (preferences.anilistScoreType().getOrDefault()) {
+        return when (scorePreference.getOrDefault()) {
             // 10 point
             POINT_10 -> IntRange(0, 10).map(Int::toString)
             // 100 point
@@ -80,7 +89,7 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun indexToScore(index: Int): Float {
-        return when (preferences.anilistScoreType().getOrDefault()) {
+        return when (scorePreference.getOrDefault()) {
             // 10 point
             POINT_10 -> index * 10f
             // 100 point
@@ -97,13 +106,8 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
 
     override fun displayScore(track: Track): String {
         val score = track.score
-        // Preference is an int from APIv1
-        // Logout user to get correct score type on login
-        return when (try {
-            preferences.anilistScoreType().getOrDefault()
-        } catch (e: ClassCastException){
-            logout()
-        }) {
+
+        return when (scorePreference.getOrDefault()) {
             POINT_5 -> "${(score / 20).toInt()} ★"
             POINT_3 -> when {
                 score == 0f -> "0"
@@ -125,8 +129,11 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
         }
         // If user was using API v1 fetch library_id
         if (track.library_id == null || track.library_id!! == 0L){
-            return api.findLibManga(track, getUsername().toInt()).switchMap {
-                track.library_id = it?.library_id
+            return api.findLibManga(track, getUsername().toInt()).flatMap {
+                if (it == null) {
+                    throw Exception("$track not found on user library")
+                }
+                track.library_id = it.library_id
                 api.updateLibManga(track)
             }
         }
@@ -169,7 +176,7 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
         val oauth = api.createOAuth(token)
         interceptor.setAuth(oauth)
         return api.getCurrentUser().map { (username, scoreType) ->
-            preferences.anilistScoreType().set(scoreType)
+            scorePreference.set(scoreType)
             saveCredentials(username.toString(), oauth.access_token)
          }.doOnError{
             logout()

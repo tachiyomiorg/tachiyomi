@@ -132,7 +132,6 @@ dependencies {
     // Network client
     implementation "com.squareup.okhttp3:okhttp:3.9.1"
     implementation 'com.squareup.okio:okio:1.14.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0-SNAPSHOT'
 
     // REST
     final retrofit_version = '2.3.0'

@@ -11,7 +11,6 @@ import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
-import okhttp3.logging.HttpLoggingInterceptor
 import rx.Observable
 
 
@@ -70,7 +69,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 "listId" to track.library_id,
                 "progress" to track.last_chapter_read,
                 "status" to track.toAnilistStatus(),
-                "score" to track.toAnilistScore()
+                "score" to track.score.toInt()
         )
         val payload = jsonObject(
                 "query" to query,
