@@ -16,7 +16,7 @@
 
     <!-- Actions -->
     <string name="action_settings">Impostazioni</string>
-    <string name="action_filter">Filtro</string>
+    <string name="action_filter">Filtra</string>
     <string name="action_filter_downloaded">Scaricati</string>
     <string name="action_filter_bookmarked">Con segnalibro</string>
     <string name="action_filter_unread">Non letti</string>
@@ -27,9 +27,9 @@
     <string name="action_sort_last_updated">Ultimo aggiornato</string>
     <string name="action_search">Ricerca</string>
     <string name="action_select_all">Seleziona tutto</string>
-    <string name="action_mark_as_read">Marca come letto</string>
-    <string name="action_mark_as_unread">Marca come non letto</string>
-    <string name="action_mark_previous_as_read">Marca precedenti come letti</string>
+    <string name="action_mark_as_read">Segna come letto</string>
+    <string name="action_mark_as_unread">Segna come non letto</string>
+    <string name="action_mark_previous_as_read">Segna precedenti come letti</string>
     <string name="action_download">Scarica</string>
     <string name="action_bookmark">Aggiungi segnalibro</string>
     <string name="action_remove_bookmark">Rimuovi segnalibro</string>
@@ -48,11 +48,11 @@
     <string name="action_show_downloaded">Scaricati</string>
     <string name="action_next_unread">Prossimo non letto</string>
     <string name="action_start">Inizia</string>
-    <string name="action_stop">Stop</string>
+    <string name="action_stop">Ferma</string>
     <string name="action_pause">Pausa</string>
     <string name="action_clear">Azzera</string>
     <string name="action_previous_chapter">Capitolo precedente</string>
-    <string name="action_next_chapter">Prossimo capito</string>
+    <string name="action_next_chapter">Prossimo capitolo</string>
     <string name="action_retry">Riprova</string>
     <string name="action_remove">Rimuovi</string>
     <string name="action_resume">Riprendi</string>
@@ -98,7 +98,7 @@
     <string name="update_48hour">Ogni 2 giorni</string>
     <string name="pref_library_update_categories">Categorie da includere nell\'aggiornamento globale</string>
     <string name="all">Tutte</string>
-    <string name="pref_library_update_restriction">Restrizioni dell\'aggiornamento della libreria</string>
+    <string name="pref_library_update_restriction">Restrizioni all\'aggiornamento della libreria</string>
     <string name="pref_library_update_restriction_summary">Aggiorna solo quando sono soddisfatte le condizioni</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Caricamento</string>
@@ -115,7 +115,7 @@
     <!-- Reader section -->
     <string name="pref_fullscreen">Schermo intero</string>
     <string name="pref_lock_orientation">Blocca orientamento</string>
-    <string name="pref_page_transitions">Abilita transizioni</string>
+    <string name="pref_page_transitions">Transizioni pagina</string>
     <string name="pref_show_page_number">Mostra numero di pagina</string>
     <string name="pref_custom_brightness">Usa luminosità personalizzata</string>
     <string name="pref_custom_color_filter">Usa filtro colore personalizzato</string>
@@ -157,12 +157,12 @@
 
 
     <!-- Downloads section -->
-    <string name="pref_download_directory">Directory di download</string>
+    <string name="pref_download_directory">Cartella di download</string>
     <string name="pref_download_slots">Download simultanei</string>
     <string name="pref_download_only_over_wifi">Download solo tramite Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Rimuovi quando marcato come letto</string>
     <string name="pref_remove_after_read">Rimuovi dopo la lettura</string>
-    <string name="custom_dir">Directory personalizzata</string>
+    <string name="custom_dir">Cartella personalizzata</string>
     <string name="disabled">Disabilitato</string>
     <string name="last_read_chapter">Ultimo capitolo letto</string>
     <string name="second_to_last">Penultimo capitolo</string>
@@ -183,7 +183,7 @@
     <string name="cookies_cleared">Cookie cancellati</string>
     <string name="pref_clear_database">Cancella database</string>
     <string name="pref_clear_database_summary">Elimina manga e capitoli che non sono nella tua libreria</string>
-    <string name="clear_database_confirmation">Sei sicuro? Capitoli e progressi dei manga non presenti nella libreria verranno persi</string>
+    <string name="clear_database_confirmation">Sei sicuro? I capitoli letti ed i progressi dei manga non presenti nella libreria verranno persi</string>
     <string name="clear_database_completed">Elementi eliminati</string>
     <string name="pref_refresh_library_metadata">Aggiorna i metadati della libreria</string>
     <string name="pref_refresh_library_metadata_summary">Aggiorna copertine, generi, descrizioni e stato dei manga</string>
@@ -205,7 +205,7 @@
     <string name="show_password">Mostra password</string>
     <string name="login">Accedi</string>
     <string name="login_success">Accesso riuscito</string>
-    <string name="invalid_login">Credenziali non valide</string>
+    <string name="invalid_login">Errore nell\'accesso</string>
     <string name="unknown_error">Errore sconosciuto</string>
 
     <!-- Library fragment -->
@@ -235,7 +235,7 @@
     <string name="manga_info_status_label">Stato</string>
     <string name="manga_info_source_label">Fonte</string>
     <string name="manga_info_genres_label">Generi</string>
-    <string name="share_text">Dai un\'occhiata a %1$s! %2$s</string>
+    <string name="share_text">Dai un\'occhiata a %1$s! su %2$s</string>
     <string name="circular_icon">Icona circolare</string>
     <string name="rounded_icon">Icona arrotondata</string>
     <string name="square_icon">Icona quadrata</string>
@@ -282,7 +282,7 @@
     <string name="error_category_exists">Esiste già una categoria con questo nome!</string>
 
     <!-- Dialog remove recently view -->
-    <string name="dialog_with_checkbox_remove_description">Questo rimuoverà la data lettura di questo capitolo. Sei sicuro?</string>
+    <string name="dialog_with_checkbox_remove_description">Questo rimuoverà la data di lettura di questo capitolo. Sei sicuro?</string>
     <string name="dialog_with_checkbox_reset">Rimuovi per tutti i capitoli di questo manga</string>
 
     <!-- Image notifier -->
@@ -301,7 +301,8 @@
     <string name="chapter_subtitle">Capitolo %1$s</string>
     <string name="no_next_chapter">Capitolo successivo non trovato</string>
     <string name="no_previous_chapter">Capitolo precedente non trovato</string>
-    <string name="decode_image_error">L\'immagine non può essere caricata.\nProva a cambiare il decoder immagini o con una delle opzioni più in basso</string>
+    <string name="decode_image_error">L\'immagine non può essere caricata.
+\nProva a cambiare il decoder immagini o usa una delle opzioni in basso</string>
     <string name="confirm_update_manga_sync">Aggiornare nei servizi abilitati l\'ultimo capitolo letto a %1$d?</string>
     <string name="confirm_set_image_as_cover">Vuoi impostare questa immagine come copertina?</string>
     <string name="viewer_for_this_series">Visualizzatore per questa serie</string>
@@ -326,7 +327,7 @@
     <string name="notification_no_connection_body">Connessione non disponibile</string>
 
     <!-- File Picker Titles -->
-    <string name="file_select_cover">Seleziona immagine copertina</string>
+    <string name="file_select_cover">Seleziona immagine di copertina</string>
     <string name="file_select_backup">Seleziona il file di backup</string>
     <string name="file_select_icon">Seleziona l\'icona della scorciatoia</string>
 
@@ -339,7 +340,7 @@
     <string name="update_check_look_for_updates">Ricerca aggiornamenti</string>
 
     <!--UpdateCheck Notifications-->
-    <string name="update_check_notification_file_download">Download aggiornamento</string>
+    <string name="update_check_notification_file_download">Scarica aggiornamento</string>
     <string name="update_check_notification_download_in_progress">Download in corso</string>
     <string name="update_check_notification_download_complete">Download completato</string>
     <string name="update_check_notification_download_error">Errore di download</string>
@@ -353,7 +354,7 @@
     <string name="information_no_downloads">Nessun download</string>
     <string name="information_no_recent">Non ci sono capitoli più recenti</string>
     <string name="information_no_recent_manga">Non ci sono manga letti di recente</string>
-    <string name="information_empty_library">Libreria vuota</string>
+    <string name="information_empty_library">La tua libreria è vuota; puoi aggiungere serie alla tua libreria dai Cataloghi.</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Downloader</string>
@@ -381,8 +382,8 @@
     <string name="app_not_available">Applicazione non disponibile</string>
     <string name="short_recent_updates">Aggiornamenti</string>
 
-    <string name="update_weekly">Settimanalmente</string>
-    <string name="update_monthly">Mensilmente</string>
+    <string name="update_weekly">Settimanale</string>
+    <string name="update_monthly">Mensile</string>
     <string name="amoled_theme">Tema AMOLED</string>
     <string name="default_category">Categoria predefinita</string>
     <string name="track">Monitoraggio</string>
@@ -406,13 +407,13 @@
     <string name="pref_backup_service_category">Servizio</string>
     <string name="dialog_restoring_backup">Ripristino backup
 %1$s aggiunto alla libreria</string>
-    <string name="source_not_found">Sorgente non trovata</string>
+    <string name="source_not_found">Fonte non trovata</string>
     <string name="dialog_restoring_source_not_found">Ripristino backup
 %1$s sorgente non trovata</string>
     <string name="restore_completed_content">Il ripristino ha impiegato %1$s.
 %2$s errori.</string>
-    <string name="backup_restore_content">Il ripristino usa la sorgente per recuperare i dati, potrebbero essere applicati costi dell\'operatore.
-Prima del ripristino assicurati anche di avere effettuato l\'accesso per le sorgenti che lo richiedono.</string>
+    <string name="backup_restore_content">Il ripristino usa la fonte per recuperare i dati, potrebbero essere applicati costi dall\'operatore.
+\nPrima del ripristino assicurati anche di avere effettuato l\'accesso per le fonti che lo richiedono.</string>
     <string name="file_saved">File salvato in %1$s</string>
     <string name="backup_choice">Di cosa vuoi effettuare il backup?</string>
     <string name="restoring_backup">Ripristino backup</string>
@@ -435,5 +436,74 @@ Prima del ripristino assicurati anche di avere effettuato l\'accesso per le sorg
     <string name="snack_add_to_library">Aggiungi manga alla libreria?</string>
 
     <string name="download_notifier_download_paused">Download in pausa</string>
+
+<string name="label_migration">Migrazione fonte</string>
+    <string name="label_extensions">Estensioni</string>
+    <string name="label_extension_info">Informazioni estensione</string>
+
+
+    <string name="action_global_search">Ricerca globale</string>
+    <string name="action_reset">Reset</string>
+    <string name="action_open">Apri</string>
+    <string name="action_login">Login</string>
+
+    <string name="all_lang">Tutte</string>
+    <string name="ext_details">Dettagli</string>
+    <string name="ext_update">Aggiorna</string>
+    <string name="ext_install">Installa</string>
+    <string name="ext_pending">In corso</string>
+    <string name="ext_downloading">Download in corso</string>
+    <string name="ext_installing">Installazione in corso</string>
+    <string name="ext_installed">Installato</string>
+    <string name="ext_untrusted">Non attendibili</string>
+    <string name="ext_uninstall">Disinstalla</string>
+    <string name="ext_preferences">Preferenze</string>
+    <string name="ext_available">Disponibile</string>
+    <string name="untrusted_extension">Estensione non attendibile</string>
+    <string name="untrusted_extension_message">Questa estensione è stata firmata con un certificato non attendibile e non è stata attivata.
+\n
+\nUn\'estensione malevola ha la possibilità di leggere qualsiasi credenziale d\'accesso salvata in Tachiyomi o di eseguire codice arbitrario.
+\n
+\nRitenendo il certificato attendibile accetti questi rischi.</string>
+    <string name="ext_version_info">Versione: %1$s</string>
+    <string name="ext_language_info">Lingua: %1$s</string>
+    <string name="ext_empty_preferences">Non ci sono impostazioni da modificare per questa estensione</string>
+
+      <string name="pref_double_tap_anim_speed">Velocità animazione doppio tap</string>
+    <string name="double_tap_anim_speed_0">Nessuna animazione</string>
+    <string name="double_tap_anim_speed_normal">Normale</string>
+    <string name="double_tap_anim_speed_fast">Veloce</string>
+    <string name="local_source_badge">Locale</string>
+    <string name="source_search_options">Filtri di ricerca</string>
+    <string name="other_source">Altro</string>
+    <string name="action_global_search_hint">Ricerca globale…</string>
+    <string name="no_results">Nessun risultato trovato!</string>
+    <string name="latest">Ultimi</string>
+    <string name="browse">Naviga</string>
+
+    <string name="manga_info_full_title_label">Titolo</string>
+    <string name="manga_added_library">Aggiunto alla libreria</string>
+    <string name="manga_removed_library">Rimosso dalla libreria</string>
+    <string name="manga_info_latest_data_label">Data aggiornamento</string>
+    <string name="shortcut_created">Una scorciatoia è stata aggiunta alla Home.</string>
+    <string name="copied_to_clipboard">%1$s copiato negli appunti</string>
+
+    <string name="custom_download">Download personalizzato</string>
+    <string name="custom_hint">Quantità</string>
+    <string name="track_status">Stato</string>
+    <string name="track_type">Tipo</string>
+    <string name="track_author">Autore</string>
+    <string name="url_not_set"/>
+
+    <string name="snack_categories_deleted">Categorie eliminate</string>
+
+    <string name="migration_dialog_what_to_include">Seleziona i dati da includere</string>
+    <string name="select">Seleziona</string>
+    <string name="copy">Copia</string>
+    <string name="notification_new_chapters_text">Per %1$d titoli</string>
+    <string name="information_empty_category">Non hai categorie. Clicca \"+\" per crearne una per organizzare la tua libreria.</string>
+
+    <string name="channel_library">Libreria</string>
+    <string name="channel_downloader">Downloader</string>
 
 </resources>

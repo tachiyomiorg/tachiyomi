@@ -83,7 +83,7 @@
     <string name="loading">Wird geladen…</string>
 
     <string name="app_not_available">App nicht verfügbar</string>
-    <string name="short_recent_updates">Updates</string>
+    <string name="short_recent_updates">Aktualisierungen</string>
 
     <string name="pref_category_general">Allgemein</string>
     <string name="pref_category_reader">Lese-Einstellungen</string>
@@ -460,6 +460,13 @@
     <string name="untrusted_extension">Nicht vertrauenswürdige Erweiterung</string>
     <string name="pref_double_tap_anim_speed">Doppeltipp Animationsgeschwindigkeit</string>
     <string name="custom_download">Benutzerdefinierte Anzahl herunterladen</string>
-    <string name="migration_info">Wähle die Quelle von welcher Migriert werden soll</string>
+    <string name="migration_info">Wähle die Quelle von welcher migriert werden soll</string>
     <string name="migration_dialog_what_to_include">Wähle zu beinhaltende Daten</string>
+    <string name="download_custom">Benutzerdefinierte Kapitel herunterladen</string>
+    <string name="track_status">Zustand</string>
+    <string name="track_start_date">Angefangen am</string>
+    <string name="track_type">Typ</string>
+    <string name="track_author">Autor</string>
+    <string name="url_not_set">Manga URL wird noch nicht festgelegt, tippen Sie den Titel und wählen Sie die Manga nochmal aus</string>
+
     </resources>

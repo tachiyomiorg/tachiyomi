@@ -2,7 +2,7 @@
 <resources><string name="name">নাম</string>
     <string name="categories">ধরণ</string>
     <string name="manga">মাংগা</string>
-    <string name="chapters">অধ্যায়গুলো</string>
+    <string name="chapters">অধ্যায়</string>
     <string name="track">অনুসরণকরণ</string>
     <string name="history">ইতিহাস</string>
 
@@ -461,5 +461,11 @@
     <string name="migrate">সরিয়ে ফেলুন</string>
     <string name="copy">কপি</string>
     <string name="migrating">সরানো হচ্ছে…</string>
+
+    <string name="track_status">অবস্থা</string>
+    <string name="track_start_date">শুরু হয়েছে</string>
+    <string name="track_type">ধরণ</string>
+    <string name="track_author">লেখক</string>
+    <string name="url_not_set">মাঙ্গার লিংক ঠিক হয়নি দয়া করে শিরোনামে চাঁপুন এবং মাঙ্গাটি আবার নির্বাচন করুন</string>
 
     </resources>

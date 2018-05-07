@@ -461,4 +461,11 @@
     <string name="copy">नकल</string>
     <string name="migrating">प्रवास हो रहा है…</string>
 
+    <string name="track_status">"स्थिति  
+\n"</string>
+    <string name="track_start_date">शुरू कर दिया</string>
+    <string name="track_type">प्रकार</string>
+    <string name="track_author">लेखक</string>
+    <string name="url_not_set">मंगा यूआरएल सेट नहीं है कृपया शीर्षक पर क्लिक करें और फिर मंगा का चुनें</string>
+
     </resources>
