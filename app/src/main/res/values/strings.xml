@@ -58,7 +58,6 @@
     <string name="action_edit_cover">Edit the cover picture</string>
     <string name="action_sort_up">Sort up</string>
     <string name="action_sort_down">Sort down</string>
-    <string name="action_show_unread">Unread</string>
     <string name="action_show_downloaded">Downloaded</string>
     <string name="action_next_unread">Next unread</string>
     <string name="action_start">Start</string>
