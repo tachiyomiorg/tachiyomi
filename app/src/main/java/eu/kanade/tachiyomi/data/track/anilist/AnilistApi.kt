@@ -91,7 +91,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
         val query = """
             query Search(${'$'}query: String) {
                   Page (perPage: 25) {
-                    media(search: ${'$'}query, type: MANGA, format: MANGA) {
+                    media(search: ${'$'}query, type: MANGA, format_not_in: [NOVEL]) {
                       id
                       title {
                         romaji
