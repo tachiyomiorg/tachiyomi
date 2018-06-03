@@ -156,7 +156,7 @@ class Kissmanga : ParsedHttpSource() {
 
             // There are two functions in an inline script needed to decrypt the urls. We find and
             // execute them.
-            var p = Pattern.compile("(.*CryptoJS.*)")
+            var p = Pattern.compile("(var.*CryptoJS.*)")
             var m = p.matcher(body)
             while (m.find()) {
                 it.evaluate(m.group(1))

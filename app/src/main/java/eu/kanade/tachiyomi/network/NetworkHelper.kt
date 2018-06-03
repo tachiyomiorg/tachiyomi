@@ -3,7 +3,10 @@ package eu.kanade.tachiyomi.network
 import android.content.Context
 import android.os.Build
 import okhttp3.Cache
+import okhttp3.CipherSuite
+import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
+import okhttp3.TlsVersion
 import java.io.File
 import java.io.IOException
 import java.net.InetAddress
@@ -107,6 +110,18 @@ class NetworkHelper(context: Context) {
 
             sslSocketFactory(TLSSocketFactory(), trustManagers[0] as X509TrustManager)
         }
+
+        val specCompat = ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
+            .tlsVersions(TlsVersion.TLS_1_2, TlsVersion.TLS_1_1, TlsVersion.TLS_1_0)
+            .cipherSuites(
+                    *ConnectionSpec.MODERN_TLS.cipherSuites().orEmpty().toTypedArray(),
+                    CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
+                    CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA
+            )
+            .build()
+
+        val specs = listOf(specCompat, ConnectionSpec.CLEARTEXT)
+        connectionSpecs(specs)
 
         return this
     }

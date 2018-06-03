@@ -67,6 +67,8 @@ class PreferencesHelper(val context: Context) {
 
     fun cropBorders() = rxPrefs.getBoolean(Keys.cropBorders, false)
 
+    fun cropBordersWebtoon() = rxPrefs.getBoolean(Keys.cropBordersWebtoon, false)
+
     fun readWithTapping() = rxPrefs.getBoolean(Keys.readWithTapping, true)
 
     fun readWithVolumeKeys() = rxPrefs.getBoolean(Keys.readWithVolumeKeys, false)
@@ -117,7 +119,7 @@ class PreferencesHelper(val context: Context) {
 
     fun trackToken(sync: TrackService) = rxPrefs.getString(Keys.trackToken(sync.id), "")
 
-    fun anilistScoreType() = rxPrefs.getInteger("anilist_score_type", 0)
+    fun anilistScoreType() = rxPrefs.getString("anilist_score_type", "POINT_10")
 
     fun backupsDirectory() = rxPrefs.getString(Keys.backupDirectory, defaultBackupDir.toString())
 

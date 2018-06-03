@@ -87,7 +87,7 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
                 .flatMap { remoteTrack ->
                     if (remoteTrack != null) {
                         track.copyPersonalFrom(remoteTrack)
-                        track.remote_id = remoteTrack.remote_id
+                        track.media_id = remoteTrack.media_id
                         update(track)
                     } else {
                         track.score = DEFAULT_SCORE

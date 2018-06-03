@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 data class ALManga(
-        val id: Int,
+        val media_id: Int,
         val title_romaji: String,
         val image_url_lge: String,
         val description: String?,
@@ -21,12 +21,12 @@ data class ALManga(
         val total_chapters: Int) {
 
     fun toTrack() = TrackSearch.create(TrackManager.ANILIST).apply {
-        remote_id = this@ALManga.id
+        media_id = this@ALManga.media_id
         title = title_romaji
         total_chapters = this@ALManga.total_chapters
         cover_url = image_url_lge
         summary = description ?: ""
-        tracking_url = AnilistApi.mangaUrl(remote_id)
+        tracking_url = AnilistApi.mangaUrl(media_id)
         publishing_status = this@ALManga.publishing_status
         publishing_type = type
         if (!start_date_fuzzy.isNullOrBlank()) {
@@ -43,40 +43,37 @@ data class ALManga(
 }
 
 data class ALUserManga(
-        val id: Int,
+        val library_id: Long,
         val list_status: String,
         val score_raw: Int,
         val chapters_read: Int,
         val manga: ALManga) {
 
     fun toTrack() = Track.create(TrackManager.ANILIST).apply {
-        remote_id = manga.id
+        media_id = manga.media_id
         status = toTrackStatus()
         score = score_raw.toFloat()
         last_chapter_read = chapters_read
+        library_id = this@ALUserManga.library_id
     }
 
     fun toTrackStatus() = when (list_status) {
-        "reading" -> Anilist.READING
-        "completed" -> Anilist.COMPLETED
-        "on-hold" -> Anilist.ON_HOLD
-        "dropped" -> Anilist.DROPPED
-        "plan to read" -> Anilist.PLAN_TO_READ
+        "CURRENT" -> Anilist.READING
+        "COMPLETED" -> Anilist.COMPLETED
+        "PAUSED" -> Anilist.ON_HOLD
+        "DROPPED" -> Anilist.DROPPED
+        "PLANNING" -> Anilist.PLANNING
         else -> throw NotImplementedError("Unknown status")
     }
 }
 
-data class ALUserLists(val lists: Map<String, List<ALUserManga>>) {
-
-    fun flatten() = lists.values.flatten()
-}
-
 fun Track.toAnilistStatus() = when (status) {
-    Anilist.READING -> "reading"
-    Anilist.COMPLETED -> "completed"
-    Anilist.ON_HOLD -> "on-hold"
-    Anilist.DROPPED -> "dropped"
-    Anilist.PLAN_TO_READ -> "plan to read"
+    Anilist.READING -> "CURRENT"
+    Anilist.COMPLETED -> "COMPLETED"
+    Anilist.ON_HOLD -> "PAUSED"
+    Anilist.DROPPED -> "DROPPED"
+    Anilist.PLANNING -> "PLANNING"
+    Anilist.REPEATING -> "REPEATING"
     else -> throw NotImplementedError("Unknown status")
 }
 
@@ -84,11 +81,11 @@ private val preferences: PreferencesHelper by injectLazy()
 
 fun Track.toAnilistScore(): String = when (preferences.anilistScoreType().getOrDefault()) {
 // 10 point
-    0 -> (score.toInt() / 10).toString()
+    "POINT_10" -> (score.toInt() / 10).toString()
 // 100 point
-    1 -> score.toInt().toString()
+    "POINT_100" -> score.toInt().toString()
 // 5 stars
-    2 -> when {
+    "POINT_5" -> when {
         score == 0f -> "0"
         score < 30 -> "1"
         score < 50 -> "2"
@@ -97,13 +94,13 @@ fun Track.toAnilistScore(): String = when (preferences.anilistScoreType().getOrD
         else -> "5"
     }
 // Smiley
-    3 -> when {
+    "POINT_3" -> when {
         score == 0f -> "0"
         score <= 30 -> ":("
         score <= 60 -> ":|"
         else -> ":)"
     }
 // 10 point decimal
-    4 -> (score / 10).toString()
+    "POINT_10_DECIMAL" -> (score / 10).toString()
     else -> throw Exception("Unknown score type")
 }

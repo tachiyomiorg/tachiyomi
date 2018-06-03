@@ -1,167 +1,275 @@
 package eu.kanade.tachiyomi.data.track.anilist
 
 import android.net.Uri
-import com.github.salomonbrys.kotson.int
-import com.github.salomonbrys.kotson.string
+import com.github.salomonbrys.kotson.*
 import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
-import eu.kanade.tachiyomi.network.POST
-import okhttp3.FormBody
+import eu.kanade.tachiyomi.network.asObservableSuccess
+import okhttp3.MediaType
 import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.*
+import okhttp3.Request
+import okhttp3.RequestBody
 import rx.Observable
+
 
 class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
-    private val rest = restBuilder()
-            .client(client.newBuilder().addInterceptor(interceptor).build())
-            .build()
-            .create(Rest::class.java)
+    private val parser = JsonParser()
+    private val jsonMime = MediaType.parse("application/json; charset=utf-8")
+    private val authClient = client.newBuilder().addInterceptor(interceptor).build()
+
 
     fun addLibManga(track: Track): Observable<Track> {
-        return rest.addLibManga(track.remote_id, track.last_chapter_read, track.toAnilistStatus())
-                .map { response ->
-                    response.body()?.close()
-                    if (!response.isSuccessful) {
-                        throw Exception("Could not add manga")
+        val query = """
+            mutation AddManga(${'$'}mangaId: Int, ${'$'}progress: Int, ${'$'}status: MediaListStatus) {
+                     SaveMediaListEntry (mediaId: ${'$'}mangaId, progress: ${'$'}progress, status: ${'$'}status)
+                     { id status } }
+                     """
+        val variables = jsonObject(
+                "mangaId" to track.media_id,
+                "progress" to track.last_chapter_read,
+                "status" to track.toAnilistStatus()
+        )
+        val payload = jsonObject(
+                "query" to query,
+                "variables" to variables
+        )
+        val body = RequestBody.create(jsonMime, payload.toString())
+        val request = Request.Builder()
+                .url(apiUrl)
+                .post(body)
+                .build()
+        return authClient.newCall(request)
+                .asObservableSuccess()
+                .map { netResponse ->
+                    val responseBody = netResponse.body()?.string().orEmpty()
+                    netResponse.close()
+                    if (responseBody.isEmpty()) {
+                        throw Exception("Null Response")
                     }
+                    val response = parser.parse(responseBody).obj
+                    track.library_id = response["data"]["SaveMediaListEntry"]["id"].asLong
                     track
                 }
     }
 
     fun updateLibManga(track: Track): Observable<Track> {
-        return rest.updateLibManga(track.remote_id, track.last_chapter_read, track.toAnilistStatus(),
-                track.toAnilistScore())
-                .map { response ->
-                    response.body()?.close()
-                    if (!response.isSuccessful) {
-                        throw Exception("Could not update manga")
+        val query = """
+            mutation UpdateManga(${'$'}listId: Int, ${'$'}progress: Int, ${'$'}status: MediaListStatus, ${'$'}score: Int) {
+                        SaveMediaListEntry (id: ${'$'}listId, progress: ${'$'}progress, status: ${'$'}status, scoreRaw: ${'$'}score) {
+                            id
+                            status
+                            progress
+                        }
                     }
+            """
+        val variables = jsonObject(
+                "listId" to track.library_id,
+                "progress" to track.last_chapter_read,
+                "status" to track.toAnilistStatus(),
+                "score" to track.score.toInt()
+        )
+        val payload = jsonObject(
+                "query" to query,
+                "variables" to variables
+        )
+        val body = RequestBody.create(jsonMime, payload.toString())
+        val request = Request.Builder()
+                .url(apiUrl)
+                .post(body)
+                .build()
+        return authClient.newCall(request)
+                .asObservableSuccess()
+                .map {
                     track
                 }
     }
 
-    fun search(query: String): Observable<List<TrackSearch>> {
-        return rest.search(query, 1)
-                .map { list ->
-                    list.filter { it.type != "Novel" }.map { it.toTrack() }
+    fun search(search: String): Observable<List<TrackSearch>> {
+        val query = """
+            query Search(${'$'}query: String) {
+                  Page (perPage: 25) {
+                    media(search: ${'$'}query, type: MANGA, format_not_in: [NOVEL]) {
+                      id
+                      title {
+                        romaji
+                      }
+                      coverImage {
+                        large
+                      }
+                      type
+                      status
+                      chapters
+                      startDate {
+                        year
+                        month
+                        day
+                      }
+                    }
+                  }
                 }
-                .onErrorReturn { emptyList() }
-    }
-
-    fun getList(username: String): Observable<List<Track>> {
-        return rest.getLib(username)
-                .map { lib ->
-                    lib.flatten().map { it.toTrack() }
+            """
+        val variables = jsonObject(
+                "query" to search
+        )
+        val payload = jsonObject(
+                "query" to query,
+                "variables" to variables
+        )
+        val body = RequestBody.create(jsonMime, payload.toString())
+        val request = Request.Builder()
+                .url(apiUrl)
+                .post(body)
+                .build()
+        return authClient.newCall(request)
+                .asObservableSuccess()
+                .map { netResponse ->
+                    val responseBody = netResponse.body()?.string().orEmpty()
+                    if (responseBody.isEmpty()) {
+                        throw Exception("Null Response")
+                    }
+                    val response = parser.parse(responseBody).obj
+                    val data = response["data"]!!.obj
+                    val page = data["Page"].obj
+                    val media = page["media"].array
+                    val entries = media.map { jsonToALManga(it.obj) }
+                    entries.map { it.toTrack() }
                 }
     }
 
-    fun findLibManga(track: Track, username: String) : Observable<Track?> {
-        // TODO avoid getting the entire list
-        return getList(username)
-                .map { list -> list.find { it.remote_id == track.remote_id } }
+
+    fun findLibManga(track: Track, userid: Int) : Observable<Track?> {
+        val query = """
+            query (${'$'}id: Int!, ${'$'}manga_id: Int!) {
+                  Page {
+                    mediaList(userId: ${'$'}id, type: MANGA, mediaId: ${'$'}manga_id) {
+                      id
+                      status
+                      scoreRaw: score(format: POINT_100)
+                      progress
+                      media{
+                        id
+                        title {
+                          romaji
+                        }
+                      coverImage {
+                        large
+                      }
+                      type
+                      status
+                      chapters
+                      startDate {
+                       year
+                       month
+                       day
+                       }
+                      }
+                    }
+                  }
+                }
+            """
+        val variables = jsonObject(
+                "id" to userid,
+                "manga_id" to track.media_id
+        )
+        val payload = jsonObject(
+                "query" to query,
+                "variables" to variables
+        )
+        val body = RequestBody.create(jsonMime, payload.toString())
+        val request = Request.Builder()
+                .url(apiUrl)
+                .post(body)
+                .build()
+        return authClient.newCall(request)
+                .asObservableSuccess()
+                .map { netResponse ->
+                    val responseBody = netResponse.body()?.string().orEmpty()
+                    if (responseBody.isEmpty()) {
+                        throw Exception("Null Response")
+                    }
+                    val response = parser.parse(responseBody).obj
+                    val data = response["data"]!!.obj
+                    val page = data["Page"].obj
+                    val media = page["mediaList"].array
+                    val entries = media.map { jsonToALUserManga(it.obj) }
+                    entries.firstOrNull()?.toTrack()
+
+                }
     }
 
-    fun getLibManga(track: Track, username: String): Observable<Track> {
-        return findLibManga(track, username)
+    fun getLibManga(track: Track, userid: Int): Observable<Track> {
+        return findLibManga(track, userid)
                 .map { it ?: throw Exception("Could not find manga") }
     }
 
-    fun login(authCode: String): Observable<OAuth> {
-        return restBuilder()
-                .client(client)
+    fun createOAuth(token: String): OAuth {
+        return OAuth(token, "Bearer", System.currentTimeMillis() + 31536000000, 31536000000)
+    }
+
+    fun getCurrentUser(): Observable<Pair<Int, String>> {
+        val query = """
+            query User
+                {
+                  Viewer {
+                    id
+                    mediaListOptions {
+                      scoreFormat
+                    }
+                  }
+                }
+                """
+        val payload = jsonObject(
+                "query" to query
+        )
+        val body = RequestBody.create(jsonMime, payload.toString())
+        val request = Request.Builder()
+                .url(apiUrl)
+                .post(body)
                 .build()
-                .create(Rest::class.java)
-                .requestAccessToken(authCode)
+        return authClient.newCall(request)
+                .asObservableSuccess()
+                .map { netResponse ->
+                    val responseBody = netResponse.body()?.string().orEmpty()
+                    if (responseBody.isEmpty()) {
+                        throw Exception("Null Response")
+                    }
+                    val response = parser.parse(responseBody).obj
+                    val data = response["data"]!!.obj
+                    val viewer = data["Viewer"].obj
+                    Pair(viewer["id"].asInt, viewer["mediaListOptions"]["scoreFormat"].asString)
+                }
     }
 
-    fun getCurrentUser(): Observable<Pair<String, Int>> {
-        return rest.getCurrentUser()
-                .map { it["id"].string to it["score_type"].int }
+    fun jsonToALManga(struct: JsonObject): ALManga{
+        return ALManga(struct["id"].asInt, struct["title"]["romaji"].asString, struct["coverImage"]["large"].asString,
+                null, struct["type"].asString, struct["status"].asString,
+                struct["startDate"]["year"].nullString.orEmpty() + struct["startDate"]["month"].nullString.orEmpty()
+                        + struct["startDate"]["day"].nullString.orEmpty(), struct["chapters"].nullInt ?: 0)
     }
 
-    private fun restBuilder() = Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-
-    private interface Rest {
-
-        @FormUrlEncoded
-        @POST("auth/access_token")
-        fun requestAccessToken(
-                @Field("code") code: String,
-                @Field("grant_type") grant_type: String = "authorization_code",
-                @Field("client_id") client_id: String = clientId,
-                @Field("client_secret") client_secret: String = clientSecret,
-                @Field("redirect_uri") redirect_uri: String = clientUrl
-        ) : Observable<OAuth>
-
-        @GET("user")
-        fun getCurrentUser(): Observable<JsonObject>
-
-        @GET("manga/search/{query}")
-        fun search(
-                @Path("query") query: String,
-                @Query("page") page: Int
-        ): Observable<List<ALManga>>
-
-        @GET("user/{username}/mangalist")
-        fun getLib(
-                @Path("username") username: String
-        ): Observable<ALUserLists>
-
-        @FormUrlEncoded
-        @PUT("mangalist")
-        fun addLibManga(
-                @Field("id") id: Int,
-                @Field("chapters_read") chapters_read: Int,
-                @Field("list_status") list_status: String
-        ) : Observable<Response<ResponseBody>>
-
-        @FormUrlEncoded
-        @PUT("mangalist")
-        fun updateLibManga(
-                @Field("id") id: Int,
-                @Field("chapters_read") chapters_read: Int,
-                @Field("list_status") list_status: String,
-                @Field("score") score_raw: String
-        ) : Observable<Response<ResponseBody>>
-
+    fun jsonToALUserManga(struct: JsonObject): ALUserManga{
+        return ALUserManga(struct["id"].asLong, struct["status"].asString, struct["scoreRaw"].asInt, struct["progress"].asInt, jsonToALManga(struct["media"].obj) )
     }
+
 
     companion object {
-        private const val clientId = "tachiyomi-hrtje"
-        private const val clientSecret = "nlGB5OmgE9YWq5dr3gIDbTQV0C"
+        private const val clientId = "385"
         private const val clientUrl = "tachiyomi://anilist-auth"
-        private const val baseUrl = "https://anilist.co/api/"
+        private const val apiUrl = "https://graphql.anilist.co/"
+        private const val baseUrl = "https://anilist.co/api/v2/"
         private const val baseMangaUrl = "https://anilist.co/manga/"
 
-        fun mangaUrl(remoteId: Int): String {
-            return baseMangaUrl + remoteId
+        fun mangaUrl(mediaId: Int): String {
+            return baseMangaUrl + mediaId
         }
 
-        fun authUrl() = Uri.parse("${baseUrl}auth/authorize").buildUpon()
-                .appendQueryParameter("grant_type", "authorization_code")
+        fun authUrl() = Uri.parse("${baseUrl}oauth/authorize").buildUpon()
                 .appendQueryParameter("client_id", clientId)
-                .appendQueryParameter("redirect_uri", clientUrl)
-                .appendQueryParameter("response_type", "code")
+                .appendQueryParameter("response_type", "token")
                 .build()
-
-        fun refreshTokenRequest(token: String) = POST("${baseUrl}auth/access_token",
-                body = FormBody.Builder()
-                        .add("grant_type", "refresh_token")
-                        .add("client_id", clientId)
-                        .add("client_secret", clientSecret)
-                        .add("refresh_token", token)
-                        .build())
-
     }
 
 }

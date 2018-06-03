@@ -19,12 +19,12 @@ open class KitsuManga(obj: JsonObject) {
 
     @CallSuper
     open fun toTrack() = TrackSearch.create(TrackManager.KITSU).apply {
-        remote_id = this@KitsuManga.id
+        media_id = this@KitsuManga.id
         title = canonicalTitle
         total_chapters = chapterCount ?: 0
         cover_url = original
         summary = synopsis
-        tracking_url = KitsuApi.mangaUrl(remote_id)
+        tracking_url = KitsuApi.mangaUrl(media_id)
         publishing_status = this@KitsuManga.status
         publishing_type = type
         start_date = startDate.orEmpty()
@@ -32,13 +32,13 @@ open class KitsuManga(obj: JsonObject) {
 }
 
 class KitsuLibManga(obj: JsonObject, manga: JsonObject) : KitsuManga(manga) {
-    val remoteId by obj.byInt("id")
+    val libraryId by obj.byInt("id")
     override val status by obj["attributes"].byString
     val ratingTwenty = obj["attributes"].obj.get("ratingTwenty").nullString
     val progress by obj["attributes"].byInt
 
     override fun toTrack() = super.toTrack().apply {
-        remote_id = remoteId
+        media_id = libraryId // TODO migrate media ids to library ids
         status = toTrackStatus()
         score = ratingTwenty?.let { it.toInt() / 2f } ?: 0f
         last_chapter_read = progress

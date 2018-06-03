@@ -76,8 +76,8 @@ class SettingsReaderController : SettingsController() {
             defaultValue = true
         }
         switchPreference {
-            key = Keys.enableTransitions
-            titleRes = R.string.pref_page_transitions
+            key = Keys.keepScreenOn
+            titleRes = R.string.pref_keep_screen_on
             defaultValue = true
         }
         switchPreference {
@@ -85,15 +85,28 @@ class SettingsReaderController : SettingsController() {
             titleRes = R.string.pref_show_page_number
             defaultValue = true
         }
-        switchPreference {
-            key = Keys.cropBorders
-            titleRes = R.string.pref_crop_borders
-            defaultValue = false
+        preferenceCategory {
+            titleRes = R.string.pager_viewer
+
+            switchPreference {
+                key = Keys.enableTransitions
+                titleRes = R.string.pref_page_transitions
+                defaultValue = true
+            }
+            switchPreference {
+                key = Keys.cropBorders
+                titleRes = R.string.pref_crop_borders
+                defaultValue = false
+            }
         }
-        switchPreference {
-            key = Keys.keepScreenOn
-            titleRes = R.string.pref_keep_screen_on
-            defaultValue = true
+        preferenceCategory {
+            titleRes = R.string.webtoon_viewer
+
+            switchPreference {
+                key = Keys.cropBordersWebtoon
+                titleRes = R.string.pref_crop_borders
+                defaultValue = false
+            }
         }
         preferenceCategory {
             titleRes = R.string.pref_reader_navigation

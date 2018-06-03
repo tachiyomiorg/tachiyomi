@@ -7,7 +7,7 @@ import eu.kanade.tachiyomi.util.LocaleHelper
 import kotlinx.android.synthetic.main.catalogue_main_controller_card.*
 
 class LangHolder(view: View, adapter: FlexibleAdapter<*>) :
-        BaseFlexibleViewHolder(view, adapter, true) {
+        BaseFlexibleViewHolder(view, adapter) {
 
     fun bind(item: LangItem) {
         title.text = LocaleHelper.getDisplayName(item.code, itemView.context)

@@ -8,7 +8,7 @@ import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import kotlinx.android.synthetic.main.extension_card_header.*
 
 class ExtensionGroupHolder(view: View, adapter: FlexibleAdapter<*>) :
-        BaseFlexibleViewHolder(view, adapter, true) {
+        BaseFlexibleViewHolder(view, adapter) {
 
     @SuppressLint("SetTextI18n")
     fun bind(item: ExtensionGroupItem) {

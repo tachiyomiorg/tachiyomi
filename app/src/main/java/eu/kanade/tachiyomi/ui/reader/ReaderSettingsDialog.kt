@@ -9,6 +9,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.util.plusAssign
+import eu.kanade.tachiyomi.util.visibleIf
 import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
 import kotlinx.android.synthetic.main.reader_settings_dialog.view.*
 import rx.Observable
@@ -91,6 +92,23 @@ class ReaderSettingsDialog : DialogFragment() {
         crop_borders.setOnCheckedChangeListener { _, isChecked ->
             preferences.cropBorders().set(isChecked)
         }
+
+        crop_borders_webtoon.isChecked = preferences.cropBordersWebtoon().getOrDefault()
+        crop_borders_webtoon.setOnCheckedChangeListener { _, isChecked ->
+            preferences.cropBordersWebtoon().set(isChecked)
+        }
+
+        val readerActivity = activity as? ReaderActivity
+        val isWebtoonViewer = if (readerActivity != null) {
+            val mangaViewer = readerActivity.presenter.manga.viewer
+            val viewer = if (mangaViewer == 0) preferences.defaultViewer() else mangaViewer
+            viewer == ReaderActivity.WEBTOON
+        } else {
+            false
+        }
+
+        crop_borders.visibleIf { !isWebtoonViewer }
+        crop_borders_webtoon.visibleIf { isWebtoonViewer }
     }
 
     override fun onDestroyView() {

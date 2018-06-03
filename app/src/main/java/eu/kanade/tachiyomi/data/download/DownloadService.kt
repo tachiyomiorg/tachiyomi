@@ -1,16 +1,20 @@
 package eu.kanade.tachiyomi.data.download
 
+import android.app.Notification
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.net.NetworkInfo.State.CONNECTED
 import android.net.NetworkInfo.State.DISCONNECTED
+import android.os.Build
 import android.os.IBinder
 import android.os.PowerManager
+import android.support.v4.app.NotificationCompat
 import com.github.pwittchen.reactivenetwork.library.Connectivity
 import com.github.pwittchen.reactivenetwork.library.ReactiveNetwork
 import com.jakewharton.rxrelay.BehaviorRelay
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.connectivityManager
 import eu.kanade.tachiyomi.util.plusAssign
@@ -41,7 +45,12 @@ class DownloadService : Service() {
          * @param context the application context.
          */
         fun start(context: Context) {
-            context.startService(Intent(context, DownloadService::class.java))
+            val intent = Intent(context, DownloadService::class.java)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                context.startService(intent)
+            } else {
+                context.startForegroundService(intent)
+            }
         }
 
         /**
@@ -81,6 +90,7 @@ class DownloadService : Service() {
      */
     override fun onCreate() {
         super.onCreate()
+        startForeground(Notifications.ID_DOWNLOAD_CHAPTER, getPlaceholderNotification())
         runningRelay.call(true)
         subscriptions = CompositeSubscription()
         listenDownloaderState()
@@ -174,6 +184,12 @@ class DownloadService : Service() {
      */
     fun PowerManager.WakeLock.acquireIfNeeded() {
         if (!isHeld) acquire()
+    }
+
+    private fun getPlaceholderNotification(): Notification {
+        return NotificationCompat.Builder(this, Notifications.CHANNEL_DOWNLOADER)
+            .setContentTitle(getString(R.string.download_notifier_downloader_title))
+            .build()
     }
 
 }

@@ -4,7 +4,12 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.util.DisplayMetrics
-import android.view.*
+import android.view.Display
+import android.view.GestureDetector
+import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import eu.kanade.tachiyomi.source.model.Page
@@ -123,7 +128,7 @@ class WebtoonReader : BaseReader() {
                 .distinctUntilChanged()
                 .subscribe { refreshAdapter() })
 
-        subscriptions.add(readerActivity.preferences.cropBorders()
+        subscriptions.add(readerActivity.preferences.cropBordersWebtoon()
                 .asObservable()
                 .doOnNext { cropBorders = it }
                 .skip(1)

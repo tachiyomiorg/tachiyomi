@@ -1,10 +1,20 @@
 package eu.kanade.tachiyomi.ui.base.presenter
 
+import android.os.Bundle
 import nucleus.presenter.RxPresenter
 import nucleus.presenter.delivery.Delivery
 import rx.Observable
 
 open class BasePresenter<V> : RxPresenter<V>() {
+
+    override fun onCreate(savedState: Bundle?) {
+        try {
+            super.onCreate(savedState)
+        } catch (e: NullPointerException) {
+            // Swallow this error. This should be fixed in the library but since it's not critical
+            // (only used by restartables) it should be enough. It saves me a fork.
+        }
+    }
 
     /**
      * Subscribes an observable with [deliverFirst] and adds it to the presenter's lifecycle

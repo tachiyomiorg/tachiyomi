@@ -23,9 +23,10 @@ class AnilistLoginActivity : AppCompatActivity() {
         val view = ProgressBar(this)
         setContentView(view, FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT, CENTER))
 
-        val code = intent.data?.getQueryParameter("code")
-        if (code != null) {
-            trackManager.aniList.login(code)
+        val regex = "(?:access_token=)(.*?)(?:&)".toRegex()
+        val matchResult = regex.find(intent.data?.fragment.toString())
+        if (matchResult?.groups?.get(1) != null) {
+            trackManager.aniList.login(matchResult.groups[1]!!.value)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({

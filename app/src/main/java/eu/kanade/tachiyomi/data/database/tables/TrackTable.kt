@@ -10,7 +10,9 @@ object TrackTable {
 
     const val COL_SYNC_ID = "sync_id"
 
-    const val COL_REMOTE_ID = "remote_id"
+    const val COL_MEDIA_ID = "remote_id"
+
+    const val COL_LIBRARY_ID = "library_id"
 
     const val COL_TITLE = "title"
 
@@ -29,7 +31,8 @@ object TrackTable {
             $COL_ID INTEGER NOT NULL PRIMARY KEY,
             $COL_MANGA_ID INTEGER NOT NULL,
             $COL_SYNC_ID INTEGER NOT NULL,
-            $COL_REMOTE_ID INTEGER NOT NULL,
+            $COL_MEDIA_ID INTEGER NOT NULL,
+            $COL_LIBRARY_ID INTEGER,
             $COL_TITLE TEXT NOT NULL,
             $COL_LAST_CHAPTER_READ INTEGER NOT NULL,
             $COL_TOTAL_CHAPTERS INTEGER NOT NULL,
@@ -43,4 +46,7 @@ object TrackTable {
 
     val addTrackingUrl: String
         get() = "ALTER TABLE $TABLE ADD COLUMN $COL_TRACKING_URL TEXT DEFAULT ''"
+
+    val addLibraryId: String
+        get() = "ALTER TABLE $TABLE ADD COLUMN $COL_LIBRARY_ID INTEGER NULL"
 }

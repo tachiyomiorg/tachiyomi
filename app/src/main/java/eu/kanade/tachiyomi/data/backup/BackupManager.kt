@@ -402,8 +402,11 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
                 for (dbTrack in dbTracks) {
                     if (track.sync_id == dbTrack.sync_id) {
                         // The sync is already in the db, only update its fields
-                        if (track.remote_id != dbTrack.remote_id) {
-                            dbTrack.remote_id = track.remote_id
+                        if (track.media_id != dbTrack.media_id) {
+                            dbTrack.media_id = track.media_id
+                        }
+                        if (track.library_id != dbTrack.library_id) {
+                            dbTrack.library_id = track.library_id
                         }
                         dbTrack.last_chapter_read = Math.max(dbTrack.last_chapter_read, track.last_chapter_read)
                         isInDatabase = true

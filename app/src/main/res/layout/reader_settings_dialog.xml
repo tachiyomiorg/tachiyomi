@@ -172,6 +172,12 @@
         android:text="@string/pref_crop_borders"/>
 
     <android.support.v7.widget.SwitchCompat
+        android:id="@+id/crop_borders_webtoon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_crop_borders"/>
+
+    <android.support.v7.widget.SwitchCompat
         android:id="@+id/fullscreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

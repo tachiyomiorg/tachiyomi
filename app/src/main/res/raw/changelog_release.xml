@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="true">
+    <changelogversion versionName="v0.7.4" changeDate="">
+        <changelogtext>Updated Anilist's API to v2.</changelogtext>
+
+        <changelogtext>Added Github link to about.</changelogtext>
+
+        <changelogtext>Fixed indonesian language not working.</changelogtext>
+
+        <changelogtext>Fixed an issue on KitKat that crashed the app when scheduling updates.</changelogtext>
+
+        <changelogtext>Fixed a few more issues introduced on the previous release.</changelogtext>
+    </changelogversion>
+
+    <changelogversion versionName="v0.7.3" changeDate="">
+        <changelogtext>Fixed the tracking search layout when there are many results.</changelogtext>
+
+        <changelogtext>Separate english language into american and british so that dates are formatted according to that locale.</changelogtext>
+
+        <changelogtext>Added Firebase analytics, for Android API distribution.</changelogtext>
+
+        <changelogtext>Crop borders for webtoons now has a separate setting.</changelogtext>
+
+        <changelogtext>The downloader now runs in a foreground service to prevent it from being killed.</changelogtext>
+
+        <changelogtext>Fixed a few weird crashes.</changelogtext>
+    </changelogversion>
+
     <changelogversion versionName="v0.7.2" changeDate="">
         <changelogtext>Fixed missing downloaded label in chapters screen.</changelogtext>
 
@@ -181,56 +207,6 @@
         <changelogtext>Fixed certain downloaded chapters not working with any decoder.</changelogtext>
 
         <changelogtext>Fixed lost covers on some devices.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.4.2" changeDate="">
-        <changelogtext>Added support for Anilist and Kitsu.</changelogtext>
-
-        <changelogtext>Added library refresh option to library updates tab.</changelogtext>
-
-        <changelogtext>Back button closes drawers before exiting the app.</changelogtext>
-
-        <changelogtext>Fixed issues when using custom app language.</changelogtext>
-
-        <changelogtext>Fixed updater in Android N.</changelogtext>
-
-        <changelogtext>Fixed Mangafox search.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.4.1" changeDate="">
-        <changelogtext>Added an app's language selector.</changelogtext>
-
-        <changelogtext>Added options to sort the library and merged them with the filters.</changelogtext>
-
-        <changelogtext>Added an option to automatically download chapters.</changelogtext>
-
-        <changelogtext>Fixed performance issues when using a custom downloads directory, especially in the library updates tab.</changelogtext>
-
-        <changelogtext>Fixed gesture conflicts with the contextual menu and the webtoon reader.</changelogtext>
-
-        <changelogtext>Fixed wrong page direction when using volume keys for the right to left reader.</changelogtext>
-
-        <changelogtext>Fixed many crashes.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.4.0" changeDate="">
-        <changelogtext>The download manager has been rewritten and it's possible some of your downloads
-            aren't recognized anymore. It's recommended to manually delete everything and start over.
-        </changelogtext>
-
-        <changelogtext>Now it's possible to download to any folder in a SD card.</changelogtext>
-
-        <changelogtext>The download directory setting has been reset.</changelogtext>
-
-        <changelogtext>Active downloads now persist after restarts.</changelogtext>
-
-        <changelogtext>Allow to bookmark chapters.</changelogtext>
-
-        <changelogtext>Allow to share or save a single page while reading with a long tap.</changelogtext>
-
-        <changelogtext>Added italian translation.</changelogtext>
-
-        <changelogtext>Image is now the default decoder.</changelogtext>
     </changelogversion>
 
 </changelog>

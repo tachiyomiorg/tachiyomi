@@ -10,7 +10,9 @@ interface Track : Serializable {
 
     var sync_id: Int
 
-    var remote_id: Int
+    var media_id: Int
+
+    var library_id: Long?
 
     var title: String
 

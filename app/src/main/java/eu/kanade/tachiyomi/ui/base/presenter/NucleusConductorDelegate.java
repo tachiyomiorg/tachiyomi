@@ -28,7 +28,7 @@ public class NucleusConductorDelegate<P extends Presenter> {
 
     Bundle onSaveInstanceState() {
         Bundle bundle = new Bundle();
-        getPresenter();
+//        getPresenter(); // Workaround a crash related to saving instance state with child routers
         if (presenter != null) {
             presenter.save(bundle);
         }
