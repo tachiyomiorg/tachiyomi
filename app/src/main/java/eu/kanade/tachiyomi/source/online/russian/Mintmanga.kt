@@ -95,16 +95,16 @@ class Mintmanga : ParsedHttpSource() {
         } else {
             chapter.name = urlText
         }
-        chapter.date_upload = element.select("td:eq(1)").first()?.text()?.let {
+        chapter.date_upload = element.select("td.hidden-xxs").last()?.text()?.let {
             SimpleDateFormat("dd/MM/yy", Locale.US).parse(it).time
         } ?: 0
         return chapter
     }
 
     override fun prepareNewChapter(chapter: SChapter, manga: SManga) {
-        val basic = Regex("""\s([0-9]+)(\s-\s)([0-9]+)\s*""")
-        val extra = Regex("""\s([0-9]+\sЭкстра)\s*""")
-        val single = Regex("""\sСингл\s*""")
+        val basic = Regex("""\s*([0-9]+)(\s-\s)([0-9]+)\s*""")
+        val extra = Regex("""\s*([0-9]+\sЭкстра)\s*""")
+        val single = Regex("""\s*Сингл\s*""")
         when {
             basic.containsMatchIn(chapter.name) -> {
                 basic.find(chapter.name)?.let {
