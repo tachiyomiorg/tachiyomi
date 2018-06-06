@@ -206,6 +206,7 @@ dependencies {
     implementation "com.github.inorichi.Conductor:conductor:be8b3c5"
     implementation ("com.bluelinelabs:conductor-support:2.1.5-SNAPSHOT") {
         exclude group: "com.bluelinelabs", module: "conductor"
+        exclude group: "com.android.support"
     }
     implementation 'com.github.inorichi:conductor-support-preference:27.0.2'
 
