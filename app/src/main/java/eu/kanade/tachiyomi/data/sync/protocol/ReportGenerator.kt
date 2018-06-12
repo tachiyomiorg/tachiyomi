@@ -190,10 +190,14 @@ class ReportGenerator(val context: Context,
 
         // Copy each change in the database -> sync entities
 
-        genForEntryUpdates(report, UpdateTarget.Track.remoteId, entityFinder) {
-            first.remote_id = ChangedField(it.datetime, second.remote_id)
+        genForEntryUpdates(report, UpdateTarget.Track.mediaId, entityFinder) {
+            first.media_id = ChangedField(it.datetime, second.media_id)
         }
-        
+
+        genForEntryUpdates(report, UpdateTarget.Track.libraryId, entityFinder) {
+            first.library_id = ChangedField(it.datetime, second.library_id)
+        }
+
         genForEntryUpdates(report, UpdateTarget.Track.title, entityFinder) {
             first.title = ChangedField(it.datetime, second.title)
         }

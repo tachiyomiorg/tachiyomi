@@ -78,13 +78,14 @@ object UpdateTarget {
     
         override val idColumn = TrackTable.COL_ID
         
-        val remoteId = field(8, TrackTable.COL_REMOTE_ID, 0)
-        val title = field(9, TrackTable.COL_TITLE, "")
-        val lastChapterRead = field(10, TrackTable.COL_LAST_CHAPTER_READ, 0)
-        val totalChapters = field(11, TrackTable.COL_TOTAL_CHAPTERS, 0)
-        val score = field(12, TrackTable.COL_SCORE, 0f)
-        val status = field(13, TrackTable.COL_STATUS, 0)
-        val trackingUrl = field(14, TrackTable.COL_TRACKING_URL, "")
+        val mediaId = field(8, TrackTable.COL_MEDIA_ID, 0)
+        val libraryId = field(9, TrackTable.COL_LIBRARY_ID, null)
+        val title = field(10, TrackTable.COL_TITLE, "")
+        val lastChapterRead = field(11, TrackTable.COL_LAST_CHAPTER_READ, 0)
+        val totalChapters = field(12, TrackTable.COL_TOTAL_CHAPTERS, 0)
+        val score = field(13, TrackTable.COL_SCORE, 0f)
+        val status = field(14, TrackTable.COL_STATUS, 0)
+        val trackingUrl = field(15, TrackTable.COL_TRACKING_URL, "")
     }
 }
 
@@ -124,7 +125,7 @@ abstract class Updatable {
      * @param defValue The default value of this property. Properties of newly inserted objects that match
      *   this default value will not be recorded as 'changed'.
      */
-    fun field(id: Int, field: String, defValue: Any)
+    fun field(id: Int, field: String, defValue: Any?)
             = UpdatableField(this, id, field, defValue).apply {
         fields.add(this)
     }

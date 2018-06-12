@@ -87,7 +87,7 @@ class TriggerGenerator {
         /**
          * Convert a primitives and Strings into SQL literals
          */
-        fun valueAsSQLiteLiteral(value: Any)
+        fun valueAsSQLiteLiteral(value: Any?)
                 = when(value) {
             //Wrap strings in quotes
             is String, is Char -> "\"$value\""
@@ -97,6 +97,8 @@ class TriggerGenerator {
             //SQL does not have boolean literals
             false -> "0"
             true -> "1"
+
+            null -> "NULL"
         
             else -> throw IllegalArgumentException("Unknown default value type: ${value::class.java.simpleName}!")
         }

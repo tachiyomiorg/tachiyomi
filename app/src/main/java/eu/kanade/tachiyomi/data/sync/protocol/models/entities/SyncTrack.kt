@@ -6,7 +6,8 @@ import eu.kanade.tachiyomi.data.sync.protocol.models.common.SyncRef
 
 class SyncTrack : SyncEntity<SyncTrack>() {
     // Changes
-    var remote_id: ChangedField<Int>? = null
+    var media_id: ChangedField<Int>? = null
+    var library_id: ChangedField<Long?>? = null
     var title: ChangedField<String>? = null
     var last_chapter_read: ChangedField<Int>? = null
     var total_chapters: ChangedField<Int>? = null

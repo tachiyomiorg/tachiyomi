@@ -264,8 +264,12 @@ class ReportApplier(val context: Context,
             val id = dbTrack.id ?: report.tmpApply.nextQueuedId()
             var changed = false
 
-            it.remote_id.applyIfNewer(report, id, UpdateTarget.Track.remoteId) {
-                dbTrack.remote_id = it
+            it.media_id.applyIfNewer(report, id, UpdateTarget.Track.mediaId) {
+                dbTrack.media_id = it
+                changed = true
+            }
+            it.library_id.applyIfNewer(report, id, UpdateTarget.Track.libraryId) {
+                dbTrack.library_id = it
                 changed = true
             }
             it.title.applyIfNewer(report, id, UpdateTarget.Track.title) {
