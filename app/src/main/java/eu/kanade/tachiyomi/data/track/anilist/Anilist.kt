@@ -165,6 +165,7 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
         return api.getLibManga(track, getUsername().toInt())
                 .map { remoteTrack ->
                     track.copyPersonalFrom(remoteTrack)
+                    track.total_chapters = remoteTrack.total_chapters
                     track
                 }
     }
