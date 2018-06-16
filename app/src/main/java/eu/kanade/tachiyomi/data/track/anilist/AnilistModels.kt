@@ -55,6 +55,7 @@ data class ALUserManga(
         score = score_raw.toFloat()
         last_chapter_read = chapters_read
         library_id = this@ALUserManga.library_id
+        total_chapters = manga.total_chapters
     }
 
     fun toTrackStatus() = when (list_status) {
