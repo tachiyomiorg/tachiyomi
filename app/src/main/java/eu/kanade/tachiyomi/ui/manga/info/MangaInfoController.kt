@@ -378,9 +378,13 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         if (manga.favorite) {
             val categories = presenter.getCategories()
             val defaultCategory = categories.find { it.id == preferences.defaultCategory() }
+            // If a default category has been set, place the manga there.
+            // If there are no categories defined, place the manga in the default one.
+            // If there is at least one category defined, ask the user where the manga should go.
+            // See issues #885 and #1022.
             when {
                 defaultCategory != null -> presenter.moveMangaToCategory(manga, defaultCategory)
-                categories.size <= 1 -> // default or the one from the user
+                categories.isEmpty() ->
                     presenter.moveMangaToCategory(manga, categories.firstOrNull())
                 else -> {
                     val ids = presenter.getMangaCategoryIds(manga)
