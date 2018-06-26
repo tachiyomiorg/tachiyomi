@@ -14,7 +14,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 import rx.Observable
 
-
 class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) {
 
     private val rest = Retrofit.Builder()

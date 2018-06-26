@@ -7,7 +7,6 @@ import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 
-
 class KitsuSearchManga(obj: JsonObject) {
     val id by obj.byInt
     private val canonicalTitle by obj.byString
