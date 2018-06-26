@@ -106,6 +106,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
                 .map { json ->
                     val data = json["hits"].array
                     data.map { KitsuSearchManga(it.obj) }
+                            .filter { it.subType != "novel" }
                             .map { it.toTrack() }
                 }
     }
