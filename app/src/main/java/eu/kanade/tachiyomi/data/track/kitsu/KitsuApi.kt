@@ -24,6 +24,22 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
             .build()
             .create(KitsuApi.Rest::class.java)
 
+    private val searchRest = Retrofit.Builder()
+            .baseUrl(algoliaKeyUrl)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .build()
+            .create(KitsuApi.SearchKeyRest::class.java)
+
+    private val algoliaRest = Retrofit.Builder()
+            .baseUrl(algoliaUrl)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .build()
+            .create(KitsuApi.AgoliaSearchRest::class.java)
+
     fun addLibManga(track: Track, userId: String): Observable<Track> {
         return Observable.defer {
             // @formatter:off
@@ -78,13 +94,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
 
 
     fun search(query: String): Observable<List<TrackSearch>> {
-        return Retrofit.Builder()
-                .baseUrl(algoliaKeyUrl)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build()
-                .create(KitsuApi.SearchKeyRest::class.java)
+        return searchRest
                 .getKey().map { json ->
                     json["media"].asJsonObject["key"].string
                 }.flatMap { key ->
@@ -95,13 +105,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
 
     private fun algoliaSearch(key: String, query: String): Observable<List<TrackSearch>> {
         val jsonObject = jsonObject("params" to "query=$query$algoliaFilter")
-        return Retrofit.Builder()
-                .baseUrl(algoliaUrl)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build()
-                .create(KitsuApi.AgoliaSearchRest::class.java)
+        return algoliaRest
                 .getSearchQuery(algoliaAppId, key, jsonObject)
                 .map { json ->
                     val data = json["hits"].array
