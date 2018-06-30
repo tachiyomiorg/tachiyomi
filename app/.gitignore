@@ -3,3 +3,4 @@
 *.iml
 custom.gradle
 google-services.json
+.externalNativeBuild

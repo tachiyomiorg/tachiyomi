@@ -62,6 +62,18 @@ class SettingsDownloadController : SettingsController() {
             defaultValue = true
         }
         preferenceCategory {
+            titleRes = R.string.pref_convert_lossless_downloads
+
+            intListPreference {
+                key = Keys.convertLosslessDownloads
+                titleRes = R.string.pref_convert_lossless_downloads
+                entriesRes = arrayOf(R.string.disabled, R.string.lossless_webp, R.string.lossy_webp)
+                entryValues = arrayOf("-1", "0", "1")
+                defaultValue = "-1"
+                summary = "%s"
+            }
+        }
+        preferenceCategory {
             titleRes = R.string.pref_remove_after_read
 
             switchPreference {

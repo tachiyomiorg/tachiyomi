@@ -9,6 +9,7 @@ import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.download.model.DownloadQueue
+import eu.kanade.tachiyomi.data.encoder.Encoder
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.source.online.HttpSource
@@ -81,6 +82,9 @@ class Downloader(
      * Whether the downloader is running.
      */
     @Volatile private var isRunning: Boolean = false
+
+    // TODO: injectLazy()
+    private val encoder = Encoder()
 
     init {
         launchNow {
@@ -266,6 +270,8 @@ class Downloader(
             Observable.just(download.pages!!)
         }
 
+        val start = System.nanoTime()
+
         pageListObservable
                 .doOnNext { _ ->
                     // Delete all temporary (unfinished) files
@@ -285,7 +291,19 @@ class Downloader(
                 .toList()
                 .map { _ -> download }
                 // Do after download completes
-                .doOnNext { ensureSuccessfulDownload(download, mangaDir, tmpDir, chapterDirname) }
+                .doOnNext {
+                    ensureSuccessfulDownload(download, mangaDir, tmpDir, chapterDirname)
+
+                    val downloadEnd = System.nanoTime()
+                    encoder.logTime("networkFetch", downloadEnd - start)
+                }
+                // Pass the successful download to the encoder
+                .doOnNext {
+                    encoder.encodeChapter(mangaDir, tmpDir, chapterDirname)
+
+                    val totalEnd = System.nanoTime()
+                    encoder.logTime("Total download", totalEnd - start)
+                }
                 // If the page list threw, it will resume here
                 .onErrorReturn { error ->
                     download.status = Download.ERROR

@@ -127,6 +127,8 @@ class PreferencesHelper(val context: Context) {
 
     fun downloadOnlyOverWifi() = prefs.getBoolean(Keys.downloadOnlyOverWifi, true)
 
+    fun convertLosslessDownloads() = prefs.getInt(Keys.convertLosslessDownloads, -1)
+
     fun numberOfBackups() = rxPrefs.getInteger(Keys.numberOfBackups, 1)
 
     fun backupInterval() = rxPrefs.getInteger(Keys.backupInterval, 0)

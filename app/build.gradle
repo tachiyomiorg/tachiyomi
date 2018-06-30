@@ -51,6 +51,12 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86"
         }
+
+        externalNativeBuild {
+            ndkBuild {
+                targets 'webp_encoder'
+            }
+        }
     }
 
     buildTypes {
@@ -97,10 +103,14 @@ android {
         checkReleaseBuilds false
     }
 
+    externalNativeBuild {
+        ndkBuild {
+            path "src/main/jni/Android.mk"
+        }
+    }
 }
 
 dependencies {
-
     // Modified dependencies
     implementation 'com.github.inorichi:subsampling-scale-image-view:81b9d68'
     implementation 'com.github.inorichi:junrar-android:634c1f5'

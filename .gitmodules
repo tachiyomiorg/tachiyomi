@@ -1,0 +1,3 @@
+[submodule "app/src/main/jni/libwebp"]
+	path = app/src/main/jni/libwebp
+	url = https://chromium.googlesource.com/webm/libwebp

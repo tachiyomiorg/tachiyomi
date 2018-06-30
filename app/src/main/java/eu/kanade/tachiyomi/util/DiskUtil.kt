@@ -42,6 +42,8 @@ object DiskUtil {
                     return "image/jpeg"
                 } else if (bytes[0] == 'W'.toByte() && bytes[1] == 'E'.toByte() && bytes[2] == 'B'.toByte() && bytes[3] == 'P'.toByte()) {
                     return "image/webp"
+                } else if (bytes[0] == 'R'.toByte() && bytes[1] == 'I'.toByte() && bytes[2] == 'F'.toByte() && bytes[3] == 'F'.toByte()) {
+                    return "image/webp"
                 }
             }
         } catch(e: Exception) {

@@ -71,6 +71,8 @@ object PreferenceKeys {
 
     const val downloadOnlyOverWifi = "pref_download_only_over_wifi_key"
 
+    const val convertLosslessDownloads = "pref_convert_lossless_downloads"
+
     const val numberOfBackups = "backup_slots"
 
     const val backupInterval = "backup_interval"
