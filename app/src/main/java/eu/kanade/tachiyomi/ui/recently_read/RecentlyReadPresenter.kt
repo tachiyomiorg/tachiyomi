@@ -45,10 +45,7 @@ class RecentlyReadPresenter : BasePresenter<RecentlyReadController>() {
         cal.add(Calendar.MONTH, -1)
 
         return db.getRecentManga(cal.time).asRxObservable()
-                .map { recents ->
-                    recents.filter { sourceManager.get(it.manga.source) != null }
-                            .map(::RecentlyReadItem)
-                }
+                .map { recents -> recents.map(::RecentlyReadItem) }
                 .observeOn(AndroidSchedulers.mainThread())
     }
 

@@ -70,7 +70,7 @@ class DownloadCache(private val context: Context,
      */
     fun isChapterDownloaded(chapter: Chapter, manga: Manga, skipCache: Boolean): Boolean {
         if (skipCache) {
-            val source = sourceManager.get(manga.source) ?: return false
+            val source = sourceManager.get(manga.source)
             return provider.findChapterDir(chapter, manga, source) != null
         }
 
@@ -160,7 +160,7 @@ class DownloadCache(private val context: Context,
         // Retrieve the cached source directory or cache a new one
         var sourceDir = rootDir.files[manga.source]
         if (sourceDir == null) {
-            val source = sourceManager.get(manga.source) ?: return
+            val source = sourceManager.get(manga.source)
             val sourceUniFile = provider.findSourceDir(source) ?: return
             sourceDir = SourceDirectory(sourceUniFile)
             rootDir.files += manga.source to sourceDir

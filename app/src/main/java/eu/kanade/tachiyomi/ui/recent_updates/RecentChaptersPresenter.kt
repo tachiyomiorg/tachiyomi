@@ -57,7 +57,6 @@ class RecentChaptersPresenter(
                 .map { mangaChapters ->
                     val map = TreeMap<Date, MutableList<MangaChapter>> { d1, d2 -> d2.compareTo(d1) }
                     val byDay = mangaChapters
-                            .filter { sourceManager.get(it.manga.source) != null }
                             .groupByTo(map, { getMapKey(it.chapter.date_fetch) })
                     byDay.flatMap {
                         val dateItem = DateItem(it.key)
@@ -188,7 +187,7 @@ class RecentChaptersPresenter(
      * @param item chapter that is selected
      */
     private fun deleteChapter(item: RecentChapterItem) {
-        val source = sourceManager.get(item.manga.source) ?: return
+        val source = sourceManager.get(item.manga.source)
         downloadManager.queue.remove(item.chapter)
         downloadManager.deleteChapter(item.chapter, item.manga, source)
         item.status = Download.NOT_DOWNLOADED

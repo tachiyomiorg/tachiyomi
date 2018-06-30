@@ -295,7 +295,7 @@ class BackupRestoreService : Service() {
                                           categories: List<String>, history: List<DHistory>,
                                           tracks: List<Track>): Observable<Manga>? {
         // Get source
-        val source = backupManager.sourceManager.get(manga.source) ?: return null
+        val source = backupManager.sourceManager.get(manga.source)
         val dbManga = backupManager.getMangaFromDatabase(manga)
 
         return if (dbManga == null) {
