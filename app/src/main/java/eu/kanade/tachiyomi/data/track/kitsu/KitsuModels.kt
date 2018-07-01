@@ -6,16 +6,27 @@ import com.google.gson.JsonObject
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class KitsuSearchManga(obj: JsonObject) {
     val id by obj.byInt
     private val canonicalTitle by obj.byString
     private val chapterCount = obj.get("chapterCount").nullInt
-    val subType = obj.get("subType").nullString
+    val subType = obj.get("subtype").nullString
     val original by obj["posterImage"].byString
     private val synopsis by obj.byString
-    private val startDate = obj.get("startDate").nullString
+    private var startDate = obj.get("startDate").nullString
     private val endDate = obj.get("endDate").nullString
+
+    init {
+        startDate = try {
+            val outputDf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+            outputDf.format(Date(startDate!!.toLong() * 1000))
+        } catch (e: Exception) {
+            ""
+        }
+    }
 
     @CallSuper
     open fun toTrack() = TrackSearch.create(TrackManager.KITSU).apply {
@@ -25,14 +36,13 @@ class KitsuSearchManga(obj: JsonObject) {
         cover_url = original
         summary = synopsis
         tracking_url = KitsuApi.mangaUrl(media_id)
-
         if (endDate == null) {
             publishing_status = "Publishing"
         } else {
             publishing_status = "Finished"
         }
         publishing_type = subType ?: ""
-        start_date = startDate.orEmpty()
+        start_date = startDate ?: ""
     }
 }
 
