@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import java.io.OutputStream
 import java.util.concurrent.TimeUnit
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
@@ -18,6 +19,9 @@ class Encoder(
         const val DISABLED = -1
         const val LOSSLESS_WEBP = 0
         const val LOSSY_WEBP = 1
+        const val JPG = 2
+
+        const val JPEG_QUALITY = 90
     }
 
     private fun enumStr(value: Int): String {
@@ -25,6 +29,7 @@ class Encoder(
             DISABLED -> "DISABLED"
             LOSSLESS_WEBP -> "LOSSLESS_WEBP"
             LOSSY_WEBP -> "LOSSY_WEBP"
+            JPG -> "JPG"
             else -> "Unknown value $value"
         }
     }
@@ -36,9 +41,13 @@ class Encoder(
         Timber.i("WEBP_ENC: $label took $min:$sec:$mill ($time ns)")
     }
 
+    private fun jpgEncode(bitmap: Bitmap, outputStream: OutputStream): Boolean {
+        return bitmap.compress(Bitmap.CompressFormat.JPEG, JPEG_QUALITY, outputStream)
+    }
+
     private fun encode(bitmap: Bitmap, outDir: UniFile, filename: String): Boolean {
-        var lossless = false;
-        var extension = "";
+        var lossless = false
+        var extension = ""
 
         val encodeSetting = preferences.convertLosslessDownloads()
         when (encodeSetting) {
@@ -51,9 +60,12 @@ class Encoder(
                 lossless = false
                 extension = "webp"
             }
+            JPG -> {
+                extension = "jpg"
+            }
             else -> {
-                Timber.e("Unknown encode setting");
-                return false;
+                Timber.e("Unknown encode setting")
+                return false
             }
         }
 
@@ -64,6 +76,7 @@ class Encoder(
         var stream = outFile.openOutputStream()
         val success = when (encodeSetting) {
             LOSSLESS_WEBP, LOSSY_WEBP -> WebpEncoder.encode(bitmap, lossless, stream)
+            JPG -> jpgEncode(bitmap, stream)
             else -> false
         }
         stream.close()
