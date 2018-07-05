@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--===========-->
-    <!-- Main Theme-->
-    <!--===========-->
+    <!--============-->
+    <!-- Main Theme -->
+    <!--============-->
     <style name="Theme.Tachiyomi" parent="Theme.Base">
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
@@ -14,6 +14,16 @@
     <!-- Dark Theme -->
     <!--============-->
     <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
+        <!-- Attributes specific for SDK 21 and up  -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <!--============-->
+    <!-- Gray Theme -->
+    <!--============-->
+    <style name="Theme.Tachiyomi.Gray" parent="Theme.Base.Gray">
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>

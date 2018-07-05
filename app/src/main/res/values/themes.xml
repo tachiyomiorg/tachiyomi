@@ -8,7 +8,7 @@
 
     <!--==============-->
     <!-- Light Themes -->
-    <!--=======-======-->
+    <!--==============-->
     <style name="Theme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -46,7 +46,19 @@
     <!--=============-->
     <!-- Dark Themes -->
     <!--=============-->
-    <style name="Theme.Base.Dark" parent="Theme.AppCompat.NoActionBar">
+    <style name="Theme.Base.Dark" parent="Theme.Base.Gray">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
+        <!-- Attributes specific for SDK 16 to SDK 20 -->
+    </style>
+
+    <!--=============-->
+    <!-- Gray Themes -->
+    <!--=============-->
+    <style name="Theme.Base.Gray" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/colorDarkPrimary</item>
         <item name="colorPrimaryDark">@color/colorDarkPrimaryDark</item>
         <item name="colorAccent">@color/colorAccentDark</item>
@@ -70,7 +82,7 @@
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
 
 
-        <!-- Custom Attributes-->
+        <!-- Custom Attributes -->
         <item name="navigation_view_theme">@style/Theme.Widget.NavigationView.Dark</item>
         <item name="selectable_list_drawable">@drawable/list_item_selector_dark</item>
         <item name="selectable_library_drawable">@drawable/library_item_selector_dark</item>
@@ -79,14 +91,14 @@
         <item name="icon_color">@color/iconColorDark</item>
     </style>
 
-    <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
+    <style name="Theme.Tachiyomi.Gray" parent="Theme.Base.Gray">
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 
     <!--==============-->
     <!-- Amoled Theme -->
     <!--==============-->
-    <style name="Theme.Base.Amoled" parent="Theme.Base.Dark">
+    <style name="Theme.Base.Amoled" parent="Theme.Base.Gray">
         <item name="colorPrimary">@color/colorAmoledPrimary</item>
         <item name="colorPrimaryDark">@color/colorAmoledPrimary</item>
         <item name="android:colorBackground">@color/md_black_1000</item>
@@ -104,7 +116,7 @@
     <!--==============-->
     <!-- Reader Theme -->
     <!--==============-->
-    <style name="Theme.Base.Reader" parent="Theme.Base.Dark">
+    <style name="Theme.Base.Reader" parent="Theme.Base.Gray">
         <item name="colorPrimary">@color/colorDarkPrimary</item>
         <item name="colorPrimaryDark">@color/colorDarkPrimaryDark</item>
     </style>
