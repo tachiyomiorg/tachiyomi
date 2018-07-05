@@ -16,17 +16,12 @@ class KitsuSearchManga(obj: JsonObject) {
     val subType = obj.get("subtype").nullString
     val original by obj["posterImage"].byString
     private val synopsis by obj.byString
-    private var startDate = obj.get("startDate").nullString
+    private var startDate = obj.get("startDate").nullString?.let {
+        val outputDf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+        outputDf.format(Date(it!!.toLong() * 1000))
+    }
     private val endDate = obj.get("endDate").nullString
 
-    init {
-        startDate = try {
-            val outputDf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-            outputDf.format(Date(startDate!!.toLong() * 1000))
-        } catch (e: Exception) {
-            ""
-        }
-    }
 
     @CallSuper
     open fun toTrack() = TrackSearch.create(TrackManager.KITSU).apply {
