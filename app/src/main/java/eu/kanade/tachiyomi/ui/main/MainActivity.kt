@@ -48,8 +48,9 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(when (preferences.theme()) {
-            2 -> R.style.Theme_Tachiyomi_Dark
+            2 -> R.style.Theme_Tachiyomi_Gray
             3 -> R.style.Theme_Tachiyomi_Amoled
+            4 -> R.style.Theme_Tachiyomi_Dark
             else -> R.style.Theme_Tachiyomi
         })
         super.onCreate(savedInstanceState)
