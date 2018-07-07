@@ -122,6 +122,10 @@ fun syncChaptersWithSource(db: DatabaseHelper,
 
         // Fix order in source.
         db.fixChaptersSourceOrder(sourceChapters).executeAsBlocking()
+
+        // Set this manga as updated since chapters were changed
+        manga.last_update = Date().time
+        db.updateLastUpdated(manga).executeAsBlocking()
     }
     return Pair(toAdd.subtract(readded).toList(), toDelete.subtract(readded).toList())
 
