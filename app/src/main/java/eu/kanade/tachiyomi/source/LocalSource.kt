@@ -330,7 +330,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
  *
  * The .zip/.rar/.epub ContentProvider has issues when URIs contain certain symbols, so they have to be URL encoded
  * before being passed. java.net.URLEncoder tends to mangle paths, such as spaces are replaced with "+",
- * so symbols are replaced on an individual bases.
+ * so symbols are replaced on an individual basis.
  */
 fun cleanLocalURI(uriString: String): String {
     return uriString.replace("%", "%25")
