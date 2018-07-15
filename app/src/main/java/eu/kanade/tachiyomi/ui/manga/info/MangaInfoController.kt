@@ -355,8 +355,9 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     /**
      * Update swipe refresh to start showing refresh in progress spinner.
      */
-    fun onFetchMangaError() {
+    fun onFetchMangaError(error: Throwable) {
         setRefreshing(false)
+        activity?.toast(error.message)
     }
 
     /**

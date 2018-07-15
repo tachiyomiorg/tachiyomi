@@ -90,9 +90,7 @@ class MangaInfoPresenter(
                 .doOnNext { sendMangaToView() }
                 .subscribeFirst({ view, _ ->
                     view.onFetchMangaDone()
-                }, { view, _ ->
-                    view.onFetchMangaError()
-                })
+                }, MangaInfoController::onFetchMangaError)
     }
 
     /**
