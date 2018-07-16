@@ -10,8 +10,8 @@ class SearchPresenter(
 ) : CatalogueSearchPresenter(initialQuery) {
 
     override fun getEnabledSources(): List<CatalogueSource> {
-        // Filter out the source of the selected manga
+        // Put the source of the selected manga at the top
         return super.getEnabledSources()
-                .filterNot { it.id == manga.source }
+                .sortedByDescending { it.id == manga.source }
     }
 }
