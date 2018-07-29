@@ -460,6 +460,7 @@ class LibraryUpdateService(
             if (newUpdates.size > 1) {
                 setContentText(getString(R.string.notification_new_chapters_text, newUpdates.size))
                 setStyle(NotificationCompat.BigTextStyle().bigText(newUpdates.joinToString("\n")))
+                setNumber(newUpdates.size)
             } else {
                 setContentText(newUpdates.first())
             }
