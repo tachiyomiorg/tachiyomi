@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.bluelinelabs.conductor.*
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.PendingDeleteManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.base.controller.*
@@ -31,6 +32,8 @@ class MainActivity : BaseActivity() {
     private lateinit var router: Router
 
     val preferences: PreferencesHelper by injectLazy()
+
+    val pendingDelete: PendingDeleteManager by injectLazy()
 
     private var drawerArrow: DrawerArrowDrawable? = null
 
@@ -134,6 +137,8 @@ class MainActivity : BaseActivity() {
                 ChangelogDialogController().showDialog(router)
             }
         }
+
+        pendingDelete.deleteListed()
     }
 
     override fun onNewIntent(intent: Intent) {

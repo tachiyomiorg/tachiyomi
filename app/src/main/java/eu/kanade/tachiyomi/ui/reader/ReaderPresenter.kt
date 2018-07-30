@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.os.Environment
 import android.webkit.MimeTypeMap
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.PendingDeleteManager
 import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
-import eu.kanade.tachiyomi.data.database.models.Chapter
-import eu.kanade.tachiyomi.data.database.models.History
-import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.database.models.Track
+import eu.kanade.tachiyomi.data.database.models.*
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
@@ -45,7 +43,8 @@ class ReaderPresenter(
         val trackManager: TrackManager = Injekt.get(),
         val sourceManager: SourceManager = Injekt.get(),
         val chapterCache: ChapterCache = Injekt.get(),
-        val coverCache: CoverCache = Injekt.get()
+        val coverCache: CoverCache = Injekt.get(),
+        val pendingDelete: PendingDeleteManager = Injekt.get()
 ) : BasePresenter<ReaderActivity>() {
 
     private val context = prefs.context
@@ -92,6 +91,16 @@ class ReaderPresenter(
 
         dbChapters.sortedWith(Comparator<Chapter> { c1, c2 -> sortFunction(c1, c2) })
     }
+
+    /**
+     * Last chapter number saved by [updateCurrentChapterProgress]
+     */
+    private var lastSavedChapter = -1L
+
+    /**
+     * Last page number saved by [updateCurrentChapterProgress]
+     */
+    private var lastSavedPage = -1
 
     /**
      * Map of chapters that have been loaded in the reader.
@@ -142,6 +151,11 @@ class ReaderPresenter(
             chapter = savedState.getSerializable(ReaderPresenter::chapter.name) as ReaderChapter
         }
 
+        // Initialize progress saver
+        lastSavedChapter = chapter.id ?: -1L
+        lastSavedPage = chapter.last_page_read
+
+
         // Send the active manga to the view to initialize the reader.
         Observable.just(manga)
                 .subscribeLatestCache({ view, manga -> view.onMangaOpen(manga) })
@@ -166,6 +180,7 @@ class ReaderPresenter(
         chapter.requestedPage = chapter.last_page_read
         state.putSerializable(ReaderPresenter::manga.name, manga)
         state.putSerializable(ReaderPresenter::chapter.name, chapter)
+        updateCurrentChapterProgress()
         super.onSave(state)
     }
 
@@ -337,6 +352,45 @@ class ReaderPresenter(
         }
     }
 
+
+    /**
+     * Update history and chapter progress on current thread
+     *
+     * @param chapter chapter which progress info will be saved on db.
+     */
+    private fun updateProgressBlocking(chapter: ReaderChapter) {
+        db.inTransaction {
+            db.updateChapterProgress(chapter).executeAsBlocking()
+
+            try {
+                val history = History.create(chapter).apply { last_read = Date().time }
+                db.updateHistoryLastRead(history).executeAsBlocking()
+            } catch (error: Exception) {
+                // TODO find out why it crashes
+                Timber.e(error)
+            }
+        }
+    }
+
+    /**
+     * Saves current page and chapter numbers on db if any of them changed since
+     * last try.
+     */
+    private fun updateCurrentChapterProgress() {
+        val chapter = chapter
+        val currentChapter = chapter.id
+        val currentPage = chapter.requestedPage
+
+        if (currentChapter != lastSavedChapter || currentPage != lastSavedPage) {
+            lastSavedChapter = currentChapter ?: -1L
+            lastSavedPage = currentPage
+
+            Observable.fromCallable { updateProgressBlocking(chapter) }
+                    .subscribeOn(Schedulers.io())
+                    .subscribe()
+        }
+    }
+
     /**
      * Called before loading another chapter or leaving the reader. It allows to do operations
      * over the chapter read like saving progress
@@ -357,15 +411,9 @@ class ReaderPresenter(
 
             try {
                 if (chapter.read) {
-                    val removeAfterReadSlots = prefs.removeAfterReadSlots()
-                    when (removeAfterReadSlots) {
-                        // Setting disabled
-                        -1 -> { /* Empty function */ }
-                        // Remove current read chapter
-                        0 -> deleteChapter(chapter, manga)
-                        // Remove previous chapter specified by user in settings.
-                        else -> getAdjacentChaptersStrategy(chapter, removeAfterReadSlots)
-                                .first?.let { deleteChapter(it, manga) }
+                    handleRemoveAfterRead(chapter) {
+                        deleteChapter(it, manga)
+                        pendingDelete.removeChapter(it.id)
                     }
                 }
             } catch (error: Exception) {
@@ -373,18 +421,31 @@ class ReaderPresenter(
                 Timber.e(error)
             }
 
-            db.updateChapterProgress(chapter).executeAsBlocking()
-
-            try {
-                val history = History.create(chapter).apply { last_read = Date().time }
-                db.updateHistoryLastRead(history).executeAsBlocking()
-            } catch (error: Exception) {
-                // TODO find out why it crashes
-                Timber.e(error)
-            }
+            updateProgressBlocking(chapter)
+            
         }
                 .subscribeOn(Schedulers.io())
                 .subscribe()
+    }
+
+    /**
+     * Handles remove after read preference
+     *
+     * @param chapter current read chapter
+     * @param action action on actual to_be_deleted chapter
+     */
+    fun handleRemoveAfterRead(chapter: ReaderChapter, action: (ReaderChapter) -> Unit) {
+        val removeAfterReadSlots = prefs.removeAfterReadSlots()
+        when (removeAfterReadSlots) {
+        // Setting disabled
+            -1 -> { /* Empty function */
+            }
+        // Remove current read chapter
+            0 -> action(chapter)
+        // Remove previous chapter specified by user in settings.
+            else -> getAdjacentChaptersStrategy(chapter, removeAfterReadSlots)
+                    .first?.let { action(chapter) }
+        }
     }
 
     /**
@@ -397,6 +458,12 @@ class ReaderPresenter(
         chapter.last_page_read = page.index
         if (chapter.pages!!.last() === page) {
             chapter.read = true
+
+            Observable.fromCallable {
+                handleRemoveAfterRead(chapter) { pendingDelete.addChapter(it.id) }
+            }
+                    .subscribeOn(Schedulers.io())
+                    .subscribe()
         }
         if (!chapter.isDownloaded && page.status == Page.QUEUE) {
             loader.loadPriorizedPage(page)
@@ -570,7 +637,7 @@ class ReaderPresenter(
 
                     // Find out file mime type.
                     val mime = context.contentResolver.getType(page.uri)
-                    ?: context.contentResolver.openInputStream(page.uri).buffered().use {
+                            ?: context.contentResolver.openInputStream(page.uri).buffered().use {
                         URLConnection.guessContentTypeFromStream(it)
                     }
 

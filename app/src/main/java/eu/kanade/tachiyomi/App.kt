@@ -33,7 +33,7 @@ open class App : Application() {
         Injekt = InjektScope(DefaultRegistrar())
         Injekt.importModule(AppModule(this))
 
-        setupAcra()
+        if (!BuildConfig.DEBUG) setupAcra()
         setupJobManager()
         setupNotificationChannels()
 
