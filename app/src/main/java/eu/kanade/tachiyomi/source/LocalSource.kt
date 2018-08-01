@@ -180,6 +180,14 @@ class LocalSource(private val context: Context) : CatalogueSource {
     private fun getLoader(file: File): Loader {
         val extension = file.extension
         return if (file.isDirectory) {
+            // if folder only contains one entry, check if it is a valid entry (a subdirectory, zip, epub, etc)
+            val contents = file.listFiles()
+            if (contents.size == 1) {
+                try {
+                    return getLoader(contents[0])
+                } catch (e: Exception) {
+                }
+            }
             DirectoryLoader(file)
         } else if (extension.equals("zip", true) || extension.equals("cbz", true)) {
             ZipLoader(file)
@@ -218,7 +226,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
                 zip.entries().toList()
                         .filter { !it.isDirectory && DiskUtil.isImage(it.name, { zip.getInputStream(it) }) }
                         .sortedWith(Comparator<ZipEntry> { f1, f2 -> comparator.compare(f1.name, f2.name) })
-                        .map { Uri.parse("content://${ZipContentProvider.PROVIDER}${file.absolutePath}!/${it.name}") }
+                        .map { Uri.parse(cleanLocalURI("content://${ZipContentProvider.PROVIDER}${file.absolutePath}!/${it.name}")) }
                         .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
             }
         }
@@ -231,7 +239,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
                 archive.fileHeaders
                         .filter { !it.isDirectory && DiskUtil.isImage(it.fileNameString, { archive.getInputStream(it) }) }
                         .sortedWith(Comparator<FileHeader> { f1, f2 -> comparator.compare(f1.fileNameString, f2.fileNameString) })
-                        .map { Uri.parse("content://${RarContentProvider.PROVIDER}${file.absolutePath}!-/${it.fileNameString}") }
+                        .map { Uri.parse(cleanLocalURI("content://${RarContentProvider.PROVIDER}${file.absolutePath}!-/${it.fileNameString}")) }
                         .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
             }
         }
@@ -247,7 +255,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
                 val pages = getPagesFromDocument(doc)
                 val hrefs = getHrefMap(ref, allEntries.map { it.name })
                 return getImagesFromPages(zip, pages, hrefs)
-                        .map { Uri.parse("content://${ZipContentProvider.PROVIDER}${file.absolutePath}!/$it") }
+                        .map { Uri.parse(cleanLocalURI("content://${ZipContentProvider.PROVIDER}${file.absolutePath}!/$it")) }
                         .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
             }
         }
@@ -299,7 +307,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
         }
 
         /**
-         * Returns a map with a relative url as key and abolute url as path.
+         * Returns a map with a relative url as key and absolute url as path.
          */
         private fun getHrefMap(packageHref: String, entries: List<String>): Map<String, String> {
             val lastSlashPos = packageHref.lastIndexOf('/')
@@ -315,4 +323,16 @@ class LocalSource(private val context: Context) : CatalogueSource {
             }
         }
     }
+}
+
+/**
+ * Returns a URI readable string for a local file.
+ *
+ * The .zip/.rar/.epub ContentProvider has issues when URIs contain certain symbols, so they have to be URL encoded
+ * before being passed. java.net.URLEncoder tends to mangle paths, such as spaces are replaced with "+",
+ * so symbols are replaced on an individual basis.
+ */
+fun cleanLocalURI(uriString: String): String {
+    return uriString.replace("%", "%25")
+                    .replace("#", "%23")
 }
