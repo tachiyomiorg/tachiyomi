@@ -15,6 +15,8 @@
     <color name="textColorHintLight">@color/md_black_1000_38</color>
     <color name="dividerLight">@color/md_black_1000_12</color>
     <color name="rippleColorLight">@color/md_black_1000_12</color>
+    <color name="colorDialog">@color/md_white_1000</color>
+    <color name="colorRipple">@color/md_black_1000_12</color>
 
     <color name="preference_fallback_accent_color">@color/colorAccentLight</color>
 
@@ -32,13 +34,16 @@
     <color name="textColorSecondaryDark">@color/md_white_1000_70</color>
     <color name="textColorHintDark">@color/md_white_1000_50</color>
     <color name="dividerDark">@android:color/transparent</color>
-    <color name="rippleColorDark">@color/md_white_1000_20</color>-
+    <color name="rippleColorDark">@color/md_white_1000_20</color>
+    <color name="colorDarkDialog">@color/cstm_dark_primary</color>
+    <color name="colorAmoledDialog">@color/cstm_dark_primary_dark</color>
 
     <color name="statusBarDark">@color/md_black_1000</color>
     <color name="appBarDark">@color/md_grey_900</color>
     <color name="backgroundDark">@color/colorDarkPrimaryDark</color>
     <color name="dialogDark">@color/colorDarkPrimary</color>
     <color name="dialog_amoled">@color/colorDarkPrimaryDark</color>
+    <color name="colorDarkRipple">@color/md_white_1000_20</color>
 
     <color name="selectorColorDark">@color/md_blue_A200_50</color>
     <color name="iconColorDark">@color/md_white_1000_54</color>
@@ -84,4 +89,6 @@
 
     <color name="md_teal_500">#009688</color>
 
+    <color name="cstm_dark_primary">#212121</color>
+    <color name="cstm_dark_primary_dark">#1C1C1D</color>
 </resources>
