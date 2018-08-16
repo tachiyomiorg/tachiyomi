@@ -32,8 +32,7 @@
             <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
         </activity>
         <activity
-            android:name=".ui.reader.ReaderActivity"
-            android:theme="@style/Theme.Reader" />
+            android:name=".ui.reader.ReaderActivity" />
         <activity
             android:name=".widget.CustomLayoutPickerActivity"
             android:label="@string/app_name"

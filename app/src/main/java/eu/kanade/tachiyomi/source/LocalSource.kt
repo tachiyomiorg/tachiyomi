@@ -4,10 +4,7 @@ import android.content.Context
 import android.net.Uri
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.model.*
-import eu.kanade.tachiyomi.util.ChapterRecognition
-import eu.kanade.tachiyomi.util.DiskUtil
-import eu.kanade.tachiyomi.util.RarContentProvider
-import eu.kanade.tachiyomi.util.ZipContentProvider
+import eu.kanade.tachiyomi.util.*
 import junrar.Archive
 import junrar.rarfile.FileHeader
 import net.greypanther.natsort.CaseInsensitiveSimpleNaturalComparator
@@ -18,7 +15,8 @@ import timber.log.Timber
 import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
-import java.util.*
+import java.util.Comparator
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
@@ -135,7 +133,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
         val chapters = getBaseDirectories(context)
                 .mapNotNull { File(it, manga.url).listFiles()?.toList() }
                 .flatten()
-                .filter { it.isDirectory || isSupportedFormat(it.extension) }
+                .filter { it.isDirectory || isSupportedFile(it.extension) }
                 .map { chapterFile ->
                     SChapter.create().apply {
                         url = "${manga.url}/${chapterFile.name}"
@@ -159,36 +157,153 @@ class LocalSource(private val context: Context) : CatalogueSource {
     }
 
     override fun fetchPageList(chapter: SChapter): Observable<List<Page>> {
+        // TODO remove this once the old reader is deleted
+        return Observable.just(getFormat(chapter).let { when (it) {
+            is Format.Directory -> loadDirectory(it.file)
+            is Format.Zip -> loadZip(it.file)
+            is Format.Rar -> loadRar(it.file)
+            is Format.Epub -> loadEpub(it.file)
+        }})
+    }
+
+    private fun isSupportedFile(extension: String): Boolean {
+        return extension.toLowerCase() in setOf("zip", "rar", "cbr", "cbz", "epub")
+    }
+
+    fun getFormat(chapter: SChapter): Format {
         val baseDirs = getBaseDirectories(context)
 
         for (dir in baseDirs) {
             val chapFile = File(dir, chapter.url)
             if (!chapFile.exists()) continue
 
-            return Observable.just(getLoader(chapFile).load())
+            return getFormat(chapFile)
         }
-
-        return Observable.error(Exception("Chapter not found"))
+        throw Exception("Chapter not found")
     }
 
-    private fun isSupportedFormat(extension: String): Boolean {
-        return extension.equals("zip", true) || extension.equals("cbz", true)
-                || extension.equals("rar", true) || extension.equals("cbr", true)
-                || extension.equals("epub", true)
-    }
-
-    private fun getLoader(file: File): Loader {
+    private fun getFormat(file: File): Format {
         val extension = file.extension
         return if (file.isDirectory) {
-            DirectoryLoader(file)
+            Format.Directory(file)
         } else if (extension.equals("zip", true) || extension.equals("cbz", true)) {
-            ZipLoader(file)
+            Format.Zip(file)
         } else if (extension.equals("epub", true)) {
-            EpubLoader(file)
+            Format.Epub(file)
         } else if (extension.equals("rar", true) || extension.equals("cbr", true)) {
-            RarLoader(file)
+            Format.Rar(file)
         } else {
             throw Exception("Invalid chapter format")
+        }
+    }
+
+    // TODO remove all these load* once the old reader is deleted
+
+    private fun loadDirectory(file: File): List<Page> {
+        val comparator = CaseInsensitiveSimpleNaturalComparator.getInstance<String>()
+        return file.listFiles()
+            .filter { !it.isDirectory && ImageUtil.isImage(it.name, { FileInputStream(it) }) }
+            .sortedWith(Comparator<File> { f1, f2 -> comparator.compare(f1.name, f2.name) })
+            .map { Uri.fromFile(it) }
+            .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
+    }
+
+    private fun loadZip(file: File): List<Page> {
+        val comparator = CaseInsensitiveSimpleNaturalComparator.getInstance<String>()
+        return ZipFile(file).use { zip ->
+            zip.entries().toList()
+                .filter { !it.isDirectory && ImageUtil.isImage(it.name, { zip.getInputStream(it) }) }
+                .sortedWith(Comparator<ZipEntry> { f1, f2 -> comparator.compare(f1.name, f2.name) })
+                .map { Uri.parse("content://${ZipContentProvider.PROVIDER}${file.absolutePath}!/${it.name}") }
+                .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
+        }
+    }
+
+    private fun loadRar(file: File): List<Page> {
+        val comparator = CaseInsensitiveSimpleNaturalComparator.getInstance<String>()
+        return Archive(file).use { archive ->
+            archive.fileHeaders
+                .filter { !it.isDirectory && ImageUtil.isImage(it.fileNameString, { archive
+                    .getInputStream(it) }) }
+                .sortedWith(Comparator<FileHeader> { f1, f2 -> comparator.compare(f1.fileNameString, f2.fileNameString) })
+                .map { Uri.parse("content://${RarContentProvider.PROVIDER}${file.absolutePath}!-/${it.fileNameString}") }
+                .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
+        }
+    }
+
+    private fun loadEpub(file: File): List<Page> {
+        ZipFile(file).use { zip ->
+            val allEntries = zip.entries().toList()
+            val ref = getPackageHref(zip)
+            val doc = getPackageDocument(zip, ref)
+            val pages = getPagesFromDocument(doc)
+            val hrefs = getHrefMap(ref, allEntries.map { it.name })
+            return getImagesFromPages(zip, pages, hrefs)
+                .map { Uri.parse("content://${ZipContentProvider.PROVIDER}${file.absolutePath}!/$it") }
+                .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
+        }
+    }
+
+    /**
+     * Returns the path to the package document.
+     */
+    private fun getPackageHref(zip: ZipFile): String {
+        val meta = zip.getEntry("META-INF/container.xml")
+        if (meta != null) {
+            val metaDoc = zip.getInputStream(meta).use { Jsoup.parse(it, null, "") }
+            val path = metaDoc.getElementsByTag("rootfile").first()?.attr("full-path")
+            if (path != null) {
+                return path
+            }
+        }
+        return "OEBPS/content.opf"
+    }
+
+    /**
+     * Returns the package document where all the files are listed.
+     */
+    private fun getPackageDocument(zip: ZipFile, ref: String): Document {
+        val entry = zip.getEntry(ref)
+        return zip.getInputStream(entry).use { Jsoup.parse(it, null, "") }
+    }
+
+    /**
+     * Returns all the pages from the epub.
+     */
+    private fun getPagesFromDocument(document: Document): List<String> {
+        val pages = document.select("manifest > item")
+            .filter { "application/xhtml+xml" == it.attr("media-type") }
+            .associateBy { it.attr("id") }
+
+        val spine = document.select("spine > itemref").map { it.attr("idref") }
+        return spine.mapNotNull { pages[it] }.map { it.attr("href") }
+    }
+
+    /**
+     * Returns all the images contained in every page from the epub.
+     */
+    private fun getImagesFromPages(zip: ZipFile, pages: List<String>, hrefs: Map<String, String>): List<String> {
+        return pages.map { page ->
+            val entry = zip.getEntry(hrefs[page])
+            val document = zip.getInputStream(entry).use { Jsoup.parse(it, null, "") }
+            document.getElementsByTag("img").mapNotNull { hrefs[it.attr("src")] }
+        }.flatten()
+    }
+
+    /**
+     * Returns a map with a relative url as key and abolute url as path.
+     */
+    private fun getHrefMap(packageHref: String, entries: List<String>): Map<String, String> {
+        val lastSlashPos = packageHref.lastIndexOf('/')
+        if (lastSlashPos < 0) {
+            return entries.associateBy { it }
+        }
+        return entries.associateBy { entry ->
+            if (entry.isNotBlank() && entry.length > lastSlashPos) {
+                entry.substring(lastSlashPos + 1)
+            } else {
+                entry
+            }
         }
     }
 
@@ -196,123 +311,11 @@ class LocalSource(private val context: Context) : CatalogueSource {
 
     override fun getFilterList() = FilterList(OrderBy())
 
-    interface Loader {
-        fun load(): List<Page>
+    sealed class Format {
+        data class Directory(val file: File) : Format()
+        data class Zip(val file: File) : Format()
+        data class Rar(val file: File): Format()
+        data class Epub(val file: File) : Format()
     }
 
-    class DirectoryLoader(val file: File) : Loader {
-        override fun load(): List<Page> {
-            val comparator = CaseInsensitiveSimpleNaturalComparator.getInstance<String>()
-            return file.listFiles()
-                    .filter { !it.isDirectory && DiskUtil.isImage(it.name, { FileInputStream(it) }) }
-                    .sortedWith(Comparator<File> { f1, f2 -> comparator.compare(f1.name, f2.name) })
-                    .map { Uri.fromFile(it) }
-                    .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
-        }
-    }
-
-    class ZipLoader(val file: File) : Loader {
-        override fun load(): List<Page> {
-            val comparator = CaseInsensitiveSimpleNaturalComparator.getInstance<String>()
-            return ZipFile(file).use { zip ->
-                zip.entries().toList()
-                        .filter { !it.isDirectory && DiskUtil.isImage(it.name, { zip.getInputStream(it) }) }
-                        .sortedWith(Comparator<ZipEntry> { f1, f2 -> comparator.compare(f1.name, f2.name) })
-                        .map { Uri.parse("content://${ZipContentProvider.PROVIDER}${file.absolutePath}!/${it.name}") }
-                        .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
-            }
-        }
-    }
-
-    class RarLoader(val file: File) : Loader {
-        override fun load(): List<Page> {
-            val comparator = CaseInsensitiveSimpleNaturalComparator.getInstance<String>()
-            return Archive(file).use { archive ->
-                archive.fileHeaders
-                        .filter { !it.isDirectory && DiskUtil.isImage(it.fileNameString, { archive.getInputStream(it) }) }
-                        .sortedWith(Comparator<FileHeader> { f1, f2 -> comparator.compare(f1.fileNameString, f2.fileNameString) })
-                        .map { Uri.parse("content://${RarContentProvider.PROVIDER}${file.absolutePath}!-/${it.fileNameString}") }
-                        .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
-            }
-        }
-    }
-
-    class EpubLoader(val file: File) : Loader {
-
-        override fun load(): List<Page> {
-            ZipFile(file).use { zip ->
-                val allEntries = zip.entries().toList()
-                val ref = getPackageHref(zip)
-                val doc = getPackageDocument(zip, ref)
-                val pages = getPagesFromDocument(doc)
-                val hrefs = getHrefMap(ref, allEntries.map { it.name })
-                return getImagesFromPages(zip, pages, hrefs)
-                        .map { Uri.parse("content://${ZipContentProvider.PROVIDER}${file.absolutePath}!/$it") }
-                        .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
-            }
-        }
-
-        /**
-         * Returns the path to the package document.
-         */
-        private fun getPackageHref(zip: ZipFile): String {
-            val meta = zip.getEntry("META-INF/container.xml")
-            if (meta != null) {
-                val metaDoc = zip.getInputStream(meta).use { Jsoup.parse(it, null, "") }
-                val path = metaDoc.getElementsByTag("rootfile").first()?.attr("full-path")
-                if (path != null) {
-                    return path
-                }
-            }
-            return "OEBPS/content.opf"
-        }
-
-        /**
-         * Returns the package document where all the files are listed.
-         */
-        private fun getPackageDocument(zip: ZipFile, ref: String): Document {
-            val entry = zip.getEntry(ref)
-            return zip.getInputStream(entry).use { Jsoup.parse(it, null, "") }
-        }
-
-        /**
-         * Returns all the pages from the epub.
-         */
-        private fun getPagesFromDocument(document: Document): List<String> {
-            val pages = document.select("manifest > item")
-                    .filter { "application/xhtml+xml" == it.attr("media-type") }
-                    .associateBy { it.attr("id") }
-
-            val spine = document.select("spine > itemref").map { it.attr("idref") }
-            return spine.mapNotNull { pages[it] }.map { it.attr("href") }
-        }
-
-        /**
-         * Returns all the images contained in every page from the epub.
-         */
-        private fun getImagesFromPages(zip: ZipFile, pages: List<String>, hrefs: Map<String, String>): List<String> {
-            return pages.map { page ->
-                val entry = zip.getEntry(hrefs[page])
-                val document = zip.getInputStream(entry).use { Jsoup.parse(it, null, "") }
-                document.getElementsByTag("img").mapNotNull { hrefs[it.attr("src")] }
-            }.flatten()
-        }
-
-        /**
-         * Returns a map with a relative url as key and abolute url as path.
-         */
-        private fun getHrefMap(packageHref: String, entries: List<String>): Map<String, String> {
-            val lastSlashPos = packageHref.lastIndexOf('/')
-            if (lastSlashPos < 0) {
-                return entries.associateBy { it }
-            }
-            return entries.associateBy { entry ->
-                if (entry.isNotBlank() && entry.length > lastSlashPos) {
-                    entry.substring(lastSlashPos + 1)
-                } else {
-                    entry
-                }
-            }
-        }
-    }
 }

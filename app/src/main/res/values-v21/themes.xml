@@ -33,7 +33,13 @@
     <!--==============-->
     <!-- Reader Theme -->
     <!--==============-->
-    <style name="Theme.Reader" parent="Theme.Base.Reader">
+    <style name="Theme.Reader" parent="Theme.Base.Reader.Dark">
+        <!-- Attributes specific for SDK 21 and up  -->
+        <item name="android:statusBarColor">?colorPrimaryDark</item>
+        <item name="android:navigationBarColor">?colorPrimaryDark</item>
+    </style>
+
+    <style name="Theme.Reader.Light" parent="Theme.Base.Reader.Light">
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:statusBarColor">?colorPrimaryDark</item>
         <item name="android:navigationBarColor">?colorPrimaryDark</item>
