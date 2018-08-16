@@ -13,19 +13,19 @@
       android:title="@string/label_recent_updates" />
     <item
       android:id="@+id/nav_drawer_recently_read"
-      android:icon="@drawable/ic_glasses_black_24dp"
+        android:icon="@drawable/ic_glasses_black_24dp"
       android:title="@string/label_recent_manga"/>
     <item
       android:id="@+id/nav_drawer_catalogues"
-      android:icon="@drawable/ic_explore_black_24dp"
+        android:icon="@drawable/ic_explore_black_24dp"
       android:title="@string/label_catalogues" />
     <item
       android:id="@+id/nav_drawer_extensions"
-      android:icon="@drawable/ic_extension_black_24dp"
+        android:icon="@drawable/ic_extension_black_24dp"
       android:title="@string/label_extensions"/>
     <item
       android:id="@+id/nav_drawer_downloads"
-      android:icon="@drawable/ic_file_download_black_24dp"
+        android:icon="@drawable/ic_file_download_black_24dp"
       android:title="@string/label_download_queue"
       android:checkable="false" />
   </group>
