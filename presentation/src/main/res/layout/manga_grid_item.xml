@@ -63,7 +63,7 @@
       android:ellipsize="end"
       android:lineSpacingExtra="-4dp"
       android:maxLines="2"
-      android:shadowColor="@color/textColorPrimaryLight"
+        android:shadowColor="@color/textColorPrimary"
       android:shadowDx="0"
       android:shadowDy="0"
       android:shadowRadius="4"

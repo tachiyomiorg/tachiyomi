@@ -43,7 +43,7 @@
     style="@style/TextAppearance.Regular.Caption.Light"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/colorAccentLight"
+      android:background="@color/colorAccent"
     android:paddingBottom="1dp"
     android:paddingLeft="3dp"
     android:paddingRight="3dp"

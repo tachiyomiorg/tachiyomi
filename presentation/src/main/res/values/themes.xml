@@ -12,16 +12,16 @@
     <style name="Theme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccentLight</item>
-        <item name="android:textColorPrimary">@color/textColorPrimaryLight</item>
-        <item name="android:textColorSecondary">@color/textColorSecondaryLight</item>
-        <item name="android:textColorHint">@color/textColorHintLight</item>
-        <item name="android:textColorPrimaryInverse">@color/textColorPrimaryDark</item>
-        <item name="android:textColorSecondaryInverse">@color/textColorSecondaryDark</item>
-        <item name="android:textColorHintInverse">@color/textColorHintDark</item>
-        <item name="android:colorBackground">@color/backgroundLight</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="android:textColorHint">@color/textColorHint</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorPrimaryInverse</item>
+        <item name="android:textColorSecondaryInverse">@color/textColorSecondaryInverse</item>
+        <item name="android:textColorHintInverse">@color/textColorHintInverse</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
         <item name="android:listSelector">?colorAccent</item>
-        <item name="android:divider">@color/dividerLight</item>
+        <item name="android:divider">@color/colorDivider</item>
         <item name="android:listDivider">@drawable/line_divider_light</item>
 
         <!-- Themes -->
@@ -32,9 +32,9 @@
 
 
         <!-- Custom Attributes-->
-        <item name="text_color_primary">@color/textColorPrimaryLight</item>
-        <item name="background_card">@color/dialogLight</item>
-        <item name="icon_color">@color/iconColorLight</item>
+        <item name="text_color_primary">@color/textColorPrimary</item>
+        <item name="background_card">@color/colorDialog</item>
+        <item name="icon_color">@color/textColorIcon</item>
         <item name="dialogColor">@color/colorDialog</item>
         <item name="rippleColor">@color/colorRipple</item>
     </style>
@@ -50,12 +50,12 @@
         <item name="colorPrimary">@color/colorDarkPrimary</item>
         <item name="colorPrimaryDark">@color/colorDarkPrimaryDark</item>
         <item name="colorAccent">@color/colorAccentDark</item>
-        <item name="android:textColorPrimary">@color/textColorPrimaryDark</item>
-        <item name="android:textColorSecondary">@color/textColorSecondaryDark</item>
-        <item name="android:textColorHint">@color/textColorHintDark</item>
-        <item name="android:textColorPrimaryInverse">@color/textColorPrimaryLight</item>
-        <item name="android:textColorSecondaryInverse">@color/textColorSecondaryLight</item>
-        <item name="android:textColorHintInverse">@color/textColorHintLight</item>
+        <item name="android:textColorPrimary">@color/textColorPrimaryInverse</item>
+        <item name="android:textColorSecondary">@color/textColorSecondaryInverse</item>
+        <item name="android:textColorHint">@color/textColorHintInverse</item>
+        <item name="android:textColorPrimaryInverse">@color/textColorPrimary</item>
+        <item name="android:textColorSecondaryInverse">@color/textColorSecondary</item>
+        <item name="android:textColorHintInverse">@color/textColorHint</item>
         <item name="android:colorBackground">@color/backgroundDark</item>
         <item name="android:listSelector">?colorAccent</item>
         <item name="android:divider">@color/dividerDark</item>
@@ -72,7 +72,7 @@
 
         <!-- Custom Attributes-->
         <item name="navigation_view_theme">@style/Theme.Widget.NavigationView.Dark</item>
-        <item name="text_color_primary">@color/textColorPrimaryDark</item>
+        <item name="text_color_primary">@color/textColorPrimaryInverse</item>
         <item name="background_card">@color/dialogDark</item>
         <item name="icon_color">@color/iconColorDark</item>
         <item name="dialogColor">@color/colorDarkDialog</item>

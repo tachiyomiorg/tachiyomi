@@ -23,7 +23,7 @@
     <style name="Theme.AlertDialog.Light" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
         <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
-        <item name="colorAccent">@color/colorAccentLight</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="Theme.AlertDialog.Dark" parent="Theme.AppCompat.Dialog.Alert">
@@ -62,7 +62,7 @@
     </style>
 
     <style name="TextAppearance.Regular.Body1.Light">
-        <item name="android:textColor">@color/textColorPrimaryDark</item>
+        <item name="android:textColor">@color/textColorPrimaryInverse</item>
     </style>
 
     <style name="TextAppearance.Regular.Body1.Secondary">
@@ -74,7 +74,7 @@
     </style>
 
     <style name="TextAppearance.Regular.Caption.Light">
-        <item name="android:textColor">@color/textColorPrimaryDark</item>
+        <item name="android:textColor">@color/textColorPrimaryInverse</item>
     </style>
 
     <style name="TextAppearance.Regular.Caption.Hint">
@@ -94,7 +94,7 @@
     </style>
 
     <style name="TextAppearance.Regular.SubHeading.Light">
-        <item name="android:textColor">@color/textColorPrimaryDark</item>
+        <item name="android:textColor">@color/textColorPrimaryInverse</item>
     </style>
 
     <style name="TextAppearance.Regular.SubHeading.Light.Bold">
