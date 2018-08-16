@@ -21,8 +21,12 @@
         <item name="android:textColorHintInverse">@color/textColorHintInverse</item>
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="android:listSelector">?colorAccent</item>
+<<<<<<< HEAD
         <item name="android:divider">@color/colorDivider</item>
         <item name="android:listDivider">@drawable/line_divider_light</item>
+=======
+        <item name="android:divider">@color/dividerLight</item>
+>>>>>>> upstream/1.x
 
         <!-- Themes -->
         <item name="windowActionModeOverlay">true</item>
@@ -59,7 +63,6 @@
         <item name="android:colorBackground">@color/backgroundDark</item>
         <item name="android:listSelector">?colorAccent</item>
         <item name="android:divider">@color/dividerDark</item>
-        <item name="android:listDivider">@drawable/line_divider_dark</item>
 
         <!-- Themes -->
         <item name="windowActionModeOverlay">true</item>
@@ -111,14 +114,4 @@
     <style name="Theme.Reader" parent="Theme.Base.Reader">
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
-
-
-    <!--===============-->
-    <!-- Launch Screen -->
-    <!--===============-->
-    <style name="Theme.BrandedLaunch">
-        <item name="android:windowBackground">@drawable/branded_logo</item>
-    </style>
-
-
 </resources>
