@@ -382,7 +382,7 @@ class Downloader(
             // Else guess from the uri.
             ?: context.contentResolver.getType(file.uri)
             // Else read magic numbers.
-            ?: DiskUtil.findImageMime { file.openInputStream() }
+            ?: ImageUtil.findImageType { file.openInputStream() }?.mime
 
         return MimeTypeMap.getSingleton().getExtensionFromMimeType(mime) ?: "jpg"
     }

@@ -11,6 +11,7 @@ import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.net.ConnectivityManager
 import android.os.PowerManager
+import android.support.annotation.AttrRes
 import android.support.annotation.StringRes
 import android.support.v4.app.NotificationCompat
 import android.support.v4.content.ContextCompat
@@ -79,7 +80,7 @@ fun Context.hasPermission(permission: String)
  *
  * @param resource the attribute.
  */
-fun Context.getResourceColor(@StringRes resource: Int): Int {
+fun Context.getResourceColor(@AttrRes resource: Int): Int {
     val typedArray = obtainStyledAttributes(intArrayOf(resource))
     val attrValue = typedArray.getColor(0, 0)
     typedArray.recycle()

@@ -8,46 +8,8 @@ import android.os.Environment
 import android.support.v4.content.ContextCompat
 import android.support.v4.os.EnvironmentCompat
 import java.io.File
-import java.io.InputStream
-import java.net.URLConnection
 
 object DiskUtil {
-
-    fun isImage(name: String, openStream: (() -> InputStream)? = null): Boolean {
-        val contentType = try {
-            URLConnection.guessContentTypeFromName(name)
-        } catch (e: Exception) {
-            null
-        } ?: openStream?.let { findImageMime(it) }
-
-        return contentType?.startsWith("image/") ?: false
-    }
-
-    fun findImageMime(openStream: () -> InputStream): String? {
-        try {
-            openStream().buffered().use {
-                val bytes = ByteArray(8)
-                it.mark(bytes.size)
-                val length = it.read(bytes, 0, bytes.size)
-                it.reset()
-                if (length == -1)
-                    return null
-                if (bytes[0] == 'G'.toByte() && bytes[1] == 'I'.toByte() && bytes[2] == 'F'.toByte() && bytes[3] == '8'.toByte()) {
-                    return "image/gif"
-                } else if (bytes[0] == 0x89.toByte() && bytes[1] == 0x50.toByte() && bytes[2] == 0x4E.toByte()
-                        && bytes[3] == 0x47.toByte() && bytes[4] == 0x0D.toByte() && bytes[5] == 0x0A.toByte()
-                        && bytes[6] == 0x1A.toByte() && bytes[7] == 0x0A.toByte()) {
-                    return "image/png"
-                } else if (bytes[0] == 0xFF.toByte() && bytes[1] == 0xD8.toByte() && bytes[2] == 0xFF.toByte()) {
-                    return "image/jpeg"
-                } else if (bytes[0] == 'W'.toByte() && bytes[1] == 'E'.toByte() && bytes[2] == 'B'.toByte() && bytes[3] == 'P'.toByte()) {
-                    return "image/webp"
-                }
-            }
-        } catch(e: Exception) {
-        }
-        return null
-    }
 
     fun hashKeyForDisk(key: String): String {
         return Hash.md5(key)
