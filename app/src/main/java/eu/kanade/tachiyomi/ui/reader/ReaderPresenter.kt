@@ -11,11 +11,11 @@ import eu.kanade.tachiyomi.data.database.models.History
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import eu.kanade.tachiyomi.ui.reader.SaveImageNotifier
 import eu.kanade.tachiyomi.ui.reader.loader.ChapterLoader
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
@@ -114,11 +114,15 @@ class ReaderPresenter(
         viewerChaptersRelay.subscribeLatestCache(ReaderActivity::setChapters)
         isLoadingAdjacentChapterRelay.subscribeLatestCache(ReaderActivity::setProgressBar)
 
-        Completable.fromCallable { load(chapterList.first { chapterId == it.chapter.id }, true) }
-            .onErrorComplete()
+        // Read chapterList from an io thread because it's retrieved lazily and would block main.
+        activeChapterSubscription?.unsubscribe()
+        activeChapterSubscription = Observable
+            .fromCallable { chapterList.first { chapterId == it.chapter.id } }
+            .flatMap { getLoadObservable(loader!!, it) }
             .subscribeOn(Schedulers.io())
-            .subscribe()
-            .also(::add)
+            .subscribeFirst({ _, _ ->
+                // Ignore onNext event
+            }, ReaderActivity::setInitialChapterError)
     }
 
     private fun getLoadObservable(
@@ -145,30 +149,23 @@ class ReaderPresenter(
             }
     }
 
-    private fun load(chapter: ReaderChapter, firstLoad: Boolean = false) {
-        Timber.w("Loading ${chapter.chapter.url}")
-
+    private fun loadNewChapter(chapter: ReaderChapter) {
         val loader = loader ?: return
 
+        Timber.w("Loading ${chapter.chapter.url}")
+
         activeChapterSubscription?.unsubscribe()
-        activeChapterSubscription = if (firstLoad) {
-            getLoadObservable(loader, chapter)
-                .subscribeFirst({ _, _ ->
-                    // Ignore onNext event
-                }, ReaderActivity::setInitialChapterError)
-        } else {
-            getLoadObservable(loader, chapter)
-                .toCompletable()
-                .onErrorComplete()
-                .subscribe()
-                .also(::add)
-        }
+        activeChapterSubscription = getLoadObservable(loader, chapter)
+            .toCompletable()
+            .onErrorComplete()
+            .subscribe()
+            .also(::add)
     }
 
     private fun loadAdjacent(chapter: ReaderChapter) {
-        Timber.w("Loading adjacent ${chapter.chapter.url}")
-
         val loader = loader ?: return
+
+        Timber.w("Loading adjacent ${chapter.chapter.url}")
 
         activeChapterSubscription?.unsubscribe()
         activeChapterSubscription = getLoadObservable(loader, chapter)
@@ -213,7 +210,7 @@ class ReaderPresenter(
         if (selectedChapter != currentChapters.currChapter) {
             Timber.w("Setting ${selectedChapter.chapter.url} as active")
             onChapterChanged(currentChapters.currChapter, selectedChapter)
-            load(selectedChapter)
+            loadNewChapter(selectedChapter)
         }
     }
 
@@ -400,6 +397,49 @@ class ReaderPresenter(
     sealed class SaveImageResult {
         class Success(val file: File) : SaveImageResult()
         class Error(val error: Throwable) : SaveImageResult()
+    }
+
+    /**
+     * Starts the service that updates the last chapter read in sync services
+     */
+    fun updateTrackLastChapterRead() {
+        if (!preferences.autoUpdateTrack()) return
+        val viewerChapters = viewerChaptersRelay.value ?: return
+        val manga = manga ?: return
+
+        val currChapter = viewerChapters.currChapter.chapter
+        val prevChapter = viewerChapters.prevChapter?.chapter
+
+        // Get the last chapter read from the reader.
+        val lastChapterRead = if (currChapter.read)
+            currChapter.chapter_number.toInt()
+        else if (prevChapter != null && prevChapter.read)
+            prevChapter.chapter_number.toInt()
+        else
+            return
+
+        val trackManager = Injekt.get<TrackManager>()
+
+        db.getTracks(manga).asRxSingle()
+            .flatMapCompletable { trackList ->
+                Completable.concat(trackList.map { track ->
+                    val service = trackManager.getService(track.sync_id)
+                    if (service != null && service.isLogged && lastChapterRead > track.last_chapter_read) {
+                        track.last_chapter_read = lastChapterRead
+
+                        // We wan't these to execute even if the presenter is destroyed and leaks
+                        // for a while. The view can still be garbage collected.
+                        Observable.defer { service.update(track) }
+                            .map { db.insertTrack(track).executeAsBlocking() }
+                            .toCompletable()
+                            .onErrorComplete()
+                    } else {
+                        Completable.complete()
+                    }
+                })
+            }
+            .subscribeOn(Schedulers.io())
+            .subscribe()
     }
 
 }

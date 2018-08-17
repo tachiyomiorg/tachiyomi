@@ -57,10 +57,10 @@ class PagerTransitionHolder(
         val nextChapter = transition.to
 
         textView.text = if (nextChapter != null) {
-            "Finished reading ${transition.from.chapter.name}.\n\n" +
-            "Next chapter: ${nextChapter.chapter.name}\n\n"
+            context.getString(R.string.transition_finished, transition.from.chapter) + "\n\n" +
+            context.getString(R.string.transition_next, nextChapter.chapter.name) + "\n\n"
         } else {
-            "There's no next chapter"
+            context.getString(R.string.transition_no_next)
         }
 
         if (nextChapter != null) {
@@ -72,10 +72,10 @@ class PagerTransitionHolder(
         val prevChapter = transition.to
 
         textView.text = if (prevChapter != null) {
-            "Beginning of ${transition.from.chapter.name}.\n\n" +
-            "Previous chapter: ${prevChapter.chapter.name}\n\n"
+            context.getString(R.string.transition_current, transition.from.chapter) + "\n\n" +
+            context.getString(R.string.transition_previous, prevChapter.chapter.name) + "\n\n"
         } else {
-            "There's no previous chapter"
+            context.getString(R.string.transition_no_previous)
         }
 
         if (prevChapter != null) {
@@ -103,7 +103,7 @@ class PagerTransitionHolder(
 
         val textView = AppCompatTextView(context).apply {
             wrapContent()
-            text = "Loading pages..."
+            setText(R.string.transition_pages_loading)
         }
 
         pagesContainer.addView(progress)
@@ -111,13 +111,13 @@ class PagerTransitionHolder(
     }
 
     private fun setLoaded() {
-
+        // No additional view is added
     }
 
     private fun setError(error: Throwable) {
         val textView = AppCompatTextView(context).apply {
             wrapContent()
-            text = "Failed to load pages: ${error.message}"
+            text = context.getString(R.string.transition_pages_error, error.message)
         }
 
         val retryBtn = PagerButton(context, viewer).apply {

@@ -148,6 +148,11 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         return true
     }
 
+    override fun onBackPressed() {
+        presenter.updateTrackLastChapterRead()
+        super.onBackPressed()
+    }
+
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
         val handled = viewer?.handleKeyEvent(event) ?: false
         return handled || super.dispatchKeyEvent(event)
