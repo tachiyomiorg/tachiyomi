@@ -165,9 +165,8 @@ class RecentChaptersPresenter(
      * @param chapters list of chapters
      */
     fun deleteChapters(chapters: List<RecentChapterItem>) {
-        Observable.from(chapters)
-                .doOnNext { deleteChapter(it) }
-                .toList()
+        Observable.just(chapters)
+                .doOnNext { deleteChaptersInternal(it) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeFirst({ view, _ ->
@@ -184,16 +183,23 @@ class RecentChaptersPresenter(
     }
 
     /**
-     * Delete selected chapter
+     * Delete selected chapters
      *
-     * @param item chapter that is selected
+     * @param items chapters selected
      */
-    private fun deleteChapter(item: RecentChapterItem) {
-        val source = sourceManager.get(item.manga.source) ?: return
-        downloadManager.queue.remove(item.chapter)
-        downloadManager.deleteChapter(item.chapter, item.manga, source)
-        item.status = Download.NOT_DOWNLOADED
-        item.download = null
+    private fun deleteChaptersInternal(chapterItems: List<RecentChapterItem>) {
+        val itemsByManga = chapterItems.groupBy { it.manga.id }
+        for ((_, items) in itemsByManga) {
+            val manga = items.first().manga
+            val source = sourceManager.get(manga.source) ?: continue
+            val chapters = items.map { it.chapter }
+
+            downloadManager.deleteChapters(chapters, manga, source)
+            items.forEach {
+                it.status = Download.NOT_DOWNLOADED
+                it.download = null
+            }
+        }
     }
 
 }

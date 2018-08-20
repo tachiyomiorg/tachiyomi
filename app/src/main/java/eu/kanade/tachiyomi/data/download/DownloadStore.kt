@@ -14,7 +14,10 @@ import uy.kohesive.injekt.injectLazy
  *
  * @param context the application context.
  */
-class DownloadStore(context: Context) {
+class DownloadStore(
+        context: Context,
+        private val sourceManager: SourceManager
+) {
 
     /**
      * Preference file where active downloads are stored.
@@ -25,11 +28,6 @@ class DownloadStore(context: Context) {
      * Gson instance to serialize/deserialize downloads.
      */
     private val gson: Gson by injectLazy()
-
-    /**
-     * Source manager.
-     */
-    private val sourceManager: SourceManager by injectLazy()
 
     /**
      * Database helper.
@@ -83,7 +81,7 @@ class DownloadStore(context: Context) {
     fun restore(): List<Download> {
         val objs = preferences.all
                 .mapNotNull { it.value as? String }
-                .map { deserialize(it) }
+                .mapNotNull { deserialize(it) }
                 .sortedBy { it.order }
 
         val downloads = mutableListOf<Download>()
@@ -119,8 +117,12 @@ class DownloadStore(context: Context) {
      *
      * @param string the download as string.
      */
-    private fun deserialize(string: String): DownloadObject {
-        return gson.fromJson(string, DownloadObject::class.java)
+    private fun deserialize(string: String): DownloadObject? {
+        return try {
+            gson.fromJson(string, DownloadObject::class.java)
+        } catch (e: Exception) {
+            null
+        }
     }
 
     /**

@@ -57,7 +57,7 @@ class PagerTransitionHolder(
         val nextChapter = transition.to
 
         textView.text = if (nextChapter != null) {
-            context.getString(R.string.transition_finished, transition.from.chapter) + "\n\n" +
+            context.getString(R.string.transition_finished, transition.from.chapter.name) + "\n\n" +
             context.getString(R.string.transition_next, nextChapter.chapter.name) + "\n\n"
         } else {
             context.getString(R.string.transition_no_next)
@@ -72,7 +72,7 @@ class PagerTransitionHolder(
         val prevChapter = transition.to
 
         textView.text = if (prevChapter != null) {
-            context.getString(R.string.transition_current, transition.from.chapter) + "\n\n" +
+            context.getString(R.string.transition_current, transition.from.chapter.name) + "\n\n" +
             context.getString(R.string.transition_previous, prevChapter.chapter.name) + "\n\n"
         } else {
             context.getString(R.string.transition_no_previous)

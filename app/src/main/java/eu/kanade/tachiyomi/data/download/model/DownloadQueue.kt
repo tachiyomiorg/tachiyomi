@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.data.download.model
 
 import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.data.database.models.Chapter
+import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadStore
 import eu.kanade.tachiyomi.source.model.Page
 import rx.Observable
@@ -38,6 +39,14 @@ class DownloadQueue(
 
     fun remove(chapter: Chapter) {
         find { it.chapter.id == chapter.id }?.let { remove(it) }
+    }
+
+    fun remove(chapters: List<Chapter>) {
+        for (chapter in chapters) { remove(chapter) }
+    }
+
+    fun remove(manga: Manga) {
+        filter { it.manga.id == manga.id }.forEach { remove(it) }
     }
 
     fun clear() {

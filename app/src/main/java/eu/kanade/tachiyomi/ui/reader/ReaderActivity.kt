@@ -149,7 +149,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     }
 
     override fun onBackPressed() {
-        presenter.updateTrackLastChapterRead()
+        presenter.onBackPressed()
         super.onBackPressed()
     }
 

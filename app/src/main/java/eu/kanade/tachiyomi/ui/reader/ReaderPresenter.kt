@@ -97,6 +97,11 @@ class ReaderPresenter(
         }
     }
 
+    fun onBackPressed() {
+        updateTrackLastChapterRead()
+        deletePendingChapters()
+    }
+
     fun needsInit(): Boolean {
         return manga == null
     }
@@ -217,6 +222,7 @@ class ReaderPresenter(
     private fun onChapterChanged(fromChapter: ReaderChapter, toChapter: ReaderChapter) {
         saveChapterProgress(fromChapter)
         saveChapterHistory(fromChapter)
+        enqueueDeleteReadChapters(fromChapter)
     }
 
     private fun saveChapterProgress(chapter: ReaderChapter) {
@@ -402,7 +408,7 @@ class ReaderPresenter(
     /**
      * Starts the service that updates the last chapter read in sync services
      */
-    fun updateTrackLastChapterRead() {
+    private fun updateTrackLastChapterRead() {
         if (!preferences.autoUpdateTrack()) return
         val viewerChapters = viewerChaptersRelay.value ?: return
         val manga = manga ?: return
@@ -438,6 +444,38 @@ class ReaderPresenter(
                     }
                 })
             }
+            .onErrorComplete()
+            .subscribeOn(Schedulers.io())
+            .subscribe()
+    }
+
+    private fun enqueueDeleteReadChapters(chapter: ReaderChapter) {
+        if (!chapter.chapter.read) return
+        val manga = manga ?: return
+
+        // Return if the setting is disabled
+        val removeAfterReadSlots = preferences.removeAfterReadSlots()
+        if (removeAfterReadSlots == -1) return
+
+        Completable
+            .fromCallable {
+                // Position of the read chapter
+                val position = chapterList.indexOf(chapter)
+
+                // Retrieve chapter to delete according to preference
+                val chapterToDelete = chapterList.getOrNull(position - removeAfterReadSlots)
+                if (chapterToDelete != null) {
+                    downloadManager.enqueueDeleteChapters(listOf(chapterToDelete.chapter), manga)
+                }
+            }
+            .onErrorComplete()
+            .subscribeOn(Schedulers.io())
+            .subscribe()
+    }
+
+    private fun deletePendingChapters() {
+        Completable.fromCallable { downloadManager.deletePendingChapters() }
+            .onErrorComplete()
             .subscribeOn(Schedulers.io())
             .subscribe()
     }
