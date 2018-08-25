@@ -6,7 +6,11 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 
-open class LongTapGestureDetector(
+/**
+ * A custom gesture detector that also implements an on long tap confirmed, because the built-in
+ * one conflicts with the quick scale feature.
+ */
+open class GestureDetectorWithLongTap(
         context: Context,
         listener: Listener
 ) : GestureDetector(context, listener) {
@@ -21,6 +25,9 @@ open class LongTapGestureDetector(
     private var lastUp = 0L
     private var lastDownEvent: MotionEvent? = null
 
+    /**
+     * Runnable to execute when a long tap is confirmed.
+     */
     private val longTapFn = Runnable { listener.onLongTapConfirmed(lastDownEvent!!) }
 
     override fun onTouchEvent(ev: MotionEvent): Boolean {
@@ -29,7 +36,8 @@ open class LongTapGestureDetector(
                 lastDownEvent?.recycle()
                 lastDownEvent = MotionEvent.obtain(ev)
 
-                // Ensure it's not going to be a double tap
+                // This is the key difference with the built-in detector. We have to ignore the
+                // event if the last up and current down are too close in time (double tap).
                 if (ev.downTime - lastUp > doubleTapTime) {
                     downX = ev.rawX
                     downY = ev.rawY
@@ -52,7 +60,13 @@ open class LongTapGestureDetector(
         return super.onTouchEvent(ev)
     }
 
+    /**
+     * Custom listener to also include a long tap confirmed
+     */
     open class Listener : SimpleOnGestureListener() {
+        /**
+         * Notified when a long tap occurs with the initial on down [ev] that triggered it.
+         */
         open fun onLongTapConfirmed(ev: MotionEvent) {
         }
     }

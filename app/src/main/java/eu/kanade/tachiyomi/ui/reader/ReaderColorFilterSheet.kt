@@ -20,6 +20,9 @@ import rx.subscriptions.CompositeSubscription
 import uy.kohesive.injekt.injectLazy
 import java.util.concurrent.TimeUnit
 
+/**
+ * Color filter sheet to toggle custom filter and brightness overlay.
+ */
 class ReaderColorFilterSheet(activity: ReaderActivity) : BottomSheetDialog(activity) {
 
     private val preferences by injectLazy<PreferencesHelper>()

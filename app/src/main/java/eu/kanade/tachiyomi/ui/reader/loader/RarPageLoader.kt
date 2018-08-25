@@ -9,15 +9,28 @@ import net.greypanther.natsort.CaseInsensitiveSimpleNaturalComparator
 import rx.Observable
 import java.io.File
 
+/**
+ * Loader used to load a chapter from a .rar or .cbr file.
+ */
 class RarPageLoader(file: File) : PageLoader() {
 
+    /**
+     * The rar archive to load pages from.
+     */
     private val archive = Archive(file)
 
+    /**
+     * Recycles this loader and the open archive.
+     */
     override fun recycle() {
         super.recycle()
         archive.close()
     }
 
+    /**
+     * Returns an observable containing the pages found on this rar archive ordered with a natural
+     * comparator.
+     */
     override fun getPages(): Observable<List<ReaderPage>> {
         val comparator = CaseInsensitiveSimpleNaturalComparator.getInstance<String>()
 
@@ -34,6 +47,9 @@ class RarPageLoader(file: File) : PageLoader() {
             .let { Observable.just(it) }
     }
 
+    /**
+     * Returns an observable that emits a ready state unless the loader was recycled.
+     */
     override fun getPage(page: ReaderPage): Observable<Int> {
         return Observable.just(if (isRecycled) {
             Page.ERROR

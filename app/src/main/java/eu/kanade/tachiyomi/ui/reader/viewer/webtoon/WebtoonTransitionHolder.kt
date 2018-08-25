@@ -6,6 +6,11 @@ import eu.kanade.tachiyomi.ui.base.holder.BaseViewHolder
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.util.dpToPx
 
+/**
+ * Holder of the webtoon viewer that contains a chapter transition.
+ *
+ * TODO add views and subscribe to status
+ */
 class WebtoonTransitionHolder(val view: View) : BaseViewHolder(view) {
 
     private val textView = view as TextView

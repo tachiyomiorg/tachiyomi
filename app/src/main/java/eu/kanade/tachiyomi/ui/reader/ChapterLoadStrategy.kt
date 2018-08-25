@@ -2,12 +2,18 @@ package eu.kanade.tachiyomi.ui.reader
 
 import eu.kanade.tachiyomi.data.database.models.Chapter
 
+/**
+ * Load strategy using the source order. This is the default ordering.
+ */
 class ChapterLoadBySource {
     fun get(allChapters: List<Chapter>): List<Chapter> {
         return allChapters.sortedByDescending { it.source_order }
     }
 }
 
+/**
+ * Load strategy using unique chapter numbers with same scanlator preference.
+ */
 class ChapterLoadByNumber {
     fun get(allChapters: List<Chapter>, selectedChapter: Chapter): List<Chapter> {
         val chapters = mutableListOf<Chapter>()

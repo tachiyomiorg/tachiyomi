@@ -17,6 +17,7 @@ import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.reader.loader.ChapterLoader
+import eu.kanade.tachiyomi.ui.reader.loader.DownloadPageLoader
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
@@ -34,6 +35,9 @@ import java.io.File
 import java.util.Date
 import java.util.concurrent.TimeUnit
 
+/**
+ * Presenter used by the activity to perform background operations.
+ */
 class ReaderPresenter(
         private val db: DatabaseHelper = Injekt.get(),
         private val sourceManager: SourceManager = Injekt.get(),
@@ -42,17 +46,35 @@ class ReaderPresenter(
         val preferences: PreferencesHelper = Injekt.get()
 ) : BasePresenter<ReaderActivity>() {
 
+    /**
+     * The manga loaded in the reader. It can be null when instantiated for a short time.
+     */
     var manga: Manga? = null
         private set
 
+    /**
+     * The chapter id of the currently loaded chapter. Used to restore from process kill.
+     */
     private var chapterId = -1L
 
+    /**
+     * The chapter loader for the loaded manga. It'll be null until [manga] is set.
+     */
     private var loader: ChapterLoader? = null
 
+    /**
+     * Subscription to prevent setting chapters as active from multiple threads.
+     */
     private var activeChapterSubscription: Subscription? = null
 
+    /**
+     * Relay for currently active viewer chapters.
+     */
     private val viewerChaptersRelay = BehaviorRelay.create<ViewerChapters>()
 
+    /**
+     * Relay used when loading prev/next chapter needed to lock the UI (with a dialog).
+     */
     private val isLoadingAdjacentChapterRelay = BehaviorRelay.create<Boolean>()
 
     /**
@@ -72,6 +94,10 @@ class ReaderPresenter(
         }.map(::ReaderChapter)
     }
 
+    /**
+     * Called when the presenter is created. It retrieves the saved active chapter if the process
+     * was restored.
+     */
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
         if (savedState != null) {
@@ -79,15 +105,10 @@ class ReaderPresenter(
         }
     }
 
-    override fun onSave(state: Bundle) {
-        super.onSave(state)
-        val currentChapter = viewerChaptersRelay.value?.currChapter
-        if (currentChapter != null) {
-            currentChapter.requestedPage = currentChapter.chapter.last_page_read
-            state.putLong(::chapterId.name, currentChapter.chapter.id!!)
-        }
-    }
-
+    /**
+     * Called when the presenter is destroyed. It saves the current progress and cleans up
+     * references on the currently active chapters.
+     */
     override fun onDestroy() {
         super.onDestroy()
         val currentChapters = viewerChaptersRelay.value
@@ -97,15 +118,48 @@ class ReaderPresenter(
         }
     }
 
+    /**
+     * Called when the presenter instance is being saved. It saves the currently active chapter
+     * id and the last page read.
+     */
+    override fun onSave(state: Bundle) {
+        super.onSave(state)
+        val currentChapter = getCurrentChapter()
+        if (currentChapter != null) {
+            currentChapter.requestedPage = currentChapter.chapter.last_page_read
+            state.putLong(::chapterId.name, currentChapter.chapter.id!!)
+        }
+    }
+
+    /**
+     * Called when the user pressed the back button and is going to leave the reader. Used to
+     * update tracking services and trigger deletion of the downloaded chapters.
+     */
     fun onBackPressed() {
         updateTrackLastChapterRead()
         deletePendingChapters()
     }
 
+    /**
+     * Called when the activity is saved and not changing configurations. It updates the database
+     * to persist the current progress of the active chapter.
+     */
+    fun onSaveInstanceStateNonConfigurationChange() {
+        val currentChapter = getCurrentChapter() ?: return
+        saveChapterProgress(currentChapter)
+    }
+
+    /**
+     * Whether this presenter is initialized yet.
+     */
     fun needsInit(): Boolean {
         return manga == null
     }
 
+    /**
+     * Initializes this presenter with the given [manga] and [initialChapterId]. This method will
+     * set the chapter loader, view subscriptions and trigger an initial load.
+     */
     fun init(manga: Manga, initialChapterId: Long) {
         if (!needsInit()) return
 
@@ -117,7 +171,7 @@ class ReaderPresenter(
 
         Observable.just(manga).subscribeLatestCache(ReaderActivity::setManga)
         viewerChaptersRelay.subscribeLatestCache(ReaderActivity::setChapters)
-        isLoadingAdjacentChapterRelay.subscribeLatestCache(ReaderActivity::setProgressBar)
+        isLoadingAdjacentChapterRelay.subscribeLatestCache(ReaderActivity::setProgressDialog)
 
         // Read chapterList from an io thread because it's retrieved lazily and would block main.
         activeChapterSubscription?.unsubscribe()
@@ -130,6 +184,13 @@ class ReaderPresenter(
             }, ReaderActivity::setInitialChapterError)
     }
 
+    /**
+     * Returns an observable that loads the given [chapter] with this [loader]. This observable
+     * handles main thread synchronization and updating the currently active chapters on
+     * [viewerChaptersRelay], however callers must ensure there won't be more than one
+     * subscription active by unsubscribing any existing [activeChapterSubscription] before.
+     * Callers must also handle the onError event.
+     */
     private fun getLoadObservable(
             loader: ChapterLoader,
             chapter: ReaderChapter
@@ -154,10 +215,14 @@ class ReaderPresenter(
             }
     }
 
+    /**
+     * Called when the user changed to the given [chapter] when changing pages from the viewer.
+     * It's used only to set this chapter as active.
+     */
     private fun loadNewChapter(chapter: ReaderChapter) {
         val loader = loader ?: return
 
-        Timber.w("Loading ${chapter.chapter.url}")
+        Timber.d("Loading ${chapter.chapter.url}")
 
         activeChapterSubscription?.unsubscribe()
         activeChapterSubscription = getLoadObservable(loader, chapter)
@@ -167,10 +232,15 @@ class ReaderPresenter(
             .also(::add)
     }
 
+    /**
+     * Called when the user is going to load the prev/next chapter through the menu button. It
+     * sets the [isLoadingAdjacentChapterRelay] that the view uses to prevent any further
+     * interaction until the chapter is loaded.
+     */
     private fun loadAdjacent(chapter: ReaderChapter) {
         val loader = loader ?: return
 
-        Timber.w("Loading adjacent ${chapter.chapter.url}")
+        Timber.d("Loading adjacent ${chapter.chapter.url}")
 
         activeChapterSubscription?.unsubscribe()
         activeChapterSubscription = getLoadObservable(loader, chapter)
@@ -183,12 +253,16 @@ class ReaderPresenter(
             })
     }
 
+    /**
+     * Called when the viewers decide it's a good time to preload a [chapter] and improve the UX so
+     * that the user doesn't have to wait too long to continue reading.
+     */
     private fun preload(chapter: ReaderChapter) {
         if (chapter.state != ReaderChapter.State.Wait && chapter.state !is ReaderChapter.State.Error) {
             return
         }
 
-        Timber.w("Preloading ${chapter.chapter.url}")
+        Timber.d("Preloading ${chapter.chapter.url}")
 
         val loader = loader ?: return
 
@@ -201,6 +275,11 @@ class ReaderPresenter(
             .also(::add)
     }
 
+    /**
+     * Called every time a page changes on the reader. Used to mark the flag of chapters being
+     * read, enqueue downloaded chapter deletion, and updating the active chapter if this
+     * [page]'s chapter is different from the currently active.
+     */
     fun onPageSelected(page: ReaderPage) {
         val currentChapters = viewerChaptersRelay.value ?: return
 
@@ -210,21 +289,28 @@ class ReaderPresenter(
         selectedChapter.chapter.last_page_read = page.index
         if (selectedChapter.pages?.lastIndex == page.index) {
             selectedChapter.chapter.read = true
+            enqueueDeleteReadChapters(selectedChapter)
         }
 
         if (selectedChapter != currentChapters.currChapter) {
-            Timber.w("Setting ${selectedChapter.chapter.url} as active")
+            Timber.d("Setting ${selectedChapter.chapter.url} as active")
             onChapterChanged(currentChapters.currChapter, selectedChapter)
             loadNewChapter(selectedChapter)
         }
     }
 
+    /**
+     * Called when a chapter changed from [fromChapter] to [toChapter]. It updates [fromChapter]
+     * on the database.
+     */
     private fun onChapterChanged(fromChapter: ReaderChapter, toChapter: ReaderChapter) {
         saveChapterProgress(fromChapter)
         saveChapterHistory(fromChapter)
-        enqueueDeleteReadChapters(fromChapter)
     }
 
+    /**
+     * Saves this [chapter] progress (last read page and whether it's read).
+     */
     private fun saveChapterProgress(chapter: ReaderChapter) {
         db.updateChapterProgress(chapter.chapter).asRxCompletable()
             .onErrorComplete()
@@ -232,6 +318,9 @@ class ReaderPresenter(
             .subscribe()
     }
 
+    /**
+     * Saves this [chapter] last read history.
+     */
     private fun saveChapterHistory(chapter: ReaderChapter) {
         val history = History.create(chapter.chapter).apply { last_read = Date().time }
         db.updateHistoryLastRead(history).asRxCompletable()
@@ -241,44 +330,55 @@ class ReaderPresenter(
     }
 
     /**
-     * Called when the application is going to background
+     * Called from the activity to preload the next chapter.
      */
-    fun saveCurrentProgress() {
-        val currentChapters = viewerChaptersRelay.value ?: return
-        saveChapterProgress(currentChapters.currChapter)
-    }
-
     fun preloadNextChapter() {
         val nextChapter = viewerChaptersRelay.value?.nextChapter ?: return
         preload(nextChapter)
     }
 
+    /**
+     * Called from the activity to preload the previous chapter.
+     */
     fun preloadPreviousChapter() {
         val prevChapter = viewerChaptersRelay.value?.prevChapter ?: return
         preload(prevChapter)
     }
 
-    fun loadNextChapter(): Boolean {
-        val nextChapter = viewerChaptersRelay.value?.nextChapter ?: return false
+    /**
+     * Called from the activity to load and set the next chapter as active.
+     */
+    fun loadNextChapter() {
+        val nextChapter = viewerChaptersRelay.value?.nextChapter ?: return
         loadAdjacent(nextChapter)
-        return true
     }
 
-    fun loadPreviousChapter(): Boolean {
-        val prevChapter = viewerChaptersRelay.value?.prevChapter ?: return false
+    /**
+     * Called from the activity to load and set the previous chapter as active.
+     */
+    fun loadPreviousChapter() {
+        val prevChapter = viewerChaptersRelay.value?.prevChapter ?: return
         loadAdjacent(prevChapter)
-        return true
     }
 
+    /**
+     * Returns the currently active chapter.
+     */
     fun getCurrentChapter(): ReaderChapter? {
         return viewerChaptersRelay.value?.currChapter
     }
 
+    /**
+     * Returns the viewer position used by this manga or the default one.
+     */
     fun getMangaViewer(): Int {
         val manga = manga ?: return preferences.defaultViewer()
         return if (manga.viewer == 0) preferences.defaultViewer() else manga.viewer
     }
 
+    /**
+     * Updates the viewer position for the open manga.
+     */
     fun setMangaViewer(viewer: Int) {
         val manga = manga ?: return
         manga.viewer = viewer
@@ -300,6 +400,9 @@ class ReaderPresenter(
             })
     }
 
+    /**
+     * Saves the image of this [page] in the given [directory] and returns the file location.
+     */
     private fun saveImage(page: ReaderPage, directory: File, manga: Manga): File {
         val stream = page.stream!!
         val type = ImageUtil.findImageType(stream) ?: throw Exception("Not an image")
@@ -321,6 +424,10 @@ class ReaderPresenter(
         return destFile
     }
 
+    /**
+     * Saves the image of this [page] on the pictures directory and notifies the UI of the result.
+     * There's also a notification to allow sharing the image somewhere else or deleting it.
+     */
     fun saveImage(page: ReaderPage) {
         if (page.status != Page.READY) return
         val manga = manga ?: return
@@ -349,6 +456,13 @@ class ReaderPresenter(
             )
     }
 
+    /**
+     * Shares the image of this [page] and notifies the UI with the path of the file to share.
+     * The image must be first copied to the internal partition because there are many possible
+     * formats it can come from, like a zipped chapter, in which case it's not possible to directly
+     * get a path to the file and it has to be decompresssed somewhere first. Only the last shared
+     * image will be kept so it won't be taking lots of internal disk space.
+     */
     fun shareImage(page: ReaderPage) {
         if (page.status != Page.READY) return
         val manga = manga ?: return
@@ -366,6 +480,9 @@ class ReaderPresenter(
             )
     }
 
+    /**
+     * Sets the image of this [page] as cover and notifies the UI of the result.
+     */
     fun setAsCover(page: ReaderPage) {
         if (page.status != Page.READY) return
         val manga = manga ?: return
@@ -396,17 +513,24 @@ class ReaderPresenter(
             )
     }
 
+    /**
+     * Results of the set as cover feature.
+     */
     enum class SetAsCoverResult {
         Success, AddToLibraryFirst, Error
     }
 
+    /**
+     * Results of the save image feature.
+     */
     sealed class SaveImageResult {
         class Success(val file: File) : SaveImageResult()
         class Error(val error: Throwable) : SaveImageResult()
     }
 
     /**
-     * Starts the service that updates the last chapter read in sync services
+     * Starts the service that updates the last chapter read in sync services. This operation
+     * will run in a background thread and errors are ignored.
      */
     private fun updateTrackLastChapterRead() {
         if (!preferences.autoUpdateTrack()) return
@@ -449,8 +573,12 @@ class ReaderPresenter(
             .subscribe()
     }
 
+    /**
+     * Enqueues this [chapter] to be deleted when [deletePendingChapters] is called. The download
+     * manager handles persisting it across process deaths.
+     */
     private fun enqueueDeleteReadChapters(chapter: ReaderChapter) {
-        if (!chapter.chapter.read) return
+        if (!chapter.chapter.read || chapter.pageLoader !is DownloadPageLoader) return
         val manga = manga ?: return
 
         // Return if the setting is disabled
@@ -473,6 +601,10 @@ class ReaderPresenter(
             .subscribe()
     }
 
+    /**
+     * Deletes all the pending chapters. This operation will run in a background thread and errors
+     * are ignored.
+     */
     private fun deletePendingChapters() {
         Completable.fromCallable { downloadManager.deletePendingChapters() }
             .onErrorComplete()

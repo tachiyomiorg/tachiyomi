@@ -16,7 +16,15 @@ import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
 import kotlinx.android.synthetic.main.reader_settings_sheet.*
 import uy.kohesive.injekt.injectLazy
 
+/**
+ * Sheet to show reader and viewer preferences.
+ */
 class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDialog(activity) {
+
+    /**
+     * Preferences helper.
+     */
+    private val preferences by injectLazy<PreferencesHelper>()
 
     init {
         // Use activity theme for this layout
@@ -26,8 +34,9 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         setContentView(scroll)
     }
 
-    private val preferences by injectLazy<PreferencesHelper>()
-
+    /**
+     * Called when the sheet is created. It initializes the listeners and values of the preferences.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,6 +48,9 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         }
     }
 
+    /**
+     * Init general reader preferences.
+     */
     private fun initGeneralPreferences() {
         viewer.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
             activity.presenter.setMangaViewer(position)
@@ -53,6 +65,9 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         keepscreen.bindToPreference(preferences.keepScreenOn())
     }
 
+    /**
+     * Init the preferences for the pager reader.
+     */
     private fun initPagerPreferences() {
         pager_prefs_group.visible()
         scale_type.bindToPreference(preferences.imageScaleType(), 1)
@@ -61,6 +76,9 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         page_transitions.bindToPreference(preferences.pageTransitions())
     }
 
+    /**
+     * Init the preferences for the webtoon reader.
+     */
     private fun initWebtoonPreferences() {
         webtoon_prefs_group.visible()
         crop_borders_webtoon.bindToPreference(preferences.cropBordersWebtoon())
@@ -74,6 +92,9 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         setOnCheckedChangeListener { _, isChecked -> pref.set(isChecked) }
     }
 
+    /**
+     * Binds a spinner to an int preference with an optional offset for the value.
+     */
     private fun Spinner.bindToPreference(pref: Preference<Int>, offset: Int = 0) {
         onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
             pref.set(position + offset)

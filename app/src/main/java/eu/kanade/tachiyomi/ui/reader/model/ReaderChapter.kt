@@ -41,7 +41,7 @@ data class ReaderChapter(val chapter: Chapter) {
         references--
         if (references == 0) {
             if (pageLoader != null) {
-                Timber.w("Recycling chapter ${chapter.name}")
+                Timber.d("Recycling chapter ${chapter.name}")
             }
             pageLoader?.recycle()
             pageLoader = null

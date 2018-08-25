@@ -16,6 +16,7 @@ import java.io.File
  * Class used to show BigPictureStyle notifications
  */
 class SaveImageNotifier(private val context: Context) {
+
     /**
      * Notification builder.
      */

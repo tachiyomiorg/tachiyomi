@@ -9,15 +9,15 @@ import android.os.Build
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
-import android.view.*
+import android.view.HapticFeedbackConstants
+import android.view.MotionEvent
+import android.view.ViewConfiguration
 import android.view.animation.DecelerateInterpolator
-import android.widget.FrameLayout
-import eu.kanade.tachiyomi.ui.reader.viewer.LongTapGestureDetector
+import eu.kanade.tachiyomi.ui.reader.viewer.GestureDetectorWithLongTap
 
-const val ANIMATOR_DURATION_TIME = 200
-const val DEFAULT_RATE = 1f
-const val MAX_SCALE_RATE = 3f
-
+/**
+ * Implementation of a [RecyclerView] used by the webtoon reader.
+ */
 open class WebtoonRecyclerView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
@@ -193,7 +193,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
         }
     }
 
-    inner class GestureListener : LongTapGestureDetector.Listener() {
+    inner class GestureListener : GestureDetectorWithLongTap.Listener() {
 
         override fun onSingleTapConfirmed(ev: MotionEvent): Boolean {
             tapListener?.invoke(ev)
@@ -228,7 +228,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
 
     }
 
-    inner class Detector : LongTapGestureDetector(context, listener) {
+    inner class Detector : GestureDetectorWithLongTap(context, listener) {
 
         private var scrollPointerId = 0
         private var downX = 0
@@ -316,52 +316,10 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
 
     }
 
-}
-
-class WebtoonFrame(context: Context) : FrameLayout(context) {
-
-    private val scaleDetector = ScaleGestureDetector(context, ScaleListener())
-
-    private val flingDetector = GestureDetector(context, FlingListener())
-
-    private val recycler: WebtoonRecyclerView?
-        get() = getChildAt(0) as? WebtoonRecyclerView
-
-    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
-        scaleDetector.onTouchEvent(ev)
-        flingDetector.onTouchEvent(ev)
-        return super.dispatchTouchEvent(ev)
-    }
-
-    inner class ScaleListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
-        override fun onScaleBegin(detector: ScaleGestureDetector?): Boolean {
-            recycler?.onScaleBegin()
-            return true
-        }
-
-        override fun onScale(detector: ScaleGestureDetector): Boolean {
-            recycler?.onScale(detector.scaleFactor)
-            return true
-        }
-
-        override fun onScaleEnd(detector: ScaleGestureDetector) {
-            recycler?.onScaleEnd()
-        }
-    }
-
-    inner class FlingListener : GestureDetector.SimpleOnGestureListener() {
-        override fun onDown(e: MotionEvent?): Boolean {
-            return true
-        }
-
-        override fun onFling(
-                e1: MotionEvent?,
-                e2: MotionEvent?,
-                velocityX: Float,
-                velocityY: Float
-        ): Boolean {
-            return recycler?.zoomFling(velocityX.toInt(), velocityY.toInt()) ?: false
-        }
+    private companion object {
+        const val ANIMATOR_DURATION_TIME = 200
+        const val DEFAULT_RATE = 1f
+        const val MAX_SCALE_RATE = 3f
     }
 
 }

@@ -10,6 +10,9 @@ import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
 
+/**
+ * Loader used to load a chapter from the downloaded chapters.
+ */
 class DownloadPageLoader(
         private val chapter: ReaderChapter,
         private val manga: Manga,
@@ -17,14 +20,19 @@ class DownloadPageLoader(
         private val downloadManager: DownloadManager
 ) : PageLoader() {
 
+    /**
+     * The application context. Needed to open input streams.
+     */
     private val context by injectLazy<Application>()
 
+    /**
+     * Returns an observable containing the pages found on this downloaded chapter.
+     */
     override fun getPages(): Observable<List<ReaderPage>> {
         return downloadManager.buildPageList(source, manga, chapter.chapter)
             .map { pages ->
                 pages.map { page ->
-                    ReaderPage(page.index, page.url,
-                            page.imageUrl, {
+                    ReaderPage(page.index, page.url, page.imageUrl, {
                         context.contentResolver.openInputStream(page.uri)
                     }).apply {
                         status = Page.READY

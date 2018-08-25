@@ -39,7 +39,7 @@ import rx.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 /**
- * Holder for webtoon reader for a single page of a chapter.
+ * Holder of the webtoon reader for a single page of a chapter.
  *
  * @param frame the root view for this holder.
  * @param viewer the webtoon viewer.
@@ -50,20 +50,45 @@ class WebtoonPageHolder(
         private val viewer: WebtoonViewer
 ) : BaseViewHolder(frame) {
 
+    /**
+     * Context getter because it's used often.
+     */
     private val context get() = frame.context
 
+    /**
+     * Loading progress bar to indicate the current progress.
+     */
     private val progressBar = createProgressBar()
 
+    /**
+     * Progress bar container. Needed to keep a minimum height size of the holder, otherwise the
+     * adapter would create more views to fill the screen, which is not wanted.
+     */
     private lateinit var progressContainer: ViewGroup
 
+    /**
+     * Image view that supports subsampling on zoom.
+     */
     private var subsamplingImageView: SubsamplingScaleImageView? = null
 
+    /**
+     * Simple image view only used on GIFs.
+     */
     private var imageView: ImageView? = null
 
+    /**
+     * Retry button container used to allow retrying.
+     */
     private var retryContainer: ViewGroup? = null
 
+    /**
+     * Error layout to show when the image fails to decode.
+     */
     private var decodeErrorLayout: ViewGroup? = null
 
+    /**
+     * Getter to retrieve the height of the recycler view.
+     */
     private val parentHeight
         get() = viewer.recycler.height
 
@@ -82,6 +107,10 @@ class WebtoonPageHolder(
      */
     private var progressSubscription: Subscription? = null
 
+    /**
+     * Subscription used to read the header of the image. This is needed in order to instantiate
+     * the appropiate image view depending if the image is animated (GIF).
+     */
     private var readImageHeaderSubscription: Subscription? = null
 
     init {
@@ -205,6 +234,9 @@ class WebtoonPageHolder(
         progressSubscription = null
     }
 
+    /**
+     * Unsubscribes from the read image header subscription.
+     */
     private fun unsubscribeReadImageHeader() {
         removeSubscription(readImageHeaderSubscription)
         readImageHeaderSubscription = null
@@ -441,6 +473,9 @@ class WebtoonPageHolder(
         return decodeLayout
     }
 
+    /**
+     * Removes the decode error layout from the holder, if found.
+     */
     private fun removeDecodeErrorLayout() {
         val layout = decodeErrorLayout
         if (layout != null) {
@@ -449,6 +484,9 @@ class WebtoonPageHolder(
         }
     }
 
+    /**
+     * Extension method to set a [stream] into this ImageView.
+     */
     private fun ImageView.setImage(stream: GlideInputStream) {
         GlideApp.with(this)
             .load(stream)

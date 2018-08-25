@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.WebtoonLayoutManager
 import android.view.KeyEvent
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -14,26 +15,49 @@ import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
 import rx.subscriptions.CompositeSubscription
 import timber.log.Timber
 
-class WebtoonViewer(activity: ReaderActivity) : BaseViewer(activity) {
+/**
+ * Implementation of a [BaseViewer] to display pages with a [RecyclerView].
+ */
+class WebtoonViewer(val activity: ReaderActivity) : BaseViewer {
 
-    private var scrollDistance = 0
-
-    private val adapter = WebtoonAdapter(this)
-
-    private val layoutManager = WebtoonLayoutManager(activity).apply {
-        val screenHeight = activity.resources.displayMetrics.heightPixels
-        extraLayoutSpace = screenHeight / 2
-        scrollDistance = screenHeight * 3 / 4
-    }
-
-    private var currentPage: Any? = null
-
-    private val frame = WebtoonFrame(activity)
-
+    /**
+     * Recycler view used by this viewer.
+     */
     val recycler = WebtoonRecyclerView(activity)
 
+    /**
+     * Frame containing the recycler view.
+     */
+    private val frame = WebtoonFrame(activity)
+
+    /**
+     * Layout manager of the recycler view.
+     */
+    private val layoutManager = WebtoonLayoutManager(activity)
+
+    /**
+     * Adapter of the recycler view.
+     */
+    private val adapter = WebtoonAdapter(this)
+
+    /**
+     * Distance to scroll when the user taps on one side of the recycler view.
+     */
+    private var scrollDistance = activity.resources.displayMetrics.heightPixels * 3 / 4
+
+    /**
+     * Currently active item. It can be a chapter page or a chapter transition.
+     */
+    private var currentPage: Any? = null
+
+    /**
+     * Configuration used by this viewer, like allow taps, or crop image borders.
+     */
     val config = WebtoonConfig()
 
+    /**
+     * Subscriptions to keep while this viewer is used.
+     */
     val subscriptions = CompositeSubscription()
 
     init {
@@ -66,8 +90,8 @@ class WebtoonViewer(activity: ReaderActivity) : BaseViewer(activity) {
         recycler.tapListener = { event ->
             val positionX = event.rawX
             when {
-                positionX < recycler.width * 0.33 -> if (config.tappingEnabled) moveUp()
-                positionX > recycler.width * 0.66 -> if (config.tappingEnabled) moveDown()
+                positionX < recycler.width * 0.33 -> if (config.tappingEnabled) scrollUp()
+                positionX > recycler.width * 0.66 -> if (config.tappingEnabled) scrollDown()
                 else -> activity.toggleMenu()
             }
         }
@@ -84,73 +108,95 @@ class WebtoonViewer(activity: ReaderActivity) : BaseViewer(activity) {
         frame.addView(recycler)
     }
 
+    /**
+     * Returns the view this viewer uses.
+     */
     override fun getView(): View {
         return frame
     }
 
+    /**
+     * Destroys this viewer. Called when leaving the reader or swapping viewers.
+     */
     override fun destroy() {
         super.destroy()
         config.unsubscribe()
         subscriptions.unsubscribe()
     }
 
+    /**
+     * Called from the ViewPager listener when a [page] is marked as active. It notifies the
+     * activity of the change and requests the preload of the next chapter if this is the last page.
+     */
     private fun onPageSelected(page: ReaderPage) {
         val pages = page.chapter.pages!! // Won't be null because it's the loaded chapter
-        Timber.w("onPageSelected: ${page.number}/${pages.size}")
+        Timber.d("onPageSelected: ${page.number}/${pages.size}")
         activity.onPageSelected(page)
 
         if (page === pages.last()) {
-            Timber.w("Request preload next chapter because we're at the last page")
+            Timber.d("Request preload next chapter because we're at the last page")
             activity.requestPreloadNextChapter()
         }
     }
 
+    /**
+     * Called from the ViewPager listener when a [transition] is marked as active. It request the
+     * preload of the destination chapter of the transition.
+     */
     private fun onTransitionSelected(transition: ChapterTransition) {
-        Timber.w("onTransitionSelected: $transition")
+        Timber.d("onTransitionSelected: $transition")
         if (transition is ChapterTransition.Prev) {
-            Timber.w("Request preload previous chapter because we're on the transition")
+            Timber.d("Request preload previous chapter because we're on the transition")
             activity.requestPreloadPreviousChapter()
         }
     }
 
+    /**
+     * Tells this viewer to set the given [chapters] as active.
+     */
     override fun setChapters(chapters: ViewerChapters) {
-        Timber.w("setChapters")
+        Timber.d("setChapters")
         adapter.setChapters(chapters)
 
         if (recycler.visibility == View.GONE) {
-            Timber.w("Recycler first layout")
+            Timber.d("Recycler first layout")
             val pages = chapters.currChapter.pages ?: return
             moveToPage(pages[chapters.currChapter.requestedPage])
             recycler.visibility = View.VISIBLE
         }
     }
 
+    /**
+     * Tells this viewer to move to the given [page].
+     */
     override fun moveToPage(page: ReaderPage) {
-        Timber.w("moveToPage")
+        Timber.d("moveToPage")
         val position = adapter.items.indexOf(page)
         if (position != -1) {
             recycler.scrollToPosition(position)
         } else {
-            Timber.w("Page $page not found in adapter")
+            Timber.d("Page $page not found in adapter")
         }
     }
 
-    override fun moveLeft() {
+    /**
+     * Scrolls up by [scrollDistance].
+     */
+    private fun scrollUp() {
         recycler.smoothScrollBy(0, -scrollDistance)
     }
 
-    override fun moveRight() {
+    /**
+     * Scrolls down by [scrollDistance].
+     */
+    private fun scrollDown() {
         recycler.smoothScrollBy(0, scrollDistance)
     }
 
-    override fun moveUp() {
-        moveLeft()
-    }
-
-    override fun moveDown() {
-        moveRight()
-    }
-
+    /**
+     * Called from the containing activity when a key [event] is received. It should return true
+     * if the event was handled, false otherwise.
+     */
     override fun handleKeyEvent(event: KeyEvent): Boolean {
         val isUp = event.action == KeyEvent.ACTION_UP
 
@@ -159,26 +205,36 @@ class WebtoonViewer(activity: ReaderActivity) : BaseViewer(activity) {
                 if (activity.menuVisible) {
                     return false
                 } else if (config.volumeKeysEnabled && isUp) {
-                    if (!config.volumeKeysInverted) moveDown() else moveUp()
+                    if (!config.volumeKeysInverted) scrollDown() else scrollUp()
                 }
             }
             KeyEvent.KEYCODE_VOLUME_UP -> {
                 if (activity.menuVisible) {
                     return false
                 } else if (config.volumeKeysEnabled && isUp) {
-                    if (!config.volumeKeysInverted) moveUp() else moveDown()
+                    if (!config.volumeKeysInverted) scrollUp() else scrollDown()
                 }
             }
-            KeyEvent.KEYCODE_DPAD_RIGHT -> if (isUp) moveRight()
-            KeyEvent.KEYCODE_DPAD_LEFT -> if (isUp) moveLeft()
-            KeyEvent.KEYCODE_DPAD_DOWN -> if (isUp) moveDown()
-            KeyEvent.KEYCODE_DPAD_UP -> if (isUp) moveUp()
-            KeyEvent.KEYCODE_PAGE_DOWN -> if (isUp) moveDown()
-            KeyEvent.KEYCODE_PAGE_UP -> if (isUp) moveUp()
             KeyEvent.KEYCODE_MENU -> if (isUp) activity.toggleMenu()
+
+            KeyEvent.KEYCODE_DPAD_RIGHT,
+            KeyEvent.KEYCODE_DPAD_UP,
+            KeyEvent.KEYCODE_PAGE_UP -> if (isUp) scrollUp()
+
+            KeyEvent.KEYCODE_DPAD_LEFT,
+            KeyEvent.KEYCODE_DPAD_DOWN,
+            KeyEvent.KEYCODE_PAGE_DOWN -> if (isUp) scrollDown()
             else -> return false
         }
         return true
+    }
+
+    /**
+     * Called from the containing activity when a generic motion [event] is received. It should
+     * return true if the event was handled, false otherwise.
+     */
+    override fun handleGenericMotionEvent(event: MotionEvent): Boolean {
+        return false
     }
 
 }

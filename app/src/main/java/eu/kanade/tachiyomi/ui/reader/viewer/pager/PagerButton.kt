@@ -14,9 +14,9 @@ class PagerButton(context: Context, viewer: PagerViewer) : AppCompatButton(conte
 
     init {
         setOnTouchListener { _, event ->
-            viewer.pager.setTapListenerEnabled(false)
+            viewer.pager.setGestureDetectorEnabled(false)
             if (event.actionMasked == MotionEvent.ACTION_UP) {
-                viewer.pager.setTapListenerEnabled(true)
+                viewer.pager.setGestureDetectorEnabled(true)
             }
             false
         }

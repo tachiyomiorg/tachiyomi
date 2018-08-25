@@ -41,24 +41,44 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
-
+/**
+ * View of the ViewPager that contains a page of a chapter.
+ */
 @SuppressLint("ViewConstructor")
 class PagerPageHolder(
         val viewer: PagerViewer,
         val page: ReaderPage
 ) : FrameLayout(viewer.activity), ViewPagerAdapter.PositionableView {
 
+    /**
+     * Item that identifies this view. Needed by the adapter to not recreate views.
+     */
     override val item
         get() = page
 
+    /**
+     * Loading progress bar to indicate the current progress.
+     */
     private val progressBar = createProgressBar()
 
+    /**
+     * Image view that supports subsampling on zoom.
+     */
     private var subsamplingImageView: SubsamplingScaleImageView? = null
 
+    /**
+     * Simple image view only used on GIFs.
+     */
     private var imageView: ImageView? = null
 
+    /**
+     * Retry button used to allow retrying.
+     */
     private var retryButton: PagerButton? = null
 
+    /**
+     * Error layout to show when the image fails to decode.
+     */
     private var decodeErrorLayout: ViewGroup? = null
 
     /**
@@ -71,6 +91,10 @@ class PagerPageHolder(
      */
     private var progressSubscription: Subscription? = null
 
+    /**
+     * Subscription used to read the header of the image. This is needed in order to instantiate
+     * the appropiate image view depending if the image is animated (GIF).
+     */
     private var readImageHeaderSubscription: Subscription? = null
 
     init {
@@ -78,6 +102,9 @@ class PagerPageHolder(
         observeStatus()
     }
 
+    /**
+     * Called when this view is detached from the window. Unsubscribes any active subscription.
+     */
     @SuppressLint("ClickableViewAccessibility")
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
@@ -155,6 +182,9 @@ class PagerPageHolder(
         progressSubscription = null
     }
 
+    /**
+     * Unsubscribes from the read image header subscription.
+     */
     private fun unsubscribeReadImageHeader() {
         readImageHeaderSubscription?.unsubscribe()
         readImageHeaderSubscription = null
@@ -390,6 +420,9 @@ class PagerPageHolder(
         return decodeLayout
     }
 
+    /**
+     * Extension method to set a [stream] into this ImageView.
+     */
     private fun ImageView.setImage(stream: GlideInputStream) {
         GlideApp.with(this)
             .load(stream)

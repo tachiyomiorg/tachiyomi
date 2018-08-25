@@ -2,28 +2,38 @@
 
 package android.support.v7.widget
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView.NO_POSITION
+import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 
-class WebtoonLayoutManager(context: Context) : LinearLayoutManager(context) {
+/**
+ * Layout manager used by the webtoon viewer. Item prefetch is disabled because the extra layout
+ * space feature is used which allows setting the image even if the holder is not visible,
+ * avoiding (in most cases) black views when they are visible.
+ *
+ * This layout manager uses the same package name as the support library in order to use a package
+ * protected method.
+ */
+class WebtoonLayoutManager(activity: ReaderActivity) : LinearLayoutManager(activity) {
+
+    /**
+     * Extra layout space is set to half the screen height.
+     */
+    private val extraLayoutSpace = activity.resources.displayMetrics.heightPixels / 2
 
     init {
         isItemPrefetchEnabled = false
     }
 
-    companion object {
-        const val DEFAULT_EXTRA_LAYOUT_SPACE = 600
-    }
-
-    var extraLayoutSpace = 0
-
+    /**
+     * Returns the custom extra layout space.
+     */
     override fun getExtraLayoutSpace(state: RecyclerView.State): Int {
-        if (extraLayoutSpace > 0) {
-            return extraLayoutSpace
-        }
-        return DEFAULT_EXTRA_LAYOUT_SPACE
+        return extraLayoutSpace
     }
 
+    /**
+     * Returns the position of the last item whose end side is visible on screen.
+     */
     fun findLastEndVisibleItemPosition(): Int {
         ensureLayoutState()
         @ViewBoundsCheck.ViewBounds val preferredBoundsFlag =

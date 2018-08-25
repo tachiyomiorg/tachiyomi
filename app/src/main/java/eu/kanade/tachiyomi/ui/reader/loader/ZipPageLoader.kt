@@ -9,15 +9,28 @@ import java.io.File
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 
+/**
+ * Loader used to load a chapter from a .zip or .cbz file.
+ */
 class ZipPageLoader(file: File) : PageLoader() {
 
+    /**
+     * The zip file to load pages from.
+     */
     private val zip = ZipFile(file)
 
+    /**
+     * Recycles this loader and the open zip.
+     */
     override fun recycle() {
         super.recycle()
         zip.close()
     }
 
+    /**
+     * Returns an observable containing the pages found on this zip archive ordered with a natural
+     * comparator.
+     */
     override fun getPages(): Observable<List<ReaderPage>> {
         val comparator = CaseInsensitiveSimpleNaturalComparator.getInstance<String>()
 
@@ -34,6 +47,9 @@ class ZipPageLoader(file: File) : PageLoader() {
             .let { Observable.just(it) }
     }
 
+    /**
+     * Returns an observable that emits a ready state unless the loader was recycled.
+     */
     override fun getPage(page: ReaderPage): Observable<Int> {
         return Observable.just(if (isRecycled) {
             Page.ERROR

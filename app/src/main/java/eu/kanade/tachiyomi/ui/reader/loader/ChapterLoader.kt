@@ -12,12 +12,19 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import timber.log.Timber
 
+/**
+ * Loader used to retrieve the [PageLoader] for a given chapter.
+ */
 class ChapterLoader(
         private val downloadManager: DownloadManager,
         private val manga: Manga,
         private val source: Source
 ) {
 
+    /**
+     * Returns a completable that assigns the page loader and loads the its pages. It just
+     * completes if the chapter is already loaded.
+     */
     fun loadChapter(chapter: ReaderChapter): Completable {
         if (chapter.state is ReaderChapter.State.Loaded) {
             return Completable.complete()
@@ -32,7 +39,7 @@ class ChapterLoader(
                 val loader = getPageLoader(it)
                 chapter.pageLoader = loader
 
-                loader.getPages().doOnNext { pages ->
+                loader.getPages().take(1).doOnNext { pages ->
                     pages.forEach { it.chapter = chapter }
                 }
             }
@@ -54,6 +61,9 @@ class ChapterLoader(
             .doOnError { chapter.state = ReaderChapter.State.Error(it) }
     }
 
+    /**
+     * Returns the page loader to use for this [chapter].
+     */
     private fun getPageLoader(chapter: ReaderChapter): PageLoader {
         val isDownloaded = downloadManager.isChapterDownloaded(chapter.chapter, manga, true)
         return when {

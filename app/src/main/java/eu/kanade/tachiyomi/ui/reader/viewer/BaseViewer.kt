@@ -1,31 +1,46 @@
 package eu.kanade.tachiyomi.ui.reader.viewer
 
 import android.view.KeyEvent
+import android.view.MotionEvent
 import android.view.View
-import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 
-abstract class BaseViewer(val activity: ReaderActivity) {
+/**
+ * Interface for implementing a viewer.
+ */
+interface BaseViewer {
 
-    abstract fun getView(): View
+    /**
+     * Returns the view this viewer uses.
+     */
+    fun getView(): View
 
-    open fun destroy() {}
+    /**
+     * Destroys this viewer. Called when leaving the reader or swapping viewers.
+     */
+    fun destroy() {}
 
-    abstract fun setChapters(chapters: ViewerChapters)
+    /**
+     * Tells this viewer to set the given [chapters] as active.
+     */
+    fun setChapters(chapters: ViewerChapters)
 
-    abstract fun moveToPage(page: ReaderPage)
+    /**
+     * Tells this viewer to move to the given [page].
+     */
+    fun moveToPage(page: ReaderPage)
 
-    abstract fun moveLeft()
+    /**
+     * Called from the containing activity when a key [event] is received. It should return true
+     * if the event was handled, false otherwise.
+     */
+    fun handleKeyEvent(event: KeyEvent): Boolean
 
-    abstract fun moveRight()
-
-    abstract fun moveUp()
-
-    abstract fun moveDown()
-
-    open fun handleKeyEvent(event: KeyEvent): Boolean {
-        return false
-    }
+    /**
+     * Called from the containing activity when a generic motion [event] is received. It should
+     * return true if the event was handled, false otherwise.
+     */
+    fun handleGenericMotionEvent(event: MotionEvent): Boolean
 
 }

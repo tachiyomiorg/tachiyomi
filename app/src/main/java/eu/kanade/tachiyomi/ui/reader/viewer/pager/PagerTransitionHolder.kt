@@ -18,21 +18,37 @@ import eu.kanade.tachiyomi.widget.ViewPagerAdapter
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 
+/**
+ * View of the ViewPager that contains a chapter transition.
+ */
 @SuppressLint("ViewConstructor")
 class PagerTransitionHolder(
         val viewer: PagerViewer,
         val transition: ChapterTransition
 ) : LinearLayout(viewer.activity), ViewPagerAdapter.PositionableView {
 
+    /**
+     * Item that identifies this view. Needed by the adapter to not recreate views.
+     */
     override val item: Any
         get() = transition
 
+    /**
+     * Subscription for status changes of the transition page.
+     */
     private var statusSubscription: Subscription? = null
 
+    /**
+     * Text view used to display the text of the current and next/prev chapters.
+     */
     private var textView = TextView(context).apply {
         wrapContent()
     }
 
+    /**
+     * View container of the current status of the transition page. Child views will be added
+     * dynamically.
+     */
     private var pagesContainer = LinearLayout(context).apply {
         layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
         orientation = VERTICAL
@@ -53,6 +69,18 @@ class PagerTransitionHolder(
         }
     }
 
+    /**
+     * Called when this view is detached from the window. Unsubscribes any active subscription.
+     */
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        statusSubscription?.unsubscribe()
+        statusSubscription = null
+    }
+
+    /**
+     * Binds a next chapter transition on this view and subscribes to the load status.
+     */
     private fun bindNextChapterTransition() {
         val nextChapter = transition.to
 
@@ -68,6 +96,9 @@ class PagerTransitionHolder(
         }
     }
 
+    /**
+     * Binds a previous chapter transition on this view and subscribes to the page load status.
+     */
     private fun bindPrevChapterTransition() {
         val prevChapter = transition.to
 
@@ -83,6 +114,10 @@ class PagerTransitionHolder(
         }
     }
 
+    /**
+     * Observes the status of the page list of the next/previous chapter. Whenever there's a new
+     * state, the pages container is cleaned up before setting the new state.
+     */
     private fun observeStatus(chapter: ReaderChapter) {
         statusSubscription?.unsubscribe()
         statusSubscription = chapter.stateObserver
@@ -98,6 +133,9 @@ class PagerTransitionHolder(
             }
     }
 
+    /**
+     * Sets the loading state on the pages container.
+     */
     private fun setLoading() {
         val progress = ProgressBar(context, null, android.R.attr.progressBarStyle)
 
@@ -110,10 +148,16 @@ class PagerTransitionHolder(
         pagesContainer.addView(textView)
     }
 
+    /**
+     * Sets the loaded state on the pages container.
+     */
     private fun setLoaded() {
         // No additional view is added
     }
 
+    /**
+     * Sets the error state on the pages container.
+     */
     private fun setError(error: Throwable) {
         val textView = AppCompatTextView(context).apply {
             wrapContent()
@@ -136,12 +180,9 @@ class PagerTransitionHolder(
         pagesContainer.addView(retryBtn)
     }
 
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        statusSubscription?.unsubscribe()
-        statusSubscription = null
-    }
-
+    /**
+     * Extension method to set layout params to wrap content on this view.
+     */
     private fun View.wrapContent() {
         layoutParams = ViewGroup.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
     }

@@ -18,14 +18,23 @@ import uy.kohesive.injekt.api.get
 import java.util.concurrent.PriorityBlockingQueue
 import java.util.concurrent.atomic.AtomicInteger
 
+/**
+ * Loader used to load chapters from an online source.
+ */
 class HttpPageLoader(
         private val chapter: ReaderChapter,
         private val source: HttpSource,
         private val chapterCache: ChapterCache = Injekt.get()
 ) : PageLoader() {
 
+    /**
+     * A queue used to manage requests one by one while allowing priorities.
+     */
     private val queue = PriorityBlockingQueue<PriorityPage>()
 
+    /**
+     * Current active subscriptions.
+     */
     private val subscriptions = CompositeSubscription()
 
     init {
@@ -43,6 +52,25 @@ class HttpPageLoader(
     }
 
     /**
+     * Recycles this loader and the active subscriptions and queue.
+     */
+    override fun recycle() {
+        super.recycle()
+        subscriptions.unsubscribe()
+        queue.clear()
+
+        // Cache current page list progress for online chapters to allow a faster reopen
+        val pages = chapter.pages
+        if (pages != null) {
+            // TODO check compatibility with ReaderPage
+            Completable.fromAction { chapterCache.putPageListToCache(chapter.chapter, pages) }
+                .onErrorComplete()
+                .subscribeOn(Schedulers.io())
+                .subscribe()
+        }
+    }
+
+    /**
      * Returns an observable with the page list for a chapter. It tries to return the page list from
      * the local cache, otherwise fallbacks to network.
      */
@@ -51,12 +79,16 @@ class HttpPageLoader(
             .getPageListFromCache(chapter.chapter)
             .onErrorResumeNext { source.fetchPageList(chapter.chapter) }
             .map { pages ->
-                pages.map {
-                    ReaderPage(it.index, it.url, it.imageUrl)
+                pages.mapIndexed { index, page -> // Don't trust sources and use our own indexing
+                    ReaderPage(index, page.url, page.imageUrl)
                 }
             }
     }
 
+    /**
+     * Returns an observable that loads a page through the queue and listens to its result to
+     * emit new states. It handles re-enqueueing pages if they were evicted from the cache.
+     */
     override fun getPage(page: ReaderPage): Observable<Int> {
         return Observable.defer {
             val imageUrl = page.imageUrl
@@ -84,6 +116,9 @@ class HttpPageLoader(
         }
     }
 
+    /**
+     * Preloads the given [amount] of pages after the [currentPage] with a lower priority.
+     */
     private fun preloadNextPages(currentPage: ReaderPage, amount: Int) {
         val pageIndex = currentPage.index
         val pages = currentPage.chapter.pages ?: return
@@ -96,6 +131,9 @@ class HttpPageLoader(
         }
     }
 
+    /**
+     * Retries a page. This method is only called from user interaction on the viewer.
+     */
     override fun retryPage(page: ReaderPage) {
         if (page.status == Page.ERROR) {
             page.status = Page.QUEUE
@@ -103,22 +141,9 @@ class HttpPageLoader(
         queue.offer(PriorityPage(page, 2))
     }
 
-    override fun recycle() {
-        super.recycle()
-        subscriptions.unsubscribe()
-        queue.clear()
-
-        // Cache current page list progress for online chapters to allow a faster reopen
-        val pages = chapter.pages
-        if (pages != null) {
-            // TODO check compatibility with ReaderPage
-            Completable.fromAction { chapterCache.putPageListToCache(chapter.chapter, pages) }
-                .onErrorComplete()
-                .subscribeOn(Schedulers.io())
-                .subscribe()
-        }
-    }
-
+    /**
+     * Data class used to keep ordering of pages in order to maintain priority.
+     */
     private data class PriorityPage(
             val page: ReaderPage,
             val priority: Int

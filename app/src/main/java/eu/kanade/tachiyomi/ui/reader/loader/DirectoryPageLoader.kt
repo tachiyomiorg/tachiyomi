@@ -8,8 +8,15 @@ import rx.Observable
 import java.io.File
 import java.io.FileInputStream
 
+/**
+ * Loader used to load a chapter from a directory given on [file].
+ */
 class DirectoryPageLoader(val file: File) : PageLoader() {
 
+    /**
+     * Returns an observable containing the pages found on this directory ordered with a natural
+     * comparator.
+     */
     override fun getPages(): Observable<List<ReaderPage>> {
         val comparator = CaseInsensitiveSimpleNaturalComparator.getInstance<String>()
 
@@ -26,8 +33,11 @@ class DirectoryPageLoader(val file: File) : PageLoader() {
             .let { Observable.just(it) }
     }
 
+    /**
+     * Returns an observable that emits a ready state.
+     */
     override fun getPage(page: ReaderPage): Observable<Int> {
-        return Observable.just(Page.READY) // TODO maybe check if file still exists?
+        return Observable.just(Page.READY)
     }
 
 }

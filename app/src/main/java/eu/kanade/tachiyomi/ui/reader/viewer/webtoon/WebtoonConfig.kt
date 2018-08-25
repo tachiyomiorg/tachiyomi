@@ -8,6 +8,9 @@ import rx.subscriptions.CompositeSubscription
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
+/**
+ * Configuration used by webtoon viewers.
+ */
 class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) {
 
     private val subscriptions = CompositeSubscription()

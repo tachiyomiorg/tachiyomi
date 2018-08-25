@@ -7,12 +7,18 @@ import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import kotlinx.android.synthetic.main.reader_page_sheet.*
 
+/**
+ * Sheet to show when a page is long clicked.
+ */
 class ReaderPageSheet(
         private val activity: ReaderActivity,
         private val page: ReaderPage
 ) : BottomSheetDialog(activity) {
 
-    val view = activity.layoutInflater.inflate(R.layout.reader_page_sheet, null)
+    /**
+     * View used on this sheet.
+     */
+    private val view = activity.layoutInflater.inflate(R.layout.reader_page_sheet, null)
 
     init {
         setContentView(view)
@@ -22,6 +28,9 @@ class ReaderPageSheet(
         save_layout.setOnClickListener { save() }
     }
 
+    /**
+     * Sets the image of this page as the cover of the manga.
+     */
     private fun setAsCover() {
         if (page.status != Page.READY) return
 
@@ -36,11 +45,17 @@ class ReaderPageSheet(
             .show()
     }
 
+    /**
+     * Shares the image of this page with external apps.
+     */
     private fun share() {
         activity.shareImage(page)
         dismiss()
     }
 
+    /**
+     * Saves the image of this page on external storage.
+     */
     private fun save() {
         activity.saveImage(page)
         dismiss()
