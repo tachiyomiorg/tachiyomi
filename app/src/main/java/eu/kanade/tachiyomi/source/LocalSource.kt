@@ -1,15 +1,15 @@
 package eu.kanade.tachiyomi.source
 
 import android.content.Context
-import android.net.Uri
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.model.*
-import eu.kanade.tachiyomi.util.*
+import eu.kanade.tachiyomi.util.ChapterRecognition
+import eu.kanade.tachiyomi.util.DiskUtil
+import eu.kanade.tachiyomi.util.EpubFile
+import eu.kanade.tachiyomi.util.ImageUtil
 import junrar.Archive
 import junrar.rarfile.FileHeader
 import net.greypanther.natsort.CaseInsensitiveSimpleNaturalComparator
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
 import rx.Observable
 import timber.log.Timber
 import java.io.File
@@ -105,15 +105,11 @@ class LocalSource(private val context: Context) : CatalogueSource {
                 if (thumbnail_url == null) {
                     val chapters = fetchChapterList(this).toBlocking().first()
                     if (chapters.isNotEmpty()) {
-                        val uri = fetchPageList(chapters.last()).toBlocking().first().firstOrNull()?.uri
-                        if (uri != null) {
-                            val input = context.contentResolver.openInputStream(uri)
-                            try {
-                                val dest = updateCover(context, this, input)
-                                thumbnail_url = dest?.absolutePath
-                            } catch (e: Exception) {
-                                Timber.e(e)
-                            }
+                        try {
+                            val dest = updateCover(chapters.last(), this)
+                            thumbnail_url = dest?.absolutePath
+                        } catch (e: Exception) {
+                            Timber.e(e)
                         }
                     }
                 }
@@ -148,7 +144,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
                         ChapterRecognition.parseChapterNumber(this, manga)
                     }
                 }
-                .sortedWith(Comparator<SChapter> { c1, c2 ->
+                .sortedWith(Comparator { c1, c2 ->
                     val c = c2.chapter_number.compareTo(c1.chapter_number)
                     if (c == 0) comparator.compare(c2.name, c1.name) else c
                 })
@@ -157,13 +153,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
     }
 
     override fun fetchPageList(chapter: SChapter): Observable<List<Page>> {
-        // TODO remove this once the old reader is deleted
-        return Observable.just(getFormat(chapter).let { when (it) {
-            is Format.Directory -> loadDirectory(it.file)
-            is Format.Zip -> loadZip(it.file)
-            is Format.Rar -> loadRar(it.file)
-            is Format.Epub -> loadEpub(it.file)
-        }})
+        return Observable.error(Exception("Unused"))
     }
 
     private fun isSupportedFile(extension: String): Boolean {
@@ -188,121 +178,52 @@ class LocalSource(private val context: Context) : CatalogueSource {
             Format.Directory(file)
         } else if (extension.equals("zip", true) || extension.equals("cbz", true)) {
             Format.Zip(file)
-        } else if (extension.equals("epub", true)) {
-            Format.Epub(file)
         } else if (extension.equals("rar", true) || extension.equals("cbr", true)) {
             Format.Rar(file)
+        } else if (extension.equals("epub", true)) {
+            Format.Epub(file)
         } else {
             throw Exception("Invalid chapter format")
         }
     }
 
-    // TODO remove all these load* once the old reader is deleted
-
-    private fun loadDirectory(file: File): List<Page> {
+    private fun updateCover(chapter: SChapter, manga: SManga): File? {
+        val format = getFormat(chapter)
         val comparator = CaseInsensitiveSimpleNaturalComparator.getInstance<String>()
-        return file.listFiles()
-            .filter { !it.isDirectory && ImageUtil.isImage(it.name, { FileInputStream(it) }) }
-            .sortedWith(Comparator<File> { f1, f2 -> comparator.compare(f1.name, f2.name) })
-            .map { Uri.fromFile(it) }
-            .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
-    }
+        return when (format) {
+            is Format.Directory -> {
+                val entry = format.file.listFiles()
+                    .sortedWith(Comparator<File> { f1, f2 -> comparator.compare(f1.name, f2.name) })
+                    .find { !it.isDirectory && ImageUtil.isImage(it.name, { FileInputStream(it) }) }
 
-    private fun loadZip(file: File): List<Page> {
-        val comparator = CaseInsensitiveSimpleNaturalComparator.getInstance<String>()
-        return ZipFile(file).use { zip ->
-            zip.entries().toList()
-                .filter { !it.isDirectory && ImageUtil.isImage(it.name, { zip.getInputStream(it) }) }
-                .sortedWith(Comparator<ZipEntry> { f1, f2 -> comparator.compare(f1.name, f2.name) })
-                .map { Uri.parse("content://${ZipContentProvider.PROVIDER}${file.absolutePath}!/${it.name}") }
-                .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
-        }
-    }
-
-    private fun loadRar(file: File): List<Page> {
-        val comparator = CaseInsensitiveSimpleNaturalComparator.getInstance<String>()
-        return Archive(file).use { archive ->
-            archive.fileHeaders
-                .filter { !it.isDirectory && ImageUtil.isImage(it.fileNameString, { archive
-                    .getInputStream(it) }) }
-                .sortedWith(Comparator<FileHeader> { f1, f2 -> comparator.compare(f1.fileNameString, f2.fileNameString) })
-                .map { Uri.parse("content://${RarContentProvider.PROVIDER}${file.absolutePath}!-/${it.fileNameString}") }
-                .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
-        }
-    }
-
-    private fun loadEpub(file: File): List<Page> {
-        ZipFile(file).use { zip ->
-            val allEntries = zip.entries().toList()
-            val ref = getPackageHref(zip)
-            val doc = getPackageDocument(zip, ref)
-            val pages = getPagesFromDocument(doc)
-            val hrefs = getHrefMap(ref, allEntries.map { it.name })
-            return getImagesFromPages(zip, pages, hrefs)
-                .map { Uri.parse("content://${ZipContentProvider.PROVIDER}${file.absolutePath}!/$it") }
-                .mapIndexed { i, uri -> Page(i, uri = uri).apply { status = Page.READY } }
-        }
-    }
-
-    /**
-     * Returns the path to the package document.
-     */
-    private fun getPackageHref(zip: ZipFile): String {
-        val meta = zip.getEntry("META-INF/container.xml")
-        if (meta != null) {
-            val metaDoc = zip.getInputStream(meta).use { Jsoup.parse(it, null, "") }
-            val path = metaDoc.getElementsByTag("rootfile").first()?.attr("full-path")
-            if (path != null) {
-                return path
+                entry?.let { updateCover(context, manga, it.inputStream())}
             }
-        }
-        return "OEBPS/content.opf"
-    }
+            is Format.Zip -> {
+                ZipFile(format.file).use { zip ->
+                    val entry = zip.entries().toList()
+                        .sortedWith(Comparator<ZipEntry> { f1, f2 -> comparator.compare(f1.name, f2.name) })
+                        .find { !it.isDirectory && ImageUtil.isImage(it.name, { zip.getInputStream(it) }) }
 
-    /**
-     * Returns the package document where all the files are listed.
-     */
-    private fun getPackageDocument(zip: ZipFile, ref: String): Document {
-        val entry = zip.getEntry(ref)
-        return zip.getInputStream(entry).use { Jsoup.parse(it, null, "") }
-    }
+                    entry?.let { updateCover(context, manga, zip.getInputStream(it) )}
+                }
+            }
+            is Format.Rar -> {
+                Archive(format.file).use { archive ->
+                    val entry = archive.fileHeaders
+                        .sortedWith(Comparator<FileHeader> { f1, f2 -> comparator.compare(f1.fileNameString, f2.fileNameString) })
+                        .find { !it.isDirectory && ImageUtil.isImage(it.fileNameString, { archive.getInputStream(it) }) }
 
-    /**
-     * Returns all the pages from the epub.
-     */
-    private fun getPagesFromDocument(document: Document): List<String> {
-        val pages = document.select("manifest > item")
-            .filter { "application/xhtml+xml" == it.attr("media-type") }
-            .associateBy { it.attr("id") }
+                    entry?.let { updateCover(context, manga, archive.getInputStream(it) )}
+                }
+            }
+            is Format.Epub -> {
+                EpubFile(format.file).use { epub ->
+                    val entry = epub.getImagesFromPages()
+                        .firstOrNull()
+                        ?.let { epub.getEntry(it) }
 
-        val spine = document.select("spine > itemref").map { it.attr("idref") }
-        return spine.mapNotNull { pages[it] }.map { it.attr("href") }
-    }
-
-    /**
-     * Returns all the images contained in every page from the epub.
-     */
-    private fun getImagesFromPages(zip: ZipFile, pages: List<String>, hrefs: Map<String, String>): List<String> {
-        return pages.map { page ->
-            val entry = zip.getEntry(hrefs[page])
-            val document = zip.getInputStream(entry).use { Jsoup.parse(it, null, "") }
-            document.getElementsByTag("img").mapNotNull { hrefs[it.attr("src")] }
-        }.flatten()
-    }
-
-    /**
-     * Returns a map with a relative url as key and abolute url as path.
-     */
-    private fun getHrefMap(packageHref: String, entries: List<String>): Map<String, String> {
-        val lastSlashPos = packageHref.lastIndexOf('/')
-        if (lastSlashPos < 0) {
-            return entries.associateBy { it }
-        }
-        return entries.associateBy { entry ->
-            if (entry.isNotBlank() && entry.length > lastSlashPos) {
-                entry.substring(lastSlashPos + 1)
-            } else {
-                entry
+                    entry?.let { updateCover(context, manga, epub.getInputStream(it)) }
+                }
             }
         }
     }
