@@ -45,8 +45,11 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) :
         val source = item.source
         val results = item.results
 
-        // Set Title witch country code if available.
-        title.text = if (!source.lang.isEmpty()) "${source.name} (${source.lang})" else source.name
+        val titlePrefix = if (item.highlighted) "▶" else ""
+        val langSuffix = if (source.lang.isNotEmpty()) " (${source.lang})" else ""
+
+        // Set Title with country code if available.
+        title.text = titlePrefix + source.name + langSuffix
 
         when {
             results == null -> {
@@ -93,5 +96,4 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) :
 
         return null
     }
-
 }

@@ -9,9 +9,11 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 /**
  * Item that contains search result information.
  *
- * @param source contains information about search result.
+ * @param source the source for the search results.
+ * @param results the search results.
+ * @param highlighted whether this search item should be highlighted/marked in the catalogue search view.
  */
-class CatalogueSearchItem(val source: CatalogueSource, val results: List<CatalogueSearchCardItem>?)
+class CatalogueSearchItem(val source: CatalogueSource, val results: List<CatalogueSearchCardItem>?, val highlighted: Boolean = false)
     : AbstractFlexibleItem<CatalogueSearchHolder>() {
 
     /**

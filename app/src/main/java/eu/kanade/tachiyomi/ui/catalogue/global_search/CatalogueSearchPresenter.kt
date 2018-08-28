@@ -98,7 +98,14 @@ open class CatalogueSearchPresenter(
     }
 
     /**
-     * Initiates a search for mnaga per catalogue.
+     * Creates a catalogue search item
+     */
+    protected open fun createCatalogueSearchItem(source: CatalogueSource, results: List<CatalogueSearchCardItem>?): CatalogueSearchItem {
+        return CatalogueSearchItem(source, results)
+    }
+
+    /**
+     * Initiates a search for manga per catalogue.
      *
      * @param query query on which to search.
      */
@@ -113,7 +120,7 @@ open class CatalogueSearchPresenter(
         initializeFetchImageSubscription()
 
         // Create items with the initial state
-        val initialItems = sources.map { CatalogueSearchItem(it, null) }
+        val initialItems = sources.map { createCatalogueSearchItem(it, null) }
         var items = initialItems
 
         fetchSourcesSubscription?.unsubscribe()
@@ -125,7 +132,7 @@ open class CatalogueSearchPresenter(
                             .map { it.mangas.take(10) } // Get at most 10 manga from search result.
                             .map { it.map { networkToLocalManga(it, source.id) } } // Convert to local manga.
                             .doOnNext { fetchImage(it, source) } // Load manga covers.
-                            .map { CatalogueSearchItem(source, it.map { CatalogueSearchCardItem(it) }) }
+                            .map { createCatalogueSearchItem(source, it.map { CatalogueSearchCardItem(it) }) }
                 }, 5)
                 .observeOn(AndroidSchedulers.mainThread())
                 // Update matching source with the obtained results
