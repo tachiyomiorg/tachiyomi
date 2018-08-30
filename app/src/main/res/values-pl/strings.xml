@@ -463,4 +463,14 @@ Spróbuj zmienić dekoder lub skorzystaj z jednej z opcji poniżej</string>
     <string name="migrate">Migruj</string>
     <string name="migrating">Migrowanie…</string>
 
+    <string name="pager_viewer">Widok stron</string>
+    <string name="source_not_installed">Nie zainstalowano źródła %1$s</string>
+
+    <string name="repeating">Czytane ponownie</string>
+    <string name="track_status">Status</string>
+    <string name="track_start_date">Rozpoczęto</string>
+    <string name="track_type">Typ</string>
+    <string name="track_author">Autor</string>
+    <string name="url_not_set">URL mangi nie jest ustawiony, kliknij tytuł i wybierz mangę jeszcze raz</string>
+
     </resources>
