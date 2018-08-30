@@ -47,7 +47,7 @@
     <string name="action_show_unread">Non letti</string>
     <string name="action_show_downloaded">Scaricati</string>
     <string name="action_next_unread">Prossimo non letto</string>
-    <string name="action_start">Inizia</string>
+    <string name="action_start">Avvia</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Pausa</string>
     <string name="action_clear">Azzera</string>
