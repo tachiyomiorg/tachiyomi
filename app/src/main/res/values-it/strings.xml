@@ -351,7 +351,7 @@
     <string name="information_no_downloads">Nessun download</string>
     <string name="information_no_recent">Non ci sono capitoli più recenti</string>
     <string name="information_no_recent_manga">Non ci sono manga letti di recente</string>
-    <string name="information_empty_library">Libreria vuota</string>
+    <string name="information_empty_library">Libreria vuota, aggiungi una serie dai Cataloghi.</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Downloader</string>
