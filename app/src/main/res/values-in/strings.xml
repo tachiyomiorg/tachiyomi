@@ -148,7 +148,7 @@
     <string name="left_to_right_viewer">Kiri ke kanan</string>
     <string name="right_to_left_viewer">Kanan ke kiri</string>
     <string name="vertical_viewer">Vertikal</string>
-    <string name="webtoon_viewer">Kartun web</string>
+    <string name="webtoon_viewer">Webtoon</string>
     <string name="pref_image_decoder">Pengurai gambar</string>
     <string name="pref_image_scale_type">Tipe skala</string>
     <string name="scale_type_fit_screen">Pas layar</string>
@@ -460,5 +460,15 @@
     <string name="migrate">Migrasi</string>
     <string name="copy">Salin</string>
     <string name="migrating">Memindah…</string>
+
+    <string name="pager_viewer">Halaman</string>
+    <string name="source_not_installed">Sumber tidak terpasang: %1$s</string>
+
+    <string name="repeating">Baca ulang</string>
+    <string name="track_status">Status</string>
+    <string name="track_start_date">Dimulai</string>
+    <string name="track_type">Tipe</string>
+    <string name="track_author">Penulis</string>
+    <string name="url_not_set">Url Manga belum siap, silahkan klik judul dan pilih manga lagi</string>
 
     </resources>
