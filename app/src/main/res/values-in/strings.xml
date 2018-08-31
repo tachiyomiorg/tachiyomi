@@ -143,7 +143,7 @@
     <string name="pref_reader_theme">Warna latar</string>
     <string name="white_background">Putih</string>
     <string name="black_background">Hitam</string>
-    <string name="pref_viewer_type">Bawaan penampil</string>
+    <string name="pref_viewer_type">Penampil bawaan</string>
     <string name="default_viewer">Bawaan</string>
     <string name="left_to_right_viewer">Kiri ke kanan</string>
     <string name="right_to_left_viewer">Kanan ke kiri</string>
