@@ -2,10 +2,9 @@ package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
-import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.TextView
+import android.widget.LinearLayout
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
@@ -90,10 +89,8 @@ class WebtoonAdapter(val viewer: WebtoonViewer) : RecyclerView.Adapter<RecyclerV
                 WebtoonPageHolder(view, viewer)
             }
             TRANSITION_VIEW -> {
-                val view = TextView(parent.context).apply {
-                    gravity = Gravity.CENTER
-                }
-                WebtoonTransitionHolder(view)
+                val view = LinearLayout(parent.context)
+                WebtoonTransitionHolder(view, viewer)
             }
             else -> error("Unknown view type")
         }
@@ -111,11 +108,12 @@ class WebtoonAdapter(val viewer: WebtoonViewer) : RecyclerView.Adapter<RecyclerV
     }
 
     /**
-     * Recycles an existing view [holder].
+     * Recycles an existing view [holder] before adding it to the view pool.
      */
     override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
-        if (holder is WebtoonPageHolder) {
-            holder.recycle()
+        when (holder) {
+            is WebtoonPageHolder -> holder.recycle()
+            is WebtoonTransitionHolder -> holder.recycle()
         }
     }
 

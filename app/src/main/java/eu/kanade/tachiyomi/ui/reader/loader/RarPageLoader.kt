@@ -8,6 +8,10 @@ import junrar.rarfile.FileHeader
 import net.greypanther.natsort.CaseInsensitiveSimpleNaturalComparator
 import rx.Observable
 import java.io.File
+import java.io.InputStream
+import java.io.PipedInputStream
+import java.io.PipedOutputStream
+import java.util.concurrent.Executors
 
 /**
  * Loader used to load a chapter from a .rar or .cbr file.
@@ -20,11 +24,17 @@ class RarPageLoader(file: File) : PageLoader() {
     private val archive = Archive(file)
 
     /**
+     * Pool for copying compressed files to an input stream.
+     */
+    private val pool = Executors.newFixedThreadPool(1)
+
+    /**
      * Recycles this loader and the open archive.
      */
     override fun recycle() {
         super.recycle()
         archive.close()
+        pool.shutdown()
     }
 
     /**
@@ -38,7 +48,8 @@ class RarPageLoader(file: File) : PageLoader() {
             .filter { !it.isDirectory && ImageUtil.isImage(it.fileNameString) { archive.getInputStream(it) } }
             .sortedWith(Comparator<FileHeader> { f1, f2 -> comparator.compare(f1.fileNameString, f2.fileNameString) })
             .mapIndexed { i, header ->
-                val streamFn = { archive.getInputStream(header) }
+                val streamFn = { getStream(header) }
+
                 ReaderPage(i).apply {
                     stream = streamFn
                     status = Page.READY
@@ -56,6 +67,23 @@ class RarPageLoader(file: File) : PageLoader() {
         } else {
             Page.READY
         })
+    }
+
+    /**
+     * Returns an input stream for the given [header].
+     */
+    private fun getStream(header: FileHeader): InputStream {
+        val pipeIn = PipedInputStream()
+        val pipeOut = PipedOutputStream(pipeIn)
+        pool.execute {
+            try {
+                pipeOut.use {
+                    archive.extractFile(header, it)
+                }
+            } catch (e: Exception) {
+            }
+        }
+        return pipeIn
     }
 
 }

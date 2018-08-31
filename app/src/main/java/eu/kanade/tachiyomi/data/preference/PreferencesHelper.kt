@@ -59,8 +59,6 @@ class PreferencesHelper(val context: Context) {
 
     fun imageScaleType() = rxPrefs.getInteger(Keys.imageScaleType, 1)
 
-    fun imageDecoder() = rxPrefs.getInteger(Keys.imageDecoder, 0)
-
     fun zoomStart() = rxPrefs.getInteger(Keys.zoomStart, 1)
 
     fun readerTheme() = rxPrefs.getInteger(Keys.readerTheme, 0)

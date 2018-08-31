@@ -23,9 +23,7 @@ import com.davemorrissey.labs.subscaleview.ImageSource
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.glide.GlideApp
-import eu.kanade.tachiyomi.data.glide.GlideInputStream
 import eu.kanade.tachiyomi.source.model.Page
-import eu.kanade.tachiyomi.ui.base.holder.BaseViewHolder
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.viewer.ReaderProgressBar
 import eu.kanade.tachiyomi.util.ImageUtil
@@ -36,6 +34,7 @@ import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import java.io.InputStream
 import java.util.concurrent.TimeUnit
 
 /**
@@ -47,13 +46,8 @@ import java.util.concurrent.TimeUnit
  */
 class WebtoonPageHolder(
         private val frame: FrameLayout,
-        private val viewer: WebtoonViewer
-) : BaseViewHolder(frame) {
-
-    /**
-     * Context getter because it's used often.
-     */
-    private val context get() = frame.context
+        viewer: WebtoonViewer
+) : WebtoonBaseHolder(frame, viewer) {
 
     /**
      * Loading progress bar to indicate the current progress.
@@ -118,10 +112,7 @@ class WebtoonPageHolder(
     }
 
     /**
-     * Method called from [WebtoonAdapter.onBindViewHolder]. It updates the data for this
-     * holder with the given page.
-     *
-     * @param page the page to bind.
+     * Binds the given [page] with this view holder, subscribing to its state.
      */
     fun bind(page: ReaderPage) {
         this.page = page
@@ -131,7 +122,7 @@ class WebtoonPageHolder(
     /**
      * Called when the view is recycled and added to the view pool.
      */
-    fun recycle() {
+    override fun recycle() {
         unsubscribeStatus()
         unsubscribeProgress()
         unsubscribeReadImageHeader()
@@ -204,21 +195,6 @@ class WebtoonPageHolder(
     }
 
     /**
-     * Adds a subscription to a list of subscriptions that will automatically unsubscribe when the
-     * activity or the reader is destroyed.
-     */
-    private fun addSubscription(subscription: Subscription?) {
-        viewer.subscriptions.add(subscription)
-    }
-
-    /**
-     * Removes a subscription from the list of subscriptions.
-     */
-    private fun removeSubscription(subscription: Subscription?) {
-        subscription?.let { viewer.subscriptions.remove(it) }
-    }
-
-    /**
      * Unsubscribes from the status subscription.
      */
     private fun unsubscribeStatus() {
@@ -285,21 +261,31 @@ class WebtoonPageHolder(
         unsubscribeReadImageHeader()
         val streamFn = page?.stream ?: return
 
+        var openStream: InputStream? = null
         readImageHeaderSubscription = Observable
-            .fromCallable { ImageUtil.isAnimatedImage(streamFn) }
+            .fromCallable {
+                val stream = streamFn().buffered(16)
+                openStream = stream
+
+                ImageUtil.findImageType(stream) == ImageUtil.ImageType.GIF
+            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { isAnimatedImage ->
-                if (!isAnimatedImage) {
+            .doOnNext { isAnimated ->
+                if (!isAnimated) {
                     val subsamplingView = initSubsamplingImageView()
                     subsamplingView.visible()
-                    subsamplingView.setImage(ImageSource.provider(streamFn))
+                    subsamplingView.setImage(ImageSource.inputStream(openStream!!))
                 } else {
                     val imageView = initImageView()
                     imageView.visible()
-                    imageView.setImage(GlideInputStream(streamFn))
+                    imageView.setImage(openStream!!)
                 }
             }
+            // Keep the Rx stream alive to close the input stream only when unsubscribed
+            .flatMap { Observable.never<Unit>() }
+            .doOnUnsubscribe { openStream?.close() }
+            .subscribe({}, {})
 
         addSubscription(readImageHeaderSubscription)
     }
@@ -360,8 +346,6 @@ class WebtoonPageHolder(
             setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_FIT_WIDTH)
             setMinimumDpi(90)
             setMinimumTileDpi(180)
-            setRegionDecoderClass(config.regionDecoder)
-            setBitmapDecoderClass(config.bitmapDecoder)
             setCropBorders(config.imageCropBorders)
             setOnImageEventListener(object : SubsamplingScaleImageView.DefaultOnImageEventListener() {
                 override fun onReady() {
@@ -487,7 +471,7 @@ class WebtoonPageHolder(
     /**
      * Extension method to set a [stream] into this ImageView.
      */
-    private fun ImageView.setImage(stream: GlideInputStream) {
+    private fun ImageView.setImage(stream: InputStream) {
         GlideApp.with(this)
             .load(stream)
             .skipMemoryCache(true)

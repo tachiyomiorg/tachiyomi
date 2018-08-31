@@ -25,7 +25,6 @@ import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import com.github.chrisbanes.photoview.PhotoView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.glide.GlideApp
-import eu.kanade.tachiyomi.data.glide.GlideInputStream
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.viewer.ReaderProgressBar
@@ -39,6 +38,7 @@ import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import java.io.InputStream
 import java.util.concurrent.TimeUnit
 
 /**
@@ -134,7 +134,7 @@ class PagerPageHolder(
     private fun observeProgress() {
         progressSubscription?.unsubscribe()
 
-        progressSubscription = Observable.interval(32, TimeUnit.MILLISECONDS) // 30fps
+        progressSubscription = Observable.interval(100, TimeUnit.MILLISECONDS)
             .map { page.progress }
             .distinctUntilChanged()
             .onBackpressureLatest()
@@ -229,17 +229,27 @@ class PagerPageHolder(
         unsubscribeReadImageHeader()
         val streamFn = page.stream ?: return
 
+        var openStream: InputStream? = null
         readImageHeaderSubscription = Observable
-            .fromCallable { ImageUtil.isAnimatedImage(streamFn) }
+            .fromCallable {
+                val stream = streamFn().buffered(16)
+                openStream = stream
+
+                ImageUtil.findImageType(stream) == ImageUtil.ImageType.GIF
+            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { isAnimatedImage ->
-                if (!isAnimatedImage) {
-                    initSubsamplingImageView().setImage(ImageSource.provider(streamFn))
+            .doOnNext { isAnimated ->
+                if (!isAnimated) {
+                    initSubsamplingImageView().setImage(ImageSource.inputStream(openStream!!))
                 } else {
-                    initImageView().setImage(GlideInputStream(streamFn))
+                    initImageView().setImage(openStream!!)
                 }
             }
+            // Keep the Rx stream alive to close the input stream only when unsubscribed
+            .flatMap { Observable.never<Unit>() }
+            .doOnUnsubscribe { openStream?.close() }
+            .subscribe({}, {})
     }
 
     /**
@@ -296,8 +306,6 @@ class PagerPageHolder(
             setMinimumScaleType(config.imageScaleType)
             setMinimumDpi(90)
             setMinimumTileDpi(180)
-            setRegionDecoderClass(config.regionDecoder)
-            setBitmapDecoderClass(config.bitmapDecoder)
             setCropBorders(config.imageCropBorders)
             setOnImageEventListener(object : SubsamplingScaleImageView.DefaultOnImageEventListener() {
                 override fun onReady() {
@@ -423,7 +431,7 @@ class PagerPageHolder(
     /**
      * Extension method to set a [stream] into this ImageView.
      */
-    private fun ImageView.setImage(stream: GlideInputStream) {
+    private fun ImageView.setImage(stream: InputStream) {
         GlideApp.with(this)
             .load(stream)
             .skipMemoryCache(true)

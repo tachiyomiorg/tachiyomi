@@ -78,25 +78,6 @@
         app:layout_constraintRight_toRightOf="@id/spinner_end" />
 
     <TextView
-        android:id="@+id/image_decoder_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_image_decoder"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/verticalcenter"
-        app:layout_constraintBaseline_toBaselineOf="@id/image_decoder"/>
-
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/image_decoder"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:entries="@array/image_decoders"
-        app:layout_constraintTop_toBottomOf="@id/rotation_mode"
-        app:layout_constraintLeft_toRightOf="@id/verticalcenter"
-        app:layout_constraintRight_toRightOf="@id/spinner_end" />
-
-    <TextView
         android:id="@+id/background_color_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -111,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:entries="@array/reader_themes"
-        app:layout_constraintTop_toBottomOf="@id/image_decoder"
+        app:layout_constraintTop_toBottomOf="@id/rotation_mode"
         app:layout_constraintLeft_toRightOf="@id/verticalcenter"
         app:layout_constraintRight_toRightOf="@id/spinner_end" />
 

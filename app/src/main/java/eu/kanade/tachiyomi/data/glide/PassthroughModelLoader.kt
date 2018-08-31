@@ -11,12 +11,10 @@ import com.bumptech.glide.signature.ObjectKey
 import java.io.IOException
 import java.io.InputStream
 
-class GlideInputStream(val fn: () -> InputStream)
-
-class PassthroughModelLoader : ModelLoader<GlideInputStream, InputStream> {
+class PassthroughModelLoader : ModelLoader<InputStream, InputStream> {
 
     override fun buildLoadData(
-            model: GlideInputStream,
+            model: InputStream,
             width: Int,
             height: Int,
             options: Options
@@ -24,13 +22,11 @@ class PassthroughModelLoader : ModelLoader<GlideInputStream, InputStream> {
         return ModelLoader.LoadData(ObjectKey(model), Fetcher(model))
     }
 
-    override fun handles(model: GlideInputStream): Boolean {
+    override fun handles(model: InputStream): Boolean {
         return true
     }
 
-    class Fetcher(private val streamFn: GlideInputStream) : DataFetcher<InputStream> {
-
-        private var stream: InputStream? = null
+    class Fetcher(private val stream: InputStream) : DataFetcher<InputStream> {
 
         override fun getDataClass(): Class<InputStream> {
             return InputStream::class.java
@@ -38,7 +34,7 @@ class PassthroughModelLoader : ModelLoader<GlideInputStream, InputStream> {
 
         override fun cleanup() {
             try {
-                stream?.close()
+                stream.close()
             } catch (e: IOException) {
                 // Do nothing
             }
@@ -56,7 +52,6 @@ class PassthroughModelLoader : ModelLoader<GlideInputStream, InputStream> {
                 priority: Priority,
                 callback: DataFetcher.DataCallback<in InputStream>
         ) {
-            stream = streamFn.fn()
             callback.onDataReady(stream)
         }
 
@@ -65,11 +60,11 @@ class PassthroughModelLoader : ModelLoader<GlideInputStream, InputStream> {
     /**
      * Factory class for creating [PassthroughModelLoader] instances.
      */
-    class Factory : ModelLoaderFactory<GlideInputStream, InputStream> {
+    class Factory : ModelLoaderFactory<InputStream, InputStream> {
 
         override fun build(
                 multiFactory: MultiModelLoaderFactory
-        ): ModelLoader<GlideInputStream, InputStream> {
+        ): ModelLoader<InputStream, InputStream> {
             return PassthroughModelLoader()
         }
 

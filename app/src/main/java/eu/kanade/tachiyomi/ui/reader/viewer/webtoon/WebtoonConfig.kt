@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
-import com.davemorrissey.labs.subscaleview.decoder.*
 import com.f2prateek.rx.preferences.Preference
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.addTo
@@ -32,12 +31,6 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) {
     var doubleTapAnimDuration = 500
         private set
 
-    var bitmapDecoder: Class<out ImageDecoder> = IImageDecoder::class.java
-        private set
-
-    var regionDecoder: Class<out ImageRegionDecoder> = IImageRegionDecoder::class.java
-        private set
-
     init {
         preferences.readWithTapping()
             .register({ tappingEnabled = it })
@@ -47,9 +40,6 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) {
 
         preferences.doubleTapAnimSpeed()
             .register({ doubleTapAnimDuration = it })
-
-        preferences.imageDecoder()
-            .register({ decoderFromPreference(it) })
 
         preferences.readWithVolumeKeys()
             .register({ volumeKeysEnabled = it })
@@ -73,21 +63,6 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) {
             .doOnNext(onChanged)
             .subscribe()
             .addTo(subscriptions)
-    }
-
-    private fun decoderFromPreference(value: Int) {
-        when (value) {
-            // Image decoder
-            0 -> {
-                bitmapDecoder = IImageDecoder::class.java
-                regionDecoder = IImageRegionDecoder::class.java
-            }
-            // Skia decoder
-            2 -> {
-                bitmapDecoder = SkiaImageDecoder::class.java
-                regionDecoder = SkiaImageRegionDecoder::class.java
-            }
-        }
     }
 
 }

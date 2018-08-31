@@ -55,14 +55,6 @@ class SettingsReaderController : SettingsController() {
             summary = "%s"
         }
         intListPreference {
-            key = Keys.imageDecoder
-            titleRes = R.string.pref_image_decoder
-            entries = arrayOf("Image", "Rapid", "Skia")
-            entryValues = arrayOf("0", "1", "2")
-            defaultValue = "0"
-            summary = "%s"
-        }
-        intListPreference {
             key = Keys.doubleTapAnimationSpeed
             titleRes = R.string.pref_double_tap_anim_speed
             entries = arrayOf(context.getString(R.string.double_tap_anim_speed_0), context.getString(R.string.double_tap_anim_speed_fast), context.getString(R.string.double_tap_anim_speed_normal))

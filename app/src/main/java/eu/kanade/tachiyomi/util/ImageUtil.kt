@@ -19,35 +19,42 @@ object ImageUtil {
     }
 
     fun findImageType(openStream: () -> InputStream): ImageType? {
-        try {
-            openStream().buffered().use {
-                val bytes = ByteArray(8)
-                it.mark(bytes.size)
-                val length = it.read(bytes, 0, bytes.size)
-                it.reset()
-                if (length == -1)
-                    return null
+        return openStream().use { findImageType(it) }
+    }
 
-                if (bytes.compareWith(charByteArrayOf(0xFF, 0xD8, 0xFF))) {
-                    return ImageType.JPG
-                }
-                if (bytes.compareWith(charByteArrayOf(0x89, 0x50, 0x4E, 0x47))) {
-                    return ImageType.PNG
-                }
-                if (bytes.compareWith("GIF8".toByteArray())) {
-                    return ImageType.GIF
-                }
-                if (bytes.compareWith("RIFF".toByteArray()) || bytes.compareWith("WEBP".toByteArray(), 4)) {
-                    return ImageType.WEBP
-                }
+    fun findImageType(stream: InputStream): ImageType? {
+        try {
+            val bytes = ByteArray(8)
+
+            val length = if (stream.markSupported()) {
+                stream.mark(bytes.size)
+                stream.read(bytes, 0, bytes.size).also { stream.reset() }
+            } else {
+                stream.read(bytes, 0, bytes.size)
+            }
+
+            if (length == -1)
+                return null
+
+            if (bytes.compareWith(charByteArrayOf(0xFF, 0xD8, 0xFF))) {
+                return ImageType.JPG
+            }
+            if (bytes.compareWith(charByteArrayOf(0x89, 0x50, 0x4E, 0x47))) {
+                return ImageType.PNG
+            }
+            if (bytes.compareWith("GIF8".toByteArray())) {
+                return ImageType.GIF
+            }
+            if (bytes.compareWith("RIFF".toByteArray())) {
+                return ImageType.WEBP
             }
         } catch(e: Exception) {
         }
         return null
     }
 
-    private fun ByteArray.compareWith(magic: ByteArray, offset: Int = 0): Boolean {
-        for (i in offset until magic.size) {
+    private fun ByteArray.compareWith(magic: ByteArray): Boolean {
+        for (i in 0 until magic.size) {
             if (this[i] != magic[i]) return false
         }
         return true
@@ -59,10 +66,6 @@ object ImageUtil {
                 set(i, bytes[i].toByte())
             }
         }
-    }
-
-    fun isAnimatedImage(openStream: (() -> InputStream)): Boolean {
-        return findImageType(openStream) == ImageType.GIF
     }
 
     enum class ImageType(val mime: String, val extension: String) {

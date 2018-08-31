@@ -34,7 +34,7 @@ class ChapterLoader(
             .doOnNext { chapter.state = ReaderChapter.State.Loading }
             .observeOn(Schedulers.io())
             .flatMap {
-                Timber.w("Loading pages for ${chapter.chapter.name}")
+                Timber.d("Loading pages for ${chapter.chapter.name}")
 
                 val loader = getPageLoader(it)
                 chapter.pageLoader = loader

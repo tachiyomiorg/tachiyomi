@@ -31,8 +31,6 @@ object PreferenceKeys {
 
     const val imageScaleType = "pref_image_scale_type_key"
 
-    const val imageDecoder = "image_decoder"
-
     const val zoomStart = "pref_zoom_start_key"
 
     const val readerTheme = "pref_reader_theme_key"

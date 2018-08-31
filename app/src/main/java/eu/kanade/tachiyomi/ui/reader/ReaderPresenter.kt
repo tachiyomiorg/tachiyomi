@@ -115,6 +115,7 @@ class ReaderPresenter(
         if (currentChapters != null) {
             currentChapters.unref()
             saveChapterProgress(currentChapters.currChapter)
+            saveChapterHistory(currentChapters.currChapter)
         }
     }
 

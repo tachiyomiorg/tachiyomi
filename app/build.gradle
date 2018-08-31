@@ -102,7 +102,7 @@ android {
 dependencies {
 
     // Modified dependencies
-    implementation 'com.github.inorichi:subsampling-scale-image-view:4d0c87d'
+    implementation('com.github.inorichi:subsampling-scale-image-view:caad3e4')
     implementation 'com.github.inorichi:junrar-android:634c1f5'
 
     // Android support library

@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
-import com.davemorrissey.labs.subscaleview.decoder.*
 import com.f2prateek.rx.preferences.Preference
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.addTo
@@ -41,12 +40,6 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
     var doubleTapAnimDuration = 500
         private set
 
-    var bitmapDecoder: Class<out ImageDecoder> = IImageDecoder::class.java
-        private set
-
-    var regionDecoder: Class<out ImageRegionDecoder> = IImageRegionDecoder::class.java
-        private set
-
     init {
         preferences.readWithTapping()
             .register({ tappingEnabled = it })
@@ -65,9 +58,6 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
 
         preferences.doubleTapAnimSpeed()
             .register({ doubleTapAnimDuration = it })
-
-        preferences.imageDecoder()
-            .register({ decoderFromPreference(it) })
 
         preferences.readWithVolumeKeys()
             .register({ volumeKeysEnabled = it })
@@ -91,21 +81,6 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
             .doOnNext(onChanged)
             .subscribe()
             .addTo(subscriptions)
-    }
-
-    private fun decoderFromPreference(value: Int) {
-        when (value) {
-            // Image decoder
-            0 -> {
-                bitmapDecoder = IImageDecoder::class.java
-                regionDecoder = IImageRegionDecoder::class.java
-            }
-            // Skia decoder
-            2 -> {
-                bitmapDecoder = SkiaImageDecoder::class.java
-                regionDecoder = SkiaImageRegionDecoder::class.java
-            }
-        }
     }
 
     private fun zoomTypeFromPreference(value: Int) {
