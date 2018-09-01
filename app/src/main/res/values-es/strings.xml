@@ -460,4 +460,16 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="channel_downloader">Descargador</string>
 <string name="information_empty_category">No tienes categorías. Toca el botón más para crear una y organizar tu librería.</string>
 
+    <string name="label_migration">Migración de fuente</string>
+    <string name="label_extensions">Extensiones</string>
+    <string name="label_extension_info">"Información de extensión "</string>
+
+
+    <string name="ext_details">Detalles</string>
+    <string name="ext_update">Actualizar</string>
+    <string name="ext_install">Instalar</string>
+    <string name="ext_pending">Pendiente</string>
+    <string name="ext_downloading">Descargando</string>
+    <string name="ext_installing">Instalando</string>
+    <string name="ext_installed">Instalado</string>
     </resources>
