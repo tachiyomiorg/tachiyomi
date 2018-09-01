@@ -9,7 +9,7 @@
   <item android:top="1dp">
     <shape
       android:shape="rectangle">
-      <solid android:color="@android:color/white"/>
+        <solid android:color="?attr/dialogColor" />
     </shape>
   </item>
 </layer-list>

@@ -1,35 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!--============-->
     <!--Theme Colors-->
     <!--============-->
     <!-- Default -->
     <color name="colorPrimary">#54759E</color>
-    <color name="colorPrimaryDark">#244a6f</color>
-    <color name="colorPrimaryLight">#84a4cf</color>
-    <color name="colorAccent">#9e7d54</color>
-    <color name="colorDivider">@color/md_black_1000_12</color>
+    <color name="colorPrimaryDark">#244A6F</color>
+    <color name="colorPrimaryLight">#84A4CF</color>
+    <color name="colorAccent">@color/cstm_accent_tachiyomi</color>
     <color name="colorRipple">@color/md_black_1000_12</color>
     <color name="colorDialog">@color/md_white_1000</color>
-    <color name="colorBackground">@color/md_grey_50</color>
-    <color name="colorStatusBar">@color/md_grey_300</color>
-    <color name="colorAppBar">@color/md_grey_100</color>
-    <color name="colorSelector">@color/md_blue_A400_38</color>
-
 
     <!-- Dark -->
     <color name="colorDarkPrimary">@color/md_grey_900</color>
     <color name="colorDarkPrimaryDark">#1C1C1D</color>
     <color name="colorAccentDark">@color/md_grey_800</color>
+    <color name="colorDarkRipple">@color/md_white_1000_20</color>
+    <color name="colorDarkDialog">@color/md_grey_900</color>
 
     <!-- AMOLED -->
     <color name="colorAmoledPrimary">@color/md_black_1000</color>
+    <color name="colorAmoledDialog">@color/cstm_dark_primary_dark</color>
 
     <!--==============-->
     <!-- Widget Colors-->
     <!--==============-->
     <!-- Badge -->
+    <color name="colorBadgeUnread">@color/cstm_accent_tachiyomi</color>
+    <color name="colorBadgeDownload">@color/md_red_500</color>
 
     <!--=============-->
     <!-- Text Colors -->
@@ -45,68 +43,38 @@
     <color name="textColorPrimaryInverse">@color/md_white_1000</color>
     <color name="textColorSecondaryInverse">@color/md_white_1000_70</color>
     <color name="textColorHintInverse">@color/md_white_1000_50</color>
+    <color name="textColorIconInverse">@color/md_white_1000_12</color>
 
-
-    <!-- Dark Theme -->
-
-
-    <color name="dividerDark">@android:color/transparent</color>
-    <color name="rippleColorDark">@color/md_white_1000_20</color>
-    <color name="colorDarkDialog">@color/md_grey_900</color>
-    <color name="colorAmoledDialog">@color/cstm_dark_primary_dark</color>
-
-    <color name="statusBarDark">@color/md_black_1000</color>
-    <color name="appBarDark">@color/md_grey_900</color>
-    <color name="backgroundDark">@color/colorDarkPrimaryDark</color>
-    <color name="dialogDark">@color/colorDarkPrimary</color>
-    <color name="dialog_amoled">@color/colorDarkPrimaryDark</color>
-    <color name="colorDarkRipple">@color/md_white_1000_20</color>
-
-    <color name="selectorColorDark">@color/md_blue_A200_50</color>
-    <color name="iconColorDark">@color/md_white_1000_54</color>
-
-    <!-- Reader Theme -->
-    <color name="pageNumberBackgroundLight">@color/md_grey_50_75</color>
-    <color name="pageNumberBackgroundDark">@color/md_grey_900_75</color>
+    <!-- ================================ -->
+    <!-- Note: Only call from colors.xml  -->
+    <!-- ================================ -->
 
     <!-- Text Colors -->
+    <!-- Black -->
     <color name="md_black_1000_87">#DE000000</color>
     <color name="md_black_1000_54">#8A000000</color>
     <color name="md_black_1000_38">#61000000</color>
     <color name="md_black_1000_12">#1F000000</color>
 
+    <!-- White -->
     <color name="md_white_1000">#FFFFFFFF</color>
     <color name="md_white_1000_70">#B3FFFFFF</color>
-    <color name="md_white_1000_54">#8AFFFFFF</color>
     <color name="md_white_1000_50">#80FFFFFF</color>
     <color name="md_white_1000_20">#33FFFFFF</color>
     <color name="md_white_1000_12">#1FFFFFFF</color>
 
     <!-- Material Design Colors -->
+    <!-- Black -->
     <color name="md_black_1000">#000000</color>
 
-    <color name="md_grey_50">#FAFAFA</color>
-    <color name="md_grey_50_75">#BFFAFAFA</color>
-    <color name="md_grey_100">#F5F5F5</color>
-    <color name="md_grey_300">#E0E0E0</color>
+    <!-- Grey -->
     <color name="md_grey_800">#424242</color>
     <color name="md_grey_900">#212121</color>
-    <color name="md_grey_900_75">#BF212121</color>
 
-    <color name="md_blue_A200">#448AFF</color>
-    <color name="md_blue_A200_50">#80448AFF</color>
-
-    <color name="md_blue_A400">#42a5f5</color>
-    <color name="md_blue_A400_38">#612979FF</color>
-
-    <color name="md_blue_grey_900">#263238</color>
-    <color name="md_blue_grey_800">#37474F</color>
-
+    <!-- Red -->
     <color name="md_red_500">#F44336</color>
 
-    <color name="md_teal_500">#009688</color>
-
+    <!--Tachiyomi Custom Colors -->
+    <color name="cstm_accent_tachiyomi">#9E7D54</color>
     <color name="cstm_dark_primary_dark">#1C1C1D</color>
-
-    <color name="preference_fallback_accent_color">@color/md_blue_A400</color>
 </resources>

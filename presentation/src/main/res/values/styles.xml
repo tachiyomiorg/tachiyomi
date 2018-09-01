@@ -161,7 +161,7 @@
         </item>
         <item name="android:layout_marginEnd">@dimen/material_component_cards_space_between_cards
         </item>
-        <item name="cardBackgroundColor">?attr/background_card</item>
+        <item name="cardBackgroundColor">?attr/dialogColor</item>
         <item name="cardElevation">2dp</item>
     </style>
 
@@ -205,7 +205,9 @@
     <!--==============-->
     <style name="Theme.Widget.Button" parent="Widget.AppCompat.Button"/>
 
-    <style name="Theme.Widget.Button.Colored" parent="Widget.AppCompat.Button.Colored"/>
+    <style name="Theme.Widget.Button.Colored" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
 
     <style name="Theme.Widget.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:textColor">?attr/colorAccent</item>
