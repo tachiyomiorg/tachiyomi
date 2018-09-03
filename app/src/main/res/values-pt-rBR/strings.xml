@@ -304,7 +304,7 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
     <string name="manga_download">Fazer download</string>
     <string name="download_1">Fazer download do próximo capítulo</string>
     <string name="download_5">Fazer download dos próximos 5 capítulos</string>
-    <string name="download_10">Fazer download dos próximos 10 capítulo</string>
+    <string name="download_10">Fazer download dos próximos 10 capítulos</string>
     <string name="download_all">Fazer download de tudo</string>
     <string name="download_unread">Fazer download dos não lidos</string>
     <string name="confirm_delete_chapters">Tem certeza de que deseja excluir os capítulos selecionados?</string>
@@ -463,4 +463,7 @@ Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</s
     <string name="copy">Copiar</string>
     <string name="migrating">Migrando…</string>
 
+    <string name="source_not_installed">Fonte não instalada: %1$s</string>
+
+    <string name="repeating">Relendo</string>
     </resources>
