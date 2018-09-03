@@ -245,7 +245,7 @@
     <string name="scale_type_fit_screen">По экрану</string>
     <string name="scale_type_fit_width">По ширине</string>
     <string name="scale_type_original_size">Исходный размер</string>
-    <string name="scale_type_smart_fit">Smart</string>
+    <string name="scale_type_smart_fit">Умная</string>
     <string name="scale_type_stretch">Растянутая</string>
     <string name="score">Оценка</string>
     <string name="second_to_last">Предпоследняя</string>
@@ -413,4 +413,15 @@
     <string name="migrating">Мигрирую…</string>
 
     <string name="source_search_options">Поисковые фильтры</string>
+    <string name="ext_trust">"Достоверный "</string>
+    <string name="pager_viewer">Страница</string>
+    <string name="source_not_installed">Источник не установлен: %1$s</string>
+
+    <string name="repeating">Перечитываю</string>
+    <string name="track_status">Статус</string>
+    <string name="track_start_date">Начато</string>
+    <string name="track_type">Тип</string>
+    <string name="track_author">Автор</string>
+    <string name="url_not_set">"Ссылка не установлена, пожалуйста нажмите на заголовок и выберите мангу снова "</string>
+
     </resources>
