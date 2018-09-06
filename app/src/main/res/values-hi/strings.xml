@@ -354,8 +354,8 @@
     <string name="chapter_subtitle">अध्याय %1$s</string>
     <string name="no_next_chapter">अगले अध्याय नहीं मिला</string>
     <string name="no_previous_chapter">पिछला अध्याय नहीं मिला</string>
-    <string name="decode_image_error">चित्र लोड नहीं किया जा सका।
-\nछवि डिकोडर को बदलने या नीचे दिए गए विकल्पों में से एक के साथ आज़माएं</string>
+    <string name="decode_image_error">चित्र लोड नहीं किया जा सका। 
+\nछवि डिकोडर को बदलने या नीचे दिए गए विकल्पों में से एक को आज़माएं</string>
     <string name="confirm_update_manga_sync">पिछले अध्याय को सक्षम सेवाओं में %1$d तक पढ़ा है?</string>
     <string name="confirm_set_image_as_cover">क्या आप इस छवि को कवर के रूप में सेट करना चाहते हैं?</string>
     <string name="viewer_for_this_series">इस श्रृंखला के लिए दर्शक</string>
@@ -458,5 +458,15 @@
     <string name="migrate">प्रवास</string>
     <string name="copy">नकल</string>
     <string name="migrating">प्रवास हो रहा है…</string>
+
+    <string name="pager_viewer">पृष्ठक</string>
+    <string name="source_not_installed">स्रोत स्थापित नहीं है : %1$s</string>
+
+    <string name="repeating">फिर से पढाना</string>
+    <string name="track_status">स्थिति</string>
+    <string name="track_start_date">शुरू कर दिया है</string>
+    <string name="track_type">प्रकार</string>
+    <string name="track_author">लेखक</string>
+    <string name="url_not_set">मंगा यूआरएल सेट नहीं है कृपया शीर्षक पर क्लिक करें और फिर मंगा का चयन करें</string>
 
     </resources>
