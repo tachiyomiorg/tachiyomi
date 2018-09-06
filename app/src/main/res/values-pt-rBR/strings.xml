@@ -46,7 +46,7 @@
     <string name="action_rename_category">Renomear categoria</string>
     <string name="action_move_category">Mover para categorias</string>
     <string name="action_edit_cover">Alterar imagem da capa</string>
-    <string name="action_sort_up">Ordem ascendente</string>
+    <string name="action_sort_up">Ordem crescente</string>
     <string name="action_sort_down">Ordem decrescente</string>
     <string name="action_show_unread">Não lido</string>
     <string name="action_show_downloaded">Disponível offline</string>
@@ -106,10 +106,10 @@
     <string name="update_3hour">A cada 3 horas</string>
     <string name="update_6hour">A cada 6 horas</string>
     <string name="update_12hour">A cada 12 horas</string>
-    <string name="update_24hour">A cada dia</string>
+    <string name="update_24hour">Diariamente</string>
     <string name="update_48hour">A cada 2 dias</string>
-    <string name="update_weekly">A cada semana</string>
-    <string name="update_monthly">A cada mês</string>
+    <string name="update_weekly">Semanalmente</string>
+    <string name="update_monthly">Mensalmente</string>
     <string name="pref_library_update_categories">Categorias inclusas na atualização global</string>
     <string name="all">Todas</string>
     <string name="pref_library_update_restriction">Restrições da atualização global</string>
@@ -130,12 +130,12 @@
 
       <string name="pref_fullscreen">Tela cheia</string>
     <string name="pref_lock_orientation">Bloquear orientação</string>
-    <string name="pref_page_transitions">Transições de páginas</string>
+    <string name="pref_page_transitions">Transição de página</string>
     <string name="pref_show_page_number">Mostrar número da página</string>
     <string name="pref_crop_borders">Aparar bordas</string>
     <string name="pref_custom_brightness">Usar brilho personalizado</string>
     <string name="pref_custom_color_filter">Usar filtro de cores personalizado</string>
-    <string name="pref_keep_screen_on">Manter tela ligada</string>
+    <string name="pref_keep_screen_on">Manter a tela ligada</string>
     <string name="pref_reader_navigation">Navegação</string>
     <string name="pref_read_with_volume_keys">Botões de volume</string>
     <string name="pref_read_with_volume_keys_inverted">Inverter botões de volume</string>
@@ -143,7 +143,7 @@
     <string name="pref_reader_theme">Cor de fundo</string>
     <string name="white_background">Branco</string>
     <string name="black_background">Preto</string>
-    <string name="pref_viewer_type">Visualização padrão</string>
+    <string name="pref_viewer_type">Sentido de leitura padrão</string>
     <string name="default_viewer">Padrão</string>
     <string name="left_to_right_viewer">Esquerda para direita</string>
     <string name="right_to_left_viewer">Direita para esquerda</string>
@@ -257,7 +257,7 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
     <string name="source_requires_login">Esta fonte requer uma conta</string>
     <string name="select_source">Selecione uma fonte</string>
     <string name="no_valid_sources">Por favor, ative pelo menos uma fonte válida</string>
-    <string name="no_more_results">Mais nenhum resultado</string>
+    <string name="no_more_results">Não há mais resultados</string>
     <string name="local_source">Mangá local</string>
     <string name="added_to_library">O mangá foi adicionado à sua biblioteca</string>
 
@@ -342,10 +342,10 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
     <string name="no_next_chapter">Próximo capítulo não encontrado</string>
     <string name="no_previous_chapter">Capítulo anterior não encontrado</string>
     <string name="decode_image_error">A imagem não pôde ser carregada.
-Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</string>
-    <string name="confirm_update_manga_sync">Atualizar o último capítulo de %1$d lido nos serviços ativos?</string>
+\nTente alterar o decodificador de imagens ou uma das seguintes opções</string>
+    <string name="confirm_update_manga_sync">Atualizar o último capítulo lido para %1$d nos serviços ativos?</string>
     <string name="confirm_set_image_as_cover">Deseja usar esta imagem como capa?</string>
-    <string name="viewer_for_this_series">Visualizador para está série</string>
+    <string name="viewer_for_this_series">Leitura para esta série</string>
 
     <string name="recent_manga_source">%1$s - Cap.%2$s</string>
 
@@ -357,7 +357,7 @@ Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</s
     <string name="notification_cover_update_failed">Erro ao atualizar a capa</string>
     <string name="notification_first_add_to_library">Por favor, adicione o mangá à sua biblioteca antes de fazer isso</string>
     <string name="notification_not_connected_to_ac_title">Sincronização cancelada</string>
-    <string name="notification_not_connected_to_ac_body">O dispositivo não está conectado à energia</string>
+    <string name="notification_not_connected_to_ac_body">O dispositivo não está sendo carregado</string>
     <string name="notification_no_connection_title">Sincronização cancelada</string>
     <string name="notification_no_connection_body">Conexão indisponível</string>
 
@@ -389,7 +389,7 @@ Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</s
     <string name="download_notifier_downloader_title">Gerenciador de downloads</string>
     <string name="download_notifier_title_error">Erro</string>
     <string name="download_notifier_unkown_error">Ocorreu um erro inesperado ao fazer download do capítulo</string>
-    <string name="download_notifier_page_error">Página em falta na pasta</string>
+    <string name="download_notifier_page_error">Uma página está faltando na pasta</string>
     <string name="download_notifier_page_ready_error">Página não carregada</string>
     <string name="download_notifier_text_only_wifi">Nenhuma conexão Wi-Fi disponível</string>
     <string name="download_notifier_no_network">Conexão à rede indisponível</string>
@@ -410,9 +410,9 @@ Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</s
     <string name="channel_common">Comum</string>
     <string name="channel_library">Biblioteca</string>
     <string name="channel_downloader">Fila de download</string>
-<string name="action_display_download_badge">Contadores de download</string>
+<string name="action_display_download_badge">Ícones de download</string>
     <string name="local_source_badge">Local</string>
-    <string name="information_empty_category">Você ainda não tem nenhuma categoria. Pressione o botão mais para criar uma e organizar a sua biblioteca.</string>
+    <string name="information_empty_category">Você ainda não tem nenhuma categoria. Pressione o botão (+) para criar uma e organizar a sua biblioteca.</string>
 
     <string name="label_migration">Migrar fonte</string>
     <string name="label_extensions">Extensões</string>
@@ -466,4 +466,11 @@ Tente alterar o decodificador de imagens ou selecione uma das opções abaixo</s
     <string name="source_not_installed">Fonte não instalada: %1$s</string>
 
     <string name="repeating">Relendo</string>
+    <string name="pager_viewer">Leitor</string>
+    <string name="track_status">Situação</string>
+    <string name="track_start_date">Começado</string>
+    <string name="track_type">Tipo</string>
+    <string name="track_author">Autor</string>
+    <string name="url_not_set">URL do mangá não definida, por favor clique no título e selecione novamente</string>
+
     </resources>
