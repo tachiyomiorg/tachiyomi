@@ -4,6 +4,7 @@ import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.source.model.*
 import eu.kanade.tachiyomi.source.online.ParsedHttpSource
 import okhttp3.Headers
+import okhttp3.HttpUrl
 import okhttp3.Request
 import okhttp3.Response
 import org.jsoup.nodes.Document
@@ -52,8 +53,25 @@ class Readmanga : ParsedHttpSource() {
     override fun latestUpdatesNextPageSelector() = "a.nextLink"
 
     override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
-        val genres = filters.filterIsInstance<Genre>().joinToString("&") { it.id + arrayOf("=", "=in", "=ex")[it.state] }
-        return GET("$baseUrl/search/advanced?q=$query&$genres", headers)
+        val url = HttpUrl.parse("$baseUrl/search/advanced")!!.newBuilder()
+        (if (filters.isEmpty()) getFilterList() else filters).forEach { filter ->
+            when (filter) {
+                is GenreList -> filter.state.forEach { genre ->
+                    if (genre.state != Filter.TriState.STATE_IGNORE) {
+                        url.addQueryParameter(genre.id, arrayOf("=", "=in", "=ex")[genre.state])
+                    }
+                }
+                is Category -> filter.state.forEach { category ->
+                    if (category.state != Filter.TriState.STATE_IGNORE) {
+                        url.addQueryParameter(category.id, arrayOf("=", "=in", "=ex")[category.state])
+                    }
+                }
+            }
+        }
+        if (!query.isEmpty()) {
+            url.addQueryParameter("q", query)
+        }
+        return GET(url.toString().replace("=%3D", "="), headers)
     }
 
     override fun searchMangaSelector() = popularMangaSelector()
@@ -61,7 +79,7 @@ class Readmanga : ParsedHttpSource() {
     override fun searchMangaFromElement(element: Element): SManga = popularMangaFromElement(element)
 
     // max 200 results
-    override fun searchMangaNextPageSelector() = null
+    override fun searchMangaNextPageSelector(): Nothing? = null
 
     override fun mangaDetailsParse(document: Document): SManga {
         val infoElement = document.select("div.leftContent").first()
@@ -153,6 +171,8 @@ class Readmanga : ParsedHttpSource() {
     }
 
     private class Genre(name: String, val id: String) : Filter.TriState(name)
+    private class GenreList(genres: List<Genre>) : Filter.Group<Genre>("Genres", genres)
+    private class Category(categories: List<Genre>) : Filter.Group<Genre>("Category", categories)
 
     /* [...document.querySelectorAll("tr.advanced_option:nth-child(1) > td:nth-child(3) span.js-link")]
     *  .map(el => `Genre("${el.textContent.trim()}", $"{el.getAttribute('onclick')
@@ -160,6 +180,23 @@ class Readmanga : ParsedHttpSource() {
     *  on http://readmanga.me/search/advanced
     */
     override fun getFilterList() = FilterList(
+            Category(getCategoryList()),
+            GenreList(getGenreList())
+    )
+
+    private fun getCategoryList() = listOf(
+            Genre("В цвете", "el_7290"),
+            Genre("Веб", "el_2160"),
+            Genre("Выпуск приостановлен", "el_8033"),
+            Genre("Ёнкома", "el_2161"),
+            Genre("Комикс западный", "el_3515"),
+            Genre("Манхва", "el_3001"),
+            Genre("Маньхуа", "el_3002"),
+            Genre("Ранобэ", "el_8575"),
+            Genre("Сборник", "el_2157")
+    )
+
+    private fun getGenreList() = listOf(
             Genre("арт", "el_5685"),
             Genre("боевик", "el_2155"),
             Genre("боевые искусства", "el_2143"),
