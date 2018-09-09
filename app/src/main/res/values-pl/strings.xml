@@ -409,7 +409,7 @@ Spróbuj zmienić dekoder lub skorzystaj z jednej z opcji poniżej</string>
     <string name="channel_common">Zwykły</string>
     <string name="channel_library">Biblioteka</string>
     <string name="latest">Ostatnie</string>
-    <string name="channel_downloader">Menadżer pobierania</string>
+    <string name="channel_downloader">Menedżer pobierania</string>
 <string name="action_display_download_badge">Plakietki pobrań</string>
     <string name="local_source_badge">Lokalna</string>
     <string name="information_empty_category">Nie masz żadnych kategorii. Dotknij plusa, aby je utworzyć i zorganizować swoją bibliotekę.</string>
@@ -443,15 +443,15 @@ Spróbuj zmienić dekoder lub skorzystaj z jednej z opcji poniżej</string>
 
     <string name="ext_update">Aktualizuj</string>
     <string name="ext_trust">Ufaj</string>
-    <string name="ext_untrusted">Nie zaufane</string>
+    <string name="ext_untrusted">Niezaufane</string>
     <string name="ext_preferences">Preferencje</string>
     <string name="ext_available">Dostępne</string>
-    <string name="untrusted_extension">Nie zaufane rozszerzenie</string>
-    <string name="untrusted_extension_message">To rozszerzenie było podpisane nie zaufanym certyfikatem i nie zostało aktywowane. 
-\n
-\nZłośliwe rozszerzenie może odczytać dane logowania przechowywane w tachiyomi albo uruchomić złośliwy kod. 
-\n
-\nPoprzez zaufanie temu rozszerzeniu potwierdzasz że rozumiesz to zagrożenie.</string>
+    <string name="untrusted_extension">Niezaufane rozszerzenie</string>
+    <string name="untrusted_extension_message">To rozszerzenie było podpisane niezaufanym certyfikatem i nie zostało aktywowane. 
+\n 
+\nZłośliwe rozszerzenie może odczytać dane logowania przechowywane w Tachiyomi albo uruchomić złośliwy kod. 
+\n 
+\nPoprzez zaufanie temu rozszerzeniu potwierdzasz, że rozumiesz to zagrożenie.</string>
     <string name="ext_empty_preferences">To rozszerzenie nie ma żadnych preferencji do edycji</string>
 
       <string name="source_search_options">Filtry wyszukiwania</string>
