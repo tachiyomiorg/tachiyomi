@@ -151,7 +151,12 @@ class Mintmanga : ParsedHttpSource() {
         var i = 0
         while (m.find()) {
             val urlParts = m.group().replace("[\"\']+".toRegex(), "").split(',')
-            pages.add(Page(i++, "", urlParts[1] + urlParts[0] + urlParts[2]))
+            val url = if (urlParts[1].isEmpty() && urlParts[2].startsWith("/static/")) {
+                baseUrl + urlParts[2]
+            } else {
+                urlParts[1] + urlParts[0] + urlParts[2]
+            }
+            pages.add(Page(i++, "", url))
         }
         return pages
     }
