@@ -27,9 +27,9 @@
     <string name="action_sort_last_updated">Ultimo aggiornato</string>
     <string name="action_search">Ricerca</string>
     <string name="action_select_all">Seleziona tutto</string>
-    <string name="action_mark_as_read">Marca come letto</string>
-    <string name="action_mark_as_unread">Marca come non letto</string>
-    <string name="action_mark_previous_as_read">Marca precedenti come letti</string>
+    <string name="action_mark_as_read">Segna come letto</string>
+    <string name="action_mark_as_unread">Segna come non letto</string>
+    <string name="action_mark_previous_as_read">Segna precedenti come letti</string>
     <string name="action_download">Scarica</string>
     <string name="action_bookmark">Aggiungi segnalibro</string>
     <string name="action_remove_bookmark">Rimuovi segnalibro</string>
