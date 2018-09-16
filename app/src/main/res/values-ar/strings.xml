@@ -353,7 +353,8 @@
     <string name="chapter_subtitle">الفصل %1$s</string>
     <string name="no_next_chapter">لم يتم العثور على الفصل التالي</string>
     <string name="no_previous_chapter">لم يتم العثور على الفصل السابق</string>
-    <string name="decode_image_error">لا يمكن تحميل الصورة.
+    <string name="decode_image_error">لا يمكن تحميل الصورة. 
+\n
 \nيمكنك تجربة تغيير إعدادت فك تشفير الصورة عن طريق الخيارات باﻷسفل</string>
     <string name="confirm_update_manga_sync">تحديث الفصل اﻷخير فى الخدمات المفعلة إلى %1$d؟</string>
     <string name="confirm_set_image_as_cover">هل تريد تعيين هذه الصورة كغلاف؟</string>
@@ -396,7 +397,7 @@
     <string name="information_no_downloads">لا توجد تحميلات</string>
     <string name="information_no_recent">لا توجد فصول حديثة</string>
     <string name="information_no_recent_manga">لا توجد مانجا مقروءة مؤخرا</string>
-    <string name="information_empty_library">المكتبة فارغة</string>
+    <string name="information_empty_library">المكتبة فارغة، يمكنك إضافة سلسلة إلى المكتبة الخاصة بك من القوائم.</string>
 
     <string name="download_notifier_downloader_title">مدير التحميل</string>
     <string name="download_notifier_title_error">خطأ</string>
@@ -410,4 +411,66 @@
     <string name="channel_common">عام</string>
     <string name="channel_library">المكتبة</string>
     <string name="channel_downloader">مدير التحميل</string>
-</resources>
+<string name="label_migration">ترحيل المصدر</string>
+    <string name="label_extensions">اﻹضافات</string>
+    <string name="label_extension_info">معلومات اﻹضافة</string>
+
+
+    <string name="action_display_download_badge">تحميل الشارات</string>
+    <string name="all_lang">الكل</string>
+    <string name="ext_details">التفاصيل</string>
+    <string name="ext_update">تحديث</string>
+    <string name="ext_install">تثبيت</string>
+    <string name="ext_pending">المُعلقة</string>
+    <string name="ext_downloading">جارى التحميل</string>
+    <string name="ext_installing">جاري التثبيت</string>
+    <string name="ext_installed">تم التثبيت</string>
+    <string name="ext_trust">الثقة</string>
+    <string name="ext_untrusted">غير موثوق فيه</string>
+    <string name="ext_uninstall">إلغاء التثبيت</string>
+    <string name="ext_preferences">التفضيلات</string>
+    <string name="ext_available">المتاحة</string>
+    <string name="untrusted_extension">إضافة غير موثوق بها</string>
+    <string name="untrusted_extension_message">هذه اﻹضافة موقعة بشهادة غير موثوق بها ولم يتم تفعيلها.
+\n
+\nيمكن لأي إضافة خبيثة قراءة بيانات اعتماد تسجيل الدخول المخزنة في تاتشييومي أو تنفيذ تعليمات برمجية عشوائية.
+\n
+\nبالثقة في هذه الشهادة يمكنك قبول هذه المخاطر.</string>
+    <string name="ext_version_info">الإصدار %1$s</string>
+    <string name="ext_language_info">اللغة: %1$s</string>
+    <string name="ext_empty_preferences">لا توجد تفضيلات خاصة بهذه اﻹضافة لتعديلها</string>
+
+      <string name="pref_double_tap_anim_speed">سرعة مؤثر النقر المزدوج</string>
+    <string name="pager_viewer">عارض الصفحات</string>
+    <string name="double_tap_anim_speed_0">لا مؤثرات</string>
+    <string name="double_tap_anim_speed_normal">طبيعي</string>
+    <string name="double_tap_anim_speed_fast">سريع</string>
+    <string name="local_source_badge">محلّي</string>
+    <string name="source_search_options">فلاتر البحث</string>
+    <string name="manga_info_full_title_label">العنوان</string>
+    <string name="manga_added_library">تم الإضافة إلى المكتبة</string>
+    <string name="manga_removed_library">تم الإزالة من المكتبة</string>
+    <string name="manga_info_latest_data_label">تم التحديث</string>
+    <string name="copied_to_clipboard">%1$s نُسخ إلى الحافظة</string>
+    <string name="source_not_installed">المصدر غير مثبت: %1$s</string>
+
+    <string name="custom_download">تحميل مقدار مخصص</string>
+    <string name="custom_hint">مقدار</string>
+    <string name="download_custom">تحميل مخصص</string>
+    <string name="repeating">إعادة القراءة</string>
+    <string name="track_status">الحالة</string>
+    <string name="track_start_date">تم البدء فيها</string>
+    <string name="track_type">النوع</string>
+    <string name="track_author">المؤلف</string>
+    <string name="url_not_set">لم يتم تعيين رابط المانجت، برجاء الضغط على العنوان وتحديد مانجا مرة أخرى</string>
+
+    <string name="migration_info">اضغط لتحديد مصدر للترحيل منه</string>
+    <string name="migration_dialog_what_to_include">اختيار بيانات لتضمينها</string>
+    <string name="select">تحديد</string>
+    <string name="migrate">ترحيل</string>
+    <string name="copy">نسخ</string>
+    <string name="migrating">الترحيل…</string>
+
+    <string name="information_empty_category">لا توجد لديك أي فئات. اضغط زر اﻹضافة لإنشاء واحد لتنظيم المكتبة الخاصة بك.</string>
+
+    </resources>
