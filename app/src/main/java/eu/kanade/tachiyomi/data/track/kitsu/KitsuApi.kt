@@ -26,7 +26,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
 
     private val searchRest = Retrofit.Builder()
             .baseUrl(algoliaKeyUrl)
-            .client(client)
+            .client(client.newBuilder().addInterceptor(interceptor).build())
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build()
