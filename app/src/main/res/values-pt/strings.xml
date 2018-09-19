@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="name">Nome</string>
 
@@ -49,7 +49,7 @@
     <string name="action_retry">Tentar novamente</string>
     <string name="action_remove">Remover</string>
     <string name="action_resume">Resumir</string>
-    <string name="action_open_in_browser">Abrir no navegador de internet</string>
+    <string name="action_open_in_browser">Abrir no navegador</string>
     <string name="action_display_mode">Mudar modo de visualização</string>
     <string name="action_set_filter">Definir filtro</string>
     <string name="action_cancel">Cancelar</string>
@@ -83,13 +83,13 @@
     <string name="update_12hour">A cada 12 horas</string>
     <string name="update_24hour">Diariamente</string>
     <string name="update_48hour">A cada 2 dias</string>
-    <string name="pref_library_update_categories">Categorias a incluir na actualizização global</string>
+    <string name="pref_library_update_categories">Categorias a incluir na atualização global</string>
     <string name="all">Tudo</string>
     <string name="pref_library_update_restriction">Restrições sobre a atualização da biblioteca</string>
     <string name="pref_library_update_restriction_summary">Atualizar apenas quando se cumprem as condições</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">A carregar</string>
-    <string name="pref_update_only_non_completed">Atualizar apenas manga em curso</string>
+    <string name="pref_update_only_non_completed">Atualizar apenas mangás a decorrer</string>
     <string name="pref_auto_update_manga_sync">Sincronizar capítulos após leitura</string>
     <string name="pref_theme">Tema da aplicação</string>
     <string name="light_theme">Tema principal</string>
@@ -309,4 +309,44 @@
     <string name="download_notifier_page_ready_error">Página não carregada</string>
     <string name="download_notifier_text_only_wifi">Sem ligação de Wi-Fi disponível</string>
 
-</resources>
+<string name="categories">Categorias</string>
+    <string name="manga">Mangá</string>
+    <string name="track">Manutenção</string>
+    <string name="history">Histórico</string>
+
+    <string name="label_latest_updates">Últimas atualizações</string>
+    <string name="label_extensions">Extensões</string>
+    <string name="label_extension_info">Info. da extensão</string>
+
+
+    <string name="action_filter_bookmarked">Favoritos</string>
+    <string name="action_sort_alpha">Alfabeticamente</string>
+    <string name="action_sort_total">Número total de capítulos</string>
+    <string name="action_sort_last_read">Última leitura</string>
+    <string name="action_global_search">Procura geral</string>
+    <string name="action_bookmark">Marcar como favorito</string>
+    <string name="action_remove_bookmark">Desmarcar como favorito</string>
+    <string name="action_add">Adicionar</string>
+    <string name="action_close">Fechar</string>
+    <string name="action_move">Mover</string>
+    <string name="action_add_to_home_screen">Adicionar ao ecrã inicial</string>
+    <string name="action_display">Mostrar</string>
+    <string name="action_display_grid">Grelha</string>
+    <string name="action_display_list">Lista</string>
+    <string name="action_share">Partilhar</string>
+    <string name="action_save">Guardar</string>
+    <string name="action_undo">Anular</string>
+    <string name="action_export">Exportar</string>
+    <string name="action_create">Criar</string>
+    <string name="action_open">Abrir</string>
+    <string name="action_login">Entrar</string>
+
+    <string name="short_recent_updates">Atualizações</string>
+
+    <string name="update_weekly">Semanalmente</string>
+    <string name="update_monthly">Mensalmente</string>
+    <string name="amoled_theme">Tema AMOLED</string>
+    <string name="pref_start_screen">Ecrã inicial</string>
+    <string name="pref_language">Língua</string>
+    <string name="system_default">Predefinição do sistema</string>
+    </resources>
