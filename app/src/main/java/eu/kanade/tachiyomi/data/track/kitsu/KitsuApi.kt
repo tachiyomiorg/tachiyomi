@@ -16,9 +16,11 @@ import rx.Observable
 
 class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) {
 
+    private val authClient = client.newBuilder().addInterceptor(interceptor).build()
+
     private val rest = Retrofit.Builder()
             .baseUrl(baseUrl)
-            .client(client.newBuilder().addInterceptor(interceptor).build())
+            .client(authClient)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().serializeNulls().create()))
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build()
@@ -26,7 +28,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
 
     private val searchRest = Retrofit.Builder()
             .baseUrl(algoliaKeyUrl)
-            .client(client.newBuilder().addInterceptor(interceptor).build())
+            .client(authClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build()
