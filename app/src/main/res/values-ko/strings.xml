@@ -37,7 +37,6 @@
     <string name="action_rename_category">카테고리 이름 다시 짓기</string>
     <string name="action_move_category">카테고리로 이동</string>
     <string name="action_edit_cover">표지 이미지 바꾸기</string>
-    <string name="action_show_unread">아직 읽지 않음</string>
     <string name="action_show_downloaded">다운로드됨</string>
     <string name="action_stop">정지</string>
     <string name="action_remove">제거</string>

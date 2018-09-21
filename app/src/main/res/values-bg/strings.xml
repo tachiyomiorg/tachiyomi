@@ -45,7 +45,6 @@
     <string name="action_edit_cover">Промени корицата</string>
     <string name="action_sort_up">Сортирай по възходящ ред</string>
     <string name="action_sort_down">Сортирай по низходящ ред</string>
-    <string name="action_show_unread">Непрочетени</string>
     <string name="action_show_downloaded">Изтеглени</string>
     <string name="action_next_unread">Следваща непрочетена</string>
     <string name="action_start">Старт</string>
@@ -161,7 +160,6 @@
 
       <!-- Downloads section -->
     <string name="pref_download_directory">Директория на изтеглянията</string>
-    <string name="pref_download_slots">Едновременно теглене</string>
     <string name="pref_download_only_over_wifi">Тегли само с Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Изтрий, щом маркирам като прочетено</string>
     <string name="pref_remove_after_read">Изтривай след прочитане</string>
@@ -232,7 +230,6 @@
     <string name="ongoing">Излизаща</string>
     <string name="unknown">Неизвестно</string>
     <string name="licensed">Лицензирана</string>
-    <string name="add_to_library">Добави към библиотеката</string>
     <string name="remove_from_library">Премахни от библиотеката</string>
     <string name="manga_info_author_label">Автор</string>
     <string name="manga_info_artist_label">Артист</string>

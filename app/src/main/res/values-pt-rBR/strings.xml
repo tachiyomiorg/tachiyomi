@@ -48,7 +48,6 @@
     <string name="action_edit_cover">Alterar imagem da capa</string>
     <string name="action_sort_up">Ordem crescente</string>
     <string name="action_sort_down">Ordem decrescente</string>
-    <string name="action_show_unread">Não lido</string>
     <string name="action_show_downloaded">Disponível offline</string>
     <string name="action_next_unread">Próximo não lido</string>
     <string name="action_start">Iniciar</string>
@@ -174,7 +173,6 @@
 
 
       <string name="pref_download_directory">Pasta de downloads</string>
-    <string name="pref_download_slots">Downloads simultâneos</string>
     <string name="pref_download_only_over_wifi">Fazer download apenas via Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Excluir ao marcar como lido</string>
     <string name="pref_remove_after_read">Excluir depois de ler</string>
@@ -268,7 +266,6 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
     <string name="ongoing">Em andamento</string>
     <string name="unknown">Desconhecido</string>
     <string name="licensed">Licenciado</string>
-    <string name="add_to_library">Adicionar à biblioteca</string>
     <string name="remove_from_library">Remover da biblioteca</string>
     <string name="manga_info_author_label">Autor</string>
     <string name="manga_info_artist_label">Artista</string>

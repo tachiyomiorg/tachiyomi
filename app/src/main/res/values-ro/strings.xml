@@ -51,7 +51,6 @@
     <string name="action_rename_category">Redenumește categoria</string>
     <string name="action_move_category">Mută în categorii</string>
     <string name="action_edit_cover">Modifică coperta</string>
-    <string name="action_show_unread">Necitite</string>
     <string name="action_show_downloaded">Descărcate</string>
     <string name="action_next_unread">Următorul necitit</string>
     <string name="action_start">Start</string>

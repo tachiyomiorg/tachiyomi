@@ -50,7 +50,6 @@
     <string name="action_edit_cover">आवरण चित्र को संपादित करें</string>
     <string name="action_sort_up">ऊपर छांटे</string>
     <string name="action_sort_down">नीचे छांटे</string>
-    <string name="action_show_unread">अपठित</string>
     <string name="action_show_downloaded">डाउनलोड किया हुआ</string>
     <string name="action_next_unread">अगला अपठित</string>
     <string name="action_start">प्रारंभ</string>
@@ -179,7 +178,6 @@
 
 
       <string name="pref_download_directory">डाउनलोड निर्देशिका</string>
-    <string name="pref_download_slots">समकालिक डाउनलोड</string>
     <string name="pref_download_only_over_wifi">वाई - फाई पर ही डाउनलोड करे</string>
     <string name="pref_remove_after_marked_as_read">पढ़ा जाने चिह्नित होने पर हटाएं</string>
     <string name="pref_remove_after_read">पढ़ने के बाद हटा दें</string>
@@ -280,7 +278,6 @@
     <string name="ongoing">चल रही है</string>
     <string name="unknown">अज्ञात</string>
     <string name="licensed">लाइसेंस प्राप्त</string>
-    <string name="add_to_library">पुस्तकालय में जोड़ें</string>
     <string name="remove_from_library">लाइब्रेरी से निकालें</string>
     <string name="manga_info_author_label">लेखक</string>
     <string name="manga_info_artist_label">कलाकार</string>

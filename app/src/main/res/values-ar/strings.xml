@@ -49,7 +49,6 @@
     <string name="action_edit_cover">تعديل صورة الغلاف</string>
     <string name="action_sort_down">الترتيب لأسفل</string>
     <string name="action_sort_up">الترتيب لأعلى</string>
-    <string name="action_show_unread">الغير مقروءة</string>
     <string name="action_show_downloaded">مكتملة التحميل</string>
     <string name="action_next_unread">الغير مقروءة التالية</string>
     <string name="action_start">بدء</string>
@@ -169,7 +168,6 @@
     <string name="rotation_force_portrait">الوضع اﻷفقي اﻹجباري</string>
     <string name="rotation_force_landscape">الوضع الرأسي اﻹجباري</string>
     <string name="pref_download_directory">مسار التحميلات</string>
-    <string name="pref_download_slots">عدد التحميلات فى نفس الوقت</string>
     <string name="pref_download_only_over_wifi">التحميل عبر الواي فاي فقط</string>
     <string name="pref_remove_after_marked_as_read">الحذف عند التحديد كمقروءة</string>
     <string name="pref_remove_after_read">الحذف بعد إكمال القراءة</string>
@@ -279,7 +277,6 @@
     <string name="ongoing">المستمرة</string>
     <string name="unknown">الغير معروف</string>
     <string name="licensed">المرخصة</string>
-    <string name="add_to_library">إضافة إلى المكتبة</string>
     <string name="remove_from_library">إزالة من المكتبة</string>
     <string name="manga_info_author_label">المؤلف</string>
     <string name="manga_info_artist_label">الفنان</string>

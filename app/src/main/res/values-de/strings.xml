@@ -46,7 +46,6 @@
     <string name="action_edit_cover">Vorschaubild bearbeiten</string>
     <string name="action_sort_up">Aufsteigend sortieren</string>
     <string name="action_sort_down">Absteigend Sortieren</string>
-    <string name="action_show_unread">Ungelesen</string>
     <string name="action_show_downloaded">Heruntergeladen</string>
     <string name="action_next_unread">Nächstes Ungelesenes</string>
     <string name="action_start">Start</string>
@@ -172,7 +171,6 @@
 
 
       <string name="pref_download_directory">Downloadordner</string>
-    <string name="pref_download_slots">Simultane Downloads</string>
     <string name="pref_download_only_over_wifi">Nur über WLAN herunterladen</string>
     <string name="pref_remove_after_marked_as_read">Gelesene Kapitel löschen</string>
     <string name="pref_remove_after_read">Gelesene Kapitel löschen ab dem</string>
@@ -267,7 +265,6 @@
     <string name="ongoing">Fortlaufend</string>
     <string name="unknown">Unbekannt</string>
     <string name="licensed">Lizenziert</string>
-    <string name="add_to_library">Zur Bibliothek hinzufügen</string>
     <string name="remove_from_library">Aus Bibliothek entfernen</string>
     <string name="manga_info_author_label">Autor</string>
     <string name="manga_info_artist_label">Künstler</string>

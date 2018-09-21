@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
     <string name="name">Tên</string>
 
@@ -44,7 +45,6 @@
     <string name="action_edit_cover">Sửa ảnh bìa</string>
     <string name="action_sort_up">Sắp xếp tăng</string>
     <string name="action_sort_down">Sắp xếp giảm</string>
-    <string name="action_show_unread">Chưa đọc</string>
     <string name="action_show_downloaded">Đã tải xuống</string>
     <string name="action_next_unread">Next unread</string>
     <string name="action_start">Bắt đầu</string>
@@ -160,7 +160,6 @@
 
     <!-- Downloads section -->
     <string name="pref_download_directory">Thư mục tải xuống</string>
-    <string name="pref_download_slots">Số tải xuống cùng lúc</string>
     <string name="pref_download_only_over_wifi">Chỉ tải trên Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Gỡ bỏ sau khi đánh dấu đã đọc</string>
     <string name="pref_remove_after_read">Gỡ bỏ sau khi đọc</string>
@@ -231,7 +230,6 @@
     <string name="ongoing">Đang tiến hành</string>
     <string name="unknown">Không rõ</string>
     <string name="licensed">Đã bị bản quyền</string>
-    <string name="add_to_library">Thêm vào thư viện</string>
     <string name="remove_from_library">Gỡ bỏ khỏi thư viện</string>
     <string name="manga_info_author_label">Tác giả</string>
     <string name="manga_info_artist_label">Họa sĩ</string>

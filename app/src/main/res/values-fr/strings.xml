@@ -45,7 +45,6 @@
     <string name="action_edit_cover">Changer l\'image de couverture</string>
     <string name="action_sort_up">Trier par ordre ascendant</string>
     <string name="action_sort_down">Trier par ordre descendant</string>
-    <string name="action_show_unread">Non lu</string>
     <string name="action_show_downloaded">Téléchargé</string>
     <string name="action_next_unread">Prochain non lu</string>
     <string name="action_start">Commencer</string>
@@ -158,7 +157,6 @@
 
       <!-- Downloads section -->
     <string name="pref_download_directory">Répertoire de téléchargements</string>
-    <string name="pref_download_slots">Téléchargements simultanés</string>
     <string name="pref_download_only_over_wifi">Télécharger uniquement via Wi-Fi</string>
     <string name="pref_remove_after_read">Supprimer après avoir lu</string>
     <string name="disabled">Désactivé</string>
@@ -221,7 +219,6 @@
     <string name="ongoing">En cours</string>
     <string name="unknown">Inconnu</string>
     <string name="licensed">Licencié</string>
-    <string name="add_to_library">Ajouter à la bibliothèque</string>
     <string name="remove_from_library">Enlever de la bilbiothèque</string>
     <string name="manga_info_author_label">Auteur</string>
     <string name="manga_info_artist_label">Artiste</string>

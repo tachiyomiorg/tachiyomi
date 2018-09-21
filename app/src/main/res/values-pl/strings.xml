@@ -43,7 +43,6 @@
     <string name="action_sort_total">Ilość rozdziałów</string>
     <string name="action_sort_up">Sortuj rosnąco</string>
     <string name="action_sort_down">Sortuj malejąco</string>
-    <string name="action_show_unread">Nieprzeczytane</string>
     <string name="action_show_downloaded">Pobrane</string>
     <string name="action_next_unread">Następne nieprzeczytane</string>
     <string name="action_start">Start</string>
@@ -89,7 +88,6 @@
 
       <string name="pref_library_columns">Ilość rzędów biblioteki</string>
     <string name="pref_refresh_library_metadata_summary">Aktualizuje okładki, gatunki, opisy i informacje o statusie mang</string>
-    <string name="add_to_library">Dodaj do biblioteki</string>
     <string name="remove_from_library">Usuń z biblioteki</string>
     <string name="manga_info_author_label">Autor</string>
     <string name="manga_info_artist_label">Rysownik</string>
@@ -269,7 +267,6 @@
 
 
       <string name="pref_download_directory">Folder pobierania</string>
-    <string name="pref_download_slots">Liczba równoczesnych pobierań</string>
     <string name="pref_download_only_over_wifi">Pobieraj tylko przez Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Usuwaj po oznaczeniu jako przeczytane</string>
     <string name="pref_remove_after_read">Usuwaj rozdziały po przeczytaniu</string>

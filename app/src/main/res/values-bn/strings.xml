@@ -50,7 +50,6 @@
     <string name="action_edit_cover">কভার ছবি সম্পাদন</string>
     <string name="action_sort_up">সাজান</string>
     <string name="action_sort_down">বাছাই করুন</string>
-    <string name="action_show_unread">অপঠিত</string>
     <string name="action_show_downloaded">ডাউনলোডেড</string>
     <string name="action_next_unread">অপঠিত পরবর্তি</string>
     <string name="action_start">শুরু</string>
@@ -179,7 +178,6 @@
 
 
       <string name="pref_download_directory">ডাউনলোডের নির্দেশক</string>
-    <string name="pref_download_slots">সমকালীন ডাউনলোডগুলো</string>
     <string name="pref_download_only_over_wifi">শুধুমাত্র ওয়াই-ফাইয়ে ডাউনলোড করুন</string>
     <string name="pref_remove_after_marked_as_read">পঠিত হলে সরিয়ে ফেলুন</string>
     <string name="pref_remove_after_read">পড়ার পর সরিয়ে ফেলুন</string>
@@ -279,7 +277,6 @@
     <string name="ongoing">চলমান</string>
     <string name="unknown">অজানা</string>
     <string name="licensed">লাইসেন্সকৃত</string>
-    <string name="add_to_library">মাংগাশালায় যোগ করুন</string>
     <string name="remove_from_library">মাংগাশালা থেকে সরিয়ে ফেলুন</string>
     <string name="manga_info_author_label">লেখক</string>
     <string name="manga_info_artist_label">চিত্রকর</string>

@@ -16,7 +16,6 @@
 
     <string name="action_settings">Beállítások</string>
     <string name="action_search">Keresés</string>
-    <string name="action_show_unread">Olvasatlan</string>
     <string name="action_show_downloaded">Letöltve</string>
     <string name="action_close">Bezárás</string>
     <string name="action_remove">Eltávolítás</string>

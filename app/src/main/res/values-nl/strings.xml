@@ -41,7 +41,6 @@
     <string name="action_rename_category">Categorie hernoemen</string>
     <string name="action_move_category">Verplaatsen naar categorieën</string>
     <string name="action_edit_cover">Omslag wijzigen</string>
-    <string name="action_show_unread">Ongelezen</string>
     <string name="action_show_downloaded">Gedownload</string>
     <string name="action_next_unread">Volgende ongelezen</string>
     <string name="action_start">Start</string>
@@ -142,7 +141,6 @@
 
 
       <string name="pref_download_directory">Downloadmap</string>
-    <string name="pref_download_slots">Gelijktijdige downloads</string>
     <string name="pref_download_only_over_wifi">Download alleen over Wi-Fi</string>
     <string name="custom_dir">Aangepaste map</string>
     <string name="last_read_chapter">Laatst gelezen hoofdstuk</string>
@@ -207,7 +205,6 @@
     <string name="manga_detail_tab">Info</string>
     <string name="description">Beschrijving</string>
     <string name="unknown">Onbekend</string>
-    <string name="add_to_library">Toevoegen aan bibliotheek</string>
     <string name="remove_from_library">Verwijderen uit bibliotheek</string>
     <string name="manga_info_author_label">Auteur</string>
     <string name="manga_info_artist_label">Artiest</string>

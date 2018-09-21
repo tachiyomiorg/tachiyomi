@@ -44,7 +44,6 @@
     <string name="action_settings">Настройки</string>
     <string name="action_share">Поделиться</string>
     <string name="action_show_downloaded">Загруженные</string>
-    <string name="action_show_unread">Непрочитанные</string>
     <string name="action_sort">Сортировать</string>
     <string name="action_sort_alpha">По алфавиту</string>
     <string name="action_sort_down">По убыванию</string>
@@ -55,7 +54,6 @@
     <string name="action_stop">Стоп</string>
     <string name="action_update">Обновить</string>
     <string name="action_update_library">Обновить библиотеку</string>
-    <string name="add_to_library">Добавить в библиотеку</string>
     <string name="all">Все</string>
     <string name="backup">Бэкап</string>
     <string name="black_background">Черный</string>
@@ -200,7 +198,6 @@
     <string name="pref_download_directory">Каталог загрузок</string>
     <string name="pref_download_new">Загружать новые главы</string>
     <string name="pref_download_only_over_wifi">Загружать только через Wi-Fi</string>
-    <string name="pref_download_slots">Одновременные загрузки</string>
     <string name="pref_enable_acra">Отсылать отчеты о падениях</string>
     <string name="pref_enable_automatic_updates">Проверять обновления</string>
     <string name="pref_enable_automatic_updates_summary">Автоматически проверять новые версии</string>

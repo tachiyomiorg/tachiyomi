@@ -47,7 +47,6 @@
     <string name="action_edit_cover">Ubah gambar sampul</string>
     <string name="action_sort_up">Sortir keatas</string>
     <string name="action_sort_down">Sortir kebawah</string>
-    <string name="action_show_unread">Belum dibaca</string>
     <string name="action_show_downloaded">Terunduh</string>
     <string name="action_next_unread">Selanjutnya belum dibaca</string>
     <string name="action_start">Mulai</string>
@@ -174,7 +173,6 @@
 
 
       <string name="pref_download_directory">Tempat unduhan</string>
-    <string name="pref_download_slots">Unduh bersamaan</string>
     <string name="pref_download_only_over_wifi">Hanya unduh melalui Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Hapus ketika ditandai telah dibaca</string>
     <string name="pref_remove_after_read">Hapus setelah dibaca</string>
@@ -269,7 +267,6 @@
     <string name="ongoing">Berlanjut</string>
     <string name="unknown">Tidak diketahui</string>
     <string name="licensed">Berlisensi</string>
-    <string name="add_to_library">Tambahkan ke perpustakaan</string>
     <string name="remove_from_library">Hapus dari perpustakaan</string>
     <string name="manga_info_author_label">Penulis</string>
     <string name="manga_info_artist_label">Artis</string>
