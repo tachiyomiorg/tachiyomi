@@ -22,7 +22,7 @@ else
 fi
 
 user=j2ghz
-git clone https://${user}:${PAT}@github.com/${user}/fdroid-data.git
+git clone --recurse-submodules https://${user}:${PAT}@github.com/${user}/fdroid-data.git
 cd fdroid-data
 cp ${ARTIFACT} ./repo/
 docker run --rm -u $(id -u):$(id -g) -v $(pwd):/repo registry.gitlab.com/fdroid/docker-executable-fdroidserver:latest update -v
