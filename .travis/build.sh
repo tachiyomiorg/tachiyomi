@@ -31,7 +31,7 @@ git config --global user.name "Travis CI"
 git config --global user.email "travis@travis-ci.com"
 git add . -v
 git commit -m "Update: ${TRAVIS_REPO_SLUG}@${TRAVIS_COMMIT}"
-git push https://${user}:${PAT}@github.com/${user}/fdroid-data.git HEAD:master --force
+git push https://${user}:${PAT}@github.com/${user}/repo.git HEAD:master --force
 cd ..
 git add . -v
 git commit -m "Update: ${TRAVIS_REPO_SLUG}@${TRAVIS_COMMIT}"
