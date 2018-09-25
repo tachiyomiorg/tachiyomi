@@ -97,7 +97,7 @@ fun Track.toAnilistScore(): String = when (preferences.anilistScoreType().getOrD
 // Smiley
     "POINT_3" -> when {
         score == 0f -> "0"
-        score <= 30 -> ":("
+        score <= 35 -> ":("
         score <= 60 -> ":|"
         else -> ":)"
     }
