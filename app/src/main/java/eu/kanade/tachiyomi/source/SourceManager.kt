@@ -6,11 +6,7 @@ import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
-import eu.kanade.tachiyomi.source.online.english.*
-import eu.kanade.tachiyomi.source.online.german.WieManga
-import eu.kanade.tachiyomi.source.online.russian.Mangachan
-import eu.kanade.tachiyomi.source.online.russian.Mintmanga
-import eu.kanade.tachiyomi.source.online.russian.Readmanga
+
 import rx.Observable
 
 open class SourceManager(private val context: Context) {
@@ -47,19 +43,7 @@ open class SourceManager(private val context: Context) {
         sourcesMap.remove(source.id)
     }
 
-    private fun createInternalSources(): List<Source> = listOf(
-            LocalSource(context),
-            Batoto(),
-            Mangahere(),
-            Mangafox(),
-            Kissmanga(),
-            Readmanga(),
-            Mintmanga(),
-            Mangachan(),
-            Readmangatoday(),
-            Mangasee(),
-            WieManga()
-    )
+    private fun createInternalSources(): List<Source> = listOf(LocalSource(context))
 
     private inner class StubSource(override val id: Long) : Source {
 
