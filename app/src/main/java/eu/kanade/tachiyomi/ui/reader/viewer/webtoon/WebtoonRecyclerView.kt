@@ -61,7 +61,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
     @TargetApi(Build.VERSION_CODES.KITKAT)
     override fun onScrollStateChanged(state: Int) {
         super.onScrollStateChanged(state)
-        val layoutManager = layoutManager
+        val layoutManager = layoutManager!!
         val visibleItemCount = layoutManager.childCount
         val totalItemCount = layoutManager.itemCount
         atLastPosition = visibleItemCount > 0 && lastVisibleItemPosition == totalItemCount - 1

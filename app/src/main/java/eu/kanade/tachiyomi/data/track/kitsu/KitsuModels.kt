@@ -18,13 +18,13 @@ class KitsuSearchManga(obj: JsonObject) {
     private val synopsis by obj.byString
     private var startDate = obj.get("startDate").nullString?.let {
         val outputDf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-        outputDf.format(Date(it!!.toLong() * 1000))
+        outputDf.format(Date(it.toLong() * 1000))
     }
     private val endDate = obj.get("endDate").nullString
 
 
     @CallSuper
-    open fun toTrack() = TrackSearch.create(TrackManager.KITSU).apply {
+    fun toTrack() = TrackSearch.create(TrackManager.KITSU).apply {
         media_id = this@KitsuSearchManga.id
         title = canonicalTitle
         total_chapters = chapterCount ?: 0
@@ -55,7 +55,7 @@ class KitsuLibManga(obj: JsonObject, manga: JsonObject) {
     private val ratingTwenty = obj["attributes"].obj.get("ratingTwenty").nullString
     val progress by obj["attributes"].byInt
 
-    open fun toTrack() = TrackSearch.create(TrackManager.KITSU).apply {
+    fun toTrack() = TrackSearch.create(TrackManager.KITSU).apply {
         media_id = libraryId
         title = canonicalTitle
         total_chapters = chapterCount ?: 0

@@ -187,7 +187,7 @@ class MangaController : RxController, TabbedController {
         const val CHAPTERS_CONTROLLER = 1
         const val TRACK_CONTROLLER = 2
 
-        private val tabField = TabLayout.Tab::class.java.getDeclaredField("mView")
+        private val tabField = TabLayout.Tab::class.java.getDeclaredField("view")
                 .apply { isAccessible = true }
     }
 
