@@ -102,6 +102,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                       type
                       status
                       chapters
+                      description
                       startDate {
                         year
                         month
@@ -160,6 +161,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                       type
                       status
                       chapters
+                      description
                       startDate {
                        year
                        month
@@ -245,7 +247,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
     fun jsonToALManga(struct: JsonObject): ALManga{
         return ALManga(struct["id"].asInt, struct["title"]["romaji"].asString, struct["coverImage"]["large"].asString,
-                null, struct["type"].asString, struct["status"].asString,
+                struct["description"].nullString.orEmpty(), struct["type"].asString, struct["status"].asString,
                 struct["startDate"]["year"].nullString.orEmpty() + struct["startDate"]["month"].nullString.orEmpty()
                         + struct["startDate"]["day"].nullString.orEmpty(), struct["chapters"].nullInt ?: 0)
     }
