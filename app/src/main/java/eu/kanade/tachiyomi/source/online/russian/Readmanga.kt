@@ -37,7 +37,7 @@ class Readmanga : ParsedHttpSource() {
 
     override fun popularMangaFromElement(element: Element): SManga {
         val manga = SManga.create()
-        manga.thumbnail_url = element.select("img.lazy").first().attr("data-original")
+        manga.thumbnail_url = element.select("img.lazy").first()?.attr("data-original")
         element.select("h3 > a").first().let {
             manga.setUrlWithoutDomain(it.attr("href"))
             manga.title = it.attr("title")
