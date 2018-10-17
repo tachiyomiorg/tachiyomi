@@ -128,26 +128,21 @@ class LocalSource(private val context: Context) : CatalogueSource {
     override fun fetchLatestUpdates(page: Int) = fetchSearchManga(page, "", LATEST_FILTERS)
 
     override fun fetchMangaDetails(manga: SManga): Observable<SManga> {
-        val jsonFile = getBaseDirectories(context)
+        getBaseDirectories(context)
                 .mapNotNull { File(it, manga.url).listFiles()?.toList() }
                 .flatten()
                 .filter { it.extension.equals("json") }
                 .firstOrNull()
-        if (jsonFile != null) {
-            val json = Gson().fromJson(Scanner(jsonFile).useDelimiter("\\Z").next(), JsonObject::class.java)
+                ?.apply {
+            val json = Gson().fromJson(Scanner(this).useDelimiter("\\Z").next(), JsonObject::class.java)
             manga.title = json["title"]?.asString ?: manga.title
             manga.author = json["author"]?.asString ?: manga.author
             manga.artist = json["artist"]?.asString ?: manga.artist
             manga.description = json["description"]?.asString ?: manga.description
-            manga.genre = json["genre"]?.asJsonArray?.run {
-                var genre = ""
-                val it = iterator()
-                while (it.hasNext()) {
-                    genre = genre.plus(it.next().asString)
-                    if (it.hasNext()) genre = genre.plus(", ")
-                }
-                genre
-            } ?: manga.genre
+            manga.genre = json["genre"]?.asJsonArray
+                    ?.map { it.asString }
+                    ?.joinToString(", ")
+                    ?: manga.genre
             manga.status = json["status"]?.asInt ?: manga.status
         }
         return Observable.just(manga)
