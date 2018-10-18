@@ -126,6 +126,10 @@ class LibraryPresenter(
 
             // Filter when there are no downloads.
             if (filterDownloaded) {
+                // Local manga are always downloaded
+                if (item.manga.source == LocalSource.ID) {
+                    return@f true
+                }
                 // Don't bother with directory checking if download count has been set.
                 if (item.downloadCount != -1) {
                     return@f item.downloadCount > 0
