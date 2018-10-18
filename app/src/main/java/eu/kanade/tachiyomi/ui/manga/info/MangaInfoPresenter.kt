@@ -101,7 +101,7 @@ class MangaInfoPresenter(
     fun toggleFavorite(): Boolean {
         manga.favorite = !manga.favorite
         if (!manga.favorite) {
-            coverCache.deleteFromCache(manga.thumbnail_url)
+            coverCache.deleteFromCache(manga)
         }
         db.insertManga(manga).executeAsBlocking()
         sendMangaToView()

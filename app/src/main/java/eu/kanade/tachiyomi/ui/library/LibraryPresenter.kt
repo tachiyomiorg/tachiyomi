@@ -316,7 +316,7 @@ class LibraryPresenter(
 
         Observable.fromCallable {
             mangaToDelete.forEach { manga ->
-                coverCache.deleteFromCache(manga.thumbnail_url)
+                coverCache.deleteFromCache(manga)
                 if (deleteChapters) {
                     val source = sourceManager.get(manga.source) as? HttpSource
                     if (source != null) {
@@ -362,7 +362,7 @@ class LibraryPresenter(
         }
 
         if (manga.thumbnail_url != null && manga.favorite) {
-            coverCache.copyToCache(manga.thumbnail_url!!, inputStream)
+            coverCache.copyToCache(manga, inputStream)
             return true
         }
         return false

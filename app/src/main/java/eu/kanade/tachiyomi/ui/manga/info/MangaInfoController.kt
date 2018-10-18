@@ -225,7 +225,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         setFavoriteDrawable(manga.favorite)
 
         // Set cover if it wasn't already.
-        if (manga_cover.drawable == null && !manga.thumbnail_url.isNullOrEmpty()) {
+        if (manga_cover.drawable == null) {
             GlideApp.with(view.context)
                     .load(manga)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)

@@ -7,6 +7,7 @@ import com.bumptech.glide.load.model.*
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.network.NetworkHelper
+import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.online.HttpSource
 import uy.kohesive.injekt.Injekt
@@ -80,13 +81,8 @@ class MangaModelLoader : ModelLoader<Manga, InputStream> {
      */
     override fun buildLoadData(manga: Manga, width: Int, height: Int,
                                options: Options): ModelLoader.LoadData<InputStream>? {
-        // Check thumbnail is not null or empty
         val url = manga.thumbnail_url
-        if (url == null || url.isEmpty()) {
-            return null
-        }
-
-        if (url.startsWith("http")) {
+        if (url != null && url.startsWith("http")) {
             val source = sourceManager.get(manga.source) as? HttpSource
             val glideUrl = GlideUrl(url, getHeaders(manga, source))
 
@@ -98,15 +94,17 @@ class MangaModelLoader : ModelLoader<Manga, InputStream> {
             }
 
             // Obtain the file for this url from the LRU cache, or retrieve and add it to the cache.
-            val file = lruCache.getOrPut(glideUrl) { coverCache.getCoverFile(url) }
+            val file = lruCache.getOrPut(glideUrl) { coverCache.getCoverFile(manga) }
 
             val libraryFetcher = LibraryMangaUrlFetcher(networkFetcher, manga, file)
 
             // Return an instance of the fetcher providing the needed elements.
             return ModelLoader.LoadData(MangaSignature(manga, file), libraryFetcher)
         } else {
-            // Get the file from the url, removing the scheme if present.
-            val file = File(url.substringAfter("file://"))
+            // Get the file from the url, removing the scheme if present, or from the cache if no url.
+            val file = url?.run {
+                File(url.substringAfter("file://"))
+            } ?: coverCache.getCoverFile(manga)
 
             // Return an instance of the fetcher providing the needed elements.
             return ModelLoader.LoadData(MangaSignature(manga, file), FileFetcher(file))

@@ -518,9 +518,8 @@ class ReaderPresenter(
                         R.string.cover_updated
                         SetAsCoverResult.Success
                     } else {
-                        val thumbUrl = manga.thumbnail_url ?: throw Exception("Image url not found")
                         if (manga.favorite) {
-                            coverCache.copyToCache(thumbUrl, stream())
+                            coverCache.copyToCache(manga, stream())
                             SetAsCoverResult.Success
                         } else {
                             SetAsCoverResult.AddToLibraryFirst

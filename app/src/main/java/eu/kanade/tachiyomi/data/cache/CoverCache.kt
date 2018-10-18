@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.cache
 
 import android.content.Context
+import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.util.DiskUtil
 import java.io.File
 import java.io.IOException
@@ -26,24 +27,25 @@ class CoverCache(private val context: Context) {
     /**
      * Returns the cover from cache.
      *
-     * @param thumbnailUrl the thumbnail url.
+     * @param manga the manga to get cover of.
      * @return cover image.
      */
-    fun getCoverFile(thumbnailUrl: String): File {
+    fun getCoverFile(manga: Manga): File {
+        val thumbnailUrl = manga.thumbnail_url ?: manga.url
         return File(cacheDir, DiskUtil.hashKeyForDisk(thumbnailUrl))
     }
 
     /**
      * Copy the given stream to this cache.
      *
-     * @param thumbnailUrl url of the thumbnail.
+     * @param manga the manga to change cover of.
      * @param inputStream  the stream to copy.
      * @throws IOException if there's any error.
      */
     @Throws(IOException::class)
-    fun copyToCache(thumbnailUrl: String, inputStream: InputStream) {
+    fun copyToCache(manga: Manga, inputStream: InputStream) {
         // Get destination file.
-        val destFile = getCoverFile(thumbnailUrl)
+        val destFile = getCoverFile(manga)
 
         destFile.outputStream().use { inputStream.copyTo(it) }
     }
@@ -51,16 +53,12 @@ class CoverCache(private val context: Context) {
     /**
      * Delete the cover file from the cache.
      *
-     * @param thumbnailUrl the thumbnail url.
+     * @param manga the manga to remove cover of.
      * @return status of deletion.
      */
-    fun deleteFromCache(thumbnailUrl: String?): Boolean {
-        // Check if url is empty.
-        if (thumbnailUrl.isNullOrEmpty())
-            return false
-
+    fun deleteFromCache(manga: Manga): Boolean {
         // Remove file.
-        val file = getCoverFile(thumbnailUrl!!)
+        val file = getCoverFile(manga)
         return file.exists() && file.delete()
     }
 
