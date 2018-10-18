@@ -361,7 +361,7 @@ class LibraryPresenter(
             return true
         }
 
-        if (manga.thumbnail_url != null && manga.favorite) {
+        if (manga.favorite) {
             coverCache.copyToCache(manga, inputStream)
             return true
         }

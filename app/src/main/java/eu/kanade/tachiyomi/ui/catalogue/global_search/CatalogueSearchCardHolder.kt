@@ -38,15 +38,13 @@ class CatalogueSearchCardHolder(view: View, adapter: CatalogueSearchCardAdapter)
 
     fun setImage(manga: Manga) {
         GlideApp.with(itemView.context).clear(itemImage)
-        if (!manga.thumbnail_url.isNullOrEmpty()) {
-            GlideApp.with(itemView.context)
+        GlideApp.with(itemView.context)
                     .load(manga)
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .centerCrop()
                     .skipMemoryCache(true)
                     .placeholder(android.R.color.transparent)
                     .into(StateImageViewTarget(itemImage, progress))
-        }
     }
 
 }

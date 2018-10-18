@@ -37,8 +37,7 @@ class CatalogueListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
 
     override fun setImage(manga: Manga) {
         GlideApp.with(view.context).clear(thumbnail)
-        if (!manga.thumbnail_url.isNullOrEmpty()) {
-            GlideApp.with(view.context)
+        GlideApp.with(view.context)
                     .load(manga)
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .centerCrop()
@@ -46,7 +45,6 @@ class CatalogueListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
                     .dontAnimate()
                     .placeholder(android.R.color.transparent)
                     .into(thumbnail)
-        }
     }
 
 }

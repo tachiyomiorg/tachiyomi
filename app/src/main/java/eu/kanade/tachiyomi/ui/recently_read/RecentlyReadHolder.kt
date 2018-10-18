@@ -59,13 +59,11 @@ class RecentlyReadHolder(
 
         // Set cover
         GlideApp.with(itemView.context).clear(cover)
-        if (!manga.thumbnail_url.isNullOrEmpty()) {
-            GlideApp.with(itemView.context)
+        GlideApp.with(itemView.context)
                     .load(manga)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .centerCrop()
                     .into(cover)
-        }
     }
 
 
