@@ -82,6 +82,11 @@ interface MangaQueries : DbProvider {
             .withPutResolver(MangaViewerPutResolver())
             .prepare()
 
+    fun updateMangaTitle(manga: Manga) = db.put()
+            .`object`(manga)
+            .withPutResolver(MangaTitlePutResolver())
+            .prepare()
+
     fun deleteManga(manga: Manga) = db.delete().`object`(manga).prepare()
 
     fun deleteMangas(mangas: List<Manga>) = db.delete().objects(mangas).prepare()

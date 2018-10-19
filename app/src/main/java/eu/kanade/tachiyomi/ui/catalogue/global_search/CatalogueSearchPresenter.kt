@@ -208,7 +208,7 @@ open class CatalogueSearchPresenter(
      * @param sManga the manga from the source.
      * @return a manga from the database.
      */
-    private fun networkToLocalManga(sManga: SManga, sourceId: Long): Manga {
+    protected open fun networkToLocalManga(sManga: SManga, sourceId: Long): Manga {
         var localManga = db.getManga(sManga.url, sourceId).executeAsBlocking()
         if (localManga == null) {
             val newManga = Manga.create(sManga.url, sManga.title, sourceId)

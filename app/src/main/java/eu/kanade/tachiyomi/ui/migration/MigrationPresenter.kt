@@ -146,6 +146,9 @@ class MigrationPresenter(
             }
             manga.favorite = true
             db.updateMangaFavorite(manga).executeAsBlocking()
+
+            // SearchPresenter#networkToLocalManga may have updated the manga title, so ensure db gets updated title
+            db.updateMangaTitle(manga).executeAsBlocking()
         }
     }
 }
