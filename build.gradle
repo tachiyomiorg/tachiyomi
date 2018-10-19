@@ -1,6 +1,4 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply plugin: 'com.github.ben-manes.versions'
-
 buildscript {
     repositories {
         jcenter()
@@ -15,6 +13,11 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+plugins {
+   id("jmfayard.github.io.gradle-kotlin-dsl-libs") version "0.2.4"  // $ ./gradlew syncLibs
+}
+
+
 
 allprojects {
     repositories {
