@@ -13,7 +13,7 @@ buildscript {
     }
 }
 plugins {
-   id("jmfayard.github.io.gradle-kotlin-dsl-libs") version "0.2.4"  // $ ./gradlew syncLibs
+   id("jmfayard.github.io.gradle-kotlin-dsl-libs") version "0.2.5"  // $ ./gradlew syncLibs
 }
 
 
