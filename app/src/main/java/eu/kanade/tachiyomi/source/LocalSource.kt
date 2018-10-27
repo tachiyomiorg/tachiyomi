@@ -104,8 +104,6 @@ class LocalSource(private val context: Context) : CatalogueSource {
                     }
                 }
 
-                fetchMangaDetails(this)
-
                 // Copy the cover from the first chapter found.
                 if (thumbnail_url == null) {
                     val chapters = fetchChapterList(this).toBlocking().first()
@@ -118,8 +116,6 @@ class LocalSource(private val context: Context) : CatalogueSource {
                         }
                     }
                 }
-
-                initialized = true
             }
         }
         return Observable.just(MangasPage(mangas, false))
