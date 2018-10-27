@@ -14,7 +14,7 @@ class KitsuSearchManga(obj: JsonObject) {
     private val canonicalTitle by obj.byString
     private val chapterCount = obj.get("chapterCount").nullInt
     val subType = obj.get("subtype").nullString
-    val original by obj["posterImage"].byString
+    val original = obj.get("posterImage").nullObj?.get("original")?.asString
     private val synopsis by obj.byString
     private var startDate = obj.get("startDate").nullString?.let {
         val outputDf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
@@ -28,7 +28,7 @@ class KitsuSearchManga(obj: JsonObject) {
         media_id = this@KitsuSearchManga.id
         title = canonicalTitle
         total_chapters = chapterCount ?: 0
-        cover_url = original
+        cover_url = original ?: ""
         summary = synopsis
         tracking_url = KitsuApi.mangaUrl(media_id)
         if (endDate == null) {
