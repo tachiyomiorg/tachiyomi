@@ -469,4 +469,23 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="ext_downloading">Descargando</string>
     <string name="ext_installing">Instalando</string>
     <string name="ext_installed">Instalado</string>
+    <string name="all_lang">Todo</string>
+    <string name="ext_trust">Confiable</string>
+    <string name="ext_untrusted">No confiable</string>
+    <string name="ext_uninstall">Desinstalar</string>
+    <string name="ext_available">Disponible</string>
+    <string name="untrusted_extension">Extensión no confiable</string>
+    <string name="ext_version_info">Versión: %1$s</string>
+    <string name="ext_language_info">Idioma: %1$s</string>
+    <string name="double_tap_anim_speed_normal">Normal</string>
+    <string name="double_tap_anim_speed_fast">Rápida</string>
+    <string name="custom_hint">cantidad</string>
+    <string name="transition_next">Siguiente: %1$s</string>
+    <string name="transition_previous">Anterior: %1$s</string>
+    <string name="transition_no_next">No hay capítulo siguiente</string>
+    <string name="transition_no_previous">No hay capítulo anterior</string>
+    <string name="migrate">Migrar</string>
+    <string name="copy">Copiar</string>
+    <string name="migrating">Migrando…</string>
+
     </resources>
