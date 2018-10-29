@@ -5,6 +5,6 @@
 !/.idea/codeStyleSettings.xml
 !/.idea/inspectionProfiles/
 .DS_Store
-/build
+build
 /captures
 .externalNativeBuild
