@@ -522,4 +522,6 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="migration_info">Pulse para seleccionar la fuente desde la que migrar</string>
     <string name="migration_dialog_what_to_include">Seleccionar datos para incluir</string>
     <string name="select">Seleccionar</string>
+    <string name="pref_double_tap_anim_speed">Doble toque para la velocidad de animación</string>
+    <string name="pager_viewer">Paginador</string>
     </resources>
