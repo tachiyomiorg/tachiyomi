@@ -6,6 +6,7 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.source.LocalSource
 import kotlinx.android.synthetic.main.catalogue_list_item.*
+import java.util.*
 
 /**
  * Class used to hold the displayed data of a manga in the library, like the cover or the title.
@@ -44,6 +45,10 @@ class LibraryListHolder(
         }
         //show local text badge if local manga
         local_text.visibility = if (item.manga.source == LocalSource.ID) View.VISIBLE else View.GONE
+
+        // Set new visibility if manga has new chapters
+        new_text.visibility = if (item.manga.latest_upload > Date().time - item.newChapterTimeframeMs
+                && item.manga.unread != 0) View.VISIBLE else View.GONE
 
         // Create thumbnail onclick to simulate long click
         thumbnail.setOnClickListener {
