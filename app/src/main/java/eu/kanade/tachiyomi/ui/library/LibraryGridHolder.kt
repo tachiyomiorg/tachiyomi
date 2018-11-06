@@ -20,8 +20,9 @@ import java.util.*
 class LibraryGridHolder(
         private val view: View,
         private val adapter: FlexibleAdapter<*>
-
 ) : LibraryHolder(view, adapter) {
+
+
 
     /**
      * Method called from [LibraryCategoryAdapter.onBindViewHolder]. It updates the data for this
@@ -47,7 +48,8 @@ class LibraryGridHolder(
         local_text.visibility = if(item.manga.source == LocalSource.ID) View.VISIBLE else View.GONE
 
         // Set new visibility if manga has new chapters
-        new_text.visibility = if (item.manga.latest_upload > Date().time - 7L * 24 * 3600 * 1000 && item.manga.unread != 0) View.VISIBLE else View.GONE
+        new_text.visibility = if (item.manga.latest_upload > Date().time - item.newChapterTimeframeMs
+                && item.manga.unread != 0) View.VISIBLE else View.GONE
 
 
         // Update the cover.

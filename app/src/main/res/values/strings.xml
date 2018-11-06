@@ -145,6 +145,12 @@
     <string name="system_default">System default</string>
     <string name="default_category">Default category</string>
     <string name="default_category_summary">Always ask</string>
+    <string name="pref_new_chapter_timeframe">How long a chapter is considered new</string>
+    <string name="timeframe_until_read">Until read</string>
+    <string name="timeframe_day">1 day</string>
+    <string name="timeframe_3_days">3 days</string>
+    <string name="timeframe_week">1 week</string>
+    <string name="timeframe_month">1 month</string>
 
     <!-- Extension section -->
     <string name="all_lang">All</string>

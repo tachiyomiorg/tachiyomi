@@ -177,6 +177,15 @@ class SettingsGeneralController : SettingsController() {
                 true
             }
         }
+        intListPreference {
+            key = Keys.newChapterTimeframe
+            titleRes = R.string.pref_new_chapter_timeframe
+            entriesRes = arrayOf(R.string.timeframe_until_read, R.string.timeframe_day,
+                    R.string.timeframe_3_days, R.string.timeframe_week, R.string.timeframe_month)
+            entryValues = arrayOf("1", "2", "3", "4", "5")
+            defaultValue = "4"
+            summary = "%s"
+        }
     }
 
     class LibraryColumnsDialog : DialogController() {

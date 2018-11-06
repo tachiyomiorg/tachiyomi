@@ -14,7 +14,9 @@ import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import kotlinx.android.synthetic.main.catalogue_grid_item.view.*
 
-class LibraryItem(val manga: LibraryManga, private val libraryAsList: Preference<Boolean>) :
+class LibraryItem(val manga: LibraryManga,
+                  private val libraryAsList: Preference<Boolean>,
+                  val newChapterTimeframeMs: Long) :
         AbstractFlexibleItem<LibraryHolder>(), IFilterable {
 
     var downloadCount = -1

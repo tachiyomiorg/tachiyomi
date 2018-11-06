@@ -105,6 +105,8 @@ object PreferenceKeys {
 
     const val downloadBadge = "display_download_badge"
 
+    const val newChapterTimeframe = "new_chapter_timeframe"
+
     @Deprecated("Use the preferences of the source")
     fun sourceUsername(sourceId: Long) = "pref_source_username_$sourceId"
 

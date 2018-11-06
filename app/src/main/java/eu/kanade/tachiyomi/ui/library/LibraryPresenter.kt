@@ -25,9 +25,7 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.io.IOException
 import java.io.InputStream
-import java.util.ArrayList
-import java.util.Collections
-import java.util.Comparator
+import java.util.*
 
 /**
  * Class containing library information.
@@ -251,10 +249,24 @@ class LibraryPresenter(
      */
     private fun getLibraryMangasObservable(): Observable<LibraryMap> {
         val libraryAsList = preferences.libraryAsList()
+        val newChapterTimeframeMs = resolveTimeframeMs(preferences.newChapterTimeframe())
+
         return db.getLibraryMangas().asRxObservable()
                 .map { list ->
-                    list.map { LibraryItem(it, libraryAsList) }.groupBy { it.manga.category }
+                    list.map { LibraryItem(it, libraryAsList, newChapterTimeframeMs) }.groupBy { it.manga.category }
                 }
+    }
+
+    private fun resolveTimeframeMs(newChapterTimeframePref: Int): Long{
+        when (newChapterTimeframePref){
+            1 -> return Date().time // forever
+            2 -> return 1L * 24 * 3600 * 1000 // 1 day
+            3 -> return 3L * 24 * 3600 * 1000 // 3 days
+            4 -> return 7L * 24 * 3600 * 1000 // 1 week
+            5 -> return 30L * 24 * 3600 * 1000 // 1 month
+            else -> return 0L // never
+        }
+
     }
 
     /**
