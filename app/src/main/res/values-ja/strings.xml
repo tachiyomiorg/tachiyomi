@@ -37,4 +37,9 @@
     <string name="action_display_grid">グリッド</string>
     <string name="action_display_list">リスト</string>
     <string name="action_sort">ソート</string>
+    <string name="track">追跡</string>
+    <string name="label_extensions">拡張機能</string>
+    <string name="label_extension_info">拡張機能の情報</string>
+
+
     </resources>

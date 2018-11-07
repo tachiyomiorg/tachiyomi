@@ -457,4 +457,12 @@
     <string name="copy">কপি</string>
     <string name="migrating">সরানো হচ্ছে…</string>
 
+    <string name="pager_viewer">পেজার</string>
+    <string name="source_not_installed">উৎস ইন্সটল করা নেই: %1$s</string>
+
+    <string name="repeating">পুনরায় পড়া</string>
+    <string name="track_status">স্ট্যাটাস</string>
+    <string name="track_start_date">শুরু হয়েছে</string>
+    <string name="track_type">ধরণ</string>
+    <string name="track_author">লেখক</string>
     </resources>
