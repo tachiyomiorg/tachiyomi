@@ -37,6 +37,7 @@
     <string name="action_sort_total">Total chapters</string>
     <string name="action_sort_last_read">Last read</string>
     <string name="action_sort_last_updated">Last updated</string>
+    <string name="action_sort_latest_upload">Latest upload</string>
     <string name="action_search">Search</string>
     <string name="action_global_search">Global search</string>
     <string name="action_select_all">Select all</string>
