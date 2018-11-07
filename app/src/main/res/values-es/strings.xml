@@ -210,7 +210,7 @@
     <string name="show_title">Mostrar título</string>
     <string name="show_chapter_number">Mostrar número de capítulo</string>
     <string name="sorting_mode">Ordenado de capítulos</string>
-    <string name="sort_by_source">Como en la fuente</string>
+    <string name="sort_by_source">Por fuente</string>
     <string name="sort_by_number">Por número de capítulo</string>
     <string name="manga_download">Descargar</string>
     <string name="download_1">Descargar siguiente capítulo</string>
@@ -469,4 +469,59 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="ext_downloading">Descargando</string>
     <string name="ext_installing">Instalando</string>
     <string name="ext_installed">Instalado</string>
+    <string name="all_lang">Todo</string>
+    <string name="ext_trust">Confiable</string>
+    <string name="ext_untrusted">No confiable</string>
+    <string name="ext_uninstall">Desinstalar</string>
+    <string name="ext_available">Disponible</string>
+    <string name="untrusted_extension">Extensión no confiable</string>
+    <string name="ext_version_info">Versión: %1$s</string>
+    <string name="ext_language_info">Idioma: %1$s</string>
+    <string name="double_tap_anim_speed_normal">Normal</string>
+    <string name="double_tap_anim_speed_fast">Rápida</string>
+    <string name="custom_hint">cantidad</string>
+    <string name="transition_next">Siguiente: %1$s</string>
+    <string name="transition_previous">Anterior: %1$s</string>
+    <string name="transition_no_next">No hay capítulo siguiente</string>
+    <string name="transition_no_previous">No hay capítulo anterior</string>
+    <string name="migrate">Migrar</string>
+    <string name="copy">Copiar</string>
+    <string name="migrating">Migrando…</string>
+
+    <string name="ext_preferences">Preferencias</string>
+    <string name="untrusted_extension_message">Esta extensión fue firmada con un certificado no fiable y no fue activada.
+\n
+\nUna extensión maliciosa podría leer cualquier dato de inicio de sesión almacenado en Tachiyomi o ejecutar código arbitrario.
+\n
+\nConfiando en este certificado aceptas estos riesgos.</string>
+    <string name="ext_empty_preferences">No hay preferencias para editar en esta extensión</string>
+
+      <string name="double_tap_anim_speed_0">Sin animación</string>
+    <string name="source_search_options">Filtros de búsqueda</string>
+    <string name="manga_info_full_title_label">Título</string>
+    <string name="manga_added_library">Añadido a la biblioteca</string>
+    <string name="manga_removed_library">Quitado de la biblioteca</string>
+    <string name="manga_info_latest_data_label">Actualizado</string>
+    <string name="copied_to_clipboard">%1$s copiado al portapapeles</string>
+    <string name="source_not_installed">Fuente no instalada: %1$s</string>
+
+    <string name="custom_download">Descargar cantidad personalizada</string>
+    <string name="download_custom">Descargar personalizado</string>
+    <string name="repeating">Relectura</string>
+    <string name="track_status">Estado</string>
+    <string name="track_start_date">Empezado</string>
+    <string name="track_type">Tipo</string>
+    <string name="track_author">Autor</string>
+    <string name="url_not_set">La dirección del manga no está fijada, por favor haga clic en el título y seleccione el manga de nuevo</string>
+
+    <string name="transition_finished">Finalizado: %1$s</string>
+    <string name="transition_current">Actual: %1$s</string>
+    <string name="transition_pages_loading">Cargando páginas…</string>
+    <string name="transition_pages_error">Error al cargar páginas: %1$s</string>
+
+    <string name="migration_info">Pulse para seleccionar la fuente desde la que migrar</string>
+    <string name="migration_dialog_what_to_include">Seleccionar datos para incluir</string>
+    <string name="select">Seleccionar</string>
+    <string name="pref_double_tap_anim_speed">Doble toque para la velocidad de animación</string>
+    <string name="pager_viewer">Paginador</string>
     </resources>

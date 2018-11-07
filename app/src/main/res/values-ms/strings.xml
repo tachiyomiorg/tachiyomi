@@ -410,4 +410,5 @@
     <string name="channel_common">Biasa</string>
     <string name="channel_library">Koleksi</string>
     <string name="channel_downloader">Pemuat turun</string>
-</resources>
+<string name="label_migration">Pindah sumber</string>
+    </resources>

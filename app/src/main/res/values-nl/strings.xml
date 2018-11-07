@@ -410,4 +410,10 @@ Zorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het teru
 <string name="browse">Bladeren</string>
 
     <string name="channel_common">Algemeen</string>
+    <string name="label_migration">Bronmigratie</string>
+    <string name="label_extensions">Extensies</string>
+    <string name="label_extension_info">Informatie extensie</string>
+
+
+    <string name="custom_hint">hoeveelheid</string>
     </resources>
