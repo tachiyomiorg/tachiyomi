@@ -46,14 +46,14 @@
     <string name="action_add_category">添加分类</string>
     <string name="action_edit_categories">编辑分类</string>
     <string name="action_rename_category">重命名分类</string>
-    <string name="action_move_category">移除分类</string>
+    <string name="action_move_category">移动到分类</string>
     <string name="action_edit_cover">编辑封面图片</string>
     <string name="action_sort_up">排序</string>
     <string name="action_show_downloaded">已下载</string>
     <string name="action_start">开始</string>
     <string name="action_stop">停止</string>
     <string name="action_pause">暂停</string>
-    <string name="action_clear">清楚</string>
+    <string name="action_clear">清除</string>
     <string name="action_close">关闭</string>
     <string name="action_previous_chapter">上一章</string>
     <string name="action_next_chapter">下一章</string>
@@ -76,4 +76,17 @@
     <string name="action_reset">重置</string>
     <string name="action_undo">撤销</string>
     <string name="action_export">导出</string>
+    <string name="track">同步</string>
+    <string name="label_migration">其它来源</string>
+    <string name="action_mark_previous_as_read">标记之前章节已读</string>
+    <string name="action_next_unread">至下一未读</string>
+    <string name="action_open_log">打开日志</string>
+    <string name="action_create">创建</string>
+    <string name="action_restore">恢复</string>
+    <string name="action_open">打开</string>
+    <string name="action_login">登录</string>
+
+    <string name="deleting">删除中…</string>
+    <string name="loading">加载中…</string>
+
     </resources>
