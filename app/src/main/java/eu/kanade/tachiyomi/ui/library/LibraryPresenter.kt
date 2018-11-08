@@ -26,7 +26,6 @@ import uy.kohesive.injekt.api.get
 import java.io.IOException
 import java.io.InputStream
 import java.util.Collections
-import java.util.Date
 
 /**
  * Class containing library information.
@@ -191,7 +190,7 @@ class LibraryPresenter(
                     val manga2LastRead = lastReadManga[i2.manga.id!!] ?: lastReadManga.size
                     manga1LastRead.compareTo(manga2LastRead)
                 }
-                LibrarySort.LAST_UPDATED -> i2.manga.last_update.compareTo(i1.manga.last_update)
+                LibrarySort.LAST_UPDATED -> i1.manga.last_update.compareTo(i2.manga.last_update)
                 LibrarySort.LATEST_UPLOAD -> i1.manga.latest_upload.compareTo(i2.manga.latest_upload)
                 LibrarySort.UNREAD -> i1.manga.unread.compareTo(i2.manga.unread)
                 LibrarySort.TOTAL -> {
@@ -251,30 +250,12 @@ class LibraryPresenter(
      */
     private fun getLibraryMangasObservable(): Observable<LibraryMap> {
         val libraryAsList = preferences.libraryAsList()
-        val newChapterTimeframeMs = resolveTimeframeMs(preferences.newChapterTimeframe())
+        val newChapterTimeframe = preferences.newChapterTimeframe()
 
         return db.getLibraryMangas().asRxObservable()
                 .map { list ->
-                    list.map { LibraryItem(it, libraryAsList, newChapterTimeframeMs) }.groupBy { it.manga.category }
+                    list.map { LibraryItem(it, libraryAsList, newChapterTimeframe) }.groupBy { it.manga.category }
                 }
-    }
-
-    /**
-     * Resolve the time in ms the preference option represents
-     *
-     * @param newChapterTimeframePref preference option
-     * @return time in ms
-     */
-    private fun resolveTimeframeMs(newChapterTimeframePref: Int): Long{
-        when (newChapterTimeframePref){
-            1 -> return Date().time // forever
-            2 -> return 1L * 24 * 3600 * 1000 // 1 day
-            3 -> return 3L * 24 * 3600 * 1000 // 3 days
-            4 -> return 7L * 24 * 3600 * 1000 // 1 week
-            5 -> return 30L * 24 * 3600 * 1000 // 1 month
-            else -> return 0L // never
-        }
-
     }
 
     /**

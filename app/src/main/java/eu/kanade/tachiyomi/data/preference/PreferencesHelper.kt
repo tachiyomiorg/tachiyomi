@@ -167,5 +167,5 @@ class PreferencesHelper(val context: Context) {
 
     fun trustedSignatures() = rxPrefs.getStringSet("trusted_signatures", emptySet())
 
-    fun newChapterTimeframe() = prefs.getInt(Keys.newChapterTimeframe, 4)
+    fun newChapterTimeframe() = prefs.getInt(Keys.newChapterTimeframe, 7)
 }

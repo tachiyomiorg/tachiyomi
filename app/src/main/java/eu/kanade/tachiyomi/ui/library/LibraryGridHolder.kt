@@ -48,8 +48,8 @@ class LibraryGridHolder(
         local_text.visibility = if(item.manga.source == LocalSource.ID) View.VISIBLE else View.GONE
 
         // Set new visibility if manga has new chapters
-        new_text.visibility = if (item.manga.latest_upload > Date().time - item.newChapterTimeframeMs
-                && item.manga.unread != 0) View.VISIBLE else View.GONE
+        new_text.visibility = if (item.manga.latest_upload > Date().time - item.newChapterTimeframe * 24L * 3600 * 1000
+                && !item.manga.latest_read) View.VISIBLE else View.GONE
 
 
         // Update the cover.

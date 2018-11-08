@@ -13,7 +13,8 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.util.LocaleHelper
-import kotlinx.android.synthetic.main.pref_library_columns.view.*
+import kotlinx.android.synthetic.main.pref_library_columns.view.landscape_columns
+import kotlinx.android.synthetic.main.pref_library_columns.view.portrait_columns
 import rx.Observable
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -180,10 +181,10 @@ class SettingsGeneralController : SettingsController() {
         intListPreference {
             key = Keys.newChapterTimeframe
             titleRes = R.string.pref_new_chapter_timeframe
-            entriesRes = arrayOf(R.string.timeframe_until_read, R.string.timeframe_day,
-                    R.string.timeframe_3_days, R.string.timeframe_week, R.string.timeframe_month)
-            entryValues = arrayOf("1", "2", "3", "4", "5")
-            defaultValue = "4"
+            entriesRes = arrayOf(R.string.timeframe_day, R.string.timeframe_3_days, R.string.timeframe_week,
+                    R.string.timeframe_month, R.string.timeframe_until_read)
+            entryValues = arrayOf("1", "3", "7", "30", "36500") // Until read = 100 years
+            defaultValue = "7"
             summary = "%s"
         }
     }
