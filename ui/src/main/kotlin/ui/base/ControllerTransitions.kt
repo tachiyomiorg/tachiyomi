@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
+import ui.base.SimpleTransitionChangeHandler
 
 fun Controller.withHorizontalTransition(): RouterTransaction {
   return RouterTransaction.with(this)

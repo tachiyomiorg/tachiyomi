@@ -30,7 +30,7 @@
       android:layout_marginEnd="8dp"
       android:ellipsize="end"
       android:maxLines="1"
-      android:textAppearance="@style/TextAppearance.Regular.SubHeading"
+      android:textAppearance="@style/TextAppearance.Subtitle1"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toEndOf="@+id/image"

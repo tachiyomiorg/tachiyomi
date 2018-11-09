@@ -49,87 +49,31 @@
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
-    <style name="TextAppearance.Regular">
-        <item name="android:fontFamily">@string/font_roboto_regular</item>
-    </style>
+    <style name="TextAppearance.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1"/>
 
-    <style name="TextAppearance.Regular.Body1">
-        <item name="android:textSize">14sp</item>
-    </style>
+    <style name="TextAppearance.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2"/>
 
-    <style name="TextAppearance.Regular.Body1.Bold">
-        <item name="android:textStyle">bold</item>
-    </style>
+    <style name="TextAppearance.Body1" parent="TextAppearance.MaterialComponents.Body1"/>
 
-    <style name="TextAppearance.Regular.Body1.Light">
+    <style name="TextAppearance.Body1.Light">
         <item name="android:textColor">@color/textColorPrimaryInverse</item>
     </style>
 
-    <style name="TextAppearance.Regular.Body1.Secondary">
-        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    <style name="TextAppearance.Body1.Secondary">
+        <item name="android:textColor">?android:textColorSecondary</item>
     </style>
 
-    <style name="TextAppearance.Regular.Caption">
-        <item name="android:textSize">12sp</item>
-    </style>
+    <style name="TextAppearance.Body2" parent="TextAppearance.MaterialComponents.Body2"/>
 
-    <style name="TextAppearance.Regular.Caption.Light">
+    <style name="TextAppearance.Button" parent="TextAppearance.MaterialComponents.Button"/>
+
+    <style name="TextAppearance.Caption" parent="TextAppearance.MaterialComponents.Caption"/>
+
+    <style name="TextAppearance.Caption.Light">
         <item name="android:textColor">@color/textColorPrimaryInverse</item>
     </style>
 
-    <style name="TextAppearance.Regular.Caption.Hint">
-        <item name="android:textColor">?android:attr/textColorHint</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading">
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading.Upper">
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading.Secondary">
-        <item name="android:textColor">?android:attr/textColorSecondary</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading.Light">
-        <item name="android:textColor">@color/textColorPrimaryInverse</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading.Light.Bold">
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="TextAppearance.Medium">
-        <item name="android:fontFamily">@string/font_roboto_medium</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Title">
-        <item name="android:textSize">20sp</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Title.Upper">
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Title.Secondary">
-        <item name="android:textColor">?android:attr/textColorSecondary</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Body2">
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Body2.Hint">
-        <item name="android:textColor">?android:attr/textColorHint</item>
-    </style>
-
-    <style name="TextAppearance.Medium.Button">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">?attr/colorAccent</item>
-    </style>
+    <style name="TextAppearance.Overline" parent="TextAppearance.MaterialComponents.Overline"/>
 
     <!--=======-->
     <!--Widgets-->
@@ -146,6 +90,10 @@
         <item name="android:tint">@color/md_white_1000</item>
         <!--<item name="layout_behavior">eu.kanade.tachiyomi.widget.FABAnimationUpDown</item>-->
     </style>
+
+    <style name="Theme.Widget.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog"/>
+
+    <style name="Theme.Widget.BottomSheetDialog.Dark" parent="Theme.Design.BottomSheetDialog"/>
 
     <style name="Theme.Widget.CardView" parent="CardView">
         <item name="android:layout_width">match_parent</item>
@@ -190,7 +138,7 @@
 
     <style name="Theme.Widget.CheckBox" />
 
-    <style name="Theme.Widget.CheckBox.Light" parent="TextAppearance.Regular.Body1.Light">
+    <style name="Theme.Widget.CheckBox.Light" parent="TextAppearance.Body1.Light">
         <item name="buttonTint">@color/md_white_1000</item>
     </style>
 
@@ -234,30 +182,6 @@
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
     </style>
-
-    <!--<style name="FilePickerTheme" parent="NNF_BaseTheme.Light">-->
-        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
-        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-        <!--<item name="colorAccent">@color/colorAccentLight</item>-->
-        <!--<item name="colorButtonNormal">@color/colorPrimary</item>-->
-        <!--<item name="android:textSize">14sp</item>-->
-
-        <!--<item name="alertDialogTheme">@style/FilePickerAlertDialogTheme</item>-->
-
-        <!--<item name="nnf_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>-->
-    <!--</style>-->
-
-    <!--<style name="FilePickerAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert"></style>-->
-
-    <!--<style name="reader_settings_popup_animation">-->
-        <!--<item name="android:windowEnterAnimation">@anim/enter_from_right</item>-->
-        <!--<item name="android:windowExitAnimation">@anim/exit_to_right</item>-->
-    <!--</style>-->
-
-    <!--<style name="reader_brightness_popup_animation">-->
-        <!--<item name="android:windowEnterAnimation">@anim/enter_from_left</item>-->
-        <!--<item name="android:windowExitAnimation">@anim/exit_to_left</item>-->
-    <!--</style>-->
 
 
 </resources>

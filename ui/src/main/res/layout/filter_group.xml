@@ -6,4 +6,4 @@
   android:layout_height="wrap_content"
   android:textSize="16sp"
   android:paddingBottom="8dp"
-  style="@style/TextAppearance.Medium.Body2" />
+  style="@style/TextAppearance.Body2" />

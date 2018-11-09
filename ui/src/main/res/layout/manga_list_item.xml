@@ -23,7 +23,7 @@
 
   <TextView
     android:id="@+id/title"
-    style="@style/TextAppearance.Regular.SubHeading"
+    style="@style/TextAppearance.Subtitle2"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:ellipsize="end"
@@ -40,7 +40,7 @@
 
   <TextView
     android:id="@+id/unread_text"
-    style="@style/TextAppearance.Regular.Caption.Light"
+    style="@style/TextAppearance.Caption.Light"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
       android:background="@color/colorBadgeUnread"
@@ -64,7 +64,7 @@
 
   <TextView
     android:id="@+id/download_text"
-    style="@style/TextAppearance.Regular.Caption.Light"
+    style="@style/TextAppearance.Caption.Light"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
       android:background="@color/colorBadgeDownload"

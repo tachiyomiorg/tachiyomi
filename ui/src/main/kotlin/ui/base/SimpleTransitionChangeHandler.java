@@ -1,4 +1,4 @@
-package tachiyomi.ui.base;
+package ui.base;
 
 import android.transition.Transition;
 import android.transition.TransitionSet;
