@@ -7,10 +7,10 @@
 
     <string name="label_settings">设置</string>
     <string name="label_download_queue">下载队列</string>
-    <string name="label_library">我的收藏</string>
+    <string name="label_library">我的书架</string>
     <string name="label_recent_manga">浏览历史</string>
-    <string name="label_catalogues">图源</string>
-    <string name="label_recent_updates">最近更新</string>
+    <string name="label_catalogues">发现</string>
+    <string name="label_recent_updates">书架更新</string>
     <string name="label_latest_updates">最近更新</string>
     <string name="label_categories">标签</string>
     <string name="label_selected">已选择: %1$d</string>
@@ -20,13 +20,13 @@
 
 
     <string name="action_settings">设置</string>
-    <string name="action_filter">过滤</string>
+    <string name="action_filter">筛选</string>
     <string name="action_filter_downloaded">已下载</string>
     <string name="action_filter_bookmarked">书签</string>
     <string name="action_filter_unread">未读</string>
     <string name="action_filter_read">已读</string>
-    <string name="action_filter_empty">移除过滤</string>
-    <string name="action_sort_alpha">字典序</string>
+    <string name="action_filter_empty">取消筛选</string>
+    <string name="action_sort_alpha">字母序</string>
     <string name="action_sort_total">总章节</string>
     <string name="action_sort_last_read">最近阅读</string>
     <string name="action_sort_last_updated">最近更新</string>
@@ -40,7 +40,7 @@
     <string name="action_remove_bookmark">移除书签</string>
     <string name="action_delete">删除</string>
     <string name="action_update">更新</string>
-    <string name="action_update_library">更新收藏</string>
+    <string name="action_update_library">更新书架</string>
     <string name="action_edit">编辑</string>
     <string name="action_add">添加</string>
     <string name="action_add_category">添加标签</string>
@@ -59,7 +59,7 @@
     <string name="action_next_chapter">下一章</string>
     <string name="action_retry">重试</string>
     <string name="action_remove">移除</string>
-    <string name="action_resume">暂停</string>
+    <string name="action_resume">继续阅读</string>
     <string name="action_move">移动</string>
     <string name="action_open_in_browser">在浏览器中打开</string>
     <string name="action_add_to_home_screen">添加到桌面</string>
@@ -67,7 +67,7 @@
     <string name="action_display">显示</string>
     <string name="action_display_grid">网格</string>
     <string name="action_display_list">列表</string>
-    <string name="action_set_filter">设置过滤</string>
+    <string name="action_set_filter">设置筛选</string>
     <string name="action_cancel">取消</string>
     <string name="action_sort">排序</string>
     <string name="action_install">安装</string>
@@ -102,11 +102,11 @@
     <string name="pref_category_advanced">高级</string>
     <string name="pref_category_about">关于</string>
 
-      <string name="pref_library_columns">收藏页面网格</string>
+      <string name="pref_library_columns">书架页面网格</string>
     <string name="portrait">纵向</string>
     <string name="landscape">横向</string>
     <string name="default_columns">预设</string>
-    <string name="pref_library_update_interval">收藏更新频率</string>
+    <string name="pref_library_update_interval">书架更新频率</string>
     <string name="update_never">手动</string>
     <string name="update_1hour">每小时</string>
     <string name="update_2hour">每2小时</string>
@@ -119,7 +119,7 @@
     <string name="update_monthly">每月</string>
     <string name="pref_library_update_categories">全局更新时包含的标签</string>
     <string name="all">全部</string>
-    <string name="pref_library_update_restriction">收藏更新条件</string>
+    <string name="pref_library_update_restriction">书架更新条件</string>
     <string name="pref_library_update_restriction_summary">仅在符合条件下更新</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">充电中</string>
@@ -147,7 +147,7 @@
     <string name="ext_untrusted">不可信</string>
     <string name="ext_uninstall">卸载</string>
     <string name="ext_preferences">偏好</string>
-    <string name="ext_available">可用</string>
+    <string name="ext_available">可安装扩展</string>
     <string name="untrusted_extension">不可信扩展</string>
     <string name="untrusted_extension_message">这个扩展是用一个不可信的证书签名的，并且它没有被激活。
 \n
@@ -234,7 +234,7 @@
     <string name="pref_backup_interval">备份频率</string>
     <string name="pref_backup_slots">最大自动备份数</string>
     <string name="dialog_restoring_backup">正在恢复备份……
-\n%1$s 已添加至收藏</string>
+\n%1$s 已添加至书架</string>
     <string name="source_not_found">未找到图源</string>
     <string name="dialog_restoring_source_not_found">正在恢复备份……
 \n%1$s 未找到图源</string>
@@ -258,10 +258,10 @@
     <string name="cookies_cleared">cookies已清除</string>
     <string name="choices_reset">重置对话选择</string>
     <string name="pref_clear_database">清除数据库</string>
-    <string name="pref_clear_database_summary">删除未收藏的漫画与章节</string>
-    <string name="clear_database_confirmation">你确定吗？将删除未收藏的漫画章节与阅读进度的数据</string>
+    <string name="pref_clear_database_summary">删除未在书架的漫画与章节</string>
+    <string name="clear_database_confirmation">你确定吗？将删除未在书架的漫画章节与阅读进度的数据</string>
     <string name="clear_database_completed">已删除</string>
-    <string name="pref_refresh_library_metadata">刷新收藏数据</string>
+    <string name="pref_refresh_library_metadata">刷新书架数据</string>
     <string name="pref_refresh_library_metadata_summary">更新封面，类型，描述与漫画状态信息</string>
     <string name="pref_refresh_library_tracking">刷新同步数据</string>
     <string name="pref_refresh_library_tracking_summary">更新同步服务的状态，评分以及已读章节</string>
@@ -297,7 +297,7 @@
     <string name="local_source">本地漫画</string>
     <string name="other_source">其它</string>
     <string name="invalid_combination">默认标签不能与其它标签一起选择</string>
-    <string name="added_to_library">已将此漫画添加至收藏</string>
+    <string name="added_to_library">已将此漫画添加至书架</string>
     <string name="action_global_search_hint">全局搜索…</string>
     <string name="no_results">找不到！</string>
     <string name="latest">最新</string>
@@ -306,19 +306,19 @@
     <string name="manga_not_in_db">漫画已被移出数据库！</string>
 
     <string name="manga_detail_tab">详情</string>
-    <string name="description">一句话总结</string>
+    <string name="description">描述</string>
     <string name="ongoing">连载中</string>
     <string name="unknown">未知</string>
     <string name="licensed">已授权</string>
-    <string name="remove_from_library">从收藏删除</string>
+    <string name="remove_from_library">从书架删除</string>
     <string name="manga_info_full_title_label">标题</string>
-    <string name="manga_added_library">已添加至收藏</string>
-    <string name="manga_removed_library">已从收藏删除</string>
+    <string name="manga_added_library">已添加至书架</string>
+    <string name="manga_removed_library">已从书架删除</string>
     <string name="manga_info_author_label">作者</string>
     <string name="manga_info_artist_label">画师</string>
     <string name="manga_info_chapters_label">章节</string>
     <string name="manga_info_last_chapter_label">最新章节</string>
-    <string name="manga_info_latest_data_label">已更新</string>
+    <string name="manga_info_latest_data_label">最后更新</string>
     <string name="manga_info_status_label">状态</string>
     <string name="manga_info_source_label">图源</string>
     <string name="manga_info_genres_label">类型</string>
@@ -362,7 +362,7 @@
 
     <string name="manga_tracking_tab">同步</string>
     <string name="reading">阅读中</string>
-    <string name="completed">已读完</string>
+    <string name="completed">已完结</string>
     <string name="dropped">已放弃</string>
     <string name="on_hold">搁置中</string>
     <string name="plan_to_read">计划读</string>
@@ -382,13 +382,13 @@
     <string name="dialog_with_checkbox_remove_description">将清除此章节的阅读日期，确定吗？</string>
     <string name="dialog_with_checkbox_reset">重置此漫画所有章节</string>
 
-    <string name="snack_add_to_library">要将这本漫画添加至收藏吗？</string>
+    <string name="snack_add_to_library">要将这本漫画添加至书架吗？</string>
 
     <string name="picture_saved">图片已保存</string>
     <string name="saving_picture">保存图片中</string>
     <string name="options">选项</string>
 
-    <string name="custom_filter">自订过滤</string>
+    <string name="custom_filter">自订筛选</string>
     <string name="set_as_cover">设置为封面</string>
     <string name="cover_updated">已设置封面</string>
     <string name="page_downloaded">页面已复制到%1$s</string>
@@ -402,7 +402,7 @@
 \n请尝试更换图片解码器或选择以下选项</string>
     <string name="confirm_update_manga_sync">要从已开启的同步服务器上同步最新已读章节到%1$d吗？</string>
     <string name="confirm_set_image_as_cover">要将此页设为封面吗？</string>
-    <string name="viewer_for_this_series">查看同系列</string>
+    <string name="viewer_for_this_series">阅读模式</string>
     <string name="transition_finished">已完成: %1$s</string>
     <string name="transition_current">当前: %1$s</string>
     <string name="transition_next">下一章: %1$s</string>
@@ -427,7 +427,7 @@
     <string name="notification_new_chapters">发现新章节</string>
     <string name="notification_new_chapters_text">%1$d</string>
     <string name="notification_cover_update_failed">更新封面失败</string>
-    <string name="notification_first_add_to_library">请先收藏漫画再进行更新</string>
+    <string name="notification_first_add_to_library">请先收藏漫画到书架再进行更新</string>
     <string name="notification_not_connected_to_ac_title">同步取消</string>
     <string name="notification_not_connected_to_ac_body">未连接至电源</string>
     <string name="notification_no_connection_title">同步取消</string>
@@ -453,11 +453,11 @@
     <string name="description_backdrop">漫画背景</string>
     <string name="description_cover">漫画封面</string>
 
-    <string name="information_no_downloads">无下载</string>
+    <string name="information_no_downloads">没有下载中的任务</string>
     <string name="information_no_recent">无最近章节</string>
     <string name="information_no_recent_manga">无最近阅读</string>
-    <string name="information_empty_library">你还没有收藏，请去图源寻找漫画进行收藏。</string>
-    <string name="information_empty_category">你还没有标签。你可以点击加号按钮创建一个标签以管理收藏。</string>
+    <string name="information_empty_library">你的书架是空的哦，请去发现栏寻找漫画进行收藏吧。</string>
+    <string name="information_empty_category">你还没有标签。你可以点击加号按钮创建一个标签以管理书架。</string>
 
     <string name="download_notifier_downloader_title">下载</string>
     <string name="download_notifier_title_error">错误</string>
@@ -469,7 +469,7 @@
     <string name="download_notifier_download_paused">下载暂停</string>
 
     <string name="channel_common">普通</string>
-    <string name="channel_library">收藏</string>
+    <string name="channel_library">书架</string>
     <string name="channel_downloader">下载</string>
 
 </resources>
