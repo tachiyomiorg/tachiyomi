@@ -15,6 +15,7 @@ data class Manga(
   val cover: String = "",
   val favorite: Boolean = false,
   val lastUpdate: Long = 0,
+  val dateAdded: Long = 0,
   val initialized: Boolean = false,
   val viewer: Int = 0,
   val flags: Int = 0
