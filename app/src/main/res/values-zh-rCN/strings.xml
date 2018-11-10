@@ -403,10 +403,10 @@
     <string name="confirm_update_manga_sync">要从已开启的同步服务器上同步最新已读章节到%1$d吗？</string>
     <string name="confirm_set_image_as_cover">要将此页设为封面吗？</string>
     <string name="viewer_for_this_series">阅读模式</string>
-    <string name="transition_finished">已完成: %1$s</string>
-    <string name="transition_current">当前: %1$s</string>
-    <string name="transition_next">下一章: %1$s</string>
-    <string name="transition_previous">上一章: %1$s</string>
+    <string name="transition_finished">已读完:</string>
+    <string name="transition_current">"当前: "</string>
+    <string name="transition_next">下一章:</string>
+    <string name="transition_previous">"上一章: "</string>
     <string name="transition_no_next">下面没有啦</string>
     <string name="transition_no_previous">前面没有啦</string>
     <string name="transition_pages_loading">页面加载中…</string>
@@ -472,4 +472,5 @@
     <string name="channel_library">书架</string>
     <string name="channel_downloader">下载</string>
 
-</resources>
+<string name="darkblue_theme">暗蓝色主题</string>
+    </resources>
