@@ -464,4 +464,13 @@
     <string name="channel_library">Kitaplık</string>
     <string name="channel_downloader">İndirici</string>
 
-</resources>
+<string name="transition_finished">Biten: %1$s</string>
+    <string name="transition_current">Şu anki: %1$s</string>
+    <string name="transition_next">Sonraki: %1$s</string>
+    <string name="transition_previous">Önceki: %1$s</string>
+    <string name="transition_no_next">Sonraki bölüm yok</string>
+    <string name="transition_no_previous">Önceki bölüm yok</string>
+    <string name="transition_pages_loading">Sayfalar yükleniyor…</string>
+    <string name="transition_pages_error">Sayfalar yüklenemedi: %1$s</string>
+
+    </resources>
