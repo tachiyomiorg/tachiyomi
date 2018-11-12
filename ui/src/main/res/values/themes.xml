@@ -20,6 +20,9 @@
         <item name="dialogColor">@color/colorDialog</item>
         <item name="rippleColor">@color/colorRipple</item>
 
+        <!--Dialog colors -->
+        <item name="bottomSheetDialogTheme">@style/Theme.Widget.BottomSheetDialog</item>
+
         <!-- Navigation Colors -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
@@ -39,6 +42,9 @@
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="dialogColor">@color/colorDarkDialog</item>
         <item name="rippleColor">@color/colorDarkRipple</item>
+
+        <!--Dialog colors -->
+        <item name="bottomSheetDialogTheme">@style/Theme.Widget.BottomSheetDialog.Dark</item>
 
         <!-- Navigation Colors -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>

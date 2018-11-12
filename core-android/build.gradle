@@ -34,9 +34,3 @@ kapt {
     arg("toothpick_registry_package_name", "tachiyomi.core")
   }
 }
-
-kotlin {
-  experimental {
-    coroutines "enable"
-  }
-}

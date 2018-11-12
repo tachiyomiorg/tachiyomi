@@ -11,7 +11,7 @@
     android:text="Filters"
     android:textSize="20sp"
     android:layout_marginStart="16dp"
-    style="@style/TextAppearance.Medium.Body2"/>
+    style="@style/TextAppearance.Body2"/>
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/catalogbrowse_filters_recycler"
