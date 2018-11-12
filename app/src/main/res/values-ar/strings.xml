@@ -7,14 +7,14 @@
     <string name="history">السجل</string>
 
     <string name="label_settings">اﻹعدادات</string>
-    <string name="label_download_queue">التحميلات المنتظرة</string>
+    <string name="label_download_queue">طابور التنزيل</string>
     <string name="label_library">مكتبتي</string>
     <string name="label_recent_manga">المقروءة حديثا</string>
     <string name="label_catalogues">قائمة المانجا</string>
     <string name="label_recent_updates">تحديثات المكتبة</string>
     <string name="label_latest_updates">آخر التحديثات</string>
     <string name="label_categories">الأقسام</string>
-    <string name="label_selected">%1$d المحدد</string>
+    <string name="label_selected">حدّدت: %1$d</string>
     <string name="label_backup">النسخ الاحتياطي</string>
 
     <string name="action_settings">اﻹعدادات</string>

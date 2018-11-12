@@ -274,7 +274,7 @@
     <string name="completed">Завършена</string>
     <string name="dropped">Изоставена</string>
     <string name="on_hold">На заден план</string>
-    <string name="plan_to_read">Планирам да чета</string>
+    <string name="plan_to_read">За четене</string>
     <string name="score">Оценка</string>
     <string name="title">Заглавие</string>
     <string name="status">Статус</string>
@@ -307,8 +307,8 @@
     <string name="chapter_subtitle">Глава %1$s</string>
     <string name="no_next_chapter">Не беше намерена следваща глава</string>
     <string name="no_previous_chapter">Не беше намерена предходна глава</string>
-    <string name="decode_image_error">Изображението не можа да бъде заредено.
-Опитайте да смените декодера на изображението или някоя от изброените опции</string>
+    <string name="decode_image_error">Изображението не можа да бъде заредено. 
+\nОпитайте да смените декодера на изображението или някоя от изброените опции</string>
     <string name="confirm_update_manga_sync">Обнови последната прочетена глава в %1$d?</string>
     <string name="confirm_set_image_as_cover">Желаете ли да използвате това изображение за корица?</string>
     <string name="viewer_for_this_series">Посока на четене за поредицата</string>
@@ -504,5 +504,24 @@
     <string name="migrate">Мигрирай</string>
     <string name="copy">Копирай</string>
     <string name="migrating">Мигриране…</string>
+
+    <string name="pager_viewer">Страници</string>
+    <string name="source_not_installed">Източникът не е инсталиран: %1$s</string>
+
+    <string name="repeating">Препрочитане</string>
+    <string name="track_status">Статус</string>
+    <string name="track_start_date">Започната на</string>
+    <string name="track_type">Тип</string>
+    <string name="track_author">Автор</string>
+    <string name="url_not_set">Мангата няма връзка с акаунта, молим отново да натиснете заглавието и да изберете мангата</string>
+
+    <string name="transition_finished">Завършени: %1$s</string>
+    <string name="transition_current">В момента: %1$s</string>
+    <string name="transition_next">Следва: %1$s</string>
+    <string name="transition_previous">Предходна: %1$s</string>
+    <string name="transition_no_next">Няма повече глави</string>
+    <string name="transition_no_previous">Няма повече глави</string>
+    <string name="transition_pages_loading">Зареждане на страниците…</string>
+    <string name="transition_pages_error">Не успяха да бъдат заредени %1$s страници</string>
 
     </resources>

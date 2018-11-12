@@ -470,4 +470,13 @@ Spróbuj zmienić dekoder lub skorzystaj z jednej z opcji poniżej</string>
     <string name="track_author">Autor</string>
     <string name="url_not_set">URL mangi nie jest ustawiony, kliknij tytuł i wybierz mangę jeszcze raz</string>
 
+    <string name="transition_finished">Przeczytany: %1$s</string>
+    <string name="transition_current">Obecny: %1$s</string>
+    <string name="transition_next">Następny: %1$s</string>
+    <string name="transition_previous">Poprzedni: %1$s</string>
+    <string name="transition_no_next">Brak następnego rozdziału</string>
+    <string name="transition_no_previous">Nie ma wcześniejszych rozdziałów</string>
+    <string name="transition_pages_loading">Ładowanie stron…</string>
+    <string name="transition_pages_error">Nie udało się załadować stron: %1$s</string>
+
     </resources>
