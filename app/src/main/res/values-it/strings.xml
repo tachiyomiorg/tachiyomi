@@ -514,4 +514,13 @@
     <string name="channel_library">Libreria</string>
     <string name="channel_downloader">Downloader</string>
 
-</resources>
+<string name="transition_finished">Finito: %1$s</string>
+    <string name="transition_current">Corrente: %1$s</string>
+    <string name="transition_next">Prossimo: %1$s</string>
+    <string name="transition_previous">Precedente: %1$s</string>
+    <string name="transition_no_next">Nessun capitolo successivo</string>
+    <string name="transition_no_previous">Nessun capitolo precedente</string>
+    <string name="transition_pages_loading">Caricamento pagine…</string>
+    <string name="transition_pages_error">Caricamento pagine fallito: %1$s</string>
+
+    </resources>

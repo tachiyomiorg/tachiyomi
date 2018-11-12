@@ -470,4 +470,13 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
     <string name="track_author">Autor</string>
     <string name="url_not_set">URL do mangá não definida, por favor clique no título e selecione novamente</string>
 
+    <string name="transition_finished">Concluído: %1$s</string>
+    <string name="transition_current">Atual: %1$s</string>
+    <string name="transition_next">Próximo: %1$s</string>
+    <string name="transition_previous">Anterior: %1$s</string>
+    <string name="transition_no_next">Não há próximo capítulo</string>
+    <string name="transition_no_previous">Não há capítulo anterior</string>
+    <string name="transition_pages_loading">Carregando páginas…</string>
+    <string name="transition_pages_error">Falha ao carregar páginas: %1$s</string>
+
     </resources>
