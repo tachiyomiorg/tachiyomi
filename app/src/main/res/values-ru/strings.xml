@@ -25,7 +25,7 @@
     <string name="action_mark_as_read">Отметить как прочитанное</string>
     <string name="action_mark_as_unread">Пометить как непрочитанное</string>
     <string name="action_mark_previous_as_read">Отметить предыдущие как прочит</string>
-    <string name="action_move_category">Изменить категорию</string>
+    <string name="action_move_category">Поместить в категорию</string>
     <string name="action_next_chapter">Следующая глава</string>
     <string name="action_next_unread">Следующая непрочитанная</string>
     <string name="action_open_in_browser">Открыть в браузере</string>
@@ -33,7 +33,7 @@
     <string name="action_previous_chapter">Предыдущая глава</string>
     <string name="action_remove">Удалить</string>
     <string name="action_remove_bookmark">Удалить закладку</string>
-    <string name="action_rename_category">Удалить категорию</string>
+    <string name="action_rename_category">Переименовать категорию</string>
     <string name="action_reset">Сбросить</string>
     <string name="action_resume">Продолжить</string>
     <string name="action_retry">Повторить</string>
@@ -410,7 +410,7 @@
     <string name="migrating">Мигрирую…</string>
 
     <string name="source_search_options">Поисковые фильтры</string>
-    <string name="ext_trust">"Достоверный "</string>
+    <string name="ext_trust">Достоверный</string>
     <string name="pager_viewer">Страница</string>
     <string name="source_not_installed">Источник не установлен: %1$s</string>
 
