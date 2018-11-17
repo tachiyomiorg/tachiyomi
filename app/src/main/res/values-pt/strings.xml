@@ -394,4 +394,5 @@
     <string name="restoring_backup">Restaurando backup</string>
     <string name="creating_backup">Criando backup</string>
 
-      </resources>
+      <string name="label_migration">Migração de fonte</string>
+    </resources>
