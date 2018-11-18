@@ -297,7 +297,7 @@
     <string name="information_no_downloads">Sem transferências</string>
     <string name="information_no_recent">Sem capítulos recentes</string>
     <string name="information_no_recent_manga">Sem manga lida recentemente</string>
-    <string name="information_empty_library">Biblioteca vazia</string>
+    <string name="information_empty_library">Sua biblioteca está vazia, você pode adicionar séries dos catálogos à sua biblioteca.</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_title_error">Erro</string>
@@ -387,7 +387,7 @@
     <string name="pref_create_backup">Criar backup</string>
     <string name="pref_create_backup_summ">Pode ser usado para restaurar a biblioteca atual</string>
     <string name="pref_restore_backup">Restaurar backup</string>
-    <string name="pref_restore_backup_summ">Restaurar biblioteca a partir de um arquivo de backup</string>
+    <string name="pref_restore_backup_summ">Restaurar biblioteca a partir de um ficheiro de backup</string>
     <string name="pref_backup_service_category">Serviço</string>
     <string name="pref_backup_interval">Frequência de backup</string>
     <string name="source_not_found">Fonte não encontrada</string>
