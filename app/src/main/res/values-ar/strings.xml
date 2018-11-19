@@ -7,14 +7,14 @@
     <string name="history">السجل</string>
 
     <string name="label_settings">اﻹعدادات</string>
-    <string name="label_download_queue">التحميلات المنتظرة</string>
+    <string name="label_download_queue">طابور التنزيل</string>
     <string name="label_library">مكتبتي</string>
     <string name="label_recent_manga">المقروءة حديثا</string>
     <string name="label_catalogues">قائمة المانجا</string>
     <string name="label_recent_updates">تحديثات المكتبة</string>
     <string name="label_latest_updates">آخر التحديثات</string>
     <string name="label_categories">الأقسام</string>
-    <string name="label_selected">%1$d المحدد</string>
+    <string name="label_selected">حدّدت: %1$d</string>
     <string name="label_backup">النسخ الاحتياطي</string>
 
     <string name="action_settings">اﻹعدادات</string>
@@ -350,9 +350,7 @@
     <string name="chapter_subtitle">الفصل %1$s</string>
     <string name="no_next_chapter">لم يتم العثور على الفصل التالي</string>
     <string name="no_previous_chapter">لم يتم العثور على الفصل السابق</string>
-    <string name="decode_image_error">لا يمكن تحميل الصورة. 
-\n
-\nيمكنك تجربة تغيير إعدادت فك تشفير الصورة عن طريق الخيارات باﻷسفل</string>
+    <string name="decode_image_error">لا يمكن فكّ تشفير هذه الصورةِ</string>
     <string name="confirm_update_manga_sync">تحديث الفصل اﻷخير فى الخدمات المفعلة إلى %1$d؟</string>
     <string name="confirm_set_image_as_cover">هل تريد تعيين هذه الصورة كغلاف؟</string>
     <string name="viewer_for_this_series">العارض لهذه السلسلة</string>
@@ -469,5 +467,15 @@
     <string name="migrating">الترحيل…</string>
 
     <string name="information_empty_category">لا توجد لديك أي فئات. اضغط زر اﻹضافة لإنشاء واحد لتنظيم المكتبة الخاصة بك.</string>
+
+    <string name="darkblue_theme">أزرق غامق</string>
+    <string name="transition_finished">تمَّ الانتهاء من:</string>
+    <string name="transition_current">الحالي:</string>
+    <string name="transition_next">التّالي:</string>
+    <string name="transition_previous">السّابق:</string>
+    <string name="transition_no_next">لا يوجدُ فصل تالي</string>
+    <string name="transition_no_previous">لا يوجدُ فصل سابق</string>
+    <string name="transition_pages_loading">جار تحميل الصّفحات…</string>
+    <string name="transition_pages_error">فشل تحميل الصّفحات: %1$s</string>
 
     </resources>

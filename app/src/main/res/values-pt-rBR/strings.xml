@@ -338,8 +338,7 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
     <string name="chapter_subtitle">Capítulo %1$s</string>
     <string name="no_next_chapter">Próximo capítulo não encontrado</string>
     <string name="no_previous_chapter">Capítulo anterior não encontrado</string>
-    <string name="decode_image_error">A imagem não pôde ser carregada.
-\nTente alterar o decodificador de imagens ou uma das seguintes opções</string>
+    <string name="decode_image_error">A imagem não pôde ser decodificada</string>
     <string name="confirm_update_manga_sync">Atualizar o último capítulo lido para %1$d nos serviços ativos?</string>
     <string name="confirm_set_image_as_cover">Deseja usar esta imagem como capa?</string>
     <string name="viewer_for_this_series">Leitura para esta série</string>
@@ -470,4 +469,14 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
     <string name="track_author">Autor</string>
     <string name="url_not_set">URL do mangá não definida, por favor clique no título e selecione novamente</string>
 
+    <string name="transition_finished">Concluído:</string>
+    <string name="transition_current">Atual:</string>
+    <string name="transition_next">Próximo:</string>
+    <string name="transition_previous">Anterior:</string>
+    <string name="transition_no_next">Não há próximo capítulo</string>
+    <string name="transition_no_previous">Não há capítulo anterior</string>
+    <string name="transition_pages_loading">Carregando páginas…</string>
+    <string name="transition_pages_error">Falha ao carregar páginas: %1$s</string>
+
+    <string name="darkblue_theme">Azul escuro</string>
     </resources>

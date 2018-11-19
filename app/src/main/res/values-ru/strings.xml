@@ -25,7 +25,7 @@
     <string name="action_mark_as_read">Отметить как прочитанное</string>
     <string name="action_mark_as_unread">Пометить как непрочитанное</string>
     <string name="action_mark_previous_as_read">Отметить предыдущие как прочит</string>
-    <string name="action_move_category">Изменить категорию</string>
+    <string name="action_move_category">Поместить в категорию</string>
     <string name="action_next_chapter">Следующая глава</string>
     <string name="action_next_unread">Следующая непрочитанная</string>
     <string name="action_open_in_browser">Открыть в браузере</string>
@@ -33,7 +33,7 @@
     <string name="action_previous_chapter">Предыдущая глава</string>
     <string name="action_remove">Удалить</string>
     <string name="action_remove_bookmark">Удалить закладку</string>
-    <string name="action_rename_category">Удалить категорию</string>
+    <string name="action_rename_category">Переименовать категорию</string>
     <string name="action_reset">Сбросить</string>
     <string name="action_resume">Продолжить</string>
     <string name="action_retry">Повторить</string>
@@ -158,7 +158,7 @@
     <string name="manga_info_genres_label">Жанры</string>
     <string name="manga_info_status_label">Статус</string>
     <string name="manga_info_source_label">Источник</string>
-    <string name="manga_not_in_db">Эта манга будет удалена из базы данных!</string>
+    <string name="manga_not_in_db">Эта манга была удалена из базы данных!</string>
     <string name="manga_tracking_tab">Отслеживать</string>
     <string name="name">Название</string>
     <string name="no_next_chapter">Следующая глава не найдена</string>
@@ -248,7 +248,7 @@
     <string name="second_to_last">Предпоследняя</string>
     <string name="select_source">Выберите каталог</string>
     <string name="services">Сервисы</string>
-    <string name="set_as_cover">Установить обложку</string>
+    <string name="set_as_cover">Установить как обложку</string>
     <string name="shortcut_title">Название ярлыка</string>
     <string name="show_chapter_number">Показывать номер главы</string>
     <string name="show_password">Показывать пароль</string>
@@ -400,7 +400,7 @@
     <string name="manga_info_latest_data_label">Обновлено</string>
     <string name="copied_to_clipboard">%1$s скопорован в буфер</string>
     <string name="custom_download">Загрузить определенное количество</string>
-    <string name="custom_hint">Количество</string>
+    <string name="custom_hint">количество</string>
     <string name="download_custom">Загрузить другое кол-во</string>
     <string name="migration_info">Нажмите, чтобы выбрать источник для миграции</string>
     <string name="migration_dialog_what_to_include">Выберите данные для включения</string>
@@ -410,7 +410,7 @@
     <string name="migrating">Мигрирую…</string>
 
     <string name="source_search_options">Поисковые фильтры</string>
-    <string name="ext_trust">"Достоверный "</string>
+    <string name="ext_trust">Достоверный</string>
     <string name="pager_viewer">Страница</string>
     <string name="source_not_installed">Источник не установлен: %1$s</string>
 
@@ -420,5 +420,14 @@
     <string name="track_type">Тип</string>
     <string name="track_author">Автор</string>
     <string name="url_not_set">"Ссылка не установлена, пожалуйста нажмите на заголовок и выберите мангу снова "</string>
+
+    <string name="transition_finished">Прогресс: %1$s</string>
+    <string name="transition_current">Прогресс: %1$s</string>
+    <string name="transition_next">Далее: %1$s</string>
+    <string name="transition_previous">Назад: %1$s</string>
+    <string name="transition_no_next">Следующей части нет</string>
+    <string name="transition_no_previous">Предыдущей части нет</string>
+    <string name="transition_pages_loading">Идёт загрузка страниц…</string>
+    <string name="transition_pages_error">Не удалось загрузить страницы: %1$s</string>
 
     </resources>
