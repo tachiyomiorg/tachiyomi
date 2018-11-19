@@ -296,7 +296,7 @@
     <string name="chapter_subtitle">Capitolo %1$s</string>
     <string name="no_next_chapter">Capitolo successivo non trovato</string>
     <string name="no_previous_chapter">Capitolo precedente non trovato</string>
-    <string name="decode_image_error">L\'immagine non può essere caricata.\nProva a cambiare il decoder immagini o con una delle opzioni più in basso</string>
+    <string name="decode_image_error">L\'immagine non può essere decodificata</string>
     <string name="confirm_update_manga_sync">Aggiornare nei servizi abilitati l\'ultimo capitolo letto a %1$d?</string>
     <string name="confirm_set_image_as_cover">Vuoi impostare questa immagine come copertina?</string>
     <string name="viewer_for_this_series">Visualizzatore per questa serie</string>
@@ -438,7 +438,7 @@
 
     <string name="action_global_search">Ricerca globale</string>
     <string name="action_display_download_badge">Segnalatore capitoli scaricati</string>
-    <string name="action_reset">Azzera</string>
+    <string name="action_reset">Reimposta</string>
     <string name="action_open">Apri</string>
     <string name="action_login">Accesso</string>
 
@@ -447,7 +447,7 @@
     <string name="ext_update">Aggiorna</string>
     <string name="ext_install">Installa</string>
     <string name="ext_pending">In coda</string>
-    <string name="ext_downloading">In corso</string>
+    <string name="ext_downloading">Download in corso</string>
     <string name="ext_installing">Installazione in corso</string>
     <string name="ext_installed">Installato</string>
     <string name="ext_trust">Mi fido</string>
@@ -496,7 +496,7 @@
     <string name="track_start_date">Iniziato</string>
     <string name="track_type">Tipo</string>
     <string name="track_author">Autore</string>
-    <string name="url_not_set">URL del manga non impostato clicca titolo e riprova</string>
+    <string name="url_not_set">L\'URL del manga non è impostato clicca sul titolo e seleziona nuovamente il manga</string>
 
     <string name="snack_categories_deleted">Categorie rimosse</string>
 
@@ -514,4 +514,14 @@
     <string name="channel_library">Libreria</string>
     <string name="channel_downloader">Downloader</string>
 
-</resources>
+<string name="transition_finished">Finito:</string>
+    <string name="transition_current">Corrente:</string>
+    <string name="transition_next">Prossimo:</string>
+    <string name="transition_previous">Precedente:</string>
+    <string name="transition_no_next">Nessun capitolo successivo</string>
+    <string name="transition_no_previous">Nessun capitolo precedente</string>
+    <string name="transition_pages_loading">Caricamento pagine…</string>
+    <string name="transition_pages_error">Caricamento pagine fallito: %1$s</string>
+
+    <string name="darkblue_theme">Blu scuro</string>
+    </resources>

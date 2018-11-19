@@ -398,8 +398,7 @@
     <string name="chapter_subtitle">Bölüm %1$s</string>
     <string name="no_next_chapter">Sonraki bölüm bulunamadı</string>
     <string name="no_previous_chapter">Önceki bölüm bulunamadı</string>
-    <string name="decode_image_error">Görsel yüklenemedi. 
-\nGörsel çözücüyü değiştirmeyi deneyin veya aşağıdaki seçeneklerden birini kullanın</string>
+    <string name="decode_image_error">Görsel kodu çözülemedi</string>
     <string name="confirm_update_manga_sync">Etkin hizmetlerde okunan son bölüm %1$d ile güncellensin mi?</string>
     <string name="confirm_set_image_as_cover">Bu görseli kapak olarak ayarlamak istiyor musunuz?</string>
     <string name="viewer_for_this_series">Bu dizi için görüntüleyici</string>
@@ -464,4 +463,14 @@
     <string name="channel_library">Kitaplık</string>
     <string name="channel_downloader">İndirici</string>
 
-</resources>
+<string name="transition_finished">Biten:</string>
+    <string name="transition_current">Şu anki:</string>
+    <string name="transition_next">Sonraki:</string>
+    <string name="transition_previous">Önceki:</string>
+    <string name="transition_no_next">Sonraki bölüm yok</string>
+    <string name="transition_no_previous">Önceki bölüm yok</string>
+    <string name="transition_pages_loading">Sayfalar yükleniyor…</string>
+    <string name="transition_pages_error">Sayfalar yüklenemedi: %1$s</string>
+
+    <string name="darkblue_theme">Koyu mavi</string>
+    </resources>
