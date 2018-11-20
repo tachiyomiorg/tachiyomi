@@ -307,8 +307,7 @@
     <string name="chapter_subtitle">Глава %1$s</string>
     <string name="no_next_chapter">Не беше намерена следваща глава</string>
     <string name="no_previous_chapter">Не беше намерена предходна глава</string>
-    <string name="decode_image_error">Изображението не можа да бъде заредено. 
-\nОпитайте да смените декодера на изображението или някоя от изброените опции</string>
+    <string name="decode_image_error">Неуспешно декодиране на изображението</string>
     <string name="confirm_update_manga_sync">Обнови последната прочетена глава в %1$d?</string>
     <string name="confirm_set_image_as_cover">Желаете ли да използвате това изображение за корица?</string>
     <string name="viewer_for_this_series">Посока на четене за поредицата</string>
@@ -515,13 +514,14 @@
     <string name="track_author">Автор</string>
     <string name="url_not_set">Мангата няма връзка с акаунта, молим отново да натиснете заглавието и да изберете мангата</string>
 
-    <string name="transition_finished">Завършени: %1$s</string>
-    <string name="transition_current">В момента: %1$s</string>
-    <string name="transition_next">Следва: %1$s</string>
-    <string name="transition_previous">Предходна: %1$s</string>
+    <string name="transition_finished">Завършени:</string>
+    <string name="transition_current">"В момента: "</string>
+    <string name="transition_next">Следва:</string>
+    <string name="transition_previous">"Предходна: "</string>
     <string name="transition_no_next">Няма повече глави</string>
-    <string name="transition_no_previous">Няма повече глави</string>
+    <string name="transition_no_previous">Няма предходна глава</string>
     <string name="transition_pages_loading">Зареждане на страниците…</string>
-    <string name="transition_pages_error">Не успяха да бъдат заредени %1$s страници</string>
+    <string name="transition_pages_error">"Неуспешно зареждане на страници: %1$s "</string>
 
+    <string name="darkblue_theme">Тъмно син</string>
     </resources>
