@@ -290,7 +290,7 @@
     <string name="chapter_subtitle">Chapitre %1$s</string>
     <string name="no_next_chapter">Chapitre suivant non trouvé</string>
     <string name="no_previous_chapter">Chapitre précédent non trouvé</string>
-    <string name="decode_image_error">L\'image n\'a pas pu être chargée.\nEssayez de changer le décodeur d\'image ou une des autres options ci-après</string>
+    <string name="decode_image_error">L\'image n\'a pas pu être décodée</string>
     <string name="confirm_update_manga_sync">Mettre à jour le dernier chapitre lu dans les services activés à %1$d ?</string>
     <string name="confirm_set_image_as_cover">Voulez-vous mettre cette image comme couverture ?</string>
     <string name="viewer_for_this_series">Lecteur pour cette série</string>
@@ -507,10 +507,10 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="ext_untrusted">Non fiable</string>
     <string name="pager_viewer">Pager</string>
     <string name="repeating">Relecture</string>
-    <string name="transition_finished">Terminé: %1$s</string>
-    <string name="transition_current">En cours: %1$s</string>
-    <string name="transition_next">Suivant: %1$s</string>
-    <string name="transition_previous">Précédent: %1$s</string>
+    <string name="transition_finished">Terminé:</string>
+    <string name="transition_current">En cours:</string>
+    <string name="transition_next">"Suivant: "</string>
+    <string name="transition_previous">Précédent:</string>
     <string name="transition_no_next">Chapitre suivant introuvable</string>
     <string name="transition_no_previous">Chapitre précédent introuvable</string>
     <string name="transition_pages_loading">Chargement des pages…</string>
@@ -521,4 +521,5 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="copy">Copier</string>
     <string name="migrating">En cours de déplacement…</string>
 
+    <string name="darkblue_theme">Bleu foncé</string>
     </resources>
