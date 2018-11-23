@@ -253,4 +253,223 @@
 
       <string name="pref_clear_chapter_cache">Очистити кеш глав</string>
     <string name="used_cache">Використано: %1$s</string>
-    </resources>
+    <string name="cache_deleted">Кеш очищено %1$d файлів було видалено</string>
+    <string name="cache_delete_error">Виникла помилка при видаленні кешу</string>
+    <string name="pref_clear_cookies">Очистити реп`яшки</string>
+    <string name="cookies_cleared">Реп`яшки очищено</string>
+    <string name="choices_reset">Опції вибору скинуться</string>
+    <string name="pref_clear_database">Очистити базу даних</string>
+    <string name="pref_clear_database_summary">Видаляти мангу і глави котрі не знаходяться у бібліотеці</string>
+    <string name="clear_database_confirmation">Ви впевнені\? Прочитані глави і прогрес не бібліотечної манги будуть втрачені</string>
+    <string name="clear_database_completed">Дані видалено</string>
+    <string name="pref_refresh_library_metadata">Оновлювати бібліотечні метадані</string>
+    <string name="pref_refresh_library_metadata_summary">Оновити обкладинки, жанри, описи та інформацію про манги</string>
+    <string name="pref_refresh_library_tracking">Оновити метадату що відстежується</string>
+    <string name="pref_refresh_library_tracking_summary">Оновити стан, рахунок і останню главу з каталогів що відстежуються</string>
+
+      <string name="version">Версія</string>
+    <string name="build_time">Дата збирання</string>
+    <string name="pref_enable_automatic_updates">Перевіряти оновлення</string>
+    <string name="pref_enable_automatic_updates_summary">Автоматично перевіряти нові версії</string>
+    <string name="pref_enable_acra">Надсилати звіти про падіння</string>
+    <string name="pref_acra_summary">Допомагає виправляти будь-які баги. Особисті дані не передаються</string>
+
+
+    <string name="login_title">Авторизація для %1$s</string>
+    <string name="username">Ім`я користувача</string>
+    <string name="password">Пароль</string>
+    <string name="show_password">Показувати пароль</string>
+    <string name="login">Логін</string>
+    <string name="login_success">Вхід успішний</string>
+    <string name="invalid_login">Помилка авторизації</string>
+    <string name="unknown_error">Невідома помилка</string>
+
+    <string name="library_search_hint">Назва чи автор…</string>
+    <string name="updating_category">Оновлення категорії</string>
+    <string name="local_source_badge">Локальна</string>
+    <string name="confirm_delete_manga">Ви впевнені, що бажаєте видалити вибрані манги\?</string>
+    <string name="also_delete_chapters">Також видалити завантажені глави</string>
+
+    <string name="source_search_options">Пошукові фільтри</string>
+    <string name="source_requires_login">Цей каталог потребує авторизації</string>
+    <string name="select_source">Оберіть каталог</string>
+    <string name="no_valid_sources">Будь ласка увімкніть хоча б одне джерело</string>
+    <string name="no_more_results">Більше немає результатів</string>
+    <string name="local_source">Локальна манга</string>
+    <string name="other_source">Інші</string>
+    <string name="invalid_combination">Категорія за замовчуванням не може бути вибраною разом з іншими категоріями</string>
+    <string name="added_to_library">Цю мангу уже додано до бібліотеки</string>
+    <string name="action_global_search_hint">Глобальний пошук…</string>
+    <string name="no_results">Результатів не знайдено!</string>
+    <string name="latest">Остання</string>
+    <string name="browse">Переглянути</string>
+
+    <string name="manga_not_in_db">Ця манга було видалена з бази даних!</string>
+
+    <string name="manga_detail_tab">Інформація</string>
+    <string name="description">Опис</string>
+    <string name="ongoing">Випускається</string>
+    <string name="unknown">Невідомо</string>
+    <string name="licensed">Ліцензовано</string>
+    <string name="remove_from_library">Видалити з бібліотеки</string>
+    <string name="manga_info_full_title_label">Заголовок</string>
+    <string name="manga_added_library">Додати до бібліотеки</string>
+    <string name="manga_removed_library">Видалено з бібліотеки</string>
+    <string name="manga_info_author_label">Автор</string>
+    <string name="manga_info_artist_label">Художник</string>
+    <string name="manga_info_chapters_label">Глави</string>
+    <string name="manga_info_last_chapter_label">Остання глава</string>
+    <string name="manga_info_latest_data_label">Оновлено</string>
+    <string name="manga_info_status_label">Статус</string>
+    <string name="manga_info_source_label">Джерело</string>
+    <string name="manga_info_genres_label">Жанри</string>
+    <string name="circular_icon">Кругла іконка</string>
+    <string name="rounded_icon">Скруглені іконки</string>
+    <string name="square_icon">Квадратна іконка</string>
+    <string name="star_icon">Зоряна іконка</string>
+    <string name="shortcut_title">Назва ярлика</string>
+    <string name="shortcut_created">Ярлика було додано на головний екран.</string>
+    <string name="icon_shape">Форма іконки</string>
+    <string name="icon_creation_fail">Неможливо створити ярлик!</string>
+    <string name="delete_downloads_for_manga">Видаляти завантажені глави\?</string>
+    <string name="copied_to_clipboard">%1$s скопійовано до буфера</string>
+    <string name="source_not_installed">Джерело не встановлено: %1$s</string>
+
+    <string name="manga_chapters_tab">Глави</string>
+    <string name="manga_chapter_no_title">Немає назви</string>
+    <string name="display_mode_chapter">Глава %1$s</string>
+    <string name="chapter_downloaded">Завантажено</string>
+    <string name="chapter_queued">В черзі</string>
+    <string name="chapter_downloading">Завантажується</string>
+    <string name="chapter_downloading_progress">Завантажується (%1$d/%2$d)</string>
+    <string name="chapter_error">Помилка</string>
+    <string name="chapter_paused">Пауза</string>
+    <string name="fetch_chapters_error">Помилка при видобуванні глав</string>
+    <string name="show_title">Показувати назву</string>
+    <string name="show_chapter_number">Показувати номер глави</string>
+    <string name="sorting_mode">Метод сортування</string>
+    <string name="sort_by_source">За каталогом</string>
+    <string name="sort_by_number">За номером глави</string>
+    <string name="manga_download">Завантажити</string>
+    <string name="custom_download">Завантажити певну кількість</string>
+    <string name="custom_hint">кількість</string>
+    <string name="download_1">Завантажити наступну главу</string>
+    <string name="download_5">Завантажити 5 наступних глав</string>
+    <string name="download_10">Завантажити 10 наступних глав</string>
+    <string name="download_custom">Завантажити іншу кількість</string>
+    <string name="download_all">Завантажити все</string>
+    <string name="download_unread">Завантажити непрочитані</string>
+    <string name="confirm_delete_chapters">Ви впевнені, що бажаєте видалити вибрані глави\?</string>
+
+    <string name="manga_tracking_tab">Відслідковувати</string>
+    <string name="reading">В процесі читання</string>
+    <string name="completed">Завершено</string>
+    <string name="dropped">Кинуто</string>
+    <string name="on_hold">Заморожено</string>
+    <string name="plan_to_read">Планую почитати</string>
+    <string name="repeating">Перечитую</string>
+    <string name="score">Оцінка</string>
+    <string name="title">Заголовок</string>
+    <string name="status">Статус</string>
+    <string name="track_status">Статус</string>
+    <string name="track_start_date">Розпочато</string>
+    <string name="track_type">Тип</string>
+    <string name="track_author">Автор</string>
+    <string name="url_not_set">Посилання манги не встановлено, будь ласка натисніть на заголовок та виберіть мангу знову</string>
+
+    <string name="error_category_exists">Категорія з таким іменем вже існує!</string>
+    <string name="snack_categories_deleted">Категорію видалено</string>
+
+    <string name="dialog_with_checkbox_remove_description">Ця дія видалить дату прочитання глави. Ви впевнені\?</string>
+    <string name="dialog_with_checkbox_reset">Скинути усі глави для цієї манги</string>
+
+    <string name="snack_add_to_library">Додати мангу до бібліотеки\?</string>
+
+    <string name="picture_saved">Картинку збережено</string>
+    <string name="saving_picture">Зберегти картинку</string>
+    <string name="options">Опції</string>
+
+    <string name="custom_filter">Користувацький фільтр</string>
+    <string name="set_as_cover">Встановити як обкладинку</string>
+    <string name="cover_updated">Обкладинку оновлено</string>
+    <string name="page_downloaded">Сторінку скопійовано в %1$s</string>
+    <string name="downloading">Завантаження…</string>
+    <string name="download_progress">Завантажено %1$d%%</string>
+    <string name="chapter_progress">Сторінка %1$d</string>
+    <string name="chapter_subtitle">Глава %1$s</string>
+    <string name="no_next_chapter">Наступну главу не знайдено</string>
+    <string name="no_previous_chapter">Попередню главу не знайдено</string>
+    <string name="decode_image_error">Зображення не може бути декодовано</string>
+    <string name="confirm_update_manga_sync">Оновити останню прочитану главу на сервісі %1$d\?</string>
+    <string name="confirm_set_image_as_cover">Ви бажаєте встановити цю картинку як обкладинку\?</string>
+    <string name="viewer_for_this_series">Відображення для цієї серії</string>
+    <string name="transition_finished">Завершено:</string>
+    <string name="transition_current">Поточна:</string>
+    <string name="transition_next">Наступна:</string>
+    <string name="transition_previous">Попередня:</string>
+    <string name="transition_no_next">Наступної частини немає</string>
+    <string name="transition_no_previous">Попередньої частини немає</string>
+    <string name="transition_pages_loading">Завантаження сторінок…</string>
+    <string name="transition_pages_error">Не вдалось завантажити сторінки %1$s</string>
+
+    <string name="recent_manga_source">%1$s - Гл.%2$s</string>
+
+    <string name="migration_info">Натисни аби вибрати джерело для міграції</string>
+    <string name="migration_dialog_what_to_include">Виберіть включені дані</string>
+    <string name="select">Вибрати</string>
+    <string name="migrate">Мігрувати</string>
+    <string name="copy">Копіювати</string>
+    <string name="migrating">Мігрую…</string>
+
+    <string name="download_queue_error">Сталась помилка при завантаженні глав. Спробуйте ще раз у розділі завантаження</string>
+
+    <string name="notification_update_progress">Стан оновлення: %1$d/%2$d</string>
+    <string name="notification_new_chapters">Знайдено нові глави</string>
+    <string name="notification_new_chapters_text">Для %1$d тайтлів</string>
+    <string name="notification_cover_update_failed">"Не вдалось оновити обкладинку "</string>
+    <string name="notification_first_add_to_library">Будь ласка, додайте мангу до своєї бібліотеки перед тим як робити це</string>
+    <string name="notification_not_connected_to_ac_title">Синхронізацію скасовано</string>
+    <string name="notification_not_connected_to_ac_body">Не заряджається</string>
+    <string name="notification_no_connection_title">Синхронізацію скасовано</string>
+    <string name="notification_no_connection_body">З`єднання не доступне</string>
+
+    <string name="file_select_cover">Вибрати обкладинку</string>
+    <string name="file_select_backup">Виберіть файл резервної копії</string>
+    <string name="file_select_icon">Вибрати ярлик</string>
+
+    <string name="update_check_title">Доступні нові оновлення!</string>
+    <string name="update_check_confirm">Завантажити</string>
+    <string name="update_check_ignore">Ігнорувати</string>
+    <string name="update_check_no_new_updates">Оновлень не виявлено</string>
+    <string name="update_check_download_started">Завантаження розпочалось</string>
+    <string name="update_check_look_for_updates">Шукаю оновлення</string>
+
+    <string name="update_check_notification_file_download">Оновлення завантаження</string>
+    <string name="update_check_notification_download_in_progress">Завантаження в процесі</string>
+    <string name="update_check_notification_download_complete">Завантаження завершено</string>
+    <string name="update_check_notification_download_error">Помилка завантаження</string>
+    <string name="update_check_notification_update_available">Доступно оновлення</string>
+
+    <string name="description_backdrop">Фонове зображення манги</string>
+    <string name="description_cover">Обкладинка манги</string>
+
+    <string name="information_no_downloads">Немає завантажень</string>
+    <string name="information_no_recent">Немає нових глав</string>
+    <string name="information_no_recent_manga">Немає нещодавно прочитаних глав</string>
+    <string name="information_empty_library">Ваша бібліотека порожня, ви можете додати з каталогу.</string>
+    <string name="information_empty_category">У вас немає категорій. Натисніть кнопку + для початку облаштування вашої бібліотеки.</string>
+
+    <string name="download_notifier_downloader_title">Завантажувач</string>
+    <string name="download_notifier_title_error">Помилка</string>
+    <string name="download_notifier_unkown_error">Невідома помилка при завантаженні глави</string>
+    <string name="download_notifier_page_error">Сторінка відсутня у каталозі</string>
+    <string name="download_notifier_page_ready_error">Сторінку не завантажено</string>
+    <string name="download_notifier_text_only_wifi">Немає Wi-Fi підключення</string>
+    <string name="download_notifier_no_network">"Немає мережевого з`єднання "</string>
+    <string name="download_notifier_download_paused">Завантаження призупинено</string>
+
+    <string name="channel_common">Звичайний</string>
+    <string name="channel_library">Бібліотека</string>
+    <string name="channel_downloader">Завантажувач</string>
+
+</resources>
