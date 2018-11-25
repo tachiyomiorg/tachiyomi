@@ -109,7 +109,7 @@
     <string name="left_to_right_viewer">Izquierda a derecha</string>
     <string name="right_to_left_viewer">Derecha a izquierda</string>
     <string name="vertical_viewer">Vertical</string>
-    <string name="webtoon_viewer">Webtoon</string>
+    <string name="webtoon_viewer">Webtoons</string>
     <string name="pref_image_decoder">Decodificador de imagen</string>
     <string name="pref_image_scale_type">Tipo de escalado</string>
     <string name="scale_type_fit_screen">Ajustar a la pantalla</string>
@@ -243,7 +243,7 @@
     <string name="chapter_subtitle">Capítulo %1$s</string>
     <string name="no_next_chapter">Siguiente capítulo no encontrado</string>
     <string name="no_previous_chapter">Capítulo anterior no encontrado</string>
-    <string name="decode_image_error">La imagen no se pudo decodificar. Intente de nuevo cambiándolo o seleccione una de las siguientes opciones</string>
+    <string name="decode_image_error">La imagen no se pudo decodificar</string>
     <string name="confirm_update_manga_sync">¿Actualizar el último capítulo leído a %1$d en los servicios activos?</string>
     <string name="viewer_for_this_series">Lectura para esta serie</string>
 
@@ -459,7 +459,7 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
 
     <string name="label_migration">Migración de fuente</string>
     <string name="label_extensions">Extensiones</string>
-    <string name="label_extension_info">"Información de extensión "</string>
+    <string name="label_extension_info">Información de extensión</string>
 
 
     <string name="ext_details">Detalles</string>
@@ -480,8 +480,8 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="double_tap_anim_speed_normal">Normal</string>
     <string name="double_tap_anim_speed_fast">Rápida</string>
     <string name="custom_hint">cantidad</string>
-    <string name="transition_next">Siguiente: %1$s</string>
-    <string name="transition_previous">Anterior: %1$s</string>
+    <string name="transition_next">Siguiente:</string>
+    <string name="transition_previous">Anterior:</string>
     <string name="transition_no_next">No hay capítulo siguiente</string>
     <string name="transition_no_previous">No hay capítulo anterior</string>
     <string name="migrate">Migrar</string>
@@ -514,14 +514,15 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="track_author">Autor</string>
     <string name="url_not_set">La dirección del manga no está fijada, por favor haga clic en el título y seleccione el manga de nuevo</string>
 
-    <string name="transition_finished">Finalizado: %1$s</string>
-    <string name="transition_current">Actual: %1$s</string>
+    <string name="transition_finished">Finalizado:</string>
+    <string name="transition_current">Actual:</string>
     <string name="transition_pages_loading">Cargando páginas…</string>
     <string name="transition_pages_error">Error al cargar páginas: %1$s</string>
 
     <string name="migration_info">Pulse para seleccionar la fuente desde la que migrar</string>
     <string name="migration_dialog_what_to_include">Seleccionar datos para incluir</string>
     <string name="select">Seleccionar</string>
-    <string name="pref_double_tap_anim_speed">Doble toque para la velocidad de animación</string>
-    <string name="pager_viewer">Paginador</string>
+    <string name="pref_double_tap_anim_speed">Velocidad de animación de doble toque</string>
+    <string name="pager_viewer">Paginado</string>
+    <string name="darkblue_theme">Azul oscuro</string>
     </resources>
