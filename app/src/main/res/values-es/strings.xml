@@ -488,7 +488,7 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="copy">Copiar</string>
     <string name="migrating">Migrando…</string>
 
-    <string name="ext_preferences">Preferencias</string>
+    <string name="ext_preferences">Configuraciones</string>
     <string name="untrusted_extension_message">Esta extensión fue firmada con un certificado no fiable y no fue activada.
 \n
 \nUna extensión maliciosa podría leer cualquier dato de inicio de sesión almacenado en Tachiyomi o ejecutar código arbitrario.
