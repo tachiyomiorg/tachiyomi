@@ -135,7 +135,7 @@
     <string name="default_category">默认标签</string>
     <string name="default_category_summary">每次询问</string>
 
-    <string name="all_lang">所有</string>
+    <string name="all_lang">All</string>
     <string name="ext_details">详细</string>
     <string name="ext_update">更新</string>
     <string name="ext_install">安装</string>
@@ -164,8 +164,8 @@
     <string name="pref_double_tap_anim_speed">双击动画速度</string>
     <string name="pref_show_page_number">显示页数</string>
     <string name="pref_crop_borders">边缘剪裁</string>
-    <string name="pref_custom_brightness">使用自订亮度</string>
-    <string name="pref_custom_color_filter">使用自订滤镜</string>
+    <string name="pref_custom_brightness">自定义亮度</string>
+    <string name="pref_custom_color_filter">开启滤镜</string>
     <string name="pref_keep_screen_on">保持屏幕常亮</string>
     <string name="pref_reader_navigation">操作</string>
     <string name="pref_read_with_volume_keys">音量键</string>
@@ -271,7 +271,7 @@
     <string name="pref_enable_automatic_updates">检查更新</string>
     <string name="pref_enable_automatic_updates_summary">自动检查软件新版本</string>
     <string name="pref_enable_acra">发送错误数据</string>
-    <string name="pref_acra_summary">以帮助我们修复bugs。不会发送个人信息</string>
+    <string name="pref_acra_summary">帮助我们修复bug。不会发送个人信息</string>
 
 
     <string name="login_title">登录到%1$s</string>
@@ -300,7 +300,7 @@
     <string name="added_to_library">已将此漫画添加至书架</string>
     <string name="action_global_search_hint">全局搜索…</string>
     <string name="no_results">找不到！</string>
-    <string name="latest">最新</string>
+    <string name="latest">最近更新</string>
     <string name="browse">浏览</string>
 
     <string name="manga_not_in_db">漫画已被移出数据库！</string>
@@ -314,7 +314,7 @@
     <string name="manga_info_full_title_label">标题</string>
     <string name="manga_added_library">已添加至书架</string>
     <string name="manga_removed_library">已从书架删除</string>
-    <string name="manga_info_author_label">作者</string>
+    <string name="manga_info_author_label">原作</string>
     <string name="manga_info_artist_label">画师</string>
     <string name="manga_info_chapters_label">章节</string>
     <string name="manga_info_last_chapter_label">最新章节</string>
@@ -327,7 +327,7 @@
     <string name="square_icon">方形图标</string>
     <string name="star_icon">星形图标</string>
     <string name="shortcut_title">快捷方式标题</string>
-    <string name="shortcut_created">已在创建快捷方式。</string>
+    <string name="shortcut_created">已创建快捷方式</string>
     <string name="icon_shape">图标形状</string>
     <string name="icon_creation_fail">创建快捷方式失败！</string>
     <string name="delete_downloads_for_manga">删除已下载的章节？</string>
@@ -350,12 +350,12 @@
     <string name="sort_by_source">按图源</string>
     <string name="sort_by_number">按章节数</string>
     <string name="manga_download">下载</string>
-    <string name="custom_download">自订下载数量</string>
+    <string name="custom_download">自定义下载数量</string>
     <string name="custom_hint">数量</string>
     <string name="download_1">下载下一章</string>
     <string name="download_5">下载后五章</string>
     <string name="download_10">下载后十章</string>
-    <string name="download_custom">自订下载</string>
+    <string name="download_custom">自定义下载</string>
     <string name="download_all">下载全部</string>
     <string name="download_unread">下载未读</string>
     <string name="confirm_delete_chapters">确定删除所选章节吗？</string>
@@ -388,7 +388,7 @@
     <string name="saving_picture">保存图片中</string>
     <string name="options">选项</string>
 
-    <string name="custom_filter">自订筛选</string>
+    <string name="custom_filter">自定义筛选</string>
     <string name="set_as_cover">设置为封面</string>
     <string name="cover_updated">已设置封面</string>
     <string name="page_downloaded">页面已复制到%1$s</string>
@@ -456,8 +456,8 @@
     <string name="information_no_downloads">没有下载中的任务</string>
     <string name="information_no_recent">无最近章节</string>
     <string name="information_no_recent_manga">无最近阅读</string>
-    <string name="information_empty_library">你的书架是空的哦，请去发现栏寻找漫画进行收藏吧。</string>
-    <string name="information_empty_category">你还没有标签。你可以点击加号按钮创建一个标签以管理书架。</string>
+    <string name="information_empty_library">你的书架是空的哦，请去发现栏寻找漫画进行收藏吧</string>
+    <string name="information_empty_category">你还没有标签。你可以点击加号按钮创建一个标签以管理书架</string>
 
     <string name="download_notifier_downloader_title">下载</string>
     <string name="download_notifier_title_error">错误</string>
