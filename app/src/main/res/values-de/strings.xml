@@ -82,7 +82,7 @@
     <string name="loading">Wird geladen…</string>
 
     <string name="app_not_available">App nicht verfügbar</string>
-    <string name="short_recent_updates">Updates</string>
+    <string name="short_recent_updates">Aktualisierungen</string>
 
     <string name="pref_category_general">Allgemein</string>
     <string name="pref_category_reader">Lese-Einstellungen</string>
@@ -337,8 +337,7 @@
     <string name="chapter_subtitle">Kapitel %1$s</string>
     <string name="no_next_chapter">Nächstes Kapitel nicht gefunden</string>
     <string name="no_previous_chapter">Vorheriges Kapitel nicht gefunden</string>
-    <string name="decode_image_error">Bild konnte nicht geladen werden. 
-\nVersuche entweder den Bilddecoder zu ändern oder probiere eine der Optionen weiter unten aus</string>
+    <string name="decode_image_error">Das Bild konnte nicht dekodiert werden</string>
     <string name="confirm_update_manga_sync">Setze das letzte gelesen Kapitel auf %1$d?</string>
     <string name="confirm_set_image_as_cover">Wollen Sie dieses Bild als Vorschaubild setzen?</string>
     <string name="viewer_for_this_series">Leser dieser Serie</string>
@@ -457,4 +456,25 @@
     <string name="custom_download">Benutzerdefinierte Anzahl herunterladen</string>
     <string name="migration_info">Wähle die Quelle von welcher Migriert werden soll</string>
     <string name="migration_dialog_what_to_include">Wähle zu beinhaltende Daten</string>
+    <string name="darkblue_theme">Dunkelblau</string>
+    <string name="pager_viewer">Seiten</string>
+    <string name="source_not_installed">Quelle nicht installiert: %1$s</string>
+
+    <string name="download_custom">Benutzerdefinition herunterladen</string>
+    <string name="repeating">Erneutes Lesen</string>
+    <string name="track_status">Stand</string>
+    <string name="track_start_date">Gestartet</string>
+    <string name="track_type">Typ</string>
+    <string name="track_author">Autor</string>
+    <string name="url_not_set">Manga url ist nicht gesetzt. Bitte auf den Titel drücken und den Manga erneut wählen</string>
+
+    <string name="transition_finished">Beendet:</string>
+    <string name="transition_current">Aktuell:</string>
+    <string name="transition_next">Nächste:</string>
+    <string name="transition_previous">Vorherige:</string>
+    <string name="transition_no_next">Es gibt kein nächstes Kapitel</string>
+    <string name="transition_no_previous">Es gibt kein vorheriges Kapitel</string>
+    <string name="transition_pages_loading">Lade Seiten…</string>
+    <string name="transition_pages_error">Seiten konnten nicht geladen werden: %1$s</string>
+
     </resources>
