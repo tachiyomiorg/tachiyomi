@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-  <item >
-    <shape
-      android:shape="rectangle">
+  <item>
+    <shape android:shape="rectangle">
       <solid android:color="@android:color/darker_gray" />
     </shape>
   </item>
   <item android:top="1dp">
-    <shape
-      android:shape="rectangle">
-        <solid android:color="?attr/dialogColor" />
+    <shape android:shape="rectangle">
+      <solid android:color="?backgroundColorDark" />
     </shape>
   </item>
 </layer-list>

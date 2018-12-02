@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--========-->
-    <!--Toolbars-->
-    <!--========-->
-    <style name="Theme.ActionBar" parent="@style/ThemeOverlay.AppCompat.ActionBar" />
-
-    <style name="Theme.ActionBar.Light" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-    </style>
+    <!--============-->
+    <!-- Base Theme -->
+    <!--============-->
+    <style name="Theme" parent="Theme.Cyanea.Light.NoActionBar" />
 
     <!--====-->
     <!--Tabs-->
@@ -119,7 +115,6 @@
         </item>
         <item name="android:layout_marginEnd">@dimen/material_component_cards_space_between_cards
         </item>
-        <item name="cardBackgroundColor">?attr/dialogColor</item>
         <item name="cardElevation">2dp</item>
     </style>
 

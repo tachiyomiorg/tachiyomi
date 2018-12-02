@@ -59,6 +59,7 @@ dependencies {
 
   implementation deps.materialDimens
   implementation deps.materialDialog
+  implementation deps.cyanea
 
   implementation deps.glide.core
   implementation deps.glide.okhttp

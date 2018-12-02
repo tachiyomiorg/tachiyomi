@@ -10,6 +10,7 @@ package tachiyomi
 
 import android.app.Application
 import android.os.Looper
+import com.jaredrummler.cyanea.Cyanea
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.exceptions.UndeliverableException
@@ -42,6 +43,9 @@ class App : Application() {
     }
 
     initRxJava()
+
+    // Initialize theme engine
+    Cyanea.init(this, resources)
 
     val toothpickConfig =
       if (BuildConfig.DEBUG) Configuration.forDevelopment() else Configuration.forProduction()

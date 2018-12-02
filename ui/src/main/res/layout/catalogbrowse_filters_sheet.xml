@@ -3,7 +3,8 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:paddingTop="8dp">
+  android:paddingTop="8dp"
+  android:background="?backgroundColor">
 
   <TextView
     android:layout_width="wrap_content"
@@ -28,7 +29,8 @@
     android:paddingBottom="2dp"
     android:paddingTop="2dp"
     android:paddingEnd="8dp"
-    android:background="@drawable/background_top_shadow">
+    android:background="@drawable/background_top_shadow"
+    >
 
     <com.google.android.material.button.MaterialButton
       android:id="@+id/filter_button_close"

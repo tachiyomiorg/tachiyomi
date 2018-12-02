@@ -8,6 +8,7 @@
 
 package tachiyomi.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.Router
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
+import com.jaredrummler.cyanea.prefs.CyaneaSettingsActivity
 import kotlinx.android.synthetic.main.home_controller_bottomnav.*
 import kotlinx.android.synthetic.main.home_controller_drawer.*
 import tachiyomi.app.R
@@ -98,6 +100,8 @@ class HomeController : BaseController() {
       when (id) {
         R.id.nav_drawer_library -> setRoot(router, LibraryController(), id)
         R.id.nav_drawer_catalogues -> setRoot(router, CatalogsController(), id)
+        R.id.nav_drawer_settings -> startActivity(Intent(applicationContext!!,
+          CyaneaSettingsActivity::class.java))
       }
     }
     home_drawer?.closeDrawer(GravityCompat.START)

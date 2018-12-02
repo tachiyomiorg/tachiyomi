@@ -19,6 +19,4 @@
         <attr name="min_seek" format="integer" />
         <attr name="max_seek" format="integer" />
     </declare-styleable>
-
-    <attr name="dialogColor" format="reference" />
 </resources>
