@@ -163,7 +163,7 @@
     <string name="landscape">Peisaj</string>
     <string name="darkblue_theme">Albastru închis</string>
     <string name="pref_double_tap_anim_speed">Animație pentru apăsare dublă</string>
-    <string name="pref_show_page_number">Arată numarul paginii</string>
+    <string name="pref_show_page_number">Arată numărul paginii</string>
     <string name="pref_crop_borders">Taie marginile</string>
     <string name="pref_custom_brightness">Folosește luminozitate personalizată</string>
     <string name="pref_custom_color_filter">Folosește filtru color personalizat</string>
