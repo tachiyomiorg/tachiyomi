@@ -423,11 +423,12 @@
 
     <string name="transition_finished">Прогресс: %1$s</string>
     <string name="transition_current">Прогресс: %1$s</string>
-    <string name="transition_next">Далее: %1$s</string>
+    <string name="transition_next">Далее:</string>
     <string name="transition_previous">Назад: %1$s</string>
     <string name="transition_no_next">Следующей части нет</string>
     <string name="transition_no_previous">Предыдущей части нет</string>
     <string name="transition_pages_loading">Идёт загрузка страниц…</string>
     <string name="transition_pages_error">Не удалось загрузить страницы: %1$s</string>
 
+    <string name="darkblue_theme">Темно-синяя тема</string>
     </resources>
