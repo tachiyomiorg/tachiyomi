@@ -371,7 +371,7 @@
     <string name="channel_downloader">Загрузчик</string>
 <string name="information_empty_category">У вас нет категорий. Нажмите кнопку + для начала организации вашей библиотеки.</string>
     <string name="label_migration">Миграция источника</string>
-    <string name="label_extensions">Дополнение</string>
+    <string name="label_extensions">Дополнения</string>
     <string name="label_extension_info">Информация о дополнении</string>
     <string name="all_lang">Все</string>
     <string name="ext_details">Детали</string>
