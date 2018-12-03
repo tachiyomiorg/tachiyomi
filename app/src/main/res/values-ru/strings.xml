@@ -87,7 +87,7 @@
     <string name="custom_dir">Пользовательский каталог</string>
     <string name="custom_filter">Пользовательский фильтр</string>
     <string name="dark_theme">Темная тема</string>
-    <string name="decode_image_error">Изображение не может быть загружено. Попробуйте изменить декодер опциями ниже</string>
+    <string name="decode_image_error">Не удалось декодировать изображение</string>
     <string name="default_columns">По умолчанию</string>
     <string name="default_viewer">По умолчанию</string>
     <string name="deleting">Удаление…</string>
@@ -421,10 +421,10 @@
     <string name="track_author">Автор</string>
     <string name="url_not_set">"Ссылка не установлена, пожалуйста нажмите на заголовок и выберите мангу снова "</string>
 
-    <string name="transition_finished">Прогресс: %1$s</string>
-    <string name="transition_current">Прогресс: %1$s</string>
+    <string name="transition_finished">Прогресс:</string>
+    <string name="transition_current">Прогресс:</string>
     <string name="transition_next">Далее:</string>
-    <string name="transition_previous">Назад: %1$s</string>
+    <string name="transition_previous">Назад:</string>
     <string name="transition_no_next">Следующей части нет</string>
     <string name="transition_no_previous">Предыдущей части нет</string>
     <string name="transition_pages_loading">Идёт загрузка страниц…</string>
