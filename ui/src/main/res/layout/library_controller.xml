@@ -17,6 +17,8 @@
       android:layout_height="?attr/actionBarSize"
       android:elevation="4dp"
       android:background="?attr/colorPrimary"
+      app:theme="?actionBarTheme"
+      app:navigationIcon="?attr/homeAsUpIndicator"
       app:title="@string/label_library2"/>
 
     <androidx.viewpager.widget.ViewPager

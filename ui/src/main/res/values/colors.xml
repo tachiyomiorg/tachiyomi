@@ -6,6 +6,8 @@
     <!-- Default -->
     <color name="cyanea_primary_reference">#0277bd</color>
     <color name="cyanea_accent_reference">@color/cstm_accent_tachiyomi</color>
+
+    <!--TODO check if still needed in new Theme engine-->
     <color name="colorPrimary">#0277bd</color>
     <color name="colorPrimaryDark">#244A6F</color>
     <color name="colorPrimaryLight">#84A4CF</color>

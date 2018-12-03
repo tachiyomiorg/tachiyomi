@@ -11,9 +11,8 @@
     android:layout_height="wrap_content"
     android:elevation="4dp"
     android:background="?attr/colorPrimary"
-    app:popupTheme="?popupTheme"
-    app:title="@string/label_catalogues" />
-  <!--TODO fix to make style dependent-->
+    app:title="@string/label_catalogues"
+    app:theme="?actionBarTheme"/>
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/catalogs_recycler"

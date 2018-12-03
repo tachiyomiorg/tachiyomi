@@ -3,6 +3,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:orientation="vertical">
 
   <androidx.appcompat.widget.Toolbar
@@ -10,7 +11,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="4dp"
-    android:background="?attr/colorPrimary" />
+    android:background="?attr/colorPrimary"
+    app:navigationIcon="?attr/homeAsUpIndicator"
+    app:theme="?actionBarTheme"/>
 
   <FrameLayout
     android:layout_width="match_parent"

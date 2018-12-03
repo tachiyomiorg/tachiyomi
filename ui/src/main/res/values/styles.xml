@@ -4,21 +4,22 @@
     <!--============-->
     <!-- Base Theme -->
     <!--============-->
-    <style name="Theme" parent="Theme.Cyanea.Light.NoActionBar" />
+    <style name="Theme" parent="Theme.Cyanea.Light.NoActionBar" >
+        <item name="actionBarTheme">@style/Theme.ActionBar.Light</item>
+    </style>
 
     <!--====-->
     <!--Tabs-->
     <!--====-->
     <style name="Theme.ActionBar.Tab" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <!--=========-->
-    <!--BottomNav-->
-    <!--=========-->
-    <style name="Theme.BottomNav">
-        <item name="android:background">?colorPrimary</item>
-        <item name="itemBackground">@drawable/bottom_nav_background</item>
-        <item name="itemTextColor">@drawable/bottom_nav_item_state</item>
-        <item name="itemIconTint">@drawable/bottom_nav_item_state</item>
+    <!--========-->
+    <!--Toolbars-->
+    <!--========-->
+    <style name="Theme.ActionBar" parent="@style/ThemeOverlay.AppCompat.ActionBar" />
+
+    <style name="Theme.ActionBar.Light" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
     </style>
 
     <!--===========-->

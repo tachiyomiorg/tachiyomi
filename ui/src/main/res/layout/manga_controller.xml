@@ -17,7 +17,7 @@
       android:layout_height="wrap_content"
       android:elevation="4dp"
       android:background="?attr/colorPrimary"
-      android:theme="?attr/actionBarTheme"
+      app:theme="?actionBarTheme"
       app:navigationIcon="?attr/homeAsUpIndicator" />
 
     <androidx.recyclerview.widget.RecyclerView
