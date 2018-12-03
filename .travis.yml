@@ -1,16 +1,22 @@
 language: android
+
 android:
   components:
+  - tools
+  - platform-tools
   - build-tools-28.0.3
-  - android-27
+  - android-28
   - extra-android-m2repository
   - extra-google-m2repository
   - extra-android-support
   - extra-google-google_play_services
+
   licenses:
   - android-sdk-license-.+
+  - android-sdk-preview-license-.+
+
 before_install:
-- yes | sdkmanager "platforms;android-27" # workaround for accepting the license
+- yes | sdkmanager "platforms;android-28" # workaround for accepting the license
 - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
     openssl aes-256-cbc -K $encrypted_e56be693d4fd_key -iv $encrypted_e56be693d4fd_iv -in "$PWD/.travis/secrets.tar.enc" -out secrets.tar -d;
     tar xf secrets.tar;
@@ -21,16 +27,21 @@ before_install:
 - mkdir "$ANDROID_HOME/licenses" || true
 - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
 - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+
 script: ".travis/build.sh"
+
 before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
 cache:
   directories:
   - "$HOME/.gradle/caches/"
   - "$HOME/.gradle/wrapper/"
   - "$HOME/.android/build-cache"
+
 deploy:
+
 - provider: releases
   api_key:
     secure: qmS9SyMq8xPDqaY83rvAFyZcvic24lGBj3MFt22RhVJzIXAAN/vqL1R70PnNiCF7CE+R7PaDlBpwjxDMBiuh0QQNc1oX6cgepUbro4/Nt7NFFfCvKXaFdR1cSgYouhuHmy0SS0/alrcfhQ2bPwcm1/vAOiSa8Wu7hsXhCcxbFyEbXZVD11QZmiffEM0py+OeuqOFo2JxZaGRu2z04E/u5TWep1ZEuhFRCC87PGgFqABgg6jYYebQOUZADG/0G8581HTGU0mdwueYsiA35ncRzpV2V8DajEEBd5wOe5d8SyMtE+6Qs5PD9KcXAqGGe4QRmrJMX5EcLQaLZf/Qd5s9SFZVHb1aJIw/y05w4L5dlVpsjx5WuUAYAVg7Ol5UawofFo/hYkYCNmfub67wJQdHSIxPif7V6YeON6RQQMpc5GBYY9eA6ZxhrdA2m7eyoOT3jcbdaVJwC0jMGhn26hkgJfTo1LfAUs85Cs3BrK8w6Poqc/Jb+4Y0NhdGIKgO5tS3vY54cTJVVrQTq4/XmME4ZnzOX3HaOqzfyt/6M4gEQMvaeFksxwoFhocV7wfaCq9ps/Kdq2dl4KwoqRV2WqVaauqzCP4XPSlVLaJqztsw0wboupcaZepWJ2a/6j9IrKo1pEnyeHF5y+k0SUAxL0X8iKZ0uPxsgoVrlNtqXJWNGvA=
@@ -40,6 +51,7 @@ deploy:
   on:
     tags: true
     repo: inorichi/tachiyomi
+
 - provider: script
   script: ".travis/deploy.sh"
   skip_cleanup: true
@@ -47,6 +59,7 @@ deploy:
     branch: master
     condition: "-z $TRAVIS_TAG"
     repo: inorichi/tachiyomi
+
 env:
   global:
   - secure: Ita1+tzo7P5IC2yqU3KgRcXt+5DTpP0103Hx/ECYi42/7rLt+TC7PMjl2yH3Z189+tGwLq0Ol1KJ2Z5Rn3q7EaQgD0+WRkH/ijtrjKoVh7dyItIBp7yowZpA0TJHQ4EZpGSxZakKbIP4di8XMxJ2+5VzEivYUt04LCUpzugemL6b6XOfUmOZykVxV2UDAlPPggklITYBXkHUa0mwJhjS1aPPeeR3PhVXomkqfuOJOKejPXXXJope9fhAnmopHA7ISfjIrTuwDVQJqNSuco+O9kQShmlu0C8pob1vFGPEDvafaDS8SZ9A6gKT1ZfgSUqVmvDbx0WLX8XugBLrQedtZv63esOa1WUyGhgFVpeJjexlszXlhyfP1gH5QbzRr+EiSaagCyjf9II2veLAtU5cFY+nj6KBdKQsazIMRHf8SAQlWASyJYMED/N9RnUFxSf1rnLGqiY2ezjycx4ieFj7vhlbTgyao1GHjjR9cwNuntdMYWhY8+Vc7Fctmzm46xOyyz9oJGdyim76Y4w4MZvQNKeZOBAjdEgX6cXBk15scoM2Vj9ENox+MKZLaKRawXg2U1ujK+bWAQkXiVvPriv05/JtYsNUft8qAsm+69vtohDsUW7Wu0bBIKDL+v0W30ty1PpyNehBB2OquUE7fp53gitOmYl7TyuxktkMY8PXKKU=
