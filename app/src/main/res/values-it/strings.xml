@@ -437,7 +437,7 @@
 
 
     <string name="action_global_search">Ricerca globale</string>
-    <string name="action_display_download_badge">Segnalatore capitoli scaricati</string>
+    <string name="action_display_download_badge">Indicatori capitoli scaricati</string>
     <string name="action_reset">Reimposta</string>
     <string name="action_open">Apri</string>
     <string name="action_login">Accesso</string>
