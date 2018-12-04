@@ -28,7 +28,7 @@ import uy.kohesive.injekt.api.InjektRegistrar
 import uy.kohesive.injekt.api.addSingleton
 import java.util.*
 
-@Config(constants = BuildConfig::class, sdk = intArrayOf(Build.VERSION_CODES.LOLLIPOP))
+@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
 @RunWith(CustomRobolectricGradleTestRunner::class)
 class LibraryUpdateServiceTest {
 
