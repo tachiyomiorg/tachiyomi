@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<tachiyomi.ui.base.InsetsChangeHandlerFrameLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<tachiyomi.ui.base.InsetsChangeHandlerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:id="@+id/main_controller_container"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"/>
+  android:layout_height="match_parent" />

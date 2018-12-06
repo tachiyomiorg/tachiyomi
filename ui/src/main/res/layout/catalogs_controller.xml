@@ -9,14 +9,14 @@
     android:id="@+id/catalogs_toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="4dp"
     android:background="?attr/colorPrimary"
-    app:title="@string/label_catalogues"
-    app:theme="?actionBarTheme"/>
+    android:elevation="4dp"
+    app:theme="?actionBarTheme"
+    app:title="@string/label_catalogues" />
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/catalogs_recycler"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent" />
 
 </LinearLayout>

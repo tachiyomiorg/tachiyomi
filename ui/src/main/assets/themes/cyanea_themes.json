@@ -1,4 +1,29 @@
 [
-  {"theme_name":"Tachiyomi Default","base_theme":"LIGHT","primary":"#0277BD","primary_dark":"#244A6F","primary_light":"#84A4CF","accent":"#9E7D54","background":"#FFFFFFFF"},
-  {"theme_name":"Tachiyomi Dark","base_theme":"DARK","primary":"#0277BD","primary_dark":"#244A6F","primary_light":"#84A4CF","accent":"#9E7D54","background":"#212121"}
- ]
+  {
+    "theme_name": "Tachiyomi Default",
+    "base_theme": "LIGHT",
+    "primary": "#0277BD",
+    "primary_dark": "#244A6F",
+    "primary_light": "#84A4CF",
+    "accent": "#9E7D54",
+    "background": "#FFFFFFFF"
+  },
+  {
+    "theme_name": "Tachiyomi Dark",
+    "base_theme": "DARK",
+    "primary": "#0277BD",
+    "primary_dark": "#244A6F",
+    "primary_light": "#84A4CF",
+    "accent": "#9E7D54",
+    "background": "#212121"
+  },
+  {
+    "theme_name": "Tachiyomi AMOLED",
+    "base_theme": "DARK",
+    "primary": "#000000",
+    "primary_dark": "#000000",
+    "primary_light": "#000000",
+    "accent": "#9E7D54",
+    "background": "#1C1C1D"
+  }
+]

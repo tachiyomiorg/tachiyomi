@@ -25,14 +25,8 @@ interface HomeChildController {
     val homeCtrl = parentController as? HomeController ?: return
     val homeRouter = homeCtrl.childRouter ?: return
 
-    toolbar.navigationIcon = if (homeRouter.backstackSize == 1) {
-      if (homeCtrl.usesDrawer) {
-        toolbar.context.getDrawable(R.drawable.ic_menu_white_24dp)
-      } else {
-        null
-      }
-    } else {
-      toolbar.context.getDrawableAttr(android.R.attr.homeAsUpIndicator)
+    if (homeRouter.backstackSize != 1) {
+      toolbar.navigationIcon = toolbar.context.getDrawableAttr(android.R.attr.homeAsUpIndicator)
     }
   }
 

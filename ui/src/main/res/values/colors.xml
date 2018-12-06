@@ -1,84 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--============-->
-    <!--Theme Colors-->
-    <!--============-->
-    <!-- Default -->
-    <color name="cyanea_primary_reference">#0277bd</color>
-    <color name="cyanea_accent_reference">@color/cstm_accent_tachiyomi</color>
+  <!--============-->
+  <!--Theme Colors-->
+  <!--============-->
+  <!-- Cyanea -->
+  <color name="cyanea_primary_reference">@color/colorPrimary</color>
+  <color name="cyanea_primary_light_reference">@color/colorPrimaryLight</color>
+  <color name="cyanea_primary_dark_reference">@color/colorPrimaryDark</color>
+  <color name="cyanea_accent_reference">@color/colorAccent</color>
 
-    <!--TODO check if still needed in new Theme engine-->
-    <color name="colorPrimary">#0277bd</color>
-    <color name="colorPrimaryDark">#244A6F</color>
-    <color name="colorPrimaryLight">#84A4CF</color>
-    <color name="colorAccent">@color/cstm_accent_tachiyomi</color>
-    <color name="colorRipple">@color/md_black_1000_12</color>
-    <color name="colorDialog">@color/md_white_1000</color>
+  <!-- Default -->
+  <color name="colorPrimary">#0277bd</color>
+  <color name="colorPrimaryDark">#244A6F</color>
+  <color name="colorPrimaryLight">#84A4CF</color>
+  <color name="colorAccent">@color/cstm_accent_tachiyomi</color>
 
-    <!-- Dark -->
-    <color name="colorDarkPrimary">@color/md_grey_900</color>
-    <color name="colorDarkPrimaryDark">#1C1C1D</color>
-    <color name="colorAccentDark">@color/md_grey_800</color>
-    <color name="colorDarkRipple">@color/md_white_1000_20</color>
-    <color name="colorDarkDialog">@color/md_grey_900</color>
+  <!--==============-->
+  <!-- Widget Colors-->
+  <!--==============-->
+  <!-- Badge -->
+  <color name="colorBadgeUnread">@color/cstm_accent_tachiyomi</color>
+  <color name="colorBadgeDownload">@color/md_red_500</color>
 
-    <!-- AMOLED -->
-    <color name="colorAmoledPrimary">@color/md_black_1000</color>
-    <color name="colorAmoledDialog">@color/cstm_dark_primary_dark</color>
+  <!--=============-->
+  <!-- Text Colors -->
+  <!--=============-->
 
-    <!--==============-->
-    <!-- Widget Colors-->
-    <!--==============-->
-    <!-- Badge -->
-    <color name="colorBadgeUnread">@color/cstm_accent_tachiyomi</color>
-    <color name="colorBadgeDownload">@color/md_red_500</color>
+  <!-- Light -->
+  <color name="textColorPrimary">@color/md_black_1000_87</color>
+  <color name="textColorSecondary">@color/md_black_1000_54</color>
+  <color name="textColorHint">@color/md_black_1000_38</color>
+  <color name="textColorIcon">@color/md_black_1000_12</color>
 
-    <!--=============-->
-    <!-- Text Colors -->
-    <!--=============-->
+  <!-- Dark -->
+  <color name="textColorPrimaryInverse">@color/md_white_1000</color>
+  <color name="textColorSecondaryInverse">@color/md_white_1000_70</color>
+  <color name="textColorHintInverse">@color/md_white_1000_50</color>
+  <color name="textColorIconInverse">@color/md_white_1000_12</color>
 
-    <!-- Light -->
-    <color name="textColorPrimary">@color/md_black_1000_87</color>
-    <color name="textColorSecondary">@color/md_black_1000_54</color>
-    <color name="textColorHint">@color/md_black_1000_38</color>
-    <color name="textColorIcon">@color/md_black_1000_12</color>
+  <!-- ================================ -->
+  <!-- Note: Only call from colors.xml  -->
+  <!-- ================================ -->
 
-    <!-- Dark -->
-    <color name="textColorPrimaryInverse">@color/md_white_1000</color>
-    <color name="textColorSecondaryInverse">@color/md_white_1000_70</color>
-    <color name="textColorHintInverse">@color/md_white_1000_50</color>
-    <color name="textColorIconInverse">@color/md_white_1000_12</color>
+  <!-- Text Colors -->
+  <!-- Black -->
+  <color name="md_black_1000_87">#DE000000</color>
+  <color name="md_black_1000_54">#8A000000</color>
+  <color name="md_black_1000_38">#61000000</color>
+  <color name="md_black_1000_12">#1F000000</color>
 
-    <!-- ================================ -->
-    <!-- Note: Only call from colors.xml  -->
-    <!-- ================================ -->
+  <!-- White -->
+  <color name="md_white_1000">#FFFFFFFF</color>
+  <color name="md_white_1000_70">#B3FFFFFF</color>
+  <color name="md_white_1000_50">#80FFFFFF</color>
+  <color name="md_white_1000_20">#33FFFFFF</color>
+  <color name="md_white_1000_12">#1FFFFFFF</color>
 
-    <!-- Text Colors -->
-    <!-- Black -->
-    <color name="md_black_1000_87">#DE000000</color>
-    <color name="md_black_1000_54">#8A000000</color>
-    <color name="md_black_1000_38">#61000000</color>
-    <color name="md_black_1000_12">#1F000000</color>
+  <!-- Material Design Colors -->
+  <!-- Black -->
+  <color name="md_black_1000">#000000</color>
 
-    <!-- White -->
-    <color name="md_white_1000">#FFFFFFFF</color>
-    <color name="md_white_1000_70">#B3FFFFFF</color>
-    <color name="md_white_1000_50">#80FFFFFF</color>
-    <color name="md_white_1000_20">#33FFFFFF</color>
-    <color name="md_white_1000_12">#1FFFFFFF</color>
+  <!-- Grey -->
+  <color name="md_grey_800">#424242</color>
+  <color name="md_grey_900">#212121</color>
 
-    <!-- Material Design Colors -->
-    <!-- Black -->
-    <color name="md_black_1000">#000000</color>
+  <!-- Red -->
+  <color name="md_red_500">#F44336</color>
 
-    <!-- Grey -->
-    <color name="md_grey_800">#424242</color>
-    <color name="md_grey_900">#212121</color>
-
-    <!-- Red -->
-    <color name="md_red_500">#F44336</color>
-
-    <!--Tachiyomi Custom Colors -->
-    <color name="cstm_accent_tachiyomi">#9E7D54</color>
-    <color name="cstm_dark_primary_dark">#1C1C1D</color>
+  <!--Tachiyomi Custom Colors -->
+  <color name="cstm_accent_tachiyomi">#9E7D54</color>
 </resources>

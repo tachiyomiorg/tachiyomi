@@ -5,7 +5,8 @@
   android:layout_height="wrap_content"
   android:background="?attr/selectableItemBackground"
   android:paddingBottom="8dp"
-  android:focusable="true">
+  android:focusable="true"
+  android:baselineAligned="false">
 
   <com.google.android.material.textfield.TextInputLayout
     android:id="@+id/filter_text_wrapper"

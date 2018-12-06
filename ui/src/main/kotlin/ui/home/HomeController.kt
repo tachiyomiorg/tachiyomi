@@ -10,12 +10,10 @@ package tachiyomi.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -23,24 +21,15 @@ import com.bluelinelabs.conductor.Router
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
 import com.jaredrummler.cyanea.prefs.CyaneaSettingsActivity
 import kotlinx.android.synthetic.main.home_controller_bottomnav.*
-import kotlinx.android.synthetic.main.home_controller_drawer.*
 import tachiyomi.app.R
 import tachiyomi.core.di.AppScope
-import tachiyomi.prefs.UiPreferences
 import tachiyomi.ui.base.BaseController
 import tachiyomi.ui.base.withFadeTransition
 import tachiyomi.ui.base.withoutTransition
 import tachiyomi.ui.catalogs.CatalogsController
 import tachiyomi.ui.library.LibraryController
-import javax.inject.Inject
 
 class HomeController : BaseController() {
-
-  @Inject
-  lateinit var uiPrefs: UiPreferences
-
-  var usesDrawer = false
-    private set
 
   var childRouter: Router? = null
     private set
@@ -56,13 +45,7 @@ class HomeController : BaseController() {
     container: ViewGroup,
     savedViewState: Bundle?
   ): View {
-    usesDrawer = uiPrefs.useDrawer().get()
-    val layout = if (usesDrawer) {
-      R.layout.home_controller_drawer
-    } else {
-      R.layout.home_controller_bottomnav
-    }
-    return inflater.inflate(layout, container, false)
+    return inflater.inflate(R.layout.home_controller_bottomnav, container, false)
   }
 
   override fun onViewCreated(view: View) {
@@ -72,7 +55,6 @@ class HomeController : BaseController() {
     childRouter = router
     router.addChangeListener(childRouterChangeListener)
 
-    home_nav_view?.setNavigationItemSelectedListener { onSetSelectedItem(it.itemId, router) }
     home_bottomnav?.setOnNavigationItemSelectedListener { onSetSelectedItem(it.itemId, router) }
 
     if (!router.hasRootController()) {
@@ -81,7 +63,6 @@ class HomeController : BaseController() {
   }
 
   override fun onDestroyView(view: View) {
-    home_nav_view?.setNavigationItemSelectedListener(null)
     home_bottomnav?.setOnNavigationItemSelectedListener(null)
     childRouter?.removeChangeListener(childRouterChangeListener)
     childRouter = null
@@ -89,8 +70,6 @@ class HomeController : BaseController() {
   }
 
   private fun performSetSelectedItem(itemId: Int) {
-    home_nav_view?.setCheckedItem(itemId)
-    home_nav_view?.menu?.performIdentifierAction(itemId, 0)
     home_bottomnav?.selectedItemId = itemId
   }
 
@@ -101,10 +80,9 @@ class HomeController : BaseController() {
         R.id.nav_drawer_library -> setRoot(router, LibraryController(), id)
         R.id.nav_drawer_catalogues -> setRoot(router, CatalogsController(), id)
         R.id.nav_drawer_settings -> startActivity(Intent(applicationContext!!,
-          CyaneaSettingsActivity::class.java))
+          CyaneaSettingsActivity::class.java)) //TODO make part of global settings
       }
     }
-    home_drawer?.closeDrawer(GravityCompat.START)
     return true
   }
 
@@ -119,10 +97,6 @@ class HomeController : BaseController() {
       controller.withFadeTransition()
     }
     router.setRoot(transaction.tag("$id"))
-  }
-
-  fun openDrawer() {
-    home_drawer?.openDrawer(Gravity.START)
   }
 
   inner class HomeControllerChangeListener : ControllerChangeHandler.ControllerChangeListener {

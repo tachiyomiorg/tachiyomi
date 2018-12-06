@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
@@ -16,12 +15,13 @@
       android:id="@+id/image"
       android:layout_width="0dp"
       android:layout_height="0dp"
+      android:contentDescription="@null"
       android:padding="8dp"
+      android:src="@mipmap/ic_launcher_round"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintDimensionRatio="1:1"
       app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      android:src="@mipmap/ic_launcher_round" />
+      app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
       android:id="@+id/title"

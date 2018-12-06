@@ -1,62 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<tachiyomi.ui.catalogbrowse.FiltersBottomSheet
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<tachiyomi.ui.catalogbrowse.FiltersBottomSheet xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:paddingTop="8dp"
-  android:background="?backgroundColor">
+  android:background="?backgroundColor"
+  android:paddingTop="8dp">
 
   <TextView
+    style="@style/TextAppearance.Subtitle1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Filters"
-    android:textSize="20sp"
     android:layout_marginStart="16dp"
-    style="@style/TextAppearance.Body2"/>
+    android:text="@string/custom_filter" />
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/catalogbrowse_filters_recycler"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="42dp"
+    android:paddingEnd="14dp"
     android:paddingStart="14dp"
-    android:paddingEnd="14dp"/>
+    android:paddingTop="42dp" />
 
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="bottom"
-    android:paddingBottom="2dp"
-    android:paddingTop="2dp"
-    android:paddingEnd="8dp"
     android:background="@drawable/background_top_shadow"
-    >
+    android:paddingBottom="2dp"
+    android:paddingEnd="8dp"
+    android:paddingTop="2dp">
 
     <com.google.android.material.button.MaterialButton
       android:id="@+id/filter_button_close"
       style="@style/Widget.MaterialComponents.Button.TextButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/action_close"/>
+      android:text="@string/action_close" />
 
     <View
       android:layout_width="0dp"
       android:layout_height="0dp"
-      android:layout_weight="1"/>
+      android:layout_weight="1" />
 
     <com.google.android.material.button.MaterialButton
       android:id="@+id/filter_button_reset"
       style="@style/Widget.MaterialComponents.Button.TextButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/action_reset"/>
+      android:text="@string/action_reset" />
 
     <com.google.android.material.button.MaterialButton
       android:id="@+id/filter_button_search"
       style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/action_search"/>
+      android:text="@string/action_search" />
 
   </LinearLayout>
 

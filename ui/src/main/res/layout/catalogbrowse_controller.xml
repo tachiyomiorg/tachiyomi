@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:orientation="vertical">
 
   <androidx.appcompat.widget.Toolbar
     android:id="@+id/catalogbrowse_toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="4dp"
     android:background="?attr/colorPrimary"
+    android:elevation="4dp"
     app:navigationIcon="?attr/homeAsUpIndicator"
-    app:theme="?actionBarTheme"/>
+    app:theme="?actionBarTheme" />
 
   <FrameLayout
     android:layout_width="match_parent"
@@ -23,16 +23,13 @@
       android:id="@+id/catalogbrowse_recycler"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:columnWidth="140dp"
-      android:clipToPadding="false"
-      style="@style/Theme.Widget.GridView.Catalogue"
-      tools:listitem="@layout/manga_grid_item"/>
+      tools:listitem="@layout/manga_grid_item" />
 
     <ProgressBar
       android:id="@+id/catalogbrowse_progress"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_gravity="center"/>
+      android:layout_gravity="center" />
 
   </FrameLayout>
 
