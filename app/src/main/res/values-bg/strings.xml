@@ -5,7 +5,7 @@
     <!-- Activities and fragments labels (toolbar title) -->
     <string name="label_settings">Настройки</string>
     <string name="label_download_queue">Изтегляния</string>
-    <string name="label_library">Библиотека</string>
+    <string name="label_library">Моята библиотека</string>
     <string name="label_recent_manga">Наскоро прочетени</string>
     <string name="label_catalogues">Каталози</string>
     <string name="label_recent_updates">Наскоро обновени</string>
@@ -16,7 +16,7 @@
 
     <!-- Actions -->
     <string name="action_settings">Настройки</string>
-    <string name="action_filter">Филтър</string>
+    <string name="action_filter">Филтрирай</string>
     <string name="action_filter_downloaded">Изтеглени</string>
     <string name="action_filter_bookmarked">Отбелязани</string>
     <string name="action_filter_unread">Непрочетени</string>
@@ -24,12 +24,12 @@
     <string name="action_filter_empty">Премахни филтрирането</string>
     <string name="action_sort_alpha">По азбучен ред</string>
     <string name="action_sort_last_read">Последно прочетени</string>
-    <string name="action_sort_last_updated">По обновления</string>
+    <string name="action_sort_last_updated">Последно обновени</string>
     <string name="action_search">Търсене</string>
     <string name="action_select_all">Избери всички</string>
     <string name="action_mark_as_read">Отбележи като прочетена</string>
     <string name="action_mark_as_unread">Отбележи като непрочетена</string>
-    <string name="action_mark_previous_as_read">Отбележи предната като прочетена</string>
+    <string name="action_mark_previous_as_read">Отбележи предните като прочетени</string>
     <string name="action_download">Изтегли</string>
     <string name="action_bookmark">Отметни</string>
     <string name="action_remove_bookmark">Премахни отметка</string>
@@ -41,15 +41,15 @@
     <string name="action_add_category">Добави категория</string>
     <string name="action_edit_categories">Редактирай категории</string>
     <string name="action_rename_category">Преименувай категория</string>
-    <string name="action_move_category">Премести в категория</string>
+    <string name="action_move_category">Премести в категории</string>
     <string name="action_edit_cover">Промени корицата</string>
     <string name="action_sort_up">Сортирай по възходящ ред</string>
     <string name="action_sort_down">Сортирай по низходящ ред</string>
     <string name="action_show_downloaded">Изтеглени</string>
     <string name="action_next_unread">Следваща непрочетена</string>
-    <string name="action_start">Старт</string>
-    <string name="action_stop">Стоп</string>
-    <string name="action_pause">Пауза</string>
+    <string name="action_start">Започни</string>
+    <string name="action_stop">Спри</string>
+    <string name="action_pause">Паузирай</string>
     <string name="action_clear">Изчисти</string>
     <string name="action_previous_chapter">Предходна глава</string>
     <string name="action_next_chapter">Следваща глава</string>
@@ -61,8 +61,8 @@
     <string name="action_display_mode">Начин на показване</string>
     <string name="action_display">Показване</string>
     <string name="action_display_grid">Таблица</string>
-    <string name="action_display_list">Лист</string>
-    <string name="action_set_filter">Филтрирай</string>
+    <string name="action_display_list">Списък</string>
+    <string name="action_set_filter">Сложи филтър</string>
     <string name="action_cancel">Отмени</string>
     <string name="action_sort">Сортирай</string>
     <string name="action_install">Инсталирай</string>
@@ -375,10 +375,10 @@
     <string name="track">Следене</string>
     <string name="history">История</string>
 
-    <string name="action_sort_total">Общо глави</string>
+    <string name="action_sort_total">Общ брой глави</string>
     <string name="action_close">Затвори</string>
     <string name="action_move">Премести</string>
-    <string name="action_export">Експорт</string>
+    <string name="action_export">Експортирай</string>
     <string name="action_open_log">Отвори лога</string>
     <string name="action_create">Създай</string>
     <string name="action_restore">Възстанови</string>
@@ -456,7 +456,7 @@
     <string name="information_empty_category">Нямате категории. Натиснете плюса, за да ги създадете и да организирате библиотеката си.</string>
 
     <string name="label_migration">Смяна на източник</string>
-    <string name="label_extensions">Разширения</string>
+    <string name="label_extensions">Добавки</string>
     <string name="label_extension_info">Информация</string>
 
 
@@ -515,9 +515,9 @@
     <string name="url_not_set">Мангата няма връзка с акаунта, молим отново да натиснете заглавието и да изберете мангата</string>
 
     <string name="transition_finished">Завършени:</string>
-    <string name="transition_current">"В момента: "</string>
+    <string name="transition_current">Текущи:</string>
     <string name="transition_next">Следва:</string>
-    <string name="transition_previous">"Предходна: "</string>
+    <string name="transition_previous">Предходна:</string>
     <string name="transition_no_next">Няма повече глави</string>
     <string name="transition_no_previous">Няма предходна глава</string>
     <string name="transition_pages_loading">Зареждане на страниците…</string>
