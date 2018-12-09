@@ -1,172 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <!--============-->
+  <!-- Base Theme -->
+  <!--============-->
+  <style name="Theme" parent="Theme.Cyanea.Light.NoActionBar">
+    <item name="actionBarTheme">@style/Theme.ActionBar.Light</item>
+  </style>
 
-    <!--============-->
-    <!-- Base Theme -->
-    <!--============-->
-    <style name="Theme" parent="Theme.Cyanea.Light.NoActionBar" >
-        <item name="actionBarTheme">@style/Theme.ActionBar.Light</item>
-    </style>
+  <!--========-->
+  <!--Toolbars-->
+  <!--========-->
+  <style name="Theme.ActionBar" parent="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-    <!--========-->
-    <!--Toolbars-->
-    <!--========-->
-    <style name="Theme.ActionBar" parent="@style/ThemeOverlay.AppCompat.ActionBar" />
+  <style name="Theme.ActionBar.Light" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+  </style>
 
-    <style name="Theme.ActionBar.Light" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-    </style>
+  <!--=======-->
+  <!--Widgets-->
+  <!--=======-->
+  <style name="Theme.Widget" />
 
+  <!--===============-->
+  <!--Text Appearance-->
+  <!--===============-->
+  <style name="TextAppearance" parent="@android:style/TextAppearance">
+    <item name="android:textColor">?android:attr/textColorPrimary</item>
+  </style>
 
-    <!--==============-->
-    <!--NavigationView-->
-    <!--==============-->
-    <style name="Theme.Widget.NavigationView" />
+  <style name="TextAppearance.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1" />
 
-    <style name="Theme.Widget.NavigationView.Dark">
-        <item name="colorControlHighlight">@color/md_grey_900</item>
-        <item name="colorPrimary">?colorAccent</item>
-    </style>
+  <style name="TextAppearance.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2" />
 
-    <!--===============-->
-    <!--Text Appearance-->
-    <!--===============-->
-    <style name="TextAppearance" parent="@android:style/TextAppearance">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-    </style>
+  <style name="TextAppearance.Body1" parent="TextAppearance.MaterialComponents.Body1" />
 
-    <style name="TextAppearance.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1"/>
+  <style name="TextAppearance.Body1.Light">
+    <item name="android:textColor">@color/textColorPrimaryInverse</item>
+  </style>
 
-    <style name="TextAppearance.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2"/>
+  <style name="TextAppearance.Body1.Secondary">
+    <item name="android:textColor">?android:textColorSecondary</item>
+  </style>
 
-    <style name="TextAppearance.Body1" parent="TextAppearance.MaterialComponents.Body1"/>
+  <style name="TextAppearance.Body2" parent="TextAppearance.MaterialComponents.Body2" />
 
-    <style name="TextAppearance.Body1.Light">
-        <item name="android:textColor">@color/textColorPrimaryInverse</item>
-    </style>
+  <style name="TextAppearance.Button" parent="TextAppearance.MaterialComponents.Button" />
 
-    <style name="TextAppearance.Body1.Secondary">
-        <item name="android:textColor">?android:textColorSecondary</item>
-    </style>
+  <style name="TextAppearance.Caption" parent="TextAppearance.MaterialComponents.Caption" />
 
-    <style name="TextAppearance.Body2" parent="TextAppearance.MaterialComponents.Body2"/>
+  <style name="TextAppearance.Caption.Light">
+    <item name="android:textColor">@color/textColorPrimaryInverse</item>
+  </style>
 
-    <style name="TextAppearance.Button" parent="TextAppearance.MaterialComponents.Button"/>
-
-    <style name="TextAppearance.Caption" parent="TextAppearance.MaterialComponents.Caption"/>
-
-    <style name="TextAppearance.Caption.Light">
-        <item name="android:textColor">@color/textColorPrimaryInverse</item>
-    </style>
-
-    <style name="TextAppearance.Overline" parent="TextAppearance.MaterialComponents.Overline"/>
-
-    <!--=======-->
-    <!--Widgets-->
-    <!--=======-->
-    <style name="Theme.Widget" />
-
-    <style name="Theme.Widget.FAB">
-        <item name="android:layout_height">@dimen/fab_size</item>
-        <item name="android:layout_width">@dimen/fab_size</item>
-        <item name="android:layout_gravity">bottom|end</item>
-        <item name="android:layout_margin">@dimen/fab_margin</item>
-        <item name="android:scaleType">fitCenter</item>
-        <item name="layout_anchorGravity">bottom|right|end</item>
-        <item name="android:tint">@color/md_white_1000</item>
-        <!--<item name="layout_behavior">eu.kanade.tachiyomi.widget.FABAnimationUpDown</item>-->
-    </style>
-
-    <style name="Theme.Widget.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog"/>
-
-    <style name="Theme.Widget.BottomSheetDialog.Dark" parent="Theme.Design.BottomSheetDialog"/>
-
-    <style name="Theme.Widget.CardView" parent="CardView">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/material_component_cards_top_and_bottom_padding</item>
-        <item name="android:layout_marginTop">@dimen/material_component_cards_space_between_cards
-        </item>
-        <item name="android:layout_marginBottom">
-            @dimen/material_component_cards_space_between_cards
-        </item>
-        <item name="android:layout_marginStart">
-            @dimen/material_component_cards_space_between_cards
-        </item>
-        <item name="android:layout_marginEnd">@dimen/material_component_cards_space_between_cards
-        </item>
-        <item name="cardElevation">2dp</item>
-    </style>
-
-    <style name="Theme.Widget.CardView.Item">
-        <item name="android:layout_marginTop">@dimen/space_between_cards</item>
-        <item name="android:layout_marginBottom">@dimen/space_between_cards</item>
-    </style>
-
-    <style name="Theme.Widget.GridView">
-        <item name="android:smoothScrollbar">true</item>
-        <item name="android:numColumns">auto_fit</item>
-        <item name="android:stretchMode">columnWidth</item>
-        <item name="android:scrollbarStyle">outsideOverlay</item>
-    </style>
-
-    <style name="Theme.Widget.GridView.Catalogue">
-        <item name="android:padding">4dp</item>
-        <item name="android:gravity">top|left</item>
-        <item name="android:smoothScrollbar">true</item>
-        <item name="android:cacheColorHint">?android:attr/textColorHint</item>
-        <item name="android:fastScrollEnabled">true</item>
-        <item name="android:horizontalSpacing">0dp</item>
-        <item name="android:verticalSpacing">0dp</item>
-    </style>
-
-
-    <style name="Theme.Widget.CheckBox" />
-
-    <style name="Theme.Widget.CheckBox.Light" parent="TextAppearance.Body1.Light">
-        <item name="buttonTint">@color/md_white_1000</item>
-    </style>
-
-
-    <!--<style name="Theme.Widget.SpinnerItem" parent="Widget.AppCompat.DropDownItem.Spinner">-->
-    <!--<item name="android:textColor">?attr/text_color_primary</item>-->
-    <!--<item name="android:background">?attr/selectable_list_drawable</item>-->
-    <!--</style>-->
-
-    <!--==============-->
-    <!--Widgets.Button-->
-    <!--==============-->
-    <style name="Theme.Widget.Button" parent="Widget.AppCompat.Button"/>
-
-    <style name="Theme.Widget.Button.Colored" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:textColor">?android:textColorPrimary</item>
-    </style>
-
-    <style name="Theme.Widget.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:textColor">?attr/colorAccent</item>
-    </style>
-
-    <style name="Theme.Widget.Button.Borderless.Negative">
-        <item name="android:textColor">@color/md_red_500</item>
-    </style>
-
-    <style name="Theme.Widget.Button.Borderless.Small">
-        <item name="android:minHeight">48dip</item>
-        <item name="android:minWidth">48dip</item>
-    </style>
-
-    <!--===-->
-    <!--OLD-->
-    <!--===-->
-    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowTitleStyle">@style/DialogTitleText</item>
-        <item name="colorAccent">?attr/colorPrimary</item>
-    </style>
-
-    <style name="DialogTitleText">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
-    </style>
-
-
+  <style name="TextAppearance.Overline" parent="TextAppearance.MaterialComponents.Overline" />
 </resources>

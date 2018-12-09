@@ -20,9 +20,4 @@
   <dimen name="text_body">16sp</dimen>
   <dimen name="text_small_body">14sp</dimen>
 
-
-  <!--Nav header-->
-  <dimen name="navigation_drawer_header_height">158dp</dimen>
-  <dimen name="navigation_drawer_header_margin">16dp</dimen>
-
 </resources>

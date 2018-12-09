@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <attr name="typeface" format="enum">
+    <enum name="ptsansNarrow" value="0" />
+    <enum name="ptsansNarrowBold" value="1" />
+  </attr>
 
-    <attr name="typeface" format="enum">
-        <enum name="ptsansNarrow" value="0" />
-        <enum name="ptsansNarrowBold" value="1" />
-    </attr>
+  <declare-styleable name="PTSansTextView">
+    <attr name="typeface" />
+  </declare-styleable>
 
-    <declare-styleable name="PTSansTextView">
-        <attr name="typeface" />
-    </declare-styleable>
+  <declare-styleable name="MinMaxNumberPicker">
+    <attr name="min" format="integer" />
+    <attr name="max" format="integer" />
+  </declare-styleable>
 
-    <declare-styleable name="MinMaxNumberPicker">
-        <attr name="min" format="integer" />
-        <attr name="max" format="integer" />
-    </declare-styleable>
-
-    <declare-styleable name="NegativeSeekBar">
-        <attr name="min_seek" format="integer" />
-        <attr name="max_seek" format="integer" />
-    </declare-styleable>
+  <declare-styleable name="NegativeSeekBar">
+    <attr name="min_seek" format="integer" />
+    <attr name="max_seek" format="integer" />
+  </declare-styleable>
 </resources>
