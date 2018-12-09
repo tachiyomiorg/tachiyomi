@@ -14,6 +14,7 @@ import tachiyomi.domain.chapter.repository.ChapterRepository
 import tachiyomi.domain.chapter.util.ChapterRecognition
 import tachiyomi.domain.manga.model.Manga
 import tachiyomi.domain.source.interactor.GetChaptersFromSource
+import tachiyomi.source.CatalogSource
 import tachiyomi.source.Source
 import javax.inject.Inject
 
@@ -44,7 +45,8 @@ class FindOrInitChapterFromSource @Inject constructor(
                 dateUpload = meta.dateUpload,
                 dateFetch = System.currentTimeMillis(),
                 scanlator = meta.scanlator,
-                number = meta.number.takeIf { it >= 0f } ?: ChapterRecognition.parse(meta, manga),
+                number = meta.number.takeIf { it >= 0f } ?: ChapterRecognition.parse(meta, manga,
+                  source),
                 sourceOrder = i
               )
             }

@@ -40,4 +40,13 @@ interface Source {
    */
   fun fetchPageList(chapter: ChapterInfo): List<PageInfo>
 
+  /**
+   * Returns a regex used to determine chapter information.
+   *
+   * @return empty regex will run default parser.
+   */
+  fun getRegex(): Regex {
+    return Regex("")
+  }
+
 }

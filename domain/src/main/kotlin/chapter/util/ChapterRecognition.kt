@@ -9,7 +9,9 @@
 package tachiyomi.domain.chapter.util
 
 import tachiyomi.domain.manga.model.Manga
+import tachiyomi.source.CatalogSource
 import tachiyomi.source.model.ChapterInfo
+import tachiyomi.source.Source
 
 /**
  * -R> = regex conversion.
@@ -46,7 +48,26 @@ object ChapterRecognition {
    */
   private val unwantedWhiteSpace = Regex("""(\s)(extra|special|omake)""")
 
-  fun parse(chapter: ChapterInfo, manga: Manga): Float {
+  /**
+   * Parse using source regex if available otherwise use default parser (less acurate),
+   * @param chapter object containing all information of chapter being parsed.
+   * @param manga object containing the information of the manga being parsed.
+   * @param source source object used to get regex if available.
+   * @return chapter number TODO implement (vol|title? create general rules how to format Regex)
+   */
+  fun parse(chapter: ChapterInfo, manga: Manga, source: Source): Float {
+    return if (!source.getRegex().pattern.isEmpty()) {
+      return findMatch(source.getRegex().find(chapter.name))
+    } else {
+      parseDefault(chapter, manga)
+    }
+  }
+
+  /**
+   * Todo Rewrite to include title / volume, is this even needed with source providing regex?
+   */
+  private fun parseDefault(chapter: ChapterInfo, manga: Manga): Float {
+
 //    // If chapter number is known return.
 //    if (chapter.number == -2f || chapter.number > -1f)
 //      return
@@ -68,10 +89,10 @@ object ChapterRecognition {
     }
 
     // Check base case ch.xx
-    var number: Float? = null
+    var number: Float?
 
     number = findMatch(basic.find(name))
-    if (number != null) return number
+    if (number != -1f) return number
 
     // Check one number occurrence.
     val occurrences: MutableList<MatchResult> = arrayListOf()
@@ -81,7 +102,7 @@ object ChapterRecognition {
 
     if (occurrences.size == 1) {
       number = findMatch(occurrences[0])
-      if (number != null) return number
+      if (number != -1f) return number
     }
 
     // Remove manga title from chapter title.
@@ -89,11 +110,11 @@ object ChapterRecognition {
 
     // Check if first value is number after title remove.
     number = findMatch(withoutManga.find(nameWithoutManga))
-    if (number != null) return number
+    if (number != -1f) return number
 
     // Take the first number encountered.
     number = findMatch(occurrence.find(nameWithoutManga))
-    if (number != null) return number
+    if (number != -1f) return number
 
     return -1f
   }
@@ -103,7 +124,7 @@ object ChapterRecognition {
    * @param match result of regex
    * @return true if volume is found
    */
-  private fun findMatch(match: MatchResult?): Float? {
+  private fun findMatch(match: MatchResult?): Float {
     match?.let {
       val initial = it.groups[1]?.value?.toFloat()!!
       val subChapterDecimal = it.groups[2]?.value
@@ -111,7 +132,7 @@ object ChapterRecognition {
       val addition = checkForDecimal(subChapterDecimal, subChapterAlpha)
       return initial.plus(addition)
     }
-    return null
+    return -1f
   }
 
   /**
@@ -122,10 +143,10 @@ object ChapterRecognition {
    */
   private fun checkForDecimal(decimal: String?, alpha: String?): Float {
     if (!decimal.isNullOrEmpty())
-      return decimal?.toFloat()!!
+      return decimal.toFloat()
 
     if (!alpha.isNullOrEmpty()) {
-      if (alpha!!.contains("extra"))
+      if (alpha.contains("extra"))
         return .99f
 
       if (alpha.contains("omake"))

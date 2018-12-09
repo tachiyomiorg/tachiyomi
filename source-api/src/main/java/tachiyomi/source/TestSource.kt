@@ -64,7 +64,7 @@ class TestSource : CatalogSource {
     )
   }
 
-//  private class Status : Filter.Check("Completed")
+  //  private class Status : Filter.Check("Completed")
 //  private class StatusValue(filter: Status) : Filter.Check(filter, null)
 //  private class Author : Filter.Text("Author")
 //  private class Genre(name: String) : Filter.TriState(name)

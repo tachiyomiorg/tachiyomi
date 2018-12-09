@@ -67,6 +67,10 @@ open class Mangadex(
       "${URLEncoder.encode(it.key, "UTF-8")}=${URLEncoder.encode(it.value, "UTF-8")}"
     }
 
+  override fun getRegex(): Regex {
+    return Regex("""(?<=Ch\.) *([0-9]+)(\.[0-9]+)?""")
+  }
+
   override fun fetchMangaList(listing: Listing?, page: Int): MangasPageInfo {
     val request = GET("$baseUrl/titles/0/$page", headers)
     val document = client.newCall(request).execute().asJsoup()
