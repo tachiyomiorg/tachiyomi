@@ -2,7 +2,7 @@
 <resources>
     <string name="action_add">Добавить</string>
     <string name="action_add_category">Добавить категорию</string>
-    <string name="action_add_to_home_screen">Добавить на домашний экран</string>
+    <string name="action_add_to_home_screen">Добавить на главный экран</string>
     <string name="action_bookmark">Закладка</string>
     <string name="action_cancel">Отмена</string>
     <string name="action_clear">Очистить</string>
@@ -370,7 +370,7 @@
     <string name="channel_library">Библиотека</string>
     <string name="channel_downloader">Загрузчик</string>
 <string name="information_empty_category">У вас нет категорий. Нажмите кнопку + для начала организации вашей библиотеки.</string>
-    <string name="label_migration">Миграция источника</string>
+    <string name="label_migration">Перемещение источника</string>
     <string name="label_extensions">Дополнения</string>
     <string name="label_extension_info">Информация о дополнении</string>
     <string name="all_lang">Все</string>
