@@ -396,4 +396,26 @@
 
       <string name="label_migration">Migração de fonte</string>
     <string name="action_reset">Reiniciar</string>
+    <string name="action_open_log">Abrir registro</string>
+    <string name="pref_category_tracking">Listas</string>
+    <string name="darkblue_theme">Preto/Azul</string>
+    <string name="all_lang">Tudo</string>
+    <string name="pref_double_tap_anim_speed">Velocidade animação dois toques</string>
+    <string name="pager_viewer">Paginas</string>
+    <string name="color_filter_r_value">R</string>
+    <string name="pref_download_new_categories">Categorias para incluir na transferência</string>
+
+      <string name="pref_backup_directory">Pasta de Backups</string>
+    <string name="dialog_restoring_backup">A restaurar backup...
+\n%1$ adicionado a biblioteca</string>
+    <string name="dialog_restoring_source_not_found">A restaurar backup...
+\n%1$ Fonte não encontrada</string>
+    <string name="backup_created">Backup criado</string>
+    <string name="restore_completed">Restauro completo</string>
+    <string name="error_opening_log">Não foi possivel abrir o registo</string>
+    <string name="restore_completed_content">Restauro levou %1$.
+\n%2$ erros encontrados.</string>
+    <string name="file_saved">Ficheiro salvo em %1$</string>
+    <string name="backup_choice">O que pretende fazer backup\?</string>
+    <string name="pref_refresh_library_metadata">Refrescar metadata da biblioteca</string>
     </resources>
