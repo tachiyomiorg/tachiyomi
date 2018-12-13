@@ -55,7 +55,7 @@
     <string name="action_update">Обновить</string>
     <string name="action_update_library">Обновить библиотеку</string>
     <string name="all">Все</string>
-    <string name="backup">Бэкап</string>
+    <string name="backup">Резервная копия</string>
     <string name="black_background">Черный</string>
     <string name="build_time">Дата сборки</string>
     <string name="cache_delete_error">Возникла ошибка при удалении кэша</string>
@@ -128,7 +128,7 @@
     <string name="information_no_recent">Нет новых глав</string>
     <string name="information_no_recent_manga">Нет недавно прочитанных глав</string>
     <string name="invalid_login">Ошибка авторизации</string>
-    <string name="label_backup">Бэкап</string>
+    <string name="label_backup">Резервная копия</string>
     <string name="label_catalogues">Каталоги</string>
     <string name="label_categories">Категории</string>
     <string name="label_download_queue">Очередь загрузки</string>
@@ -291,7 +291,7 @@
     <string name="version">Версия</string>
     <string name="vertical_viewer">Вертикальный</string>
     <string name="viewer_for_this_series">Отображение для этой серии</string>
-    <string name="webtoon_viewer">Комикс</string>
+    <string name="webtoon_viewer">Веб комикс</string>
     <string name="white_background">Белый</string>
     <string name="wifi">Wi-Fi</string>
     <string name="zoom_start_automatic">Автоматическая</string>
