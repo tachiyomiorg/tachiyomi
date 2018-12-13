@@ -395,4 +395,5 @@
     <string name="creating_backup">Criando backup</string>
 
       <string name="label_migration">Migração de fonte</string>
+    <string name="action_reset">Reiniciar</string>
     </resources>
