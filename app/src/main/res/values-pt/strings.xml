@@ -418,4 +418,6 @@
     <string name="file_saved">Ficheiro salvo em %1$</string>
     <string name="backup_choice">O que pretende fazer backup\?</string>
     <string name="pref_refresh_library_metadata">Refrescar metadata da biblioteca</string>
+    <string name="pref_backup_slots">Máximo de backups automáticos</string>
+    <string name="choices_reset">Resetar escolhas de diálogo</string>
     </resources>
