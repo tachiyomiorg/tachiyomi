@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_add">Добавить</string>
     <string name="action_add_category">Добавить категорию</string>
@@ -419,7 +419,7 @@
     <string name="track_start_date">Начато</string>
     <string name="track_type">Тип</string>
     <string name="track_author">Автор</string>
-    <string name="url_not_set">"Ссылка не установлена, пожалуйста нажмите на заголовок и выберите мангу снова "</string>
+    <string name="url_not_set">"Ссылка манги не установлена, пожалуйста нажмите на заголовок и выберите мангу снова "</string>
 
     <string name="transition_finished">Прогресс:</string>
     <string name="transition_current">Прогресс:</string>
