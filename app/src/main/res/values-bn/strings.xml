@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="name">নাম</string>
     <string name="categories">ধরণ</string>
     <string name="manga">মাংগা</string>
@@ -465,4 +465,13 @@
     <string name="track_start_date">শুরু হয়েছে</string>
     <string name="track_type">ধরণ</string>
     <string name="track_author">লেখক</string>
-    </resources>
+    <string name="darkblue_theme">গাঢ় নীল</string>
+    <string name="transition_finished">"শেষ  :"</string>
+    <string name="transition_current">"এখনকার  :"</string>
+    <string name="transition_next">আসছে :</string>
+    <string name="transition_previous">পূর্ববর্তী :</string>
+    <string name="transition_no_next">কোন পরের অধ্যায় আছে</string>
+    <string name="transition_no_previous">কোন পূর্ববর্তী অধ্যায় আছে</string>
+    <string name="transition_pages_loading">পৃষ্ঠা লোড হচ্ছে …</string>
+    <string name="transition_pages_error">পৃষ্ঠা লোড করতে ব্যর্থ হয়েছে: %1$s</string>
+</resources>
