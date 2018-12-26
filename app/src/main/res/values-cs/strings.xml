@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="categories">Kategorie</string>
     <string name="manga">Manga</string>
     <string name="chapters">Kapitoly</string>
@@ -37,7 +37,7 @@
     <string name="action_add">Přidat</string>
     <string name="action_add_category">Přidat kategorii</string>
     <string name="action_edit_categories">Upravit kategorie</string>
-    <string name="action_show_downloaded">Stažené</string>
+    <string name="action_show_downloaded">Staženo</string>
     <string name="action_close">Zavřít</string>
     <string name="action_previous_chapter">Předchozí kapitola</string>
     <string name="action_next_chapter">Následující kapitola</string>
@@ -96,7 +96,7 @@
     <string name="untrusted_extension">Nedůvěryhodné rozšíření</string>
     <string name="untrusted_extension_message">Toto rozšíření bylo podepsané nedůvěryhodným certifikátem a nebylo aktivované.
 \n
-\nŠkoldivé rozšížení může přečíst přihlašovací údaje uložené v Tachiyomi nebo spustit libovolný kód.
+\nŠkodlivé rozšíření může přečíst přihlašovací údaje uložené v Tachiyomi nebo spustit libovolný kód.
 \n
 \nDůvěřováním tomuto certifikátu přijímáte tato rizika.</string>
     <string name="ext_version_info">Verze: %1$s</string>
@@ -183,7 +183,7 @@
     <string name="reading">Čtení</string>
     <string name="completed">Kompletní</string>
     <string name="plan_to_read">Plánováno číst</string>
-    <string name="repeating">Znovu-čteni</string>
+    <string name="repeating">Znovu čtení</string>
     <string name="score">Skóre</string>
     <string name="title">Název</string>
     <string name="track_type">Typ</string>
@@ -226,7 +226,7 @@
     <string name="notification_no_connection_title">Synchronizace zrušena</string>
     <string name="notification_no_connection_body">Připojení není k dispozici</string>
 
-    <string name="file_select_backup">Vybrat založený soubor</string>
+    <string name="file_select_backup">Vybrat záložní soubor</string>
     <string name="file_select_icon">Vybrat ikonu zástupce</string>
 
     <string name="update_check_title">Dostupná nová aktualizace!</string>
@@ -252,4 +252,147 @@
 
     <string name="channel_library">Knihovna</string>
     <string name="label_download_queue">Stahovací fronta</string>
-    </resources>
+    <string name="name">Název</string>
+    <string name="track">Sledování</string>
+    <string name="label_catalogues">Katalogy</string>
+    <string name="label_recent_updates">Aktualizace knihovny</string>
+    <string name="action_filter_bookmarked">Založeno</string>
+    <string name="action_sort_total">Celkem kapitol</string>
+    <string name="action_bookmark">Založit</string>
+    <string name="action_remove_bookmark">Odstranit záložku</string>
+    <string name="action_update">Aktualizovat</string>
+    <string name="action_update_library">Aktualizovat knihovnu</string>
+    <string name="action_rename_category">Přejmenovat kategorii</string>
+    <string name="action_move_category">Přesunout do kategorií</string>
+    <string name="action_start">Start</string>
+    <string name="action_stop">Stop</string>
+    <string name="action_pause">Pauza</string>
+    <string name="action_clear">Vymazat</string>
+    <string name="action_retry">Opakovat</string>
+    <string name="action_resume">Pokračovat</string>
+    <string name="action_display_mode">Změnit režim zobrazení</string>
+    <string name="action_display">Zobrazení</string>
+    <string name="action_display_download_badge">Odznáček stažení</string>
+    <string name="action_set_filter">Nastavit filtr</string>
+    <string name="action_sort">Seřadit</string>
+    <string name="action_reset">Resetovat</string>
+    <string name="action_open_log">Otevřít log</string>
+    <string name="deleting">Mazání…</string>
+    <string name="short_recent_updates">Aktualizace</string>
+    <string name="pref_category_general">Obecné</string>
+    <string name="pref_category_reader">Čtečka</string>
+    <string name="pref_category_sources">Zdroje</string>
+    <string name="pref_category_tracking">Sledování</string>
+    <string name="pref_category_advanced">Pokročilé</string>
+    <string name="pref_category_about">O aplikaci</string>
+    <string name="pref_library_columns">Knihovna manga za sebou</string>
+    <string name="portrait">Na výšku</string>
+    <string name="landscape">Na šířku</string>
+    <string name="default_columns">Výchozí</string>
+    <string name="pref_library_update_interval">Frekvence aktualizace knihovny</string>
+    <string name="update_never">Ručně</string>
+    <string name="all">Vše</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="charging">Nabíjení</string>
+    <string name="default_category">Výchozí kategorie</string>
+    <string name="default_category_summary">Vždy se zeptat</string>
+    <string name="pref_lock_orientation">Zámek orientace</string>
+    <string name="pref_double_tap_anim_speed">Rychlost animace při dvojkliku</string>
+    <string name="pref_crop_borders">Oříznout okraje</string>
+    <string name="pref_custom_brightness">Použít vlastní jas</string>
+    <string name="pref_custom_color_filter">Použít vlastní barevný filtr</string>
+    <string name="pref_read_with_tapping">Klepnutím</string>
+    <string name="pref_viewer_type">Výchozí prohlížeč</string>
+    <string name="default_viewer">Výchozí</string>
+    <string name="vertical_viewer">Vertikální</string>
+    <string name="webtoon_viewer">Webtoon</string>
+    <string name="pref_image_scale_type">Typ změny velikosti</string>
+    <string name="scale_type_fit_screen">Přizpůsobit obrazovce</string>
+    <string name="scale_type_stretch">Natáhnout</string>
+    <string name="scale_type_fit_width">Přizpůsobit šířku</string>
+    <string name="scale_type_fit_height">Přizpůsobit šířku</string>
+    <string name="scale_type_original_size">Původní velikost</string>
+    <string name="scale_type_smart_fit">Chytré přizpůsobení</string>
+    <string name="pref_zoom_start">Výchozí poloha zvětšení</string>
+    <string name="zoom_start_automatic">Automaticky</string>
+    <string name="zoom_start_left">Vlevo</string>
+    <string name="zoom_start_right">Vpravo</string>
+    <string name="zoom_start_center">Na střed</string>
+    <string name="double_tap_anim_speed_0">Bez animace</string>
+    <string name="double_tap_anim_speed_normal">Normální</string>
+    <string name="double_tap_anim_speed_fast">Rychle</string>
+    <string name="services">Služby</string>
+    <string name="backup">Záloha</string>
+    <string name="pref_create_backup">Vytvořit zálohu</string>
+    <string name="pref_restore_backup">Obnovit zálohu</string>
+    <string name="pref_backup_directory">Adresář zálohy</string>
+    <string name="pref_backup_service_category">Služba</string>
+    <string name="pref_backup_interval">Frekvence zálohy</string>
+    <string name="dialog_restoring_backup">Obnovování zálohy
+\n%1$s přidáno do knihovny</string>
+    <string name="source_not_found">Zdroj nebyl nalezen</string>
+    <string name="dialog_restoring_source_not_found">Obnovování zálohy
+\n%1$s zdrojů nenalezeno</string>
+    <string name="backup_created">Záloha vytvořena</string>
+    <string name="restore_completed">Obnova kompletní</string>
+    <string name="error_opening_log">Nelze otevřít log</string>
+    <string name="backup_choice">Co chcete zálohovat\?</string>
+    <string name="restoring_backup">Obnovování zálohy</string>
+    <string name="creating_backup">Vytváření zálohy</string>
+    <string name="pref_clear_chapter_cache">Vymazat mezipaměť kapitol</string>
+    <string name="used_cache">Využito: %1$s</string>
+    <string name="cache_deleted">Mezipaměť smazána. %1$d souborů bylo odstraněno</string>
+    <string name="cache_delete_error">Během vymazávání mezipaměti došlo k chybě</string>
+    <string name="pref_clear_cookies">Vymazat cookies</string>
+    <string name="cookies_cleared">Cookies vymazány</string>
+    <string name="pref_clear_database">Vyčistit databázi</string>
+    <string name="pref_clear_database_summary">Smaže mangy a kapitoly, které nejsou ve vaší knihovně</string>
+    <string name="clear_database_confirmation">Jste si jistý\? Přečtené kapitoly a postup v mangách mimo knihovnu budou ztraceny.</string>
+    <string name="clear_database_completed">Položky byly smazány</string>
+    <string name="pref_refresh_library_metadata">Obnovit metadata knihovny</string>
+    <string name="pref_refresh_library_tracking">Obnovit metadata sledování</string>
+    <string name="pref_refresh_library_tracking_summary">Aktualizuje status, skóre a poslední přečtenou kapitolu ze sledovacích služeb</string>
+    <string name="version">Verze</string>
+    <string name="build_time">Čas sestavení</string>
+    <string name="pref_enable_automatic_updates">Zkontrolovat aktualizace</string>
+    <string name="pref_enable_acra">Odesílat hlášení o pádu</string>
+    <string name="pref_acra_summary">Pomáhá opravit chyby. Nebudou odeslány žádné citlivé údaje</string>
+    <string name="updating_category">Aktualizace kategorie</string>
+    <string name="local_source_badge">Lokální</string>
+    <string name="also_delete_chapters">Odstranit také stažené kapitoly</string>
+    <string name="source_search_options">Filtry vyhledávání</string>
+    <string name="source_requires_login">Tento zdroj vyžaduje přihlášení</string>
+    <string name="select_source">Vybrat zdroj</string>
+    <string name="no_valid_sources">Povolte prosím aspoň jeden platný zdroj</string>
+    <string name="local_source">Lokální manga</string>
+    <string name="other_source">Ostatní</string>
+    <string name="latest">Nejnovější</string>
+    <string name="browse">Procházet</string>
+    <string name="unknown">Neznámý</string>
+    <string name="licensed">Licencovaný</string>
+    <string name="manga_info_artist_label">Kreslíř</string>
+    <string name="manga_info_latest_data_label">Aktualizováno</string>
+    <string name="manga_info_status_label">Stav</string>
+    <string name="circular_icon">Kruhová ikona</string>
+    <string name="rounded_icon">Zaoblená ikona</string>
+    <string name="square_icon">Čtvercová ikona</string>
+    <string name="star_icon">Hvězdicová ikona</string>
+    <string name="shortcut_title">Název zástupce</string>
+    <string name="icon_shape">Tvar ikony</string>
+    <string name="copied_to_clipboard">%1$s zkopírován do schránky</string>
+    <string name="chapter_queued">Ve frontě</string>
+    <string name="fetch_chapters_error">Chyba při načítání kapitol</string>
+    <string name="sorting_mode">Režim seřazení</string>
+    <string name="sort_by_number">Podle čísla kapitoly</string>
+    <string name="custom_download">Stažení vlastního počtu</string>
+    <string name="custom_hint">počet</string>
+    <string name="manga_tracking_tab">Sledování</string>
+    <string name="dropped">Upuštěno</string>
+    <string name="on_hold">Pozastaveno</string>
+    <string name="status">Stav</string>
+    <string name="track_status">Stav</string>
+    <string name="track_start_date">Započato</string>
+    <string name="snack_categories_deleted">Kategorie smazány</string>
+    <string name="set_as_cover">Nastavit jako obal</string>
+    <string name="cover_updated">Obal aktualizován</string>
+</resources>
