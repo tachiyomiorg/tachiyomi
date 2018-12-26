@@ -569,6 +569,9 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
             subscriptions += preferences.colorFilter().asObservable()
                 .subscribe { setColorFilter(it) }
+
+            subscriptions += preferences.customBrightnessBySwiping().asObservable()
+                .subscribe { setBrightnessBySwiping(it) }
         }
 
         /**
@@ -708,6 +711,41 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         private fun setColorFilterValue(value: Int) {
             color_overlay.visibility = View.VISIBLE
             color_overlay.setBackgroundColor(value)
+        }
+
+        /**
+         * Sets the ability to change brightness by swiping the left edge according to [enabled].
+         */
+        private fun setBrightnessBySwiping(enabled: Boolean) {
+            if (enabled) {
+                brightness_swipe_control_view.setOnTouchListener { v, event ->
+                    when (event.action) {
+                        MotionEvent.ACTION_DOWN -> {
+                            true
+                        }
+                        MotionEvent.ACTION_MOVE -> {
+                            // work only if there is a past reference point
+                            if (event.historySize > 0) {
+                                val previousY = event.getHistoricalY(event.historySize - 1)
+                                val currentY = event.getY(0)
+                                // divided for less drastic brightness change
+                                val change = (previousY - currentY) / 1.7
+                                val previousBrightness = preferences.customBrightnessValue().get()
+                                var newBrightness = (previousBrightness!! + change).toInt()
+                                // -75 and 100 taken from reader_color_filter_sheet.xml
+                                newBrightness = newBrightness.coerceIn(-75, 100)
+                                preferences.customBrightnessValue().set(newBrightness)
+                            }
+                            true
+                        }
+                        else -> {
+                            this@ReaderActivity.onTouchEvent(event)
+                        }
+                    }
+                }
+            } else {
+                brightness_swipe_control_view.setOnTouchListener(null)
+            }
         }
 
     }

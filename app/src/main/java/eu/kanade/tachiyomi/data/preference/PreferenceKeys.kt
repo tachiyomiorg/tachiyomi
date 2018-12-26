@@ -23,6 +23,8 @@ object PreferenceKeys {
 
     const val customBrightnessValue = "custom_brightness_value"
 
+    const val customBrightnessBySwiping = "custom_brightness_by_swiping"
+
     const val colorFilter = "pref_color_filter_key"
 
     const val colorFilterValue = "color_filter_value"

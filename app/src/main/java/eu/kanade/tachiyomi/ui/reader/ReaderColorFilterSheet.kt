@@ -82,6 +82,17 @@ class ReaderColorFilterSheet(activity: ReaderActivity) : BottomSheetDialog(activ
         custom_brightness.isChecked = preferences.customBrightness().getOrDefault()
         custom_brightness.setOnCheckedChangeListener { _, isChecked ->
             preferences.customBrightness().set(isChecked)
+
+            //it doesn't make sense to change brightness by swiping if custom brightness isn't enabled
+            custom_brightness_swipe_control.isEnabled = isChecked
+            if(!isChecked) preferences.customBrightnessBySwiping().set(false)
+        }
+
+        //it doesn't make sense to change brightness by swiping if custom brightness isn't enabled
+        custom_brightness_swipe_control.isEnabled = preferences.customBrightness().getOrDefault()
+        custom_brightness_swipe_control.isChecked = preferences.customBrightnessBySwiping().getOrDefault()
+        custom_brightness_swipe_control.setOnCheckedChangeListener { _, isChecked ->
+            preferences.customBrightnessBySwiping().set(isChecked)
         }
 
         seekbar_color_filter_alpha.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {

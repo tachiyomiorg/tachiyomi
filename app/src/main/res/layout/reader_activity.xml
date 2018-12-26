@@ -117,4 +117,9 @@
         android:layout_height="match_parent"
         android:visibility="gone"/>
 
+    <View
+        android:id="@+id/brightness_swipe_control_view"
+        android:layout_width="15dp"
+        android:layout_height="match_parent"/>
+
 </FrameLayout>

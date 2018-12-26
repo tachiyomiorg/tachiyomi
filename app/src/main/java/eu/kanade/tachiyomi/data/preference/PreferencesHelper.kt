@@ -51,6 +51,8 @@ class PreferencesHelper(val context: Context) {
 
     fun customBrightnessValue() = rxPrefs.getInteger(Keys.customBrightnessValue, 0)
 
+    fun customBrightnessBySwiping() = rxPrefs.getBoolean(Keys.customBrightnessBySwiping, false)
+
     fun colorFilter() = rxPrefs.getBoolean(Keys.colorFilter, false)
 
     fun colorFilterValue() = rxPrefs.getInteger(Keys.colorFilterValue, 0)

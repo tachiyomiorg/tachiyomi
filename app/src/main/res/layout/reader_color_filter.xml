@@ -202,4 +202,15 @@
         app:layout_constraintBottom_toBottomOf="@id/brightness_seekbar"
         app:layout_constraintRight_toRightOf="parent"/>
 
+    <!--- Brightness touch control-->
+
+    <android.support.v7.widget.SwitchCompat
+            android:id="@+id/custom_brightness_swipe_control"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:layout_marginTop="16dp"
+            android:text="@string/pref_custom_brightness_swipe_control"
+            app:layout_constraintTop_toBottomOf="@id/txt_brightness_seekbar_value"/>
+
 </android.support.constraint.ConstraintLayout>

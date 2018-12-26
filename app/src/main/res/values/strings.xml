@@ -175,6 +175,7 @@
     <string name="pref_crop_borders">Crop borders</string>
     <string name="pref_custom_brightness">Use custom brightness</string>
     <string name="pref_custom_color_filter">Use custom color filter</string>
+    <string name="pref_custom_brightness_swipe_control">Adjust brightness by swiping the left edge</string>
     <string name="pref_keep_screen_on">Keep screen on</string>
     <string name="pref_reader_navigation">Navigation</string>
     <string name="pref_read_with_volume_keys">Volume keys</string>
