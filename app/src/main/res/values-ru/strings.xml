@@ -421,10 +421,10 @@
     <string name="track_author">Автор</string>
     <string name="url_not_set">"Ссылка манги не установлена, пожалуйста нажмите на заголовок и выберите мангу снова "</string>
 
-    <string name="transition_finished">Прогресс:</string>
-    <string name="transition_current">Прогресс:</string>
-    <string name="transition_next">Далее:</string>
-    <string name="transition_previous">Назад:</string>
+    <string name="transition_finished">Прочитано:</string>
+    <string name="transition_current">Текущий:</string>
+    <string name="transition_next">Следующий:</string>
+    <string name="transition_previous">Предыдущий:</string>
     <string name="transition_no_next">Следующей части нет</string>
     <string name="transition_no_previous">Предыдущей части нет</string>
     <string name="transition_pages_loading">Идёт загрузка страниц…</string>
