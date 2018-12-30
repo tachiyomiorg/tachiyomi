@@ -300,7 +300,7 @@
     <string name="zoom_start_right">Справа</string>
     <string name="action_close">Закрыть</string>
     <string name="action_create">Создать</string>
-    <string name="action_export">Экспорт</string>
+    <string name="action_export">Экспортировать</string>
     <string name="action_move">Переместить</string>
     <string name="action_restore">Восстановить</string>
     <string name="action_undo">Отменить</string>
