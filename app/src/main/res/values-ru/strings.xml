@@ -207,7 +207,7 @@
     <string name="pref_image_scale_type">Масштабирование</string>
     <string name="pref_keep_screen_on">Держать экран включенным</string>
     <string name="pref_language">Язык</string>
-    <string name="pref_library_columns">Манга в ряд в Библиотеке</string>
+    <string name="pref_library_columns">Количество в ряд</string>
     <string name="pref_library_update_categories">Категории включенные в глобальный поиск</string>
     <string name="pref_library_update_interval">Частота обновления библиотеки</string>
     <string name="pref_library_update_restriction">Ограничения обновления библиотеки</string>
