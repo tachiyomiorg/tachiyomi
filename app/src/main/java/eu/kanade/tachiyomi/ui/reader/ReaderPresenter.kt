@@ -245,50 +245,35 @@ class ReaderPresenter(
         var currentChapterPos = chapterList.indexOf(currentChapter)
         val currentChapterNumber = currentChapter.chapter.chapter_number
         val currentScanlator = currentChapter.chapter.scanlator
-        if (currentChapterNumber < 0 || currentScanlator == null)
-            return chapterList.getOrNull(currentChapterPos + direction.value)
+        val step = direction.value
 
-        val newChapter = when (direction) {
-            Direction.Previous -> findImmediatePreviousChapter(currentChapterPos, currentChapterNumber)
-            Direction.Next -> findImmediateNextChapter(currentChapterPos, currentChapterNumber)
+        if (currentChapterNumber < 0) {
+            return chapterList.getOrNull(currentChapterPos + step)
+        }
+
+        var newChapter: ReaderChapter?
+        do {
+            currentChapterPos += step
+            newChapter = chapterList.getOrNull(currentChapterPos)
+        } while (newChapter != null && newChapter.chapter.chapter_number == currentChapterNumber)
+
+        if (currentScanlator == null) {
+            return newChapter
         }
 
         newChapter?.let{
-            currentChapterPos = chapterList.indexOf(newChapter)
             val newChapterNumber = it.chapter.chapter_number
             var newCandidate: ReaderChapter? = it
 
-            while (newChapterNumber == newCandidate?.chapter?.chapter_number) {
-                if (newCandidate.chapter.scanlator == currentScanlator) return newCandidate
+            do {
+                if (newCandidate?.chapter?.scanlator == currentScanlator) return newCandidate
 
-                currentChapterPos += direction.value
+                currentChapterPos += step
                 newCandidate = chapterList.getOrNull(currentChapterPos)
-            }
+            } while (newChapterNumber == newCandidate?.chapter?.chapter_number)
         }
 
         return newChapter
-    }
-
-    private fun findImmediatePreviousChapter(chapterPos: Int, currentChapterNumber: Float): ReaderChapter? {
-        var currentChapterPos = chapterPos
-        var previousChapter: ReaderChapter?
-
-        do {
-            previousChapter = chapterList.getOrNull(--currentChapterPos)
-        } while (previousChapter != null && previousChapter.chapter.chapter_number >= currentChapterNumber)
-
-        return previousChapter
-    }
-
-    private fun findImmediateNextChapter(chapterPos: Int, currentChapterNumber: Float): ReaderChapter? {
-        var currentChapterPos = chapterPos
-        var nextChapter: ReaderChapter?
-
-        do {
-            nextChapter = chapterList.getOrNull(++currentChapterPos)
-        } while (nextChapter != null && nextChapter.chapter.chapter_number <= currentChapterNumber)
-
-        return nextChapter
     }
 
     private enum class Direction(val value: Int) {
