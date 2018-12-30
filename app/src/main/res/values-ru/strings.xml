@@ -207,7 +207,7 @@
     <string name="pref_image_scale_type">Масштабирование</string>
     <string name="pref_keep_screen_on">Держать экран включенным</string>
     <string name="pref_language">Язык</string>
-    <string name="pref_library_columns">Количество колонок в библиотеке</string>
+    <string name="pref_library_columns">Количество в ряд</string>
     <string name="pref_library_update_categories">Категории включенные в глобальный поиск</string>
     <string name="pref_library_update_interval">Частота обновления библиотеки</string>
     <string name="pref_library_update_restriction">Ограничения обновления библиотеки</string>
@@ -421,7 +421,7 @@
     <string name="track_author">Автор</string>
     <string name="url_not_set">"Ссылка манги не установлена, пожалуйста нажмите на заголовок и выберите мангу снова "</string>
 
-    <string name="transition_finished">Прочитано:</string>
+    <string name="transition_finished">Закончено:</string>
     <string name="transition_current">Текущий:</string>
     <string name="transition_next">Следующий:</string>
     <string name="transition_previous">Предыдущий:</string>
