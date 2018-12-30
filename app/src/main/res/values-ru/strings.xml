@@ -128,7 +128,7 @@
     <string name="information_no_recent">Нет новых глав</string>
     <string name="information_no_recent_manga">Нет недавно прочитанных глав</string>
     <string name="invalid_login">Ошибка авторизации</string>
-    <string name="label_backup">Резервная копия</string>
+    <string name="label_backup">Резервное копирование</string>
     <string name="label_catalogues">Каталоги</string>
     <string name="label_categories">Категории</string>
     <string name="label_download_queue">Очередь загрузки</string>
