@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.main
 
 import android.animation.ObjectAnimator
+import android.app.SearchManager
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -15,6 +16,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.base.controller.*
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
+import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
 import eu.kanade.tachiyomi.ui.download.DownloadController
 import eu.kanade.tachiyomi.ui.extension.ExtensionController
 import eu.kanade.tachiyomi.ui.library.LibraryController
@@ -156,6 +158,13 @@ class MainActivity : BaseActivity() {
             SHORTCUT_DOWNLOADS -> {
                 if (router.backstack.none { it.controller() is DownloadController }) {
                     setSelectedDrawerItem(R.id.nav_drawer_downloads)
+                }
+            }
+            Intent.ACTION_SEARCH -> {
+                setSelectedDrawerItem(R.id.nav_drawer_catalogues)
+                //Get the search query provided in extras, and if not null, perform a global search with it.
+                intent.getStringExtra(SearchManager.QUERY)?.also { query ->
+                    router.pushController(CatalogueSearchController(query).withFadeTransaction())
                 }
             }
             else -> return false
