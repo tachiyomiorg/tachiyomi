@@ -103,6 +103,8 @@ object PreferenceKeys {
 
     const val defaultCategory = "default_category"
 
+    const val skipRead = "skip_read"
+
     const val downloadBadge = "display_download_badge"
 
     @Deprecated("Use the preferences of the source")

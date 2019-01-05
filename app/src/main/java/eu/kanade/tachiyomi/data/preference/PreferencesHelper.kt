@@ -163,6 +163,8 @@ class PreferencesHelper(val context: Context) {
 
     fun defaultCategory() = prefs.getInt(Keys.defaultCategory, -1)
 
+    fun skipRead() = prefs.getBoolean(Keys.skipRead, false)
+
     fun migrateFlags() = rxPrefs.getInteger("migrate_flags", Int.MAX_VALUE)
 
     fun trustedSignatures() = rxPrefs.getStringSet("trusted_signatures", emptySet())
