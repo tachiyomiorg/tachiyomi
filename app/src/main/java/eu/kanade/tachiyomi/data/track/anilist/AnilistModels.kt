@@ -64,6 +64,7 @@ data class ALUserManga(
         "PAUSED" -> Anilist.ON_HOLD
         "DROPPED" -> Anilist.DROPPED
         "PLANNING" -> Anilist.PLANNING
+        "REPEATING" -> Anilist.REPEATING
         else -> throw NotImplementedError("Unknown status")
     }
 }
