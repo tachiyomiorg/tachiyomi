@@ -1,9 +1,9 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="name">Nombre</string>
 
     <!-- Activities and fragments labels (toolbar title) -->
-    <string name="label_settings">Opciones</string>
+    <string name="label_settings">Configuraciones</string>
     <string name="label_download_queue">Cola de descargas</string>
     <string name="label_library">Mi librería</string>
     <string name="label_recent_manga">Leído Recientemente</string>
@@ -14,8 +14,8 @@
     <string name="label_backup">Copia de seguridad</string>
 
     <!-- Actions -->
-    <string name="action_settings">Opciones</string>
-    <string name="action_filter">Filtro</string>
+    <string name="action_settings">Configuraciones</string>
+    <string name="action_filter">Filtrar</string>
     <string name="action_filter_downloaded">Descargado</string>
     <string name="action_filter_unread">No leído</string>
     <string name="action_filter_empty">Eliminar filtros</string>
