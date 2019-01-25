@@ -27,6 +27,19 @@ object DiskUtil {
         return size
     }
 
+    fun altExtStoragePath(): String {
+        val extdir = File("/storage/sdcard1")
+        var path = ""
+        if (extdir.exists() && extdir.isDirectory) {
+            val contents = extdir.listFiles()
+            if (contents != null && contents.isNotEmpty()) {
+                path = extdir.toString()
+            }
+        }
+        return path
+    }
+
+
     /**
      * Returns the root folders of all the available external storages.
      */
@@ -44,7 +57,22 @@ object DiskUtil {
                     }
                 }
 
-        if (Build.VERSION.SDK_INT < 21) {
+        var altExt = altExtStoragePath()
+        if (altExt !in directories.toString()){
+
+            if (altExt !== "") {
+                directories + altExt
+            }
+        }
+
+
+
+
+
+
+
+
+            if (Build.VERSION.SDK_INT < 21) {
             val extStorages = System.getenv("SECONDARY_STORAGE")
             if (extStorages != null) {
                 directories += extStorages.split(":").map(::File)
