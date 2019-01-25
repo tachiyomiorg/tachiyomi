@@ -39,7 +39,6 @@ object DiskUtil {
         return path
     }
 
-
     /**
      * Returns the root folders of all the available external storages.
      */
@@ -64,13 +63,6 @@ object DiskUtil {
                 directories + altExt
             }
         }
-
-
-
-
-
-
-
 
             if (Build.VERSION.SDK_INT < 21) {
             val extStorages = System.getenv("SECONDARY_STORAGE")
