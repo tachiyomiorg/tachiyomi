@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="name">Όνομα</string>
     <string name="categories">Κατηγορίες</string>
     <string name="manga">Manga</string>
@@ -162,7 +162,7 @@
       <string name="pref_fullscreen">Πλήρης οθόνη</string>
     <string name="pref_lock_orientation">Κλείδωμα προσανατολισμού</string>
     <string name="pref_page_transitions">Αλλαγές σελίδας</string>
-    <string name="pref_double_tap_anim_speed">Διπλό άγγιγμα ταχύτητα κίνησης</string>
+    <string name="pref_double_tap_anim_speed">Διπλή βρύση κινούμενα σχέδια ταχύτητα</string>
     <string name="pref_show_page_number">Εμφάνιση αριθμού σελίδας</string>
     <string name="pref_crop_borders">Περικοπή άκρων</string>
     <string name="pref_custom_brightness">Χρήση εξατομικευμένης φωτεινότητας</string>
