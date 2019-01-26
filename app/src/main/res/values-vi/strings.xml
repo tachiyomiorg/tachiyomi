@@ -10,7 +10,7 @@
     <string name="label_catalogues">Danh mục</string>
     <string name="label_recent_updates">Cập nhật mới của thư viện</string>
     <string name="label_latest_updates">Cập nhật mới nhất</string>
-    <string name="label_categories">Thể loại</string>
+    <string name="label_categories">Hạng mục</string>
     <string name="label_selected">Đã chọn: %1$d</string>
     <string name="label_backup">Sao lưu</string>
 
@@ -39,7 +39,7 @@
     <string name="action_edit">Sửa</string>
     <string name="action_add">Thêm</string>
     <string name="action_add_category">Thêm danh mục</string>
-    <string name="action_edit_categories">Sửa danh mục</string>
+    <string name="action_edit_categories">Chỉnh sửa danh mục</string>
     <string name="action_rename_category">Đổi tên danh mục</string>
     <string name="action_move_category">Chuyển đến danh mục</string>
     <string name="action_edit_cover">Sửa ảnh bìa</string>
@@ -371,7 +371,7 @@
     <string name="download_notifier_text_only_wifi">Không có kết nối Wi-fi</string>
     <string name="download_notifier_no_network">Không có kết nối mạng</string>
     <string name="download_notifier_download_paused">Tải xuống đã tạm dừng</string>
-    <string name="categories">Danh mục</string>
+    <string name="categories">Hạng mục</string>
     <string name="manga">Truyện</string>
     <string name="track">Theo dõi</string>
     <string name="history">Lịch sử</string>
@@ -379,7 +379,7 @@
     <string name="label_extensions">Tiện ích mở rộng</string>
     <string name="label_extension_info">Thông tin về tiện ích mở rộng</string>
     <string name="action_sort_total">Toàn bộ các chương</string>
-    <string name="action_global_search">Tìm kiếm toàn bộ</string>
+    <string name="action_global_search">tìm kiếm toàn cầu</string>
     <string name="action_close">Đóng</string>
     <string name="action_move">Di chuyển</string>
     <string name="action_display_download_badge">"Số truyện đã tải "</string>
