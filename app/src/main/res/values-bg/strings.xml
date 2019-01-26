@@ -58,7 +58,7 @@
     <string name="action_resume">Продължи</string>
     <string name="action_open_in_browser">Отвори в браузър</string>
     <string name="action_add_to_home_screen">Добави към началния си екран</string>
-    <string name="action_display_mode">Начин на показване</string>
+    <string name="action_display_mode">Промяна на режима на показване</string>
     <string name="action_display">Показване</string>
     <string name="action_display_grid">Решетка</string>
     <string name="action_display_list">Списък</string>
@@ -72,8 +72,8 @@
     <string name="action_undo">Върни</string>
 
     <!-- Operations -->
-    <string name="deleting">Изтриване…</string>
-    <string name="loading">Зареждане…</string>
+    <string name="deleting">Изтрива се …</string>
+    <string name="loading">Зареждане …</string>
 
     <!-- Preferences -->
       <!-- Subsections -->
@@ -311,7 +311,7 @@
     <string name="decode_image_error">Неуспешно декодиране на изображението</string>
     <string name="confirm_update_manga_sync">Обнови последната прочетена глава в %1$d?</string>
     <string name="confirm_set_image_as_cover">Желаете ли да използвате това изображение за корица?</string>
-    <string name="viewer_for_this_series">Посока на четене за поредицата</string>
+    <string name="viewer_for_this_series">зрител за тази серия</string>
 
     <!-- Backup fragment -->
     <string name="backup">Резервно копие</string>
@@ -380,7 +380,7 @@
     <string name="action_close">Затвори</string>
     <string name="action_move">Премести</string>
     <string name="action_export">Експортирай</string>
-    <string name="action_open_log">Отвори лога</string>
+    <string name="action_open_log">отворен дънер</string>
     <string name="action_create">Създай</string>
     <string name="action_restore">Възстанови</string>
 
@@ -440,7 +440,7 @@
 \nСъщо проверете дали сте влезли коректно в източниците, които го изискват, преди възстановяването.</string>
     <string name="action_global_search">Глобално търсене</string>
     <string name="action_open">Отвори</string>
-    <string name="action_login">Влизане</string>
+    <string name="action_login">Вход</string>
 
     <string name="other_source">Други</string>
     <string name="action_global_search_hint">Глобално търсене…</string>
@@ -452,7 +452,7 @@
     <string name="channel_common">Общи</string>
     <string name="channel_library">Библиотека</string>
     <string name="channel_downloader">Изтегляния</string>
-<string name="action_display_download_badge">Икона за изтеглени глави</string>
+<string name="action_display_download_badge">Изтегляне на значки</string>
     <string name="local_source_badge">Локална</string>
     <string name="information_empty_category">Нямате категории. Натиснете плюса, за да създадете такава и да организирате библиотеката си.</string>
 
@@ -505,7 +505,7 @@
     <string name="copy">Копирай</string>
     <string name="migrating">Мигриране…</string>
 
-    <string name="pager_viewer">Страници</string>
+    <string name="pager_viewer">пейджър</string>
     <string name="source_not_installed">Източникът не е инсталиран: %1$s</string>
 
     <string name="repeating">Препрочитане</string>
