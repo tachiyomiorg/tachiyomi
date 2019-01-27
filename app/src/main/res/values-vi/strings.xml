@@ -382,7 +382,7 @@
     <string name="action_global_search">tìm kiếm toàn cầu</string>
     <string name="action_close">Đóng</string>
     <string name="action_move">Di chuyển</string>
-    <string name="action_display_download_badge">"Số truyện đã tải "</string>
+    <string name="action_display_download_badge">Tải phù hiệu</string>
     <string name="action_export">Xuất</string>
     <string name="action_open_log">Nhật ký mở</string>
     <string name="action_create">Tạo</string>
@@ -395,7 +395,7 @@
     <string name="update_monthly">Mỗi tháng</string>
     <string name="amoled_theme">Chủ đề AMOLED</string>
     <string name="darkblue_theme">Xanh đậm</string>
-    <string name="default_category">Danh mục mặc định</string>
+    <string name="default_category">Danh mục Mặc định</string>
     <string name="default_category_summary">Luôn hỏi</string>
     <string name="all_lang">Tất cả</string>
     <string name="ext_details">Chi tiết</string>
@@ -419,7 +419,7 @@
     <string name="ext_version_info">Phiên bản: %1$s</string>
     <string name="ext_language_info">Ngôn ngữ: %1$s</string>
     <string name="ext_empty_preferences">Không có tùy chọn để sửa chữa cho tiện ích mở rộng này</string>
-    <string name="pref_double_tap_anim_speed">Chạm đúp để tăng tốc hiệu ứng</string>
+    <string name="pref_double_tap_anim_speed">Double tap tốc độ hình ảnh động</string>
     <string name="pref_crop_borders">Cắt viền</string>
     <string name="pref_read_with_volume_keys_inverted">Đảo ngược phím âm lượng</string>
     <string name="pager_viewer">Trang</string>
@@ -453,14 +453,14 @@
     <string name="creating_backup">Đang tạo bản sao lưu</string>
     <string name="pref_refresh_library_tracking">Làm mới siêu dữ liệu nguồn</string>
     <string name="pref_refresh_library_tracking_summary">Cập nhật trạng thái, điểm số và chương cuối đã đọc từ dịch vụ theo dõi</string>
-    <string name="local_source_badge">Cục bộ</string>
+    <string name="local_source_badge">Địa phương</string>
     <string name="also_delete_chapters">Đồng thời xóa các chương đã tải</string>
-    <string name="source_search_options">Tìm kiếm các bộ lọc</string>
-    <string name="local_source">Truyện nguồn</string>
+    <string name="source_search_options">Bộ lọc tìm kiếm</string>
+    <string name="local_source">Truyện tranh địa phương</string>
     <string name="other_source">Khác</string>
     <string name="invalid_combination">Mặc định không thể chọn với các danh mục khác</string>
     <string name="added_to_library">Truyện này đã được thêm vào thư viện</string>
-    <string name="action_global_search_hint">Tìm kiếm cục bộ…</string>
+    <string name="action_global_search_hint">Tìm kiếm toàn cầu…</string>
     <string name="no_results">Không tìm thấy kết quả!</string>
     <string name="latest">Mới nhất</string>
     <string name="browse">Duyệt</string>
