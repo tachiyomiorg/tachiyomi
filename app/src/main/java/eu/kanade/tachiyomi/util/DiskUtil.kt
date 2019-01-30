@@ -28,6 +28,15 @@ object DiskUtil {
     }
 
     /**
+     * Returns storages listed in path /storage
+     */
+   private fun getExternalStoragesAlt(): Collection<File> {
+       val Storagedir = File("/storage")
+       val storagelist  = Storagedir.listFiles()
+       return storagelist.toList()
+    }
+
+    /**
      * Returns the root folders of all the available external storages.
      */
     fun getExternalStorages(context: Context): Collection<File> {
@@ -36,6 +45,16 @@ object DiskUtil {
                 .filterNotNull()
                 .mapNotNull {
                     val file = File(it.absolutePath.substringBefore("/Android/"))
+                    val state = EnvironmentCompat.getStorageState(file)
+                    if (state == Environment.MEDIA_MOUNTED || state == Environment.MEDIA_MOUNTED_READ_ONLY) {
+                        file
+                    } else {
+                        null
+                    }
+                }
+        directories += getExternalStoragesAlt()
+                .mapNotNull {
+                    val file = File(it.absolutePath)
                     val state = EnvironmentCompat.getStorageState(file)
                     if (state == Environment.MEDIA_MOUNTED || state == Environment.MEDIA_MOUNTED_READ_ONLY) {
                         file
