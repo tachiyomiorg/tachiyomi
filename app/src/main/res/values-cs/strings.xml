@@ -409,7 +409,7 @@
     <string name="pref_image_decoder">Dekodér obrazu</string>
     <string name="disabled">Zakázáno</string>
     <string name="last_read_chapter">Poslední přečtená kapitola</string>
-    <string name="second_to_last">Druhá až poslední kapitola</string>
+    <string name="second_to_last">Předposlední kapitola</string>
     <string name="third_to_last">Třetí až poslední kapitola</string>
     <string name="fourth_to_last">Čtvrtá až poslední kapitola</string>
     <string name="fifth_to_last">Pátá až poslední kapitola</string>
