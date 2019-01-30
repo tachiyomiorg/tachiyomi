@@ -31,8 +31,8 @@ object DiskUtil {
      * Returns storages listed in path /storage
      */
    private fun getExternalStoragesAlt(): Collection<File> {
-       val Storagedir = File("/storage")
-       val storagelist  = Storagedir.listFiles()
+       val storagedir = File("/storage")
+       val storagelist  = storagedir.listFiles()
        return storagelist.toList()
     }
 
