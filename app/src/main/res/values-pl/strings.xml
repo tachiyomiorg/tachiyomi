@@ -477,5 +477,5 @@ Nie znaleziono źródła %1$s</string>
     <string name="transition_no_previous">Nie ma wcześniejszych rozdziałów</string>
     <string name="transition_pages_loading">Ładowanie stron…</string>
     <string name="transition_pages_error">Nie udało się załadować stron: %1$s</string>
-    <string name="darkblue_theme">Ciemnoniebieski</string>
+    <string name="darkblue_theme">Ciemny niebieski</string>
 </resources>
