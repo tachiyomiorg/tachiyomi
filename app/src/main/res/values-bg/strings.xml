@@ -64,7 +64,7 @@
     <string name="action_display_list">Списък</string>
     <string name="action_set_filter">Сложи филтър</string>
     <string name="action_cancel">Отмени</string>
-    <string name="action_sort">Сортирай по:</string>
+    <string name="action_sort">Сортирай</string>
     <string name="action_install">Инсталирай</string>
     <string name="action_share">Сподели</string>
     <string name="action_save">Запази</string>
