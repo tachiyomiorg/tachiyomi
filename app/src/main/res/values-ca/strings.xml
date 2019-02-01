@@ -142,4 +142,63 @@
     <string name="ext_preferences">Preferències</string>
     <string name="ext_available">Disponible</string>
     <string name="untrusted_extension">Extensió no confiable</string>
+    <string name="untrusted_extension_message">Aquesta extensió s\'ha firmat amb un certificat que no és de confiança i no s\'ha activat.
+\n
+\nUna extensió maliciosa podria llegir qualsevol credencial guardada en Tachiyomi o executar codi maliciós.
+\n
+\nSi acceptes aquest certificat estàs acceptant els riscos que comporta.</string>
+    <string name="ext_version_info">Versió: %1$s</string>
+    <string name="ext_language_info">Idioma: %1$s</string>
+    <string name="ext_empty_preferences">No hi han preferències per editar en aquesta extensió</string>
+    <string name="pref_fullscreen">Pantalla completa</string>
+    <string name="pref_lock_orientation">Bloquejar l\'orientació</string>
+    <string name="pref_page_transitions">Transicions de pàgina</string>
+    <string name="pref_show_page_number">Mostra el número de pàgina</string>
+    <string name="pref_crop_borders">Retallar les vores</string>
+    <string name="pref_custom_brightness">Fer servir lluminositat personalitzada</string>
+    <string name="pref_custom_color_filter">Fer servir filtre de color personalitzat</string>
+    <string name="pref_keep_screen_on">Romandre amb la pantalla encesa</string>
+    <string name="pref_reader_navigation">Navegació</string>
+    <string name="pref_read_with_volume_keys">Tecles de volum</string>
+    <string name="pref_read_with_volume_keys_inverted">Invertir tecles de volum</string>
+    <string name="pref_read_with_tapping">Pitjar pantalla</string>
+    <string name="pref_reader_theme">Color de fons</string>
+    <string name="white_background">Blanc</string>
+    <string name="black_background">Negre</string>
+    <string name="pref_viewer_type">Lector per defecte</string>
+    <string name="default_viewer">Per defecte</string>
+    <string name="left_to_right_viewer">D\'esquerra a dreta</string>
+    <string name="right_to_left_viewer">De dreta a esquerra</string>
+    <string name="vertical_viewer">Vertical</string>
+    <string name="webtoon_viewer">Webtoons</string>
+    <string name="pager_viewer">Paginat</string>
+    <string name="pref_image_decoder">Descodificador d\'imatge</string>
+    <string name="pref_image_scale_type">Tipus d\'escalat</string>
+    <string name="scale_type_fit_screen">Ajust de pantalla</string>
+    <string name="scale_type_stretch">Estirat</string>
+    <string name="scale_type_fit_width">Ajust d\'amplada</string>
+    <string name="scale_type_fit_height">Ajust d\'altura</string>
+    <string name="scale_type_original_size">Mida Original</string>
+    <string name="scale_type_smart_fit">Ajust intel·ligent</string>
+    <string name="pref_zoom_start">Posició d\'inici del zoom</string>
+    <string name="zoom_start_automatic">Automàtic</string>
+    <string name="zoom_start_left">Esquerra</string>
+    <string name="zoom_start_right">Dreta</string>
+    <string name="zoom_start_center">Centre</string>
+    <string name="double_tap_anim_speed_0">Sense animació</string>
+    <string name="double_tap_anim_speed_normal">Normal</string>
+    <string name="double_tap_anim_speed_fast">Ràpid</string>
+    <string name="pref_rotation_type">Rotació</string>
+    <string name="rotation_free">Lliure</string>
+    <string name="rotation_lock">Bloca</string>
+    <string name="rotation_force_portrait">Forçar vertical</string>
+    <string name="rotation_force_landscape">Forçar apaïsat</string>
+    <string name="color_filter_r_value">R</string>
+    <string name="color_filter_g_value">G</string>
+    <string name="color_filter_b_value">B</string>
+    <string name="color_filter_a_value">A</string>
+    <string name="pref_download_directory">Directori de baixades</string>
+    <string name="pref_download_only_over_wifi">Baixades només amb WIFI</string>
+    <string name="pref_remove_after_marked_as_read">Eliminar quan es marqui com llegit</string>
+    <string name="pref_remove_after_read">Eliminar després de llegir</string>
 </resources>
