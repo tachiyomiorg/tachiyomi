@@ -15,7 +15,7 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 
-private var localdir:EditText? = null
+
 
 class SettingsLibraryController: SettingsController() {
 
@@ -43,6 +43,9 @@ class SettingsLibraryController: SettingsController() {
     }
 
     class LocalDirectoriesDialog : DialogController() {
+
+        private var localdir:EditText? = null
+
 
         private val preferences: PreferencesHelper = Injekt.get()
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
