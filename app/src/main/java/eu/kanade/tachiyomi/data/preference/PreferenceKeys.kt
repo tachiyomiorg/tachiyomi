@@ -105,6 +105,10 @@ object PreferenceKeys {
 
     const val downloadBadge = "display_download_badge"
 
+    const val localDirectory = "local_directory"
+
+    const val enableAltStorage = "pref_enable_alt_storage"
+
     @Deprecated("Use the preferences of the source")
     fun sourceUsername(sourceId: Long) = "pref_source_username_$sourceId"
 

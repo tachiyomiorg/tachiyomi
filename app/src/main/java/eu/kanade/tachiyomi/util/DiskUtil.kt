@@ -7,9 +7,15 @@ import android.os.Build
 import android.os.Environment
 import android.support.v4.content.ContextCompat
 import android.support.v4.os.EnvironmentCompat
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 import java.io.File
 
+
 object DiskUtil {
+
+    private val preferences: PreferencesHelper = Injekt.get()
 
     fun hashKeyForDisk(key: String): String {
         return Hash.md5(key)
@@ -52,16 +58,19 @@ object DiskUtil {
                         null
                     }
                 }
-        directories += getExternalStoragesAlt()
-                .mapNotNull {
-                    val file = File(it.absolutePath)
-                    val state = EnvironmentCompat.getStorageState(file)
-                    if (state == Environment.MEDIA_MOUNTED || state == Environment.MEDIA_MOUNTED_READ_ONLY) {
-                        file
-                    } else {
-                        null
+
+        if (preferences.altstorage()) {
+            directories += getExternalStoragesAlt()
+                    .mapNotNull {
+                        val file = File(it.absolutePath)
+                        val state = EnvironmentCompat.getStorageState(file)
+                        if (state == Environment.MEDIA_MOUNTED || state == Environment.MEDIA_MOUNTED_READ_ONLY) {
+                            file
+                        } else {
+                            null
+                        }
                     }
-                }
+        }
 
         if (Build.VERSION.SDK_INT < 21) {
             val extStorages = System.getenv("SECONDARY_STORAGE")

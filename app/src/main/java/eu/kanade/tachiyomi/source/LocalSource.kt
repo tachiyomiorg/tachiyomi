@@ -2,6 +2,8 @@ package eu.kanade.tachiyomi.source
 
 import android.content.Context
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.model.*
 import eu.kanade.tachiyomi.util.ChapterRecognition
 import eu.kanade.tachiyomi.util.DiskUtil
@@ -12,6 +14,8 @@ import junrar.rarfile.FileHeader
 import net.greypanther.natsort.CaseInsensitiveSimpleNaturalComparator
 import rx.Observable
 import timber.log.Timber
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
@@ -28,6 +32,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
         private val LATEST_FILTERS = FilterList(OrderBy().apply { state = Filter.Sort.Selection(1, false) })
         private val LATEST_THRESHOLD = TimeUnit.MILLISECONDS.convert(7, TimeUnit.DAYS)
         val ID = 0L
+        private val preferences: PreferencesHelper = Injekt.get()
 
         fun updateCover(context: Context, manga: SManga, input: InputStream): File? {
             val dir = getBaseDirectories(context).firstOrNull()
@@ -49,7 +54,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
 
         private fun getBaseDirectories(context: Context): List<File> {
             val c = context.getString(R.string.app_name) + File.separator + "local"
-            return DiskUtil.getExternalStorages(context).map { File(it.absolutePath, c) }
+            return DiskUtil.getExternalStorages(context).map { File(it.absolutePath, c) } +  File(preferences.localDirectory().getOrDefault())
         }
     }
 

@@ -24,6 +24,8 @@ class PreferencesHelper(val context: Context) {
     private val defaultDownloadsDir = Uri.fromFile(
             File(Environment.getExternalStorageDirectory().absolutePath + File.separator +
                     context.getString(R.string.app_name), "downloads"))
+    private val defaultLocalDir =  File(Environment.getExternalStorageDirectory().absolutePath + File.separator +
+            context.getString(R.string.app_name), "clocal").toString()
 
     private val defaultBackupDir = Uri.fromFile(
             File(Environment.getExternalStorageDirectory().absolutePath + File.separator +
@@ -166,4 +168,7 @@ class PreferencesHelper(val context: Context) {
     fun migrateFlags() = rxPrefs.getInteger("migrate_flags", Int.MAX_VALUE)
 
     fun trustedSignatures() = rxPrefs.getStringSet("trusted_signatures", emptySet())
+
+    fun localDirectory() = rxPrefs.getString(Keys.localDirectory, defaultLocalDir)
+    fun altstorage() = prefs.getBoolean(Keys.enableAltStorage, false)
 }

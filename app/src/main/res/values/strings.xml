@@ -216,7 +216,8 @@
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
 
-
+       <!-- Library section -->
+    <string name="path">Ex. /storages/sdcard/Tachiyomi/local</string>
       <!-- Downloads section -->
     <string name="pref_download_directory">Downloads directory</string>
     <string name="pref_download_only_over_wifi">Only download over Wi-Fi</string>
@@ -504,5 +505,9 @@
     <string name="channel_common">Common</string>
     <string name="channel_library">Library</string>
     <string name="channel_downloader">Downloader</string>
+    <string name="pref_category_library">Library</string>
+    <string name="pref_local_directory">Local Library</string>
+    <string name="pref_local_directory_sum">Local Library Directory</string>
+    <string name="pref_enable_alt_storage">Enable Alt Storage Detection</string>
 
 </resources>
