@@ -12,7 +12,7 @@ package utils
 
 import java.util.Calendar
 
-class RateBucket(internal val capacity: Int, internal val refillRate: Long) {
+class RateBucket(internal var capacity: Int, internal var refillRate: Long) {
   internal var tokens: Int = capacity
   internal var refillTime = Calendar.getInstance().timeInMillis
 

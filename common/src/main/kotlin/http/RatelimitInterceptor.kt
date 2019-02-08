@@ -26,6 +26,12 @@ class RatelimitInterceptor(
     val preferences = AppScope.getInstance<RateBucketPreferences>()
     val prefBucket = preferences.getBucket(id, capacity, refillRate)
     val rateBucket = prefBucket.get()
+    
+    if (rateBucket.capacity != capacity || rateBucket.refillRate != refillRate) {
+      rateBucket.capacity = capacity
+      rateBucket.refillRate = refillRate
+    }
+
     if (rateBucket.tryConsume()) {
       prefBucket.set(rateBucket)
       return chain.call().execute()
