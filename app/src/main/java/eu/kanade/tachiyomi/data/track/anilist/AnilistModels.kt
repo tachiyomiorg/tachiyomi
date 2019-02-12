@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.data.track.anilist
 
-import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
@@ -17,7 +16,7 @@ data class ALManga(
         val description: String?,
         val type: String,
         val publishing_status: String,
-        val start_date_fuzzy: String,
+        val start_date_fuzzy: Long,
         val total_chapters: Int) {
 
     fun toTrack() = TrackSearch.create(TrackManager.ANILIST).apply {
@@ -29,14 +28,12 @@ data class ALManga(
         tracking_url = AnilistApi.mangaUrl(media_id)
         publishing_status = this@ALManga.publishing_status
         publishing_type = type
-        if (!start_date_fuzzy.isNullOrBlank()) {
+        if (start_date_fuzzy != 0L) {
             start_date = try {
-                val inputDf = SimpleDateFormat("yyyyMMdd", Locale.US)
                 val outputDf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-                val date = inputDf.parse(BuildConfig.BUILD_TIME)
-                outputDf.format(date)
+                outputDf.format(start_date_fuzzy)
             } catch (e: Exception) {
-                start_date_fuzzy.orEmpty()
+                ""
             }
         }
     }
@@ -64,6 +61,7 @@ data class ALUserManga(
         "PAUSED" -> Anilist.ON_HOLD
         "DROPPED" -> Anilist.DROPPED
         "PLANNING" -> Anilist.PLANNING
+        "REPEATING" -> Anilist.REPEATING
         else -> throw NotImplementedError("Unknown status")
     }
 }
