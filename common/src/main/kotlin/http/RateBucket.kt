@@ -8,20 +8,14 @@
  *
  */
 
-package utils
+package tachiyomi.core.http
 
-import java.util.Calendar
-
-class RateBucket(internal var capacity: Int, internal var refillRate: Long) {
-  internal var tokens: Int = capacity
-  internal var refillTime = Calendar.getInstance().timeInMillis
-
-  constructor(capacity: Int, refillRate: Long, tokens: Int, refillTime: Long) : this(
-    capacity,
-    refillRate) {
-    this.tokens = tokens
-    this.refillTime = refillTime
-  }
+class RateBucket(
+  internal var capacity: Int,
+  internal var refillRate: Long,
+  internal var tokens: Int = capacity,
+  internal var refillTime: Long = System.currentTimeMillis()
+) {
 
   fun tryConsume(): Boolean {
     refill()
@@ -48,7 +42,7 @@ class RateBucket(internal var capacity: Int, internal var refillRate: Long) {
   }
 
   private fun refill() {
-    val now = Calendar.getInstance().timeInMillis
+    val now = System.currentTimeMillis()
     val toRefill = ((now - refillTime) / refillRate).toInt()
     this.tokens += toRefill
     if (this.tokens > this.capacity) {

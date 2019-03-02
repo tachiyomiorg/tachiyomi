@@ -8,15 +8,12 @@
  *
  */
 
-package prefs
+package tachiyomi.core.http
 
 import tachiyomi.core.prefs.Preference
 import tachiyomi.core.prefs.PreferenceStore
-import utils.RateBucket
-import utils.deserialize
-import utils.serialize
 
-class RateBucketPreferences (private val preferenceStore: PreferenceStore) {
+class RateBucketPreferences(private val preferenceStore: PreferenceStore) {
   fun getBucket(sourceName: String, capacity: Int, rate: Long): Preference<RateBucket> {
     return preferenceStore.getObject(
       key = sourceName,
