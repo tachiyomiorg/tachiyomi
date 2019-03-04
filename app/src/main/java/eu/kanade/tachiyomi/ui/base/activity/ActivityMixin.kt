@@ -10,6 +10,7 @@ interface ActivityMixin {
         setTheme(when (Injekt.get<PreferencesHelper>().theme()) {
             2 -> R.style.Theme_Tachiyomi_Dark
             3 -> R.style.Theme_Tachiyomi_Amoled
+            4 -> R.style.Theme_Tachiyomi_DarkBlue
             else -> R.style.Theme_Tachiyomi
         })
     }
