@@ -432,7 +432,7 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="copy">Copiar</string>
     <string name="migrating">Migrando…</string>
     <string name="ext_preferences">Configuraciones</string>
-    <string name="untrusted_extension_message">Esta extención fue firmada por una fuente no certificada y no fue activada.
+    <string name="untrusted_extension_message">Esta extensión fue firmada por una fuente no certificada y no fue activada.
 \nUna extencion maliciosa puede leer cualquier credencial de inicio guardada en Tachiyomi o ejecutar código arbitrario.
 \nConfiando en este certificado aceptas estos riesgos.</string>
     <string name="ext_empty_preferences">No hay preferencias para editar en esta extensión</string>
