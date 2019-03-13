@@ -305,7 +305,7 @@
     <string name="update_weekly">Semanalmente</string>
     <string name="update_monthly">Mensualmente</string>
     <string name="pref_library_update_categories">Categorías a incluir en actualización global</string>
-    <string name="all">Todo</string>
+    <string name="all">Todos</string>
     <string name="amoled_theme">Tema AMOLED</string>
     <string name="pref_start_screen">Pantalla inicial</string>
     <string name="pref_language">Idioma</string>
