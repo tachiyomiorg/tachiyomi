@@ -1,11 +1,7 @@
 package eu.kanade.tachiyomi.network
 
 import com.squareup.duktape.Duktape
-import okhttp3.CacheControl
-import okhttp3.HttpUrl
-import okhttp3.Interceptor
-import okhttp3.Request
-import okhttp3.Response
+import okhttp3.*
 
 class CloudflareInterceptor : Interceptor {
 
@@ -48,18 +44,18 @@ class CloudflareInterceptor : Interceptor {
             }
 
             val js = operation
-                    .replace(Regex("""a\.value = (.+ \+ t\.length).+"""), "$1")
+                    .replace(Regex("""a\.value = (.+ \+ t\.length(\).toFixed\(10\))?).+"""), "$1")
                     .replace(Regex("""\s{3,}[a-z](?: = |\.).+"""), "")
                     .replace("t.length", "${domain.length}")
                     .replace("\n", "")
 
-            val result = duktape.evaluate(js) as Double
+            val result = duktape.evaluate(js) as String
 
             val cloudflareUrl = HttpUrl.parse("${url.scheme()}://$domain/cdn-cgi/l/chk_jschl")!!
                     .newBuilder()
                     .addQueryParameter("jschl_vc", challenge)
                     .addQueryParameter("pass", pass)
-                    .addQueryParameter("jschl_answer", "$result")
+                    .addQueryParameter("jschl_answer", result)
                     .toString()
 
             val cloudflareHeaders = originalRequest.headers()
