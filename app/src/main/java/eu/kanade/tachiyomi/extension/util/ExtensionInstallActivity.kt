@@ -7,6 +7,15 @@ import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.util.toast
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import android.support.v4.view.MenuItemCompat.getActionView
+import android.content.Context.SEARCH_SERVICE
+import android.app.SearchManager
+import android.content.Context
+import android.support.v7.widget.SearchView
+import android.view.Menu
+import android.view.MenuItem
+import eu.kanade.tachiyomi.R
+
 
 /**
  * Activity used to install extensions, because we can only receive the result of the installation
@@ -38,6 +47,9 @@ class ExtensionInstallActivity : Activity() {
         finish()
     }
 
+
+
+
     private fun checkInstallationResult(resultCode: Int) {
         val downloadId = intent.extras.getLong(ExtensionInstaller.EXTRA_DOWNLOAD_ID)
         val success = resultCode == RESULT_OK
@@ -49,4 +61,7 @@ class ExtensionInstallActivity : Activity() {
     private companion object {
         const val INSTALL_REQUEST_CODE = 500
     }
+
+
+
 }

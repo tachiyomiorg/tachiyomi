@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.extension
 import android.view.View
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractSectionableItem
+import eu.davidea.flexibleadapter.items.IFilterable
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.InstallStep
@@ -17,7 +18,8 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 data class ExtensionItem(val extension: Extension,
                          val header: ExtensionGroupItem? = null,
                          val installStep: InstallStep? = null) :
-        AbstractSectionableItem<ExtensionHolder, ExtensionGroupItem>(header) {
+        AbstractSectionableItem<ExtensionHolder, ExtensionGroupItem>(header),
+        IFilterable {
 
     /**
      * Returns the layout resource of this item.
@@ -55,5 +57,10 @@ data class ExtensionItem(val extension: Extension,
     override fun hashCode(): Int {
         return extension.pkgName.hashCode()
     }
+    override fun filter(constraint: String?): Boolean {
+        return this.extension.name.toLowerCase().startsWith(constraint.toString())
+
+    }
+
 
 }

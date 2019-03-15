@@ -1,11 +1,13 @@
 package eu.kanade.tachiyomi.ui.extension
 
+import android.app.SearchManager
+import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v7.widget.SearchView
+import android.view.*
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter.items.IFilterable
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.extension.model.Extension
@@ -23,11 +25,12 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
         FlexibleAdapter.OnItemLongClickListener,
         ExtensionTrustDialog.Listener {
 
+
     /**
      * Adapter containing the list of manga from the catalogue.
      */
     private var adapter: FlexibleAdapter<IFlexible<*>>? = null
-
+    private val allExtensions: MutableList<IFlexible<*>> = mutableListOf()
     init {
         setHasOptionsMenu(true)
     }
@@ -84,6 +87,40 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.ext_menu, menu)
+
+        val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+
+        val searchView = menu.findItem(R.id.action_search)
+                .actionView as SearchView
+        searchView.setSearchableInfo(searchManager
+                .getSearchableInfo(activity?.componentName))
+        searchView.maxWidth = Integer.MAX_VALUE
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                return onQueryTextChange(query)
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter?.searchText= newText!!
+                adapter?.filterItems(allExtensions)
+                return false
+            }
+        })
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        return if (id == R.id.action_search) {
+            true
+        } else super.onOptionsItemSelected(item)
+
+    }
     override fun onItemClick(position: Int): Boolean {
         val extension = (adapter?.getItem(position) as? ExtensionItem)?.extension ?: return false
         if (extension is Extension.Installed) {
@@ -114,7 +151,10 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
 
     fun setExtensions(extensions: List<ExtensionItem>) {
         ext_swipe_refresh?.isRefreshing = false
+        allExtensions.clear()
+        allExtensions.addAll(extensions)
         adapter?.updateDataSet(extensions)
+
     }
 
     fun downloadUpdate(item: ExtensionItem) {
