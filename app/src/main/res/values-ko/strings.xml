@@ -211,9 +211,9 @@
     <string name="pref_clear_database_summary">서재에 추가되지 않은 만화와 챕터들을 삭제합니다</string>
     <string name="clear_database_confirmation">확실합니까\? 서재에 없는 만화의 읽은 챕터와 진행사항이 삭제됩니다</string>
     <string name="pref_refresh_library_metadata">서재 메타데이터 갱신</string>
-    <string name="pref_refresh_library_metadata_summary">표지와 장르, 설명, 만화 상태 정보들을 업데이트 합니다.</string>
+    <string name="pref_refresh_library_metadata_summary">표지와 장르, 설명, 만화 상태 정보들을 업데이트합니다</string>
     <string name="pref_refresh_library_tracking">동기화 메타데이터 갱신</string>
-    <string name="pref_refresh_library_tracking_summary">상태 및 평점, 마지막으로 읽은 챕터를 동기화 서비스에서 업데이트합니다.</string>
+    <string name="pref_refresh_library_tracking_summary">상태 및 평점, 마지막으로 읽은 챕터를 동기화 서비스에서 업데이트합니다</string>
     <string name="version">버전</string>
     <string name="build_time">빌드 시간</string>
     <string name="pref_enable_automatic_updates">업데이트 확인</string>
@@ -229,15 +229,15 @@
     <string name="invalid_login">로그인 오류</string>
     <string name="unknown_error">알 수 없는 오류</string>
     <string name="updating_category">카테고리 업데이트중</string>
-    <string name="confirm_delete_manga">"선택된 만화들을 정말로 제거하시겠습니까\? "</string>
+    <string name="confirm_delete_manga">선택된 만화들을 정말로 제거하시겠습니까\?</string>
     <string name="also_delete_chapters">다운로드된 챕터들도 지우기</string>
     <string name="source_search_options">검색 필터</string>
     <string name="source_requires_login">이 소스는 로그인을 필요로 합니다</string>
     <string name="select_source">소스 선택</string>
-    <string name="no_valid_sources">최소한 1개의 유효한 소스를 선택해주세요.</string>
+    <string name="no_valid_sources">최소한 1개의 유효한 소스를 선택해주세요</string>
     <string name="no_more_results">더이상 결과 없음</string>
     <string name="action_global_search_hint">전역 검색…</string>
-    <string name="no_results">결과를 찾지 못했습니다</string>
+    <string name="no_results">결과가 없습니다!</string>
     <string name="latest">최신</string>
     <string name="manga_detail_tab">정보</string>
     <string name="description">설명</string>
@@ -256,7 +256,7 @@
     <string name="manga_info_genres_label">장르</string>
     <string name="shortcut_title">바로가지 제목</string>
     <string name="shortcut_created">바로가기가 홈 화면에 추가되었습니다.</string>
-    <string name="icon_creation_fail">바로가기 생성 실패</string>
+    <string name="icon_creation_fail">바로가기 생성 실패!</string>
     <string name="delete_downloads_for_manga">다운로드된 챕터를 삭제합니까\?</string>
     <string name="source_not_installed">소스 미설치: %1$s</string>
     <string name="manga_chapters_tab">챕터</string>
@@ -344,4 +344,14 @@
     <string name="download_notifier_download_paused">다운로드 일시중지됨</string>
     <string name="channel_library">서재</string>
     <string name="channel_downloader">다운로더</string>
+    <string name="action_display_download_badge">다운로드 배지</string>
+    <string name="action_open">열기</string>
+    <string name="action_login">로그인</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="pref_update_only_non_completed">연재 중인 만화만 업데이트</string>
+    <string name="pref_auto_update_manga_sync">읽은 뒤 챕터 동기화</string>
+    <string name="default_category_summary">항상 물어보기</string>
+    <string name="ext_details">세부정보</string>
+    <string name="pref_create_backup_summ">현재 서재를 나중에 복구하는 데 사용 가능</string>
+    <string name="pref_reader_navigation">네비게이션</string>
 </resources>
