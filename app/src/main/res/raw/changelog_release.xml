@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="true">
+    <changelogversion versionName="v0.8.1" changeDate="">
+        <changelogtext>Fixed latest Cloudflare changes.</changelogtext>
+        <changelogtext>Bundled SQLite for better performance and new features.</changelogtext>
+        <changelogtext>Restored dark blue theme.</changelogtext>
+        <changelogtext>Added a MAL API workaround.</changelogtext>
+        <changelogtext>Fixed search issues on Kitsu and AniList.</changelogtext>
+        <changelogtext>Fixed an issue where the image was centered when using the vertical reader.</changelogtext>
+        <changelogtext>Updated translations.</changelogtext>
+    </changelogversion>
+
     <changelogversion versionName="v0.8.0" changeDate="">
         <changelogtext>Added a new reader with many fixes.</changelogtext>
         <changelogtext>Added GIF support.</changelogtext>
