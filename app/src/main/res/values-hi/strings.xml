@@ -432,4 +432,5 @@
     <string name="transition_pages_error">पृष्ठों को लोड करने में विफल है: %1$s</string>
     <string name="darkblue_theme">गहरा नीला</string>
     <string name="reader_pull_up_for_more_options">अधिक विकल्पों के लिए खींचो</string>
+    <string name="pref_read_with_long_tap">संवाद के लिए लंबी प्रेस</string>
 </resources>
