@@ -51,7 +51,7 @@
     <string name="label_settings">세팅</string>
     <string name="action_display">디스플레이</string>
     <string name="history">기록</string>
-    <string name="label_download_queue">다운로드 큐</string>
+    <string name="label_download_queue">다운로드 대기열</string>
     <string name="label_library">내 서재</string>
     <string name="label_recent_manga">최근 읽음</string>
     <string name="label_catalogues">카탈로그</string>
@@ -368,7 +368,7 @@
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">다운로드 폴더</string>
-    <string name="custom_dir">사용자 정의 경로</string>
+    <string name="custom_dir">사용자 정의 폴더</string>
     <string name="second_to_last">두번째 챕터에서 끝까지</string>
     <string name="third_to_last">세번째 챕터에서 끝까지</string>
     <string name="fourth_to_last">네번째 챕터에서 끝까지</string>
@@ -398,7 +398,7 @@
     <string name="square_icon">사각형 아이콘</string>
     <string name="star_icon">별 아이콘</string>
     <string name="icon_shape">아이콘 모양</string>
-    <string name="copied_to_clipboard">%1$s 클립보드에 복사됨</string>
+    <string name="copied_to_clipboard">클립보드에 %1$s 복사됨</string>
     <string name="manga_chapter_no_title">제목 없음</string>
     <string name="chapter_queued">대기중</string>
     <string name="fetch_chapters_error">챕터를 가져오는 중에 오류 발생</string>
@@ -433,4 +433,6 @@
     <string name="download_notifier_text_only_wifi">Wifi 연결 사용 불가능</string>
     <string name="download_notifier_no_network">네트워크 연결 사용 불가능</string>
     <string name="channel_common">일반</string>
+    <string name="pref_read_with_long_tap">길게 눌러 대화상자 표시</string>
+    <string name="custom_hint">갯수</string>
 </resources>
