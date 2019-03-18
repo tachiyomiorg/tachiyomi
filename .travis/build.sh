@@ -24,8 +24,8 @@ fi
 
 user=j2ghz
 git clone --recurse-submodules https://${user}:${PAT}@github.com/${user}/fdroid-data.git
-cp ${ARTIFACT} ./repo/
 cd fdroid-data
+cp ../${ARTIFACT} ./repo/
 docker run --rm -u $(id -u):$(id -g) -v $(pwd):/repo registry.gitlab.com/fdroid/docker-executable-fdroidserver:latest update -v
 cd repo
 git config --global user.name "Travis CI"
