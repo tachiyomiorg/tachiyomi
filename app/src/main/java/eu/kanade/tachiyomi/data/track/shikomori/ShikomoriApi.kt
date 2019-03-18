@@ -8,7 +8,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.track.Trackanager
+import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.POST
@@ -21,15 +21,15 @@ class ShikomoriApi(private val client: OkHttpClient, interceptor: ShikomoriInter
 
     private val gson: Gson by injectLazy()
     private val parser = JsonParser()
-    private val jsonime = ediaType.parse("application/json; charset=utf-8")
+    private val jsonime = MediaType.parse("application/json; charset=utf-8")
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
-    fun addLibanga(track: Track, user_id: String): Observable<Track> {
+    fun addLibManga(track: Track, user_id: String): Observable<Track> {
         val payload = jsonObject(
                 "user_rate" to jsonObject(
                         "user_id" to user_id,
                         "target_id" to track.media_id,
-                        "target_type" to "anga",
+                        "target_type" to "Manga",
                         "chapters" to track.last_chapter_read,
                         "score" to track.score.toInt(),
                         "status" to track.toShikomoriStatus()
@@ -47,7 +47,7 @@ class ShikomoriApi(private val client: OkHttpClient, interceptor: ShikomoriInter
                 }
     }
 
-    fun updateLibanga(track: Track, user_id: String): Observable<Track> = addLibanga(track, user_id)
+    fun updateLibManga(track: Track, user_id: String): Observable<Track> = addLibManga(track, user_id)
 
     fun search(search: String): Observable<List<TrackSearch>> {
         val url = Uri.parse("$apiUrl/mangas").buildUpon()
@@ -73,7 +73,7 @@ class ShikomoriApi(private val client: OkHttpClient, interceptor: ShikomoriInter
     }
 
     private fun jsonToSearch(obj: JsonObject): TrackSearch {
-        return TrackSearch.create(Trackanager.SHIKOORI).apply {
+        return TrackSearch.create(TrackManager.SHIKOMORI).apply {
             media_id = obj["id"].asInt
             title = obj["russian"].asString
             total_chapters = obj["chapters"].asInt
@@ -87,7 +87,7 @@ class ShikomoriApi(private val client: OkHttpClient, interceptor: ShikomoriInter
     }
 
     private fun jsonToTrack(obj: JsonObject): Track {
-        return Track.create(Trackanager.SHIKOORI).apply {
+        return Track.create(TrackManager.SHIKOMORI).apply {
             media_id = obj["id"].asInt
             title = ""
             last_chapter_read = obj["chapters"].asInt
@@ -97,11 +97,11 @@ class ShikomoriApi(private val client: OkHttpClient, interceptor: ShikomoriInter
         }
     }
 
-    fun findLibanga(track: Track, user_id: String): Observable<Track?> {
+    fun findLibManga(track: Track, user_id: String): Observable<Track?> {
         val url = Uri.parse("$apiUrl/v2/user_rates").buildUpon()
                 .appendQueryParameter("user_id", user_id)
                 .appendQueryParameter("target_id", track.media_id.toString())
-                .appendQueryParameter("target_type", "anga")
+                .appendQueryParameter("target_type", "Manga")
                 .build()
         val request = Request.Builder()
                 .url(url.toString())
@@ -161,10 +161,10 @@ class ShikomoriApi(private val client: OkHttpClient, interceptor: ShikomoriInter
         private const val loginUrl = "https://shikimori.org/oauth/authorize"
 
         private const val redirectUrl = "tachiyomi://shikimori-auth"
-        private const val baseangaUrl = "$apiUrl/mangas"
+        private const val baseMangaUrl = "$apiUrl/mangas"
 
         fun mangaUrl(remoteId: Int): String {
-            return "$baseangaUrl/$remoteId"
+            return "$baseMangaUrl/$remoteId"
         }
 
         fun authUrl() =

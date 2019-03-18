@@ -22,19 +22,19 @@ class Shikomori(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun add(track: Track): Observable<Track> {
-        return api.addLibanga(track, getUsername())
+        return api.addLibManga(track, getUsername())
     }
 
     override fun update(track: Track): Observable<Track> {
         if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
-            track.status = COPLETED
+            track.status = COMPLETED
         }
-        return api.updateLibanga(track, getUsername())
+        return api.updateLibManga(track, getUsername())
     }
 
     override fun bind(track: Track): Observable<Track> {
-        return api.findLibanga(track, getUsername())
-                .flatap { remoteTrack ->
+        return api.findLibManga(track, getUsername())
+                .flatMap { remoteTrack ->
                     if (remoteTrack != null) {
                         track.copyPersonalFrom(remoteTrack)
                         track.library_id = remoteTrack.library_id
@@ -53,7 +53,7 @@ class Shikomori(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun refresh(track: Track): Observable<Track> {
-        return api.findLibanga(track, getUsername())
+        return api.findLibManga(track, getUsername())
                 .map { remoteTrack ->
                     if (remoteTrack != null) {
                         track.copyPersonalFrom(remoteTrack)
@@ -65,7 +65,7 @@ class Shikomori(private val context: Context, id: Int) : TrackService(id) {
 
     companion object {
         const val READING = 1
-        const val COPLETED = 2
+        const val COMPLETED = 2
         const val ON_HOLD = 3
         const val DROPPED = 4
         const val PLANNING = 5
@@ -88,13 +88,13 @@ class Shikomori(private val context: Context, id: Int) : TrackService(id) {
     override fun getLogoColor() = Color.rgb(40, 40, 40)
 
     override fun getStatusList(): List<Int> {
-        return listOf(READING, COPLETED, ON_HOLD, DROPPED, PLANNING, REPEATING)
+        return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLANNING, REPEATING)
     }
 
     override fun getStatus(status: Int): String = with(context) {
         when (status) {
             READING -> getString(R.string.reading)
-            COPLETED -> getString(R.string.completed)
+            COMPLETED -> getString(R.string.completed)
             ON_HOLD -> getString(R.string.on_hold)
             DROPPED -> getString(R.string.dropped)
             PLANNING -> getString(R.string.plan_to_read)
