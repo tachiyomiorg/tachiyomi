@@ -52,6 +52,21 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.setting.ShikomoriLoginActivity"
+            android:label="Shikomori">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="shikimori-auth"
+                    android:scheme="tachiyomi" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".extension.util.ExtensionInstallActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
