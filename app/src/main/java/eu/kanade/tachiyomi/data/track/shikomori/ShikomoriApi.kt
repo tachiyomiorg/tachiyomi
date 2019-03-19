@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.data.track.shikomori
 import android.net.Uri
 import com.github.salomonbrys.kotson.array
 import com.github.salomonbrys.kotson.jsonObject
+import com.github.salomonbrys.kotson.nullString
 import com.github.salomonbrys.kotson.obj
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -75,14 +76,14 @@ class ShikomoriApi(private val client: OkHttpClient, interceptor: ShikomoriInter
     private fun jsonToSearch(obj: JsonObject): TrackSearch {
         return TrackSearch.create(TrackManager.SHIKOMORI).apply {
             media_id = obj["id"].asInt
-            title = obj["russian"].asString
+            title = obj["name"].asString
             total_chapters = obj["chapters"].asInt
             cover_url = baseUrl + obj["image"].obj["preview"].asString
             summary = ""
             tracking_url = baseUrl + obj["url"].asString
             publishing_status = obj["status"].asString
             publishing_type = obj["kind"].asString
-            start_date = obj["aired_on"].asString
+            start_date = obj.get("aired_on").nullString.orEmpty()
         }
     }
 
