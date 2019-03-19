@@ -4,7 +4,7 @@ set -e
 git fetch --unshallow #required for commit count
 
 cp .travis/google-services.json app/
-sed -i "s/versionCode \d+/versionCode `date +%s`/" app/build.gradle
+sed -i "s/versionCode *[0-9]*/versionCode `date +%s`/" app/build.gradle
 
 if [ -z "$TRAVIS_TAG" ]; then
     ./gradlew clean assembleStandardDebug
