@@ -1,2 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="categories">Mga Kategorya</string>
+    <string name="manga">Manga</string>
+    <string name="chapters">Mga Kabanata</string>
+    <string name="track">Sinusubaybayan</string>
+    <string name="history">Kasaysayan</string>
+    <string name="label_settings">Mga Setting</string>
+    <string name="label_download_queue">Queue sa Pag-download</string>
+    <string name="label_library">Aking Aklatan</string>
+    <string name="label_recent_manga">Kakabasa Lang</string>
+    <string name="label_catalogues">Mga Katalogo</string>
+    <string name="label_recent_updates">Mga Update sa Aklatan</string>
+    <string name="label_latest_updates">Mga Kakalabas lang na Update</string>
+    <string name="label_categories">Mga Kategorya</string>
+    <string name="label_selected">Napili: %1$d</string>
+    <string name="label_backup">Backup</string>
+    <string name="label_migration">Pag-migrate ng Source</string>
+    <string name="label_extensions">Mga Ekstensyon</string>
+    <string name="label_extension_info">Tungkol sa Extension</string>
+    <string name="action_settings">Mga Setting</string>
+    <string name="action_filter">Isala</string>
+    <string name="action_filter_downloaded">Na-download</string>
+    <string name="action_filter_bookmarked">Binukmark</string>
+    <string name="action_filter_unread">Hindi pa Nababasa</string>
+    <string name="action_filter_read">Nabasa</string>
+    <string name="action_filter_empty">Tanggalin ang Pagsala</string>
+    <string name="action_sort_alpha">Paalpabetiko</string>
+    <string name="action_sort_total">Kabuuang Bilang ng mga Kabanata</string>
+    <string name="action_sort_last_read">Huling nabasa</string>
+    <string name="action_sort_last_updated">Huling na-update</string>
+    <string name="action_search">Hanapin</string>
+    <string name="action_global_search">Global na paghahanap</string>
+    <string name="action_select_all">Piliin lahat</string>
+</resources>
