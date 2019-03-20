@@ -12,6 +12,8 @@ class CloudflareInterceptor : Interceptor {
 
     private val challengePattern = Regex("""name="jschl_vc" value="(\w+)"""")
 
+    private val sPattern = Regex("""name="s" value="([^"]+)""")
+
     private val serverCheck = arrayOf("cloudflare-nginx", "cloudflare")
 
     @Synchronized
@@ -45,8 +47,9 @@ class CloudflareInterceptor : Interceptor {
             val operation = operationPattern.find(content)?.groups?.get(1)?.value
             val challenge = challengePattern.find(content)?.groups?.get(1)?.value
             val pass = passPattern.find(content)?.groups?.get(1)?.value
+            val s = sPattern.find(content)?.groups?.get(1)?.value
 
-            if (operation == null || challenge == null || pass == null) {
+            if (operation == null || challenge == null || pass == null || s == null) {
                 throw Exception("Failed resolving Cloudflare challenge")
             }
 
@@ -62,6 +65,7 @@ class CloudflareInterceptor : Interceptor {
                     .newBuilder()
                     .addQueryParameter("jschl_vc", challenge)
                     .addQueryParameter("pass", pass)
+                    .addQueryParameter("s", s)
                     .addQueryParameter("jschl_answer", result)
                     .toString()
 
