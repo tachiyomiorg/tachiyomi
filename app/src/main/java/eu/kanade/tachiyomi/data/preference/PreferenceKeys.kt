@@ -41,6 +41,8 @@ object PreferenceKeys {
 
     const val readWithTapping = "reader_tap"
 
+    const val readWithLongTap = "reader_long_tap"
+
     const val readWithVolumeKeys = "reader_volume_keys"
 
     const val readWithVolumeKeysInverted = "reader_volume_keys_inverted"
@@ -104,9 +106,9 @@ object PreferenceKeys {
     const val defaultCategory = "default_category"
 
     const val downloadBadge = "display_download_badge"
-    
+
     const val syncId = "sync_id"
-    
+
     const val lastSync = "last_sync"
 
     const val syncOnLaunch = "pref_sync_on_launch"

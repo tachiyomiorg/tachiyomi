@@ -1,7 +1,7 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="name">नाम</string>
     <string name="categories">श्रेणियाँ</string>
-    <string name="manga">मंगा</string>
+    <string name="manga">मांगा</string>
     <string name="chapters">अध्याय</string>
     <string name="track">पदचिह्न</string>
     <string name="history">इतिहास</string>
@@ -83,7 +83,7 @@
     <string name="action_create">सर्जन करना</string>
     <string name="action_restore">पुनःस्थापन करे</string>
     <string name="action_open">खुला हुआ</string>
-    <string name="action_login">लॉग इन</string>
+    <string name="action_login">लोगिन</string>
 
     <string name="deleting">हटाया जा रहा है…</string>
     <string name="loading">लोड हो रहा है…</string>

@@ -109,6 +109,11 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = true
             }
             switchPreference {
+                key = Keys.readWithLongTap
+                titleRes = R.string.pref_read_with_long_tap
+                defaultValue = true
+            }
+            switchPreference {
                 key = Keys.readWithVolumeKeys
                 titleRes = R.string.pref_read_with_volume_keys
                 defaultValue = false

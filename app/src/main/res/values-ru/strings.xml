@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_add">Добавить</string>
     <string name="action_add_category">Добавить категорию</string>
-    <string name="action_add_to_home_screen">Добавить на домашний экран</string>
+    <string name="action_add_to_home_screen">Добавить на главный экран</string>
     <string name="action_bookmark">Закладка</string>
     <string name="action_cancel">Отмена</string>
     <string name="action_clear">Очистить</string>
@@ -55,7 +55,7 @@
     <string name="action_update">Обновить</string>
     <string name="action_update_library">Обновить библиотеку</string>
     <string name="all">Все</string>
-    <string name="backup">Бэкап</string>
+    <string name="backup">Резервная копия</string>
     <string name="black_background">Черный</string>
     <string name="build_time">Дата сборки</string>
     <string name="cache_delete_error">Возникла ошибка при удалении кэша</string>
@@ -87,7 +87,7 @@
     <string name="custom_dir">Пользовательский каталог</string>
     <string name="custom_filter">Пользовательский фильтр</string>
     <string name="dark_theme">Темная тема</string>
-    <string name="decode_image_error">Изображение не может быть загружено. Попробуйте изменить декодер опциями ниже</string>
+    <string name="decode_image_error">Не удалось декодировать изображение</string>
     <string name="default_columns">По умолчанию</string>
     <string name="default_viewer">По умолчанию</string>
     <string name="deleting">Удаление…</string>
@@ -128,13 +128,13 @@
     <string name="information_no_recent">Нет новых глав</string>
     <string name="information_no_recent_manga">Нет недавно прочитанных глав</string>
     <string name="invalid_login">Ошибка авторизации</string>
-    <string name="label_backup">Бэкап</string>
+    <string name="label_backup">Резервное копирование</string>
     <string name="label_catalogues">Каталоги</string>
     <string name="label_categories">Категории</string>
     <string name="label_download_queue">Очередь загрузки</string>
     <string name="label_latest_updates">Последние обновления</string>
     <string name="label_library">Библиотека</string>
-    <string name="label_recent_manga">История чтения</string>
+    <string name="label_recent_manga">История</string>
     <string name="label_recent_updates">Обновления библиотеки</string>
     <string name="label_selected">Выбраны: %1$d</string>
     <string name="label_settings">Настройки</string>
@@ -207,7 +207,7 @@
     <string name="pref_image_scale_type">Масштабирование</string>
     <string name="pref_keep_screen_on">Держать экран включенным</string>
     <string name="pref_language">Язык</string>
-    <string name="pref_library_columns">Количество колонок в библиотеке</string>
+    <string name="pref_library_columns">Количество в ряд</string>
     <string name="pref_library_update_categories">Категории включенные в глобальный поиск</string>
     <string name="pref_library_update_interval">Частота обновления библиотеки</string>
     <string name="pref_library_update_restriction">Ограничения обновления библиотеки</string>
@@ -291,7 +291,7 @@
     <string name="version">Версия</string>
     <string name="vertical_viewer">Вертикальный</string>
     <string name="viewer_for_this_series">Отображение для этой серии</string>
-    <string name="webtoon_viewer">Комикс</string>
+    <string name="webtoon_viewer">Веб-комикс</string>
     <string name="white_background">Белый</string>
     <string name="wifi">Wi-Fi</string>
     <string name="zoom_start_automatic">Автоматическая</string>
@@ -300,7 +300,7 @@
     <string name="zoom_start_right">Справа</string>
     <string name="action_close">Закрыть</string>
     <string name="action_create">Создать</string>
-    <string name="action_export">Экспорт</string>
+    <string name="action_export">Экспортировать</string>
     <string name="action_move">Переместить</string>
     <string name="action_restore">Восстановить</string>
     <string name="action_undo">Отменить</string>
@@ -370,8 +370,8 @@
     <string name="channel_library">Библиотека</string>
     <string name="channel_downloader">Загрузчик</string>
 <string name="information_empty_category">У вас нет категорий. Нажмите кнопку + для начала организации вашей библиотеки.</string>
-    <string name="label_migration">Миграция источника</string>
-    <string name="label_extensions">Дополнение</string>
+    <string name="label_migration">Перемещение источника</string>
+    <string name="label_extensions">Дополнения</string>
     <string name="label_extension_info">Информация о дополнении</string>
     <string name="all_lang">Все</string>
     <string name="ext_details">Детали</string>
@@ -419,15 +419,16 @@
     <string name="track_start_date">Начато</string>
     <string name="track_type">Тип</string>
     <string name="track_author">Автор</string>
-    <string name="url_not_set">"Ссылка не установлена, пожалуйста нажмите на заголовок и выберите мангу снова "</string>
+    <string name="url_not_set">"Ссылка манги не установлена, пожалуйста нажмите на заголовок и выберите мангу снова "</string>
 
-    <string name="transition_finished">Прогресс: %1$s</string>
-    <string name="transition_current">Прогресс: %1$s</string>
-    <string name="transition_next">Далее: %1$s</string>
-    <string name="transition_previous">Назад: %1$s</string>
+    <string name="transition_finished">Закончено:</string>
+    <string name="transition_current">Текущий:</string>
+    <string name="transition_next">Следующий:</string>
+    <string name="transition_previous">Предыдущий:</string>
     <string name="transition_no_next">Следующей части нет</string>
     <string name="transition_no_previous">Предыдущей части нет</string>
     <string name="transition_pages_loading">Идёт загрузка страниц…</string>
     <string name="transition_pages_error">Не удалось загрузить страницы: %1$s</string>
 
+    <string name="darkblue_theme">Темно-синяя тема</string>
     </resources>

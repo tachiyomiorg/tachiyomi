@@ -1,11 +1,8 @@
 package eu.kanade.tachiyomi.network
 
 import com.squareup.duktape.Duktape
-import okhttp3.CacheControl
-import okhttp3.HttpUrl
-import okhttp3.Interceptor
-import okhttp3.Request
-import okhttp3.Response
+import okhttp3.*
+import java.io.IOException
 
 class CloudflareInterceptor : Interceptor {
 
@@ -15,6 +12,8 @@ class CloudflareInterceptor : Interceptor {
 
     private val challengePattern = Regex("""name="jschl_vc" value="(\w+)"""")
 
+    private val sPattern = Regex("""name="s" value="([^"]+)""")
+
     private val serverCheck = arrayOf("cloudflare-nginx", "cloudflare")
 
     @Synchronized
@@ -23,7 +22,13 @@ class CloudflareInterceptor : Interceptor {
 
         // Check if Cloudflare anti-bot is on
         if (response.code() == 503 && response.header("Server") in serverCheck) {
-            return chain.proceed(resolveChallenge(response))
+            return try {
+                chain.proceed(resolveChallenge(response))
+            } catch (e: Exception) {
+                // Because OkHttp's enqueue only handles IOExceptions, wrap the exception so that
+                // we don't crash the entire app
+                throw IOException(e)
+            }
         }
 
         return response
@@ -42,24 +47,26 @@ class CloudflareInterceptor : Interceptor {
             val operation = operationPattern.find(content)?.groups?.get(1)?.value
             val challenge = challengePattern.find(content)?.groups?.get(1)?.value
             val pass = passPattern.find(content)?.groups?.get(1)?.value
+            val s = sPattern.find(content)?.groups?.get(1)?.value
 
-            if (operation == null || challenge == null || pass == null) {
+            if (operation == null || challenge == null || pass == null || s == null) {
                 throw Exception("Failed resolving Cloudflare challenge")
             }
 
             val js = operation
-                    .replace(Regex("""a\.value = (.+ \+ t\.length).+"""), "$1")
+                    .replace(Regex("""a\.value = (.+ \+ t\.length(\).toFixed\(10\))?).+"""), "$1")
                     .replace(Regex("""\s{3,}[a-z](?: = |\.).+"""), "")
                     .replace("t.length", "${domain.length}")
                     .replace("\n", "")
 
-            val result = duktape.evaluate(js) as Double
+            val result = duktape.evaluate(js) as String
 
             val cloudflareUrl = HttpUrl.parse("${url.scheme()}://$domain/cdn-cgi/l/chk_jschl")!!
                     .newBuilder()
                     .addQueryParameter("jschl_vc", challenge)
                     .addQueryParameter("pass", pass)
-                    .addQueryParameter("jschl_answer", "$result")
+                    .addQueryParameter("s", s)
+                    .addQueryParameter("jschl_answer", result)
                     .toString()
 
             val cloudflareHeaders = originalRequest.headers()

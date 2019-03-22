@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="categories">Kategorie</string>
     <string name="chapters">Rozdziały</string>
     <string name="name">Nazwa</string>
@@ -367,8 +367,7 @@ Nie znaleziono źródła %1$s</string>
 
     <string name="custom_filter">Filtr niestandardowy</string>
     <string name="page_downloaded">Strona skopiowana do %1$s</string>
-    <string name="decode_image_error">Nie można załadować obrazka.
-Spróbuj zmienić dekoder lub skorzystaj z jednej z opcji poniżej</string>
+    <string name="decode_image_error">Nie udało się wczytać obrazka</string>
     <string name="confirm_update_manga_sync">Zaktualizować ostatni przeczytany rozdział na %1$d?</string>
     <string name="confirm_set_image_as_cover">Czy chcesz ustawić ten obrazek jako okładkę?</string>
     <string name="viewer_for_this_series">Widok dla tej serii</string>
@@ -470,13 +469,13 @@ Spróbuj zmienić dekoder lub skorzystaj z jednej z opcji poniżej</string>
     <string name="track_author">Autor</string>
     <string name="url_not_set">URL mangi nie jest ustawiony, kliknij tytuł i wybierz mangę jeszcze raz</string>
 
-    <string name="transition_finished">Przeczytany: %1$s</string>
-    <string name="transition_current">Obecny: %1$s</string>
-    <string name="transition_next">Następny: %1$s</string>
-    <string name="transition_previous">Poprzedni: %1$s</string>
+    <string name="transition_finished">Przeczytany:</string>
+    <string name="transition_current">Obecny:</string>
+    <string name="transition_next">Następny:</string>
+    <string name="transition_previous">Poprzedni:</string>
     <string name="transition_no_next">Brak następnego rozdziału</string>
     <string name="transition_no_previous">Nie ma wcześniejszych rozdziałów</string>
     <string name="transition_pages_loading">Ładowanie stron…</string>
     <string name="transition_pages_error">Nie udało się załadować stron: %1$s</string>
-
-    </resources>
+    <string name="darkblue_theme">Ciemny niebieski</string>
+</resources>

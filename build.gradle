@@ -21,9 +21,9 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
         maven { url "https://jitpack.io" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        maven { url  "https://dl.bintray.com/inorichi/maven" }
+        jcenter()
+        maven { url "https://dl.bintray.com/inorichi/maven" }
     }
 }

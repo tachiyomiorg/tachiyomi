@@ -95,13 +95,17 @@ class WebtoonViewer(val activity: ReaderActivity) : BaseViewer {
                 else -> activity.toggleMenu()
             }
         }
-        recycler.longTapListener = { event ->
-            val child = recycler.findChildViewUnder(event.x, event.y)
-            val position = recycler.getChildAdapterPosition(child)
-            val item = adapter.items.getOrNull(position)
-            if (item is ReaderPage) {
-                activity.onPageLongTap(item)
+        recycler.longTapListener = f@ { event ->
+            if (activity.menuVisible || config.longTapEnabled) {
+                val child = recycler.findChildViewUnder(event.x, event.y)
+                val position = recycler.getChildAdapterPosition(child)
+                val item = adapter.items.getOrNull(position)
+                if (item is ReaderPage) {
+                    activity.onPageLongTap(item)
+                    return@f true
+                }
             }
+            false
         }
 
         frame.layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)

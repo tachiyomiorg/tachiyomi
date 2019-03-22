@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources><string name="name">নাম</string>
     <string name="categories">ধরণ</string>
     <string name="manga">মাংগা</string>
@@ -350,8 +350,7 @@
     <string name="chapter_subtitle">অধ্যায় %1$s</string>
     <string name="no_next_chapter">পরবর্তী অধ্যায় খুঁজে পাওয়া যায়নি</string>
     <string name="no_previous_chapter">আগের অধ্যায় খুঁজে পাওয়া যায়নি</string>
-    <string name="decode_image_error">ছবি লোড করা সম্ভব হয়নি।
-\nছবি ডিকোডার পরিবর্তন করুন অথবা নিচের যেকোন একটি অপশন চেষ্টা করুন</string>
+    <string name="decode_image_error">ছবি decoded করা যাবে না</string>
     <string name="confirm_update_manga_sync">শেষ পড়া অধ্যায় সেবাগুলোতে আপডেট করুন %1$d?</string>
     <string name="confirm_set_image_as_cover">আপনি কি এই ছবিটিকে কভার হিসেবে সেট করতে চান?</string>
     <string name="viewer_for_this_series">এই সিরিজের দর্শক</string>
@@ -465,4 +464,14 @@
     <string name="track_start_date">শুরু হয়েছে</string>
     <string name="track_type">ধরণ</string>
     <string name="track_author">লেখক</string>
-    </resources>
+    <string name="darkblue_theme">গাঢ় নীল</string>
+    <string name="transition_finished">"শেষ  :"</string>
+    <string name="transition_current">"এখনকার  :"</string>
+    <string name="transition_next">আসছে :</string>
+    <string name="transition_previous">পূর্ববর্তী :</string>
+    <string name="transition_no_next">কোন পরের অধ্যায় আছে</string>
+    <string name="transition_no_previous">কোন পূর্ববর্তী অধ্যায় আছে</string>
+    <string name="transition_pages_loading">পৃষ্ঠা লোড হচ্ছে …</string>
+    <string name="transition_pages_error">পৃষ্ঠা লোড করতে ব্যর্থ হয়েছে: %1$s</string>
+    <string name="url_not_set">মাংগা ইউআরএল সেট না শিরোনাম ক্লিক করুন এবং আবার মাংগা নির্বাচন করুন</string>
+</resources>

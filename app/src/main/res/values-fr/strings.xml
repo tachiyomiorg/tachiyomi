@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="name">Nom</string>
 
@@ -254,12 +254,12 @@
 
     <!-- MyAnimeList fragment -->
     <string name="manga_tracking_tab">Suivi</string>
-    <string name="reading">En lecture</string>
+    <string name="reading">En cours</string>
     <string name="completed">Complété</string>
     <string name="dropped">Abandonné</string>
     <string name="on_hold">En pause</string>
-    <string name="plan_to_read">Lecture planifiée</string>
-    <string name="score">Ponctuation</string>
+    <string name="plan_to_read">A lire</string>
+    <string name="score">Note</string>
     <string name="title">Titre</string>
     <string name="status">Statut</string>
     <string name="chapters">Chapitres</string>
@@ -507,9 +507,9 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="ext_untrusted">Non fiable</string>
     <string name="pager_viewer">Pager</string>
     <string name="repeating">Relecture</string>
-    <string name="transition_finished">Terminé:</string>
+    <string name="transition_finished">A jour:</string>
     <string name="transition_current">En cours:</string>
-    <string name="transition_next">"Suivant: "</string>
+    <string name="transition_next">Suivant:</string>
     <string name="transition_previous">Précédent:</string>
     <string name="transition_no_next">Chapitre suivant introuvable</string>
     <string name="transition_no_previous">Chapitre précédent introuvable</string>

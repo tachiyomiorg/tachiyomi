@@ -57,13 +57,17 @@ open class App : Application() {
     }
 
     protected open fun setupJobManager() {
-        JobManager.create(this).addJobCreator { tag ->
-            when (tag) {
-                LibraryUpdateJob.TAG -> LibraryUpdateJob()
-                UpdaterJob.TAG -> UpdaterJob()
-                BackupCreatorJob.TAG -> BackupCreatorJob()
-                else -> null
+        try {
+            JobManager.create(this).addJobCreator { tag ->
+                when (tag) {
+                    LibraryUpdateJob.TAG -> LibraryUpdateJob()
+                    UpdaterJob.TAG -> UpdaterJob()
+                    BackupCreatorJob.TAG -> BackupCreatorJob()
+                    else -> null
+                }
             }
+        } catch (e: Exception) {
+            Timber.w("Can't initialize job manager")
         }
     }
 

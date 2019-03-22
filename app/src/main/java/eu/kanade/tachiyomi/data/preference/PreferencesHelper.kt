@@ -69,6 +69,8 @@ class PreferencesHelper(val context: Context) {
 
     fun readWithTapping() = rxPrefs.getBoolean(Keys.readWithTapping, true)
 
+    fun readWithLongTap() = rxPrefs.getBoolean(Keys.readWithLongTap, true)
+
     fun readWithVolumeKeys() = rxPrefs.getBoolean(Keys.readWithVolumeKeys, false)
 
     fun readWithVolumeKeysInverted() = rxPrefs.getBoolean(Keys.readWithVolumeKeysInverted, false)
