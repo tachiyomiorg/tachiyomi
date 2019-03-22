@@ -433,5 +433,6 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
     <string name="transition_pages_loading">Carregando páginas…</string>
     <string name="transition_pages_error">Falha ao carregar páginas: %1$s</string>
     <string name="darkblue_theme">Azul escuro</string>
-    <string name="reader_pull_up_for_more_options">Puxe para cima para mais opções</string>
+    <string name="reader_pull_up_for_more_options">Deslize para cima para mais opções</string>
+    <string name="pref_read_with_long_tap">Diálogo de toque longo</string>
 </resources>
