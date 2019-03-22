@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.network
 
-import android.util.Base64
 import com.squareup.duktape.Duktape
 import okhttp3.*
 import java.io.IOException
@@ -25,7 +24,7 @@ class CloudflareInterceptor : Interceptor {
 
     private val b64: IBase64 = object : IBase64 {
         override fun decode(input: String): String {
-            return Base64.decode(input, Base64.DEFAULT).toString(Charsets.UTF_8)
+            return okio.ByteString.decodeBase64(input)!!.utf8()
         }
     }
 
