@@ -348,7 +348,7 @@
     <string name="backup_restore_content">Restaurar utiliza la fuente para obtener datos, es posible que se apliquen los costos de la operadora.
 También asegúrese de haber iniciado sesión en las fuentes que lo requieren antes de la restauración.</string>
     <string name="file_saved">Archivo guardado en %1$s</string>
-    <string name="backup_choice">Qué deseas respaldar?</string>
+    <string name="backup_choice">¿Qué deseas respaldar\?</string>
     <string name="restoring_backup">Restaurando copia de seguridad</string>
     <string name="creating_backup">Creando copia de seguridad</string>
     <string name="choices_reset">Reiniciar opciones de diálogo</string>
@@ -462,4 +462,6 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="pref_double_tap_anim_speed">Velocidad de animación de doble toque</string>
     <string name="pager_viewer">Paginado</string>
     <string name="darkblue_theme">Azul oscuro</string>
+    <string name="pref_read_with_long_tap">Diálogo de toque largo</string>
+    <string name="reader_pull_up_for_more_options">Tire hacia arriba para más opciones</string>
 </resources>
