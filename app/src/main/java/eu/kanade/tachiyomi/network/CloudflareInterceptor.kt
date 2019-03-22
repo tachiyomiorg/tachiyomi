@@ -14,6 +14,8 @@ class CloudflareInterceptor : Interceptor {
 
     private val sPattern = Regex("""name="s" value="([^"]+)""")
 
+    private val kPattern = Regex("""k\s+=\s+'([^']+)';""")
+
     private val serverCheck = arrayOf("cloudflare-nginx", "cloudflare")
 
     @Synchronized
@@ -49,17 +51,25 @@ class CloudflareInterceptor : Interceptor {
             val pass = passPattern.find(content)?.groups?.get(1)?.value
             val s = sPattern.find(content)?.groups?.get(1)?.value
 
+            // If `k` is null, it uses old methods.
+            val k = kPattern.find(content)?.groups?.get(1)?.value ?: ""
+            val innerHTMLValue = Regex("""<div(.*)id="$k"(.*)>(.*)</div>""")
+                    .find(content)?.groups?.get(3)?.value ?: ""
+
             if (operation == null || challenge == null || pass == null || s == null) {
                 throw Exception("Failed resolving Cloudflare challenge")
             }
 
+            // Return simulated innerHTML when call DOM.
+            val simulatedDocumentJS = """var document= {getElementById: function(x) { return {innerHTML:"$innerHTMLValue"};}}"""
+
             val js = operation
-                    .replace(Regex("""a\.value = (.+ \+ t\.length(\).toFixed\(10\))?).+"""), "$1")
+                    .replace(Regex("""a\.value = (.+\.toFixed\(10\);).+"""), "$1")
                     .replace(Regex("""\s{3,}[a-z](?: = |\.).+"""), "")
                     .replace("t.length", "${domain.length}")
                     .replace("\n", "")
 
-            val result = duktape.evaluate(js) as String
+            val result = duktape.evaluate("""$simulatedDocumentJS;$ATOB_JS;var t="$domain";$js""") as String
 
             val cloudflareUrl = HttpUrl.parse("${url.scheme()}://$domain/cdn-cgi/l/chk_jschl")!!
                     .newBuilder()
@@ -80,4 +90,8 @@ class CloudflareInterceptor : Interceptor {
         }
     }
 
+    companion object {
+        // atob() is browser API, Got this from NPM package, `atob`.
+        private const val ATOB_JS = """var atob = function(str) {return Buffer.from(str, "base64").toString("binary");}"""
+    }
 }
