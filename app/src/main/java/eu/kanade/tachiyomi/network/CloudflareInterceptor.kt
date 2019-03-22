@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.network
 
+import android.util.Base64
 import com.squareup.duktape.Duktape
 import okhttp3.*
 import java.io.IOException
@@ -17,6 +18,16 @@ class CloudflareInterceptor : Interceptor {
     private val kPattern = Regex("""k\s+=\s+'([^']+)';""")
 
     private val serverCheck = arrayOf("cloudflare-nginx", "cloudflare")
+
+    private interface IBase64 {
+        fun decode(input: String): String
+    }
+
+    private val b64: IBase64 = object : IBase64 {
+        override fun decode(input: String): String {
+            return Base64.decode(input, Base64.DEFAULT).toString(Charsets.UTF_8)
+        }
+    }
 
     @Synchronized
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -60,8 +71,11 @@ class CloudflareInterceptor : Interceptor {
                 throw Exception("Failed resolving Cloudflare challenge")
             }
 
+            // Export native Base64 decode function to js object.
+            duktape.set("b64", IBase64::class.java, b64)
+
             // Return simulated innerHTML when call DOM.
-            val simulatedDocumentJS = """var document= {getElementById: function(x) { return {innerHTML:"$innerHTMLValue"};}}"""
+            val simulatedDocumentJS = """var document = { getElementById: function (x) { return { innerHTML: "$innerHTMLValue" }; } }"""
 
             val js = operation
                     .replace(Regex("""a\.value = (.+\.toFixed\(10\);).+"""), "$1")
@@ -91,41 +105,7 @@ class CloudflareInterceptor : Interceptor {
     }
 
     companion object {
-        // atob() is browser API, Got this from NPM package, `atob`.
-        private const val ATOB_JS = """var atob = function (input) {
-            var output = ""
-            var chr1, chr2, chr3 = ""
-            var enc1, enc2, enc3, enc4 = ""
-            var i = 0
-            var keyStr = b64.keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
-
-            input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "")
-
-            do {
-                enc1 = keyStr.indexOf(input.charAt(i++))
-                enc2 = keyStr.indexOf(input.charAt(i++))
-                enc3 = keyStr.indexOf(input.charAt(i++))
-                enc4 = keyStr.indexOf(input.charAt(i++))
-
-                chr1 = (enc1 << 2) | (enc2 >> 4)
-                chr2 = ((enc2 & 15) << 4) | (enc3 >> 2)
-                chr3 = ((enc3 & 3) << 6) | enc4
-
-                output = output + String.fromCharCode(chr1)
-
-                if (enc3 != 64) {
-                    output = output + String.fromCharCode(chr2)
-                }
-                if (enc4 != 64) {
-                    output = output + String.fromCharCode(chr3)
-                }
-
-                chr1 = chr2 = chr3 = ""
-                enc1 = enc2 = enc3 = enc4 = ""
-
-            } while (i < input.length)
-
-            return unescape(output)
-        }"""
+        // atob() is browser API, Using Android's own function. (java.util.Base64 can't be used because of min API level)
+        private const val ATOB_JS = """var atob = function (input) { return b64.decode(input) }"""
     }
 }
