@@ -238,8 +238,8 @@
     <string name="download_progress">%1$d%% gedownload</string>
     <string name="chapter_progress">Pagina: %1$d</string>
     <string name="chapter_subtitle">Hoofdstuk %1$s</string>
-    <string name="no_next_chapter">Volgende hoofdstuk niet gevonden</string>
-    <string name="no_previous_chapter">Vorige hoofdstuk niet gevonden</string>
+    <string name="no_next_chapter">Volgend hoofdstuk niet gevonden</string>
+    <string name="no_previous_chapter">Vorig hoofdstuk niet gevonden</string>
     <string name="confirm_set_image_as_cover">Wil je deze afbeelding als omslagfoto gebruiken?</string>
     <string name="viewer_for_this_series">Lezer voor deze serie</string>
     <string name="recent_manga_source">%1$s - Hfdst.%2$s</string>
@@ -335,8 +335,7 @@
     <string name="dropped">Laten vallen</string>
     <string name="on_hold">In de wacht</string>
     <string name="dialog_with_checkbox_remove_description">Dit verwijdert de datum waarop het hoofdstuk is gelezen. Ben je zeker?</string>
-    <string name="decode_image_error">Afbeelding kon niet worden geladen.
-Probeer de afbeeldingdecoder te veranderen met een van de onderstaande opties</string>
+    <string name="decode_image_error">Afbeelding kon niet worden gedecodeerd.</string>
     <string name="download_queue_error">Er is een fout opgetreden bij het downloaden van hoofdstukken. Je kan het opnieuw proberen in de downloadwachtrij</string>
     <string name="notification_cover_update_failed">Updaten van omslag mislukt</string>
     <string name="notification_not_connected_to_ac_title">Synchronisatie geannuleerd</string>
@@ -375,7 +374,65 @@ Zorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het teru
     <string name="channel_common">Algemeen</string>
     <string name="label_migration">Bronmigratie</string>
     <string name="label_extensions">Extensies</string>
-    <string name="label_extension_info">Informatie extensie</string>
+    <string name="label_extension_info">Informatie over extensie</string>
     <string name="custom_hint">hoeveelheid</string>
     <string name="darkblue_theme">Donkerblauw</string>
+    <string name="all_lang">Alles</string>
+    <string name="ext_details">Details</string>
+    <string name="ext_update">Bijwerken</string>
+    <string name="ext_install">Installeer</string>
+    <string name="ext_pending">Aan het afwachten</string>
+    <string name="ext_downloading">Aan het downloaden</string>
+    <string name="ext_installing">Aan het installeren</string>
+    <string name="ext_installed">Geïnstalleerd</string>
+    <string name="ext_trust">Vertouw</string>
+    <string name="ext_untrusted">Niet vertrouwd</string>
+    <string name="ext_uninstall">Verwijderen</string>
+    <string name="ext_preferences">Voorkeuren</string>
+    <string name="ext_available">Beschikbaar</string>
+    <string name="untrusted_extension">Niet vertrouwde extensie</string>
+    <string name="untrusted_extension_message">Deze extensie is door een niet vertrouwde certificaat ondertekend en is niet geactiveerd.
+\n
+\nEen kwaadaardige extensie zou alle login gegevens kunnen uitlezen in Tachiyomi of arbitraire code uitvoeren.
+\n
+\nBij het vertrouwen van dit certificaat accepteer je deze risico\'s</string>
+    <string name="ext_version_info">Versie: %1$s</string>
+    <string name="ext_language_info">Taal: %1$s</string>
+    <string name="ext_empty_preferences">Er zijn geen aan te passen voorkeuren voor deze extensie</string>
+    <string name="pref_double_tap_anim_speed">Dubbel tik animatiesnelheid</string>
+    <string name="pref_read_with_long_tap">Lange tik dialoog</string>
+    <string name="pager_viewer">Paginas</string>
+    <string name="double_tap_anim_speed_0">Geen animatie</string>
+    <string name="double_tap_anim_speed_normal">Normaal</string>
+    <string name="double_tap_anim_speed_fast">Snel</string>
+    <string name="source_search_options">Zoek filters</string>
+    <string name="manga_info_full_title_label">Titel</string>
+    <string name="manga_added_library">Toegevoegd aan bibliotheek</string>
+    <string name="manga_removed_library">Verwijderd uit bibliotheek</string>
+    <string name="manga_info_latest_data_label">Bijgewerkt</string>
+    <string name="copied_to_clipboard">%1$s gekopieerd naar het klembord</string>
+    <string name="source_not_installed">Bron niet geïnstalleerd: %1$s</string>
+    <string name="custom_download">Download aangepaste hoeveelheid</string>
+    <string name="download_custom">Download aangepaste hoeveelheid</string>
+    <string name="repeating">Herlezen</string>
+    <string name="track_status">Status</string>
+    <string name="track_start_date">Gestart</string>
+    <string name="track_type">Soort</string>
+    <string name="track_author">Auteur</string>
+    <string name="url_not_set">Manga url is niet ingesteld, klik alstublieft op de titel en selecteer de manga opnieuw</string>
+    <string name="transition_finished">Afgerond:</string>
+    <string name="transition_current">Huidige:</string>
+    <string name="transition_next">Volgende:</string>
+    <string name="transition_previous">Vorige:</string>
+    <string name="transition_no_next">Er is geen volgend hoofdstuk</string>
+    <string name="transition_no_previous">Er is geen vorig hoofdstuk</string>
+    <string name="transition_pages_loading">Pagina\'s aan het laden…</string>
+    <string name="transition_pages_error">Fout bij het laden van pagina\'s : %1$s</string>
+    <string name="reader_pull_up_for_more_options">Trek omhoog voor meer opties</string>
+    <string name="migration_info">Tik om een bron te selecteren om naar toe te migreren</string>
+    <string name="migration_dialog_what_to_include">Selecteer data om mee te tellen</string>
+    <string name="select">Selecteer</string>
+    <string name="migrate">Migreer</string>
+    <string name="copy">Kopiëren</string>
+    <string name="migrating">Aan het migreren…</string>
 </resources>
