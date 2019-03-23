@@ -231,4 +231,22 @@
     <string name="backup_created">Còpia de seguresa creada</string>
     <string name="restore_completed">Riprìstinu acabadu</string>
     <string name="error_opening_log">Impossìbile abèrrere su registru</string>
+    <string name="restore_completed_content">Su riprìstinu est duradu %1$s.
+\n%2$s errores agatados.</string>
+    <string name="backup_restore_content">Su riprìstinu impreat sa mitza pro otènnere sos datos, bi diant pòdere èssere costos de s\'operadore.
+\nAssegura·ti fintzas de àere fatu s\'atzessu pro sas mitzas chi lu pedint in antis de ripristinare.</string>
+    <string name="file_saved">Documentu sarvadu in %1$s</string>
+    <string name="backup_choice">De ite cheres fàghere una còpia de seguresa\?</string>
+    <string name="restoring_backup">Ripristinende sa còpia de seguresa</string>
+    <string name="creating_backup">Creende sa còpia de seguresa</string>
+    <string name="pref_clear_chapter_cache">Isbòida sa memòria temporànea de sos capìtulos</string>
+    <string name="used_cache">Impreados: %1$s</string>
+    <string name="cache_deleted">Memòria temporànea isbodiada. %1$d documentos sunt istados iscantzellados</string>
+    <string name="cache_delete_error">B\'at àpidu un\'errore durante s\'isbodiamentu de sa memòria temporànea</string>
+    <string name="pref_clear_cookies">Iscantzella sos cookies</string>
+    <string name="cookies_cleared">Cookies iscantzellados</string>
+    <string name="choices_reset">Reseta sos issèberos de diàlogu</string>
+    <string name="pref_clear_database">Isbòida sa base de datos</string>
+    <string name="pref_clear_database_summary">Iscantzella sos manga e sos capìtulos chi non sunt in sa biblioteca tua</string>
+    <string name="clear_database_confirmation">Seguru ses\? Sos capìtulos lèghidos e su progressu de sos mangas chi non sunt in sa biblioteca s\'ant a pèrdere</string>
 </resources>
