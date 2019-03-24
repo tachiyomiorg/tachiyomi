@@ -328,4 +328,16 @@
     <string name="show_title">Prikaži naslov</string>
     <string name="show_chapter_number">Prikaži broj poglavlja</string>
     <string name="sorting_mode">Model sortiranja</string>
+    <string name="pref_read_with_long_tap">Dialog kod dugog pritiska</string>
+    <string name="sort_by_source">Prema izvoru</string>
+    <string name="sort_by_number">Prema broju poglavlja</string>
+    <string name="manga_download">Preuzmi</string>
+    <string name="custom_download">Preuzmi određen broj</string>
+    <string name="custom_hint">količina</string>
+    <string name="download_1">Preuzmi sledeće poglavlje</string>
+    <string name="download_5">Preuzmi 5 narednih poglavlja</string>
+    <string name="download_10">Preuzmi 10 narednih poglavlja</string>
+    <string name="download_custom">Preuzmi određeno</string>
+    <string name="download_all">Preuzmi sve</string>
+    <string name="download_unread">Preuzmi nepročitano</string>
 </resources>
