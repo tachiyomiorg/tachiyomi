@@ -382,4 +382,5 @@
     <string name="ext_untrusted">Não confiar</string>
     <string name="download_custom">Transferir personalizado</string>
     <string name="pref_read_with_long_tap">Diálogo de toque longo</string>
+    <string name="pref_refresh_library_metadata_summary">Atualizar capas, géneros, descrição e informação sobre o estado de lançamento do mangá</string>
 </resources>
