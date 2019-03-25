@@ -83,9 +83,7 @@ class MainActivity : BaseActivity() {
                     R.id.nav_drawer_recently_read -> setRoot(RecentlyReadController(), id)
                     R.id.nav_drawer_catalogues -> setRoot(CatalogueController(), id)
                     R.id.nav_drawer_extensions -> setRoot(ExtensionController(), id)
-                    R.id.nav_drawer_downloads -> {
-                        router.pushController(DownloadController().withFadeTransaction())
-                    }
+                    R.id.nav_drawer_downloads -> setRoot(DownloadController(), id)
                     R.id.nav_drawer_settings -> {
                         router.pushController(SettingsMainController().withFadeTransaction())
                     }
