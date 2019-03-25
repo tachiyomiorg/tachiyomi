@@ -53,9 +53,10 @@ fun syncChaptersWithSource(db: DatabaseHelper,
             //this forces metadata update for the main viewable things in the chapter list
             if (source is HttpSource) {
                 source.prepareNewChapter(sourceChapter, manga)
-            } else {
-                ChapterRecognition.parseChapterNumber(sourceChapter, manga)
             }
+
+            ChapterRecognition.parseChapterNumber(sourceChapter, manga)
+
             if (shouldUpdateDbChapter(dbChapter, sourceChapter)) {
                 dbChapter.scanlator = sourceChapter.scanlator
                 dbChapter.name = sourceChapter.name
