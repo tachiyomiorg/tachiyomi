@@ -158,6 +158,7 @@ class MainActivity : BaseActivity() {
                     setSelectedDrawerItem(R.id.nav_drawer_downloads)
                 }
             }
+            Intent.ACTION_VIEW -> ViewActionParser(intent).handleLink(router)
             else -> return false
         }
         return true

@@ -27,9 +27,12 @@ import uy.kohesive.injekt.api.get
 
 /**
  * Presenter of [BrowseCatalogueController].
+ *
+ * @param initialQuery query to prepopulate search with, omit to not prepopulate searchbar
  */
 open class BrowseCataloguePresenter(
         sourceId: Long,
+        initialQuery: String? = null,
         sourceManager: SourceManager = Injekt.get(),
         private val db: DatabaseHelper = Injekt.get(),
         private val prefs: PreferencesHelper = Injekt.get(),
@@ -44,7 +47,7 @@ open class BrowseCataloguePresenter(
     /**
      * Query from the view.
      */
-    var query = ""
+    var query = initialQuery ?: ""
         private set
 
     /**

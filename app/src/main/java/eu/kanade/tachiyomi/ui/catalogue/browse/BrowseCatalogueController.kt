@@ -49,6 +49,12 @@ open class BrowseCatalogueController(bundle: Bundle) :
         putLong(SOURCE_ID_KEY, source.id)
     })
 
+    constructor(source: CatalogueSource, searchQuery: String) : this(Bundle().apply {
+        putLong(SOURCE_ID_KEY, source.id)
+        putString(QUERY_KEY, searchQuery)
+    })
+
+
     /**
      * Preferences helper.
      */
@@ -98,7 +104,10 @@ open class BrowseCatalogueController(bundle: Bundle) :
     }
 
     override fun createPresenter(): BrowseCataloguePresenter {
-        return BrowseCataloguePresenter(args.getLong(SOURCE_ID_KEY))
+        return BrowseCataloguePresenter(
+                args.getLong(SOURCE_ID_KEY),
+                args.getString(QUERY_KEY)
+        )
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
@@ -507,6 +516,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
 
     protected companion object {
         const val SOURCE_ID_KEY = "sourceId"
+        private const val QUERY_KEY = "query"
     }
 
 }
