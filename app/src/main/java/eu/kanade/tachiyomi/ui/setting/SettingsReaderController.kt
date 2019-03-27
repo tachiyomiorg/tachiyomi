@@ -77,6 +77,11 @@ class SettingsReaderController : SettingsController() {
             titleRes = R.string.pref_show_page_number
             defaultValue = true
         }
+        switchPreference {
+            key = Keys.trueColor
+            titleRes = R.string.pref_true_color
+            defaultValue = false
+        }
         preferenceCategory {
             titleRes = R.string.pager_viewer
 

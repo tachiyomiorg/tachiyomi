@@ -40,6 +40,9 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
     var imageCropBorders = false
         private set
 
+    var trueColor = false
+        private set
+
     var doubleTapAnimDuration = 500
         private set
 
@@ -61,6 +64,9 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
 
         preferences.cropBorders()
             .register({ imageCropBorders = it }, { imagePropertyChangedListener?.invoke() })
+
+        preferences.trueColor()
+            .register({ trueColor = it }, { imagePropertyChangedListener?.invoke() })
 
         preferences.doubleTapAnimSpeed()
             .register({ doubleTapAnimDuration = it })

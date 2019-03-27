@@ -43,6 +43,8 @@ class PreferencesHelper(val context: Context) {
 
     fun showPageNumber() = rxPrefs.getBoolean(Keys.showPageNumber, true)
 
+    fun trueColor() = rxPrefs.getBoolean(Keys.trueColor, false)
+
     fun fullscreen() = rxPrefs.getBoolean(Keys.fullscreen, true)
 
     fun keepScreenOn() = rxPrefs.getBoolean(Keys.keepScreenOn, true)

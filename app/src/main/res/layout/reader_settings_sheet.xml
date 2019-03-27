@@ -106,13 +106,22 @@
         app:layout_constraintTop_toBottomOf="@id/background_color" />
 
     <android.support.v7.widget.SwitchCompat
+        android:id="@+id/true_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/pref_true_color"
+        android:textColor="?android:attr/textColorSecondary"
+        app:layout_constraintTop_toBottomOf="@id/show_page_number" />
+
+    <android.support.v7.widget.SwitchCompat
         android:id="@+id/fullscreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/pref_fullscreen"
         android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/show_page_number" />
+        app:layout_constraintTop_toBottomOf="@id/true_color" />
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/keepscreen"
