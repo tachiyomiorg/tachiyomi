@@ -60,7 +60,6 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         rotation_mode.bindToPreference(preferences.rotation(), 1)
         background_color.bindToPreference(preferences.readerTheme())
         show_page_number.bindToPreference(preferences.showPageNumber())
-        true_color.bindToPreference(preferences.trueColor())
         fullscreen.bindToPreference(preferences.fullscreen())
         keepscreen.bindToPreference(preferences.keepScreenOn())
         long_tap.bindToPreference(preferences.readWithLongTap())

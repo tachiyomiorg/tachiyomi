@@ -561,7 +561,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 .subscribe { setPageNumberVisibility(it) }
 
             subscriptions += preferences.trueColor().asObservable()
-                .skip(1) // We only care about updates
                 .subscribe { setTrueColor(it) }
 
             subscriptions += preferences.fullscreen().asObservable()
@@ -628,7 +627,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 SubsamplingScaleImageView.setPreferredBitmapConfig(Bitmap.Config.ARGB_8888)
             else
                 SubsamplingScaleImageView.setPreferredBitmapConfig(Bitmap.Config.RGB_565)
-            recreate()
         }
 
         /**

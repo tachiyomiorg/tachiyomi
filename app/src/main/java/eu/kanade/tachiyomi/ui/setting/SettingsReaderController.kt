@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.setting
 
+import android.os.Build
 import android.support.v7.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
@@ -77,10 +78,12 @@ class SettingsReaderController : SettingsController() {
             titleRes = R.string.pref_show_page_number
             defaultValue = true
         }
-        switchPreference {
-            key = Keys.trueColor
-            titleRes = R.string.pref_true_color
-            defaultValue = false
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            switchPreference {
+                key = Keys.trueColor
+                titleRes = R.string.pref_true_color
+                defaultValue = false
+            }
         }
         preferenceCategory {
             titleRes = R.string.pager_viewer

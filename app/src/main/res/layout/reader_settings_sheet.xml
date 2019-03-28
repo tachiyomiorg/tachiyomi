@@ -112,6 +112,8 @@
         android:layout_marginTop="16dp"
         android:text="@string/pref_true_color"
         android:textColor="?android:attr/textColorSecondary"
+        android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintTop_toBottomOf="@id/show_page_number" />
 
     <android.support.v7.widget.SwitchCompat
