@@ -18,12 +18,12 @@ class CloudflareInterceptor : Interceptor {
 
     private val serverCheck = arrayOf("cloudflare-nginx", "cloudflare")
 
-    private interface IBase64 {
-        fun decode(input: String): String
+    private interface INativeFunctions {
+        fun DecodeBase64(input: String): String
     }
 
-    private val b64: IBase64 = object : IBase64 {
-        override fun decode(input: String): String {
+    private val nativeFunctions: INativeFunctions = object : INativeFunctions {
+        override fun DecodeBase64(input: String): String {
             return okio.ByteString.decodeBase64(input)!!.utf8()
         }
     }
@@ -63,18 +63,18 @@ class CloudflareInterceptor : Interceptor {
 
             // If `k` is null, it uses old methods.
             val k = kPattern.find(content)?.groups?.get(1)?.value ?: ""
-            val innerHTMLValue = Regex("""<div(.*)id="$k"(.*)>(.*)</div>""")
-                    .find(content)?.groups?.get(3)?.value ?: ""
+            val innerHTMLValue = Regex("""<div(?:.*)id="$k"(?:.*)>(.+?)</div>""")
+                    .find(content)?.groups?.get(1)?.value ?: ""
 
             if (operation == null || challenge == null || pass == null || s == null) {
                 throw Exception("Failed resolving Cloudflare challenge")
             }
 
-            // Export native Base64 decode function to js object.
-            duktape.set("b64", IBase64::class.java, b64)
+            // Export native functions to js object.
+            duktape.set("NativeFunctions", INativeFunctions::class.java, nativeFunctions)
 
             // Return simulated innerHTML when call DOM.
-            val simulatedDocumentJS = """var document = { getElementById: function (x) { return { innerHTML: "$innerHTMLValue" }; } }"""
+            val simulatedDocumentJS = """var document = { getElementById: function (x) { return { innerHTML: "$innerHTMLValue" } } }"""
 
             val js = operation
                     .replace(Regex("""a\.value = (.+\.toFixed\(10\);).+"""), "$1")
@@ -82,13 +82,13 @@ class CloudflareInterceptor : Interceptor {
                     .replace("t.length", "${domain.length}")
                     .replace("\n", "")
 
-            val result = duktape.evaluate("""$simulatedDocumentJS;$ATOB_JS;var t="$domain";$js""") as String
+            val result = duktape.evaluate("""$simulatedDocumentJS;$ATOB_JS;$SIMULATED_BROWSER_API;var t="$domain";$js""") as String
 
             val cloudflareUrl = HttpUrl.parse("${url.scheme()}://$domain/cdn-cgi/l/chk_jschl")!!
                     .newBuilder()
+                    .addQueryParameter("s", s)
                     .addQueryParameter("jschl_vc", challenge)
                     .addQueryParameter("pass", pass)
-                    .addQueryParameter("s", s)
                     .addQueryParameter("jschl_answer", result)
                     .toString()
 
@@ -104,7 +104,12 @@ class CloudflareInterceptor : Interceptor {
     }
 
     companion object {
-        // atob() is browser API, Using Android's own function. (java.util.Base64 can't be used because of min API level)
-        private const val ATOB_JS = """var atob = function (input) { return b64.decode(input) }"""
+        // atob() is browser API, Using native function from okio.
+        private const val ATOB_JS = """var atob = function (input) { return NativeFunctions.DecodeBase64(input) }"""
+        // Simulated browser API that Cloudflare uses.
+        private const val SIMULATED_BROWSER_API = """
+                String.prototype.italics = function () { return "<i></i>" };
+		        Array.prototype.fill = "function fill() { [native code] }";
+            """
     }
 }
