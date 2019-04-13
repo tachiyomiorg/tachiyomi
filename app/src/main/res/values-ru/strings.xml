@@ -427,4 +427,6 @@
     <string name="darkblue_theme">Темно-синяя тема</string>
     <string name="pref_read_with_long_tap">Диалог при долгом нажатии</string>
     <string name="reader_pull_up_for_more_options">Потяните вверх для раскрытия меню</string>
+    <string name="action_open_in_web_view">Открыть в Web View</string>
+    <string name="pref_skip_read_chapters">Пропускать главы, помеченные как \"Прочитанные\"</string>
 </resources>
