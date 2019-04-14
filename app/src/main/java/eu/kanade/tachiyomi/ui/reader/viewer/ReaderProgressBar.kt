@@ -116,21 +116,15 @@ class ReaderProgressBar @JvmOverloads constructor(
     }
 
     /**
-     * Called when the aggregated visibility of this view changes. It also starts of stops the
-     * rotation animation according to [isVisible].
+     * Called when the visibility of this view changes.
      */
-    override fun onVisibilityAggregated(isVisible: Boolean) {
-        super.onVisibilityAggregated(isVisible)
-
-        if (isVisible != aggregatedIsVisible) {
-            aggregatedIsVisible = isVisible
-
-            // let's be nice with the UI thread
-            if (isVisible) {
-                startAnimation()
-            } else {
-                stopAnimation()
-            }
+    override fun setVisibility(visibility: Int) {
+        super.setVisibility(visibility)
+        val isVisible = visibility == View.VISIBLE
+        if (isVisible) {
+            startAnimation()
+        } else {
+            stopAnimation()
         }
     }
 

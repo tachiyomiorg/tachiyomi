@@ -5,6 +5,7 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
@@ -21,6 +22,7 @@ import rx.subjects.PublishSubject
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
+import uy.kohesive.injekt.injectLazy
 
 /**
  * Presenter of [CatalogueSearchController]
@@ -32,6 +34,7 @@ import uy.kohesive.injekt.api.get
  */
 open class CatalogueSearchPresenter(
         val initialQuery: String? = "",
+        val initialExtensionFilter: String? = null,
         val sourceManager: SourceManager = Injekt.get(),
         val db: DatabaseHelper = Injekt.get(),
         val preferencesHelper: PreferencesHelper = Injekt.get()
@@ -40,7 +43,7 @@ open class CatalogueSearchPresenter(
     /**
      * Enabled sources.
      */
-    val sources by lazy { getEnabledSources() }
+    val sources by lazy { getSourcesToQuery() }
 
     /**
      * Query from the view.
@@ -63,8 +66,15 @@ open class CatalogueSearchPresenter(
      */
     private var fetchImageSubscription: Subscription? = null
 
+    private val extensionManager by injectLazy<ExtensionManager>()
+
+    private var extensionFilter: String? = null
+
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
+
+        extensionFilter = savedState?.getString(CatalogueSearchPresenter::extensionFilter.name) ?:
+                          initialExtensionFilter
 
         // Perform a search with previous or initial state
         search(savedState?.getString(BrowseCataloguePresenter::query.name) ?: initialQuery.orEmpty())
@@ -78,6 +88,7 @@ open class CatalogueSearchPresenter(
 
     override fun onSave(state: Bundle) {
         state.putString(BrowseCataloguePresenter::query.name, query)
+        state.putString(CatalogueSearchPresenter::extensionFilter.name, extensionFilter)
         super.onSave(state)
     }
 
@@ -95,6 +106,26 @@ open class CatalogueSearchPresenter(
                 .filterNot { it is LoginSource && !it.isLogged() }
                 .filterNot { it.id.toString() in hiddenCatalogues }
                 .sortedBy { "(${it.lang}) ${it.name}" }
+    }
+
+    private fun getSourcesToQuery(): List<CatalogueSource> {
+        val filter = extensionFilter
+        val enabledSources = getEnabledSources()
+        if (filter.isNullOrEmpty()) {
+            return enabledSources
+        }
+
+        val filterSources = extensionManager.installedExtensions
+            .filter { it.pkgName == filter }
+            .flatMap { it.sources }
+            .filter { it in enabledSources }
+            .filterIsInstance<CatalogueSource>()
+
+        if (filterSources.isEmpty()) {
+            return enabledSources
+        }
+
+        return filterSources
     }
 
     /**

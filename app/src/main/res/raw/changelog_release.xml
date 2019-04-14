@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="true">
+    <changelogversion versionName="v0.8.4" changeDate="">
+        <changelogtext>All the internal sources have been removed. They now need to be
+            installed as an extension.</changelogtext>
+        <changelogtext>Cloudflare is now resolved with a WebView in background which should put
+            an end to the recent updates to adapt to their changes.</changelogtext>
+        <changelogtext>Added an option to open manga details in a WebView. This
+            should also help when receiving a captcha confirmation page (usually 403 errors).
+            It can also be used to login with the website, as the app now shares cookies.</changelogtext>
+        <changelogtext>Added a deep link handler that extensions can use to perform
+            a search within the app.</changelogtext>
+        <changelogtext>Added an option to decode images in ARGB8888 format for
+            devices running Oreo or later.</changelogtext>
+        <changelogtext>Added Shikimori tracker.</changelogtext>
+        <changelogtext>Updated translations.</changelogtext>
+    </changelogversion>
+
+    <changelogversion versionName="v0.8.2" changeDate="">
+        <changelogtext>Updated Cloudflare.</changelogtext>
+        <changelogtext>Fixed crashes with some translations.</changelogtext>
+    </changelogversion>
+
+    <changelogversion versionName="v0.8.1" changeDate="">
+        <changelogtext>Fixed latest Cloudflare changes.</changelogtext>
+        <changelogtext>Bundled SQLite for better performance and new features.</changelogtext>
+        <changelogtext>Restored dark blue theme.</changelogtext>
+        <changelogtext>Added a MAL API workaround.</changelogtext>
+        <changelogtext>Fixed search issues on Kitsu and AniList.</changelogtext>
+        <changelogtext>Fixed an issue where the image was centered when using the vertical reader.</changelogtext>
+        <changelogtext>Updated translations.</changelogtext>
+    </changelogversion>
+
     <changelogversion versionName="v0.8.0" changeDate="">
         <changelogtext>Added a new reader with many fixes.</changelogtext>
         <changelogtext>Added GIF support.</changelogtext>
@@ -51,108 +82,6 @@
         <changelogtext>Batoto is now a legacy source, you can only use it to migrate.</changelogtext>
         <changelogtext>Updated dark theme and reader theme.</changelogtext>
         <changelogtext>Bugfixes and minor UI/UX improvements.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.6.8" changeDate="">
-        <changelogtext>Added a new feature to help migrating manga from sources. You can find it in the library's toolbar.
-            In the search results, a tap will prompt to replace (or copy) the selected manga, while a long tap will let you
-            browse the manga before doing the migration.
-        </changelogtext>
-
-    </changelogversion>
-
-    <changelogversion versionName="v0.6.7" changeDate="">
-        <changelogtext>[b]Notice to Batoto users.[/b] As you may already know, Batoto will cease to work in a few days.
-            We're working on a feature to help migrating the library to other sources and should be available shortly.
-            Please be patient.</changelogtext>
-        <changelogtext>Fixed http 503 errors due to Cloudflare changes.</changelogtext>
-        <changelogtext>Minor UI improvements.</changelogtext>
-
-    </changelogversion>
-
-    <changelogversion versionName="v0.6.6" changeDate="">
-        <changelogtext>Backups now properly restore tracking information.</changelogtext>
-        <changelogtext>Fixed library view and its overflow menu visible in other screens.</changelogtext>
-        <changelogtext>Fixed updater's notification in Android O.</changelogtext>
-        <changelogtext>Fixed a crash when rotating the screen in the chapters view.</changelogtext>
-        <changelogtext>Improved peformance of the app when using a custom downloads directory.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.6.5" changeDate="">
-        <changelogtext>Added a download cache for faster navigation.</changelogtext>
-        <changelogtext>Enabled Cloudflare for Batoto.</changelogtext>
-        <changelogtext>Fixed some issues with automatic backups.</changelogtext>
-        <changelogtext>Fixed a bootloop issue with devices running Cyanogenmod 12 or 13.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.6.4" changeDate="">
-        <changelogtext>Added a global search feature with a new catalogue screen.</changelogtext>
-        <changelogtext>Added an option to show downloaded chapters badges in the library.</changelogtext>
-        <changelogtext>Added an scrollbar in the chapter list.</changelogtext>
-        <changelogtext>Fixed some issues with bundled catalogues.</changelogtext>
-        <changelogtext>Changed the page indicator in the reader to support devices with rounded corners.</changelogtext>
-        <changelogtext>Crash fixes.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.6.3" changeDate="">
-        <changelogtext>Fixed a crash when retrying a page.</changelogtext>
-        <changelogtext>Fixed a crash when sharing an image.</changelogtext>
-        <changelogtext>Fixed disappearing toolbar buttons in the catalog after a search.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.6.2" changeDate="">
-        <changelogtext>Added a new completed manga filter for the library.</changelogtext>
-        <changelogtext>Added scanlator to chapters (if supported by source).</changelogtext>
-        <changelogtext>Added Discord server link.</changelogtext>
-        <changelogtext>Added new translations.</changelogtext>
-        <changelogtext>Extensions shouldn't crash the app anymore.</changelogtext>
-        <changelogtext>Crop borders is supported in webtoon reader and fixed in Android O.</changelogtext>
-        <changelogtext>Fixed a bug where storage permissions were always requested.</changelogtext>
-        <changelogtext>Minor UI and crash fixes.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.6.1" changeDate="">
-        <changelogtext>Bugfix release.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.6.0" changeDate="">
-        <changelogtext>Added sorting by total chapters.</changelogtext>
-        <changelogtext>Added an option to reverse volume keys navigation.</changelogtext>
-        <changelogtext>Added AMOLED theme.</changelogtext>
-        <changelogtext>Improved recent chapters view.</changelogtext>
-        <changelogtext>Improved UI with a single activity approach.</changelogtext>
-        <changelogtext>Fixed backup restore issues.</changelogtext>
-        <changelogtext>Fixed Kitsu http 400 errors.</changelogtext>
-        <changelogtext>Fixed Batoto catalogue.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.5.2" changeDate="">
-        <changelogtext>New backup system. Smaller file size but requires a network connection to restore.</changelogtext>
-        <changelogtext>Fixed descriptions showing a single line.</changelogtext>
-        <changelogtext>Added Nougat shortcuts and round icon.</changelogtext>
-        <changelogtext>Added an option to add a manga to a specific category.</changelogtext>
-        <changelogtext>Improved new chapters notification.</changelogtext>
-        <changelogtext>Support Kitsu new rating system.</changelogtext>
-        <changelogtext>Last read page is now retained in webtoon reader.</changelogtext>
-
-    </changelogversion>
-
-    <changelogversion versionName="v0.5.1" changeDate="">
-        <changelogtext>Added an option to auto download from selected categories.</changelogtext>
-        <changelogtext>Handle a few more directories for local manga.</changelogtext>
-        <changelogtext>Update Kissmanga parser.</changelogtext>
-        <changelogtext>Fixed downloader errors with some manga titles.</changelogtext>
-        <changelogtext>Fixed gallery not showing saved images.</changelogtext>
-    </changelogversion>
-
-    <changelogversion versionName="v0.5.0" changeDate="">
-        <changelogtext>Support for local manga. Head to the [a href="https://github.com/inorichi/tachiyomi/wiki/Local-manga"]wiki page[/a] for instructions.</changelogtext>
-        <changelogtext>Added an option to detect and remove the white borders of the images.</changelogtext>
-        <changelogtext>Added advanced search for catalogues.</changelogtext>
-        <changelogtext>Russian, french, bulgarian and vietnamese translations.</changelogtext>
-        <changelogtext>Fixed a bug when changing chapters inside the reader with the buttons.</changelogtext>
-        <changelogtext>Fixed certain downloaded chapters not working with any decoder.</changelogtext>
-        <changelogtext>Fixed lost covers on some devices.</changelogtext>
     </changelogversion>
 
 </changelog>

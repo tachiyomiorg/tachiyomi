@@ -37,7 +37,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
     private val detector = Detector()
 
     var tapListener: ((MotionEvent) -> Unit)? = null
-    var longTapListener: ((MotionEvent) -> Unit)? = null
+    var longTapListener: ((MotionEvent) -> Boolean)? = null
 
     override fun onMeasure(widthSpec: Int, heightSpec: Int) {
         halfWidth = MeasureSpec.getSize(widthSpec) / 2
@@ -220,8 +220,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
 
         override fun onLongTapConfirmed(ev: MotionEvent) {
             val listener = longTapListener
-            if (listener != null) {
-                listener.invoke(ev)
+            if (listener != null && listener.invoke(ev)) {
                 performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
             }
         }

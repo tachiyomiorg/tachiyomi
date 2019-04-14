@@ -7,9 +7,9 @@ import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
+import okhttp3.HttpUrl
 import rx.Completable
 import rx.Observable
-import java.net.URI
 
 class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
 
@@ -113,23 +113,23 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
     override fun logout() {
         super.logout()
         preferences.trackToken(this).delete()
-        networkService.cookies.remove(URI(BASE_URL))
+        networkService.cookieManager.remove(HttpUrl.parse(BASE_URL)!!)
     }
 
     override val isLogged: Boolean
         get() = !getUsername().isEmpty() &&
                 !getPassword().isEmpty() &&
-                checkCookies(URI(BASE_URL)) &&
+                checkCookies() &&
                 !getCSRF().isEmpty()
 
     private fun getCSRF(): String = preferences.trackToken(this).getOrDefault()
 
     private fun saveCSRF(csrf: String) = preferences.trackToken(this).set(csrf)
 
-    private fun checkCookies(uri: URI): Boolean {
+    private fun checkCookies(): Boolean {
         var ckCount = 0
-
-        for (ck in networkService.cookies.get(uri)) {
+        val url = HttpUrl.parse(BASE_URL)!!
+        for (ck in networkService.cookieManager.get(url)) {
             if (ck.name() == USER_SESSION_COOKIE || ck.name() == LOGGED_IN_COOKIE)
                 ckCount++
         }

@@ -38,8 +38,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode 39
-        versionName "1.8.0"
+        versionCode 40
+        versionName "1.8.4"
 
         buildConfigField "String", "COMMIT_COUNT", "\"${getCommitCount()}\""
         buildConfigField "String", "COMMIT_SHA", "\"${getGitSha()}\""
@@ -156,7 +156,9 @@ dependencies {
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
 
     // Database
-    implementation 'eu.kanade.storio:storio:1.13.0'
+    implementation 'android.arch.persistence:db:1.1.1'
+    implementation 'com.github.inorichi.storio:storio-common:8be19de@aar'
+    implementation 'com.github.inorichi.storio:storio-sqlite:8be19de@aar'
     implementation 'io.requery:sqlite-android:3.25.2'
 
     // Model View Presenter

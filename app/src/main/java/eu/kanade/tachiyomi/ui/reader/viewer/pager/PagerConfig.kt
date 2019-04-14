@@ -19,6 +19,9 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
     var tappingEnabled = true
         private set
 
+    var longTapEnabled = true
+        private set
+
     var volumeKeysEnabled = false
         private set
 
@@ -43,6 +46,9 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
     init {
         preferences.readWithTapping()
             .register({ tappingEnabled = it })
+
+        preferences.readWithLongTap()
+            .register({ longTapEnabled = it })
 
         preferences.pageTransitions()
             .register({ usePageTransitions = it })

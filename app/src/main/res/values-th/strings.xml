@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><string name="name">ชื่อ</string>
+    <string name="categories">หมวดหมู่</string>
+    <string name="manga">มังงะ</string>
+    <string name="chapters">บท</string>
+    <string name="track">ดังต่อไปนี้</string>
+    <string name="history">ประวัติศาสตร์</string>
+    <string name="label_settings">ตั้งค่า</string>
+    <string name="label_download_queue">คิวดาวน์โหลด</string>
+    <string name="label_library">ห้องสมุดของฉัน</string>
+    <string name="label_latest_updates">ปรับปรุงล่าสุด</string>
+    <string name="label_selected">เลือก: %1$d</string>
+    <string name="label_backup">การสำรองข้อมูล</string>
+    <string name="label_extensions">ส่วนขยาย</string>
+    <string name="label_extension_info">ข้อมูลส่วนขยาย</string>
+    <string name="action_settings">ตั้งค่า</string>
+    <string name="action_filter">กรอง</string>
+</resources>

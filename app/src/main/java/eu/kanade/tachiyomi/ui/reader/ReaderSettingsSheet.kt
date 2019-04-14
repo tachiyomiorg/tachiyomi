@@ -62,6 +62,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         show_page_number.bindToPreference(preferences.showPageNumber())
         fullscreen.bindToPreference(preferences.fullscreen())
         keepscreen.bindToPreference(preferences.keepScreenOn())
+        long_tap.bindToPreference(preferences.readWithLongTap())
     }
 
     /**

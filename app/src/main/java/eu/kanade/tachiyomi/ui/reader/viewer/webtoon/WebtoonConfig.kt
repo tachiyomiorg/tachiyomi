@@ -19,6 +19,9 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) {
     var tappingEnabled = true
         private set
 
+    var longTapEnabled = true
+        private set
+
     var volumeKeysEnabled = false
         private set
 
@@ -34,6 +37,9 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) {
     init {
         preferences.readWithTapping()
             .register({ tappingEnabled = it })
+
+        preferences.readWithLongTap()
+            .register({ longTapEnabled = it })
 
         preferences.cropBordersWebtoon()
             .register({ imageCropBorders = it }, { imagePropertyChangedListener?.invoke() })

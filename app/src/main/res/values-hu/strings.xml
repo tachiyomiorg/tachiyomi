@@ -1,19 +1,17 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="name">Név</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name">Név</string>
     <string name="categories">Kategóriák</string>
     <string name="manga">Manga</string>
     <string name="chapters">Fejezetek</string>
     <string name="track">Nyilvántartás</string>
     <string name="history">Előzmények</string>
-
     <string name="label_settings">Beállítások</string>
     <string name="label_recent_manga">Legutóbb olvasott</string>
     <string name="label_catalogues">Katalógusok</string>
     <string name="label_latest_updates">Legutóbbi frissítések</string>
     <string name="label_categories">Kategóriák</string>
     <string name="label_backup">Biztonsági mentés</string>
-
-
     <string name="action_settings">Beállítások</string>
     <string name="action_search">Keresés</string>
     <string name="action_show_downloaded">Letöltve</string>
@@ -31,10 +29,8 @@
     <string name="action_undo">Visszavonás</string>
     <string name="action_export">Exportálás</string>
     <string name="action_login">Bejelentkezés</string>
-
     <string name="deleting">Törlés…</string>
     <string name="loading">Betöltés…</string>
-
     <string name="pref_category_general">Általános</string>
     <string name="pref_category_reader">Olvasó</string>
     <string name="pref_category_downloads">Letöltések</string>
@@ -42,8 +38,7 @@
     <string name="pref_category_tracking">Nyilvántartás</string>
     <string name="pref_category_advanced">Speciális</string>
     <string name="pref_category_about">Névjegy</string>
-
-      <string name="pref_library_columns">Könyvtár: mangák száma soronként</string>
+    <string name="pref_library_columns">Könyvtár: mangák száma soronként</string>
     <string name="portrait">Álló</string>
     <string name="landscape">Fekvő</string>
     <string name="default_columns">Alapértelmezett</string>
@@ -74,8 +69,7 @@
     <string name="system_default">Rendszer alapértelmezése</string>
     <string name="default_category">Alapértelmezett kategória</string>
     <string name="default_category_summary">Mindig kérdezze</string>
-
-      <string name="pref_fullscreen">Teljes képernyő</string>
+    <string name="pref_fullscreen">Teljes képernyő</string>
     <string name="pref_show_page_number">Oldalszám megjelenítése</string>
     <string name="pref_keep_screen_on">Képernyő bekapcsolva tartása</string>
     <string name="pref_reader_navigation">Lapozás</string>
@@ -94,9 +88,7 @@
     <string name="score">Értékelés</string>
     <string name="title">Cím</string>
     <string name="status">Állapot</string>
-
     <string name="options">Beállítások</string>
-
     <string name="chapter_progress">%1$d oldal</string>
     <string name="chapter_subtitle">%1$s. fejezet</string>
     <string name="no_next_chapter">Nem található a következő fejezet</string>
@@ -158,7 +150,6 @@
     <string name="action_open">Megnyitás</string>
     <string name="app_not_available">Az alkalmazás nem érhető el</string>
     <string name="short_recent_updates">Frissítések</string>
-
     <string name="pref_auto_update_manga_sync">Olvasás után a fejezetek szinkronizálása</string>
     <string name="pref_lock_orientation">Elforgatás zárolása</string>
     <string name="pref_page_transitions">Áttűnés lapozáskor</string>
@@ -176,4 +167,7 @@
     <string name="scale_type_fit_screen">Képernyőhöz igazítás</string>
     <string name="label_migration">Forrás váltása</string>
     <string name="label_extensions">Bővítmények</string>
-    </resources>
+    <string name="ext_untrusted">Nem megbízható</string>
+    <string name="ext_uninstall">Eltávolítás</string>
+    <string name="ext_preferences">Beállítások</string>
+</resources>

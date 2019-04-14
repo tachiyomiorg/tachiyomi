@@ -25,7 +25,7 @@ open class Pager(
     /**
      * Long tap listener function to execute when a long tap is detected.
      */
-    var longTapListener: ((MotionEvent) -> Unit)? = null
+    var longTapListener: ((MotionEvent) -> Boolean)? = null
 
     /**
      * Gesture listener that implements tap and long tap events.
@@ -38,8 +38,7 @@ open class Pager(
 
         override fun onLongTapConfirmed(ev: MotionEvent) {
             val listener = longTapListener
-            if (listener != null) {
-                listener.invoke(ev)
+            if (listener != null && listener.invoke(ev)) {
                 performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
             }
         }

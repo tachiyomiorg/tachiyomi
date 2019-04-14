@@ -43,6 +43,8 @@ class PreferencesHelper(val context: Context) {
 
     fun showPageNumber() = rxPrefs.getBoolean(Keys.showPageNumber, true)
 
+    fun trueColor() = rxPrefs.getBoolean(Keys.trueColor, false)
+
     fun fullscreen() = rxPrefs.getBoolean(Keys.fullscreen, true)
 
     fun keepScreenOn() = rxPrefs.getBoolean(Keys.keepScreenOn, true)
@@ -70,6 +72,8 @@ class PreferencesHelper(val context: Context) {
     fun cropBordersWebtoon() = rxPrefs.getBoolean(Keys.cropBordersWebtoon, false)
 
     fun readWithTapping() = rxPrefs.getBoolean(Keys.readWithTapping, true)
+
+    fun readWithLongTap() = rxPrefs.getBoolean(Keys.readWithLongTap, true)
 
     fun readWithVolumeKeys() = rxPrefs.getBoolean(Keys.readWithVolumeKeys, false)
 
@@ -164,6 +168,8 @@ class PreferencesHelper(val context: Context) {
     fun lang() = prefs.getString(Keys.lang, "")
 
     fun defaultCategory() = prefs.getInt(Keys.defaultCategory, -1)
+
+    fun skipRead() = prefs.getBoolean(Keys.skipRead, false)
 
     fun migrateFlags() = rxPrefs.getInteger("migrate_flags", Int.MAX_VALUE)
 

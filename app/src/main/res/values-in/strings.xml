@@ -339,8 +339,7 @@
     <string name="chapter_subtitle">Bab %1$s</string>
     <string name="no_next_chapter">Bab berikutnya tidak ditemukan</string>
     <string name="no_previous_chapter">Bab sebelumnya tidak ditemukan</string>
-    <string name="decode_image_error">Gambar tidak dapat dimuat.
-\nCoba ganti dekoder gambar atau dengan salah satu opsi di bawah ini</string>
+    <string name="decode_image_error">Gambar tidak bisa diterjemahkan</string>
     <string name="confirm_update_manga_sync">Perbaharui bab terakhir baca di layanan yang diaktifkan ke %1$d?</string>
     <string name="confirm_set_image_as_cover">Apakah anda ingin mengatur gambar ini sebagai sampul?</string>
     <string name="viewer_for_this_series">Penonton untuk seri yang ini</string>
@@ -467,5 +466,15 @@
     <string name="track_type">Tipe</string>
     <string name="track_author">Penulis</string>
     <string name="url_not_set">Url Manga belum siap, silahkan klik judul dan pilih manga lagi</string>
+
+    <string name="darkblue_theme">Biru gelap</string>
+    <string name="transition_finished">Selesai:</string>
+    <string name="transition_current">Saat ini:</string>
+    <string name="transition_next">Selanjutnya:</string>
+    <string name="transition_previous">Sebelumnya:</string>
+    <string name="transition_no_next">Tidak ada chapter lanjutannya</string>
+    <string name="transition_no_previous">Tidak ada chapter sebelumnya</string>
+    <string name="transition_pages_loading">Memuat halaman…</string>
+    <string name="transition_pages_error">Gagal memuat halaman: %1$s</string>
 
     </resources>

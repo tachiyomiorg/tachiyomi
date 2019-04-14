@@ -6,7 +6,7 @@
     <string name="label_settings">Impostazioni</string>
     <string name="label_download_queue">Coda dei download</string>
     <string name="label_library">La mia libreria</string>
-    <string name="label_recent_manga">Recenti</string>
+    <string name="label_recent_manga">Letti di recente</string>
     <string name="label_catalogues">Cataloghi</string>
     <string name="label_recent_updates">Aggiornamenti libreria</string>
     <string name="label_latest_updates">Ultimi aggiornamenti</string>
@@ -23,8 +23,8 @@
     <string name="action_filter_read">Letti</string>
     <string name="action_filter_empty">Elimina filtri</string>
     <string name="action_sort_alpha">Alfabeticamente</string>
-    <string name="action_sort_last_read">Ultimo letto</string>
-    <string name="action_sort_last_updated">Ultimo aggiornato</string>
+    <string name="action_sort_last_read">Ultimi letti</string>
+    <string name="action_sort_last_updated">Ultimi aggiornati</string>
     <string name="action_search">Ricerca</string>
     <string name="action_select_all">Seleziona tutto</string>
     <string name="action_mark_as_read">Segna come letto</string>
@@ -437,7 +437,7 @@
 
 
     <string name="action_global_search">Ricerca globale</string>
-    <string name="action_display_download_badge">Segnalatore capitoli scaricati</string>
+    <string name="action_display_download_badge">Indicatori capitoli scaricati</string>
     <string name="action_reset">Reimposta</string>
     <string name="action_open">Apri</string>
     <string name="action_login">Accesso</string>
@@ -477,7 +477,7 @@
     <string name="invalid_combination">Predefinito non può essere selezionato con altre categorie</string>
     <string name="action_global_search_hint">Ricerca globale…</string>
     <string name="no_results">Nessun risultato!</string>
-    <string name="latest">Ultimo</string>
+    <string name="latest">Ultimi</string>
     <string name="browse">Sfoglia</string>
 
     <string name="manga_info_full_title_label">Titolo</string>

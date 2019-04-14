@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:text="Pull up for more options"
+        android:text="@string/reader_pull_up_for_more_options"
         android:textColor="?android:attr/textColorHint"
         app:layout_constraintLeft_toRightOf="@id/general_prefs"
         app:layout_constraintTop_toTopOf="@id/general_prefs" />
@@ -106,13 +106,24 @@
         app:layout_constraintTop_toBottomOf="@id/background_color" />
 
     <android.support.v7.widget.SwitchCompat
+        android:id="@+id/true_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/pref_true_color"
+        android:textColor="?android:attr/textColorSecondary"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/show_page_number" />
+
+    <android.support.v7.widget.SwitchCompat
         android:id="@+id/fullscreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/pref_fullscreen"
         android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/show_page_number" />
+        app:layout_constraintTop_toBottomOf="@id/true_color" />
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/keepscreen"
@@ -123,11 +134,20 @@
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constraintTop_toBottomOf="@id/fullscreen" />
 
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/long_tap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/pref_read_with_long_tap"
+        android:textColor="?android:attr/textColorSecondary"
+        app:layout_constraintTop_toBottomOf="@id/keepscreen" />
+
     <android.support.v4.widget.Space
         android:id="@+id/end_general_preferences"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/keepscreen" />
+        app:layout_constraintBottom_toBottomOf="@id/long_tap" />
 
     <!-- Pager preferences -->
 

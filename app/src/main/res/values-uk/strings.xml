@@ -1,11 +1,11 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="name">Назва</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name">Назва</string>
     <string name="categories">Категорії</string>
     <string name="manga">Манга</string>
     <string name="chapters">Глави</string>
     <string name="track">Відстеження</string>
     <string name="history">Історія</string>
-
     <string name="label_settings">Налаштування</string>
     <string name="label_download_queue">Черга завантаження</string>
     <string name="label_library">Бібліотека</string>
@@ -19,8 +19,6 @@
     <string name="label_migration">Міграція джерела</string>
     <string name="label_extensions">Розширення</string>
     <string name="label_extension_info">Інформація про розширення</string>
-
-
     <string name="action_settings">Налаштування</string>
     <string name="action_filter">Фільтр</string>
     <string name="action_filter_downloaded">Завантажені</string>
@@ -87,13 +85,10 @@
     <string name="action_restore">Відновити</string>
     <string name="action_open">Відкрити</string>
     <string name="action_login">Логін</string>
-
     <string name="deleting">Видалення…</string>
     <string name="loading">Завантаження…</string>
-
     <string name="app_not_available">Програма не відповідає</string>
     <string name="short_recent_updates">Оновлення</string>
-
     <string name="pref_category_general">Головні</string>
     <string name="pref_category_reader">Читалка</string>
     <string name="pref_category_downloads">Завантаження</string>
@@ -101,8 +96,7 @@
     <string name="pref_category_tracking">Відстеження</string>
     <string name="pref_category_advanced">Додатково</string>
     <string name="pref_category_about">Інформація</string>
-
-      <string name="pref_library_columns">Кількість колонок в бібліотеці</string>
+    <string name="pref_library_columns">Кількість колонок в бібліотеці</string>
     <string name="portrait">Вертикальна</string>
     <string name="landscape">Горизонтальна</string>
     <string name="default_columns">За замовчанням</string>
@@ -135,7 +129,6 @@
     <string name="system_default">Системний</string>
     <string name="default_category">Категорія за замовчуванням</string>
     <string name="default_category_summary">Завжди запитувати</string>
-
     <string name="all_lang">Всі</string>
     <string name="ext_details">Деталі</string>
     <string name="ext_update">Оновлення</string>
@@ -158,8 +151,7 @@
     <string name="ext_version_info">Версія:%1$s</string>
     <string name="ext_language_info">Мова: %1$s</string>
     <string name="ext_empty_preferences">У цього розширення немає налаштувань для редагування</string>
-
-      <string name="pref_fullscreen">Повноекранний режим</string>
+    <string name="pref_fullscreen">Повноекранний режим</string>
     <string name="pref_lock_orientation">Блокувати орієнтацію</string>
     <string name="pref_page_transitions">Переходи сторінки</string>
     <string name="pref_double_tap_anim_speed">Швидкість анімації при подвійному натиснені</string>
@@ -207,9 +199,7 @@
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
-
-
-      <string name="pref_download_directory">Директорія завантаження</string>
+    <string name="pref_download_directory">Директорія завантаження</string>
     <string name="pref_download_only_over_wifi">Завантажувати лише через Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Видалити коли відмічено як прочитано</string>
     <string name="pref_remove_after_read">Видаляти після прочитання</string>
@@ -222,9 +212,7 @@
     <string name="fifth_to_last">П\'ята від прочитаної глави</string>
     <string name="pref_download_new">Завантажувати нові глави</string>
     <string name="pref_download_new_categories">Категорії для включення до завантажень</string>
-
-      <string name="services">Сервіси</string>
-
+    <string name="services">Сервіси</string>
     <string name="backup">Резервна копія</string>
     <string name="pref_create_backup">Створити резервну копію</string>
     <string name="pref_create_backup_summ">Можна використовувати для відновлення поточної бібліотеки</string>
@@ -250,8 +238,7 @@
     <string name="backup_choice">Що ви хочете зберегти до резервної копії\?</string>
     <string name="restoring_backup">Відновлення резервної копії</string>
     <string name="creating_backup">Створення резервної копії</string>
-
-      <string name="pref_clear_chapter_cache">Очистити кеш глав</string>
+    <string name="pref_clear_chapter_cache">Очистити кеш глав</string>
     <string name="used_cache">Використано: %1$s</string>
     <string name="cache_deleted">Кеш очищено %1$d файлів було видалено</string>
     <string name="cache_delete_error">Виникла помилка при видаленні кешу</string>
@@ -266,15 +253,12 @@
     <string name="pref_refresh_library_metadata_summary">Оновити обкладинки, жанри, описи та інформацію про манги</string>
     <string name="pref_refresh_library_tracking">Оновити метадату що відстежується</string>
     <string name="pref_refresh_library_tracking_summary">Оновити стан, рахунок і останню главу з каталогів що відстежуються</string>
-
-      <string name="version">Версія</string>
+    <string name="version">Версія</string>
     <string name="build_time">Дата збирання</string>
     <string name="pref_enable_automatic_updates">Перевіряти оновлення</string>
     <string name="pref_enable_automatic_updates_summary">Автоматично перевіряти нові версії</string>
     <string name="pref_enable_acra">Надсилати звіти про падіння</string>
     <string name="pref_acra_summary">Допомагає виправляти будь-які баги. Особисті дані не передаються</string>
-
-
     <string name="login_title">Авторизація для %1$s</string>
     <string name="username">Ім`я користувача</string>
     <string name="password">Пароль</string>
@@ -283,13 +267,11 @@
     <string name="login_success">Вхід успішний</string>
     <string name="invalid_login">Помилка авторизації</string>
     <string name="unknown_error">Невідома помилка</string>
-
     <string name="library_search_hint">Назва чи автор…</string>
     <string name="updating_category">Оновлення категорії</string>
     <string name="local_source_badge">Локальна</string>
     <string name="confirm_delete_manga">Ви впевнені, що бажаєте видалити вибрані манги\?</string>
     <string name="also_delete_chapters">Також видалити завантажені глави</string>
-
     <string name="source_search_options">Пошукові фільтри</string>
     <string name="source_requires_login">Цей каталог потребує авторизації</string>
     <string name="select_source">Оберіть каталог</string>
@@ -303,9 +285,7 @@
     <string name="no_results">Результатів не знайдено!</string>
     <string name="latest">Остання</string>
     <string name="browse">Переглянути</string>
-
     <string name="manga_not_in_db">Ця манга було видалена з бази даних!</string>
-
     <string name="manga_detail_tab">Інформація</string>
     <string name="description">Опис</string>
     <string name="ongoing">Випускається</string>
@@ -334,7 +314,6 @@
     <string name="delete_downloads_for_manga">Видаляти завантажені глави\?</string>
     <string name="copied_to_clipboard">%1$s скопійовано до буфера</string>
     <string name="source_not_installed">Джерело не встановлено: %1$s</string>
-
     <string name="manga_chapters_tab">Глави</string>
     <string name="manga_chapter_no_title">Немає назви</string>
     <string name="display_mode_chapter">Глава %1$s</string>
@@ -360,7 +339,6 @@
     <string name="download_all">Завантажити все</string>
     <string name="download_unread">Завантажити непрочитані</string>
     <string name="confirm_delete_chapters">Ви впевнені, що бажаєте видалити вибрані глави\?</string>
-
     <string name="manga_tracking_tab">Відслідковувати</string>
     <string name="reading">В процесі читання</string>
     <string name="completed">Завершено</string>
@@ -376,19 +354,14 @@
     <string name="track_type">Тип</string>
     <string name="track_author">Автор</string>
     <string name="url_not_set">Посилання манги не встановлено, будь ласка натисніть на заголовок та виберіть мангу знову</string>
-
     <string name="error_category_exists">Категорія з таким іменем вже існує!</string>
     <string name="snack_categories_deleted">Категорію видалено</string>
-
     <string name="dialog_with_checkbox_remove_description">Ця дія видалить дату прочитання глави. Ви впевнені\?</string>
     <string name="dialog_with_checkbox_reset">Скинути усі глави для цієї манги</string>
-
     <string name="snack_add_to_library">Додати мангу до бібліотеки\?</string>
-
     <string name="picture_saved">Картинку збережено</string>
     <string name="saving_picture">Зберегти картинку</string>
     <string name="options">Опції</string>
-
     <string name="custom_filter">Користувацький фільтр</string>
     <string name="set_as_cover">Встановити як обкладинку</string>
     <string name="cover_updated">Обкладинку оновлено</string>
@@ -411,18 +384,14 @@
     <string name="transition_no_previous">Попередньої частини немає</string>
     <string name="transition_pages_loading">Завантаження сторінок…</string>
     <string name="transition_pages_error">Не вдалось завантажити сторінки %1$s</string>
-
     <string name="recent_manga_source">%1$s - Гл.%2$s</string>
-
     <string name="migration_info">Натисни аби вибрати джерело для міграції</string>
     <string name="migration_dialog_what_to_include">Виберіть включені дані</string>
     <string name="select">Вибрати</string>
     <string name="migrate">Мігрувати</string>
     <string name="copy">Копіювати</string>
     <string name="migrating">Мігрую…</string>
-
     <string name="download_queue_error">Сталась помилка при завантаженні глав. Спробуйте ще раз у розділі завантаження</string>
-
     <string name="notification_update_progress">Стан оновлення: %1$d/%2$d</string>
     <string name="notification_new_chapters">Знайдено нові глави</string>
     <string name="notification_new_chapters_text">Для %1$d тайтлів</string>
@@ -432,33 +401,27 @@
     <string name="notification_not_connected_to_ac_body">Не заряджається</string>
     <string name="notification_no_connection_title">Синхронізацію скасовано</string>
     <string name="notification_no_connection_body">З`єднання не доступне</string>
-
     <string name="file_select_cover">Вибрати обкладинку</string>
     <string name="file_select_backup">Виберіть файл резервної копії</string>
     <string name="file_select_icon">Вибрати ярлик</string>
-
     <string name="update_check_title">Доступні нові оновлення!</string>
     <string name="update_check_confirm">Завантажити</string>
     <string name="update_check_ignore">Ігнорувати</string>
     <string name="update_check_no_new_updates">Оновлень не виявлено</string>
     <string name="update_check_download_started">Завантаження розпочалось</string>
     <string name="update_check_look_for_updates">Шукаю оновлення</string>
-
     <string name="update_check_notification_file_download">Оновлення завантаження</string>
     <string name="update_check_notification_download_in_progress">Завантаження в процесі</string>
     <string name="update_check_notification_download_complete">Завантаження завершено</string>
     <string name="update_check_notification_download_error">Помилка завантаження</string>
     <string name="update_check_notification_update_available">Доступно оновлення</string>
-
     <string name="description_backdrop">Фонове зображення манги</string>
     <string name="description_cover">Обкладинка манги</string>
-
     <string name="information_no_downloads">Немає завантажень</string>
     <string name="information_no_recent">Немає нових глав</string>
     <string name="information_no_recent_manga">Немає нещодавно прочитаних глав</string>
     <string name="information_empty_library">Ваша бібліотека порожня, ви можете додати з каталогу.</string>
     <string name="information_empty_category">У вас немає категорій. Натисніть кнопку + для початку облаштування вашої бібліотеки.</string>
-
     <string name="download_notifier_downloader_title">Завантажувач</string>
     <string name="download_notifier_title_error">Помилка</string>
     <string name="download_notifier_unkown_error">Невідома помилка при завантаженні глави</string>
@@ -467,9 +430,9 @@
     <string name="download_notifier_text_only_wifi">Немає Wi-Fi підключення</string>
     <string name="download_notifier_no_network">"Немає мережевого з`єднання "</string>
     <string name="download_notifier_download_paused">Завантаження призупинено</string>
-
     <string name="channel_common">Звичайний</string>
     <string name="channel_library">Бібліотека</string>
     <string name="channel_downloader">Завантажувач</string>
-
+    <string name="pref_read_with_long_tap">Діалог тривалого тицяння</string>
+    <string name="reader_pull_up_for_more_options">Потягніть задля додаткових опцій</string>
 </resources>
