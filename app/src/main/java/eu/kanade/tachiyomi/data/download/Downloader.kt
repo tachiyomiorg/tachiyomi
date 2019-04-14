@@ -14,7 +14,7 @@ import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.source.online.fetchAllImageUrlsFromPageList
 import eu.kanade.tachiyomi.util.*
-import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.async
 import okhttp3.Response
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers

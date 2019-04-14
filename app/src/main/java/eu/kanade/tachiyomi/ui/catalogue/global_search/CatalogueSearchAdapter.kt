@@ -19,7 +19,7 @@ class CatalogueSearchAdapter(val controller: CatalogueSearchController) :
      */
     private var bundle = Bundle()
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads: List<Any?>?) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads: MutableList<Any?>) {
         super.onBindViewHolder(holder, position, payloads)
         restoreHolderState(holder)
     }

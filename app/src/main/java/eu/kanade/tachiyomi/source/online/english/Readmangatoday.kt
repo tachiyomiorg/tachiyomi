@@ -130,25 +130,20 @@ class Readmangatoday : ParsedHttpSource() {
         return chapter
     }
 
-    private fun parseChapterDate(date: String): Long {
-        val dateWords: List<String> = date.split(" ")
+    private fun parseChapterDate(dateString: String): Long {
+        val dateWords: List<String> = dateString.split(" ")
 
         if (dateWords.size == 3) {
             val timeAgo = Integer.parseInt(dateWords[0])
             val date: Calendar = Calendar.getInstance()
 
-            if (dateWords[1].contains("Minute")) {
-                date.add(Calendar.MINUTE, -timeAgo)
-            } else if (dateWords[1].contains("Hour")) {
-                date.add(Calendar.HOUR_OF_DAY, -timeAgo)
-            } else if (dateWords[1].contains("Day")) {
-                date.add(Calendar.DAY_OF_YEAR, -timeAgo)
-            } else if (dateWords[1].contains("Week")) {
-                date.add(Calendar.WEEK_OF_YEAR, -timeAgo)
-            } else if (dateWords[1].contains("Month")) {
-                date.add(Calendar.MONTH, -timeAgo)
-            } else if (dateWords[1].contains("Year")) {
-                date.add(Calendar.YEAR, -timeAgo)
+            when {
+                dateWords[1].contains("Minute") -> date.add(Calendar.MINUTE, -timeAgo)
+                dateWords[1].contains("Hour") -> date.add(Calendar.HOUR_OF_DAY, -timeAgo)
+                dateWords[1].contains("Day") -> date.add(Calendar.DAY_OF_YEAR, -timeAgo)
+                dateWords[1].contains("Week") -> date.add(Calendar.WEEK_OF_YEAR, -timeAgo)
+                dateWords[1].contains("Month") -> date.add(Calendar.MONTH, -timeAgo)
+                dateWords[1].contains("Year") -> date.add(Calendar.YEAR, -timeAgo)
             }
 
             return date.timeInMillis

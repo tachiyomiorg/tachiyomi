@@ -111,10 +111,10 @@ object ChapterRecognition {
      */
     fun checkForDecimal(decimal: String?, alpha: String?): Float {
         if (!decimal.isNullOrEmpty())
-            return decimal?.toFloat()!!
+            return decimal.toFloat()
 
         if (!alpha.isNullOrEmpty()) {
-            if (alpha!!.contains("extra"))
+            if (alpha.contains("extra"))
                 return .99f
 
             if (alpha.contains("omake"))
@@ -123,11 +123,11 @@ object ChapterRecognition {
             if (alpha.contains("special"))
                 return .97f
 
-            if (alpha[0] == '.') {
+            return if (alpha[0] == '.') {
                 // Take value after (.)
-                return parseAlphaPostFix(alpha[1])
+                parseAlphaPostFix(alpha[1])
             } else {
-                return parseAlphaPostFix(alpha[0])
+                parseAlphaPostFix(alpha[0])
             }
         }
 

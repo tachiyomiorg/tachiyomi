@@ -29,14 +29,14 @@ ext {
 }
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     buildToolsVersion '28.0.3'
     publishNonDefault true
 
     defaultConfig {
         applicationId "eu.kanade.tachiyomi.axiaz"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         versionCode 39
         versionName "1.8.0"
@@ -48,6 +48,8 @@ android {
 
         vectorDrawables.useSupportLibrary = true
 
+        multiDexEnabled true
+
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86"
         }
@@ -57,13 +59,6 @@ android {
         debug {
             versionNameSuffix "-${getCommitCount()}"
             applicationIdSuffix ".debug"
-            multiDexEnabled true
-        }
-        release {
-            minifyEnabled true
-            shrinkResources true
-            multiDexEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -78,7 +73,6 @@ android {
             dimension "default"
         }
         dev {
-            minSdkVersion 21
             resConfigs "en", "xxhdpi"
             dimension "default"
         }
@@ -90,6 +84,7 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE'
+        exclude 'META-INF/atomicfu.kotlin_module'
     }
 
     lintOptions {
@@ -106,7 +101,7 @@ dependencies {
     implementation 'com.github.inorichi:junrar-android:634c1f5'
 
     // Android support library
-    final support_library_version = '27.0.2'
+    final support_library_version = '28.0.0'
     implementation "com.android.support:support-v4:$support_library_version"
     implementation "com.android.support:appcompat-v7:$support_library_version"
     implementation "com.android.support:cardview-v7:$support_library_version"
@@ -120,7 +115,7 @@ dependencies {
 
     implementation 'com.android.support:multidex:1.0.3'
 
-    standardImplementation 'com.google.firebase:firebase-core:16.0.6'
+    standardImplementation 'com.google.firebase:firebase-core:16.0.8'
 
     // ReactiveX
     implementation 'io.reactivex:rxandroid:1.2.1'
@@ -130,7 +125,7 @@ dependencies {
     implementation 'com.github.pwittchen:reactivenetwork:0.7.0'
 
     // Network client
-    implementation "com.squareup.okhttp3:okhttp:3.10.0"
+    implementation "com.squareup.okhttp3:okhttp:3.11.0"
     implementation 'com.squareup.okio:okio:1.14.0'
 
     // REST
@@ -155,7 +150,7 @@ dependencies {
 
     // Job scheduling
     implementation 'com.evernote:android-job:1.2.5'
-    implementation 'com.google.android.gms:play-services-gcm:16.0.0'
+    implementation 'com.google.android.gms:play-services-gcm:16.1.0'
 
     // Changelog
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
@@ -231,13 +226,13 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    final coroutines_version = '0.22.2'
+    final coroutines_version = '1.2.0'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 }
 
 buildscript {
-    ext.kotlin_version = '1.2.71'
+    ext.kotlin_version = '1.3.30'
     repositories {
         mavenCentral()
     }
@@ -248,12 +243,6 @@ buildscript {
 
 repositories {
     mavenCentral()
-}
-
-kotlin {
-    experimental {
-        coroutines 'enable'
-    }
 }
 
 androidExtensions {

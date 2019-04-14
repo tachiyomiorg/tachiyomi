@@ -199,7 +199,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
         catalogue_view.addView(recycler, 1)
 
         if (oldPosition != RecyclerView.NO_POSITION) {
-            recycler.layoutManager.scrollToPosition(oldPosition)
+            recycler.layoutManager?.scrollToPosition(oldPosition)
         }
         this.recycler = recycler
     }
@@ -466,7 +466,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
                             0 -> {
                                 presenter.changeMangaFavorite(manga)
                                 adapter?.notifyItemChanged(position)
-                                activity?.toast(activity?.getString(R.string.manga_removed_library))
+                                activity.toast(activity.getString(R.string.manga_removed_library))
                             }
                         }
                     }.show()
@@ -489,7 +489,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
                 ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
                         .showDialog(router)
             }
-            activity?.toast(activity?.getString(R.string.manga_added_library))
+            activity.toast(activity.getString(R.string.manga_added_library))
         }
 
     }

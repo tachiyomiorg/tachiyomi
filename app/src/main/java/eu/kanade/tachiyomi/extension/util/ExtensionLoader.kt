@@ -13,8 +13,8 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceFactory
 import eu.kanade.tachiyomi.util.Hash
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -30,7 +30,7 @@ internal object ExtensionLoader {
     private const val LIB_VERSION_MIN = 1
     private const val LIB_VERSION_MAX = 1
 
-    private const val PACKAGE_FLAGS = PackageManager.GET_CONFIGURATIONS or PackageManager.GET_SIGNATURES
+    private const val PACKAGE_FLAGS = PackageManager.GET_CONFIGURATIONS or PackageManager.GET_SIGNING_CERTIFICATES
 
     /**
      * List of the trusted signatures.
@@ -98,7 +98,7 @@ internal object ExtensionLoader {
         val extName = pkgManager.getApplicationLabel(appInfo)?.toString()
             .orEmpty().substringAfter("Tachiyomi: ")
         val versionName = pkgInfo.versionName
-        val versionCode = pkgInfo.versionCode
+        val versionCode = pkgInfo.longVersionCode.toInt()
 
         // Validate lib version
         val majorLibVersion = versionName.substringBefore('.').toInt()
@@ -172,8 +172,8 @@ internal object ExtensionLoader {
      * @param pkgInfo The package info of the application.
      */
     private fun getSignatureHash(pkgInfo: PackageInfo): String? {
-        val signatures = pkgInfo.signatures
-        return if (signatures != null && !signatures.isEmpty()) {
+        val signatures = pkgInfo.signingInfo.signingCertificateHistory
+        return if (signatures != null && signatures.isNotEmpty()) {
             Hash.sha256(signatures.first().toByteArray())
         } else {
             null

@@ -13,7 +13,7 @@ import eu.kanade.tachiyomi.extension.util.ExtensionInstaller
 import eu.kanade.tachiyomi.extension.util.ExtensionLoader
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.util.launchNow
-import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.async
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers

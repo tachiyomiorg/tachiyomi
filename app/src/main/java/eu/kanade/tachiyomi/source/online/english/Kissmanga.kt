@@ -61,7 +61,7 @@ class Kissmanga : ParsedHttpSource() {
                     str = str.substringBefore("\">[email")
                     val sb = StringBuilder()
                     //convert number to char
-                    val r = Integer.valueOf(str.substring(0, 2), 16)!!
+                    val r = Integer.valueOf(str.substring(0, 2), 16)
                     var i = 2
                     while (i < str.length) {
                         val c = (Integer.valueOf(str.substring(i, i + 2), 16) xor r).toChar()

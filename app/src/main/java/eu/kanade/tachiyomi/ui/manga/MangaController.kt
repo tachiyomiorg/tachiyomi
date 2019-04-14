@@ -135,12 +135,13 @@ class MangaController : RxController, TabbedController {
     }
 
     private fun setTrackingIconInternal(visible: Boolean) {
-        val tab = activity?.tabs?.getTabAt(TRACK_CONTROLLER) ?: return
+        activity?.tabs?.getTabAt(TRACK_CONTROLLER) ?: return
         val drawable = if (visible)
             VectorDrawableCompat.create(resources!!, R.drawable.ic_done_white_18dp, null)
         else null
 
-        val view = tabField.get(tab) as LinearLayout
+        val tabStrip = activity?.tabs?.getChildAt(0) as LinearLayout
+        val view = tabStrip.getChildAt(TRACK_CONTROLLER) as LinearLayout
         val textView = view.getChildAt(1) as TextView
         textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
         textView.compoundDrawablePadding = if (visible) 4 else 0
@@ -186,9 +187,6 @@ class MangaController : RxController, TabbedController {
         const val INFO_CONTROLLER = 0
         const val CHAPTERS_CONTROLLER = 1
         const val TRACK_CONTROLLER = 2
-
-        private val tabField = TabLayout.Tab::class.java.getDeclaredField("mView")
-                .apply { isAccessible = true }
     }
 
 

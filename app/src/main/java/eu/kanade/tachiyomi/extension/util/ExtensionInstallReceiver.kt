@@ -7,7 +7,8 @@ import android.content.IntentFilter
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.LoadResult
 import eu.kanade.tachiyomi.util.launchNow
-import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * Broadcast receiver that listens for the system's packages installed, updated or removed, and only
@@ -45,8 +46,7 @@ internal class ExtensionInstallReceiver(private val listener: Listener) :
         when (intent.action) {
             Intent.ACTION_PACKAGE_ADDED -> {
                 if (!isReplacing(intent)) launchNow {
-                    val result = getExtensionFromIntent(context, intent)
-                    when (result) {
+                    when (val result = getExtensionFromIntent(context, intent)) {
                         is LoadResult.Success -> listener.onExtensionInstalled(result.extension)
                         is LoadResult.Untrusted -> listener.onExtensionUntrusted(result.extension)
                     }
@@ -54,8 +54,7 @@ internal class ExtensionInstallReceiver(private val listener: Listener) :
             }
             Intent.ACTION_PACKAGE_REPLACED -> {
                 launchNow {
-                    val result = getExtensionFromIntent(context, intent)
-                    when (result) {
+                    when (val result = getExtensionFromIntent(context, intent)) {
                         is LoadResult.Success -> listener.onExtensionUpdated(result.extension)
                         // Not needed as a package can't be upgraded if the signature is different
                         is LoadResult.Untrusted -> {}
@@ -91,7 +90,7 @@ internal class ExtensionInstallReceiver(private val listener: Listener) :
     private suspend fun getExtensionFromIntent(context: Context, intent: Intent?): LoadResult {
         val pkgName = getPackageNameFromIntent(intent) ?:
                 return LoadResult.Error("Package name not found")
-        return async { ExtensionLoader.loadExtensionFromPkgName(context, pkgName) }.await()
+        return withContext(Dispatchers.Default) { ExtensionLoader.loadExtensionFromPkgName(context, pkgName) }
     }
 
     /**

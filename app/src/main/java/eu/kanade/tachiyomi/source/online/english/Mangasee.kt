@@ -84,12 +84,12 @@ class Mangasee : ParsedHttpSource() {
     }
 
     private fun convertQueryToPost(page: Int, url: String): Pair<FormBody.Builder, String> {
-        val url = HttpUrl.parse(url)!!
+        val httpUrl = HttpUrl.parse(url)!!
         val body = FormBody.Builder().add("page", page.toString())
-        for (i in 0..url.querySize() - 1) {
-            body.add(url.queryParameterName(i), url.queryParameterValue(i))
+        for (i in 0 until httpUrl.querySize()) {
+            body.add(httpUrl.queryParameterName(i), httpUrl.queryParameterValue(i))
         }
-        val requestUrl = url.scheme() + "://" + url.host() + url.encodedPath()
+        val requestUrl = httpUrl.scheme() + "://" + httpUrl.host() + httpUrl.encodedPath()
         return Pair(body, requestUrl)
     }
 
