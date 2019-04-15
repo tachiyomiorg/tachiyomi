@@ -326,7 +326,7 @@
     <string name="show_title">显示标题</string>
     <string name="show_chapter_number">显示章节数</string>
     <string name="sorting_mode">排序模式</string>
-    <string name="sort_by_source">按图源</string>
+    <string name="sort_by_source">按类型</string>
     <string name="sort_by_number">按章节数</string>
     <string name="manga_download">下载</string>
     <string name="custom_download">自定义下载数量</string>
