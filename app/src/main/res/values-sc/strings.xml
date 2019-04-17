@@ -435,4 +435,7 @@
     <string name="channel_common">Comunu</string>
     <string name="channel_library">Biblioteca</string>
     <string name="channel_downloader">Iscarrigadore</string>
+    <string name="action_open_in_web_view">Aberi in sa vista</string>
+    <string name="pref_true_color">Colore a 32 bit</string>
+    <string name="pref_skip_read_chapters">Brinca sos capìtulos marcados comente lèghidos</string>
 </resources>

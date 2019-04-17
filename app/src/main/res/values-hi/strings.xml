@@ -433,4 +433,7 @@
     <string name="darkblue_theme">गहरा नीला</string>
     <string name="reader_pull_up_for_more_options">अधिक विकल्पों के लिए खींचो</string>
     <string name="pref_read_with_long_tap">संवाद के लिए लंबी प्रेस</string>
+    <string name="action_open_in_web_view">वेब दृश्य में खोलें</string>
+    <string name="pref_true_color">32 बिट रंग</string>
+    <string name="pref_skip_read_chapters">पढ़े हुए अध्यायों को छोड़ें</string>
 </resources>

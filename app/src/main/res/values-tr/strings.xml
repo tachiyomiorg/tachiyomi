@@ -435,4 +435,7 @@
     <string name="darkblue_theme">Koyu mavi</string>
     <string name="pref_read_with_long_tap">Uzun dokunma iletişim kutusu</string>
     <string name="reader_pull_up_for_more_options">Daha çok seçenek için yukarı çekin</string>
+    <string name="action_open_in_web_view">Web görünümünde aç</string>
+    <string name="pref_true_color">32-bit renk</string>
+    <string name="pref_skip_read_chapters">Okunmuş olarak işaretli bölümleri atla</string>
 </resources>
