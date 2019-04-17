@@ -8,10 +8,10 @@
     <string name="history">Cronologia</string>
     <string name="label_settings">Impostatziones</string>
     <string name="label_download_queue">Fila de sos iscarrigamentos</string>
-    <string name="label_library">Sa biblioteca mea</string>
+    <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Lèghidos dae pagu</string>
     <string name="label_catalogues">Catàlogos</string>
-    <string name="label_recent_updates">Agiornamentos de sa biblioteca</string>
+    <string name="label_recent_updates">Agiornamentos biblioteca</string>
     <string name="label_latest_updates">Ùrtimos agiornamentos</string>
     <string name="label_categories">Categorias</string>
     <string name="label_selected">Ischertados: %1$d</string>
@@ -96,7 +96,7 @@
     <string name="pref_category_tracking">Arrastamentu</string>
     <string name="pref_category_advanced">Avantzadas</string>
     <string name="pref_category_about">Informatziones</string>
-    <string name="pref_library_columns">Manga de sa libreria pro riga</string>
+    <string name="pref_library_columns">Manga de sa biblioteca pro riga</string>
     <string name="portrait">Orientamentu verticale</string>
     <string name="landscape">Orientamentu orizontale</string>
     <string name="default_columns">Predefinidu</string>
@@ -216,7 +216,7 @@
     <string name="services">Servìtzios</string>
     <string name="backup">Còpia de seguresa</string>
     <string name="pref_create_backup">Crea una còpia de seguresa</string>
-    <string name="pref_create_backup_summ">Podet èssere impreada pro ripristinare sa libreria atuale</string>
+    <string name="pref_create_backup_summ">Podet èssere impreada pro ripristinare sa biblioteca atuale</string>
     <string name="pref_restore_backup">Riprìstina una còpia de seguresa</string>
     <string name="pref_restore_backup_summ">Riprìstina sa biblioteca dae una còpia de seguresa</string>
     <string name="pref_backup_directory">Cartella de sa còpia de seguresa</string>
@@ -398,7 +398,7 @@
     <string name="notification_new_chapters">Capìtulos noos agatados</string>
     <string name="notification_new_chapters_text">Pro %1$d tìtulos</string>
     <string name="notification_cover_update_failed">Agiornamentu de sa cobertedda fallidu</string>
-    <string name="notification_first_add_to_library">Pro praghere annanghe su manga a sa libreria tua in antis de fàghere custu</string>
+    <string name="notification_first_add_to_library">Pro praghere annanghe su manga a sa biblioteca tua in antis de fàghere custu</string>
     <string name="notification_not_connected_to_ac_title">Sincronizatzione annullada</string>
     <string name="notification_not_connected_to_ac_body">Non connessu a s\'alimentatzione</string>
     <string name="notification_no_connection_title">Sincronizatzione annullada</string>
