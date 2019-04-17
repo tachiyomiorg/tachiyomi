@@ -18,6 +18,7 @@
     <string name="pref_category_tracking">Seuranta</string>
     <string name="manga_tracking_tab">Seuranta</string>
     <string name="chapters">Luvut</string>
-    <string name="label_recent_updates">Kirjaston päivitykset</string>
+    <string name="label_recent_updates">Kirjasto päivitykset</string>
     <string name="label_catalogues">Katalokit</string>
+    <string name="label_selected">Valittu: %1$d</string>
 </resources>
