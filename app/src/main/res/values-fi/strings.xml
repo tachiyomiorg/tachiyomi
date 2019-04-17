@@ -1,2 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="name">Nimi</string>
+    <string name="categories">Kategoriat</string>
+    <string name="manga">Manga</string>
+    <string name="track">Seuranta</string>
+    <string name="history">Historia</string>
+    <string name="label_settings">Asetukset</string>
+    <string name="label_download_queue">Latausjono</string>
+    <string name="label_library">Kirjasto</string>
+    <string name="label_recent_manga">Viimeksi luetut</string>
+    <string name="label_latest_updates">Viimeksi päivittyneet</string>
+    <string name="label_categories">Kategoriat</string>
+    <string name="action_settings">Asetukset</string>
+    <string name="action_sort_last_read">Viimeksi luettu</string>
+    <string name="action_mark_as_read">Merkitse luetuksi</string>
+    <string name="action_download">Lataa</string>
+    <string name="pref_category_tracking">Seuranta</string>
+    <string name="manga_tracking_tab">Seuranta</string>
+</resources>
