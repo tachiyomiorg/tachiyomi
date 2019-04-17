@@ -19,4 +19,5 @@
     <string name="manga_tracking_tab">Seuranta</string>
     <string name="chapters">Luvut</string>
     <string name="label_recent_updates">Kirjaston päivitykset</string>
+    <string name="label_catalogues">Katalokit</string>
 </resources>
