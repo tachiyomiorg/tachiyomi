@@ -105,4 +105,27 @@
     <string name="channel_common">Tavallinen</string>
     <string name="channel_library">Kirjasto</string>
     <string name="channel_downloader">Lataaja</string>
+    <string name="label_backup">Varmuuskopio</string>
+    <string name="label_migration">Lähteen vaihtaminen</string>
+    <string name="label_extensions">Laajennukset</string>
+    <string name="label_extension_info">Laajennuksen tiedot</string>
+    <string name="action_filter">Suodatus</string>
+    <string name="action_filter_downloaded">Ladattu</string>
+    <string name="action_filter_bookmarked">Kirjanmerkki</string>
+    <string name="action_filter_unread">Lukemattomat</string>
+    <string name="action_filter_read">Luettu</string>
+    <string name="action_filter_empty">Poista suodattimet</string>
+    <string name="action_sort_alpha">Aakkosjärjestyksessä</string>
+    <string name="action_search">Haku</string>
+    <string name="action_select_all">Valitse kaikki</string>
+    <string name="action_delete">Poista</string>
+    <string name="action_update">Päivitä</string>
+    <string name="action_update_library">Päivitä kirjasto</string>
+    <string name="action_edit">Muokkaa</string>
+    <string name="action_add">Lisää</string>
+    <string name="action_add_category">Lisää kategoria</string>
+    <string name="action_edit_categories">Muokkaa kategorioita</string>
+    <string name="action_rename_category">Nimeä kategoria uudelleen</string>
+    <string name="action_show_downloaded">Latatut</string>
+    <string name="action_retry">Yritä uudelleen</string>
 </resources>
