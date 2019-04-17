@@ -435,4 +435,5 @@
     <string name="pref_true_color">Warna 32-bit</string>
     <string name="pref_skip_read_chapters">Lewati chapter yang sudah ditandai dibaca</string>
     <string name="reader_pull_up_for_more_options">Tarik ke atas untuk opsi lainnya</string>
+    <string name="pref_read_with_long_tap">Dialog ketuk dan tahan</string>
 </resources>
