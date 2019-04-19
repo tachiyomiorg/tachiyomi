@@ -62,8 +62,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.setting.ShikomoriLoginActivity"
-            android:label="Shikomori">
+            android:name=".ui.setting.ShikimoriLoginActivity"
+            android:label="Shikimori">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

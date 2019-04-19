@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.data.track.shikomori
+package eu.kanade.tachiyomi.data.track.shikimori
 
 data class OAuth(
         val access_token: String,

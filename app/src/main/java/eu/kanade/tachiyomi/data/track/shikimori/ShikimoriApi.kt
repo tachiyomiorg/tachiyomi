@@ -1,6 +1,7 @@
-package eu.kanade.tachiyomi.data.track.shikomori
+package eu.kanade.tachiyomi.data.track.shikimori
 
 import android.net.Uri
+import android.util.Log
 import com.github.salomonbrys.kotson.array
 import com.github.salomonbrys.kotson.jsonObject
 import com.github.salomonbrys.kotson.nullString
@@ -18,7 +19,7 @@ import okhttp3.*
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
 
-class ShikomoriApi(private val client: OkHttpClient, interceptor: ShikomoriInterceptor) {
+class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInterceptor) {
 
     private val gson: Gson by injectLazy()
     private val parser = JsonParser()
@@ -33,7 +34,7 @@ class ShikomoriApi(private val client: OkHttpClient, interceptor: ShikomoriInter
                         "target_type" to "Manga",
                         "chapters" to track.last_chapter_read,
                         "score" to track.score.toInt(),
-                        "status" to track.toShikomoriStatus()
+                        "status" to track.toShikimoriStatus()
                 )
         )
         val body = RequestBody.create(jsonime, payload.toString())
@@ -41,6 +42,7 @@ class ShikomoriApi(private val client: OkHttpClient, interceptor: ShikomoriInter
                 .url("$apiUrl/v2/user_rates")
                 .post(body)
                 .build()
+        Log.i("SHI", "add $body")
         return authClient.newCall(request)
                 .asObservableSuccess()
                 .map {
@@ -74,7 +76,8 @@ class ShikomoriApi(private val client: OkHttpClient, interceptor: ShikomoriInter
     }
 
     private fun jsonToSearch(obj: JsonObject): TrackSearch {
-        return TrackSearch.create(TrackManager.SHIKOMORI).apply {
+        Log.i("SHI", "jsonToSearch $obj")
+        return TrackSearch.create(TrackManager.SHIKIMORI).apply {
             media_id = obj["id"].asInt
             title = obj["name"].asString
             total_chapters = obj["chapters"].asInt
@@ -87,14 +90,16 @@ class ShikomoriApi(private val client: OkHttpClient, interceptor: ShikomoriInter
         }
     }
 
-    private fun jsonToTrack(obj: JsonObject): Track {
-        return Track.create(TrackManager.SHIKOMORI).apply {
+    private fun jsonToTrack(obj: JsonObject, mangas: JsonObject): Track {
+        Log.i("SHI", "jsonToTrack $obj, $mangas")
+        return Track.create(TrackManager.SHIKIMORI).apply {
+            title = mangas["name"].asString
             media_id = obj["id"].asInt
-            title = ""
+            total_chapters = mangas["chapters"].asInt
             last_chapter_read = obj["chapters"].asInt
-            total_chapters = obj["chapters"].asInt
             score = (obj["score"].asInt).toFloat()
             status = toTrackStatus(obj["status"].asString)
+            tracking_url = baseUrl + mangas["url"].asString
         }
     }
 
@@ -108,22 +113,43 @@ class ShikomoriApi(private val client: OkHttpClient, interceptor: ShikomoriInter
                 .url(url.toString())
                 .get()
                 .build()
-        return authClient.newCall(request)
+
+        val urlMangas = Uri.parse("$apiUrl/mangas").buildUpon()
+                .appendPath(track.media_id.toString())
+                .build()
+        val requestMangas = Request.Builder()
+                .url(urlMangas.toString())
+                .get()
+                .build()
+        Log.i("SHI", "find some info $urlMangas, $requestMangas")
+        return authClient.newCall(requestMangas)
                 .asObservableSuccess()
                 .map { netResponse ->
                     val responseBody = netResponse.body()?.string().orEmpty()
-                    if (responseBody.isEmpty()) {
-                        throw Exception("Null Response")
-                    }
-                    val response = parser.parse(responseBody).array
-                    if (response.size() > 1) {
-                        throw Exception("Too much mangas in response")
-                    }
-                    val entry = response.map {
-                        jsonToTrack(it.obj)
-                    }
-                    entry.firstOrNull()
+                    parser.parse(responseBody).obj
+                }.flatMap { mangas ->
+                    authClient.newCall(request)
+                            .asObservableSuccess()
+                            .map { netResponse ->
+                                val responseBody = netResponse.body()?.string().orEmpty()
+                                Log.i("SHI", "find $url, $responseBody")
+                                if (responseBody.isEmpty()) {
+                                    throw Exception("Null Response")
+                                }
+                                val response = parser.parse(responseBody).array
+                                if (response.size() > 1) {
+                                    throw Exception("Too much mangas in response")
+                                }
+                                val entry = response.map {
+                                    jsonToTrack(it.obj, mangas)
+                                }
+                                entry.firstOrNull()
+                            }
                 }
+
+
+
+
     }
 
     fun getCurrentUser(): Int {

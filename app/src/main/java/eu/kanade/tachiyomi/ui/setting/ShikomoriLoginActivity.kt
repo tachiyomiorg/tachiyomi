@@ -13,7 +13,7 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.injectLazy
 
-class ShikomoriLoginActivity : AppCompatActivity() {
+class ShikimoriLoginActivity : AppCompatActivity() {
 
     private val trackManager: TrackManager by injectLazy()
 
@@ -25,7 +25,7 @@ class ShikomoriLoginActivity : AppCompatActivity() {
 
         val code = intent.data?.getQueryParameter("code")
         if (code != null) {
-            trackManager.shikomori.login(code)
+            trackManager.shikimori.login(code)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
@@ -34,7 +34,7 @@ class ShikomoriLoginActivity : AppCompatActivity() {
                         returnToSettings()
                     })
         } else {
-            trackManager.shikomori.logout()
+            trackManager.shikimori.logout()
             returnToSettings()
         }
     }

@@ -1,26 +1,26 @@
-package eu.kanade.tachiyomi.data.track.shikomori
+package eu.kanade.tachiyomi.data.track.shikimori
 
 import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class ShikomoriInterceptor(val shikomori: Shikomori, val gson: Gson) : Interceptor {
+class ShikimoriInterceptor(val shikimori: Shikimori, val gson: Gson) : Interceptor {
 
     /**
      * OAuth object used for authenticated requests.
      */
-    private var oauth: OAuth? = shikomori.restoreToken()
+    private var oauth: OAuth? = shikimori.restoreToken()
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
 
-        val currAuth = oauth ?: throw Exception("Not authenticated with Shikomori")
+        val currAuth = oauth ?: throw Exception("Not authenticated with Shikimori")
 
         val refreshToken = currAuth.refresh_token!!
 
         // Refresh access token if expired.
         if (currAuth.isExpired()) {
-            val response = chain.proceed(ShikomoriApi.refreshTokenRequest(refreshToken))
+            val response = chain.proceed(ShikimoriApi.refreshTokenRequest(refreshToken))
             if (response.isSuccessful) {
                 newAuth(gson.fromJson(response.body()!!.string(), OAuth::class.java))
             } else {
@@ -38,6 +38,6 @@ class ShikomoriInterceptor(val shikomori: Shikomori, val gson: Gson) : Intercept
 
     fun newAuth(oauth: OAuth?) {
         this.oauth = oauth
-        shikomori.saveToken(oauth)
+        shikimori.saveToken(oauth)
     }
 }
