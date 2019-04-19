@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.data.track.shikimori
 
 import android.net.Uri
-import android.util.Log
 import com.github.salomonbrys.kotson.array
 import com.github.salomonbrys.kotson.jsonObject
 import com.github.salomonbrys.kotson.nullString
@@ -42,7 +41,6 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
                 .url("$apiUrl/v2/user_rates")
                 .post(body)
                 .build()
-        Log.i("SHI", "add $body")
         return authClient.newCall(request)
                 .asObservableSuccess()
                 .map {
@@ -76,7 +74,6 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
     }
 
     private fun jsonToSearch(obj: JsonObject): TrackSearch {
-        Log.i("SHI", "jsonToSearch $obj")
         return TrackSearch.create(TrackManager.SHIKIMORI).apply {
             media_id = obj["id"].asInt
             title = obj["name"].asString
@@ -91,7 +88,6 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
     }
 
     private fun jsonToTrack(obj: JsonObject, mangas: JsonObject): Track {
-        Log.i("SHI", "jsonToTrack $obj, $mangas")
         return Track.create(TrackManager.SHIKIMORI).apply {
             title = mangas["name"].asString
             media_id = obj["id"].asInt
@@ -121,7 +117,6 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
                 .url(urlMangas.toString())
                 .get()
                 .build()
-        Log.i("SHI", "find some info $urlMangas, $requestMangas")
         return authClient.newCall(requestMangas)
                 .asObservableSuccess()
                 .map { netResponse ->
@@ -132,7 +127,6 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
                             .asObservableSuccess()
                             .map { netResponse ->
                                 val responseBody = netResponse.body()?.string().orEmpty()
-                                Log.i("SHI", "find $url, $responseBody")
                                 if (responseBody.isEmpty()) {
                                     throw Exception("Null Response")
                                 }
@@ -146,10 +140,6 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
                                 entry.firstOrNull()
                             }
                 }
-
-
-
-
     }
 
     fun getCurrentUser(): Int {
