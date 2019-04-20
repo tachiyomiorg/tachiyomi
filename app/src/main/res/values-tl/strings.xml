@@ -60,4 +60,24 @@
     <string name="action_close">Isara</string>
     <string name="action_previous_chapter">Nakaraang kabanata</string>
     <string name="action_next_chapter">Susunod na kabanata</string>
+    <string name="action_retry">Subukan muli</string>
+    <string name="action_remove">Tanggalin</string>
+    <string name="action_resume">Ipagpatuloy</string>
+    <string name="action_move">Ilagay sa</string>
+    <string name="action_open_in_browser">Buksan sa browser</string>
+    <string name="action_open_in_web_view">Buksan sa web view</string>
+    <string name="action_add_to_home_screen">Ilagay sa home screen</string>
+    <string name="action_display_mode">Palitan ang display mode</string>
+    <string name="action_display">Ipakita</string>
+    <string name="action_display_grid">Pa-grid</string>
+    <string name="action_display_list">Pa-listahan</string>
+    <string name="action_display_download_badge">Mga badge ng download</string>
+    <string name="action_set_filter">I-set ang filter</string>
+    <string name="action_cancel">Ikansela</string>
+    <string name="action_sort">I-sort</string>
+    <string name="action_install">I-install</string>
+    <string name="action_share">Ibahagi</string>
+    <string name="action_save">I-save</string>
+    <string name="action_reset">I-reset</string>
+    <string name="action_undo">I-undo</string>
 </resources>
