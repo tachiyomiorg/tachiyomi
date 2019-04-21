@@ -80,4 +80,27 @@
     <string name="action_save">I-save</string>
     <string name="action_reset">I-reset</string>
     <string name="action_undo">I-undo</string>
+    <string name="action_export">I-export</string>
+    <string name="action_open_log">Buksan ang log</string>
+    <string name="action_create">Gumawa</string>
+    <string name="action_restore">I-restore</string>
+    <string name="action_open">Buksan</string>
+    <string name="action_login">Mag-log in</string>
+    <string name="deleting">Binubura…</string>
+    <string name="loading">Nagkakarga…</string>
+    <string name="app_not_available">Hindi available ang application</string>
+    <string name="short_recent_updates">Mga Update</string>
+    <string name="pref_category_general">Pangkalahatan</string>
+    <string name="pref_category_reader">Reader</string>
+    <string name="pref_category_downloads">Mga Download</string>
+    <string name="pref_category_sources">Mga Source</string>
+    <string name="pref_category_tracking">Tina-track</string>
+    <string name="pref_category_advanced">Advanced</string>
+    <string name="pref_category_about">Tungkol sa</string>
+    <string name="pref_library_columns">Manga sa aklatan kada hilera</string>
+    <string name="portrait">Patayo</string>
+    <string name="landscape">Pahiga</string>
+    <string name="default_columns">Default</string>
+    <string name="pref_library_update_interval">Dalas ng pag-a-update ng aklatan</string>
+    <string name="update_never">Manual</string>
 </resources>
