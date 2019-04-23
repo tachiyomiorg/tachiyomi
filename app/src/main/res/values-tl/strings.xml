@@ -30,7 +30,7 @@
     <string name="action_sort_last_read">Huling nabasa</string>
     <string name="action_sort_last_updated">Huling na-update</string>
     <string name="action_search">Hanapin</string>
-    <string name="action_global_search">Pang-lahatang paghanap</string>
+    <string name="action_global_search">Panlahatang paghanap</string>
     <string name="action_select_all">Piliin lahat</string>
     <string name="name">Pangalan</string>
     <string name="action_mark_as_read">Markahang nabasa</string>
