@@ -35,7 +35,7 @@
     <string name="action_select_all">Ischerta totu</string>
     <string name="action_mark_as_read">Sinna comente lèghidu</string>
     <string name="action_mark_as_unread">Sinna comente non lèghidu</string>
-    <string name="action_mark_previous_as_read">Sinna sos imbenientes comente lèghidos</string>
+    <string name="action_mark_previous_as_read">Sinna sos antepostos comente lèghidos</string>
     <string name="action_download">Iscàrriga</string>
     <string name="action_bookmark">Annanghe unu sinnalibru</string>
     <string name="action_remove_bookmark">Boga su sinnalibru</string>
