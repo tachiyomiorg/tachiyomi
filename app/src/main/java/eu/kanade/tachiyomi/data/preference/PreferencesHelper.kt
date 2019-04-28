@@ -57,6 +57,8 @@ class PreferencesHelper(val context: Context) {
 
     fun colorFilterValue() = rxPrefs.getInteger(Keys.colorFilterValue, 0)
 
+    fun colorFilterMode() = rxPrefs.getInteger(Keys.colorFilterMode, 0)
+
     fun defaultViewer() = prefs.getInt(Keys.defaultViewer, 1)
 
     fun imageScaleType() = rxPrefs.getInteger(Keys.imageScaleType, 1)

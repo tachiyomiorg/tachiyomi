@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone" />
 
-        <View
+        <eu.kanade.tachiyomi.ui.reader.ReaderColorFilterView
             android:id="@+id/color_overlay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

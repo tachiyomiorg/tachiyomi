@@ -574,6 +574,9 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
             subscriptions += preferences.colorFilter().asObservable()
                 .subscribe { setColorFilter(it) }
+
+            subscriptions += preferences.colorFilterMode().asObservable()
+                .subscribe { setColorFilter(preferences.colorFilter().getOrDefault()) }
         }
 
         /**

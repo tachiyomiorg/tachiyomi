@@ -11,6 +11,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.util.plusAssign
+import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import kotlinx.android.synthetic.main.reader_color_filter.*
 import kotlinx.android.synthetic.main.reader_color_filter_sheet.*
@@ -54,6 +55,9 @@ class ReaderColorFilterSheet(activity: ReaderActivity) : BottomSheetDialog(activ
         subscriptions += preferences.colorFilter().asObservable()
             .subscribe { setColorFilter(it, view) }
 
+        subscriptions += preferences.colorFilterMode().asObservable()
+            .subscribe { setColorFilter(preferences.colorFilter().getOrDefault(), view) }
+
         subscriptions += preferences.customBrightness().asObservable()
             .subscribe { setCustomBrightness(it, view) }
 
@@ -83,6 +87,11 @@ class ReaderColorFilterSheet(activity: ReaderActivity) : BottomSheetDialog(activ
         custom_brightness.setOnCheckedChangeListener { _, isChecked ->
             preferences.customBrightness().set(isChecked)
         }
+
+        color_filter_mode.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
+            preferences.colorFilterMode().set(position)
+        }
+        color_filter_mode.setSelection(preferences.colorFilterMode().getOrDefault(), false)
 
         seekbar_color_filter_alpha.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
             override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {

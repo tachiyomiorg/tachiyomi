@@ -178,6 +178,13 @@
     <string name="pref_crop_borders">Crop borders</string>
     <string name="pref_custom_brightness">Use custom brightness</string>
     <string name="pref_custom_color_filter">Use custom color filter</string>
+    <string name="pref_color_filter_mode">Color filter blend mode</string>
+    <string name="filter_mode_default">Default</string>
+    <string name="filter_mode_overlay">Overlay</string>
+    <string name="filter_mode_multiply">Multiply</string>
+    <string name="filter_mode_screen">Screen</string>
+    <string name="filter_mode_lighten">Dodge / Lighten</string>
+    <string name="filter_mode_darken">Burn / Darken</string>
     <string name="pref_keep_screen_on">Keep screen on</string>
     <string name="pref_skip_read_chapters">Skip chapters marked read</string>
     <string name="pref_reader_navigation">Navigation</string>
