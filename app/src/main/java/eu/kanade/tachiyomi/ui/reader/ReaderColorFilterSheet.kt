@@ -257,7 +257,7 @@ class ReaderColorFilterSheet(activity: ReaderActivity) : BottomSheetDialog(activ
      */
     private fun setColorFilterValue(@ColorInt color: Int, view: View) = with(view) {
         color_overlay.visibility = View.VISIBLE
-        color_overlay.setBackgroundColor(color)
+        color_overlay.setFilterColor(color, preferences.colorFilterMode().getOrDefault())
         setValues(color, view)
     }
 

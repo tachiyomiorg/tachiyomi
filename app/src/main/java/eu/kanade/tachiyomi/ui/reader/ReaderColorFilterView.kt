@@ -4,29 +4,23 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
-import uy.kohesive.injekt.injectLazy
-
 
 class ReaderColorFilterView(
         context: Context,
         attrs: AttributeSet? = null
 ) : View(context, attrs) {
 
-    private val preferences by injectLazy<PreferencesHelper>()
-
     private val colorFilterPaint: Paint = Paint()
 
-    override fun setBackgroundColor(color: Int) {
+    fun setFilterColor(color: Int, filterMode: Int) {
         colorFilterPaint.setColor(color)
-        colorFilterPaint.xfermode = PorterDuffXfermode(when (preferences.colorFilterMode().getOrDefault()) {
-            0 -> PorterDuff.Mode.SRC_OVER
-            1 -> PorterDuff.Mode.OVERLAY
-            2 -> PorterDuff.Mode.MULTIPLY
-            3 -> PorterDuff.Mode.SCREEN
+        colorFilterPaint.xfermode = PorterDuffXfermode(when (filterMode) {
+            1 -> PorterDuff.Mode.MULTIPLY
+            2 -> PorterDuff.Mode.SCREEN
+            3 -> PorterDuff.Mode.OVERLAY
             4 -> PorterDuff.Mode.LIGHTEN
-            else -> PorterDuff.Mode.DARKEN
+            5 -> PorterDuff.Mode.DARKEN
+            else -> PorterDuff.Mode.SRC_OVER
         })
         invalidate()
     }

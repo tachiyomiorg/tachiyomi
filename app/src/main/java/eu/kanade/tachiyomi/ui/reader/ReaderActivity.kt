@@ -725,7 +725,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
          */
         private fun setColorFilterValue(value: Int) {
             color_overlay.visibility = View.VISIBLE
-            color_overlay.setBackgroundColor(value)
+            color_overlay.setFilterColor(value, preferences.colorFilterMode().getOrDefault())
         }
 
     }
