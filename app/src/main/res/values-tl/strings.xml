@@ -3,11 +3,11 @@
     <string name="categories">Mga Kategorya</string>
     <string name="manga">Mga Manga</string>
     <string name="chapters">Mga Kabanata</string>
-    <string name="track">Tina-track</string>
+    <string name="track">Sinusundan</string>
     <string name="history">Kasaysayan</string>
     <string name="label_settings">Pagsasaayos</string>
-    <string name="label_download_queue">Queue sa pag-download</string>
-    <string name="label_library">Aking Aklatan</string>
+    <string name="label_download_queue">Queue ng pag-download</string>
+    <string name="label_library">Aklatan Ko</string>
     <string name="label_recent_manga">Kakabasa</string>
     <string name="label_catalogues">Mga Katalogo</string>
     <string name="label_recent_updates">Mga update sa Aklatan</string>
