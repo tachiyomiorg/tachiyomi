@@ -464,4 +464,7 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="darkblue_theme">Azul oscuro</string>
     <string name="pref_read_with_long_tap">Diálogo de toque largo</string>
     <string name="reader_pull_up_for_more_options">Tire hacia arriba para más opciones</string>
+    <string name="action_open_in_web_view">Abrir en vista web</string>
+    <string name="pref_skip_read_chapters">Saltar capítulos marcados como leídos</string>
+    <string name="pref_true_color">Color en 32 bits</string>
 </resources>

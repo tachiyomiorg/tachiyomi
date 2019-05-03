@@ -435,4 +435,7 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
     <string name="darkblue_theme">Azul escuro</string>
     <string name="reader_pull_up_for_more_options">Deslize para cima para mais opções</string>
     <string name="pref_read_with_long_tap">Diálogo de toque longo</string>
+    <string name="action_open_in_web_view">Abra em webview</string>
+    <string name="pref_true_color">32-bit color</string>
+    <string name="pref_skip_read_chapters">Pular capítulos lidos</string>
 </resources>

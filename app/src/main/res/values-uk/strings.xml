@@ -435,4 +435,7 @@
     <string name="channel_downloader">Завантажувач</string>
     <string name="pref_read_with_long_tap">Діалог тривалого тицяння</string>
     <string name="reader_pull_up_for_more_options">Потягніть задля додаткових опцій</string>
+    <string name="action_open_in_web_view">Відкрити у web view</string>
+    <string name="pref_true_color">32-бітний колір</string>
+    <string name="pref_skip_read_chapters">Пропускати глави, відмічені як прочитані</string>
 </resources>
