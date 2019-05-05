@@ -438,4 +438,11 @@
     <string name="action_open_in_web_view">Aberi in sa vista</string>
     <string name="pref_true_color">Colore a 32 bit</string>
     <string name="pref_skip_read_chapters">Brinca sos capìtulos marcados comente lèghidos</string>
+    <string name="pref_color_filter_mode">Modalidade de fusione de su filtru colore</string>
+    <string name="filter_mode_default">Predefinidu</string>
+    <string name="filter_mode_overlay">Istratu superiore</string>
+    <string name="filter_mode_multiply">Multìplica</string>
+    <string name="filter_mode_screen">Ischermu</string>
+    <string name="filter_mode_lighten">Istransi / Acrari</string>
+    <string name="filter_mode_darken">Brùsia / Iscuri</string>
 </resources>
