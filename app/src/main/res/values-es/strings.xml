@@ -467,4 +467,11 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="action_open_in_web_view">Abrir en vista web</string>
     <string name="pref_skip_read_chapters">Saltar capítulos marcados como leídos</string>
     <string name="pref_true_color">Color en 32 bits</string>
+    <string name="pref_color_filter_mode">Modo de mezcla de filtro de color</string>
+    <string name="filter_mode_default">Defecto</string>
+    <string name="filter_mode_overlay">Cubrir</string>
+    <string name="filter_mode_multiply">Multiplicar</string>
+    <string name="filter_mode_screen">Pantalla</string>
+    <string name="filter_mode_lighten">Esquivar / Aligerar</string>
+    <string name="filter_mode_darken">Quemar / Oscurecer</string>
 </resources>
