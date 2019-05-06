@@ -434,7 +434,7 @@ class ReaderPresenter(
 
         // Build destination file.
         val filename = DiskUtil.buildValidFilename(
-                "${manga.title} - ${chapter.name}".dropLast(200)
+                "${manga.title} - ${chapter.name}".take(225)
         ) + " - ${page.number}.${type.extension}"
 
         val destFile = File(directory, filename)
