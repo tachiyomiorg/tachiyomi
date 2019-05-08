@@ -9,6 +9,9 @@ import eu.kanade.tachiyomi.data.database.models.Manga
  */
 internal class LibraryUpdateRanker {
     companion object {
+        val rankingScheme = listOf(
+                (this::lexicographicRanking)(),
+                (this::relevanceRanking)())
         /**
          * Provides a total ordering over all the Mangas.
          *
