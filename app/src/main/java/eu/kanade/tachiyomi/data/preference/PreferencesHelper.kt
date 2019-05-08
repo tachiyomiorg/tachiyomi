@@ -9,6 +9,7 @@ import com.f2prateek.rx.preferences.RxSharedPreferences
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.source.Source
+import kotlinx.coroutines.experimental.channels.NULL_VALUE
 import java.io.File
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 
@@ -136,6 +137,8 @@ class PreferencesHelper(val context: Context) {
     fun libraryUpdateRestriction() = prefs.getStringSet(Keys.libraryUpdateRestriction, emptySet())
 
     fun libraryUpdateCategories() = rxPrefs.getStringSet(Keys.libraryUpdateCategories, emptySet())
+
+    fun libraryUpdatePrioritization() = rxPrefs.getInteger(Keys.libraryUpdatePrioritization, 0)
 
     fun libraryAsList() = rxPrefs.getBoolean(Keys.libraryAsList, false)
 
