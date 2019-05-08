@@ -172,7 +172,7 @@ class SettingsGeneralController : SettingsController() {
                     "0",
                     "1"
             )
-            defaultValue = "0"
+            defaultValue = "1"
             summaryRes = R.string.pref_library_update_prioritization_summary
         }
         intListPreference {
