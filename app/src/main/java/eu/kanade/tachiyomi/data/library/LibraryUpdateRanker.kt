@@ -11,7 +11,7 @@ internal class LibraryUpdateRanker {
     companion object {
         val rankingScheme = listOf(
                 (this::lexicographicRanking)(),
-                (this::relevanceRanking)())
+                (this::latestFirstRanking)())
         /**
          * Provides a total ordering over all the Mangas.
          *
@@ -21,7 +21,7 @@ internal class LibraryUpdateRanker {
          * Using this insight, function returns a Comparator for which mActive appears before mInactive.
          * @return a Comparator that ranks manga based on relevance.
          */
-        fun relevanceRanking(): Comparator<Manga> {
+        fun latestFirstRanking(): Comparator<Manga> {
             return Comparator { mangaFirst: Manga,
                                 mangaSecond: Manga ->
                 compareValues(mangaSecond.last_update, mangaFirst.last_update)
