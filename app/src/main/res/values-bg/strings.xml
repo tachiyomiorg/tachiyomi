@@ -473,4 +473,11 @@
     <string name="action_open_in_web_view">Отвори онлайн</string>
     <string name="pref_true_color">32-битови цветове</string>
     <string name="pref_skip_read_chapters">Пропускай прочетените глави</string>
+    <string name="pref_color_filter_mode">Режим на цветовия филтър</string>
+    <string name="filter_mode_default">По подразбиране</string>
+    <string name="filter_mode_overlay">Наложен</string>
+    <string name="filter_mode_multiply">Умножен</string>
+    <string name="filter_mode_screen">Екранен</string>
+    <string name="filter_mode_lighten">Осветен</string>
+    <string name="filter_mode_darken">Затъмнен</string>
 </resources>
