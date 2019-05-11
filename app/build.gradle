@@ -57,6 +57,7 @@ android {
 
     buildTypes {
         debug {
+            versionCode ${getCommitCount()}
             versionNameSuffix "-${getCommitCount()}"
             applicationIdSuffix ".debug"
         }
