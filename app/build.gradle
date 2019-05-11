@@ -57,7 +57,6 @@ android {
 
     buildTypes {
         debug {
-            versionCode getCommitCount()
             versionNameSuffix "-${getCommitCount()}"
             applicationIdSuffix ".debug"
         }
@@ -77,6 +76,7 @@ android {
             minSdkVersion 21
             resConfigs "en", "xxhdpi"
             dimension "default"
+            versionCode getCommitCount()
         }
     }
 
