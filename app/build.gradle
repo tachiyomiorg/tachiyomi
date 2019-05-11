@@ -77,7 +77,7 @@ android {
             minSdkVersion 21
             resConfigs "en", "xxhdpi"
             dimension "default"
-            versionCode getCommitCount()
+            versionCode getCommitCount().toInteger()
         }
     }
 
