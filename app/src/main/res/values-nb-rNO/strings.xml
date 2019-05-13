@@ -380,4 +380,6 @@
     <string name="migrate">Migrer</string>
     <string name="copy">Kopier</string>
     <string name="migrating">Migrerer…</string>
+    <string name="channel_library">Bibliotek</string>
+    <string name="channel_downloader">Nedlaster</string>
 </resources>
