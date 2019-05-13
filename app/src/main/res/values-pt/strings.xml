@@ -464,4 +464,9 @@
     <string name="channel_common">Comum</string>
     <string name="channel_library">Biblioteca</string>
     <string name="channel_downloader">Fila de download</string>
+    <string name="filter_mode_default">Predefinido</string>
+    <string name="filter_mode_overlay">Sobreposição</string>
+    <string name="filter_mode_multiply">Multiplicar</string>
+    <string name="filter_mode_screen">Ecrã</string>
+    <string name="filter_mode_darken">Queimar / Escurecer</string>
 </resources>
