@@ -435,5 +435,10 @@
     <string name="pref_true_color">32-Bit Farbe</string>
     <string name="pref_skip_read_chapters">Überspringe als \"gelesen\" markierte Kapitel</string>
     <string name="pref_read_with_long_tap">Lange für Dialog tippen</string>
-    <string name="reader_pull_up_for_more_options">Nach oben ziehen für mehr Optionen</string>
+    <string name="reader_pull_up_for_more_options">Hochziehen für mehr Optionen</string>
+    <string name="filter_mode_default">Standard</string>
+    <string name="filter_mode_overlay">Überlagerung</string>
+    <string name="filter_mode_multiply">Multiplizieren</string>
+    <string name="filter_mode_screen">Bildschirm</string>
+    <string name="filter_mode_darken">Brennen / Verdunkeln</string>
 </resources>
