@@ -22,5 +22,18 @@ fun Element.attrOrText(css: String): String {
  * @param html the body of the response. Use only if the body was read before calling this method.
  */
 fun Response.asJsoup(html: String? = null): Document {
-    return Jsoup.parse(html ?: body()!!.string(), request().url().toString())
+    return Jsoup.parse(html ?: bodyWithAutoCharset(), request().url().toString())
+}
+
+fun Response.bodyWithAutoCharset(_charset: String? = null): String {
+    val htmlBytes: ByteArray = body()!!.bytes()
+    var c = _charset
+
+    if (c == null) {
+        var regexPat = Regex("""charset=(\w+)""")
+        val match = regexPat.find(String(htmlBytes))
+        c = match?.groups?.get(1)?.value
+    }
+
+    return String(htmlBytes, charset(c ?: "utf8"))
 }
