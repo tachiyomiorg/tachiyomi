@@ -110,7 +110,7 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
         return api.accessToken(code).map { oauth: OAuth? ->
             interceptor.newAuth(oauth)
             if (oauth != null) {
-                val user = api.getCurrentUser()
+                val user = api.getCurrentUser(oauth.access_token)
                 saveCredentials(user.toString(), oauth.access_token)
             }
         }.doOnError {

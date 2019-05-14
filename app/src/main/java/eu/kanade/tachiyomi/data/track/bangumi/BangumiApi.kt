@@ -142,9 +142,13 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
                 }
     }
 
-    fun getCurrentUser(): Int {
-        val user = authClient.newCall(GET("$apiUrl/users/whoami")).execute().body()?.string()
-        return parser.parse(user).obj["id"].asInt
+    fun getCurrentUser(token: String): Int {
+        val user = authClient.newCall(POST("$apiUrl/oauth/token_status",
+                body = FormBody.Builder()
+                        .add("access_token", token)
+                        .build())
+        ).execute().body()?.string()
+        return parser.parse(user).obj["user_id"].asInt
     }
 
     fun accessToken(code: String): Observable<OAuth> {
@@ -191,13 +195,13 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
                         .appendQueryParameter("redirect_uri", redirectUrl)
                         .build()
 
-
         fun refreshTokenRequest(token: String) = POST(oauthUrl,
                 body = FormBody.Builder()
                         .add("grant_type", "refresh_token")
                         .add("client_id", clientId)
                         .add("client_secret", clientSecret)
                         .add("refresh_token", token)
+                        .add("redirect_uri", redirectUrl)
                         .build())
 
     }
