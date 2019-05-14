@@ -68,7 +68,6 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
                     if (responseBody.isEmpty()) {
                         throw Exception("Null Response")
                     }
-                    Log.d("Bangumi", responseBody)
 //                    parser.parse(responseBody).obj["results"].asInt
                     val response = parser.parse(responseBody).obj["list"]?.array
                     response?.map { jsonToSearch(it.obj) }
@@ -97,7 +96,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
             media_id = mangas["id"].asInt
             total_chapters = mangas["eps_count"].asInt
 //            last_chapter_read = obj["chapters"].asInt
-            score = obj["rating"].obj["score"].asFloat
+            score = if (obj["rating"] != null) obj["rating"].obj["score"].asFloat else 0f
 //            status = toTrackStatus(obj["status"].asString)
             tracking_url = mangas["url"].asString
         }
@@ -132,14 +131,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
                                 if (responseBody.isEmpty()) {
                                     throw Exception("Null Response")
                                 }
-                                val response = parser.parse(responseBody).array
-                                if (response.size() > 1) {
-                                    throw Exception("Too much mangas in response")
-                                }
-                                val entry = response.map {
-                                    jsonToTrack(it.obj, mangas)
-                                }
-                                entry.firstOrNull()
+                                jsonToTrack(parser.parse(responseBody).obj,mangas)
                             }
                 }
     }

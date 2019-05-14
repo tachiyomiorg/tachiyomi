@@ -6,7 +6,7 @@ data class OAuth(
         val created_at: Long,
         val expires_in: Long,
         val refresh_token: String?,
-        val user_id: Long?) {
+        val user_id: Long) {
 
     // Access token lives 1 day
     fun isExpired() = (System.currentTimeMillis() / 1000) > (created_at + expires_in - 3600)

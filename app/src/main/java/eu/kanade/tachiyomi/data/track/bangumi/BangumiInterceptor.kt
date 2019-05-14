@@ -17,10 +17,12 @@ class BangumiInterceptor(val bangumi: Bangumi, val gson: Gson) : Interceptor {
     fun addTocken(tocken: String, oidFormBody: FormBody): FormBody {
         val newFormBody = FormBody.Builder()
         for (i in 0 until oidFormBody.size()) {
-            newFormBody.addEncoded(oidFormBody.encodedName(i), oidFormBody.encodedValue(i))
+//            newFormBody.addEncoded(oidFormBody.encodedName(i), oidFormBody.encodedValue(i))
+            newFormBody.add(oidFormBody.name(i), oidFormBody.value(i))
+            Log.i("BANGUMI", "(${oidFormBody.name(i)}, ${oidFormBody.value(i)}")
         }
-        newFormBody.add("token", tocken)
-        Log.i("BANGUMI","tocken $tocken")
+        newFormBody.add("access_token", tocken)
+        Log.i("BANGUMI", "tocken $tocken")
         return newFormBody.build()
     }
 
@@ -32,15 +34,17 @@ class BangumiInterceptor(val bangumi: Bangumi, val gson: Gson) : Interceptor {
         val refreshToken = currAuth.refresh_token!!
 
         // Refresh access token if expired.
-        if (currAuth.isExpired()) {
-            val response = chain.proceed(BangumiApi.refreshTokenRequest(refreshToken))
-            if (response.isSuccessful) {
-                newAuth(gson.fromJson(response.body()!!.string(), OAuth::class.java))
-            } else {
-                response.close()
-            }
-        }
+//        if (currAuth.isExpired()) {
+//            val response = chain.proceed(BangumiApi.refreshTokenRequest(refreshToken))
+//            if (response.isSuccessful) {
+//                newAuth(gson.fromJson(response.body()!!.string(), OAuth::class.java))
+//            } else {
+//                response.close()
+//            }
+//        }
         // Add the authorization header to the original request.
+
+        Log.d("BANGUMI", "old ${originalRequest.method()} => ${originalRequest.url()}")
         var authRequest = if (originalRequest.method() == "GET") originalRequest.newBuilder()
 //                .addHeader("Authorization", "Bearer ${oauth!!.access_token}")
                 .header("User-Agent", "Tachiyomi")
@@ -50,11 +54,21 @@ class BangumiInterceptor(val bangumi: Bangumi, val gson: Gson) : Interceptor {
                 .header("User-Agent", "Tachiyomi")
                 .build()
 
+        Log.d("BANGUMI", "new ${authRequest.method()} => ${authRequest.url()}")
+        Log.d("BANGUMI", "data ${authRequest.body().toString()} ")
+
         return chain.proceed(authRequest)
     }
 
     fun newAuth(oauth: OAuth?) {
-        this.oauth = oauth
+        this.oauth = if (oauth == null) null else OAuth(
+                oauth!!.access_token,
+                oauth.token_type,
+                System.currentTimeMillis() / 1000,
+                oauth.expires_in,
+                oauth.refresh_token,
+                this.oauth!!.user_id)
+
         bangumi.saveToken(oauth)
     }
 }
