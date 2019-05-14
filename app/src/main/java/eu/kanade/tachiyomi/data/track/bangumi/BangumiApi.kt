@@ -1,10 +1,8 @@
 package eu.kanade.tachiyomi.data.track.bangumi
 
 import android.net.Uri
-import android.util.Log
 import com.github.salomonbrys.kotson.array
 import com.github.salomonbrys.kotson.jsonObject
-import com.github.salomonbrys.kotson.nullString
 import com.github.salomonbrys.kotson.obj
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -13,10 +11,12 @@ import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.bangumi.Bangumi.Companion.STATUS
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
-import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.POST
 import eu.kanade.tachiyomi.network.asObservableSuccess
-import okhttp3.*
+import okhttp3.FormBody
+import okhttp3.MediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
 import java.net.URLEncoder
@@ -29,17 +29,10 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
     fun addLibManga(track: Track, user_id: String): Observable<Track> {
-        val payload = jsonObject(
-                "user_rate" to jsonObject(
-//                        "user_id" to user_id,
-//                        "target_id" to track.media_id,
-//                        "target_type" to "Manga",
-//                        "chapters" to track.last_chapter_read,
-                        "rating" to track.score.toInt(),
-                        "status" to STATUS[track.status]
-                )
-        )
-        val body = RequestBody.create(jsonime, payload.toString())
+        val body = FormBody.Builder()
+                .add("rating", track.score.toInt().toString())
+                .add("status", STATUS[track.status])
+                .build()
         val request = Request.Builder()
                 .url("$apiUrl/collection/${track.media_id}/update")
                 .post(body)
@@ -54,7 +47,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     fun updateLibManga(track: Track, user_id: String): Observable<Track> = addLibManga(track, user_id)
 
     fun search(search: String): Observable<List<TrackSearch>> {
-        val url = Uri.parse("$apiUrl/search/subject/${URLEncoder.encode(search,Charsets.UTF_8.name())}").buildUpon()
+        val url = Uri.parse("$apiUrl/search/subject/${URLEncoder.encode(search, Charsets.UTF_8.name())}").buildUpon()
                 .appendQueryParameter("max_results", "20")
                 .build()
         val request = Request.Builder()
@@ -77,7 +70,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
 
     private fun jsonToSearch(obj: JsonObject): TrackSearch {
         return TrackSearch.create(TrackManager.SHIKIMORI).apply {
-//            val images = obj["images"].obj
+            //            val images = obj["images"].obj
             media_id = obj["id"].asInt
             title = obj["name"].asString
 //            total_chapters = obj["chapters"].asInt
@@ -96,8 +89,12 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
             media_id = mangas["id"].asInt
             total_chapters = mangas["eps_count"].asInt
 //            last_chapter_read = obj["chapters"].asInt
-            score = if (obj["rating"] != null) obj["rating"].obj["score"].asFloat else 0f
+            last_chapter_read = 0
+            score = if (obj["rating"] != null)
+                (if (obj["rating"].isJsonObject) obj["rating"].obj["score"].asFloat else 0f)
+            else 0f
 //            status = toTrackStatus(obj["status"].asString)
+            status = 0
             tracking_url = mangas["url"].asString
         }
     }
@@ -131,7 +128,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
                                 if (responseBody.isEmpty()) {
                                     throw Exception("Null Response")
                                 }
-                                jsonToTrack(parser.parse(responseBody).obj,mangas)
+                                jsonToTrack(parser.parse(responseBody).obj, mangas)
                             }
                 }
     }
