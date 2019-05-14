@@ -9,6 +9,7 @@ import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.AnilistApi
 import eu.kanade.tachiyomi.data.track.shikimori.ShikimoriApi
+import eu.kanade.tachiyomi.data.track.bangumi.BangumiApi
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.widget.preference.LoginPreference
 import eu.kanade.tachiyomi.widget.preference.TrackLoginDialog
@@ -61,6 +62,15 @@ class SettingsTrackingController : SettingsController(),
                             .build()
                     tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                     tabsIntent.launchUrl(activity, ShikimoriApi.authUrl())
+                }
+            }
+            trackPreference(trackManager.bangumi) {
+                onClick {
+                    val tabsIntent = CustomTabsIntent.Builder()
+                            .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
+                            .build()
+                    tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    tabsIntent.launchUrl(activity, BangumiApi.authUrl())
                 }
             }
         }

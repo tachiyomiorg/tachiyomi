@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.data.track.shikimori
+package eu.kanade.tachiyomi.data.track.bangumi
 
 import android.net.Uri
 import com.github.salomonbrys.kotson.array
@@ -18,7 +18,7 @@ import okhttp3.*
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
 
-class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInterceptor) {
+class BangumiApi(private val client: OkHttpClient, interceptor: BangumiInterceptor) {
 
     private val gson: Gson by injectLazy()
     private val parser = JsonParser()
@@ -33,7 +33,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
                         "target_type" to "Manga",
                         "chapters" to track.last_chapter_read,
                         "score" to track.score.toInt(),
-                        "status" to track.toShikimoriStatus()
+                        "status" to track.toBangumiStatus()
                 )
         )
         val body = RequestBody.create(jsonime, payload.toString())
@@ -169,13 +169,13 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
 
 
     companion object {
-        private const val clientId = "1aaf4cf232372708e98b5abc813d795b539c5a916dbbfe9ac61bf02a360832cc"
-        private const val clientSecret = "229942c742dd4cde803125d17d64501d91c0b12e14cb1e5120184d77d67024c0"
+        private const val clientId = "bgm10555cda0762e80ca"
+        private const val clientSecret = "8fff394a8627b4c388cbf349ec865775"
 
         private const val baseUrl = "https://bangumi.org"
-        private const val apiUrl = "https://bangumi.org/api"
-        private const val oauthUrl = "https://bangumi.org/oauth/token"
-        private const val loginUrl = "https://bangumi.org/oauth/authorize"
+        private const val apiUrl = "https://bgm.tv"
+        private const val oauthUrl = "https://bgm.tv/oauth/access_token"
+        private const val loginUrl = "https://bgm.tv/oauth/authorize"
 
         private const val redirectUrl = "tachiyomi://bangumi-auth"
         private const val baseMangaUrl = "$apiUrl/mangas"
