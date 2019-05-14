@@ -1,8 +1,11 @@
 package eu.kanade.tachiyomi.data.track.bangumi
 
+import android.util.Log
 import com.google.gson.Gson
+import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.Response
+
 
 class BangumiInterceptor(val bangumi: Bangumi, val gson: Gson) : Interceptor {
 
@@ -10,6 +13,16 @@ class BangumiInterceptor(val bangumi: Bangumi, val gson: Gson) : Interceptor {
      * OAuth object used for authenticated requests.
      */
     private var oauth: OAuth? = bangumi.restoreToken()
+
+    fun addTocken(tocken: String, oidFormBody: FormBody): FormBody {
+        val newFormBody = FormBody.Builder()
+        for (i in 0 until oidFormBody.size()) {
+            newFormBody.addEncoded(oidFormBody.encodedName(i), oidFormBody.encodedValue(i))
+        }
+        newFormBody.add("token", tocken)
+        Log.i("BANGUMI","tocken $tocken")
+        return newFormBody.build()
+    }
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
@@ -28,8 +41,12 @@ class BangumiInterceptor(val bangumi: Bangumi, val gson: Gson) : Interceptor {
             }
         }
         // Add the authorization header to the original request.
-        val authRequest = originalRequest.newBuilder()
-                .addHeader("Authorization", "Bearer ${oauth!!.access_token}")
+        var authRequest = if (originalRequest.method() == "GET") originalRequest.newBuilder()
+//                .addHeader("Authorization", "Bearer ${oauth!!.access_token}")
+                .header("User-Agent", "Tachiyomi")
+                .build() else originalRequest.newBuilder()
+//                .addHeader("Authorization", "Bearer ${oauth!!.access_token}")
+                .post(addTocken(oauth!!.access_token, originalRequest.body() as FormBody))
                 .header("User-Agent", "Tachiyomi")
                 .build()
 

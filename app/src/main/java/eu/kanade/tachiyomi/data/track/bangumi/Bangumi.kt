@@ -72,6 +72,10 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
         const val PLANNING = 5
         const val REPEATING = 6
 
+        val STATUS = arrayOf(
+                "do", "collect", "on_hold", "dropped", "wish", "do"
+        )
+
         const val DEFAULT_STATUS = READING
         const val DEFAULT_SCORE = 0
     }
@@ -86,7 +90,7 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
 
     override fun getLogo() = R.drawable.shikimori
 
-    override fun getLogoColor() = Color.rgb(40, 40, 40)
+    override fun getLogoColor() = Color.rgb(0xF0, 0x91, 0x99)
 
     override fun getStatusList(): List<Int> {
         return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLANNING, REPEATING)

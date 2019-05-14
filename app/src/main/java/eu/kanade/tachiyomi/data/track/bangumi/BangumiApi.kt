@@ -11,6 +11,7 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.data.track.bangumi.Bangumi.Companion.STATUS
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.POST
@@ -30,17 +31,17 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     fun addLibManga(track: Track, user_id: String): Observable<Track> {
         val payload = jsonObject(
                 "user_rate" to jsonObject(
-                        "user_id" to user_id,
-                        "target_id" to track.media_id,
-                        "target_type" to "Manga",
-                        "chapters" to track.last_chapter_read,
-                        "score" to track.score.toInt(),
-                        "status" to track.toBangumiStatus()
+//                        "user_id" to user_id,
+//                        "target_id" to track.media_id,
+//                        "target_type" to "Manga",
+//                        "chapters" to track.last_chapter_read,
+                        "rating" to track.score.toInt(),
+                        "status" to STATUS[track.status]
                 )
         )
         val body = RequestBody.create(jsonime, payload.toString())
         val request = Request.Builder()
-                .url("$apiUrl/v2/user_rates")
+                .url("$apiUrl/collection/${track.media_id}/update")
                 .post(body)
                 .build()
         return authClient.newCall(request)
@@ -68,8 +69,9 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
                         throw Exception("Null Response")
                     }
                     Log.d("Bangumi", responseBody)
-                    val response = parser.parse(responseBody).obj["list"].array
-                    response.map { jsonToSearch(it.obj) }
+//                    parser.parse(responseBody).obj["results"].asInt
+                    val response = parser.parse(responseBody).obj["list"]?.array
+                    response?.map { jsonToSearch(it.obj) }
                 }
 
     }
@@ -92,28 +94,26 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     private fun jsonToTrack(obj: JsonObject, mangas: JsonObject): Track {
         return Track.create(TrackManager.SHIKIMORI).apply {
             title = mangas["name"].asString
-            media_id = obj["id"].asInt
-            total_chapters = mangas["chapters"].asInt
-            last_chapter_read = obj["chapters"].asInt
-            score = (obj["score"].asInt).toFloat()
-            status = toTrackStatus(obj["status"].asString)
-            tracking_url = baseUrl + mangas["url"].asString
+            media_id = mangas["id"].asInt
+            total_chapters = mangas["eps_count"].asInt
+//            last_chapter_read = obj["chapters"].asInt
+            score = obj["rating"].obj["score"].asFloat
+//            status = toTrackStatus(obj["status"].asString)
+            tracking_url = mangas["url"].asString
         }
     }
 
     fun findLibManga(track: Track, user_id: String): Observable<Track?> {
-        val url = Uri.parse("$apiUrl/v2/user_rates").buildUpon()
-                .appendQueryParameter("user_id", user_id)
-                .appendQueryParameter("target_id", track.media_id.toString())
-                .appendQueryParameter("target_type", "Manga")
+        val url = Uri.parse("$apiUrl/collection/${track.media_id}").buildUpon()
+                .appendQueryParameter("source", "onAir")
                 .build()
         val request = Request.Builder()
                 .url(url.toString())
-                .get()
+                .post(FormBody.Builder().build())
                 .build()
 
-        val urlMangas = Uri.parse("$apiUrl/mangas").buildUpon()
-                .appendPath(track.media_id.toString())
+        val urlMangas = Uri.parse("$apiUrl/subject/${track.media_id}").buildUpon()
+//                .appendQueryParameter("responseGroup", "large")
                 .build()
         val requestMangas = Request.Builder()
                 .url(urlMangas.toString())
