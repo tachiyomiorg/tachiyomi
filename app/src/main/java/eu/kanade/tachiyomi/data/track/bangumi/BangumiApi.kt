@@ -18,6 +18,7 @@ import eu.kanade.tachiyomi.network.asObservableSuccess
 import okhttp3.*
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
+import java.net.URLEncoder
 
 class BangumiApi(private val client: OkHttpClient, interceptor: BangumiInterceptor) {
 
@@ -52,10 +53,8 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     fun updateLibManga(track: Track, user_id: String): Observable<Track> = addLibManga(track, user_id)
 
     fun search(search: String): Observable<List<TrackSearch>> {
-        val url = Uri.parse("$apiUrl/mangas").buildUpon()
-                .appendQueryParameter("order", "popularity")
-                .appendQueryParameter("search", search)
-                .appendQueryParameter("limit", "20")
+        val url = Uri.parse("$apiUrl/search/subject/${URLEncoder.encode(search,Charsets.UTF_8.name())}").buildUpon()
+                .appendQueryParameter("max_results", "20")
                 .build()
         val request = Request.Builder()
                 .url(url.toString())
@@ -68,7 +67,8 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
                     if (responseBody.isEmpty()) {
                         throw Exception("Null Response")
                     }
-                    val response = parser.parse(responseBody).array
+                    Log.d("Bangumi", responseBody)
+                    val response = parser.parse(responseBody).obj["list"].array
                     response.map { jsonToSearch(it.obj) }
                 }
 
@@ -76,15 +76,16 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
 
     private fun jsonToSearch(obj: JsonObject): TrackSearch {
         return TrackSearch.create(TrackManager.SHIKIMORI).apply {
+//            val images = obj["images"].obj
             media_id = obj["id"].asInt
             title = obj["name"].asString
-            total_chapters = obj["chapters"].asInt
-            cover_url = baseUrl + obj["image"].obj["preview"].asString
-            summary = ""
-            tracking_url = baseUrl + obj["url"].asString
-            publishing_status = obj["status"].asString
-            publishing_type = obj["kind"].asString
-            start_date = obj.get("aired_on").nullString.orEmpty()
+//            total_chapters = obj["chapters"].asInt
+            cover_url = obj["images"].obj["common"].asString
+            summary = obj["name_cn"].asString
+            tracking_url = obj["url"].asString
+//            publishing_status = obj["status"].asString
+//            publishing_type = obj["kind"].asString
+//            start_date = obj.get("aired_on").nullString.orEmpty()
         }
     }
 
@@ -175,7 +176,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
         private const val clientSecret = "8fff394a8627b4c388cbf349ec865775"
 
         private const val baseUrl = "https://bangumi.org"
-        private const val apiUrl = "https://bgm.tv"
+        private const val apiUrl = "https://api.bgm.tv"
         private const val oauthUrl = "https://bgm.tv/oauth/access_token"
         private const val loginUrl = "https://bgm.tv/oauth/authorize"
 
