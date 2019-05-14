@@ -187,8 +187,8 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
         fun authUrl() =
                 Uri.parse(loginUrl).buildUpon()
                         .appendQueryParameter("client_id", clientId)
-                        .appendQueryParameter("redirect_uri", redirectUrl)
                         .appendQueryParameter("response_type", "code")
+                        .appendQueryParameter("redirect_uri", redirectUrl)
                         .build()
 
 
