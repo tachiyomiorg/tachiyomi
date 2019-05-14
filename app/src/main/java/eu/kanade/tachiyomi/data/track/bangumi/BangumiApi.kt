@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.track.bangumi
 
 import android.net.Uri
+import android.util.Log
 import com.github.salomonbrys.kotson.array
 import com.github.salomonbrys.kotson.jsonObject
 import com.github.salomonbrys.kotson.nullString
@@ -142,14 +143,11 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
                 }
     }
 
-    fun getCurrentUser(token: String): Int {
-        val user = authClient.newCall(POST("$apiUrl/oauth/token_status",
-                body = FormBody.Builder()
-                        .add("access_token", token)
-                        .build())
-        ).execute().body()?.string()
-        return parser.parse(user).obj["user_id"].asInt
-    }
+//    fun getCurrentUser(token: String): Int {
+//        val user = client.newCall(GET("$apiUrl/oauth/token_status")).execute().body()?.string()
+//        Log.i("FEILONG", user)
+//        return parser.parse(user).obj["user_id"].asInt
+//    }
 
     fun accessToken(code: String): Observable<OAuth> {
         return client.newCall(accessTokenRequest(code)).asObservableSuccess().map { netResponse ->
