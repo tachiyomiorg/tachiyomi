@@ -469,4 +469,8 @@
     <string name="action_open_in_web_view">Apri nella WebView</string>
     <string name="pref_true_color">Colori a 32 bit</string>
     <string name="pref_skip_read_chapters">Salta i capitoli segnati come letti</string>
+    <string name="filter_mode_default">Default</string>
+    <string name="filter_mode_screen">Schermo</string>
+    <string name="pref_read_with_long_tap">Dialogo dopo pressione lunga</string>
+    <string name="reader_pull_up_for_more_options">Trascina verso l\'alto per maggiori opzioni</string>
 </resources>
