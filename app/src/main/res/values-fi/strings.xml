@@ -438,4 +438,11 @@
     <string name="dialog_with_checkbox_reset">Resetoi kaikki luvut tästä sarjasta</string>
     <string name="snack_add_to_library">Lisää sarja kirjastoon\?</string>
     <string name="picture_saved">Kuva tallennetu</string>
+    <string name="pref_color_filter_mode">Värisuodattimen sekoitus tyyppi</string>
+    <string name="filter_mode_default">Tavallinen</string>
+    <string name="filter_mode_overlay">Päällys</string>
+    <string name="filter_mode_multiply">Monistettu</string>
+    <string name="filter_mode_screen">Näyttö</string>
+    <string name="filter_mode_lighten">Väitävä / Vaalentava</string>
+    <string name="filter_mode_darken">Polttava / Tummentava</string>
 </resources>
