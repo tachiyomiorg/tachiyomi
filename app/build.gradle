@@ -38,6 +38,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 27
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionCode 41
         versionName "0.8.4"
 
         buildConfigField "String", "COMMIT_COUNT", "\"${getCommitCount()}\""
@@ -67,17 +68,18 @@ android {
         standard {
             buildConfigField "boolean", "INCLUDE_UPDATER", "true"
             dimension "default"
-            versionCode 41
         }
         fdroid {
             dimension "default"
-            versionCode 41
+        }
+        fdroid-dev {
+            dimension "default"
+            versionCode getCommitCount().toInteger()
         }
         dev {
             minSdkVersion 21
             resConfigs "en", "xxhdpi"
-            dimension "default"
-            versionCode getCommitCount().toInteger()
+            dimension "default"            
         }
     }
 
