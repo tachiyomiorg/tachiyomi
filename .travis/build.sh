@@ -5,7 +5,7 @@ git fetch --unshallow #required for commit count
 cp .travis/google-services.json app/
 
 if [ -z "$TRAVIS_TAG" ]; then
-    ./gradlew clean assembleStandardDebug
+    ./gradlew clean assembleFdroid-devDebug
 
     COMMIT_COUNT=$(git rev-list --count HEAD)
     export ARTIFACT="tachiyomi-r${COMMIT_COUNT}.apk"
