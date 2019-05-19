@@ -429,7 +429,7 @@
     <string name="reader_pull_up_for_more_options">Потяните вверх для раскрытия меню</string>
     <string name="action_open_in_web_view">Открыть в Web View</string>
     <string name="pref_skip_read_chapters">Пропускать главы, помеченные как \"Прочитанные\"</string>
-    <string name="pref_true_color">32-битные цвета</string>
+    <string name="pref_true_color">32-битный цвет</string>
     <string name="pref_color_filter_mode">Режим наложения светофильтра</string>
     <string name="filter_mode_default">по умолчанию</string>
     <string name="filter_mode_overlay">перекрытие</string>
