@@ -48,7 +48,7 @@ class AndroidCookieJar(context: Context) : CookieJar {
 
     fun remove(url: HttpUrl) {
         val cookies = manager.getCookie(url.toString()) ?: return
-        val domain = ".${url.host()}"
+        val domain = url.host()
         cookies.split(";")
             .map { it.substringBefore("=") }
             .onEach { manager.setCookie(domain, "$it=;Max-Age=-1") }
