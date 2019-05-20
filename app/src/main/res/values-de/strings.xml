@@ -418,7 +418,7 @@
     <string name="source_not_installed">Quelle nicht installiert: %1$s</string>
     <string name="download_custom">Benutzerdefiniert herunterladen</string>
     <string name="repeating">Erneutes Lesen</string>
-    <string name="track_status">Stand</string>
+    <string name="track_status">Status</string>
     <string name="track_start_date">Gestartet</string>
     <string name="track_type">Typ</string>
     <string name="track_author">Autor</string>
@@ -432,8 +432,8 @@
     <string name="transition_pages_loading">Lade Seiten…</string>
     <string name="transition_pages_error">Seiten konnten nicht geladen werden: %1$s</string>
     <string name="action_open_in_web_view">In Webansicht öffnen</string>
-    <string name="pref_true_color">32-Bit Farbe</string>
-    <string name="pref_skip_read_chapters">Überspringe als \"gelesen\" markierte Kapitel</string>
+    <string name="pref_true_color">32-bit Farbe</string>
+    <string name="pref_skip_read_chapters">Überspringe als gelesen markierte Kapitel</string>
     <string name="pref_read_with_long_tap">Lange für Dialog tippen</string>
     <string name="reader_pull_up_for_more_options">Hochziehen für mehr Optionen</string>
     <string name="filter_mode_default">Standard</string>
@@ -441,4 +441,6 @@
     <string name="filter_mode_multiply">Multiplizieren</string>
     <string name="filter_mode_screen">Bildschirm</string>
     <string name="filter_mode_darken">Brennen / Verdunkeln</string>
+    <string name="pref_color_filter_mode">Farbfilter Mischmodus</string>
+    <string name="filter_mode_lighten">Abwedeln / Aufhellen</string>
 </resources>
