@@ -320,6 +320,7 @@ class ReaderPresenter(
         selectedChapter.chapter.last_page_read = page.index
         if (selectedChapter.pages?.lastIndex == page.index) {
             selectedChapter.chapter.read = true
+            updateTrackLastChapterRead()
             enqueueDeleteReadChapters(selectedChapter)
         }
 
