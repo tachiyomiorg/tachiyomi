@@ -23,12 +23,12 @@
           android:icon="@drawable/ic_done_all_grey_24dp"
           app:showAsAction="ifRoom"/>
 
+    <item android:id="@+id/action_select_between"
+          android:title="@string/select_between"/>
+
     <item android:id="@+id/action_select_all"
           android:title="@string/action_select_all"
           android:icon="@drawable/ic_select_all_white_24dp"
           app:showAsAction="ifRoom"/>
-
-    <item android:id="@+id/action_select_between"
-          android:title="@string/select_between"/>
 
 </menu>

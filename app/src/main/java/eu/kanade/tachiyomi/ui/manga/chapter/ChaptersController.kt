@@ -353,20 +353,15 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     private fun selectBetween() {
         val adapter = adapter ?: return
         if (selectedItems.size == 2) {
-            val first = adapter.items.indexOf(selectedItems.first())
-            val last = adapter.items.indexOf(selectedItems.last())
+            var first = adapter.items.indexOf(selectedItems.first())
+            var last = adapter.items.indexOf(selectedItems.last())
             if (first > last) {
-                selectedItems.clear()
-                selectedItems.addAll(adapter.items.subList(last, first + 1))
-                selectedItems.forEach { adapter.addSelection(adapter.items.indexOf(it)) }
-                adapter.notifyDataSetChanged()
-
-            } else {
-                selectedItems.clear()
-                selectedItems.addAll(adapter.items.subList(first, last + 1))
-                selectedItems.forEach { adapter.addSelection(adapter.items.indexOf(it)) }
-                adapter.notifyDataSetChanged()
+                first = last.also { last = first }
             }
+            selectedItems.clear()
+            selectedItems.addAll(adapter.items.subList(first, last + 1))
+            selectedItems.forEach { adapter.addSelection(adapter.items.indexOf(it)) }
+            adapter.notifyDataSetChanged()
             actionMode?.invalidate()
         }
     }
