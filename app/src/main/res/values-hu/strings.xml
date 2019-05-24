@@ -170,4 +170,6 @@
     <string name="ext_untrusted">Nem megbízható</string>
     <string name="ext_uninstall">Eltávolítás</string>
     <string name="ext_preferences">Beállítások</string>
+    <string name="darkblue_theme">Sötétkék</string>
+    <string name="all_lang">Összes</string>
 </resources>
