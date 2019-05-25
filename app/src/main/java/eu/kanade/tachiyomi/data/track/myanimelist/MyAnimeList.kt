@@ -29,7 +29,8 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
         const val LOGGED_IN_COOKIE = "is_logged_in"
     }
 
-    private val api by lazy { MyanimelistApi(client) }
+    private val interceptor by lazy { MyAnimeListInterceptor(this) }
+    private val api by lazy { MyanimelistApi(client, interceptor) }
 
     override val name: String
         get() = "MyAnimeList"
@@ -62,7 +63,7 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun add(track: Track): Observable<Track> {
-        return api.addLibManga(track, getCSRF())
+        return api.addLibManga(track)
     }
 
     override fun update(track: Track): Observable<Track> {
@@ -70,11 +71,11 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
             track.status = COMPLETED
         }
 
-        return api.updateLibManga(track, getCSRF())
+        return api.updateLibManga(track)
     }
 
     override fun bind(track: Track): Observable<Track> {
-        return api.findLibManga(track, getCSRF())
+        return api.findLibManga(track)
                 .flatMap { remoteTrack ->
                     if (remoteTrack != null) {
                         track.copyPersonalFrom(remoteTrack)
@@ -93,7 +94,7 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun refresh(track: Track): Observable<Track> {
-        return api.getLibManga(track, getCSRF())
+        return api.getLibManga(track)
                 .map { remoteTrack ->
                     track.copyPersonalFrom(remoteTrack)
                     track.total_chapters = remoteTrack.total_chapters
@@ -117,13 +118,13 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
         networkService.cookieManager.remove(HttpUrl.parse(BASE_URL)!!)
     }
 
-    override val isLogged: Boolean
-        get() = !getUsername().isEmpty() &&
-                !getPassword().isEmpty() &&
-                checkCookies() &&
-                !getCSRF().isEmpty()
+    val isAuthorized: Boolean
+        get() = super.isLogged &&
+                getCSRF().isNotEmpty() &&
+                checkCookies()
 
-    private fun getCSRF(): String = preferences.trackToken(this).getOrDefault()
+
+    fun getCSRF(): String = preferences.trackToken(this).getOrDefault()
 
     private fun saveCSRF(csrf: String) = preferences.trackToken(this).set(csrf)
 

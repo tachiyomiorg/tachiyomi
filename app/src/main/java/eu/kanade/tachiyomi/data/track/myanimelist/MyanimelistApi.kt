@@ -22,26 +22,28 @@ import java.io.InputStreamReader
 import java.util.zip.GZIPInputStream
 
 
-class MyanimelistApi(private val client: OkHttpClient) {
+class MyanimelistApi(private val client: OkHttpClient, interceptor: MyAnimeListInterceptor) {
 
-    fun addLibManga(track: Track, csrf: String): Observable<Track> {
+    private val malClient = client.newBuilder().addInterceptor(interceptor).build()
+
+    fun addLibManga(track: Track): Observable<Track> {
         return Observable.defer {
-            client.newCall(POST(url = getAddUrl(), body = getMangaPostPayload(track, csrf)))
+            malClient.newCall(POST(url = getAddUrl(), body = getMangaPostPayload(track)))
                     .asObservableSuccess()
                     .map { track }
         }
     }
 
-    fun updateLibManga(track: Track, csrf: String): Observable<Track> {
+    fun updateLibManga(track: Track): Observable<Track> {
         return Observable.defer {
-            client.newCall(POST(url = getUpdateUrl(), body = getMangaPostPayload(track, csrf)))
+            malClient.newCall(POST(url = getUpdateUrl(), body = getMangaPostPayload(track)))
                     .asObservableSuccess()
                     .map { track }
         }
     }
 
     fun search(query: String): Observable<List<TrackSearch>> {
-        return client.newCall(GET(getSearchUrl(query)))
+        return malClient.newCall(GET(getSearchUrl(query)))
                 .asObservable()
                 .flatMap { response ->
                     Observable.from(Jsoup.parse(response.consumeBody())
@@ -68,15 +70,15 @@ class MyanimelistApi(private val client: OkHttpClient) {
                 .toList()
     }
 
-    private fun getList(csrf: String): Observable<List<TrackSearch>> {
-        return getListUrl(csrf)
+    private fun getList(): Observable<List<TrackSearch>> {
+        return getListUrl()
                 .flatMap { url ->
                     getListXml(url)
                 }
                 .flatMap { doc ->
                     Observable.from(doc.select("manga"))
                 }
-                .map { it ->
+                .map {
                     TrackSearch.create(TrackManager.MYANIMELIST).apply {
                         title = it.selectText("manga_title")!!
                         media_id = it.selectInt("manga_mangadb_id")
@@ -91,20 +93,20 @@ class MyanimelistApi(private val client: OkHttpClient) {
     }
 
     private fun getListXml(url: String): Observable<Document> {
-        return client.newCall(GET(url))
+        return malClient.newCall(GET(url))
                 .asObservable()
                 .map { response ->
                     Jsoup.parse(response.consumeXmlBody(), "", Parser.xmlParser())
                 }
     }
 
-    fun findLibManga(track: Track, csrf: String): Observable<Track?> {
-        return getList(csrf)
+    fun findLibManga(track: Track): Observable<Track?> {
+        return getList()
                 .map { list -> list.find { it.media_id == track.media_id } }
     }
 
-    fun getLibManga(track: Track, csrf: String): Observable<Track> {
-        return findLibManga(track, csrf)
+    fun getLibManga(track: Track): Observable<Track> {
+        return findLibManga(track)
                 .map { it ?: throw Exception("Could not find manga") }
     }
 
@@ -147,21 +149,19 @@ class MyanimelistApi(private val client: OkHttpClient) {
                 .build()
     }
 
-    private fun getExportPostBody(csrf: String): RequestBody {
+    private fun getExportPostBody(): RequestBody {
         return FormBody.Builder()
                 .add("type", "2")
                 .add("subexport", "Export My List")
-                .add(CSRF, csrf)
                 .build()
     }
 
-    private fun getMangaPostPayload(track: Track, csrf: String): RequestBody {
+    private fun getMangaPostPayload(track: Track): RequestBody {
         val body = JSONObject()
                 .put("manga_id", track.media_id)
                 .put("status", track.status)
                 .put("score", track.score)
                 .put("num_read_chapters", track.last_chapter_read)
-                .put(CSRF, csrf)
 
         return RequestBody.create(MediaType.parse("application/json; charset=utf-8"), body.toString())
     }
@@ -189,8 +189,8 @@ class MyanimelistApi(private val client: OkHttpClient) {
             .appendQueryParameter("go", "export")
             .toString()
 
-    private fun getListUrl(csrf: String): Observable<String> {
-        return client.newCall(POST(url = getExportListUrl(), body = getExportPostBody(csrf)))
+    private fun getListUrl(): Observable<String> {
+        return malClient.newCall(POST(url = getExportListUrl(), body = getExportPostBody()))
                 .asObservable()
                 .map {response ->
                     baseUrl + Jsoup.parse(response.consumeBody())

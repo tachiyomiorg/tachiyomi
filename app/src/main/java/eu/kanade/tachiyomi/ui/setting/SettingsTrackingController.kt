@@ -70,8 +70,6 @@ class SettingsTrackingController : SettingsController(),
             service: TrackService,
             block: (@DSL LoginPreference).() -> Unit
     ): LoginPreference {
-        if (service.id == TrackManager.MYANIMELIST && !service.isLogged) service.logout()
-
         return initThenAdd(LoginPreference(context).apply {
             key = Keys.trackUsername(service.id)
             title = service.name
