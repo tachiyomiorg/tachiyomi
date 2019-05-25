@@ -165,8 +165,8 @@ class SettingsGeneralController : SettingsController() {
             // The following arrays are to be lined up with the list rankingScheme in:
             // ../../data/library/LibraryUpdateRanker.kt
             entriesRes = arrayOf(
-                    R.string.lexicographic,
-                    R.string.latest_first
+                    R.string.action_sort_alpha,
+                    R.string.action_sort_last_updated
             )
             entryValues = arrayOf(
                     "0",
