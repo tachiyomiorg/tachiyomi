@@ -24,6 +24,7 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersController
 import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
 import eu.kanade.tachiyomi.ui.setting.SettingsMainController
+import eu.kanade.tachiyomi.util.openInBrowser
 import kotlinx.android.synthetic.main.main_activity.*
 import uy.kohesive.injekt.injectLazy
 
@@ -90,6 +91,9 @@ class MainActivity : BaseActivity() {
                     }
                     R.id.nav_drawer_settings -> {
                         router.pushController(SettingsMainController().withFadeTransaction())
+                    }
+                    R.id.nav_drawer_help -> {
+                        openInBrowser(URL_HELP)
                     }
                 }
             }
@@ -271,6 +275,8 @@ class MainActivity : BaseActivity() {
         const val INTENT_SEARCH = "eu.kanade.tachiyomi.SEARCH"
         const val INTENT_SEARCH_QUERY = "query"
         const val INTENT_SEARCH_FILTER = "filter"
+
+        private const val URL_HELP = "https://github.com/inorichi/tachiyomi/wiki"
     }
 
 }
