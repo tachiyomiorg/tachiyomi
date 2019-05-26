@@ -14,7 +14,6 @@ import rx.Observable
 class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
 
     companion object {
-
         const val READING = 1
         const val COMPLETED = 2
         const val ON_HOLD = 3
@@ -122,7 +121,6 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
         get() = super.isLogged &&
                 getCSRF().isNotEmpty() &&
                 checkCookies()
-
 
     fun getCSRF(): String = preferences.trackToken(this).getOrDefault()
 

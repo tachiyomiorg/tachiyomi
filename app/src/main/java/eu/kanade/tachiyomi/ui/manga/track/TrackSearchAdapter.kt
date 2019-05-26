@@ -52,27 +52,27 @@ class TrackSearchAdapter(context: Context)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                         .centerCrop()
                         .into(view.track_search_cover)
+            }
 
-                if (track.publishing_status.isNullOrBlank()) {
-                    view.track_search_status.gone()
-                    view.track_search_status_result.gone()
-                } else {
-                    view.track_search_status_result.text = track.publishing_status.capitalize()
-                }
+            if (track.publishing_status.isNullOrBlank()) {
+                view.track_search_status.gone()
+                view.track_search_status_result.gone()
+            } else {
+                view.track_search_status_result.text = track.publishing_status.capitalize()
+            }
 
-                if (track.publishing_type.isNullOrBlank()) {
-                    view.track_search_type.gone()
-                    view.track_search_type_result.gone()
-                } else {
-                    view.track_search_type_result.text = track.publishing_type.capitalize()
-                }
+            if (track.publishing_type.isNullOrBlank()) {
+                view.track_search_type.gone()
+                view.track_search_type_result.gone()
+            } else {
+                view.track_search_type_result.text = track.publishing_type.capitalize()
+            }
 
-                if (track.start_date.isNullOrBlank()) {
-                    view.track_search_start.gone()
-                    view.track_search_start_result.gone()
-                } else {
-                    view.track_search_start_result.text = track.start_date
-                }
+            if (track.start_date.isNullOrBlank()) {
+                view.track_search_start.gone()
+                view.track_search_start_result.gone()
+            } else {
+                view.track_search_start_result.text = track.start_date
             }
         }
     }

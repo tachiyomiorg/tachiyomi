@@ -11,6 +11,8 @@ class MyAnimeListInterceptor(private val myanimelist: Myanimelist): Interceptor 
 
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!myanimelist.isAuthorized) {
+            if (!myanimelist.isLogged) throw Exception("MAL Login Credentials not found")
+
             myanimelist.login(myanimelist.getUsername(), myanimelist.getPassword())
                     .onErrorComplete()
                     .subscribe()
