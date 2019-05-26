@@ -413,20 +413,17 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
             activity?.toast(activity?.getString(R.string.manga_added_library))
         }
         val categories = presenter.getCategories()
-        val defaultCategory = categories.find { it.id == preferences.defaultCategory() }
-        when {
-            defaultCategory != null -> presenter.moveMangaToCategory(manga, defaultCategory)
-            categories.size <= 1 -> // default or the one from the user
-                presenter.moveMangaToCategory(manga, categories.firstOrNull())
-            else -> {
-                val ids = presenter.getMangaCategoryIds(manga)
-                val preselected = ids.mapNotNull { id ->
-                    categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
-                }.toTypedArray()
+        if (categories.size <= 1) {
+            // default or the one from the user then just add to favorite.
+            presenter.moveMangaToCategory(manga, categories.firstOrNull())
+        } else {
+            val ids = presenter.getMangaCategoryIds(manga)
+            val preselected = ids.mapNotNull { id ->
+                categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
+            }.toTypedArray()
 
-                ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
-                        .showDialog(router)
-            }
+            ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
+                    .showDialog(router)
         }
     }
 
