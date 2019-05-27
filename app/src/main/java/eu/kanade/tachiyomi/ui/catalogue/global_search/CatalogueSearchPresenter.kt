@@ -10,6 +10,7 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.FilterList
+import eu.kanade.tachiyomi.source.model.MangasPage
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
@@ -159,7 +160,7 @@ open class CatalogueSearchPresenter(
                 .flatMap({ source ->
                     source.fetchSearchManga(1, query, FilterList())
                             .subscribeOn(Schedulers.io())
-                            .onExceptionResumeNext(Observable.empty()) // Ignore timeouts.
+                            .onExceptionResumeNext(Observable.just(MangasPage(emptyList(), false))) // Ignore timeouts.
                             .map { it.mangas.take(10) } // Get at most 10 manga from search result.
                             .map { it.map { networkToLocalManga(it, source.id) } } // Convert to local manga.
                             .doOnNext { fetchImage(it, source) } // Load manga covers.

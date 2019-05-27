@@ -55,14 +55,17 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) :
             results == null -> {
                 progress.visible()
                 nothing_found.gone()
+                showHolder()
             }
             results.isEmpty() -> {
                 progress.gone()
                 nothing_found.visible()
+                hideHolder()
             }
             else -> {
                 progress.gone()
                 nothing_found.gone()
+                showHolder()
             }
         }
         if (results !== lastBoundResults) {
@@ -96,4 +99,15 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) :
 
         return null
     }
+
+    private fun showHolder() {
+        title.visible()
+        source_card.visible()
+    }
+
+    private fun hideHolder() {
+        title.gone()
+        source_card.gone()
+    }
+
 }
