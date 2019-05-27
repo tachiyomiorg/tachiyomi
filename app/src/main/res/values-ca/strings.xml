@@ -445,4 +445,5 @@
     <string name="filter_mode_screen">Protegeix</string>
     <string name="filter_mode_lighten">Esquiva / Il·lumina</string>
     <string name="filter_mode_darken">Crema / Enfosqueix</string>
+    <string name="label_help">Ajuda</string>
 </resources>
