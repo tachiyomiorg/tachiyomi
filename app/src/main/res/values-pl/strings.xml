@@ -260,7 +260,7 @@
     <string name="backup">Kopia zapasowa</string>
     <string name="manga">Mangi</string>
     <string name="pref_category_tracking">Śledzenie</string>
-    <string name="pref_reader_navigation">Przewracaj strony poprzez</string>
+    <string name="pref_reader_navigation">Nawigacja</string>
     <string name="pref_download_new_categories">Kategorie do auto-pobierania</string>
     <string name="pref_create_backup">Utwórz kopię zapasową</string>
     <string name="pref_create_backup_summ">Może być użyta do przywrócenia aktualnej biblioteki</string>
@@ -436,6 +436,13 @@ Nie znaleziono źródła %1$s</string>
     <string name="action_open_in_web_view">Otwórz używając WebView</string>
     <string name="pref_true_color">Kolor 32-bitowy</string>
     <string name="pref_skip_read_chapters">Pomiń rozdziały ozn. jako przeczytane</string>
-    <string name="pref_read_with_long_tap">Okno dialogowe przy długim naciśnięciu</string>
+    <string name="pref_read_with_long_tap">Dialog po przytrzymaniu</string>
     <string name="reader_pull_up_for_more_options">Wyciągnij po więcej opcji</string>
+    <string name="pref_color_filter_mode">Tryb mieszania kolorów</string>
+    <string name="filter_mode_default">Domyślny</string>
+    <string name="filter_mode_overlay">Nakładka</string>
+    <string name="filter_mode_multiply">Pomnożenie</string>
+    <string name="filter_mode_lighten">Rozjaśnienie</string>
+    <string name="filter_mode_darken">Ściemnienie</string>
+    <string name="label_help">Pomoc</string>
 </resources>
