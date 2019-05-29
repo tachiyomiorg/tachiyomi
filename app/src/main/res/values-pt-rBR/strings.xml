@@ -438,4 +438,7 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
     <string name="action_open_in_web_view">Abra em webview</string>
     <string name="pref_true_color">32-bit color</string>
     <string name="pref_skip_read_chapters">Pular capítulos lidos</string>
+    <string name="filter_mode_default">Padrão</string>
+    <string name="filter_mode_screen">Tela</string>
+    <string name="label_help">Ajuda</string>
 </resources>
