@@ -444,4 +444,5 @@
     <string name="pref_skip_read_chapters">Treci peste capitolele marcate citit</string>
     <string name="pref_read_with_long_tap">Dialog prin apasare lunga</string>
     <string name="reader_pull_up_for_more_options">Trage în sus pentru mai multe opțiuni</string>
+    <string name="label_help">Ajutor</string>
 </resources>
