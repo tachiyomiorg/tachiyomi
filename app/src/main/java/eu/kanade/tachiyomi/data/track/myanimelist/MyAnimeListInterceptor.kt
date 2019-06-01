@@ -35,7 +35,8 @@ class MyAnimeListInterceptor(private val myanimelist: Myanimelist): Interceptor 
     private fun updateFormBody(requestBody: RequestBody): RequestBody {
         val formString = bodyToString(requestBody)
 
-        return RequestBody.create(requestBody.contentType(), "$formString${if (formString.isNotEmpty()) "&" else ""}${MyanimelistApi.CSRF}=${myanimelist.getCSRF()}")
+        return RequestBody.create(requestBody.contentType(),
+                "$formString${if (formString.isNotEmpty()) "&" else ""}${MyanimelistApi.CSRF}=${myanimelist.getCSRF()}")
     }
 
     private fun updateJsonBody(requestBody: RequestBody): RequestBody {
