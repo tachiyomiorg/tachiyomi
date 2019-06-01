@@ -80,8 +80,23 @@ class MyanimelistApi(private val client: OkHttpClient, interceptor: MyAnimeListI
     }
 
     fun findLibManga(track: Track): Observable<Track?> {
-        return getList()
-                .map { list -> list.find { it.media_id == track.media_id } }
+        return authClient.newCall(GET(url = listEntryUrl(track.media_id)))
+                .asObservable()
+                .map {response ->
+                    var libTrack: Track? = null
+                    response.use {
+                        if (it.priorResponse()?.isRedirect != true) {
+                            val trackForm = Jsoup.parse(it.consumeBody())
+
+                            libTrack = Track.create(TrackManager.MYANIMELIST).apply {
+                                last_chapter_read = trackForm.select("#add_manga_num_read_chapters").`val`().toInt()
+                                status = trackForm.select("#add_manga_status > option[selected]").`val`().toInt()
+                                score = trackForm.select("#add_manga_score > option[selected]").`val`().toFloatOrNull() ?: 0f
+                            }
+                        }
+                    }
+                    libTrack
+                }
     }
 
     fun getLibManga(track: Track): Observable<Track> {
@@ -214,6 +229,11 @@ class MyanimelistApi(private val client: OkHttpClient, interceptor: MyAnimeListI
 
         private fun addUrl() = Uri.parse(baseModifyListUrl).buildUpon()
                 .appendPath( "add.json")
+                .toString()
+
+        private fun listEntryUrl(mediaId: Int) = Uri.parse(baseModifyListUrl).buildUpon()
+                .appendPath(mediaId.toString())
+                .appendPath("edit")
                 .toString()
 
         private fun loginPostBody(username: String, password: String, csrf: String): RequestBody {
