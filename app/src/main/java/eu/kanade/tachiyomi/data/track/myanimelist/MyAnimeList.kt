@@ -121,9 +121,8 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
         val password = getPassword()
         logout()
 
-        val csrf: String
         try {
-            csrf = api.login(username, password)
+            val csrf = api.login(username, password)
             saveCSRF(csrf)
             saveCredentials(username, password)
         } catch (e: Exception) {
