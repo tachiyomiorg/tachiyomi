@@ -89,32 +89,28 @@ class MyanimelistApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                 .map { it ?: throw Exception("Could not find manga") }
     }
 
-    fun login(username: String, password: String): Observable<String> {
-        return getSessionInfo()
-                .flatMap { csrf ->
-                    login(username, password, csrf)
-                }
+    fun login(username: String, password: String): String {
+        val csrf = getSessionInfo()
+
+        login(username, password, csrf)
+
+        return csrf
     }
 
-    private fun getSessionInfo(): Observable<String> {
-        return client.newCall(GET(loginUrl()))
-                .asObservable()
-                .map { response ->
-                    Jsoup.parse(response.consumeBody())
-                            .select("meta[name=csrf_token]")
-                            .attr("content")
-                }
+    private fun getSessionInfo(): String {
+        val response = client.newCall(GET(loginUrl())).execute()
+
+        return Jsoup.parse(response.consumeBody())
+                .select("meta[name=csrf_token]")
+                .attr("content")
     }
 
-    private fun login(username: String, password: String, csrf: String): Observable<String> {
-        return client.newCall(POST(url = loginUrl(), body = loginPostBody(username, password, csrf)))
-                .asObservable()
-                .map { response ->
-                    response.use {
-                        if (response.priorResponse()?.code() != 302) throw Exception("Authentication error")
-                    }
-                    csrf
-                }
+    private fun login(username: String, password: String, csrf: String) {
+        val response = client.newCall(POST(url = loginUrl(), body = loginPostBody(username, password, csrf))).execute()
+
+        response.use {
+            if (response.priorResponse()?.code() != 302) throw Exception("Authentication error")
+        }
     }
 
     private fun getList(): Observable<List<TrackSearch>> {

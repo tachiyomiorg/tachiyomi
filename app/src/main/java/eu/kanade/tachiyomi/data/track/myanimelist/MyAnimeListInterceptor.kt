@@ -5,23 +5,13 @@ import okhttp3.RequestBody
 import okhttp3.Response
 import okio.Buffer
 import org.json.JSONObject
-import java.lang.Exception
 
 class MyAnimeListInterceptor(private val myanimelist: Myanimelist): Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        if (!myanimelist.isAuthorized) {
-            if (!myanimelist.isLogged) throw Exception("MAL Login Credentials not found")
-
-            myanimelist.login(myanimelist.getUsername(), myanimelist.getPassword())
-                    .onErrorComplete()
-                    .subscribe()
-        }
-
-        if (!myanimelist.isAuthorized) throw Exception("Failed MAL Authorization")
+        myanimelist.ensureLoggedIn()
 
         var request = chain.request()
-
         request.body()?.let {
             val contentType = it.contentType().toString()
             val updatedBody = when {

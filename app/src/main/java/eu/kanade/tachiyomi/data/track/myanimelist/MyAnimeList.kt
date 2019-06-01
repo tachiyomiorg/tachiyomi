@@ -10,6 +10,7 @@ import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import okhttp3.HttpUrl
 import rx.Completable
 import rx.Observable
+import java.lang.Exception
 
 class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
 
@@ -104,11 +105,31 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
     override fun login(username: String, password: String): Completable {
         logout()
 
-        return api.login(username, password)
+        return Observable.fromCallable { api.login(username, password) }
                 .doOnNext { csrf -> saveCSRF(csrf) }
                 .doOnNext { saveCredentials(username, password) }
                 .doOnError { logout() }
                 .toCompletable()
+    }
+
+    // Attempt to login again if cookies have been cleared but credentials are still filled
+    fun ensureLoggedIn() {
+        if (isAuthorized) return
+        if (!isLogged) throw Exception("MAL Login Credentials not found")
+
+        val username = getUsername()
+        val password = getPassword()
+        logout()
+
+        val csrf: String
+        try {
+            csrf = api.login(username, password)
+            saveCSRF(csrf)
+            saveCredentials(username, password)
+        } catch (e: Exception) {
+            logout()
+            throw e
+        }
     }
 
     override fun logout() {
