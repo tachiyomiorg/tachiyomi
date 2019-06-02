@@ -469,4 +469,7 @@
     <string name="filter_mode_multiply">Multiplicar</string>
     <string name="filter_mode_screen">Ecrã</string>
     <string name="filter_mode_darken">Queimar / Escurecer</string>
+    <string name="pref_color_filter_mode">Modo de mistura do filtro de cores</string>
+    <string name="filter_mode_lighten">Dodge / Clarear</string>
+    <string name="label_help">Ajuda</string>
 </resources>
