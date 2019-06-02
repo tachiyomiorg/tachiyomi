@@ -90,6 +90,7 @@ class MyanimelistApi(private val client: OkHttpClient, interceptor: MyAnimeListI
 
                             libTrack = Track.create(TrackManager.MYANIMELIST).apply {
                                 last_chapter_read = trackForm.select("#add_manga_num_read_chapters").`val`().toInt()
+                                total_chapters = trackForm.select("#totalChap").text().toInt()
                                 status = trackForm.select("#add_manga_status > option[selected]").`val`().toInt()
                                 score = trackForm.select("#add_manga_score > option[selected]").`val`().toFloatOrNull() ?: 0f
                             }
