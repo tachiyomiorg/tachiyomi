@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.track.bangumi
 
 import android.net.Uri
+import android.util.Log
 import com.github.salomonbrys.kotson.array
 import com.github.salomonbrys.kotson.obj
 import com.google.gson.Gson
@@ -43,7 +44,22 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
       }
   }
 
-  fun updateLibManga(track: Track, user_id: String): Observable<Track> = addLibManga(track, user_id)
+  fun updateLibManga(track: Track, user_id: String): Observable<Track> {
+    val body = FormBody.Builder()
+      .add("watched_eps", track.last_chapter_read.toString())
+      .build()
+    val request = Request.Builder()
+      .url("$apiUrl/subject/${track.media_id}/update/watched_eps")
+      .post(body)
+      .build()
+    return authClient.newCall(request)
+      .asObservableSuccess()
+      .map {
+        Log.w("feilong-update", it.body()?.string().orEmpty())
+
+        track
+      }
+  }
 
   fun search(search: String): Observable<List<TrackSearch>> {
     val url = Uri.parse(
