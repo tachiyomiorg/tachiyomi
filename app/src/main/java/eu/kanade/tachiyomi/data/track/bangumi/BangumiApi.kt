@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.data.track.bangumi
 
 import android.net.Uri
-import android.util.Log
 import com.github.salomonbrys.kotson.array
 import com.github.salomonbrys.kotson.obj
 import com.google.gson.Gson
@@ -25,7 +24,6 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
 
   private val gson: Gson by injectLazy()
   private val parser = JsonParser()
-  private val jsonime = MediaType.parse("application/json; charset=utf-8")
   private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
   fun addLibManga(track: Track): Observable<Track> {
@@ -75,7 +73,6 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
         if (responseBody.isEmpty()) {
           throw Exception("Null Response")
         }
-//                    parser.parse(responseBody).obj["results"].asInt
         val response = parser.parse(responseBody).obj["list"]?.array
         response?.map { jsonToSearch(it.obj) }
       }
@@ -84,16 +81,11 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
 
   private fun jsonToSearch(obj: JsonObject): TrackSearch {
     return TrackSearch.create(TrackManager.BANGUMI).apply {
-      //            val images = obj["images"].obj
       media_id = obj["id"].asInt
       title = obj["name"].asString
-//            total_chapters = obj["chapters"].asInt
       cover_url = obj["images"].obj["common"].asString
       summary = obj["name_cn"].asString
       tracking_url = obj["url"].asString
-//            publishing_status = obj["status"].asString
-//            publishing_type = obj["kind"].asString
-//            start_date = obj.get("aired_on").nullString.orEmpty()
     }
   }
 
@@ -102,7 +94,6 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
       title = mangas["name"].asString
       media_id = mangas["id"].asInt
       total_chapters = mangas["eps_count"].asInt
-//            last_chapter_read = obj["chapters"].asInt
       last_chapter_read = 0
       score = if (mangas["rating"] != null)
         (if (mangas["rating"].isJsonObject) mangas["rating"].obj["score"].asFloat else 0f)
@@ -113,16 +104,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
   }
 
   fun findLibManga(track: Track): Observable<Track?> {
-    val url = Uri.parse("$apiUrl/collection/${track.media_id}").buildUpon()
-      .appendQueryParameter("source", "onAir")
-      .build()
-    val request = Request.Builder()
-      .url(url.toString())
-      .post(FormBody.Builder().build())
-      .build()
-
     val urlMangas = Uri.parse("$apiUrl/subject/${track.media_id}").buildUpon()
-//                .appendQueryParameter("responseGroup", "large")
       .build()
     val requestMangas = Request.Builder()
       .url(urlMangas.toString())
@@ -135,12 +117,6 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
         jsonToTrack(parser.parse(responseBody).obj)
       }
   }
-
-//    fun getCurrentUser(token: String): Int {
-//        val user = client.newCall(GET("$apiUrl/oauth/token_status")).execute().body()?.string()
-//        Log.i("FEILONG", user)
-//        return parser.parse(user).obj["user_id"].asInt
-//    }
 
   fun accessToken(code: String): Observable<OAuth> {
     return client.newCall(accessTokenRequest(code)).asObservableSuccess().map { netResponse ->
@@ -193,7 +169,6 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
         .add("refresh_token", token)
         .add("redirect_uri", redirectUrl)
         .build())
-
   }
 
 }
