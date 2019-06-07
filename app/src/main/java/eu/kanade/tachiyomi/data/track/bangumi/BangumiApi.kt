@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.data.track.bangumi
 
 import android.net.Uri
-import android.util.Log
 import com.github.salomonbrys.kotson.array
 import com.github.salomonbrys.kotson.obj
 import com.google.gson.Gson
@@ -9,7 +8,6 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
-import eu.kanade.tachiyomi.data.track.bangumi.Bangumi.Companion.STATUS
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.POST
 import eu.kanade.tachiyomi.network.asObservableSuccess
@@ -29,7 +27,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
   fun addLibManga(track: Track): Observable<Track> {
     val body = FormBody.Builder()
       .add("rating", track.score.toInt().toString())
-      .add("status", STATUS[track.status])
+      .add("status", track.toBangumiStatus())
       .build()
     val request = Request.Builder()
       .url("$apiUrl/collection/${track.media_id}/update")
@@ -43,6 +41,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
   }
 
   fun updateLibManga(track: Track): Observable<Track> {
+    // chapter update
     val body = FormBody.Builder()
       .add("watched_eps", track.last_chapter_read.toString())
       .build()
@@ -50,10 +49,25 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
       .url("$apiUrl/subject/${track.media_id}/update/watched_eps")
       .post(body)
       .build()
+
+    // read status update
+    val sbody = FormBody.Builder()
+      .add("status", track.toBangumiStatus())
+      .build()
+    val srequest = Request.Builder()
+      .url("$apiUrl/collection/${track.media_id}/update")
+      .post(sbody)
+      .build()
     return authClient.newCall(request)
       .asObservableSuccess()
       .map {
         track
+      }.flatMap {
+        authClient.newCall(srequest)
+          .asObservableSuccess()
+          .map {
+            track
+          }
       }
   }
 

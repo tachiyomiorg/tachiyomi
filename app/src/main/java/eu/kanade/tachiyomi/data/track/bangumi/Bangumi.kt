@@ -72,16 +72,16 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
   }
 
   companion object {
-    const val READING = 1
+    const val READING = 3
     const val COMPLETED = 2
-    const val ON_HOLD = 3
-    const val DROPPED = 4
-    const val PLANNING = 5
-    const val REPEATING = 6
+    const val ON_HOLD = 4
+    const val DROPPED = 5
+    const val PLANNING = 1
+//    const val REPEATING = 6
 
-    val STATUS = arrayOf(
-      "do", "collect", "on_hold", "dropped", "wish", "do"
-    )
+//    val STATUS = arrayOf(
+//      "do", "collect", "on_hold", "dropped", "wish", "do"
+//    )
 
     const val DEFAULT_STATUS = READING
     const val DEFAULT_SCORE = 0
@@ -100,7 +100,7 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
   override fun getLogoColor() = Color.rgb(0xF0, 0x91, 0x99)
 
   override fun getStatusList(): List<Int> {
-    return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLANNING, REPEATING)
+    return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLANNING)
   }
 
   override fun getStatus(status: Int): String = with(context) {
@@ -110,7 +110,6 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
       ON_HOLD -> getString(R.string.on_hold)
       DROPPED -> getString(R.string.dropped)
       PLANNING -> getString(R.string.plan_to_read)
-      REPEATING -> getString(R.string.repeating)
       else -> ""
     }
   }
