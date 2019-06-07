@@ -34,7 +34,7 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun bind(track: Track): Observable<Track> {
-        return api.findLibManga(track)
+        return api.findLibManga(track, this.restoreToken()?.user_id)
                 .flatMap { remoteTrack ->
                     if (remoteTrack != null) {
                         track.copyPersonalFrom(remoteTrack)
@@ -54,7 +54,7 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun refresh(track: Track): Observable<Track> {
-        return api.findLibManga(track)
+        return api.findLibManga(track, this.restoreToken()?.user_id)
                 .map { remoteTrack ->
                     if (remoteTrack != null) {
                         track.copyPersonalFrom(remoteTrack)
@@ -111,19 +111,12 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
     override fun login(username: String, password: String) = login(password)
 
     fun login(code: String): Completable {
-        val TAG = "FEILONG"
-        Log.d(TAG, "login $code")
         return api.accessToken(code).map { oauth: OAuth? ->
             interceptor.newAuth(oauth)
-            Log.i(TAG, "login ${oauth}")
             if (oauth != null) {
-//                val user = api.getCurrentUser(oauth.access_token)
-                Log.i(TAG, "login ${oauth.access_token}, user ${oauth.user_id}")
-                Log.i(TAG, "login otauth")
                 saveCredentials(oauth.user_id.toString(), oauth.access_token)
             }
         }.doOnError {
-            Log.e(TAG, "logout with ${it.message}")
             logout()
         }.toCompletable()
     }

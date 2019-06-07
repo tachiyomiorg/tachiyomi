@@ -13,7 +13,6 @@ import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.POST
 import eu.kanade.tachiyomi.network.asObservableSuccess
 import okhttp3.FormBody
-import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import rx.Observable
@@ -74,7 +73,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
           throw Exception("Null Response")
         }
         val response = parser.parse(responseBody).obj["list"]?.array
-        response?.map { jsonToSearch(it.obj) }
+        response?.filter { it.obj["type"].asInt == 1 }?.map { jsonToSearch(it.obj) }
       }
 
   }
@@ -82,9 +81,9 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
   private fun jsonToSearch(obj: JsonObject): TrackSearch {
     return TrackSearch.create(TrackManager.BANGUMI).apply {
       media_id = obj["id"].asInt
-      title = obj["name"].asString
+      title = obj["name_cn"].asString
       cover_url = obj["images"].obj["common"].asString
-      summary = obj["name_cn"].asString
+      summary = obj["name"].asString
       tracking_url = obj["url"].asString
     }
   }
@@ -93,8 +92,6 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     return Track.create(TrackManager.BANGUMI).apply {
       title = mangas["name"].asString
       media_id = mangas["id"].asInt
-      total_chapters = mangas["eps_count"].asInt
-      last_chapter_read = 0
       score = if (mangas["rating"] != null)
         (if (mangas["rating"].isJsonObject) mangas["rating"].obj["score"].asFloat else 0f)
       else 0f
@@ -103,16 +100,18 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     }
   }
 
-  fun findLibManga(track: Track): Observable<Track?> {
-    val urlMangas = Uri.parse("$apiUrl/subject/${track.media_id}").buildUpon()
-      .build()
+  fun findLibManga(track: Track, user: Long?): Observable<Track?> {
+    val urlMangas = "$apiUrl/subject/${track.media_id}"
     val requestMangas = Request.Builder()
-      .url(urlMangas.toString())
+      .url(urlMangas)
       .get()
       .build()
+
+    // todo get user readed chapter here
     return authClient.newCall(requestMangas)
       .asObservableSuccess()
       .map { netResponse ->
+        // get comic info
         val responseBody = netResponse.body()?.string().orEmpty()
         jsonToTrack(parser.parse(responseBody).obj)
       }
