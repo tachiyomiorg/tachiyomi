@@ -23,18 +23,18 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun add(track: Track): Observable<Track> {
-        return api.addLibManga(track, getUsername())
+        return api.addLibManga(track)
     }
 
     override fun update(track: Track): Observable<Track> {
         if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
             track.status = COMPLETED
         }
-        return api.updateLibManga(track, getUsername())
+        return api.updateLibManga(track)
     }
 
     override fun bind(track: Track): Observable<Track> {
-        return api.findLibManga(track, getUsername())
+        return api.findLibManga(track)
                 .flatMap { remoteTrack ->
                     if (remoteTrack != null) {
                         track.copyPersonalFrom(remoteTrack)
@@ -54,7 +54,7 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun refresh(track: Track): Observable<Track> {
-        return api.findLibManga(track, getUsername())
+        return api.findLibManga(track)
                 .map { remoteTrack ->
                     if (remoteTrack != null) {
                         track.copyPersonalFrom(remoteTrack)

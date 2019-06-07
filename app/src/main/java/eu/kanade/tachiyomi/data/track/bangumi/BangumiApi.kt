@@ -28,7 +28,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
   private val jsonime = MediaType.parse("application/json; charset=utf-8")
   private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
-  fun addLibManga(track: Track, user_id: String): Observable<Track> {
+  fun addLibManga(track: Track): Observable<Track> {
     val body = FormBody.Builder()
       .add("rating", track.score.toInt().toString())
       .add("status", STATUS[track.status])
@@ -44,7 +44,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
       }
   }
 
-  fun updateLibManga(track: Track, user_id: String): Observable<Track> {
+  fun updateLibManga(track: Track): Observable<Track> {
     val body = FormBody.Builder()
       .add("watched_eps", track.last_chapter_read.toString())
       .build()
@@ -112,7 +112,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     }
   }
 
-  fun findLibManga(track: Track, user_id: String): Observable<Track?> {
+  fun findLibManga(track: Track): Observable<Track?> {
     val url = Uri.parse("$apiUrl/collection/${track.media_id}").buildUpon()
       .appendQueryParameter("source", "onAir")
       .build()
