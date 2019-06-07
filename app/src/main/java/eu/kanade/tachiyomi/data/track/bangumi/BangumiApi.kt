@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.track.bangumi
 
 import android.net.Uri
+import android.util.Log
 import com.github.salomonbrys.kotson.array
 import com.github.salomonbrys.kotson.obj
 import com.google.gson.Gson
@@ -100,20 +101,39 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     }
   }
 
-  fun findLibManga(track: Track, user: Long?): Observable<Track?> {
+  private fun jsonToStatus(jsons: JsonObject): Int? =
+    if (jsons.has("status") && jsons["status"].isJsonObject)
+      jsons["status"].obj["id"].asInt
+    else null
+
+  fun findLibManga(track: Track): Observable<Track?> {
     val urlMangas = "$apiUrl/subject/${track.media_id}"
     val requestMangas = Request.Builder()
       .url(urlMangas)
       .get()
       .build()
 
-    // todo get user readed chapter here
     return authClient.newCall(requestMangas)
       .asObservableSuccess()
       .map { netResponse ->
         // get comic info
         val responseBody = netResponse.body()?.string().orEmpty()
         jsonToTrack(parser.parse(responseBody).obj)
+      }
+  }
+
+  fun statusLibManga(track: Track): Observable<Int?> {
+    val urlUserRead = "$apiUrl/collection/${track.media_id}"
+    val requestUserRead = Request.Builder()
+      .url(urlUserRead)
+      .get()
+      .build()
+
+    // todo get user readed chapter here
+    return authClient.newCall(requestUserRead)
+      .asObservableSuccess()
+      .map { netResponse ->
+        jsonToStatus(parser.parse(netResponse.body()?.string().orEmpty()).obj)
       }
   }
 
