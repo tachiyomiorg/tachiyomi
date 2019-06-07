@@ -67,7 +67,7 @@ class BangumiInterceptor(val bangumi: Bangumi, val gson: Gson) : Interceptor {
                 System.currentTimeMillis() / 1000,
                 oauth.expires_in,
                 oauth.refresh_token,
-                this.oauth!!.user_id)
+                this.oauth?.user_id)
 
         bangumi.saveToken(oauth)
     }
