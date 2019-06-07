@@ -55,8 +55,6 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     return authClient.newCall(request)
       .asObservableSuccess()
       .map {
-        Log.w("feilong-update", it.body()?.string().orEmpty())
-
         track
       }
   }

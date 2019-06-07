@@ -10,5 +10,6 @@ data class OAuth(
 
     // Access token lives 1 day
     fun isExpired() = (System.currentTimeMillis() / 1000) > (created_at + expires_in - 3600)
+
 }
 
