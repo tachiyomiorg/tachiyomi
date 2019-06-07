@@ -88,7 +88,7 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
 
     private val api by lazy { BangumiApi(client, interceptor) }
 
-    override fun getLogo() = R.drawable.shikimori
+    override fun getLogo() = R.drawable.bangumi
 
     override fun getLogoColor() = Color.rgb(0xF0, 0x91, 0x99)
 
