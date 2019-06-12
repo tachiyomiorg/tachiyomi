@@ -446,4 +446,6 @@
     <string name="filter_mode_lighten">Väitävä / Vaalentava</string>
     <string name="filter_mode_darken">Polttava / Tummentava</string>
     <string name="label_help">Apu</string>
+    <string name="pref_library_update_prioritization">Kirjaston päivitys järjestys</string>
+    <string name="pref_library_update_prioritization_summary">Valitse järjestys jossa päivitykset tarkistetaan</string>
 </resources>
