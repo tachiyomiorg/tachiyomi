@@ -110,15 +110,10 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
       score = if (mangas["rating"] != null)
         (if (mangas["rating"].isJsonObject) mangas["rating"].obj["score"].asFloat else 0f)
       else 0f
-      status = 0
+      status = Bangumi.DEFAULT_STATUS
       tracking_url = mangas["url"].asString
     }
   }
-
-  private fun jsonToStatus(jsons: JsonObject): Int? =
-    if (jsons.has("status") && jsons["status"].isJsonObject)
-      jsons["status"].obj["id"].asInt
-    else null
 
   fun findLibManga(track: Track): Observable<Track?> {
     val urlMangas = "$apiUrl/subject/${track.media_id}"
@@ -136,7 +131,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
       }
   }
 
-  fun statusLibManga(track: Track): Observable<Int?> {
+  fun statusLibManga(track: Track): Observable<Track?> {
     val urlUserRead = "$apiUrl/collection/${track.media_id}"
     val requestUserRead = Request.Builder()
       .url(urlUserRead)
@@ -147,7 +142,11 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     return authClient.newCall(requestUserRead)
       .asObservableSuccess()
       .map { netResponse ->
-        jsonToStatus(parser.parse(netResponse.body()?.string().orEmpty()).obj)
+        val resp = netResponse.body()?.string()
+        val coll = gson.fromJson(resp, Collection::class.java)
+        track.status = coll.status?.id!!
+        track.last_chapter_read = coll.ep_status!!
+        track
       }
   }
 

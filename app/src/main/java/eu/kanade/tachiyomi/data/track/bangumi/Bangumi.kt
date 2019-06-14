@@ -39,7 +39,8 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
           if (remoteTrack != null && it != null) {
             track.copyPersonalFrom(remoteTrack)
             track.library_id = remoteTrack.library_id
-            track.status = it
+            track.status = remoteTrack.status
+            track.last_chapter_read = remoteTrack.last_chapter_read
             update(track)
           } else {
             // Set default fields if it's not found in the list
@@ -59,12 +60,12 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
   override fun refresh(track: Track): Observable<Track> {
     return api.statusLibManga(track)
       .flatMap {
+        track.copyPersonalFrom(it!!)
         api.findLibManga(track)
           .map { remoteTrack ->
             if (remoteTrack != null) {
-              track.copyPersonalFrom(remoteTrack)
               track.total_chapters = remoteTrack.total_chapters
-              track.status = it?: 0
+              track.status = remoteTrack.status
             }
             track
           }
@@ -77,11 +78,6 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
     const val ON_HOLD = 4
     const val DROPPED = 5
     const val PLANNING = 1
-//    const val REPEATING = 6
-
-//    val STATUS = arrayOf(
-//      "do", "collect", "on_hold", "dropped", "wish", "do"
-//    )
 
     const val DEFAULT_STATUS = READING
     const val DEFAULT_SCORE = 0

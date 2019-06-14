@@ -38,8 +38,7 @@ class BangumiInterceptor(val bangumi: Bangumi, val gson: Gson) : Interceptor {
     var authRequest = if (originalRequest.method() == "GET") originalRequest.newBuilder()
       .header("User-Agent", "Tachiyomi")
       .url(originalRequest.url().newBuilder()
-        .addQueryParameter("access_token", currAuth
-        .access_token).build())
+        .addQueryParameter("access_token", currAuth.access_token).build())
       .build() else originalRequest.newBuilder()
       .post(addTocken(currAuth.access_token, originalRequest.body() as FormBody))
       .header("User-Agent", "Tachiyomi")
