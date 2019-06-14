@@ -446,4 +446,6 @@
     <string name="filter_mode_lighten">Istransi / Acrari</string>
     <string name="filter_mode_darken">Brùsia / Iscuri</string>
     <string name="label_help">Agiudu</string>
+    <string name="pref_library_update_prioritization">Òrdine de agiornamentu de sa biblioteca</string>
+    <string name="pref_library_update_prioritization_summary">Ischerta s\'òrdine chi Tachiyomi at a impreare pro sos agiornamentos</string>
 </resources>
