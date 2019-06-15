@@ -22,12 +22,12 @@ fun syncChaptersWithSource(db: DatabaseHelper,
                            manga: Manga,
                            source: Source): Pair<List<Chapter>, List<Chapter>> {
 
-    if (rawSourceChapters.isEmpty()) {
-        throw Exception("No chapters found")
-    }
-
     // Chapters from db.
     val dbChapters = db.getChapters(manga).executeAsBlocking()
+
+    if (rawSourceChapters.isEmpty() && dbChapters.isEmpty()) {
+        throw Exception("No chapters found")
+    }
 
     val sourceChapters = rawSourceChapters.mapIndexed { i, sChapter ->
         Chapter.create().apply {
@@ -132,6 +132,11 @@ fun syncChaptersWithSource(db: DatabaseHelper,
         manga.last_update = Date().time
         db.updateLastUpdated(manga).executeAsBlocking()
     }
+
+    if (rawSourceChapters.isEmpty()) {
+        throw Exception("No chapters found")
+    }
+
     return Pair(toAdd.subtract(readded).toList(), toDelete.subtract(readded).toList())
 
 }
