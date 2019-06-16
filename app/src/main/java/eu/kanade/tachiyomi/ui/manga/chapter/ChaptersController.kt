@@ -241,12 +241,13 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         }
         startActivity(intent)
     }
-
+    var lastClickPosition = -1
     override fun onItemClick(position: Int): Boolean {
         val adapter = adapter ?: return false
         val item = adapter.getItem(position) ?: return false
         if (actionMode != null && adapter.mode == SelectableAdapter.Mode.MULTI) {
             toggleSelection(position)
+            lastClickPosition = position
             return true
         } else {
             openChapter(item.chapter)
@@ -256,7 +257,19 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
 
     override fun onItemLongClick(position: Int) {
         createActionModeIfNeeded()
-        toggleSelection(position)
+        if (lastClickPosition == -1) {
+            toggleSelection(position)
+        } else {
+            if (lastClickPosition > position){
+                for (i in position..lastClickPosition-1)
+                    toggleSelection(i)
+            } else if (lastClickPosition < position){
+                for (i in lastClickPosition+1..position)
+                    toggleSelection(i)
+            } else
+                toggleSelection(position)
+        }
+        lastClickPosition = position
     }
 
     // SELECTIONS & ACTION MODE
@@ -265,6 +278,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         val adapter = adapter ?: return
         val item = adapter.getItem(position) ?: return
         adapter.toggleSelection(position)
+        adapter.notifyDataSetChanged()
         if (adapter.isSelected(position)) {
             selectedItems.add(item)
         } else {
@@ -299,6 +313,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         val count = adapter?.selectedItemCount ?: 0
         if (count == 0) {
             // Destroy action mode if there are no items selected.
+            lastClickPosition = -1
             destroyActionModeIfNeeded()
         } else {
             mode.title = resources?.getString(R.string.label_selected, count)
