@@ -11,6 +11,7 @@ import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.POST
 import eu.kanade.tachiyomi.network.asObservableSuccess
+import okhttp3.CacheControl
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -135,6 +136,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     val urlUserRead = "$apiUrl/collection/${track.media_id}"
     val requestUserRead = Request.Builder()
       .url(urlUserRead)
+      .cacheControl(CacheControl.FORCE_NETWORK)
       .get()
       .build()
 
