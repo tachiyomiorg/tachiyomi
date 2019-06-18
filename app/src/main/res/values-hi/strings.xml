@@ -432,4 +432,17 @@
     <string name="darkblue_theme">गहरा नीला</string>
     <string name="reader_pull_up_for_more_options">अधिक विकल्पों के लिए खींचो</string>
     <string name="pref_read_with_long_tap">संवाद के लिए लंबी प्रेस</string>
+    <string name="action_open_in_web_view">वेब दृश्य में खोलें</string>
+    <string name="pref_true_color">32 बिट रंग</string>
+    <string name="pref_skip_read_chapters">पढ़े हुए अध्यायों को छोड़ें</string>
+    <string name="pref_color_filter_mode">रंग फिल्टर मिश्रण मोड</string>
+    <string name="filter_mode_default">डिफ़ॉल्ट</string>
+    <string name="filter_mode_overlay">ओवरले</string>
+    <string name="filter_mode_multiply">गुणा</string>
+    <string name="filter_mode_screen">स्क्रीन</string>
+    <string name="filter_mode_lighten">चकमा/हल्का</string>
+    <string name="filter_mode_darken">जल/गहरा</string>
+    <string name="label_help">मदद</string>
+    <string name="pref_library_update_prioritization">लाइब्रेरी अद्यतन क्रम</string>
+    <string name="pref_library_update_prioritization_summary">उस क्रम का चयन करें जिसमें टचियोमी अद्यतन की जांच करे</string>
 </resources>

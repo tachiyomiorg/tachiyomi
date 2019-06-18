@@ -468,5 +468,10 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="darkblue_theme">Bleu foncé</string>
     <string name="pref_read_with_long_tap">Menu contextuel (appui prolongé)</string>
     <string name="reader_pull_up_for_more_options">Plus d\'options en défilant</string>
-
+    <string name="action_open_in_web_view">Ouvrir dans le navigateur intégré</string>
+    <string name="pref_true_color">Couleurs à 32 bits</string>
+    <string name="pref_skip_read_chapters">Passer les chapitres marqués comme lus</string>
+    <string name="filter_mode_default">Par défaut</string>
+    <string name="filter_mode_multiply">Multiplier</string>
+    <string name="filter_mode_screen">Écran</string>
 </resources>

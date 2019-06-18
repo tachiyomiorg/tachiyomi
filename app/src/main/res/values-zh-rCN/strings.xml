@@ -325,8 +325,8 @@
     <string name="show_title">显示标题</string>
     <string name="show_chapter_number">显示章节数</string>
     <string name="sorting_mode">排序模式</string>
-    <string name="sort_by_source">按图源</string>
-    <string name="sort_by_number">按章节数</string>
+    <string name="sort_by_source">按类型</string>
+    <string name="sort_by_number">按章节</string>
     <string name="manga_download">下载</string>
     <string name="custom_download">自定义下载数量</string>
     <string name="custom_hint">数量</string>
@@ -435,4 +435,12 @@
     <string name="darkblue_theme">暗蓝色主题</string>
     <string name="pref_read_with_long_tap">长按菜单</string>
     <string name="reader_pull_up_for_more_options">上拉显示更多选项</string>
+    <string name="action_open_in_web_view">用外部浏览器打开</string>
+    <string name="pref_true_color">32位色彩</string>
+    <string name="pref_skip_read_chapters">跳过已读章节</string>
+    <string name="pref_color_filter_mode">滤镜颜色模式</string>
+    <string name="filter_mode_default">默认</string>
+    <string name="label_help">帮助</string>
+    <string name="pref_library_update_prioritization">书架更新顺序</string>
+    <string name="pref_library_update_prioritization_summary">选择Tachiyomi检查书架更新的顺序</string>
 </resources>

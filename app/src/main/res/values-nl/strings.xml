@@ -434,4 +434,5 @@ Zorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het teru
     <string name="migrate">Migreer</string>
     <string name="copy">Kopiëren</string>
     <string name="migrating">Aan het migreren…</string>
+    <string name="filter_mode_default">Standaard</string>
 </resources>
