@@ -129,8 +129,8 @@
     <string name="pref_page_transitions">Kesan peralihan halaman</string>
     <string name="pref_show_page_number">Tunjuk nombor muka surat</string>
     <string name="pref_crop_borders">Potong pinggiran</string>
-    <string name="pref_custom_brightness">Guna kecerahan khusus</string>
-    <string name="pref_custom_color_filter">Guna tapisan warna khusus</string>
+    <string name="pref_custom_brightness">Guna kecerahan tersuai</string>
+    <string name="pref_custom_color_filter">Guna turas warna tersuai</string>
     <string name="pref_keep_screen_on">Tetap nyalakan skrin</string>
     <string name="pref_reader_navigation">Navigasi</string>
     <string name="pref_read_with_volume_keys">Butang volum</string>
@@ -171,7 +171,7 @@
     <string name="pref_download_only_over_wifi">Hanya muat turun melalui Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Padam apabila ditandakan sebagai dibaca</string>
     <string name="pref_remove_after_read">Padam setelah dibaca</string>
-    <string name="custom_dir">Direktori khusus</string>
+    <string name="custom_dir">Direktori tersuai</string>
     <string name="disabled">Dinyahaktifkan</string>
     <string name="last_read_chapter">Bab terakhir dibaca</string>
     <string name="second_to_last">Bab kedua terakhir</string>
@@ -314,7 +314,7 @@
     <string name="picture_saved">Gambar disimpan</string>
     <string name="saving_picture">Simpan gambar</string>
     <string name="options">Pilihan</string>
-    <string name="custom_filter">Tapisan khusus</string>
+    <string name="custom_filter">Tapisan tersuai</string>
     <string name="set_as_cover">Set sebagai muka hadapan</string>
     <string name="cover_updated">Muka hadapan dikemas kini</string>
     <string name="page_downloaded">Halaman disalin ke %1$s</string>
@@ -437,4 +437,8 @@
     <string name="copy">Salin</string>
     <string name="migrating">Menukar…</string>
     <string name="information_empty_category">Tiada kategori dijumpai. Tekan butang tambah untuk membuat satu bagi menyusun koleksi.</string>
+    <string name="pref_color_filter_mode">Mod penuras campuran warna</string>
+    <string name="label_help">Bantuan</string>
+    <string name="pref_library_update_prioritization">Susunan kemas kini koleksi</string>
+    <string name="pref_library_update_prioritization_summary">Pilih susunan untuk Tachiyomi semak kemas kini</string>
 </resources>
