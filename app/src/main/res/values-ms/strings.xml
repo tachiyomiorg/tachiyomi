@@ -437,8 +437,14 @@
     <string name="copy">Salin</string>
     <string name="migrating">Menukar…</string>
     <string name="information_empty_category">Tiada kategori dijumpai. Tekan butang tambah untuk membuat satu bagi menyusun koleksi.</string>
-    <string name="pref_color_filter_mode">Mod penuras campuran warna</string>
+    <string name="pref_color_filter_mode">"Mod  turas warna campuran"</string>
     <string name="label_help">Bantuan</string>
     <string name="pref_library_update_prioritization">Susunan kemas kini koleksi</string>
     <string name="pref_library_update_prioritization_summary">Pilih susunan untuk Tachiyomi semak kemas kini</string>
+    <string name="filter_mode_default">Default</string>
+    <string name="filter_mode_overlay">Overlay</string>
+    <string name="filter_mode_multiply">Multiply</string>
+    <string name="filter_mode_screen">Screen</string>
+    <string name="filter_mode_lighten">Dodge / Lighten</string>
+    <string name="filter_mode_darken">Burn / Darken</string>
 </resources>
