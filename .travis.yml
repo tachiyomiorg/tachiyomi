@@ -1,3 +1,4 @@
+dist: trusty
 language: android
 android:
   components:

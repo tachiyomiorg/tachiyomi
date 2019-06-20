@@ -143,6 +143,8 @@ class PreferencesHelper(val context: Context) {
 
     fun libraryUpdateCategories() = rxPrefs.getStringSet(Keys.libraryUpdateCategories, emptySet())
 
+    fun libraryUpdatePrioritization() = rxPrefs.getInteger(Keys.libraryUpdatePrioritization, 0)
+
     fun libraryAsList() = rxPrefs.getBoolean(Keys.libraryAsList, false)
 
     fun downloadBadge() = rxPrefs.getBoolean(Keys.downloadBadge, false)

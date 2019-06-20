@@ -159,6 +159,22 @@ class SettingsGeneralController : SettingsController() {
                             selectedCategories.joinToString { it.name }
                     }
         }
+        intListPreference{
+            key = Keys.libraryUpdatePrioritization
+            titleRes = R.string.pref_library_update_prioritization
+            // The following arrays are to be lined up with the list rankingScheme in:
+            // ../../data/library/LibraryUpdateRanker.kt
+            entriesRes = arrayOf(
+                    R.string.action_sort_alpha,
+                    R.string.action_sort_last_updated
+            )
+            entryValues = arrayOf(
+                    "0",
+                    "1"
+            )
+            defaultValue = "0"
+            summaryRes = R.string.pref_library_update_prioritization_summary
+        }
         intListPreference {
             key = Keys.defaultCategory
             titleRes = R.string.default_category

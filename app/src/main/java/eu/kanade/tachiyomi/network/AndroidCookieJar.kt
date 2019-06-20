@@ -47,11 +47,12 @@ class AndroidCookieJar(context: Context) : CookieJar {
     }
 
     fun remove(url: HttpUrl) {
-        val cookies = manager.getCookie(url.toString()) ?: return
-        val domain = ".${url.host()}"
+        val urlString = url.toString()
+        val cookies = manager.getCookie(urlString) ?: return
+
         cookies.split(";")
             .map { it.substringBefore("=") }
-            .onEach { manager.setCookie(domain, "$it=;Max-Age=-1") }
+            .onEach { manager.setCookie(urlString, "$it=;Max-Age=-1") }
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             syncManager.sync()

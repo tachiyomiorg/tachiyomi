@@ -24,6 +24,7 @@
     <string name="label_migration">Source migration</string>
     <string name="label_extensions">Extensions</string>
     <string name="label_extension_info">Extension info</string>
+    <string name="label_help">Help</string>
 
 
     <!-- Actions -->
@@ -131,6 +132,8 @@
     <string name="update_monthly">Monthly</string>
     <string name="pref_library_update_categories">Categories to include in global update</string>
     <string name="all">All</string>
+    <string name="pref_library_update_prioritization">Library update order</string>
+    <string name="pref_library_update_prioritization_summary">Select the order in which Tachiyomi checks for update</string>
     <string name="pref_library_update_restriction">Library update restrictions</string>
     <string name="pref_library_update_restriction_summary">Update only when the conditions are met</string>
     <string name="wifi">Wi-Fi</string>

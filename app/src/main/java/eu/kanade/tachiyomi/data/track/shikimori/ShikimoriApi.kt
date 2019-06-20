@@ -172,10 +172,10 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
         private const val clientId = "1aaf4cf232372708e98b5abc813d795b539c5a916dbbfe9ac61bf02a360832cc"
         private const val clientSecret = "229942c742dd4cde803125d17d64501d91c0b12e14cb1e5120184d77d67024c0"
 
-        private const val baseUrl = "https://shikimori.org"
-        private const val apiUrl = "https://shikimori.org/api"
-        private const val oauthUrl = "https://shikimori.org/oauth/token"
-        private const val loginUrl = "https://shikimori.org/oauth/authorize"
+        private const val baseUrl = "https://shikimori.one"
+        private const val apiUrl = "https://shikimori.one/api"
+        private const val oauthUrl = "https://shikimori.one/oauth/token"
+        private const val loginUrl = "https://shikimori.one/oauth/authorize"
 
         private const val redirectUrl = "tachiyomi://shikimori-auth"
         private const val baseMangaUrl = "$apiUrl/mangas"
