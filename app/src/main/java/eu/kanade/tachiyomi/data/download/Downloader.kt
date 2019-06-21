@@ -5,6 +5,7 @@ import android.webkit.MimeTypeMap
 import com.hippo.unifile.UniFile
 import com.jakewharton.rxrelay.BehaviorRelay
 import com.jakewharton.rxrelay.PublishRelay
+import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
@@ -21,6 +22,9 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
 import timber.log.Timber
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
+import java.io.File
 
 /**
  * This class is the one in charge of downloading chapters.
@@ -40,7 +44,8 @@ class Downloader(
         private val context: Context,
         private val provider: DownloadProvider,
         private val cache: DownloadCache,
-        private val sourceManager: SourceManager
+        private val sourceManager: SourceManager,
+        private val chapterCache: ChapterCache = Injekt.get()
 ) {
 
     /**
@@ -310,12 +315,15 @@ class Downloader(
         // Delete temp file if it exists.
         tmpFile?.delete()
 
-        // Try to find the image file.
+        // Try to find the image file in downloaded folder.
         val imageFile = tmpDir.listFiles()!!.find { it.name!!.startsWith("$filename.") }
 
-        // If the image is already downloaded, do nothing. Otherwise download from network
+        // If the image is already downloaded, do nothing. And if the image is already cached,
+        // copy the cached image to download folder. Otherwise download from network
         val pageObservable = if (imageFile != null)
             Observable.just(imageFile)
+        else if (chapterCache.isImageInCache(page.imageUrl!!))
+            copyImageFromCache(page.imageUrl!!, tmpDir, filename)
         else
             downloadImage(page, download.source, tmpDir, filename)
 
@@ -363,6 +371,27 @@ class Downloader(
                 }
                 // Retry 3 times, waiting 2, 4 and 8 seconds between attempts.
                 .retryWhen(RetryWithDelay(3, { (2 shl it - 1) * 1000 }, Schedulers.trampoline()))
+    }
+
+    /**
+     * Return the observable which copy the image from cache
+     *
+     * @param imageUrl the URL of the image to be copied
+     * @param tmpDir the temporary directory of the download.
+     * @param filename the filename of the image.
+     */
+    private fun copyImageFromCache(imageUrl: String, tmpDir: UniFile, filename: String): Observable<UniFile> {
+        val file = File(tmpDir.filePath, "$filename.tmp")
+        try {
+            val cache = chapterCache.getImageFile(imageUrl)
+            cache.copyTo(file)
+            val extension = imageUrl.substringAfterLast(".")
+            UniFile.fromFile(file)!!.renameTo("$filename.$extension")
+            return Observable.just(UniFile.fromFile(file));
+        } catch(e: Exception) {
+            file.delete()
+            throw e
+        }
     }
 
     /**
