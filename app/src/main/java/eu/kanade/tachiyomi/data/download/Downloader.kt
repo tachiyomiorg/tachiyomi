@@ -381,15 +381,15 @@ class Downloader(
      * @param filename the filename of the image.
      */
     private fun copyImageFromCache(imageUrl: String, tmpDir: UniFile, filename: String): Observable<UniFile> {
-        val file = File(tmpDir.filePath, "$filename.tmp")
+        val tempFile = File(tmpDir.filePath, "$filename.tmp")
         try {
-            val cache = chapterCache.getImageFile(imageUrl)
-            cache.copyTo(file)
+            chapterCache.getImageFile(imageUrl).copyTo(tempFile)
             val extension = imageUrl.substringAfterLast(".")
-            UniFile.fromFile(file)!!.renameTo("$filename.$extension")
-            return Observable.just(UniFile.fromFile(file));
+            val file = UniFile.fromFile(tempFile)!!
+            file.renameTo("$filename.$extension")
+            return Observable.just(file)
         } catch(e: Exception) {
-            file.delete()
+            tempFile.delete()
             throw e
         }
     }
