@@ -446,4 +446,6 @@
     <string name="filter_mode_multiply">Multiplisere</string>
     <string name="filter_mode_lighten">Unngå / lysne</string>
     <string name="filter_mode_darken">Brenn / mørkere</string>
+    <string name="pref_library_update_prioritization">Rekkefølge for biblioteksoppdatering</string>
+    <string name="pref_library_update_prioritization_summary">Velg rekkefølgen Tachiyomi ser etter oppdateringer</string>
 </resources>
