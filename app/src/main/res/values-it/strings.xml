@@ -318,7 +318,7 @@
     <string name="information_no_recent_manga">Non ci sono manga letti di recente</string>
     <string name="information_empty_library">Libreria vuota, aggiungi una serie dai Cataloghi.</string>
     <!-- Download Notification -->
-    <string name="download_notifier_downloader_title">Downloader</string>
+    <string name="download_notifier_downloader_title">Scaricamento</string>
     <string name="download_notifier_title_error">Errore</string>
     <string name="download_notifier_unkown_error">Si è verificato un errore imprevisto durante il download del capitolo</string>
     <string name="download_notifier_page_error">Una pagina non è presente nella directory</string>
@@ -472,4 +472,12 @@
     <string name="filter_mode_screen">Schermo</string>
     <string name="pref_read_with_long_tap">Dialogo dopo pressione lunga</string>
     <string name="reader_pull_up_for_more_options">Trascina verso l\'alto per maggiori opzioni</string>
+    <string name="pref_color_filter_mode">Modalità di filtraggio del colore</string>
+    <string name="filter_mode_overlay">Sovrimpressione</string>
+    <string name="filter_mode_multiply">Moltiplica</string>
+    <string name="filter_mode_lighten">Schiarisci</string>
+    <string name="filter_mode_darken">Scurisci</string>
+    <string name="label_help">Aiuto</string>
+    <string name="pref_library_update_prioritization">Ordine di aggiornamento della libreria</string>
+    <string name="pref_library_update_prioritization_summary">Seleziona l\'ordine in cui vuoi che Tachiyomi controlli gli aggiornamenti</string>
 </resources>
