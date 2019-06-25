@@ -443,7 +443,7 @@
     <string name="track_start_date">Iniziato</string>
     <string name="track_type">Tipo</string>
     <string name="track_author">Autore</string>
-    <string name="url_not_set">L\'URL del manga non è impostato clicca sul titolo e seleziona nuovamente il manga</string>
+    <string name="url_not_set">L\'URL del manga non è impostato, clicca sul titolo e selezionalo ancora</string>
     <string name="snack_categories_deleted">Categorie rimosse</string>
     <string name="migration_info">Tocca per selezionare la sorgente dalla quale migrare</string>
     <string name="migration_dialog_what_to_include">Seleziona i dati da includere</string>
