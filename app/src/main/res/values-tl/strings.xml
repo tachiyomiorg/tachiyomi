@@ -248,4 +248,16 @@
     <string name="label_help">Tulong</string>
     <string name="pref_library_update_prioritization">Ayos ng pag-update ng Aklatan</string>
     <string name="pref_library_update_prioritization_summary">Piliin ang ayos ng pag-check ng mga update ng Tachiyomi</string>
+    <string name="file_saved">Na-save ang file sa %1$s</string>
+    <string name="backup_choice">Ano ang gusto mong i-backup\?</string>
+    <string name="restoring_backup">Nire-restore ang backup</string>
+    <string name="creating_backup">Ginagawa ang backup</string>
+    <string name="pref_clear_chapter_cache">Linisin ang cache ng kabanata</string>
+    <string name="used_cache">Nagamit: %1$s</string>
+    <string name="cache_deleted">Nalinis ang cache. Nabura ang %1$d na (mga) file</string>
+    <string name="cache_delete_error">Nagkaproblema habang nililinis ang cache</string>
+    <string name="pref_clear_cookies">Linisin ang mga cookies</string>
+    <string name="cookies_cleared">Nalinis ang mga cookies</string>
+    <string name="choices_reset">I-reset ang mga pinili sa dialog</string>
+    <string name="pref_clear_database">Linisin ang database</string>
 </resources>
