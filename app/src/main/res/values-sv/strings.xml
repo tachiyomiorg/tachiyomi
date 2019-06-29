@@ -300,7 +300,6 @@
     <string name="invalid_combination">Standard inte kan väljas med andra kategorier</string>
     <string name="added_to_library">Mangan har lagts till i din bibliotek</string>
     <string name="action_global_search_hint">Global sökning…</string>
-    <string name="no_results">Inga resultat hittades!</string>
     <string name="latest">Senaste</string>
     <string name="browse">Bläddra</string>
 

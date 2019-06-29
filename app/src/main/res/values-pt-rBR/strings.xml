@@ -362,7 +362,6 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
     <string name="action_login">Entrar</string>
     <string name="other_source">Outras</string>
     <string name="action_global_search_hint">Pesquisa global…</string>
-    <string name="no_results">Nenhum resultado encontrado!</string>
     <string name="latest">Mais recente</string>
     <string name="browse">Navegar</string>
     <string name="shortcut_created">O atalho foi adicionado à sua tela inicial.</string>

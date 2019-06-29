@@ -282,7 +282,6 @@
     <string name="invalid_combination">Категорія за замовчуванням не може бути вибраною разом з іншими категоріями</string>
     <string name="added_to_library">Цю мангу уже додано до бібліотеки</string>
     <string name="action_global_search_hint">Глобальний пошук…</string>
-    <string name="no_results">Результатів не знайдено!</string>
     <string name="latest">Остання</string>
     <string name="browse">Переглянути</string>
     <string name="manga_not_in_db">Ця манга було видалена з бази даних!</string>

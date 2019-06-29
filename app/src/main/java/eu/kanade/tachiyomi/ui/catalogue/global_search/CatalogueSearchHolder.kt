@@ -31,9 +31,6 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) :
         // Set layout horizontal.
         recycler.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
         recycler.adapter = mangaAdapter
-
-        nothing_found_icon.setVectorCompat(R.drawable.ic_search_black_112dp,
-                view.context.getResourceColor(android.R.attr.textColorHint))
     }
 
     /**
@@ -54,17 +51,14 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) :
         when {
             results == null -> {
                 progress.visible()
-                nothing_found.gone()
                 showHolder()
             }
             results.isEmpty() -> {
                 progress.gone()
-                nothing_found.visible()
                 hideHolder()
             }
             else -> {
                 progress.gone()
-                nothing_found.gone()
                 showHolder()
             }
         }

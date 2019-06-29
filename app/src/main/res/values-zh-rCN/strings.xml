@@ -281,7 +281,6 @@
     <string name="invalid_combination">默认标签不能与其它标签一起选择</string>
     <string name="added_to_library">已将此漫画添加至书架</string>
     <string name="action_global_search_hint">全局搜索…</string>
-    <string name="no_results">找不到！</string>
     <string name="latest">最近更新</string>
     <string name="browse">浏览</string>
     <string name="manga_not_in_db">漫画已被移出数据库！</string>

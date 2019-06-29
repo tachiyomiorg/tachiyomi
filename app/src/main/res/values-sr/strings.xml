@@ -283,7 +283,6 @@
     <string name="invalid_combination">Opšte je nemoguće označiti sa ostalim kategorijama</string>
     <string name="added_to_library">Ova manga je dodata u biblioteku</string>
     <string name="action_global_search_hint">Globalno pretraživanje…</string>
-    <string name="no_results">Nema pronađenih rezultata!</string>
     <string name="latest">Poslednje</string>
     <string name="browse">Pretraži</string>
     <string name="manga_not_in_db">Ova manga je uklonjena iz baze podataka!</string>

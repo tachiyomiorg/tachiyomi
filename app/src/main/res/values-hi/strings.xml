@@ -250,7 +250,6 @@
     <string name="invalid_combination">डिफ़ॉल्ट को अन्य श्रेणियों के साथ नहीं चुना जा सकता है</string>
     <string name="added_to_library">मंगा को आपकी लाइब्रेरी में जोड़ा गया है</string>
     <string name="action_global_search_hint">वैश्विक खोज …</string>
-    <string name="no_results">कोई परिणाम नहीं मिला!</string>
     <string name="latest">नवीनतम</string>
     <string name="browse">ब्राउज</string>
     <string name="manga_not_in_db">यह मंगा डेटाबेस से हटा दिया गया था!</string>

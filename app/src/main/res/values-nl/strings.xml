@@ -365,7 +365,6 @@ Zorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het teru
     <string name="local_source_badge">Lokaal</string>
     <string name="other_source">Alternatief</string>
     <string name="action_global_search_hint">Globaal zoeken…</string>
-    <string name="no_results">Geen resultaten gevonden!</string>
     <string name="latest">Recent</string>
     <string name="shortcut_created">Snelkoppeling toegevoegd aan startscherm.</string>
     <string name="channel_library">Bibliotheek</string>

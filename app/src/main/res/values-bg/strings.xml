@@ -397,7 +397,6 @@
     <string name="action_login">Вход</string>
     <string name="other_source">Други</string>
     <string name="action_global_search_hint">Глобално търсене…</string>
-    <string name="no_results">Не бяха открити резултати!</string>
     <string name="latest">Последни</string>
     <string name="browse">Търсене</string>
     <string name="shortcut_created">Прекият път беше добавен към началния екран.</string>

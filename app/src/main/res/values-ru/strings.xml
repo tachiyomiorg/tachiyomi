@@ -360,7 +360,6 @@
     <string name="local_source_badge">Локальная</string>
     <string name="other_source">Другие</string>
     <string name="action_global_search_hint">Глобальный поиск…</string>
-    <string name="no_results">Результат не найден!</string>
     <string name="latest">Последняя</string>
     <string name="browse">Смотреть</string>
     <string name="shortcut_created">Ярлык был добавлен на главный экран.</string>

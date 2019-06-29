@@ -461,7 +461,6 @@
     <string name="invalid_combination">Mặc định không thể chọn với các danh mục khác</string>
     <string name="added_to_library">Truyện này đã được thêm vào thư viện</string>
     <string name="action_global_search_hint">Tìm kiếm toàn cầu…</string>
-    <string name="no_results">Không tìm thấy kết quả!</string>
     <string name="latest">Mới nhất</string>
     <string name="browse">Duyệt</string>
     <string name="manga_info_full_title_label">Tiêu đề</string>

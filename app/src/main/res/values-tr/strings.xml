@@ -281,7 +281,6 @@
     <string name="invalid_combination">Öntanımlı diğer kategorilerle birlikte seçilemez</string>
     <string name="added_to_library">Manga kitaplığınıza eklendi</string>
     <string name="action_global_search_hint">Genel arama…</string>
-    <string name="no_results">Sonuç bulunmadı!</string>
     <string name="latest">En son</string>
     <string name="browse">Göz at</string>
     <string name="manga_not_in_db">Bu manga veritabanından kaldırıldı!</string>

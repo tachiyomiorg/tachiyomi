@@ -395,7 +395,6 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="local_source_badge">Local</string>
     <string name="other_source">Otros</string>
     <string name="action_global_search_hint">Búsqueda global…</string>
-    <string name="no_results">Ningún resultado encontrado!</string>
     <string name="latest">Recientes</string>
     <string name="browse">Explorar</string>
     <string name="shortcut_created">Acceso directo fue agregado a la pantalla de inicio.</string>

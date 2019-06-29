@@ -396,7 +396,6 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="action_login">Connexion</string>
     <string name="other_source">Autre</string>
     <string name="action_global_search_hint">Recherche globale…</string>
-    <string name="no_results">Aucun résultat !</string>
     <string name="latest">Récents</string>
     <string name="browse">Explorer</string>
     <string name="shortcut_created">Un raccourci a été ajouté à la page d\'accueil.</string>
