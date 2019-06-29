@@ -241,6 +241,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         }
         startActivity(intent)
     }
+
     var lastClickPosition = -1
     override fun onItemClick(position: Int): Boolean {
         val adapter = adapter ?: return false
