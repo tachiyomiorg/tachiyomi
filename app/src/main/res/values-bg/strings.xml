@@ -452,7 +452,7 @@
     <string name="source_not_installed">Източникът не е инсталиран: %1$s</string>
     <string name="repeating">Препрочитане</string>
     <string name="track_status">Статус</string>
-    <string name="track_start_date">Започната на</string>
+    <string name="track_start_date">Начало</string>
     <string name="track_type">Тип</string>
     <string name="track_author">Автор</string>
     <string name="url_not_set">Мангата няма връзка с акаунта, молим отново да натиснете заглавието и да изберете мангата</string>
