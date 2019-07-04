@@ -442,4 +442,7 @@
     <string name="filter_mode_screen">Layar</string>
     <string name="filter_mode_lighten">Muslihat / Cerahkan</string>
     <string name="filter_mode_darken">Bakar / Gelapkan</string>
+    <string name="label_help">Bantuan</string>
+    <string name="pref_library_update_prioritization">Urutan perbarui pustaka</string>
+    <string name="pref_library_update_prioritization_summary">Pilih urutan yang akan Tachiyomi perbarui</string>
 </resources>
