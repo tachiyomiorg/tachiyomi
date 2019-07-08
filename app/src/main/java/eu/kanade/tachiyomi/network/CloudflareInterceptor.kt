@@ -1,55 +1,27 @@
 package eu.kanade.tachiyomi.network
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.os.Build
-import android.os.Handler
-import android.os.Looper
-import android.webkit.WebResourceResponse
-import android.webkit.WebSettings
-import android.webkit.WebView
-import eu.kanade.tachiyomi.util.WebViewClientCompat
+import android.util.Log
+import okhttp3.Headers
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
+import java.net.URL
+import java.util.regex.Pattern
 
-class CloudflareInterceptor(private val context: Context) : Interceptor {
-
+class CloudFlareInterceptor: Interceptor {
     private val serverCheck = arrayOf("cloudflare-nginx", "cloudflare")
-
-    private val handler = Handler(Looper.getMainLooper())
-
-    /**
-     * When this is called, it initializes the WebView if it wasn't already. We use this to avoid
-     * blocking the main thread too much. If used too often we could consider moving it to the
-     * Application class.
-     */
-    private val initWebView by lazy {
-        if (Build.VERSION.SDK_INT >= 17) {
-            WebSettings.getDefaultUserAgent(context)
-        } else {
-            null
-        }
-    }
 
     @Synchronized
     override fun intercept(chain: Interceptor.Chain): Response {
-        initWebView
-
         val response = chain.proceed(chain.request())
 
-        // Check if Cloudflare anti-bot is on
         if (response.code() == 503 && response.header("Server") in serverCheck) {
             try {
+                val solutionRequest = resolve(response, chain.request())
                 response.close()
-                val solutionRequest = resolveWithWebView(chain.request())
                 return chain.proceed(solutionRequest)
             } catch (e: Exception) {
-                // Because OkHttp's enqueue only handles IOExceptions, wrap the exception so that
-                // we don't crash the entire app
                 throw IOException(e)
             }
         }
@@ -61,94 +33,55 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
         return "chk_jschl" in url
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
-    private fun resolveWithWebView(request: Request): Request {
-        // We need to lock this thread until the WebView finds the challenge solution url, because
-        // OkHttp doesn't support asynchronous interceptors.
-        val latch = CountDownLatch(1)
-
-        var webView: WebView? = null
-        var solutionUrl: String? = null
-        var challengeFound = false
-
+    private fun resolve(response: Response, request: Request): Request {
         val origRequestUrl = request.url().toString()
-        val headers = request.headers().toMultimap().mapValues { it.value.getOrNull(0) ?: "" }
+        val body = response.body()?.string() ?: ""
+        val headers = Headers.Builder()
+        if(response.headers().get("Set-Cookie") != null) {
+            headers.add("Cookie", response.headers().get("Set-Cookie") ?: "")
+        }
+        headers.addAll(request.headers())
 
-        handler.post {
-            val view = WebView(context)
-            webView = view
-            view.settings.javaScriptEnabled = true
-            view.settings.userAgentString = request.header("User-Agent")
-            view.webViewClient = object : WebViewClientCompat() {
+        Log.i("AnimeHub", "${headers.build()}")
 
-                override fun shouldOverrideUrlCompat(view: WebView, url: String): Boolean {
-                    if (isChallengeSolutionUrl(url)) {
-                        solutionUrl = url
-                        latch.countDown()
-                    }
-                    return solutionUrl != null
-                }
+        if(!isChallengeSolutionUrl(body)) throw Exception("Challenge not found")
 
-                override fun shouldInterceptRequestCompat(
-                        view: WebView,
-                        url: String
-                ): WebResourceResponse? {
-                    if (solutionUrl != null) {
-                        // Intercept any request when we have the solution.
-                        return WebResourceResponse("text/plain", "UTF-8", null)
-                    }
-                    return null
-                }
-
-                override fun onPageFinished(view: WebView, url: String) {
-                    // Http error codes are only received since M
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
-                        url == origRequestUrl && !challengeFound
-                    ) {
-                        // The first request didn't return the challenge, abort.
-                        latch.countDown()
-                    }
-                }
-
-                override fun onReceivedErrorCompat(
-                        view: WebView,
-                        errorCode: Int,
-                        description: String?,
-                        failingUrl: String,
-                        isMainFrame: Boolean
-                ) {
-                    if (isMainFrame) {
-                        if (errorCode == 503) {
-                            // Found the cloudflare challenge page.
-                            challengeFound = true
-                        } else {
-                            // Unlock thread, the challenge wasn't found.
-                            latch.countDown()
-                        }
-                    }
-                }
-            }
-            webView?.loadUrl(origRequestUrl, headers)
+        val re1 = Pattern.compile("name=['|\"]s['|\"][\\s]+value=['|\"](.*?)['|\"]").matcher(body)
+        val s: String
+        if(re1.find()) {
+            s = re1.group(1)
+        } else {
+            throw Exception("s not found")
         }
 
-        // Wait a reasonable amount of time to retrieve the solution. The minimum should be
-        // around 4 seconds but it can take more due to slow networks or server issues.
-        latch.await(12, TimeUnit.SECONDS)
-
-        handler.post {
-            webView?.stopLoading()
-            webView?.destroy()
+        val re2 = Pattern.compile("name=['|\"]jschl_vc['|\"][\\s]+value=['|\"](.*?)['|\"]").matcher(body)
+        val jschlVc: String
+        if(re2.find()) {
+            jschlVc = re2.group(1)
+        } else {
+            throw Exception("jschl_vc not found")
         }
 
-        val solution = solutionUrl ?: throw Exception("Challenge not found")
+        val re3 = Pattern.compile("name=['|\"]pass['|\"][\\s]+value=['|\"](.*?)['|\"]").matcher(body)
+        val pass: String
+        if(re3.find()) {
+            pass = re3.group(1)
+        } else {
+            throw Exception("pass not found")
+        }
+
+        val jschlAnswer = CloudFlareAnswer.cfa(body) ?: throw Exception("jschl_answer not found")
+
+        val url = URL(origRequestUrl)
+        val base = "${url.protocol}://${url.host}"
+        val solve = "$base/cdn-cgi/l/chk_jschl?s=$s&jschl_vc=$jschlVc&pass=$pass&jschl_answer=$jschlAnswer"
 
         return Request.Builder().get()
-            .url(solution)
-            .headers(request.headers())
+            .url(solve)
+            .headers(headers.build())
             .addHeader("Referer", origRequestUrl)
             .addHeader("Accept", "text/html,application/xhtml+xml,application/xml")
             .addHeader("Accept-Language", "en")
             .build()
     }
-
 }
