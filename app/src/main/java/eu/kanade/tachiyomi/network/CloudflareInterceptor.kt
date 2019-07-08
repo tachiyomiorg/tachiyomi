@@ -9,7 +9,7 @@ import java.io.IOException
 import java.net.URL
 import java.util.regex.Pattern
 
-class CloudFlareInterceptor: Interceptor {
+class CloudflareInterceptor: Interceptor {
     private val serverCheck = arrayOf("cloudflare-nginx", "cloudflare")
 
     @Synchronized
