@@ -28,7 +28,7 @@ class NetworkHelper(context: Context) {
             .build()
 
     val cloudflareClient = client.newBuilder()
-            .addInterceptor(CloudflareInterceptor(context))
+            .addInterceptor(CloudflareInterceptor())
             .build()
 
     private fun OkHttpClient.Builder.enableTLS12(): OkHttpClient.Builder {
