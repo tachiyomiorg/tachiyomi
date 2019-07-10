@@ -9,6 +9,9 @@ import eu.kanade.tachiyomi.widget.ExtendedNavigationView
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.MultiSort.Companion.SORT_ASC
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.MultiSort.Companion.SORT_DESC
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.MultiSort.Companion.SORT_NONE
+import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.TriStateGroup.Companion.STATE_IGNORE
+import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.TriStateGroup.Companion.STATE_INCLUDE
+import eu.kanade.tachiyomi.widget.ExtendedNavigationView.Item.TriStateGroup.Companion.STATE_EXCLUDE
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -48,7 +51,7 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
      * Returns true if there's at least one filter from [FilterGroup] active.
      */
     fun hasActiveFilters(): Boolean {
-        return (groups[0] as FilterGroup).items.any { it.checked }
+        return !((groups[0] as FilterGroup).items.all { it.state == STATE_IGNORE })
     }
 
     /**
@@ -69,11 +72,11 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
      */
     inner class FilterGroup : Group {
 
-        private val downloaded = Item.CheckboxGroup(R.string.action_filter_downloaded, this)
+        private val downloaded = Item.TriStateGroup(R.string.action_filter_downloaded, this)
 
-        private val unread = Item.CheckboxGroup(R.string.action_filter_unread, this)
+        private val unread = Item.TriStateGroup(R.string.action_filter_unread, this)
 
-        private val completed = Item.CheckboxGroup(R.string.completed, this)
+        private val completed = Item.TriStateGroup(R.string.completed, this)
 
         override val items = listOf(downloaded, unread, completed)
 
@@ -82,20 +85,25 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
         override val footer = Item.Separator()
 
         override fun initModels() {
-            downloaded.checked = preferences.filterDownloaded().getOrDefault()
-            unread.checked = preferences.filterUnread().getOrDefault()
-            completed.checked = preferences.filterCompleted().getOrDefault()
+            downloaded.state = preferences.filterDownloaded().getOrDefault()
+            unread.state = preferences.filterUnread().getOrDefault()
+            completed.state = preferences.filterCompleted().getOrDefault()
         }
 
         override fun onItemClicked(item: Item) {
-            item as Item.CheckboxGroup
-            item.checked = !item.checked
-            when (item) {
-                downloaded -> preferences.filterDownloaded().set(item.checked)
-                unread -> preferences.filterUnread().set(item.checked)
-                completed -> preferences.filterCompleted().set(item.checked)
+            item as Item.TriStateGroup
+            val newState = when (item.state) {
+                STATE_IGNORE -> STATE_INCLUDE
+                STATE_INCLUDE -> STATE_EXCLUDE
+                STATE_EXCLUDE -> STATE_IGNORE
+                else -> throw Exception("Unknown State")
             }
-
+            when (item) {
+                downloaded -> preferences.filterDownloaded().set(newState)
+                unread -> preferences.filterUnread().set(newState)
+                completed -> preferences.filterCompleted().set(newState)
+            }
+            item.state = newState
             adapter.notifyItemChanged(item)
         }
     }

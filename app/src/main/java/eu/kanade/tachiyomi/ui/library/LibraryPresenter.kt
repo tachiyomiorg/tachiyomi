@@ -114,33 +114,37 @@ class LibraryPresenter(
 
         val filterCompleted = preferences.filterCompleted().getOrDefault()
 
-        val filterFn: (LibraryItem) -> Boolean = f@ { item ->
-            // Filter when there isn't unread chapters.
-            if (filterUnread && item.manga.unread == 0) {
-                return@f false
-            }
+        // TODO: Get rid of magic numbers
+        val filterFnUnread: (LibraryItem) -> Boolean = unread@ { item ->
+            if (filterUnread == 0) return@unread true
+            val hasUnread = item.manga.unread != 0
 
-            if (filterCompleted && item.manga.status != SManga.COMPLETED) {
-                return@f false
-            }
-
-            // Filter when there are no downloads.
-            if (filterDownloaded) {
-                // Local manga are always downloaded
-                if (item.manga.source == LocalSource.ID) {
-                    return@f true
-                }
-                // Don't bother with directory checking if download count has been set.
-                if (item.downloadCount != -1) {
-                    return@f item.downloadCount > 0
-                }
-
-                return@f downloadManager.getDownloadCount(item.manga) > 0
-            }
-            true
+            return@unread if (filterUnread == 1) hasUnread else !hasUnread
         }
 
-        return map.mapValues { entry -> entry.value.filter(filterFn) }
+        // TODO: Get rid of magic numbers
+        val filterFnCompleted: (LibraryItem) -> Boolean = completed@ { item ->
+            if (filterCompleted == 0) return@completed true
+            val isCompleted = item.manga.status == SManga.COMPLETED
+
+            return@completed if (filterCompleted == 1) isCompleted else !isCompleted
+        }
+
+        // TODO: Get rid of magic numbers
+        val filterFnDownloaded: (LibraryItem) -> Boolean = downloaded@ { item ->
+            if (filterDownloaded == 0) return@downloaded true
+            val isDownloaded = when {
+                item.manga.source == LocalSource.ID -> true
+                item.downloadCount != -1 -> item.downloadCount > 0
+                else -> downloadManager.getDownloadCount(item.manga) > 0
+            }
+
+            return@downloaded if (filterDownloaded == 1) isDownloaded else !isDownloaded
+        }
+
+        return map.mapValues { entry ->
+            entry.value.filter(filterFnUnread).filter(filterFnCompleted).filter(filterFnDownloaded)
+        }
     }
 
     /**

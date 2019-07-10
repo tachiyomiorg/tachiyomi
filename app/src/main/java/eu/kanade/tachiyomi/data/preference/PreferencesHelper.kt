@@ -149,11 +149,11 @@ class PreferencesHelper(val context: Context) {
 
     fun downloadBadge() = rxPrefs.getBoolean(Keys.downloadBadge, false)
 
-    fun filterDownloaded() = rxPrefs.getBoolean(Keys.filterDownloaded, false)
+    fun filterDownloaded() = rxPrefs.getInteger(Keys.filterDownloaded, 0)
 
-    fun filterUnread() = rxPrefs.getBoolean(Keys.filterUnread, false)
+    fun filterUnread() = rxPrefs.getInteger(Keys.filterUnread, 0)
 
-    fun filterCompleted() = rxPrefs.getBoolean(Keys.filterCompleted, false)
+    fun filterCompleted() = rxPrefs.getInteger(Keys.filterCompleted, 0)
 
     fun librarySortingMode() = rxPrefs.getInteger(Keys.librarySortingMode, 0)
 
