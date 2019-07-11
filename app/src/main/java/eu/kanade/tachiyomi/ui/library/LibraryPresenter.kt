@@ -114,32 +114,32 @@ class LibraryPresenter(
 
         val filterCompleted = preferences.filterCompleted().getOrDefault()
 
-        // TODO: Get rid of magic numbers
         val filterFnUnread: (LibraryItem) -> Boolean = unread@ { item ->
-            if (filterUnread == 0) return@unread true
-            val hasUnread = item.manga.unread != 0
+            if (LibraryTriStateFilter.isIgnored(filterUnread)) return@unread true
+            val isUnread = item.manga.unread != 0
 
-            return@unread if (filterUnread == 1) hasUnread else !hasUnread
+            return@unread if (LibraryTriStateFilter.isIncluded(filterUnread)) isUnread
+                else !isUnread
         }
 
-        // TODO: Get rid of magic numbers
         val filterFnCompleted: (LibraryItem) -> Boolean = completed@ { item ->
-            if (filterCompleted == 0) return@completed true
+            if (LibraryTriStateFilter.isIgnored(filterCompleted)) return@completed true
             val isCompleted = item.manga.status == SManga.COMPLETED
 
-            return@completed if (filterCompleted == 1) isCompleted else !isCompleted
+            return@completed if (LibraryTriStateFilter.isIncluded(filterCompleted)) isCompleted
+                else !isCompleted
         }
 
-        // TODO: Get rid of magic numbers
         val filterFnDownloaded: (LibraryItem) -> Boolean = downloaded@ { item ->
-            if (filterDownloaded == 0) return@downloaded true
+            if (LibraryTriStateFilter.isIgnored(filterDownloaded)) return@downloaded true
             val isDownloaded = when {
                 item.manga.source == LocalSource.ID -> true
                 item.downloadCount != -1 -> item.downloadCount > 0
                 else -> downloadManager.getDownloadCount(item.manga) > 0
             }
 
-            return@downloaded if (filterDownloaded == 1) isDownloaded else !isDownloaded
+            return@downloaded if (LibraryTriStateFilter.isIncluded(filterDownloaded)) isDownloaded
+                else !isDownloaded
         }
 
         return map.mapValues { entry ->
