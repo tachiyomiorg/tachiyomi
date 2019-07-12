@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.data.updater
+package eu.kanade.tachiyomi.data.updater.github
 
 import eu.kanade.tachiyomi.network.NetworkHelper
 import retrofit2.Retrofit
