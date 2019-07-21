@@ -3,7 +3,7 @@
     <string name="name">Nama</string>
     <string name="categories">Kategori</string>
     <string name="manga">Manga</string>
-    <string name="chapters">Bab</string>
+    <string name="chapters">Bab-bab</string>
     <string name="track">Penjejakan</string>
     <string name="history">Sejarah</string>
     <string name="label_settings">Tetapan</string>
@@ -371,8 +371,8 @@
     <string name="channel_library">Koleksi</string>
     <string name="channel_downloader">Pemuat turun</string>
     <string name="label_migration">Pindah sumber</string>
-    <string name="label_extensions">Sambungan</string>
-    <string name="label_extension_info">Info sambungan</string>
+    <string name="label_extensions">Tambahan</string>
+    <string name="label_extension_info">Info Tambahan</string>
     <string name="action_open_in_web_view">Buka dalam WebView</string>
     <string name="darkblue_theme">Biru gelap</string>
     <string name="all_lang">Semua</string>
@@ -399,7 +399,7 @@
     <string name="ext_empty_preferences">Tiada apa untuk disunting di sambungan ini</string>
     <string name="pref_double_tap_anim_speed">Kelajuan animasi ketik dua kali</string>
     <string name="pref_true_color">32-bit warna</string>
-    <string name="pref_skip_read_chapters">Lingkau bab yang sudah dibaca</string>
+    <string name="pref_skip_read_chapters">Langkau bab-bab yang bertanda dibaca</string>
     <string name="pref_read_with_long_tap">Menahan ketik buka dialog</string>
     <string name="pager_viewer">Halaman muka surat</string>
     <string name="double_tap_anim_speed_0">Tiada animasi</string>
@@ -442,9 +442,9 @@
     <string name="pref_library_update_prioritization">Susunan kemas kini koleksi</string>
     <string name="pref_library_update_prioritization_summary">Pilih susunan untuk Tachiyomi semak kemas kini</string>
     <string name="filter_mode_default">Default</string>
-    <string name="filter_mode_overlay">Overlay</string>
-    <string name="filter_mode_multiply">Multiply</string>
-    <string name="filter_mode_screen">Screen</string>
+    <string name="filter_mode_overlay">Lapisan atas</string>
+    <string name="filter_mode_multiply">Darab</string>
+    <string name="filter_mode_screen">Skrin</string>
     <string name="filter_mode_lighten">Dodge / Lighten</string>
     <string name="filter_mode_darken">Burn / Darken</string>
 </resources>
