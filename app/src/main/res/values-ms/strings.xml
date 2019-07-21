@@ -433,7 +433,7 @@
     <string name="migration_info">Pilih sumber untuk ditukar</string>
     <string name="migration_dialog_what_to_include">Pilih data untuk disertakan</string>
     <string name="select">Pilih</string>
-    <string name="migrate">Tukar</string>
+    <string name="migrate">Beralih</string>
     <string name="copy">Salin</string>
     <string name="migrating">Menukar…</string>
     <string name="information_empty_category">Tiada kategori dijumpai. Tekan butang tambah untuk membuat satu bagi menyusun koleksi.</string>
