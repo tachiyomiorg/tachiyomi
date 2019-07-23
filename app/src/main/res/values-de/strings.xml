@@ -34,7 +34,7 @@
     <string name="action_bookmark">Lesezeichen setzen</string>
     <string name="action_remove_bookmark">Lesezeichen entfernen</string>
     <string name="action_delete">Löschen</string>
-    <string name="action_update">Update</string>
+    <string name="action_update">Aktualisieren</string>
     <string name="action_update_library">Bibliothek aktualisieren</string>
     <string name="action_edit">Bearbeiten</string>
     <string name="action_add">Hinzufügen</string>
@@ -421,7 +421,7 @@
     <string name="track_start_date">Gestartet</string>
     <string name="track_type">Typ</string>
     <string name="track_author">Autor</string>
-    <string name="url_not_set">Manga url ist nicht gesetzt. Bitte auf den Titel drücken und den Manga erneut wählen</string>
+    <string name="url_not_set">Manga URL ist nicht gesetzt. Bitte auf den Titel drücken und den Manga erneut wählen</string>
     <string name="transition_finished">Beendet:</string>
     <string name="transition_current">Aktuell:</string>
     <string name="transition_next">Nächste:</string>
@@ -442,4 +442,7 @@
     <string name="filter_mode_darken">Brennen / Verdunkeln</string>
     <string name="pref_color_filter_mode">Farbfilter Mischmodus</string>
     <string name="filter_mode_lighten">Abwedeln / Aufhellen</string>
+    <string name="label_help">Hilfe</string>
+    <string name="pref_library_update_prioritization">Reihenfolge der Bibliotheksaktualisierung</string>
+    <string name="pref_library_update_prioritization_summary">Bestimme die Reihenfolge in der Tachiyomi nach Updates sucht</string>
 </resources>
