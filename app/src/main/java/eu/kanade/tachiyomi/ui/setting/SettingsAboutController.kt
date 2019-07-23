@@ -88,6 +88,15 @@ class SettingsAboutController : SettingsController() {
             }
         }
         preference {
+            title = "FAQ"
+            val url = "https://github.com/inorichi/tachiyomi/wiki/FAQ"
+            summary = url
+            onClick {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+            }
+        }
+        preference {
             titleRes = R.string.version
             summary = if (BuildConfig.DEBUG)
                 "r" + BuildConfig.COMMIT_COUNT
