@@ -366,4 +366,13 @@
     <string name="viewer_for_this_series">閱讀模式</string>
     <string name="transition_pages_loading">正在載入頁面…</string>
     <string name="information_empty_library">尚未收藏任何作品，請至書目檢索挖掘您的愛書。</string>
+    <string name="pref_refresh_library_metadata_summary">更新書封、類型、描述和連載狀態等漫畫簡介</string>
+    <string name="dialog_with_checkbox_reset">重設此漫畫所有章節</string>
+    <string name="custom_filter">自訂篩選器</string>
+    <string name="download_progress">已下載 %1$d% %</string>
+    <string name="chapter_subtitle">第 %1$s 章</string>
+    <string name="migrate">遷移</string>
+    <string name="migrating">正在遷移…</string>
+    <string name="notification_update_progress">更新中：%1$d/%2$d</string>
+    <string name="notification_cover_update_failed">書封更新失敗</string>
 </resources>
