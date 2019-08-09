@@ -15,7 +15,7 @@
     <string name="label_latest_updates">Perubahan terkini</string>
     <string name="label_categories">Kategori</string>
     <string name="label_selected">%1$d dipilih</string>
-    <string name="label_backup">Sandaran</string>
+    <string name="label_backup">Salinan</string>
     <string name="action_settings">Tetapan</string>
     <string name="action_filter">Tapis</string>
     <string name="action_filter_downloaded">Telah dimuat turun</string>
@@ -441,7 +441,7 @@
     <string name="label_help">Bantuan</string>
     <string name="pref_library_update_prioritization">Susunan kemas kini koleksi</string>
     <string name="pref_library_update_prioritization_summary">Pilih susunan untuk Tachiyomi semak kemas kini</string>
-    <string name="filter_mode_default">Default</string>
+    <string name="filter_mode_default">Biasa</string>
     <string name="filter_mode_overlay">Lapisan atas</string>
     <string name="filter_mode_multiply">Berganda</string>
     <string name="filter_mode_screen">Skrin</string>
