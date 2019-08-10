@@ -5,7 +5,7 @@
     <string name="chapters">章節</string>
     <string name="history">記錄</string>
     <string name="label_settings">設定</string>
-    <string name="label_download_queue">下載序列</string>
+    <string name="label_download_queue">下載佇列</string>
     <string name="label_library">我的書櫃</string>
     <string name="label_recent_manga">近期閱讀</string>
     <string name="label_catalogues">書目檢索</string>
@@ -192,11 +192,11 @@
     <string name="copied_to_clipboard">「%1$s」已複製至剪貼簿</string>
     <string name="source_not_installed">來源未安裝：%1$s</string>
     <string name="chapter_downloaded">已下載</string>
-    <string name="chapter_queued">已排入序列</string>
+    <string name="chapter_queued">已佇列</string>
     <string name="chapter_error">錯誤</string>
     <string name="chapter_paused">已暫停</string>
     <string name="manga_download">下載</string>
-    <string name="snack_categories_deleted">分類已刪除</string>
+    <string name="snack_categories_deleted">已刪除分類</string>
     <string name="picture_saved">圖片已儲存</string>
     <string name="saving_picture">正在儲存圖片</string>
     <string name="set_as_cover">設為書封</string>
@@ -236,7 +236,7 @@
     <string name="pref_reader_navigation">導覽</string>
     <string name="pref_read_with_volume_keys">音量按鈕</string>
     <string name="pref_read_with_volume_keys_inverted">反轉音量按鈕</string>
-    <string name="pref_read_with_tapping">輕觸</string>
+    <string name="pref_read_with_tapping">輕觸翻頁</string>
     <string name="pref_read_with_long_tap">長按快顯選單</string>
     <string name="pref_reader_theme">背景顏色</string>
     <string name="white_background">白色</string>
@@ -301,7 +301,7 @@
     <string name="added_to_library">該漫畫已收藏至您的書櫃</string>
     <string name="browse">瀏覽</string>
     <string name="manga_detail_tab">簡介</string>
-    <string name="description">描述</string>
+    <string name="description">介紹</string>
     <string name="ongoing">連載中</string>
     <string name="unknown">不明</string>
     <string name="licensed">已授權</string>
@@ -327,7 +327,7 @@
     <string name="manga_chapters_tab">章節</string>
     <string name="manga_chapter_no_title">無標題</string>
     <string name="display_mode_chapter">第 %1$s 章</string>
-    <string name="chapter_downloading">正在下載</string>
+    <string name="chapter_downloading">下載中</string>
     <string name="chapter_downloading_progress">正在下載 (%1$d/%2$d)</string>
     <string name="fetch_chapters_error">章節取得失敗</string>
     <string name="show_title">顯示標題</string>
@@ -375,4 +375,15 @@
     <string name="migrating">正在遷移…</string>
     <string name="notification_update_progress">更新中：%1$d/%2$d</string>
     <string name="notification_cover_update_failed">書封更新失敗</string>
+    <string name="pref_library_update_restriction_summary">僅在符合條件時更新</string>
+    <string name="choices_reset">重設對話方塊選項</string>
+    <string name="confirm_delete_chapters">您確定要刪除所選的章節嗎？</string>
+    <string name="error_category_exists">已有名稱相同的分類！</string>
+    <string name="downloading">正在下載…</string>
+    <string name="chapter_progress">第 %1$d 頁</string>
+    <string name="no_next_chapter">找不到下一章</string>
+    <string name="no_previous_chapter">找不到前一章</string>
+    <string name="transition_finished">已閱畢：</string>
+    <string name="transition_next">下一章：</string>
+    <string name="notification_new_chapters">發現新章節</string>
 </resources>
