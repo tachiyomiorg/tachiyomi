@@ -51,7 +51,7 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
      * Returns true if there's at least one filter from [FilterGroup] active.
      */
     fun hasActiveFilters(): Boolean {
-        return !((groups[0] as FilterGroup).items.all { it.state == STATE_IGNORE })
+        return (groups[0] as FilterGroup).items.any { it.state != STATE_IGNORE }
     }
 
     /**
@@ -84,25 +84,10 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
 
         override val footer = Item.Separator()
 
-        // TODO: Ask if there's a better way to do this mapping & inverse mapping
-        private fun libraryTriStateToState(libraryTriState: Int) = when (libraryTriState) {
-            LibraryTriStateFilter.INCLUDED -> STATE_INCLUDE
-            LibraryTriStateFilter.EXCLUDED -> STATE_EXCLUDE
-            LibraryTriStateFilter.IGNORED -> STATE_IGNORE
-            else -> STATE_IGNORE // Default State
-        }
-
-        private fun stateToLibraryTriState(state: Int) = when (state) {
-            STATE_INCLUDE -> LibraryTriStateFilter.INCLUDED
-            STATE_EXCLUDE -> LibraryTriStateFilter.EXCLUDED
-            STATE_IGNORE -> LibraryTriStateFilter.IGNORED
-            else -> LibraryTriStateFilter.IGNORED // Default State
-        }
-
         override fun initModels() {
-            downloaded.state = libraryTriStateToState(preferences.filterDownloaded().getOrDefault())
-            unread.state = libraryTriStateToState(preferences.filterUnread().getOrDefault())
-            completed.state = libraryTriStateToState(preferences.filterCompleted().getOrDefault())
+            downloaded.state = preferences.filterDownloaded().getOrDefault()
+            unread.state = preferences.filterUnread().getOrDefault()
+            completed.state = preferences.filterCompleted().getOrDefault()
         }
 
         override fun onItemClicked(item: Item) {
@@ -115,9 +100,9 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
             }
             item.state = newState
             when (item) {
-                downloaded -> preferences.filterDownloaded().set(stateToLibraryTriState(newState))
-                unread -> preferences.filterUnread().set(stateToLibraryTriState(newState))
-                completed -> preferences.filterCompleted().set(stateToLibraryTriState(newState))
+                downloaded -> preferences.filterDownloaded().set(newState)
+                unread -> preferences.filterUnread().set(newState)
+                completed -> preferences.filterCompleted().set(newState)
             }
             adapter.notifyItemChanged(item)
         }
