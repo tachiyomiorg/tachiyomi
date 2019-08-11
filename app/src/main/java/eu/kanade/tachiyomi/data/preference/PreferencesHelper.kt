@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.preference
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Environment
 import android.preference.PreferenceManager
@@ -10,11 +11,29 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.source.Source
 import java.io.File
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 
 fun <T> Preference<T>.getOrDefault(): T = get() ?: defaultValue()!!
 
 fun Preference<Boolean>.invert(): Boolean = getOrDefault().let { set(!it); !it }
+
+private class DateFormatConverter : Preference.Adapter<DateFormat> {
+    override fun get(key: String, preferences: SharedPreferences): DateFormat {
+        var dateFormat = preferences.getString(Keys.dateFormat, "")
+
+        if (dateFormat != "") {
+            return SimpleDateFormat(dateFormat)
+        }
+
+        return DateFormat.getDateInstance(DateFormat.SHORT)
+    }
+
+    override fun set(key: String, value: DateFormat, editor: SharedPreferences.Editor) {
+        TODO("not implemented")
+    }
+}
 
 class PreferencesHelper(val context: Context) {
 
@@ -124,6 +143,8 @@ class PreferencesHelper(val context: Context) {
     fun anilistScoreType() = rxPrefs.getString("anilist_score_type", "POINT_10")
 
     fun backupsDirectory() = rxPrefs.getString(Keys.backupDirectory, defaultBackupDir.toString())
+
+    fun dateFormat() = rxPrefs.getObject(Keys.dateFormat, DateFormatConverter())
 
     fun downloadsDirectory() = rxPrefs.getString(Keys.downloadsDirectory, defaultDownloadsDir.toString())
 

@@ -1,6 +1,8 @@
 package eu.kanade.tachiyomi.ui.recently_read
 
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.SourceManager
 import uy.kohesive.injekt.injectLazy
 import java.text.DateFormat
@@ -32,7 +34,9 @@ class RecentlyReadAdapter(controller: RecentlyReadController)
     val decimalFormat = DecimalFormat("#.###", DecimalFormatSymbols()
             .apply { decimalSeparator = '.' })
 
-    val dateFormat: DateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT)
+    private val preferences: PreferencesHelper by injectLazy()
+
+    val dateFormat: DateFormat = preferences.dateFormat().getOrDefault()
 
     interface OnResumeClickListener {
         fun onResumeClick(position: Int)

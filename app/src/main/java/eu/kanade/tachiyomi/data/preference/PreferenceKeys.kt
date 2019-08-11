@@ -109,6 +109,8 @@ object PreferenceKeys {
 
     const val lang = "app_language"
 
+    const val dateFormat = "app_date_format"
+
     const val defaultCategory = "default_category"
 
     const val skipRead = "skip_read"

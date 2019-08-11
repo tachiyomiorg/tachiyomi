@@ -9,6 +9,8 @@ import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.updater.UpdateChecker
 import eu.kanade.tachiyomi.data.updater.UpdateResult
 import eu.kanade.tachiyomi.data.updater.UpdaterJob
@@ -19,11 +21,11 @@ import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import timber.log.Timber
+import uy.kohesive.injekt.injectLazy
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.TimeZone
+import java.util.*
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 
 class SettingsAboutController : SettingsController() {
@@ -32,6 +34,11 @@ class SettingsAboutController : SettingsController() {
      * Checks for new releases
      */
     private val updateChecker by lazy { UpdateChecker.getUpdateChecker() }
+
+
+    private val userPreferences: PreferencesHelper by injectLazy()
+
+    val dateFormat: DateFormat = userPreferences.dateFormat().getOrDefault()
 
     /**
      * The subscribtion service of the obtained release object
@@ -174,13 +181,15 @@ class SettingsAboutController : SettingsController() {
         try {
             val inputDf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'", Locale.US)
             inputDf.timeZone = TimeZone.getTimeZone("UTC")
-            val date = inputDf.parse(BuildConfig.BUILD_TIME)
+            val buildTime = inputDf.parse(BuildConfig.BUILD_TIME)
 
             val outputDf = DateFormat.getDateTimeInstance(
                     DateFormat.MEDIUM, DateFormat.SHORT, Locale.getDefault())
             outputDf.timeZone = TimeZone.getDefault()
 
-            return outputDf.format(date)
+            val date = dateFormat.format(buildTime)
+            val time = DateFormat.getTimeInstance(DateFormat.SHORT).format(buildTime)
+            return "$date $time"
         } catch (e: ParseException) {
             return BuildConfig.BUILD_TIME
         }
