@@ -1,9 +1,7 @@
 package eu.kanade.tachiyomi.ui.manga.info
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.webkit.WebView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.SourceManager
@@ -15,6 +13,10 @@ import uy.kohesive.injekt.injectLazy
 class MangaWebViewController(bundle: Bundle? = null) : BaseController(bundle) {
 
     private val sourceManager by injectLazy<SourceManager>()
+
+    init {
+        setHasOptionsMenu(true)
+    }
 
     constructor(sourceId: Long, url: String) : this(Bundle().apply {
         putLong(SOURCE_KEY, sourceId)
@@ -41,6 +43,40 @@ class MangaWebViewController(bundle: Bundle? = null) : BaseController(bundle) {
         web.settings.javaScriptEnabled = true
         web.settings.userAgentString = source.headers["User-Agent"]
         web.loadUrl(url, headers)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.web_view, menu)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        val web = view as WebView
+        menu.findItem(R.id.action_forward).isVisible = web.canGoForward()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_forward -> {
+                val web = view as WebView
+                if (web.canGoForward()) web.goForward()
+            }
+            R.id.action_refresh -> {
+                val web = view as WebView
+                web.reload()
+            }
+            R.id.action_close -> router.popController(this)
+            else -> return super.onOptionsItemSelected(item)
+        }
+        return true
+    }
+
+    override fun handleBack(): Boolean {
+        val web = view as WebView
+        if (web.canGoBack()) {
+            web.goBack()
+            return true
+        }
+        return super.handleBack()
     }
 
     override fun onDestroyView(view: View) {
