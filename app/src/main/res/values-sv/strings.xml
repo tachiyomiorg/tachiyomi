@@ -437,4 +437,14 @@
     <string name="pref_skip_read_chapters">Skippa över kapitel markerad som läst</string>
     <string name="pref_read_with_long_tap">Långtrycks dialog</string>
     <string name="reader_pull_up_for_more_options">Dra upp för fler alternativ</string>
+    <string name="pref_color_filter_mode">Färgfilterblandningsläge</string>
+    <string name="filter_mode_default">Standard</string>
+    <string name="filter_mode_overlay">Överlägg</string>
+    <string name="filter_mode_multiply">Multiplicera</string>
+    <string name="filter_mode_screen">Skärm</string>
+    <string name="filter_mode_lighten">Ljusna</string>
+    <string name="filter_mode_darken">Mörkna</string>
+    <string name="label_help">Hjälp</string>
+    <string name="pref_library_update_prioritization">Bibliotekets uppdateringsordning</string>
+    <string name="pref_library_update_prioritization_summary">Välj i vilken ordning Tachiyomi söker efter uppdateringar</string>
 </resources>
