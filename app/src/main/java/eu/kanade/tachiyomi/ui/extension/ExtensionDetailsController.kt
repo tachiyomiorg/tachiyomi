@@ -18,7 +18,9 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.EmptyPreferenceDataStore
 import eu.kanade.tachiyomi.data.preference.SharedPreferencesDataStore
 import eu.kanade.tachiyomi.source.ConfigurableSource
+import eu.kanade.tachiyomi.source.ConfigurableSourceFactory
 import eu.kanade.tachiyomi.source.Source
+import eu.kanade.tachiyomi.source.SourceFactory
 import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.setting.preferenceCategory
@@ -77,11 +79,15 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         val screen = manager.createPreferenceScreen(themedContext)
         preferenceScreen = screen
 
+        extension.sourceFactory?.let {
+            addPreferencesForSourceFactory(screen, it, extension.name)
+        }
+
         val multiSource = extension.sources.size > 1
 
         for (source in extension.sources) {
             if (source is ConfigurableSource) {
-                addPreferencesForSource(screen, source, multiSource)
+                addPreferencesForSource(screen, source, multiSource, extension.sourceFactory != null)
             }
         }
 
@@ -116,7 +122,30 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         lastOpenPreferencePosition = savedInstanceState.get(LASTOPENPREFERENCE_KEY) as? Int
     }
 
-    private fun addPreferencesForSource(screen: PreferenceScreen, source: Source, multiSource: Boolean) {
+    @SuppressLint("DefaultLocale")
+    private fun addPreferencesForSourceFactory(screen: PreferenceScreen, sourceFactory: SourceFactory, extName: String) {
+        val context = screen.context
+
+        val dataStore = SharedPreferencesDataStore(context.getSharedPreferences("extension_$extName".toLowerCase(), Context.MODE_PRIVATE))
+
+        if (sourceFactory is ConfigurableSourceFactory) {
+            screen.preferenceCategory {
+                title = extName
+            }
+
+            val newScreen = screen.preferenceManager.createPreferenceScreen(context)
+            sourceFactory.setupPreferenceScreen(newScreen)
+
+            for (i in 0 until newScreen.preferenceCount) {
+                val pref = newScreen.getPreference(i)
+                pref.preferenceDataStore = dataStore
+                pref.order = Int.MAX_VALUE // reset to default order
+                screen.addPreference(pref)
+            }
+        }
+    }
+
+    private fun addPreferencesForSource(screen: PreferenceScreen, source: Source, multiSource: Boolean, configurableSourceFactory: Boolean) {
         val context = screen.context
 
         // TODO 
@@ -127,7 +156,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                 /*}*/)
 
         if (source is ConfigurableSource) {
-            if (multiSource) {
+            if (multiSource || configurableSourceFactory) {
                 screen.preferenceCategory {
                     title = source.toString()
                 }
