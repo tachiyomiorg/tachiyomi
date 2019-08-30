@@ -101,7 +101,7 @@ class MangaModelLoader : ModelLoader<Manga, InputStream> {
             return ModelLoader.LoadData(MangaSignature(manga, file), libraryFetcher)
         } else {
             // Get the file from the url, removing the scheme if present, or from the cache if no url.
-            val file = if (url != null) File(url.substringAfter("file://"))
+            val file = if (url != null && url.startsWith("file")) File(url.substringAfter("file://"))
                     else coverCache.getCoverFile(manga)
 
             if (!file.exists()) return null;

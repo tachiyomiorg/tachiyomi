@@ -31,7 +31,9 @@ class CoverCache(private val context: Context) {
      * @return cover image.
      */
     fun getCoverFile(manga: Manga): File {
-        val thumbnailUrl = manga.thumbnail_url ?: manga.url
+        val backup = "${manga.source}${manga.url}"
+        var thumbnailUrl = manga.thumbnail_url ?: backup
+        if (thumbnailUrl.isEmpty()) thumbnailUrl = backup
         return File(cacheDir, DiskUtil.hashKeyForDisk(thumbnailUrl))
     }
 
