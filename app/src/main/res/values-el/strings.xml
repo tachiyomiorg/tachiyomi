@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="name">Όνομα</string>
+<resources>
+    <string name="name">Όνομα</string>
     <string name="categories">Κατηγορίες</string>
     <string name="manga">Manga</string>
     <string name="chapters">Κεφάλαια</string>
     <string name="track">Παρακολούθηση</string>
     <string name="history">Ιστορία</string>
-
     <string name="label_settings">Ρυθμίσεις</string>
     <string name="label_download_queue">Ουρά λήψεων</string>
     <string name="label_library">Η βιβλιοθήκη μου</string>
@@ -19,8 +19,6 @@
     <string name="label_migration">Μεταφορά πηγής</string>
     <string name="label_extensions">Επεκτάσεις</string>
     <string name="label_extension_info">Πληροφορίες επέκτασης</string>
-
-
     <string name="action_settings">Ρυθμίσεις</string>
     <string name="action_filter">Φίλτρο</string>
     <string name="action_filter_downloaded">Λήψεις</string>
@@ -87,13 +85,10 @@
     <string name="action_restore">Επαναφορά</string>
     <string name="action_open">Άνοιγμα</string>
     <string name="action_login">Εισαγωγή</string>
-
     <string name="deleting">Διαγραφή…</string>
     <string name="loading">Φόρτωση…</string>
-
     <string name="app_not_available">Μη διαθέσιμη εφαρμογή</string>
     <string name="short_recent_updates">Ενημερώσεις</string>
-
     <string name="pref_category_general">Γενικά</string>
     <string name="pref_category_reader">Αναγνώστης</string>
     <string name="pref_category_downloads">Λήψεις</string>
@@ -101,8 +96,7 @@
     <string name="pref_category_tracking">Παρακολούθηση</string>
     <string name="pref_category_advanced">Προχωρημένο</string>
     <string name="pref_category_about">Περί</string>
-
-      <string name="pref_library_columns">Βιβλιοθήκη manga ανά σειρά</string>
+    <string name="pref_library_columns">Βιβλιοθήκη manga ανά σειρά</string>
     <string name="portrait">Κατακόρυφος</string>
     <string name="landscape">Οριζόντιος</string>
     <string name="default_columns">Προεπιλογή</string>
@@ -135,7 +129,6 @@
     <string name="system_default">Προεπιλογή συστήματος</string>
     <string name="default_category">Προεπιλεγμένη κατηγορία</string>
     <string name="default_category_summary">Ερώτηση πάντα</string>
-
     <string name="all_lang">Όλα</string>
     <string name="ext_details">Λεπτομέρειες</string>
     <string name="ext_update">Ενημέρωση</string>
@@ -158,8 +151,7 @@
     <string name="ext_version_info">Έκδοση: %1$s</string>
     <string name="ext_language_info">Γλώσσα: %1$s</string>
     <string name="ext_empty_preferences">Δεν υπάρχουν προτιμήσεις επεξεργασίας για αυτή την επέκταση</string>
-
-      <string name="pref_fullscreen">Πλήρης οθόνη</string>
+    <string name="pref_fullscreen">Πλήρης οθόνη</string>
     <string name="pref_lock_orientation">Κλείδωμα προσανατολισμού</string>
     <string name="pref_page_transitions">Αλλαγές σελίδας</string>
     <string name="pref_double_tap_anim_speed">Διπλή βρύση κινούμενα σχέδια ταχύτητα</string>
@@ -169,8 +161,8 @@
     <string name="pref_custom_color_filter">Χρήση εξατομικευμένου φίλτρου χρωμάτων</string>
     <string name="pref_keep_screen_on">Να κρατηθεί η οθόνη ανοιχτή</string>
     <string name="pref_reader_navigation">Πλοήγηση</string>
-    <string name="pref_read_with_volume_keys">Πλήκτρα έντασης ήχου</string>
-    <string name="pref_read_with_volume_keys_inverted">Αναστροφή πλήκτρων έντασης</string>
+    <string name="pref_read_with_volume_keys">Πλήκτρα ήχου</string>
+    <string name="pref_read_with_volume_keys_inverted">Αντιστροφή των πληκτρών έντασης</string>
     <string name="pref_read_with_tapping">Άγγιγμα</string>
     <string name="pref_reader_theme">Χρώμα παρασκηνίου</string>
     <string name="white_background">Άσπρο</string>
@@ -183,7 +175,7 @@
     <string name="webtoon_viewer">Webtoon</string>
     <string name="pager_viewer">Σελιδοποίηση</string>
     <string name="pref_image_decoder">Αποκωδικοποιητής εικόνας</string>
-    <string name="pref_image_scale_type">Τύπος κλίμακας</string>
+    <string name="pref_image_scale_type">Διάσταση κλίμακας</string>
     <string name="scale_type_fit_screen">Προσαρμογή στην οθόνη</string>
     <string name="scale_type_stretch">Τέντωμα</string>
     <string name="scale_type_fit_width">Προσαρμογή στο πλάτος</string>
@@ -207,9 +199,7 @@
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
-
-
-      <string name="pref_download_directory">Φάκελος λήψεων</string>
+    <string name="pref_download_directory">Φάκελος λήψεων</string>
     <string name="pref_download_only_over_wifi">Λήψη μόνε με Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Διαγραφή αν σημειώνεται ως αναγνωσμένο</string>
     <string name="pref_remove_after_read">Διαγραφή μετά την ανάγνωση</string>
@@ -222,9 +212,7 @@
     <string name="fifth_to_last">Προ-προ-προ-προτελευταίο αναγνωσμένο κεφάλαιο</string>
     <string name="pref_download_new">Λήψη νέων κεφάλαιων</string>
     <string name="pref_download_new_categories">Κατηγορίες που να συμπεριλαμβάνονται στην λήψη</string>
-
-      <string name="services">Υπηρεσίες</string>
-
+    <string name="services">Υπηρεσίες</string>
     <string name="backup">Αντίγραφο ασφαλείας</string>
     <string name="pref_create_backup">Δημιουργία αντίγραφου ασφαλείας</string>
     <string name="pref_create_backup_summ">Μπορεί να χρησιμοποιηθεί για επαναφορά τρέχουσας βιβλιοθήκης</string>
@@ -250,8 +238,7 @@
     <string name="backup_choice">Τι θέλετε να κάνετε backup;</string>
     <string name="restoring_backup">Επαναφορά αντιγράφων ασφαλείας</string>
     <string name="creating_backup">Δημιουργία αντιγράφων ασφαλείας</string>
-
-      <string name="pref_clear_chapter_cache">Καθάρισμα προσωρινής μνήμης κεφαλαίου</string>
+    <string name="pref_clear_chapter_cache">Καθάρισμα προσωρινής μνήμης κεφαλαίου</string>
     <string name="used_cache">Χρησιμοποιήθηκε: %1$s</string>
     <string name="cache_deleted">Η κρυφή μνήμη διαγράφηκε. %1$d αρχεία έχουν διαγραφεί</string>
     <string name="cache_delete_error">Παρουσιάστηκε σφάλμα κατά την εκκαθάριση της προσωρινής μνήμης</string>
@@ -266,15 +253,12 @@
     <string name="pref_refresh_library_metadata_summary">Ενημερώνει εξώφυλλα, είδη, περιγραφή και πληροφορίες κατάστασης του manga</string>
     <string name="pref_refresh_library_tracking">Ανανέωση μεταδεδομένων παρακολούθησης</string>
     <string name="pref_refresh_library_tracking_summary">Ενημερώνει κατάσταση, βαθμολογία και τελευταίο αναγνωσμένο κεφάλαιο από τις υπηρεσίες παρακολούθησης</string>
-
-      <string name="version">Έκδοση</string>
+    <string name="version">Έκδοση</string>
     <string name="build_time">Χρόνος κατασκευής</string>
     <string name="pref_enable_automatic_updates">Έλεγχος για ενημερώσεις</string>
     <string name="pref_enable_automatic_updates_summary">Αυτόματος έλεγχος για ενημερώσεις εφαρμογής</string>
     <string name="pref_enable_acra">Αποστολή αναφορών σφαλμάτων</string>
     <string name="pref_acra_summary">Βοηθά στην επιδιόρθωση τυχόν σφαλμάτων. Δεν θα αποστέλλονται ευαίσθητα δεδομένα</string>
-
-
     <string name="login_title">Σύνδεση για %1$s</string>
     <string name="username">Όνομα χρήστη</string>
     <string name="password">Κωδικός πρόσβασης</string>
@@ -283,13 +267,11 @@
     <string name="login_success">Επιτυχής σύνδεση</string>
     <string name="invalid_login">Σφάλμα σύνδεσης</string>
     <string name="unknown_error">Άγνωστο σφάλμα</string>
-
     <string name="library_search_hint">Τίτλος ή συγγραφέας…</string>
     <string name="updating_category">Ενημέρωση κατηγορίας</string>
     <string name="local_source_badge">Τοπικό</string>
     <string name="confirm_delete_manga">Είστε βέβαιοι ότι θέλετε να καταργήσετε τα επιλεγμένα manga;</string>
     <string name="also_delete_chapters">"Επίσης, διαγραφή κεφάλαιων που έχουν ληφθεί "</string>
-
     <string name="source_search_options">Φίλτρα αναζήτησης</string>
     <string name="source_requires_login">Αυτή η πηγή απαιτεί να συνδεθείτε</string>
     <string name="select_source">Επιλέξτε πηγή</string>
@@ -303,9 +285,7 @@
     <string name="action_global_search_hint">Καθολική αναζήτηση…</string>
     <string name="latest">Τελευταίο</string>
     <string name="browse">Ξεφύλλισμα</string>
-
     <string name="manga_not_in_db">Αυτό το manga αφαιρέθηκε από τη βάση δεδομένων!</string>
-
     <string name="manga_detail_tab">Πληροφορίες</string>
     <string name="description">Περιγραφή</string>
     <string name="ongoing">Σε εξέλιξη</string>
@@ -334,7 +314,6 @@
     <string name="delete_downloads_for_manga">Να διαγραφούν τα κεφάλαια που έχουν ληφθεί;</string>
     <string name="copied_to_clipboard">%1$s αντιγράφτηκε στο πρόχειρο</string>
     <string name="source_not_installed">Η πηγή δεν είναι εγκατεστημένη: %1$s</string>
-
     <string name="manga_chapters_tab">Κεφάλαια</string>
     <string name="manga_chapter_no_title">Χωρίς τίτλο</string>
     <string name="display_mode_chapter">Κεφάλαιο %1$s</string>
@@ -360,7 +339,6 @@
     <string name="download_all">Λήψη όλων</string>
     <string name="download_unread">Λήψη μη αναγνωσμένων</string>
     <string name="confirm_delete_chapters">Είστε βέβαιοι ότι θέλετε να διαγράψετε επιλεγμένα κεφάλαια;</string>
-
     <string name="manga_tracking_tab">Παρακολούθηση</string>
     <string name="reading">Ανάγνωση</string>
     <string name="completed">Ολοκληρωμένο</string>
@@ -376,19 +354,14 @@
     <string name="track_type">Τύπος</string>
     <string name="track_author">Συγγραφέας</string>
     <string name="url_not_set">Το Manga url δεν έχει οριστεί, κάντε κλικ στον τίτλο και επιλέξτε ξανά το manga</string>
-
     <string name="error_category_exists">Μια κατηγορία με αυτό το όνομα υπάρχει ήδη!</string>
     <string name="snack_categories_deleted">Οι κατηγορίες διαγράφηκαν</string>
-
     <string name="dialog_with_checkbox_remove_description">Αυτό θα αφαιρέσει την ημερομηνία ανάγνωσης αυτού του κεφαλαίου. Είσαι σίγουρος;</string>
     <string name="dialog_with_checkbox_reset">Επαναφέρετε όλα τα κεφάλαια για αυτό το μάγκα</string>
-
     <string name="snack_add_to_library">Προσθέστε το manga στη βιβλιοθήκη;</string>
-
     <string name="picture_saved">Η εικόνα αποθηκεύτηκε</string>
     <string name="saving_picture">Αποθήκευση εικόνας</string>
     <string name="options">Επιλογές</string>
-
     <string name="custom_filter">Προσαρμοσμένο φίλτρο</string>
     <string name="set_as_cover">Ορισμός ως εξώφυλλο</string>
     <string name="cover_updated">Εξώφυλλο ενημερώθηκε</string>
@@ -411,18 +384,14 @@
     <string name="transition_no_previous">Δεν υπάρχει προηγούμενο κεφάλαιο</string>
     <string name="transition_pages_loading">Φόρτωση σελίδων…</string>
     <string name="transition_pages_error">Η φόρτωση σελίδων απέτυχε: %1$s</string>
-
     <string name="recent_manga_source">%1$s - Κεφ.%2$s</string>
-
     <string name="migration_info">Πατήστε για να επιλέξετε την πηγή από την οποία θα μεταφέρετε</string>
     <string name="migration_dialog_what_to_include">Επιλέξτε τα δεδομένα που θέλετε να συμπεριλάβετε</string>
     <string name="select">Επιλογή</string>
     <string name="migrate">Μεταφορά</string>
     <string name="copy">Αντιγραφή</string>
     <string name="migrating">Μεταφορά…</string>
-
     <string name="download_queue_error">Παρουσιάστηκε σφάλμα κατά τη λήψη κεφαλαίων. Μπορείτε να δοκιμάσετε ξανά στην ενότητα λήψεων</string>
-
     <string name="notification_update_progress">Ενημέρωση προόδου: %1$d/%2$d</string>
     <string name="notification_new_chapters">Βρέθηκαν νέα κεφάλαια</string>
     <string name="notification_new_chapters_text">Για %1$d τίτλους</string>
@@ -432,33 +401,27 @@
     <string name="notification_not_connected_to_ac_body">Δεν είναι συνδεδεμένο με τροφοδοσία</string>
     <string name="notification_no_connection_title">Ο συγχρονισμός ακυρώθηκε</string>
     <string name="notification_no_connection_body">Η σύνδεση δεν είναι διαθέσιμη</string>
-
     <string name="file_select_cover">Επιλέξτε εικόνα εξωφύλλου</string>
     <string name="file_select_backup">Επιλέξτε αρχείο αντιγράφου ασφαλείας</string>
     <string name="file_select_icon">Επιλέξτε εικονίδιο συντόμευσης</string>
-
     <string name="update_check_title">Νέα διαθέσιμη ενημέρωση!</string>
     <string name="update_check_confirm">Λήψη</string>
     <string name="update_check_ignore">Παράλειψη</string>
     <string name="update_check_no_new_updates">Δεν υπάρχουν διαθέσιμες νέες ενημερώσεις</string>
     <string name="update_check_download_started">Ξεκίνησε η λήψη</string>
     <string name="update_check_look_for_updates">Αναζήτηση για ενημερώσεις</string>
-
     <string name="update_check_notification_file_download">Λήψη ενημέρωσης</string>
     <string name="update_check_notification_download_in_progress">Λήψη σε εξέλιξη</string>
     <string name="update_check_notification_download_complete">Η λήψη ολοκληρώθηκε</string>
     <string name="update_check_notification_download_error">Σφάλμα λήψης</string>
     <string name="update_check_notification_update_available">Υπάρχει διαθέσιμη ενημέρωση</string>
-
     <string name="description_backdrop">Εικόνα παρασκηνίου του manga</string>
     <string name="description_cover">Εξώφυλλο manga</string>
-
     <string name="information_no_downloads">Δεν υπάρχουν λήψεις</string>
     <string name="information_no_recent">Δεν υπάρχουν πρόσφατα κεφάλαια</string>
     <string name="information_no_recent_manga">Δεν υπάρχουν πρόσφατα αναγνωσμένα manga</string>
     <string name="information_empty_library">Η βιβλιοθήκη σας είναι κενή, μπορείτε να προσθέσετε σειρές στη βιβλιοθήκη σας από τους καταλόγους.</string>
     <string name="information_empty_category">Δεν έχετε κατηγορίες. Χτυπήστε το πλήκτρο συν για να δημιουργήσετε ένα για την οργάνωση της βιβλιοθήκης σας.</string>
-
     <string name="download_notifier_downloader_title">Downloader</string>
     <string name="download_notifier_title_error">Σφάλμα</string>
     <string name="download_notifier_unkown_error">Παρουσιάστηκε μη αναμενόμενο σφάλμα κατά τη λήψη του κεφαλαίου</string>
@@ -467,9 +430,18 @@
     <string name="download_notifier_text_only_wifi">Δεν υπάρχει διαθέσιμη σύνδεση wifi</string>
     <string name="download_notifier_no_network">Δεν υπάρχει διαθέσιμη σύνδεση δικτύου</string>
     <string name="download_notifier_download_paused">Λήψη σε παύση</string>
-
     <string name="channel_common">Κοινό</string>
     <string name="channel_library">Βιβλιοθήκη</string>
     <string name="channel_downloader">Downloader</string>
-
+    <string name="pref_read_with_long_tap">Παραταταμένο πάτημα διαλόγου</string>
+    <string name="action_open_in_web_view">Άνοιγμα σε Web View</string>
+    <string name="pref_true_color">32-bit χρώμα</string>
+    <string name="pref_skip_read_chapters">Προσπέραση διαβαζμένων κεφαλέων</string>
+    <string name="filter_mode_default">Προτεινούμενο</string>
+    <string name="filter_mode_overlay">επικάλυψη</string>
+    <string name="filter_mode_multiply">Πολλαπλασιαζμός</string>
+    <string name="filter_mode_screen">Οθόνη</string>
+    <string name="label_help">Βοήθεια</string>
+    <string name="pref_library_update_prioritization">Συχνότητα ανανέωσης της Βιβλιοθήκης</string>
+    <string name="pref_library_update_prioritization_summary">Διαλέξτε την σύχνοτητα που το Tachiyomi ελένχει για διαθέσιμη ενημέρωση</string>
 </resources>
