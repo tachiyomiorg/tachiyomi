@@ -17,7 +17,6 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import eu.kanade.tachiyomi.util.DiskUtil
 import eu.kanade.tachiyomi.util.getFilePicker
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -45,15 +44,6 @@ class SettingsDownloadController : SettingsController() {
                     .subscribeUntilDestroy { path ->
                         val dir = UniFile.fromUri(context, Uri.parse(path))
                         summary = dir.filePath ?: path
-
-                        // Don't display downloaded chapters in gallery apps creating .nomedia
-                        if (dir != null && dir.exists()) {
-                            val nomedia = dir.findFile(".nomedia")
-                            if (nomedia == null) {
-                                dir.createFile(".nomedia")
-                                applicationContext?.let { DiskUtil.scanMedia(it, dir.uri) }
-                            }
-                        }
                     }
         }
         switchPreference {

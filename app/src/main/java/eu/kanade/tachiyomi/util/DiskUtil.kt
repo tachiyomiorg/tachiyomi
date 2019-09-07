@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Environment
 import android.support.v4.content.ContextCompat
 import android.support.v4.os.EnvironmentCompat
+import com.hippo.unifile.UniFile
 import java.io.File
 
 object DiskUtil {
@@ -52,6 +53,19 @@ object DiskUtil {
         }
 
         return directories
+    }
+
+    /**
+     * Don't display downloaded chapters in gallery apps creating `.nomedia`.
+     */
+    fun createNoMediaFile(dir: UniFile?, context: Context?) {
+        if (dir != null && dir.exists()) {
+            val nomedia = dir.findFile(".nomedia")
+            if (nomedia == null) {
+                dir.createFile(".nomedia")
+                context?.let { scanMedia(it, dir.uri) }
+            }
+        }
     }
 
     /**

@@ -28,7 +28,9 @@ class DownloadProvider(private val context: Context) {
      * The root directory for downloads.
      */
     private var downloadsDir = preferences.downloadsDirectory().getOrDefault().let {
-        UniFile.fromUri(context, Uri.parse(it))
+        val dir = UniFile.fromUri(context, Uri.parse(it))
+        DiskUtil.createNoMediaFile(dir, context)
+        dir
     }
 
     init {
