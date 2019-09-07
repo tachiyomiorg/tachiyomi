@@ -407,6 +407,8 @@ class Downloader(
         if (download.status == Download.DOWNLOADED) {
             tmpDir.renameTo(dirname)
             cache.addChapter(dirname, mangaDir, download.manga)
+
+            DiskUtil.createNoMediaFile(tmpDir, context)
         }
     }
 
