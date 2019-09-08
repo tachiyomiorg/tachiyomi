@@ -1,10 +1,14 @@
 package eu.kanade.tachiyomi.ui.extension
 
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.SearchView
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
+import com.jakewharton.rxbinding.support.v7.widget.queryTextChanges
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
@@ -27,6 +31,10 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
      * Adapter containing the list of manga from the catalogue.
      */
     private var adapter: FlexibleAdapter<IFlexible<*>>? = null
+
+    private var extensions: List<ExtensionItem> = emptyList()
+
+    private var query = ""
 
     init {
         setHasOptionsMenu(true)
@@ -84,6 +92,30 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.extension_main, menu)
+
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+        searchView.maxWidth = Int.MAX_VALUE
+
+        if (!query.isEmpty()) {
+            searchItem.expandActionView()
+            searchView.setQuery(query, true)
+            searchView.clearFocus()
+        }
+
+        searchView.queryTextChanges()
+            .filter { router.backstack.lastOrNull()?.controller() == this }
+            .subscribeUntilDestroy {
+                query = it.toString()
+                drawExtensions()
+            }
+
+        // Fixes problem with the overflow icon showing up in lieu of search
+        searchItem.fixExpand()
+    }
+
     override fun onItemClick(position: Int): Boolean {
         val extension = (adapter?.getItem(position) as? ExtensionItem)?.extension ?: return false
         if (extension is Extension.Installed) {
@@ -114,7 +146,19 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
 
     fun setExtensions(extensions: List<ExtensionItem>) {
         ext_swipe_refresh?.isRefreshing = false
-        adapter?.updateDataSet(extensions)
+        this.extensions = extensions
+        drawExtensions()
+    }
+
+    fun drawExtensions() {
+        if (!query.isBlank()) {
+            adapter?.updateDataSet(
+                    extensions.filter {
+                        it.extension.name.contains(query, ignoreCase = true)
+                    })
+        } else {
+            adapter?.updateDataSet(extensions)
+        }
     }
 
     fun downloadUpdate(item: ExtensionItem) {
