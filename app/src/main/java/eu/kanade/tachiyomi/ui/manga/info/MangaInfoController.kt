@@ -385,7 +385,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
             when {
                 defaultCategory != null -> presenter.moveMangaToCategory(manga, defaultCategory)
                 categories.isEmpty() ->
-                    presenter.moveMangaToCategory(manga, categories.firstOrNull())
+                    presenter.moveMangaToCategory(manga, null)
                 else -> {
                     val ids = presenter.getMangaCategoryIds(manga)
                     val preselected = ids.mapNotNull { id ->
