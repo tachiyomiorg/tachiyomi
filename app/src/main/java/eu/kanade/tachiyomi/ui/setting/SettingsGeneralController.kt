@@ -8,6 +8,7 @@ import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
@@ -179,15 +180,17 @@ class SettingsGeneralController : SettingsController() {
             key = Keys.defaultCategory
             titleRes = R.string.default_category
 
-            val selectedCategory = dbCategories.find { it.id == preferences.defaultCategory() }
+            val categories = listOf(Category.createDefault()) + dbCategories
+
+            val selectedCategory = categories.find { it.id == preferences.defaultCategory() }
             entries = arrayOf(context.getString(R.string.default_category_summary)) +
-                    dbCategories.map { it.name }.toTypedArray()
-            entryValues = arrayOf("-1") + dbCategories.map { it.id.toString() }.toTypedArray()
+                    categories.map { it.name }.toTypedArray()
+            entryValues = arrayOf("-1") + categories.map { it.id.toString() }.toTypedArray()
             defaultValue = "-1"
             summary = selectedCategory?.name ?: context.getString(R.string.default_category_summary)
 
             onChange { newValue ->
-                summary = dbCategories.find {
+                summary = categories.find {
                     it.id == (newValue as String).toInt()
                 }?.name ?: context.getString(R.string.default_category_summary)
                 true
