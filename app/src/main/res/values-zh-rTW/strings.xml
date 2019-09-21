@@ -274,7 +274,6 @@
     <string name="username">使用者名稱</string>
     <string name="updating_category">正在更新分類</string>
     <string name="action_global_search_hint">全域搜尋…</string>
-    <string name="no_results">沒有結果！</string>
     <string name="snack_add_to_library">將漫畫收藏至書櫃？</string>
     <string name="file_select_cover">選擇書封圖片</string>
     <string name="information_no_recent_manga">沒有近期閱讀</string>
