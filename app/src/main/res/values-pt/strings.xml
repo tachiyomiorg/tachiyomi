@@ -398,7 +398,6 @@
     <string name="invalid_combination">O padrão não pode ser selecionado com outras categorias</string>
     <string name="added_to_library">O mangá foi adicionado à sua biblioteca</string>
     <string name="action_global_search_hint">Pesquisa global…</string>
-    <string name="no_results">Nenhum resultado encontrado!</string>
     <string name="latest">Mais recente</string>
     <string name="browse">Navegar</string>
     <string name="manga_not_in_db">Este mangá foi excluído do seu banco de dados!</string>

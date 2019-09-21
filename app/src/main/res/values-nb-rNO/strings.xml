@@ -274,7 +274,6 @@
     <string name="invalid_combination">Forvalg kan ikke velges med andre kategorier</string>
     <string name="added_to_library">Mangaen har blitt lagt til i biblioteket ditt</string>
     <string name="action_global_search_hint">Globalt søk…</string>
-    <string name="no_results">Resultatløst.</string>
     <string name="latest">Seneste</string>
     <string name="browse">Utforsk</string>
     <string name="manga_not_in_db">Denne mangaen ble fjernet fra databasen.</string>

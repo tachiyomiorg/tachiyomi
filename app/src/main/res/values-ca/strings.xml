@@ -282,7 +282,6 @@
     <string name="invalid_combination">Per defecte no es pot seleccionar amb altres categories</string>
     <string name="added_to_library">S\'ha afegit el manga a la vostra biblioteca</string>
     <string name="action_global_search_hint">Cerca global…</string>
-    <string name="no_results">No s\'han trobat resultats!</string>
     <string name="latest">Recents</string>
     <string name="browse">Explora</string>
     <string name="manga_not_in_db">Aquest manga s\'ha eliminat de la base de dades!</string>

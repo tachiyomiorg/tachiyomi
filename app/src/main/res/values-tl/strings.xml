@@ -296,7 +296,6 @@
     <string name="invalid_combination">Hindi maaring mapili ang Default sa iba pang mga kategorya</string>
     <string name="added_to_library">Naidagdag na ang manga sa iyong aklatan</string>
     <string name="action_global_search_hint">Pangkalahatang paghahanap…</string>
-    <string name="no_results">Walang nakitang mga resulta!</string>
     <string name="latest">Pinakabago</string>
     <string name="browse">Mag-browse</string>
     <string name="manga_not_in_db">Ang manga na ito ay tinanggal mula sa database!</string>
