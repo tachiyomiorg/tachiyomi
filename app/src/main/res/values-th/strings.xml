@@ -93,4 +93,8 @@
     <string name="pref_reader_theme">สีพื้นหลัง</string>
     <string name="white_background">ขาว</string>
     <string name="black_background">ดำ</string>
+    <string name="label_recent_manga">เพิ่งอ่าน</string>
+    <string name="action_global_search">ค้นหา</string>
+    <string name="action_mark_previous_as_read">อ่านแล้ว</string>
+    <string name="label_help">ช่วยเหลือ</string>
 </resources>
