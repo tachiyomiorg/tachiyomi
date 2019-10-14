@@ -119,7 +119,7 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
         
         private val dateAdded = Item.MultiSort(R.string.action_sort_date_added, this)
 
-        override val items = listOf(alphabetically, lastRead, lastUpdated, unread, total, source, this)
+        override val items = listOf(alphabetically, lastRead, lastUpdated, unread, total, source, dateAdded)
 
         override val header = Item.Header(R.string.action_sort)
 
@@ -136,7 +136,7 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
             unread.state = if (sorting == LibrarySort.UNREAD) order else SORT_NONE
             total.state = if (sorting == LibrarySort.TOTAL) order else SORT_NONE
             source.state = if (sorting == LibrarySort.SOURCE) order else SORT_NONE
-            source.state = if (sorting == LibrarySort.DATE_ADDED) order else SORT_NONE
+            dateAdded.state = if (sorting == LibrarySort.DATE_ADDED) order else SORT_NONE
         }
 
         override fun onItemClicked(item: Item) {
