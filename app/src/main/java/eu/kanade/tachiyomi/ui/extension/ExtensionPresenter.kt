@@ -56,6 +56,7 @@ open class ExtensionPresenter(
     @Synchronized
     private fun toItems(tuple: ExtensionTuple): List<ExtensionItem> {
         val context = Injekt.get<Application>()
+        val activeLangs = preferences.enabledLanguages().getOrDefault()
 
         val (installed, untrusted, available) = tuple
 
@@ -67,7 +68,7 @@ open class ExtensionPresenter(
                 // Filter out already installed extensions and disabled languages
                 .filter { avail -> installed.none { it.pkgName == avail.pkgName }
                         && untrusted.none { it.pkgName == avail.pkgName }
-                        && (avail.lang in preferences.enabledLanguages().getOrDefault() || avail.lang == "all")}
+                        && (avail.lang in activeLangs || avail.lang == "all")}
                 .sortedBy { it.pkgName }
 
         if (installedSorted.isNotEmpty() || untrustedSorted.isNotEmpty()) {

@@ -1,10 +1,13 @@
-package eu.kanade.tachiyomi.ui.setting
+package eu.kanade.tachiyomi.ui.extension
 
 import android.support.v7.preference.PreferenceScreen
 import android.support.v7.preference.SwitchPreference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.extension.ExtensionManager
+import eu.kanade.tachiyomi.ui.setting.SettingsController
+import eu.kanade.tachiyomi.ui.setting.onChange
+import eu.kanade.tachiyomi.ui.setting.titleRes
 import eu.kanade.tachiyomi.util.LocaleHelper
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
