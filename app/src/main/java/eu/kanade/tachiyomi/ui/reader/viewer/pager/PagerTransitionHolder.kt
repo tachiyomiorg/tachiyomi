@@ -46,6 +46,7 @@ class PagerTransitionHolder(
      * Text view used to display the text of the current and next/prev chapters.
      */
     private var textView = TextView(context).apply {
+        textSize = 17.5F
         wrapContent()
     }
 
