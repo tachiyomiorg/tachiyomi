@@ -143,9 +143,15 @@ class LibraryPresenter(
             return@downloaded if (filterDownloaded == STATE_INCLUDE) isDownloaded
                 else !isDownloaded
         }
+        
+        val filterFn: (LibraryItem) -> Boolean = filter@ {item ->
+            return@filter !(!filterFnUnread(item) ||
+                            !filterFnCompleted(item) ||
+                            !filterFnDownloaded(item))
+        }
 
         return map.mapValues { entry ->
-            entry.value.filter(filterFnUnread).filter(filterFnCompleted).filter(filterFnDownloaded)
+            entry.value.filter(filterFn)
         }
     }
 
