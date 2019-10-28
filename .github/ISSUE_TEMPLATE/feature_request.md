@@ -11,5 +11,3 @@ assignees: ''
 
 ### What/Requirements
 (explain how this feature would behave)
-
-### Acceptance Criteria (how do I know when I’m done?)
