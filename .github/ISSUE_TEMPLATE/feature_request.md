@@ -1,9 +1,8 @@
 ---
 name: "🌟 Feature request"
 about: Suggest a feature to improve Tachiyomi
-title: "[Feature Request]"
-labels: "🌟 feature request"
-assignees: ''
+title: "[Feature Request] Write short description here"
+labels: "feature"
 
 ---
 ### Why/User Benefit/User Problem

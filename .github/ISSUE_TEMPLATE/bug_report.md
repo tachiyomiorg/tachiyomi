@@ -1,9 +1,8 @@
 ---
-name: "\U0001F41E Bug report"
+name: "🐞 Bug report"
 about: Report a bug
-title: "[Bug]"
+title: "[Bug] Write short description here"
 labels: "bug"
-assignees: ''
 
 ---
 
