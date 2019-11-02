@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.track.myanimelist
 
 import okhttp3.Interceptor
+import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 import okio.Buffer
@@ -11,18 +12,27 @@ class MyAnimeListInterceptor(private val myanimelist: Myanimelist): Interceptor 
     override fun intercept(chain: Interceptor.Chain): Response {
         myanimelist.ensureLoggedIn()
 
-        var request = chain.request()
-        request.body()?.let {
+        val request = chain.request()
+        var response = chain.proceed(updateRequest(request))
+
+        if (response.code() == 400){
+            myanimelist.refreshLogin()
+            response = chain.proceed(updateRequest(request))
+        }
+
+        return response
+    }
+
+    private fun updateRequest(request: Request): Request {
+        return request.body()?.let {
             val contentType = it.contentType().toString()
             val updatedBody = when {
                 contentType.contains("x-www-form-urlencoded") -> updateFormBody(it)
                 contentType.contains("json") -> updateJsonBody(it)
                 else -> it
             }
-            request = request.newBuilder().post(updatedBody).build()
-        }
-
-        return chain.proceed(request)
+            request.newBuilder().post(updatedBody).build()
+        } ?: request
     }
 
     private fun bodyToString(requestBody: RequestBody): String {
