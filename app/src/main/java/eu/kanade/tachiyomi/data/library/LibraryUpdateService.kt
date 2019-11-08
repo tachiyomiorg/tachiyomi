@@ -249,7 +249,6 @@ class LibraryUpdateService(
             else
                 db.getLibraryMangas().executeAsBlocking().distinctBy { it.id }
         }
-
         if (target == Target.CHAPTERS && preferences.updateOnlyNonCompleted()) {
             listToUpdate = listToUpdate.filter { it.status != SManga.COMPLETED }
         }
