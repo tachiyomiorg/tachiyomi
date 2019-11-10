@@ -349,7 +349,7 @@
     <string name="snack_categories_deleted">Kategorier slettet</string>
     <string name="dialog_with_checkbox_remove_description">Lesningsdato for dette kapittelet vil bli fjernet. Er du sikker\?</string>
     <string name="dialog_with_checkbox_reset">Tilbakestill alle kapittel for denne mangaen</string>
-    <string name="snack_add_to_library">Legg manga til i bibliotek</string>
+    <string name="snack_add_to_library">Legg manga til i bibliotek\?</string>
     <string name="picture_saved">Bilde lagret</string>
     <string name="saving_picture">Lagrer bilde</string>
     <string name="options">Valg</string>
