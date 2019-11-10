@@ -13,7 +13,7 @@
     <string name="label_latest_updates">Neueste Updates</string>
     <string name="label_categories">Kategorien</string>
     <string name="label_selected">Ausgewählt: %1$d</string>
-    <string name="label_backup">Backup</string>
+    <string name="label_backup">Sicherung</string>
     <string name="action_settings">Einstellungen</string>
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Heruntergeladen</string>

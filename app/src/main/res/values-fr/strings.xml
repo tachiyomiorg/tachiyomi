@@ -474,9 +474,11 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="filter_mode_default">Par défaut</string>
     <string name="filter_mode_multiply">Multiplier</string>
     <string name="filter_mode_screen">Écran</string>
-    <string name="pref_color_filter_mode">Mode de mélange des filtres de couleur</string>
-    <string name="filter_mode_overlay">Couche</string>
+    <string name="pref_color_filter_mode">Mode de mélange du filtre de couleur</string>
+    <string name="filter_mode_overlay">Interface</string>
     <string name="label_help">Aide</string>
     <string name="pref_library_update_prioritization">Ordre de mise à jour de la librairie</string>
-    <string name="pref_library_update_prioritization_summary">Sélectionnez l\'ordre auquel Tachiyomi doit vérifier les mises à jour</string>
+    <string name="pref_library_update_prioritization_summary">Sélectionnez l\'ordre dans lequel Tachiyomi doit vérifier les mises à jour</string>
+    <string name="filter_mode_lighten">Densité/Éclaircir</string>
+    <string name="filter_mode_darken">Brûlé / Assombri</string>
 </resources>

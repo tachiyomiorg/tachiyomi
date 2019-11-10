@@ -367,7 +367,7 @@
     <string name="information_empty_library">尚未收藏任何作品，請至書目檢索挖掘您的愛書。</string>
     <string name="pref_refresh_library_metadata_summary">更新書封、類型、描述和連載狀態等漫畫簡介</string>
     <string name="dialog_with_checkbox_reset">重設此漫畫所有章節</string>
-    <string name="custom_filter">自訂篩選器</string>
+    <string name="custom_filter">濾鏡</string>
     <string name="download_progress">已下載 %1$d% %</string>
     <string name="chapter_subtitle">第 %1$s 章</string>
     <string name="migrate">遷移</string>
@@ -385,4 +385,13 @@
     <string name="transition_finished">已閱畢：</string>
     <string name="transition_next">下一章：</string>
     <string name="notification_new_chapters">發現新章節</string>
+    <string name="pref_skip_read_chapters">略過已讀的章節</string>
+    <string name="pref_remove_after_read">閱畢後刪除</string>
+    <string name="page_downloaded">已複製頁面至「%1$s」</string>
+    <string name="transition_no_next">沒有下一章</string>
+    <string name="transition_no_previous">沒有前一章</string>
+    <string name="transition_pages_error">第 %1$s 頁載入失敗</string>
+    <string name="information_no_recent">沒有新章節</string>
+    <string name="download_notifier_page_error">部分頁面遺失</string>
+    <string name="download_notifier_page_ready_error">未載入部分頁面</string>
 </resources>

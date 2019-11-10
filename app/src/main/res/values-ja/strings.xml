@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="name">名</string>
+<resources>
+    <string name="name">名</string>
     <string name="categories">カテゴリ</string>
     <string name="manga">漫画</string>
     <string name="chapters">章</string>
     <string name="history">履歴</string>
-
     <string name="label_settings">設定</string>
     <string name="label_download_queue">ダウンロードキュー</string>
     <string name="label_library">ライブラリ</string>
@@ -15,8 +15,6 @@
     <string name="label_categories">カテゴリ</string>
     <string name="label_selected">選択: %1$d</string>
     <string name="label_backup">バックアップ</string>
-
-
     <string name="action_settings">設定</string>
     <string name="action_filter">フィルター</string>
     <string name="action_filter_downloaded">ダウンロードした</string>
@@ -209,4 +207,15 @@
     <string name="show_password">パスワードを表示</string>
     <string name="login">ログイン</string>
     <string name="login_success">ログイン成功</string>
+    <string name="action_add">追加</string>
+    <string name="action_rename_category">カテゴリー名を変更</string>
+    <string name="action_move_category">カテゴリーに移動</string>
+    <string name="action_sort_up">昇順に並べ替え</string>
+    <string name="action_sort_down">降順に並べ替え</string>
+    <string name="action_show_downloaded">ダウンロード終了</string>
+    <string name="action_stop">停止</string>
+    <string name="action_remove">削除</string>
+    <string name="action_install">インストール</string>
+    <string name="action_undo">取り消し</string>
+    <string name="label_help">ヘルプ</string>
 </resources>

@@ -183,7 +183,7 @@
     <string name="scale_type_fit_height">Adata a s\'artària</string>
     <string name="scale_type_original_size">Mannària originale</string>
     <string name="scale_type_smart_fit">Adatamentu intelligente</string>
-    <string name="pref_zoom_start">Positzione de incumintzu de s\'ismanniamentu</string>
+    <string name="pref_zoom_start">Positzione incumintzu ismanniamentu</string>
     <string name="zoom_start_automatic">Automàtica</string>
     <string name="zoom_start_left">A manca</string>
     <string name="zoom_start_right">A destra</string>
