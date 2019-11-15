@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.manga.info
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.app.PendingIntent
 import android.content.ClipData
@@ -16,6 +17,7 @@ import android.support.v4.content.pm.ShortcutInfoCompat
 import android.support.v4.content.pm.ShortcutManagerCompat
 import android.support.v4.graphics.drawable.IconCompat
 import android.view.*
+import android.widget.RatingBar
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -90,6 +92,9 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
 
         // Set onLongClickListener to manage categories when FAB is clicked.
         fab_favorite.longClicks().subscribeUntilDestroy{ onFabLongClick() }
+
+        //Set onclickListener to open alert dialog for rating the manga.
+        rating_button.setOnClickListener(){ onRatingClick(activity!!) }
 
         // Set SwipeRefresh to refresh manga data.
         swipe_refresh.refreshes().subscribeUntilDestroy { fetchMangaFromSource() }
@@ -221,6 +226,13 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
             else -> R.string.unknown
         })
 
+        // Sets manga_rating to unknown when manga has not been rated
+        manga_rating.text = if (manga.rating < 1) {
+            view.context.getString(R.string.not_available)
+        } else {
+            manga.rating.toString()
+        }
+
         // Set the favorite drawable to the correct one.
         setFavoriteDrawable(manga.favorite)
 
@@ -282,6 +294,44 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
                 }
             }
         }
+    }
+
+    /**
+     * Opens rating dialog when rating button is clicked.
+     */
+    private fun  onRatingClick(appContext: Context){
+        val builder = AlertDialog.Builder(appContext)
+        builder.setIcon(R.mipmap.ic_launcher_round)
+        builder.setTitle("Rate "+ manga_full_title.text.toString())
+        val inflater:LayoutInflater = LayoutInflater.from(applicationContext)
+        val view: View = inflater.inflate(
+                R.layout.rating_dialog,
+                null,
+                false )
+
+        builder.setView(view)
+        val ratingBar: RatingBar = view.findViewById(R.id.ratingbar)
+        if(manga_rating.text.toString().equals("N/A")){
+           ratingBar.rating = 0F
+        }
+        else
+            ratingBar.rating = manga_rating.text.toString().toFloat()
+
+        builder.setPositiveButton("Submit") { dialog, which ->
+            manga_rating.setText(ratingBar.rating.toInt().toString())
+            presenter.setMangaRating(ratingBar.rating.toInt())
+        }
+        builder.setNegativeButton("Cancel") { dialog, which ->
+        }
+        builder.setNeutralButton("Clear Rating") {dialog, which ->
+            ratingBar.rating = 0F
+            manga_rating.setText("N/A")
+            presenter.setMangaRating(0)
+        }
+
+        builder.create()
+        builder.setCancelable(true)
+        builder.show()
     }
 
     /**

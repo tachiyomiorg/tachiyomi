@@ -56,6 +56,17 @@
             tools:background="@color/material_grey_700"/>
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/rating_button"
+            style="@style/Theme.Widget.FAB"
+            app:backgroundTint="@color/material_amber_900"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintEnd_toStartOf="@+id/fab_favorite"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline"
+            app:layout_constraintVertical_bias="0.517"
+            app:srcCompat="@drawable/mask_star" />
+
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_favorite"
             style="@style/Theme.Widget.FAB"
             app:srcCompat="@drawable/ic_add_to_library_24dp"
@@ -235,6 +246,29 @@
                     android:textIsSelectable="false"
                     app:layout_constraintBaseline_toBaselineOf="@+id/manga_source_label"
                     app:layout_constraintLeft_toRightOf="@+id/manga_source_label"
+                    app:layout_constraintRight_toRightOf="parent"/>
+
+                <TextView
+                    android:id="@+id/manga_rating_label"
+                    style="@style/TextAppearance.Medium.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rating"
+                    android:textIsSelectable="false"
+                    app:layout_constraintTop_toBottomOf="@+id/manga_source_label"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+                <TextView
+                    android:id="@+id/manga_rating"
+                    style="@style/TextAppearance.Regular.Body1.Secondary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textIsSelectable="false"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/manga_rating_label"
+                    app:layout_constraintLeft_toRightOf="@+id/manga_rating_label"
                     app:layout_constraintRight_toRightOf="parent"/>
 
             </android.support.constraint.ConstraintLayout>

@@ -116,6 +116,16 @@ class MangaInfoPresenter(
     }
 
     /**
+     * Update rating of a manga.
+     */
+    fun setMangaRating(rating: Int) {
+        if (rating != manga.rating) {
+            manga.rating = rating;
+            db.updateMangaRating(manga).executeAsBlocking() //#
+        }
+    }
+
+    /**
      * Returns true if the manga has any downloads.
      */
     fun hasDownloads(): Boolean {

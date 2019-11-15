@@ -6,6 +6,13 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.source.LocalSource
 import kotlinx.android.synthetic.main.catalogue_grid_item.*
+import kotlinx.android.synthetic.main.catalogue_grid_item.download_text
+import kotlinx.android.synthetic.main.catalogue_grid_item.local_text
+import kotlinx.android.synthetic.main.catalogue_grid_item.rating
+import kotlinx.android.synthetic.main.catalogue_grid_item.thumbnail
+import kotlinx.android.synthetic.main.catalogue_grid_item.title
+import kotlinx.android.synthetic.main.catalogue_grid_item.unread_text
+import kotlinx.android.synthetic.main.catalogue_list_item.*
 
 /**
  * Class used to hold the displayed data of a manga in the library, like the cover or the title.
@@ -44,6 +51,14 @@ class LibraryGridHolder(
         }
         //set local visibility if its local manga
         local_text.visibility = if(item.manga.source == LocalSource.ID) View.VISIBLE else View.GONE
+        
+        // Enable rating TextView
+        if(item.manga.rating > 0){
+            rating.visibility = View.VISIBLE
+            rating.setText(item.manga.rating.toString())
+        }
+        else
+            rating.visibility = View.GONE
 
         // Update the cover.
         GlideApp.with(view.context).clear(thumbnail)

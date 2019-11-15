@@ -27,6 +27,7 @@ import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_TITLE
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_URL
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_VIEWER
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.TABLE
+import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_RATING
 
 class MangaTypeMapping : SQLiteTypeMapping<Manga>(
         MangaPutResolver(),
@@ -62,6 +63,7 @@ class MangaPutResolver : DefaultPutResolver<Manga>() {
         put(COL_INITIALIZED, obj.initialized)
         put(COL_VIEWER, obj.viewer)
         put(COL_CHAPTER_FLAGS, obj.chapter_flags)
+        put(COL_RATING, obj.rating)
     }
 }
 
@@ -82,6 +84,7 @@ interface BaseMangaGetResolver {
         initialized = cursor.getInt(cursor.getColumnIndex(COL_INITIALIZED)) == 1
         viewer = cursor.getInt(cursor.getColumnIndex(COL_VIEWER))
         chapter_flags = cursor.getInt(cursor.getColumnIndex(COL_CHAPTER_FLAGS))
+        rating = cursor.getInt(cursor.getColumnIndex(COL_RATING))
     }
 }
 

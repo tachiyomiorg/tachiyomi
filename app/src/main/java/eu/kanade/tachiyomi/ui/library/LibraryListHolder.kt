@@ -5,7 +5,14 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.source.LocalSource
+import kotlinx.android.synthetic.main.catalogue_grid_item.*
 import kotlinx.android.synthetic.main.catalogue_list_item.*
+import kotlinx.android.synthetic.main.catalogue_list_item.download_text
+import kotlinx.android.synthetic.main.catalogue_list_item.local_text
+import kotlinx.android.synthetic.main.catalogue_list_item.rating
+import kotlinx.android.synthetic.main.catalogue_list_item.thumbnail
+import kotlinx.android.synthetic.main.catalogue_list_item.title
+import kotlinx.android.synthetic.main.catalogue_list_item.unread_text
 
 /**
  * Class used to hold the displayed data of a manga in the library, like the cover or the title.
@@ -50,6 +57,14 @@ class LibraryListHolder(
             // Simulate long click on this view to enter selection mode
             onLongClick(itemView)
         }
+
+        // Enable rating TextView
+        if(item.manga.rating > 0){
+            rating.visibility = View.VISIBLE
+            rating.setText(item.manga.rating.toString())
+        }
+        else
+            rating.visibility = View.GONE
 
         // Update the cover.
         GlideApp.with(itemView.context).clear(thumbnail)

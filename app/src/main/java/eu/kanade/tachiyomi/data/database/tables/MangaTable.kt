@@ -38,6 +38,8 @@ object MangaTable {
 
     const val COL_CATEGORY = "category"
 
+    const val COL_RATING = "rating"
+
     val createTableQuery: String
         get() = """CREATE TABLE $TABLE(
             $COL_ID INTEGER NOT NULL PRIMARY KEY,
@@ -54,7 +56,8 @@ object MangaTable {
             $COL_LAST_UPDATE LONG,
             $COL_INITIALIZED BOOLEAN NOT NULL,
             $COL_VIEWER INTEGER NOT NULL,
-            $COL_CHAPTER_FLAGS INTEGER NOT NULL
+            $COL_CHAPTER_FLAGS INTEGER NOT NULL,
+            $COL_RATING INTEGER NULL
             )"""
 
     val createUrlIndexQuery: String
