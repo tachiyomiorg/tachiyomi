@@ -6,4 +6,8 @@ class LibraryManga : MangaImpl() {
 
     var category: Int = 0
 
+    var latest_upload: Long = 0
+
+    var latest_read: Boolean = false
+
 }

@@ -38,6 +38,10 @@ object MangaTable {
 
     const val COL_CATEGORY = "category"
 
+    const val COL_LATEST_UPLOAD = "latest_upload"
+
+    const val COL_LATEST_READ = "latest_read"
+
     val createTableQuery: String
         get() = """CREATE TABLE $TABLE(
             $COL_ID INTEGER NOT NULL PRIMARY KEY,

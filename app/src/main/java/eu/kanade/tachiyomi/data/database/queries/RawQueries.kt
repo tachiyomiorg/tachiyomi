@@ -7,20 +7,33 @@ import eu.kanade.tachiyomi.data.database.tables.MangaCategoryTable as MangaCateg
 import eu.kanade.tachiyomi.data.database.tables.MangaTable as Manga
 
 /**
- * Query to get the manga from the library, with their categories and unread count.
+ * Query to get the manga from the library, with their categories, unread count, latest upload date and latest upload read status.
  */
 val libraryQuery = """
     SELECT M.*, COALESCE(MC.${MangaCategory.COL_CATEGORY_ID}, 0) AS ${Manga.COL_CATEGORY}
     FROM (
-        SELECT ${Manga.TABLE}.*, COALESCE(C.unread, 0) AS ${Manga.COL_UNREAD}
+        SELECT ${Manga.TABLE}.*,
+            COALESCE(unread_count.unread, 0) AS ${Manga.COL_UNREAD},
+            COALESCE(latest_upload.latest_date, 0) AS ${Manga.COL_LATEST_UPLOAD},
+            COALESCE(latest_upload.latest_read, 0) AS ${Manga.COL_LATEST_READ}
         FROM ${Manga.TABLE}
         LEFT JOIN (
-            SELECT ${Chapter.COL_MANGA_ID}, COUNT(*) AS unread
-            FROM ${Chapter.TABLE}
+            SELECT C1.${Chapter.COL_MANGA_ID}, COUNT(*) AS unread
+            FROM ${Chapter.TABLE} AS C1
             WHERE ${Chapter.COL_READ} = 0
-            GROUP BY ${Chapter.COL_MANGA_ID}
-        ) AS C
-        ON ${Manga.COL_ID} = C.${Chapter.COL_MANGA_ID}
+            GROUP BY C1.${Chapter.COL_MANGA_ID}
+        ) AS unread_count
+        ON ${Manga.COL_ID} = unread_count.${Chapter.COL_MANGA_ID}
+        LEFT JOIN (
+            SELECT C2.${Chapter.COL_MANGA_ID}, C2.${Chapter.COL_DATE_UPLOAD} AS latest_date, MIN(C2.${Chapter.COL_READ}) AS latest_read
+            FROM ${Chapter.TABLE} AS C2
+            WHERE C2.${Chapter.COL_DATE_UPLOAD} =
+                (SELECT MAX(${Chapter.COL_DATE_UPLOAD})
+                FROM ${Chapter.TABLE} AS C3
+                WHERE C2.${Chapter.COL_MANGA_ID} = C3.${Chapter.COL_MANGA_ID})
+            GROUP BY C2.${Chapter.COL_MANGA_ID}
+        ) AS latest_upload
+        ON ${Manga.COL_ID} = latest_upload.${Chapter.COL_MANGA_ID}
         WHERE ${Manga.COL_FAVORITE} = 1
         GROUP BY ${Manga.COL_ID}
         ORDER BY ${Manga.COL_TITLE}
