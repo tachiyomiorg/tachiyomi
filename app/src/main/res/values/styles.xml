@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
+    <!--=============-->
+    <!--Splash Screen-->
+    <!--=============-->
+
+    <style name="SplashScreenBackground" parent="Theme.Tachiyomi">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
+
     <!--========-->
     <!--Toolbars-->
     <!--========-->
