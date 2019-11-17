@@ -8,6 +8,10 @@ Tachiyomi is a free and open source manga reader for Android.
 
 ![screenshots of app](./.github/readme-images/screens.png)
 
+##What is added in this fork
+
+Added an option to have landscape mode display two pages at once. When displaying two-pages at once tap to turn will transition 2 pages. When moving pages the app will check for a two-page spead and adjust accordingly (display the two pages over the screen).
+
 ## Features
 
 Features include:
