@@ -77,6 +77,8 @@ class PreferencesHelper(val context: Context) {
 
     fun readWithVolumeKeys() = rxPrefs.getBoolean(Keys.readWithVolumeKeys, false)
 
+    fun landscapeMode() = rxPrefs.getInteger(Keys.doublePageLandscape, 1)
+
     fun readWithVolumeKeysInverted() = rxPrefs.getBoolean(Keys.readWithVolumeKeysInverted, false)
 
     fun portraitColumns() = rxPrefs.getInteger(Keys.portraitColumns, 0)

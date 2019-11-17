@@ -9,6 +9,8 @@ object PreferenceKeys {
 
     const val rotation = "pref_rotation_type_key"
 
+    const val doublePageLandscape = "pref_two_page_key"
+
     const val enableTransitions = "pref_enable_transitions_key"
 
     const val doubleTapAnimationSpeed = "pref_double_tap_anim_speed"

@@ -1,6 +1,8 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
+import android.graphics.BitmapFactory
 import android.support.v4.view.ViewPager
+import android.util.Log
 import android.view.InputDevice
 import android.view.KeyEvent
 import android.view.MotionEvent
@@ -13,6 +15,7 @@ import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
 import timber.log.Timber
+import java.io.InputStream
 
 /**
  * Implementation of a [BaseViewer] to display pages with a [ViewPager].
@@ -134,6 +137,30 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
      */
     private fun onPageSelected(page: ReaderPage, position: Int) {
         val pages = page.chapter.pages!! // Won't be null because it's the loaded chapter
+
+        val streamFn = page.stream ?: return
+
+        var openStream: InputStream? = null
+
+        val stream = streamFn().buffered(16)
+        openStream = stream
+
+        val bmp = BitmapFactory.decodeStream(openStream)
+
+        //Two-Page Spread
+        val oldBool = adapter.twoPageSpreadMode
+        if(bmp.width >= bmp.height) {
+            adapter.setBoolS(false)
+            if(adapter.twoPageSpreadMode != oldBool)
+                refreshAdapter()
+        }
+        else {
+            adapter.setBoolS(true)
+            if(adapter.twoPageSpreadMode != oldBool)
+                refreshAdapter()
+        }
+
+
         Timber.d("onPageSelected: ${page.number}/${pages.size}")
         activity.onPageSelected(page)
 
@@ -221,8 +248,62 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
      * Moves to the page at the right.
      */
     protected open fun moveRight() {
+        Log.i("moveRight", "test")
+
+        //Following code checks for two pages to determine how many pages to turn
         if (pager.currentItem != adapter.count - 1) {
-            pager.setCurrentItem(pager.currentItem + 1, config.usePageTransitions)
+            //check if one-page mode is enabled
+            if(config.landscapeMode == 1)
+            {
+                pager.setCurrentItem(pager.currentItem + 1,config.usePageTransitions)
+                return
+            }
+            //Check two-page
+            val nextPage = pager.currentItem + 1
+            val nextNextPage = pager.currentItem + 2
+            //check the nextPage
+            val page = adapter.items.getOrNull(nextPage)
+
+            val streamFn = (page as ReaderPage).stream ?: return
+
+
+            var openStream: InputStream? = null
+
+            val stream = streamFn().buffered(16)
+            openStream = stream
+
+            val bmp = BitmapFactory.decodeStream(openStream)
+
+            //if the next page is a two page spread we go ahead and set it to that
+            if(bmp.width >= bmp.height) {
+                pager.setCurrentItem(pager.currentItem + 1, config.usePageTransitions)
+                return
+            }
+
+            //check the next next page
+            val page2 = adapter.items.getOrNull(nextNextPage)
+
+            //if the second page is the end of the chapter go ahead and go to the last page
+            if(page2 == null)
+            {
+                pager.setCurrentItem(pager.currentItem + 1, config.usePageTransitions)
+                return
+            }
+            val streamFn2 = (page2 as ReaderPage).stream ?: return
+
+            val stream2 = streamFn2().buffered(16)
+            openStream = stream2
+
+            val bmp2 = BitmapFactory.decodeStream(openStream)
+
+            //if the next next page is a two page spread, go ahead and only go forward one page
+            if(bmp2.width >= bmp2.height){
+                pager.setCurrentItem(pager.currentItem + 1, config.usePageTransitions)
+                return
+            }
+
+            //set the current page
+            pager.setCurrentItem(pager.currentItem + 2, config.usePageTransitions)
         }
     }
 
@@ -230,8 +311,60 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
      * Moves to the page at the left.
      */
     protected open fun moveLeft() {
+        Log.i("moveRight", "test")
         if (pager.currentItem != 0) {
-            pager.setCurrentItem(pager.currentItem - 1, config.usePageTransitions)
+            //check if one-page mode is enabled
+            if(config.landscapeMode == 1)
+            {
+                pager.setCurrentItem(pager.currentItem - 1,config.usePageTransitions)
+                return
+            }
+            //Check two-page
+            val nextPage = pager.currentItem - 1
+            val nextNextPage = pager.currentItem - 2
+            //check the nextPage
+            val page = adapter.items.getOrNull(nextPage)
+
+            val streamFn = (page as ReaderPage).stream ?: return
+
+
+            var openStream: InputStream? = null
+
+            val stream = streamFn().buffered(16)
+            openStream = stream
+
+            val bmp = BitmapFactory.decodeStream(openStream)
+
+            //if the next page is a two page spread we go ahead and set it to that
+            if(bmp.width >= bmp.height) {
+                pager.setCurrentItem(pager.currentItem - 1, config.usePageTransitions)
+                return
+            }
+
+            //check the next next page
+            val page2 = adapter.items.getOrNull(nextNextPage)
+
+            //if the second page is the end of the chapter go ahead and go to the last page
+            if(page2 == null)
+            {
+                pager.setCurrentItem(pager.currentItem - 1, config.usePageTransitions)
+                return
+            }
+            val streamFn2 = (page2 as ReaderPage).stream ?: return
+
+            val stream2 = streamFn2().buffered(16)
+            openStream = stream2
+
+            val bmp2 = BitmapFactory.decodeStream(openStream)
+
+            //if the next next page is a two page spread, go ahead and only go forward one page
+            if(bmp2.width >= bmp2.height){
+                pager.setCurrentItem(pager.currentItem - 1, config.usePageTransitions)
+                return
+            }
+
+
+            pager.setCurrentItem(pager.currentItem - 2, config.usePageTransitions)
         }
     }
 
