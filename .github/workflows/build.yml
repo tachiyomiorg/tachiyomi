@@ -20,7 +20,7 @@ jobs:
     - name: Set Android SDK
       run: export ANDROID_HOME="android-sdk"
     - name: Build app with Gradle
-      run: ./gradlew build -Dxmx16G -Dxms16G -XX:-UseGCOverheadLimit
+      run: ./gradlew build -XX:-UseGCOverheadLimit
     - name: Upload APK
       uses: actions/upload-artifact@master
       with:
