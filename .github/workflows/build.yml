@@ -1,0 +1,28 @@
+name: Android CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Download Android SDK
+      run: wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
+    - name: Extract Android SDK
+      run: unzip sdk-tools-linux-3859397.zip -d android-sdk
+    - name: Set Android SDK
+      run: export ANDROID_HOME="android-sdk"
+    - name: Build app with Gradle
+      run: ./gradlew build -Dxmx16G -Dxms16G
+    - name: Upload APK
+      uses: actions/upload-artifact@master
+      with:
+        name: TachiyomiAPK
+        path: app\build\outputs\apk\dev\debug\app-dev-debug.apk
