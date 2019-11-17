@@ -25,7 +25,9 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.io.IOException
 import java.io.InputStream
+import java.util.ArrayList
 import java.util.Collections
+import java.util.Comparator
 
 /**
  * Class containing library information.
@@ -190,8 +192,7 @@ class LibraryPresenter(
                     val manga2LastRead = lastReadManga[i2.manga.id!!] ?: lastReadManga.size
                     manga1LastRead.compareTo(manga2LastRead)
                 }
-                LibrarySort.LAST_UPDATED -> i1.manga.last_update.compareTo(i2.manga.last_update)
-                LibrarySort.LATEST_UPLOAD -> i1.manga.latest_upload.compareTo(i2.manga.latest_upload)
+                LibrarySort.LAST_UPDATED -> i2.manga.last_update.compareTo(i1.manga.last_update)
                 LibrarySort.UNREAD -> i1.manga.unread.compareTo(i2.manga.unread)
                 LibrarySort.TOTAL -> {
                     val manga1TotalChapter = totalChapterManga[i1.manga.id!!] ?: 0
@@ -250,11 +251,9 @@ class LibraryPresenter(
      */
     private fun getLibraryMangasObservable(): Observable<LibraryMap> {
         val libraryAsList = preferences.libraryAsList()
-        val newChapterTimeframe = preferences.newChapterTimeframe()
-
         return db.getLibraryMangas().asRxObservable()
                 .map { list ->
-                    list.map { LibraryItem(it, libraryAsList, newChapterTimeframe) }.groupBy { it.manga.category }
+                    list.map { LibraryItem(it, libraryAsList) }.groupBy { it.manga.category }
                 }
     }
 

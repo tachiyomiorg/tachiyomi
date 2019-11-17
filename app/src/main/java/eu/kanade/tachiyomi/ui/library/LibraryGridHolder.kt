@@ -6,7 +6,6 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.source.LocalSource
 import kotlinx.android.synthetic.main.catalogue_grid_item.*
-import java.util.Date
 
 /**
  * Class used to hold the displayed data of a manga in the library, like the cover or the title.
@@ -20,9 +19,8 @@ import java.util.Date
 class LibraryGridHolder(
         private val view: View,
         private val adapter: FlexibleAdapter<*>
+
 ) : LibraryHolder(view, adapter) {
-
-
 
     /**
      * Method called from [LibraryCategoryAdapter.onBindViewHolder]. It updates the data for this
@@ -46,11 +44,6 @@ class LibraryGridHolder(
         }
         //set local visibility if its local manga
         local_text.visibility = if(item.manga.source == LocalSource.ID) View.VISIBLE else View.GONE
-
-        // Set new visibility if manga has new chapters
-        new_text.visibility = if (item.manga.latest_upload > Date().time - item.newChapterTimeframe * 24L * 3600 * 1000
-                && !item.manga.latest_read) View.VISIBLE else View.GONE
-
 
         // Update the cover.
         GlideApp.with(view.context).clear(thumbnail)
