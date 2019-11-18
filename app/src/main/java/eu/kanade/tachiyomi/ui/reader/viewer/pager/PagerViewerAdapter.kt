@@ -19,6 +19,12 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
      */
     var items: List<Any> = emptyList()
         private set
+    /**
+     *
+     */
+    var twoPageSpreadMode = true
+
+    val config = viewer.config
 
     /**
      * Updates this adapter with the given [chapters]. It handles setting a few pages of the
@@ -96,6 +102,20 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
             }
         }
         return PagerAdapter.POSITION_NONE
+    }
+
+    override fun getPageWidth(position: Int):Float{
+
+
+
+        if(twoPageSpreadMode && config.landscapeMode == 2)
+            return 0.5f
+        else
+            return 1.0f
+    }
+
+    fun setBoolS(bool: Boolean){
+        twoPageSpreadMode = bool
     }
 
 }

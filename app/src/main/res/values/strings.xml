@@ -230,6 +230,9 @@
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
+    <string name="landscape_two">Two Pages</string>
+    <string name="landscape_one">One Page</string>
+    <string name="landscape_mode">Landscape Mode</string>
 
 
       <!-- Downloads section -->

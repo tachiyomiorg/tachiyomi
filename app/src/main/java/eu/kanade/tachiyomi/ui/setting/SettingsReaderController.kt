@@ -48,6 +48,14 @@ class SettingsReaderController : SettingsController() {
             summary = "%s"
         }
         intListPreference {
+            key = Keys.doublePageLandscape
+            titleRes = R.string.landscape_mode
+            entriesRes = arrayOf(R.string.landscape_one, R.string.landscape_two)
+            entryValues = arrayOf("1", "2")
+            defaultValue = "1"
+            summary = "%s"
+        }
+        intListPreference {
             key = Keys.readerTheme
             titleRes = R.string.pref_reader_theme
             entriesRes = arrayOf(R.string.white_background, R.string.black_background)
