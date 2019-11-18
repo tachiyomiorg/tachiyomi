@@ -1,4 +1,4 @@
-name: Android CI
+name: BuildDebug
 
 on: [push]
 
@@ -26,5 +26,5 @@ jobs:
     - name: Upload APK
       uses: actions/upload-artifact@master
       with:
-        name: TachiyomiAPK
+        name: TachiyomiDebugAPK
         path: app/build/outputs/apk/dev/debug/app-dev-debug.apk
