@@ -71,7 +71,7 @@ class SettingsAboutController : SettingsController() {
         }
         preference {
             title = "Discord"
-            val url = "https://discord.gg/tachiyomi"
+            val url = "https://discord.gg/8UnAPS7"
             summary = url
             onClick {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
@@ -80,7 +80,7 @@ class SettingsAboutController : SettingsController() {
         }
         preference {
             title = "Github"
-            val url = "https://github.com/inorichi/tachiyomi"
+            val url = "https://github.com/allbombson/tachiyomi"
             summary = url
             onClick {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
