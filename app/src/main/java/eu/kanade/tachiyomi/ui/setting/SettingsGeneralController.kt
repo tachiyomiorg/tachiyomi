@@ -141,17 +141,17 @@ class SettingsGeneralController : SettingsController() {
         }
 
         val dbCategories = db.getCategories().executeAsBlocking()
+        val categories = listOf(Category.createDefault()) + dbCategories
 
         multiSelectListPreference {
             key = Keys.libraryUpdateCategories
             titleRes = R.string.pref_library_update_categories
-            entries = dbCategories.map { it.name }.toTypedArray()
-            entryValues = dbCategories.map { it.id.toString() }.toTypedArray()
-
+            entries = categories.map { it.name }.toTypedArray()
+            entryValues =  categories.map { it.id.toString() }.toTypedArray()
             preferences.libraryUpdateCategories().asObservable()
                     .subscribeUntilDestroy {
                         val selectedCategories = it
-                                .mapNotNull { id -> dbCategories.find { it.id == id.toInt() } }
+                                .mapNotNull { id -> categories.find { it.id == id.toInt() } }
                                 .sortedBy { it.order }
 
                         summary = if (selectedCategories.isEmpty())
@@ -179,8 +179,6 @@ class SettingsGeneralController : SettingsController() {
         intListPreference {
             key = Keys.defaultCategory
             titleRes = R.string.default_category
-
-            val categories = listOf(Category.createDefault()) + dbCategories
 
             val selectedCategory = categories.find { it.id == preferences.defaultCategory() }
             entries = arrayOf(context.getString(R.string.default_category_summary)) +
