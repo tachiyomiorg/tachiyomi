@@ -1,4 +1,4 @@
-| Build | Stable | Dev | Contribute | Contact |
+| Build | Stable | Dev | Contribute | Discord |
 |-------|----------|---------|------------|---------|
 | [![Actions Status](https://github.com/allbombson/tachiyomi/workflows/BuildDebug/badge.svg)](https://github.com/allbombson/tachiyomi/actions) | [![stable release](https://img.shields.io/github/release/inorichi/tachiyomi.svg?maxAge=3600&label=download)](https://github.com/inorichi/tachiyomi/releases) | [![latest dev build](https://img.shields.io/badge/download-latest%20build-blue.svg)](http://tachiyomi.kanade.eu/latest) | [![Translation status](https://hosted.weblate.org/widgets/tachiyomi/-/svg-badge.svg)](https://hosted.weblate.org/engage/tachiyomi/?utm_source=widget) | [![Discord](https://img.shields.io/discord/645791055047819275?style=plastic)](https://discord.gg/8UnAPS7) |
 
