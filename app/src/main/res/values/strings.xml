@@ -148,6 +148,7 @@
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>
     <string name="system_default">System default</string>
+    <string name="pref_date_format">Date format</string>
     <string name="default_category">Default category</string>
     <string name="default_category_summary">Always ask</string>
 
