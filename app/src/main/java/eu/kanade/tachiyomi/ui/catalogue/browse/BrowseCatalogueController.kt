@@ -352,6 +352,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
                 } else {
                     showProgressBar()
                 }
+                
                 presenter.requestNext()
             }
         }
