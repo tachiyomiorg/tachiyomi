@@ -21,6 +21,7 @@ import eu.kanade.tachiyomi.util.dpToPx
 import eu.kanade.tachiyomi.widget.ViewPagerAdapter
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
+import timber.log.Timber
 
 /**
  * View of the ViewPager that contains a chapter transition.
@@ -179,7 +180,8 @@ class PagerTransitionHolder(
     private fun setError(error: Throwable) {
         val textView = AppCompatTextView(context).apply {
             wrapContent()
-            text = context.getString(R.string.transition_pages_error, error.message)
+            Timber.e(error)
+            text = context.getString(R.string.transition_pages_error, context.getString(R.string.error_reader_manga_chapters))
         }
 
         val retryBtn = PagerButton(context, viewer).apply {

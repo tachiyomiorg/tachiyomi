@@ -79,6 +79,8 @@ class PagerPageHolder(
      */
     private var retryButton: PagerButton? = null
 
+    private var textE: TextView? = null
+
     /**
      * Error layout to show when the image fails to decode.
      */
@@ -261,6 +263,24 @@ class PagerPageHolder(
     private fun setError() {
         progressBar.gone()
         initRetryButton().visible()
+        textError().visible()
+    }
+
+
+    /**
+     * Called to add an user-readable explanation when the page has an error
+     */
+    private fun textError(): TextView {
+        if (textE != null) return textE!!
+
+        textE = TextView(context).apply {
+                layoutParams = FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
+                    gravity=Gravity.TOP
+                }
+                setText(R.string.error_reader_manga_page)
+        }
+        addView(textE)
+        return textE!!
     }
 
     /**
@@ -284,7 +304,6 @@ class PagerPageHolder(
     @SuppressLint("PrivateResource")
     private fun createProgressBar(): ReaderProgressBar {
         return ReaderProgressBar(context, null).apply {
-
             val size = 48.dpToPx
             layoutParams = FrameLayout.LayoutParams(size, size).apply {
                 gravity = Gravity.CENTER

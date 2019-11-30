@@ -1,5 +1,9 @@
 package eu.kanade.tachiyomi.ui.recently_read
 
+import android.app.Activity
+import android.content.Context
+import android.net.ConnectivityManager
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +16,7 @@ import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
+import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.recently_read_controller.*
 
@@ -32,6 +37,11 @@ class RecentlyReadController : NucleusController<RecentlyReadPresenter>(),
      */
     var adapter: RecentlyReadAdapter? = null
         private set
+
+    /**
+     * Connectivity errors snackbar.
+     */
+    private var snackConnectivity: Snackbar? = null
 
     override fun getTitle(): String? {
         return resources?.getString(R.string.label_recent_manga)
@@ -62,6 +72,10 @@ class RecentlyReadController : NucleusController<RecentlyReadPresenter>(),
 
     override fun onDestroyView(view: View) {
         adapter = null
+        snackConnectivity?.let {
+            it.dismiss()
+        }
+        snackConnectivity = null
         super.onDestroyView(view)
     }
 
@@ -82,10 +96,15 @@ class RecentlyReadController : NucleusController<RecentlyReadPresenter>(),
         }
     }
 
+    fun verifyAvailableNetwork(activity: Activity): Boolean {
+        val connectivityManager = activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
+    }
+
     override fun onResumeClick(position: Int) {
         val activity = activity ?: return
         val (manga, chapter, _) = adapter?.getItem(position)?.mch ?: return
-
         val nextChapter = presenter.getNextChapter(chapter, manga)
         if (nextChapter != null) {
             val intent = ReaderActivity.newIntent(activity, manga, nextChapter)

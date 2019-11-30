@@ -118,8 +118,6 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
 
     private fun addPreferencesForSource(screen: PreferenceScreen, source: Source, multiSource: Boolean) {
         val context = screen.context
-
-        // TODO 
         val dataStore = SharedPreferencesDataStore(/*if (source is HttpSource) {
             source.preferences
         } else {*/

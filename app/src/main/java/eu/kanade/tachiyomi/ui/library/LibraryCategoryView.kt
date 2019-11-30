@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.library
 
 import android.content.Context
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
@@ -15,6 +16,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.util.plusAssign
+import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import kotlinx.android.synthetic.main.library_category.view.*
@@ -56,6 +58,10 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
     private lateinit var adapter: LibraryCategoryAdapter
 
     /**
+     * Connectivity snackbar from Controller
+     */
+    private var snackConnectivity: Snackbar? = null
+    /**
      * Subscriptions while the view is bound.
      */
     private var subscriptions = CompositeSubscription()
@@ -93,7 +99,10 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
         swipe_refresh.setOnRefreshListener {
             if (!LibraryUpdateService.isRunning(context)) {
                 LibraryUpdateService.start(context, category)
-                context.toast(R.string.updating_category)
+                val snackbar=controller?.connectivitySnackBar()
+                if(snackbar){
+                    context.toast(R.string.updating_category)
+                }
             }
             // It can be a very long operation, so we disable swipe refresh and show a toast.
             swipe_refresh.isRefreshing = false

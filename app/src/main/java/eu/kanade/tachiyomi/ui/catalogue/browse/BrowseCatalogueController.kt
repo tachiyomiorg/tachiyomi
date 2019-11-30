@@ -341,8 +341,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
         adapter.onLoadMoreComplete(null)
         hideProgressBar()
 
-        val message = if (error is NoResultsException) "No results found" else (error.message ?: "")
-
+        val message = if (error is NoResultsException) "No results found" else view?.context?.getString(R.string.error_fetching_catalogue)?:""
         snack?.dismiss()
         snack = catalogue_view?.snack(message, Snackbar.LENGTH_INDEFINITE) {
             setAction(R.string.action_retry) {
