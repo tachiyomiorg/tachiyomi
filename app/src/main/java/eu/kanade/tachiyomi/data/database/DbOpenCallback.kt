@@ -28,6 +28,7 @@ class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
         execSQL(CategoryTable.createTableQuery)
         execSQL(MangaCategoryTable.createTableQuery)
         execSQL(HistoryTable.createTableQuery)
+        execSQL(ExtensionTable.createTableQuery)
 
         // DB indexes
         execSQL(MangaTable.createUrlIndexQuery)

@@ -30,6 +30,9 @@ class SourceHolder(view: View, override val adapter: CatalogueAdapter) :
         source_latest.setOnClickListener {
             adapter.latestClickListener.onLatestClick(adapterPosition)
         }
+        favorite_checkbox.setOnClickListener {
+            adapter.favoriteToggleListener.onToggleFavorite(adapterPosition)
+        }
     }
 
     fun bind(item: SourceItem) {
@@ -38,6 +41,8 @@ class SourceHolder(view: View, override val adapter: CatalogueAdapter) :
 
         // Set source name
         title.text = source.name
+        // Set source is favorite
+        favorite_checkbox.isChecked = item.isFavorite
 
         // Set circle letter image.
         itemView.post {

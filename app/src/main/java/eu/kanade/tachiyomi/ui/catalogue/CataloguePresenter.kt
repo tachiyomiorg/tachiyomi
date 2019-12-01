@@ -1,6 +1,8 @@
 package eu.kanade.tachiyomi.ui.catalogue
 
 import android.os.Bundle
+import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.database.models.ExtensionImpl
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.CatalogueSource
@@ -23,6 +25,7 @@ import java.util.concurrent.TimeUnit
  * @param preferences application preferences.
  */
 class CataloguePresenter(
+        private val db: DatabaseHelper = Injekt.get(),
         val sourceManager: SourceManager = Injekt.get(),
         private val preferences: PreferencesHelper = Injekt.get()
 ) : BasePresenter<CatalogueController>() {
@@ -51,6 +54,7 @@ class CataloguePresenter(
     fun loadSources() {
         sourceSubscription?.unsubscribe()
 
+        val result = db.getFavoriteExtensions().executeAsBlocking()
         val map = TreeMap<String, MutableList<CatalogueSource>> { d1, d2 ->
             // Catalogues without a lang defined will be placed at the end
             when {
@@ -62,7 +66,9 @@ class CataloguePresenter(
         val byLang = sources.groupByTo(map, { it.lang })
         val sourceItems = byLang.flatMap {
             val langItem = LangItem(it.key)
-            it.value.map { source -> SourceItem(source, langItem) }
+            it.value.map { source ->
+                val isFavorite: Boolean = (result.find { it.id == source.id })?.isFavorite ?: false
+                SourceItem(source, langItem, isFavorite) }.sortedWith(compareBy({it.isFavorite})).reversed()
         }
 
         sourceSubscription = Observable.just(sourceItems)
@@ -85,6 +91,27 @@ class CataloguePresenter(
         sources = getEnabledSources()
         loadSources()
     }
+
+    /**
+     * Removes or adds an extension as favorite to the Extension Table
+     * Refreshes the list of sources to be sorted by favorite extensions to come first
+     */
+    fun refreshFavoriteExtensions(item: SourceItem) {
+
+        if(item.isFavorite){
+            val removeExtension = ExtensionImpl()
+            removeExtension.id = item.source.id
+            removeExtension.isFavorite = item.isFavorite
+            db.removeExtensionFAvorite(removeExtension).executeAsBlocking()
+        }
+        else {
+            var newfavoriteExtension = ExtensionImpl()
+            newfavoriteExtension.id = item.source.id
+            newfavoriteExtension.isFavorite = true
+            db.insertExtension(newfavoriteExtension).executeAsBlocking()
+        }
+    }
+
 
     /**
      * Returns a list of enabled sources ordered by language and name.

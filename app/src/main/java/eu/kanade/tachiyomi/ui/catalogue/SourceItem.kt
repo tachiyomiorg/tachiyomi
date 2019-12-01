@@ -12,7 +12,7 @@ import eu.kanade.tachiyomi.source.CatalogueSource
  * @param source Instance of [CatalogueSource] containing source information.
  * @param header The header for this item.
  */
-data class SourceItem(val source: CatalogueSource, val header: LangItem? = null) :
+data class SourceItem(val source: CatalogueSource, val header: LangItem? = null, var isFavorite: Boolean = false) :
         AbstractSectionableItem<SourceHolder, LangItem>(header) {
 
     /**

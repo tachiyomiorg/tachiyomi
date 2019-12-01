@@ -30,6 +30,11 @@ class CatalogueAdapter(val controller: CatalogueController) :
     val latestClickListener: OnLatestClickListener = controller
 
     /**
+     * Listener for favorite toggle
+     */
+    val favoriteToggleListener: OnFavoriteToggleListener = controller
+
+    /**
      * Listener which should be called when user clicks browse.
      * Note: Should only be handled by [CatalogueController]
      */
@@ -43,6 +48,13 @@ class CatalogueAdapter(val controller: CatalogueController) :
      */
     interface OnLatestClickListener {
         fun onLatestClick(position: Int)
+    }
+
+    /**
+     * Listener which should be called when user toggles the favorite checkbox
+     */
+    interface OnFavoriteToggleListener {
+        fun onToggleFavorite(position: Int)
     }
 }
 

@@ -37,8 +37,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/image"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/source_latest"
+            app:layout_constraintRight_toLeftOf="@+id/favorite_checkbox"
             tools:text="Source title"/>
+
+        <CheckBox
+            android:id="@+id/favorite_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/starStyle"
+            app:layout_constraintRight_toLeftOf="@+id/source_latest"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <Button
             android:id="@+id/source_latest"

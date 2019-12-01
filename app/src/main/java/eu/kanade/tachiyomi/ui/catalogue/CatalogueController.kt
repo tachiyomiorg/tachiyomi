@@ -38,7 +38,8 @@ class CatalogueController : NucleusController<CataloguePresenter>(),
         SourceLoginDialog.Listener,
         FlexibleAdapter.OnItemClickListener,
         CatalogueAdapter.OnBrowseClickListener,
-        CatalogueAdapter.OnLatestClickListener {
+        CatalogueAdapter.OnLatestClickListener,
+        CatalogueAdapter.OnFavoriteToggleListener {
 
     /**
      * Application preferences.
@@ -159,6 +160,19 @@ class CatalogueController : NucleusController<CataloguePresenter>(),
     override fun onLatestClick(position: Int) {
         val item = adapter?.getItem(position) as? SourceItem ?: return
         openCatalogue(item.source, LatestUpdatesController(item.source))
+    }
+
+    /**
+     * Called when favorite star is clicked in [CatalogueAdapter]
+     */
+    override fun onToggleFavorite(position: Int){
+        var item: SourceItem = adapter?.getItem(position) as SourceItem
+        presenter.refreshFavoriteExtensions(item)
+        item.isFavorite = !item.isFavorite
+        presenter.loadSources()
+        adapter?.updateItem(item)
+
+
     }
 
     /**
