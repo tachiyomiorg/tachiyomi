@@ -335,7 +335,7 @@
     <string name="action_global_search_hint">Global search…</string>
     <string name="latest">Latest</string>
     <string name="browse">Browse</string>
-    <string name="connectivity_error_catalogue">We can´t obtain information from this source. Please check your internet settings.</string>
+    <string name="connectivity_error_catalogue">We couldn\'t fetch information from this source. Please check your internet settings.</string>
 
     <!-- Manga activity -->
     <string name="manga_not_in_db">This manga was removed from the database!</string>
@@ -350,11 +350,11 @@
     <string name="manga_info_full_title_label">Title</string>
     <string name="manga_added_library">Added to library</string>
     <string name="manga_removed_library">Removed from library</string>
-    <string name="error_fetching_manga_info">We can´t obtain the manga info right now. Please check your network settings</string>
-    <string name="error_fetching_manga_chapters">We can´t obtain this manga chapters. Please check your network settings</string>
-    <string name="error_fetching_catalogue">We can´t obtain this catalogue info. Please check your network settings</string>
-    <string name="error_reader_manga_chapters">We can´t start the reader. Please check your network settings</string>
-    <string name="error_reader_manga_page">We can´t obtain this page. Please check your network settings</string>
+    <string name="error_fetching_manga_info">We couldn\'t fetch the manga info right now. Please check your network settings</string>
+    <string name="error_fetching_manga_chapters">We couldnt fetch the manga chapters. Please check your network settings</string>
+    <string name="error_fetching_catalogue">We couldn\'t fetch the catalogue info. Please check your network settings</string>
+    <string name="error_reader_manga_chapters">We couldn\'t start the reader. Please check your network settings</string>
+    <string name="error_reader_manga_page">We couldn\'t obtain the page. Please check your network settings</string>
     <string name="manga_info_author_label">Author</string>
     <string name="manga_info_artist_label">Artist</string>
     <string name="manga_info_chapters_label">Chapters</string>
@@ -476,7 +476,7 @@
     <string name="download_queue_error">An error occurred while downloading chapters. You can try again in the downloads section</string>
 
     <!-- Library update service notifications -->
-    <string name="error_connectivity_update_library">No internet connection. The updating process might fail </string>
+    <string name="error_connectivity_update_library">No internet connection detected. The updating process might fail </string>
     <string name="notification_update_progress">Update progress: %1$d/%2$d</string>
     <string name="notification_new_chapters">New chapters found</string>
     <string name="notification_new_chapters_text">For %1$d titles</string>

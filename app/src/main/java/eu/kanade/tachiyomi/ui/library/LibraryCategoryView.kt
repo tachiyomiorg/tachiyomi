@@ -58,10 +58,6 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
     private lateinit var adapter: LibraryCategoryAdapter
 
     /**
-     * Connectivity snackbar from Controller
-     */
-    private var snackConnectivity: Snackbar? = null
-    /**
      * Subscriptions while the view is bound.
      */
     private var subscriptions = CompositeSubscription()

@@ -38,10 +38,6 @@ class RecentlyReadController : NucleusController<RecentlyReadPresenter>(),
     var adapter: RecentlyReadAdapter? = null
         private set
 
-    /**
-     * Connectivity errors snackbar.
-     */
-    private var snackConnectivity: Snackbar? = null
 
     override fun getTitle(): String? {
         return resources?.getString(R.string.label_recent_manga)
@@ -72,10 +68,6 @@ class RecentlyReadController : NucleusController<RecentlyReadPresenter>(),
 
     override fun onDestroyView(view: View) {
         adapter = null
-        snackConnectivity?.let {
-            it.dismiss()
-        }
-        snackConnectivity = null
         super.onDestroyView(view)
     }
 
@@ -94,12 +86,6 @@ class RecentlyReadController : NucleusController<RecentlyReadPresenter>(),
         } else {
             empty_view.show(R.drawable.ic_glasses_black_128dp, R.string.information_no_recent_manga)
         }
-    }
-
-    fun verifyAvailableNetwork(activity: Activity): Boolean {
-        val connectivityManager = activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo = connectivityManager.activeNetworkInfo
-        return networkInfo != null && networkInfo.isConnected
     }
 
     override fun onResumeClick(position: Int) {
