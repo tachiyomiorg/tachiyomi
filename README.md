@@ -14,7 +14,7 @@ Features include:
 * Online reading from sources such as KissManga, MangaDex, [and more](https://github.com/inorichi/tachiyomi-extensions)
 * Local reading of downloaded manga
 * Configurable reader with multiple viewers, reading directions and other settings
-* <a href="https://myanimelist.net/"><img src="https://www.google.com/s2/favicons?domain=https://myanimelist.net/"></a> <a href="https://myanimelist.net/">MyAnimeList</a>, <a href="https://anilist.co/"><img src="https://www.google.com/s2/favicons?domain=https://anilist.co/"></a> <a href="https://anilist.co/">AniList</a>, <a href="https://kitsu.io/explore/manga"><img src="https://www.google.com/s2/favicons?domain=https://kitsu.io/explore/manga"></a> <a href="https://kitsu.io/explore/manga">Kitsu</a>, and <a href="https://shikimori.one"><img src="https://www.google.com/s2/favicons?domain=https://shikimori.one"></a> <a href="https://shikimori.one">Shikimori</a> support 
+* [MyAnimeList](https://myanimelist.net/), [AniList](https://anilist.co/), [Kitsu](https://kitsu.io/explore/anime), and [Shikimori](https://shikimori.one) support
 * Categories to organize your library
 * Light and dark themes
 * Schedule updating your library for new chapters
