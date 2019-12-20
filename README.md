@@ -1,4 +1,4 @@
-| Build | Stable | Dev | Contribute | Contact |
+| Build | Stable | Dev | Contribute | Support Server |
 |-------|----------|---------|------------|---------|
 | [![Travis](https://img.shields.io/travis/inorichi/tachiyomi.svg)](https://travis-ci.org/inorichi/tachiyomi) | [![stable release](https://img.shields.io/github/release/inorichi/tachiyomi.svg?maxAge=3600&label=download)](https://github.com/inorichi/tachiyomi/releases) | [![latest dev build](https://img.shields.io/badge/download-latest%20build-blue.svg)](http://tachiyomi.kanade.eu/latest) | [![Translation status](https://hosted.weblate.org/widgets/tachiyomi/-/svg-badge.svg)](https://hosted.weblate.org/engage/tachiyomi/?utm_source=widget) | [![Discord](https://img.shields.io/discord/349436576037732353.svg)](https://discord.gg/tachiyomi) |
 
@@ -13,7 +13,7 @@ Tachiyomi is a free and open source manga reader for Android.
 Features include:
 * Online reading from sources such as KissManga, MangaDex, [and more](https://github.com/inorichi/tachiyomi-extensions)
 * Local reading of downloaded manga
-* Configurable reader with multiple viewers, reading directions and other settings
+* A configurable reader with multiple viewers, reading directions and other settings.
 * [MyAnimeList](https://myanimelist.net/), [AniList](https://anilist.co/), [Kitsu](https://kitsu.io/explore/anime), and [Shikimori](https://shikimori.one) support
 * Categories to organize your library
 * Light and dark themes
