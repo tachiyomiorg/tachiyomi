@@ -351,7 +351,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     fun setInitialChapterError(error: Throwable) {
         Timber.e(error)
         finish()
-        toast(error.message)
+        toast(R.string.error_reader_manga_chapters)
     }
 
     /**

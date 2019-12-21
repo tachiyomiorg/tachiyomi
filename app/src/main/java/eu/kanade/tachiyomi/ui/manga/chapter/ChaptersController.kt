@@ -4,7 +4,10 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.provider.Settings
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.view.ActionMode
@@ -44,6 +47,11 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
      * Adapter containing a list of chapters.
      */
     private var adapter: ChaptersAdapter? = null
+
+    /**
+     * Connectivity errors snackbar.
+     */
+    private var snackConnectivity: Snackbar? = null
 
     /**
      * Action mode for multiple selection.
@@ -87,10 +95,12 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         fab.clicks().subscribeUntilDestroy {
             val item = presenter.getNextUnreadChapter()
             if (item != null) {
+                if (verifyAvailableNetwork(activity!!)) {
+
                 // Create animation listener
                 val revealAnimationListener: Animator.AnimatorListener = object : AnimatorListenerAdapter() {
                     override fun onAnimationStart(animation: Animator?) {
-                        openChapter(item.chapter, true)
+                            openChapter(item.chapter, true)
                     }
                 }
 
@@ -99,7 +109,33 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
                 if (!reveal_view.showRevealEffect(coordinates.x, coordinates.y, revealAnimationListener)) {
                     openChapter(item.chapter)
                 }
-            } else {
+            }
+                else if(item.isDownloaded){
+                    // Create animation listener
+                    val revealAnimationListener: Animator.AnimatorListener = object : AnimatorListenerAdapter() {
+                        override fun onAnimationStart(animation: Animator?) {
+                            openChapter(item.chapter, true)
+                        }
+                    }
+
+                    // Get coordinates and start animation
+                    val coordinates = fab.getCoordinates()
+                    if (!reveal_view.showRevealEffect(coordinates.x, coordinates.y, revealAnimationListener)) {
+                        openChapter(item.chapter)
+                    }
+                }
+                else{
+                    val view= view
+                    if (view != null ) {
+                        snackConnectivity=view.snack(view.context.getString(R.string.error_reader_manga_chapters),Snackbar.LENGTH_INDEFINITE) {
+                            setAction(R.string.okay) {
+                                snackConnectivity=null
+                            }
+                        }
+                    }
+
+                }
+        } else {
                 view.context.toast(R.string.no_next_chapter)
             }
         }
@@ -108,6 +144,10 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     override fun onDestroyView(view: View) {
         adapter = null
         actionMode = null
+        snackConnectivity?.let {
+            it.dismiss()
+        }
+        snackConnectivity=null
         super.onDestroyView(view)
     }
 
@@ -222,7 +262,15 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
 
     fun onFetchChaptersError(error: Throwable) {
         swipe_refresh?.isRefreshing = false
-        activity?.toast(error.message)
+        Timber.e(error)
+        val view= view
+        if (view != null) {
+            snackConnectivity=view.snack(view.context.getString(R.string.error_fetching_manga_chapters),Snackbar.LENGTH_INDEFINITE) {
+                setAction(R.string.okay) {
+                    snackConnectivity=null
+                }
+            }
+        }
     }
 
     fun onChapterStatusChange(download: Download) {
@@ -233,13 +281,20 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         return recycler?.findViewHolderForItemId(chapter.id!!) as? ChapterHolder
     }
 
+
+    fun verifyAvailableNetwork(activity:Activity):Boolean{
+        val connectivityManager=activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo=connectivityManager.activeNetworkInfo
+        return  networkInfo!=null && networkInfo.isConnected
+    }
+
     fun openChapter(chapter: Chapter, hasAnimation: Boolean = false) {
         val activity = activity ?: return
-        val intent = ReaderActivity.newIntent(activity, presenter.manga, chapter)
-        if (hasAnimation) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-        }
-        startActivity(intent)
+            val intent = ReaderActivity.newIntent(activity, presenter.manga, chapter)
+            if (hasAnimation) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            }
+            startActivity(intent)
     }
 
     override fun onItemClick(position: Int): Boolean {

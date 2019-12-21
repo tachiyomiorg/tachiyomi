@@ -11,7 +11,9 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.support.customtabs.CustomTabsIntent
+import android.support.design.widget.Snackbar
 import android.support.v4.content.pm.ShortcutInfoCompat
 import android.support.v4.content.pm.ShortcutManagerCompat
 import android.support.v4.graphics.drawable.IconCompat
@@ -49,6 +51,7 @@ import eu.kanade.tachiyomi.util.truncateCenter
 import jp.wasabeef.glide.transformations.CropSquareTransformation
 import jp.wasabeef.glide.transformations.MaskTransformation
 import kotlinx.android.synthetic.main.manga_info_controller.*
+import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 import java.text.DateFormat
 import java.text.DecimalFormat
@@ -66,6 +69,12 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
      * Preferences helper.
      */
     private val preferences: PreferencesHelper by injectLazy()
+
+
+    /**
+     * Connectivity errors snackbar
+     */
+    private var snackConnectivity: Snackbar? = null
 
     init {
         setHasOptionsMenu(true)
@@ -244,6 +253,10 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
 
     override fun onDestroyView(view: View) {
         manga_genres_tags.setOnTagClickListener(null)
+        snackConnectivity?.let {
+            it.dismiss()
+        }
+        snackConnectivity=null
         super.onDestroyView(view)
     }
 
@@ -362,7 +375,15 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
      */
     fun onFetchMangaError(error: Throwable) {
         setRefreshing(false)
-        activity?.toast(error.message)
+        Timber.e(error)
+        val view= view
+        if (view != null) {
+            snackConnectivity=view.snack(view.context.getString(R.string.error_fetching_manga_info),Snackbar.LENGTH_INDEFINITE) {
+                setAction(R.string.okay) {
+                    snackConnectivity=null
+                }
+            }
+        }
     }
 
     /**

@@ -1,10 +1,13 @@
 package eu.kanade.tachiyomi.ui.library
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
+import android.net.ConnectivityManager
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.design.widget.TabLayout
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v4.widget.DrawerLayout
@@ -34,6 +37,7 @@ import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.migration.MigrationController
 import eu.kanade.tachiyomi.util.inflate
+import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
 import kotlinx.android.synthetic.main.library_controller.*
 import kotlinx.android.synthetic.main.main_activity.*
@@ -69,6 +73,11 @@ class LibraryController(
      * Library search query.
      */
     private var query = ""
+
+    /**
+     * Connectivity Snackbar
+     */
+    private var snackConnectivity : Snackbar? = null
 
     /**
      * Currently selected mangas.
@@ -171,6 +180,10 @@ class LibraryController(
         actionMode = null
         tabsVisibilitySubscription?.unsubscribe()
         tabsVisibilitySubscription = null
+        snackConnectivity?.let {
+            it.dismiss()
+        }
+        snackConnectivity=null
         super.onDestroyView(view)
     }
 
@@ -214,6 +227,27 @@ class LibraryController(
     override fun cleanupTabs(tabs: TabLayout) {
         tabsVisibilitySubscription?.unsubscribe()
         tabsVisibilitySubscription = null
+    }
+
+    fun verifyAvailableNetwork(activity:Activity):Boolean{
+        val connectivityManager=activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo=connectivityManager.activeNetworkInfo
+        return  networkInfo!=null && networkInfo.isConnected
+    }
+
+    fun connectivitySnackBar(): Boolean{
+        if(!verifyAvailableNetwork(activity!!)){
+            val view= view
+            if (view != null) {
+                snackConnectivity=view.snack(view.context.getString(R.string.error_connectivity_update_library),Snackbar.LENGTH_INDEFINITE) {
+                    setAction(R.string.okay) {
+                        snackConnectivity=null
+                    }
+                }
+            }
+            return false
+        }
+        return true
     }
 
     fun onNextLibraryUpdate(categories: List<Category>, mangaMap: Map<Int, List<LibraryItem>>) {
@@ -412,6 +446,7 @@ class LibraryController(
         selectedMangas.clear()
         selectionRelay.call(LibrarySelectionEvent.Cleared())
         actionMode = null
+
     }
 
     fun openManga(manga: Manga) {
