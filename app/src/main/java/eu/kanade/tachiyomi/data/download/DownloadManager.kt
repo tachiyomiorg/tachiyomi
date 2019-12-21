@@ -7,8 +7,10 @@ import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.DownloadQueue
 import eu.kanade.tachiyomi.source.Source
+import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.Page
 import rx.Observable
+import uy.kohesive.injekt.injectLazy
 
 /**
  * This class is used to manage chapter downloads in the application. It must be instantiated once
@@ -20,6 +22,11 @@ import rx.Observable
 class DownloadManager(context: Context) {
 
     /**
+     * The sources manager.
+     */
+    private val sourceManager by injectLazy<SourceManager>()
+
+    /**
      * Downloads provider, used to retrieve the folders where the chapters are or should be stored.
      */
     private val provider = DownloadProvider(context)
@@ -27,12 +34,17 @@ class DownloadManager(context: Context) {
     /**
      * Cache of downloaded chapters.
      */
-    private val cache = DownloadCache(context, provider)
+    private val cache = DownloadCache(context, provider, sourceManager)
 
     /**
      * Downloader whose only task is to download chapters.
      */
-    private val downloader = Downloader(context, provider, cache)
+    private val downloader = Downloader(context, provider, cache, sourceManager)
+
+    /**
+     * Queue to delay the deletion of a list of chapters until triggered.
+     */
+    private val pendingDeleter = DownloadPendingDeleter(context)
 
     /**
      * Downloads queue, where the pending chapters are stored.
@@ -146,15 +158,20 @@ class DownloadManager(context: Context) {
     }
 
     /**
-     * Deletes the directory of a downloaded chapter.
+     * Deletes the directories of a list of downloaded chapters.
      *
-     * @param chapter the chapter to delete.
-     * @param manga the manga of the chapter.
-     * @param source the source of the chapter.
+     * @param chapters the list of chapters to delete.
+     * @param manga the manga of the chapters.
+     * @param source the source of the chapters.
      */
-    fun deleteChapter(chapter: Chapter, manga: Manga, source: Source) {
-        provider.findChapterDir(chapter, manga, source)?.delete()
-        cache.removeChapter(chapter, manga)
+    fun deleteChapters(chapters: List<Chapter>, manga: Manga, source: Source) {
+        queue.remove(chapters)
+        val chapterDirs = provider.findChapterDirs(chapters, manga, source)
+        chapterDirs.forEach { it.delete() }
+        cache.removeChapters(chapters, manga)
+        if (cache.getDownloadCount(manga) == 0) { // Delete manga directory if empty
+            chapterDirs.firstOrNull()?.parentFile?.delete()
+        }
     }
 
     /**
@@ -164,7 +181,30 @@ class DownloadManager(context: Context) {
      * @param source the source of the manga.
      */
     fun deleteManga(manga: Manga, source: Source) {
+        queue.remove(manga)
         provider.findMangaDir(manga, source)?.delete()
         cache.removeManga(manga)
     }
+
+    /**
+     * Adds a list of chapters to be deleted later.
+     *
+     * @param chapters the list of chapters to delete.
+     * @param manga the manga of the chapters.
+     */
+    fun enqueueDeleteChapters(chapters: List<Chapter>, manga: Manga) {
+        pendingDeleter.addChapters(chapters, manga)
+    }
+
+    /**
+     * Triggers the execution of the deletion of pending chapters.
+     */
+    fun deletePendingChapters() {
+        val pendingChapters = pendingDeleter.getPendingChapters()
+        for ((manga, chapters) in pendingChapters) {
+            val source = sourceManager.get(manga.source) ?: continue
+            deleteChapters(chapters, manga, source)
+        }
+    }
+
 }

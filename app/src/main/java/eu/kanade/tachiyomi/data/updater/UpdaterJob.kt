@@ -13,10 +13,10 @@ import eu.kanade.tachiyomi.util.notificationManager
 class UpdaterJob : Job() {
 
     override fun onRunJob(params: Params): Result {
-        return GithubUpdateChecker()
+        return UpdateChecker.getUpdateChecker()
                 .checkForUpdate()
                 .map { result ->
-                    if (result is GithubUpdateResult.NewUpdate) {
+                    if (result is UpdateResult.NewUpdate<*>) {
                         val url = result.release.downloadLink
 
                         val intent = Intent(context, UpdaterService::class.java).apply {
@@ -33,9 +33,9 @@ class UpdaterJob : Job() {
                                     PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT))
                         }
                     }
-                    Job.Result.SUCCESS
+                    Result.SUCCESS
                 }
-                .onErrorReturn { Job.Result.FAILURE }
+                .onErrorReturn { Result.FAILURE }
                 // Sadly, the task needs to be synchronous.
                 .toBlocking()
                 .single()

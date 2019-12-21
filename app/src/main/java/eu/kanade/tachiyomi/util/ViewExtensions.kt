@@ -47,6 +47,10 @@ inline fun View.gone() {
     visibility = View.GONE
 }
 
+inline fun View.visibleIf(block: () -> Boolean) {
+    visibility = if (block()) View.VISIBLE else View.GONE
+}
+
 /**
  * Returns a TextDrawable determined by input
  *

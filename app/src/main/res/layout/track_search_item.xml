@@ -12,7 +12,6 @@
         android:layout_height="216dp"
         android:background="?attr/selectable_list_drawable"
         android:orientation="horizontal">
-        >
 
         <ImageView
             android:id="@+id/track_search_cover"

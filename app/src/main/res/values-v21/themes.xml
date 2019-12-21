@@ -10,10 +10,20 @@
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
     </style>
 
-    <!--============-->
-    <!-- Dark Theme -->
-    <!--============-->
+    <!--=============-->
+    <!-- Dark Themes -->
+    <!--=============-->
     <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
+        <!-- Attributes specific for SDK 21 and up  -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorDarkPrimaryDark</item>
+    </style>
+
+    <style name="Theme.Tachiyomi.DarkBlue" parent="Theme.Base.Dark">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
@@ -27,13 +37,19 @@
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@color/colorAmoledPrimary</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
     <!--==============-->
     <!-- Reader Theme -->
     <!--==============-->
-    <style name="Theme.Reader" parent="Theme.Base.Reader">
+    <style name="Theme.Reader" parent="Theme.Base.Reader.Dark">
+        <!-- Attributes specific for SDK 21 and up  -->
+        <item name="android:statusBarColor">?colorPrimaryDark</item>
+        <item name="android:navigationBarColor">?colorPrimaryDark</item>
+    </style>
+
+    <style name="Theme.Reader.Light" parent="Theme.Base.Reader.Light">
         <!-- Attributes specific for SDK 21 and up  -->
         <item name="android:statusBarColor">?colorPrimaryDark</item>
         <item name="android:navigationBarColor">?colorPrimaryDark</item>

@@ -24,7 +24,7 @@
     <color name="dialogLight">@color/md_white_1000</color>
 
     <color name="selectorColorLight">@color/md_blue_A400_38</color>
-    <color name="iconColorLight">@color/md_black_1000</color>
+    <color name="iconColorLight">@color/md_black_1000_54</color>
 
     <!-- Dark Theme -->
     <color name="colorAccentDark">#3399FF</color>

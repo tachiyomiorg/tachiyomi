@@ -10,13 +10,17 @@ import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.net.ConnectivityManager
+import android.net.Uri
 import android.os.PowerManager
+import android.support.annotation.AttrRes
 import android.support.annotation.StringRes
+import android.support.customtabs.CustomTabsIntent
 import android.support.v4.app.NotificationCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.LocalBroadcastManager
 import android.widget.Toast
 import com.nononsenseapps.filepicker.FilePickerActivity
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.widget.CustomLayoutPickerActivity
 
 /**
@@ -79,7 +83,7 @@ fun Context.hasPermission(permission: String)
  *
  * @param resource the attribute.
  */
-fun Context.getResourceColor(@StringRes resource: Int): Int {
+fun Context.getResourceColor(@AttrRes resource: Int): Int {
     val typedArray = obtainStyledAttributes(intArrayOf(resource))
     val attrValue = typedArray.getColor(0, 0)
     typedArray.recycle()
@@ -161,4 +165,19 @@ fun Context.isServiceRunning(serviceClass: Class<*>): Boolean {
     @Suppress("DEPRECATION")
     return manager.getRunningServices(Integer.MAX_VALUE)
             .any { className == it.service.className }
+}
+
+/**
+ * Opens a URL in a custom tab.
+ */
+fun Context.openInBrowser(url: String) {
+    try {
+        val url = Uri.parse(url)
+        val intent = CustomTabsIntent.Builder()
+                .setToolbarColor(getResourceColor(R.attr.colorPrimary))
+                .build()
+        intent.launchUrl(this, url)
+    } catch (e: Exception) {
+        toast(e.message)
+    }
 }

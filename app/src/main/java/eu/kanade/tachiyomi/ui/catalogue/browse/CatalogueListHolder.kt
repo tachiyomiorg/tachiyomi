@@ -44,7 +44,6 @@ class CatalogueListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
                     .centerCrop()
                     .circleCrop()
                     .dontAnimate()
-                    .skipMemoryCache(true)
                     .placeholder(android.R.color.transparent)
                     .into(thumbnail)
         }

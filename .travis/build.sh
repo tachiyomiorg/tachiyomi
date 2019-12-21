@@ -2,6 +2,8 @@
 
 git fetch --unshallow #required for commit count
 
+cp .travis/google-services.json app/
+
 if [ -z "$TRAVIS_TAG" ]; then
     ./gradlew clean assembleStandardDebug
 

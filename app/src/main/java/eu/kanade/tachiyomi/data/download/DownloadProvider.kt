@@ -82,6 +82,18 @@ class DownloadProvider(private val context: Context) {
     }
 
     /**
+     * Returns a list of downloaded directories for the chapters that exist.
+     *
+     * @param chapters the chapters to query.
+     * @param manga the manga of the chapter.
+     * @param source the source of the chapter.
+     */
+    fun findChapterDirs(chapters: List<Chapter>, manga: Manga, source: Source): List<UniFile> {
+        val mangaDir = findMangaDir(manga, source) ?: return emptyList()
+        return chapters.mapNotNull { mangaDir.findFile(getChapterDirName(it)) }
+    }
+
+    /**
      * Returns the download directory name for a source.
      *
      * @param source the source to query.

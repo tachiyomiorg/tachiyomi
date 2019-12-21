@@ -14,6 +14,7 @@
     <application
         android:name=".App"
         android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_rules"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -22,18 +23,26 @@
         android:theme="@style/Theme.Tachiyomi">
         <activity
             android:name=".ui.main.MainActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="com.google.android.gms.actions.SEARCH_ACTION"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="eu.kanade.tachiyomi.SEARCH" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
             <!--suppress AndroidDomInspection -->
             <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
         </activity>
         <activity
-            android:name=".ui.reader.ReaderActivity"
-            android:theme="@style/Theme.Reader" />
+            android:name=".ui.reader.ReaderActivity" />
         <activity
             android:name=".widget.CustomLayoutPickerActivity"
             android:label="@string/app_name"
@@ -53,6 +62,35 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.setting.ShikimoriLoginActivity"
+            android:label="Shikimori">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="shikimori-auth"
+                    android:scheme="tachiyomi" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.setting.BangumiLoginActivity"
+            android:label="Bangumi">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="bangumi-auth"
+                    android:scheme="tachiyomi" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".extension.util.ExtensionInstallActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
@@ -65,16 +103,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
-        <provider
-            android:name="eu.kanade.tachiyomi.util.ZipContentProvider"
-            android:authorities="${applicationId}.zip-provider"
-            android:exported="false" />
-
-        <provider
-            android:name="eu.kanade.tachiyomi.util.RarContentProvider"
-            android:authorities="${applicationId}.rar-provider"
-            android:exported="false" />
 
         <receiver
             android:name=".data.notification.NotificationReceiver"

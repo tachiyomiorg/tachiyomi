@@ -27,4 +27,8 @@ abstract class ViewPagerAdapter : PagerAdapter() {
         return view === obj
     }
 
+    interface PositionableView {
+        val item: Any
+    }
+
 }

@@ -1,10 +1,10 @@
 package eu.kanade.tachiyomi.data.track.anilist
 
-import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class AnilistInterceptor(private var refreshToken: String?) : Interceptor {
+
+class AnilistInterceptor(val anilist: Anilist, private var token: String?) : Interceptor {
 
     /**
      * OAuth object used for authenticated requests.
@@ -20,24 +20,21 @@ class AnilistInterceptor(private var refreshToken: String?) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
 
-        if (refreshToken.isNullOrEmpty()) {
+        if (token.isNullOrEmpty()) {
             throw Exception("Not authenticated with Anilist")
         }
-
+        if (oauth == null){
+            oauth = anilist.loadOAuth()
+        }
         // Refresh access token if null or expired.
-        if (oauth == null || oauth!!.isExpired()) {
-            val response = chain.proceed(AnilistApi.refreshTokenRequest(refreshToken!!))
-            oauth = if (response.isSuccessful) {
-                Gson().fromJson(response.body()!!.string(), OAuth::class.java)
-            } else {
-                response.close()
-                null
-            }
+        if (oauth!!.isExpired()) {
+            anilist.logout()
+            throw Exception("Token expired")
         }
 
         // Throw on null auth.
         if (oauth == null) {
-            throw Exception("Access token wasn't refreshed")
+            throw Exception("No authentication token")
         }
 
         // Add the authorization header to the original request.
@@ -53,8 +50,9 @@ class AnilistInterceptor(private var refreshToken: String?) : Interceptor {
      * and the oauth object.
      */
     fun setAuth(oauth: OAuth?) {
-        refreshToken = oauth?.refresh_token
+        token = oauth?.access_token
         this.oauth = oauth
+        anilist.saveOAuth(oauth)
     }
 
 }

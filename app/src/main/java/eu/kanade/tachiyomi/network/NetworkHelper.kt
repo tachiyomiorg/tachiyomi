@@ -2,8 +2,7 @@ package eu.kanade.tachiyomi.network
 
 import android.content.Context
 import android.os.Build
-import okhttp3.Cache
-import okhttp3.OkHttpClient
+import okhttp3.*
 import java.io.File
 import java.io.IOException
 import java.net.InetAddress
@@ -12,11 +11,7 @@ import java.net.UnknownHostException
 import java.security.KeyManagementException
 import java.security.KeyStore
 import java.security.NoSuchAlgorithmException
-import javax.net.ssl.SSLContext
-import javax.net.ssl.SSLSocket
-import javax.net.ssl.SSLSocketFactory
-import javax.net.ssl.TrustManagerFactory
-import javax.net.ssl.X509TrustManager
+import javax.net.ssl.*
 
 class NetworkHelper(context: Context) {
 
@@ -24,7 +19,7 @@ class NetworkHelper(context: Context) {
 
     private val cacheSize = 5L * 1024 * 1024 // 5 MiB
 
-    private val cookieManager = PersistentCookieJar(context)
+    val cookieManager = AndroidCookieJar(context)
 
     val client = OkHttpClient.Builder()
             .cookieJar(cookieManager)
@@ -33,11 +28,8 @@ class NetworkHelper(context: Context) {
             .build()
 
     val cloudflareClient = client.newBuilder()
-            .addInterceptor(CloudflareInterceptor())
+            .addInterceptor(CloudflareInterceptor(context))
             .build()
-
-    val cookies: PersistentCookieStore
-        get() = cookieManager.store
 
     private fun OkHttpClient.Builder.enableTLS12(): OkHttpClient.Builder {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
@@ -107,6 +99,18 @@ class NetworkHelper(context: Context) {
 
             sslSocketFactory(TLSSocketFactory(), trustManagers[0] as X509TrustManager)
         }
+
+        val specCompat = ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
+            .tlsVersions(TlsVersion.TLS_1_2, TlsVersion.TLS_1_1, TlsVersion.TLS_1_0)
+            .cipherSuites(
+                    *ConnectionSpec.MODERN_TLS.cipherSuites().orEmpty().toTypedArray(),
+                    CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
+                    CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA
+            )
+            .build()
+
+        val specs = listOf(specCompat, ConnectionSpec.CLEARTEXT)
+        connectionSpecs(specs)
 
         return this
     }

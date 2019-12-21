@@ -12,6 +12,10 @@
         android:title="@string/action_open_in_browser"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/action_open_in_web_view"
+        android:title="@string/action_open_in_web_view"
+        app:showAsAction="never"/>
+
     <item android:id="@+id/action_add_to_home_screen"
         android:title="@string/action_add_to_home_screen"
         app:showAsAction="never"/>

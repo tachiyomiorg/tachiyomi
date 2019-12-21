@@ -25,4 +25,5 @@
     <dimen name="navigation_drawer_header_height">158dp</dimen>
     <dimen name="navigation_drawer_header_margin">16dp</dimen>
 
+    <dimen name="bottom_sheet_width">0dp</dimen>
 </resources>

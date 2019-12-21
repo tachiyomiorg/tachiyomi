@@ -15,6 +15,8 @@ object PreferenceKeys {
 
     const val showPageNumber = "pref_show_page_number_key"
 
+    const val trueColor = "pref_true_color_key"
+
     const val fullscreen = "fullscreen"
 
     const val keepScreenOn = "pref_keep_screen_on_key"
@@ -27,11 +29,11 @@ object PreferenceKeys {
 
     const val colorFilterValue = "color_filter_value"
 
+    const val colorFilterMode = "color_filter_mode"
+
     const val defaultViewer = "pref_default_viewer_key"
 
     const val imageScaleType = "pref_image_scale_type_key"
-
-    const val imageDecoder = "image_decoder"
 
     const val zoomStart = "pref_zoom_start_key"
 
@@ -39,7 +41,11 @@ object PreferenceKeys {
 
     const val cropBorders = "crop_borders"
 
+    const val cropBordersWebtoon = "crop_borders_webtoon"
+
     const val readWithTapping = "reader_tap"
+
+    const val readWithLongTap = "reader_long_tap"
 
     const val readWithVolumeKeys = "reader_volume_keys"
 
@@ -52,8 +58,6 @@ object PreferenceKeys {
     const val updateOnlyNonCompleted = "pref_update_only_non_completed_key"
 
     const val autoUpdateTrack = "pref_auto_update_manga_sync_key"
-
-    const val askUpdateTrack = "pref_ask_update_manga_sync_key"
 
     const val lastUsedCatalogueSource = "last_catalogue_source"
 
@@ -83,6 +87,8 @@ object PreferenceKeys {
 
     const val libraryUpdateCategories = "library_update_categories"
 
+    const val libraryUpdatePrioritization = "library_update_prioritization"
+
     const val filterDownloaded = "pref_filter_downloaded_key"
 
     const val filterUnread = "pref_filter_unread_key"
@@ -104,6 +110,8 @@ object PreferenceKeys {
     const val lang = "app_language"
 
     const val defaultCategory = "default_category"
+
+    const val skipRead = "skip_read"
 
     const val downloadBadge = "display_download_badge"
 

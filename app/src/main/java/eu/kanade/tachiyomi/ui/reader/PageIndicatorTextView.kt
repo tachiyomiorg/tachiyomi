@@ -12,8 +12,13 @@ import android.text.style.ScaleXSpan
 import android.util.AttributeSet
 import android.widget.TextView
 
-class PageIndicatorTextView(context: Context, attrs: AttributeSet? = null) :
-        AppCompatTextView(context, attrs) {
+/**
+ * Page indicator found at the bottom of the reader
+ */
+class PageIndicatorTextView(
+        context: Context,
+        attrs: AttributeSet? = null
+) : AppCompatTextView(context, attrs) {
 
     private val fillColor = Color.rgb(235, 235, 235)
     private val strokeColor = Color.rgb(45, 45, 45)

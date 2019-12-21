@@ -1,78 +1,172 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import android.view.ViewGroup
-import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.source.model.Page
-import eu.kanade.tachiyomi.util.inflate
+import android.widget.FrameLayout
+import android.widget.LinearLayout
+import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
+import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
+import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 
 /**
- * Adapter of pages for a RecyclerView.
- *
- * @param fragment the fragment containing this adapter.
+ * RecyclerView Adapter used by this [viewer] to where [ViewerChapters] updates are posted.
  */
-class WebtoonAdapter(val fragment: WebtoonReader) : RecyclerView.Adapter<WebtoonHolder>() {
+class WebtoonAdapter(val viewer: WebtoonViewer) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     /**
-     * Pages stored in the adapter.
+     * List of currently set items.
      */
-    var pages: List<Page>? = null
+    var items: List<Any> = emptyList()
+        private set
 
     /**
-     * Touch listener for images in holders.
+     * Updates this adapter with the given [chapters]. It handles setting a few pages of the
+     * next/previous chapter to allow seamless transitions.
      */
-    val touchListener = View.OnTouchListener { _, ev -> fragment.imageGestureDetector.onTouchEvent(ev) }
+    fun setChapters(chapters: ViewerChapters) {
+        val newItems = mutableListOf<Any>()
+
+        // Add previous chapter pages and transition.
+        if (chapters.prevChapter != null) {
+            // We only need to add the last few pages of the previous chapter, because it'll be
+            // selected as the current chapter when one of those pages is selected.
+            val prevPages = chapters.prevChapter.pages
+            if (prevPages != null) {
+                newItems.addAll(prevPages.takeLast(2))
+            }
+        }
+        newItems.add(ChapterTransition.Prev(chapters.currChapter, chapters.prevChapter))
+
+        // Add current chapter.
+        val currPages = chapters.currChapter.pages
+        if (currPages != null) {
+            newItems.addAll(currPages)
+        }
+
+        // Add next chapter transition and pages.
+        newItems.add(ChapterTransition.Next(chapters.currChapter, chapters.nextChapter))
+        if (chapters.nextChapter != null) {
+            // Add at most two pages, because this chapter will be selected before the user can
+            // swap more pages.
+            val nextPages = chapters.nextChapter.pages
+            if (nextPages != null) {
+                newItems.addAll(nextPages.take(2))
+            }
+        }
+
+        val result = DiffUtil.calculateDiff(Callback(items, newItems))
+        items = newItems
+        result.dispatchUpdatesTo(this)
+    }
 
     /**
-     * Returns the number of pages.
-     *
-     * @return the number of pages or 0 if the list is null.
+     * Returns the amount of items of the adapter.
      */
     override fun getItemCount(): Int {
-        return pages?.size ?: 0
+        return items.size
     }
 
     /**
-     * Returns a page given the position.
-     *
-     * @param position the position of the page.
-     * @return the page.
+     * Returns the view type for the item at the given [position].
      */
-    fun getItem(position: Int): Page {
-        return pages!![position]
+    override fun getItemViewType(position: Int): Int {
+        val item = items[position]
+        return when (item) {
+            is ReaderPage -> PAGE_VIEW
+            is ChapterTransition -> TRANSITION_VIEW
+            else -> error("Unknown view type for ${item.javaClass}")
+        }
     }
 
     /**
-     * Creates a new view holder.
-     *
-     * @param parent the parent view.
-     * @param viewType the type of the holder.
-     * @return a new view holder for a manga.
+     * Creates a new view holder for an item with the given [viewType].
      */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WebtoonHolder {
-        val v = parent.inflate(R.layout.reader_webtoon_item)
-        return WebtoonHolder(v, this)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            PAGE_VIEW -> {
+                val view = FrameLayout(parent.context)
+                WebtoonPageHolder(view, viewer)
+            }
+            TRANSITION_VIEW -> {
+                val view = LinearLayout(parent.context)
+                WebtoonTransitionHolder(view, viewer)
+            }
+            else -> error("Unknown view type")
+        }
     }
 
     /**
-     * Binds a holder with a new position.
-     *
-     * @param holder the holder to bind.
-     * @param position the position to bind.
+     * Binds an existing view [holder] with the item at the given [position].
      */
-    override fun onBindViewHolder(holder: WebtoonHolder, position: Int) {
-        val page = getItem(position)
-        holder.onSetValues(page)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val item = items[position]
+        when (holder) {
+            is WebtoonPageHolder -> holder.bind(item as ReaderPage)
+            is WebtoonTransitionHolder -> holder.bind(item as ChapterTransition)
+        }
     }
 
     /**
-     * Recycles the view holder.
-     *
-     * @param holder the holder to recycle.
+     * Recycles an existing view [holder] before adding it to the view pool.
      */
-    override fun onViewRecycled(holder: WebtoonHolder) {
-        holder.onRecycle()
+    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+        when (holder) {
+            is WebtoonPageHolder -> holder.recycle()
+            is WebtoonTransitionHolder -> holder.recycle()
+        }
+    }
+
+    /**
+     * Diff util callback used to dispatch delta updates instead of full dataset changes.
+     */
+    private class Callback(
+            private val oldItems: List<Any>,
+            private val newItems: List<Any>
+    ) : DiffUtil.Callback() {
+
+        /**
+         * Returns true if these two items are the same.
+         */
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldItem = oldItems[oldItemPosition]
+            val newItem = newItems[newItemPosition]
+
+            return oldItem == newItem
+        }
+
+        /**
+         * Returns true if the contents of the items are the same.
+         */
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return true
+        }
+
+        /**
+         * Returns the size of the old list.
+         */
+        override fun getOldListSize(): Int {
+            return oldItems.size
+        }
+
+        /**
+         * Returns the size of the new list.
+         */
+        override fun getNewListSize(): Int {
+            return newItems.size
+        }
+    }
+
+    private companion object {
+        /**
+         * View holder type of a chapter page view.
+         */
+        const val PAGE_VIEW = 0
+
+        /**
+         * View holder type of a chapter transition view.
+         */
+        const val TRANSITION_VIEW = 1
     }
 
 }

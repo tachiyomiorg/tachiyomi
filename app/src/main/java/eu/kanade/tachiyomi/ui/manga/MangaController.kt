@@ -34,7 +34,7 @@ import kotlinx.android.synthetic.main.manga_controller.*
 import rx.Subscription
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.util.*
+import java.util.Date
 
 class MangaController : RxController, TabbedController {
 
@@ -44,7 +44,7 @@ class MangaController : RxController, TabbedController {
     }) {
         this.manga = manga
         if (manga != null) {
-            source = Injekt.get<SourceManager>().get(manga.source)
+            source = Injekt.get<SourceManager>().getOrStub(manga.source)
         }
     }
 

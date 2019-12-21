@@ -33,7 +33,8 @@ import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 import java.io.File
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -295,7 +296,7 @@ class BackupRestoreService : Service() {
                                           categories: List<String>, history: List<DHistory>,
                                           tracks: List<Track>): Observable<Manga>? {
         // Get source
-        val source = backupManager.sourceManager.get(manga.source) ?: return null
+        val source = backupManager.sourceManager.getOrStub(manga.source)
         val dbManga = backupManager.getMangaFromDatabase(manga)
 
         return if (dbManga == null) {

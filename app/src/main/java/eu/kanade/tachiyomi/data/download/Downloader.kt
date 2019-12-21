@@ -21,7 +21,6 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
 import timber.log.Timber
-import uy.kohesive.injekt.injectLazy
 
 /**
  * This class is the one in charge of downloading chapters.
@@ -35,27 +34,24 @@ import uy.kohesive.injekt.injectLazy
  * @param context the application context.
  * @param provider the downloads directory provider.
  * @param cache the downloads cache, used to add the downloads to the cache after their completion.
+ * @param sourceManager the source manager.
  */
 class Downloader(
         private val context: Context,
         private val provider: DownloadProvider,
-        private val cache: DownloadCache
+        private val cache: DownloadCache,
+        private val sourceManager: SourceManager
 ) {
 
     /**
      * Store for persisting downloads across restarts.
      */
-    private val store = DownloadStore(context)
+    private val store = DownloadStore(context, sourceManager)
 
     /**
      * Queue where active downloads are kept.
      */
     val queue = DownloadQueue(store)
-
-    /**
-     * Source manager.
-     */
-    private val sourceManager: SourceManager by injectLazy()
 
     /**
      * Notifier for the downloader state and progress.
@@ -382,7 +378,7 @@ class Downloader(
             // Else guess from the uri.
             ?: context.contentResolver.getType(file.uri)
             // Else read magic numbers.
-            ?: DiskUtil.findImageMime { file.openInputStream() }
+            ?: ImageUtil.findImageType { file.openInputStream() }?.mime
 
         return MimeTypeMap.getSingleton().getExtensionFromMimeType(mime) ?: "jpg"
     }

@@ -19,4 +19,15 @@
         android:id="@+id/action_display_mode"
         android:title="@string/action_display_mode"
         app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_open_in_browser"
+        android:title="@string/action_open_in_browser"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_open_in_web_view"
+        android:title="@string/action_open_in_web_view"
+        app:showAsAction="never"/>
+
 </menu>

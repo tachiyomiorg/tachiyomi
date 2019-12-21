@@ -60,6 +60,7 @@ object MangaTable {
     val createUrlIndexQuery: String
         get() = "CREATE INDEX ${TABLE}_${COL_URL}_index ON $TABLE($COL_URL)"
 
-    val createFavoriteIndexQuery: String
-        get() = "CREATE INDEX ${TABLE}_${COL_FAVORITE}_index ON $TABLE($COL_FAVORITE)"
+    val createLibraryIndexQuery: String
+        get() = "CREATE INDEX library_${COL_FAVORITE}_index ON $TABLE($COL_FAVORITE) " +
+                "WHERE $COL_FAVORITE = 1"
 }

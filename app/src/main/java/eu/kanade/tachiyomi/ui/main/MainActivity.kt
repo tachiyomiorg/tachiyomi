@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.main
 
 import android.animation.ObjectAnimator
+import android.app.SearchManager
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -15,6 +16,7 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.base.controller.*
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
+import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
 import eu.kanade.tachiyomi.ui.download.DownloadController
 import eu.kanade.tachiyomi.ui.extension.ExtensionController
 import eu.kanade.tachiyomi.ui.library.LibraryController
@@ -22,6 +24,7 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersController
 import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
 import eu.kanade.tachiyomi.ui.setting.SettingsMainController
+import eu.kanade.tachiyomi.util.openInBrowser
 import kotlinx.android.synthetic.main.main_activity.*
 import uy.kohesive.injekt.injectLazy
 
@@ -50,6 +53,7 @@ class MainActivity : BaseActivity() {
         setTheme(when (preferences.theme()) {
             2 -> R.style.Theme_Tachiyomi_Dark
             3 -> R.style.Theme_Tachiyomi_Amoled
+            4 -> R.style.Theme_Tachiyomi_DarkBlue
             else -> R.style.Theme_Tachiyomi
         })
         super.onCreate(savedInstanceState)
@@ -87,6 +91,9 @@ class MainActivity : BaseActivity() {
                     }
                     R.id.nav_drawer_settings -> {
                         router.pushController(SettingsMainController().withFadeTransaction())
+                    }
+                    R.id.nav_drawer_help -> {
+                        openInBrowser(URL_HELP)
                     }
                 }
             }
@@ -155,6 +162,29 @@ class MainActivity : BaseActivity() {
             SHORTCUT_DOWNLOADS -> {
                 if (router.backstack.none { it.controller() is DownloadController }) {
                     setSelectedDrawerItem(R.id.nav_drawer_downloads)
+                }
+            }
+            Intent.ACTION_SEARCH, "com.google.android.gms.actions.SEARCH_ACTION" -> {
+                //If the intent match the "standard" Android search intent
+                // or the Google-specific search intent (triggered by saying or typing "search *query* on *Tachiyomi*" in Google Search/Google Assistant)
+
+                //Get the search query provided in extras, and if not null, perform a global search with it.
+                val query = intent.getStringExtra(SearchManager.QUERY)
+                if (query != null && !query.isEmpty()) {
+                    if (router.backstackSize > 1) {
+                        router.popToRoot()
+                    }
+                    router.pushController(CatalogueSearchController(query).withFadeTransaction())
+                }
+            }
+            INTENT_SEARCH -> {
+                val query = intent.getStringExtra(INTENT_SEARCH_QUERY)
+                val filter = intent.getStringExtra(INTENT_SEARCH_FILTER)
+                if (query != null && !query.isEmpty()) {
+                    if (router.backstackSize > 1) {
+                        router.popToRoot()
+                    }
+                    router.pushController(CatalogueSearchController(query, filter).withFadeTransaction())
                 }
             }
             else -> return false
@@ -241,6 +271,12 @@ class MainActivity : BaseActivity() {
         const val SHORTCUT_CATALOGUES = "eu.kanade.tachiyomi.SHOW_CATALOGUES"
         const val SHORTCUT_DOWNLOADS = "eu.kanade.tachiyomi.SHOW_DOWNLOADS"
         const val SHORTCUT_MANGA = "eu.kanade.tachiyomi.SHOW_MANGA"
+
+        const val INTENT_SEARCH = "eu.kanade.tachiyomi.SEARCH"
+        const val INTENT_SEARCH_QUERY = "query"
+        const val INTENT_SEARCH_FILTER = "filter"
+
+        private const val URL_HELP = "https://tachiyomi.org/help/"
     }
 
 }

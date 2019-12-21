@@ -15,12 +15,7 @@ import android.support.customtabs.CustomTabsIntent
 import android.support.v4.content.pm.ShortcutInfoCompat
 import android.support.v4.content.pm.ShortcutManagerCompat
 import android.support.v4.graphics.drawable.IconCompat
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -47,6 +42,7 @@ import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.getResourceColor
+import eu.kanade.tachiyomi.util.openInBrowser
 import eu.kanade.tachiyomi.util.snack
 import eu.kanade.tachiyomi.util.toast
 import eu.kanade.tachiyomi.util.truncateCenter
@@ -91,6 +87,9 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
 
         // Set onclickListener to toggle favorite when FAB clicked.
         fab_favorite.clicks().subscribeUntilDestroy { onFabClick() }
+
+        // Set onLongClickListener to manage categories when FAB is clicked.
+        fab_favorite.longClicks().subscribeUntilDestroy{ onFabLongClick() }
 
         // Set SwipeRefresh to refresh manga data.
         swipe_refresh.refreshes().subscribeUntilDestroy { fetchMangaFromSource() }
@@ -138,6 +137,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_open_in_browser -> openInBrowser()
+            R.id.action_open_in_web_view -> openInWebView()
             R.id.action_share -> shareManga()
             R.id.action_add_to_home_screen -> addToHomeScreen()
             else -> return super.onOptionsItemSelected(item)
@@ -291,15 +291,20 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         val context = view?.context ?: return
         val source = presenter.source as? HttpSource ?: return
 
-        try {
-            val url = Uri.parse(source.mangaDetailsRequest(presenter.manga).url().toString())
-            val intent = CustomTabsIntent.Builder()
-                    .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
-                    .build()
-            intent.launchUrl(activity, url)
+        context.openInBrowser(source.mangaDetailsRequest(presenter.manga).url().toString())
+    }
+
+    private fun openInWebView() {
+        val source = presenter.source as? HttpSource ?: return
+
+        val url = try {
+            source.mangaDetailsRequest(presenter.manga).url().toString()
         } catch (e: Exception) {
-            context.toast(e.message)
+            return
         }
+
+        parentController?.router?.pushController(MangaWebViewController(source.id, url)
+            .withFadeTransaction())
     }
 
     /**
@@ -311,10 +316,9 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         val source = presenter.source as? HttpSource ?: return
         try {
             val url = source.mangaDetailsRequest(presenter.manga).url().toString()
-            val title = presenter.manga.title
             val intent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
-                putExtra(Intent.EXTRA_TEXT, context.getString(R.string.share_text, title, url))
+                putExtra(Intent.EXTRA_TEXT, url)
             }
             startActivity(Intent.createChooser(intent, context.getString(R.string.action_share)))
         } catch (e: Exception) {
@@ -356,8 +360,9 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     /**
      * Update swipe refresh to start showing refresh in progress spinner.
      */
-    fun onFetchMangaError() {
+    fun onFetchMangaError(error: Throwable) {
         setRefreshing(false)
+        activity?.toast(error.message)
     }
 
     /**
@@ -377,11 +382,12 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         toggleFavorite()
         if (manga.favorite) {
             val categories = presenter.getCategories()
-            val defaultCategory = categories.find { it.id == preferences.defaultCategory() }
+            val defaultCategoryId = preferences.defaultCategory()
+            val defaultCategory = categories.find { it.id == defaultCategoryId }
             when {
                 defaultCategory != null -> presenter.moveMangaToCategory(manga, defaultCategory)
-                categories.size <= 1 -> // default or the one from the user
-                    presenter.moveMangaToCategory(manga, categories.firstOrNull())
+                defaultCategoryId == 0 || categories.isEmpty() -> // 'Default' or no category
+                    presenter.moveMangaToCategory(manga, null)
                 else -> {
                     val ids = presenter.getMangaCategoryIds(manga)
                     val preselected = ids.mapNotNull { id ->
@@ -395,6 +401,30 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
             activity?.toast(activity?.getString(R.string.manga_added_library))
         } else {
             activity?.toast(activity?.getString(R.string.manga_removed_library))
+        }
+    }
+
+    /**
+     * Called when the fab is long clicked.
+     */
+    private fun onFabLongClick() {
+        val manga = presenter.manga
+        if (!manga.favorite) {
+            toggleFavorite()
+            activity?.toast(activity?.getString(R.string.manga_added_library))
+        }
+        val categories = presenter.getCategories()
+        if (categories.isEmpty()) {
+            // no categories exist, display a message about adding categories
+            activity?.toast(activity?.getString(R.string.action_add_category))
+        } else {
+            val ids = presenter.getMangaCategoryIds(manga)
+            val preselected = ids.mapNotNull { id ->
+                categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
+            }.toTypedArray()
+
+            ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
+                    .showDialog(router)
         }
     }
 

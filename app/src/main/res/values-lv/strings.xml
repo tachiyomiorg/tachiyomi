@@ -48,7 +48,6 @@
     <string name="action_edit_cover">Mainīt vāka attēlu</string>
     <string name="action_sort_up">Kārtot augšup</string>
     <string name="action_sort_down">Kārtot lejup</string>
-    <string name="action_show_unread">Neizlasītie</string>
     <string name="action_show_downloaded">Lejupieladēti</string>
     <string name="action_next_unread">Nākamais neizlasīts</string>
     <string name="action_start">Sākt</string>

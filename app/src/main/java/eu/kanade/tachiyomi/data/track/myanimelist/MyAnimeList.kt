@@ -4,15 +4,17 @@ import android.content.Context
 import android.graphics.Color
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.track.model.TrackSearch
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.track.TrackService
+import eu.kanade.tachiyomi.data.track.model.TrackSearch
+import okhttp3.HttpUrl
 import rx.Completable
 import rx.Observable
+import java.lang.Exception
 
 class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
 
     companion object {
-
         const val READING = 1
         const val COMPLETED = 2
         const val ON_HOLD = 3
@@ -21,9 +23,14 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
 
         const val DEFAULT_STATUS = READING
         const val DEFAULT_SCORE = 0
+
+        const val BASE_URL = "https://myanimelist.net"
+        const val USER_SESSION_COOKIE = "MALSESSIONID"
+        const val LOGGED_IN_COOKIE = "is_logged_in"
     }
 
-    private val api by lazy { MyanimelistApi(client, getUsername(), getPassword()) }
+    private val interceptor by lazy { MyAnimeListInterceptor(this) }
+    private val api by lazy { MyanimelistApi(client, interceptor) }
 
     override val name: String
         get() = "MyAnimeList"
@@ -68,7 +75,7 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun bind(track: Track): Observable<Track> {
-        return api.findLibManga(track, getUsername())
+        return api.findLibManga(track)
                 .flatMap { remoteTrack ->
                     if (remoteTrack != null) {
                         track.copyPersonalFrom(remoteTrack)
@@ -83,11 +90,11 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun search(query: String): Observable<List<TrackSearch>> {
-        return api.search(query, getUsername())
+        return api.search(query)
     }
 
     override fun refresh(track: Track): Observable<Track> {
-        return api.getLibManga(track, getUsername())
+        return api.getLibManga(track)
                 .map { remoteTrack ->
                     track.copyPersonalFrom(remoteTrack)
                     track.total_chapters = remoteTrack.total_chapters
@@ -96,10 +103,58 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun login(username: String, password: String): Completable {
-        return api.login(username, password)
+        logout()
+
+        return Observable.fromCallable { api.login(username, password) }
+                .doOnNext { csrf -> saveCSRF(csrf) }
                 .doOnNext { saveCredentials(username, password) }
                 .doOnError { logout() }
                 .toCompletable()
+    }
+
+    // Attempt to login again if cookies have been cleared but credentials are still filled
+    fun ensureLoggedIn() {
+        if (isAuthorized) return
+        if (!isLogged) throw Exception("MAL Login Credentials not found")
+
+        val username = getUsername()
+        val password = getPassword()
+        logout()
+
+        try {
+            val csrf = api.login(username, password)
+            saveCSRF(csrf)
+            saveCredentials(username, password)
+        } catch (e: Exception) {
+            logout()
+            throw e
+        }
+    }
+
+    override fun logout() {
+        super.logout()
+        preferences.trackToken(this).delete()
+        networkService.cookieManager.remove(HttpUrl.parse(BASE_URL)!!)
+    }
+
+    val isAuthorized: Boolean
+        get() = super.isLogged &&
+                getCSRF().isNotEmpty() &&
+                checkCookies()
+
+    fun getCSRF(): String = preferences.trackToken(this).getOrDefault()
+
+    private fun saveCSRF(csrf: String) = preferences.trackToken(this).set(csrf)
+
+    private fun checkCookies(): Boolean {
+        var ckCount = 0
+        val url = HttpUrl.parse(BASE_URL)!!
+        for (ck in networkService.cookieManager.get(url)) {
+            if (ck.name() == USER_SESSION_COOKIE || ck.name() == LOGGED_IN_COOKIE)
+                ckCount++
+        }
+
+        return ckCount == 2
     }
 
 }

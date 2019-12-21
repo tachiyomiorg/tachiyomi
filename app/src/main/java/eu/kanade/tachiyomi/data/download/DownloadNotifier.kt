@@ -37,7 +37,7 @@ internal class DownloadNotifier(private val context: Context) {
      */
     var initialQueueSize = 0
         set(value) {
-            if (value != 0){
+            if (value != 0) {
                 isSingleChapter = (value == 1)
             }
             field = value
@@ -99,6 +99,10 @@ internal class DownloadNotifier(private val context: Context) {
                 // Open download manager when clicked
                 setContentIntent(NotificationHandler.openDownloadManagerPendingActivity(context))
                 isDownloading = true
+                // Pause action
+                addAction(R.drawable.ic_av_pause_grey_24dp_img,
+                        context.getString(R.string.action_pause),
+                        NotificationReceiver.pauseDownloadsPendingBroadcast(context))
             }
 
             val title = download.manga.title.chop(15)

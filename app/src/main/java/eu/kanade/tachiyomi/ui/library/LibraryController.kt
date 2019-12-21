@@ -73,7 +73,7 @@ class LibraryController(
     /**
      * Currently selected mangas.
      */
-    val selectedMangas = mutableListOf<Manga>()
+    val selectedMangas = mutableSetOf<Manga>()
 
     private var selectedCoverManga: Manga? = null
 
@@ -429,11 +429,13 @@ class LibraryController(
      */
     fun setSelection(manga: Manga, selected: Boolean) {
         if (selected) {
-            selectedMangas.add(manga)
-            selectionRelay.call(LibrarySelectionEvent.Selected(manga))
+            if (selectedMangas.add(manga)) {
+                selectionRelay.call(LibrarySelectionEvent.Selected(manga))
+            }
         } else {
-            selectedMangas.remove(manga)
-            selectionRelay.call(LibrarySelectionEvent.Unselected(manga))
+            if (selectedMangas.remove(manga)) {
+                selectionRelay.call(LibrarySelectionEvent.Unselected(manga))
+            }
         }
     }
 

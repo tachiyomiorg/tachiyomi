@@ -18,6 +18,7 @@ import eu.kanade.tachiyomi.data.database.models.LibraryManga
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.download.DownloadService
+import eu.kanade.tachiyomi.data.library.LibraryUpdateRanker.rankingScheme
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService.Companion.start
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.notification.Notifications
@@ -204,7 +205,9 @@ class LibraryUpdateService(
         // Update favorite manga. Destroy service when completed or in case of an error.
         subscription = Observable
                 .defer {
+                    val selectedScheme = preferences.libraryUpdatePrioritization().getOrDefault()
                     val mangaList = getMangaToUpdate(intent, target)
+                            .sortedWith(rankingScheme[selectedScheme])
 
                     // Update either chapter list or manga details.
                     when (target) {
@@ -304,9 +307,6 @@ class LibraryUpdateService(
                 }
                 // Add manga with new chapters to the list.
                 .doOnNext { manga ->
-                    // Set last updated time
-                    manga.last_update = Date().time
-                    db.updateLastUpdated(manga).executeAsBlocking()
                     // Add to the list
                     newUpdates.add(manga)
                 }
@@ -463,6 +463,7 @@ class LibraryUpdateService(
             if (newUpdates.size > 1) {
                 setContentText(getString(R.string.notification_new_chapters_text, newUpdates.size))
                 setStyle(NotificationCompat.BigTextStyle().bigText(newUpdates.joinToString("\n")))
+                setNumber(newUpdates.size)
             } else {
                 setContentText(newUpdates.first())
             }

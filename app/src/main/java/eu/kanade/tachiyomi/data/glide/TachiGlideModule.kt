@@ -37,5 +37,7 @@ class TachiGlideModule : AppGlideModule() {
 
         registry.replace(GlideUrl::class.java, InputStream::class.java, networkFactory)
         registry.append(Manga::class.java, InputStream::class.java, MangaModelLoader.Factory())
+        registry.append(InputStream::class.java, InputStream::class.java, PassthroughModelLoader
+            .Factory())
     }
 }

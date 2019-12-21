@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.setting
 
+import android.os.Build
 import android.support.v7.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
@@ -55,14 +56,6 @@ class SettingsReaderController : SettingsController() {
             summary = "%s"
         }
         intListPreference {
-            key = Keys.imageDecoder
-            titleRes = R.string.pref_image_decoder
-            entries = arrayOf("Image", "Rapid", "Skia")
-            entryValues = arrayOf("0", "1", "2")
-            defaultValue = "0"
-            summary = "%s"
-        }
-        intListPreference {
             key = Keys.doubleTapAnimationSpeed
             titleRes = R.string.pref_double_tap_anim_speed
             entries = arrayOf(context.getString(R.string.double_tap_anim_speed_0), context.getString(R.string.double_tap_anim_speed_fast), context.getString(R.string.double_tap_anim_speed_normal))
@@ -71,13 +64,18 @@ class SettingsReaderController : SettingsController() {
             summary = "%s"
         }
         switchPreference {
+            key = Keys.skipRead
+            titleRes = R.string.pref_skip_read_chapters
+            defaultValue = false
+        }
+        switchPreference {
             key = Keys.fullscreen
             titleRes = R.string.pref_fullscreen
             defaultValue = true
         }
         switchPreference {
-            key = Keys.enableTransitions
-            titleRes = R.string.pref_page_transitions
+            key = Keys.keepScreenOn
+            titleRes = R.string.pref_keep_screen_on
             defaultValue = true
         }
         switchPreference {
@@ -85,15 +83,35 @@ class SettingsReaderController : SettingsController() {
             titleRes = R.string.pref_show_page_number
             defaultValue = true
         }
-        switchPreference {
-            key = Keys.cropBorders
-            titleRes = R.string.pref_crop_borders
-            defaultValue = false
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            switchPreference {
+                key = Keys.trueColor
+                titleRes = R.string.pref_true_color
+                defaultValue = false
+            }
         }
-        switchPreference {
-            key = Keys.keepScreenOn
-            titleRes = R.string.pref_keep_screen_on
-            defaultValue = true
+        preferenceCategory {
+            titleRes = R.string.pager_viewer
+
+            switchPreference {
+                key = Keys.enableTransitions
+                titleRes = R.string.pref_page_transitions
+                defaultValue = true
+            }
+            switchPreference {
+                key = Keys.cropBorders
+                titleRes = R.string.pref_crop_borders
+                defaultValue = false
+            }
+        }
+        preferenceCategory {
+            titleRes = R.string.webtoon_viewer
+
+            switchPreference {
+                key = Keys.cropBordersWebtoon
+                titleRes = R.string.pref_crop_borders
+                defaultValue = false
+            }
         }
         preferenceCategory {
             titleRes = R.string.pref_reader_navigation
@@ -101,6 +119,11 @@ class SettingsReaderController : SettingsController() {
             switchPreference {
                 key = Keys.readWithTapping
                 titleRes = R.string.pref_read_with_tapping
+                defaultValue = true
+            }
+            switchPreference {
+                key = Keys.readWithLongTap
+                titleRes = R.string.pref_read_with_long_tap
                 defaultValue = true
             }
             switchPreference {

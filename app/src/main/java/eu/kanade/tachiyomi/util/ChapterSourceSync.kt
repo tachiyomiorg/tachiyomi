@@ -51,7 +51,12 @@ fun syncChaptersWithSource(db: DatabaseHelper,
             toAdd.add(sourceChapter)
         } else {
             //this forces metadata update for the main viewable things in the chapter list
+            if (source is HttpSource) {
+                source.prepareNewChapter(sourceChapter, manga)
+            }
+
             ChapterRecognition.parseChapterNumber(sourceChapter, manga)
+
             if (shouldUpdateDbChapter(dbChapter, sourceChapter)) {
                 dbChapter.scanlator = sourceChapter.scanlator
                 dbChapter.name = sourceChapter.name
@@ -122,6 +127,10 @@ fun syncChaptersWithSource(db: DatabaseHelper,
 
         // Fix order in source.
         db.fixChaptersSourceOrder(sourceChapters).executeAsBlocking()
+
+        // Set this manga as updated since chapters were changed
+        manga.last_update = Date().time
+        db.updateLastUpdated(manga).executeAsBlocking()
     }
     return Pair(toAdd.subtract(readded).toList(), toDelete.subtract(readded).toList())
 

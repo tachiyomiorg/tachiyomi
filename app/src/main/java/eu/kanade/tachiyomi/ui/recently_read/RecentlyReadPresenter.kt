@@ -5,12 +5,13 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.History
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.injectLazy
-import java.util.*
+import java.util.Calendar
+import java.util.Comparator
+import java.util.Date
 
 /**
  * Presenter of RecentlyReadFragment.
@@ -23,8 +24,6 @@ class RecentlyReadPresenter : BasePresenter<RecentlyReadController>() {
      * Used to connect to database
      */
     val db: DatabaseHelper by injectLazy()
-
-    private val sourceManager: SourceManager by injectLazy()
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
@@ -45,10 +44,7 @@ class RecentlyReadPresenter : BasePresenter<RecentlyReadController>() {
         cal.add(Calendar.MONTH, -1)
 
         return db.getRecentManga(cal.time).asRxObservable()
-                .map { recents ->
-                    recents.filter { sourceManager.get(it.manga.source) != null }
-                            .map(::RecentlyReadItem)
-                }
+                .map { recents -> recents.map(::RecentlyReadItem) }
                 .observeOn(AndroidSchedulers.mainThread())
     }
 

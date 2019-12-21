@@ -16,13 +16,31 @@ import rx.Observable
 
 class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) {
 
+    private val authClient = client.newBuilder().addInterceptor(interceptor).build()
+
     private val rest = Retrofit.Builder()
             .baseUrl(baseUrl)
-            .client(client.newBuilder().addInterceptor(interceptor).build())
+            .client(authClient)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().serializeNulls().create()))
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build()
             .create(KitsuApi.Rest::class.java)
+
+    private val searchRest = Retrofit.Builder()
+            .baseUrl(algoliaKeyUrl)
+            .client(authClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .build()
+            .create(KitsuApi.SearchKeyRest::class.java)
+
+    private val algoliaRest = Retrofit.Builder()
+            .baseUrl(algoliaUrl)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .build()
+            .create(KitsuApi.AgoliaSearchRest::class.java)
 
     fun addLibManga(track: Track, userId: String): Observable<Track> {
         return Observable.defer {
@@ -42,17 +60,16 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
                             ),
                             "media" to jsonObject(
                                     "data" to jsonObject(
-                                            "id" to track.remote_id,
+                                            "id" to track.media_id,
                                             "type" to "manga"
                                     )
                             )
                     )
             )
-            // @formatter:on
 
             rest.addLibManga(jsonObject("data" to data))
                     .map { json ->
-                        track.remote_id = json["data"]["id"].int
+                        track.media_id = json["data"]["id"].int
                         track
                     }
         }
@@ -63,7 +80,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
             // @formatter:off
             val data = jsonObject(
                     "type" to "libraryEntries",
-                    "id" to track.remote_id,
+                    "id" to track.media_id,
                     "attributes" to jsonObject(
                             "status" to track.toKitsuStatus(),
                             "progress" to track.last_chapter_read,
@@ -72,23 +89,36 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
             )
             // @formatter:on
 
-            rest.updateLibManga(track.remote_id, jsonObject("data" to data))
+            rest.updateLibManga(track.media_id, jsonObject("data" to data))
                     .map { track }
         }
     }
 
+
     fun search(query: String): Observable<List<TrackSearch>> {
-        return rest.search(query)
+        return searchRest
+                .getKey().map { json ->
+                    json["media"].asJsonObject["key"].string
+                }.flatMap { key ->
+                    algoliaSearch(key, query)
+                }
+    }
+
+
+    private fun algoliaSearch(key: String, query: String): Observable<List<TrackSearch>> {
+        val jsonObject = jsonObject("params" to "query=$query$algoliaFilter")
+        return algoliaRest
+                .getSearchQuery(algoliaAppId, key, jsonObject)
                 .map { json ->
-                    val data = json["data"].array
-                    data.map { KitsuManga(it.obj) }
-                            .filter { it.type != "novel" }
+                    val data = json["hits"].array
+                    data.map { KitsuSearchManga(it.obj) }
+                            .filter { it.subType != "novel" }
                             .map { it.toTrack() }
                 }
     }
 
     fun findLibManga(track: Track, userId: String): Observable<Track?> {
-        return rest.findLibManga(track.remote_id, userId)
+        return rest.findLibManga(track.media_id, userId)
                 .map { json ->
                     val data = json["data"].array
                     if (data.size() > 0) {
@@ -101,7 +131,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
     }
 
     fun getLibManga(track: Track): Observable<Track> {
-        return rest.getLibManga(track.remote_id)
+        return rest.getLibManga(track.media_id)
                 .map { json ->
                     val data = json["data"].array
                     if (data.size() > 0) {
@@ -143,10 +173,6 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
                 @Body data: JsonObject
         ): Observable<JsonObject>
 
-        @GET("manga")
-        fun search(
-                @Query("filter[text]", encoded = true) query: String
-        ): Observable<JsonObject>
 
         @GET("library-entries")
         fun findLibManga(
@@ -166,6 +192,16 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
                 @Query("filter[self]", encoded = true) self: Boolean = true
         ): Observable<JsonObject>
 
+    }
+
+    private interface SearchKeyRest {
+        @GET("media/")
+        fun getKey(): Observable<JsonObject>
+    }
+
+    private interface AgoliaSearchRest {
+        @POST("query/")
+        fun getSearchQuery(@Header("X-Algolia-Application-Id") appid: String, @Header("X-Algolia-API-Key") key: String, @Body json: JsonObject): Observable<JsonObject>
     }
 
     private interface LoginRest {
@@ -188,6 +224,11 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
         private const val baseUrl = "https://kitsu.io/api/edge/"
         private const val loginUrl = "https://kitsu.io/api/"
         private const val baseMangaUrl = "https://kitsu.io/manga/"
+        private const val algoliaKeyUrl = "https://kitsu.io/api/edge/algolia-keys/"
+        private const val algoliaUrl = "https://AWQO5J657S-dsn.algolia.net/1/indexes/production_media/"
+        private const val algoliaAppId = "AWQO5J657S"
+        private const val algoliaFilter = "&facetFilters=%5B%22kind%3Amanga%22%5D&attributesToRetrieve=%5B%22synopsis%22%2C%22canonicalTitle%22%2C%22chapterCount%22%2C%22posterImage%22%2C%22startDate%22%2C%22subtype%22%2C%22endDate%22%2C%20%22id%22%5D"
+
 
         fun mangaUrl(remoteId: Int): String {
             return baseMangaUrl + remoteId

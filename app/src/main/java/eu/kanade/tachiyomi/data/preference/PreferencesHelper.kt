@@ -43,6 +43,8 @@ class PreferencesHelper(val context: Context) {
 
     fun showPageNumber() = rxPrefs.getBoolean(Keys.showPageNumber, true)
 
+    fun trueColor() = rxPrefs.getBoolean(Keys.trueColor, false)
+
     fun fullscreen() = rxPrefs.getBoolean(Keys.fullscreen, true)
 
     fun keepScreenOn() = rxPrefs.getBoolean(Keys.keepScreenOn, true)
@@ -55,11 +57,11 @@ class PreferencesHelper(val context: Context) {
 
     fun colorFilterValue() = rxPrefs.getInteger(Keys.colorFilterValue, 0)
 
+    fun colorFilterMode() = rxPrefs.getInteger(Keys.colorFilterMode, 0)
+
     fun defaultViewer() = prefs.getInt(Keys.defaultViewer, 1)
 
     fun imageScaleType() = rxPrefs.getInteger(Keys.imageScaleType, 1)
-
-    fun imageDecoder() = rxPrefs.getInteger(Keys.imageDecoder, 0)
 
     fun zoomStart() = rxPrefs.getInteger(Keys.zoomStart, 1)
 
@@ -67,7 +69,11 @@ class PreferencesHelper(val context: Context) {
 
     fun cropBorders() = rxPrefs.getBoolean(Keys.cropBorders, false)
 
+    fun cropBordersWebtoon() = rxPrefs.getBoolean(Keys.cropBordersWebtoon, false)
+
     fun readWithTapping() = rxPrefs.getBoolean(Keys.readWithTapping, true)
+
+    fun readWithLongTap() = rxPrefs.getBoolean(Keys.readWithLongTap, true)
 
     fun readWithVolumeKeys() = rxPrefs.getBoolean(Keys.readWithVolumeKeys, false)
 
@@ -80,8 +86,6 @@ class PreferencesHelper(val context: Context) {
     fun updateOnlyNonCompleted() = prefs.getBoolean(Keys.updateOnlyNonCompleted, false)
 
     fun autoUpdateTrack() = prefs.getBoolean(Keys.autoUpdateTrack, true)
-
-    fun askUpdateTrack() = prefs.getBoolean(Keys.askUpdateTrack, false)
 
     fun lastUsedCatalogueSource() = rxPrefs.getLong(Keys.lastUsedCatalogueSource, -1)
 
@@ -117,7 +121,7 @@ class PreferencesHelper(val context: Context) {
 
     fun trackToken(sync: TrackService) = rxPrefs.getString(Keys.trackToken(sync.id), "")
 
-    fun anilistScoreType() = rxPrefs.getInteger("anilist_score_type", 0)
+    fun anilistScoreType() = rxPrefs.getString("anilist_score_type", "POINT_10")
 
     fun backupsDirectory() = rxPrefs.getString(Keys.backupDirectory, defaultBackupDir.toString())
 
@@ -138,6 +142,8 @@ class PreferencesHelper(val context: Context) {
     fun libraryUpdateRestriction() = prefs.getStringSet(Keys.libraryUpdateRestriction, emptySet())
 
     fun libraryUpdateCategories() = rxPrefs.getStringSet(Keys.libraryUpdateCategories, emptySet())
+
+    fun libraryUpdatePrioritization() = rxPrefs.getInteger(Keys.libraryUpdatePrioritization, 0)
 
     fun libraryAsList() = rxPrefs.getBoolean(Keys.libraryAsList, false)
 
@@ -164,6 +170,8 @@ class PreferencesHelper(val context: Context) {
     fun lang() = prefs.getString(Keys.lang, "")
 
     fun defaultCategory() = prefs.getInt(Keys.defaultCategory, -1)
+
+    fun skipRead() = prefs.getBoolean(Keys.skipRead, false)
 
     fun migrateFlags() = rxPrefs.getInteger("migrate_flags", Int.MAX_VALUE)
 

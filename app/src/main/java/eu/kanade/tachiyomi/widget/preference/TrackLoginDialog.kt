@@ -46,7 +46,6 @@ class TrackLoginDialog(bundle: Bundle? = null) : LoginDialogPreference(bundle) {
                         login.setText(R.string.unknown_error)
                         error.message?.let { context.toast(it) }
                     })
-
         }
     }
 

@@ -38,6 +38,11 @@ class NotificationReceiver : BroadcastReceiver() {
             ACTION_DISMISS_NOTIFICATION -> dismissNotification(context, intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
             // Resume the download service
             ACTION_RESUME_DOWNLOADS -> DownloadService.start(context)
+            // Pause the download service
+            ACTION_PAUSE_DOWNLOADS -> {
+                DownloadService.stop(context)
+                downloadManager.pauseDownloads()
+            }
             // Clear the download queue
             ACTION_CLEAR_DOWNLOADS -> downloadManager.clearQueue(true)
             // Show message notification created
@@ -159,6 +164,9 @@ class NotificationReceiver : BroadcastReceiver() {
         // Called to resume downloads.
         private const val ACTION_RESUME_DOWNLOADS = "$ID.$NAME.ACTION_RESUME_DOWNLOADS"
 
+        // Called to pause downloads.
+        private const val ACTION_PAUSE_DOWNLOADS = "$ID.$NAME.ACTION_PAUSE_DOWNLOADS"
+
         // Called to clear downloads.
         private const val ACTION_CLEAR_DOWNLOADS = "$ID.$NAME.ACTION_CLEAR_DOWNLOADS"
 
@@ -191,6 +199,19 @@ class NotificationReceiver : BroadcastReceiver() {
         }
 
         /**
+         * Returns [PendingIntent] that pauses the download queue
+         *
+         * @param context context of application
+         * @return [PendingIntent]
+         */
+        internal fun pauseDownloadsPendingBroadcast(context: Context): PendingIntent {
+            val intent = Intent(context, NotificationReceiver::class.java).apply {
+                action = ACTION_PAUSE_DOWNLOADS
+            }
+            return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
+
+        /**
          * Returns a [PendingIntent] that clears the download queue
          *
          * @param context context of application
@@ -203,7 +224,7 @@ class NotificationReceiver : BroadcastReceiver() {
             return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }
 
-        internal fun shortcutCreatedBroadcast(context: Context) : PendingIntent {
+        internal fun shortcutCreatedBroadcast(context: Context): PendingIntent {
             val intent = Intent(context, NotificationReceiver::class.java).apply {
                 action = ACTION_SHORTCUT_CREATED
             }

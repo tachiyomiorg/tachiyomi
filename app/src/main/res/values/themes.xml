@@ -83,6 +83,11 @@
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 
+    <style name="Theme.Tachiyomi.DarkBlue" parent="Theme.Base.Dark">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+
     <!--==============-->
     <!-- Amoled Theme -->
     <!--==============-->
@@ -104,12 +109,23 @@
     <!--==============-->
     <!-- Reader Theme -->
     <!--==============-->
-    <style name="Theme.Base.Reader" parent="Theme.Base.Dark">
+    <style name="Theme.Base.Reader.Dark" parent="Theme.Base.Dark">
         <item name="colorPrimary">@color/colorDarkPrimary</item>
         <item name="colorPrimaryDark">@color/colorDarkPrimaryDark</item>
+        <item name="android:colorBackground">@android:color/black</item>
     </style>
 
-    <style name="Theme.Reader" parent="Theme.Base.Reader">
+    <style name="Theme.Base.Reader.Light" parent="Theme.Base">
+        <item name="colorPrimary">@color/colorDarkPrimary</item>
+        <item name="colorPrimaryDark">@color/colorDarkPrimaryDark</item>
+        <item name="android:colorBackground">@android:color/white</item>
+    </style>
+
+    <style name="Theme.Reader" parent="Theme.Base.Reader.Dark">
+        <!-- Attributes specific for SDK 16 to SDK 20 -->
+    </style>
+
+    <style name="Theme.Reader.Light" parent="Theme.Base.Reader.Light">
         <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 

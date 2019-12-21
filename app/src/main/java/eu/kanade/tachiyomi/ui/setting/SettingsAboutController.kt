@@ -9,8 +9,8 @@ import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.updater.GithubUpdateChecker
-import eu.kanade.tachiyomi.data.updater.GithubUpdateResult
+import eu.kanade.tachiyomi.data.updater.UpdateChecker
+import eu.kanade.tachiyomi.data.updater.UpdateResult
 import eu.kanade.tachiyomi.data.updater.UpdaterJob
 import eu.kanade.tachiyomi.data.updater.UpdaterService
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
@@ -22,23 +22,23 @@ import timber.log.Timber
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
+import java.util.TimeZone
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
-
 
 class SettingsAboutController : SettingsController() {
 
     /**
      * Checks for new releases
      */
-    private val updateChecker by lazy { GithubUpdateChecker() }
+    private val updateChecker by lazy { UpdateChecker.getUpdateChecker() }
 
     /**
      * The subscribtion service of the obtained release object
      */
     private var releaseSubscription: Subscription? = null
 
-    private val isUpdaterEnabled = !BuildConfig.DEBUG && BuildConfig.INCLUDE_UPDATER
+    private val isUpdaterEnabled = BuildConfig.INCLUDE_UPDATER
 
     override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
         titleRes = R.string.pref_category_about
@@ -71,7 +71,16 @@ class SettingsAboutController : SettingsController() {
         }
         preference {
             title = "Discord"
-            val url = "https://discord.gg/2dDQBv2"
+            val url = "https://discord.gg/tachiyomi"
+            summary = url
+            onClick {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+            }
+        }
+        preference {
+            title = "Github"
+            val url = "https://github.com/inorichi/tachiyomi"
             summary = url
             onClick {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
@@ -114,14 +123,14 @@ class SettingsAboutController : SettingsController() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->
                     when (result) {
-                        is GithubUpdateResult.NewUpdate -> {
-                            val body = result.release.changeLog
+                        is UpdateResult.NewUpdate<*> -> {
+                            val body = result.release.info
                             val url = result.release.downloadLink
 
                             // Create confirmation window
                             NewUpdateDialogController(body, url).showDialog(router)
                         }
-                        is GithubUpdateResult.NoNewUpdate -> {
+                        is UpdateResult.NoNewUpdate -> {
                             activity?.toast(R.string.update_check_no_new_updates)
                         }
                     }

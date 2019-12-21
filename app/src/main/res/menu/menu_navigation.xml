@@ -36,5 +36,10 @@
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="@string/label_settings"
             android:checkable="false" />
+        <item
+            android:id="@+id/nav_drawer_help"
+            android:icon="@drawable/ic_help_black_24dp"
+            android:title="@string/label_help"
+            android:checkable="false" />
     </group>
 </menu>

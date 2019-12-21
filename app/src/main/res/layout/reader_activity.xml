@@ -11,17 +11,18 @@
         android:layout_height="match_parent">
 
         <FrameLayout
-            android:id="@+id/reader"
+            android:id="@+id/viewer_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </FrameLayout>
 
         <ProgressBar
             android:id="@+id/please_wait"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            tools:visibility="visible"/>
 
         <eu.kanade.tachiyomi.ui.reader.PageIndicatorTextView
             android:id="@+id/page_number"
@@ -39,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
+        android:theme="?attr/actionBarTheme"
         android:visibility="invisible"
         tools:visibility="visible">
 
@@ -47,8 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?colorPrimary"
-            android:elevation="4dp"
-            android:theme="?attr/actionBarTheme"/>
+            android:elevation="4dp" />
 
         <LinearLayout
             android:id="@+id/reader_menu_bottom"
@@ -58,7 +59,6 @@
             android:gravity="center"
             android:background="?colorPrimary"
             android:orientation="horizontal"
-            android:focusable="false"
             android:descendantFocusability="blocksDescendants">
 
             <ImageButton
@@ -66,35 +66,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/material_layout_keylines_screen_edge_margin"
-                android:background="?android:selectableItemBackground"
+                android:background="?selectableItemBackgroundBorderless"
                 app:srcCompat="@drawable/ic_skip_previous_white_24dp"/>
 
             <TextView
                 android:id="@+id/left_page_text"
                 android:layout_width="32dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:textSize="15sp"/>
+                android:textSize="15sp"
+                android:clickable="true"
+                tools:text="1"/>
 
-            <SeekBar
+            <eu.kanade.tachiyomi.ui.reader.ReaderSeekBar
                 android:id="@+id/page_seekbar"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/right_page_text"
                 android:layout_width="32dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:textSize="15sp"/>
+                android:textSize="15sp"
+                android:clickable="true"
+                tools:text="15"/>
 
             <ImageButton
                 android:id="@+id/right_chapter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/material_layout_keylines_screen_edge_margin"
-                android:background="?android:selectableItemBackground"
+                android:background="?selectableItemBackgroundBorderless"
                 app:srcCompat="@drawable/ic_skip_next_white_24dp"/>
 
         </LinearLayout>
@@ -107,7 +111,7 @@
         android:layout_height="match_parent"
         android:visibility="gone"/>
 
-    <View
+    <eu.kanade.tachiyomi.ui.reader.ReaderColorFilterView
         android:id="@+id/color_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

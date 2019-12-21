@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <EditText
@@ -14,52 +13,49 @@
         android:hint="@string/title"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:maxLines="1"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:inputType="text"
+        android:maxLines="1"/>
 
-    <ProgressBar
-        android:id="@+id/progress"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginTop="32dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/divider1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/track_search"
-        tools:visibility="visible"/>
-
-    <ListView
-        android:id="@+id/track_search_list"
-        style="@style/Theme.Widget.CardView"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
-        android:choiceMode="singleChoice"
-        android:clipToPadding="false"
-        android:divider="@null"
-        android:dividerHeight="10dp"
-        android:footerDividersEnabled="true"
-        android:headerDividersEnabled="true"
-        android:listSelector="?attr/selectable_list_drawable"
-        android:paddingBottom="4dp"
-        android:paddingTop="4dp"
-        android:scrollbars="none"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/track_search"
-        tools:listitem="@layout/track_search_item"
-        tools:visibility="visible"/>
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            tools:visibility="visible"/>
+
+        <ListView
+            android:id="@+id/track_search_list"
+            style="@style/Theme.Widget.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:choiceMode="singleChoice"
+            android:divider="@null"
+            android:dividerHeight="10dp"
+            android:footerDividersEnabled="true"
+            android:headerDividersEnabled="true"
+            android:listSelector="?attr/selectable_list_drawable"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:scrollbars="none"
+            android:visibility="invisible"
+            tools:listitem="@layout/track_search_item"
+            tools:visibility="visible"/>
+
+    </FrameLayout>
 
     <View
-        android:id="@+id/divider1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="?android:attr/divider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/track_search_list"/>
+        android:background="?android:attr/divider"/>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

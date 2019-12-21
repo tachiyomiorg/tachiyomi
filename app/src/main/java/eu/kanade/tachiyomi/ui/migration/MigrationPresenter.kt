@@ -71,7 +71,7 @@ class MigrationPresenter(
     private fun findSourcesWithManga(library: List<Manga>): List<SourceItem> {
         val header = SelectionHeader()
         return library.map { it.source }.toSet()
-                .mapNotNull { if (it != LocalSource.ID) sourceManager.get(it) else null }
+                .mapNotNull { if (it != LocalSource.ID) sourceManager.getOrStub(it) else null }
                 .map { SourceItem(it, header) }
     }
 
@@ -146,6 +146,9 @@ class MigrationPresenter(
             }
             manga.favorite = true
             db.updateMangaFavorite(manga).executeAsBlocking()
+
+            // SearchPresenter#networkToLocalManga may have updated the manga title, so ensure db gets updated title
+            db.updateMangaTitle(manga).executeAsBlocking()
         }
     }
 }

@@ -102,4 +102,10 @@
         <item>2</item>
     </string-array>
 
+    <string-array name="color_filter_modes">
+        <item>@string/filter_mode_default</item>
+        <item>@string/filter_mode_multiply</item>
+        <item>@string/filter_mode_screen</item>
+    </string-array>
+
 </resources>

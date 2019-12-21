@@ -23,10 +23,12 @@ import java.util.concurrent.TimeUnit
  * @param sourceManager the source manager.
  * @param preferences the preferences of the app.
  */
-class DownloadCache(private val context: Context,
-                    private val provider: DownloadProvider,
-                    private val sourceManager: SourceManager = Injekt.get(),
-                    private val preferences: PreferencesHelper = Injekt.get()) {
+class DownloadCache(
+        private val context: Context,
+        private val provider: DownloadProvider,
+        private val sourceManager: SourceManager,
+        private val preferences: PreferencesHelper = Injekt.get()
+) {
 
     /**
      * The interval after which this cache should be invalidated. 1 hour shouldn't cause major
@@ -191,6 +193,24 @@ class DownloadCache(private val context: Context,
         val chapterDirName = provider.getChapterDirName(chapter)
         if (chapterDirName in mangaDir.files) {
             mangaDir.files -= chapterDirName
+        }
+    }
+
+    /**
+     * Removes a list of chapters that have been deleted from this cache.
+     *
+     * @param chapters the list of chapter to remove.
+     * @param manga the manga of the chapter.
+     */
+    @Synchronized
+    fun removeChapters(chapters: List<Chapter>, manga: Manga) {
+        val sourceDir = rootDir.files[manga.source] ?: return
+        val mangaDir = sourceDir.files[provider.getMangaDirName(manga)] ?: return
+        for (chapter in chapters) {
+            val chapterDirName = provider.getChapterDirName(chapter)
+            if (chapterDirName in mangaDir.files) {
+                mangaDir.files -= chapterDirName
+            }
         }
     }
 

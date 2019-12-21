@@ -25,7 +25,9 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.io.IOException
 import java.io.InputStream
-import java.util.*
+import java.util.ArrayList
+import java.util.Collections
+import java.util.Comparator
 
 /**
  * Class containing library information.
@@ -113,9 +115,6 @@ class LibraryPresenter(
         val filterCompleted = preferences.filterCompleted().getOrDefault()
 
         val filterFn: (LibraryItem) -> Boolean = f@ { item ->
-            // Filter out manga without source.
-            sourceManager.get(item.manga.source) ?: return@f false
-
             // Filter when there isn't unread chapters.
             if (filterUnread && item.manga.unread == 0) {
                 return@f false
@@ -127,6 +126,10 @@ class LibraryPresenter(
 
             // Filter when there are no downloads.
             if (filterDownloaded) {
+                // Local manga are always downloaded
+                if (item.manga.source == LocalSource.ID) {
+                    return@f true
+                }
                 // Don't bother with directory checking if download count has been set.
                 if (item.downloadCount != -1) {
                     return@f item.downloadCount > 0
@@ -182,7 +185,7 @@ class LibraryPresenter(
 
         val sortFn: (LibraryItem, LibraryItem) -> Int = { i1, i2 ->
             when (sortingMode) {
-                LibrarySort.ALPHA -> i1.manga.title.compareTo(i2.manga.title)
+                LibrarySort.ALPHA -> i1.manga.title.compareTo(i2.manga.title, true)
                 LibrarySort.LAST_READ -> {
                     // Get index of manga, set equal to list if size unknown.
                     val manga1LastRead = lastReadManga[i1.manga.id!!] ?: lastReadManga.size
@@ -197,8 +200,8 @@ class LibraryPresenter(
                     manga1TotalChapter.compareTo(mange2TotalChapter)
                 }
                 LibrarySort.SOURCE -> {
-                    val source1Name = sourceManager.get(i1.manga.source)?.name ?: ""
-                    val source2Name = sourceManager.get(i2.manga.source)?.name ?: ""
+                    val source1Name = sourceManager.getOrStub(i1.manga.source).name
+                    val source2Name = sourceManager.getOrStub(i2.manga.source).name
                     source1Name.compareTo(source2Name)
                 }
                 else -> throw Exception("Unknown sorting mode")

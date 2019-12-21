@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="color_filter_modes">
+        <item>@string/filter_mode_default</item>
+        <item>@string/filter_mode_multiply</item>
+        <item>@string/filter_mode_screen</item>
+
+        <!-- Attributes specific for SDK 28 and up  -->
+        <item>@string/filter_mode_overlay</item>
+        <item>@string/filter_mode_lighten</item>
+        <item>@string/filter_mode_darken</item>
+    </string-array>
+
+</resources>

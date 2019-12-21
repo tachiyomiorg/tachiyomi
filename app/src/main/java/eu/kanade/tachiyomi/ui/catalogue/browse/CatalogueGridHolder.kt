@@ -42,7 +42,6 @@ class CatalogueGridHolder(private val view: View, private val adapter: FlexibleA
                     .load(manga)
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .centerCrop()
-                    .skipMemoryCache(true)
                     .placeholder(android.R.color.transparent)
                     .into(StateImageViewTarget(thumbnail, progress))
         }

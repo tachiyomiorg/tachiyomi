@@ -1,6 +1,6 @@
-| Build | Download | F-Droid | Contribute | Contact |
+| Build | Stable | Dev | Contribute | Support Server |
 |-------|----------|---------|------------|---------|
-| [![Travis](https://img.shields.io/travis/inorichi/tachiyomi.svg)](https://travis-ci.org/inorichi/tachiyomi) | [![stable release](https://img.shields.io/github/release/inorichi/tachiyomi.svg?maxAge=3600&label=stable)](https://github.com/inorichi/tachiyomi/releases) [![latest dev build](https://img.shields.io/badge/dev-latest%20build-blue.svg)](http://tachiyomi.kanade.eu/latest) | [![fdroid release](https://img.shields.io/badge/stable-f--droid.org-blue.svg)](https://f-droid.org/repository/browse/?fdid=eu.kanade.tachiyomi) [![fdroid dev](https://img.shields.io/badge/dev-wiki-blue.svg)](//github.com/inorichi/tachiyomi/wiki/FDroid-for-dev-versions) | [![Translation status](https://hosted.weblate.org/widgets/tachiyomi/-/svg-badge.svg)](https://hosted.weblate.org/engage/tachiyomi/?utm_source=widget) | [![Discord](https://img.shields.io/discord/349436576037732353.svg)](https://discord.gg/2dDQBv2) |
+| [![Travis](https://img.shields.io/travis/inorichi/tachiyomi.svg)](https://travis-ci.org/inorichi/tachiyomi) | [![stable release](https://img.shields.io/github/release/inorichi/tachiyomi.svg?maxAge=3600&label=download)](https://github.com/inorichi/tachiyomi/releases) | [![latest dev build](https://img.shields.io/badge/download-latest%20build-blue.svg)](http://tachiyomi.kanade.eu/latest) | [![Translation status](https://hosted.weblate.org/widgets/tachiyomi/-/svg-badge.svg)](https://hosted.weblate.org/engage/tachiyomi/?utm_source=widget) | [![Discord](https://img.shields.io/discord/349436576037732353.svg)](https://discord.gg/tachiyomi) |
 
 
 # ![app icon](./.github/readme-images/app-icon.png)Tachiyomi
@@ -11,19 +11,19 @@ Tachiyomi is a free and open source manga reader for Android.
 ## Features
 
 Features include:
-* Online reading from sources such as KissManga, MangaFox, [and more](https://github.com/inorichi/tachiyomi-extensions)
+* Online reading from sources such as KissManga, MangaDex, [and more](https://github.com/inorichi/tachiyomi-extensions)
 * Local reading of downloaded manga
-* Configurable reader with multiple viewers, reading directions and other settings
-* MyAnimeList, AniList, and Kitsu support
+* A configurable reader with multiple viewers, reading directions and other settings.
+* [MyAnimeList](https://myanimelist.net/), [AniList](https://anilist.co/), [Kitsu](https://kitsu.io/explore/anime), and [Shikimori](https://shikimori.one) support
 * Categories to organize your library
 * Light and dark themes
 * Schedule updating your library for new chapters
-* Create backups locally or to your cloud service of choice
+* Create backups locally to read offline or to your desired cloud service 
 
 ## Download
-Get the app from our [releases page](https://github.com/inorichi/tachiyomi/releases) or from [F-Droid](https://f-droid.org/packages/eu.kanade.tachiyomi/).
+Get the app from our [releases page](https://github.com/inorichi/tachiyomi/releases).
 
-If you want to try new features before they get to the stable release, you can download the dev version [here](http://tachiyomi.kanade.eu/latest) (auto-updates not included), or add our [F-Droid repo](https://github.com/inorichi/tachiyomi/wiki/FDroid-for-dev-versions).
+If you want to try new features before they get to the stable release, you can download the dev version [here](http://tachiyomi.kanade.eu/latest).
 
 ## Issues, Feature Requests and Contributing
 
@@ -32,7 +32,7 @@ Please make sure to read the full guidelines. Your issue may be closed without w
 <details><summary>Issues</summary>
 
 1. **Before reporting a new issue, take a look at the [FAQ](https://github.com/inorichi/tachiyomi/wiki/FAQ), the [changelog](https://github.com/inorichi/tachiyomi/releases) and the already opened [issues](https://github.com/inorichi/tachiyomi/issues).**
-2. If you are unsure, ask here: [![Discord](https://img.shields.io/discord/349436576037732353.svg)](https://discord.gg/WrBkRk4)
+2. If you are unsure, ask here: [![Discord](https://img.shields.io/discord/349436576037732353.svg)](https://discord.gg/tachiyomi)
 
 </details>
 
@@ -63,8 +63,8 @@ Catalogue requests should be created at https://github.com/inorichi/tachiyomi-ex
 
 ## FAQ
 
-[See our wiki.](https://github.com/inorichi/tachiyomi/wiki/FAQ)
-You can also reach out to us on [Discord](https://discord.gg/WrBkRk4).
+[See our website.](https://tachiyomi.org/)
+You can also reach out to us on [Discord](https://discord.gg/tachiyomi).
 
 ## License
 

@@ -8,6 +8,8 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.AnilistApi
+import eu.kanade.tachiyomi.data.track.shikimori.ShikimoriApi
+import eu.kanade.tachiyomi.data.track.bangumi.BangumiApi
 import eu.kanade.tachiyomi.util.getResourceColor
 import eu.kanade.tachiyomi.widget.preference.LoginPreference
 import eu.kanade.tachiyomi.widget.preference.TrackLoginDialog
@@ -26,13 +28,6 @@ class SettingsTrackingController : SettingsController(),
             key = Keys.autoUpdateTrack
             titleRes = R.string.pref_auto_update_manga_sync
             defaultValue = true
-        }
-        switchPreference {
-            key = Keys.askUpdateTrack
-            titleRes = R.string.pref_ask_update_manga_sync
-            defaultValue = false
-        }.apply {
-            dependency = Keys.autoUpdateTrack // the preference needs to be attached.
         }
         preferenceCategory {
             titleRes = R.string.services
@@ -60,6 +55,24 @@ class SettingsTrackingController : SettingsController(),
                     dialog.showDialog(router)
                 }
             }
+            trackPreference(trackManager.shikimori) {
+                onClick {
+                    val tabsIntent = CustomTabsIntent.Builder()
+                            .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
+                            .build()
+                    tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    tabsIntent.launchUrl(activity, ShikimoriApi.authUrl())
+                }
+            }
+            trackPreference(trackManager.bangumi) {
+                onClick {
+                    val tabsIntent = CustomTabsIntent.Builder()
+                            .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
+                            .build()
+                    tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    tabsIntent.launchUrl(activity, BangumiApi.authUrl())
+                }
+            }
         }
     }
 
@@ -77,6 +90,7 @@ class SettingsTrackingController : SettingsController(),
         super.onActivityResumed(activity)
         // Manually refresh anilist holder
         updatePreference(trackManager.aniList.id)
+        updatePreference(trackManager.shikimori.id)
     }
 
     private fun updatePreference(id: Int) {
