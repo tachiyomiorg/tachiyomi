@@ -29,14 +29,14 @@ ext {
 }
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     buildToolsVersion '29.0.2'
     publishNonDefault true
 
     defaultConfig {
         applicationId "eu.kanade.tachiyomi"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         versionCode 41
         versionName "0.8.4"
@@ -100,7 +100,7 @@ dependencies {
     implementation 'com.github.inorichi:junrar-android:634c1f5'
 
     // Android support library
-    final support_library_version = '27.1.1'
+    final support_library_version = '28.0.0'
     implementation "com.android.support:support-v4:$support_library_version"
     implementation "com.android.support:appcompat-v7:$support_library_version"
     implementation "com.android.support:cardview-v7:$support_library_version"
