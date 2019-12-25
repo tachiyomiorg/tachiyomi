@@ -10,6 +10,7 @@ import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.LoadResult
 import eu.kanade.tachiyomi.source.CatalogueSource
+import eu.kanade.tachiyomi.source.ConfigurableSourceFactory
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceFactory
 import eu.kanade.tachiyomi.util.Hash
@@ -121,6 +122,7 @@ internal object ExtensionLoader {
 
         val classLoader = PathClassLoader(appInfo.sourceDir, null, context.classLoader)
 
+        var sourceFactory: SourceFactory? = null
         val sources = appInfo.metaData.getString(METADATA_SOURCE_CLASS)
                 .split(";")
                 .map {
@@ -133,6 +135,7 @@ internal object ExtensionLoader {
                 .flatMap {
                     try {
                         val obj = Class.forName(it, false, classLoader).newInstance()
+                        if (obj is ConfigurableSourceFactory) sourceFactory = obj
                         when (obj) {
                             is Source -> listOf(obj)
                             is SourceFactory -> obj.createSources()
@@ -153,7 +156,7 @@ internal object ExtensionLoader {
             else -> "all"
         }
 
-        val extension = Extension.Installed(extName, pkgName, versionName, versionCode, sources, lang)
+        val extension = Extension.Installed(extName, pkgName, versionName, versionCode, sources, lang, sourceFactory = sourceFactory)
         return LoadResult.Success(extension)
     }
 
