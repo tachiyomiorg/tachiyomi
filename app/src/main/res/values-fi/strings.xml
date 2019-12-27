@@ -18,7 +18,7 @@
     <string name="pref_category_tracking">Seuranta</string>
     <string name="manga_tracking_tab">Seuranta</string>
     <string name="chapters">Luvut</string>
-    <string name="label_recent_updates">Kirjasto päivitykset</string>
+    <string name="label_recent_updates">Kirjastopäivitykset</string>
     <string name="label_catalogues">Katalokit</string>
     <string name="label_selected">Valittu: %1$d</string>
     <string name="action_sort_total">Lukuja yhteensä</string>
@@ -56,7 +56,7 @@
     <string name="transition_pages_loading">Ladataan sivuja…</string>
     <string name="transition_pages_error">Sivujen lataus epäonnistui: %1$s</string>
     <string name="reader_pull_up_for_more_options">Vedä ylös saadaksesi lisää asetuksia</string>
-    <string name="recent_manga_source">"%1$s -  Luku %2$s"</string>
+    <string name="recent_manga_source">%1$s - Luku %2$s</string>
     <string name="migration_info">Kosketa valitaksesi lähde josta vaihdetaan</string>
     <string name="migration_dialog_what_to_include">Valitse sisällytettävä tieto</string>
     <string name="select">Valitse</string>
@@ -85,7 +85,7 @@
     <string name="update_check_notification_file_download">Lataa päivitys</string>
     <string name="update_check_notification_download_in_progress">Lataus kesken</string>
     <string name="update_check_notification_download_complete">Lataus valmis</string>
-    <string name="update_check_notification_download_error">Lataus virhe</string>
+    <string name="update_check_notification_download_error">Latausvirhe</string>
     <string name="update_check_notification_update_available">Päivitys saatavilla</string>
     <string name="description_backdrop">Sarjan taustakuva</string>
     <string name="description_cover">Sarjan kansikuva</string>
@@ -447,4 +447,8 @@
     <string name="label_help">Apu</string>
     <string name="pref_library_update_prioritization">Kirjaston päivitys järjestys</string>
     <string name="pref_library_update_prioritization_summary">Valitse järjestys jossa päivitykset tarkistetaan</string>
+    <string name="action_forward">Seuraava</string>
+    <string name="action_refresh">Päivitä</string>
+    <string name="no_results_found">Ei tuloksia</string>
+    <string name="migration_selection_prompt">Valitse lähde josta vaihdetaan</string>
 </resources>
