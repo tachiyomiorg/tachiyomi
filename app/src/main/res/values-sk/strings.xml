@@ -158,4 +158,10 @@
     <string name="pref_fullscreen">Na celú obrazovku</string>
     <string name="action_forward">Dopredu</string>
     <string name="action_refresh">Obnoviť</string>
+    <string name="pref_lock_orientation">Zamknúť orientáciu</string>
+    <string name="pref_page_transitions">Prechod stránok</string>
+    <string name="pref_double_tap_anim_speed">Rýchlosť animácie pre dvojité ťuknutie</string>
+    <string name="pref_show_page_number">Zobraziť číslo strany</string>
+    <string name="pref_true_color">32-bitová farba</string>
+    <string name="pref_crop_borders">Orezať okraje</string>
 </resources>
