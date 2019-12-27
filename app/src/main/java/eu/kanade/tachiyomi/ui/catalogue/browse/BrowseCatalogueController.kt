@@ -237,6 +237,8 @@ open class BrowseCatalogueController(bundle: Bundle) :
 
             untilDestroySubscriptions.add(
                     Subscriptions.create { if (isActionViewExpanded) collapseActionView() })
+
+            fixExpand()
         }
 
         // Setup filters button
@@ -302,11 +304,6 @@ open class BrowseCatalogueController(bundle: Bundle) :
         // If text didn't change, do nothing
         if (presenter.query == newQuery)
             return
-
-        // FIXME dirty fix to restore the toolbar buttons after closing search mode.
-        if (newQuery == "") {
-            activity?.invalidateOptionsMenu()
-        }
 
         showProgressBar()
         adapter?.clear()
