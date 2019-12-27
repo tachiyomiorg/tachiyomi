@@ -349,7 +349,7 @@
     <string name="snack_categories_deleted">Kategorier slettet</string>
     <string name="dialog_with_checkbox_remove_description">Lesningsdato for dette kapittelet vil bli fjernet. Er du sikker\?</string>
     <string name="dialog_with_checkbox_reset">Tilbakestill alle kapittel for denne mangaen</string>
-    <string name="snack_add_to_library">Legg manga til i bibliotek</string>
+    <string name="snack_add_to_library">Legg manga til i bibliotek\?</string>
     <string name="picture_saved">Bilde lagret</string>
     <string name="saving_picture">Lagrer bilde</string>
     <string name="options">Valg</string>
@@ -392,17 +392,17 @@
     <string name="label_help">Hjelp</string>
     <string name="action_display_download_badge">Last ned merker</string>
     <string name="pref_library_columns">Bibliotekmanga per rad</string>
-    <string name="untrusted_extension_message">Denne utvidelsen ble signert med et usikkert sertifikat og ble ikke aktivert
+    <string name="untrusted_extension_message">Denne utvidelsen ble signert med et usikkert sertifikat, og ble dermed ikke aktivert 
 \n
-\nEn skadelig utvidelse kan lese innloggingsdetaljer lagret i Tachiyomi eller kjøre ukjent kode
+\nEn skadelig utvidelse kan lese innloggingsdetaljer lagret i Tachiyomi, eller kjøre ukjent kode.
 \n
-\nVed å godta dette sertifikatet aksepterer du overstående risiko.</string>
+\nVed å godta dette sertifikatet aksepterer du overstående risikoer.</string>
     <string name="ext_empty_preferences">Det er ingen preferanser å redigere for denne utvidelsen</string>
-    <string name="pref_double_tap_anim_speed">Animasjonshastighet for Dobbelklikk</string>
+    <string name="pref_double_tap_anim_speed">Animasjonshastighet ved dobbelklikk</string>
     <string name="pager_viewer">Sideleser</string>
     <string name="backup_restore_content">Gjenoppretting bruker kilde for å hente data, mobilkostnader kan forekomme
 \nHusk å logge inn på kilder som krever dette før gjennoppretting.</string>
-    <string name="confirm_update_manga_sync">Oppdater siste leste kapittel er skrudd på for %1$d\?</string>
+    <string name="confirm_update_manga_sync">Oppdater siste leste kapittel i eksterne tjenester for %1$d\?</string>
     <string name="confirm_set_image_as_cover">Vil du bruke dette bildet som omslag\?</string>
     <string name="viewer_for_this_series">Leser for denne serien</string>
     <string name="migration_info">Trykk for å velge kilde å migrere fra</string>
@@ -435,12 +435,12 @@
     <string name="download_notifier_downloader_title">Nedlaster</string>
     <string name="download_notifier_title_error">Feil</string>
     <string name="download_notifier_unkown_error">En uventet feil oppstod mens kapittelet ble lastet ned</string>
-    <string name="download_notifier_page_error">En side mangler i katalogen</string>
+    <string name="download_notifier_page_error">En side ble ikke funnet</string>
     <string name="download_notifier_page_ready_error">En side er ikke lastet</string>
     <string name="download_notifier_text_only_wifi">Ingen trådløst tilkobling tilgjengelig</string>
     <string name="download_notifier_no_network">Ingen nettverkstilkobling tilgjengelig</string>
     <string name="download_notifier_download_paused">Nedlasting pauset</string>
-    <string name="pref_color_filter_mode">Fargefilter-blandingsmodus</string>
+    <string name="pref_color_filter_mode">Blandingsmodus for fargefilter</string>
     <string name="filter_mode_overlay">Overlegg</string>
     <string name="filter_mode_multiply">Multiplisere</string>
     <string name="filter_mode_lighten">Unngå / lysne</string>

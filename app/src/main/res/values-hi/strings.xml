@@ -145,7 +145,7 @@
     <string name="left_to_right_viewer">बाएं से दाएं</string>
     <string name="right_to_left_viewer">दाएं से बाएं</string>
     <string name="vertical_viewer">शीर्ष से असंतत</string>
-    <string name="webtoon_viewer">शीर्ष से निरंतर</string>
+    <string name="webtoon_viewer">वेबटून</string>
     <string name="pref_image_decoder">छवि कूटवाचक</string>
     <string name="pref_image_scale_type">मापन प्ररूप</string>
     <string name="scale_type_fit_screen">उपयुक्त स्क्रीन</string>

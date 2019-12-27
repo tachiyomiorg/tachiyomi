@@ -433,15 +433,19 @@
     <string name="transition_no_previous">لا يوجدُ فصل سابق</string>
     <string name="transition_pages_loading">جار تحميل الصّفحات…</string>
     <string name="transition_pages_error">فشل تحميل الصّفحات: %1$s</string>
-    <string name="pref_read_with_long_tap">ضغطة طويلة</string>
-    <string name="action_open_in_web_view">فتح في المتصفح</string>
+    <string name="pref_read_with_long_tap">معلومات بضغطة مستمرة</string>
+    <string name="action_open_in_web_view">فتح في web view</string>
     <string name="pref_true_color">الوان 32bit</string>
     <string name="pref_skip_read_chapters">تخطي الفصول المقروءة</string>
     <string name="filter_mode_default">أساسي</string>
-    <string name="filter_mode_overlay">غطاء</string>
+    <string name="filter_mode_overlay">غطاءالغطاء</string>
     <string name="filter_mode_multiply">مضاعفة</string>
     <string name="filter_mode_screen">الشاشة</string>
     <string name="label_help">المساعدة</string>
     <string name="pref_library_update_prioritization">طلبات تحديث المكتبة</string>
     <string name="pref_library_update_prioritization_summary">إختر طريقة (Tachiyomi) لطلب التحديثات</string>
+    <string name="reader_pull_up_for_more_options">"سحب  لمزيد من الخيارات"</string>
+    <string name="pref_color_filter_mode">فلتر الألوان ”وضع الألوان الممزوجة“</string>
+    <string name="filter_mode_lighten">مراوغة / تفتيح</string>
+    <string name="filter_mode_darken">حرق / تغميق</string>
 </resources>
