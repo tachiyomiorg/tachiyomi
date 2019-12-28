@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.ui.main
 
 import android.animation.ObjectAnimator
-import android.support.design.widget.TabLayout
+import com.google.android.material.tabs.TabLayout
 import android.view.ViewTreeObserver
 import android.view.animation.DecelerateInterpolator
 

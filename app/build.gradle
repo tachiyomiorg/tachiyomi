@@ -37,7 +37,7 @@ android {
         applicationId "eu.kanade.tachiyomi"
         minSdkVersion 16
         targetSdkVersion 28
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         versionCode 41
         versionName "0.8.4"
 
@@ -109,18 +109,18 @@ dependencies {
 
     // Android support library
     final support_library_version = '28.0.0'
-    implementation "com.android.support:support-v4:$support_library_version"
-    implementation "com.android.support:appcompat-v7:$support_library_version"
-    implementation "com.android.support:cardview-v7:$support_library_version"
-    implementation "com.android.support:design:$support_library_version"
-    implementation "com.android.support:recyclerview-v7:$support_library_version"
-    implementation "com.android.support:preference-v7:$support_library_version"
-    implementation "com.android.support:support-annotations:$support_library_version"
-    implementation "com.android.support:customtabs:$support_library_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.preference:preference:1.0.0'
+    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'androidx.browser:browser:1.0.0'
 
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.multidex:multidex:2.0.0'
 
     standardImplementation 'com.google.firebase:firebase-core:11.8.0'
 
@@ -163,7 +163,7 @@ dependencies {
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
 
     // Database
-    implementation 'android.arch.persistence:db:1.1.1'
+    implementation 'androidx.sqlite:sqlite:2.0.0'
     implementation 'com.github.inorichi.storio:storio-common:8be19de@aar'
     implementation 'com.github.inorichi.storio:storio-sqlite:8be19de@aar'
     implementation 'io.requery:sqlite-android:3.25.2'

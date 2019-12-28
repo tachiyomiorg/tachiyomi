@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.data.preference
 
 import android.content.SharedPreferences
-import android.support.v7.preference.PreferenceDataStore
+import androidx.preference.PreferenceDataStore
 
 class SharedPreferencesDataStore(private val prefs: SharedPreferences) : PreferenceDataStore() {
 

@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.ui.reader
 
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import android.view.ViewGroup
 import com.afollestad.materialdialogs.MaterialDialog
 import eu.kanade.tachiyomi.R

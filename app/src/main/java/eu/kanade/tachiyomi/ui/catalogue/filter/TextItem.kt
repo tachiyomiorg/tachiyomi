@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.ui.catalogue.filter
 
-import android.support.design.widget.TextInputLayout
+import com.google.android.material.textfield.TextInputLayout
 import android.view.View
 import android.widget.EditText
 import eu.davidea.flexibleadapter.FlexibleAdapter

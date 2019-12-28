@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.ui.setting
 
-import android.support.graphics.drawable.VectorDrawableCompat
-import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v7.preference.*
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.preference.*
 import eu.kanade.tachiyomi.widget.preference.IntListPreference
 
 @DslMarker

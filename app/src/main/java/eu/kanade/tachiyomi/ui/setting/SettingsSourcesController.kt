@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.ui.setting
 
 import android.graphics.drawable.Drawable
-import android.support.v7.preference.PreferenceGroup
-import android.support.v7.preference.PreferenceScreen
+import androidx.preference.PreferenceGroup
+import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.SourceManager

@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.ui.catalogue.filter
 
-import android.support.graphics.drawable.VectorDrawableCompat
-import android.support.v4.content.ContextCompat
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import androidx.core.content.ContextCompat
 import android.view.View
 import android.widget.CheckedTextView
 import eu.davidea.flexibleadapter.FlexibleAdapter

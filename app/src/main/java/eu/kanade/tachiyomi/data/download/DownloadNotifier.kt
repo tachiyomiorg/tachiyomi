@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.data.download
 
 import android.content.Context
 import android.graphics.BitmapFactory
-import android.support.v4.app.NotificationCompat
+import androidx.core.app.NotificationCompat
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.download.model.DownloadQueue

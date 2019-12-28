@@ -5,7 +5,7 @@ package eu.kanade.tachiyomi.util
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.Typeface
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
 import android.view.View
 import android.widget.TextView
 import com.amulyakhare.textdrawable.TextDrawable

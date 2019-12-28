@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.ui.base.holder
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import kotlinx.android.extensions.LayoutContainer
 

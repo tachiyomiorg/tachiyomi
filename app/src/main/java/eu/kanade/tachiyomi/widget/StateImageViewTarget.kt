@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.widget
 
 import android.graphics.drawable.Drawable
-import android.support.graphics.drawable.VectorDrawableCompat
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import android.view.View
 import android.widget.ImageView
 import android.widget.ImageView.ScaleType

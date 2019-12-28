@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.ui.manga.track
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.inflate

@@ -3,11 +3,11 @@ package eu.kanade.tachiyomi.ui.extension
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.preference.*
-import android.support.v7.preference.internal.AbstractMultiSelectListPreference
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.DividerItemDecoration.VERTICAL
-import android.support.v7.widget.LinearLayoutManager
+import androidx.preference.*
+import androidx.preference.internal.AbstractMultiSelectListPreference
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.TypedValue
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater

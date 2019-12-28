@@ -2,10 +2,10 @@ package eu.kanade.tachiyomi.widget
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.annotation.CallSuper
-import android.support.graphics.drawable.VectorDrawableCompat
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.CallSuper
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup

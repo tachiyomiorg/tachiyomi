@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.ui.library
 
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import eu.davidea.flexibleadapter.FlexibleAdapter

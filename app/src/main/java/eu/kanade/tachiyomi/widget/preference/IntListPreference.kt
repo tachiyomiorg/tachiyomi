@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.widget.preference
 
 import android.content.Context
-import android.support.v7.preference.ListPreference
+import androidx.preference.ListPreference
 import android.util.AttributeSet
 
 class IntListPreference @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :

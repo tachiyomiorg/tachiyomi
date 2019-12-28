@@ -5,7 +5,7 @@ import android.animation.StateListAnimator
 import android.content.Context
 import android.os.Build
 import android.support.design.R
-import android.support.design.widget.AppBarLayout
+import com.google.android.material.appbar.AppBarLayout
 import android.util.AttributeSet
 
 class ElevationAppBarLayout @JvmOverloads constructor(

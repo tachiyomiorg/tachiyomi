@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.ui.setting
 
-import android.support.v7.preference.PreferenceScreen
+import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.util.getResourceColor

@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.data.track.kitsu
 
-import android.support.annotation.CallSuper
+import androidx.annotation.CallSuper
 import com.github.salomonbrys.kotson.*
 import com.google.gson.JsonObject
 import eu.kanade.tachiyomi.data.database.models.Track

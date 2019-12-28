@@ -2,9 +2,9 @@ package eu.kanade.tachiyomi.ui.setting
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.preference.PreferenceController
-import android.support.v7.preference.PreferenceScreen
+import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceController
+import androidx.preference.PreferenceScreen
 import android.util.TypedValue
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater

@@ -2,8 +2,8 @@ package eu.kanade.tachiyomi.ui.setting
 
 import android.app.Activity
 import android.content.Intent
-import android.support.customtabs.CustomTabsIntent
-import android.support.v7.preference.PreferenceScreen
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService

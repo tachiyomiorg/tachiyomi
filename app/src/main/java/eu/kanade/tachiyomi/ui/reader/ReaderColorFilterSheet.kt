@@ -1,9 +1,9 @@
 package eu.kanade.tachiyomi.ui.reader
 
 import android.graphics.Color
-import android.support.annotation.ColorInt
-import android.support.design.widget.BottomSheetBehavior
-import android.support.design.widget.BottomSheetDialog
+import androidx.annotation.ColorInt
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar

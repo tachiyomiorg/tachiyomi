@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
-import android.support.v4.view.PagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition

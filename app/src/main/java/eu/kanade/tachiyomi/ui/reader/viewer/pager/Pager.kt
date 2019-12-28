@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
 import android.content.Context
-import android.support.v4.view.DirectionalViewPager
+import androidx.core.view.DirectionalViewPager
 import android.view.HapticFeedbackConstants
 import android.view.KeyEvent
 import android.view.MotionEvent

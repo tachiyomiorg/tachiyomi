@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:id="@+id/spinner_end"
         android:layout_width="16dp"
         android:layout_height="0dp"
@@ -14,7 +14,7 @@
 
     <!-- Color filter -->
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_color_filter"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
         app:layout_constraintRight_toLeftOf="@id/color_filter_mode"
         app:layout_constraintBaseline_toBaselineOf="@id/color_filter_mode"/>
 
-    <android.support.v7.widget.AppCompatSpinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/color_filter_mode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
 
     <!-- Brightness -->
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/custom_brightness"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -209,7 +209,7 @@
         app:max_seek="100"
         app:min_seek="-75" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/txt_brightness_seekbar_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -229,11 +229,11 @@
         app:layout_constraintBottom_toBottomOf="@id/brightness_seekbar"
         app:layout_constraintRight_toRightOf="parent"/>
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/verticalcenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
