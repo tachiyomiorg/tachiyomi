@@ -183,7 +183,7 @@
     <string name="scale_type_fit_height">Adata a s\'artària</string>
     <string name="scale_type_original_size">Mannària originale</string>
     <string name="scale_type_smart_fit">Adatamentu intelligente</string>
-    <string name="pref_zoom_start">Positzione de incumintzu de s\'ismanniamentu</string>
+    <string name="pref_zoom_start">Positzione incumintzu ismanniamentu</string>
     <string name="zoom_start_automatic">Automàtica</string>
     <string name="zoom_start_left">A manca</string>
     <string name="zoom_start_right">A destra</string>
@@ -447,4 +447,8 @@
     <string name="label_help">Agiudu</string>
     <string name="pref_library_update_prioritization">Òrdine de agiornamentu de sa biblioteca</string>
     <string name="pref_library_update_prioritization_summary">Ischerta s\'òrdine chi Tachiyomi at a impreare pro sos agiornamentos</string>
+    <string name="action_forward">Sighi</string>
+    <string name="action_refresh">Annoa</string>
+    <string name="no_results_found">Perunu resultadu agadadu</string>
+    <string name="migration_selection_prompt">Ischerta una mitza dae sa cale tramudare</string>
 </resources>
