@@ -89,15 +89,16 @@ abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateContr
      * This method should be removed when fixed upstream.
      * Issue link: https://issuetracker.google.com/issues/37657375
      */
-    fun MenuItem.fixExpand() {
+    fun MenuItem.fixExpand(onExpand: ((MenuItem) -> Boolean)? = null, onCollapse: ((MenuItem) -> Boolean)? = null) {
         setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-                return true
+                return onExpand?.invoke(item) ?: true
             }
 
             override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
                 activity?.invalidateOptionsMenu()
-                return true
+
+                return onCollapse?.invoke(item) ?: true
             }
         })
     }

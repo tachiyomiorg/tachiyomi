@@ -220,25 +220,19 @@ open class BrowseCatalogueController(bundle: Bundle) :
                 searchView.clearFocus()
             }
 
-            val searchEventsObservable = searchView.queryTextChangeEvents()
-                    .skip(1)
-                    .share()
-            val writingObservable = searchEventsObservable
-                    .filter { !it.isSubmitted }
-                    .debounce(1250, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-            val submitObservable = searchEventsObservable
-                    .filter { it.isSubmitted }
-
             searchViewSubscription?.unsubscribe()
-            searchViewSubscription = Observable.merge(writingObservable, submitObservable)
+            searchViewSubscription = searchView.queryTextChangeEvents()
+                    .skip(1)
+                    .filter { it.isSubmitted }
                     .map { it.queryText().toString() }
-                    .distinctUntilChanged()
-                    .subscribeUntilDestroy { searchWithQuery(it) }
+                    .subscribeUntilDestroy {
+                        searchWithQuery(it)
+                    }
 
-            untilDestroySubscriptions.add(
-                    Subscriptions.create { if (isActionViewExpanded) collapseActionView() })
-
-            fixExpand()
+            fixExpand(onCollapse = {
+                searchWithQuery("")
+                true
+            })
         }
 
         // Setup filters button
@@ -307,7 +301,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
 
         showProgressBar()
         adapter?.clear()
-
+        
         presenter.restartPager(newQuery)
     }
 
