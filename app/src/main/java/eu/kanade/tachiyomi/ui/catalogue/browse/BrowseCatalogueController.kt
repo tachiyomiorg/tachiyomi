@@ -195,7 +195,6 @@ open class BrowseCatalogueController(bundle: Bundle) :
                 }
             }
         }
-        recycler.setHasFixedSize(true)
         recycler.adapter = adapter
 
         catalogue_view.addView(recycler, 1)
