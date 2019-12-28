@@ -15,7 +15,7 @@ class MyAnimeListInterceptor(private val myanimelist: Myanimelist): Interceptor 
         val request = chain.request()
         var response = chain.proceed(updateRequest(request))
 
-        if (response.code() == 400){
+        if (response.code == 400){
             myanimelist.refreshLogin()
             response = chain.proceed(updateRequest(request))
         }
@@ -24,7 +24,7 @@ class MyAnimeListInterceptor(private val myanimelist: Myanimelist): Interceptor 
     }
 
     private fun updateRequest(request: Request): Request {
-        return request.body()?.let {
+        return request.body?.let {
             val contentType = it.contentType().toString()
             val updatedBody = when {
                 contentType.contains("x-www-form-urlencoded") -> updateFormBody(it)

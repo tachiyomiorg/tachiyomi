@@ -14,7 +14,11 @@ import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.POST
 import eu.kanade.tachiyomi.network.asObservableSuccess
-import okhttp3.*
+import okhttp3.FormBody
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
 
@@ -22,7 +26,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
 
     private val gson: Gson by injectLazy()
     private val parser = JsonParser()
-    private val jsonime = MediaType.parse("application/json; charset=utf-8")
+    private val jsonime = "application/json; charset=utf-8".toMediaTypeOrNull()
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
     fun addLibManga(track: Track, user_id: String): Observable<Track> {
@@ -63,7 +67,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
         return authClient.newCall(request)
                 .asObservableSuccess()
                 .map { netResponse ->
-                    val responseBody = netResponse.body()?.string().orEmpty()
+                    val responseBody = netResponse.body?.string().orEmpty()
                     if (responseBody.isEmpty()) {
                         throw Exception("Null Response")
                     }
@@ -120,13 +124,13 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
         return authClient.newCall(requestMangas)
                 .asObservableSuccess()
                 .map { netResponse ->
-                    val responseBody = netResponse.body()?.string().orEmpty()
+                    val responseBody = netResponse.body?.string().orEmpty()
                     parser.parse(responseBody).obj
                 }.flatMap { mangas ->
                     authClient.newCall(request)
                             .asObservableSuccess()
                             .map { netResponse ->
-                                val responseBody = netResponse.body()?.string().orEmpty()
+                                val responseBody = netResponse.body?.string().orEmpty()
                                 if (responseBody.isEmpty()) {
                                     throw Exception("Null Response")
                                 }
@@ -143,13 +147,13 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
     }
 
     fun getCurrentUser(): Int {
-        val user = authClient.newCall(GET("$apiUrl/users/whoami")).execute().body()?.string()
+        val user = authClient.newCall(GET("$apiUrl/users/whoami")).execute().body?.string()
         return parser.parse(user).obj["id"].asInt
     }
 
     fun accessToken(code: String): Observable<OAuth> {
         return client.newCall(accessTokenRequest(code)).asObservableSuccess().map { netResponse ->
-            val responseBody = netResponse.body()?.string().orEmpty()
+            val responseBody = netResponse.body?.string().orEmpty()
             if (responseBody.isEmpty()) {
                 throw Exception("Null Response")
             }

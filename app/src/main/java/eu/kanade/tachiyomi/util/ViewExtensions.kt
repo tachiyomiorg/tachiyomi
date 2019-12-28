@@ -28,7 +28,7 @@ fun View.getCoordinates() = Point((left + right) / 2, (top + bottom) / 2)
  */
 inline fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit): Snackbar {
     val snack = Snackbar.make(this, message, length)
-    val textView: TextView = snack.view.findViewById(android.support.design.R.id.snackbar_text)
+    val textView: TextView = snack.view.findViewById(com.google.android.material.R.id.snackbar_text)
     textView.setTextColor(Color.WHITE)
     snack.f()
     snack.show()

@@ -14,7 +14,7 @@ class BangumiInterceptor(val bangumi: Bangumi, val gson: Gson) : Interceptor {
 
   fun addTocken(tocken: String, oidFormBody: FormBody): FormBody {
     val newFormBody = FormBody.Builder()
-    for (i in 0 until oidFormBody.size()) {
+    for (i in 0 until oidFormBody.size) {
       newFormBody.add(oidFormBody.name(i), oidFormBody.value(i))
     }
     newFormBody.add("access_token", tocken)
@@ -29,18 +29,18 @@ class BangumiInterceptor(val bangumi: Bangumi, val gson: Gson) : Interceptor {
     if (currAuth.isExpired()) {
       val response = chain.proceed(BangumiApi.refreshTokenRequest(currAuth.refresh_token!!))
       if (response.isSuccessful) {
-        newAuth(gson.fromJson(response.body()!!.string(), OAuth::class.java))
+        newAuth(gson.fromJson(response.body!!.string(), OAuth::class.java))
       } else {
         response.close()
       }
     }
 
-    var authRequest = if (originalRequest.method() == "GET") originalRequest.newBuilder()
+    var authRequest = if (originalRequest.method == "GET") originalRequest.newBuilder()
       .header("User-Agent", "Tachiyomi")
-      .url(originalRequest.url().newBuilder()
+      .url(originalRequest.url.newBuilder()
         .addQueryParameter("access_token", currAuth.access_token).build())
       .build() else originalRequest.newBuilder()
-      .post(addTocken(currAuth.access_token, originalRequest.body() as FormBody))
+      .post(addTocken(currAuth.access_token, originalRequest.body as FormBody))
       .header("User-Agent", "Tachiyomi")
       .build()
 

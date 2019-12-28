@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.preference.*
-import androidx.preference.internal.AbstractMultiSelectListPreference
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -165,7 +164,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                     .newInstance(preference.getKey())
             is ListPreference -> ListPreferenceDialogController
                     .newInstance(preference.getKey())
-            is AbstractMultiSelectListPreference -> MultiSelectListPreferenceDialogController
+            is MultiSelectListPreference -> MultiSelectListPreferenceDialogController
                     .newInstance(preference.getKey())
             else -> throw IllegalArgumentException("Tried to display dialog for unknown " +
                     "preference type. Did you forget to override onDisplayPreferenceDialog()?")
@@ -174,8 +173,8 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         f.showDialog(router)
     }
 
-    override fun findPreference(key: CharSequence?): Preference {
-        return preferenceScreen!!.getPreference(lastOpenPreferencePosition!!)
+    override fun <T : Preference> findPreference(key: CharSequence): T? {
+        return preferenceScreen!!.findPreference(key)
     }
 
     override fun loginDialogClosed(source: LoginSource) {

@@ -4,6 +4,12 @@
 -keep class eu.kanade.tachiyomi.**
 -keep class eu.kanade.tachiyomi.source.model.** { *; }
 
+# Design library
+-dontwarn com.google.android.material.**
+-keep class com.google.android.material.** { *; }
+-keep interface com.google.android.material.** { *; }
+-keep public class com.google.android.material.R$* { *; }
+
 -keep class com.hippo.image.** { *; }
 -keep interface com.hippo.image.** { *; }
 -dontwarn nucleus.view.NucleusActionBarActivity
@@ -45,26 +51,6 @@
 -keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
     rx.internal.util.atomic.LinkedQueueNode consumerNode;
 }
-
-### Support v7, Design
-# http://stackoverflow.com/questions/29679177/cardview-shadow-not-appearing-in-lollipop-after-obfuscate-with-proguard/29698051
--keep class android.support.v7.widget.RoundRectDrawable { *; }
-
--keep public class android.support.v7.widget.** { *; }
--keep public class android.support.v7.internal.widget.** { *; }
--keep public class android.support.v7.internal.view.menu.** { *; }
--keep public class android.support.v7.graphics.drawable.** { *; }
-
--keep public class * extends android.support.v4.view.ActionProvider {
-    public <init>(android.content.Context);
-}
-
--dontwarn android.support.**
--dontwarn android.support.design.**
--keep class android.support.design.** { *; }
--keep interface android.support.design.** { *; }
--keep public class android.support.design.R$* { *; }
-
 
 # ReactiveNetwork
 -dontwarn com.github.pwittchen.reactivenetwork.**

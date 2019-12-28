@@ -205,7 +205,7 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      * @param position The position of the clicked item.
      * @return true if this click should enable selection mode.
      */
-    override fun onItemClick(position: Int): Boolean {
+    override fun onItemClick(view: View, position: Int): Boolean {
         // Check if action mode is initialized and selected item exist.
         if (actionMode != null && position != RecyclerView.NO_POSITION) {
             toggleSelection(position)

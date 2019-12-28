@@ -2,8 +2,7 @@ package eu.kanade.tachiyomi.widget
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.support.design.R
-import android.support.design.internal.ScrimInsetsFrameLayout
+import com.google.android.material.R
 import com.google.android.material.textfield.TextInputLayout
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,11 +12,12 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.google.android.material.internal.ScrimInsetsFrameLayout
 import eu.kanade.tachiyomi.util.inflate
 import eu.kanade.tachiyomi.R as TR
 
 @Suppress("LeakingThis")
-@SuppressLint("PrivateResource")
+@SuppressLint("PrivateResource", "RestrictedApi")
 open class SimpleNavigationView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,

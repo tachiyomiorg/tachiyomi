@@ -351,7 +351,7 @@ class Downloader(
                 .map { response ->
                     val file = tmpDir.createFile("$filename.tmp")
                     try {
-                        response.body()!!.source().saveTo(file.openOutputStream())
+                        response.body!!.source().saveTo(file.openOutputStream())
                         val extension = getImageExtension(response, file)
                         file.renameTo("$filename.$extension")
                     } catch (e: Exception) {
@@ -374,7 +374,7 @@ class Downloader(
      */
     private fun getImageExtension(response: Response, file: UniFile): String {
         // Read content type if available.
-        val mime = response.body()?.contentType()?.let { ct -> "${ct.type()}/${ct.subtype()}" }
+        val mime = response.body?.contentType()?.let { ct -> "${ct.type}/${ct.subtype}" }
             // Else guess from the uri.
             ?: context.contentResolver.getType(file.uri)
             // Else read magic numbers.

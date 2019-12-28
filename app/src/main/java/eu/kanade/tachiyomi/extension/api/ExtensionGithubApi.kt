@@ -32,7 +32,7 @@ internal class ExtensionGithubApi {
     }
 
     private fun parseResponse(response: Response): List<Extension.Available> {
-        val text = response.body()?.use { it.string() } ?: return emptyList()
+        val text = response.body?.use { it.string() } ?: return emptyList()
 
         val json = gson.fromJson<JsonArray>(text)
 

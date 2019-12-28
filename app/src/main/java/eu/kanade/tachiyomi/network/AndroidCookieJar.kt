@@ -21,7 +21,7 @@ class AndroidCookieJar(context: Context) : CookieJar {
         }
     }
 
-    override fun saveFromResponse(url: HttpUrl, cookies: MutableList<Cookie>) {
+    override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
         val urlString = url.toString()
 
         for (cookie in cookies) {

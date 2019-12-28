@@ -1,11 +1,8 @@
 @file:Suppress("PackageDirectoryMismatch")
 
-package androidx.appcompat.widget
+package androidx.recyclerview.widget
 
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.NO_POSITION
-import androidx.recyclerview.widget.ViewBoundsCheck
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 
 /**

@@ -108,21 +108,20 @@ dependencies {
     implementation 'com.github.inorichi:junrar-android:634c1f5'
 
     // Android support library
-    final support_library_version = '28.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.preference:preference:1.0.0'
-    implementation 'androidx.annotation:annotation:1.0.0'
-    implementation 'androidx.browser:browser:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.preference:preference:1.1.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.browser:browser:1.2.0'
 
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 
-    implementation 'androidx.multidex:multidex:2.0.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
-    standardImplementation 'com.google.firebase:firebase-core:11.8.0'
+    standardImplementation 'com.google.firebase:firebase-core:17.2.1'
 
     // ReactiveX
     implementation 'io.reactivex:rxandroid:1.2.1'
@@ -132,17 +131,19 @@ dependencies {
     implementation 'com.github.pwittchen:reactivenetwork:0.13.0'
 
     // Network client
-    implementation "com.squareup.okhttp3:okhttp:3.10.0"
-    implementation 'com.squareup.okio:okio:1.14.0'
+    final okhttp_version = '4.2.1'
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation 'com.squareup.okio:okio:2.4.0'
 
     // REST
-    final retrofit_version = '2.3.0'
+    final retrofit_version = '2.6.2'
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
 
     // JSON
-    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.github.salomonbrys.kotson:kotson:2.5.0'
 
     // JavaScript engine
@@ -157,13 +158,13 @@ dependencies {
 
     // Job scheduling
     implementation 'com.evernote:android-job:1.2.5'
-    implementation 'com.google.android.gms:play-services-gcm:11.8.0'
+    implementation 'com.google.android.gms:play-services-gcm:17.0.0'
 
     // Changelog
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
 
     // Database
-    implementation 'androidx.sqlite:sqlite:2.0.0'
+    implementation 'androidx.sqlite:sqlite:2.0.1'
     implementation 'com.github.inorichi.storio:storio-common:8be19de@aar'
     implementation 'com.github.inorichi.storio:storio-sqlite:8be19de@aar'
     implementation 'io.requery:sqlite-android:3.25.2'
@@ -177,13 +178,13 @@ dependencies {
     implementation "com.github.inorichi.injekt:injekt-core:65b0440"
 
     // Image library
-    final glide_version = '4.6.1'
+    final glide_version = '4.10.0'
     implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation "com.github.bumptech.glide:okhttp3-integration:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     // Transformations
-    implementation 'jp.wasabeef:glide-transformations:3.1.1'
+    implementation 'jp.wasabeef:glide-transformations:4.0.0'
 
     // Logging
     implementation 'com.jakewharton.timber:timber:4.7.1'
@@ -194,24 +195,24 @@ dependencies {
     // UI
     implementation 'com.dmitrymalkovich.android:material-design-dimens:1.4'
     implementation 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
-    implementation 'eu.davidea:flexible-adapter:5.0.0-rc4'
-    implementation 'eu.davidea:flexible-adapter-ui:1.0.0-b1'
+    implementation 'eu.davidea:flexible-adapter:5.1.0'
+    implementation 'eu.davidea:flexible-adapter-ui:1.0.0'
     implementation 'com.nononsenseapps:filepicker:2.5.2'
     implementation 'com.github.amulyakhare:TextDrawable:558677e'
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
     implementation 'me.zhanghai.android.systemuihelper:library:1.0.0'
-    implementation 'com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.0.4'
+    implementation 'com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.1.0'
     implementation 'com.github.mthli:Slice:v1.2'
     implementation 'me.gujun.android.taggroup:library:1.4@aar'
-    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
-    implementation 'com.github.inorichi:DirectionalViewPager:3acc51a'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation 'com.github.carlosesco:DirectionalViewPager:a844dbca0a'
 
     // Conductor
     implementation 'com.bluelinelabs:conductor:2.1.5'
     implementation ("com.bluelinelabs:conductor-support:2.1.5") {
         exclude group: "com.android.support"
     }
-    implementation 'com.github.inorichi:conductor-support-preference:27.0.2'
+    implementation 'com.github.inorichi:conductor-support-preference:78e2344'
 
     // RxBindings
     final rxbindings_version = '1.0.1'

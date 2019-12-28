@@ -91,7 +91,7 @@ class MigrationController : NucleusController<MigrationPresenter>(),
         }
     }
 
-    override fun onItemClick(position: Int): Boolean {
+    override fun onItemClick(view: View, position: Int): Boolean {
         val item = adapter?.getItem(position) ?: return false
 
         if (item is MangaItem) {
@@ -106,7 +106,7 @@ class MigrationController : NucleusController<MigrationPresenter>(),
     }
 
     override fun onSelectClick(position: Int) {
-        onItemClick(position)
+        onItemClick(view!!, position)
     }
 
     fun migrateManga(prevManga: Manga, manga: Manga) {

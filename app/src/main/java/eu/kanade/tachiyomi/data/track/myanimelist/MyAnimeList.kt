@@ -7,10 +7,9 @@ import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
-import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import rx.Completable
 import rx.Observable
-import java.lang.Exception
 
 class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
 
@@ -138,7 +137,7 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
     override fun logout() {
         super.logout()
         preferences.trackToken(this).delete()
-        networkService.cookieManager.remove(HttpUrl.parse(BASE_URL)!!)
+        networkService.cookieManager.remove(BASE_URL.toHttpUrlOrNull()!!)
     }
 
     val isAuthorized: Boolean
@@ -152,9 +151,9 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
 
     private fun checkCookies(): Boolean {
         var ckCount = 0
-        val url = HttpUrl.parse(BASE_URL)!!
+        val url = BASE_URL.toHttpUrlOrNull()!!
         for (ck in networkService.cookieManager.get(url)) {
-            if (ck.name() == USER_SESSION_COOKIE || ck.name() == LOGGED_IN_COOKIE)
+            if (ck.name == USER_SESSION_COOKIE || ck.name == LOGGED_IN_COOKIE)
                 ckCount++
         }
 

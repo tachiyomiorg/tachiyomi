@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
 import androidx.recyclerview.widget.RecyclerView
-import androidx.appcompat.widget.WebtoonLayoutManager
+import androidx.recyclerview.widget.WebtoonLayoutManager
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View

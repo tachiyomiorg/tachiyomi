@@ -242,7 +242,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         startActivity(intent)
     }
 
-    override fun onItemClick(position: Int): Boolean {
+    override fun onItemClick(view: View, position: Int): Boolean {
         val adapter = adapter ?: return false
         val item = adapter.getItem(position) ?: return false
         if (actionMode != null && adapter.mode == SelectableAdapter.Mode.MULTI) {

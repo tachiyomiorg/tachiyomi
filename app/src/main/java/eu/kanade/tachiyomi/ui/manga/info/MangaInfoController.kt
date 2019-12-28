@@ -291,14 +291,14 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         val context = view?.context ?: return
         val source = presenter.source as? HttpSource ?: return
 
-        context.openInBrowser(source.mangaDetailsRequest(presenter.manga).url().toString())
+        context.openInBrowser(source.mangaDetailsRequest(presenter.manga).url.toString())
     }
 
     private fun openInWebView() {
         val source = presenter.source as? HttpSource ?: return
 
         val url = try {
-            source.mangaDetailsRequest(presenter.manga).url().toString()
+            source.mangaDetailsRequest(presenter.manga).url.toString()
         } catch (e: Exception) {
             return
         }
@@ -315,7 +315,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
 
         val source = presenter.source as? HttpSource ?: return
         try {
-            val url = source.mangaDetailsRequest(presenter.manga).url().toString()
+            val url = source.mangaDetailsRequest(presenter.manga).url.toString()
             val intent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
                 putExtra(Intent.EXTRA_TEXT, url)

@@ -111,7 +111,7 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
      * Called when item in list is clicked
      * @param position position of clicked item
      */
-    override fun onItemClick(position: Int): Boolean {
+    override fun onItemClick(view: View, position: Int): Boolean {
         val adapter = adapter ?: return false
 
         // Get item from position

@@ -10,7 +10,11 @@ import eu.kanade.tachiyomi.network.asObservable
 import eu.kanade.tachiyomi.network.asObservableSuccess
 import eu.kanade.tachiyomi.util.selectInt
 import eu.kanade.tachiyomi.util.selectText
-import okhttp3.*
+import okhttp3.FormBody
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.RequestBody
+import okhttp3.Response
 import org.json.JSONObject
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -85,7 +89,7 @@ class MyanimelistApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                 .map {response ->
                     var libTrack: Track? = null
                     response.use {
-                        if (it.priorResponse()?.isRedirect != true) {
+                        if (it.priorResponse?.isRedirect != true) {
                             val trackForm = Jsoup.parse(it.consumeBody())
 
                             libTrack = Track.create(TrackManager.MYANIMELIST).apply {
@@ -125,7 +129,7 @@ class MyanimelistApi(private val client: OkHttpClient, interceptor: MyAnimeListI
         val response = client.newCall(POST(url = loginUrl(), body = loginPostBody(username, password, csrf))).execute()
 
         response.use {
-            if (response.priorResponse()?.code() != 302) throw Exception("Authentication error")
+            if (response.priorResponse?.code != 302) throw Exception("Authentication error")
         }
     }
 
@@ -172,15 +176,15 @@ class MyanimelistApi(private val client: OkHttpClient, interceptor: MyAnimeListI
 
     private fun Response.consumeBody(): String? {
         use {
-            if (it.code() != 200) throw Exception("HTTP error ${it.code()}")
-            return it.body()?.string()
+            if (it.code != 200) throw Exception("HTTP error ${it.code}")
+            return it.body?.string()
         }
     }
 
     private fun Response.consumeXmlBody(): String? {
         use { res ->
-            if (res.code() != 200) throw Exception("Export list error")
-            BufferedReader(InputStreamReader(GZIPInputStream(res.body()?.source()?.inputStream()))).use { reader ->
+            if (res.code != 200) throw Exception("Export list error")
+            BufferedReader(InputStreamReader(GZIPInputStream(res.body?.source()?.inputStream()))).use { reader ->
                 val sb = StringBuilder()
                 reader.forEachLine { line ->
                     sb.append(line)
@@ -262,7 +266,7 @@ class MyanimelistApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                     .put("score", track.score)
                     .put("num_read_chapters", track.last_chapter_read)
 
-            return RequestBody.create(MediaType.parse("application/json; charset=utf-8"), body.toString())
+            return RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), body.toString())
         }
 
         private fun Element.searchTitle() = select("strong").text()!!
