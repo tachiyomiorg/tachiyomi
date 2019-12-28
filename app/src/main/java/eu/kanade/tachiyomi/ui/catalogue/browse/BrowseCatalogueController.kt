@@ -28,13 +28,9 @@ import eu.kanade.tachiyomi.util.*
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import kotlinx.android.synthetic.main.catalogue_controller.*
 import kotlinx.android.synthetic.main.main_activity.*
-import rx.Observable
 import rx.Subscription
-import rx.android.schedulers.AndroidSchedulers
-import rx.subscriptions.Subscriptions
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
-import java.util.concurrent.TimeUnit
 
 /**
  * Controller to manage the catalogues available in the app.
