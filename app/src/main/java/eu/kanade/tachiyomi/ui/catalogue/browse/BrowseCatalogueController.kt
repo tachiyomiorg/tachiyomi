@@ -175,6 +175,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
             RecyclerView(view.context).apply {
                 id = R.id.recycler
                 layoutManager = LinearLayoutManager(context)
+                layoutParams = RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
                 addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             }
         } else {
@@ -195,6 +196,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
                 }
             }
         }
+        recycler.setHasFixedSize(true)
         recycler.adapter = adapter
 
         catalogue_view.addView(recycler, 1)
