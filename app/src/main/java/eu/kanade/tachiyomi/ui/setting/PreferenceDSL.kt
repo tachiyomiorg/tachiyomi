@@ -58,11 +58,17 @@ fun initDialog(dialogPreference: DialogPreference) {
 }
 
 inline fun <P : Preference> PreferenceGroup.initThenAdd(p: P, block: P.() -> Unit): P {
-    return p.apply { block(); addPreference(this); }
+    return p.apply {
+        block()
+        this.isIconSpaceReserved  = false
+        addPreference(this) }
 }
 
 inline fun <P : Preference> PreferenceGroup.addThenInit(p: P, block: P.() -> Unit): P {
-    return p.apply { addPreference(this); block() }
+    return p.apply {
+        this.isIconSpaceReserved  = false
+        addPreference(this)
+        block() }
 }
 
 inline fun Preference.onClick(crossinline block: () -> Unit) {
