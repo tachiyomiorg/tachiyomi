@@ -28,9 +28,12 @@ import eu.kanade.tachiyomi.util.*
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import kotlinx.android.synthetic.main.catalogue_controller.*
 import kotlinx.android.synthetic.main.main_activity.*
+import rx.Observable
 import rx.Subscription
+import rx.android.schedulers.AndroidSchedulers
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
+import java.util.concurrent.TimeUnit
 
 /**
  * Controller to manage the catalogues available in the app.
@@ -216,14 +219,20 @@ open class BrowseCatalogueController(bundle: Bundle) :
                 searchView.clearFocus()
             }
 
-            searchViewSubscription?.unsubscribe()
-            searchViewSubscription = searchView.queryTextChangeEvents()
+            val searchEventsObservable = searchView.queryTextChangeEvents()
                     .skip(1)
+                    .filter { router.backstack.lastOrNull()?.controller() == this@BrowseCatalogueController }
+                    .share()
+            val writingObservable = searchEventsObservable
+                    .filter { !it.isSubmitted }
+                    .debounce(1250, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+            val submitObservable = searchEventsObservable
                     .filter { it.isSubmitted }
+
+            searchViewSubscription?.unsubscribe()
+            searchViewSubscription = Observable.merge(writingObservable, submitObservable)
                     .map { it.queryText().toString() }
-                    .subscribeUntilDestroy {
-                        searchWithQuery(it)
-                    }
+                    .subscribeUntilDestroy { searchWithQuery(it) }
 
             fixExpand(onCollapse = {
                 searchWithQuery("")
@@ -297,7 +306,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
 
         showProgressBar()
         adapter?.clear()
-        
+
         presenter.restartPager(newQuery)
     }
 
