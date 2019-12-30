@@ -440,6 +440,10 @@
     <string name="filter_mode_default">ডিফল্ট</string>
     <string name="filter_mode_overlay">ওভারলে</string>
     <string name="filter_mode_screen">স্ক্রীন</string>
-    <string name="filter_mode_lighten">ডজ/হালকা</string>
+    <string name="filter_mode_lighten">এড়িয়ে / হালকা</string>
     <string name="filter_mode_darken">বার্ন/অন্ধকার</string>
+    <string name="filter_mode_multiply">গুণ</string>
+    <string name="label_help">সাহায্য</string>
+    <string name="pref_library_update_prioritization">মাঙ্গা লাইব্রেরী আপডেটের প্রক্রিয়া</string>
+    <string name="pref_library_update_prioritization_summary">যে ক্রমে তাচিয়োমি হালনাগাদ করবে তা নির্বাচন করুন</string>
 </resources>

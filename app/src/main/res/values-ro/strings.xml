@@ -15,7 +15,7 @@
     <string name="label_latest_updates">Actualizări recente</string>
     <string name="label_categories">Categorii</string>
     <string name="label_selected">Selectate: %1$d</string>
-    <string name="label_backup">Backup</string>
+    <string name="label_backup">Copie de rezervă</string>
     <string name="label_migration">Migrare între surse</string>
     <string name="label_extensions">Extensii</string>
     <string name="label_extension_info">Info extensie</string>
@@ -27,7 +27,7 @@
     <string name="action_filter_read">Citite</string>
     <string name="action_filter_empty">Șterge filtre</string>
     <string name="action_sort_alpha">Alfabetic</string>
-    <string name="action_sort_total">Total capitole</string>
+    <string name="action_sort_total">Capitole totale</string>
     <string name="action_sort_last_read">Citite recent</string>
     <string name="action_sort_last_updated">Actualizate recent</string>
     <string name="action_search">Caută</string>
@@ -122,7 +122,7 @@
     <string name="pref_start_screen">Ecran principal</string>
     <string name="pref_language">Limbă</string>
     <string name="system_default">Prestabilită de sistem</string>
-    <string name="default_category">Categoria principală</string>
+    <string name="default_category">Categorie implicită</string>
     <string name="default_category_summary">Întreabă mereu</string>
     <string name="all_lang">Toate</string>
     <string name="ext_details">Detalii</string>
@@ -172,7 +172,7 @@
     <string name="left_to_right_viewer">De la stânga la dreapta</string>
     <string name="right_to_left_viewer">De la dreapta la stânga</string>
     <string name="vertical_viewer">Vertical</string>
-    <string name="webtoon_viewer">Bandă desenată</string>
+    <string name="webtoon_viewer">Benzi desenate web</string>
     <string name="pager_viewer">Setări pagini</string>
     <string name="pref_image_decoder">Decodor de imagine</string>
     <string name="pref_image_scale_type">Tip de mărime</string>
@@ -181,7 +181,7 @@
     <string name="scale_type_fit_width">Potrivire lățime</string>
     <string name="scale_type_fit_height">Potrivire înălțime</string>
     <string name="scale_type_original_size">Marime originală</string>
-    <string name="scale_type_smart_fit">Potrivire smart</string>
+    <string name="scale_type_smart_fit">Potrivire inteligentă</string>
     <string name="pref_zoom_start">Poziție inițială de mărire</string>
     <string name="zoom_start_automatic">Automat</string>
     <string name="zoom_start_left">Stânga</string>
@@ -229,7 +229,7 @@
 \n%1$s sursa nu a fost găsită</string>
     <string name="backup_created">Copie de rezervă creată</string>
     <string name="restore_completed">Restaurare completă</string>
-    <string name="error_opening_log">Nu s-a putut deschide log</string>
+    <string name="error_opening_log">Nu s-a putut deschide jurnalul</string>
     <string name="restore_completed_content">Restaurarea a durat %1$s.
 \n%2$s erori găsite.</string>
     <string name="backup_restore_content">Restaurare folosește sursa pentru a aduce datele, cost suplimentar aplicabil. De asemenea verificați dacă sunteți autentificați în sursele ce au nevoie înainte de a incepe restaurarea.</string>
@@ -244,7 +244,7 @@
     <string name="pref_clear_cookies">Curățare cookies</string>
     <string name="cookies_cleared">Cookies curățate</string>
     <string name="choices_reset">Resetare optiuni de dialog</string>
-    <string name="pref_clear_database">Curățare bază de date</string>
+    <string name="pref_clear_database">Curățați baza de date</string>
     <string name="pref_clear_database_summary">Șterge manga și capitolele care nu sunt în bibliotecă</string>
     <string name="clear_database_confirmation">Ești sigur\? Capitolele citite si progresul mangaurilor ce nu sunt în bibliotecă vor fi pierdute</string>
     <string name="clear_database_completed">Înregistrări șterse</string>
@@ -256,7 +256,7 @@
     <string name="build_time">Data versiunii</string>
     <string name="pref_enable_automatic_updates">Verifică pentru actualizări</string>
     <string name="pref_enable_automatic_updates_summary">"Verifică automat pentru actualizări "</string>
-    <string name="pref_enable_acra">Trimite rapoarte pt eșuări</string>
+    <string name="pref_enable_acra">Trimite rapoarte pt. eșuări</string>
     <string name="pref_acra_summary">Ajută la rezolvarea bug-urilor. Informații sensibile nu vor fi trimise</string>
     <string name="login_title">Autentificare pentru %1$s</string>
     <string name="username">Nume de utilizator</string>
@@ -264,10 +264,10 @@
     <string name="show_password">Arată parola</string>
     <string name="login">Autentificare</string>
     <string name="login_success">Autentificare reușită</string>
-    <string name="invalid_login">Eroare autentificare</string>
+    <string name="invalid_login">Eroare de conectare</string>
     <string name="unknown_error">Eroare necunoscută</string>
     <string name="library_search_hint">Titlul sau autorul…</string>
-    <string name="updating_category">Actualizand categoria</string>
+    <string name="updating_category">Actualizând categoria</string>
     <string name="local_source_badge">Local</string>
     <string name="confirm_delete_manga">Ești sigur ca vrei să elimini manga selectat\?</string>
     <string name="also_delete_chapters">Șterge și capitolele descărcate</string>
@@ -301,13 +301,13 @@
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Sursă</string>
     <string name="manga_info_genres_label">Genuri</string>
-    <string name="circular_icon">Icoană circulară</string>
-    <string name="rounded_icon">Icoană rotunjita</string>
-    <string name="square_icon">Icoană pătrată</string>
-    <string name="star_icon">Icoană stea</string>
+    <string name="circular_icon">Pictogramă circulară</string>
+    <string name="rounded_icon">Pictogramă rotunjită</string>
+    <string name="square_icon">Pictogramă pătrată</string>
+    <string name="star_icon">Pictograma stelei</string>
     <string name="shortcut_title">Scurtătură titlu</string>
     <string name="shortcut_created">Scurtătura a fost adăugată ecranului principal.</string>
-    <string name="icon_shape">Forma icoanei</string>
+    <string name="icon_shape">Forma pictogramei</string>
     <string name="icon_creation_fail">Creere scurtătură eșuată!</string>
     <string name="delete_downloads_for_manga">Ștergeți capitolele descărcate\?</string>
     <string name="copied_to_clipboard">%1$s copiat in clipboard</string>
@@ -320,7 +320,7 @@
     <string name="chapter_downloading">Se descarcă</string>
     <string name="chapter_downloading_progress">Se descarcă (%1$d/%2$d)</string>
     <string name="chapter_error">Eroare</string>
-    <string name="chapter_paused">Inrerupt</string>
+    <string name="chapter_paused">Întrerupt</string>
     <string name="fetch_chapters_error">Eroare în aducerea capitolelor</string>
     <string name="show_title">Arată titlul</string>
     <string name="show_chapter_number">Arată numărul capitolului</string>
@@ -343,7 +343,7 @@
     <string name="dropped">Abandonat</string>
     <string name="on_hold">Pe pauză</string>
     <string name="plan_to_read">Planificat pentru citit</string>
-    <string name="repeating">Recitire</string>
+    <string name="repeating">Recitind</string>
     <string name="score">Scor</string>
     <string name="title">Titlu</string>
     <string name="status">Status</string>
@@ -364,7 +364,7 @@
     <string name="set_as_cover">Stabilește o copertă</string>
     <string name="cover_updated">Copertă actualizată</string>
     <string name="page_downloaded">Pagină copiată în %1$s</string>
-    <string name="downloading">Descărcare…</string>
+    <string name="downloading">Descărcând…</string>
     <string name="download_progress">Descărcat %1$d%%</string>
     <string name="chapter_progress">Pagina: %1$d</string>
     <string name="chapter_subtitle">Capitolul %1$s</string>
@@ -401,11 +401,11 @@
     <string name="notification_no_connection_body">Conexiune indisponibilă</string>
     <string name="file_select_cover">Selectează imagine copertă</string>
     <string name="file_select_backup">Selectează fișier de copie de rezervă</string>
-    <string name="file_select_icon">Selectează icoană scurtătură</string>
-    <string name="update_check_title">Actualizare nouă valabilă!</string>
+    <string name="file_select_icon">Selectează pictogramă scurtătură</string>
+    <string name="update_check_title">Nouă actualizare disponibilă!</string>
     <string name="update_check_confirm">Descarcă</string>
     <string name="update_check_ignore">Ignoră</string>
-    <string name="update_check_no_new_updates">Nici o actualizare nouă valabilă</string>
+    <string name="update_check_no_new_updates">Nu sunt disponibile actualizări noi</string>
     <string name="update_check_download_started">Descărcare pornită</string>
     <string name="update_check_look_for_updates">În căutare de actualizări</string>
     <string name="update_check_notification_file_download">Descarcă actualizare</string>
@@ -415,8 +415,8 @@
     <string name="update_check_notification_update_available">Actualizare valabilă</string>
     <string name="description_backdrop">Imagine în findal la manga</string>
     <string name="description_cover">Coperta la manga</string>
-    <string name="information_no_downloads">Nici o descărcare</string>
-    <string name="information_no_recent">Nici un capitol recent</string>
+    <string name="information_no_downloads">Fără descărcări</string>
+    <string name="information_no_recent">Nu există capitole recente</string>
     <string name="information_no_recent_manga">Nici un manga citi recent</string>
     <string name="information_empty_library">Biblioteca dumneavoastră este goală, puteți adaugă serii la bibliotecă de la Categorii.</string>
     <string name="information_empty_category">Nu aveți categorii. Apăsați butonul plus pentru a crea una pentru a vă organiza biblioteca.</string>
@@ -444,4 +444,6 @@
     <string name="pref_read_with_long_tap">Dialog prin apasare lunga</string>
     <string name="reader_pull_up_for_more_options">Trage în sus pentru mai multe opțiuni</string>
     <string name="label_help">Ajutor</string>
+    <string name="pref_library_update_prioritization">Ordinea actualizării bibliotecii</string>
+    <string name="pref_library_update_prioritization_summary">Selectați ordinea în care Tachiyomi verifică actualizarea</string>
 </resources>
