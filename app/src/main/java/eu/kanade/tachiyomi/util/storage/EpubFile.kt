@@ -107,8 +107,17 @@ class EpubFile(file: File) : Closeable {
             val entry = zip.getEntry(entryPath)
             val document = zip.getInputStream(entry).use { Jsoup.parse(it, null, "") }
             val imageBasePath = getParentDirectory(entryPath, pathSeparator)
-            document.getElementsByTag("img").mapNotNull {
-                resolveZipPath(imageBasePath, it.attr("src"), pathSeparator)
+
+            val imgs = document.getElementsByTag("img")
+            if(imgs.isNotEmpty()) {
+                imgs.mapNotNull {
+                    resolveZipPath(imageBasePath, it.attr("src"), pathSeparator)
+                }
+            } else {
+                val images = document.getElementsByTag("image")
+                images.mapNotNull {
+                    resolveZipPath(imageBasePath, it.attr("xlink:href"), pathSeparator)
+                }
             }
         }.flatten()
     }
