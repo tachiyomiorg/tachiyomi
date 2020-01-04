@@ -40,7 +40,6 @@
     <color name="appBarDark">@color/md_grey_900</color>
     <color name="backgroundDark">@color/colorDarkPrimaryDark</color>
     <color name="dialogDark">@color/colorDarkPrimary</color>
-    <color name="dialog_amoled">@color/colorDarkPrimaryDark</color>
 
     <color name="selectorColorDark">@color/md_blue_A200_50</color>
     <color name="iconColorDark">@color/md_white_1000_54</color>

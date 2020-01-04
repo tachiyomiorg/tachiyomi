@@ -113,10 +113,14 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
 
+        <!-- Themes -->
+        <item name="md_background_color">@color/colorAmoledPrimary</item>
+        <item name="alertDialogTheme">@style/Theme.AlertDialog.Amoled</item>
+
         <!-- Custom Attributes-->
         <item name="selectable_list_drawable">@drawable/list_item_selector_amoled</item>
         <item name="selectable_library_drawable">@drawable/library_item_selector_amoled</item>
-        <item name="background_card">@color/dialog_amoled</item>
+        <item name="background_card">@color/colorAmoledPrimary</item>
     </style>
 
     <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled">
