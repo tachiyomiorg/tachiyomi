@@ -59,7 +59,22 @@ class LibraryItem(val manga: LibraryManga, private val libraryAsList: Preference
      */
     override fun filter(constraint: String): Boolean {
         return manga.title.contains(constraint, true) ||
-                (manga.author?.contains(constraint, true) ?: false)
+            (manga.author?.contains(constraint, true) ?: false) ||
+            if (constraint.contains(",")) {
+                val genres = manga.genre?.split(", ")
+                constraint.split(",").all { containsGenre(it.trim(), genres) }
+            }
+            else containsGenre(constraint, manga.genre?.split(", "))
+    }
+
+    private fun containsGenre(tag: String, genres: List<String>?): Boolean {
+        return if (tag.startsWith("-"))
+            genres?.find {
+                it.trim().toLowerCase() == tag.substringAfter("-").toLowerCase()
+            } == null
+        else
+            genres?.find {
+                it.trim().toLowerCase() == tag.toLowerCase() } != null
     }
 
     override fun equals(other: Any?): Boolean {
