@@ -5,12 +5,12 @@ import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import com.google.android.material.snackbar.Snackbar
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.view.*
+import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import com.jakewharton.rxbinding.view.clicks
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -406,6 +406,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
 
     fun onChaptersDeleted(chapters: List<ChapterItem>) {
         dismissDeletingDialog()
+        //this is needed so the downloaded text gets removed from the item
         chapters.forEach {
             adapter?.updateItem(it)
         }
