@@ -21,7 +21,7 @@ import rx.schedulers.Schedulers
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.util.Date
+import java.util.*
 
 /**
  * Presenter of [ChaptersController].
@@ -278,7 +278,7 @@ class ChaptersPresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeFirst({ view, _ ->
-                    view.onChaptersDeleted()
+                    view.onChaptersDeleted(chapters)
                 }, ChaptersController::onChaptersDeletedError)
     }
 
