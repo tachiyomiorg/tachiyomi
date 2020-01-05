@@ -41,11 +41,7 @@ class HttpPageLoader(
     private val preloadSize = 4
 
     init {
-        subscriptions += Observable.defer { Observable.just(queue.take()) }
-                .map {
-                    it.taken = true
-                    it.page
-                }
+        subscriptions += Observable.defer { Observable.just(queue.take().page) }
                 .filter { it.status == Page.QUEUE }
                 .concatMap { source.fetchImageFromCacheThenNet(it) }
                 .repeat()
@@ -126,7 +122,7 @@ class HttpPageLoader(
             statusSubject.startWith(page.status)
                     .doOnUnsubscribe {
                         queuedPages.forEach {
-                            if (!it.taken) {
+                            if (it.page.status == Page.QUEUE) {
                                 queue.remove(it)
                             }
                         }
@@ -171,9 +167,6 @@ class HttpPageLoader(
             val page: ReaderPage,
             val priority: Int
     ): Comparable<PriorityPage> {
-
-        @Volatile
-        var taken = false
 
         companion object {
             private val idGenerator = AtomicInteger()
