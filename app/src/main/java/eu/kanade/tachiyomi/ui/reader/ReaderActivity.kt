@@ -62,7 +62,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     /**
      * The maximum bitmap size supported by the device.
      */
-    val maxBitmapSize by lazy { GLUtil.getMaxTextureSize() }
+    val maxBitmapSize by lazy { GLUtil.maxTextureSize }
 
     /**
      * Viewer used to display the pages (pager, webtoon, ...).
