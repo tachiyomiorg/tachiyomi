@@ -135,10 +135,13 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
             val newScreen = screen.preferenceManager.createPreferenceScreen(context)
             source.setupPreferenceScreen(newScreen)
 
-            for (i in 0 until newScreen.preferenceCount) {
-                val pref = newScreen.getPreference(i)
+            // Reparent the preferences
+            while (newScreen.preferenceCount != 0) {
+                val pref = newScreen.getPreference(0)
                 pref.preferenceDataStore = dataStore
                 pref.order = Int.MAX_VALUE // reset to default order
+
+                newScreen.removePreference(pref)
                 screen.addPreference(pref)
             }
         }
