@@ -84,9 +84,12 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     return authClient.newCall(request)
       .asObservableSuccess()
       .map { netResponse ->
-        val responseBody = netResponse.body?.string().orEmpty()
+        var responseBody = netResponse.body?.string().orEmpty()
         if (responseBody.isEmpty()) {
           throw Exception("Null Response")
+        }
+        if(responseBody.contains("code\":404,\"error\":\"Not Found\"")){
+          responseBody = "{\"results\":0,\"list\":[]}"
         }
         val response = parser.parse(responseBody).obj["list"]?.array
         response?.filter { it.obj["type"].asInt == 1 }?.map { jsonToSearch(it.obj) }
