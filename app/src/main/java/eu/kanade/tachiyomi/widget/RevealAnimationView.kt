@@ -2,14 +2,11 @@ package eu.kanade.tachiyomi.widget
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.annotation.TargetApi
 import android.content.Context
-import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewAnimationUtils
 
-@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
         View(context, attrs) {
 

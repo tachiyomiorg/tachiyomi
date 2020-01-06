@@ -56,6 +56,15 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
         firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
     }
 
+    override fun onScrollStateChanged(state: Int) {
+        super.onScrollStateChanged(state)
+        val layoutManager = layoutManager
+        val visibleItemCount = layoutManager?.childCount ?: 0
+        val totalItemCount = layoutManager?.itemCount ?: 0
+        atLastPosition = visibleItemCount > 0 && lastVisibleItemPosition == totalItemCount - 1
+        atFirstPosition = firstVisibleItemPosition == 0
+    }
+
     private fun getPositionX(positionX: Float): Float {
         val maxPositionX = halfWidth * (currentScale - 1)
         return positionX.coerceIn(-maxPositionX, maxPositionX)
