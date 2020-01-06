@@ -20,7 +20,7 @@
     <string name="label_extensions">Extensions</string>
     <string name="label_extension_info">Informació de l\'extensió</string>
     <string name="action_settings">Configuració</string>
-    <string name="action_filter">Filtre</string>
+    <string name="action_filter">Filtra</string>
     <string name="action_filter_downloaded">Descarregats</string>
     <string name="action_filter_bookmarked">Marcats</string>
     <string name="action_filter_unread">No llegits</string>
@@ -434,7 +434,7 @@
     <string name="channel_downloader">Descarregador</string>
     <string name="pref_read_with_long_tap">Finestra de toc llarg</string>
     <string name="reader_pull_up_for_more_options">Estireu cap amunt per a altres opcions</string>
-    <string name="action_open_in_web_view">Visualitza en web</string>
+    <string name="action_open_in_web_view">Obre en una visualització web</string>
     <string name="pref_true_color">Color de 32 bits</string>
     <string name="pref_skip_read_chapters">Omet els capítols marcats com a llegits</string>
     <string name="pref_color_filter_mode">Mode de mescla del filtre de color</string>
@@ -446,5 +446,9 @@
     <string name="filter_mode_darken">Crema / Enfosqueix</string>
     <string name="label_help">Ajuda</string>
     <string name="pref_library_update_prioritization">Ordre d\'actualització de la biblioteca</string>
-    <string name="pref_library_update_prioritization_summary">Selecciona l\'ordre amb el qual Tachiyomi busca actualitzacions</string>
+    <string name="pref_library_update_prioritization_summary">Seleccioneu l\'ordre amb què el Tachiyomi comprova si hi ha actualitzacions</string>
+    <string name="action_forward">Endavant</string>
+    <string name="action_refresh">Actualitza</string>
+    <string name="no_results_found">No s\'ha trobat cap resultat</string>
+    <string name="migration_selection_prompt">Seleccioneu un origen del qual vulgueu migrar</string>
 </resources>

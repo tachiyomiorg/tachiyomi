@@ -103,7 +103,7 @@
     <string name="left_to_right_viewer">Izquierda a derecha</string>
     <string name="right_to_left_viewer">Derecha a izquierda</string>
     <string name="vertical_viewer">Vertical</string>
-    <string name="webtoon_viewer">Webtoons</string>
+    <string name="webtoon_viewer">Webtoon</string>
     <string name="pref_image_decoder">Decodificador de imagen</string>
     <string name="pref_image_scale_type">Tipo de escalado</string>
     <string name="scale_type_fit_screen">Ajustar a la pantalla</string>
@@ -476,4 +476,8 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="label_help">Ayuda</string>
     <string name="pref_library_update_prioritization">Orden de actualización de la biblioteca</string>
     <string name="pref_library_update_prioritization_summary">Selecciona el orden en el que Tachiyomi buscará actualizaciones</string>
+    <string name="action_forward">Adelantar</string>
+    <string name="action_refresh">Refrescar</string>
+    <string name="no_results_found">No se han encontrado resultados</string>
+    <string name="migration_selection_prompt">Selecciona una fuente para migrar</string>
 </resources>

@@ -15,7 +15,7 @@
     <string name="label_latest_updates">Perubahan terkini</string>
     <string name="label_categories">Kategori</string>
     <string name="label_selected">%1$d dipilih</string>
-    <string name="label_backup">Salinan</string>
+    <string name="label_backup">Sandaran</string>
     <string name="action_settings">Tetapan</string>
     <string name="action_filter">Tapis</string>
     <string name="action_filter_downloaded">Telah dimuat turun</string>
@@ -399,7 +399,7 @@
     <string name="ext_empty_preferences">Tiada apa untuk disunting di sambungan ini</string>
     <string name="pref_double_tap_anim_speed">Kelajuan animasi ketik dua kali</string>
     <string name="pref_true_color">32-bit warna</string>
-    <string name="pref_skip_read_chapters">Langkau bab-bab yang bertanda dibaca</string>
+    <string name="pref_skip_read_chapters">Langkau bab yang sudah dibaca</string>
     <string name="pref_read_with_long_tap">Menahan ketik buka dialog</string>
     <string name="pager_viewer">Halaman muka surat</string>
     <string name="double_tap_anim_speed_0">Tiada animasi</string>
@@ -447,4 +447,8 @@
     <string name="filter_mode_screen">Skrin</string>
     <string name="filter_mode_lighten">Dodge / Lighten</string>
     <string name="filter_mode_darken">Burn / Darken</string>
+    <string name="action_forward">Ke Depan</string>
+    <string name="action_refresh">Segar Semula</string>
+    <string name="no_results_found">Tiada hasil dijumpai</string>
+    <string name="migration_selection_prompt">Pilih sumber untuk ditukar</string>
 </resources>
