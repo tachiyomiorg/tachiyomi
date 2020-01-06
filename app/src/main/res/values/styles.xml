@@ -50,7 +50,7 @@
     </style>
 
     <style name="TextAppearance.Regular">
-        <item name="android:fontFamily">@string/font_roboto_regular</item>
+        <item name="android:fontFamily">sans-serif-regular</item>
     </style>
 
     <style name="TextAppearance.Regular.Body1">
@@ -102,7 +102,7 @@
     </style>
 
     <style name="TextAppearance.Medium">
-        <item name="android:fontFamily">@string/font_roboto_medium</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="TextAppearance.Medium.Title">

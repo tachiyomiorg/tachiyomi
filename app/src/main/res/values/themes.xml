@@ -39,8 +39,13 @@
         <item name="icon_color">@color/iconColorLight</item>
     </style>
 
+    <!--===========-->
+    <!-- Main Theme-->
+    <!--===========-->
     <style name="Theme.Tachiyomi" parent="Theme.Base">
-        <!-- Attributes specific for SDK 16 to SDK 20 -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
     </style>
 
     <!--=============-->
@@ -60,6 +65,10 @@
         <item name="android:listSelector">?colorAccent</item>
         <item name="android:divider">@color/dividerDark</item>
         <item name="android:listDivider">@drawable/line_divider_dark</item>
+
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorDarkPrimaryDark</item>
 
         <!-- Themes -->
         <item name="windowActionModeOverlay">true</item>
@@ -86,6 +95,10 @@
     <style name="Theme.Tachiyomi.DarkBlue" parent="Theme.Base.Dark">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorDarkPrimaryDark</item>
     </style>
 
     <!--==============-->
@@ -95,6 +108,10 @@
         <item name="colorPrimary">@color/colorAmoledPrimary</item>
         <item name="colorPrimaryDark">@color/colorAmoledPrimary</item>
         <item name="android:colorBackground">@color/md_black_1000</item>
+
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
 
         <!-- Custom Attributes-->
         <item name="selectable_list_drawable">@drawable/list_item_selector_amoled</item>
@@ -113,12 +130,18 @@
         <item name="colorPrimary">@color/colorDarkPrimary</item>
         <item name="colorPrimaryDark">@color/colorDarkPrimaryDark</item>
         <item name="android:colorBackground">@android:color/black</item>
+
+        <item name="android:statusBarColor">?colorPrimaryDark</item>
+        <item name="android:navigationBarColor">?colorPrimaryDark</item>
     </style>
 
     <style name="Theme.Base.Reader.Light" parent="Theme.Base">
         <item name="colorPrimary">@color/colorDarkPrimary</item>
         <item name="colorPrimaryDark">@color/colorDarkPrimaryDark</item>
         <item name="android:colorBackground">@android:color/white</item>
+
+        <item name="android:statusBarColor">?colorPrimaryDark</item>
+        <item name="android:navigationBarColor">?colorPrimaryDark</item>
     </style>
 
     <style name="Theme.Reader" parent="Theme.Base.Reader.Dark">
