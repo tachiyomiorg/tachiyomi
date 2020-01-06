@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.ui.base.holder
 
-import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -51,10 +50,6 @@ interface SlicedHolder {
         slice.showRightTopRect(topRect)
         slice.showLeftBottomRect(bottomRect)
         slice.showRightBottomRect(bottomRect)
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            slice.showTopEdgeShadow(topShadow)
-            slice.showBottomEdgeShadow(bottomShadow)
-        }
         setMargins(margin, if (topShadow) margin else 0, margin, if (bottomShadow) margin else 0)
     }
 

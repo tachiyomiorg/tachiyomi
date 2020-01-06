@@ -28,11 +28,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
      * Application class.
      */
     private val initWebView by lazy {
-        if (Build.VERSION.SDK_INT >= 17) {
-            WebSettings.getDefaultUserAgent(context)
-        } else {
-            null
-        }
+        WebSettings.getDefaultUserAgent(context)
     }
 
     @Synchronized

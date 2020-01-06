@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import androidx.core.content.ContextCompat
@@ -107,11 +106,7 @@ class SettingsDownloadController : SettingsController() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
-            DOWNLOAD_DIR_PRE_L -> if (data != null && resultCode == Activity.RESULT_OK) {
-                val uri = Uri.fromFile(File(data.data.path))
-                preferences.downloadsDirectory().set(uri.toString())
-            }
-            DOWNLOAD_DIR_L -> if (data != null && resultCode == Activity.RESULT_OK) {
+            DOWNLOAD_DIR -> if (data != null && resultCode == Activity.RESULT_OK) {
                 val context = applicationContext ?: return
                 val uri = data.data
                 val flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or
@@ -132,19 +127,11 @@ class SettingsDownloadController : SettingsController() {
     }
 
     fun customDirectorySelected(currentDir: String) {
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            startActivityForResult(preferences.context.getFilePicker(currentDir), DOWNLOAD_DIR_PRE_L)
-        } else {
-            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-            try {
-                startActivityForResult(intent, DOWNLOAD_DIR_L)
-            } catch (e: ActivityNotFoundException) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    startActivityForResult(preferences.context.getFilePicker(currentDir), DOWNLOAD_DIR_L)
-                }
-            }
-
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+        try {
+            startActivityForResult(intent, DOWNLOAD_DIR)
+        } catch (e: ActivityNotFoundException) {
+            startActivityForResult(preferences.context.getFilePicker(currentDir), DOWNLOAD_DIR)
         }
     }
 
@@ -183,7 +170,6 @@ class SettingsDownloadController : SettingsController() {
     }
 
     private companion object {
-        const val DOWNLOAD_DIR_PRE_L = 103
-        const val DOWNLOAD_DIR_L = 104
+        const val DOWNLOAD_DIR = 104
     }
 }
