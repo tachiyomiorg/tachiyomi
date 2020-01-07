@@ -6,12 +6,13 @@
              android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recycler"
         android:choiceMode="multipleChoice"
-        tools:listitem="@layout/categories_item"
-        />
+        android:paddingBottom="@dimen/fab_list_padding"
+        android:clipToPadding="false"
+        tools:listitem="@layout/categories_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

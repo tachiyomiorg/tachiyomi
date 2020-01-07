@@ -28,6 +28,8 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:paddingBottom="@dimen/fab_list_padding"
+            android:clipToPadding="false"
             android:descendantFocusability="blocksDescendants"
             tools:listitem="@layout/chapters_item">
 
