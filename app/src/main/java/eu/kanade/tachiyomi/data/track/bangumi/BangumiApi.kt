@@ -88,7 +88,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
         if (responseBody.isEmpty()) {
           throw Exception("Null Response")
         }
-        if(responseBody.contains("code\":404,\"error\":\"Not Found\"")){
+        if(responseBody.contains("\"code\":404")){
           responseBody = "{\"results\":0,\"list\":[]}"
         }
         val response = parser.parse(responseBody).obj["list"]?.array
