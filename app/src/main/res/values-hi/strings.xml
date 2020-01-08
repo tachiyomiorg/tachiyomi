@@ -145,7 +145,7 @@
     <string name="left_to_right_viewer">बाएं से दाएं</string>
     <string name="right_to_left_viewer">दाएं से बाएं</string>
     <string name="vertical_viewer">शीर्ष से असंतत</string>
-    <string name="webtoon_viewer">शीर्ष से निरंतर</string>
+    <string name="webtoon_viewer">वेबटून</string>
     <string name="pref_image_decoder">छवि कूटवाचक</string>
     <string name="pref_image_scale_type">मापन प्ररूप</string>
     <string name="scale_type_fit_screen">उपयुक्त स्क्रीन</string>
@@ -367,7 +367,7 @@
     <string name="download_notifier_page_ready_error">एक पृष्ठ लोड नहीं हुआ है</string>
     <string name="download_notifier_text_only_wifi">कोई वाई-फ़ाई कनेक्शन उपलब्ध नहीं है</string>
     <string name="download_notifier_no_network">कोई नेटवर्क कनेक्शन उपलब्ध नहीं है</string>
-    <string name="download_notifier_download_paused">डाउनलोड रोक दिया गया</string>
+    <string name="download_notifier_download_paused">डाउनलोड रोक दिया है</string>
     <string name="channel_common">सामान्य</string>
     <string name="channel_library">पुस्तकालय</string>
     <string name="channel_downloader">डाउनलोडर</string>
@@ -445,4 +445,8 @@
     <string name="label_help">मदद</string>
     <string name="pref_library_update_prioritization">लाइब्रेरी अद्यतन क्रम</string>
     <string name="pref_library_update_prioritization_summary">उस क्रम का चयन करें जिसमें टचियोमी अद्यतन की जांच करे</string>
+    <string name="action_forward">आगे</string>
+    <string name="action_refresh">पुनश्चर्या</string>
+    <string name="no_results_found">कोई परिणाम नहीं मिला</string>
+    <string name="migration_selection_prompt">से माइग्रेट करने के लिए एक स्रोत का चयन करें</string>
 </resources>
