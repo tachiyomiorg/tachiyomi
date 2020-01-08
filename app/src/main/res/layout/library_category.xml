@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <eu.kanade.tachiyomi.ui.library.LibraryCategoryView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"/>
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <eu.davidea.fastscroller.FastScroller
+        android:id="@+id/fast_scroller"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="end"
+        app:fastScrollerBubbleEnabled="false"
+        tools:visibility="visible"/>
 
 </eu.kanade.tachiyomi.ui.library.LibraryCategoryView>

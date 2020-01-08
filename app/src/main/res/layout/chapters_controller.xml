@@ -36,8 +36,6 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <eu.davidea.fastscroller.FastScroller
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/fast_scroller"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
