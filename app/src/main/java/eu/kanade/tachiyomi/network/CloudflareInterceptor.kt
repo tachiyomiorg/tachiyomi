@@ -54,7 +54,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
     }
 
     private fun isChallengeSolutionUrl(url: String): Boolean {
-        return "chk_jschl" in url
+        return true //"chk_jschl" in url
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -136,7 +136,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
             webView?.destroy()
         }
 
-        val solution = solutionUrl ?: throw Exception("Challenge not found")
+        val solution = solutionUrl ?: origRequestUrl//throw Exception("Challenge not found")
 
         return Request.Builder().get()
             .url(solution)
