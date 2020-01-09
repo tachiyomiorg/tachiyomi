@@ -394,6 +394,7 @@
     <string name="download_all">All</string>
     <string name="download_unread">Unread</string>
     <string name="confirm_delete_chapters">Are you sure you want to delete selected chapters?</string>
+    <string name="invalid_download_dir">Invalid download directory</string>
 
     <!-- Tracking Screen -->
     <string name="manga_tracking_tab">Tracking</string>
