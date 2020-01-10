@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.reader.loader
 
 import android.app.Application
+import android.net.Uri
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.source.Source
@@ -33,7 +34,7 @@ class DownloadPageLoader(
             .map { pages ->
                 pages.map { page ->
                     ReaderPage(page.index, page.url, page.imageUrl) {
-                        context.contentResolver.openInputStream(page.uri)
+                        context.contentResolver.openInputStream(page.uri ?: Uri.EMPTY)!!
                     }.apply {
                         status = Page.READY
                     }

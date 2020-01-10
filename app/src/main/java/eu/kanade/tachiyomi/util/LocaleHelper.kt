@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
-import android.os.LocaleList
 import android.view.ContextThemeWrapper
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -43,7 +42,7 @@ object LocaleHelper {
      *
      * @param pref the string value stored in preferences.
      */
-    fun getLocaleFromString(pref: String): Locale? {
+    fun getLocaleFromString(pref: String?): Locale? {
         if (pref.isNullOrEmpty()) {
             return null
         }
@@ -138,7 +137,7 @@ object LocaleHelper {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             newConfig.locale = locale
         } else {
-            newConfig.locales = LocaleList(locale)
+            newConfig.setLocale(locale)
         }
         return newConfig
     }
