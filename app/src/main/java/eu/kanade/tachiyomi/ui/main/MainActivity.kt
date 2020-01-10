@@ -164,9 +164,8 @@ class MainActivity : BaseActivity() {
                     setSelectedDrawerItem(R.id.nav_drawer_downloads)
                 }
             }
-            Intent.ACTION_SEARCH, "com.google.android.gms.actions.SEARCH_ACTION" -> {
+            Intent.ACTION_SEARCH -> {
                 //If the intent match the "standard" Android search intent
-                // or the Google-specific search intent (triggered by saying or typing "search *query* on *Tachiyomi*" in Google Search/Google Assistant)
 
                 //Get the search query provided in extras, and if not null, perform a global search with it.
                 val query = intent.getStringExtra(SearchManager.QUERY)
