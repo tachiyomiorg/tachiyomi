@@ -44,7 +44,7 @@
     <!--===========-->
     <style name="Theme.Tachiyomi" parent="Theme.Base">
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
     </style>
 
@@ -67,7 +67,7 @@
         <item name="android:listDivider">@drawable/line_divider_dark</item>
 
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/colorDarkPrimaryDark</item>
         <item name="android:navigationBarColor">@color/colorDarkPrimaryDark</item>
 
         <!-- Themes -->
@@ -97,7 +97,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="android:navigationBarColor">@color/colorDarkPrimaryDark</item>
     </style>
 

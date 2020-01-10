@@ -95,8 +95,9 @@
     <string name="action_restore">Restore</string>
     <string name="action_open">Open</string>
     <string name="action_login">Log in</string>
-    <string name="action_forward">Forward</string>
-    <string name="action_refresh">Refresh</string>
+    <string name="action_webview_back">Back</string>
+    <string name="action_webview_forward">Forward</string>
+    <string name="action_webview_refresh">Refresh</string>
 
     <!-- Operations -->
     <string name="deleting">Deleting…</string>

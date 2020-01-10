@@ -49,6 +49,9 @@
         <activity
             android:name=".ui.reader.ReaderActivity" />
         <activity
+            android:name=".ui.webview.WebViewActivity"
+            android:configChanges="uiMode|orientation|screenSize" />
+        <activity
             android:name=".widget.CustomLayoutPickerActivity"
             android:label="@string/app_name"
             android:theme="@style/FilePickerTheme" />
