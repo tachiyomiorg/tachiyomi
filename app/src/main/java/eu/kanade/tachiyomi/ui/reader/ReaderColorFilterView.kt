@@ -13,7 +13,7 @@ class ReaderColorFilterView(
     private val colorFilterPaint: Paint = Paint()
 
     fun setFilterColor(color: Int, filterMode: Int) {
-        colorFilterPaint.setColor(color)
+        colorFilterPaint.color = color
         colorFilterPaint.xfermode = PorterDuffXfermode(when (filterMode) {
             1 -> PorterDuff.Mode.MULTIPLY
             2 -> PorterDuff.Mode.SCREEN

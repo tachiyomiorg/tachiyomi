@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.ui.base.controller
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View

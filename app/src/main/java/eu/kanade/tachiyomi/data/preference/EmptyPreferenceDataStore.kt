@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.data.preference
 
-import android.support.v7.preference.PreferenceDataStore
+import androidx.preference.PreferenceDataStore
 
 class EmptyPreferenceDataStore : PreferenceDataStore() {
 

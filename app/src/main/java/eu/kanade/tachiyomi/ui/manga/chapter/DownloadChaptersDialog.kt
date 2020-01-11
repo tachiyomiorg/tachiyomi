@@ -27,6 +27,7 @@ class DownloadChaptersDialog<T>(bundle: Bundle? = null) : DialogController(bundl
         ).map { activity.getString(it) }
 
         return MaterialDialog.Builder(activity)
+                .title(R.string.manga_download)
                 .negativeText(android.R.string.cancel)
                 .items(choices)
                 .itemsCallback { _, _, position, _ ->

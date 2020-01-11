@@ -19,7 +19,7 @@ class TrackSearchAdapter(context: Context)
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         var v = view
         // Get the data item for this position
-        val track = getItem(position)
+        val track = getItem(position)!!
         // Check if an existing view is being reused, otherwise inflate the view
         val holder: TrackSearchHolder // view lookup cache stored in tag
         if (v == null) {

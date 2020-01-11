@@ -50,7 +50,7 @@ class TrackSearchDialog : DialogController {
         service = Injekt.get<TrackManager>().getService(bundle.getInt(KEY_SERVICE))!!
     }
 
-    override fun onCreateDialog(savedState: Bundle?): Dialog {
+    override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         val dialog = MaterialDialog.Builder(activity!!)
                 .customView(R.layout.track_search_dialog, false)
                 .positiveText(android.R.string.ok)
@@ -63,7 +63,7 @@ class TrackSearchDialog : DialogController {
         }
 
         dialogView = dialog.view
-        onViewCreated(dialog.view, savedState)
+        onViewCreated(dialog.view, savedViewState)
 
         return dialog
     }

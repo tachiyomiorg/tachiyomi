@@ -5,6 +5,7 @@ import android.os.Parcelable
 import android.util.AttributeSet
 import android.widget.SeekBar
 import eu.kanade.tachiyomi.R
+import kotlin.math.abs
 
 
 class NegativeSeekBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
@@ -28,21 +29,21 @@ class NegativeSeekBar @JvmOverloads constructor(context: Context, attrs: Attribu
 
         super.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, value: Int, fromUser: Boolean) {
-                listener?.let { it.onProgressChanged(seekBar, minValue + value, fromUser) }
+                listener?.onProgressChanged(seekBar, minValue + value, fromUser)
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
-                listener?.let { it.onStartTrackingTouch(p0) }
+                listener?.onStartTrackingTouch(p0)
             }
 
             override fun onStopTrackingTouch(p0: SeekBar?) {
-                listener?.let { it.onStopTrackingTouch(p0) }
+                listener?.onStopTrackingTouch(p0)
             }
         })
     }
 
     override fun setProgress(progress: Int) {
-        super.setProgress(Math.abs(minValue) + progress)
+        super.setProgress(abs(minValue) + progress)
     }
 
     fun setMinSeek(minValue: Int) {

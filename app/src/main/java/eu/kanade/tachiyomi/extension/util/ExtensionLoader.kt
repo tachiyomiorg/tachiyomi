@@ -13,8 +13,8 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceFactory
 import eu.kanade.tachiyomi.util.Hash
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.runBlocking
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -121,7 +121,7 @@ internal object ExtensionLoader {
 
         val classLoader = PathClassLoader(appInfo.sourceDir, null, context.classLoader)
 
-        val sources = appInfo.metaData.getString(METADATA_SOURCE_CLASS)
+        val sources = appInfo.metaData.getString(METADATA_SOURCE_CLASS)!!
                 .split(";")
                 .map {
                     val sourceClass = it.trim()
@@ -173,7 +173,7 @@ internal object ExtensionLoader {
      */
     private fun getSignatureHash(pkgInfo: PackageInfo): String? {
         val signatures = pkgInfo.signatures
-        return if (signatures != null && !signatures.isEmpty()) {
+        return if (signatures != null && signatures.isNotEmpty()) {
             Hash.sha256(signatures.first().toByteArray())
         } else {
             null

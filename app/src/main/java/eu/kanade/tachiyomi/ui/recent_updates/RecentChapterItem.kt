@@ -1,8 +1,10 @@
 package eu.kanade.tachiyomi.ui.recent_updates
 
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractSectionableItem
+import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -26,11 +28,11 @@ class RecentChapterItem(val chapter: Chapter, val manga: Manga, header: DateItem
         return R.layout.recent_chapters_item
     }
 
-    override fun createViewHolder(view: View, adapter: FlexibleAdapter<*>): RecentChapterHolder {
+    override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): RecentChapterHolder {
         return RecentChapterHolder(view , adapter as RecentChaptersAdapter)
     }
 
-    override fun bindViewHolder(adapter: FlexibleAdapter<*>,
+    override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
                                 holder: RecentChapterHolder,
                                 position: Int,
                                 payloads: List<Any?>?) {

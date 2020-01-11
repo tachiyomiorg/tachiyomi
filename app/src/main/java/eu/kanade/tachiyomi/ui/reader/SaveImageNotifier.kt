@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.ui.reader
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.support.v4.app.NotificationCompat
+import androidx.core.app.NotificationCompat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.glide.GlideApp
@@ -57,8 +57,9 @@ class SaveImageNotifier(private val context: Context) {
             setStyle(NotificationCompat.BigPictureStyle().bigPicture(image))
             setLargeIcon(image)
             setAutoCancel(true)
+
             // Clear old actions if they exist
-            if (!mActions.isEmpty())
+            if (mActions.isNotEmpty())
                 mActions.clear()
 
             setContentIntent(NotificationHandler.openImagePendingActivity(context, file))
@@ -70,8 +71,8 @@ class SaveImageNotifier(private val context: Context) {
             addAction(R.drawable.ic_delete_grey_24dp,
                     context.getString(R.string.action_delete),
                     NotificationReceiver.deleteImagePendingBroadcast(context, file.absolutePath, notificationId))
-            updateNotification()
 
+            updateNotification()
         }
     }
 
@@ -86,7 +87,6 @@ class SaveImageNotifier(private val context: Context) {
         // Displays the progress bar on notification
         context.notificationManager.notify(notificationId, notificationBuilder.build())
     }
-
 
     /**
      * Called on error while downloading image.

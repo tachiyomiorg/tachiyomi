@@ -84,9 +84,12 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     return authClient.newCall(request)
       .asObservableSuccess()
       .map { netResponse ->
-        val responseBody = netResponse.body()?.string().orEmpty()
+        var responseBody = netResponse.body?.string().orEmpty()
         if (responseBody.isEmpty()) {
           throw Exception("Null Response")
+        }
+        if(responseBody.contains("\"code\":404")){
+          responseBody = "{\"results\":0,\"list\":[]}"
         }
         val response = parser.parse(responseBody).obj["list"]?.array
         response?.filter { it.obj["type"].asInt == 1 }?.map { jsonToSearch(it.obj) }
@@ -127,7 +130,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
       .asObservableSuccess()
       .map { netResponse ->
         // get comic info
-        val responseBody = netResponse.body()?.string().orEmpty()
+        val responseBody = netResponse.body?.string().orEmpty()
         jsonToTrack(parser.parse(responseBody).obj)
       }
   }
@@ -144,7 +147,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
     return authClient.newCall(requestUserRead)
       .asObservableSuccess()
       .map { netResponse ->
-        val resp = netResponse.body()?.string()
+        val resp = netResponse.body?.string()
         val coll = gson.fromJson(resp, Collection::class.java)
         track.status = coll.status?.id!!
         track.last_chapter_read = coll.ep_status!!
@@ -154,7 +157,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
 
   fun accessToken(code: String): Observable<OAuth> {
     return client.newCall(accessTokenRequest(code)).asObservableSuccess().map { netResponse ->
-      val responseBody = netResponse.body()?.string().orEmpty()
+      val responseBody = netResponse.body?.string().orEmpty()
       if (responseBody.isEmpty()) {
         throw Exception("Null Response")
       }

@@ -6,9 +6,8 @@
               android:gravity="center_vertical"
               android:minHeight="@dimen/chglib_material_minHeight"
               android:orientation="horizontal"
-              android:paddingLeft="@dimen/chglib_material_keyline1"
-              android:paddingRight="@dimen/chglib_material_keyline1">
-
+              android:paddingStart="@dimen/chglib_material_keyline1"
+              android:paddingEnd="@dimen/chglib_material_keyline1">
 
     <!-- ChangeLog Header [Version] You have to use the id="chg_headerVersion" -->
     <TextView
@@ -21,6 +20,6 @@
         android:paddingTop="@dimen/chglib_material_keyline1"
         android:textAppearance="@style/TextAppearance.Medium.Body2"
         android:textAllCaps="false"
-        android:textColor="?attr/colorAccent"
-        />
+        android:textColor="?attr/colorAccent" />
+
 </LinearLayout>

@@ -2,8 +2,8 @@ package eu.kanade.tachiyomi.ui.manga
 
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.graphics.drawable.VectorDrawableCompat
+import com.google.android.material.tabs.TabLayout
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -179,7 +179,6 @@ class MangaController : RxController, TabbedController {
     }
 
     companion object {
-
         const val FROM_CATALOGUE_EXTRA = "from_catalogue"
         const val MANGA_EXTRA = "manga"
 
@@ -187,9 +186,8 @@ class MangaController : RxController, TabbedController {
         const val CHAPTERS_CONTROLLER = 1
         const val TRACK_CONTROLLER = 2
 
-        private val tabField = TabLayout.Tab::class.java.getDeclaredField("mView")
+        private val tabField = TabLayout.Tab::class.java.getDeclaredField("view")
                 .apply { isAccessible = true }
     }
-
 
 }

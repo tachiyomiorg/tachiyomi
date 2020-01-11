@@ -8,6 +8,8 @@
     <color name="colorDarkPrimaryDark">#1C1C1D</color>
     <color name="colorAmoledPrimary">@color/md_black_1000</color>
 
+    <color name="splashBackgroundColor">@color/colorPrimary</color>
+
     <!-- Light Theme -->
     <color name="colorAccentLight">@color/md_blue_A400</color>
     <color name="textColorPrimaryLight">@color/md_black_1000_87</color>

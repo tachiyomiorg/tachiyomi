@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.ui.setting
 
-import android.support.graphics.drawable.VectorDrawableCompat
-import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v7.preference.*
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.preference.*
 import eu.kanade.tachiyomi.widget.preference.IntListPreference
 
 @DslMarker
@@ -58,11 +58,19 @@ fun initDialog(dialogPreference: DialogPreference) {
 }
 
 inline fun <P : Preference> PreferenceGroup.initThenAdd(p: P, block: P.() -> Unit): P {
-    return p.apply { block(); addPreference(this); }
+    return p.apply {
+        block()
+        this.isIconSpaceReserved  = false
+        addPreference(this)
+    }
 }
 
 inline fun <P : Preference> PreferenceGroup.addThenInit(p: P, block: P.() -> Unit): P {
-    return p.apply { addPreference(this); block() }
+    return p.apply {
+        this.isIconSpaceReserved  = false
+        addPreference(this)
+        block()
+    }
 }
 
 inline fun Preference.onClick(crossinline block: () -> Unit) {

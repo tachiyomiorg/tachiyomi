@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,27 +11,24 @@
         android:id="@+id/manga_cover"
         android:layout_width="56dp"
         android:layout_height="0dp"
-        android:paddingLeft="16dp"
         android:paddingStart="16dp"
-        android:paddingRight="0dp"
         android:paddingEnd="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/branded_logo_icon" />
+        tools:src="@drawable/tachiyomi_circle" />
 
     <TextView
         android:id="@+id/manga_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Regular.Body1"
         app:layout_constraintBottom_toTopOf="@+id/chapter_title"
-        app:layout_constraintLeft_toRightOf="@+id/manga_cover"
-        app:layout_constraintRight_toLeftOf="@+id/chapter_menu"
+        app:layout_constraintStart_toEndOf="@+id/manga_cover"
+        app:layout_constraintEnd_toStartOf="@+id/chapter_menu"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="Manga title" />
@@ -40,16 +37,14 @@
         android:id="@+id/chapter_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginRight="8dp"
         android:layout_marginEnd="8dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Regular.Caption"
-        app:layout_constraintLeft_toRightOf="@+id/manga_cover"
+        app:layout_constraintStart_toEndOf="@+id/manga_cover"
         app:layout_constraintTop_toBottomOf="@+id/manga_title"
-        app:layout_constraintRight_toLeftOf="@+id/download_text"
+        app:layout_constraintEnd_toStartOf="@+id/download_text"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="Chapter title" />
 
@@ -57,12 +52,11 @@
         android:id="@+id/download_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="3dp"
         android:textAllCaps="true"
         android:textSize="12sp"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="Downloaded" />
 
@@ -72,7 +66,7 @@
         android:layout_height="0dp"
         android:paddingBottom="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -80,9 +74,8 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="center|end"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp" />
+            android:layout_marginEnd="16dp" />
 
     </FrameLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

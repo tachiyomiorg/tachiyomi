@@ -13,7 +13,7 @@ abstract class NucleusController<P : Presenter<*>>(val bundle: Bundle? = null) :
     private val delegate = NucleusConductorDelegate(this)
 
     val presenter: P
-        get() = delegate.presenter
+        get() = delegate.presenter!!
 
     init {
         addLifecycleListener(NucleusConductorLifecycleListener(delegate))

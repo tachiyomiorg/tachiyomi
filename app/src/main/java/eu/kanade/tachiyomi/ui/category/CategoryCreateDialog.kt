@@ -33,9 +33,9 @@ class CategoryCreateDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
                 .title(R.string.action_add_category)
                 .negativeText(android.R.string.cancel)
                 .alwaysCallInputCallback()
-                .input(resources?.getString(R.string.name), currentName, false, { _, input ->
+                .input(resources?.getString(R.string.name), currentName, false) { _, input ->
                     currentName = input.toString()
-                })
+                }
                 .onPositive { _, _ -> (targetController as? Listener)?.createCategory(currentName) }
                 .build()
     }

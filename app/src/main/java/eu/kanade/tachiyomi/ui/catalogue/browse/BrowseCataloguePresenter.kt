@@ -316,9 +316,9 @@ open class BrowseCataloguePresenter(
     }
 
     /**
-     * Get the default, and user categories.
+     * Get user categories.
      *
-     * @return List of categories, default plus user categories
+     * @return List of categories, not including the default category
      */
     fun getCategories(): List<Category> {
         return db.getCategories().executeAsBlocking()
@@ -363,7 +363,7 @@ open class BrowseCataloguePresenter(
      * @param selectedCategories selected categories
      */
     fun updateMangaCategories(manga: Manga, selectedCategories: List<Category>) {
-        if (!selectedCategories.isEmpty()) {
+        if (selectedCategories.isNotEmpty()) {
             if (!manga.favorite)
                 changeMangaFavorite(manga)
 

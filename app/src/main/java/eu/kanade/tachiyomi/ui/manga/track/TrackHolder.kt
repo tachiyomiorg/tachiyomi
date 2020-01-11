@@ -25,7 +25,7 @@ class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
         logo_container.setBackgroundColor(item.service.getLogoColor())
         if (track != null) {
             track_title.setTextAppearance(itemView.context, R.style.TextAppearance_Regular_Body1_Secondary)
-            track_title.setAllCaps(false)
+            track_title.isAllCaps = false
             track_title.text = track.title
             track_chapters.text = "${track.last_chapter_read}/" +
                     if (track.total_chapters > 0) track.total_chapters else "-"

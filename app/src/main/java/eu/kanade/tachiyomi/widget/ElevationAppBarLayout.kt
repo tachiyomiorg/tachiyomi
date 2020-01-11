@@ -4,8 +4,8 @@ import android.animation.ObjectAnimator
 import android.animation.StateListAnimator
 import android.content.Context
 import android.os.Build
-import android.support.design.R
-import android.support.design.widget.AppBarLayout
+import com.google.android.material.R
+import com.google.android.material.appbar.AppBarLayout
 import android.util.AttributeSet
 
 class ElevationAppBarLayout @JvmOverloads constructor(
@@ -16,32 +16,26 @@ class ElevationAppBarLayout @JvmOverloads constructor(
     private var origStateAnimator: StateListAnimator? = null
 
     init {
-        if (Build.VERSION.SDK_INT >= 21) {
-            origStateAnimator = stateListAnimator
-        }
+        origStateAnimator = stateListAnimator
     }
 
     fun enableElevation() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            stateListAnimator = origStateAnimator
-        }
+        stateListAnimator = origStateAnimator
     }
 
     fun disableElevation() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            stateListAnimator = StateListAnimator().apply {
-                val objAnimator = ObjectAnimator.ofFloat(this, "elevation", 0f)
+        stateListAnimator = StateListAnimator().apply {
+            val objAnimator = ObjectAnimator.ofFloat(this, "elevation", 0f)
 
-                // Enabled and collapsible, but not collapsed means not elevated
-                addState(intArrayOf(android.R.attr.enabled, R.attr.state_collapsible, -R.attr.state_collapsed),
-                        objAnimator)
+            // Enabled and collapsible, but not collapsed means not elevated
+            addState(intArrayOf(android.R.attr.enabled, R.attr.state_collapsible, -R.attr.state_collapsed),
+                    objAnimator)
 
-                // Default enabled state
-                addState(intArrayOf(android.R.attr.enabled), objAnimator)
+            // Default enabled state
+            addState(intArrayOf(android.R.attr.enabled), objAnimator)
 
-                // Disabled state
-                addState(IntArray(0), objAnimator)
-            }
+            // Disabled state
+            addState(IntArray(0), objAnimator)
         }
     }
 

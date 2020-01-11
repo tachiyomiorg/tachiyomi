@@ -14,7 +14,7 @@ import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.source.online.fetchAllImageUrlsFromPageList
 import eu.kanade.tachiyomi.util.*
-import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.async
 import okhttp3.Response
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -102,7 +102,7 @@ class Downloader(
         pending.forEach { if (it.status != Download.QUEUE) it.status = Download.QUEUE }
 
         downloadsRelay.call(pending)
-        return !pending.isEmpty()
+        return pending.isNotEmpty()
     }
 
     /**
@@ -199,7 +199,7 @@ class Downloader(
      */
     fun queueChapters(manga: Manga, chapters: List<Chapter>, autoStart: Boolean) = launchUI {
         val source = sourceManager.get(manga.source) as? HttpSource ?: return@launchUI
-
+        val wasEmpty = queue.isEmpty()
         // Called in background thread, the operation can be slow with SAF.
         val chaptersWithoutDir = async {
             val mangaDir = provider.findMangaDir(manga, source)
@@ -232,7 +232,7 @@ class Downloader(
             }
 
             // Start downloader if needed
-            if (autoStart) {
+            if (autoStart && wasEmpty) {
                 DownloadService.start(this@Downloader.context)
             }
         }
@@ -351,7 +351,7 @@ class Downloader(
                 .map { response ->
                     val file = tmpDir.createFile("$filename.tmp")
                     try {
-                        response.body()!!.source().saveTo(file.openOutputStream())
+                        response.body!!.source().saveTo(file.openOutputStream())
                         val extension = getImageExtension(response, file)
                         file.renameTo("$filename.$extension")
                     } catch (e: Exception) {
@@ -374,7 +374,7 @@ class Downloader(
      */
     private fun getImageExtension(response: Response, file: UniFile): String {
         // Read content type if available.
-        val mime = response.body()?.contentType()?.let { ct -> "${ct.type()}/${ct.subtype()}" }
+        val mime = response.body?.contentType()?.let { ct -> "${ct.type}/${ct.subtype}" }
             // Else guess from the uri.
             ?: context.contentResolver.getType(file.uri)
             // Else read magic numbers.
@@ -407,6 +407,8 @@ class Downloader(
         if (download.status == Download.DOWNLOADED) {
             tmpDir.renameTo(dirname)
             cache.addChapter(dirname, mangaDir, download.manga)
+
+            DiskUtil.createNoMediaFile(tmpDir, context)
         }
     }
 

@@ -24,10 +24,10 @@ class ExtensionTrustDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
                 .positiveText(R.string.ext_trust)
                 .negativeText(R.string.ext_uninstall)
                 .onPositive { _, _ ->
-                    (targetController as? Listener)?.trustSignature(args.getString(SIGNATURE_KEY))
+                    (targetController as? Listener)?.trustSignature(args.getString(SIGNATURE_KEY)!!)
                 }
                 .onNegative { _, _ ->
-                    (targetController as? Listener)?.uninstallExtension(args.getString(PKGNAME_KEY))
+                    (targetController as? Listener)?.uninstallExtension(args.getString(PKGNAME_KEY)!!)
                 }
                 .build()
     }

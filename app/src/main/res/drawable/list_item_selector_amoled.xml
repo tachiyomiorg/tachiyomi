@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:exitFadeDuration="@android:integer/config_longAnimTime">
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/rippleColorDark">
+    <item>
+        <selector>
+            <item android:state_selected="true">
+                <color android:color="@color/rippleColorDark" />
+            </item>
 
-    <item android:drawable="@color/rippleColorDark" android:state_focused="true"/>
-    <item android:drawable="@color/rippleColorDark" android:state_pressed="true"/>
-    <item android:drawable="@color/rippleColorDark" android:state_activated="true"/>
-    <item android:drawable="@color/md_black_1000"/>
+            <item android:state_activated="true">
+                <color android:color="@color/rippleColorDark" />
+            </item>
 
-</selector>
+            <item>
+                <color android:color="@color/md_black_1000" />
+            </item>
+        </selector>
+    </item>
+</ripple>

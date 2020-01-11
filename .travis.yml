@@ -2,8 +2,8 @@ dist: trusty
 language: android
 android:
   components:
-  - build-tools-28.0.3
-  - android-27
+  - build-tools-29.0.2
+  - android-29
   - extra-android-m2repository
   - extra-google-m2repository
   - extra-android-support
@@ -11,7 +11,7 @@ android:
   licenses:
   - android-sdk-license-.+
 before_install:
-- yes | sdkmanager "platforms;android-27" # workaround for accepting the license
+- yes | sdkmanager "platforms;android-29" # workaround for accepting the license
 - if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
     openssl aes-256-cbc -K $encrypted_e56be693d4fd_key -iv $encrypted_e56be693d4fd_iv -in "$PWD/.travis/secrets.tar.enc" -out secrets.tar -d;
     tar xf secrets.tar;

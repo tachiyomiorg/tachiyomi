@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/material_layout_keylines_screen_edge_margin"
-    android:paddingRight="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingStart="@dimen/material_layout_keylines_screen_edge_margin"
+    android:paddingEnd="@dimen/material_layout_keylines_screen_edge_margin"
     android:paddingTop="@dimen/material_component_lists_padding_above_list">
 
     <TextView
         android:id="@+id/download_progress_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Regular.Caption.Hint"
         tools:text="(0/10)"/>
@@ -21,8 +21,8 @@
         android:id="@+id/manga_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/download_progress_text"
-        android:layout_alignParentLeft="true"
+        android:layout_toStartOf="@id/download_progress_text"
+        android:layout_alignParentStart="true"
         android:maxLines="1"
         android:ellipsize="end"
         android:textAppearance="@style/TextAppearance.Regular.Body1"

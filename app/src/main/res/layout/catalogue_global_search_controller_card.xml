@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,11 +14,11 @@
         android:padding="@dimen/material_component_text_fields_padding_above_and_below_label"
         app:layout_constraintBottom_toTopOf="@+id/source_card"
         app:layout_constraintHeight_default="wrap"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Title" />
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/source_card"
         style="@style/Theme.Widget.CardView.Item"
         android:layout_width="0dp"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,5 +45,7 @@
             android:paddingStart="4dp"
             android:clipToPadding="false"
             tools:listitem="@layout/catalogue_global_search_controller_card_item" />
-    </android.support.v7.widget.CardView>
-</android.support.constraint.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

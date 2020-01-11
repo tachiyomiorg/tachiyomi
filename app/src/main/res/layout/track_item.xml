@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/track"
     style="@style/Theme.Widget.CardView.Item"
     android:padding="0dp">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -15,7 +15,7 @@
             android:layout_width="48dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:clickable="true"
             tools:background="#2E51A2">
@@ -36,8 +36,8 @@
             android:background="?attr/selectable_list_drawable"
             android:clickable="true"
             android:padding="16dp"
-            app:layout_constraintLeft_toRightOf="@+id/logo_container"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/logo_container"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -51,7 +51,6 @@
                 style="@style/TextAppearance.Medium.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
                 android:ellipsize="middle"
                 android:gravity="end"
@@ -65,12 +64,10 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
             android:layout_marginStart="16dp"
             android:background="?android:attr/divider"
-            app:layout_constraintLeft_toRightOf="@+id/logo_container"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/logo_container"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_container" />
 
         <LinearLayout
@@ -80,8 +77,8 @@
             android:background="?attr/selectable_list_drawable"
             android:clickable="true"
             android:padding="16dp"
-            app:layout_constraintLeft_toRightOf="@+id/logo_container"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/logo_container"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider1">
 
             <TextView
@@ -95,7 +92,6 @@
                 style="@style/TextAppearance.Regular.Body1.Secondary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
                 android:gravity="end"
                 tools:text="Reading" />
@@ -107,12 +103,10 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
             android:layout_marginStart="16dp"
             android:background="?android:attr/divider"
-            app:layout_constraintLeft_toRightOf="@+id/logo_container"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/logo_container"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/status_container" />
 
         <LinearLayout
@@ -122,8 +116,8 @@
             android:background="?attr/selectable_list_drawable"
             android:clickable="true"
             android:padding="16dp"
-            app:layout_constraintLeft_toRightOf="@+id/logo_container"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/logo_container"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider2">
 
             <TextView
@@ -137,7 +131,6 @@
                 style="@style/TextAppearance.Regular.Body1.Secondary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
                 android:gravity="end"
                 tools:text="12/24" />
@@ -149,12 +142,10 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
             android:layout_marginStart="16dp"
             android:background="?android:attr/divider"
-            app:layout_constraintLeft_toRightOf="@+id/logo_container"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/logo_container"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chapters_container" />
 
         <LinearLayout
@@ -164,8 +155,8 @@
             android:background="?attr/selectable_list_drawable"
             android:clickable="true"
             android:padding="16dp"
-            app:layout_constraintLeft_toRightOf="@+id/logo_container"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/logo_container"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider3">
 
             <TextView
@@ -179,13 +170,12 @@
                 style="@style/TextAppearance.Regular.Body1.Secondary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
                 android:gravity="end"
                 tools:text="10" />
 
         </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

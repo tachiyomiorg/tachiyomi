@@ -60,7 +60,7 @@ class CoverCache(private val context: Context) {
             return false
 
         // Remove file.
-        val file = getCoverFile(thumbnailUrl!!)
+        val file = getCoverFile(thumbnailUrl)
         return file.exists() && file.delete()
     }
 

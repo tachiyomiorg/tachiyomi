@@ -52,7 +52,7 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
         }
     }
 
-    override fun getLogo() = R.drawable.al
+    override fun getLogo() = R.drawable.anilist
 
     override fun getLogoColor() = Color.rgb(18, 25, 35)
 

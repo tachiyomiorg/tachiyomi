@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 import android.view.InputDevice
 import android.view.KeyEvent
 import android.view.MotionEvent

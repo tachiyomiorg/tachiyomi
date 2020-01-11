@@ -11,9 +11,7 @@
         android:id="@+id/set_as_cover_layout"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:paddingLeft="16dp"
         android:paddingStart="16dp"
-        android:paddingRight="16dp"
         android:paddingEnd="16dp"
         android:gravity="center"
         android:clickable="true"
@@ -29,7 +27,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
             android:text="@string/set_as_cover"/>
 
@@ -39,9 +36,7 @@
         android:id="@+id/share_layout"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:paddingLeft="16dp"
         android:paddingStart="16dp"
-        android:paddingRight="16dp"
         android:paddingEnd="16dp"
         android:gravity="center"
         android:clickable="true"
@@ -56,7 +51,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
             android:text="@string/action_share"/>
 
@@ -66,9 +60,7 @@
         android:id="@+id/save_layout"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:paddingLeft="16dp"
         android:paddingStart="16dp"
-        android:paddingRight="16dp"
         android:paddingEnd="16dp"
         android:gravity="center"
         android:clickable="true"
@@ -84,7 +76,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
             android:text="@string/action_save"/>
 

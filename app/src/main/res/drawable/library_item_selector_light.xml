@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector android:exitFadeDuration="@android:integer/config_longAnimTime"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/colorAccentLight">
+    <item>
+        <selector>
+            <item android:state_selected="true">
+                <color android:color="@color/selectorColorLight" />
+            </item>
 
-    <item android:state_focused="true" android:drawable="@color/selectorColorLight"/>
-    <item android:state_pressed="true" android:drawable="@color/selectorColorLight"/>
-    <item android:state_activated="true" android:drawable="@color/selectorColorLight"/>
-    <item android:drawable="@color/backgroundLight"/>
+            <item android:state_activated="true">
+                <color android:color="@color/selectorColorLight" />
+            </item>
 
-</selector>
+            <item>
+                <color android:color="@color/backgroundLight" />
+            </item>
+        </selector>
+    </item>
+</ripple>

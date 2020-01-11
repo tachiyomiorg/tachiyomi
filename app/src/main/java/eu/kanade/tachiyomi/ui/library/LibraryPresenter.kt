@@ -89,12 +89,15 @@ class LibraryPresenter(
     fun subscribeLibrary() {
         if (librarySubscription.isNullOrUnsubscribed()) {
             librarySubscription = getLibraryObservable()
-                    .combineLatest(downloadTriggerRelay.observeOn(Schedulers.io()),
-                            { lib, _ -> lib.apply { setDownloadCount(mangaMap) } })
-                    .combineLatest(filterTriggerRelay.observeOn(Schedulers.io()),
-                            { lib, _ -> lib.copy(mangaMap = applyFilters(lib.mangaMap)) })
-                    .combineLatest(sortTriggerRelay.observeOn(Schedulers.io()),
-                            { lib, _ -> lib.copy(mangaMap = applySort(lib.mangaMap)) })
+                    .combineLatest(downloadTriggerRelay.observeOn(Schedulers.io())) {
+                        lib, _ -> lib.apply { setDownloadCount(mangaMap) }
+                    }
+                    .combineLatest(filterTriggerRelay.observeOn(Schedulers.io())) {
+                        lib, _ -> lib.copy(mangaMap = applyFilters(lib.mangaMap))
+                    }
+                    .combineLatest(sortTriggerRelay.observeOn(Schedulers.io())) {
+                        lib, _ -> lib.copy(mangaMap = applySort(lib.mangaMap))
+                    }
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeLatestCache({ view, (categories, mangaMap) ->
                         view.onNextLibraryUpdate(categories, mangaMap)
@@ -222,16 +225,16 @@ class LibraryPresenter(
      * @return an observable of the categories and its manga.
      */
     private fun getLibraryObservable(): Observable<Library> {
-        return Observable.combineLatest(getCategoriesObservable(), getLibraryMangasObservable(),
-                { dbCategories, libraryManga ->
-                    val categories = if (libraryManga.containsKey(0))
-                        arrayListOf(Category.createDefault()) + dbCategories
-                    else
-                        dbCategories
+        return Observable.combineLatest(getCategoriesObservable(), getLibraryMangasObservable()) {
+            dbCategories, libraryManga ->
+                val categories = if (libraryManga.containsKey(0))
+                    arrayListOf(Category.createDefault()) + dbCategories
+                else
+                    dbCategories
 
-                    this.categories = categories
-                    Library(categories, libraryManga)
-                })
+                this.categories = categories
+                Library(categories, libraryManga)
+            }
     }
 
     /**

@@ -33,9 +33,9 @@ class DownloadPresenter : BasePresenter<DownloadController>() {
         downloadQueue.getUpdatedObservable()
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { ArrayList(it) }
-                .subscribeLatestCache(DownloadController::onNextDownloads, { _, error ->
+                .subscribeLatestCache(DownloadController::onNextDownloads) { _, error ->
                     Timber.e(error)
-                })
+                }
     }
 
     fun getDownloadStatusObservable(): Observable<Download> {

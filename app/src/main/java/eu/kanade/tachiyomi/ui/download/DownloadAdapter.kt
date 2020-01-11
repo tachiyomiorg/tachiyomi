@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.ui.download
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download

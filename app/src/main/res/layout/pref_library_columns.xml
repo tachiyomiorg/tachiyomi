@@ -5,8 +5,8 @@
               android:layout_height="match_parent"
               android:orientation="horizontal"
               android:paddingBottom="@dimen/dialog_content_padding"
-              android:paddingLeft="@dimen/dialog_content_padding"
-              android:paddingRight="@dimen/dialog_content_padding"
+              android:paddingStart="@dimen/dialog_content_padding"
+              android:paddingEnd="@dimen/dialog_content_padding"
               android:paddingTop="@dimen/dialog_margin_top_content">
 
     <LinearLayout

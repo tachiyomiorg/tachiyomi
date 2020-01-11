@@ -263,7 +263,7 @@ class DownloadCache(
         for (element in this) {
             val (key, value) = transform(element)
             if (key != null) {
-                destination.put(key, value)
+                destination[key] = value
             }
         }
         return destination

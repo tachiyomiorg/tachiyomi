@@ -209,7 +209,7 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
             item.group.items.forEach { (it as Item.Radio).checked = false }
             item.checked = true
 
-            preferences.libraryAsList().set(if (item == list) true else false)
+            preferences.libraryAsList().set(item == list)
 
             item.group.items.forEach { adapter.notifyItemChanged(it) }
         }

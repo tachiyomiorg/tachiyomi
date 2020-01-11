@@ -3,11 +3,10 @@ package eu.kanade.tachiyomi.ui.extension
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.preference.*
-import android.support.v7.preference.internal.AbstractMultiSelectListPreference
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.DividerItemDecoration.VERTICAL
-import android.support.v7.widget.LinearLayoutManager
+import androidx.preference.*
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.TypedValue
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
@@ -47,7 +46,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
     }
 
     override fun createPresenter(): ExtensionDetailsPresenter {
-        return ExtensionDetailsPresenter(args.getString(PKGNAME_KEY))
+        return ExtensionDetailsPresenter(args.getString(PKGNAME_KEY)!!)
     }
 
     override fun getTitle(): String? {
@@ -74,7 +73,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         val manager = PreferenceManager(themedContext)
         manager.preferenceDataStore = EmptyPreferenceDataStore()
         manager.onDisplayPreferenceDialogListener = this
-        val screen = manager.createPreferenceScreen(themedContext)
+        val screen = manager.createPreferenceScreen(context)
         preferenceScreen = screen
 
         val multiSource = extension.sources.size > 1
@@ -119,7 +118,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
     private fun addPreferencesForSource(screen: PreferenceScreen, source: Source, multiSource: Boolean) {
         val context = screen.context
 
-        // TODO 
+        // TODO
         val dataStore = SharedPreferencesDataStore(/*if (source is HttpSource) {
             source.preferences
         } else {*/
@@ -136,10 +135,13 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
             val newScreen = screen.preferenceManager.createPreferenceScreen(context)
             source.setupPreferenceScreen(newScreen)
 
-            for (i in 0 until newScreen.preferenceCount) {
-                val pref = newScreen.getPreference(i)
+            // Reparent the preferences
+            while (newScreen.preferenceCount != 0) {
+                val pref = newScreen.getPreference(0)
                 pref.preferenceDataStore = dataStore
                 pref.order = Int.MAX_VALUE // reset to default order
+
+                newScreen.removePreference(pref)
                 screen.addPreference(pref)
             }
         }
@@ -165,7 +167,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                     .newInstance(preference.getKey())
             is ListPreference -> ListPreferenceDialogController
                     .newInstance(preference.getKey())
-            is AbstractMultiSelectListPreference -> MultiSelectListPreferenceDialogController
+            is MultiSelectListPreference -> MultiSelectListPreferenceDialogController
                     .newInstance(preference.getKey())
             else -> throw IllegalArgumentException("Tried to display dialog for unknown " +
                     "preference type. Did you forget to override onDisplayPreferenceDialog()?")
@@ -174,8 +176,8 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         f.showDialog(router)
     }
 
-    override fun findPreference(key: CharSequence?): Preference {
-        return preferenceScreen!!.getPreference(lastOpenPreferencePosition!!)
+    override fun <T : Preference> findPreference(key: CharSequence): T? {
+        return preferenceScreen!!.findPreference(key)
     }
 
     override fun loginDialogClosed(source: LoginSource) {

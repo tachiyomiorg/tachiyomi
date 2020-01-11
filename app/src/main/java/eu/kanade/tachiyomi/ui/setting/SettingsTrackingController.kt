@@ -2,8 +2,8 @@ package eu.kanade.tachiyomi.ui.setting
 
 import android.app.Activity
 import android.content.Intent
-import android.support.customtabs.CustomTabsIntent
-import android.support.v7.preference.PreferenceScreen
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
@@ -45,7 +45,7 @@ class SettingsTrackingController : SettingsController(),
                             .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
                             .build()
                     tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-                    tabsIntent.launchUrl(activity, AnilistApi.authUrl())
+                    tabsIntent.launchUrl(activity!!, AnilistApi.authUrl())
                 }
             }
             trackPreference(trackManager.kitsu) {
@@ -61,7 +61,7 @@ class SettingsTrackingController : SettingsController(),
                             .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
                             .build()
                     tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-                    tabsIntent.launchUrl(activity, ShikimoriApi.authUrl())
+                    tabsIntent.launchUrl(activity!!, ShikimoriApi.authUrl())
                 }
             }
             trackPreference(trackManager.bangumi) {
@@ -70,7 +70,7 @@ class SettingsTrackingController : SettingsController(),
                             .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
                             .build()
                     tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-                    tabsIntent.launchUrl(activity, BangumiApi.authUrl())
+                    tabsIntent.launchUrl(activity!!, BangumiApi.authUrl())
                 }
             }
         }

@@ -10,15 +10,12 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.Regular.Body1"/>
 
-
     <CheckBox
         android:id="@+id/checkbox_option"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="-5dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginLeft="-5dp"
-        android:layout_marginRight="0dp"
         android:layout_marginTop="@dimen/material_component_dialogs_padding_between_text_and_touch_target"/>
 
 </LinearLayout>

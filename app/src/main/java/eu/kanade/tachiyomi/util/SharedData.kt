@@ -22,7 +22,7 @@ object SharedData {
      * @param data the object to put.
      */
     fun <T : Any> put(data: T) {
-        map.put(data.javaClass, data)
+        map[data.javaClass] = data
     }
 
     /**

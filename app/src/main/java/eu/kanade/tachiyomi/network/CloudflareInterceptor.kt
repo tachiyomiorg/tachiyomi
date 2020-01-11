@@ -28,11 +28,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
      * Application class.
      */
     private val initWebView by lazy {
-        if (Build.VERSION.SDK_INT >= 17) {
-            WebSettings.getDefaultUserAgent(context)
-        } else {
-            null
-        }
+        WebSettings.getDefaultUserAgent(context)
     }
 
     @Synchronized
@@ -42,7 +38,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
         val response = chain.proceed(chain.request())
 
         // Check if Cloudflare anti-bot is on
-        if (response.code() == 503 && response.header("Server") in serverCheck) {
+        if (response.code == 503 && response.header("Server") in serverCheck) {
             try {
                 response.close()
                 val solutionRequest = resolveWithWebView(chain.request())
@@ -71,8 +67,8 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
         var solutionUrl: String? = null
         var challengeFound = false
 
-        val origRequestUrl = request.url().toString()
-        val headers = request.headers().toMultimap().mapValues { it.value.getOrNull(0) ?: "" }
+        val origRequestUrl = request.url.toString()
+        val headers = request.headers.toMultimap().mapValues { it.value.getOrNull(0) ?: "" }
 
         handler.post {
             val view = WebView(context)
@@ -144,7 +140,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
 
         return Request.Builder().get()
             .url(solution)
-            .headers(request.headers())
+            .headers(request.headers)
             .addHeader("Referer", origRequestUrl)
             .addHeader("Accept", "text/html,application/xhtml+xml,application/xml")
             .addHeader("Accept-Language", "en")

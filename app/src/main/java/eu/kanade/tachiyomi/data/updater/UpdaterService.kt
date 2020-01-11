@@ -71,7 +71,7 @@ class UpdaterService : IntentService(UpdaterService::class.java.name) {
             val apkFile = File(externalCacheDir, "update.apk")
 
             if (response.isSuccessful) {
-                response.body()!!.source().saveTo(apkFile)
+                response.body!!.source().saveTo(apkFile)
             } else {
                 response.close()
                 throw Exception("Unsuccessful response")

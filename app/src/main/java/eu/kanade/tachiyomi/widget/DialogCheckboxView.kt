@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.widget
 
 import android.content.Context
-import android.support.annotation.StringRes
+import androidx.annotation.StringRes
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import eu.kanade.tachiyomi.R

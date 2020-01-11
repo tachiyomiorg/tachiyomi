@@ -205,7 +205,6 @@ open class CatalogueSearchPresenter(
                             .map { Pair(source as CatalogueSource, it) }
 
                 }
-
                 .onBackpressureBuffer()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ (source, manga) ->

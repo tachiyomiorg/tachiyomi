@@ -189,7 +189,7 @@ class BackupRestoreService : Service() {
 
         return Observable.just(Unit)
                 .map {
-                    val reader = JsonReader(contentResolver.openInputStream(uri).bufferedReader())
+                    val reader = JsonReader(contentResolver.openInputStream(uri)!!.bufferedReader())
                     val json = JsonParser().parse(reader).asJsonObject
 
                     // Get parser version
