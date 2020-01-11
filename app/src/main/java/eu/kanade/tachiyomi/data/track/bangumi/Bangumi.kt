@@ -41,7 +41,7 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
             track.library_id = remoteTrack.library_id
             track.status = remoteTrack.status
             track.last_chapter_read = remoteTrack.last_chapter_read
-            update(track)
+            refresh(track)
           } else {
             // Set default fields if it's not found in the list
             track.score = DEFAULT_SCORE.toFloat()
