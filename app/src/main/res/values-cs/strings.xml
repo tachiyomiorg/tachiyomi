@@ -433,4 +433,5 @@
     <string name="channel_common">Běžný</string>
     <string name="channel_downloader">Stahovač</string>
     <string name="reader_pull_up_for_more_options">Vytáhnout pro více možností</string>
+    <string name="label_help">Nápověda</string>
 </resources>
