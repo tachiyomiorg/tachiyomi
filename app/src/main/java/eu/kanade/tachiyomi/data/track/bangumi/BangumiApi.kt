@@ -59,12 +59,12 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
       .url("$apiUrl/collection/${track.media_id}/update")
       .post(sbody)
       .build()
-    return authClient.newCall(request)
+    return authClient.newCall(srequest)
       .asObservableSuccess()
       .map {
         track
       }.flatMap {
-        authClient.newCall(srequest)
+        authClient.newCall(request)
           .asObservableSuccess()
           .map {
             track
