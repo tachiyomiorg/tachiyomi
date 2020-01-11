@@ -451,4 +451,10 @@
     <string name="action_refresh">Gjenoppfrisk</string>
     <string name="no_results_found">Resultatløst</string>
     <string name="migration_selection_prompt">Velg en kilde å migrere fra</string>
+    <string name="action_webview_back">Tilbake</string>
+    <string name="action_webview_forward">Fram</string>
+    <string name="action_webview_refresh">Gjenoppfrisk</string>
+    <string name="pref_category_library">Bibliotek</string>
+    <string name="pref_ask_update_manga_sync">Bekreft før oppdatering</string>
+    <string name="invalid_download_dir">Ugyldig nedlastingsmappe</string>
 </resources>
