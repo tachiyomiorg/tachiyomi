@@ -451,4 +451,8 @@
     <string name="action_refresh">Segar Semula</string>
     <string name="no_results_found">Tiada hasil dijumpai</string>
     <string name="migration_selection_prompt">Pilih sumber untuk ditukar</string>
+    <string name="action_webview_back">Ke belakang</string>
+    <string name="action_webview_forward">Ke depan</string>
+    <string name="action_webview_refresh">Segar semula</string>
+    <string name="pref_category_library">Koleksi</string>
 </resources>
