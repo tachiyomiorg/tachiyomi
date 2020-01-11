@@ -93,11 +93,11 @@
     <string name="chapter_error">Błąd</string>
     <string name="chapter_paused">Wstrzymane</string>
     <string name="manga_download">Pobierz</string>
-    <string name="download_1">Pobierz następny rozdział</string>
-    <string name="download_5">Pobierz 5 następnych rozdziałów</string>
-    <string name="download_10">Pobierz 10 następnych rozdziałów</string>
-    <string name="download_all">Pobierz wszystko</string>
-    <string name="download_unread">Pobierz nieprzeczytane</string>
+    <string name="download_1">Następny rozdział</string>
+    <string name="download_5">5 następnych rozdziałów</string>
+    <string name="download_10">10 następnych rozdziałów</string>
+    <string name="download_all">Wszystko</string>
+    <string name="download_unread">Nieprzeczytane</string>
     <string name="confirm_delete_chapters">Czy na pewno chcesz usunąć wybrane rozdziały?</string>
     <string name="reading">Czytane</string>
     <string name="completed">Ukończone</string>
@@ -125,18 +125,18 @@
     <string name="notification_no_connection_title">Synchronizacja anulowana</string>
     <string name="notification_no_connection_body">Brak połączenia</string>
     <string name="file_select_cover">Wybierz okładkę</string>
-    <string name="update_check_title">Dostępna nowa aktualizacja!</string>
+    <string name="update_check_title">Dostępna nowa wersja!</string>
     <string name="update_check_confirm">Pobierz</string>
     <string name="update_check_ignore">Ignoruj</string>
     <string name="update_check_no_new_updates">Brak nowych aktualizacji</string>
     <string name="update_check_download_started">Rozpoczęto pobieranie</string>
-    <string name="update_check_look_for_updates">Szukanie aktualizacji</string>
+    <string name="update_check_look_for_updates">Szukanie aktualizacji…</string>
     <string name="update_check_notification_file_download">Pobierz aktualizację</string>
-    <string name="update_check_notification_download_in_progress">Trwa pobieranie</string>
+    <string name="update_check_notification_download_in_progress">Pobieranie…</string>
     <string name="update_check_notification_download_complete">Pobieranie ukończone</string>
     <string name="update_check_notification_download_error">Błąd pobierania</string>
     <string name="update_check_notification_update_available">Dostępna aktualizacja</string>
-    <string name="information_empty_library">Twoja biblioteka jest pusta, możesz dodać serie do biblioteki z Katalogów.</string>
+    <string name="information_empty_library">Twoja biblioteka jest pusta, dodaj serie do biblioteki z katalogów.</string>
     <string name="download_notifier_title_error">Błąd</string>
     <string name="download_notifier_unkown_error">Podczas pobierania rozdziału wystąpił nieoczekiwany błąd</string>
     <string name="download_notifier_download_paused">Pobieranie wstrzymane</string>
@@ -154,7 +154,7 @@
     <string name="password">Hasło</string>
     <string name="show_password">Pokaż hasło</string>
     <string name="login">Zaloguj się</string>
-    <string name="invalid_login">Błąd logowania</string>
+    <string name="invalid_login">Nie udało się zalogować</string>
     <string name="unknown_error">Nieznany błąd</string>
     <string name="library_search_hint">Tytuł lub autor…</string>
     <string name="source_requires_login">To źródło wymaga zalogowania</string>
@@ -166,7 +166,7 @@
     <string name="invalid_combination">Domyślna kategoria nie może być wybrana razem z innymi</string>
     <string name="manga_detail_tab">Informacje</string>
     <string name="description">Opis</string>
-    <string name="manga_not_in_db">Ta manga została usunięta z bazy danych!</string>
+    <string name="manga_not_in_db">Ta manga została usunięta z bazy danych.</string>
     <string name="no_more_results">Nie ma więcej wyników</string>
     <string name="added_to_library">Manga została dodana do twojej biblioteki</string>
     <string name="action_open_log">Otwórz log</string>
@@ -195,9 +195,9 @@
     <string name="pref_update_only_non_completed">Aktualizuj tylko nieukończone mangi</string>
     <string name="pref_auto_update_manga_sync">Aktualizuj postęp po przeczytaniu rozdziału</string>
     <string name="pref_theme">Motyw aplikacji</string>
-    <string name="light_theme">Główny motyw</string>
-    <string name="dark_theme">Ciemny motyw</string>
-    <string name="amoled_theme">Motyw AMOLED</string>
+    <string name="light_theme">Jasny</string>
+    <string name="dark_theme">Ciemny</string>
+    <string name="amoled_theme">Ciemny AMOLED</string>
     <string name="pref_start_screen">Ekran startowy</string>
     <string name="pref_language">Język</string>
     <string name="system_default">Systemowy</string>
@@ -293,8 +293,8 @@ Nie znaleziono źródła %1$s</string>
     <string name="backup_created">Kopia zapasowa utworzona</string>
     <string name="restore_completed">Przywracanie ukończone</string>
     <string name="error_opening_log">Nie udało się otworzyć logu</string>
-    <string name="backup_restore_content">Przywracanie używa źródeł do pobierania danych, operator może naliczać dodatkowe opłaty.
-\nPrzed przywróceniem upewnij się też, że jesteś poprawnie zalogowany do źródeł.</string>
+    <string name="backup_restore_content">Przywracanie używa źródeł do pobierania danych, operator może naliczać dodatkowe opłaty. 
+\nPrzed przywróceniem upewnij się, że zainstalowane są odpowiednie rozszerzenia i że zalogowano się do źródeł i usług śledzenia.</string>
     <string name="file_saved">Plik zapisano do %1$s</string>
     <string name="choices_reset">Resetuj wybory okien dialogowych</string>
     <string name="clear_database_confirmation">Na pewno? Przeczytane rozdziały i postęp w mangach spoza biblioteki zostaną utracone</string>
@@ -311,20 +311,20 @@ Nie znaleziono źródła %1$s</string>
     <string name="manga_info_chapters_label">Rozdziały</string>
     <string name="manga_info_last_chapter_label">Ostatni rozdział</string>
     <string name="manga_info_status_label">Status</string>
-    <string name="circular_icon">Okrągła ikonka</string>
-    <string name="rounded_icon">Zaokrąglona ikonka</string>
-    <string name="square_icon">Kwadratowa ikonka</string>
-    <string name="star_icon">Ikonka-gwiazdka</string>
+    <string name="circular_icon">Okrągła</string>
+    <string name="rounded_icon">Zaokrąglona</string>
+    <string name="square_icon">Kwadratowa</string>
+    <string name="star_icon">Gwiazdka</string>
     <string name="shortcut_title">Tytuł skrótu</string>
     <string name="icon_shape">Kształt ikony</string>
-    <string name="icon_creation_fail">Nie udało się utworzyć skrótu!</string>
+    <string name="icon_creation_fail">Nie udało się utworzyć skrótu</string>
     <string name="delete_downloads_for_manga">Usunąć pobrane rozdziały?</string>
     <string name="manga_chapters_tab">Rozdziały</string>
     <string name="chapter_downloaded">Pobrany</string>
     <string name="chapter_queued">W kolejce</string>
     <string name="chapter_downloading">Pobieranie</string>
     <string name="chapter_downloading_progress">Pobieranie (%1$d/%2$d)</string>
-    <string name="fetch_chapters_error">Błąd przy pobieraniu listy rozdziałów</string>
+    <string name="fetch_chapters_error">Nie udało się pobrać listy rozdziałów</string>
     <string name="sorting_mode">Tryb sortowania</string>
     <string name="sort_by_source">Według źródła</string>
     <string name="sort_by_number">Według numeru rozdziału</string>
@@ -338,9 +338,9 @@ Nie znaleziono źródła %1$s</string>
     <string name="page_downloaded">Strona skopiowana do %1$s</string>
     <string name="decode_image_error">Nie udało się wczytać obrazka</string>
     <string name="confirm_update_manga_sync">Zaktualizować ostatni przeczytany rozdział na %1$d?</string>
-    <string name="confirm_set_image_as_cover">Czy chcesz ustawić ten obrazek jako okładkę?</string>
+    <string name="confirm_set_image_as_cover">Ustawić ten obrazek jako okładkę\?</string>
     <string name="viewer_for_this_series">Widok dla tej serii</string>
-    <string name="download_queue_error">Wystąpił błąd podczas pobierania rozdziałów. Możesz spróbować ponownie w sekcji pobierania</string>
+    <string name="download_queue_error">Nie udało się pobrać rozdziałów. Możesz spróbować ponownie w sekcji pobierania</string>
     <string name="notification_update_progress">Stan aktualizacji: %1$d/%2$d</string>
     <string name="notification_new_chapters_text">Dla %1$d tytułów</string>
     <string name="notification_cover_update_failed">Nie udało się zaktualizować okładki</string>
@@ -354,7 +354,7 @@ Nie znaleziono źródła %1$s</string>
     <string name="information_no_recent_manga">Brak ostatnio czytanych mang</string>
     <string name="download_notifier_downloader_title">Pobieranie</string>
     <string name="download_notifier_page_error">Brakuje strony w katalogu</string>
-    <string name="download_notifier_page_ready_error">Strona nie jest załadowana</string>
+    <string name="download_notifier_page_ready_error">Strona nie została załadowana</string>
     <string name="download_notifier_text_only_wifi">Brak połączenia Wi-Fi</string>
     <string name="download_notifier_no_network">Brak połączenia z internetem</string>
     <string name="action_global_search">Wyszukiwanie globalne</string>
@@ -405,11 +405,11 @@ Nie znaleziono źródła %1$s</string>
 \n 
 \nZłośliwe rozszerzenie może odczytać dane logowania przechowywane w Tachiyomi albo uruchomić złośliwy kod. 
 \n 
-\nPoprzez zaufanie temu rozszerzeniu potwierdzasz, że rozumiesz to zagrożenie.</string>
-    <string name="ext_empty_preferences">To rozszerzenie nie ma żadnych preferencji do edycji</string>
+\nPoprzez zaufanie temu rozszerzeniu potwierdzasz, że rozumiesz zagrożenie.</string>
+    <string name="ext_empty_preferences">To rozszerzenie nie ma preferencji do edycji</string>
     <string name="source_search_options">Filtry wyszukiwania</string>
     <string name="custom_download">Pobierz wybraną ilość</string>
-    <string name="download_custom">Pobierz kilka</string>
+    <string name="download_custom">Własna ilość</string>
     <string name="migration_info">Tapnij aby zaznaczyć źródło z którego emigrować</string>
     <string name="migration_dialog_what_to_include">Zaznacz dane do zawarcia</string>
     <string name="select">Zaznacz</string>
@@ -422,7 +422,7 @@ Nie znaleziono źródła %1$s</string>
     <string name="track_start_date">Rozpoczęto</string>
     <string name="track_type">Typ</string>
     <string name="track_author">Autor</string>
-    <string name="url_not_set">URL mangi nie jest ustawiony, kliknij tytuł i wybierz mangę jeszcze raz</string>
+    <string name="url_not_set">URL nie jest ustawiony, kliknij tytuł i wybierz mangę jeszcze raz</string>
     <string name="transition_finished">Przeczytany:</string>
     <string name="transition_current">Obecny:</string>
     <string name="transition_next">Następny:</string>
@@ -449,4 +449,12 @@ Nie znaleziono źródła %1$s</string>
     <string name="action_forward">Dalej</string>
     <string name="action_refresh">Odśwież</string>
     <string name="action_webview_back">Wstecz</string>
+    <string name="filter_mode_screen">Ekran</string>
+    <string name="no_results_found">Brak wyników</string>
+    <string name="migration_selection_prompt">Wybierz źródło, z którego chcesz migrować</string>
+    <string name="action_webview_forward">Dalej</string>
+    <string name="action_webview_refresh">Odśwież</string>
+    <string name="pref_category_library">Biblioteka</string>
+    <string name="pref_ask_update_manga_sync">Potwierdzaj przed aktualizacją</string>
+    <string name="invalid_download_dir">Nieprawidłowy folder pobierania</string>
 </resources>
