@@ -434,4 +434,5 @@
     <string name="channel_downloader">Stahovač</string>
     <string name="reader_pull_up_for_more_options">Vytáhnout pro více možností</string>
     <string name="label_help">Nápověda</string>
+    <string name="action_open_in_web_view">Otevřít ve web view</string>
 </resources>
