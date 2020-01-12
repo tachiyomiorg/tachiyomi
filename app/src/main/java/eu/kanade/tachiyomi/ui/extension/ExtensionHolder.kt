@@ -54,13 +54,13 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
         bindButton(item)
     }
 
+    @Suppress("ResourceType")
     fun bindButton(item: ExtensionItem) = with(ext_button) {
         isEnabled = true
         isClickable = true
         isActivated = false
 
         background = VectorDrawableCompat.create(resources!!, R.drawable.button_bg_transparent, null)
-        @Suppress("ResourceType")
         setTextColor(ContextCompat.getColorStateList(context, R.drawable.button_bg_transparent))
 
         val extension = item.extension
@@ -87,7 +87,7 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
                 extension.isObsolete -> {
                     // Red outline
                     background = VectorDrawableCompat.create(resources, R.drawable.button_bg_error, null)
-                    setTextColor(ContextCompat.getColor(context, R.color.red_error))
+                    setTextColor(ContextCompat.getColorStateList(context, R.drawable.button_bg_error))
 
                     setText(R.string.ext_obsolete)
                 }
