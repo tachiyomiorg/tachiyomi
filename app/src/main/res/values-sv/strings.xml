@@ -94,7 +94,7 @@
     <string name="pref_category_downloads">Nedladdningar</string>
     <string name="pref_category_sources">Källor</string>
     <string name="pref_category_tracking">Spårning</string>
-    <string name="pref_category_advanced">Avancerad</string>
+    <string name="pref_category_advanced">Avancerat</string>
     <string name="pref_category_about">Om appen</string>
     <string name="pref_library_columns">Bibilioteksmanga per rad</string>
     <string name="portrait">Stående</string>
@@ -120,9 +120,9 @@
     <string name="pref_update_only_non_completed">Uppdatera endast pågående manga</string>
     <string name="pref_auto_update_manga_sync">Synkronisera kapitel efter läsning</string>
     <string name="pref_theme">Programtema</string>
-    <string name="light_theme">Huvudtema</string>
-    <string name="dark_theme">Mörkt tema</string>
-    <string name="amoled_theme">AMOLED tema</string>
+    <string name="light_theme">Ljus</string>
+    <string name="dark_theme">Mörk</string>
+    <string name="amoled_theme">AMOLED mörk</string>
     <string name="darkblue_theme">Mörkblå</string>
     <string name="pref_start_screen">Startskärm</string>
     <string name="pref_language">Språk</string>
@@ -172,7 +172,7 @@
     <string name="left_to_right_viewer">Vänster till höger</string>
     <string name="right_to_left_viewer">Höger till vänster</string>
     <string name="vertical_viewer">Vertikal</string>
-    <string name="webtoon_viewer">Webbtoon</string>
+    <string name="webtoon_viewer">Webtoon</string>
     <string name="pager_viewer">Sidläsare</string>
     <string name="pref_image_decoder">Bildavkodare</string>
     <string name="pref_image_scale_type">Skal typ</string>
@@ -232,8 +232,9 @@
     <string name="error_opening_log">Kunde inte öppna loggen</string>
     <string name="restore_completed_content">Återställning tog %1$s.
 \n%2$s fel hittade.</string>
-    <string name="backup_restore_content">Återställning använder källa för att hämta data, data kostnader kan tillkomma.
-\nSe till att du är inloggad på källor som kräver detta innan du återställer.</string>
+    <string name="backup_restore_content">Återställning använder källor för att hämta data, data kostnader kan tillkomma. 
+\n
+\nSe till att du har installerat de nödvändiga tilläggen och är inloggad på de källor och spårningstjänsterna som kräver detta innan du återställer.</string>
     <string name="file_saved">Fil sparad vid %1$s</string>
     <string name="backup_choice">Vad vill du skapa backup på\?</string>
     <string name="restoring_backup">Återställer backup</string>
@@ -284,7 +285,7 @@
     <string name="action_global_search_hint">Global sökning…</string>
     <string name="latest">Senaste</string>
     <string name="browse">Bläddra</string>
-    <string name="manga_not_in_db">Denna mangan togs bort från databasen!</string>
+    <string name="manga_not_in_db">Denna manga has tagits bort från databasen.</string>
     <string name="manga_detail_tab">Info</string>
     <string name="description">Beskrivning</string>
     <string name="ongoing">Pågående</string>
@@ -302,14 +303,14 @@
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Källa</string>
     <string name="manga_info_genres_label">Genrer</string>
-    <string name="circular_icon">Rund ikon</string>
-    <string name="rounded_icon">Rundad ikon</string>
-    <string name="square_icon">Fyrkantig ikon</string>
-    <string name="star_icon">Stjärn ikon</string>
+    <string name="circular_icon">Cirkulär</string>
+    <string name="rounded_icon">Avrundad</string>
+    <string name="square_icon">Fyrkantig</string>
+    <string name="star_icon">Stjärna</string>
     <string name="shortcut_title">Genvägs titel</string>
     <string name="shortcut_created">Genvägen lades till på hemskärmen.</string>
     <string name="icon_shape">Ikon form</string>
-    <string name="icon_creation_fail">Misslyckades med att skapa genväg!</string>
+    <string name="icon_creation_fail">Det gick inte att skapa genvägen</string>
     <string name="delete_downloads_for_manga">Ta bort nedladdade kapitel\?</string>
     <string name="copied_to_clipboard">%1$s kopierat till urklipp</string>
     <string name="source_not_installed">Källa inte installerad: %1$s</string>
@@ -322,7 +323,7 @@
     <string name="chapter_downloading_progress">Laddar ner (%1$d/%2$d)</string>
     <string name="chapter_error">Fel</string>
     <string name="chapter_paused">Pausad</string>
-    <string name="fetch_chapters_error">Fel vid hämtning av kapitel</string>
+    <string name="fetch_chapters_error">Det gick inte att hämta kapitel</string>
     <string name="show_title">Visa titel</string>
     <string name="show_chapter_number">Visa kapitelnummer</string>
     <string name="sorting_mode">Sorteringsläge</string>
@@ -331,12 +332,12 @@
     <string name="manga_download">Ladda ner</string>
     <string name="custom_download">Ladda ner anpassat belopp</string>
     <string name="custom_hint">Belopp</string>
-    <string name="download_1">Ladda ner nästa kapitel</string>
-    <string name="download_5">Ladda ner nästa 5 kapitel</string>
-    <string name="download_10">Ladda ner nästa 10 kapitel</string>
-    <string name="download_custom">Ladda ner anpassade</string>
-    <string name="download_all">Ladda ner alla</string>
-    <string name="download_unread">Ladda ner olästa</string>
+    <string name="download_1">Nästa kapitel</string>
+    <string name="download_5">Nästa 5 kapitel</string>
+    <string name="download_10">Nästa 10 kapitel</string>
+    <string name="download_custom">Anpassad</string>
+    <string name="download_all">Alla</string>
+    <string name="download_unread">Olästa</string>
     <string name="confirm_delete_chapters">Är du säker på att du vill radera valda kapitel\?</string>
     <string name="manga_tracking_tab">Spårning</string>
     <string name="reading">Läser</string>
@@ -352,7 +353,7 @@
     <string name="track_start_date">Startad</string>
     <string name="track_type">Typ</string>
     <string name="track_author">Författare</string>
-    <string name="url_not_set">Manga url är inte inställd, vänligen klicka på titeln och välj manga igen</string>
+    <string name="url_not_set">Manga URL är inte inställd, vänligen klicka på titeln och välj manga igen</string>
     <string name="error_category_exists">En kategori med detta namn finns redan!</string>
     <string name="snack_categories_deleted">Kategorier raderade</string>
     <string name="dialog_with_checkbox_remove_description">Detta kommer att ta bort läs datumet för detta kapitel. Är du säker\?</string>
@@ -373,7 +374,7 @@
     <string name="no_previous_chapter">Föregående kapitel kunde inte hittas</string>
     <string name="decode_image_error">Bilden kunde inte avkodas</string>
     <string name="confirm_update_manga_sync">Uppdatera sista kapitlet läst på aktiverade tjänster till %1$d\?</string>
-    <string name="confirm_set_image_as_cover">Vill du ställa in denna bilden som omslaget\?</string>
+    <string name="confirm_set_image_as_cover">Ställ in denna bilden som omslaget\?</string>
     <string name="viewer_for_this_series">Visare för denna serie</string>
     <string name="transition_finished">Färdig:</string>
     <string name="transition_current">Nuvarande:</string>
@@ -390,7 +391,7 @@
     <string name="migrate">Migrera</string>
     <string name="copy">Kopiera</string>
     <string name="migrating">Migrerar…</string>
-    <string name="download_queue_error">Ett fel inträffade vid nedladdning av kapitlen. Du kan försöka igen i nedladdningssektionen</string>
+    <string name="download_queue_error">Kunde inte ladda ned kapitlen. Du kan försöka igen i nedladdningssektionen</string>
     <string name="notification_update_progress">Uppdateringsframsteg: %1$d/%2$d</string>
     <string name="notification_new_chapters">Nya kapitel hittades</string>
     <string name="notification_new_chapters_text">För %1$d titlar</string>
@@ -403,14 +404,14 @@
     <string name="file_select_cover">Välj omslagsbild</string>
     <string name="file_select_backup">Välj backup fil</string>
     <string name="file_select_icon">Välj genvägsikon</string>
-    <string name="update_check_title">Ny uppdatering tillänglig!</string>
+    <string name="update_check_title">Ny version tillgänglig!</string>
     <string name="update_check_confirm">Ladda ner</string>
     <string name="update_check_ignore">Ignorera</string>
     <string name="update_check_no_new_updates">Inga nya uppdateringar tillgängliga</string>
     <string name="update_check_download_started">Nedladdning startades</string>
-    <string name="update_check_look_for_updates">Söker efter uppdateringar</string>
+    <string name="update_check_look_for_updates">Söker efter uppdateringar…</string>
     <string name="update_check_notification_file_download">Ladda ner uppdatering</string>
-    <string name="update_check_notification_download_in_progress">Nedladdning pågår</string>
+    <string name="update_check_notification_download_in_progress">Laddar ner…</string>
     <string name="update_check_notification_download_complete">Nedladdning färdig</string>
     <string name="update_check_notification_download_error">Nedladdningsfel</string>
     <string name="update_check_notification_update_available">Uppdatering tillgänglig</string>
@@ -419,13 +420,13 @@
     <string name="information_no_downloads">Inga nedladdningar</string>
     <string name="information_no_recent">Inga nya kapitel</string>
     <string name="information_no_recent_manga">Ingen nyligen läst manga</string>
-    <string name="information_empty_library">Biblioteket är tomt, du kan lägga till serier i ditt bibliotek från Kataloger.</string>
+    <string name="information_empty_library">Biblioteket är tomt, lägg till serier i ditt bibliotek ifrån katalogerna.</string>
     <string name="information_empty_category">Du har inga kategorier. Tryck på plus-knappen för att skapa en för att organisera ditt bibliotek.</string>
     <string name="download_notifier_downloader_title">Nedladdare</string>
     <string name="download_notifier_title_error">Fel</string>
-    <string name="download_notifier_unkown_error">Ett oväntat fel inträffade vid nedladdning av kapitel</string>
+    <string name="download_notifier_unkown_error">Kunde inte ladda ned kapitel på grund av ett oförväntat fel</string>
     <string name="download_notifier_page_error">En sida saknas i katalogen</string>
-    <string name="download_notifier_page_ready_error">En sida är inte laddad</string>
+    <string name="download_notifier_page_ready_error">En sida har inte laddats</string>
     <string name="download_notifier_text_only_wifi">Ingen WiFi-anslutning tillgänglig</string>
     <string name="download_notifier_no_network">Ingen nätverksanslutning tillgänglig</string>
     <string name="download_notifier_download_paused">Nedladdning pausad</string>
@@ -446,4 +447,12 @@
     <string name="filter_mode_darken">Mörkna</string>
     <string name="label_help">Hjälp</string>
     <string name="pref_library_update_prioritization">Bibliotekets uppdateringsordning</string>
+    <string name="no_results_found">Inga resultat funna</string>
+    <string name="migration_selection_prompt">Välj en källa att migrera ifrån</string>
+    <string name="action_webview_back">Bakåt</string>
+    <string name="action_webview_forward">Framåt</string>
+    <string name="action_webview_refresh">Uppdatera</string>
+    <string name="pref_category_library">Bibliotek</string>
+    <string name="pref_ask_update_manga_sync">Bekräfta innan uppdatering</string>
+    <string name="invalid_download_dir">Ogiltig nedladdningskatalog</string>
 </resources>
