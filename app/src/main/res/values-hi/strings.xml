@@ -201,8 +201,9 @@
     <string name="error_opening_log">लॉग खोल नहीं सके</string>
     <string name="restore_completed_content">पुनर्स्थापित किया गया %1$s.
 \n%2$s त्रुटियां मिलीं.</string>
-    <string name="backup_restore_content">पुनर्स्थापना डेटा प्राप्त करने के लिए स्रोत का उपयोग करता है, वाहक की लागत लागू हो सकती है
-\nयह भी सुनिश्चित करें कि आप संसाधनों में ठीक से लॉग इन कर रहे हैं जो बहाल करने से पहले की आवश्यकता होती है।</string>
+    <string name="backup_restore_content">डेटा लाने के लिए स्रोतों का उपयोग करें, वाहक लागत लागू हो सकती है।
+\n
+\nसुनिश्चित करें कि आपने सभी आवश्यक एक्सटेंशन स्थापित किए हैं और बहाल करने से पहले स्रोतों और ट्रैकिंग सेवाओं में लॉग इन किया है।</string>
     <string name="file_saved">फ़ाइल को %1$s पर सहेजा गया</string>
     <string name="backup_choice">आप बैकअप के लिए क्या चाहते हैं?</string>
     <string name="restoring_backup">बैकअप को पुनर्स्थापित करना</string>
@@ -225,7 +226,7 @@
     <string name="version">संस्करण</string>
     <string name="build_time">निर्माण समय</string>
     <string name="pref_enable_automatic_updates">अद्यतन के लिए जाँच</string>
-    <string name="pref_enable_automatic_updates_summary">स्वचालित रूप से एप्लिकेशन अपडेट की जांच करें</string>
+    <string name="pref_enable_automatic_updates_summary">नए ऐप संस्करणों की स्वचालित रूप से जांच करें</string>
     <string name="pref_enable_acra">क्रैश रिपोर्ट भेजें</string>
     <string name="pref_acra_summary">किसी भी बग को ठीक करने में मदद करता है कोई संवेदनशील डेटा नहीं भेजा जाएगा</string>
     <string name="login_title">%1$s के लिए लॉगिन</string>
@@ -234,7 +235,7 @@
     <string name="show_password">पासवर्ड दिखाए</string>
     <string name="login">लॉग इन करें</string>
     <string name="login_success">सफलतापूर्ण लॉग इन</string>
-    <string name="invalid_login">लॉग इन त्रुटि</string>
+    <string name="invalid_login">लॉग इन नहीं कर सका</string>
     <string name="unknown_error">अज्ञात त्रुटि</string>
     <string name="library_search_hint">शीर्षक या लेखक …</string>
     <string name="updating_category">श्रेणी अपडेट कर रहा है</string>
@@ -252,7 +253,7 @@
     <string name="action_global_search_hint">वैश्विक खोज …</string>
     <string name="latest">नवीनतम</string>
     <string name="browse">ब्राउज</string>
-    <string name="manga_not_in_db">यह मंगा डेटाबेस से हटा दिया गया था!</string>
+    <string name="manga_not_in_db">इस मंगा को डाटाबेस से हटा दिया गया है।</string>
     <string name="manga_detail_tab">जानकारी</string>
     <string name="description">विवरण</string>
     <string name="ongoing">चल रही है</string>
@@ -266,14 +267,14 @@
     <string name="manga_info_status_label">स्थिति</string>
     <string name="manga_info_source_label">स्रोत</string>
     <string name="manga_info_genres_label">शैलियां</string>
-    <string name="circular_icon">परिपत्र आइकन</string>
-    <string name="rounded_icon">गोल आइकन</string>
-    <string name="square_icon">स्क्वायर आइकन</string>
-    <string name="star_icon">स्टार आइकन</string>
+    <string name="circular_icon">परिपत्र</string>
+    <string name="rounded_icon">गोल</string>
+    <string name="square_icon">वर्ग</string>
+    <string name="star_icon">स्टार</string>
     <string name="shortcut_title">शॉर्टकट शीर्षक</string>
     <string name="shortcut_created">शॉर्टकट को होम स्क्रीन पर जोड़ा गया था.</string>
     <string name="icon_shape">चिह्न आकार</string>
-    <string name="icon_creation_fail">शॉर्टकट बनाने में विफल!</string>
+    <string name="icon_creation_fail">शॉर्टकट बनाने में विफल</string>
     <string name="delete_downloads_for_manga">डाउनलोड किए गए अध्याय हटाएं?</string>
     <string name="manga_chapters_tab">अध्याय</string>
     <string name="manga_chapter_no_title">कोई शीर्षक नहीं</string>
@@ -393,7 +394,7 @@
 \nइस प्रमाणपत्र पर विश्वास करके आप इन जोखिमों को स्वीकार करते हैं।</string>
     <string name="ext_version_info">संस्करण: %1$s</string>
     <string name="ext_language_info">भाषा: %1$s</string>
-    <string name="ext_empty_preferences">इस एक्सटेंशन के लिए कोई प्राथमिकताएं संपादित नहीं हैं</string>
+    <string name="ext_empty_preferences">एक्सटेंशन के लिए कोई प्राथमिकताएं संपादित नहीं हैं</string>
     <string name="pref_double_tap_anim_speed">डबल टैप एनीमेशन गति</string>
     <string name="double_tap_anim_speed_0">कोई एनीमेशन नहीं</string>
     <string name="double_tap_anim_speed_normal">साधारण</string>
