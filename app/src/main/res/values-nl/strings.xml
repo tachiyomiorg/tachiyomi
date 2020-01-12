@@ -94,8 +94,8 @@
     <string name="update_weekly">Iedere week</string>
     <string name="update_monthly">Iedere maand</string>
     <string name="all">Alles</string>
-    <string name="dark_theme">Donker thema</string>
-    <string name="amoled_theme">AMOLED thema</string>
+    <string name="dark_theme">Donker</string>
+    <string name="amoled_theme">AMOLED donker</string>
     <string name="pref_start_screen">Beginscherm</string>
     <string name="pref_language">Taal</string>
     <string name="system_default">Systeemstandaard</string>
@@ -171,7 +171,7 @@
     <string name="pref_refresh_library_tracking_summary">Update status, score en laatst gelezen hoofdstuk van de tracking services</string>
     <string name="version">Versie</string>
     <string name="pref_enable_automatic_updates">Op updates controleren</string>
-    <string name="pref_enable_automatic_updates_summary">Automatisch op updates controleren</string>
+    <string name="pref_enable_automatic_updates_summary">Automatisch op app updates controleren</string>
     <string name="login_title">Login voor %1$s</string>
     <string name="username">Gebruikersnaam</string>
     <string name="password">Wachtwoord</string>
@@ -188,7 +188,7 @@
     <string name="local_source">Lokale manga</string>
     <string name="invalid_combination">Standaard kan niet geselecteerd worden met andere categorieën</string>
     <string name="added_to_library">De manga is toegevoegd aan je bibliotheek</string>
-    <string name="manga_not_in_db">Deze manga is verwijderd uit de databank!</string>
+    <string name="manga_not_in_db">Deze manga is verwijderd uit de databank.</string>
     <string name="manga_detail_tab">Info</string>
     <string name="description">Beschrijving</string>
     <string name="unknown">Onbekend</string>
@@ -212,11 +212,11 @@
     <string name="sort_by_source">Op bron</string>
     <string name="sort_by_number">Op hoofdstuknummer</string>
     <string name="manga_download">Downloaden</string>
-    <string name="download_1">Download het volgende hoofdstuk</string>
-    <string name="download_5">Download de volgende 5 hoofdstukken</string>
-    <string name="download_10">Download de volgende 10 hoofdstukken</string>
-    <string name="download_all">Download alles</string>
-    <string name="download_unread">Download ongelezen</string>
+    <string name="download_1">Volgende hoofdstuk</string>
+    <string name="download_5">Volgende 5 hoofdstukken</string>
+    <string name="download_10">Volgende 10 hoofdstukken</string>
+    <string name="download_all">Alles</string>
+    <string name="download_unread">Ongelezen</string>
     <string name="confirm_delete_chapters">Ben je zeker dat je de geselecteerde hoofdstukken wilt verwijderen?</string>
     <string name="manga_tracking_tab">Tracking</string>
     <string name="completed">Voltooid</string>
@@ -240,7 +240,7 @@
     <string name="chapter_subtitle">Hoofdstuk %1$s</string>
     <string name="no_next_chapter">Volgend hoofdstuk niet gevonden</string>
     <string name="no_previous_chapter">Vorig hoofdstuk niet gevonden</string>
-    <string name="confirm_set_image_as_cover">Wil je deze afbeelding als omslagfoto gebruiken?</string>
+    <string name="confirm_set_image_as_cover">Deze afbeelding als omslagfoto gebruiken\?</string>
     <string name="viewer_for_this_series">Lezer voor deze serie</string>
     <string name="recent_manga_source">%1$s - Hfdst.%2$s</string>
     <string name="notification_update_progress">Updatevoortgang: %1$d/%2$d</string>
@@ -249,7 +249,7 @@
     <string name="notification_first_add_to_library">Gelieve eerst de manga aan je bibliotheek toe te voegen</string>
     <string name="file_select_cover">Selecteer omslagfoto</string>
     <string name="file_select_backup">Selecteer back-upbestand</string>
-    <string name="update_check_title">Nieuwe update beschikbaar!</string>
+    <string name="update_check_title">Nieuwe versie beschikbaar!</string>
     <string name="update_check_confirm">Download</string>
     <string name="update_check_ignore">Negeren</string>
     <string name="update_check_no_new_updates">Geen nieuwe updates beschikbaar</string>
@@ -259,11 +259,11 @@
     <string name="description_cover">Omslag van de manga</string>
     <string name="information_no_downloads">Geen downloads</string>
     <string name="information_no_recent">Geen recente hoofdstukken</string>
-    <string name="information_empty_library">De bibliotheek is leeg, manga kunnen toegevoegd worden vanuit de catalogi.</string>
+    <string name="information_empty_library">De bibliotheek is leeg, voeg manga toe aan je bibliotheek vanuit de catalogi.</string>
     <string name="information_empty_category">Er zijn nog geen categorieën, druk op de plus knop om een categorie aan te maken.</string>
     <string name="download_notifier_downloader_title">Downloader</string>
     <string name="download_notifier_title_error">Error</string>
-    <string name="download_notifier_page_ready_error">Een pagina is niet geladen</string>
+    <string name="download_notifier_page_ready_error">Een pagina werd niet geladen</string>
     <string name="download_notifier_text_only_wifi">Geen Wi-Fi verbinding beschikbaar</string>
     <string name="download_notifier_no_network">Geen netwerkverbinding beschikbaar</string>
     <string name="download_notifier_download_paused">Download gepauzeerd</string>
@@ -271,7 +271,7 @@
     <string name="action_sort_total">Aantal hoofdstukken</string>
     <string name="action_sort_up">Sorteer oplopend</string>
     <string name="action_sort_down">Sorteer aflopend</string>
-    <string name="app_not_available">Applicatie niet beschikbaar</string>
+    <string name="app_not_available">App niet beschikbaar</string>
     <string name="short_recent_updates">Updates</string>
     <string name="pref_category_about">Over</string>
     <string name="portrait">Staand</string>
@@ -279,8 +279,8 @@
     <string name="pref_library_update_restriction_summary">Update alleen wanneer de voorwaarden zijn voldaan</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Aan het opladen</string>
-    <string name="pref_theme">Thema</string>
-    <string name="light_theme">Hoofdthema</string>
+    <string name="pref_theme">App thema</string>
+    <string name="light_theme">Licht</string>
     <string name="pref_reader_navigation">Navigatie</string>
     <string name="pref_read_with_volume_keys_inverted">Keer volumeknoppen om</string>
     <string name="pref_image_decoder">Afbeeldingdecoder</string>
@@ -306,7 +306,7 @@
     <string name="pref_enable_acra">Rapporteer bugs</string>
     <string name="pref_acra_summary">Helpt bij het bestrijden van bugs. Geen gevoelige data wordt verzonden</string>
     <string name="information_no_recent_manga">Geen recentelijk gelezen manga</string>
-    <string name="download_notifier_unkown_error">Er is een onverwachte fout opgetreden bij het downloaden van het hoofdstuk</string>
+    <string name="download_notifier_unkown_error">Het is niet mogelijk om dit hoofdstuk te downloaden door eenonverwachte fout</string>
     <string name="download_notifier_page_error">Er ontbreekt een pagina</string>
     <string name="action_clear">Legen</string>
     <string name="pref_library_update_restriction">Bibliotheek updatebeperkingen</string>
@@ -321,10 +321,10 @@
     <string name="source_requires_login">Deze bron vereist dat je inlogt</string>
     <string name="ongoing">Lopend</string>
     <string name="manga_info_genres_label">Genres</string>
-    <string name="circular_icon">Circulair icoon</string>
-    <string name="rounded_icon">Afgerond icoon</string>
-    <string name="square_icon">Vierkant icoon</string>
-    <string name="star_icon">Stervormig icoon</string>
+    <string name="circular_icon">Circulair</string>
+    <string name="rounded_icon">Afgerond</string>
+    <string name="square_icon">Vierkant</string>
+    <string name="star_icon">Stervormig</string>
     <string name="icon_shape">Icoonvorm</string>
     <string name="icon_creation_fail">Maken van snelkoppeling mislukt!</string>
     <string name="delete_downloads_for_manga">Verwijder gedownloade hoofdstukken?</string>
@@ -336,24 +336,25 @@
     <string name="on_hold">In de wacht</string>
     <string name="dialog_with_checkbox_remove_description">Dit verwijdert de datum waarop het hoofdstuk is gelezen. Ben je zeker?</string>
     <string name="decode_image_error">Afbeelding kon niet worden gedecodeerd.</string>
-    <string name="download_queue_error">Er is een fout opgetreden bij het downloaden van hoofdstukken. Je kan het opnieuw proberen in de downloadwachtrij</string>
+    <string name="download_queue_error">Het downloaden van hoofdstukken is niet gelukt. Je kan het opnieuw proberen in de downloadwachtrij</string>
     <string name="notification_cover_update_failed">Updaten van omslag mislukt</string>
     <string name="notification_not_connected_to_ac_title">Synchronisatie geannuleerd</string>
     <string name="notification_not_connected_to_ac_body">Niet aangesloten op netstroom</string>
     <string name="notification_no_connection_title">Synchronisatie geannuleerd</string>
     <string name="notification_no_connection_body">Verbinding niet beschikbaar</string>
     <string name="file_select_icon">Selecteer icoon voor snelkoppeling</string>
-    <string name="update_check_look_for_updates">Aan het controleren op updates</string>
+    <string name="update_check_look_for_updates">Controleren op updates…</string>
     <string name="update_check_notification_file_download">Download update</string>
-    <string name="update_check_notification_download_in_progress">Bezig met downloaden</string>
+    <string name="update_check_notification_download_in_progress">Downloaden…</string>
     <string name="update_check_notification_download_error">Fout bij het downloaden</string>
     <string name="description_backdrop">Achtergrondafbeelding van manga</string>
     <string name="action_filter_bookmarked">Met bladwijzer</string>
-    <string name="backup_restore_content">Terugzetten gebruikt bron om data op te halen, mogelijk zijn extra kosten van toepassing.
-Zorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het terugzetten start.</string>
+    <string name="backup_restore_content">Terugzetten gebruikt bron om data op te halen, mogelijk zijn extra kosten van toepassing. 
+\n
+\nZorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het terugzetten start.</string>
     <string name="choices_reset">Keuzes gereset</string>
     <string name="login_success">Login geslaagd</string>
-    <string name="invalid_login">Login error</string>
+    <string name="invalid_login">Kon niet inloggen</string>
     <string name="shortcut_title">Titel van de snelkoppeling</string>
     <string name="confirm_update_manga_sync">Update het laatst gelezen hoofdstuk in de ingeschakelde services op %1$d?</string>
     <string name="licensed">Gelicenseerd</string>
@@ -397,7 +398,7 @@ Zorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het teru
 \nBij het vertrouwen van dit certificaat accepteer je deze risico\'s</string>
     <string name="ext_version_info">Versie: %1$s</string>
     <string name="ext_language_info">Taal: %1$s</string>
-    <string name="ext_empty_preferences">Er zijn geen aan te passen voorkeuren voor deze extensie</string>
+    <string name="ext_empty_preferences">Geen aan te passen voorkeuren voor deze extensie</string>
     <string name="pref_double_tap_anim_speed">Dubbel tik animatiesnelheid</string>
     <string name="pref_read_with_long_tap">Lange tik dialoog</string>
     <string name="pager_viewer">Paginas</string>
@@ -412,13 +413,13 @@ Zorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het teru
     <string name="copied_to_clipboard">%1$s gekopieerd naar het klembord</string>
     <string name="source_not_installed">Bron niet geïnstalleerd: %1$s</string>
     <string name="custom_download">Download aangepaste hoeveelheid</string>
-    <string name="download_custom">Download aangepaste hoeveelheid</string>
+    <string name="download_custom">Aangepast</string>
     <string name="repeating">Herlezen</string>
     <string name="track_status">Status</string>
     <string name="track_start_date">Gestart</string>
     <string name="track_type">Soort</string>
     <string name="track_author">Auteur</string>
-    <string name="url_not_set">Manga url is niet ingesteld, klik alstublieft op de titel en selecteer de manga opnieuw</string>
+    <string name="url_not_set">Manga URL is niet ingesteld, klik alstublieft op de titel en selecteer de manga opnieuw</string>
     <string name="transition_finished">Afgerond:</string>
     <string name="transition_current">Huidige:</string>
     <string name="transition_next">Volgende:</string>
@@ -440,7 +441,18 @@ Zorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het teru
     <string name="pref_skip_read_chapters">Hoofdstukken die gemarkeerd zijn als gelezen overslaan</string>
     <string name="filter_mode_overlay">Overlapping</string>
     <string name="filter_mode_multiply">Vermenigvuldigen</string>
-    <string name="filter_mode_screen"/>
+    <string name="filter_mode_screen">Scherm</string>
     <string name="label_help">Help</string>
     <string name="pref_library_update_prioritization">Updatevolgorde bibliotheken</string>
+    <string name="pref_color_filter_mode">Kleur filter mengmodus</string>
+    <string name="filter_mode_lighten">Tegenhouden / Verlichten</string>
+    <string name="filter_mode_darken">Doordrukken / Verduisteren</string>
+    <string name="no_results_found">Geen resultaten gevonden</string>
+    <string name="migration_selection_prompt">Selecteer een bron om uit te migreren</string>
+    <string name="action_webview_back">Terugkeren</string>
+    <string name="action_webview_forward">Vooruit</string>
+    <string name="action_webview_refresh">verversen</string>
+    <string name="pref_category_library">Bibliotheek</string>
+    <string name="pref_ask_update_manga_sync">Bevestigen voordat u gaat updaten</string>
+    <string name="invalid_download_dir">Ongeldige download map</string>
 </resources>
