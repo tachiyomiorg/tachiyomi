@@ -62,7 +62,7 @@ open class ExtensionPresenter(
 
         val items = mutableListOf<ExtensionItem>()
 
-        val installedSorted = installed.sortedWith(compareBy({ !it.hasUpdate }, { it.pkgName }))
+        val installedSorted = installed.sortedWith(compareBy({ !it.hasUpdate }, { !it.isObsolete }, { it.pkgName }))
         val untrustedSorted = untrusted.sortedBy { it.pkgName }
         val availableSorted = available
                 // Filter out already installed extensions and disabled languages
