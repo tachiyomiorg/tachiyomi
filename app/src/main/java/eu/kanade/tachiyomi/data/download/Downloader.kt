@@ -120,8 +120,6 @@ class Downloader(
             if (notifier.paused) {
                 notifier.paused = false
                 notifier.onDownloadPaused()
-            } else if (notifier.isSingleChapter && !notifier.errorThrown) {
-                notifier.isSingleChapter = false
             } else {
                 notifier.dismiss()
             }
@@ -422,9 +420,6 @@ class Downloader(
             queue.remove(download)
         }
         if (areAllDownloadsFinished()) {
-            if (notifier.isSingleChapter && !notifier.errorThrown) {
-                notifier.onDownloadCompleted(download, queue)
-            }
             DownloadService.stop(context)
         }
     }
