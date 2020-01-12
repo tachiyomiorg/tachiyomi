@@ -73,11 +73,17 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
                 isClickable = false
             }
         } else if (extension is Extension.Installed) {
-            if (extension.hasUpdate) {
-                isActivated = true
-                setText(R.string.ext_update)
-            } else {
-                setText(R.string.ext_details)
+            when {
+                extension.hasUpdate -> {
+                    isActivated = true
+                    setText(R.string.ext_update)
+                }
+                extension.isObsolete -> {
+                    setText(R.string.ext_obsolete)
+                }
+                else -> {
+                    setText(R.string.ext_details)
+                }
             }
         } else if (extension is Extension.Untrusted) {
             setText(R.string.ext_trust)

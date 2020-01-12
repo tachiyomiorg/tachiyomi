@@ -71,7 +71,7 @@ class ExtensionManager(
         private set(value) {
             field = value
             availableExtensionsRelay.call(value)
-            setUpdateFieldOfInstalledExtensions(value)
+            updatedInstalledExtensionsStatuses(value)
         }
 
     /**
@@ -158,18 +158,25 @@ class ExtensionManager(
      *
      * @param availableExtensions The list of extensions given by the [api].
      */
-    private fun setUpdateFieldOfInstalledExtensions(availableExtensions: List<Extension.Available>) {
+    private fun updatedInstalledExtensionsStatuses(availableExtensions: List<Extension.Available>) {
         val mutInstalledExtensions = installedExtensions.toMutableList()
         var changed = false
 
         for ((index, installedExt) in mutInstalledExtensions.withIndex()) {
             val pkgName = installedExt.pkgName
-            val availableExt = availableExtensions.find { it.pkgName == pkgName } ?: continue
+            val availableExt = availableExtensions.find { it.pkgName == pkgName }
 
-            val hasUpdate = availableExt.versionCode > installedExt.versionCode
-            if (installedExt.hasUpdate != hasUpdate) {
-                mutInstalledExtensions[index] = installedExt.copy(hasUpdate = hasUpdate)
-                changed = true
+            if (availableExt == null) {
+                if (!installedExt.isObsolete) {
+                    mutInstalledExtensions[index] = installedExt.copy(isObsolete = true)
+                    changed = true
+                }
+            } else {
+                val hasUpdate = availableExt.versionCode > installedExt.versionCode
+                if (installedExt.hasUpdate != hasUpdate) {
+                    mutInstalledExtensions[index] = installedExt.copy(hasUpdate = hasUpdate)
+                    changed = true
+                }
             }
         }
         if (changed) {

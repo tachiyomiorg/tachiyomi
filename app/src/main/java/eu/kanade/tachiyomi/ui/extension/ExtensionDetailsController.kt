@@ -69,6 +69,10 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
             presenter.uninstallExtension()
         }
 
+        if (extension.isObsolete) {
+            extension_obsolete.visibility = View.VISIBLE
+        }
+
         val themedContext by lazy { getPreferenceThemeContext() }
         val manager = PreferenceManager(themedContext)
         manager.preferenceDataStore = EmptyPreferenceDataStore()
