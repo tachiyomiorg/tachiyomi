@@ -442,7 +442,6 @@
     <string name="filter_mode_default">默认</string>
     <string name="label_help">帮助</string>
     <string name="pref_library_update_prioritization">书架更新顺序</string>
-    <string name="pref_library_update_prioritization_summary">选择Tachiyomi检查书架更新的顺序</string>
     <string name="filter_mode_overlay">悬浮窗</string>
     <string name="filter_mode_multiply">正片叠底</string>
     <string name="filter_mode_screen">屏幕</string>

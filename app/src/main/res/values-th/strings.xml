@@ -355,9 +355,6 @@
     <string name="filter_mode_screen">หน้าจอ</string>
     <string name="filter_mode_lighten">ดอดจ์ / แบ่งเบา</string>
     <string name="pref_library_update_prioritization">ลำดับการปรับปรุงห้องสมุด</string>
-    <string name="pref_library_update_prioritization_summary">เลือกลำดับที่ให้ Tachiyomi ตรวจสอบการปรับปรุง</string>
-    <string name="action_forward">เดินหน้า</string>
-    <string name="action_refresh">โหลดใหม่</string>
     <string name="no_results_found">ไม่พบผลลัพธ์</string>
     <string name="backup_restore_content">คืนค่าใช้แหล่งที่มาเพื่อดึงข้อมูลอาจมีค่าใช้จ่ายของผู้ให้บริการ
 \nตรวจสอบให้แน่ใจว่าคุณได้เข้าสู่ระบบอย่างถูกต้องในแหล่งที่ต้องใช้ก่อนที่จะกู้</string>

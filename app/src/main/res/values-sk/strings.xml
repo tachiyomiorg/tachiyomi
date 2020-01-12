@@ -116,7 +116,6 @@
     <string name="pref_library_update_categories">Kategórie, ktoré sa majú zahrnúť do globálnej aktualizácie</string>
     <string name="all">Všetko</string>
     <string name="pref_library_update_prioritization">Poradie aktualizácie knižnice</string>
-    <string name="pref_library_update_prioritization_summary">Vyberte poradie, v ktorom Tachiyomi kontroluje aktualizácie</string>
     <string name="pref_library_update_restriction">Obmedzenia aktualizácii knižnice</string>
     <string name="pref_library_update_restriction_summary">Aktualizovať len vtedy, keď sú splnené podmienky</string>
     <string name="wifi">Wi-Fi</string>
@@ -156,8 +155,6 @@
     <string name="ext_language_info">Jazyk: %1$s</string>
     <string name="ext_empty_preferences">Nie sú k dispozícii žiadne preferencie na úpravu pre toto rozšírenie</string>
     <string name="pref_fullscreen">Na celú obrazovku</string>
-    <string name="action_forward">Dopredu</string>
-    <string name="action_refresh">Obnoviť</string>
     <string name="pref_lock_orientation">Zamknúť orientáciu</string>
     <string name="pref_page_transitions">Prechod stránok</string>
     <string name="pref_double_tap_anim_speed">Rýchlosť animácie pre dvojité ťuknutie</string>

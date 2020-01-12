@@ -445,9 +445,6 @@ Nie znaleziono źródła %1$s</string>
     <string name="filter_mode_darken">Ściemnienie</string>
     <string name="label_help">Pomoc</string>
     <string name="pref_library_update_prioritization">Kolejność aktualizacji biblioteki</string>
-    <string name="pref_library_update_prioritization_summary">Ustaw kolejność, w jakiej Tachiyomi ma sprawdzać aktualizacje</string>
-    <string name="action_forward">Dalej</string>
-    <string name="action_refresh">Odśwież</string>
     <string name="action_webview_back">Wstecz</string>
     <string name="filter_mode_screen">Ekran</string>
     <string name="no_results_found">Brak wyników</string>

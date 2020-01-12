@@ -446,5 +446,4 @@
     <string name="filter_mode_darken">Темніше</string>
     <string name="label_help">Допомога</string>
     <string name="pref_library_update_prioritization">Порядок оновлення бібліотеки</string>
-    <string name="pref_library_update_prioritization_summary">Оберіть порядок у якому Tachiyomi перевірятиме оновлення</string>
 </resources>

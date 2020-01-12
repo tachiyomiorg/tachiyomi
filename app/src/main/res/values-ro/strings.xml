@@ -445,5 +445,4 @@
     <string name="reader_pull_up_for_more_options">Trage în sus pentru mai multe opțiuni</string>
     <string name="label_help">Ajutor</string>
     <string name="pref_library_update_prioritization">Ordinea actualizării bibliotecii</string>
-    <string name="pref_library_update_prioritization_summary">Selectați ordinea în care Tachiyomi verifică actualizarea</string>
 </resources>

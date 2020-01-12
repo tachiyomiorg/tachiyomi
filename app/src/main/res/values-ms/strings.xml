@@ -441,15 +441,12 @@
     <string name="pref_color_filter_mode">"Mod  turas warna campuran"</string>
     <string name="label_help">Bantuan</string>
     <string name="pref_library_update_prioritization">Susunan kemas kini koleksi</string>
-    <string name="pref_library_update_prioritization_summary">Pilih susunan untuk Tachiyomi semak kemas kini</string>
     <string name="filter_mode_default">Biasa</string>
     <string name="filter_mode_overlay">Lapisan atas</string>
     <string name="filter_mode_multiply">Berganda</string>
     <string name="filter_mode_screen">Skrin</string>
     <string name="filter_mode_lighten">Dodge / Mencerahkan</string>
     <string name="filter_mode_darken">Burn / Menggelapkan</string>
-    <string name="action_forward">Ke Depan</string>
-    <string name="action_refresh">Segar Semula</string>
     <string name="no_results_found">Tiada hasil dijumpai</string>
     <string name="migration_selection_prompt">Pilih sumber untuk ditukar</string>
     <string name="action_webview_back">Ke belakang</string>

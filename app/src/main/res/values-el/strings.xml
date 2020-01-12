@@ -443,5 +443,4 @@
     <string name="filter_mode_screen">Οθόνη</string>
     <string name="label_help">Βοήθεια</string>
     <string name="pref_library_update_prioritization">Συχνότητα ανανέωσης της Βιβλιοθήκης</string>
-    <string name="pref_library_update_prioritization_summary">Διαλέξτε την σύχνοτητα που το Tachiyomi ελένχει για διαθέσιμη ενημέρωση</string>
 </resources>

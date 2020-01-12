@@ -446,5 +446,4 @@
     <string name="filter_mode_darken">Mörkna</string>
     <string name="label_help">Hjälp</string>
     <string name="pref_library_update_prioritization">Bibliotekets uppdateringsordning</string>
-    <string name="pref_library_update_prioritization_summary">Välj i vilken ordning Tachiyomi söker efter uppdateringar</string>
 </resources>

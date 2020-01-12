@@ -472,5 +472,4 @@
     <string name="filter_mode_lighten">Dodge / Clarear</string>
     <string name="label_help">Ajuda</string>
     <string name="pref_library_update_prioritization">Ordem de atualização da biblioteca</string>
-    <string name="pref_library_update_prioritization_summary">Selecione a ordem em que Tachiyomi verifica a atualização</string>
 </resources>

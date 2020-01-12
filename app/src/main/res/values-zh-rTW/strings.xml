@@ -219,7 +219,6 @@
     <string name="download_notifier_no_network">尚未連接至網路</string>
     <string name="download_notifier_download_paused">下載已暫停</string>
     <string name="pref_library_columns">書櫃欄位數目</string>
-    <string name="pref_library_update_prioritization_summary">選擇 Tachiyomi 檢查書櫃更新的順序</string>
     <string name="ext_details">詳情</string>
     <string name="ext_preferences">偏好設定</string>
     <string name="ext_available">可用的套件</string>

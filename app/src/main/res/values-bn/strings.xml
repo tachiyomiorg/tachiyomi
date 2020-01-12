@@ -445,5 +445,4 @@
     <string name="filter_mode_multiply">গুণ</string>
     <string name="label_help">সাহায্য</string>
     <string name="pref_library_update_prioritization">মাঙ্গা লাইব্রেরী আপডেটের প্রক্রিয়া</string>
-    <string name="pref_library_update_prioritization_summary">যে ক্রমে তাচিয়োমি হালনাগাদ করবে তা নির্বাচন করুন</string>
 </resources>

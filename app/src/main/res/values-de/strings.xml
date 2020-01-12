@@ -444,9 +444,6 @@
     <string name="filter_mode_lighten">Abwedeln / Aufhellen</string>
     <string name="label_help">Hilfe</string>
     <string name="pref_library_update_prioritization">Reihenfolge der Bibliotheksaktualisierung</string>
-    <string name="pref_library_update_prioritization_summary">Bestimme die Reihenfolge in der Tachiyomi nach Updates sucht</string>
-    <string name="action_forward">Vorwärts</string>
-    <string name="action_refresh">Aktualisierung</string>
     <string name="no_results_found">Keine Ergebnisse gefunden</string>
     <string name="migration_selection_prompt">Suche eine Quelle zum migrieren aus</string>
 </resources>

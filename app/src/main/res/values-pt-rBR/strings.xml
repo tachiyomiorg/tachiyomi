@@ -446,5 +446,4 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
     <string name="filter_mode_lighten">Clarear</string>
     <string name="filter_mode_darken">Escurecer</string>
     <string name="pref_library_update_prioritization">Ordem de atualização da biblioteca</string>
-    <string name="pref_library_update_prioritization_summary">Selecione a ordem que o Tachiyomi verificará por atualizações</string>
 </resources>

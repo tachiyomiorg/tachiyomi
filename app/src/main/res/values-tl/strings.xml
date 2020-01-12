@@ -247,7 +247,6 @@
     <string name="filter_mode_darken">Sunog / Dilim (Burn / Darken)</string>
     <string name="label_help">Tulong</string>
     <string name="pref_library_update_prioritization">Ayos ng pag-update ng Aklatan</string>
-    <string name="pref_library_update_prioritization_summary">Piliin ang ayos ng pag-check ng mga update ng Tachiyomi</string>
     <string name="file_saved">Na-save ang file sa %1$s</string>
     <string name="backup_choice">Ano ang gusto mong i-backup\?</string>
     <string name="restoring_backup">Nire-restore ang backup</string>

@@ -440,10 +440,7 @@ Zorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het teru
     <string name="pref_skip_read_chapters">Hoofdstukken die gemarkeerd zijn als gelezen overslaan</string>
     <string name="filter_mode_overlay">Overlapping</string>
     <string name="filter_mode_multiply">Vermenigvuldigen</string>
-    <string name="filter_mode_screen"></string>
+    <string name="filter_mode_screen"/>
     <string name="label_help">Help</string>
     <string name="pref_library_update_prioritization">Updatevolgorde bibliotheken</string>
-    <string name="pref_library_update_prioritization_summary">Selecteer de volgorde waarop Tachiyomi zoekt naar updates</string>
-    <string name="action_forward">Volgende</string>
-    <string name="action_refresh">Herladen</string>
 </resources>

@@ -477,9 +477,6 @@
     <string name="filter_mode_multiply">Nhân</string>
     <string name="label_help">Trợ giúp</string>
     <string name="pref_library_update_prioritization">Thứ tự ưu tiên cập nhật</string>
-    <string name="pref_library_update_prioritization_summary">Chọn thứ tự để Tachiyomi kiểm tra cập nhật</string>
-    <string name="action_forward">Chuyển tiếp</string>
-    <string name="action_refresh">Làm mới</string>
     <string name="no_results_found">Không tìm thấy kết quả nào</string>
     <string name="migration_selection_prompt">Chọn 1 nguồn để di chuyển từ</string>
 </resources>

@@ -474,9 +474,6 @@
     <string name="filter_mode_darken">Quemar / Oscurecer</string>
     <string name="label_help">Ayuda</string>
     <string name="pref_library_update_prioritization">Orden de actualización de la biblioteca</string>
-    <string name="pref_library_update_prioritization_summary">Selecciona el orden en el que Tachiyomi buscará actualizaciones</string>
-    <string name="action_forward">Adelantar</string>
-    <string name="action_refresh">Refrescar</string>
     <string name="no_results_found">No se han encontrado resultados</string>
     <string name="migration_selection_prompt">Selecciona una fuente para migrar</string>
     <string name="action_webview_back">Atras</string>

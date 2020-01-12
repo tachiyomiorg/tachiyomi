@@ -443,7 +443,6 @@
     <string name="filter_mode_screen">الشاشة</string>
     <string name="label_help">المساعدة</string>
     <string name="pref_library_update_prioritization">طلبات تحديث المكتبة</string>
-    <string name="pref_library_update_prioritization_summary">إختر طريقة (Tachiyomi) لطلب التحديثات</string>
     <string name="reader_pull_up_for_more_options">"سحب  لمزيد من الخيارات"</string>
     <string name="pref_color_filter_mode">فلتر الألوان ”وضع الألوان الممزوجة“</string>
     <string name="filter_mode_lighten">مراوغة / تفتيح</string>
