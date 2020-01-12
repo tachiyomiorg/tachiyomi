@@ -1,6 +1,8 @@
 package eu.kanade.tachiyomi.ui.extension
 
 import android.view.View
+import androidx.core.content.ContextCompat
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.extension.model.Extension
@@ -79,6 +81,10 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
                     setText(R.string.ext_update)
                 }
                 extension.isObsolete -> {
+                    // Red outline
+                    background = VectorDrawableCompat.create(resources, R.drawable.button_bg_error, null)
+                    setTextColor(ContextCompat.getColor(context, R.color.red_error))
+
                     setText(R.string.ext_obsolete)
                 }
                 else -> {
