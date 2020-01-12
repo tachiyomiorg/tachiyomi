@@ -84,7 +84,7 @@
     <string name="action_login">लोगिन</string>
     <string name="deleting">हटाया जा रहा है…</string>
     <string name="loading">लोड हो रहा है…</string>
-    <string name="app_not_available">एप्पलीकेशन उपलब्ध नहीं है</string>
+    <string name="app_not_available">ऐप उपलब्ध नहीं</string>
     <string name="short_recent_updates">अद्यतन</string>
     <string name="pref_category_general">सामान्य</string>
     <string name="pref_category_reader">पाठमाला</string>
@@ -116,10 +116,10 @@
     <string name="charging">चार्ज होते समय</string>
     <string name="pref_update_only_non_completed">केवल चालू मंगा का अद्यतन करे</string>
     <string name="pref_auto_update_manga_sync">अध्याय पढ़ने के बाद समकालीन करे</string>
-    <string name="pref_theme">एप्पलीकेशन थीम</string>
-    <string name="light_theme">मुख्य थीम</string>
-    <string name="dark_theme">गहरी थीम</string>
-    <string name="amoled_theme">अलौकिक थीम</string>
+    <string name="pref_theme">ऐप थीम</string>
+    <string name="light_theme">सफ़ेद थीम</string>
+    <string name="dark_theme">काली थीम</string>
+    <string name="amoled_theme">अलौकिक गहरी थीम</string>
     <string name="pref_start_screen">प्रथम प्रदर्शनी</string>
     <string name="pref_language">भाषा</string>
     <string name="system_default">डिफ़ॉल्ट प्रणाली</string>
@@ -388,8 +388,8 @@
     <string name="ext_preferences">पसंद</string>
     <string name="ext_available">उपलब्ध</string>
     <string name="untrusted_extension">अविश्वस्त एक्सटेंशन</string>
-    <string name="untrusted_extension_message">यह एक्सटेंशन एक अविश्वस्त प्रमाणपत्र के साथ हस्ताक्षरित हुआ था और यह सक्रिय नहीं हुआ था।
-\nदुर्भावनापूर्ण विस्तार, किसी भी लॉगिन क्रेडेंशियल्स को तचीयोमी में संग्रहीत या मनमाना कोड निष्पादित कर सकता है
+    <string name="untrusted_extension_message">यह एक्सटेंशन एक अविश्वस्त प्रमाणपत्र के साथ हस्ताक्षरित हुआ था और सक्रिय नहीं हुआ था। 
+\nदुर्भावनापूर्ण विस्तार, किसी भी लॉगिन क्रेडेंशियल्स को तचीयोमी में संग्रहीत या मनमाना कोड निष्पादित कर सकता है 
 \nइस प्रमाणपत्र पर विश्वास करके आप इन जोखिमों को स्वीकार करते हैं।</string>
     <string name="ext_version_info">संस्करण: %1$s</string>
     <string name="ext_language_info">भाषा: %1$s</string>
@@ -449,4 +449,9 @@
     <string name="action_refresh">पुनश्चर्या</string>
     <string name="no_results_found">कोई परिणाम नहीं मिला</string>
     <string name="migration_selection_prompt">से माइग्रेट करने के लिए एक स्रोत का चयन करें</string>
+    <string name="action_webview_back">पिछली तरफ</string>
+    <string name="action_webview_forward">आगे की ओर</string>
+    <string name="action_webview_refresh">रीफ़्रेश करें</string>
+    <string name="pref_category_library">पुस्तकालय</string>
+    <string name="pref_ask_update_manga_sync">अपडेट करने से पहले पुष्टि करें</string>
 </resources>
