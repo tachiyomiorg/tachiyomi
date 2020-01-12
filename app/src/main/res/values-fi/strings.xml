@@ -45,7 +45,7 @@
     <string name="no_previous_chapter">Aiempaa lukua ei löydy</string>
     <string name="decode_image_error">Kuvaa ei voitu decoodata</string>
     <string name="confirm_update_manga_sync">Päivitä viimeiseksi luettu kappale käytössä oleviin palveluihin %1$d\?</string>
-    <string name="confirm_set_image_as_cover">Haluatko asettaa tämän kuvan kansikuvaksi\?</string>
+    <string name="confirm_set_image_as_cover">Käytetäänkö tätä kuvaa kansikuvana\?</string>
     <string name="viewer_for_this_series">Katselin tälle sarjalle</string>
     <string name="transition_finished">Valmistunut:</string>
     <string name="transition_current">Nykyinen:</string>
@@ -63,7 +63,7 @@
     <string name="migrate">Vaihda</string>
     <string name="copy">Kopioi</string>
     <string name="migrating">Vaihdetaan…</string>
-    <string name="download_queue_error">Virhe tapahtui ladatessa lukuja. Voit yrittää uudelleen lataukset-osiossa</string>
+    <string name="download_queue_error">Lukujen lataaminen epäonnistui. Voit yrittää uudelleen lataukset-osiossa</string>
     <string name="notification_update_progress">Päivityksen tilanne: %1$d/%2$d</string>
     <string name="notification_new_chapters">Uusia lukuja löydetty</string>
     <string name="notification_new_chapters_text">%1$d sarjalle</string>
@@ -76,14 +76,14 @@
     <string name="file_select_cover">Valitse kansikuva</string>
     <string name="file_select_backup">Valitse varmuuskopio-tiedosto</string>
     <string name="file_select_icon">Valitse pikakuvakkeen ikoni</string>
-    <string name="update_check_title">Uusi päivitys saatavilla!</string>
+    <string name="update_check_title">Uusi versio saatavilla!</string>
     <string name="update_check_confirm">Lataa</string>
     <string name="update_check_ignore">Ohita</string>
     <string name="update_check_no_new_updates">Ei päivityksiä saatavilla</string>
     <string name="update_check_download_started">Lataus aloitettu</string>
-    <string name="update_check_look_for_updates">Tarkistetaan päivityksiä</string>
+    <string name="update_check_look_for_updates">Etsitään päivityksiä…</string>
     <string name="update_check_notification_file_download">Lataa päivitys</string>
-    <string name="update_check_notification_download_in_progress">Lataus kesken</string>
+    <string name="update_check_notification_download_in_progress">Ladataan…</string>
     <string name="update_check_notification_download_complete">Lataus valmis</string>
     <string name="update_check_notification_download_error">Latausvirhe</string>
     <string name="update_check_notification_update_available">Päivitys saatavilla</string>
@@ -92,11 +92,11 @@
     <string name="information_no_downloads">Ei latauksia</string>
     <string name="information_no_recent">Ei viimeisimpiä lukuja</string>
     <string name="information_no_recent_manga">Ei viimeksi luettuja sarjoja</string>
-    <string name="information_empty_library">Kirjasto on tyhjä. Voit lisätä sarjoja kirjastoon katalogeista.</string>
+    <string name="information_empty_library">Kirjasto on tyhjä, lisää sarjoja kirjastoon katalogeista.</string>
     <string name="information_empty_category">Sinulla ei ole kategorioita. Paina plus-nappia luodaksesi uuden kategorian kirjastosi järjestelemiseksi.</string>
     <string name="download_notifier_downloader_title">Lataaja</string>
     <string name="download_notifier_title_error">Virhe</string>
-    <string name="download_notifier_unkown_error">Odottamaton virhe tapahtui ladatessa lukua</string>
+    <string name="download_notifier_unkown_error">Lukua ei voitu ladata odottamattoman virheen vuoksi</string>
     <string name="download_notifier_page_error">Sivu puuttuu kansiosta</string>
     <string name="download_notifier_page_ready_error">Sivua ei ole ladattu</string>
     <string name="download_notifier_text_only_wifi">Ei Wi-Fi yhteyttä saatavilla</string>
@@ -195,9 +195,9 @@
     <string name="pref_update_only_non_completed">Päivitä vain jatkuvat sarjat</string>
     <string name="pref_auto_update_manga_sync">Synkronoi luvut lukemisen jälkeen</string>
     <string name="pref_theme">Sovelluksen teema</string>
-    <string name="light_theme">Oletusteema</string>
-    <string name="dark_theme">Tumma teema</string>
-    <string name="amoled_theme">AMOLED teema</string>
+    <string name="light_theme">Vaalea</string>
+    <string name="dark_theme">Tumma</string>
+    <string name="amoled_theme">AMOLED musta</string>
     <string name="darkblue_theme">Tumman sininen</string>
     <string name="pref_start_screen">Aloitusnäyttö</string>
     <string name="pref_language">Kieli</string>
@@ -225,7 +225,7 @@
 \nLuottamalla tähän sertifikaattiin hyväksyt nämä riskit.</string>
     <string name="ext_version_info">Versio: %1$s</string>
     <string name="ext_language_info">"Kieli:  %1$s"</string>
-    <string name="ext_empty_preferences">Tällä laajennuksella ei ole muokattavia asetuksia</string>
+    <string name="ext_empty_preferences">Laajennuksella ei ole muokattavia asetuksia</string>
     <string name="pref_fullscreen">Koko näyttö</string>
     <string name="pref_lock_orientation">Lukitse näkymän suunta</string>
     <string name="pref_page_transitions">Sivun siirtymiset</string>
@@ -306,8 +306,9 @@
     <string name="error_opening_log">Lokin avaus epäonnistui</string>
     <string name="restore_completed_content">Palautuksen kesto: %1$s.
 \n%2$s virhettä palauttaessa.</string>
-    <string name="backup_restore_content">Palautus käyttää lähdettä noutaakseen tietoja, tämä voi aiheuttaa kustannuksia.
-\nVarmista myös että olet kirjautunut lähteisiin jotka vaativat sitä ennen palauttamista.</string>
+    <string name="backup_restore_content">Palautus käyttää lähdettä noutaakseen tietoja, tämä voi aiheuttaa kustannuksia. 
+\n
+\nVarmista myös että sinulla on kaikki tarvittavat laajennukset ja olet kirjautunut lähteisiin ja seuranta palveluihin ennen palauttamista.</string>
     <string name="file_saved">Tiedosto tallennettu sijaintiin %1$s</string>
     <string name="backup_choice">Mitä haluat varmuuskopioida\?</string>
     <string name="restoring_backup">Palautetaan varmuuskopiota</string>
@@ -339,7 +340,7 @@
     <string name="show_password">Näytä salasana</string>
     <string name="login">Kirjaudu</string>
     <string name="login_success">Kirjautuminen onnistui</string>
-    <string name="invalid_login">Virhe kirjautuessa</string>
+    <string name="invalid_login">Kirjautuminen epäonnistui</string>
     <string name="unknown_error">Tuntematon virhe</string>
     <string name="library_search_hint">Nimike tai kirjailija…</string>
     <string name="updating_category">Päivitetään kategoriaa</string>
@@ -351,14 +352,14 @@
     <string name="invalid_combination">Oletus ei voi olla valittuna muiden kategorioiden kanssa</string>
     <string name="added_to_library">Sarja on lisätty kirjastoon</string>
     <string name="action_global_search_hint">Globaali haku…</string>
-    <string name="circular_icon">Pyöreä ikoni</string>
-    <string name="rounded_icon">Pyöristetty ikoni</string>
+    <string name="circular_icon">Pyöreä</string>
+    <string name="rounded_icon">Pyöristetty</string>
     <string name="square_icon">Neliö</string>
     <string name="star_icon">Tähti</string>
     <string name="shortcut_title">Pikakuvakkeen nimi</string>
     <string name="shortcut_created">Pikakuvake on lisätty kotinäytölle.</string>
     <string name="icon_shape">Ikonin muoto</string>
-    <string name="icon_creation_fail">Pikakuvakkeen luominen epäonnistui!</string>
+    <string name="icon_creation_fail">Pikakuvakkeen luominen epäonnistui</string>
     <string name="delete_downloads_for_manga">Poista ladatut luvut\?</string>
     <string name="copied_to_clipboard">%1$s kopioitu leikepöydälle</string>
     <string name="source_not_installed">Lähdettä ei ole asennettu: %1$s</string>
@@ -370,7 +371,7 @@
     <string name="chapter_downloading_progress">"Ladataan  (%1$d/%2$d)"</string>
     <string name="chapter_error">Virhe</string>
     <string name="chapter_paused">Pysäytetty</string>
-    <string name="fetch_chapters_error">Virhe hakiessa lukuja</string>
+    <string name="fetch_chapters_error">Lukujen hakeminen epäonnistui</string>
     <string name="show_title">Näytä nimike</string>
     <string name="show_chapter_number">Näytä luvun numero</string>
     <string name="sorting_mode">Lajittelutila</string>
@@ -402,7 +403,7 @@
     <string name="other_source">Muut</string>
     <string name="latest">Viimeisimmät</string>
     <string name="browse">Selaa</string>
-    <string name="manga_not_in_db">Tämä sarja poistettiin tietokannasta!</string>
+    <string name="manga_not_in_db">Tämä sarja poistettiin tietokannasta.</string>
     <string name="manga_detail_tab">Tiedot</string>
     <string name="description">Kuvaus</string>
     <string name="ongoing">Jatkuva</string>
@@ -423,12 +424,12 @@
     <string name="manga_chapters_tab">Luvut</string>
     <string name="custom_download">Lataa muokautettu määrä</string>
     <string name="custom_hint">määrä</string>
-    <string name="download_1">Lataa seuraava luku</string>
-    <string name="download_5">Lataa seuraavat 5 lukua</string>
-    <string name="download_10">Lataa seuraavat 10 lukua</string>
-    <string name="download_custom">Lataa muokautetusti</string>
-    <string name="download_all">Lataa kaikki</string>
-    <string name="download_unread">Lataa lukemattomat</string>
+    <string name="download_1">Seuraava luku</string>
+    <string name="download_5">Seuraavat 5 lukua</string>
+    <string name="download_10">Seuraavat 10 lukua</string>
+    <string name="download_custom">Mukautettu</string>
+    <string name="download_all">Kaikki</string>
+    <string name="download_unread">Lukemattomat</string>
     <string name="dropped">Tiputettu</string>
     <string name="on_hold">Pidossa</string>
     <string name="plan_to_read">Aikomus lukea</string>
@@ -448,4 +449,10 @@
     <string name="pref_library_update_prioritization">Kirjaston päivitys järjestys</string>
     <string name="no_results_found">Ei tuloksia</string>
     <string name="migration_selection_prompt">Valitse lähde josta vaihdetaan</string>
+    <string name="action_webview_back">Takaisin</string>
+    <string name="action_webview_forward">Eteenpäin</string>
+    <string name="action_webview_refresh">Päivitä</string>
+    <string name="pref_category_library">Kirjasto</string>
+    <string name="pref_ask_update_manga_sync">Vahvista ennen päivittämistä</string>
+    <string name="invalid_download_dir">Virheellinen latauskansio</string>
 </resources>
