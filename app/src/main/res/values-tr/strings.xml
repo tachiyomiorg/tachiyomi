@@ -120,9 +120,9 @@
     <string name="pref_update_only_non_completed">Yalnızca devam eden mangaları güncelleme</string>
     <string name="pref_auto_update_manga_sync">Okudukdan sonra bölümleri eşitle</string>
     <string name="pref_theme">Uygulama teması</string>
-    <string name="light_theme">Ana tema</string>
-    <string name="dark_theme">Koyu tema</string>
-    <string name="amoled_theme">AMOLED tema</string>
+    <string name="light_theme">Aydınlık</string>
+    <string name="dark_theme">Karanlık</string>
+    <string name="amoled_theme">AMOLED karanlık</string>
     <string name="pref_start_screen">Başlangıç ekranı</string>
     <string name="pref_language">Dil</string>
     <string name="system_default">Sistem öntanımlı</string>
@@ -231,8 +231,9 @@
     <string name="error_opening_log">Günlük açılamadı</string>
     <string name="restore_completed_content">Geri yükleme %1$s aldı. 
 \n%2$s hata bulundu.</string>
-    <string name="backup_restore_content">Geri yükleme veriyi almak için kaynağı kullanır, taşıyıcı ücreti uygulanabilir. 
-\nAyrıca geri yüklemeden önce giriş gerektiren kaynaklara uygun biçimde giriş yaptığınızdan emin olun.</string>
+    <string name="backup_restore_content">Geri yükleme veriyi almak için kaynakları kullanır, taşıyıcı ücreti uygulanabilir. 
+\n
+\nGeri yüklemeden önce, giriş gerektiren kaynaklara ve takip hizmetlerine giriş yaptığınızdan, ve gerekli tüm uzantıları kurduğunuzdan emin olun.</string>
     <string name="file_saved">Dosya %1$s konumuna kaydedildi</string>
     <string name="backup_choice">Neyi yedeklemek istiyorsunuz?</string>
     <string name="restoring_backup">Yedek geri yükleniyor</string>
@@ -255,7 +256,7 @@
     <string name="version">Sürüm</string>
     <string name="build_time">İnşa tarihi</string>
     <string name="pref_enable_automatic_updates">Güncellemeleri denetle</string>
-    <string name="pref_enable_automatic_updates_summary">Uygulama güncellemelerini kendiliğinden denetle</string>
+    <string name="pref_enable_automatic_updates_summary">Yeni uygulama sürümlerini kendiliğinden denetle</string>
     <string name="pref_enable_acra">Çökme bildirimi gönder</string>
     <string name="pref_acra_summary">Hataların düzeltilmesine yardımcı olur. Hiçbir hassas veri gönderilmez</string>
     <string name="login_title">%1$s için giriş</string>
@@ -263,8 +264,8 @@
     <string name="password">Parola</string>
     <string name="show_password">Parolayı göster</string>
     <string name="login">Giriş</string>
-    <string name="login_success">Giriş başarılı</string>
-    <string name="invalid_login">Giriş hatası</string>
+    <string name="login_success">Başarıyla giriş yapıldı</string>
+    <string name="invalid_login">Giriş yapılamadı</string>
     <string name="unknown_error">Bilinmeyen hata</string>
     <string name="library_search_hint">Başlık veya yazar…</string>
     <string name="updating_category">Kategori güncelleniyor</string>
@@ -301,14 +302,14 @@
     <string name="manga_info_status_label">Durum</string>
     <string name="manga_info_source_label">Kaynak</string>
     <string name="manga_info_genres_label">Türler</string>
-    <string name="circular_icon">Dairesel simge</string>
-    <string name="rounded_icon">Yuvarlak simge</string>
-    <string name="square_icon">Kare simge</string>
-    <string name="star_icon">Yıldız simge</string>
+    <string name="circular_icon">Dairesel</string>
+    <string name="rounded_icon">Yuvarlak</string>
+    <string name="square_icon">Kare</string>
+    <string name="star_icon">Yıldız</string>
     <string name="shortcut_title">Kısayol başlığı</string>
     <string name="shortcut_created">Kısayol ana ekrana eklendi.</string>
     <string name="icon_shape">Simge şekli</string>
-    <string name="icon_creation_fail">Kısayol oluşturulamadı!</string>
+    <string name="icon_creation_fail">Kısayol oluşturulamadı</string>
     <string name="delete_downloads_for_manga">İndirilen bölümler silinsin mi?</string>
     <string name="copied_to_clipboard">"%1$s panoya kopyalandı "</string>
     <string name="source_not_installed">Kaynak kurulmadı: %1$s</string>
@@ -321,7 +322,7 @@
     <string name="chapter_downloading_progress">(%1$d/%2$d) indiriliyor</string>
     <string name="chapter_error">Hata</string>
     <string name="chapter_paused">Duraklatıldı</string>
-    <string name="fetch_chapters_error">Bölümler alınırken hata</string>
+    <string name="fetch_chapters_error">Bölümler alınamadı</string>
     <string name="show_title">Başlığı göster</string>
     <string name="show_chapter_number">Bölüm numarasını göster</string>
     <string name="sorting_mode">Sıralama kipi</string>
@@ -330,12 +331,12 @@
     <string name="manga_download">İndir</string>
     <string name="custom_download">Özel toplamda indir</string>
     <string name="custom_hint">Toplam</string>
-    <string name="download_1">Sonraki bölümü indir</string>
-    <string name="download_5">Sonraki 5 bölümü indir</string>
-    <string name="download_10">Sonraki 10 bölümü indir</string>
-    <string name="download_custom">Özel indir</string>
-    <string name="download_all">Tümünü indir</string>
-    <string name="download_unread">Okunmamışı indir</string>
+    <string name="download_1">Sonraki bölüm</string>
+    <string name="download_5">Sonraki 5 bölüm</string>
+    <string name="download_10">Sonraki 10 bölüm</string>
+    <string name="download_custom">Özel</string>
+    <string name="download_all">Hepsi</string>
+    <string name="download_unread">Okunmamış</string>
     <string name="confirm_delete_chapters">Seçilen bölümleri silmek istediğinize emin misiniz?</string>
     <string name="manga_tracking_tab">İzleme</string>
     <string name="reading">Okunuyor</string>
@@ -351,7 +352,7 @@
     <string name="track_start_date">Başlangıç</string>
     <string name="track_type">Tür</string>
     <string name="track_author">Yazar</string>
-    <string name="url_not_set">Manga url\'si ayarlı değil, lütfen başlığa dokunun ve mangayı yeniden seçin</string>
+    <string name="url_not_set">Manga URL\'si ayarlı değil, lütfen başlığa dokunun ve mangayı yeniden seçin</string>
     <string name="error_category_exists">Bu adla bir kategori zaten var!</string>
     <string name="snack_categories_deleted">Kategoriler silindi</string>
     <string name="dialog_with_checkbox_remove_description">Bu, bu bölümün okunma tarihini kaldıracak. Emin misiniz?</string>
@@ -372,7 +373,7 @@
     <string name="no_previous_chapter">Önceki bölüm bulunamadı</string>
     <string name="decode_image_error">Görsel kodu çözülemedi</string>
     <string name="confirm_update_manga_sync">Etkin hizmetlerde okunan son bölüm %1$d ile güncellensin mi?</string>
-    <string name="confirm_set_image_as_cover">Bu görseli kapak olarak ayarlamak istiyor musunuz?</string>
+    <string name="confirm_set_image_as_cover">Bu görsel kapak resmi olarak kullanılsın mı\?</string>
     <string name="viewer_for_this_series">Bu dizi için görüntüleyici</string>
     <string name="recent_manga_source">%1$s - Böl.%2$s</string>
     <string name="migration_info">Taşınılacak kaynağı seçmek için dokunun</string>
@@ -381,7 +382,7 @@
     <string name="migrate">Taşın</string>
     <string name="copy">Kopyala</string>
     <string name="migrating">Taşınılıyor…</string>
-    <string name="download_queue_error">Bölümler indirilirken bir hata oluştu. İndirmeler bölümünden yeniden deneyebilirsiniz</string>
+    <string name="download_queue_error">Bölümler indirilemedi. İndirmeler bölümünden yeniden deneyebilirsiniz</string>
     <string name="notification_update_progress">Güncelleme ilerlemesi: %1$d/%2$d</string>
     <string name="notification_new_chapters">Yeni bölümler bulundu</string>
     <string name="notification_new_chapters_text">%1$d başlık için</string>
@@ -394,14 +395,14 @@
     <string name="file_select_cover">Kapak görselini seç</string>
     <string name="file_select_backup">Yedek dosyasını seç</string>
     <string name="file_select_icon">Kısayol simgesi seç</string>
-    <string name="update_check_title">Yeni güncelleme var!</string>
+    <string name="update_check_title">Yeni sürüm var!</string>
     <string name="update_check_confirm">İndir</string>
     <string name="update_check_ignore">Yok say</string>
     <string name="update_check_no_new_updates">Yeni güncelleme yok</string>
     <string name="update_check_download_started">İndirme başladı</string>
-    <string name="update_check_look_for_updates">Güncellemeler aranıyor</string>
+    <string name="update_check_look_for_updates">Güncellemeler aranıyor…</string>
     <string name="update_check_notification_file_download">Güncellemeyi indir</string>
-    <string name="update_check_notification_download_in_progress">İndirme sürüyor</string>
+    <string name="update_check_notification_download_in_progress">İndiriliyor…</string>
     <string name="update_check_notification_download_complete">İndirme tamamlandı</string>
     <string name="update_check_notification_download_error">İndirme hatası</string>
     <string name="update_check_notification_update_available">Güncelleme var</string>
@@ -410,11 +411,11 @@
     <string name="information_no_downloads">İndirme yok</string>
     <string name="information_no_recent">Yeni bölüm yok</string>
     <string name="information_no_recent_manga">Yakında okunan manga yok</string>
-    <string name="information_empty_library">Kitaplığınız boş, Kataloglardan kitaplığınıza serileri ekleyebilirsiniz.</string>
+    <string name="information_empty_library">Kitaplığınız boş, kataloglardan kitaplığınıza serileri ekleyin.</string>
     <string name="information_empty_category">Kategoriniz yok. Kitaplığınızı düzenlemek için bir tane oluşturmak için artı düğmesine basın.</string>
     <string name="download_notifier_downloader_title">İndirici</string>
     <string name="download_notifier_title_error">Hata</string>
-    <string name="download_notifier_unkown_error">Bölüm indirilirken beklenmeyen bir hata oluştu</string>
+    <string name="download_notifier_unkown_error">Beklenmeyen hata sonucu bölüm indirilemedi</string>
     <string name="download_notifier_page_error">Dizinde bir sayda eksik</string>
     <string name="download_notifier_page_ready_error">Bir sayfa yüklenmedi</string>
     <string name="download_notifier_text_only_wifi">Wi-Fi bağlantısı yok</string>
@@ -448,4 +449,12 @@
     <string name="pref_library_update_prioritization">Kitaplık güncelleme sırası</string>
     <string name="no_results_found">Sonuç bulunmadı</string>
     <string name="migration_selection_prompt">Taşınılacak bir kaynak seçin</string>
+    <string name="action_webview_back">Geri</string>
+    <string name="action_webview_forward">İleri</string>
+    <string name="action_webview_refresh">Yenile</string>
+    <string name="pref_category_library">Kitaplık</string>
+    <string name="pref_ask_update_manga_sync">Güncellemeden önce sor</string>
+    <string name="invalid_download_dir">Geçersiz indirme dizini</string>
+    <string name="ext_obsolete">Eski</string>
+    <string name="obsolete_extension_message">Bu uzantı artık kullanılamaz.</string>
 </resources>
