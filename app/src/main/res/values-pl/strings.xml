@@ -454,4 +454,6 @@ Nie znaleziono źródła %1$s</string>
     <string name="pref_category_library">Biblioteka</string>
     <string name="pref_ask_update_manga_sync">Potwierdzaj przed aktualizacją</string>
     <string name="invalid_download_dir">Nieprawidłowy folder pobierania</string>
+    <string name="ext_obsolete">Przestarzałe</string>
+    <string name="obsolete_extension_message">To rozszerzenie nie jest już dostępne.</string>
 </resources>
