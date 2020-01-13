@@ -453,4 +453,6 @@
     <string name="pref_category_library">पुस्तकालय</string>
     <string name="pref_ask_update_manga_sync">अपडेट करने से पहले पुष्टि करें</string>
     <string name="invalid_download_dir">अमान्य डाउनलोड निर्देशिका</string>
+    <string name="ext_obsolete">अप्रचलित</string>
+    <string name="obsolete_extension_message">यह एक्सटेंशन अब उपलब्ध नहीं है।</string>
 </resources>
