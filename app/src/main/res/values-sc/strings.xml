@@ -120,9 +120,9 @@
     <string name="pref_update_only_non_completed">Agiorna sos manga in cursu ebbia</string>
     <string name="pref_auto_update_manga_sync">Sincroniza sos capìtulos a pustis de sa leghidura</string>
     <string name="pref_theme">Tema de s\'aplicatzione</string>
-    <string name="light_theme">Tema printzipale</string>
-    <string name="dark_theme">Tema iscuru</string>
-    <string name="amoled_theme">Tema AMOLED</string>
+    <string name="light_theme">Craru</string>
+    <string name="dark_theme">Iscuru</string>
+    <string name="amoled_theme">AMOLED iscuru</string>
     <string name="darkblue_theme">Biaitu iscuru</string>
     <string name="pref_start_screen">Ischermada de incumintzu</string>
     <string name="pref_language">Limba</string>
@@ -233,8 +233,9 @@
     <string name="error_opening_log">Impossìbile abèrrere su registru</string>
     <string name="restore_completed_content">Su riprìstinu est duradu %1$s.
 \n%2$s errores agatados.</string>
-    <string name="backup_restore_content">Su riprìstinu impreat sa mitza pro otènnere sos datos, bi diant pòdere èssere costos de s\'operadore.
-\nAssegura·ti fintzas de àere fatu s\'atzessu pro sas mitzas chi lu pedint in antis de ripristinare.</string>
+    <string name="backup_restore_content">Su riprìstinu impreat sas mitzas pro otènnere sos datos, bi diant pòdere èssere costos de s\'operadore. 
+\n
+\nAssegura·ti de àere installadu totu sas estensiones netzessàrias e de àere fatu s\'atzessu a sas mitzas e a sos servìtzios de arrastamentu in antis de ripristinare.</string>
     <string name="file_saved">Documentu sarvadu in %1$s</string>
     <string name="backup_choice">De ite cheres fàghere una còpia de seguresa\?</string>
     <string name="restoring_backup">Ripristinende sa còpia de seguresa</string>
@@ -257,7 +258,7 @@
     <string name="version">Versione</string>
     <string name="build_time">Data de compilatzione</string>
     <string name="pref_enable_automatic_updates">Chirca agiornamentos</string>
-    <string name="pref_enable_automatic_updates_summary">Chirca automaticamente agiornamentos de s\'aplicatzione</string>
+    <string name="pref_enable_automatic_updates_summary">Chirca automaticamente versiones noas de s\'aplicatzione</string>
     <string name="pref_enable_acra">Imbia raportos a pitzu de sos arrestos anòmalos</string>
     <string name="pref_acra_summary">Agiudat a acontzare cale si siat faddina. Perunu datu sensìbile at a èssere imbiadu</string>
     <string name="login_title">Intrada pro %1$s</string>
@@ -266,7 +267,7 @@
     <string name="show_password">Ammustra sa crae</string>
     <string name="login">Intra</string>
     <string name="login_success">S\'intrada at tentu sutzessu</string>
-    <string name="invalid_login">Errore de atzessu</string>
+    <string name="invalid_login">Intrada fallida</string>
     <string name="unknown_error">Errore disconnotu</string>
     <string name="library_search_hint">Tìtulu o autore…</string>
     <string name="updating_category">Agiornende sa categoria</string>
@@ -285,7 +286,7 @@
     <string name="action_global_search_hint">Chirca globale…</string>
     <string name="latest">Ùrtimos</string>
     <string name="browse">Esplora</string>
-    <string name="manga_not_in_db">Custu manga est istadu bogadu dae sa base de datos!</string>
+    <string name="manga_not_in_db">Custu manga est istadu bogadu dae sa base de datos.</string>
     <string name="manga_detail_tab">Informatziones</string>
     <string name="description">Descritzione</string>
     <string name="ongoing">In cursu</string>
@@ -303,14 +304,14 @@
     <string name="manga_info_status_label">Istadu</string>
     <string name="manga_info_source_label">Mitza</string>
     <string name="manga_info_genres_label">Gèneres</string>
-    <string name="circular_icon">Icona tzirculare</string>
-    <string name="rounded_icon">Icona atundada</string>
-    <string name="square_icon">Icona cuadrada</string>
-    <string name="star_icon">Icona a isteddu</string>
+    <string name="circular_icon">Tzirculare</string>
+    <string name="rounded_icon">Atundada</string>
+    <string name="square_icon">Cuadrada</string>
+    <string name="star_icon">Isteddu</string>
     <string name="shortcut_title">Tìtulu de s\'incurtzadura</string>
     <string name="shortcut_created">S\'incurtzadura est istada annanta a s\'ischermada printzipale tua.</string>
     <string name="icon_shape">Forma de s\'icona</string>
-    <string name="icon_creation_fail">Creatzione de s\'incurtzadura fallida!</string>
+    <string name="icon_creation_fail">Creatzione de s\'incurtzadura fallida</string>
     <string name="delete_downloads_for_manga">Iscantzellare sos capìtulos iscarrigados\?</string>
     <string name="copied_to_clipboard">%1$s copiadu in punta de billete</string>
     <string name="source_not_installed">Mitza no installada: %1$s</string>
@@ -323,7 +324,7 @@
     <string name="chapter_downloading_progress">Iscarrighende (%1$d/%2$d)</string>
     <string name="chapter_error">Errore</string>
     <string name="chapter_paused">In pàusa</string>
-    <string name="fetch_chapters_error">Errore durante su recùperu de sos capìtulos</string>
+    <string name="fetch_chapters_error">Recùperu de sos capìtulos fallidu</string>
     <string name="show_title">Ammustra su tìtulu</string>
     <string name="show_chapter_number">Ammustra su nùmeru de su capìtulu</string>
     <string name="sorting_mode">Modalidade de ordinamentu</string>
@@ -332,12 +333,12 @@
     <string name="manga_download">Iscàrriga</string>
     <string name="custom_download">Iscàrriga una cantidade personalizada</string>
     <string name="custom_hint">cantidade</string>
-    <string name="download_1">Iscàrriga su capìtulu imbeniente</string>
-    <string name="download_5">Iscàrriga sos 5 capìtulos imbenientes</string>
-    <string name="download_10">Iscàrriga sos 10 capìtulos imbenientes</string>
-    <string name="download_custom">Iscarrigamentu personalizadu</string>
-    <string name="download_all">Iscàrriga totu</string>
-    <string name="download_unread">Iscàrriga sos non lèghidos</string>
+    <string name="download_1">Capìtulu imbeniente</string>
+    <string name="download_5">Sos 5 capìtulos imbenientes</string>
+    <string name="download_10">Sos 10 capìtulos imbenientes</string>
+    <string name="download_custom">Personalizadu</string>
+    <string name="download_all">Totu</string>
+    <string name="download_unread">Non lèghidos</string>
     <string name="confirm_delete_chapters">Ses seguru de chèrrere iscantzellare sos capìtulos ischertados\?</string>
     <string name="manga_tracking_tab">Arrastamentu</string>
     <string name="reading">Leghende</string>
@@ -353,7 +354,7 @@
     <string name="track_start_date">Incumintzadu</string>
     <string name="track_type">Casta</string>
     <string name="track_author">Autore</string>
-    <string name="url_not_set">S\'url de su manga no est impostadu, pro praghere incarca in su tìtulu e ischerta torra su manga</string>
+    <string name="url_not_set">S\'URL de su manga no est impostadu, pro praghere incarca in su tìtulu e ischerta torra su manga</string>
     <string name="error_category_exists">Esistit giai una categoria cun custu nùmene!</string>
     <string name="snack_categories_deleted">Categorias iscantzelladas</string>
     <string name="dialog_with_checkbox_remove_description">Custu at a bogare sa data de leghidura de custu capìtulu. Seguru ses\?</string>
@@ -392,7 +393,7 @@
     <string name="migrate">Mìgra</string>
     <string name="copy">Còpia</string>
     <string name="migrating">Migrende…</string>
-    <string name="download_queue_error">B’at àpidu un\'errore in s’iscarrigamentu de sos capìtulos. Podes torrare a proare in sa setzione de sos iscarrigamentos</string>
+    <string name="download_queue_error">Iscarrigamentu de sos capìtulos fallidu. Podes torrare a proare in sa setzione de sos iscarrigamentos</string>
     <string name="notification_update_progress">Progressu de s\'agiornamentu: %1$d/%2$d</string>
     <string name="notification_new_chapters">Capìtulos noos agatados</string>
     <string name="notification_new_chapters_text">Pro %1$d tìtulos</string>
@@ -405,14 +406,14 @@
     <string name="file_select_cover">Ischerta s\'immàgine de cobertedda</string>
     <string name="file_select_backup">Ischerta sa còpia de seguresa</string>
     <string name="file_select_icon">Ischerta s\'icona de s\'incurtzadura</string>
-    <string name="update_check_title">Est disponìbile un\'agiornamentu nou!</string>
+    <string name="update_check_title">Versione noa disponìbile!</string>
     <string name="update_check_confirm">Iscàrriga</string>
     <string name="update_check_ignore">Ignora</string>
     <string name="update_check_no_new_updates">Non bi sunt agiornamentos disponìbiles noos</string>
     <string name="update_check_download_started">Iscarrigamentu incumintzadu</string>
-    <string name="update_check_look_for_updates">Chirchende agiornamentos</string>
+    <string name="update_check_look_for_updates">Chirchende agiornamentos…</string>
     <string name="update_check_notification_file_download">Iscàrriga s\'agiornamentu</string>
-    <string name="update_check_notification_download_in_progress">Iscarrigamentu in cursu</string>
+    <string name="update_check_notification_download_in_progress">Iscarrighende…</string>
     <string name="update_check_notification_download_complete">Iscarrigamentu acabadu</string>
     <string name="update_check_notification_download_error">Errore de iscarrigamentu</string>
     <string name="update_check_notification_update_available">Agiornamentu disponìbile</string>
@@ -421,14 +422,14 @@
     <string name="information_no_downloads">Perunu iscarrigamentu</string>
     <string name="information_no_recent">Perunu capìtulu reghente</string>
     <string name="information_no_recent_manga">Perunu manga lèghidu dae pagu</string>
-    <string name="information_empty_library">Sa biblioteca tua est bòida, podes annànghere sèries a sa biblioteca tua dae sos Catàlogos.</string>
+    <string name="information_empty_library">Sa biblioteca tua est bòida, annanghe sèries a sa biblioteca tua dae sos catàlogos.</string>
     <string name="information_empty_category">Non tenes categorias. Incarca su butone de su \"prus\" pro nde creare una pro organizare sa biblioteca tua.</string>
     <string name="download_notifier_downloader_title">Iscarrigadore</string>
     <string name="download_notifier_title_error">Errore</string>
-    <string name="download_notifier_unkown_error">B\'at àpidu un\'errore imprevistu durante s\'iscarrigamentu de su capìtulu</string>
+    <string name="download_notifier_unkown_error">Iscarrigamentu de su capìtulu fallidu pro more de un\'errore imprevistu</string>
     <string name="download_notifier_page_error">Una pàgina mancat in sa cartella</string>
     <string name="download_notifier_page_ready_error">Una pàgina no est istada carrigada</string>
-    <string name="download_notifier_text_only_wifi">Peruna connessione wifi disponìbile</string>
+    <string name="download_notifier_text_only_wifi">Peruna connessione Wi-Fi disponìbile</string>
     <string name="download_notifier_no_network">Peruna connessione de retza disponìbile</string>
     <string name="download_notifier_download_paused">Iscarrigamentu in pàusa</string>
     <string name="channel_common">Comunu</string>
@@ -448,4 +449,12 @@
     <string name="pref_library_update_prioritization">Òrdine de agiornamentu de sa biblioteca</string>
     <string name="no_results_found">Perunu resultadu agadadu</string>
     <string name="migration_selection_prompt">Ischerta una mitza dae sa cale tramudare</string>
+    <string name="action_webview_back">In segus</string>
+    <string name="action_webview_forward">In antis</string>
+    <string name="action_webview_refresh">Annoa</string>
+    <string name="pref_category_library">Biblioteca</string>
+    <string name="pref_ask_update_manga_sync">Cunfirma in antis de agiornare</string>
+    <string name="invalid_download_dir">Cartella de iscarrigamentu non vàlida</string>
+    <string name="ext_obsolete">Obsoleta</string>
+    <string name="obsolete_extension_message">Cust\'estensione no est prus disponìbile.</string>
 </resources>
