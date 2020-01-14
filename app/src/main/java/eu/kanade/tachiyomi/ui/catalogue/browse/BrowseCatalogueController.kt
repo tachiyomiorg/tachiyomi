@@ -215,36 +215,38 @@ open class BrowseCatalogueController(bundle: Bundle) :
         inflater.inflate(R.menu.catalogue_list, menu)
 
         // Initialize search menu
-        menu.findItem(R.id.action_search).apply {
-            val searchView = actionView as SearchView
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
 
-            val query = presenter.query
-            if (!query.isBlank()) {
-                expandActionView()
-                searchView.setQuery(query, true)
-                searchView.clearFocus()
-            }
-
-            val searchEventsObservable = searchView.queryTextChangeEvents()
-                    .skip(1)
-                    .filter { router.backstack.lastOrNull()?.controller() == this@BrowseCatalogueController }
-                    .share()
-            val writingObservable = searchEventsObservable
-                    .filter { !it.isSubmitted }
-                    .debounce(1250, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-            val submitObservable = searchEventsObservable
-                    .filter { it.isSubmitted }
-
-            searchViewSubscription?.unsubscribe()
-            searchViewSubscription = Observable.merge(writingObservable, submitObservable)
-                    .map { it.queryText().toString() }
-                    .subscribeUntilDestroy { searchWithQuery(it) }
-
-            fixExpand(onCollapse = {
-                searchWithQuery("")
-                true
-            })
+        val query = presenter.query
+        if (!query.isBlank()) {
+            searchItem.expandActionView()
+            searchView.setQuery(query, true)
+            searchView.clearFocus()
         }
+
+        val searchEventsObservable = searchView.queryTextChangeEvents()
+                .skip(1)
+                .filter { router.backstack.lastOrNull()?.controller() == this@BrowseCatalogueController }
+                .share()
+        val writingObservable = searchEventsObservable
+                .filter { !it.isSubmitted }
+                .debounce(1250, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+        val submitObservable = searchEventsObservable
+                .filter { it.isSubmitted }
+
+        searchViewSubscription?.unsubscribe()
+        searchViewSubscription = Observable.merge(writingObservable, submitObservable)
+                .map { it.queryText().toString() }
+                .subscribeUntilDestroy { searchWithQuery(it) }
+
+        searchItem.fixExpand(
+                onExpand = { invalidateMenuOnExpand() },
+                onCollapse = {
+                    searchWithQuery("")
+                    true
+                }
+        )
 
         // Setup filters button
         menu.findItem(R.id.action_set_filter).apply {
@@ -278,6 +280,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.action_search -> expandActionViewFromInteraction = true
             R.id.action_display_mode -> swapDisplayMode()
             R.id.action_set_filter -> navView?.let { activity?.drawer?.openDrawer(GravityCompat.END) }
             R.id.action_open_in_browser -> openInBrowser()

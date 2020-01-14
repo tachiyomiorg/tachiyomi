@@ -321,7 +321,7 @@ class LibraryController(
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
-        if (!query.isEmpty()) {
+        if (query.isNotEmpty()) {
             searchItem.expandActionView()
             searchView.setQuery(query, true)
             searchView.clearFocus()
@@ -339,7 +339,7 @@ class LibraryController(
                     searchRelay.call(query)
                 }
 
-        searchItem.fixExpand()
+        searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
@@ -354,6 +354,7 @@ class LibraryController(
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.action_search -> expandActionViewFromInteraction = true
             R.id.action_filter -> {
                 navView?.let { activity?.drawer?.openDrawer(GravityCompat.END) }
             }
