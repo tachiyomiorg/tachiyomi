@@ -482,4 +482,6 @@
     <string name="pref_category_library">Biblioteca</string>
     <string name="pref_ask_update_manga_sync">Confirmar antes de actualizar</string>
     <string name="invalid_download_dir">Directorio de descarga inválido</string>
+    <string name="ext_obsolete">Obsoleto</string>
+    <string name="obsolete_extension_message">Esta extensión ya no está disponible.</string>
 </resources>
