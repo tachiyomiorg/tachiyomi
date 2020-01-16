@@ -106,8 +106,8 @@
     <string name="all">Alle</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Lading</string>
-    <string name="light_theme">Hoveddrakt</string>
-    <string name="dark_theme">Mørk drakt</string>
+    <string name="light_theme">Lys</string>
+    <string name="dark_theme">Mørk</string>
     <string name="amoled_theme">AMOLED-drakt</string>
     <string name="darkblue_theme">Mørkeblå</string>
     <string name="pref_start_screen">Startskjerm</string>
@@ -248,7 +248,7 @@
     <string name="version">Versjon</string>
     <string name="build_time">Byggtid</string>
     <string name="pref_enable_automatic_updates">Se etter nye versjoner</string>
-    <string name="pref_enable_automatic_updates_summary">Se etter nye versjoner automatisk</string>
+    <string name="pref_enable_automatic_updates_summary">Se etter nye programversjoner automatisk</string>
     <string name="pref_enable_acra">Send kræsjrapporter</string>
     <string name="pref_acra_summary">Hjelper til med fiksing av feil. Ingen sensitiv data vil bli sendt.</string>
     <string name="login_title">Innlogging for %1$s</string>
@@ -257,7 +257,7 @@
     <string name="show_password">Vis passord</string>
     <string name="login">Logg inn</string>
     <string name="login_success">Innlogget</string>
-    <string name="invalid_login">Innloggingsfeil</string>
+    <string name="invalid_login">Kunne ikke logge inn</string>
     <string name="unknown_error">Ukjent feil</string>
     <string name="library_search_hint">Tittel eller forfatter…</string>
     <string name="updating_category">Oppdaterer kategori</string>
@@ -276,7 +276,7 @@
     <string name="action_global_search_hint">Globalt søk…</string>
     <string name="latest">Seneste</string>
     <string name="browse">Utforsk</string>
-    <string name="manga_not_in_db">Denne mangaen ble fjernet fra databasen.</string>
+    <string name="manga_not_in_db">Denne mangaen har blitt fjernet fra databasen.</string>
     <string name="manga_detail_tab">Info</string>
     <string name="description">Beskrivelse</string>
     <string name="ongoing">Pågående</string>
@@ -294,14 +294,14 @@
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Kilde</string>
     <string name="manga_info_genres_label">Sjangere</string>
-    <string name="circular_icon">Rundt ikon</string>
-    <string name="rounded_icon">Avrundet ikon</string>
-    <string name="square_icon">Firkantig ikon</string>
-    <string name="star_icon">Stjerneikon</string>
+    <string name="circular_icon">Rund</string>
+    <string name="rounded_icon">Avrundet</string>
+    <string name="square_icon">Firkantig</string>
+    <string name="star_icon">Stjerne</string>
     <string name="shortcut_title">Snarveistittel</string>
     <string name="shortcut_created">Snarveien ble lagt til på hjemmeskjermen.</string>
     <string name="icon_shape">Ikonform</string>
-    <string name="icon_creation_fail">Klarte ikke å opprette snarvei.</string>
+    <string name="icon_creation_fail">Kunne ikke å opprette snarvei</string>
     <string name="delete_downloads_for_manga">Slett nedlastede kapittel\?</string>
     <string name="copied_to_clipboard">%1$s kopiert til utklippstavle</string>
     <string name="source_not_installed">Kilde ikke installert: %1$s</string>
@@ -314,7 +314,7 @@
     <string name="chapter_downloading_progress">Laster ned (%1$d/%2$d)</string>
     <string name="chapter_error">Feil</string>
     <string name="chapter_paused">Pauset</string>
-    <string name="fetch_chapters_error">Feil under innhenting av kapittel</string>
+    <string name="fetch_chapters_error">Kunne ikke hente kapittel</string>
     <string name="show_title">Vis tittel</string>
     <string name="show_chapter_number">Vis kapittelnummer</string>
     <string name="sorting_mode">Sorteringsmodus</string>
@@ -323,12 +323,12 @@
     <string name="manga_download">Last ned</string>
     <string name="custom_download">Last ned egendefinert mengde</string>
     <string name="custom_hint">mengde</string>
-    <string name="download_1">Last ned neste kapittel</string>
-    <string name="download_5">Last ned de neste fem kapitelene</string>
-    <string name="download_10">Last ned de neste ti kapitelene</string>
-    <string name="download_custom">Last ned egendefinert</string>
-    <string name="download_all">Last ned alle</string>
-    <string name="download_unread">Last ned uleste</string>
+    <string name="download_1">Neste kapittel</string>
+    <string name="download_5">Neste fem kapittel</string>
+    <string name="download_10">Neste ti kapittel</string>
+    <string name="download_custom">Egendefinert</string>
+    <string name="download_all">Alle</string>
+    <string name="download_unread">Ulest</string>
     <string name="confirm_delete_chapters">Er du sikker på at du vil slette valgte kapittel\?</string>
     <string name="manga_tracking_tab">Sporing</string>
     <string name="reading">Leser</string>
@@ -397,16 +397,17 @@
 \nEn skadelig utvidelse kan lese innloggingsdetaljer lagret i Tachiyomi, eller kjøre ukjent kode.
 \n
 \nVed å godta dette sertifikatet aksepterer du overstående risikoer.</string>
-    <string name="ext_empty_preferences">Det er ingen preferanser å redigere for denne utvidelsen</string>
+    <string name="ext_empty_preferences">Ingen preferanser å redigere for denne utvidelsen</string>
     <string name="pref_double_tap_anim_speed">Animasjonshastighet ved dobbelklikk</string>
     <string name="pager_viewer">Sideleser</string>
-    <string name="backup_restore_content">Gjenoppretting bruker kilde for å hente data, mobilkostnader kan forekomme
-\nHusk å logge inn på kilder som krever dette før gjennoppretting.</string>
+    <string name="backup_restore_content">Gjenoppretting bruker kilde for å hente data, mobilkostnader kan tilkomme.
+\n
+\nForsikre deg om at du har installert alle nødvendige utvidelser og er logget inn i kilder og sporingstjenester før du gjenoppretter.</string>
     <string name="confirm_update_manga_sync">Oppdater siste leste kapittel i eksterne tjenester for %1$d\?</string>
-    <string name="confirm_set_image_as_cover">Vil du bruke dette bildet som omslag\?</string>
+    <string name="confirm_set_image_as_cover">Bruk dette bildet som omslag\?</string>
     <string name="viewer_for_this_series">Leser for denne serien</string>
     <string name="migration_info">Trykk for å velge kilde å migrere fra</string>
-    <string name="download_queue_error">En feil oppstod under nedlasting av kapitler. Du kan prøve igjen i nedlastingsdelen.</string>
+    <string name="download_queue_error">Kunne ikke laste ned kapitler. Du kan prøve igjen i nedlastingsdelen.</string>
     <string name="notification_update_progress">Oppdateringsfremdrift: %1$d/%2$d</string>
     <string name="notification_first_add_to_library">Legg til mangaen i biblioteket ditt før du gjør dette</string>
     <string name="notification_not_connected_to_ac_title">Synkronisering avbrutt</string>
@@ -416,12 +417,12 @@
     <string name="file_select_cover">Velg omslagsbilde</string>
     <string name="file_select_backup">Velg sikkerhetskopifil</string>
     <string name="file_select_icon">Velg snarveisikon</string>
-    <string name="update_check_title">Ny oppdatering tilgjengelig!</string>
+    <string name="update_check_title">Ny versjon tilgjengelig!</string>
     <string name="update_check_no_new_updates">Ingen nye oppdateringer tilgjengelige</string>
     <string name="update_check_download_started">Nedlasting startet</string>
-    <string name="update_check_look_for_updates">Ser etter oppdateringer</string>
+    <string name="update_check_look_for_updates">Ser etter oppdateringer…</string>
     <string name="update_check_notification_file_download">Last ned oppdatering</string>
-    <string name="update_check_notification_download_in_progress">Nedlasting pågår</string>
+    <string name="update_check_notification_download_in_progress">Laster ned…</string>
     <string name="update_check_notification_download_complete">Nedlasting ferdig</string>
     <string name="update_check_notification_download_error">Feil ved nedlasting</string>
     <string name="update_check_notification_update_available">Oppdatering tilgjengelig</string>
@@ -430,14 +431,14 @@
     <string name="information_no_downloads">Ingen nedlastinger</string>
     <string name="information_no_recent">Ingen nylige kapittel</string>
     <string name="information_no_recent_manga">Ingen nylig lest manga</string>
-    <string name="information_empty_library">Ditt bibliotek er tomt, du kan legge til serier i ditt bibliotek fra katalogene.</string>
+    <string name="information_empty_library">Biblioteket ditt er tomt,legg til serier i biblioteket ditt fra katalogene.</string>
     <string name="information_empty_category">Du har ingen kategorier. Trykk på pluss-knappen for å lage en for å organisere ditt bibliotek.</string>
     <string name="download_notifier_downloader_title">Nedlaster</string>
     <string name="download_notifier_title_error">Feil</string>
     <string name="download_notifier_unkown_error">En uventet feil oppstod mens kapittelet ble lastet ned</string>
     <string name="download_notifier_page_error">En side ble ikke funnet</string>
-    <string name="download_notifier_page_ready_error">En side er ikke lastet</string>
-    <string name="download_notifier_text_only_wifi">Ingen trådløst tilkobling tilgjengelig</string>
+    <string name="download_notifier_page_ready_error">En side er ikke innlastet</string>
+    <string name="download_notifier_text_only_wifi">Ingen trådløstilkobling tilgjengelig</string>
     <string name="download_notifier_no_network">Ingen nettverkstilkobling tilgjengelig</string>
     <string name="download_notifier_download_paused">Nedlasting pauset</string>
     <string name="pref_color_filter_mode">Blandingsmodus for fargefilter</string>
@@ -454,4 +455,6 @@
     <string name="pref_category_library">Bibliotek</string>
     <string name="pref_ask_update_manga_sync">Bekreft før oppdatering</string>
     <string name="invalid_download_dir">Ugyldig nedlastingsmappe</string>
+    <string name="ext_obsolete">Foreldet</string>
+    <string name="obsolete_extension_message">Denne utvidelsen er ikke lenger tilgjengelig.</string>
 </resources>
