@@ -264,7 +264,7 @@
     <string name="password">Parola</string>
     <string name="show_password">Parolayı göster</string>
     <string name="login">Giriş</string>
-    <string name="login_success">Başarıyla giriş yapıldı</string>
+    <string name="login_success">Giriş yapıldı</string>
     <string name="invalid_login">Giriş yapılamadı</string>
     <string name="unknown_error">Bilinmeyen hata</string>
     <string name="library_search_hint">Başlık veya yazar…</string>
@@ -284,7 +284,7 @@
     <string name="action_global_search_hint">Genel arama…</string>
     <string name="latest">En son</string>
     <string name="browse">Göz at</string>
-    <string name="manga_not_in_db">Bu manga veritabanından kaldırıldı!</string>
+    <string name="manga_not_in_db">Bu manga veritabanından kaldırıldı.</string>
     <string name="manga_detail_tab">Bilgi</string>
     <string name="description">Açıklama</string>
     <string name="ongoing">Devam ediyor</string>
