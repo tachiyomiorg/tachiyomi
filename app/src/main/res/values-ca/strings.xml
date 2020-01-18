@@ -265,7 +265,7 @@
     <string name="password">Contrasenya</string>
     <string name="show_password">Mostra la contrasenya</string>
     <string name="login">Inicia la sessió</string>
-    <string name="login_success">S\'ha iniciat la sessió correctament</string>
+    <string name="login_success">S\'ha iniciat la sessió</string>
     <string name="invalid_login">No s\'ha pogut iniciar la sessió</string>
     <string name="unknown_error">S\'ha produït un error desconegut</string>
     <string name="library_search_hint">Títol o autor…</string>
