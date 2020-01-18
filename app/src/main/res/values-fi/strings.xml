@@ -339,7 +339,7 @@
     <string name="password">Salasana</string>
     <string name="show_password">Näytä salasana</string>
     <string name="login">Kirjaudu</string>
-    <string name="login_success">Kirjautuminen onnistui</string>
+    <string name="login_success">Kirjauduttu sisään</string>
     <string name="invalid_login">Kirjautuminen epäonnistui</string>
     <string name="unknown_error">Tuntematon virhe</string>
     <string name="library_search_hint">Nimike tai kirjailija…</string>
