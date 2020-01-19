@@ -77,7 +77,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         val manager = PreferenceManager(themedContext)
         manager.preferenceDataStore = EmptyPreferenceDataStore()
         manager.onDisplayPreferenceDialogListener = this
-        val screen = manager.createPreferenceScreen(context)
+        val screen = manager.createPreferenceScreen(themedContext)
         preferenceScreen = screen
 
         val multiSource = extension.sources.size > 1
