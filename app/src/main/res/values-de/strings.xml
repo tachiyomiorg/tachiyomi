@@ -111,8 +111,8 @@
     <string name="pref_update_only_non_completed">Nur fortlaufende Manga aktualisieren</string>
     <string name="pref_auto_update_manga_sync">Kapitel nach dem Lesen synchronisieren</string>
     <string name="pref_theme">App Design</string>
-    <string name="light_theme">Helles Design</string>
-    <string name="dark_theme">Dunkles Design</string>
+    <string name="light_theme">Hell</string>
+    <string name="dark_theme">Dunkel</string>
     <string name="amoled_theme">AMOLED Dunkel</string>
     <string name="pref_start_screen">Startbildschirm</string>
     <string name="pref_language">Sprache</string>
