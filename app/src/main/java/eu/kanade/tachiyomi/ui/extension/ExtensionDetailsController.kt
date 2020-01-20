@@ -42,7 +42,9 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
     })
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.extension_detail_controller, container, false)
+        val themedInflater = inflater.cloneInContext(getPreferenceThemeContext())
+
+        return themedInflater.inflate(R.layout.extension_detail_controller, container, false)
     }
 
     override fun createPresenter(): ExtensionDetailsPresenter {
@@ -142,6 +144,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
             // Reparent the preferences
             while (newScreen.preferenceCount != 0) {
                 val pref = newScreen.getPreference(0)
+                pref.isIconSpaceReserved = false
                 pref.preferenceDataStore = dataStore
                 pref.order = Int.MAX_VALUE // reset to default order
 
