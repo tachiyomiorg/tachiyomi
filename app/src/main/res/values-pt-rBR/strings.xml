@@ -113,9 +113,9 @@
     <string name="pref_update_only_non_completed">Atualizar apenas mangás em andamento</string>
     <string name="pref_auto_update_manga_sync">Sincronizar capítulos após leitura</string>
     <string name="pref_theme">Tema do aplicativo</string>
-    <string name="light_theme">Tema principal</string>
-    <string name="dark_theme">Tema escuro</string>
-    <string name="amoled_theme">Tema AMOLED</string>
+    <string name="light_theme">Claro</string>
+    <string name="dark_theme">Escuro</string>
+    <string name="amoled_theme">AMOLED escuro</string>
     <string name="pref_start_screen">Tela inicial</string>
     <string name="pref_language">Idioma</string>
     <string name="system_default">Padrão do sistema</string>
@@ -446,4 +446,11 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
     <string name="filter_mode_lighten">Clarear</string>
     <string name="filter_mode_darken">Escurecer</string>
     <string name="pref_library_update_prioritization">Ordem de atualização da biblioteca</string>
+    <string name="action_webview_back">Voltar</string>
+    <string name="action_webview_forward">Avançar</string>
+    <string name="action_webview_refresh">Recarregar</string>
+    <string name="pref_category_library">Biblioteca</string>
+    <string name="pref_ask_update_manga_sync">Confirme antes de atualizar</string>
+    <string name="ext_obsolete">Obsoleto</string>
+    <string name="obsolete_extension_message">Esta extensão não está mais disponível.</string>
 </resources>
