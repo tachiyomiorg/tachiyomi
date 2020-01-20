@@ -29,7 +29,9 @@ class NucleusConductorDelegate<P : Presenter<*>>(private val factory: PresenterF
         bundle = presenterState
     }
 
-    @Suppress("TYPE_MISMATCH")
+    @Suppress("UNCHECKED_CAST")
+    private fun <View> Presenter<View>.takeView(view: Any) = takeView(view as View)
+
     fun onTakeView(view: Any) {
         presenter?.takeView(view)
     }
