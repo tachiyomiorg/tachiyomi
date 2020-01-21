@@ -303,7 +303,7 @@ Nie znaleziono źródła %1$s</string>
     <string name="pref_refresh_library_tracking">Odśwież metadane śledzenia</string>
     <string name="pref_refresh_library_tracking_summary">Aktualizuje status, ocenę i ostatnio czytany rozdział na podstawie usług śledzenia</string>
     <string name="build_time">Build utworzony</string>
-    <string name="login_success">Logowanie udane</string>
+    <string name="login_success">Zalogowano</string>
     <string name="local_source">Lokalne mangi</string>
     <string name="ongoing">Nieukończone</string>
     <string name="unknown">Nieznane</string>
