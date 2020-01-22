@@ -88,7 +88,7 @@
     <string name="action_login">Mag-log in</string>
     <string name="deleting">Binubura…</string>
     <string name="loading">Nagkakarga…</string>
-    <string name="app_not_available">Hindi available ang application</string>
+    <string name="app_not_available">Hindi available ang app</string>
     <string name="short_recent_updates">Mga Update</string>
     <string name="pref_category_general">Pangkalahatan</string>
     <string name="pref_category_reader">Reader</string>
@@ -120,10 +120,10 @@
     <string name="charging">Habang nagtsa-charge</string>
     <string name="pref_update_only_non_completed">I-update lamang ang (mga) nagpapatuloy na manga</string>
     <string name="pref_auto_update_manga_sync">I-sync ang mga kabanata pagkatapos basahin</string>
-    <string name="pref_theme">Tema ng application</string>
-    <string name="light_theme">Pangunahing tema</string>
-    <string name="dark_theme">Madilim na tema</string>
-    <string name="amoled_theme">Temang AMOLED</string>
+    <string name="pref_theme">Tema ng app</string>
+    <string name="light_theme">Maliwanag</string>
+    <string name="dark_theme">Madilim</string>
+    <string name="amoled_theme">Madilim na AMOLED</string>
     <string name="darkblue_theme">Madilim na bughaw</string>
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Wika</string>
@@ -269,7 +269,7 @@
     <string name="version">Bersyon</string>
     <string name="build_time">Oras ng build</string>
     <string name="pref_enable_automatic_updates">Tumingin ng update</string>
-    <string name="pref_enable_automatic_updates_summary">Awtomatikong tumingin ng mga update sa application</string>
+    <string name="pref_enable_automatic_updates_summary">Awtomatikong tumingin ng mga bagong version ng app</string>
     <string name="pref_enable_acra">Ipadala ang mga ulat ng pagka-crash</string>
     <string name="pref_acra_summary">Nakakatulong sa pagsasaayos ng mga bugs. Walang sensitibong data ang ipapadala</string>
     <string name="login_title">Mag-login para kay %1$s</string>
@@ -344,12 +344,12 @@
     <string name="manga_download">I-download</string>
     <string name="custom_download">I-download ang custom na rami</string>
     <string name="custom_hint">dami</string>
-    <string name="download_1">I-download ang susunod na kabanata</string>
-    <string name="download_5">I-download ang susunod na 5 kabanata</string>
-    <string name="download_10">I-download ang susunod na 10 kabanata</string>
-    <string name="download_custom">Mag-download ng custom</string>
-    <string name="download_all">I-download lahat</string>
-    <string name="download_unread">I-download ang hindi na nababasa</string>
+    <string name="download_1">Susunod na kabanata</string>
+    <string name="download_5">Susunod na 5 kabanata</string>
+    <string name="download_10">Susunod na 10 kabanata</string>
+    <string name="download_custom">Custom</string>
+    <string name="download_all">Lahat</string>
+    <string name="download_unread">Hindi na nababasa</string>
     <string name="confirm_delete_chapters">Sigurado ka bang gusto mong burahin ang mga napiling kabanata\?</string>
     <string name="manga_tracking_tab">Sinusubaybayan</string>
     <string name="reading">Binabasa</string>
@@ -417,12 +417,12 @@
     <string name="file_select_cover">Pumili ng larawang pabalat</string>
     <string name="file_select_backup">Pumili ng backup file</string>
     <string name="file_select_icon">Pumili ng shortcut icon</string>
-    <string name="update_check_title">Mayroong bagong update!</string>
+    <string name="update_check_title">Mayroong bagong version!</string>
     <string name="update_check_confirm">Download</string>
     <string name="update_check_ignore">Pabayaan</string>
     <string name="update_check_no_new_updates">Walang mga bagong update</string>
     <string name="update_check_download_started">Nagsimula ang pag-download</string>
-    <string name="update_check_look_for_updates">Naghahanap ng mga update</string>
+    <string name="update_check_look_for_updates">Naghahanap ng mga update…</string>
     <string name="update_check_notification_file_download">Download update</string>
     <string name="update_check_notification_download_in_progress">Kasalukuyang nagda-download</string>
     <string name="update_check_notification_download_complete">Nakumpleto ang pag-download</string>
@@ -433,7 +433,7 @@
     <string name="information_no_downloads">Walang mga download</string>
     <string name="information_no_recent">Walang mga kamakailang kabanata</string>
     <string name="information_no_recent_manga">Walang mga kakabasang kabanata</string>
-    <string name="information_empty_library">Walang laman ang iyong aklatan, maari kang magdagdag ng mga serye sa iyong aklatan mula sa Mga Katalogo.</string>
+    <string name="information_empty_library">Walang laman ang iyong aklatan, magdagdag ng mga serye sa iyong aklatan mula sa mga katalogo.</string>
     <string name="information_empty_category">Wala kang mga kategorya. Pindutin ang plus button para makagawa ng isa para ma-organisa ang iyong aklatan.</string>
     <string name="download_notifier_downloader_title">Tagapag-download</string>
     <string name="download_notifier_title_error">Error</string>
@@ -446,4 +446,6 @@
     <string name="channel_common">Karaniwan</string>
     <string name="channel_library">Aklatan</string>
     <string name="channel_downloader">Tagapag-download</string>
+    <string name="no_results_found">Walang nahanap na resulta</string>
+    <string name="action_webview_back">Bumalik</string>
 </resources>
