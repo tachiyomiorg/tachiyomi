@@ -222,7 +222,7 @@
     <string name="ext_details">詳情</string>
     <string name="ext_preferences">偏好設定</string>
     <string name="ext_available">可用的套件</string>
-    <string name="ext_empty_preferences">該套件未提供可用的偏好設定</string>
+    <string name="ext_empty_preferences">這個擴充元件未提供可用的偏好設定</string>
     <string name="pref_lock_orientation">鎖定螢幕方向</string>
     <string name="pref_page_transitions">翻頁轉場動畫</string>
     <string name="pref_crop_borders">邊緣裁剪</string>
@@ -245,7 +245,7 @@
     <string name="left_to_right_viewer">由左至右</string>
     <string name="right_to_left_viewer">由右至左</string>
     <string name="vertical_viewer">由上至下</string>
-    <string name="webtoon_viewer">Webtoon 式</string>
+    <string name="webtoon_viewer">Webtoon 模式</string>
     <string name="pager_viewer">單頁式</string>
     <string name="pref_image_decoder">圖片解碼器</string>
     <string name="pref_image_scale_type">縮放模式</string>
@@ -370,9 +370,9 @@
     <string name="download_progress">已下載 %1$d% %</string>
     <string name="chapter_subtitle">第 %1$s 章</string>
     <string name="migrate">遷移</string>
-    <string name="migrating">正在遷移…</string>
+    <string name="migrating">檔案移動中…</string>
     <string name="notification_update_progress">更新中：%1$d/%2$d</string>
-    <string name="notification_cover_update_failed">書封更新失敗</string>
+    <string name="notification_cover_update_failed">封面更新失敗</string>
     <string name="pref_library_update_restriction_summary">僅在符合條件時更新</string>
     <string name="choices_reset">重設對話方塊選項</string>
     <string name="confirm_delete_chapters">您確定要刪除所選的章節嗎？</string>
@@ -402,10 +402,10 @@
     <string name="ext_trust">信任</string>
     <string name="ext_untrusted">不信任</string>
     <string name="untrusted_extension">不信任的擴充元件</string>
-    <string name="untrusted_extension_message">這個插件的憑證是未經認證的，並且它沒有被啟用。
-\n
-\n惡意插件可能讀取或儲存在Tachiyomi中的任何登錄憑證或是會執行任意程式碼。
-\n
+    <string name="untrusted_extension_message">這個擴充元件的憑證並不可靠，且尚未被啟用。 
+\n 
+\n惡意的擴充元件可能讀取或儲存任何在Tachiyomi中的登錄憑證、或著執行任意的程式碼。 
+\n 
 \n信任這個憑證，即代表你願意承擔上述的風險。</string>
     <string name="last_read_chapter">最後閱讀的章節</string>
     <string name="pref_backup_slots">最大自動備份數</string>
@@ -420,7 +420,7 @@
     <string name="no_valid_sources">請至少啟用一個有效的來源</string>
     <string name="latest">最近更新</string>
     <string name="manga_not_in_db">漫畫已被移出資料庫！</string>
-    <string name="manga_tracking_tab">跟隨中</string>
+    <string name="manga_tracking_tab">追蹤中</string>
     <string name="reading">閱讀中</string>
     <string name="plan_to_read">加入閱讀清單</string>
     <string name="repeating">重新讀取中</string>
@@ -435,9 +435,25 @@
     <string name="recent_manga_source">%1$s - 第%2$s章</string>
     <string name="migration_info">選擇需要遷移的來源</string>
     <string name="migration_dialog_what_to_include">選擇需要移動的數據</string>
-    <string name="download_queue_error">下載時發生錯誤。請再試一次</string>
+    <string name="download_queue_error">該章節無法下載。請再試一次</string>
     <string name="notification_new_chapters_text">%1$d</string>
     <string name="notification_no_connection_body">連接不可用</string>
     <string name="description_backdrop">漫畫背景</string>
     <string name="download_notifier_unkown_error">下載時發生不可預期的錯誤</string>
+    <string name="second_to_last">倒數第二章</string>
+    <string name="third_to_last">倒數第三章</string>
+    <string name="fourth_to_last">倒數第四章</string>
+    <string name="fifth_to_last">倒數第五章</string>
+    <string name="dropped">已放棄</string>
+    <string name="on_hold">擱置中</string>
+    <string name="no_results_found">找不到結果</string>
+    <string name="migration_selection_prompt">請選擇檔案來源</string>
+    <string name="action_webview_back">返回</string>
+    <string name="action_webview_forward">向前</string>
+    <string name="action_webview_refresh">重新整理</string>
+    <string name="pref_category_library">資料庫</string>
+    <string name="pref_ask_update_manga_sync">確認更新</string>
+    <string name="invalid_download_dir">下載路徑無法使用</string>
+    <string name="ext_obsolete">過舊</string>
+    <string name="obsolete_extension_message">這個擴充元件已無法使用。</string>
 </resources>
