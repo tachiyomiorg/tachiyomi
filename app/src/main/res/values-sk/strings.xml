@@ -123,9 +123,9 @@
     <string name="pref_update_only_non_completed">Aktualizovať iba nedokončenú Mangu</string>
     <string name="pref_auto_update_manga_sync">Synchronizovať kapitoly po prečítaní</string>
     <string name="pref_theme">Motív aplikácie</string>
-    <string name="light_theme">Hlavná téma</string>
+    <string name="light_theme">Svetlá téma</string>
     <string name="dark_theme">Tmavý motív</string>
-    <string name="amoled_theme">AMOLED téma</string>
+    <string name="amoled_theme">AMOLED tmavý motív</string>
     <string name="darkblue_theme">Tmavomodrá téma</string>
     <string name="pref_start_screen">Úvodná obrazovka</string>
     <string name="pref_language">Jazyk</string>
@@ -245,4 +245,28 @@
     <string name="error_opening_log">Log sa nedá otvoriť</string>
     <string name="restore_completed_content">Obnova trvala %1$s.
 \n%2$s nájdených chýb.</string>
+    <string name="backup_restore_content">Obnovenie využíva zdroje na načítanie údajov, môžu sa účtovať poplatky operátora.
+\n
+\nPred obnovením skontrolujte, či máte nainštalované všetky potrebné rozšírenia a či ste prihlásení do zdrojov a služieb sledovania.</string>
+    <string name="file_saved">Súbor uložený v %1$s</string>
+    <string name="backup_choice">Čo chcete zálohovať\?</string>
+    <string name="restoring_backup">Obnovuje sa záloha</string>
+    <string name="creating_backup">Vytvára sa záloha</string>
+    <string name="pref_clear_chapter_cache">Vymazať vyrovnávaciu pamäť kapitol</string>
+    <string name="used_cache">Použité: %1$s</string>
+    <string name="cache_deleted">Cache sa vyčistila. %1$d súborov bolo odstráneno</string>
+    <string name="cache_delete_error">Pri mazaní vyrovnávacej pamäte sa vyskytla chyba</string>
+    <string name="pref_clear_cookies">Vymazať cookies</string>
+    <string name="cookies_cleared">Súbory cookie boli vymazané</string>
+    <string name="choices_reset">Možnosti dialógového okna boli resetované</string>
+    <string name="pref_clear_database">Vymazať databázu</string>
+    <string name="pref_clear_database_summary">Odstráňte mangy a kapitoly, ktoré nie sú vo vašej knižnici</string>
+    <string name="clear_database_confirmation">Ste si istý\? Čítanie kapitol a pokrok v mangách mimo vašu knižnicu sa stratí</string>
+    <string name="action_webview_back">Späť</string>
+    <string name="action_webview_forward">Vpred</string>
+    <string name="action_webview_refresh">Obnoviť</string>
+    <string name="pref_category_library">Knižnica</string>
+    <string name="pref_ask_update_manga_sync">Potvrdiť pred aktualizáciou</string>
+    <string name="ext_obsolete">Zastaraný</string>
+    <string name="obsolete_extension_message">Toto rozšírenie už nie je k dispozícii.</string>
 </resources>
