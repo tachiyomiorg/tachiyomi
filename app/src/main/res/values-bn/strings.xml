@@ -116,8 +116,8 @@
     <string name="charging">চার্জ হচ্ছে</string>
     <string name="pref_update_only_non_completed">কেবল চলমান মাংগা আপডেট করুন</string>
     <string name="pref_auto_update_manga_sync">পড়ার পর অধ্যায়গুলো সুসংগত করুন</string>
-    <string name="pref_theme">এপ্লিকেশন থিম</string>
-    <string name="light_theme">প্রধান থিম</string>
+    <string name="pref_theme">থিম</string>
+    <string name="light_theme">আলো</string>
     <string name="dark_theme">কালো থিম</string>
     <string name="amoled_theme">এমোলেড থিম</string>
     <string name="pref_start_screen">আরম্ভ স্ক্রিন</string>
@@ -224,7 +224,7 @@
     <string name="version">সংস্করণ</string>
     <string name="build_time">তৈরি সময়</string>
     <string name="pref_enable_automatic_updates">আপডেটগুলো দেখে নিন</string>
-    <string name="pref_enable_automatic_updates_summary">স্বয়ংক্রিয়ভাবে এপ্লিকেশনের আপডেট খুঁজুন</string>
+    <string name="pref_enable_automatic_updates_summary">নতুন অ্যাপ্লিকেশন সংস্করণগুলির জন্য স্বয়ংক্রিয়ভাবে পরীক্ষা করুন</string>
     <string name="pref_enable_acra">ক্র‍্যাশের জন্য অভিযোগ পাঠান</string>
     <string name="pref_acra_summary">বাগ ঠিক করার জন্য সাহায্য করুন। কোন দরকারি তথ্য পাঠানো হবে না</string>
     <string name="login_title">লগিন করা হয়েছে %1$s</string>
@@ -290,11 +290,11 @@
     <string name="sort_by_source">উৎস অনুযায়ী</string>
     <string name="sort_by_number">অধ্যায়ের নাম্বার অনুযায়ী</string>
     <string name="manga_download">ডাউনলোড</string>
-    <string name="download_1">পরবর্তী অধ্যায় ডাউনলোড করুন</string>
-    <string name="download_5">পরবর্তী ৫ অধ্যায় ডাউনলোড করুন</string>
-    <string name="download_10">পরবর্তী ১০ অধ্যায় ডাউনলোড করুন</string>
-    <string name="download_all">সব ডাউনলোড করুন</string>
-    <string name="download_unread">অপঠিতগুলো ডাউনলোড করুন</string>
+    <string name="download_1">পরবর্তী অধ্যায়</string>
+    <string name="download_5">পরবর্তী ৫ অধ্যায়</string>
+    <string name="download_10">পরবর্তী ১০ অধ্যায়</string>
+    <string name="download_all">সব</string>
+    <string name="download_unread">অপঠিতগুলো</string>
     <string name="confirm_delete_chapters">আপনি কি নিশ্চিত যে আপনি নির্বাচিত অধ্যায়গুলো মুছে ফেলতে চান?</string>
     <string name="manga_tracking_tab">অনুসরিত</string>
     <string name="reading">পড়া হচ্ছে</string>
@@ -328,7 +328,7 @@
     <string name="confirm_set_image_as_cover">আপনি কি এই ছবিটিকে কভার হিসেবে সেট করতে চান?</string>
     <string name="viewer_for_this_series">এই সিরিজের দর্শক</string>
     <string name="recent_manga_source">%1$s - অধ্যায়.%2$s</string>
-    <string name="download_queue_error">অধ্যায়গুলো ডাউনলোডের সময় একটি ত্রুটি দেখা দিয়েছে। ডাউনলোডস সেকশন থেকে আপনি আবার চেষ্টা করতে পারেন</string>
+    <string name="download_queue_error">অধ্যায়গুলি ডাউনলোড করা যায়নি। ডাউনলোড বিভাগে আপনি আবার চেষ্টা করতে পারেন</string>
     <string name="notification_update_progress">আপডেট হচ্ছে: %1$d/%2$d</string>
     <string name="notification_new_chapters">নতুন অধ্যায় পাওয়া গিয়েছে</string>
     <string name="notification_new_chapters_text">জন্য %1$d শিরোনাম</string>
@@ -357,7 +357,7 @@
     <string name="information_no_downloads">ডাউনলোড নেই</string>
     <string name="information_no_recent">কোন সাম্প্রতিক অধ্যায় নেই</string>
     <string name="information_no_recent_manga">কোন সাম্প্রতিক পড়া মাংগা নেই</string>
-    <string name="information_empty_library">আপনার মাংগাশালা খালি, আপনি চাইলে মাংগাশালায় ক্যাটালগস থেকে মাংগা যোগ করতে পারেন।</string>
+    <string name="information_empty_library">আপনার মাংগাশালা খালি, চাইলে মাংগাশালায় ক্যাটালগস থেকে মাংগা যোগ করতে পারেন।</string>
     <string name="information_empty_category">আপনার কোন ধরণ নেই। যোগ চিহ্ন বাটনে ক্লিক করে একটি ধরণ তৈরী করুন এবং আপনার মাংগাশালা সাজান।</string>
     <string name="download_notifier_downloader_title">ডাউনলোডার</string>
     <string name="download_notifier_title_error">ত্রুটি</string>
@@ -387,14 +387,14 @@
     <string name="ext_preferences">পছন্দ</string>
     <string name="ext_available">সহজলভ্য</string>
     <string name="untrusted_extension">অনির্ভর‍যোগ্য অংশ</string>
-    <string name="untrusted_extension_message">এই অংশগুলো অনির্ভরযোগ্য সার্টিফিকেট দ্বারা নিবন্ধিত এবং এটি সক্রিয় নয়।
+    <string name="untrusted_extension_message">এই এক্সটেনশনটি অবিশ্বস্ত শংসাপত্রের সাথে স্বাক্ষরিত হয়েছিল এবং সক্রিয় হয়নি n\'t
 \n
-\nএকটি ত্রুটিপূর্ণ অংশ তাচিয়োমিতে থাকা যে কোন লগিন তথ্য পড়তে পারে অথবা অবাধ কোডগুলোকে নিষ্পত্তি করতে পারে।
+\nএকটি দূষিত এক্সটেনশন তাছিওমিতে সঞ্চিত যে কোনও লগইন শংসাপত্রগুলি পড়তে পারে বা স্বেচ্ছাসেবক কোড কার্যকর করতে পারে।
 \n
-\nএই সার্টিফিকেট টি বিশ্বাস করা মানে আপনি ঝুঁকি নিতে সম্মত আছেন।</string>
+\nএই শংসাপত্রকে বিশ্বাস করে আপনি এই ঝুঁকিগুলি গ্রহণ করেন।</string>
     <string name="ext_version_info">ভার্সন: %1$s</string>
     <string name="ext_language_info">ভাষা: %1$s</string>
-    <string name="ext_empty_preferences">এই অংশটিকে সম্পাদন করার জন্য কোন প্রকার পছন্দ নেই</string>
+    <string name="ext_empty_preferences">এই প্রসারের জন্য সম্পাদনা করার কোন পছন্দ নেই</string>
     <string name="pref_double_tap_anim_speed">দুই টোকায় এনিমেশনের গতি</string>
     <string name="double_tap_anim_speed_0">এনিমেশন নেই</string>
     <string name="double_tap_anim_speed_normal">সাধারণ</string>
@@ -407,7 +407,7 @@
     <string name="copied_to_clipboard">%1$s ক্লিপবোর্ডে কপি হয়েছে</string>
     <string name="custom_download">কাস্টম পরিমাণ ডাউনলোড করুন</string>
     <string name="custom_hint">পরিমাণ</string>
-    <string name="download_custom">কাস্টম ডাউনলোড</string>
+    <string name="download_custom">কাস্টম</string>
     <string name="migration_info">সরিয়ে নেয়ার জন্য উৎস নির্বাচন করুন</string>
     <string name="migration_dialog_what_to_include">যোগ করার জন্য উপাত্ত নির্বাচন করুন</string>
     <string name="select">নির্বাচন</string>
@@ -445,4 +445,14 @@
     <string name="filter_mode_multiply">গুণ</string>
     <string name="label_help">সাহায্য</string>
     <string name="pref_library_update_prioritization">মাঙ্গা লাইব্রেরী আপডেটের প্রক্রিয়া</string>
+    <string name="no_results_found">কোন ফলাফল পাওয়া যায়নি</string>
+    <string name="migration_selection_prompt">থেকে মাইগ্রেট করতে একটি উৎস নির্বাচন করুন</string>
+    <string name="action_webview_back">পেছনে</string>
+    <string name="action_webview_forward">অগ্রবর্তী</string>
+    <string name="action_webview_refresh">সতেজ করা</string>
+    <string name="pref_category_library">গ্রন্থাগার</string>
+    <string name="pref_ask_update_manga_sync">আপডেট করার আগে নিশ্চিত করুন</string>
+    <string name="invalid_download_dir">অকার্যকর ডাউনলোড ডিরেক্টরি</string>
+    <string name="ext_obsolete">অপ্রচলিত</string>
+    <string name="obsolete_extension_message">এই এক্সটেনশন আর পাওয়া যাচ্ছে না ।</string>
 </resources>
