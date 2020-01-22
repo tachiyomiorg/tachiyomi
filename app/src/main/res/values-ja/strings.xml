@@ -218,4 +218,9 @@
     <string name="action_install">インストール</string>
     <string name="action_undo">取り消し</string>
     <string name="label_help">ヘルプ</string>
+    <string name="action_mark_previous_as_read">前を既読にする</string>
+    <string name="action_next_unread">次の未読</string>
+    <string name="action_move">移動する</string>
+    <string name="action_set_filter">フィルターを設定</string>
+    <string name="action_open_in_web_view">ウェブビューで開く</string>
 </resources>
