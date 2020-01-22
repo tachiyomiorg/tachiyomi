@@ -150,7 +150,7 @@
     <string name="shortcut_created">Zástupce byl přidán na plochu.</string>
     <string name="icon_creation_fail">Nepodařilo se vytvořit zástupce.</string>
     <string name="delete_downloads_for_manga">Smazat stažené kapitoly\?</string>
-    <string name="source_not_installed">Zdroj není nainstalována: %1$s</string>
+    <string name="source_not_installed">Zdroj není nainstalován: %1$s</string>
     <string name="manga_chapters_tab">Kapitoly</string>
     <string name="manga_chapter_no_title">Bez názvu</string>
     <string name="display_mode_chapter">Kapitola %1$s</string>
@@ -200,7 +200,7 @@
     <string name="select">Vybrat</string>
     <string name="migrate">Migrovat</string>
     <string name="copy">Kopírovat</string>
-    <string name="migrating">Migrovaní…</string>
+    <string name="migrating">Migrování…</string>
     <string name="download_queue_error">Došlo k chybě při stahování kapitol. Zkuste to znovu v sekci stahování</string>
     <string name="notification_update_progress">Postup aktualizace: %1$d/%2$d</string>
     <string name="notification_new_chapters">Nalezeny nové kapitoly</string>
