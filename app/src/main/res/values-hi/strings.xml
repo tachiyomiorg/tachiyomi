@@ -234,7 +234,7 @@
     <string name="password">पासवर्ड</string>
     <string name="show_password">पासवर्ड दिखाए</string>
     <string name="login">लॉग इन करें</string>
-    <string name="login_success">सफलतापूर्ण लॉग इन</string>
+    <string name="login_success">लॉग इन किया गया</string>
     <string name="invalid_login">लॉग इन नहीं कर सका</string>
     <string name="unknown_error">अज्ञात त्रुटि</string>
     <string name="library_search_hint">शीर्षक या लेखक …</string>
