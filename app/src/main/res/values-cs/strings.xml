@@ -69,9 +69,9 @@
     <string name="pref_update_only_non_completed">Aktualizovat pouze vycházející mangy</string>
     <string name="pref_auto_update_manga_sync">Synchronizovat kapitoly po přečtení</string>
     <string name="pref_theme">Téma aplikace</string>
-    <string name="light_theme">Hlavní téma</string>
+    <string name="light_theme">Světlé téma</string>
     <string name="dark_theme">Tmavé téma</string>
-    <string name="amoled_theme">AMOLED téma</string>
+    <string name="amoled_theme">AMOLED tmavé téma</string>
     <string name="darkblue_theme">Tmavě modrá</string>
     <string name="pref_start_screen">Úvodní obrazovka</string>
     <string name="pref_language">Jazyk</string>
@@ -134,7 +134,7 @@
     <string name="no_more_results">Žádné další výsledky</string>
     <string name="added_to_library">Manga byla přidána do vaší knihovny</string>
     <string name="action_global_search_hint">Globální vyhledávání…</string>
-    <string name="manga_not_in_db">Manga byla odstraněna z databáze!</string>
+    <string name="manga_not_in_db">Manga byla odstraněna z databáze.</string>
     <string name="manga_detail_tab">Info</string>
     <string name="description">Popis</string>
     <string name="ongoing">Vycházející</string>
@@ -148,7 +148,7 @@
     <string name="manga_info_source_label">Zdroj</string>
     <string name="manga_info_genres_label">Žánry</string>
     <string name="shortcut_created">Zástupce byl přidán na plochu.</string>
-    <string name="icon_creation_fail">Nepodařilo se vytvořit zástupce!</string>
+    <string name="icon_creation_fail">Nepodařilo se vytvořit zástupce.</string>
     <string name="delete_downloads_for_manga">Smazat stažené kapitoly\?</string>
     <string name="source_not_installed">Zdroj není nainstalována: %1$s</string>
     <string name="manga_chapters_tab">Kapitoly</string>
@@ -214,7 +214,7 @@
     <string name="update_check_confirm">Stáhnout</string>
     <string name="update_check_ignore">Ignorovat</string>
     <string name="update_check_no_new_updates">Žádné nové aktualizace</string>
-    <string name="update_check_look_for_updates">Hledání aktualizací</string>
+    <string name="update_check_look_for_updates">Hledání aktualizací…</string>
     <string name="update_check_notification_file_download">Stáhnout aktualizaci</string>
     <string name="update_check_notification_download_complete">Stahování dokončeno</string>
     <string name="update_check_notification_download_error">Chyba při stahování</string>
@@ -359,7 +359,7 @@
     <string name="icon_shape">Tvar ikony</string>
     <string name="copied_to_clipboard">%1$s zkopírováno do schránky</string>
     <string name="chapter_queued">Ve frontě</string>
-    <string name="fetch_chapters_error">Chyba při načítání kapitol</string>
+    <string name="fetch_chapters_error">Chyba při načítání kapitol.</string>
     <string name="sorting_mode">Režim seřazení</string>
     <string name="sort_by_number">Podle čísla kapitoly</string>
     <string name="custom_download">Stažení vlastního počtu</string>
@@ -408,7 +408,7 @@
     <string name="invalid_combination">Výchozí nemůže být vybrána s ostatními kategoriemi</string>
     <string name="show_title">Zobrazit název</string>
     <string name="show_chapter_number">Zobrazit číslo kapitoly</string>
-    <string name="url_not_set">Url mangy není nastaveno, klikněte prosím na název a vyberte mangu znovu</string>
+    <string name="url_not_set">Url mangy není nastaveno, klikněte prosím na název a vyberte mangu znovu.</string>
     <string name="error_category_exists">Kategorie s tímto jménem již existuje!</string>
     <string name="dialog_with_checkbox_remove_description">Toto odstraní datum přečtení této kapitoly. Jste si jistý\?</string>
     <string name="confirm_update_manga_sync">Aktualizovat poslední přečtenou kapitolu v povolených službách na %1$d\?</string>
@@ -423,7 +423,7 @@
     <string name="notification_first_add_to_library">Přidejte si prosím mangu do knihovny před tím, než toto uděláte</string>
     <string name="file_select_cover">Vybrat obrázek obalu</string>
     <string name="update_check_download_started">Stahování začalo</string>
-    <string name="update_check_notification_download_in_progress">Probíhá stahování</string>
+    <string name="update_check_notification_download_in_progress">Probíhá stahování…</string>
     <string name="description_backdrop">Obrázek pozadí manga</string>
     <string name="description_cover">Obal mangy</string>
     <string name="information_no_downloads">Žádné stahování</string>
@@ -435,4 +435,25 @@
     <string name="reader_pull_up_for_more_options">Vytáhnout pro více možností</string>
     <string name="label_help">Nápověda</string>
     <string name="action_open_in_web_view">Otevřít ve web view</string>
+    <string name="pref_read_with_long_tap">Nabídka při dlouhém podržení</string>
+    <string name="pref_true_color">32-bitová barva</string>
+    <string name="pref_skip_read_chapters">Přeskakovat přečtené kapitoly</string>
+    <string name="pref_color_filter_mode">Režim mísení filtru barev</string>
+    <string name="filter_mode_default">Výchozí</string>
+    <string name="filter_mode_overlay">Překrytí</string>
+    <string name="filter_mode_multiply">Násobení</string>
+    <string name="filter_mode_screen">Obrazovka</string>
+    <string name="filter_mode_lighten">Zesvětlit</string>
+    <string name="filter_mode_darken">Ztmavit</string>
+    <string name="pref_library_update_prioritization">Pořadí aktualizace knihovny</string>
+    <string name="no_results_found">Nenalezeny žádné výsledky</string>
+    <string name="migration_selection_prompt">Vyberte zdroj ze kterého chcete migrovat</string>
+    <string name="action_webview_back">Zpět</string>
+    <string name="action_webview_forward">Vpřed</string>
+    <string name="action_webview_refresh">Obnovit</string>
+    <string name="pref_category_library">Knihovna</string>
+    <string name="pref_ask_update_manga_sync">Potvrdit před aktualizací</string>
+    <string name="invalid_download_dir">Neplatný adresář stahování</string>
+    <string name="ext_obsolete">Zastaralý</string>
+    <string name="obsolete_extension_message">Tohle rozšíření již není dostupné.</string>
 </resources>
