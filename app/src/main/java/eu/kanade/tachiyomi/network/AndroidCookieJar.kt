@@ -31,27 +31,25 @@ class AndroidCookieJar : CookieJar {
         }
     }
 
-    fun remove(url: HttpUrl) {
+    fun remove(url: HttpUrl, cookieNames: List<String>? = null) {
         val urlString = url.toString()
         val cookies = manager.getCookie(urlString) ?: return
 
+        fun List<String>.filterNames(): List<String> {
+            return if (cookieNames != null) {
+                this.filter { it in cookieNames }
+            } else {
+                this
+            }
+        }
+
         cookies.split(";")
             .map { it.substringBefore("=") }
+            .filterNames()
             .onEach { manager.setCookie(urlString, "$it=;Max-Age=-1") }
     }
 
     fun removeAll() {
         manager.removeAllCookies {}
     }
-
-    fun removeCloudflare(url: HttpUrl) {
-        val urlString = url.toString()
-        val cookies = manager.getCookie(urlString) ?: return
-
-        cookies.split(";")
-                .filter { it.contains("__cfduid") || it.contains("cf_clearance") }
-                .map { it.substringBefore("=") }
-                .onEach { manager.setCookie(urlString, "$it=;Max-Age=-1") }
-    }
-
 }

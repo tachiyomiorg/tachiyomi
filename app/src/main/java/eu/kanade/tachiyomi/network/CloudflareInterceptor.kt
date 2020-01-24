@@ -25,8 +25,6 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
 
     private val networkHelper: NetworkHelper by injectLazy()
 
-    private var bypassSucceeded: Boolean? = null
-
     /**
      * When this is called, it initializes the WebView if it wasn't already. We use this to avoid
      * blocking the main thread too much. If used too often we could consider moving it to the
@@ -47,9 +45,8 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
         if (response.code == 503 && response.header("Server") in serverCheck) {
             try {
                 response.close()
-                networkHelper.cookieManager.removeCloudflare(originalRequest.url)
-                resolveWithWebView(originalRequest)
-                return if (bypassSucceeded != null) {
+                networkHelper.cookieManager.remove(originalRequest.url, listOf("__cfduid, cf_clearance"))
+                return if (resolveWithWebView(originalRequest)) {
                     chain.proceed(originalRequest)
                 } else {
                     throw IOException("Failed to bypass Cloudflare!")
@@ -65,13 +62,14 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
     }
 
     @SuppressLint("SetJavaScriptEnabled")
-    private fun resolveWithWebView(request: Request) {
+    private fun resolveWithWebView(request: Request): Boolean {
         // We need to lock this thread until the WebView finds the challenge solution url, because
         // OkHttp doesn't support asynchronous interceptors.
         val latch = CountDownLatch(1)
 
         var webView: WebView? = null
         var challengeFound = false
+        var cloudflareBypassed = false
 
         val origRequestUrl = request.url.toString()
         val headers = request.headers.toMultimap().mapValues { it.value.getOrNull(0) ?: "" }
@@ -85,7 +83,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
 
                 override fun onPageFinished(view: WebView, url: String) {
                     if (networkHelper.cookieManager.get(origRequestUrl.toHttpUrl()).any { it.name.contains("cf_clearance") }) {
-                        bypassSucceeded = true
+                        cloudflareBypassed = true
                         latch.countDown()
                     }
                     // Http error codes are only received since M
@@ -126,7 +124,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
             webView?.stopLoading()
             webView?.destroy()
         }
-        return
+        return cloudflareBypassed
     }
 
 }
