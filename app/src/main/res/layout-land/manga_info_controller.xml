@@ -9,11 +9,8 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/manga_cover"
@@ -43,10 +40,8 @@
             android:id="@+id/info_scrollview"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_margin="16dp"
+            android:requiresFadingEdge="vertical"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/manga_cover"
@@ -57,19 +52,14 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:text="@string/manga_info_full_title_label"
                     android:id="@+id/manga_full_title"
                     style="@style/TextAppearance.Medium.Title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:maxLines="2"
+                    android:text="@string/manga_info_full_title_label"
                     android:textIsSelectable="false"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="12sp"
-                    app:autoSizeMaxTextSize="20sp"
-                    app:autoSizeStepGranularity="2sp"/>
+                    app:layout_constraintStart_toStartOf="parent"/>
 
                 <TextView
                     android:id="@+id/manga_author_label"
