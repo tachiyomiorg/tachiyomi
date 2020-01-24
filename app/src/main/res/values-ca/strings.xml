@@ -11,7 +11,7 @@
     <string name="label_library">La meva biblioteca</string>
     <string name="label_recent_manga">Llegits recentment</string>
     <string name="label_catalogues">Catàlegs</string>
-    <string name="label_recent_updates">Actualitzacions de la biblioteca</string>
+    <string name="label_recent_updates">Novetats de la biblioteca</string>
     <string name="label_latest_updates">Darreres actualitzacions</string>
     <string name="label_categories">Categories</string>
     <string name="label_selected">Seleccionats: %1$d</string>
@@ -96,7 +96,7 @@
     <string name="pref_category_tracking">En seguiment</string>
     <string name="pref_category_advanced">Avançat</string>
     <string name="pref_category_about">Quant a</string>
-    <string name="pref_library_columns">Mangues de la biblioteca per fila</string>
+    <string name="pref_library_columns">Manga per fila</string>
     <string name="portrait">Vertical</string>
     <string name="landscape">Horitzontal</string>
     <string name="default_columns">Per defecte</string>
