@@ -24,7 +24,7 @@
     <string name="action_install">Установить</string>
     <string name="action_mark_as_read">Отметить как прочитанное</string>
     <string name="action_mark_as_unread">Пометить как непрочитанное</string>
-    <string name="action_mark_previous_as_read">Отметить предыдущие как прочит</string>
+    <string name="action_mark_previous_as_read">Отметить предыдущие как прочитанные</string>
     <string name="action_move_category">Поместить в категорию</string>
     <string name="action_next_chapter">Следующая глава</string>
     <string name="action_next_unread">Следующая непрочитанная</string>
@@ -143,7 +143,7 @@
     <string name="left_to_right_viewer">Слева направо</string>
     <string name="library_search_hint">Название или автор…</string>
     <string name="licensed">Лицензировано</string>
-    <string name="light_theme">Светлая тема</string>
+    <string name="light_theme">Светлая</string>
     <string name="loading">Загрузка…</string>
     <string name="login">Авторизация</string>
     <string name="login_success">Успешный вход</string>
@@ -185,14 +185,14 @@
     <string name="pref_category_about">Информация</string>
     <string name="pref_category_advanced">Дополнительно</string>
     <string name="pref_category_downloads">Загрузки</string>
-    <string name="pref_category_general">Главные</string>
+    <string name="pref_category_general">Основные</string>
     <string name="pref_category_reader">Читалка</string>
     <string name="pref_category_sources">Источники</string>
     <string name="pref_category_tracking">Отслеживание</string>
     <string name="pref_clear_chapter_cache">Очистить кэш глав</string>
     <string name="pref_clear_cookies">Очистить куки</string>
     <string name="pref_clear_database">Очистить базу данных</string>
-    <string name="pref_clear_database_summary">Удалять мангу и главы которые больше не находятся в библиотеке</string>
+    <string name="pref_clear_database_summary">Удалять мангу и главы, которые больше не находятся в библиотеке</string>
     <string name="pref_custom_brightness">Использовать пользовательскую яркость</string>
     <string name="pref_custom_color_filter">Использовать пользовательский цветовой фильтр</string>
     <string name="pref_download_directory">Каталог загрузок</string>
@@ -208,10 +208,10 @@
     <string name="pref_keep_screen_on">Держать экран включенным</string>
     <string name="pref_language">Язык</string>
     <string name="pref_library_columns">Количество в ряд</string>
-    <string name="pref_library_update_categories">Категории включенные в глобальный поиск</string>
+    <string name="pref_library_update_categories">Категории, включенные в глобальный поиск</string>
     <string name="pref_library_update_interval">Частота обновления библиотеки</string>
     <string name="pref_library_update_restriction">Ограничения обновления библиотеки</string>
-    <string name="pref_library_update_restriction_summary">Обновлять когда условия выполнены</string>
+    <string name="pref_library_update_restriction_summary">Обновлять, когда выполнены условия</string>
     <string name="pref_lock_orientation">Блокировать ориентацию</string>
     <string name="pref_read_with_tapping">Нажатие</string>
     <string name="pref_read_with_volume_keys">Клавиши громкости</string>
@@ -242,8 +242,8 @@
     <string name="scale_type_fit_screen">По экрану</string>
     <string name="scale_type_fit_width">По ширине</string>
     <string name="scale_type_original_size">Исходный размер</string>
-    <string name="scale_type_smart_fit">Умная</string>
-    <string name="scale_type_stretch">Растянутая</string>
+    <string name="scale_type_smart_fit">Умное</string>
+    <string name="scale_type_stretch">Растянуть</string>
     <string name="score">Оценка</string>
     <string name="second_to_last">Предпоследняя</string>
     <string name="select_source">Выберите каталог</string>
@@ -284,7 +284,7 @@
     <string name="update_check_notification_file_download">Обновление загрузки</string>
     <string name="update_check_notification_update_available">Доступно обновление</string>
     <string name="update_check_title">Доступны новые обновления!</string>
-    <string name="update_never">Ручное</string>
+    <string name="update_never">Вручную</string>
     <string name="updating_category">Обновление категории</string>
     <string name="used_cache">Использовано: %1$s</string>
     <string name="username">Имя пользователя</string>
@@ -309,15 +309,19 @@
     <string name="amoled_theme">AMOLED темная</string>
     <string name="backup_choice">Что вы хотите бэкапить?</string>
     <string name="backup_created">Бэкап создан</string>
-    <string name="backup_restore_content">При восстановлении используются данные из каталогов, что может вызвать большой расход трафика.\nТакже авторизуйтесь в каталогах, которые этого требуют.</string>
+    <string name="backup_restore_content">При восстановлении используются данные из каталогов, что может вызвать большой расход трафика.
+\n
+\nТакже убедитесь, что установили и авторизировались во всех нужных дополнениях, и авторизуйтесь в нужных сервисах отслеживания.</string>
     <string name="categories">Категории</string>
     <string name="chapter_paused">Пауза</string>
     <string name="creating_backup">Создаем бэкап</string>
     <string name="default_category">Категория по умолчанию</string>
     <string name="default_category_summary">Всегда спрашивать</string>
     <string name="delete_downloads_for_manga">Удалять загруженные главы?</string>
-    <string name="dialog_restoring_backup">Восстановления бэкапа \n%1$s добавлено в библиотеку</string>
-    <string name="dialog_restoring_source_not_found">Восстановления бэкапа \n%1$s, каталог не найден</string>
+    <string name="dialog_restoring_backup">Восстановление бэкапа 
+\n%1$s добавлен(а/о) в библиотеку</string>
+    <string name="dialog_restoring_source_not_found">Восстановление бэкапа 
+\n%1$s, каталог не найден</string>
     <string name="download_notifier_download_paused">Загрузка приостановлена</string>
     <string name="error_opening_log">Ошибка открытия лога</string>
     <string name="file_saved">Файл сохранен в %1$s</string>
@@ -371,7 +375,7 @@
     <string name="label_extensions">Дополнения</string>
     <string name="label_extension_info">Информация о дополнении</string>
     <string name="all_lang">Все</string>
-    <string name="ext_details">Детали</string>
+    <string name="ext_details">Подробности</string>
     <string name="ext_update">Обновление</string>
     <string name="ext_install">Установить</string>
     <string name="ext_pending">Ожидается</string>
@@ -383,12 +387,14 @@
     <string name="ext_preferences">Настройки</string>
     <string name="ext_available">Доступно</string>
     <string name="untrusted_extension">Ненадежное расширение</string>
-    <string name="untrusted_extension_message">Это расширение было подписано ненадежным сертификатом и не было активировано. 
-\nВредоносное расширение может считывать любые учетные данные для входа, хранящиеся в Tachiyomi, или выполнять произвольный код. 
+    <string name="untrusted_extension_message">Это расширение было подписано ненадежным сертификатом и не было активировано.
+\n
+\nВредоносное расширение может считывать любые учетные данные для входа, хранящиеся в Tachiyomi, или выполнять произвольный код.
+\n
 \nДоверяя этому сертификату, вы принимаете эти риски.</string>
     <string name="ext_version_info">Версия: %1$s</string>
     <string name="ext_language_info">Язык: %1$s</string>
-    <string name="ext_empty_preferences">Нет настроек для редактирования этого расширения</string>
+    <string name="ext_empty_preferences">У этого расширения нет настроек</string>
     <string name="pref_double_tap_anim_speed">Скорость анимации при двойном нажатии</string>
     <string name="double_tap_anim_speed_0">Без анимации</string>
     <string name="double_tap_anim_speed_normal">Нормальная</string>
@@ -425,19 +431,19 @@
     <string name="transition_no_previous">Предыдущей части нет</string>
     <string name="transition_pages_loading">Идёт загрузка страниц…</string>
     <string name="transition_pages_error">Не удалось загрузить страницы: %1$s</string>
-    <string name="darkblue_theme">Темно-синяя тема</string>
+    <string name="darkblue_theme">Темно-синяя</string>
     <string name="pref_read_with_long_tap">Диалог при долгом нажатии</string>
     <string name="reader_pull_up_for_more_options">Потяните вверх для раскрытия меню</string>
     <string name="action_open_in_web_view">Открыть в Web View</string>
-    <string name="pref_skip_read_chapters">Пропускать главы, помеченные как \"Прочитанные\"</string>
+    <string name="pref_skip_read_chapters">Пропускать прочитанные главы</string>
     <string name="pref_true_color">32-битный цвет</string>
     <string name="pref_color_filter_mode">Режим наложения светофильтра</string>
-    <string name="filter_mode_default">по умолчанию</string>
-    <string name="filter_mode_overlay">перекрытие</string>
-    <string name="filter_mode_multiply">умножение</string>
-    <string name="filter_mode_screen">ширма</string>
-    <string name="filter_mode_lighten">Светлей</string>
-    <string name="filter_mode_darken">Темней</string>
+    <string name="filter_mode_default">По умолчанию</string>
+    <string name="filter_mode_overlay">Перекрытие</string>
+    <string name="filter_mode_multiply">Умножение</string>
+    <string name="filter_mode_screen">Экран</string>
+    <string name="filter_mode_lighten">Осветление</string>
+    <string name="filter_mode_darken">Затемнение</string>
     <string name="label_help">Помощь</string>
     <string name="pref_library_update_prioritization">Порядок обновления библиотеки</string>
     <string name="no_results_found">Результатов не найдено</string>
@@ -446,8 +452,8 @@
     <string name="action_webview_forward">Вперед</string>
     <string name="action_webview_refresh">Обновить</string>
     <string name="pref_category_library">Библиотека</string>
-    <string name="pref_ask_update_manga_sync">Подтвердите перед обновлением</string>
+    <string name="pref_ask_update_manga_sync">Подтверждать перед обновлением</string>
     <string name="invalid_download_dir">Недопустимая директория для скачивания</string>
     <string name="ext_obsolete">Устарело</string>
-    <string name="obsolete_extension_message">Это дополнение устарело.</string>
+    <string name="obsolete_extension_message">Это дополнение больше недоступно.</string>
 </resources>
