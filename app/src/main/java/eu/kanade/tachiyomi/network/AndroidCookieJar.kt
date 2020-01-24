@@ -44,4 +44,14 @@ class AndroidCookieJar : CookieJar {
         manager.removeAllCookies {}
     }
 
+    fun removeCloudflare(url: HttpUrl) {
+        val urlString = url.toString()
+        val cookies = manager.getCookie(urlString) ?: return
+
+        cookies.split(";")
+                .filter { it.contains("__cfduid") || it.contains("cf_clearance") }
+                .map { it.substringBefore("=") }
+                .onEach { manager.setCookie(urlString, "$it=;Max-Age=-1") }
+    }
+
 }
