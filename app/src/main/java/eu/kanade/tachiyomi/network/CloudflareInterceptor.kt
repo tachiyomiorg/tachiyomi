@@ -8,6 +8,7 @@ import android.os.Looper
 import android.webkit.WebSettings
 import android.webkit.WebView
 import eu.kanade.tachiyomi.util.WebViewClientCompat
+import okhttp3.Cookie
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
@@ -46,7 +47,9 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
             try {
                 response.close()
                 networkHelper.cookieManager.remove(originalRequest.url, listOf("__cfduid", "cf_clearance"), 0)
-                return if (resolveWithWebView(originalRequest)) {
+                val oldCookie = networkHelper.cookieManager.get(originalRequest.url)
+                        .firstOrNull { it.name == "cf_clearance" }
+                return if (resolveWithWebView(originalRequest, oldCookie)) {
                     chain.proceed(originalRequest)
                 } else {
                     throw IOException("Failed to bypass Cloudflare!")
@@ -62,7 +65,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
     }
 
     @SuppressLint("SetJavaScriptEnabled")
-    private fun resolveWithWebView(request: Request): Boolean {
+    private fun resolveWithWebView(request: Request, oldCookie: Cookie?): Boolean {
         // We need to lock this thread until the WebView finds the challenge solution url, because
         // OkHttp doesn't support asynchronous interceptors.
         val latch = CountDownLatch(1)
@@ -85,7 +88,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
                     fun isCloudFlareBypassed(): Boolean {
                         return networkHelper.cookieManager.get(origRequestUrl.toHttpUrl())
                                 .firstOrNull { it.name == "cf_clearance" }
-                                .let { it != null && it.expiresAt > 0 }
+                                .let { it != null && it != oldCookie }
                     }
 
                     if (isCloudFlareBypassed()) {
