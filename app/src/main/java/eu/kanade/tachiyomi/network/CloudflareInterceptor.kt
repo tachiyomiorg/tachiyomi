@@ -45,7 +45,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
         if (response.code == 503 && response.header("Server") in serverCheck) {
             try {
                 response.close()
-                networkHelper.cookieManager.remove(originalRequest.url, listOf("__cfduid, cf_clearance"))
+                networkHelper.cookieManager.remove(originalRequest.url, listOf("__cfduid", "cf_clearance"), 0)
                 return if (resolveWithWebView(originalRequest)) {
                     chain.proceed(originalRequest)
                 } else {
@@ -82,7 +82,13 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
             view.webViewClient = object : WebViewClientCompat() {
 
                 override fun onPageFinished(view: WebView, url: String) {
-                    if (networkHelper.cookieManager.get(origRequestUrl.toHttpUrl()).any { it.name.contains("cf_clearance") }) {
+                    fun isCloudFlareBypassed(): Boolean {
+                        return networkHelper.cookieManager.get(origRequestUrl.toHttpUrl())
+                                .firstOrNull { it.name == "cf_clearance" }
+                                .let { it != null && it.expiresAt > 0 }
+                    }
+
+                    if (isCloudFlareBypassed()) {
                         cloudflareBypassed = true
                         latch.countDown()
                     }
