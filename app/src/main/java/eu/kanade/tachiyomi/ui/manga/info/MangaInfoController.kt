@@ -223,7 +223,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
                     .centerCrop()
                     .into(manga_cover)
 
-            if (backdrop != null) {
+            backdrop?.post {
                 GlideApp.with(view.context)
                         .load(manga)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
