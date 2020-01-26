@@ -265,7 +265,7 @@
     <string name="password">Lösenord</string>
     <string name="show_password">Visa lösenord</string>
     <string name="login">Logga in</string>
-    <string name="login_success">Inloggningen lyckades</string>
+    <string name="login_success">Inloggad</string>
     <string name="invalid_login">Inloggningsfel</string>
     <string name="unknown_error">Okänt fel</string>
     <string name="library_search_hint">Titel eller författare…</string>
@@ -455,4 +455,6 @@
     <string name="pref_category_library">Bibliotek</string>
     <string name="pref_ask_update_manga_sync">Bekräfta innan uppdatering</string>
     <string name="invalid_download_dir">Ogiltig nedladdningskatalog</string>
+    <string name="ext_obsolete">Obsolet</string>
+    <string name="obsolete_extension_message">Detta tillägg är inte längre tillgänglig.</string>
 </resources>
