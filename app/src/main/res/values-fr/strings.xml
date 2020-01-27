@@ -363,7 +363,7 @@
     <string name="backup_choice">Que voulez-vous sauvegarder ?</string>
     <string name="invalid_combination">Le défaut ne peut pas être selectionné avec des autres catégories</string>
     <string name="delete_downloads_for_manga">Supprimer les chapitres téléchargés ?</string>
-    <string name="notification_new_chapters_text">Pour %1$s chapitres</string>
+    <string name="notification_new_chapters_text">Pour %1$d chapitres</string>
     <string name="track">Suivi</string>
     <string name="action_sort_total">Nombre de chapitres</string>
     <string name="short_recent_updates">Mises à jour</string>
