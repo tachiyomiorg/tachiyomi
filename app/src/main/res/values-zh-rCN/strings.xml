@@ -171,7 +171,7 @@
     <string name="left_to_right_viewer">从左到右</string>
     <string name="right_to_left_viewer">从右到左</string>
     <string name="vertical_viewer">从上到下</string>
-    <string name="webtoon_viewer">卷纸模式</string>
+    <string name="webtoon_viewer">韩国条漫</string>
     <string name="pager_viewer">页面</string>
     <string name="pref_image_decoder">图片解码器</string>
     <string name="pref_image_scale_type">显示模式</string>
@@ -231,8 +231,8 @@
     <string name="error_opening_log">打开日志失败</string>
     <string name="restore_completed_content">已恢复 %1$s。
 \n%2$s 出现错误。</string>
-    <string name="backup_restore_content">恢复备份将抓取图源数据，需要用到网络。
-\n如果图源需要登录，请先进行登录再恢复备份。</string>
+    <string name="backup_restore_content">恢复备份将抓取图源数据，需要用到网络。 
+\n请确认安装了所有必需的插件且如果图源需要登录，请先进行登录再恢复备份。</string>
     <string name="file_saved">文件已保存至%1$s</string>
     <string name="backup_choice">需要备份什么？</string>
     <string name="restoring_backup">正在恢复备份</string>
@@ -283,7 +283,7 @@
     <string name="action_global_search_hint">全局搜索…</string>
     <string name="latest">最近更新</string>
     <string name="browse">浏览</string>
-    <string name="manga_not_in_db">漫画已被移出数据库！</string>
+    <string name="manga_not_in_db">此漫画已被移出数据库！</string>
     <string name="manga_detail_tab">详情</string>
     <string name="description">描述</string>
     <string name="ongoing">连载中</string>
@@ -306,9 +306,9 @@
     <string name="square_icon">方形图标</string>
     <string name="star_icon">星形图标</string>
     <string name="shortcut_title">快捷方式标题</string>
-    <string name="shortcut_created">已添加快捷方式至主屏幕</string>
+    <string name="shortcut_created">已添加快捷方式至手机桌面</string>
     <string name="icon_shape">图标形状</string>
-    <string name="icon_creation_fail">创建快捷方式失败！</string>
+    <string name="icon_creation_fail">创建快捷方式失败</string>
     <string name="delete_downloads_for_manga">删除已下载的章节？</string>
     <string name="copied_to_clipboard">已复制%1$s到剪贴板</string>
     <string name="source_not_installed">未安装图源:%1$s</string>
@@ -335,7 +335,7 @@
     <string name="download_10">下载后十章</string>
     <string name="download_custom">自定义下载</string>
     <string name="download_all">下载全部</string>
-    <string name="download_unread">下载未读</string>
+    <string name="download_unread">下载未读章节</string>
     <string name="confirm_delete_chapters">确定删除所选章节吗？</string>
     <string name="manga_tracking_tab">同步</string>
     <string name="reading">阅读中</string>
@@ -351,7 +351,7 @@
     <string name="track_start_date">已开始</string>
     <string name="track_type">类型</string>
     <string name="track_author">作者</string>
-    <string name="url_not_set">漫画链接未设置，请点击标题再选择一次漫画</string>
+    <string name="url_not_set">漫画链接不存在，请点击标题再次选择漫画</string>
     <string name="error_category_exists">已存在相同标签！</string>
     <string name="snack_categories_deleted">标签已删除</string>
     <string name="dialog_with_checkbox_remove_description">将清除此章节的阅读日期，确定吗？</string>
@@ -390,7 +390,7 @@
     <string name="migrate">迁移</string>
     <string name="copy">共存</string>
     <string name="migrating">迁移中…</string>
-    <string name="download_queue_error">下载时发生错误。请再试一次</string>
+    <string name="download_queue_error">下载章节失败，请重试</string>
     <string name="notification_update_progress">更新中：%1$d/%2$d</string>
     <string name="notification_new_chapters">发现新章节</string>
     <string name="notification_new_chapters_text">%1$d</string>
@@ -403,14 +403,14 @@
     <string name="file_select_cover">选择封面图片</string>
     <string name="file_select_backup">选择备份文件</string>
     <string name="file_select_icon">选择快捷方式图标</string>
-    <string name="update_check_title">有新版本哦！</string>
+    <string name="update_check_title">发现新版本！</string>
     <string name="update_check_confirm">下载</string>
     <string name="update_check_ignore">忽略</string>
     <string name="update_check_no_new_updates">没有发现新版本</string>
     <string name="update_check_download_started">下载开始</string>
-    <string name="update_check_look_for_updates">检查更新</string>
+    <string name="update_check_look_for_updates">检查更新中…</string>
     <string name="update_check_notification_file_download">下载更新</string>
-    <string name="update_check_notification_download_in_progress">下载中</string>
+    <string name="update_check_notification_download_in_progress">下载中…</string>
     <string name="update_check_notification_download_complete">下载完成</string>
     <string name="update_check_notification_download_error">下载时发生错误</string>
     <string name="update_check_notification_update_available">可更新</string>
@@ -419,7 +419,7 @@
     <string name="information_no_downloads">没有下载中的任务</string>
     <string name="information_no_recent">无最近章节</string>
     <string name="information_no_recent_manga">无最近阅读</string>
-    <string name="information_empty_library">你的书架为空，您可从发现添加漫画至书架</string>
+    <string name="information_empty_library">您的书架为空，您可从发现里添加漫画至书架</string>
     <string name="information_empty_category">你还没有漫画类别。点击右下方的加号按钮创建一个类别以管理书架</string>
     <string name="download_notifier_downloader_title">下载</string>
     <string name="download_notifier_title_error">错误</string>
