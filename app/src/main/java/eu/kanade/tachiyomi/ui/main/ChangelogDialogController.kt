@@ -12,7 +12,7 @@ import it.gmariotti.changelibs.library.view.ChangeLogRecyclerView
 
 class ChangelogDialogController : DialogController() {
 
-    override fun onCreateDialog(savedState: Bundle?): Dialog {
+    override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         val activity = activity!!
         val view = WhatsNewRecyclerView(activity)
         return MaterialDialog.Builder(activity)

@@ -103,7 +103,7 @@
     <string name="left_to_right_viewer">Izquierda a derecha</string>
     <string name="right_to_left_viewer">Derecha a izquierda</string>
     <string name="vertical_viewer">Vertical</string>
-    <string name="webtoon_viewer">Webtoons</string>
+    <string name="webtoon_viewer">Webtoon</string>
     <string name="pref_image_decoder">Decodificador de imagen</string>
     <string name="pref_image_scale_type">Tipo de escalado</string>
     <string name="scale_type_fit_screen">Ajustar a la pantalla</string>
@@ -412,7 +412,7 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="ext_downloading">Descargando</string>
     <string name="ext_installing">Instalando</string>
     <string name="ext_installed">Instalado</string>
-    <string name="all_lang">Todo</string>
+    <string name="all_lang">Todos</string>
     <string name="ext_trust">Confiable</string>
     <string name="ext_untrusted">No confiable</string>
     <string name="ext_uninstall">Desinstalar</string>
@@ -463,4 +463,21 @@ También asegúrese de haber iniciado sesión en las fuentes que lo requieren an
     <string name="darkblue_theme">Azul oscuro</string>
     <string name="pref_read_with_long_tap">Diálogo de toque largo</string>
     <string name="reader_pull_up_for_more_options">Tire hacia arriba para más opciones</string>
+    <string name="action_open_in_web_view">Abrir en vista web</string>
+    <string name="pref_skip_read_chapters">Saltar capítulos marcados como leídos</string>
+    <string name="pref_true_color">Color en 32 bits</string>
+    <string name="pref_color_filter_mode">Modo de mezcla de filtro de color</string>
+    <string name="filter_mode_default">Defecto</string>
+    <string name="filter_mode_overlay">Cubrir</string>
+    <string name="filter_mode_multiply">Multiplicar</string>
+    <string name="filter_mode_screen">Pantalla</string>
+    <string name="filter_mode_lighten">Esquivar / Aligerar</string>
+    <string name="filter_mode_darken">Quemar / Oscurecer</string>
+    <string name="label_help">Ayuda</string>
+    <string name="pref_library_update_prioritization">Orden de actualización de la biblioteca</string>
+    <string name="pref_library_update_prioritization_summary">Selecciona el orden en el que Tachiyomi buscará actualizaciones</string>
+    <string name="action_forward">Adelantar</string>
+    <string name="action_refresh">Refrescar</string>
+    <string name="no_results_found">No se han encontrado resultados</string>
+    <string name="migration_selection_prompt">Selecciona una fuente para migrar</string>
 </resources>

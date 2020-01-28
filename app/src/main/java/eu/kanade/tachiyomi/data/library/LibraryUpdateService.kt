@@ -9,7 +9,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.IBinder
 import android.os.PowerManager
-import android.support.v4.app.NotificationCompat
+import androidx.core.app.NotificationCompat
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
@@ -84,11 +84,11 @@ class LibraryUpdateService(
      */
     private val progressNotification by lazy { NotificationCompat.Builder(this, Notifications.CHANNEL_LIBRARY)
             .setContentTitle(getString(R.string.app_name))
-            .setSmallIcon(R.drawable.ic_refresh_white_24dp_img)
+            .setSmallIcon(R.drawable.ic_refresh_white_24dp)
             .setLargeIcon(notificationBitmap)
             .setOngoing(true)
             .setOnlyAlertOnce(true)
-            .addAction(R.drawable.ic_clear_grey_24dp_img, getString(android.R.string.cancel), cancelIntent)
+            .addAction(R.drawable.ic_close_white_24dp, getString(android.R.string.cancel), cancelIntent)
     }
 
     /**
@@ -249,7 +249,6 @@ class LibraryUpdateService(
             else
                 db.getLibraryMangas().executeAsBlocking().distinctBy { it.id }
         }
-
         if (target == Target.CHAPTERS && preferences.updateOnlyNonCompleted()) {
             listToUpdate = listToUpdate.filter { it.status != SManga.COMPLETED }
         }

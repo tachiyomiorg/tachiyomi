@@ -8,8 +8,8 @@
     android:clipToPadding="false"
     android:gravity="center_vertical"
     android:minHeight="42dp"
-    android:paddingLeft="?listPreferredItemPaddingLeft"
-    android:paddingRight="?listPreferredItemPaddingRight"
+    android:paddingStart="?listPreferredItemPaddingStart"
+    android:paddingEnd="?listPreferredItemPaddingEnd"
     tools:ignore="RtlHardcoded">
 
     <LinearLayout
@@ -19,8 +19,8 @@
         android:clipToPadding="false"
         android:gravity="start|center_vertical"
         android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"/>
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"/>
 
     <TextView
         android:id="@android:id/title"
@@ -43,12 +43,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginEnd="-16dp"
-        android:layout_marginRight="-16dp"
         android:clipToPadding="false"
         android:gravity="end|center_vertical"
         android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:visibility="gone">
 
         <ImageView

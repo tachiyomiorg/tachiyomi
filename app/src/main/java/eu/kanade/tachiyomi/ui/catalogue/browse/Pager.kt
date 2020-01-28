@@ -24,7 +24,7 @@ abstract class Pager(var currentPage: Int = 1) {
     fun onPageReceived(mangasPage: MangasPage) {
         val page = currentPage
         currentPage++
-        hasNextPage = mangasPage.hasNextPage && !mangasPage.mangas.isEmpty()
+        hasNextPage = mangasPage.hasNextPage && mangasPage.mangas.isNotEmpty()
         results.call(Pair(page, mangasPage.mangas))
     }
 

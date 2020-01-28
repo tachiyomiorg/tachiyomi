@@ -8,6 +8,8 @@
     <color name="colorDarkPrimaryDark">#1C1C1D</color>
     <color name="colorAmoledPrimary">@color/md_black_1000</color>
 
+    <color name="splashBackgroundColor">@color/colorPrimary</color>
+
     <!-- Light Theme -->
     <color name="colorAccentLight">@color/md_blue_A400</color>
     <color name="textColorPrimaryLight">@color/md_black_1000_87</color>
@@ -38,7 +40,6 @@
     <color name="appBarDark">@color/md_grey_900</color>
     <color name="backgroundDark">@color/colorDarkPrimaryDark</color>
     <color name="dialogDark">@color/colorDarkPrimary</color>
-    <color name="dialog_amoled">@color/colorDarkPrimaryDark</color>
 
     <color name="selectorColorDark">@color/md_blue_A200_50</color>
     <color name="iconColorDark">@color/md_white_1000_54</color>

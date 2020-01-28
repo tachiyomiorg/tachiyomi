@@ -10,7 +10,7 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 /**
- * Used to connect with the Github API.
+ * Used to connect with the GitHub API.
  */
 interface GithubService {
 

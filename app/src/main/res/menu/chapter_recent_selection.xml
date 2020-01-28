@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_download"
         android:icon="@drawable/ic_file_download_white_24dp"
         android:title="@string/action_download"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_delete"
         android:icon="@drawable/ic_delete_white_24dp"
         android:title="@string/action_delete"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_mark_as_read"
         android:icon="@drawable/ic_done_all_white_24dp"
         android:title="@string/action_mark_as_read"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_mark_as_unread"
         android:icon="@drawable/ic_done_all_grey_24dp"
         android:title="@string/action_mark_as_unread"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
 
 </menu>

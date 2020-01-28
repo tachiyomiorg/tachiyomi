@@ -1,16 +1,19 @@
 package eu.kanade.tachiyomi.ui.extension
 
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractHeaderItem
+import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 
 /**
- * Item that contains the language header.
+ * Item that contains the group header.
  *
- * @param code The lang code.
+ * @param name The header name.
+ * @param size The number of items in the group.
  */
-data class ExtensionGroupItem(val installed: Boolean, val size: Int) : AbstractHeaderItem<ExtensionGroupHolder>() {
+data class ExtensionGroupItem(val name: String, val size: Int) : AbstractHeaderItem<ExtensionGroupHolder>() {
 
     /**
      * Returns the layout resource of this item.
@@ -22,14 +25,14 @@ data class ExtensionGroupItem(val installed: Boolean, val size: Int) : AbstractH
     /**
      * Creates a new view holder for this item.
      */
-    override fun createViewHolder(view: View, adapter: FlexibleAdapter<*>): ExtensionGroupHolder {
+    override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): ExtensionGroupHolder {
         return ExtensionGroupHolder(view, adapter)
     }
 
     /**
      * Binds this item to the given view holder.
      */
-    override fun bindViewHolder(adapter: FlexibleAdapter<*>, holder: ExtensionGroupHolder,
+    override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: ExtensionGroupHolder,
                                 position: Int, payloads: List<Any?>?) {
 
         holder.bind(this)
@@ -38,13 +41,13 @@ data class ExtensionGroupItem(val installed: Boolean, val size: Int) : AbstractH
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other is ExtensionGroupItem) {
-            return installed == other.installed
+            return name == other.name
         }
         return false
     }
 
     override fun hashCode(): Int {
-        return installed.hashCode()
+        return name.hashCode()
     }
 
 }

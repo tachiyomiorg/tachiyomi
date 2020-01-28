@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.data.updater
 
 import android.app.PendingIntent
 import android.content.Intent
-import android.support.v4.app.NotificationCompat
+import androidx.core.app.NotificationCompat
 import com.evernote.android.job.Job
 import com.evernote.android.job.JobManager
 import com.evernote.android.job.JobRequest

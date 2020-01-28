@@ -29,7 +29,7 @@
             android:layout_gravity="bottom"
             android:background="@drawable/gradient_shape"/>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteY="7dp"
@@ -41,14 +41,14 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorAccentDark"
                 android:paddingBottom="1dp"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp"
+                android:paddingStart="3dp"
+                android:paddingEnd="3dp"
                 android:paddingTop="1dp"
                 android:visibility="gone"
                 tools:visibility="visible"
                 tools:text="120"
-                app:layout_constraintLeft_toRightOf="@+id/download_text"
-                android:layout_marginLeft="4dp"
+                app:layout_constraintStart_toEndOf="@+id/download_text"
+                android:layout_marginStart="4dp"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="4dp"/>
             <TextView
@@ -58,14 +58,14 @@
                 android:layout_height="wrap_content"
                 android:background="@color/md_red_500"
                 android:paddingBottom="1dp"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp"
+                android:paddingStart="3dp"
+                android:paddingEnd="3dp"
                 android:paddingTop="1dp"
                 android:visibility="gone"
                 tools:visibility="visible"
                 tools:text="120"
-                app:layout_constraintLeft_toRightOf="@+id/local_text"
-                android:layout_marginLeft="4dp"
+                app:layout_constraintStart_toEndOf="@+id/local_text"
+                android:layout_marginStart="4dp"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="4dp"/>
             <TextView
@@ -75,17 +75,17 @@
                 android:layout_height="wrap_content"
                 android:background="@color/md_teal_500"
                 android:paddingBottom="1dp"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp"
+                android:paddingStart="3dp"
+                android:paddingEnd="3dp"
                 android:paddingTop="1dp"
                 android:visibility="gone"
                 tools:visibility="visible"
                 android:text="@string/local_source_badge"
-                android:layout_marginLeft="4dp"
-                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="4dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="4dp"/>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <eu.kanade.tachiyomi.widget.PTSansTextView
             android:id="@+id/title"

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_web_back"
+        android:icon="@drawable/ic_arrow_back_white_24dp"
+        android:title="@string/action_webview_back"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_web_forward"
+        android:icon="@drawable/ic_arrow_forward_white_24dp"
+        android:title="@string/action_webview_forward"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_web_refresh"
+        android:title="@string/action_webview_refresh"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_web_share"
+        android:title="@string/action_share"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_web_browser"
+        android:title="@string/action_open_in_browser"
+        app:showAsAction="never" />
+
+</menu>

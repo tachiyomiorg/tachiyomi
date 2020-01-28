@@ -91,7 +91,7 @@ object ChapterRecognition {
      * @param chapter chapter object
      * @return true if volume is found
      */
-    fun updateChapter(match: MatchResult?, chapter: SChapter): Boolean {
+    private fun updateChapter(match: MatchResult?, chapter: SChapter): Boolean {
         match?.let {
             val initial = it.groups[1]?.value?.toFloat()!!
             val subChapterDecimal = it.groups[2]?.value
@@ -109,12 +109,12 @@ object ChapterRecognition {
      * @param alpha alpha value of regex
      * @return decimal/alpha float value
      */
-    fun checkForDecimal(decimal: String?, alpha: String?): Float {
+    private fun checkForDecimal(decimal: String?, alpha: String?): Float {
         if (!decimal.isNullOrEmpty())
-            return decimal?.toFloat()!!
+            return decimal.toFloat()
 
         if (!alpha.isNullOrEmpty()) {
-            if (alpha!!.contains("extra"))
+            if (alpha.contains("extra"))
                 return .99f
 
             if (alpha.contains("omake"))
@@ -138,7 +138,7 @@ object ChapterRecognition {
      * x.a -> x.1, x.b -> x.2, etc
      */
     private fun parseAlphaPostFix(alpha: Char): Float {
-        return ("0." + Integer.toString(alpha.toInt() - 96)).toFloat()
+        return ("0." + (alpha.toInt() - 96).toString()).toFloat()
     }
 
 }

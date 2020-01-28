@@ -5,14 +5,13 @@ import android.app.SearchManager
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.graphics.drawable.DrawerArrowDrawable
 import android.view.ViewGroup
+import androidx.appcompat.graphics.drawable.DrawerArrowDrawable
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.bluelinelabs.conductor.*
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.base.controller.*
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
@@ -26,14 +25,11 @@ import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
 import eu.kanade.tachiyomi.ui.setting.SettingsMainController
 import eu.kanade.tachiyomi.util.openInBrowser
 import kotlinx.android.synthetic.main.main_activity.*
-import uy.kohesive.injekt.injectLazy
 
 
 class MainActivity : BaseActivity() {
 
     private lateinit var router: Router
-
-    val preferences: PreferencesHelper by injectLazy()
 
     private var drawerArrow: DrawerArrowDrawable? = null
 
@@ -50,12 +46,6 @@ class MainActivity : BaseActivity() {
     lateinit var tabAnimator: TabsAnimator
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(when (preferences.theme()) {
-            2 -> R.style.Theme_Tachiyomi_Dark
-            3 -> R.style.Theme_Tachiyomi_Amoled
-            4 -> R.style.Theme_Tachiyomi_DarkBlue
-            else -> R.style.Theme_Tachiyomi
-        })
         super.onCreate(savedInstanceState)
 
         // Do not let the launcher create a new activity http://stackoverflow.com/questions/16283079
@@ -170,7 +160,7 @@ class MainActivity : BaseActivity() {
 
                 //Get the search query provided in extras, and if not null, perform a global search with it.
                 val query = intent.getStringExtra(SearchManager.QUERY)
-                if (query != null && !query.isEmpty()) {
+                if (query != null && query.isNotEmpty()) {
                     if (router.backstackSize > 1) {
                         router.popToRoot()
                     }
@@ -180,7 +170,7 @@ class MainActivity : BaseActivity() {
             INTENT_SEARCH -> {
                 val query = intent.getStringExtra(INTENT_SEARCH_QUERY)
                 val filter = intent.getStringExtra(INTENT_SEARCH_FILTER)
-                if (query != null && !query.isEmpty()) {
+                if (query != null && query.isNotEmpty()) {
                     if (router.backstackSize > 1) {
                         router.popToRoot()
                     }
@@ -276,7 +266,7 @@ class MainActivity : BaseActivity() {
         const val INTENT_SEARCH_QUERY = "query"
         const val INTENT_SEARCH_FILTER = "filter"
 
-        private const val URL_HELP = "https://github.com/inorichi/tachiyomi/wiki"
+        private const val URL_HELP = "https://tachiyomi.org/help/"
     }
 
 }

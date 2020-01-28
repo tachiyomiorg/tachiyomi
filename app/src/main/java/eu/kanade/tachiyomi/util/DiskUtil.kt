@@ -3,10 +3,10 @@ package eu.kanade.tachiyomi.util
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Environment
-import android.support.v4.content.ContextCompat
-import android.support.v4.os.EnvironmentCompat
+import androidx.core.content.ContextCompat
+import androidx.core.os.EnvironmentCompat
+import com.hippo.unifile.UniFile
 import java.io.File
 
 object DiskUtil {
@@ -44,14 +44,20 @@ object DiskUtil {
                     }
                 }
 
-        if (Build.VERSION.SDK_INT < 21) {
-            val extStorages = System.getenv("SECONDARY_STORAGE")
-            if (extStorages != null) {
-                directories += extStorages.split(":").map(::File)
+        return directories
+    }
+
+    /**
+     * Don't display downloaded chapters in gallery apps creating `.nomedia`.
+     */
+    fun createNoMediaFile(dir: UniFile?, context: Context?) {
+        if (dir != null && dir.exists()) {
+            val nomedia = dir.findFile(".nomedia")
+            if (nomedia == null) {
+                dir.createFile(".nomedia")
+                context?.let { scanMedia(it, dir.uri) }
             }
         }
-
-        return directories
     }
 
     /**
@@ -65,11 +71,7 @@ object DiskUtil {
      * Scans the given file so that it can be shown in gallery apps, for example.
      */
     fun scanMedia(context: Context, uri: Uri) {
-        val action = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            Intent.ACTION_MEDIA_MOUNTED
-        } else {
-            Intent.ACTION_MEDIA_SCANNER_SCAN_FILE
-        }
+        val action = Intent.ACTION_MEDIA_SCANNER_SCAN_FILE
         val mediaScanIntent = Intent(action)
         mediaScanIntent.data = uri
         context.sendBroadcast(mediaScanIntent)

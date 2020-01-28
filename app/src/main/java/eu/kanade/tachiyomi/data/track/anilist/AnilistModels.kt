@@ -58,7 +58,7 @@ data class ALUserManga(
     fun toTrackStatus() = when (list_status) {
         "CURRENT" -> Anilist.READING
         "COMPLETED" -> Anilist.COMPLETED
-        "PAUSED" -> Anilist.ON_HOLD
+        "PAUSED" -> Anilist.PAUSED
         "DROPPED" -> Anilist.DROPPED
         "PLANNING" -> Anilist.PLANNING
         "REPEATING" -> Anilist.REPEATING
@@ -69,7 +69,7 @@ data class ALUserManga(
 fun Track.toAnilistStatus() = when (status) {
     Anilist.READING -> "CURRENT"
     Anilist.COMPLETED -> "COMPLETED"
-    Anilist.ON_HOLD -> "PAUSED"
+    Anilist.PAUSED -> "PAUSED"
     Anilist.DROPPED -> "DROPPED"
     Anilist.PLANNING -> "PLANNING"
     Anilist.REPEATING -> "REPEATING"

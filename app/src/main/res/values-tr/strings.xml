@@ -434,4 +434,21 @@
     <string name="darkblue_theme">Koyu mavi</string>
     <string name="pref_read_with_long_tap">Uzun dokunma iletişim kutusu</string>
     <string name="reader_pull_up_for_more_options">Daha çok seçenek için yukarı çekin</string>
+    <string name="action_open_in_web_view">Web görünümünde aç</string>
+    <string name="pref_true_color">32-bit renk</string>
+    <string name="pref_skip_read_chapters">Okunmuş olarak işaretli bölümleri atla</string>
+    <string name="pref_color_filter_mode">Renk süzgeçi karışım kipi</string>
+    <string name="filter_mode_default">Öntanımlı</string>
+    <string name="filter_mode_overlay">Kaplama</string>
+    <string name="filter_mode_multiply">Çarpma</string>
+    <string name="filter_mode_screen">Ekran</string>
+    <string name="filter_mode_lighten">Kaçınma / Aydınlatma</string>
+    <string name="filter_mode_darken">Yakma / Karartma</string>
+    <string name="label_help">Yardım</string>
+    <string name="pref_library_update_prioritization">Kitaplık güncelleme sırası</string>
+    <string name="pref_library_update_prioritization_summary">Tachiyomi\'nin güncelleme denetleme sırasını seçin</string>
+    <string name="action_forward">İleri</string>
+    <string name="action_refresh">Yenile</string>
+    <string name="no_results_found">Sonuç bulunmadı</string>
+    <string name="migration_selection_prompt">Taşınılacak bir kaynak seçin</string>
 </resources>

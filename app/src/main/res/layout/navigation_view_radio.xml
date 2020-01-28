@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="?attr/listPreferredItemHeightSmall"
-    android:paddingLeft="?attr/listPreferredItemPaddingLeft"
-    android:paddingRight="?attr/listPreferredItemPaddingRight"
+    android:paddingStart="?attr/listPreferredItemPaddingStart"
+    android:paddingEnd="?attr/listPreferredItemPaddingEnd"
     android:background="?attr/selectableItemBackground"
     android:focusable="true">
 
@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:paddingLeft="@dimen/material_component_lists_icon_left_padding"
+        android:paddingStart="@dimen/material_component_lists_icon_left_padding"
         android:background="@android:color/transparent"
         android:gravity="center_vertical|start"
         android:maxLines="1"

@@ -34,7 +34,7 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
     private val api by lazy { KitsuApi(client, interceptor) }
 
     override fun getLogo(): Int {
-        return R.drawable.kitsu
+        return R.drawable.tracker_kitsu
     }
 
     override fun getLogoColor(): Int {
@@ -42,16 +42,16 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun getStatusList(): List<Int> {
-        return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLAN_TO_READ)
+        return listOf(READING, PLAN_TO_READ, COMPLETED, ON_HOLD, DROPPED)
     }
 
     override fun getStatus(status: Int): String = with(context) {
         when (status) {
-            READING -> getString(R.string.reading)
+            READING -> getString(R.string.currently_reading)
+            PLAN_TO_READ -> getString(R.string.want_to_read)
             COMPLETED -> getString(R.string.completed)
             ON_HOLD -> getString(R.string.on_hold)
             DROPPED -> getString(R.string.dropped)
-            PLAN_TO_READ -> getString(R.string.plan_to_read)
             else -> ""
         }
     }

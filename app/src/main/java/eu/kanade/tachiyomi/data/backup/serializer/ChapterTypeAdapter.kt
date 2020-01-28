@@ -43,9 +43,7 @@ object ChapterTypeAdapter {
                 beginObject()
                 while (hasNext()) {
                     if (peek() == JsonToken.NAME) {
-                        val name = nextName()
-
-                        when (name) {
+                        when (nextName()) {
                             URL -> chapter.url = nextString()
                             READ -> chapter.read = nextInt() == 1
                             BOOKMARK -> chapter.bookmark = nextInt() == 1

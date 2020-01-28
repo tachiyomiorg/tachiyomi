@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/group_feature"
-           android:checkableBehavior="single">
+    <group
+        android:id="@+id/group_feature"
+        android:checkableBehavior="single">
         <item
-            android:checked="true"
             android:id="@+id/nav_drawer_library"
+            android:checked="true"
             android:icon="@drawable/ic_book_black_24dp"
             android:title="@string/label_library" />
         <item
@@ -14,7 +15,7 @@
         <item
             android:id="@+id/nav_drawer_recently_read"
             android:icon="@drawable/ic_glasses_black_24dp"
-            android:title="@string/label_recent_manga"/>
+            android:title="@string/label_recent_manga" />
         <item
             android:id="@+id/nav_drawer_catalogues"
             android:icon="@drawable/ic_explore_black_24dp"
@@ -22,24 +23,25 @@
         <item
             android:id="@+id/nav_drawer_extensions"
             android:icon="@drawable/ic_extension_black_24dp"
-            android:title="@string/label_extensions"/>
+            android:title="@string/label_extensions" />
         <item
             android:id="@+id/nav_drawer_downloads"
+            android:checkable="false"
             android:icon="@drawable/ic_file_download_black_24dp"
-            android:title="@string/label_download_queue"
-            android:checkable="false" />
+            android:title="@string/label_download_queue" />
     </group>
-    <group android:id="@+id/group_settings"
-           android:checkableBehavior="single">
+    <group
+        android:id="@+id/group_settings"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_drawer_settings"
+            android:checkable="false"
             android:icon="@drawable/ic_settings_black_24dp"
-            android:title="@string/label_settings"
-            android:checkable="false" />
+            android:title="@string/label_settings" />
         <item
             android:id="@+id/nav_drawer_help"
+            android:checkable="false"
             android:icon="@drawable/ic_help_black_24dp"
-            android:title="@string/label_help"
-            android:checkable="false" />
+            android:title="@string/label_help" />
     </group>
 </menu>

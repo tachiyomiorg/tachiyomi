@@ -145,7 +145,7 @@
     <string name="left_to_right_viewer">बाएं से दाएं</string>
     <string name="right_to_left_viewer">दाएं से बाएं</string>
     <string name="vertical_viewer">शीर्ष से असंतत</string>
-    <string name="webtoon_viewer">शीर्ष से निरंतर</string>
+    <string name="webtoon_viewer">वेबटून</string>
     <string name="pref_image_decoder">छवि कूटवाचक</string>
     <string name="pref_image_scale_type">मापन प्ररूप</string>
     <string name="scale_type_fit_screen">उपयुक्त स्क्रीन</string>
@@ -367,7 +367,7 @@
     <string name="download_notifier_page_ready_error">एक पृष्ठ लोड नहीं हुआ है</string>
     <string name="download_notifier_text_only_wifi">कोई वाई-फ़ाई कनेक्शन उपलब्ध नहीं है</string>
     <string name="download_notifier_no_network">कोई नेटवर्क कनेक्शन उपलब्ध नहीं है</string>
-    <string name="download_notifier_download_paused">डाउनलोड रोक दिया गया</string>
+    <string name="download_notifier_download_paused">डाउनलोड रोक दिया है</string>
     <string name="channel_common">सामान्य</string>
     <string name="channel_library">पुस्तकालय</string>
     <string name="channel_downloader">डाउनलोडर</string>
@@ -432,4 +432,21 @@
     <string name="darkblue_theme">गहरा नीला</string>
     <string name="reader_pull_up_for_more_options">अधिक विकल्पों के लिए खींचो</string>
     <string name="pref_read_with_long_tap">संवाद के लिए लंबी प्रेस</string>
+    <string name="action_open_in_web_view">वेब दृश्य में खोलें</string>
+    <string name="pref_true_color">32 बिट रंग</string>
+    <string name="pref_skip_read_chapters">पढ़े हुए अध्यायों को छोड़ें</string>
+    <string name="pref_color_filter_mode">रंग फिल्टर मिश्रण मोड</string>
+    <string name="filter_mode_default">डिफ़ॉल्ट</string>
+    <string name="filter_mode_overlay">ओवरले</string>
+    <string name="filter_mode_multiply">गुणा</string>
+    <string name="filter_mode_screen">स्क्रीन</string>
+    <string name="filter_mode_lighten">चकमा/हल्का</string>
+    <string name="filter_mode_darken">जल/गहरा</string>
+    <string name="label_help">मदद</string>
+    <string name="pref_library_update_prioritization">लाइब्रेरी अद्यतन क्रम</string>
+    <string name="pref_library_update_prioritization_summary">उस क्रम का चयन करें जिसमें टचियोमी अद्यतन की जांच करे</string>
+    <string name="action_forward">आगे</string>
+    <string name="action_refresh">पुनश्चर्या</string>
+    <string name="no_results_found">कोई परिणाम नहीं मिला</string>
+    <string name="migration_selection_prompt">से माइग्रेट करने के लिए एक स्रोत का चयन करें</string>
 </resources>

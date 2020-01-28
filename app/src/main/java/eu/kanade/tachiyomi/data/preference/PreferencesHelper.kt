@@ -11,6 +11,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.source.Source
 import java.io.File
+import java.util.Locale
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
@@ -114,7 +115,7 @@ class PreferencesHelper(val context: Context) {
 
     fun catalogueAsList() = rxPrefs.getBoolean(Keys.catalogueAsList, false)
 
-    fun enabledLanguages() = rxPrefs.getStringSet(Keys.enabledLanguages, setOf("en"))
+    fun enabledLanguages() = rxPrefs.getStringSet(Keys.enabledLanguages, setOf("en", Locale.getDefault().language))
 
     fun sourceUsername(source: Source) = prefs.getString(Keys.sourceUsername(source.id), "")
 

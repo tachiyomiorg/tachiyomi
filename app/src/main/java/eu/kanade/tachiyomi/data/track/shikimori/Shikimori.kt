@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.data.track.shikimori
 
 import android.content.Context
 import android.graphics.Color
-import android.util.Log
 import com.google.gson.Gson
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
@@ -84,7 +83,7 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
 
     private val api by lazy { ShikimoriApi(client, interceptor) }
 
-    override fun getLogo() = R.drawable.shikimori
+    override fun getLogo() = R.drawable.tracker_shikimori
 
     override fun getLogoColor() = Color.rgb(40, 40, 40)
 

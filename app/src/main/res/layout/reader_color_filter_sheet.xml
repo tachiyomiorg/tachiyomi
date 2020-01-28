@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp">
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -28,12 +28,12 @@
             android:visibility="gone" />
     </FrameLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <include layout="@layout/reader_color_filter"/>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

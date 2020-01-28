@@ -12,9 +12,7 @@
         android:layout_width="@dimen/material_component_lists_single_line_with_avatar_height"
         android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
         android:clickable="true"
-        android:paddingLeft="@dimen/material_component_lists_icon_left_padding"
         android:paddingStart="@dimen/material_component_lists_icon_left_padding"
-        android:paddingRight="0dp"
         android:paddingEnd="0dp"
         tools:src="@mipmap/ic_launcher_round"/>
 
@@ -22,9 +20,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/material_component_lists_text_left_padding"
         android:layout_marginStart="@dimen/material_component_lists_text_left_padding"
-        android:layout_marginRight="@dimen/material_component_lists_single_line_with_avatar_height"
         android:layout_marginEnd="@dimen/material_component_lists_single_line_with_avatar_height"
         android:ellipsize="end"
         android:maxLines="1"

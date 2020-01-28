@@ -17,6 +17,7 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.util.concurrent.PriorityBlockingQueue
 import java.util.concurrent.atomic.AtomicInteger
+import kotlin.math.min
 
 /**
  * Loader used to load chapters from an online source.
@@ -37,18 +38,20 @@ class HttpPageLoader(
      */
     private val subscriptions = CompositeSubscription()
 
+    private val preloadSize = 4
+
     init {
         subscriptions += Observable.defer { Observable.just(queue.take().page) }
-            .filter { it.status == Page.QUEUE }
-            .concatMap { source.fetchImageFromCacheThenNet(it) }
-            .repeat()
-            .subscribeOn(Schedulers.io())
-            .subscribe({
-            }, { error ->
-                if (error !is InterruptedException) {
-                    Timber.e(error)
-                }
-            })
+                .filter { it.status == Page.QUEUE }
+                .concatMap { source.fetchImageFromCacheThenNet(it) }
+                .repeat()
+                .subscribeOn(Schedulers.io())
+                .subscribe({
+                }, { error ->
+                    if (error !is InterruptedException) {
+                        Timber.e(error)
+                    }
+                })
     }
 
     /**
@@ -80,13 +83,13 @@ class HttpPageLoader(
      */
     override fun getPages(): Observable<List<ReaderPage>> {
         return chapterCache
-            .getPageListFromCache(chapter.chapter)
-            .onErrorResumeNext { source.fetchPageList(chapter.chapter) }
-            .map { pages ->
-                pages.mapIndexed { index, page -> // Don't trust sources and use our own indexing
-                    ReaderPage(index, page.url, page.imageUrl)
+                .getPageListFromCache(chapter.chapter)
+                .onErrorResumeNext { source.fetchPageList(chapter.chapter) }
+                .map { pages ->
+                    pages.mapIndexed { index, page -> // Don't trust sources and use our own indexing
+                        ReaderPage(index, page.url, page.imageUrl)
+                    }
                 }
-            }
     }
 
     /**
@@ -110,29 +113,41 @@ class HttpPageLoader(
             val statusSubject = SerializedSubject(PublishSubject.create<Int>())
             page.setStatusSubject(statusSubject)
 
+            val queuedPages = mutableListOf<PriorityPage>()
             if (page.status == Page.QUEUE) {
-                queue.offer(PriorityPage(page, 1))
+                queuedPages += PriorityPage(page, 1).also { queue.offer(it) }
             }
-
-            preloadNextPages(page, 4)
+            queuedPages += preloadNextPages(page, preloadSize)
 
             statusSubject.startWith(page.status)
+                    .doOnUnsubscribe {
+                        queuedPages.forEach {
+                            if (it.page.status == Page.QUEUE) {
+                                queue.remove(it)
+                            }
+                        }
+                    }
         }
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
     }
 
     /**
      * Preloads the given [amount] of pages after the [currentPage] with a lower priority.
+     * @return a list of [PriorityPage] that were added to the [queue]
      */
-    private fun preloadNextPages(currentPage: ReaderPage, amount: Int) {
+    private fun preloadNextPages(currentPage: ReaderPage, amount: Int): List<PriorityPage> {
         val pageIndex = currentPage.index
-        val pages = currentPage.chapter.pages ?: return
-        if (pageIndex == pages.lastIndex) return
-        val nextPages = pages.subList(pageIndex + 1, Math.min(pageIndex + 1 + amount, pages.size))
-        for (nextPage in nextPages) {
-            if (nextPage.status == Page.QUEUE) {
-                queue.offer(PriorityPage(nextPage, 0))
-            }
-        }
+        val pages = currentPage.chapter.pages ?: return emptyList()
+        if (pageIndex == pages.lastIndex) return emptyList()
+
+        return pages
+                .subList(pageIndex + 1, min(pageIndex + 1 + amount, pages.size))
+                .mapNotNull {
+                    if (it.status == Page.QUEUE) {
+                        PriorityPage(it, 0).apply { queue.offer(this) }
+                    } else null
+                }
     }
 
     /**
@@ -148,7 +163,7 @@ class HttpPageLoader(
     /**
      * Data class used to keep ordering of pages in order to maintain priority.
      */
-    private data class PriorityPage(
+    private class PriorityPage(
             val page: ReaderPage,
             val priority: Int
     ): Comparable<PriorityPage> {

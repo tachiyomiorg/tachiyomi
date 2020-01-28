@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/action_edit"
-          android:title="@string/action_edit"
-          android:icon="@drawable/ic_create_white_24dp"
-          app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_edit"
+        android:icon="@drawable/ic_create_white_24dp"
+        android:title="@string/action_edit"
+        app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/action_delete"
-          android:title="@string/action_delete"
-          android:icon="@drawable/ic_delete_white_24dp"
-          app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_delete"
+        android:icon="@drawable/ic_delete_white_24dp"
+        android:title="@string/action_delete"
+        app:showAsAction="ifRoom" />
 
 </menu>

@@ -5,7 +5,7 @@
     android:layout_gravity="center"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_view"
         android:layout_width="128dp"
         android:layout_height="128dp"

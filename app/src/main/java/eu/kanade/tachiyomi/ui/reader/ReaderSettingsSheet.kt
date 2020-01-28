@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.ui.reader
 
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialog
-import android.support.v4.widget.NestedScrollView
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import androidx.core.widget.NestedScrollView
 import android.widget.CompoundButton
 import android.widget.Spinner
 import com.f2prateek.rx.preferences.Preference

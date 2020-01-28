@@ -69,7 +69,7 @@
     <string name="action_reset">Изчисти</string>
     <string name="action_undo">Върни</string>
     <!-- Operations -->
-    <string name="deleting">Изтриване …</string>
+    <string name="deleting">Изтриване…</string>
     <string name="loading">Зареждане…</string>
     <!-- Preferences -->
     <!-- Subsections -->
@@ -86,16 +86,15 @@
     <string name="landscape">Пейзажно</string>
     <string name="default_columns">По подразбиране</string>
     <string name="pref_library_update_interval">Честота на обновяване на библиотеката</string>
-    <string name="update_never">Собственоръчно</string>
+    <string name="update_never">Самостоятелно</string>
     <string name="update_1hour">На всеки час</string>
     <string name="update_2hour">На всеки 2 часа</string>
     <string name="update_3hour">На всеки 3 часа</string>
     <string name="update_6hour">На всеки 6 часа</string>
     <string name="update_12hour">На всеки 12 часа</string>
     <string name="update_24hour">Ежедневно</string>
-    <string name="update_48hour">На всеки 2 дни</string>
-    <string name="pref_library_update_categories">Категории за включване в
-\nглобално обновяване</string>
+    <string name="update_48hour">През ден</string>
+    <string name="pref_library_update_categories">Категории, включени в глобалното обновяване</string>
     <string name="all">Всички</string>
     <string name="pref_library_update_restriction">Ограничения при обновяване</string>
     <string name="pref_library_update_restriction_summary">Обновявай само когато дадените условия са спазени</string>
@@ -144,7 +143,7 @@
     <string name="zoom_start_center">Центрирано</string>
     <string name="pref_rotation_type">Въртене</string>
     <string name="rotation_free">Включено</string>
-    <string name="rotation_lock">Изключено</string>
+    <string name="rotation_lock">Заключено</string>
     <string name="rotation_force_portrait">Портретно</string>
     <string name="rotation_force_landscape">Пейзажно</string>
     <string name="color_filter_r_value">R</string>
@@ -224,7 +223,7 @@
     <string name="circular_icon">Кръгла икона</string>
     <string name="rounded_icon">Заоблена икона</string>
     <string name="square_icon">Квадратна икона</string>
-    <string name="star_icon">Звезда икона</string>
+    <string name="star_icon">Звездоподобна икона</string>
     <string name="shortcut_title">Име на пряк път</string>
     <string name="icon_shape">Форма на икона</string>
     <string name="icon_creation_fail">Пряк път не можа да бъде създаден!</string>
@@ -234,8 +233,8 @@
     <string name="display_mode_chapter">Глава %1$s</string>
     <string name="chapter_downloaded">Изтеглена</string>
     <string name="chapter_queued">На изчакване</string>
-    <string name="chapter_downloading">Изтегля се</string>
-    <string name="chapter_downloading_progress">Изтеглени (%1$d/%2$d)</string>
+    <string name="chapter_downloading">Изтегляне</string>
+    <string name="chapter_downloading_progress">Изтегляне (%1$d/%2$d)</string>
     <string name="chapter_error">Грешка</string>
     <string name="fetch_chapters_error">Възникна грешка при показването на главите</string>
     <string name="show_title">Покажи заглавие</string>
@@ -266,7 +265,7 @@
     <string name="snack_categories_deleted">Категориите бяха изтрити</string>
     <!-- Dialog option with checkbox view -->
     <string name="dialog_with_checkbox_remove_description">Това ще премахне датата на прочитане на главата. Сигурни ли сте?</string>
-    <string name="dialog_with_checkbox_reset">Рестартирай всички глави за тази манга</string>
+    <string name="dialog_with_checkbox_reset">Изчисти всички дати за тази манга</string>
     <!-- SnackBar -->
     <string name="snack_add_to_library">Добавяне на мангата към библиотеката\?</string>
     <!-- Image notifier -->
@@ -287,7 +286,7 @@
     <string name="decode_image_error">Неуспешно декодиране на изображението</string>
     <string name="confirm_update_manga_sync">Обнови последната прочетена глава в %1$d?</string>
     <string name="confirm_set_image_as_cover">Желаете ли да използвате това изображение за корица?</string>
-    <string name="viewer_for_this_series">зрител за тази серия</string>
+    <string name="viewer_for_this_series">Начин на четене за тази поредица</string>
     <!-- Backup fragment -->
     <string name="backup">Резервно копие</string>
     <!-- Recent manga fragment -->
@@ -296,7 +295,7 @@
     <string name="download_queue_error">Получи се грешка при изтеглянето на главите. Може да опитате пак в секцията на изтеглянията</string>
     <!-- Library update service notifications -->
     <string name="notification_update_progress">Напредък на обновяването: %1$d/%2$d</string>
-    <string name="notification_new_chapters">Нови глави са намерени</string>
+    <string name="notification_new_chapters">Нови глави</string>
     <string name="notification_cover_update_failed">Грешка при обновяването на корицата</string>
     <string name="notification_first_add_to_library">Моля, добавете мангата в библиотеката си, преди да направите това</string>
     <string name="notification_not_connected_to_ac_title">Синхронизиране отменено</string>
@@ -333,9 +332,9 @@
     <string name="download_notifier_title_error">Грешка</string>
     <string name="download_notifier_unkown_error">Имаше неочаквана грешка при изтеглянето на главата</string>
     <string name="download_notifier_page_error">Липсва страница в директорията</string>
-    <string name="download_notifier_page_ready_error">Страницата не е заредена</string>
+    <string name="download_notifier_page_ready_error">Някоя страница не е заредена</string>
     <string name="download_notifier_text_only_wifi">Няма налична Wi-Fi връзка</string>
-    <string name="download_notifier_no_network">Няма налична интернет връзка</string>
+    <string name="download_notifier_no_network">Няма налична мрежова връзка</string>
     <string name="categories">Категории</string>
     <string name="manga">Манга</string>
     <string name="track">Следене</string>
@@ -356,7 +355,7 @@
     <string name="default_category_summary">Питай всеки път</string>
     <string name="pref_crop_borders">Изрязвай границите</string>
     <string name="pref_read_with_volume_keys_inverted">Обърнати бутони за звука</string>
-    <string name="pref_download_new_categories">Категории за включване при теглене</string>
+    <string name="pref_download_new_categories">Категории, включени при изтегляне</string>
     <string name="pref_create_backup">Създай резервно копие</string>
     <string name="pref_create_backup_summ">Може да се използва за възстановяване на текущата библиотека</string>
     <string name="pref_restore_backup">Възстанови резервно копие</string>
@@ -390,8 +389,7 @@
     <string name="chapter_paused">На пауза</string>
     <string name="notification_new_chapters_text">За %1$d заглавия</string>
     <string name="download_notifier_download_paused">Изтеглянето спряно</string>
-    <string name="backup_restore_content">За възстановяването се изтеглят данни от източника, за които може да бъде отчетен разход на данни. 
-\nСъщо проверете дали сте влезли коректно в източниците, които го изискват, преди възстановяването.</string>
+    <string name="backup_restore_content">За възстановяването се изтеглят данни от източника, за които може да бъде отчетен разход на данни. Също проверете дали сте влезли коректно в източниците, които го изискват, преди възстановяването.</string>
     <string name="action_global_search">Глобално търсене</string>
     <string name="action_open">Отвори</string>
     <string name="action_login">Вход</string>
@@ -407,7 +405,7 @@
     <string name="local_source_badge">Локална</string>
     <string name="information_empty_category">Нямате категории. Натиснете плюса, за да създадете такава и да организирате библиотеката си.</string>
     <string name="label_migration">Смяна на източник</string>
-    <string name="label_extensions">Добавки</string>
+    <string name="label_extensions">Разширения</string>
     <string name="label_extension_info">Информация</string>
     <string name="all_lang">Всички</string>
     <string name="ext_details">Подробности</string>
@@ -450,11 +448,11 @@
     <string name="migrate">Мигрирай</string>
     <string name="copy">Копирай</string>
     <string name="migrating">Мигриране…</string>
-    <string name="pager_viewer">пейджър</string>
+    <string name="pager_viewer">Страница</string>
     <string name="source_not_installed">Източникът не е инсталиран: %1$s</string>
     <string name="repeating">Препрочитане</string>
     <string name="track_status">Статус</string>
-    <string name="track_start_date">Започната на</string>
+    <string name="track_start_date">Начало</string>
     <string name="track_type">Тип</string>
     <string name="track_author">Автор</string>
     <string name="url_not_set">Мангата няма връзка с акаунта, молим отново да натиснете заглавието и да изберете мангата</string>
@@ -465,8 +463,21 @@
     <string name="transition_no_next">Няма повече глави</string>
     <string name="transition_no_previous">Няма предишна глава</string>
     <string name="transition_pages_loading">Зареждане на страниците…</string>
-    <string name="transition_pages_error">"Неуспешно зареждане на страници: %1$s "</string>
-    <string name="darkblue_theme">Тъмно син</string>
+    <string name="transition_pages_error">Не бяха заредени успешно: %1$s страници</string>
+    <string name="darkblue_theme">Тъмносиня тема</string>
     <string name="pref_read_with_long_tap">Показване на прозорец след натискане</string>
-    <string name="reader_pull_up_for_more_options">Издърпайте за допълнително опции</string>
+    <string name="reader_pull_up_for_more_options">Издърпайте за повече опции</string>
+    <string name="action_open_in_web_view">Отвори онлайн</string>
+    <string name="pref_true_color">32-битови цветове</string>
+    <string name="pref_skip_read_chapters">Пропускай прочетените глави</string>
+    <string name="pref_color_filter_mode">Режим на цветовия филтър</string>
+    <string name="filter_mode_default">По подразбиране</string>
+    <string name="filter_mode_overlay">Наложен</string>
+    <string name="filter_mode_multiply">Умножен</string>
+    <string name="filter_mode_screen">Екранен</string>
+    <string name="filter_mode_lighten">Осветен</string>
+    <string name="filter_mode_darken">Затъмнен</string>
+    <string name="label_help">Помощ</string>
+    <string name="pref_library_update_prioritization">Ред на обновяване на библиотеката</string>
+    <string name="pref_library_update_prioritization_summary">Изберете реда, в който Tachiyomi ще търси обновления</string>
 </resources>

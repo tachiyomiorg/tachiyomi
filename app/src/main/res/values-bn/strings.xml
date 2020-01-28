@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="name">নাম</string>
+<resources>
+    <string name="name">নাম</string>
     <string name="categories">ধরণ</string>
     <string name="manga">মাংগা</string>
     <string name="chapters">অধ্যায়গুলো</string>
     <string name="track">অনুসরণকরণ</string>
     <string name="history">ইতিহাস</string>
-
     <string name="label_settings">সেটিংস</string>
     <string name="label_download_queue">ডাউনলোড</string>
     <string name="label_library">মাংগা সংগ্রহ</string>
@@ -16,8 +16,6 @@
     <string name="label_categories">বিভাগ সমূহ</string>
     <string name="label_selected">নির্বাচিত: %1$d</string>
     <string name="label_backup">ব্যাকআপ</string>
-
-
     <string name="action_settings">সেটিংস</string>
     <string name="action_filter">বিশোধন</string>
     <string name="action_filter_downloaded">ডাউনলোডেড</string>
@@ -84,13 +82,10 @@
     <string name="action_restore">পুনরূদ্ধার</string>
     <string name="action_open">খুলুন</string>
     <string name="action_login">লগ ইন</string>
-
     <string name="deleting">মুছে ফেলা হচ্ছে…</string>
     <string name="loading">লোড হচ্ছে…</string>
-
     <string name="app_not_available">এপ্সটি অনুপস্থিত</string>
     <string name="short_recent_updates">আপডেটস</string>
-
     <string name="pref_category_general">সাধারণ</string>
     <string name="pref_category_reader">পাঠক</string>
     <string name="pref_category_downloads">ডাউনলোডগুলো</string>
@@ -98,8 +93,7 @@
     <string name="pref_category_tracking">অনুসরিত</string>
     <string name="pref_category_advanced">অগ্রবর্তী</string>
     <string name="pref_category_about">সম্বন্ধে</string>
-
-      <string name="pref_library_columns">সারিক্রমে মাংগাশালা</string>
+    <string name="pref_library_columns">সারিক্রমে মাংগাশালা</string>
     <string name="portrait">ঘুরান</string>
     <string name="landscape">আড়াআড়ি ভাবে</string>
     <string name="default_columns">ডিফল্ট</string>
@@ -131,8 +125,7 @@
     <string name="system_default">প্রথম অবস্থা</string>
     <string name="default_category">নির্ধারিত ধরণ</string>
     <string name="default_category_summary">সর্বদা জিজ্ঞাসা করুন</string>
-
-      <string name="pref_fullscreen">সম্পূর্ণ স্ক্রিন</string>
+    <string name="pref_fullscreen">সম্পূর্ণ স্ক্রিন</string>
     <string name="pref_lock_orientation">অরিয়েন্টেশন বন্ধ রাখুন</string>
     <string name="pref_page_transitions">পৃষ্ঠা রূপান্তর</string>
     <string name="pref_show_page_number">পৃষ্ঠা নং দেখান</string>
@@ -175,9 +168,7 @@
     <string name="color_filter_g_value">সবুজ</string>
     <string name="color_filter_b_value">নীল</string>
     <string name="color_filter_a_value">আল্ফা</string>
-
-
-      <string name="pref_download_directory">ডাউনলোডের নির্দেশক</string>
+    <string name="pref_download_directory">ডাউনলোডের নির্দেশক</string>
     <string name="pref_download_only_over_wifi">শুধুমাত্র ওয়াই-ফাইয়ে ডাউনলোড করুন</string>
     <string name="pref_remove_after_marked_as_read">পঠিত হলে সরিয়ে ফেলুন</string>
     <string name="pref_remove_after_read">পড়ার পর সরিয়ে ফেলুন</string>
@@ -190,9 +181,7 @@
     <string name="fifth_to_last">৫ম থেকে শেষ অধ্যায়</string>
     <string name="pref_download_new">নতুন অধ্যায় ডাউনলোড করুন</string>
     <string name="pref_download_new_categories">ডাউনলোডে যোগ করার জন্য ধরণ</string>
-
-      <string name="services">সেবা সমূহ</string>
-
+    <string name="services">সেবা সমূহ</string>
     <string name="backup">ব্যাকআপ</string>
     <string name="pref_create_backup">ব্যাকআপ তৈরী করুন</string>
     <string name="pref_create_backup_summ">বর্তমান মাংগাশালা পুনরুদ্ধারের জন্য ব্যাবহার করা যাবে</string>
@@ -217,8 +206,7 @@
     <string name="backup_choice">আপনি কি ব্যাকআপ করতে ইচ্ছুক?</string>
     <string name="restoring_backup">ব্যাকআপ পুনরুদ্ধার হচ্ছে</string>
     <string name="creating_backup">ব্যাকআপ তৈরী হচ্ছে</string>
-
-      <string name="pref_clear_chapter_cache">অধ্যায়ের ক্যাশ পরিষ্কার করুন</string>
+    <string name="pref_clear_chapter_cache">অধ্যায়ের ক্যাশ পরিষ্কার করুন</string>
     <string name="used_cache">ব্যাবহৃত হয়েছে: %1$s</string>
     <string name="cache_deleted">ক্যাশ পরিষ্কার হয়েছে. %1$d ফাইল মুছে ফেলা হয়েছে</string>
     <string name="cache_delete_error">ক্যাশ পরিষ্কারের সময় একটি ত্রুটি দেখা দিয়েছে</string>
@@ -233,15 +221,12 @@
     <string name="pref_refresh_library_metadata_summary">আপডেটস কভারগুলো, প্রকার, বিবৃতি এবং মাংগার স্ট্যাটাস তথ্য</string>
     <string name="pref_refresh_library_tracking">অনুসরণকৃত মেটাডাটা রিফ্রেশ করুন</string>
     <string name="pref_refresh_library_tracking_summary">আপডেটস স্ট্যাটাস, স্কোর এবং শেষ পড়া অধ্যায় অনুসরণ থেকে</string>
-
-      <string name="version">সংস্করণ</string>
+    <string name="version">সংস্করণ</string>
     <string name="build_time">তৈরি সময়</string>
     <string name="pref_enable_automatic_updates">আপডেটগুলো দেখে নিন</string>
     <string name="pref_enable_automatic_updates_summary">স্বয়ংক্রিয়ভাবে এপ্লিকেশনের আপডেট খুঁজুন</string>
     <string name="pref_enable_acra">ক্র‍্যাশের জন্য অভিযোগ পাঠান</string>
     <string name="pref_acra_summary">বাগ ঠিক করার জন্য সাহায্য করুন। কোন দরকারি তথ্য পাঠানো হবে না</string>
-
-
     <string name="login_title">লগিন করা হয়েছে %1$s</string>
     <string name="username">ব্যাবহারকারীর নাম</string>
     <string name="password">গোপন শব্দ</string>
@@ -250,13 +235,11 @@
     <string name="login_success">লগ ইন সফল</string>
     <string name="invalid_login">লগ ইন ত্রুটি</string>
     <string name="unknown_error">অজানা ত্রুটি</string>
-
     <string name="library_search_hint">লেখকের নাম…</string>
     <string name="updating_category">ধরণ আপডেট হচ্ছে</string>
     <string name="local_source_badge">স্থানীয়</string>
     <string name="confirm_delete_manga">আপনি কি নিশ্চিত যে আপনি নির্বাচিত মাংগা মুছে ফেলতে চাচ্ছেন?</string>
     <string name="also_delete_chapters">ডাউনলোডকৃত অধ্যায়গুলোও মুছে ফেলুন</string>
-
     <string name="source_requires_login">এই উৎসের জন্য আপনাকে লগ ইন করতে হবে</string>
     <string name="select_source">একটি উৎস নির্বাচন করুন</string>
     <string name="no_valid_sources">দয়া করে কমপক্ষে একটি বৈধ উৎস বছে নিন</string>
@@ -268,9 +251,7 @@
     <string name="action_global_search_hint">সার্বজনীন খোঁজ…</string>
     <string name="latest">সর্বশেষ</string>
     <string name="browse">ব্রাউজ</string>
-
     <string name="manga_not_in_db">এই মাংগাটি ডাটাবেজ থেকে সরিয়ে ফেলা হয়েছিল!</string>
-
     <string name="manga_detail_tab">তথ্য</string>
     <string name="description">বিবরণ</string>
     <string name="ongoing">চলমান</string>
@@ -293,7 +274,6 @@
     <string name="icon_shape">আইকনের আকার</string>
     <string name="icon_creation_fail">শর্টকাট সৃষ্টিতে ব্যার্থ হয়েছে!</string>
     <string name="delete_downloads_for_manga">ডাউনলোডকৃত অধ্যায়গুলো মুছে ফেলতে চান?</string>
-
     <string name="manga_chapters_tab">অধ্যায়গুলো</string>
     <string name="manga_chapter_no_title">শিরোনামহীন</string>
     <string name="display_mode_chapter">অধ্যায় %1$s</string>
@@ -316,7 +296,6 @@
     <string name="download_all">সব ডাউনলোড করুন</string>
     <string name="download_unread">অপঠিতগুলো ডাউনলোড করুন</string>
     <string name="confirm_delete_chapters">আপনি কি নিশ্চিত যে আপনি নির্বাচিত অধ্যায়গুলো মুছে ফেলতে চান?</string>
-
     <string name="manga_tracking_tab">অনুসরিত</string>
     <string name="reading">পড়া হচ্ছে</string>
     <string name="completed">সম্পন্ন</string>
@@ -326,19 +305,14 @@
     <string name="score">স্কোর</string>
     <string name="title">শিরোনাম</string>
     <string name="status">স্ট্যাটাস</string>
-
     <string name="error_category_exists">এই নামে ধরণ বিদ্যমান!</string>
     <string name="snack_categories_deleted">ধরণগুলো মুছে ফেলা হয়েছে</string>
-
     <string name="dialog_with_checkbox_remove_description">এটা এই অধ্যায়ের পড়ার সময়কাল সরিয়ে ফেলবে। আপনি নিশ্চিত?</string>
     <string name="dialog_with_checkbox_reset">এই মাংগার জন্য সব অধ্যায় রিসেট করুন</string>
-
     <string name="snack_add_to_library">মাংগাশালায় মাংগাটি যোগ করবেন?</string>
-
     <string name="picture_saved">ছবি সংরক্ষিত হয়েছে</string>
     <string name="saving_picture">ছবি সংরক্ষণ করা হচ্ছে</string>
     <string name="options">অপশন্স</string>
-
     <string name="custom_filter">স্বীয় ফিল্টার</string>
     <string name="set_as_cover">কভার হিসেবে সেট করুন</string>
     <string name="cover_updated">কভার আপডেট হয়েছে</string>
@@ -353,11 +327,8 @@
     <string name="confirm_update_manga_sync">শেষ পড়া অধ্যায় সেবাগুলোতে আপডেট করুন %1$d?</string>
     <string name="confirm_set_image_as_cover">আপনি কি এই ছবিটিকে কভার হিসেবে সেট করতে চান?</string>
     <string name="viewer_for_this_series">এই সিরিজের দর্শক</string>
-
     <string name="recent_manga_source">%1$s - অধ্যায়.%2$s</string>
-
     <string name="download_queue_error">অধ্যায়গুলো ডাউনলোডের সময় একটি ত্রুটি দেখা দিয়েছে। ডাউনলোডস সেকশন থেকে আপনি আবার চেষ্টা করতে পারেন</string>
-
     <string name="notification_update_progress">আপডেট হচ্ছে: %1$d/%2$d</string>
     <string name="notification_new_chapters">নতুন অধ্যায় পাওয়া গিয়েছে</string>
     <string name="notification_new_chapters_text">জন্য %1$d শিরোনাম</string>
@@ -367,33 +338,27 @@
     <string name="notification_not_connected_to_ac_body">এ সি পাওয়ারের সাথে সংযোগ নেই</string>
     <string name="notification_no_connection_title">সুসংগতি বাতিল</string>
     <string name="notification_no_connection_body">যোগাযোগ নেই</string>
-
     <string name="file_select_cover">কভার ছবি নির্বাচন করুন</string>
     <string name="file_select_backup">ব্যাকআপ ফাইল নির্বাচন করুন</string>
     <string name="file_select_icon">শর্টকাট আইকন নির্বাচন করুন</string>
-
     <string name="update_check_title">নতুন আপডেট বের হয়েছে!</string>
     <string name="update_check_confirm">ডাউনলোড</string>
     <string name="update_check_ignore">এড়িয়ে যান</string>
     <string name="update_check_no_new_updates">নতুন কোন আপডেট নেই</string>
     <string name="update_check_download_started">ডাউনলোড শুরু হয়েছে</string>
     <string name="update_check_look_for_updates">আপডেট খোঁজা হচ্ছে</string>
-
     <string name="update_check_notification_file_download">আপডেট ডাউনলোড করুন</string>
     <string name="update_check_notification_download_in_progress">ডাউনলোড হচ্ছে</string>
     <string name="update_check_notification_download_complete">ডাউনলোড হয়ে গেছে</string>
     <string name="update_check_notification_download_error">ডাউনলোড ত্রুটি দেখা গিয়েছে</string>
     <string name="update_check_notification_update_available">আপডেট এসেছে</string>
-
     <string name="description_backdrop">মাংগার ব্যাকড্রপ ছবি</string>
     <string name="description_cover">মাংগার কভার</string>
-
     <string name="information_no_downloads">ডাউনলোড নেই</string>
     <string name="information_no_recent">কোন সাম্প্রতিক অধ্যায় নেই</string>
     <string name="information_no_recent_manga">কোন সাম্প্রতিক পড়া মাংগা নেই</string>
     <string name="information_empty_library">আপনার মাংগাশালা খালি, আপনি চাইলে মাংগাশালায় ক্যাটালগস থেকে মাংগা যোগ করতে পারেন।</string>
     <string name="information_empty_category">আপনার কোন ধরণ নেই। যোগ চিহ্ন বাটনে ক্লিক করে একটি ধরণ তৈরী করুন এবং আপনার মাংগাশালা সাজান।</string>
-
     <string name="download_notifier_downloader_title">ডাউনলোডার</string>
     <string name="download_notifier_title_error">ত্রুটি</string>
     <string name="download_notifier_unkown_error">অধ্যায় ডাউনলোডের সময় একটি অনাকাঙ্ক্ষিত ত্রুটি ঘটেছে</string>
@@ -402,15 +367,12 @@
     <string name="download_notifier_text_only_wifi">কোন ওয়াই-ফাই সংযোগ খুঁজে পাওয়া যায়নি</string>
     <string name="download_notifier_no_network">কোন নেটওয়ার্ক সংযোগ খুঁজে পাওয়া যায়নি</string>
     <string name="download_notifier_download_paused">ডাউনলোড স্থগিত</string>
-
     <string name="channel_common">সাধারণ</string>
     <string name="channel_library">মাংগাশালা</string>
     <string name="channel_downloader">ডাউনলোডার</string>
-<string name="label_migration">উৎস পরিবর্তন</string>
+    <string name="label_migration">উৎস পরিবর্তন</string>
     <string name="label_extensions">সংযোজিত অংশ</string>
     <string name="label_extension_info">সংযোজিত অংশ তথ্য</string>
-
-
     <string name="all_lang">সব</string>
     <string name="ext_details">বিস্তারিত</string>
     <string name="ext_update">আপডেট</string>
@@ -433,8 +395,7 @@
     <string name="ext_version_info">ভার্সন: %1$s</string>
     <string name="ext_language_info">ভাষা: %1$s</string>
     <string name="ext_empty_preferences">এই অংশটিকে সম্পাদন করার জন্য কোন প্রকার পছন্দ নেই</string>
-
-      <string name="pref_double_tap_anim_speed">দুই টোকায় এনিমেশনের গতি</string>
+    <string name="pref_double_tap_anim_speed">দুই টোকায় এনিমেশনের গতি</string>
     <string name="double_tap_anim_speed_0">এনিমেশন নেই</string>
     <string name="double_tap_anim_speed_normal">সাধারণ</string>
     <string name="double_tap_anim_speed_fast">দ্রুত</string>
@@ -444,7 +405,6 @@
     <string name="manga_removed_library">মাংগাশালা থেকে সরিয়ে ফেলা হয়েছে</string>
     <string name="manga_info_latest_data_label">আপডেট হয়েছে</string>
     <string name="copied_to_clipboard">%1$s ক্লিপবোর্ডে কপি হয়েছে</string>
-
     <string name="custom_download">কাস্টম পরিমাণ ডাউনলোড করুন</string>
     <string name="custom_hint">পরিমাণ</string>
     <string name="download_custom">কাস্টম ডাউনলোড</string>
@@ -454,10 +414,8 @@
     <string name="migrate">সরিয়ে ফেলুন</string>
     <string name="copy">কপি</string>
     <string name="migrating">সরানো হচ্ছে…</string>
-
     <string name="pager_viewer">পেজার</string>
     <string name="source_not_installed">উৎস ইন্সটল করা নেই: %1$s</string>
-
     <string name="repeating">পুনরায় পড়া</string>
     <string name="track_status">স্ট্যাটাস</string>
     <string name="track_start_date">শুরু হয়েছে</string>
@@ -473,4 +431,19 @@
     <string name="transition_pages_loading">পৃষ্ঠা লোড হচ্ছে …</string>
     <string name="transition_pages_error">পৃষ্ঠা লোড করতে ব্যর্থ হয়েছে: %1$s</string>
     <string name="url_not_set">মাংগা ইউআরএল সেট না শিরোনাম ক্লিক করুন এবং আবার মাংগা নির্বাচন করুন</string>
+    <string name="pref_read_with_long_tap">দীর্ঘক্ষণ ট্যাপ ডায়ালগ</string>
+    <string name="reader_pull_up_for_more_options">আরও বিকল্পের জন্য ওপরে টান দিন</string>
+    <string name="action_open_in_web_view">ওয়েব দর্শনে খুলুন</string>
+    <string name="pref_true_color">৩২-বিট রঙ</string>
+    <string name="pref_skip_read_chapters">পঠিত অধ্যায়গুলো এড়িয়ে যান</string>
+    <string name="pref_color_filter_mode">রঙ ফিল্টার মিশ্রন মোড</string>
+    <string name="filter_mode_default">ডিফল্ট</string>
+    <string name="filter_mode_overlay">ওভারলে</string>
+    <string name="filter_mode_screen">স্ক্রীন</string>
+    <string name="filter_mode_lighten">এড়িয়ে / হালকা</string>
+    <string name="filter_mode_darken">বার্ন/অন্ধকার</string>
+    <string name="filter_mode_multiply">গুণ</string>
+    <string name="label_help">সাহায্য</string>
+    <string name="pref_library_update_prioritization">মাঙ্গা লাইব্রেরী আপডেটের প্রক্রিয়া</string>
+    <string name="pref_library_update_prioritization_summary">যে ক্রমে তাচিয়োমি হালনাগাদ করবে তা নির্বাচন করুন</string>
 </resources>

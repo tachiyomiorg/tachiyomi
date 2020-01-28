@@ -2,8 +2,10 @@ package eu.kanade.tachiyomi.ui.catalogue.filter
 
 import android.view.View
 import android.widget.CheckBox
+import androidx.recyclerview.widget.RecyclerView
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
+import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.model.Filter
@@ -14,11 +16,11 @@ open class CheckboxItem(val filter: Filter.CheckBox) : AbstractFlexibleItem<Chec
         return R.layout.navigation_view_checkbox
     }
 
-    override fun createViewHolder(view: View, adapter: FlexibleAdapter<*>): Holder {
+    override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): Holder {
         return Holder(view, adapter)
     }
 
-    override fun bindViewHolder(adapter: FlexibleAdapter<*>, holder: Holder, position: Int, payloads: List<Any?>?) {
+    override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: Holder, position: Int, payloads: List<Any?>?) {
         val view = holder.check
         view.text = filter.name
         view.isChecked = filter.state
@@ -39,7 +41,6 @@ open class CheckboxItem(val filter: Filter.CheckBox) : AbstractFlexibleItem<Chec
     }
 
     class Holder(view: View, adapter: FlexibleAdapter<*>) : FlexibleViewHolder(view, adapter) {
-
         val check: CheckBox = itemView.findViewById(R.id.nav_view_item)
     }
 }

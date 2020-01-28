@@ -1,16 +1,22 @@
 package eu.kanade.tachiyomi.data.track.anilist
 
 import android.net.Uri
-import com.github.salomonbrys.kotson.*
+import com.github.salomonbrys.kotson.array
+import com.github.salomonbrys.kotson.get
+import com.github.salomonbrys.kotson.jsonObject
+import com.github.salomonbrys.kotson.nullInt
+import com.github.salomonbrys.kotson.nullString
+import com.github.salomonbrys.kotson.obj
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.asObservableSuccess
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import rx.Observable
 import java.util.Calendar
 
@@ -18,16 +24,18 @@ import java.util.Calendar
 class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
     private val parser = JsonParser()
-    private val jsonMime = MediaType.parse("application/json; charset=utf-8")
+    private val jsonMime = "application/json; charset=utf-8".toMediaTypeOrNull()
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
-
 
     fun addLibManga(track: Track): Observable<Track> {
         val query = """
-            mutation AddManga(${'$'}mangaId: Int, ${'$'}progress: Int, ${'$'}status: MediaListStatus) {
-                     SaveMediaListEntry (mediaId: ${'$'}mangaId, progress: ${'$'}progress, status: ${'$'}status)
-                     { id status } }
-                     """
+            |mutation AddManga(${'$'}mangaId: Int, ${'$'}progress: Int, ${'$'}status: MediaListStatus) {
+                |SaveMediaListEntry (mediaId: ${'$'}mangaId, progress: ${'$'}progress, status: ${'$'}status) { 
+                |   id 
+                |   status 
+                |} 
+            |}
+            |""".trimMargin()
         val variables = jsonObject(
                 "mangaId" to track.media_id,
                 "progress" to track.last_chapter_read,
@@ -37,7 +45,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 "query" to query,
                 "variables" to variables
         )
-        val body = RequestBody.create(jsonMime, payload.toString())
+        val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
@@ -45,7 +53,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
         return authClient.newCall(request)
                 .asObservableSuccess()
                 .map { netResponse ->
-                    val responseBody = netResponse.body()?.string().orEmpty()
+                    val responseBody = netResponse.body?.string().orEmpty()
                     netResponse.close()
                     if (responseBody.isEmpty()) {
                         throw Exception("Null Response")
@@ -58,14 +66,14 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
     fun updateLibManga(track: Track): Observable<Track> {
         val query = """
-            mutation UpdateManga(${'$'}listId: Int, ${'$'}progress: Int, ${'$'}status: MediaListStatus, ${'$'}score: Int) {
-                        SaveMediaListEntry (id: ${'$'}listId, progress: ${'$'}progress, status: ${'$'}status, scoreRaw: ${'$'}score) {
-                            id
-                            status
-                            progress
-                        }
-                    }
-            """
+            |mutation UpdateManga(${'$'}listId: Int, ${'$'}progress: Int, ${'$'}status: MediaListStatus, ${'$'}score: Int) {
+                |SaveMediaListEntry (id: ${'$'}listId, progress: ${'$'}progress, status: ${'$'}status, scoreRaw: ${'$'}score) {
+                    |id
+                    |status
+                    |progress
+                |}
+            |}
+            |""".trimMargin()
         val variables = jsonObject(
                 "listId" to track.library_id,
                 "progress" to track.last_chapter_read,
@@ -76,7 +84,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 "query" to query,
                 "variables" to variables
         )
-        val body = RequestBody.create(jsonMime, payload.toString())
+        val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
@@ -90,29 +98,29 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
     fun search(search: String): Observable<List<TrackSearch>> {
         val query = """
-            query Search(${'$'}query: String) {
-                  Page (perPage: 50) {
-                    media(search: ${'$'}query, type: MANGA, format_not_in: [NOVEL]) {
-                      id
-                      title {
-                        romaji
-                      }
-                      coverImage {
-                        large
-                      }
-                      type
-                      status
-                      chapters
-                      description
-                      startDate {
-                        year
-                        month
-                        day
-                      }
-                    }
-                  }
-                }
-            """
+            |query Search(${'$'}query: String) {
+                |Page (perPage: 50) {
+                    |media(search: ${'$'}query, type: MANGA, format_not_in: [NOVEL]) {
+                        |id
+                        |title {
+                            |romaji
+                        |}
+                        |coverImage {
+                            |large
+                        |}
+                        |type
+                        |status
+                        |chapters
+                        |description
+                        |startDate {
+                            |year
+                            |month
+                            |day
+                        |}
+                    |}
+                |}
+            |}
+            |""".trimMargin()
         val variables = jsonObject(
                 "query" to search
         )
@@ -120,7 +128,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 "query" to query,
                 "variables" to variables
         )
-        val body = RequestBody.create(jsonMime, payload.toString())
+        val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
@@ -128,7 +136,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
         return authClient.newCall(request)
                 .asObservableSuccess()
                 .map { netResponse ->
-                    val responseBody = netResponse.body()?.string().orEmpty()
+                    val responseBody = netResponse.body?.string().orEmpty()
                     if (responseBody.isEmpty()) {
                         throw Exception("Null Response")
                     }
@@ -142,37 +150,37 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
     }
 
 
-    fun findLibManga(track: Track, userid: Int) : Observable<Track?> {
+    fun findLibManga(track: Track, userid: Int): Observable<Track?> {
         val query = """
-            query (${'$'}id: Int!, ${'$'}manga_id: Int!) {
-                  Page {
-                    mediaList(userId: ${'$'}id, type: MANGA, mediaId: ${'$'}manga_id) {
-                      id
-                      status
-                      scoreRaw: score(format: POINT_100)
-                      progress
-                      media{
-                        id
-                        title {
-                          romaji
-                        }
-                      coverImage {
-                        large
-                      }
-                      type
-                      status
-                      chapters
-                      description
-                      startDate {
-                       year
-                       month
-                       day
-                       }
-                      }
-                    }
-                  }
-                }
-            """
+            |query (${'$'}id: Int!, ${'$'}manga_id: Int!) {
+                |Page {
+                    |mediaList(userId: ${'$'}id, type: MANGA, mediaId: ${'$'}manga_id) {
+                        |id
+                        |status
+                        |scoreRaw: score(format: POINT_100)
+                        |progress
+                        |media {
+                            |id
+                            |title {
+                                |romaji
+                            |}
+                            |coverImage {
+                                |large
+                            |}
+                            |type
+                            |status
+                            |chapters
+                            |description
+                            |startDate {
+                                |year
+                                |month
+                                |day
+                            |}
+                        |}
+                    |}
+                |}
+            |}
+            |""".trimMargin()
         val variables = jsonObject(
                 "id" to userid,
                 "manga_id" to track.media_id
@@ -181,7 +189,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 "query" to query,
                 "variables" to variables
         )
-        val body = RequestBody.create(jsonMime, payload.toString())
+        val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
@@ -189,7 +197,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
         return authClient.newCall(request)
                 .asObservableSuccess()
                 .map { netResponse ->
-                    val responseBody = netResponse.body()?.string().orEmpty()
+                    val responseBody = netResponse.body?.string().orEmpty()
                     if (responseBody.isEmpty()) {
                         throw Exception("Null Response")
                     }
@@ -214,20 +222,19 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
     fun getCurrentUser(): Observable<Pair<Int, String>> {
         val query = """
-            query User
-                {
-                  Viewer {
-                    id
-                    mediaListOptions {
-                      scoreFormat
-                    }
-                  }
-                }
-                """
+            |query User {
+                |Viewer {
+                    |id
+                    |mediaListOptions {
+                        |scoreFormat
+                    |}
+                |}
+            |}
+            |""".trimMargin()
         val payload = jsonObject(
                 "query" to query
         )
-        val body = RequestBody.create(jsonMime, payload.toString())
+        val body = payload.toString().toRequestBody(jsonMime)
         val request = Request.Builder()
                 .url(apiUrl)
                 .post(body)
@@ -235,7 +242,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
         return authClient.newCall(request)
                 .asObservableSuccess()
                 .map { netResponse ->
-                    val responseBody = netResponse.body()?.string().orEmpty()
+                    val responseBody = netResponse.body?.string().orEmpty()
                     if (responseBody.isEmpty()) {
                         throw Exception("Null Response")
                     }
@@ -246,7 +253,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 }
     }
 
-    fun jsonToALManga(struct: JsonObject): ALManga{
+    private fun jsonToALManga(struct: JsonObject): ALManga {
         val date = try {
             val date = Calendar.getInstance()
             date.set(struct["startDate"]["year"].nullInt ?: 0, (struct["startDate"]["month"].nullInt ?: 0) - 1,
@@ -261,10 +268,9 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 date, struct["chapters"].nullInt ?: 0)
     }
 
-    fun jsonToALUserManga(struct: JsonObject): ALUserManga{
-        return ALUserManga(struct["id"].asLong, struct["status"].asString, struct["scoreRaw"].asInt, struct["progress"].asInt, jsonToALManga(struct["media"].obj) )
+    private fun jsonToALUserManga(struct: JsonObject): ALUserManga {
+        return ALUserManga(struct["id"].asLong, struct["status"].asString, struct["scoreRaw"].asInt, struct["progress"].asInt, jsonToALManga(struct["media"].obj))
     }
-
 
     companion object {
         private const val clientId = "385"

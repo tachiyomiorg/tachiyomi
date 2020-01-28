@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView android:id="@+id/cv_manga"
+<androidx.cardview.widget.CardView android:id="@+id/cv_manga"
                                     style="@style/Theme.Widget.CardView.Item"
                                     xmlns:android="http://schemas.android.com/apk/res/android"
                                     xmlns:app="http://schemas.android.com/apk/res-auto"
                                     xmlns:tools="http://schemas.android.com/tools"
                                     android:padding="0dp">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="216dp"
@@ -20,8 +20,6 @@
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/description_cover"
             android:scaleType="centerCrop"
@@ -29,14 +27,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            tools:src="@drawable/branded_logo_icon"/>
+            tools:src="@drawable/tachiyomi_circle"/>
         <TextView
             android:id="@+id/track_search_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:maxLines="3"
@@ -51,7 +47,6 @@
             android:id="@+id/track_search_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:maxLines="1"
             android:text="@string/track_type"
@@ -65,7 +60,6 @@
             android:id="@+id/track_search_type_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.Regular.Body1.Secondary"
@@ -79,7 +73,6 @@
             android:id="@+id/track_search_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:maxLines="1"
             android:text="@string/track_start_date"
@@ -93,7 +86,6 @@
             android:id="@+id/track_search_start_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.Regular.Body1.Secondary"
@@ -107,7 +99,6 @@
             android:id="@+id/track_search_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:maxLines="1"
             android:text="@string/track_status"
@@ -121,24 +112,21 @@
             android:id="@+id/track_search_status_result"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.Regular.Body1.Secondary"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/track_search_status"
             app:layout_constraintTop_toBottomOf="@id/track_search_start"
-            tools:text="Ongoing"
-            />
+            tools:text="Ongoing" />
 
         <TextView
             android:id="@+id/track_search_summary"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="7"
@@ -152,12 +140,13 @@
             app:layout_constraintVertical_bias="0.333"
             tools:text="This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits "/>
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="150dp"/>
 
-    </android.support.constraint.ConstraintLayout>
-</android.support.v7.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

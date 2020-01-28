@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.data.updater
 
 import android.content.Context
 import android.net.Uri
-import android.support.v4.app.NotificationCompat
+import androidx.core.app.NotificationCompat
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.NotificationHandler
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
@@ -73,11 +73,11 @@ internal class UpdaterNotifier(private val context: Context) {
             setProgress(0, 0, false)
             // Install action
             setContentIntent(NotificationHandler.installApkPendingActivity(context, uri))
-            addAction(R.drawable.ic_system_update_grey_24dp_img,
+            addAction(R.drawable.ic_system_update_alt_white_24dp,
                     context.getString(R.string.action_install),
                     NotificationHandler.installApkPendingActivity(context, uri))
             // Cancel action
-            addAction(R.drawable.ic_clear_grey_24dp_img,
+            addAction(R.drawable.ic_close_white_24dp,
                     context.getString(R.string.action_cancel),
                     NotificationReceiver.dismissNotificationPendingBroadcast(context, Notifications.ID_UPDATER))
         }
@@ -96,11 +96,11 @@ internal class UpdaterNotifier(private val context: Context) {
             setOnlyAlertOnce(false)
             setProgress(0, 0, false)
             // Retry action
-            addAction(R.drawable.ic_refresh_grey_24dp_img,
+            addAction(R.drawable.ic_refresh_white_24dp,
                     context.getString(R.string.action_retry),
                     UpdaterService.downloadApkPendingService(context, url))
             // Cancel action
-            addAction(R.drawable.ic_clear_grey_24dp_img,
+            addAction(R.drawable.ic_close_white_24dp,
                     context.getString(R.string.action_cancel),
                     NotificationReceiver.dismissNotificationPendingBroadcast(context, Notifications.ID_UPDATER))
         }

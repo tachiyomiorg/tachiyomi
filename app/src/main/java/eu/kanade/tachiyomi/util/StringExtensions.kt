@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.util
 
-import java.lang.Math.floor
+import kotlin.math.floor
 
 /**
  * Replaces the given string to have at most [count] characters using [replacement] at its end.

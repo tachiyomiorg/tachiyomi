@@ -1,8 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center">
 
     <FrameLayout
@@ -13,8 +13,7 @@
         <FrameLayout
             android:id="@+id/viewer_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </FrameLayout>
+            android:layout_height="match_parent" />
 
         <ProgressBar
             android:id="@+id/please_wait"
@@ -22,7 +21,7 @@
             android:layout_height="56dp"
             android:layout_gravity="center"
             android:visibility="gone"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
         <eu.kanade.tachiyomi.ui.reader.PageIndicatorTextView
             android:id="@+id/page_number"
@@ -44,7 +43,7 @@
         android:visibility="invisible"
         tools:visibility="visible">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -56,18 +55,19 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="bottom"
-            android:gravity="center"
             android:background="?colorPrimary"
-            android:orientation="horizontal"
-            android:descendantFocusability="blocksDescendants">
+            android:descendantFocusability="blocksDescendants"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/left_chapter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/material_layout_keylines_screen_edge_margin"
                 android:background="?selectableItemBackgroundBorderless"
-                app:srcCompat="@drawable/ic_skip_previous_white_24dp"/>
+                android:contentDescription="@string/action_previous_chapter"
+                android:padding="@dimen/material_layout_keylines_screen_edge_margin"
+                app:srcCompat="@drawable/ic_skip_previous_white_24dp" />
 
             <TextView
                 android:id="@+id/left_page_text"
@@ -75,13 +75,18 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textSize="15sp"
-                android:clickable="true"
-                tools:text="1"/>
+                tools:text="1" />
 
+            <!--
+                Wonky way of setting height due to issues with horizontally centering the thumb in Android 5.
+                See https://stackoverflow.com/questions/15701767/android-thumb-is-not-centered-in-seekbar
+            -->
             <eu.kanade.tachiyomi.ui.reader.ReaderSeekBar
                 android:id="@+id/page_seekbar"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="?attr/actionBarSize"
+                android:minHeight="?attr/actionBarSize"
                 android:layout_weight="1" />
 
             <TextView
@@ -90,16 +95,16 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textSize="15sp"
-                android:clickable="true"
-                tools:text="15"/>
+                tools:text="15" />
 
             <ImageButton
                 android:id="@+id/right_chapter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/material_layout_keylines_screen_edge_margin"
                 android:background="?selectableItemBackgroundBorderless"
-                app:srcCompat="@drawable/ic_skip_next_white_24dp"/>
+                android:contentDescription="@string/action_next_chapter"
+                android:padding="@dimen/material_layout_keylines_screen_edge_margin"
+                app:srcCompat="@drawable/ic_skip_next_white_24dp" />
 
         </LinearLayout>
 
@@ -109,12 +114,12 @@
         android:id="@+id/brightness_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <eu.kanade.tachiyomi.ui.reader.ReaderColorFilterView
         android:id="@+id/color_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </FrameLayout>

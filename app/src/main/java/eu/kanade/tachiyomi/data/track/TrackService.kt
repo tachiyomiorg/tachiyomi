@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.data.track
 
-import android.support.annotation.CallSuper
-import android.support.annotation.DrawableRes
+import androidx.annotation.CallSuper
+import androidx.annotation.DrawableRes
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -57,8 +57,8 @@ abstract class TrackService(val id: Int) {
     }
 
     open val isLogged: Boolean
-        get() = !getUsername().isEmpty() &&
-                !getPassword().isEmpty()
+        get() = getUsername().isNotEmpty() &&
+                getPassword().isNotEmpty()
 
     fun getUsername() = preferences.trackUsername(this)!!
 

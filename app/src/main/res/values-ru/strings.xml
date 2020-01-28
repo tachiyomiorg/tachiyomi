@@ -426,4 +426,17 @@
     <string name="darkblue_theme">Темно-синяя тема</string>
     <string name="pref_read_with_long_tap">Диалог при долгом нажатии</string>
     <string name="reader_pull_up_for_more_options">Потяните вверх для раскрытия меню</string>
+    <string name="action_open_in_web_view">Открыть в Web View</string>
+    <string name="pref_skip_read_chapters">Пропускать главы, помеченные как \"Прочитанные\"</string>
+    <string name="pref_true_color">32-битный цвет</string>
+    <string name="pref_color_filter_mode">Режим наложения светофильтра</string>
+    <string name="filter_mode_default">по умолчанию</string>
+    <string name="filter_mode_overlay">перекрытие</string>
+    <string name="filter_mode_multiply">умножение</string>
+    <string name="filter_mode_screen">ширма</string>
+    <string name="filter_mode_lighten">Светлей</string>
+    <string name="filter_mode_darken">Темней</string>
+    <string name="label_help">Помощь</string>
+    <string name="pref_library_update_prioritization_summary">Выберите порядок, в котором Tachiyomi проверяет наличие обновлений</string>
+    <string name="pref_library_update_prioritization">Порядок обновления библиотеки</string>
 </resources>

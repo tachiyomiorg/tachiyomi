@@ -38,8 +38,9 @@ class RecentChaptersPresenter(
                 .subscribeLatestCache(RecentChaptersController::onNextRecentChapters)
 
         getChapterStatusObservable()
-                .subscribeLatestCache(RecentChaptersController::onChapterStatusChange,
-                        { _, error -> Timber.e(error) })
+                .subscribeLatestCache(RecentChaptersController::onChapterStatusChange) {
+                    _, error -> Timber.e(error)
+                }
     }
 
     /**

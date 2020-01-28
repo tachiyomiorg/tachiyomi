@@ -166,7 +166,7 @@ class BackupTest {
         assertThat(favoriteManga[0].viewer).isEqualTo(3)
 
         // Update json with all options enabled
-        mangaEntries.add(backupManager.backupMangaObject(manga,1))
+        mangaEntries.add(backupManager.backupMangaObject(manga, 1))
 
         // Change manga in database to default values
         val dbManga = getSingleManga("One Piece")
@@ -178,7 +178,7 @@ class BackupTest {
         assertThat(favoriteManga[0].viewer).isEqualTo(0)
 
         // Restore local manga
-        backupManager.restoreMangaNoFetch(manga,dbManga)
+        backupManager.restoreMangaNoFetch(manga, dbManga)
 
         // Test if restore successful
         favoriteManga = backupManager.databaseHelper.getFavoriteMangas().executeAsBlocking()
@@ -231,7 +231,7 @@ class BackupTest {
 
         // Create restore list
         val chapters = ArrayList<Chapter>()
-        for (i in 1..8){
+        for (i in 1..8) {
             val chapter = getSingleChapter("Chapter $i")
             chapter.read = true
             chapters.add(chapter)
@@ -263,7 +263,7 @@ class BackupTest {
      * Test to check if history restore works
      */
     @Test
-    fun restoreHistoryForManga(){
+    fun restoreHistoryForManga() {
         // Initialize json with version 2
         initializeJsonTest(2)
 
@@ -376,7 +376,7 @@ class BackupTest {
         return category
     }
 
-    fun clearDatabase(){
+    fun clearDatabase() {
         db.deleteMangas().executeAsBlocking()
         db.deleteHistory().executeAsBlocking()
     }
@@ -389,7 +389,6 @@ class BackupTest {
         val track = TrackImpl()
         track.title = manga.title
         track.manga_id = manga.id!!
-        track.remote_id = 1
         track.sync_id = 1
         return track
     }

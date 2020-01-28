@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.data.download
 
 import android.content.Context
 import android.graphics.BitmapFactory
-import android.support.v4.app.NotificationCompat
+import androidx.core.app.NotificationCompat
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.download.model.DownloadQueue
@@ -100,7 +100,7 @@ internal class DownloadNotifier(private val context: Context) {
                 setContentIntent(NotificationHandler.openDownloadManagerPendingActivity(context))
                 isDownloading = true
                 // Pause action
-                addAction(R.drawable.ic_av_pause_grey_24dp_img,
+                addAction(R.drawable.ic_pause_white_24dp,
                         context.getString(R.string.action_pause),
                         NotificationReceiver.pauseDownloadsPendingBroadcast(context))
             }
@@ -124,18 +124,18 @@ internal class DownloadNotifier(private val context: Context) {
         with(notification) {
             setContentTitle(context.getString(R.string.chapter_paused))
             setContentText(context.getString(R.string.download_notifier_download_paused))
-            setSmallIcon(R.drawable.ic_av_pause_grey_24dp_img)
+            setSmallIcon(R.drawable.ic_pause_white_24dp)
             setAutoCancel(false)
             setProgress(0, 0, false)
             clearActions()
             // Open download manager when clicked
             setContentIntent(NotificationHandler.openDownloadManagerPendingActivity(context))
             // Resume action
-            addAction(R.drawable.ic_av_play_arrow_grey_img,
+            addAction(R.drawable.ic_play_arrow_white_24dp,
                     context.getString(R.string.action_resume),
                     NotificationReceiver.resumeDownloadsPendingBroadcast(context))
             //Clear action
-            addAction(R.drawable.ic_clear_grey_24dp_img,
+            addAction(R.drawable.ic_close_white_24dp,
                     context.getString(R.string.action_clear),
                     NotificationReceiver.clearDownloadsPendingBroadcast(context))
         }

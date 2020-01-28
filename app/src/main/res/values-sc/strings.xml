@@ -8,10 +8,10 @@
     <string name="history">Cronologia</string>
     <string name="label_settings">Impostatziones</string>
     <string name="label_download_queue">Fila de sos iscarrigamentos</string>
-    <string name="label_library">Sa biblioteca mea</string>
+    <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Lèghidos dae pagu</string>
     <string name="label_catalogues">Catàlogos</string>
-    <string name="label_recent_updates">Agiornamentos de sa biblioteca</string>
+    <string name="label_recent_updates">Agiornamentos biblioteca</string>
     <string name="label_latest_updates">Ùrtimos agiornamentos</string>
     <string name="label_categories">Categorias</string>
     <string name="label_selected">Ischertados: %1$d</string>
@@ -35,7 +35,7 @@
     <string name="action_select_all">Ischerta totu</string>
     <string name="action_mark_as_read">Sinna comente lèghidu</string>
     <string name="action_mark_as_unread">Sinna comente non lèghidu</string>
-    <string name="action_mark_previous_as_read">Sinna sos imbenientes comente lèghidos</string>
+    <string name="action_mark_previous_as_read">Sinna sos antepostos comente lèghidos</string>
     <string name="action_download">Iscàrriga</string>
     <string name="action_bookmark">Annanghe unu sinnalibru</string>
     <string name="action_remove_bookmark">Boga su sinnalibru</string>
@@ -96,7 +96,7 @@
     <string name="pref_category_tracking">Arrastamentu</string>
     <string name="pref_category_advanced">Avantzadas</string>
     <string name="pref_category_about">Informatziones</string>
-    <string name="pref_library_columns">Manga de sa libreria pro riga</string>
+    <string name="pref_library_columns">Manga de sa biblioteca pro riga</string>
     <string name="portrait">Orientamentu verticale</string>
     <string name="landscape">Orientamentu orizontale</string>
     <string name="default_columns">Predefinidu</string>
@@ -183,7 +183,7 @@
     <string name="scale_type_fit_height">Adata a s\'artària</string>
     <string name="scale_type_original_size">Mannària originale</string>
     <string name="scale_type_smart_fit">Adatamentu intelligente</string>
-    <string name="pref_zoom_start">Positzione de incumintzu de s\'ismanniamentu</string>
+    <string name="pref_zoom_start">Positzione incumintzu ismanniamentu</string>
     <string name="zoom_start_automatic">Automàtica</string>
     <string name="zoom_start_left">A manca</string>
     <string name="zoom_start_right">A destra</string>
@@ -216,7 +216,7 @@
     <string name="services">Servìtzios</string>
     <string name="backup">Còpia de seguresa</string>
     <string name="pref_create_backup">Crea una còpia de seguresa</string>
-    <string name="pref_create_backup_summ">Podet èssere impreada pro ripristinare sa libreria atuale</string>
+    <string name="pref_create_backup_summ">Podet èssere impreada pro ripristinare sa biblioteca atuale</string>
     <string name="pref_restore_backup">Riprìstina una còpia de seguresa</string>
     <string name="pref_restore_backup_summ">Riprìstina sa biblioteca dae una còpia de seguresa</string>
     <string name="pref_backup_directory">Cartella de sa còpia de seguresa</string>
@@ -397,7 +397,7 @@
     <string name="notification_new_chapters">Capìtulos noos agatados</string>
     <string name="notification_new_chapters_text">Pro %1$d tìtulos</string>
     <string name="notification_cover_update_failed">Agiornamentu de sa cobertedda fallidu</string>
-    <string name="notification_first_add_to_library">Pro praghere annanghe su manga a sa libreria tua in antis de fàghere custu</string>
+    <string name="notification_first_add_to_library">Pro praghere annanghe su manga a sa biblioteca tua in antis de fàghere custu</string>
     <string name="notification_not_connected_to_ac_title">Sincronizatzione annullada</string>
     <string name="notification_not_connected_to_ac_body">Non connessu a s\'alimentatzione</string>
     <string name="notification_no_connection_title">Sincronizatzione annullada</string>
@@ -434,4 +434,21 @@
     <string name="channel_common">Comunu</string>
     <string name="channel_library">Biblioteca</string>
     <string name="channel_downloader">Iscarrigadore</string>
+    <string name="action_open_in_web_view">Aberi in sa vista</string>
+    <string name="pref_true_color">Colore a 32 bit</string>
+    <string name="pref_skip_read_chapters">Brinca sos capìtulos marcados comente lèghidos</string>
+    <string name="pref_color_filter_mode">Modalidade de fusione de su filtru colore</string>
+    <string name="filter_mode_default">Predefinidu</string>
+    <string name="filter_mode_overlay">Istratu superiore</string>
+    <string name="filter_mode_multiply">Multìplica</string>
+    <string name="filter_mode_screen">Ischermu</string>
+    <string name="filter_mode_lighten">Istransi / Acrari</string>
+    <string name="filter_mode_darken">Brùsia / Iscuri</string>
+    <string name="label_help">Agiudu</string>
+    <string name="pref_library_update_prioritization">Òrdine de agiornamentu de sa biblioteca</string>
+    <string name="pref_library_update_prioritization_summary">Ischerta s\'òrdine chi Tachiyomi at a impreare pro sos agiornamentos</string>
+    <string name="action_forward">Sighi</string>
+    <string name="action_refresh">Annoa</string>
+    <string name="no_results_found">Perunu resultadu agadadu</string>
+    <string name="migration_selection_prompt">Ischerta una mitza dae sa cale tramudare</string>
 </resources>

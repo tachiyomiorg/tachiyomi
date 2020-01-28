@@ -1,8 +1,8 @@
 @file:Suppress("PackageDirectoryMismatch")
 
-package android.support.v7.widget
+package androidx.recyclerview.widget
 
-import android.support.v7.widget.RecyclerView.NO_POSITION
+import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 
 /**

@@ -5,6 +5,7 @@ import android.os.Handler
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.ViewConfiguration
+import kotlin.math.abs
 
 /**
  * A custom gesture detector that also implements an on long tap confirmed, because the built-in
@@ -45,7 +46,7 @@ open class GestureDetectorWithLongTap(
                 }
             }
             MotionEvent.ACTION_MOVE -> {
-                if (Math.abs(ev.rawX - downX) > slop || Math.abs(ev.rawY - downY) > slop) {
+                if (abs(ev.rawX - downX) > slop || abs(ev.rawY - downY) > slop) {
                     handler.removeCallbacks(longTapFn)
                 }
             }

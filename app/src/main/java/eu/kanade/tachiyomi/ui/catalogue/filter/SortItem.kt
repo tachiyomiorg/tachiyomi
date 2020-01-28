@@ -1,11 +1,13 @@
 package eu.kanade.tachiyomi.ui.catalogue.filter
 
-import android.support.graphics.drawable.VectorDrawableCompat
-import android.support.v4.content.ContextCompat
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import androidx.core.content.ContextCompat
 import android.view.View
 import android.widget.CheckedTextView
+import androidx.recyclerview.widget.RecyclerView
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractSectionableItem
+import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.model.Filter
@@ -21,11 +23,11 @@ class SortItem(val name: String, val group: SortGroup) : AbstractSectionableItem
         return 102
     }
 
-    override fun createViewHolder(view: View, adapter: FlexibleAdapter<*>): Holder {
+    override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): Holder {
         return Holder(view, adapter)
     }
 
-    override fun bindViewHolder(adapter: FlexibleAdapter<*>, holder: Holder, position: Int, payloads: List<Any?>?) {
+    override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: Holder, position: Int, payloads: List<Any?>?) {
         val view = holder.text
         view.text = name
         val filter = group.filter
@@ -67,7 +69,6 @@ class SortItem(val name: String, val group: SortGroup) : AbstractSectionableItem
     }
 
     class Holder(view: View, adapter: FlexibleAdapter<*>) : FlexibleViewHolder(view, adapter) {
-
         val text: CheckedTextView = itemView.findViewById(R.id.nav_view_item)
     }
 

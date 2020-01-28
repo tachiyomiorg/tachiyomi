@@ -50,12 +50,14 @@ class TrackSearchDialog : DialogController {
         service = Injekt.get<TrackManager>().getService(bundle.getInt(KEY_SERVICE))!!
     }
 
-    override fun onCreateDialog(savedState: Bundle?): Dialog {
+    override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         val dialog = MaterialDialog.Builder(activity!!)
                 .customView(R.layout.track_search_dialog, false)
                 .positiveText(android.R.string.ok)
-                .negativeText(android.R.string.cancel)
                 .onPositive { _, _ -> onPositiveButtonClick() }
+                .negativeText(android.R.string.cancel)
+                .neutralText(R.string.action_remove)
+                .onNeutral { _, _ ->  onRemoveButtonClick() }
                 .build()
 
         if (subscriptions.isUnsubscribed) {
@@ -63,7 +65,7 @@ class TrackSearchDialog : DialogController {
         }
 
         dialogView = dialog.view
-        onViewCreated(dialog.view, savedState)
+        onViewCreated(dialog.view, savedViewState)
 
         return dialog
     }
@@ -135,6 +137,10 @@ class TrackSearchDialog : DialogController {
 
     private fun onPositiveButtonClick() {
         trackController.presenter.registerTracking(selectedItem, service)
+    }
+
+    private fun onRemoveButtonClick() {
+        trackController.presenter.unregisterTracking(service)
     }
 
     private companion object {

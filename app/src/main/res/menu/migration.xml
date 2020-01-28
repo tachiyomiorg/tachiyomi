@@ -6,6 +6,6 @@
         android:id="@+id/action_change_source"
         android:icon="@drawable/ic_filter_list_white_24dp"
         android:title="@string/action_filter"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
 
 </menu>

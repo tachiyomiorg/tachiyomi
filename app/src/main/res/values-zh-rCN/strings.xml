@@ -128,7 +128,7 @@
     <string name="system_default">系统默认</string>
     <string name="default_category">默认标签</string>
     <string name="default_category_summary">每次询问</string>
-    <string name="all_lang">All</string>
+    <string name="all_lang">全部</string>
     <string name="ext_details">详细</string>
     <string name="ext_update">更新</string>
     <string name="ext_install">安装</string>
@@ -306,7 +306,7 @@
     <string name="square_icon">方形图标</string>
     <string name="star_icon">星形图标</string>
     <string name="shortcut_title">快捷方式标题</string>
-    <string name="shortcut_created">已创建快捷方式</string>
+    <string name="shortcut_created">已添加快捷方式至主屏幕</string>
     <string name="icon_shape">图标形状</string>
     <string name="icon_creation_fail">创建快捷方式失败！</string>
     <string name="delete_downloads_for_manga">删除已下载的章节？</string>
@@ -325,8 +325,8 @@
     <string name="show_title">显示标题</string>
     <string name="show_chapter_number">显示章节数</string>
     <string name="sorting_mode">排序模式</string>
-    <string name="sort_by_source">按图源</string>
-    <string name="sort_by_number">按章节数</string>
+    <string name="sort_by_source">按类型</string>
+    <string name="sort_by_number">按章节</string>
     <string name="manga_download">下载</string>
     <string name="custom_download">自定义下载数量</string>
     <string name="custom_hint">数量</string>
@@ -419,8 +419,8 @@
     <string name="information_no_downloads">没有下载中的任务</string>
     <string name="information_no_recent">无最近章节</string>
     <string name="information_no_recent_manga">无最近阅读</string>
-    <string name="information_empty_library">你的书架是空的哦，请去发现栏寻找漫画进行收藏吧</string>
-    <string name="information_empty_category">你还没有标签。你可以点击加号按钮创建一个标签以管理书架</string>
+    <string name="information_empty_library">你的书架为空，您可从发现添加漫画至书架</string>
+    <string name="information_empty_category">你还没有漫画类别。点击右下方的加号按钮创建一个类别以管理书架</string>
     <string name="download_notifier_downloader_title">下载</string>
     <string name="download_notifier_title_error">错误</string>
     <string name="download_notifier_unkown_error">下载时发生不可预期的错误</string>
@@ -435,4 +435,17 @@
     <string name="darkblue_theme">暗蓝色主题</string>
     <string name="pref_read_with_long_tap">长按菜单</string>
     <string name="reader_pull_up_for_more_options">上拉显示更多选项</string>
+    <string name="action_open_in_web_view">用外部浏览器打开</string>
+    <string name="pref_true_color">32位色彩</string>
+    <string name="pref_skip_read_chapters">跳过已读章节</string>
+    <string name="pref_color_filter_mode">滤镜调和模式</string>
+    <string name="filter_mode_default">默认</string>
+    <string name="label_help">帮助</string>
+    <string name="pref_library_update_prioritization">书架更新顺序</string>
+    <string name="pref_library_update_prioritization_summary">选择Tachiyomi检查书架更新的顺序</string>
+    <string name="filter_mode_overlay">悬浮窗</string>
+    <string name="filter_mode_multiply">正片叠底</string>
+    <string name="filter_mode_screen">屏幕</string>
+    <string name="filter_mode_lighten">减淡/变亮</string>
+    <string name="filter_mode_darken">颜色加深/变暗</string>
 </resources>

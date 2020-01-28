@@ -2,7 +2,7 @@ package eu.kanade.tachiyomi.ui.setting
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.Gravity.CENTER
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
@@ -31,7 +31,7 @@ class AnilistLoginActivity : AppCompatActivity() {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
                         returnToSettings()
-                    }, { _ ->
+                    }, {
                         returnToSettings()
                     })
         } else {

@@ -12,12 +12,12 @@ import android.content.res.Resources
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.PowerManager
-import android.support.annotation.AttrRes
-import android.support.annotation.StringRes
-import android.support.customtabs.CustomTabsIntent
-import android.support.v4.app.NotificationCompat
-import android.support.v4.content.ContextCompat
-import android.support.v4.content.LocalBroadcastManager
+import androidx.annotation.AttrRes
+import androidx.annotation.StringRes
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import android.widget.Toast
 import com.nononsenseapps.filepicker.FilePickerActivity
 import eu.kanade.tachiyomi.R
@@ -172,11 +172,11 @@ fun Context.isServiceRunning(serviceClass: Class<*>): Boolean {
  */
 fun Context.openInBrowser(url: String) {
     try {
-        val url = Uri.parse(url)
+        val parsedUrl = Uri.parse(url)
         val intent = CustomTabsIntent.Builder()
                 .setToolbarColor(getResourceColor(R.attr.colorPrimary))
                 .build()
-        intent.launchUrl(this, url)
+        intent.launchUrl(this, parsedUrl)
     } catch (e: Exception) {
         toast(e.message)
     }

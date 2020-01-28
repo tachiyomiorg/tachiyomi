@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,43 +19,43 @@
         android:text="@string/pref_category_general"
         android:textColor="?attr/colorAccent"
         android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/pull_up_for_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:text="@string/reader_pull_up_for_more_options"
         android:textColor="?android:attr/textColorHint"
-        app:layout_constraintLeft_toRightOf="@id/general_prefs"
+        app:layout_constraintStart_toEndOf="@id/general_prefs"
         app:layout_constraintTop_toTopOf="@id/general_prefs" />
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:id="@+id/spinner_end"
         android:layout_width="16dp"
         android:layout_height="0dp"
-        app:layout_constraintLeft_toRightOf="parent" />
+        app:layout_constraintStart_toEndOf="parent" />
 
     <TextView
         android:id="@+id/viewer_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/viewer_for_this_series"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/verticalcenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
         app:layout_constraintBaseline_toBaselineOf="@id/viewer" />
 
-    <android.support.v7.widget.AppCompatSpinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/viewer"
         android:layout_width="0dp"
         android:layout_height="24dp"
         android:layout_marginTop="16dp"
         android:entries="@array/viewers_selector"
         app:layout_constraintTop_toBottomOf="@id/pull_up_for_more"
-        app:layout_constraintLeft_toRightOf="@id/verticalcenter"
-        app:layout_constraintRight_toRightOf="@id/spinner_end" />
+        app:layout_constraintStart_toEndOf="@id/verticalcenter"
+        app:layout_constraintEnd_toEndOf="@id/spinner_end" />
 
     <TextView
         android:id="@+id/rotation_mode_text"
@@ -63,40 +63,40 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/pref_rotation_type"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/verticalcenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
         app:layout_constraintBaseline_toBaselineOf="@id/rotation_mode" />
 
-    <android.support.v7.widget.AppCompatSpinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/rotation_mode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:entries="@array/rotation_type"
         app:layout_constraintTop_toBottomOf="@id/viewer"
-        app:layout_constraintLeft_toRightOf="@id/verticalcenter"
-        app:layout_constraintRight_toRightOf="@id/spinner_end" />
+        app:layout_constraintStart_toEndOf="@id/verticalcenter"
+        app:layout_constraintEnd_toEndOf="@id/spinner_end" />
 
     <TextView
         android:id="@+id/background_color_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/pref_reader_theme"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/background_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/background_color"
         app:layout_constraintBaseline_toBaselineOf="@id/background_color"/>
 
-    <android.support.v7.widget.AppCompatSpinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/background_color"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:entries="@array/reader_themes"
         app:layout_constraintTop_toBottomOf="@id/rotation_mode"
-        app:layout_constraintLeft_toRightOf="@id/verticalcenter"
-        app:layout_constraintRight_toRightOf="@id/spinner_end" />
+        app:layout_constraintStart_toEndOf="@id/verticalcenter"
+        app:layout_constraintEnd_toEndOf="@id/spinner_end" />
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/show_page_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constraintTop_toBottomOf="@id/background_color" />
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/true_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
         tools:visibility="visible"
         app:layout_constraintTop_toBottomOf="@id/show_page_number" />
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/fullscreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constraintTop_toBottomOf="@id/true_color" />
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/keepscreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constraintTop_toBottomOf="@id/fullscreen" />
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/long_tap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -143,7 +143,7 @@
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constraintTop_toBottomOf="@id/keepscreen" />
 
-    <android.support.v4.widget.Space
+    <androidx.legacy.widget.Space
         android:id="@+id/end_general_preferences"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -159,7 +159,7 @@
         android:text="@string/pager_viewer"
         android:textColor="?attr/colorAccent"
         android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/end_general_preferences" />
 
     <TextView
@@ -167,18 +167,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/pref_image_scale_type"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/verticalcenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
         app:layout_constraintBaseline_toBaselineOf="@id/scale_type"/>
 
-    <android.support.v7.widget.AppCompatSpinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/scale_type"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:entries="@array/image_scale_type"
-        app:layout_constraintLeft_toRightOf="@id/verticalcenter"
-        app:layout_constraintRight_toRightOf="@id/spinner_end"
+        app:layout_constraintStart_toEndOf="@id/verticalcenter"
+        app:layout_constraintEnd_toEndOf="@id/spinner_end"
         app:layout_constraintTop_toBottomOf="@id/pager_prefs"/>
 
     <TextView
@@ -186,21 +186,21 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/pref_zoom_start"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/verticalcenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
         app:layout_constraintBaseline_toBaselineOf="@id/zoom_start"/>
 
-    <android.support.v7.widget.AppCompatSpinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/zoom_start"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:entries="@array/zoom_start"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/scale_type"
-        app:layout_constraintLeft_toRightOf="@id/verticalcenter"
-        app:layout_constraintRight_toRightOf="@id/spinner_end" />
+        app:layout_constraintStart_toEndOf="@id/verticalcenter"
+        app:layout_constraintEnd_toEndOf="@id/spinner_end" />
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/crop_borders"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -209,7 +209,7 @@
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constraintTop_toBottomOf="@id/zoom_start" />
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/page_transitions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -228,10 +228,10 @@
         android:text="@string/webtoon_viewer"
         android:textColor="?attr/colorAccent"
         android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/end_general_preferences" />
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/crop_borders_webtoon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -242,7 +242,7 @@
 
     <!-- Groups of preferences -->
 
-    <android.support.constraint.Group
+    <androidx.constraintlayout.widget.Group
         android:id="@+id/pager_prefs_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -250,18 +250,18 @@
         app:constraint_referenced_ids="pager_prefs,scale_type_text,scale_type,zoom_start_text,zoom_start,crop_borders,page_transitions"
         tools:visibility="visible" />
 
-    <android.support.constraint.Group
+    <androidx.constraintlayout.widget.Group
         android:id="@+id/webtoon_prefs_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:constraint_referenced_ids="webtoon_prefs,crop_borders_webtoon" />
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/verticalcenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,7 +39,7 @@ class ExtensionInstallActivity : Activity() {
     }
 
     private fun checkInstallationResult(resultCode: Int) {
-        val downloadId = intent.extras.getLong(ExtensionInstaller.EXTRA_DOWNLOAD_ID)
+        val downloadId = intent.extras!!.getLong(ExtensionInstaller.EXTRA_DOWNLOAD_ID)
         val success = resultCode == RESULT_OK
 
         val extensionManager = Injekt.get<ExtensionManager>()

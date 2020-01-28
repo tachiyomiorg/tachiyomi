@@ -4,9 +4,9 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.content.res.TypedArray
 import android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH
-import android.support.v7.preference.PreferenceCategory
-import android.support.v7.preference.PreferenceViewHolder
-import android.support.v7.widget.SwitchCompat
+import androidx.preference.PreferenceCategory
+import androidx.preference.PreferenceViewHolder
+import androidx.appcompat.widget.SwitchCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.Checkable

@@ -1,8 +1,6 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 
 import android.graphics.Typeface
-import android.support.v7.widget.AppCompatButton
-import android.support.v7.widget.AppCompatTextView
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.StyleSpan
@@ -12,6 +10,8 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatTextView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
@@ -36,7 +36,10 @@ class WebtoonTransitionHolder(
     /**
      * Text view used to display the text of the current and next/prev chapters.
      */
-    private var textView = TextView(context)
+    private var textView = TextView(context).apply {
+        textSize = 17.5F
+        wrapContent()
+    }
 
     /**
      * View container of the current status of the transition page. Child views will be added

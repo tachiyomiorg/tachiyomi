@@ -8,16 +8,14 @@
         android:title="@string/action_share"
         app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/action_open_in_browser"
-        android:title="@string/action_open_in_browser"
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/action_open_in_web_view"
+    <item
+        android:id="@+id/action_open_in_web_view"
         android:title="@string/action_open_in_web_view"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
-    <item android:id="@+id/action_add_to_home_screen"
+    <item
+        android:id="@+id/action_add_to_home_screen"
         android:title="@string/action_add_to_home_screen"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
 </menu>

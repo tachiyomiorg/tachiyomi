@@ -5,12 +5,12 @@ import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.view.ActionMode
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ActionMode
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import com.jakewharton.rxbinding.view.clicks
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -34,9 +34,6 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
         ChaptersAdapter.OnMenuItemClickListener,
-        SetDisplayModeDialog.Listener,
-        SetSortingDialog.Listener,
-        DownloadChaptersDialog.Listener,
         DownloadCustomChaptersDialog.Listener,
         DeleteChaptersDialog.Listener {
 
@@ -54,6 +51,8 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
      * Selected items. Used to restore selections after a rotation.
      */
     private val selectedItems = mutableSetOf<ChapterItem>()
+
+    private var lastClickPosition = -1
 
     init {
         setHasOptionsMenu(true)
@@ -146,13 +145,46 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         if (presenter.onlyUnread())
             //Disable read filter option if unread filter is enabled.
             menuFilterRead.isEnabled = false
+
+        // Display mode submenu
+        if (presenter.manga.displayMode == Manga.DISPLAY_NAME) {
+            menu.findItem(R.id.display_title).isChecked = true
+        } else {
+            menu.findItem(R.id.display_chapter_number).isChecked = true
+        }
+
+        // Sorting mode submenu
+        if (presenter.manga.sorting == Manga.SORTING_SOURCE) {
+            menu.findItem(R.id.sort_by_source).isChecked = true
+        } else {
+            menu.findItem(R.id.sort_by_number).isChecked = true
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_display_mode -> showDisplayModeDialog()
-            R.id.manga_download -> showDownloadDialog()
-            R.id.action_sorting_mode -> showSortingDialog()
+            R.id.display_title -> {
+                item.isChecked = true
+                setDisplayMode(Manga.DISPLAY_NAME)
+            }
+            R.id.display_chapter_number -> {
+                item.isChecked = true
+                setDisplayMode(Manga.DISPLAY_NUMBER)
+            }
+
+            R.id.sort_by_source -> {
+                item.isChecked = true
+                presenter.setSorting(Manga.SORTING_SOURCE)
+            }
+            R.id.sort_by_number -> {
+                item.isChecked = true
+                presenter.setSorting(Manga.SORTING_NUMBER)
+            }
+
+            R.id.download_next, R.id.download_next_5, R.id.download_next_10,
+            R.id.download_custom, R.id.download_unread, R.id.download_all
+            -> downloadChapters(item.itemId)
+
             R.id.action_filter_unread -> {
                 item.isChecked = !item.isChecked
                 presenter.setUnreadFilter(item.isChecked)
@@ -184,8 +216,9 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     fun onNextChapters(chapters: List<ChapterItem>) {
         // If the list is empty, fetch chapters from source if the conditions are met
         // We use presenter chapters instead because they are always unfiltered
-        if (presenter.chapters.isEmpty())
+        if (presenter.chapters.isEmpty()) {
             initialFetchChapters()
+        }
 
         val adapter = adapter ?: return
         adapter.updateDataSet(chapters)
@@ -242,10 +275,11 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         startActivity(intent)
     }
 
-    override fun onItemClick(position: Int): Boolean {
+    override fun onItemClick(view: View?, position: Int): Boolean {
         val adapter = adapter ?: return false
         val item = adapter.getItem(position) ?: return false
         if (actionMode != null && adapter.mode == SelectableAdapter.Mode.MULTI) {
+            lastClickPosition = position
             toggleSelection(position)
             return true
         } else {
@@ -256,7 +290,16 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
 
     override fun onItemLongClick(position: Int) {
         createActionModeIfNeeded()
-        toggleSelection(position)
+        when {
+            lastClickPosition == -1 -> setSelection(position)
+            lastClickPosition > position -> for (i in position until lastClickPosition)
+                setSelection(i)
+            lastClickPosition < position -> for (i in lastClickPosition + 1..position)
+                setSelection(i)
+            else -> setSelection(position)
+        }
+        lastClickPosition = position
+        adapter?.notifyDataSetChanged()
     }
 
     // SELECTIONS & ACTION MODE
@@ -265,12 +308,23 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         val adapter = adapter ?: return
         val item = adapter.getItem(position) ?: return
         adapter.toggleSelection(position)
+        adapter.notifyDataSetChanged()
         if (adapter.isSelected(position)) {
             selectedItems.add(item)
         } else {
             selectedItems.remove(item)
         }
         actionMode?.invalidate()
+    }
+
+    private fun setSelection(position: Int) {
+        val adapter = adapter ?: return
+        val item = adapter.getItem(position) ?: return
+        if (!adapter.isSelected(position)) {
+            adapter.toggleSelection(position)
+            selectedItems.add(item)
+            actionMode?.invalidate()
+        }
     }
 
     private fun getSelectedChapters(): List<ChapterItem> {
@@ -285,6 +339,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     }
 
     private fun destroyActionModeIfNeeded() {
+        lastClickPosition = -1
         actionMode?.finish()
     }
 
@@ -323,6 +378,11 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         adapter?.clearSelection()
         selectedItems.clear()
         actionMode = null
+    }
+
+    override fun onDetach(view: View) {
+        destroyActionModeIfNeeded()
+        super.onDetach(view)
     }
 
     override fun onMenuItemClick(position: Int, item: MenuItem) {
@@ -373,7 +433,6 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         }
     }
 
-
     private fun showDeleteChaptersConfirmationDialog() {
         DeleteChaptersDialog(this).showDialog(router)
     }
@@ -404,8 +463,12 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         presenter.deleteChapters(chapters)
     }
 
-    fun onChaptersDeleted() {
+    fun onChaptersDeleted(chapters: List<ChapterItem>) {
         dismissDeletingDialog()
+        //this is needed so the downloaded text gets removed from the item
+        chapters.forEach {
+            adapter?.updateItem(it)
+        }
         adapter?.notifyDataSetChanged()
     }
 
@@ -420,27 +483,9 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
 
     // OVERFLOW MENU DIALOGS
 
-    private fun showDisplayModeDialog() {
-        val preselected = if (presenter.manga.displayMode == Manga.DISPLAY_NAME) 0 else 1
-        SetDisplayModeDialog(this, preselected).showDialog(router)
-    }
-
-    override fun setDisplayMode(id: Int) {
+    private fun setDisplayMode(id: Int) {
         presenter.setDisplayMode(id)
         adapter?.notifyDataSetChanged()
-    }
-
-    private fun showSortingDialog() {
-        val preselected = if (presenter.manga.sorting == Manga.SORTING_SOURCE) 0 else 1
-        SetSortingDialog(this, preselected).showDialog(router)
-    }
-
-    override fun setSorting(id: Int) {
-        presenter.setSorting(id)
-    }
-
-    private fun showDownloadDialog() {
-        DownloadChaptersDialog(this).showDialog(router)
     }
 
     private fun getUnreadChaptersSorted() = presenter.chapters
@@ -448,8 +493,19 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
             .distinctBy { it.name }
             .sortedByDescending { it.source_order }
 
-    override fun downloadCustomChapters(amount: Int) {
-        val chaptersToDownload = getUnreadChaptersSorted().take(amount)
+    private fun downloadChapters(choice: Int) {
+        val chaptersToDownload = when (choice) {
+            R.id.download_next -> getUnreadChaptersSorted().take(1)
+            R.id.download_next_5 -> getUnreadChaptersSorted().take(5)
+            R.id.download_next_10 -> getUnreadChaptersSorted().take(10)
+            R.id.download_custom -> {
+                showCustomDownloadDialog()
+                return
+            }
+            R.id.download_unread -> presenter.chapters.filter { !it.read }
+            R.id.download_all -> presenter.chapters
+            else -> emptyList()
+        }
         if (chaptersToDownload.isNotEmpty()) {
             downloadChapters(chaptersToDownload)
         }
@@ -459,26 +515,8 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         DownloadCustomChaptersDialog(this, presenter.chapters.size).showDialog(router)
     }
 
-
-    override fun downloadChapters(choice: Int) {
-        // i = 0: Download 1
-        // i = 1: Download 5
-        // i = 2: Download 10
-        // i = 3: Download x
-        // i = 4: Download unread
-        // i = 5: Download all
-        val chaptersToDownload = when (choice) {
-            0 -> getUnreadChaptersSorted().take(1)
-            1 -> getUnreadChaptersSorted().take(5)
-            2 -> getUnreadChaptersSorted().take(10)
-            3 -> {
-                showCustomDownloadDialog()
-                return
-            }
-            4 -> presenter.chapters.filter { !it.read }
-            5 -> presenter.chapters
-            else -> emptyList()
-        }
+    override fun downloadCustomChapters(amount: Int) {
+        val chaptersToDownload = getUnreadChaptersSorted().take(amount)
         if (chaptersToDownload.isNotEmpty()) {
             downloadChapters(chaptersToDownload)
         }

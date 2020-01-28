@@ -5,7 +5,7 @@
     <string name="manga">만화</string>
     <string name="chapters">챕터</string>
     <string name="track">동기화</string>
-    <string name="label_latest_updates">다운로드 목록</string>
+    <string name="label_latest_updates">최근 업데이트</string>
     <string name="label_categories">카테고리</string>
     <string name="label_selected">%1$d 선택됨</string>
     <string name="label_backup">백업</string>
@@ -13,7 +13,7 @@
     <string name="action_filter">필터</string>
     <string name="action_filter_downloaded">다운로드됨</string>
     <string name="action_filter_bookmarked">북마크됨</string>
-    <string name="action_filter_unread">아직 안 읽음</string>
+    <string name="action_filter_unread">안 읽음</string>
     <string name="action_filter_read">읽음</string>
     <string name="action_filter_empty">필터 제거</string>
     <string name="action_sort_alpha">알파벳 순으로</string>
@@ -34,7 +34,7 @@
     <string name="action_add">추가</string>
     <string name="action_add_category">카테고리 추가</string>
     <string name="action_edit_categories">카테고리 편집</string>
-    <string name="action_rename_category">카테고리 이름 다시 짓기</string>
+    <string name="action_rename_category">카테고리 이름 바꾸기</string>
     <string name="action_move_category">카테고리로 이동</string>
     <string name="action_edit_cover">표지 이미지 바꾸기</string>
     <string name="action_show_downloaded">다운로드됨</string>
@@ -212,7 +212,7 @@
     <string name="clear_database_confirmation">확실합니까\? 서재에 없는 만화의 읽은 챕터와 진행사항이 삭제됩니다</string>
     <string name="pref_refresh_library_metadata">서재 메타데이터 갱신</string>
     <string name="pref_refresh_library_metadata_summary">표지와 장르, 설명, 만화 상태 정보들을 업데이트합니다</string>
-    <string name="pref_refresh_library_tracking">동기화 메타데이터 갱신</string>
+    <string name="pref_refresh_library_tracking">동기화 메타데이터 새로 고침</string>
     <string name="pref_refresh_library_tracking_summary">상태 및 평점, 마지막으로 읽은 챕터를 동기화 서비스에서 업데이트합니다</string>
     <string name="version">버전</string>
     <string name="build_time">빌드 시간</string>
@@ -426,7 +426,7 @@
     <string name="notification_first_add_to_library">이 행동을 하기 전 서재에 만화를 추가해주세요</string>
     <string name="description_backdrop">만화의 배경 이미지</string>
     <string name="information_empty_library">서재가 비어있습니다. 카탈로그에서 만화 시리즈를 서재에 추가 할 수 있습니다.</string>
-    <string name="information_empty_category">카탈로그가 없습니다. 서재 구성을 위해 + 버튼을 눌러 생성하세요.</string>
+    <string name="information_empty_category">카테고리가 없습니다. 서재 구성을 위해 + 버튼을 눌러 생성하세요.</string>
     <string name="download_notifier_page_error">페이지가 폴더에서 누락됨</string>
     <string name="download_notifier_page_ready_error">페이지가 로드되지 않았습니다</string>
     <string name="download_notifier_text_only_wifi">Wifi 연결 사용 불가능</string>
@@ -434,4 +434,15 @@
     <string name="channel_common">일반</string>
     <string name="pref_read_with_long_tap">길게 눌러 대화상자 표시</string>
     <string name="custom_hint">갯수</string>
+    <string name="action_open_in_web_view">웹뷰로 열기</string>
+    <string name="pref_true_color">32비트 컬러</string>
+    <string name="pref_skip_read_chapters">읽음 표시된 챕터 건너뛰기</string>
+    <string name="pref_color_filter_mode">컬러 필터 블렌딩 모드</string>
+    <string name="filter_mode_default">기본값</string>
+    <string name="filter_mode_overlay">오버레이</string>
+    <string name="filter_mode_multiply">곱하기</string>
+    <string name="filter_mode_screen">스크린</string>
+    <string name="filter_mode_lighten">닷지 / 밝게하기</string>
+    <string name="filter_mode_darken">번 / 어둡게하기</string>
+    <string name="label_help">도움</string>
 </resources>

@@ -91,8 +91,12 @@ class TrackPresenter(
                     .subscribe({ },
                             { error -> context.toast(error.message) }))
         } else {
-            db.deleteTrackForManga(manga, service).executeAsBlocking()
+            unregisterTracking(service)
         }
+    }
+
+    fun unregisterTracking(service: TrackService) {
+        db.deleteTrackForManga(manga, service).executeAsBlocking()
     }
 
     private fun updateRemote(track: Track, service: TrackService) {

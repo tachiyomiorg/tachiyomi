@@ -35,6 +35,7 @@ import eu.kanade.tachiyomi.util.syncChaptersWithSource
 import rx.Observable
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
+import kotlin.math.max
 
 class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
 
@@ -204,7 +205,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
         if (options and BACKUP_CHAPTER_MASK == BACKUP_CHAPTER) {
             // Backup all the chapters
             val chapters = databaseHelper.getChapters(manga).executeAsBlocking()
-            if (!chapters.isEmpty()) {
+            if (chapters.isNotEmpty()) {
                 val chaptersJson = parser.toJsonTree(chapters)
                 if (chaptersJson.asJsonArray.size() > 0) {
                     entry[CHAPTERS] = chaptersJson
@@ -216,7 +217,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
         if (options and BACKUP_CATEGORY_MASK == BACKUP_CATEGORY) {
             // Backup categories for this manga
             val categoriesForManga = databaseHelper.getCategoriesForManga(manga).executeAsBlocking()
-            if (!categoriesForManga.isEmpty()) {
+            if (categoriesForManga.isNotEmpty()) {
                 val categoriesNames = categoriesForManga.map { it.name }
                 entry[CATEGORIES] = parser.toJsonTree(categoriesNames)
             }
@@ -225,7 +226,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
         // Check if user wants track information in backup
         if (options and BACKUP_TRACK_MASK == BACKUP_TRACK) {
             val tracks = databaseHelper.getTracks(manga).executeAsBlocking()
-            if (!tracks.isEmpty()) {
+            if (tracks.isNotEmpty()) {
                 entry[TRACK] = parser.toJsonTree(tracks)
             }
         }
@@ -233,7 +234,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
         // Check if user wants history information in backup
         if (options and BACKUP_HISTORY_MASK == BACKUP_HISTORY) {
             val historyForManga = databaseHelper.getHistoryByMangaId(manga.id!!).executeAsBlocking()
-            if (!historyForManga.isEmpty()) {
+            if (historyForManga.isNotEmpty()) {
                 val historyData = historyForManga.mapNotNull { history ->
                     val url = databaseHelper.getChapter(history.chapter_id).executeAsBlocking()?.url
                     url?.let { DHistory(url, history.last_read) }
@@ -344,7 +345,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
         }
 
         // Update database
-        if (!mangaCategoriesToUpdate.isEmpty()) {
+        if (mangaCategoriesToUpdate.isNotEmpty()) {
             val mangaAsList = ArrayList<Manga>()
             mangaAsList.add(manga)
             databaseHelper.deleteOldMangasCategories(mangaAsList).executeAsBlocking()
@@ -365,7 +366,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
             // Check if history already in database and update
             if (dbHistory != null) {
                 dbHistory.apply {
-                    last_read = Math.max(lastRead, dbHistory.last_read)
+                    last_read = max(lastRead, dbHistory.last_read)
                 }
                 historyToBeUpdated.add(dbHistory)
             } else {
@@ -408,7 +409,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
                         if (track.library_id != dbTrack.library_id) {
                             dbTrack.library_id = track.library_id
                         }
-                        dbTrack.last_chapter_read = Math.max(dbTrack.last_chapter_read, track.last_chapter_read)
+                        dbTrack.last_chapter_read = max(dbTrack.last_chapter_read, track.last_chapter_read)
                         isInDatabase = true
                         trackToUpdate.add(dbTrack)
                         break
@@ -422,7 +423,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
             }
         }
         // Update database
-        if (!trackToUpdate.isEmpty()) {
+        if (trackToUpdate.isNotEmpty()) {
             databaseHelper.insertTracks(trackToUpdate).executeAsBlocking()
         }
     }

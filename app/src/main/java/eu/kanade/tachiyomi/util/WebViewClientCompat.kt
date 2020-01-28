@@ -36,7 +36,6 @@ abstract class WebViewClientCompat : WebViewClient() {
         return shouldOverrideUrlCompat(view, url)
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     final override fun shouldInterceptRequest(
             view: WebView,
             request: WebResourceRequest

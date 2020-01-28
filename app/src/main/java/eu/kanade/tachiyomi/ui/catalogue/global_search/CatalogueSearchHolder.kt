@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.ui.catalogue.global_search
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga

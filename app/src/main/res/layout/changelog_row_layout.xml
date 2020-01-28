@@ -7,7 +7,6 @@
               android:minHeight="@dimen/listPreferredItemHeightSmall"
               android:orientation="horizontal">
 
-
     <!-- ChangeLog Row [Bullet Point] You have to use the id="chg_textbullet" -->
     <TextView
         android:id="@+id/chg_textbullet"
@@ -15,13 +14,9 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:paddingEnd="0dp"
-        android:paddingLeft="@dimen/chglib_material_keyline1"
-        android:paddingRight="0dp"
         android:paddingStart="@dimen/chglib_material_keyline1"
         android:text="@string/changelog_row_bulletpoint"
-        android:textAppearance="@style/TextAppearance.Medium.Title"
-        />
-
+        android:textAppearance="@style/TextAppearance.Medium.Title" />
 
     <!-- ChangeLog Row [Text] You have to use the id="chg_text" -->
     <TextView
@@ -30,11 +25,11 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:minHeight="@dimen/listPreferredItemHeightSmall"
-        android:paddingLeft="@dimen/chglib_material_keyline1"
-        android:paddingRight="@dimen/chglib_material_keyline1"
+        android:paddingStart="@dimen/chglib_material_keyline1"
+        android:paddingEnd="@dimen/chglib_material_keyline1"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:textAppearance="@style/TextAppearance.Regular.Body1"
-        tools:text="Use DashClock with Android 4.2's Daydream feature; great for use with desktop docks!"
-        />
+        tools:text="Use DashClock with Android 4.2's Daydream feature; great for use with desktop docks!" />
+
 </LinearLayout>

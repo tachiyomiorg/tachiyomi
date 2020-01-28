@@ -1,8 +1,8 @@
 package eu.kanade.tachiyomi.widget.preference
 
 import android.content.Context
-import android.support.v7.preference.Preference
-import android.support.v7.preference.PreferenceViewHolder
+import androidx.preference.Preference
+import androidx.preference.PreferenceViewHolder
 import android.util.AttributeSet
 import eu.kanade.tachiyomi.R
 import kotlinx.android.synthetic.main.pref_widget_imageview.view.*

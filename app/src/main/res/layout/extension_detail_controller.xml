@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,8 +9,8 @@
         android:id="@+id/extension_icon"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/extension_title"
         app:layout_constraintBottom_toBottomOf="@id/extension_pkg"
         android:src="@mipmap/ic_launcher"/>
@@ -20,9 +20,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         style="@style/TextAppearance.Regular.SubHeading"
-        app:layout_constraintLeft_toRightOf="@id/extension_icon"
+        app:layout_constraintStart_toEndOf="@id/extension_icon"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Tachiyomi: Extension"/>
 
@@ -34,7 +34,7 @@
         android:layout_weight="1"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/extension_title"
-        app:layout_constraintLeft_toLeftOf="@id/extension_title"
+        app:layout_constraintStart_toStartOf="@id/extension_title"
         tools:text="Version: 1.0.0" />
 
     <TextView
@@ -45,20 +45,36 @@
         android:layout_weight="1"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/extension_version"
-        app:layout_constraintLeft_toLeftOf="@id/extension_title"
+        app:layout_constraintStart_toStartOf="@id/extension_title"
         tools:text="Language: English" />
 
     <TextView
         android:id="@+id/extension_pkg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
         android:singleLine="true"
         android:ellipsize="middle"
         app:layout_constraintTop_toBottomOf="@id/extension_lang"
-        app:layout_constraintLeft_toLeftOf="@id/extension_title"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="@id/extension_title"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="eu.kanade.tachiyomi.extension.en.myext"/>
+
+    <TextView
+        android:id="@+id/extension_obsolete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/red_error"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/obsolete_extension_message"
+        android:textColor="@android:color/white"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/extension_pkg" />
 
     <Button
         android:id="@+id/extension_uninstall_button"
@@ -69,18 +85,18 @@
         android:layout_marginTop="16dp"
         android:text="@string/ext_uninstall"
         style="@style/Theme.Widget.Button.Colored"
-        app:layout_constraintLeft_toLeftOf="@id/guideline"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/extension_pkg" />
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/extension_obsolete" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/extension_prefs_recycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/extension_uninstall_button"/>
 
     <eu.kanade.tachiyomi.widget.EmptyView
@@ -90,15 +106,15 @@
         android:visibility="gone"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/extension_uninstall_button"/>
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

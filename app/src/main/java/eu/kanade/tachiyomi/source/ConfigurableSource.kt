@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.source
 
-import android.support.v7.preference.PreferenceScreen
+import androidx.preference.PreferenceScreen
 
 interface ConfigurableSource : Source {
 

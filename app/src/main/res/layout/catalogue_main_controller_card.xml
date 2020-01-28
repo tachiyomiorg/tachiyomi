@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:paddingLeft="@dimen/material_component_text_fields_padding_above_and_below_label"
+        android:paddingStart="@dimen/material_component_text_fields_padding_above_and_below_label"
         tools:text="Title" />
 
 </FrameLayout>

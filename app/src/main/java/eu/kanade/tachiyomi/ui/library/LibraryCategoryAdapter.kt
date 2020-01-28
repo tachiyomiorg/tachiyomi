@@ -38,7 +38,11 @@ class LibraryCategoryAdapter(view: LibraryCategoryView) :
     }
 
     fun performFilter() {
-        updateDataSet(mangas.filter { it.filter(searchText) })
+        var s = getFilter(String::class.java)
+        if (s == null) {
+            s = ""
+        }
+        updateDataSet(mangas.filter { it.filter(s) })
     }
 
 }

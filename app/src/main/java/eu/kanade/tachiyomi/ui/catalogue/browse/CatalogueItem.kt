@@ -4,9 +4,11 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.FrameLayout
+import androidx.recyclerview.widget.RecyclerView
 import com.f2prateek.rx.preferences.Preference
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
+import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.getOrDefault
@@ -23,7 +25,10 @@ class CatalogueItem(val manga: Manga, private val catalogueAsList: Preference<Bo
             R.layout.catalogue_grid_item
     }
 
-    override fun createViewHolder(view: View, adapter: FlexibleAdapter<*>): CatalogueHolder {
+    override fun createViewHolder(
+            view: View,
+            adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>
+    ): CatalogueHolder {
         val parent = adapter.recyclerView
         return if (parent is AutofitRecyclerView) {
             view.apply {
@@ -38,11 +43,12 @@ class CatalogueItem(val manga: Manga, private val catalogueAsList: Preference<Bo
         }
     }
 
-    override fun bindViewHolder(adapter: FlexibleAdapter<*>,
-                                holder: CatalogueHolder,
-                                position: Int,
-                                payloads: List<Any?>?) {
-
+    override fun bindViewHolder(
+            adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
+            holder: CatalogueHolder,
+            position: Int,
+            payloads: List<Any?>?
+    ) {
         holder.onSetValues(manga)
     }
 
@@ -57,7 +63,5 @@ class CatalogueItem(val manga: Manga, private val catalogueAsList: Preference<Bo
     override fun hashCode(): Int {
         return manga.id!!.hashCode()
     }
-
-
 
 }

@@ -4,11 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </android.support.v4.widget.SwipeRefreshLayout>
+        android:layout_height="match_parent"/>
 
 </eu.kanade.tachiyomi.ui.library.LibraryCategoryView>

@@ -32,6 +32,10 @@
         <item name="colorAccent">@color/colorAccentDark</item>
     </style>
 
+    <style name="Theme.AlertDialog.Amoled" parent="Theme.AlertDialog.Dark">
+        <item name="android:background">@color/colorAmoledPrimary</item>
+    </style>
+
     <!--==============-->
     <!--NavigationView-->
     <!--==============-->
@@ -50,7 +54,7 @@
     </style>
 
     <style name="TextAppearance.Regular">
-        <item name="android:fontFamily">@string/font_roboto_regular</item>
+        <item name="android:fontFamily">sans-serif-regular</item>
     </style>
 
     <style name="TextAppearance.Regular.Body1">
@@ -102,7 +106,7 @@
     </style>
 
     <style name="TextAppearance.Medium">
-        <item name="android:fontFamily">@string/font_roboto_medium</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="TextAppearance.Medium.Title">
@@ -125,26 +129,20 @@
         <item name="android:textColor">?android:attr/textColorHint</item>
     </style>
 
-    <style name="TextAppearance.Medium.Button">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">?attr/colorAccent</item>
-    </style>
-
     <!--=======-->
     <!--Widgets-->
     <!--=======-->
     <style name="Theme.Widget" />
 
     <style name="Theme.Widget.FAB">
-        <item name="android:layout_height">@dimen/fab_size</item>
-        <item name="android:layout_width">@dimen/fab_size</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="fabCustomSize">@dimen/fab_size</item>
         <item name="android:layout_gravity">bottom|end</item>
         <item name="android:layout_margin">@dimen/fab_margin</item>
         <item name="android:scaleType">fitCenter</item>
         <item name="layout_anchorGravity">bottom|right|end</item>
         <item name="android:tint">@color/md_white_1000</item>
-        <item name="layout_behavior">eu.kanade.tachiyomi.widget.FABAnimationUpDown</item>
     </style>
 
     <style name="Theme.Widget.CardView" parent="CardView">

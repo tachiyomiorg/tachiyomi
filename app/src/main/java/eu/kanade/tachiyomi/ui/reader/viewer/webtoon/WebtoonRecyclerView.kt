@@ -3,17 +3,16 @@ package eu.kanade.tachiyomi.ui.reader.viewer.webtoon
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
-import android.annotation.TargetApi
 import android.content.Context
-import android.os.Build
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.ViewConfiguration
 import android.view.animation.DecelerateInterpolator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import eu.kanade.tachiyomi.ui.reader.viewer.GestureDetectorWithLongTap
+import kotlin.math.abs
 
 /**
  * Implementation of a [RecyclerView] used by the webtoon reader.
@@ -58,12 +57,11 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
         firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     override fun onScrollStateChanged(state: Int) {
         super.onScrollStateChanged(state)
         val layoutManager = layoutManager
-        val visibleItemCount = layoutManager.childCount
-        val totalItemCount = layoutManager.itemCount
+        val visibleItemCount = layoutManager?.childCount ?: 0
+        val totalItemCount = layoutManager?.itemCount ?: 0
         atLastPosition = visibleItemCount > 0 && lastVisibleItemPosition == totalItemCount - 1
         atFirstPosition = firstVisibleItemPosition == 0
     }
@@ -270,7 +268,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
                     if (!isZoomDragging && currentScale > 1f) {
                         var startScroll = false
 
-                        if (Math.abs(dx) > touchSlop) {
+                        if (abs(dx) > touchSlop) {
                             if (dx < 0) {
                                 dx += touchSlop
                             } else {
@@ -278,7 +276,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
                             }
                             startScroll = true
                         }
-                        if (Math.abs(dy) > touchSlop) {
+                        if (abs(dy) > touchSlop) {
                             if (dy < 0) {
                                 dy += touchSlop
                             } else {

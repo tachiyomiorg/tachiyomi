@@ -51,11 +51,11 @@ class TrackLoginDialog(bundle: Bundle? = null) : LoginDialogPreference(bundle) {
 
     override fun onDialogClosed() {
         super.onDialogClosed()
-        (targetController as? Listener)?.trackDialogClosed(service)
+        (targetController as? Listener)?.trackLoginDialogClosed(service)
     }
 
     interface Listener {
-        fun trackDialogClosed(service: TrackService)
+        fun trackLoginDialogClosed(service: TrackService)
     }
 
 }

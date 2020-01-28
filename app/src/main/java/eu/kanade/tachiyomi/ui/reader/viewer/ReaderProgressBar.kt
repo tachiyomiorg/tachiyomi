@@ -16,6 +16,7 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.getResourceColor
+import kotlin.math.min
 
 /**
  * A custom progress bar that always rotates while being determinate. By always rotating we give
@@ -75,7 +76,7 @@ class ReaderProgressBar @JvmOverloads constructor(
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
 
-        val diameter = Math.min(width, height)
+        val diameter = min(width, height)
         val thickness = diameter / 10f
         val pad = thickness / 2f
         ovalRect.set(pad, pad, diameter - pad, diameter - pad)

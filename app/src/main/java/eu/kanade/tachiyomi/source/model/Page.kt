@@ -37,7 +37,6 @@ open class Page(
     }
 
     companion object {
-
         const val QUEUE = 0
         const val LOAD_PAGE = 1
         const val DOWNLOAD_IMAGE = 2

@@ -30,7 +30,7 @@ class PTSansTextView @JvmOverloads constructor(context: Context, attrs: Attribut
                 Typeface.createFromAsset(context.assets, when (typeface) {
                     PTSANS_NARROW -> "fonts/PTSans-Narrow.ttf"
                     PTSANS_NARROW_BOLD -> "fonts/PTSans-NarrowBold.ttf"
-                    else -> throw IllegalArgumentException("Font not found " + typeface)
+                    else -> throw IllegalArgumentException("Font not found $typeface")
                 })
             })
 

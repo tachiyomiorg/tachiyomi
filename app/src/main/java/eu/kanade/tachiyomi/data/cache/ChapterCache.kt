@@ -10,7 +10,8 @@ import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.util.DiskUtil
 import eu.kanade.tachiyomi.util.saveTo
 import okhttp3.Response
-import okio.Okio
+import okio.buffer
+import okio.sink
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
 import java.io.File
@@ -126,7 +127,7 @@ class ChapterCache(private val context: Context) {
             editor = diskCache.edit(key) ?: return
 
             // Write chapter urls to cache.
-            Okio.buffer(Okio.sink(editor.newOutputStream(0))).use {
+            editor.newOutputStream(0).sink().buffer().use {
                 it.write(cachedValue.toByteArray())
                 it.flush()
             }
@@ -170,7 +171,7 @@ class ChapterCache(private val context: Context) {
 
     /**
      * Add image to cache.
-     * 
+     *
      * @param imageUrl url of image.
      * @param response http response from page.
      * @throws IOException image error.
@@ -186,12 +187,12 @@ class ChapterCache(private val context: Context) {
             editor = diskCache.edit(key) ?: throw IOException("Unable to edit key")
 
             // Get OutputStream and write image with Okio.
-            response.body()!!.source().saveTo(editor.newOutputStream(0))
+            response.body!!.source().saveTo(editor.newOutputStream(0))
 
             diskCache.flush()
             editor.commit()
         } finally {
-            response.body()?.close()
+            response.body?.close()
             editor?.abortUnlessCommitted()
         }
     }

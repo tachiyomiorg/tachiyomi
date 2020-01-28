@@ -2,10 +2,10 @@ package eu.kanade.tachiyomi.widget
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.annotation.CallSuper
-import android.support.graphics.drawable.VectorDrawableCompat
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.CallSuper
+import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.getResourceColor
 
 /**
- * An alternative implementation of [android.support.design.widget.NavigationView], without menu
+ * An alternative implementation of [com.google.android.material.navigation.NavigationView], without menu
  * inflation and allowing customizable items (multiple selections, custom views, etc).
  */
 open class ExtendedNavigationView @JvmOverloads constructor(
@@ -179,8 +179,7 @@ open class ExtendedNavigationView @JvmOverloads constructor(
 
         @CallSuper
         override fun getItemViewType(position: Int): Int {
-            val item = items[position]
-            return when (item) {
+            return when (items[position]) {
                 is Item.Header -> VIEW_TYPE_HEADER
                 is Item.Separator -> VIEW_TYPE_SEPARATOR
                 is Item.Radio -> VIEW_TYPE_RADIO

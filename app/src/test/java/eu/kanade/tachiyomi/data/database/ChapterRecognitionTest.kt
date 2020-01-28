@@ -42,7 +42,8 @@ class ChapterRecognitionTest {
     /**
      * Called before test
      */
-    @Before fun setup() {
+    @Before
+    fun setup() {
         manga = Manga.create(0).apply { title = "random" }
         chapter = Chapter.create()
     }
@@ -50,7 +51,8 @@ class ChapterRecognitionTest {
     /**
      * Ch.xx base case
      */
-    @Test fun ChCaseBase() {
+    @Test
+    fun ChCaseBase() {
         createManga("Mokushiroku Alice")
 
         createChapter("Mokushiroku Alice Vol.1 Ch.4: Misrepresentation")
@@ -61,7 +63,8 @@ class ChapterRecognitionTest {
     /**
      * Ch. xx base case but space after period
      */
-    @Test fun ChCaseBase2() {
+    @Test
+    fun ChCaseBase2() {
         createManga("Mokushiroku Alice")
 
         createChapter("Mokushiroku Alice Vol. 1 Ch. 4: Misrepresentation")
@@ -72,7 +75,8 @@ class ChapterRecognitionTest {
     /**
      * Ch.xx.x base case
      */
-    @Test fun ChCaseDecimal() {
+    @Test
+    fun ChCaseDecimal() {
         createManga("Mokushiroku Alice")
 
         createChapter("Mokushiroku Alice Vol.1 Ch.4.1: Misrepresentation")
@@ -87,7 +91,8 @@ class ChapterRecognitionTest {
     /**
      * Ch.xx.a base case
      */
-    @Test fun ChCaseAlpha() {
+    @Test
+    fun ChCaseAlpha() {
         createManga("Mokushiroku Alice")
 
         createChapter("Mokushiroku Alice Vol.1 Ch.4.a: Misrepresentation")
@@ -106,7 +111,8 @@ class ChapterRecognitionTest {
     /**
      * Name containing one number base case
      */
-    @Test fun OneNumberCaseBase() {
+    @Test
+    fun OneNumberCaseBase() {
         createManga("Bleach")
 
         createChapter("Bleach 567 Down With Snowwhite")
@@ -117,7 +123,8 @@ class ChapterRecognitionTest {
     /**
      * Name containing one number and decimal case
      */
-    @Test fun OneNumberCaseDecimal() {
+    @Test
+    fun OneNumberCaseDecimal() {
         createManga("Bleach")
 
         createChapter("Bleach 567.1 Down With Snowwhite")
@@ -132,7 +139,8 @@ class ChapterRecognitionTest {
     /**
      * Name containing one number and alpha case
      */
-    @Test fun OneNumberCaseAlpha() {
+    @Test
+    fun OneNumberCaseAlpha() {
         createManga("Bleach")
 
         createChapter("Bleach 567.a Down With Snowwhite")
@@ -151,7 +159,8 @@ class ChapterRecognitionTest {
     /**
      * Chapter containing manga title and number base case
      */
-    @Test fun MangaTitleCaseBase() {
+    @Test
+    fun MangaTitleCaseBase() {
         createManga("Solanin")
 
         createChapter("Solanin 028 Vol. 2")
@@ -162,7 +171,8 @@ class ChapterRecognitionTest {
     /**
      * Chapter containing manga title and number decimal case
      */
-    @Test fun MangaTitleCaseDecimal() {
+    @Test
+    fun MangaTitleCaseDecimal() {
         createManga("Solanin")
 
         createChapter("Solanin 028.1 Vol. 2")
@@ -177,7 +187,8 @@ class ChapterRecognitionTest {
     /**
      * Chapter containing manga title and number alpha case
      */
-    @Test fun MangaTitleCaseAlpha() {
+    @Test
+    fun MangaTitleCaseAlpha() {
         createManga("Solanin")
 
         createChapter("Solanin 028.a Vol. 2")
@@ -196,7 +207,8 @@ class ChapterRecognitionTest {
     /**
      * Extreme base case
      */
-    @Test fun ExtremeCaseBase() {
+    @Test
+    fun ExtremeCaseBase() {
         createManga("Onepunch-Man")
 
         createChapter("Onepunch-Man Punch Ver002 028")
@@ -207,7 +219,8 @@ class ChapterRecognitionTest {
     /**
      * Extreme base case decimal
      */
-    @Test fun ExtremeCaseDecimal() {
+    @Test
+    fun ExtremeCaseDecimal() {
         createManga("Onepunch-Man")
 
         createChapter("Onepunch-Man Punch Ver002 028.1")
@@ -222,7 +235,8 @@ class ChapterRecognitionTest {
     /**
      * Extreme base case alpha
      */
-    @Test fun ExtremeCaseAlpha() {
+    @Test
+    fun ExtremeCaseAlpha() {
         createManga("Onepunch-Man")
 
         createChapter("Onepunch-Man Punch Ver002 028.a")
@@ -241,7 +255,8 @@ class ChapterRecognitionTest {
     /**
      * Chapter containing .v2
      */
-    @Test fun dotV2Case() {
+    @Test
+    fun dotV2Case() {
         createChapter("Vol.1 Ch.5v.2: Alones")
         ChapterRecognition.parseChapterNumber(chapter, manga)
         assertThat(chapter.chapter_number).isEqualTo(5f)
@@ -250,7 +265,8 @@ class ChapterRecognitionTest {
     /**
      * Check for case with number in manga title
      */
-    @Test fun numberInMangaTitleCase() {
+    @Test
+    fun numberInMangaTitleCase() {
         createManga("Ayame 14")
         createChapter("Ayame 14 1 - The summer of 14")
         ChapterRecognition.parseChapterNumber(chapter, manga)
@@ -260,7 +276,8 @@ class ChapterRecognitionTest {
     /**
      * Case with space between ch. x
      */
-    @Test fun spaceAfterChapterCase() {
+    @Test
+    fun spaceAfterChapterCase() {
         createManga("Mokushiroku Alice")
         createChapter("Mokushiroku Alice Vol.1 Ch. 4: Misrepresentation")
         ChapterRecognition.parseChapterNumber(chapter, manga)
@@ -270,7 +287,8 @@ class ChapterRecognitionTest {
     /**
      * Chapter containing mar(ch)
      */
-    @Test fun marchInChapterCase() {
+    @Test
+    fun marchInChapterCase() {
         createManga("Ayame 14")
         createChapter("Vol.1 Ch.1: March 25 (First Day Cohabiting)")
         ChapterRecognition.parseChapterNumber(chapter, manga)
@@ -280,7 +298,8 @@ class ChapterRecognitionTest {
     /**
      * Chapter containing range
      */
-    @Test fun rangeInChapterCase() {
+    @Test
+    fun rangeInChapterCase() {
         createChapter("Ch.191-200 Read Online")
         ChapterRecognition.parseChapterNumber(chapter, manga)
         assertThat(chapter.chapter_number).isEqualTo(191f)
@@ -289,7 +308,8 @@ class ChapterRecognitionTest {
     /**
      * Chapter containing multiple zeros
      */
-    @Test fun multipleZerosCase() {
+    @Test
+    fun multipleZerosCase() {
         createChapter("Vol.001 Ch.003: Kaguya Doesn't Know Much")
         ChapterRecognition.parseChapterNumber(chapter, manga)
         assertThat(chapter.chapter_number).isEqualTo(3f)
@@ -298,7 +318,8 @@ class ChapterRecognitionTest {
     /**
      * Chapter with version before number
      */
-    @Test fun chapterBeforeNumberCase() {
+    @Test
+    fun chapterBeforeNumberCase() {
         createManga("Onepunch-Man")
         createChapter("Onepunch-Man Punch Ver002 086 : Creeping Darkness [3]")
         ChapterRecognition.parseChapterNumber(chapter, manga)
@@ -308,7 +329,8 @@ class ChapterRecognitionTest {
     /**
      * Case with version attached to chapter number
      */
-    @Test fun vAttachedToChapterCase() {
+    @Test
+    fun vAttachedToChapterCase() {
         createManga("Ansatsu Kyoushitsu")
         createChapter("Ansatsu Kyoushitsu 011v002: Assembly Time")
         ChapterRecognition.parseChapterNumber(chapter, manga)
@@ -319,7 +341,8 @@ class ChapterRecognitionTest {
      * Case where the chapter title contains the chapter
      * But wait it's not actual the chapter number.
      */
-    @Test fun NumberAfterMangaTitleWithChapterInChapterTitleCase() {
+    @Test
+    fun NumberAfterMangaTitleWithChapterInChapterTitleCase() {
         createChapter("Tokyo ESP 027: Part 002: Chapter 001")
         createManga("Tokyo ESP")
         ChapterRecognition.parseChapterNumber(chapter, manga)
@@ -329,7 +352,8 @@ class ChapterRecognitionTest {
     /**
      * unParsable chapter
      */
-    @Test fun unParsableCase() {
+    @Test
+    fun unParsableCase() {
         createChapter("Foo")
         ChapterRecognition.parseChapterNumber(chapter, manga)
         assertThat(chapter.chapter_number).isEqualTo(-1f)
@@ -338,7 +362,8 @@ class ChapterRecognitionTest {
     /**
      * chapter with time in title
      */
-    @Test fun timeChapterCase() {
+    @Test
+    fun timeChapterCase() {
         createChapter("Fairy Tail 404: 00:00")
         ChapterRecognition.parseChapterNumber(chapter, manga)
         assertThat(chapter.chapter_number).isEqualTo(404f)
@@ -347,7 +372,8 @@ class ChapterRecognitionTest {
     /**
      * chapter with alpha without dot
      */
-    @Test fun alphaWithoutDotCase() {
+    @Test
+    fun alphaWithoutDotCase() {
         createChapter("Asu No Yoichi 19a")
         ChapterRecognition.parseChapterNumber(chapter, manga)
         assertThat(chapter.chapter_number).isEqualTo(19.1f)
@@ -356,7 +382,8 @@ class ChapterRecognitionTest {
     /**
      * Chapter title containing extra and vol
      */
-    @Test fun chapterContainingExtraCase() {
+    @Test
+    fun chapterContainingExtraCase() {
         createManga("Fairy Tail")
 
         createChapter("Fairy Tail 404.extravol002")
@@ -375,7 +402,8 @@ class ChapterRecognitionTest {
     /**
      * Chapter title containing omake (japanese extra) and vol
      */
-    @Test fun chapterContainingOmakeCase() {
+    @Test
+    fun chapterContainingOmakeCase() {
         createManga("Fairy Tail")
 
         createChapter("Fairy Tail 404.omakevol002")
@@ -394,7 +422,8 @@ class ChapterRecognitionTest {
     /**
      * Chapter title containing special and vol
      */
-    @Test fun chapterContainingSpecialCase() {
+    @Test
+    fun chapterContainingSpecialCase() {
         createManga("Fairy Tail")
 
         createChapter("Fairy Tail 404.specialvol002")
@@ -413,7 +442,8 @@ class ChapterRecognitionTest {
     /**
      * Chapter title containing comma's
      */
-    @Test fun chapterContainingCommasCase() {
+    @Test
+    fun chapterContainingCommasCase() {
         createManga("One Piece")
 
         createChapter("One Piece 300,a")
@@ -432,7 +462,8 @@ class ChapterRecognitionTest {
     /**
      * Test for chapters containing season
      */
-    @Test fun chapterContainingSeasonCase() {
+    @Test
+    fun chapterContainingSeasonCase() {
         createManga("D.I.C.E")
 
         createChapter("D.I.C.E[Season 001] Ep. 007")
@@ -444,7 +475,8 @@ class ChapterRecognitionTest {
     /**
      * Test for chapters in format sx - chapter xx
      */
-    @Test fun chapterContainingSeasonCase2() {
+    @Test
+    fun chapterContainingSeasonCase2() {
         createManga("The Gamer")
 
         createChapter("S3 - Chapter 20")
@@ -455,7 +487,8 @@ class ChapterRecognitionTest {
     /**
      * Test for chapters ending with s
      */
-    @Test fun chaptersEndingWithS() {
+    @Test
+    fun chaptersEndingWithS() {
         createManga("One Outs")
 
         createChapter("One Outs 001")

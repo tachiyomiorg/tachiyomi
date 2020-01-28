@@ -342,7 +342,7 @@
     <string name="action_move">Déplacer</string>
     <string name="action_export">Exporter</string>
     <string name="action_create">Créer</string>
-    <string name="app_not_available">Raccourcis</string>
+    <string name="app_not_available">Application indisponible</string>
     <string name="update_weekly">Chaque semaine</string>
     <string name="update_monthly">Chaque mois</string>
     <string name="amoled_theme">Thème AMOLED</string>
@@ -352,7 +352,7 @@
     <string name="added_to_library">Ce manga a été ajouté à votre bibliothèque</string>
     <string name="manga_info_last_chapter_label">Dernier chapitre</string>
     <string name="chapter_paused">En pause</string>
-    <string name="action_open_log">Ouvre le fichier journal</string>
+    <string name="action_open_log">Ouvrir le fichier journal</string>
     <string name="action_restore">Restaurer</string>
     <string name="pref_backup_directory">Dossier de sauvegarde</string>
     <string name="pref_backup_service_category">Service</string>
@@ -363,10 +363,10 @@
     <string name="backup_choice">Que voulez-vous sauvegarder ?</string>
     <string name="invalid_combination">Le défaut ne peut pas être selectionné avec des autres catégories</string>
     <string name="delete_downloads_for_manga">Supprimer les chapitres téléchargés ?</string>
-    <string name="notification_new_chapters_text">Pour %1$s chapitres</string>
+    <string name="notification_new_chapters_text">Pour %1$d chapitres</string>
     <string name="track">Suivi</string>
     <string name="action_sort_total">Nombre de chapitres</string>
-    <string name="short_recent_updates">Actualisations</string>
+    <string name="short_recent_updates">Mises à jour</string>
     <string name="pref_download_new_categories">Catégories à inclure dans le téléchargement</string>
     <string name="pref_create_backup">Créer une sauvegarde</string>
     <string name="pref_create_backup_summ">Peut être utilisé pour restaurer la bibliothèque actuelle</string>
@@ -375,7 +375,7 @@
     <string name="pref_backup_interval">Fréquence de sauvegarde</string>
     <string name="pref_backup_slots">Nombre maximal de sauvegardes automatiques</string>
     <string name="dialog_restoring_backup">Restauration de sauvegarde en cours
-%1$s ajouté à la bibliothèque</string>
+\n%1$s ajouté à la bibliothèque</string>
     <string name="dialog_restoring_source_not_found">Restauration de sauvegarde en cours
 %1$s source introuvable</string>
     <string name="backup_created">Sauvegarde créée</string>
@@ -417,10 +417,10 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="ext_preferences">Préférences</string>
     <string name="ext_available">Disponible</string>
     <string name="untrusted_extension">Extension non reconnue</string>
-    <string name="untrusted_extension_message">Cette extension a été signé avec un certificat non reconnu et n\'a pas été activée.
-\n
-\nUne extension malveillante peut lire les certificats de connections sauvegardés sur Tachiyomi ou exécuter du code arbitraire.
-\n
+    <string name="untrusted_extension_message">Cette extension a été signé avec un certificat non reconnu et n\'a pas été activée. 
+\n 
+\nUne extension malveillante peut lire les identifiants de connexion sauvegardés sur Tachiyomi ou exécuter du code arbitraire. 
+\n 
 \nEn faisant confiance à ce certificat vous acceptez ces risques.</string>
     <string name="ext_version_info">Version : %1$s</string>
     <string name="ext_language_info">Langue : %1$s</string>
@@ -468,5 +468,21 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="darkblue_theme">Bleu foncé</string>
     <string name="pref_read_with_long_tap">Menu contextuel (appui prolongé)</string>
     <string name="reader_pull_up_for_more_options">Plus d\'options en défilant</string>
-
+    <string name="action_open_in_web_view">Ouvrir dans le navigateur intégré</string>
+    <string name="pref_true_color">Couleurs à 32 bits</string>
+    <string name="pref_skip_read_chapters">Passer les chapitres marqués comme lus</string>
+    <string name="filter_mode_default">Par défaut</string>
+    <string name="filter_mode_multiply">Multiplier</string>
+    <string name="filter_mode_screen">Écran</string>
+    <string name="pref_color_filter_mode">Mode de filtrage via couleurs mélangées</string>
+    <string name="filter_mode_overlay">Interface</string>
+    <string name="label_help">Aide</string>
+    <string name="pref_library_update_prioritization">Ordre de mise à jour de la bibliothèque</string>
+    <string name="pref_library_update_prioritization_summary">Sélectionnez l\'ordre dans lequel Tachiyomi doit vérifier si des mises à jour sont disponibles</string>
+    <string name="filter_mode_lighten">Densité/Éclaircir</string>
+    <string name="filter_mode_darken">Brûlé / Assombri</string>
+    <string name="action_forward">Suivant</string>
+    <string name="action_refresh">Actualiser</string>
+    <string name="no_results_found">Aucun résultats trouvés</string>
+    <string name="migration_selection_prompt">Sélectionner une source depuis laquelle migrer</string>
 </resources>

@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="@dimen/navigation_drawer_header_height"
-             android:gravity="bottom"
-             android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/navigation_drawer_header_height"
+    android:gravity="bottom"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:scaleType="centerCrop"/>
+        android:background="@color/colorPrimary" />
 
     <ImageView
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="@dimen/navigation_drawer_header_margin"
         android:scaleType="centerCrop"
-        android:src="@drawable/tachiyomi_circle"/>
+        android:src="@drawable/tachiyomi_circle" />
 
 </FrameLayout>

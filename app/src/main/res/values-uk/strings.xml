@@ -434,4 +434,17 @@
     <string name="channel_downloader">Завантажувач</string>
     <string name="pref_read_with_long_tap">Діалог тривалого тицяння</string>
     <string name="reader_pull_up_for_more_options">Потягніть задля додаткових опцій</string>
+    <string name="action_open_in_web_view">Відкрити у web view</string>
+    <string name="pref_true_color">32-бітний колір</string>
+    <string name="pref_skip_read_chapters">Пропускати глави, відмічені як прочитані</string>
+    <string name="pref_color_filter_mode">Режим накладання кольорового фільтру</string>
+    <string name="filter_mode_default">За замовчуванням</string>
+    <string name="filter_mode_overlay">Оверлей</string>
+    <string name="filter_mode_multiply">множення</string>
+    <string name="filter_mode_screen">Екран</string>
+    <string name="filter_mode_lighten">Світліше</string>
+    <string name="filter_mode_darken">Темніше</string>
+    <string name="label_help">Допомога</string>
+    <string name="pref_library_update_prioritization">Порядок оновлення бібліотеки</string>
+    <string name="pref_library_update_prioritization_summary">Оберіть порядок у якому Tachiyomi перевірятиме оновлення</string>
 </resources>

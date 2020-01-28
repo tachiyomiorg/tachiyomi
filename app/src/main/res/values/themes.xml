@@ -27,7 +27,7 @@
         <!-- Themes -->
         <item name="windowActionModeOverlay">true</item>
         <item name="actionBarTheme">@style/Theme.ActionBar.Light</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.Material</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Light</item>
 
 
@@ -39,8 +39,13 @@
         <item name="icon_color">@color/iconColorLight</item>
     </style>
 
+    <!--===========-->
+    <!-- Main Theme-->
+    <!--===========-->
     <style name="Theme.Tachiyomi" parent="Theme.Base">
-        <!-- Attributes specific for SDK 16 to SDK 20 -->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
     </style>
 
     <!--=============-->
@@ -61,11 +66,15 @@
         <item name="android:divider">@color/dividerDark</item>
         <item name="android:listDivider">@drawable/line_divider_dark</item>
 
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorDarkPrimaryDark</item>
+
         <!-- Themes -->
         <item name="windowActionModeOverlay">true</item>
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.Material</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="md_background_color">@color/dialogDark</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
 
@@ -86,6 +95,10 @@
     <style name="Theme.Tachiyomi.DarkBlue" parent="Theme.Base.Dark">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/colorDarkPrimaryDark</item>
     </style>
 
     <!--==============-->
@@ -96,10 +109,18 @@
         <item name="colorPrimaryDark">@color/colorAmoledPrimary</item>
         <item name="android:colorBackground">@color/md_black_1000</item>
 
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
+        <!-- Themes -->
+        <item name="md_background_color">@color/colorAmoledPrimary</item>
+        <item name="alertDialogTheme">@style/Theme.AlertDialog.Amoled</item>
+
         <!-- Custom Attributes-->
         <item name="selectable_list_drawable">@drawable/list_item_selector_amoled</item>
         <item name="selectable_library_drawable">@drawable/library_item_selector_amoled</item>
-        <item name="background_card">@color/dialog_amoled</item>
+        <item name="background_card">@color/colorAmoledPrimary</item>
     </style>
 
     <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled">
@@ -113,12 +134,18 @@
         <item name="colorPrimary">@color/colorDarkPrimary</item>
         <item name="colorPrimaryDark">@color/colorDarkPrimaryDark</item>
         <item name="android:colorBackground">@android:color/black</item>
+
+        <item name="android:statusBarColor">?colorPrimaryDark</item>
+        <item name="android:navigationBarColor">?colorPrimaryDark</item>
     </style>
 
     <style name="Theme.Base.Reader.Light" parent="Theme.Base">
         <item name="colorPrimary">@color/colorDarkPrimary</item>
         <item name="colorPrimaryDark">@color/colorDarkPrimaryDark</item>
         <item name="android:colorBackground">@android:color/white</item>
+
+        <item name="android:statusBarColor">?colorPrimaryDark</item>
+        <item name="android:navigationBarColor">?colorPrimaryDark</item>
     </style>
 
     <style name="Theme.Reader" parent="Theme.Base.Reader.Dark">
@@ -133,8 +160,10 @@
     <!--===============-->
     <!-- Launch Screen -->
     <!--===============-->
-    <style name="Theme.BrandedLaunch">
-        <item name="android:windowBackground">@drawable/branded_logo</item>
+    <style name="Theme.Splash" parent="Theme.Tachiyomi">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:statusBarColor">@color/splashBackgroundColor</item>
+        <item name="android:navigationBarColor">@color/splashBackgroundColor</item>
     </style>
 
 

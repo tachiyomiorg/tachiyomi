@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="64dp"
@@ -19,7 +19,6 @@
             android:padding="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="h,1:1"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@mipmap/ic_launcher_round" />
@@ -29,7 +28,6 @@
             style="@style/TextAppearance.Regular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="4dp"
             android:layout_marginEnd="4dp"
             android:ellipsize="end"
             android:maxLines="1"
@@ -55,7 +53,6 @@
             tools:text="English"
             tools:visibility="visible"/>
 
-
         <TextView
             android:id="@+id/version"
             style="@style/TextAppearance.Regular.Body1.Secondary"
@@ -64,8 +61,8 @@
             android:maxLines="1"
             android:textSize="12sp"
             app:layout_constraintBaseline_toBaselineOf="@id/lang"
-            app:layout_constraintLeft_toRightOf="@id/lang"
-            android:layout_marginLeft="4dp"
+            app:layout_constraintStart_toEndOf="@id/lang"
+            android:layout_marginStart="4dp"
             tools:text="Version" />
 
         <Button
@@ -73,7 +70,6 @@
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:foreground="?attr/selectableItemBackground"
@@ -84,8 +80,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Details"/>
 
-
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
 

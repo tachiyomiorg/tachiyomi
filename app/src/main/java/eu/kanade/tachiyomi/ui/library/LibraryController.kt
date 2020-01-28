@@ -4,14 +4,16 @@ import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.view.ActionMode
-import android.support.v7.widget.SearchView
+import com.google.android.material.tabs.TabLayout
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ActionMode
+import androidx.appcompat.widget.SearchView
 import android.view.*
+import androidx.core.view.GravityCompat
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.f2prateek.rx.preferences.Preference
@@ -91,6 +93,11 @@ class LibraryController(
      * Relay to notify the library's viewpager for updates.
      */
     val libraryMangaRelay: BehaviorRelay<LibraryMangaEvent> = BehaviorRelay.create()
+
+    /**
+     * Relay to notify the library's viewpager to select all manga
+     */
+    val selectAllRelay: PublishRelay<Int> = PublishRelay.create()
 
     /**
      * Number of manga per row in grid mode.
@@ -177,7 +184,7 @@ class LibraryController(
     override fun createSecondaryDrawer(drawer: DrawerLayout): ViewGroup {
         val view = drawer.inflate(R.layout.library_drawer) as LibraryNavigationView
         navView = view
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, Gravity.END)
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, GravityCompat.END)
 
         navView?.onGroupClicked = { group ->
             when (group) {
@@ -319,7 +326,7 @@ class LibraryController(
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
-        if (!query.isEmpty()) {
+        if (query.isNotEmpty()) {
             searchItem.expandActionView()
             searchView.setQuery(query, true)
             searchView.clearFocus()
@@ -337,7 +344,11 @@ class LibraryController(
                     searchRelay.call(query)
                 }
 
-        searchItem.fixExpand()
+        searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })
+    }
+
+    fun search(query: String) {
+        this.query = query
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
@@ -352,8 +363,9 @@ class LibraryController(
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.action_search -> expandActionViewFromInteraction = true
             R.id.action_filter -> {
-                navView?.let { activity?.drawer?.openDrawer(Gravity.END) }
+                navView?.let { activity?.drawer?.openDrawer(GravityCompat.END) }
             }
             R.id.action_update_library -> {
                 activity?.let { LibraryUpdateService.start(it) }
@@ -402,6 +414,7 @@ class LibraryController(
             }
             R.id.action_move_to_category -> showChangeMangaCategoriesDialog()
             R.id.action_delete -> showDeleteMangaDialog()
+            R.id.action_select_all -> selectAllCategoryManga()
             else -> return false
         }
         return true
@@ -489,6 +502,12 @@ class LibraryController(
         }
     }
 
+    private fun selectAllCategoryManga() {
+        adapter?.categories?.getOrNull(library_pager.currentItem)?.id?.let {
+            selectAllRelay.call(it)
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_OPEN) {
             if (data == null || resultCode != Activity.RESULT_OK) return
@@ -497,9 +516,9 @@ class LibraryController(
 
             try {
                 // Get the file's input stream from the incoming Intent
-                activity.contentResolver.openInputStream(data.data).use {
+                activity.contentResolver.openInputStream(data.data ?: Uri.EMPTY).use {
                     // Update cover to selected file, show error if something went wrong
-                    if (presenter.editCoverWithStream(it, manga)) {
+                    if (it != null && presenter.editCoverWithStream(it, manga)) {
                         // TODO refresh cover
                     } else {
                         activity.toast(R.string.notification_cover_update_failed)

@@ -100,9 +100,9 @@
     <string name="label_selected">%1$d kiválasztva</string>
     <string name="action_filter">Szűrők</string>
     <string name="action_filter_downloaded">Letöltve</string>
-    <string name="action_filter_bookmarked">Könyvjelzőzött</string>
+    <string name="action_filter_bookmarked">Könyvjelzőzve</string>
     <string name="action_filter_unread">Olvasatlan</string>
-    <string name="action_filter_read">Aktuális</string>
+    <string name="action_filter_read">Olvasott</string>
     <string name="action_filter_empty">Szűrők eltávolítása</string>
     <string name="action_sort_alpha">Betűrendben</string>
     <string name="action_sort_total">Összes fejezet</string>
@@ -169,5 +169,19 @@
     <string name="label_extensions">Bővítmények</string>
     <string name="ext_untrusted">Nem megbízható</string>
     <string name="ext_uninstall">Eltávolítás</string>
-    <string name="ext_preferences">Beállítások</string>
+    <string name="ext_preferences">Preferenciák</string>
+    <string name="darkblue_theme">Sötétkék</string>
+    <string name="all_lang">Összes</string>
+    <string name="label_extension_info">Bővítmény információ</string>
+    <string name="ext_details">Részletek</string>
+    <string name="ext_update">Frissítés</string>
+    <string name="ext_install">Telepítés</string>
+    <string name="ext_pending">Függőben</string>
+    <string name="ext_downloading">Letöltés</string>
+    <string name="ext_installing">Telepítés</string>
+    <string name="ext_installed">Telepítve</string>
+    <string name="ext_available">Elérhető</string>
+    <string name="action_open_in_web_view">Webnézet</string>
+    <string name="label_help">Segítség</string>
+    <string name="pref_library_update_prioritization">Könyvtár frissítési sorrend</string>
 </resources>

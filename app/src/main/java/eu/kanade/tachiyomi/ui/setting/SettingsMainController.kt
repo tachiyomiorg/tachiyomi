@@ -1,6 +1,6 @@
 package eu.kanade.tachiyomi.ui.setting
 
-import android.support.v7.preference.PreferenceScreen
+import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.util.getResourceColor
@@ -16,6 +16,12 @@ class SettingsMainController : SettingsController() {
             iconTint = tintColor
             titleRes = R.string.pref_category_general
             onClick { navigateTo(SettingsGeneralController()) }
+        }
+        preference {
+            iconRes = R.drawable.ic_book_black_24dp
+            iconTint = tintColor
+            titleRes = R.string.pref_category_library
+            onClick { navigateTo(SettingsLibraryController()) }
         }
         preference {
             iconRes = R.drawable.ic_chrome_reader_mode_black_24dp

@@ -5,7 +5,7 @@ import eu.kanade.tachiyomi.data.updater.Release
 
 /**
  * Release object.
- * Contains information about the latest release from Github.
+ * Contains information about the latest release from GitHub.
  *
  * @param version version of latest release.
  * @param info log of latest release.

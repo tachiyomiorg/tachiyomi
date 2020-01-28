@@ -42,9 +42,7 @@ object TrackTypeAdapter {
                 beginObject()
                 while (hasNext()) {
                     if (peek() == JsonToken.NAME) {
-                        val name = nextName()
-
-                        when (name) {
+                        when (nextName()) {
                             TITLE -> track.title = nextString()
                             SYNC -> track.sync_id = nextInt()
                             MEDIA -> track.media_id = nextInt()

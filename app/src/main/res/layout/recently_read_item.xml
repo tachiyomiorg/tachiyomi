@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cv_manga"
     style="@style/Theme.Widget.CardView.Item"
     android:padding="0dp">
@@ -65,8 +65,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@id/remove"
-                android:layout_toRightOf="@id/remove"
                 android:text="@string/action_resume"/>
+
         </RelativeLayout>
+
     </LinearLayout>
-</android.support.v7.widget.CardView>
+
+</androidx.cardview.widget.CardView>

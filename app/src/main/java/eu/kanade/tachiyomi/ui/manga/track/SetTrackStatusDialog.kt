@@ -32,7 +32,7 @@ class SetTrackStatusDialog<T> : DialogController
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         val item = item
-        val statusList = item.service.getStatusList().orEmpty()
+        val statusList = item.service.getStatusList()
         val statusString = statusList.mapNotNull { item.service.getStatus(it) }
         val selectedIndex = statusList.indexOf(item.track?.status)
 
@@ -40,10 +40,10 @@ class SetTrackStatusDialog<T> : DialogController
                 .title(R.string.status)
                 .negativeText(android.R.string.cancel)
                 .items(statusString)
-                .itemsCallbackSingleChoice(selectedIndex, { _, _, i, _ ->
+                .itemsCallbackSingleChoice(selectedIndex) { _, _, i, _ ->
                     (targetController as? Listener)?.setStatus(item, i)
                     true
-                })
+                }
                 .build()
     }
 

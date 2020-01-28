@@ -1,34 +1,19 @@
 package eu.kanade.tachiyomi.network
 
-import android.content.Context
-import android.os.Build
 import android.webkit.CookieManager
-import android.webkit.CookieSyncManager
 import okhttp3.Cookie
 import okhttp3.CookieJar
 import okhttp3.HttpUrl
 
-class AndroidCookieJar(context: Context) : CookieJar {
+class AndroidCookieJar : CookieJar {
 
     private val manager = CookieManager.getInstance()
 
-    private val syncManager by lazy { CookieSyncManager.createInstance(context) }
-
-    init {
-        // Init sync manager when using anything below L
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            syncManager
-        }
-    }
-
-    override fun saveFromResponse(url: HttpUrl, cookies: MutableList<Cookie>) {
+    override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
         val urlString = url.toString()
 
         for (cookie in cookies) {
             manager.setCookie(urlString, cookie.toString())
-        }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            syncManager.sync()
         }
     }
 
@@ -39,33 +24,32 @@ class AndroidCookieJar(context: Context) : CookieJar {
     fun get(url: HttpUrl): List<Cookie> {
         val cookies = manager.getCookie(url.toString())
 
-        return if (cookies != null && !cookies.isEmpty()) {
+        return if (cookies != null && cookies.isNotEmpty()) {
             cookies.split(";").mapNotNull { Cookie.parse(url, it) }
         } else {
             emptyList()
         }
     }
 
-    fun remove(url: HttpUrl) {
+    fun remove(url: HttpUrl, cookieNames: List<String>? = null, maxAge: Int = -1) {
         val urlString = url.toString()
         val cookies = manager.getCookie(urlString) ?: return
 
+        fun List<String>.filterNames(): List<String> {
+            return if (cookieNames != null) {
+                this.filter { it in cookieNames }
+            } else {
+                this
+            }
+        }
+
         cookies.split(";")
             .map { it.substringBefore("=") }
-            .onEach { manager.setCookie(urlString, "$it=;Max-Age=-1") }
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            syncManager.sync()
-        }
+            .filterNames()
+            .onEach { manager.setCookie(urlString, "$it=;Max-Age=$maxAge") }
     }
 
     fun removeAll() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            manager.removeAllCookies {}
-        } else {
-            manager.removeAllCookie()
-            syncManager.sync()
-        }
+        manager.removeAllCookies {}
     }
-
 }

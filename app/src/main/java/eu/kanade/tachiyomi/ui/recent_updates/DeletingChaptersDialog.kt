@@ -13,7 +13,7 @@ class DeletingChaptersDialog(bundle: Bundle? = null) : DialogController(bundle) 
         const val TAG = "deleting_dialog"
     }
 
-    override fun onCreateDialog(savedState: Bundle?): Dialog {
+    override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialDialog.Builder(activity!!)
                 .progress(true, 0)
                 .content(R.string.deleting)

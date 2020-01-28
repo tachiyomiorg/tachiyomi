@@ -434,4 +434,17 @@ Além disso, verifique se as fontes que requerem uma conta foram configuradas co
     <string name="darkblue_theme">Azul escuro</string>
     <string name="reader_pull_up_for_more_options">Deslize para cima para mais opções</string>
     <string name="pref_read_with_long_tap">Diálogo de toque longo</string>
+    <string name="action_open_in_web_view">Abra em webview</string>
+    <string name="pref_true_color">32-bit color</string>
+    <string name="pref_skip_read_chapters">Pular capítulos lidos</string>
+    <string name="filter_mode_default">Padrão</string>
+    <string name="filter_mode_screen">Tela</string>
+    <string name="label_help">Ajuda</string>
+    <string name="pref_color_filter_mode">Modo de aplicação do filtro de cores</string>
+    <string name="filter_mode_overlay">Sobreposição</string>
+    <string name="filter_mode_multiply">Multiplicar</string>
+    <string name="filter_mode_lighten">Clarear</string>
+    <string name="filter_mode_darken">Escurecer</string>
+    <string name="pref_library_update_prioritization">Ordem de atualização da biblioteca</string>
+    <string name="pref_library_update_prioritization_summary">Selecione a ordem que o Tachiyomi verificará por atualizações</string>
 </resources>

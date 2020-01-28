@@ -92,7 +92,7 @@ fun syncChaptersWithSource(db: DatabaseHelper,
     db.inTransaction {
         val deletedChapterNumbers = TreeSet<Float>()
         val deletedReadChapterNumbers = TreeSet<Float>()
-        if (!toDelete.isEmpty()) {
+        if (toDelete.isNotEmpty()) {
             for (c in toDelete) {
                 if (c.read) {
                     deletedReadChapterNumbers.add(c.chapter_number)
@@ -102,7 +102,7 @@ fun syncChaptersWithSource(db: DatabaseHelper,
             db.deleteChapters(toDelete).executeAsBlocking()
         }
 
-        if (!toAdd.isEmpty()) {
+        if (toAdd.isNotEmpty()) {
             // Set the date fetch for new items in reverse order to allow another sorting method.
             // Sources MUST return the chapters from most to less recent, which is common.
             var now = Date().time
@@ -121,19 +121,20 @@ fun syncChaptersWithSource(db: DatabaseHelper,
             db.insertChapters(toAdd).executeAsBlocking()
         }
 
-        if (!toChange.isEmpty()) {
+        if (toChange.isNotEmpty()) {
             db.insertChapters(toChange).executeAsBlocking()
         }
 
         // Fix order in source.
         db.fixChaptersSourceOrder(sourceChapters).executeAsBlocking()
 
-        // Set this manga as updated since chapters were changed
-        manga.last_update = Date().time
+        // Set manga's last update time to latest chapter's upload time if possible
+        val newestChapter = db.getChapters(manga).executeAsBlocking().maxBy { it.date_upload }
+        manga.last_update = newestChapter?.date_upload ?: manga.last_update
         db.updateLastUpdated(manga).executeAsBlocking()
     }
-    return Pair(toAdd.subtract(readded).toList(), toDelete.subtract(readded).toList())
 
+    return Pair(toAdd.subtract(readded).toList(), toDelete.subtract(readded).toList())
 }
 
 //checks if the chapter in db needs updated
