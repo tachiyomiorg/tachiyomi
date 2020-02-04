@@ -136,7 +136,7 @@
     <string name="ext_pending">Isetende</string>
     <string name="ext_downloading">Iscarrighende</string>
     <string name="ext_installing">Installende</string>
-    <string name="ext_installed">Installada</string>
+    <string name="ext_installed">Installadas</string>
     <string name="ext_trust">Mi fido</string>
     <string name="ext_untrusted">Nun mi fido</string>
     <string name="ext_uninstall">Disinstalla</string>
@@ -266,7 +266,7 @@
     <string name="password">Crae de intrada</string>
     <string name="show_password">Ammustra sa crae</string>
     <string name="login">Intra</string>
-    <string name="login_success">S\'intrada at tentu sutzessu</string>
+    <string name="login_success">Ses intradu</string>
     <string name="invalid_login">Intrada fallida</string>
     <string name="unknown_error">Errore disconnotu</string>
     <string name="library_search_hint">Tìtulu o autore…</string>
