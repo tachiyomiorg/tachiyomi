@@ -10,6 +10,7 @@ import androidx.appcompat.graphics.drawable.DrawerArrowDrawable
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.bluelinelabs.conductor.*
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
@@ -22,6 +23,7 @@ import eu.kanade.tachiyomi.ui.library.LibraryController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersController
 import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
+import eu.kanade.tachiyomi.ui.setting.SettingsDownloadController
 import eu.kanade.tachiyomi.ui.setting.SettingsMainController
 import kotlinx.android.synthetic.main.main_activity.*
 
@@ -75,12 +77,7 @@ class MainActivity : BaseActivity() {
                     R.id.nav_drawer_recently_read -> setRoot(RecentlyReadController(), id)
                     R.id.nav_drawer_catalogues -> setRoot(CatalogueController(), id)
                     R.id.nav_drawer_extensions -> setRoot(ExtensionController(), id)
-                    R.id.nav_drawer_downloads -> {
-                        router.pushController(DownloadController().withFadeTransaction())
-                    }
-                    R.id.nav_drawer_settings -> {
-                        router.pushController(SettingsMainController().withFadeTransaction())
-                    }
+                    R.id.nav_drawer_settings -> setRoot(SettingsMainController(), id)
                 }
             }
             drawer.closeDrawer(GravityCompat.START)
@@ -147,7 +144,18 @@ class MainActivity : BaseActivity() {
             }
             SHORTCUT_DOWNLOADS -> {
                 if (router.backstack.none { it.controller() is DownloadController }) {
-                    setSelectedDrawerItem(R.id.nav_drawer_downloads)
+                    if (router.backstackSize > 1) {
+                        router.popToRoot()
+                    }
+
+                    setSelectedDrawerItem(R.id.nav_drawer_settings)
+
+                    val newBackstack = listOf(
+                            RouterTransaction.with(SettingsMainController()),
+                            RouterTransaction.with(SettingsDownloadController()),
+                            RouterTransaction.with(DownloadController()))
+
+                    router.setBackstack(newBackstack, FadeChangeHandler())
                 }
             }
             Intent.ACTION_SEARCH, "com.google.android.gms.actions.SEARCH_ACTION" -> {

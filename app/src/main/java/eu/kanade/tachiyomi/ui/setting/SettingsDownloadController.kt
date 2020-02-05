@@ -10,12 +10,14 @@ import android.os.Environment
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
+import com.bluelinelabs.conductor.RouterTransaction
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
+import eu.kanade.tachiyomi.ui.download.DownloadController
 import eu.kanade.tachiyomi.util.system.getFilePicker
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -30,6 +32,12 @@ class SettingsDownloadController : BaseSettingsController() {
     override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
         titleRes = R.string.pref_category_downloads
 
+        preference {
+            titleRes = R.string.label_download_queue
+            onClick {
+                router.pushController(RouterTransaction.with(DownloadController()))
+            }
+        }
         preference {
             key = Keys.downloadsDirectory
             titleRes = R.string.pref_download_directory
