@@ -115,7 +115,7 @@
     <string name="pref_theme">Tema do aplicativo</string>
     <string name="light_theme">Claro</string>
     <string name="dark_theme">Escuro</string>
-    <string name="amoled_theme">AMOLED escuro</string>
+    <string name="amoled_theme">AMOLED</string>
     <string name="pref_start_screen">Tela inicial</string>
     <string name="pref_language">Idioma</string>
     <string name="system_default">Padrão do sistema</string>
@@ -455,6 +455,6 @@
     <string name="ext_obsolete">Obsoleto</string>
     <string name="obsolete_extension_message">Esta extensão não está mais disponível.</string>
     <string name="no_results_found">Nenhum resultado encontrado</string>
-    <string name="migration_selection_prompt">Escolha uma fonte para migrar</string>
+    <string name="migration_selection_prompt">Escolha uma fonte da qual migrar</string>
     <string name="invalid_download_dir">Diretório de download inválido</string>
 </resources>
