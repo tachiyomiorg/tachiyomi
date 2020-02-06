@@ -4,9 +4,9 @@
     <!-- Activities and fragments labels (toolbar title) -->
     <string name="label_settings">Configuraciones</string>
     <string name="label_download_queue">Cola de descargas</string>
-    <string name="label_library">Mi librería</string>
+    <string name="label_library">Librería</string>
     <string name="label_recent_manga">Leído Recientemente</string>
-    <string name="label_recent_updates">Actualizaciones de librería</string>
+    <string name="label_recent_updates">Actualizaciones recientes</string>
     <string name="label_catalogues">Catálogos</string>
     <string name="label_categories">Categorías</string>
     <string name="label_selected">Seleccionados: %1$d</string>
@@ -46,7 +46,7 @@
     <string name="action_remove">Eliminar</string>
     <string name="action_resume">Continuar</string>
     <string name="action_open_in_browser">Abrir en el navegador</string>
-    <string name="action_display_mode">Cambiar el modo de visualización</string>
+    <string name="action_display_mode">Modo de visualización</string>
     <string name="action_cancel">Cancelar</string>
     <string name="action_sort">Ordenar</string>
     <string name="action_install">Instalar</string>
@@ -188,8 +188,8 @@
     <string name="chapter_downloading_progress">Descargando (%1$d/%2$d)</string>
     <string name="chapter_error">Error</string>
     <string name="fetch_chapters_error">No pudo obtener capítulos</string>
-    <string name="show_title">Mostrar título</string>
-    <string name="show_chapter_number">Mostrar número de capítulo</string>
+    <string name="show_title">Título</string>
+    <string name="show_chapter_number">Número de capítulo</string>
     <string name="sorting_mode">Ordenado de capítulos</string>
     <string name="sort_by_source">Por fuente</string>
     <string name="sort_by_number">Por número de capítulo</string>
@@ -441,7 +441,7 @@
     <string name="source_not_installed">Fuente no instalada: %1$s</string>
     <string name="custom_download">Descargar cantidad personalizada</string>
     <string name="download_custom">Personalizado</string>
-    <string name="repeating">Relectura</string>
+    <string name="repeating">Releyendo</string>
     <string name="track_status">Estado</string>
     <string name="track_start_date">Empezado</string>
     <string name="track_type">Tipo</string>
@@ -480,4 +480,11 @@
     <string name="invalid_download_dir">Directorio de descarga inválido</string>
     <string name="ext_obsolete">Obsoleto</string>
     <string name="obsolete_extension_message">Esta extensión ya no está disponible.</string>
+    <string name="pref_date_format">Formato de fecha</string>
+    <string name="pref_category_library_update">Actualizaciones</string>
+    <string name="pref_category_library_categories">Categorías</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="logout_success">Has cerrado sesión</string>
+    <string name="currently_reading">Leyendo actualmente</string>
+    <string name="paused">En pausa</string>
 </resources>
