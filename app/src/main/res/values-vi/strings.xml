@@ -8,7 +8,6 @@
     <string name="label_recent_manga">Đã đọc gần đây</string>
     <string name="label_catalogues">Danh mục</string>
     <string name="label_recent_updates">Cập nhật mới của thư viện</string>
-    <string name="label_latest_updates">Cập nhật mới nhất</string>
     <string name="label_categories">Hạng mục</string>
     <string name="label_selected">Đã chọn: %1$d</string>
     <string name="label_backup">Sao lưu</string>
@@ -76,7 +75,6 @@
     <string name="pref_category_general">Chung</string>
     <string name="pref_category_reader">Trình đọc</string>
     <string name="pref_category_downloads">Tải xuống</string>
-    <string name="pref_category_sources">Nguồn truyện</string>
     <string name="pref_category_tracking">Theo dõi</string>
     <string name="pref_category_advanced">Nâng cao</string>
     <string name="pref_category_about">Giới thiệu</string>
@@ -285,7 +283,6 @@
     <string name="no_next_chapter">Không tìm thấy chương kế tiếp</string>
     <string name="no_previous_chapter">Không tìm thấy chương trước</string>
     <string name="decode_image_error">Không thể giải mã hình ảnh</string>
-    <string name="confirm_update_manga_sync">Cập nhật chương mới nhất của dịch vụ đang bật đến %1$d\?</string>
     <string name="confirm_set_image_as_cover">Bạn có chắc muốn đặt ảnh này làm ảnh bìa?</string>
     <string name="viewer_for_this_series">Kiểu đọc cho series này</string>
     <!-- Backup fragment -->

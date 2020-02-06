@@ -10,7 +10,6 @@
     <string name="label_library">Meine Bibliothek</string>
     <string name="label_recent_manga">Vor kurzem gelesen</string>
     <string name="label_catalogues">Kataloge</string>
-    <string name="label_latest_updates">Neueste Updates</string>
     <string name="label_categories">Kategorien</string>
     <string name="label_selected">Ausgewählt: %1$d</string>
     <string name="label_backup">Sicherung</string>
@@ -83,7 +82,6 @@
     <string name="pref_category_general">Allgemein</string>
     <string name="pref_category_reader">Lese-Einstellungen</string>
     <string name="pref_category_downloads">Downloads</string>
-    <string name="pref_category_sources">Quellen</string>
     <string name="pref_category_tracking">Synchronisation</string>
     <string name="pref_category_advanced">Erweitert</string>
     <string name="pref_category_about">Über</string>
@@ -314,7 +312,6 @@
     <string name="no_next_chapter">Nächstes Kapitel nicht gefunden</string>
     <string name="no_previous_chapter">Vorheriges Kapitel nicht gefunden</string>
     <string name="decode_image_error">Das Bild konnte nicht dekodiert werden</string>
-    <string name="confirm_update_manga_sync">Setze das letzte gelesen Kapitel auf %1$d?</string>
     <string name="confirm_set_image_as_cover">Dieses Bild als Vorschaubild setzen\?</string>
     <string name="viewer_for_this_series">Leser dieser Serie</string>
     <string name="recent_manga_source">%1$s - Kap.%2$s</string>
@@ -453,7 +450,6 @@
     <string name="action_webview_forward">Vorwärts</string>
     <string name="action_webview_refresh">Aktualisieren</string>
     <string name="pref_category_library">Bibliothek</string>
-    <string name="pref_ask_update_manga_sync">Vor dem Synchronisieren nachfragen</string>
     <string name="invalid_download_dir">Ungültiges Download-Verzeichnis</string>
     <string name="ext_obsolete">Veraltet</string>
     <string name="obsolete_extension_message">Diese Erweiterung ist nicht länger verfügbar.</string>

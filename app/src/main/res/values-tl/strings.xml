@@ -11,7 +11,6 @@
     <string name="label_recent_manga">Kakabasa</string>
     <string name="label_catalogues">Katalogo</string>
     <string name="label_recent_updates">Mga update sa aklatan</string>
-    <string name="label_latest_updates">Mga pinakabagong update</string>
     <string name="label_categories">Mga Kategorya</string>
     <string name="label_selected">Napili: %1$d</string>
     <string name="label_backup">Backup</string>
@@ -93,7 +92,6 @@
     <string name="pref_category_general">Pangkalahatan</string>
     <string name="pref_category_reader">Reader</string>
     <string name="pref_category_downloads">Mga Download</string>
-    <string name="pref_category_sources">Mga Source</string>
     <string name="pref_category_tracking">Sinusundan</string>
     <string name="pref_category_advanced">Advanced</string>
     <string name="pref_category_about">Tungkol</string>
@@ -385,7 +383,6 @@
     <string name="no_next_chapter">Hindi nakita ang susunod na kabanata</string>
     <string name="no_previous_chapter">Hindi nakita ang nakaraang kabanata</string>
     <string name="decode_image_error">Hindi ma-decode ang larawan</string>
-    <string name="confirm_update_manga_sync">I-update ang huling nabasang kabanata sa mga ini-enable na mga serbisyo sa %1$d\?</string>
     <string name="confirm_set_image_as_cover">Gusto mo bang i-set ang larawang ito bilang pabalat\?</string>
     <string name="viewer_for_this_series">Viewer para sa seryeng ito</string>
     <string name="transition_finished">Natapos:</string>

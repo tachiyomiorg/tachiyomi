@@ -11,7 +11,6 @@
     <string name="label_recent_manga">最近阅读</string>
     <string name="label_catalogues">搜索</string>
     <string name="label_recent_updates">新书上架</string>
-    <string name="label_latest_updates">最近更新</string>
     <string name="label_categories">分类</string>
     <string name="label_selected">已选择: %1$d</string>
     <string name="label_backup">备份</string>
@@ -92,7 +91,6 @@
     <string name="pref_category_general">通用</string>
     <string name="pref_category_reader">阅读</string>
     <string name="pref_category_downloads">下载</string>
-    <string name="pref_category_sources">图源</string>
     <string name="pref_category_tracking">同步</string>
     <string name="pref_category_advanced">高级</string>
     <string name="pref_category_about">关于</string>
@@ -372,7 +370,6 @@
     <string name="no_previous_chapter">前面没有啦</string>
     <string name="decode_image_error">图片加载失败。
 \n请尝试更换图片解码器或选择以下选项</string>
-    <string name="confirm_update_manga_sync">要从已开启的同步服务器上同步最新已读章节到%1$d吗？</string>
     <string name="confirm_set_image_as_cover">要将此页设为封面吗？</string>
     <string name="viewer_for_this_series">阅读模式</string>
     <string name="transition_finished">已读完:</string>
@@ -453,7 +450,6 @@
     <string name="action_webview_forward">前进</string>
     <string name="action_webview_refresh">刷新</string>
     <string name="pref_category_library">书架</string>
-    <string name="pref_ask_update_manga_sync">更新之前询问我</string>
     <string name="invalid_download_dir">下载路径错误</string>
     <string name="ext_obsolete">失效</string>
     <string name="obsolete_extension_message">这个扩展用不了了:-(</string>

@@ -12,7 +12,6 @@
     <string name="label_recent_manga">Nyligen läst</string>
     <string name="label_catalogues">Kataloger</string>
     <string name="label_recent_updates">Bibliotek uppdateringar</string>
-    <string name="label_latest_updates">Senaste uppdateringarna</string>
     <string name="label_categories">Kategorier</string>
     <string name="label_selected">Vald: %1$d</string>
     <string name="label_backup">Backup</string>
@@ -92,7 +91,6 @@
     <string name="pref_category_general">Allmänt</string>
     <string name="pref_category_reader">Läsare</string>
     <string name="pref_category_downloads">Nedladdningar</string>
-    <string name="pref_category_sources">Källor</string>
     <string name="pref_category_tracking">Spårning</string>
     <string name="pref_category_advanced">Avancerat</string>
     <string name="pref_category_about">Om appen</string>
@@ -373,7 +371,6 @@
     <string name="no_next_chapter">Nästa kapitel kunde inte hittas</string>
     <string name="no_previous_chapter">Föregående kapitel kunde inte hittas</string>
     <string name="decode_image_error">Bilden kunde inte avkodas</string>
-    <string name="confirm_update_manga_sync">Uppdatera sista kapitlet läst på aktiverade tjänster till %1$d\?</string>
     <string name="confirm_set_image_as_cover">Ställ in denna bilden som omslaget\?</string>
     <string name="viewer_for_this_series">Visare för denna serie</string>
     <string name="transition_finished">Färdig:</string>
@@ -453,7 +450,6 @@
     <string name="action_webview_forward">Framåt</string>
     <string name="action_webview_refresh">Uppdatera</string>
     <string name="pref_category_library">Bibliotek</string>
-    <string name="pref_ask_update_manga_sync">Bekräfta innan uppdatering</string>
     <string name="invalid_download_dir">Ogiltig nedladdningskatalog</string>
     <string name="ext_obsolete">Obsolet</string>
     <string name="obsolete_extension_message">Detta tillägg är inte längre tillgänglig.</string>

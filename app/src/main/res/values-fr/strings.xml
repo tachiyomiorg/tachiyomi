@@ -8,7 +8,6 @@
     <string name="label_recent_manga">Lu récemment</string>
     <string name="label_catalogues">Catalogues</string>
     <string name="label_recent_updates">Nouveautés bibliothèque</string>
-    <string name="label_latest_updates">Dernières nouveautés</string>
     <string name="label_categories">Catégories</string>
     <string name="label_selected">Sélectionné : %1$d</string>
     <string name="label_backup">Sauvegarde</string>
@@ -75,7 +74,6 @@
     <string name="pref_category_general">Général</string>
     <string name="pref_category_reader">Lecteur</string>
     <string name="pref_category_downloads">Téléchargements</string>
-    <string name="pref_category_sources">Sources</string>
     <string name="pref_category_tracking">Suivi</string>
     <string name="pref_category_advanced">Avancé</string>
     <string name="pref_category_about">À propos</string>
@@ -267,7 +265,6 @@
     <string name="no_next_chapter">Chapitre suivant non trouvé</string>
     <string name="no_previous_chapter">Chapitre précédent non trouvé</string>
     <string name="decode_image_error">L\'image n\'a pas pu être décodée</string>
-    <string name="confirm_update_manga_sync">Mettre à jour le dernier chapitre lu dans les services activés à %1$d ?</string>
     <string name="confirm_set_image_as_cover">Voulez-vous mettre cette image comme couverture ?</string>
     <string name="viewer_for_this_series">Lecteur pour cette série</string>
     <!-- Backup fragment -->

@@ -9,7 +9,6 @@
     <string name="label_settings">ตั้งค่า</string>
     <string name="label_download_queue">คิวดาวน์โหลด</string>
     <string name="label_library">ห้องสมุดของฉัน</string>
-    <string name="label_latest_updates">อัพเดทล่าสุด</string>
     <string name="label_selected">เลือก: %1$d</string>
     <string name="label_backup">การสำรองข้อมูล</string>
     <string name="label_extensions">ส่วนขยาย</string>
@@ -62,7 +61,6 @@
     <string name="short_recent_updates">อัพเดท</string>
     <string name="pref_category_general">ทั่วไป</string>
     <string name="pref_category_reader">ตัวอ่าน</string>
-    <string name="pref_category_sources">แหล่งที่มา</string>
     <string name="pref_category_advanced">ขั้นสูง</string>
     <string name="pref_category_about">เกี่ยวกับ</string>
     <string name="default_columns">ค่าเริ่มต้น</string>
@@ -384,7 +382,6 @@
     <string name="no_next_chapter">ไม่พบบทถัดไป</string>
     <string name="no_previous_chapter">ไม่พบบทก่อนหน้านี้</string>
     <string name="decode_image_error">ไม่สามารถถอดรหัสรูปภาพได้</string>
-    <string name="confirm_update_manga_sync">เปิดบริการอัปเดตบทที่อ่านล่าสุด %1$d หรือไม่\?</string>
     <string name="confirm_set_image_as_cover">คุณต้องการที่จะตั้งค่าภาพเป็นภาพที่ปกใช่มั้ย\?</string>
     <string name="viewer_for_this_series">ตัวแสดงสำหรับชุดนี้</string>
     <string name="transition_finished">เสร็จแล้ว:</string>

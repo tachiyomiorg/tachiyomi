@@ -60,7 +60,6 @@
     <string name="pref_category_general">Geral</string>
     <string name="pref_category_reader">Leitor</string>
     <string name="pref_category_downloads">Transferências</string>
-    <string name="pref_category_sources">Fontes</string>
     <string name="pref_category_advanced">Avançado</string>
     <string name="pref_category_about">Sobre</string>
     <!-- General section -->
@@ -231,7 +230,6 @@
     <string name="no_next_chapter">Capítulo seguinte não encontrado</string>
     <string name="no_previous_chapter">Capítulo anterior não encontrado</string>
     <string name="decode_image_error">A imagem não pôde ser decodificada</string>
-    <string name="confirm_update_manga_sync">Atualizar último capítulo lido a %1$d nos serviços ativos?</string>
     <string name="viewer_for_this_series">Visualizador para esta série</string>
     <!-- Backup fragment -->
     <string name="backup">Cópia de segurança</string>
@@ -281,7 +279,6 @@
     <string name="manga">Mangá</string>
     <string name="track">Manutenção</string>
     <string name="history">Histórico</string>
-    <string name="label_latest_updates">Últimas atualizações</string>
     <string name="label_extensions">Extensões</string>
     <string name="label_extension_info">Info. da extensão</string>
     <string name="action_filter_bookmarked">Favoritos</string>

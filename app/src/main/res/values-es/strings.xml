@@ -58,7 +58,6 @@
     <string name="pref_category_general">General</string>
     <string name="pref_category_reader">Lector</string>
     <string name="pref_category_downloads">Descargas</string>
-    <string name="pref_category_sources">Fuentes</string>
     <string name="pref_category_tracking">Seguimiento</string>
     <string name="pref_category_advanced">Avanzado</string>
     <string name="pref_category_about">Acerca de</string>
@@ -222,7 +221,6 @@
     <string name="no_next_chapter">Siguiente capítulo no encontrado</string>
     <string name="no_previous_chapter">Capítulo anterior no encontrado</string>
     <string name="decode_image_error">"La imagen no se pudo decodificar. "</string>
-    <string name="confirm_update_manga_sync">¿Actualizar el último capítulo leído a %1$d en los servicios activos?</string>
     <string name="viewer_for_this_series">Lectura para esta serie</string>
     <!-- Backup fragment -->
     <string name="backup">Copia de seguridad</string>
@@ -272,7 +270,6 @@
     <string name="manga">Manga</string>
     <string name="track">Seguimiento</string>
     <string name="history">Historial</string>
-    <string name="label_latest_updates">Últimas Actualizaciones</string>
     <string name="action_filter_bookmarked">Marcado</string>
     <string name="action_filter_read">Leído</string>
     <string name="action_sort_alpha">Alfabéticamente</string>
@@ -480,7 +477,6 @@
     <string name="action_webview_forward">Adelante</string>
     <string name="action_webview_refresh">Refrescar</string>
     <string name="pref_category_library">Biblioteca</string>
-    <string name="pref_ask_update_manga_sync">Confirmar antes de actualizar</string>
     <string name="invalid_download_dir">Directorio de descarga inválido</string>
     <string name="ext_obsolete">Obsoleto</string>
     <string name="obsolete_extension_message">Esta extensión ya no está disponible.</string>

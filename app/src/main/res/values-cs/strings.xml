@@ -7,7 +7,6 @@
     <string name="label_settings">Nastavení</string>
     <string name="label_library">Moje knihovna</string>
     <string name="label_recent_manga">Nedávno čteno</string>
-    <string name="label_latest_updates">Poslední aktualizace</string>
     <string name="label_categories">Kategorie</string>
     <string name="label_selected">Vybráno: %1$d</string>
     <string name="label_backup">Záloha</string>
@@ -259,7 +258,6 @@
     <string name="short_recent_updates">Aktualizace</string>
     <string name="pref_category_general">Obecné</string>
     <string name="pref_category_reader">Čtečka</string>
-    <string name="pref_category_sources">Zdroje</string>
     <string name="pref_category_tracking">Sledování</string>
     <string name="pref_category_advanced">Pokročilé</string>
     <string name="pref_category_about">O aplikaci</string>
@@ -411,7 +409,6 @@
     <string name="url_not_set">Url mangy není nastaveno, klikněte prosím na název a vyberte mangu znovu.</string>
     <string name="error_category_exists">Kategorie s tímto jménem již existuje!</string>
     <string name="dialog_with_checkbox_remove_description">Toto odstraní datum přečtení této kapitoly. Jste si jistý\?</string>
-    <string name="confirm_update_manga_sync">Aktualizovat poslední přečtenou kapitolu v povolených službách na %1$d\?</string>
     <string name="confirm_set_image_as_cover">Chcete tento obrázek nastavit jako obal\?</string>
     <string name="viewer_for_this_series">Prohlížeč této série</string>
     <string name="transition_pages_error">Chyba při načítání stránek: %1$s</string>
@@ -452,7 +449,6 @@
     <string name="action_webview_forward">Vpřed</string>
     <string name="action_webview_refresh">Obnovit</string>
     <string name="pref_category_library">Knihovna</string>
-    <string name="pref_ask_update_manga_sync">Potvrdit před aktualizací</string>
     <string name="invalid_download_dir">Neplatný adresář stahování</string>
     <string name="ext_obsolete">Zastaralý</string>
     <string name="obsolete_extension_message">Tohle rozšíření již není dostupné.</string>

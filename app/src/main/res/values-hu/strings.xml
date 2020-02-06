@@ -9,7 +9,6 @@
     <string name="label_settings">Beállítások</string>
     <string name="label_recent_manga">Legutóbb olvasott</string>
     <string name="label_catalogues">Katalógusok</string>
-    <string name="label_latest_updates">Legutóbbi frissítések</string>
     <string name="label_categories">Kategóriák</string>
     <string name="label_backup">Biztonsági mentés</string>
     <string name="action_settings">Beállítások</string>
@@ -34,7 +33,6 @@
     <string name="pref_category_general">Általános</string>
     <string name="pref_category_reader">Olvasó</string>
     <string name="pref_category_downloads">Letöltések</string>
-    <string name="pref_category_sources">Források</string>
     <string name="pref_category_tracking">Nyilvántartás</string>
     <string name="pref_category_advanced">Speciális</string>
     <string name="pref_category_about">Névjegy</string>

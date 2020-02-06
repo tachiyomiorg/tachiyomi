@@ -12,7 +12,6 @@
     <string name="label_recent_manga">Yakında okunan</string>
     <string name="label_catalogues">Kataloglar</string>
     <string name="label_recent_updates">Kitaplık güncellemeleri</string>
-    <string name="label_latest_updates">Son güncellemeler</string>
     <string name="label_categories">Kategoriler</string>
     <string name="label_selected">Seçilen: %1$d</string>
     <string name="label_backup">Yedekleme</string>
@@ -92,7 +91,6 @@
     <string name="pref_category_general">Genel</string>
     <string name="pref_category_reader">Okuyucu</string>
     <string name="pref_category_downloads">İndirmeler</string>
-    <string name="pref_category_sources">Kaynaklar</string>
     <string name="pref_category_tracking">İzleme</string>
     <string name="pref_category_advanced">Gelişmiş</string>
     <string name="pref_category_about">Hakkında</string>
@@ -372,7 +370,6 @@
     <string name="no_next_chapter">Sonraki bölüm bulunamadı</string>
     <string name="no_previous_chapter">Önceki bölüm bulunamadı</string>
     <string name="decode_image_error">Görsel kodu çözülemedi</string>
-    <string name="confirm_update_manga_sync">Etkin hizmetlerde okunan son bölüm %1$d ile güncellensin mi?</string>
     <string name="confirm_set_image_as_cover">Bu görsel kapak resmi olarak kullanılsın mı\?</string>
     <string name="viewer_for_this_series">Bu dizi için görüntüleyici</string>
     <string name="recent_manga_source">%1$s - Böl.%2$s</string>
@@ -453,7 +450,6 @@
     <string name="action_webview_forward">İleri</string>
     <string name="action_webview_refresh">Yenile</string>
     <string name="pref_category_library">Kitaplık</string>
-    <string name="pref_ask_update_manga_sync">Güncellemeden önce sor</string>
     <string name="invalid_download_dir">Geçersiz indirme dizini</string>
     <string name="ext_obsolete">Eski</string>
     <string name="obsolete_extension_message">Bu uzantı artık kullanılamaz.</string>

@@ -12,7 +12,6 @@
     <string name="label_recent_manga">Нещодавно прочитане</string>
     <string name="label_catalogues">Каталоги</string>
     <string name="label_recent_updates">Оновлення бібліотеки</string>
-    <string name="label_latest_updates">Останні оновлення</string>
     <string name="label_categories">Категорії</string>
     <string name="label_selected">Обрані: %1$d</string>
     <string name="label_backup">Резервна копія</string>
@@ -92,7 +91,6 @@
     <string name="pref_category_general">Головні</string>
     <string name="pref_category_reader">Читалка</string>
     <string name="pref_category_downloads">Завантаження</string>
-    <string name="pref_category_sources">Джерела</string>
     <string name="pref_category_tracking">Відстеження</string>
     <string name="pref_category_advanced">Додатково</string>
     <string name="pref_category_about">Інформація</string>
@@ -372,7 +370,6 @@
     <string name="no_next_chapter">Наступну главу не знайдено</string>
     <string name="no_previous_chapter">Попередню главу не знайдено</string>
     <string name="decode_image_error">Зображення не може бути декодовано</string>
-    <string name="confirm_update_manga_sync">Оновити останню прочитану главу на сервісі %1$d\?</string>
     <string name="confirm_set_image_as_cover">Ви бажаєте встановити цю картинку як обкладинку\?</string>
     <string name="viewer_for_this_series">Відображення для цієї серії</string>
     <string name="transition_finished">Завершено:</string>

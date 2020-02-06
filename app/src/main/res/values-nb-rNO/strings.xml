@@ -11,7 +11,6 @@
     <string name="label_recent_manga">Nylig lest</string>
     <string name="label_catalogues">Kataloger</string>
     <string name="label_recent_updates">Bibliotekoppdateringer</string>
-    <string name="label_latest_updates">Nyeste oppdateringer</string>
     <string name="label_categories">Kategorier</string>
     <string name="label_selected">Valgt: %1$d</string>
     <string name="label_backup">Sikkerhetskopi</string>
@@ -89,7 +88,6 @@
     <string name="pref_category_general">Generelt</string>
     <string name="pref_category_reader">Leser</string>
     <string name="pref_category_downloads">Nedlastinger</string>
-    <string name="pref_category_sources">Kilder</string>
     <string name="pref_category_advanced">Avansert</string>
     <string name="pref_category_about">Om</string>
     <string name="default_columns">Forvalg</string>
@@ -403,7 +401,6 @@
     <string name="backup_restore_content">Gjenoppretting bruker kilde for å hente data, mobilkostnader kan tilkomme.
 \n
 \nForsikre deg om at du har installert alle nødvendige utvidelser og er logget inn i kilder og sporingstjenester før du gjenoppretter.</string>
-    <string name="confirm_update_manga_sync">Oppdater siste leste kapittel i eksterne tjenester for %1$d\?</string>
     <string name="confirm_set_image_as_cover">Bruk dette bildet som omslag\?</string>
     <string name="viewer_for_this_series">Leser for denne serien</string>
     <string name="migration_info">Trykk for å velge kilde å migrere fra</string>
@@ -453,7 +450,6 @@
     <string name="action_webview_forward">Fram</string>
     <string name="action_webview_refresh">Gjenoppfrisk</string>
     <string name="pref_category_library">Bibliotek</string>
-    <string name="pref_ask_update_manga_sync">Bekreft før oppdatering</string>
     <string name="invalid_download_dir">Ugyldig nedlastingsmappe</string>
     <string name="ext_obsolete">Foreldet</string>
     <string name="obsolete_extension_message">Denne utvidelsen er ikke lenger tilgjengelig.</string>

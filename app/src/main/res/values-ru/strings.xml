@@ -81,7 +81,6 @@
     <string name="confirm_delete_chapters">Вы уверены что хотите удалить выбранные главы?</string>
     <string name="confirm_delete_manga">Вы уверены что хотите удалить выбранные манга?</string>
     <string name="confirm_set_image_as_cover">Использовать эту картинку как обложку\?</string>
-    <string name="confirm_update_manga_sync">Обновить последнюю прочитанную главу в сервисе на %1$d?</string>
     <string name="cookies_cleared">Куки удалены</string>
     <string name="cover_updated">Обложка обновлена</string>
     <string name="custom_dir">Пользовательский каталог</string>
@@ -132,7 +131,6 @@
     <string name="label_catalogues">Каталоги</string>
     <string name="label_categories">Категории</string>
     <string name="label_download_queue">Очередь загрузки</string>
-    <string name="label_latest_updates">Последние обновления</string>
     <string name="label_library">Библиотека</string>
     <string name="label_recent_manga">История</string>
     <string name="label_recent_updates">Обновления библиотеки</string>
@@ -187,7 +185,6 @@
     <string name="pref_category_downloads">Загрузки</string>
     <string name="pref_category_general">Основные</string>
     <string name="pref_category_reader">Читалка</string>
-    <string name="pref_category_sources">Источники</string>
     <string name="pref_category_tracking">Отслеживание</string>
     <string name="pref_clear_chapter_cache">Очистить кэш глав</string>
     <string name="pref_clear_cookies">Очистить куки</string>
@@ -452,7 +449,6 @@
     <string name="action_webview_forward">Вперед</string>
     <string name="action_webview_refresh">Обновить</string>
     <string name="pref_category_library">Библиотека</string>
-    <string name="pref_ask_update_manga_sync">Подтверждать перед обновлением</string>
     <string name="invalid_download_dir">Недопустимая директория для скачивания</string>
     <string name="ext_obsolete">Устарело</string>
     <string name="obsolete_extension_message">Это дополнение больше недоступно.</string>

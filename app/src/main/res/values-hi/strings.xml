@@ -12,7 +12,6 @@
     <string name="label_recent_manga">हाल ही में पढ़ें</string>
     <string name="label_catalogues">सूची</string>
     <string name="label_recent_updates">पुस्तकालय अद्यतन</string>
-    <string name="label_latest_updates">नवीनतम अद्यतन</string>
     <string name="label_categories">श्रेणियाँ</string>
     <string name="label_selected">श्रेणियाँ %1$d</string>
     <string name="label_backup">बैकअप</string>
@@ -89,7 +88,6 @@
     <string name="pref_category_general">सामान्य</string>
     <string name="pref_category_reader">पाठमाला</string>
     <string name="pref_category_downloads">डाउनलोड</string>
-    <string name="pref_category_sources">स्त्रोत</string>
     <string name="pref_category_tracking">पदचिह्न</string>
     <string name="pref_category_advanced">विकसित</string>
     <string name="pref_category_about">संबंध में</string>
@@ -326,7 +324,6 @@
     <string name="no_next_chapter">अगले अध्याय नहीं मिला</string>
     <string name="no_previous_chapter">पिछला अध्याय नहीं मिला</string>
     <string name="decode_image_error">छवि को डीकोड नहीं किया जा सका</string>
-    <string name="confirm_update_manga_sync">पिछले अध्याय को सक्षम सेवाओं में %1$d तक पढ़ा है?</string>
     <string name="confirm_set_image_as_cover">कवर कला के रूप में इस छवि का उपयोग करें\?</string>
     <string name="viewer_for_this_series">इस श्रृंखला के लिए दर्शक</string>
     <string name="recent_manga_source">%1$s - Ch.%2$s</string>
@@ -451,7 +448,6 @@
     <string name="action_webview_forward">आगे की ओर</string>
     <string name="action_webview_refresh">रीफ़्रेश करें</string>
     <string name="pref_category_library">पुस्तकालय</string>
-    <string name="pref_ask_update_manga_sync">अपडेट करने से पहले पुष्टि करें</string>
     <string name="invalid_download_dir">अमान्य डाउनलोड निर्देशिका</string>
     <string name="ext_obsolete">अप्रचलित</string>
     <string name="obsolete_extension_message">यह एक्सटेंशन अब उपलब्ध नहीं है।</string>

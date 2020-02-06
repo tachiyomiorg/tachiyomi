@@ -12,7 +12,6 @@
     <string name="label_recent_manga">Lèghidos dae pagu</string>
     <string name="label_catalogues">Catàlogos</string>
     <string name="label_recent_updates">Agiornamentos biblioteca</string>
-    <string name="label_latest_updates">Ùrtimos agiornamentos</string>
     <string name="label_categories">Categorias</string>
     <string name="label_selected">Ischertados: %1$d</string>
     <string name="label_backup">Còpia de seguresa</string>
@@ -92,7 +91,6 @@
     <string name="pref_category_general">Generales</string>
     <string name="pref_category_reader">Leghidore</string>
     <string name="pref_category_downloads">Iscarrigamentos</string>
-    <string name="pref_category_sources">Mitzas</string>
     <string name="pref_category_tracking">Arrastamentu</string>
     <string name="pref_category_advanced">Avantzadas</string>
     <string name="pref_category_about">Informatziones</string>
@@ -374,7 +372,6 @@
     <string name="no_next_chapter">Capìtulu imbeniente no agatadu</string>
     <string name="no_previous_chapter">Capìtulu antepostu no agatadu</string>
     <string name="decode_image_error">No est istadu possìbile decodificare s\'immàgine</string>
-    <string name="confirm_update_manga_sync">Agiornare a %1$d s\'ùrtimu capìtulu lèghidu in sos servìtzios abilitados\?</string>
     <string name="confirm_set_image_as_cover">Cheres impostare custa immàgine comente cobertedda\?</string>
     <string name="viewer_for_this_series">Visualizadore pro custa sèrie</string>
     <string name="transition_finished">Acabadu:</string>
@@ -453,7 +450,6 @@
     <string name="action_webview_forward">In antis</string>
     <string name="action_webview_refresh">Annoa</string>
     <string name="pref_category_library">Biblioteca</string>
-    <string name="pref_ask_update_manga_sync">Cunfirma in antis de agiornare</string>
     <string name="invalid_download_dir">Cartella de iscarrigamentu non vàlida</string>
     <string name="ext_obsolete">Obsoleta</string>
     <string name="obsolete_extension_message">Cust\'estensione no est prus disponìbile.</string>

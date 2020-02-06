@@ -8,7 +8,6 @@
     <string name="label_recent_manga">Наскоро прочетени</string>
     <string name="label_catalogues">Каталози</string>
     <string name="label_recent_updates">Наскоро обновени</string>
-    <string name="label_latest_updates">Последни обновления</string>
     <string name="label_categories">Категории</string>
     <string name="label_selected">Избрани: %1$d</string>
     <string name="label_backup">Резервно копие</string>
@@ -76,7 +75,6 @@
     <string name="pref_category_general">Основни настройки</string>
     <string name="pref_category_reader">Четец</string>
     <string name="pref_category_downloads">Изтегляния</string>
-    <string name="pref_category_sources">Източници</string>
     <string name="pref_category_tracking">Следене</string>
     <string name="pref_category_advanced">Разширени настройки</string>
     <string name="pref_category_about">За приложението</string>
@@ -284,7 +282,6 @@
     <string name="no_next_chapter">Не беше намерена следваща глава</string>
     <string name="no_previous_chapter">Не беше намерена предишна глава</string>
     <string name="decode_image_error">Неуспешно декодиране на изображението</string>
-    <string name="confirm_update_manga_sync">Обнови последната прочетена глава в %1$d?</string>
     <string name="confirm_set_image_as_cover">Желаете ли да използвате това изображение за корица?</string>
     <string name="viewer_for_this_series">Начин на четене за тази поредица</string>
     <!-- Backup fragment -->

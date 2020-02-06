@@ -11,7 +11,6 @@
     <string name="label_recent_manga">Baru saja dibaca</string>
     <string name="label_catalogues">Katalog</string>
     <string name="label_recent_updates">Pembaruan perpustakaan</string>
-    <string name="label_latest_updates">Terakhir diperbarui</string>
     <string name="label_categories">Kategori</string>
     <string name="label_selected">Terpilih: %1$d</string>
     <string name="label_backup">Cadangan</string>
@@ -85,7 +84,6 @@
     <string name="pref_category_general">Umum</string>
     <string name="pref_category_reader">Pembaca</string>
     <string name="pref_category_downloads">Unduhan</string>
-    <string name="pref_category_sources">Sumber</string>
     <string name="pref_category_tracking">Sinkronisasi</string>
     <string name="pref_category_advanced">Lanjutan</string>
     <string name="pref_category_about">Tentang</string>
@@ -316,7 +314,6 @@
     <string name="no_next_chapter">Bab berikutnya tidak ditemukan</string>
     <string name="no_previous_chapter">Bab sebelumnya tidak ditemukan</string>
     <string name="decode_image_error">Gambar tidak bisa diterjemahkan</string>
-    <string name="confirm_update_manga_sync">Perbaharui bab terakhir baca di layanan yang diaktifkan ke %1$d?</string>
     <string name="confirm_set_image_as_cover">Gunakan gambar ini sebagai sampul\?</string>
     <string name="viewer_for_this_series">Jumlah pembaca untuk seri ini</string>
     <string name="recent_manga_source">%1$s - Ch.%2$s</string>
@@ -453,7 +450,6 @@
     <string name="action_webview_forward">Teruskan</string>
     <string name="action_webview_refresh">Muat ulang</string>
     <string name="pref_category_library">Pustaka</string>
-    <string name="pref_ask_update_manga_sync">Konfirmasi sebelum update</string>
     <string name="invalid_download_dir">Direktori unduhan salah</string>
     <string name="ext_obsolete">Usang</string>
     <string name="obsolete_extension_message">Ekstensi ini sudah tidak tersedia.</string>

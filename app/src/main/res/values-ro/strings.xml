@@ -12,7 +12,6 @@
     <string name="label_recent_manga">Citite recent</string>
     <string name="label_catalogues">Surse</string>
     <string name="label_recent_updates">Actualizări bibliotecă</string>
-    <string name="label_latest_updates">Actualizări recente</string>
     <string name="label_categories">Categorii</string>
     <string name="label_selected">Selectate: %1$d</string>
     <string name="label_backup">Copie de rezervă</string>
@@ -89,7 +88,6 @@
     <string name="pref_category_general">Generale</string>
     <string name="pref_category_reader">Cititor</string>
     <string name="pref_category_downloads">Descărcări</string>
-    <string name="pref_category_sources">Surse</string>
     <string name="pref_category_tracking">Urmărind</string>
     <string name="pref_category_advanced">Avansat</string>
     <string name="pref_category_about">Despre</string>
@@ -371,7 +369,6 @@
     <string name="no_next_chapter">Capitolul următor nu a fost găsit</string>
     <string name="no_previous_chapter">Capitolul precedent nu a fost găsit</string>
     <string name="decode_image_error">Imaginea nu a putu fi decodată</string>
-    <string name="confirm_update_manga_sync">Actualizează ultimul capitol citit și pornește serviciile la %1$d\?</string>
     <string name="confirm_set_image_as_cover">Doriți să setați această imagine drept copertă\?</string>
     <string name="viewer_for_this_series">Cititor al acestei serii</string>
     <string name="transition_finished">Terminat:</string>

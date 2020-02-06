@@ -9,7 +9,6 @@
     <string name="label_download_queue">Latausjono</string>
     <string name="label_library">Kirjasto</string>
     <string name="label_recent_manga">Viimeksi luetut</string>
-    <string name="label_latest_updates">Viimeksi päivittyneet</string>
     <string name="label_categories">Kategoriat</string>
     <string name="action_settings">Asetukset</string>
     <string name="action_sort_last_read">Viimeksi luettu</string>
@@ -44,7 +43,6 @@
     <string name="no_next_chapter">Seuraavaa lukua ei löydy</string>
     <string name="no_previous_chapter">Aiempaa lukua ei löydy</string>
     <string name="decode_image_error">Kuvaa ei voitu decoodata</string>
-    <string name="confirm_update_manga_sync">Päivitä viimeiseksi luettu kappale käytössä oleviin palveluihin %1$d\?</string>
     <string name="confirm_set_image_as_cover">Käytetäänkö tätä kuvaa kansikuvana\?</string>
     <string name="viewer_for_this_series">Katselin tälle sarjalle</string>
     <string name="transition_finished">Valmistunut:</string>
@@ -168,7 +166,6 @@
     <string name="pref_category_general">Yleiset</string>
     <string name="pref_category_reader">Lukija</string>
     <string name="pref_category_downloads">Lataukset</string>
-    <string name="pref_category_sources">Lähteet</string>
     <string name="pref_category_advanced">Kehittyneet</string>
     <string name="pref_category_about">Tietoja</string>
     <string name="pref_library_columns">Kirjaston sarjoja per rivi</string>
@@ -453,7 +450,6 @@
     <string name="action_webview_forward">Eteenpäin</string>
     <string name="action_webview_refresh">Päivitä</string>
     <string name="pref_category_library">Kirjasto</string>
-    <string name="pref_ask_update_manga_sync">Vahvista ennen päivittämistä</string>
     <string name="invalid_download_dir">Virheellinen latauskansio</string>
     <string name="ext_obsolete">Vanhentunut</string>
     <string name="obsolete_extension_message">Tämä laajennus ei ole enää saatavilla.</string>

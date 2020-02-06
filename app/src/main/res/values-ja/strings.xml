@@ -11,7 +11,6 @@
     <string name="label_recent_manga">最近読んだ</string>
     <string name="label_catalogues">カタログ</string>
     <string name="label_recent_updates">ライブラリの更新歴</string>
-    <string name="label_latest_updates">最新漫画本章</string>
     <string name="label_categories">カテゴリ</string>
     <string name="label_selected">選択: %1$d</string>
     <string name="label_backup">バックアップ</string>
@@ -76,7 +75,6 @@
     <string name="app_not_available">利用できないアプリケーション</string>
     <string name="pref_category_general">全般</string>
     <string name="pref_category_downloads">ダウンロード</string>
-    <string name="pref_category_sources">出典</string>
     <string name="pref_category_advanced">高度な</string>
     <string name="pref_category_about">約</string>
     <string name="portrait">ポートレート</string>

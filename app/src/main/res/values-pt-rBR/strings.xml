@@ -12,7 +12,6 @@
     <string name="label_recent_manga">Lidos recentemente</string>
     <string name="label_catalogues">Catálogos</string>
     <string name="label_recent_updates">Atualizações da biblioteca</string>
-    <string name="label_latest_updates">Últimas atualizações</string>
     <string name="label_categories">Categorias</string>
     <string name="label_selected">Selecionado: %1$d</string>
     <string name="label_backup">Backup</string>
@@ -85,7 +84,6 @@
     <string name="pref_category_general">Geral</string>
     <string name="pref_category_reader">Leitor</string>
     <string name="pref_category_downloads">Downloads</string>
-    <string name="pref_category_sources">Fontes</string>
     <string name="pref_category_tracking">Monitoramento</string>
     <string name="pref_category_advanced">Avançado</string>
     <string name="pref_category_about">Sobre</string>
@@ -315,7 +313,6 @@
     <string name="no_next_chapter">Próximo capítulo não encontrado</string>
     <string name="no_previous_chapter">Capítulo anterior não encontrado</string>
     <string name="decode_image_error">A imagem não pôde ser decodificada</string>
-    <string name="confirm_update_manga_sync">Atualizar o último capítulo lido para %1$d nos serviços ativos?</string>
     <string name="confirm_set_image_as_cover">Usar esta imagem como capa\?</string>
     <string name="viewer_for_this_series">Leitura para esta série</string>
     <string name="recent_manga_source">%1$s - Cap.%2$s</string>
@@ -451,7 +448,6 @@
     <string name="action_webview_forward">Avançar</string>
     <string name="action_webview_refresh">Recarregar</string>
     <string name="pref_category_library">Biblioteca</string>
-    <string name="pref_ask_update_manga_sync">Confirme antes de atualizar</string>
     <string name="ext_obsolete">Obsoleto</string>
     <string name="obsolete_extension_message">Esta extensão não está mais disponível.</string>
     <string name="no_results_found">Nenhum resultado encontrado</string>

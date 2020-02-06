@@ -12,7 +12,6 @@
     <string name="label_recent_manga">Πρόσφατα αναγνωρισμένο</string>
     <string name="label_catalogues">Κατάλογοι</string>
     <string name="label_recent_updates">Ενημερώσεις βιβλιοθήκης</string>
-    <string name="label_latest_updates">Τελευταίες ενημερώσεις</string>
     <string name="label_categories">Κατηγορίες</string>
     <string name="label_selected">Επιλεγμένο: %1$d</string>
     <string name="label_backup">Αντίγραφο ασφάλειας</string>
@@ -92,7 +91,6 @@
     <string name="pref_category_general">Γενικά</string>
     <string name="pref_category_reader">Αναγνώστης</string>
     <string name="pref_category_downloads">Λήψεις</string>
-    <string name="pref_category_sources">Πηγές</string>
     <string name="pref_category_tracking">Παρακολούθηση</string>
     <string name="pref_category_advanced">Προχωρημένο</string>
     <string name="pref_category_about">Περί</string>
@@ -373,7 +371,6 @@
     <string name="no_next_chapter">Το επόμενο κεφάλαιο δεν βρέθηκε</string>
     <string name="no_previous_chapter">Το προηγούμενο κεφάλαιο δεν βρέθηκε</string>
     <string name="decode_image_error">Δεν ήταν δυνατή η αποκωδικοποίηση της εικόνας</string>
-    <string name="confirm_update_manga_sync">Ενημέρωση τελευταίου αναγνωσμένο κεφαλαίο στις ενεργοποιημένες υπηρεσίες σε %1$d ;</string>
     <string name="confirm_set_image_as_cover">Χρησιμοποιήστε αυτήν την εικόνα ως εξώφυλλο;</string>
     <string name="viewer_for_this_series">Αναγνώστης για αυτήν τη σειρά</string>
     <string name="transition_finished">Διαβασμένο:</string>
@@ -453,7 +450,6 @@
     <string name="action_webview_forward">Μπροστά</string>
     <string name="action_webview_refresh">Ανανέωση</string>
     <string name="pref_category_library">Συλλογή</string>
-    <string name="pref_ask_update_manga_sync">Επιβεβαιώστε προτού την ενημέρωση</string>
     <string name="invalid_download_dir">Μη έγκυρος κατάλογος λήψης</string>
     <string name="ext_obsolete">Aπαρχαιωμένο</string>
     <string name="obsolete_extension_message">Αυτή η επέκταση δεν είναι πλέον διαθέσιμη.</string>

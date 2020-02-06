@@ -12,7 +12,6 @@
     <string name="label_recent_manga">Nedavno čitano</string>
     <string name="label_catalogues">Katalozi</string>
     <string name="label_recent_updates">Ažuriranja biblioteke</string>
-    <string name="label_latest_updates">Najnovija ažuriranja</string>
     <string name="label_categories">Kategorije</string>
     <string name="label_selected">Izabrano: %1$d</string>
     <string name="label_backup">Rezerva</string>
@@ -92,7 +91,6 @@
     <string name="pref_category_general">Opšte</string>
     <string name="pref_category_reader">Čitač</string>
     <string name="pref_category_downloads">Preuzimanja</string>
-    <string name="pref_category_sources">Izvori</string>
     <string name="pref_category_tracking">Praćenja</string>
     <string name="pref_category_advanced">Napredno</string>
     <string name="pref_category_about">O</string>

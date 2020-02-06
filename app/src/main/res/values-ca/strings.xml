@@ -12,7 +12,6 @@
     <string name="label_recent_manga">Llegits recentment</string>
     <string name="label_catalogues">Catàlegs</string>
     <string name="label_recent_updates">Novetats de la biblioteca</string>
-    <string name="label_latest_updates">Darreres actualitzacions</string>
     <string name="label_categories">Categories</string>
     <string name="label_selected">Seleccionats: %1$d</string>
     <string name="label_backup">Còpia de seguretat</string>
@@ -92,7 +91,6 @@
     <string name="pref_category_general">General</string>
     <string name="pref_category_reader">Lector</string>
     <string name="pref_category_downloads">Baixades</string>
-    <string name="pref_category_sources">Fonts</string>
     <string name="pref_category_tracking">En seguiment</string>
     <string name="pref_category_advanced">Avançat</string>
     <string name="pref_category_about">Quant a</string>
@@ -373,7 +371,6 @@
     <string name="no_next_chapter">No s\'ha trobat el capítol següent</string>
     <string name="no_previous_chapter">No s\'ha trobat el capítol anterior</string>
     <string name="decode_image_error">No s\'ha pogut descodificar la imatge</string>
-    <string name="confirm_update_manga_sync">Voleu actualitzar el darrer capítol llegit a %1$d als serveis activats\?</string>
     <string name="confirm_set_image_as_cover">Voleu fer servir aquesta imatge com a portada\?</string>
     <string name="viewer_for_this_series">Lector per a aquesta sèrie</string>
     <string name="transition_finished">Finalitzat:</string>
@@ -453,7 +450,6 @@
     <string name="action_webview_forward">Endavant</string>
     <string name="action_webview_refresh">Actualitza</string>
     <string name="pref_category_library">Biblioteca</string>
-    <string name="pref_ask_update_manga_sync">Confirma abans d\'actualitzar</string>
     <string name="invalid_download_dir">El directori de baixada és invàlid</string>
     <string name="ext_obsolete">Obsoleta</string>
     <string name="obsolete_extension_message">Aquesta extensió ja no està disponible.</string>

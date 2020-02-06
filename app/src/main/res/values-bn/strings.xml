@@ -12,7 +12,6 @@
     <string name="label_recent_manga">সম্প্রতি পঠিত</string>
     <string name="label_catalogues">তালিকাগুলো</string>
     <string name="label_recent_updates">সংগ্রহ হালনাগাদ</string>
-    <string name="label_latest_updates">সর্বশেষ আপডেট</string>
     <string name="label_categories">বিভাগ সমূহ</string>
     <string name="label_selected">নির্বাচিত: %1$d</string>
     <string name="label_backup">ব্যাকআপ</string>
@@ -89,7 +88,6 @@
     <string name="pref_category_general">সাধারণ</string>
     <string name="pref_category_reader">পাঠক</string>
     <string name="pref_category_downloads">ডাউনলোডগুলো</string>
-    <string name="pref_category_sources">উৎস</string>
     <string name="pref_category_tracking">অনুসরিত</string>
     <string name="pref_category_advanced">অগ্রবর্তী</string>
     <string name="pref_category_about">সম্বন্ধে</string>
@@ -324,7 +322,6 @@
     <string name="no_next_chapter">পরবর্তী অধ্যায় খুঁজে পাওয়া যায়নি</string>
     <string name="no_previous_chapter">আগের অধ্যায় খুঁজে পাওয়া যায়নি</string>
     <string name="decode_image_error">ছবি decoded করা যাবে না</string>
-    <string name="confirm_update_manga_sync">শেষ পড়া অধ্যায় সেবাগুলোতে আপডেট করুন %1$d?</string>
     <string name="confirm_set_image_as_cover">আপনি কি এই ছবিটিকে কভার হিসেবে সেট করতে চান?</string>
     <string name="viewer_for_this_series">এই সিরিজের দর্শক</string>
     <string name="recent_manga_source">%1$s - অধ্যায়.%2$s</string>
@@ -451,7 +448,6 @@
     <string name="action_webview_forward">অগ্রবর্তী</string>
     <string name="action_webview_refresh">সতেজ করা</string>
     <string name="pref_category_library">গ্রন্থাগার</string>
-    <string name="pref_ask_update_manga_sync">আপডেট করার আগে নিশ্চিত করুন</string>
     <string name="invalid_download_dir">অকার্যকর ডাউনলোড ডিরেক্টরি</string>
     <string name="ext_obsolete">অপ্রচলিত</string>
     <string name="obsolete_extension_message">এই এক্সটেনশন আর পাওয়া যাচ্ছে না ।</string>

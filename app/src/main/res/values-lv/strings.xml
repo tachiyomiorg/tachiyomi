@@ -1,22 +1,20 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="name">Nosaukums</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name">Nosaukums</string>
     <string name="categories">Kategorijas</string>
     <string name="manga">Manga</string>
     <string name="chapters">Nodaļas</string>
     <string name="track">Sekošana</string>
     <string name="history">Vēsture</string>
-
     <string name="label_settings">Iestatījumi</string>
     <string name="label_download_queue">Lejupieladēšanas rinda</string>
     <string name="label_library">Mana bibliotēka</string>
     <string name="label_recent_manga">Nesen izlasīti</string>
     <string name="label_catalogues">Katalogi</string>
     <string name="label_recent_updates">Bibliotēkas atjauninājumi</string>
-    <string name="label_latest_updates">Pēdējie atjauninājumi</string>
     <string name="label_categories">Kategorijas</string>
     <string name="label_selected">Atlasīts: %1$d</string>
     <string name="label_backup">Rezerves kopija</string>
-
     <string name="action_settings">Iestatījumi</string>
     <string name="action_filter">Filtrs</string>
     <string name="action_filter_downloaded">Lejupieladēts</string>
@@ -79,19 +77,14 @@
     <string name="action_open_log">Atvērt žurnālfailu</string>
     <string name="action_create">Izveidot</string>
     <string name="action_restore">Atjaunot</string>
-
     <string name="deleting">Dzēsu…</string>
     <string name="loading">Ieladēšana…</string>
-
     <string name="app_not_available">Programma nav pieejama</string>
     <string name="short_recent_updates">Atjauninājumi</string>
-
     <string name="pref_category_general">Vispārīgas</string>
     <string name="pref_category_reader">Lasītājs</string>
     <string name="pref_category_downloads">Lejupieladējumi</string>
-    <string name="pref_category_sources">Avoti</string>
     <string name="pref_category_tracking">Sekošana</string>
     <string name="pref_category_advanced">Papildu iestatījumi</string>
     <string name="pref_category_about">Par programmu</string>
-
-      </resources>
+</resources>
