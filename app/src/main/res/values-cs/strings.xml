@@ -452,4 +452,5 @@
     <string name="invalid_download_dir">Neplatný adresář stahování</string>
     <string name="ext_obsolete">Zastaralý</string>
     <string name="obsolete_extension_message">Tohle rozšíření již není dostupné.</string>
+    <string name="logout">Odhlásit se</string>
 </resources>
