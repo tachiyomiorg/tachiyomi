@@ -8,10 +8,10 @@
     <string name="history">Histórico</string>
     <string name="label_settings">Configurações</string>
     <string name="label_download_queue">Fila de download</string>
-    <string name="label_library">Minha biblioteca</string>
+    <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Lidos recentemente</string>
     <string name="label_catalogues">Catálogos</string>
-    <string name="label_recent_updates">Atualizações da biblioteca</string>
+    <string name="label_recent_updates">Atualizações recentes</string>
     <string name="label_categories">Categorias</string>
     <string name="label_selected">Selecionado: %1$d</string>
     <string name="label_backup">Backup</string>
@@ -61,7 +61,7 @@
     <string name="action_move">Mover</string>
     <string name="action_open_in_browser">Abrir no navegador</string>
     <string name="action_add_to_home_screen">Adicionar à tela inicial</string>
-    <string name="action_display_mode">Alterar modo de visualização</string>
+    <string name="action_display_mode">Modo de visualização</string>
     <string name="action_display">Visualização</string>
     <string name="action_display_grid">Grade</string>
     <string name="action_display_list">Lista</string>
@@ -162,11 +162,11 @@
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
-    <string name="pref_download_directory">Pasta de downloads</string>
+    <string name="pref_download_directory">Local de download</string>
     <string name="pref_download_only_over_wifi">Fazer download apenas via Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Excluir ao marcar como lido</string>
     <string name="pref_remove_after_read">Excluir depois de ler</string>
-    <string name="custom_dir">Pasta personalizada</string>
+    <string name="custom_dir">Local personalizado</string>
     <string name="disabled">Desativado</string>
     <string name="last_read_chapter">Último capítulo lido</string>
     <string name="second_to_last">Penúltimo capítulo</string>
@@ -181,7 +181,7 @@
     <string name="pref_create_backup_summ">Pode ser usado para restaurar a biblioteca atual</string>
     <string name="pref_restore_backup">Restaurar backup</string>
     <string name="pref_restore_backup_summ">Restaurar biblioteca de um arquivo de backup</string>
-    <string name="pref_backup_directory">Pasta de backup</string>
+    <string name="pref_backup_directory">Local de backup</string>
     <string name="pref_backup_service_category">Serviço</string>
     <string name="pref_backup_interval">Frequência de backup</string>
     <string name="pref_backup_slots">Máximo de backups automáticos</string>
@@ -273,8 +273,8 @@
     <string name="chapter_error">Erro</string>
     <string name="chapter_paused">Pausado</string>
     <string name="fetch_chapters_error">Não foi possível obter capítulos</string>
-    <string name="show_title">Mostrar título</string>
-    <string name="show_chapter_number">Mostrar número do capítulo</string>
+    <string name="show_title">Título</string>
+    <string name="show_chapter_number">Número do capítulo</string>
     <string name="sorting_mode">Modo de classificação</string>
     <string name="sort_by_source">Pela fonte</string>
     <string name="sort_by_number">Pelo número do capítulo</string>
@@ -452,5 +452,15 @@
     <string name="obsolete_extension_message">Esta extensão não está mais disponível.</string>
     <string name="no_results_found">Nenhum resultado encontrado</string>
     <string name="migration_selection_prompt">Escolha uma fonte da qual migrar</string>
-    <string name="invalid_download_dir">Diretório de download inválido</string>
+    <string name="invalid_download_dir">Local de download inválido</string>
+    <string name="pref_date_format">Formato da data</string>
+    <string name="pref_category_library_display">Visualização</string>
+    <string name="pref_category_library_update">Atualizações</string>
+    <string name="pref_category_library_categories">Categorias</string>
+    <string name="logout_title">Desconectar de %1$s\?</string>
+    <string name="logout">Desconectar</string>
+    <string name="logout_success">Você foi desconectado</string>
+    <string name="currently_reading">Lendo atualmente</string>
+    <string name="paused">Pausado</string>
+    <string name="want_to_read">Quero ler</string>
 </resources>
