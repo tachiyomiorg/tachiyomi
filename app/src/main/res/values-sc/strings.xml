@@ -11,7 +11,7 @@
     <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Lèghidos dae pagu</string>
     <string name="label_catalogues">Catàlogos</string>
-    <string name="label_recent_updates">Agiornamentos biblioteca</string>
+    <string name="label_recent_updates">Agiornamentos reghendes</string>
     <string name="label_categories">Categorias</string>
     <string name="label_selected">Ischertados: %1$d</string>
     <string name="label_backup">Còpia de seguresa</string>
@@ -65,7 +65,7 @@
     <string name="action_move">Tràmuda</string>
     <string name="action_open_in_browser">Aberi in s\'esploradore (browser)</string>
     <string name="action_add_to_home_screen">Annanghe a s\'ischermada printzipale</string>
-    <string name="action_display_mode">Muda sa modalidade de visualizatzione</string>
+    <string name="action_display_mode">Modalidade de visualizatzione</string>
     <string name="action_display">Visualizatzione</string>
     <string name="action_display_grid">Grìllia</string>
     <string name="action_display_list">Lista</string>
@@ -264,7 +264,7 @@
     <string name="password">Crae de intrada</string>
     <string name="show_password">Ammustra sa crae</string>
     <string name="login">Intra</string>
-    <string name="login_success">Ses intradu</string>
+    <string name="login_success">Ses intradu chene problemas</string>
     <string name="invalid_login">Intrada fallida</string>
     <string name="unknown_error">Errore disconnotu</string>
     <string name="library_search_hint">Tìtulu o autore…</string>
@@ -323,8 +323,8 @@
     <string name="chapter_error">Errore</string>
     <string name="chapter_paused">In pàusa</string>
     <string name="fetch_chapters_error">Recùperu de sos capìtulos fallidu</string>
-    <string name="show_title">Ammustra su tìtulu</string>
-    <string name="show_chapter_number">Ammustra su nùmeru de su capìtulu</string>
+    <string name="show_title">Tìtulu</string>
+    <string name="show_chapter_number">Nùmeru de capìtulu</string>
     <string name="sorting_mode">Modalidade de ordinamentu</string>
     <string name="sort_by_source">Pro mitza</string>
     <string name="sort_by_number">Pro nùmeru de capìtulu</string>
@@ -344,7 +344,7 @@
     <string name="dropped">Abbandonadu</string>
     <string name="on_hold">In pàusa</string>
     <string name="plan_to_read">De lèghere</string>
-    <string name="repeating">Torrende a lèghere</string>
+    <string name="repeating">Leghende torra</string>
     <string name="score">Votu</string>
     <string name="title">Tìtulu</string>
     <string name="status">Istadu</string>
@@ -453,4 +453,14 @@
     <string name="invalid_download_dir">Cartella de iscarrigamentu non vàlida</string>
     <string name="ext_obsolete">Obsoleta</string>
     <string name="obsolete_extension_message">Cust\'estensione no est prus disponìbile.</string>
+    <string name="pref_date_format">Formadu de sa data</string>
+    <string name="pref_category_library_display">Visualizatzione</string>
+    <string name="pref_category_library_update">Agiornamentos</string>
+    <string name="pref_category_library_categories">Categorias</string>
+    <string name="logout_title">Essire dae %1$s\?</string>
+    <string name="logout">Essi</string>
+    <string name="logout_success">Ses essidu</string>
+    <string name="currently_reading">Leghende como</string>
+    <string name="paused">In pàusa</string>
+    <string name="want_to_read">Chi chèrgio lèghere</string>
 </resources>
