@@ -8,6 +8,7 @@ import android.os.Looper
 import android.webkit.WebSettings
 import android.webkit.WebView
 import eu.kanade.tachiyomi.util.system.WebViewClientCompat
+import eu.kanade.tachiyomi.util.system.checkVersion
 import okhttp3.Cookie
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.Interceptor
@@ -78,12 +79,15 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
         val headers = request.headers.toMultimap().mapValues { it.value.getOrNull(0) ?: "" }
 
         handler.post {
-            val view = WebView(context)
-            webView = view
-            view.settings.javaScriptEnabled = true
-            view.settings.userAgentString = request.header("User-Agent")
-            view.webViewClient = object : WebViewClientCompat() {
+            val webview = WebView(context)
+            webView = webview
 
+            webview.checkVersion()
+
+            webview.settings.javaScriptEnabled = true
+            webview.settings.userAgentString = request.header("User-Agent")
+
+            webview.webViewClient = object : WebViewClientCompat() {
                 override fun onPageFinished(view: WebView, url: String) {
                     fun isCloudFlareBypassed(): Boolean {
                         return networkHelper.cookieManager.get(origRequestUrl.toHttpUrl())
@@ -122,6 +126,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
                     }
                 }
             }
+
             webView?.loadUrl(origRequestUrl, headers)
         }
 

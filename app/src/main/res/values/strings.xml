@@ -522,6 +522,7 @@
     <string name="information_no_recent_manga">No recently read manga</string>
     <string name="information_empty_library">Your library is empty, add series to your library from the catalogues.</string>
     <string name="information_empty_category">You have no categories. Hit the plus button to create one for organizing your library.</string>
+    <string name="information_webview_outdated">Please update the WebView app for better compatibility</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Downloader</string>

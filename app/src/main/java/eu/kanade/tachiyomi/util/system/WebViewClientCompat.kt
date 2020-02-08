@@ -5,7 +5,7 @@ import android.os.Build
 import android.webkit.*
 
 @Suppress("OverridingDeprecatedMember")
-abstract class WebViewClientCompat : WebViewClient() {
+abstract class WebViewClientCompat: WebViewClient() {
 
     open fun shouldOverrideUrlCompat(view: WebView, url: String): Boolean {
         return false
