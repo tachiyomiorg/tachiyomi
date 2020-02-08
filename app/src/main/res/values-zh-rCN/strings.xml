@@ -7,10 +7,10 @@
     <string name="history">历史记录</string>
     <string name="label_settings">设置</string>
     <string name="label_download_queue">下载队列</string>
-    <string name="label_library">我的书架</string>
+    <string name="label_library">书架</string>
     <string name="label_recent_manga">最近阅读</string>
     <string name="label_catalogues">搜索</string>
-    <string name="label_recent_updates">新书上架</string>
+    <string name="label_recent_updates">最近更新</string>
     <string name="label_categories">分类</string>
     <string name="label_selected">已选择: %1$d</string>
     <string name="label_backup">备份</string>
@@ -320,8 +320,8 @@
     <string name="chapter_error">错误</string>
     <string name="chapter_paused">已暂停</string>
     <string name="fetch_chapters_error">获取章节失败</string>
-    <string name="show_title">显示标题</string>
-    <string name="show_chapter_number">显示章节数</string>
+    <string name="show_title">标题</string>
+    <string name="show_chapter_number">章节数</string>
     <string name="sorting_mode">排序模式</string>
     <string name="sort_by_source">按类型</string>
     <string name="sort_by_number">按章节</string>
@@ -453,4 +453,11 @@
     <string name="invalid_download_dir">下载路径错误</string>
     <string name="ext_obsolete">失效</string>
     <string name="obsolete_extension_message">这个扩展用不了了:-(</string>
+    <string name="pref_date_format">日期格式</string>
+    <string name="pref_category_library_update">更新</string>
+    <string name="pref_category_library_categories">类别</string>
+    <string name="logout_title">从 %1$s 登出？</string>
+    <string name="logout">登出</string>
+    <string name="logout_success">你现在已登出</string>
+    <string name="paused">已暂停</string>
 </resources>
