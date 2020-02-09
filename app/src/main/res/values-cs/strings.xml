@@ -5,7 +5,7 @@
     <string name="chapters">Kapitoly</string>
     <string name="history">Historie</string>
     <string name="label_settings">Nastavení</string>
-    <string name="label_library">Moje knihovna</string>
+    <string name="label_library">Knihovna</string>
     <string name="label_recent_manga">Nedávno čteno</string>
     <string name="label_categories">Kategorie</string>
     <string name="label_selected">Vybráno: %1$d</string>
@@ -126,7 +126,7 @@
     <string name="password">Heslo</string>
     <string name="show_password">Zobrazit heslo</string>
     <string name="login">Přihlásit se</string>
-    <string name="login_success">Přihlášení úspěšné</string>
+    <string name="login_success">Přihlášení proběhlo úspěšně</string>
     <string name="invalid_login">Chyba při přihlašování</string>
     <string name="unknown_error">Neznámá chyba</string>
     <string name="confirm_delete_manga">Opravdu chcete odstranit vybrané mangy\?</string>
@@ -232,7 +232,7 @@
     <string name="name">Název</string>
     <string name="track">Sledování</string>
     <string name="label_catalogues">Katalogy</string>
-    <string name="label_recent_updates">Aktualizace knihovny</string>
+    <string name="label_recent_updates">Nedávné aktualizace</string>
     <string name="action_filter_bookmarked">Založeno</string>
     <string name="action_sort_total">Celkem kapitol</string>
     <string name="action_bookmark">Založit</string>
@@ -247,7 +247,7 @@
     <string name="action_clear">Vymazat</string>
     <string name="action_retry">Opakovat</string>
     <string name="action_resume">Pokračovat</string>
-    <string name="action_display_mode">Změnit režim zobrazení</string>
+    <string name="action_display_mode">Režim zobrazení</string>
     <string name="action_display">Zobrazení</string>
     <string name="action_display_download_badge">Odznáček stažení</string>
     <string name="action_set_filter">Nastavit filtr</string>
@@ -453,4 +453,9 @@
     <string name="ext_obsolete">Zastaralý</string>
     <string name="obsolete_extension_message">Tohle rozšíření již není dostupné.</string>
     <string name="logout">Odhlásit se</string>
+    <string name="pref_date_format">Formát data</string>
+    <string name="pref_category_library_update">Aktualizace</string>
+    <string name="pref_category_library_categories">Kategorie</string>
+    <string name="logout_title">Odhlásit z %1$s\?</string>
+    <string name="logout_success">Byl jste odhlášen</string>
 </resources>
