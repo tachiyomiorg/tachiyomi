@@ -164,7 +164,7 @@
     <string name="pref_download_only_over_wifi">Nur über WLAN herunterladen</string>
     <string name="pref_remove_after_marked_as_read">Gelesene Kapitel löschen</string>
     <string name="pref_remove_after_read">Gelesene Kapitel löschen ab dem</string>
-    <string name="custom_dir">Benutzerdefinierter Speicherort</string>
+    <string name="custom_dir">Eigener Speicherort</string>
     <string name="disabled">Deaktiviert</string>
     <string name="last_read_chapter">Zuletzt gelesenem Kapitel</string>
     <string name="second_to_last">Zweitletzt gelesenem Kapitel</string>
