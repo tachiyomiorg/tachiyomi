@@ -460,7 +460,7 @@
     <string name="logout_title">Aus %1$s abmelden\?</string>
     <string name="logout">Abmelden</string>
     <string name="logout_success">Sie sind jetzt abgemeldet</string>
-    <string name="currently_reading">Wird zurzeit gelesen</string>
+    <string name="currently_reading">Am Lesen</string>
     <string name="paused">Pausiert</string>
     <string name="want_to_read">Möchte ich lesen</string>
 </resources>
