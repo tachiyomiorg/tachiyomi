@@ -61,6 +61,7 @@
     <string name="action_sort_down">Sort down</string>
     <string name="action_show_downloaded">Downloaded</string>
     <string name="action_next_unread">Next unread</string>
+    <string name="action_view_chapters">View chapters</string>
     <string name="action_start">Start</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Pause</string>
@@ -483,7 +484,14 @@
     <!-- Library update service notifications -->
     <string name="notification_update_progress">Update progress: %1$d/%2$d</string>
     <string name="notification_new_chapters">New chapters found</string>
-    <string name="notification_new_chapters_text">For %1$d titles</string>
+    <plurals name="notification_new_chapters_text">
+        <item quantity="one">For %d title</item>
+        <item quantity="other">For %d titles</item>
+    </plurals>
+    <plurals name="notification_and_n_more">
+        <item quantity="one">and %1$d more chapter.</item>
+        <item quantity="other">and %1$d more chapters.</item>
+    </plurals>
     <string name="notification_cover_update_failed">Failed to update cover</string>
     <string name="notification_first_add_to_library">Please add the manga to your library before doing this</string>
     <string name="notification_not_connected_to_ac_title">Sync canceled</string>
@@ -535,7 +543,8 @@
 
     <!-- Notification channels -->
     <string name="channel_common">Common</string>
-    <string name="channel_library">Library</string>
+    <string name="channel_library">Updating Library</string>
     <string name="channel_downloader">Downloader</string>
+    <string name="channel_new_chapters">New Chapters</string>
 
 </resources>

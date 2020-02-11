@@ -186,6 +186,19 @@ class ReaderPresenter(
     }
 
     /**
+     * Initializes this presenter with the given [mangaId] and [chapterUrl]. This method will
+     * fetch the manga from the database and initialize the initial chapter.
+     */
+    fun init(mangaId: Long, chapterUrl: String) {
+        if (!needsInit()) return
+        val context = Injekt.get<Application>()
+        val db = DatabaseHelper(context)
+        val chapterId = db.getChapter(chapterUrl, mangaId).executeAsBlocking()?.id
+        if (chapterId != null)
+            init(mangaId, chapterId)
+    }
+
+    /**
      * Initializes this presenter with the given [manga] and [initialChapterId]. This method will
      * set the chapter loader, view subscriptions and trigger an initial load.
      */

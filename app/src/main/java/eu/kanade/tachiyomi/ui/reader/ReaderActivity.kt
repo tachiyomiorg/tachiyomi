@@ -17,6 +17,8 @@ import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.notification.NotificationReceiver
+import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.activity.BaseRxActivity
@@ -102,10 +104,14 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         const val VERTICAL = 3
         const val WEBTOON = 4
 
-        fun newIntent(context: Context, manga: Manga, chapter: Chapter): Intent {
+        fun newIntent(context: Context, manga: Manga, chapter: Chapter):
+            Intent {
             val intent = Intent(context, ReaderActivity::class.java)
             intent.putExtra("manga", manga.id)
             intent.putExtra("chapter", chapter.id)
+            // chapters just added from library updates don't have an id yet
+            intent.putExtra("chapterUrl", chapter.url)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             return intent
         }
     }
@@ -124,13 +130,14 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         if (presenter.needsInit()) {
             val manga = intent.extras!!.getLong("manga", -1)
             val chapter = intent.extras!!.getLong("chapter", -1)
-
-            if (manga == -1L || chapter == -1L) {
+            val chapterUrl = intent.extras!!.getString("chapterUrl", "")
+            if (manga == -1L || chapterUrl == "" && chapter == -1L) {
                 finish()
                 return
             }
-
-            presenter.init(manga, chapter)
+            NotificationReceiver.dismissNotification(this, manga.hashCode(), Notifications.ID_NEW_CHAPTERS)
+            if (chapter > -1) presenter.init(manga, chapter)
+            else presenter.init(manga, chapterUrl)
         }
 
         if (savedState != null) {
