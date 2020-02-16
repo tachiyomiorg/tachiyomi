@@ -126,13 +126,23 @@
         app:layout_constraintTop_toBottomOf="@id/true_color" />
 
     <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/cutout_short"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/pref_cutout_short"
+        android:textColor="?android:attr/textColorSecondary"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/fullscreen" />
+
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/keepscreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/pref_keep_screen_on"
         android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/fullscreen" />
+        app:layout_constraintTop_toBottomOf="@id/cutout_short" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/long_tap"

@@ -74,6 +74,13 @@ class SettingsReaderController : SettingsController() {
             titleRes = R.string.pref_fullscreen
             defaultValue = true
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            switchPreference {
+                key = Keys.cutoutShort
+                titleRes = R.string.pref_cutout_short
+                defaultValue = true
+            }
+        }
         switchPreference {
             key = Keys.keepScreenOn
             titleRes = R.string.pref_keep_screen_on

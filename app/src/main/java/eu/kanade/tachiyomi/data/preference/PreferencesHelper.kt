@@ -67,6 +67,8 @@ class PreferencesHelper(val context: Context) {
 
     fun fullscreen() = rxPrefs.getBoolean(Keys.fullscreen, true)
 
+    fun cutoutShort() = rxPrefs.getBoolean(Keys.cutoutShort, true)
+
     fun keepScreenOn() = rxPrefs.getBoolean(Keys.keepScreenOn, true)
 
     fun customBrightness() = rxPrefs.getBoolean(Keys.customBrightness, false)

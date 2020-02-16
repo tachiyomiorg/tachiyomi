@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.reader
 
 import android.annotation.SuppressLint
+import android.annotation.TargetApi
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -120,9 +121,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             else -> R.style.Theme_Reader
         })
         super.onCreate(savedState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            window.attributes.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
-        }
         setContentView(R.layout.reader_activity)
 
         if (presenter.needsInit()) {
@@ -569,6 +567,11 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             subscriptions += preferences.fullscreen().asObservable()
                 .subscribe { setFullscreen(it) }
 
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                subscriptions += preferences.cutoutShort().asObservable()
+                        .subscribe { setCutoutShort(it)}
+            }
+
             subscriptions += preferences.keepScreenOn().asObservable()
                 .subscribe { setKeepScreenOn(it) }
 
@@ -647,6 +650,14 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 SystemUiHelper(this@ReaderActivity, level, flags)
             } else {
                 null
+            }
+        }
+
+        @TargetApi(Build.VERSION_CODES.P)
+        private fun setCutoutShort(enabled: Boolean) {
+            window.attributes.layoutInDisplayCutoutMode = when (enabled) {
+                true -> WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+                false -> WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
             }
         }
 
