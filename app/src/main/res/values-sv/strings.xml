@@ -8,10 +8,10 @@
     <string name="history">Historik</string>
     <string name="label_settings">Inställningar</string>
     <string name="label_download_queue">Nedladdningskö</string>
-    <string name="label_library">Mitt bibliotek</string>
+    <string name="label_library">Bibliotek</string>
     <string name="label_recent_manga">Nyligen läst</string>
     <string name="label_catalogues">Kataloger</string>
-    <string name="label_recent_updates">Bibliotek uppdateringar</string>
+    <string name="label_recent_updates">Senaste uppdateringar</string>
     <string name="label_categories">Kategorier</string>
     <string name="label_selected">Vald: %1$d</string>
     <string name="label_backup">Backup</string>
@@ -65,7 +65,7 @@
     <string name="action_move">Flytta</string>
     <string name="action_open_in_browser">Öppna i webbläsaren</string>
     <string name="action_add_to_home_screen">Lägg till på hemskärmen</string>
-    <string name="action_display_mode">Ändra visningsläge</string>
+    <string name="action_display_mode">Visningsläge</string>
     <string name="action_display">Visa</string>
     <string name="action_display_grid">Rutnät</string>
     <string name="action_display_list">Lista</string>
@@ -453,4 +453,6 @@
     <string name="invalid_download_dir">Ogiltig nedladdningskatalog</string>
     <string name="ext_obsolete">Obsolet</string>
     <string name="obsolete_extension_message">Detta tillägg är inte längre tillgänglig.</string>
+    <string name="pref_date_format">Datumformat</string>
+    <string name="pref_category_library_display">Visa</string>
 </resources>
