@@ -8,6 +8,7 @@ import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.view.animation.Animation
@@ -119,6 +120,9 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             else -> R.style.Theme_Reader
         })
         super.onCreate(savedState)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            window.attributes.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        }
         setContentView(R.layout.reader_activity)
 
         if (presenter.needsInit()) {
