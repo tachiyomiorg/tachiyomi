@@ -65,7 +65,7 @@
     <string name="action_move">Перемістити</string>
     <string name="action_open_in_browser">Відкрити в браузері</string>
     <string name="action_add_to_home_screen">Додати на домашній екран</string>
-    <string name="action_display_mode">Змінити режим відображення</string>
+    <string name="action_display_mode">Режим відображення</string>
     <string name="action_display">Відобразити</string>
     <string name="action_display_grid">Сітка</string>
     <string name="action_display_list">Список</string>
@@ -230,8 +230,9 @@
     <string name="error_opening_log">Помилка відкриття лог файла</string>
     <string name="restore_completed_content">Відновлення зайняло %1$s.
 \n%2$s знайдено помилок.</string>
-    <string name="backup_restore_content">При відновленні використовуються данні з каталогів, що може викликати велике споживання трафіку. 
-\nТакож авторизуйтесь в каталогах, що цього вимагають.</string>
+    <string name="backup_restore_content">Відновлення використовує джерела для отримання даних, можуть застосовуватися витрати оператора.
+\n
+\nПереконайтеся, що ви встановили всі необхідні розширення та ввійшли до джерел та служб відстеження перед відновленням.</string>
     <string name="file_saved">Файл збережено в %1$s</string>
     <string name="backup_choice">Що ви хочете зберегти до резервної копії\?</string>
     <string name="restoring_backup">Відновлення резервної копії</string>
@@ -282,7 +283,7 @@
     <string name="action_global_search_hint">Глобальний пошук…</string>
     <string name="latest">Остання</string>
     <string name="browse">Переглянути</string>
-    <string name="manga_not_in_db">Ця манга була видалена з бази даних!</string>
+    <string name="manga_not_in_db">Ця манга була видалена з бази даних.</string>
     <string name="manga_detail_tab">Інформація</string>
     <string name="description">Опис</string>
     <string name="ongoing">Випускається</string>
@@ -307,7 +308,7 @@
     <string name="shortcut_title">Назва ярлика</string>
     <string name="shortcut_created">Ярлика було додано на головний екран.</string>
     <string name="icon_shape">Форма іконки</string>
-    <string name="icon_creation_fail">Неможливо створити ярлик!</string>
+    <string name="icon_creation_fail">Неможливо створити ярлик</string>
     <string name="delete_downloads_for_manga">Видаляти завантажені глави\?</string>
     <string name="copied_to_clipboard">%1$s скопійовано до буфера</string>
     <string name="source_not_installed">Джерело не встановлено: %1$s</string>
@@ -405,7 +406,7 @@
     <string name="update_check_ignore">Ігнорувати</string>
     <string name="update_check_no_new_updates">Оновлень не виявлено</string>
     <string name="update_check_download_started">Завантаження розпочалось</string>
-    <string name="update_check_look_for_updates">Перевірити оновлення</string>
+    <string name="update_check_look_for_updates">Перевірити оновлення…</string>
     <string name="update_check_notification_file_download">Оновлення завантаження</string>
     <string name="update_check_notification_download_in_progress">Завантаження в процесі…</string>
     <string name="update_check_notification_download_complete">Завантаження завершено</string>
