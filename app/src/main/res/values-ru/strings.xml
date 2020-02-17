@@ -59,7 +59,7 @@
     <string name="black_background">Черный</string>
     <string name="build_time">Дата сборки</string>
     <string name="cache_delete_error">Возникла ошибка при удалении кэша</string>
-    <string name="cache_deleted">Кэш удален. %1$d файлов было удалено</string>
+    <string name="cache_deleted">Кэш очищен. %1$d файлов было удалено</string>
     <string name="chapter_downloaded">Загружено</string>
     <string name="chapter_downloading">Загружается</string>
     <string name="chapter_downloading_progress">Загружается (%1$d/%2$d)</string>
@@ -247,9 +247,9 @@
     <string name="services">Сервисы</string>
     <string name="set_as_cover">Установить как обложку</string>
     <string name="shortcut_title">Название ярлыка</string>
-    <string name="show_chapter_number">Показывать номер главы</string>
+    <string name="show_chapter_number">Номер главы</string>
     <string name="show_password">Показывать пароль</string>
-    <string name="show_title">Показывать название</string>
+    <string name="show_title">Название</string>
     <string name="snack_add_to_library">Добавить мангу в библиотеку?</string>
     <string name="sort_by_number">По номеру главы</string>
     <string name="sort_by_source">По каталогу</string>
@@ -449,7 +449,17 @@
     <string name="action_webview_forward">Вперед</string>
     <string name="action_webview_refresh">Обновить</string>
     <string name="pref_category_library">Библиотека</string>
-    <string name="invalid_download_dir">Недопустимая директория для скачивания</string>
+    <string name="invalid_download_dir">Недопустимая директория для скачивания (No Root)</string>
     <string name="ext_obsolete">Устарело</string>
     <string name="obsolete_extension_message">Это дополнение больше недоступно.</string>
+    <string name="pref_date_format">Формат даты</string>
+    <string name="pref_category_library_display">Дисплей</string>
+    <string name="pref_category_library_update">Обновить</string>
+    <string name="pref_category_library_categories">Категории</string>
+    <string name="logout_title">Выйти из %1$s\?</string>
+    <string name="logout">Выйти</string>
+    <string name="logout_success">Вы вышли из системы</string>
+    <string name="currently_reading">В настоящее время читаю</string>
+    <string name="paused">Пауза</string>
+    <string name="want_to_read">Хочу почитать</string>
 </resources>
