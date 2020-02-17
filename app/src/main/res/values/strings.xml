@@ -184,7 +184,7 @@
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>
-    <string name="pref_cutout_short">Content renders into the cutout area</string>
+    <string name="pref_cutout_short">Show content in cutout area</string>
     <string name="pref_lock_orientation">Lock orientation</string>
     <string name="pref_page_transitions">Page transitions</string>
     <string name="pref_double_tap_anim_speed">Double tap animation speed</string>
