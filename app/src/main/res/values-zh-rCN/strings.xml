@@ -169,7 +169,7 @@
     <string name="left_to_right_viewer">从左到右</string>
     <string name="right_to_left_viewer">从右到左</string>
     <string name="vertical_viewer">从上到下</string>
-    <string name="webtoon_viewer">韩国条漫</string>
+    <string name="webtoon_viewer">Webtoon</string>
     <string name="pager_viewer">页面</string>
     <string name="pref_image_decoder">图片解码器</string>
     <string name="pref_image_scale_type">显示模式</string>
