@@ -60,7 +60,7 @@
     <string name="action_move">移动</string>
     <string name="action_open_in_browser">在浏览器中打开</string>
     <string name="action_add_to_home_screen">添加到桌面</string>
-    <string name="action_display_mode">更改显示模式</string>
+    <string name="action_display_mode">显示模式</string>
     <string name="action_display">显示</string>
     <string name="action_display_grid">网格</string>
     <string name="action_display_list">列表</string>
@@ -196,11 +196,11 @@
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
-    <string name="pref_download_directory">下载目录</string>
+    <string name="pref_download_directory">下载路径</string>
     <string name="pref_download_only_over_wifi">仅在连接Wi-Fi时下载</string>
     <string name="pref_remove_after_marked_as_read">自动删除标记已读的章节</string>
     <string name="pref_remove_after_read">阅后即删</string>
-    <string name="custom_dir">自定义目录</string>
+    <string name="custom_dir">自定义路径</string>
     <string name="disabled">关闭</string>
     <string name="last_read_chapter">至最新章节</string>
     <string name="second_to_last">至倒数第二章</string>
@@ -215,7 +215,7 @@
     <string name="pref_create_backup_summ">可用于恢复当前数据</string>
     <string name="pref_restore_backup">恢复备份</string>
     <string name="pref_restore_backup_summ">从备份文件中恢复</string>
-    <string name="pref_backup_directory">备份目录</string>
+    <string name="pref_backup_directory">备份路径</string>
     <string name="pref_backup_service_category">自动备份</string>
     <string name="pref_backup_interval">备份频率</string>
     <string name="pref_backup_slots">最大自动备份数</string>
@@ -460,4 +460,7 @@
     <string name="logout">登出</string>
     <string name="logout_success">你现在已登出</string>
     <string name="paused">已暂停</string>
+    <string name="pref_category_library_display">显示</string>
+    <string name="currently_reading">正在阅读</string>
+    <string name="want_to_read">想要阅读</string>
 </resources>
