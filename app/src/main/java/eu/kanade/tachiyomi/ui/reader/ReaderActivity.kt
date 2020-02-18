@@ -37,12 +37,10 @@ import eu.kanade.tachiyomi.util.lang.plusAssign
 import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.system.GLUtil
 import eu.kanade.tachiyomi.util.system.toast
-import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.visible
+import eu.kanade.tachiyomi.util.view.*
 import eu.kanade.tachiyomi.widget.SimpleAnimationListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import kotlinx.android.synthetic.main.reader_activity.*
-import me.zhanghai.android.systemuihelper.SystemUiHelper
 import nucleus.factory.RequiresPresenter
 import rx.Observable
 import rx.Subscription
@@ -82,11 +80,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
      */
     var menuVisible = false
         private set
-
-    /**
-     * System UI helper to hide status & navigation bar on all different API levels.
-     */
-    private var systemUi: SystemUiHelper? = null
 
     /**
      * Configuration at reader level, like background color or forced orientation.
@@ -278,7 +271,11 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     private fun setMenuVisibility(visible: Boolean, animate: Boolean = true) {
         menuVisible = visible
         if (visible) {
-            systemUi?.show()
+            if (preferences.fullscreen().getOrDefault()) {
+                window.showBar()
+            } else {
+                window.defaultBar()
+            }
             reader_menu.visibility = View.VISIBLE
 
             if (animate) {
@@ -299,7 +296,11 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 config?.setPageNumberVisibility(false)
             }
         } else {
-            systemUi?.hide()
+            if (preferences.fullscreen().getOrDefault()) {
+                window.hideBar()
+            } else {
+                window.defaultBar()
+            }
 
             if (animate) {
                 val toolbarAnimation = AnimationUtils.loadAnimation(this, R.anim.exit_to_top)
@@ -578,9 +579,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             subscriptions += preferences.trueColor().asObservable()
                     .subscribe { setTrueColor(it) }
 
-            subscriptions += preferences.fullscreen().asObservable()
-                    .subscribe { setFullscreen(it) }
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 subscriptions += preferences.cutoutShort().asObservable()
                         .subscribe { setCutoutShort(it) }
@@ -650,21 +648,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 SubsamplingScaleImageView.setPreferredBitmapConfig(Bitmap.Config.ARGB_8888)
             else
                 SubsamplingScaleImageView.setPreferredBitmapConfig(Bitmap.Config.RGB_565)
-        }
-
-        /**
-         * Sets the fullscreen reading mode (immersive) according to [enabled].
-         */
-        private fun setFullscreen(enabled: Boolean) {
-            systemUi = if (enabled) {
-                val level = SystemUiHelper.LEVEL_IMMERSIVE
-                val flags = SystemUiHelper.FLAG_IMMERSIVE_STICKY or
-                        SystemUiHelper.FLAG_LAYOUT_IN_SCREEN_OLDER_DEVICES
-
-                SystemUiHelper(this@ReaderActivity, level, flags)
-            } else {
-                null
-            }
         }
 
         @TargetApi(Build.VERSION_CODES.P)
