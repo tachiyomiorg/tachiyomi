@@ -9,6 +9,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import uy.kohesive.injekt.injectLazy
+import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -21,8 +22,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(when (preferences.themeMode()) {
-            1 -> R.style.Theme_Tachiyomi
-            2 -> preferences.themeDark
+            Values.THEME_MODE_LIGHT -> R.style.Theme_Tachiyomi
+            Values.THEME_MODE_DARK -> preferences.themeDark
             else -> {
                 val mode = getSystemService(Context.UI_MODE_SERVICE) as UiModeManager
                 if (mode.nightMode == AppCompatDelegate.MODE_NIGHT_YES) {

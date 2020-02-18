@@ -6,6 +6,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.preference.*
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
+import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
 
 class SettingsGeneralController : SettingsController() {
 
@@ -49,7 +50,7 @@ class SettingsGeneralController : SettingsController() {
             defaultValue = ""
             summary = "%s"
         }
-        intListPreference {
+        listPreference {
             key = Keys.themeMode
             titleRes = R.string.pref_theme_mode
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -57,14 +58,19 @@ class SettingsGeneralController : SettingsController() {
                         R.string.theme_light,
                         R.string.theme_dark,
                         R.string.theme_system)
-                entryValues = arrayOf("1", "2", "3")
+                entryValues = arrayOf(
+                        Values.THEME_MODE_LIGHT,
+                        Values.THEME_MODE_DARK,
+                        Values.THEME_MODE_SYSTEM)
             } else {
                 entriesRes = arrayOf(
                         R.string.theme_light,
                         R.string.theme_dark)
-                entryValues = arrayOf("1", "2")
+                entryValues = arrayOf(
+                        Values.THEME_MODE_LIGHT,
+                        Values.THEME_MODE_DARK)
             }
-            defaultValue = "1"
+            defaultValue = Values.THEME_MODE_LIGHT
             summary = "%s"
 
             onChange {
@@ -72,19 +78,22 @@ class SettingsGeneralController : SettingsController() {
                 true
             }
         }
-        intListPreference {
+        listPreference {
             key = Keys.themeDark
             titleRes = R.string.pref_theme_dark
             entriesRes = arrayOf(
                     R.string.theme_dark_default,
                     R.string.theme_dark_amoled,
                     R.string.theme_dark_blue)
-            entryValues = arrayOf("1", "2", "3")
-            defaultValue = "1"
+            entryValues = arrayOf(
+                    Values.THEME_DARK_DEFAULT,
+                    Values.THEME_DARK_AMOLED,
+                    Values.THEME_DARK_BLUE)
+            defaultValue = Values.THEME_DARK_DEFAULT
             summary = "%s"
 
             onChange {
-                if (preferences.themeMode() != 1) {
+                if (preferences.themeMode() != Values.THEME_MODE_LIGHT) {
                     activity?.recreate()
                 }
                 true

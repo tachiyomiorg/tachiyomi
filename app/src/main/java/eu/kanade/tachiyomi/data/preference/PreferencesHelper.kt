@@ -15,6 +15,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Locale
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
+import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
 
 fun <T> Preference<T>.getOrDefault(): T = get() ?: defaultValue()!!
 
@@ -53,12 +54,12 @@ class PreferencesHelper(val context: Context) {
 
     fun clear() = prefs.edit().clear().apply()
 
-    fun themeMode() = prefs.getInt(Keys.themeMode, 1)
+    fun themeMode() = prefs.getString(Keys.themeMode, Values.THEME_MODE_LIGHT)
 
     val themeDark: Int
-        get() = when (prefs.getInt(Keys.themeDark, 1)) {
-            1 -> R.style.Theme_Tachiyomi_Dark
-            2 -> R.style.Theme_Tachiyomi_Amoled
+        get() = when (prefs.getString(Keys.themeDark, Values.THEME_DARK_DEFAULT)) {
+            Values.THEME_DARK_DEFAULT -> R.style.Theme_Tachiyomi_Dark
+            Values.THEME_DARK_AMOLED -> R.style.Theme_Tachiyomi_Amoled
             else -> R.style.Theme_Tachiyomi_DarkBlue
         }
 
