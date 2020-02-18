@@ -200,7 +200,6 @@ dependencies {
     implementation 'com.nononsenseapps:filepicker:2.5.2'
     implementation 'com.github.amulyakhare:TextDrawable:558677e'
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-    implementation 'me.zhanghai.android.systemuihelper:library:1.0.0'
     implementation 'com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.1.0'
     implementation 'com.github.mthli:Slice:v1.2'
     implementation 'me.gujun.android.taggroup:library:1.4@aar'
