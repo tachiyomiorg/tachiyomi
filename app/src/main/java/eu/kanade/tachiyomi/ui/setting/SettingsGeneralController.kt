@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.ui.setting
 
+import android.os.Build
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.preference.*
@@ -51,11 +52,18 @@ class SettingsGeneralController : SettingsController() {
         intListPreference {
             key = Keys.themeMode
             titleRes = R.string.pref_theme_mode
-            entriesRes = arrayOf(
-                    R.string.theme_light,
-                    R.string.theme_dark,
-                    R.string.theme_system)
-            entryValues = arrayOf("1", "2", "3")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                entriesRes = arrayOf(
+                        R.string.theme_light,
+                        R.string.theme_dark,
+                        R.string.theme_system)
+                entryValues = arrayOf("1", "2", "3")
+            } else {
+                entriesRes = arrayOf(
+                        R.string.theme_light,
+                        R.string.theme_dark)
+                entryValues = arrayOf("1", "2")
+            }
             defaultValue = "1"
             summary = "%s"
 
