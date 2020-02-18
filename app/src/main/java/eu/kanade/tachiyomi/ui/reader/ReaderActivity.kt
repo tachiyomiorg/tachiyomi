@@ -294,6 +294,10 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 val bottomAnimation = AnimationUtils.loadAnimation(this, R.anim.enter_from_bottom)
                 reader_menu_bottom.startAnimation(bottomAnimation)
             }
+
+            if (preferences.showPageNumber().getOrDefault()) {
+                config?.setPageNumberVisibility(false)
+            }
         } else {
             systemUi?.hide()
 
@@ -308,6 +312,10 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
                 val bottomAnimation = AnimationUtils.loadAnimation(this, R.anim.exit_to_bottom)
                 reader_menu_bottom.startAnimation(bottomAnimation)
+            }
+
+            if (preferences.showPageNumber().getOrDefault()) {
+                config?.setPageNumberVisibility(true)
             }
         }
     }
@@ -630,7 +638,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         /**
          * Sets the visibility of the bottom page indicator according to [visible].
          */
-        private fun setPageNumberVisibility(visible: Boolean) {
+        fun setPageNumberVisibility(visible: Boolean) {
             page_number.visibility = if (visible) View.VISIBLE else View.INVISIBLE
         }
 
