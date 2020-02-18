@@ -49,16 +49,36 @@ class SettingsGeneralController : SettingsController() {
             summary = "%s"
         }
         intListPreference {
-            key = Keys.theme
-            titleRes = R.string.pref_theme
-            entriesRes = arrayOf(R.string.light_theme, R.string.dark_theme,
-                    R.string.amoled_theme, R.string.darkblue_theme)
-            entryValues = arrayOf("1", "2", "3", "4")
+            key = Keys.themeMode
+            titleRes = R.string.pref_theme_mode
+            entriesRes = arrayOf(
+                    R.string.theme_light,
+                    R.string.theme_dark,
+                    R.string.theme_system)
+            entryValues = arrayOf("1", "2", "3")
             defaultValue = "1"
             summary = "%s"
 
             onChange {
                 activity?.recreate()
+                true
+            }
+        }
+        intListPreference {
+            key = Keys.themeDark
+            titleRes = R.string.pref_theme_dark
+            entriesRes = arrayOf(
+                    R.string.theme_dark_default,
+                    R.string.theme_dark_amoled,
+                    R.string.theme_dark_blue)
+            entryValues = arrayOf("1", "2", "3")
+            defaultValue = "1"
+            summary = "%s"
+
+            onChange {
+                if (preferences.themeMode() != 1) {
+                    activity?.recreate()
+                }
                 true
             }
         }

@@ -5,7 +5,9 @@ package eu.kanade.tachiyomi.data.preference
  */
 object PreferenceKeys {
 
-    const val theme = "pref_theme_key"
+    const val themeMode = "pref_theme_mode_key"
+
+    const val themeDark = "pref_theme_dark_key"
 
     const val rotation = "pref_rotation_type_key"
 

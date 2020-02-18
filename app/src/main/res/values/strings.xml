@@ -118,11 +118,14 @@
     <string name="pref_category_about">About</string>
 
       <!-- General section -->
-    <string name="pref_theme">App theme</string>
-    <string name="light_theme">Light</string>
-    <string name="dark_theme">Dark</string>
-    <string name="amoled_theme">AMOLED dark</string>
-    <string name="darkblue_theme">Dark blue</string>
+    <string name="pref_theme_mode">App theme</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_system">Follow system</string>
+    <string name="pref_theme_dark">Dark theme</string>
+    <string name="theme_dark_default">Default</string>
+    <string name="theme_dark_amoled">AMOLED</string>
+    <string name="theme_dark_blue">Dark blue</string>
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>
     <string name="system_default">System default</string>
