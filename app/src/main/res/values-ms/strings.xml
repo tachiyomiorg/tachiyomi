@@ -8,7 +8,7 @@
     <string name="history">Sejarah</string>
     <string name="label_settings">Tetapan</string>
     <string name="label_download_queue">Giliran muat turun</string>
-    <string name="label_library">Koleksi saya</string>
+    <string name="label_library">Koleksi</string>
     <string name="label_recent_manga">Baru dibaca</string>
     <string name="label_catalogues">Katalog</string>
     <string name="label_recent_updates">Perubahan koleksi</string>
@@ -62,7 +62,7 @@
     <string name="action_move">Pindah</string>
     <string name="action_open_in_browser">Buka di pelayar</string>
     <string name="action_add_to_home_screen">Tambahkan ke skrin utama</string>
-    <string name="action_display_mode">Ubah mod paparan</string>
+    <string name="action_display_mode">Mod paparan</string>
     <string name="action_display">Paparan</string>
     <string name="action_display_grid">Grid</string>
     <string name="action_display_list">Senarai</string>
@@ -165,11 +165,11 @@
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
-    <string name="pref_download_directory">Direktori muat turun</string>
+    <string name="pref_download_directory">Lokasi muat turun</string>
     <string name="pref_download_only_over_wifi">Hanya muat turun melalui Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Padam apabila ditandakan sebagai dibaca</string>
     <string name="pref_remove_after_read">Padam setelah dibaca</string>
-    <string name="custom_dir">Direktori tersuai</string>
+    <string name="custom_dir">Lokasi tersuai</string>
     <string name="disabled">Dinyahaktifkan</string>
     <string name="last_read_chapter">Bab terakhir dibaca</string>
     <string name="second_to_last">Bab kedua terakhir</string>
@@ -184,7 +184,7 @@
     <string name="pref_create_backup_summ">Boleh digunakan untuk memulihkan koleksi semasa</string>
     <string name="pref_restore_backup">Pulihkan sandaran</string>
     <string name="pref_restore_backup_summ">Pulihkan koleksi daripada fail sandaran</string>
-    <string name="pref_backup_directory">Direktori sandaran</string>
+    <string name="pref_backup_directory">Lokasi sandaran</string>
     <string name="pref_backup_service_category">Perkhidmatan</string>
     <string name="pref_backup_interval">Kekerapan sandaran</string>
     <string name="pref_backup_slots">Sandaran automatik maksimum</string>
@@ -283,8 +283,8 @@
     <string name="chapter_error">Ralat</string>
     <string name="chapter_paused">Dihenti sebentar</string>
     <string name="fetch_chapters_error">Tidak berhasil mendapatkan bab</string>
-    <string name="show_title">Perlihatkan tajuk</string>
-    <string name="show_chapter_number">Perlihatkan nombor bab</string>
+    <string name="show_title">Tajuk</string>
+    <string name="show_chapter_number">Nombor bab</string>
     <string name="sorting_mode">Mod susunan</string>
     <string name="sort_by_source">Mengikut sumber</string>
     <string name="sort_by_number">Mengikut nombor bab</string>
@@ -450,5 +450,17 @@
     <string name="action_webview_forward">Ke depan</string>
     <string name="action_webview_refresh">Segar semula</string>
     <string name="pref_category_library">Koleksi</string>
-    <string name="invalid_download_dir">Direktori muat turun tidak sah</string>
+    <string name="invalid_download_dir">Lokasi muat turun tidak sah</string>
+    <string name="ext_obsolete">Usang</string>
+    <string name="obsolete_extension_message">Sambungan ini tidak lagi ada.</string>
+    <string name="pref_date_format">Format tarikh</string>
+    <string name="pref_category_library_display">Paparan</string>
+    <string name="pref_category_library_update">Pengemaskinian</string>
+    <string name="pref_category_library_categories">Kategori</string>
+    <string name="logout_title">Log keluar daripada %1$s\?</string>
+    <string name="logout">Log keluar</string>
+    <string name="logout_success">Anda telah log keluar</string>
+    <string name="currently_reading">Sedang baca</string>
+    <string name="paused">Ditangguh</string>
+    <string name="want_to_read">Ingin baca</string>
 </resources>
