@@ -71,7 +71,7 @@ class SettingsGeneralController : SettingsController() {
                         Values.THEME_MODE_LIGHT,
                         Values.THEME_MODE_DARK)
             }
-            defaultValue = Values.THEME_MODE_LIGHT
+            defaultValue = Values.THEME_MODE_SYSTEM
             summary = "%s"
 
             onChange {
