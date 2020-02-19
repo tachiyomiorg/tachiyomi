@@ -54,7 +54,7 @@ class PreferencesHelper(val context: Context) {
 
     fun clear() = prefs.edit().clear().apply()
 
-    fun themeMode() = rxPrefs.getString(Keys.themeMode, Values.THEME_MODE_LIGHT)
+    fun themeMode() = rxPrefs.getString(Keys.themeMode, Values.THEME_MODE_SYSTEM)
 
     fun themeDark() = prefs.getString(Keys.themeDark, Values.THEME_DARK_DEFAULT)
 
