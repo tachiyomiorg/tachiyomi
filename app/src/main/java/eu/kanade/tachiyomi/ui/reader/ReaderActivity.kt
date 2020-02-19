@@ -286,8 +286,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             if (preferences.fullscreen().getOrDefault()) {
                 window.showBar()
             } else {
-                reader_menu.setPadding(0, 0, 0, 0)
-                window.defaultBar()
+                resetDefaultMenuAndBar()
             }
             reader_menu.visibility = View.VISIBLE
 
@@ -312,8 +311,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             if (preferences.fullscreen().getOrDefault()) {
                 window.hideBar()
             } else {
-                reader_menu.setPadding(0, 0, 0, 0)
-                window.defaultBar()
+                resetDefaultMenuAndBar()
             }
 
             if (animate) {
@@ -333,6 +331,15 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 config?.setPageNumberVisibility(true)
             }
         }
+    }
+
+
+    /**
+     * Reset menu padding and system bar
+     */
+    private fun resetDefaultMenuAndBar() {
+        reader_menu.setPadding(0, 0, 0, 0)
+        window.defaultBar()
     }
 
     /**
