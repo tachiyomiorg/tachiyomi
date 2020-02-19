@@ -83,7 +83,9 @@
             <eu.kanade.tachiyomi.ui.reader.ReaderSeekBar
                 android:id="@+id/page_seekbar"
                 android:layout_width="0dp"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                android:maxHeight="?attr/actionBarSize"
                 android:layout_weight="1" />
 
             <TextView
