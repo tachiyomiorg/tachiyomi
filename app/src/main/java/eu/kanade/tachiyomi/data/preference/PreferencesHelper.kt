@@ -56,12 +56,7 @@ class PreferencesHelper(val context: Context) {
 
     fun themeMode() = prefs.getString(Keys.themeMode, Values.THEME_MODE_LIGHT)
 
-    val themeDark: Int
-        get() = when (prefs.getString(Keys.themeDark, Values.THEME_DARK_DEFAULT)) {
-            Values.THEME_DARK_DEFAULT -> R.style.Theme_Tachiyomi_Dark
-            Values.THEME_DARK_AMOLED -> R.style.Theme_Tachiyomi_Amoled
-            else -> R.style.Theme_Tachiyomi_DarkBlue
-        }
+    fun themeDark() = prefs.getString(Keys.themeDark, Values.THEME_DARK_DEFAULT)
 
     fun rotation() = rxPrefs.getInteger(Keys.rotation, 1)
 
