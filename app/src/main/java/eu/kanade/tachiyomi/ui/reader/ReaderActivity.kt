@@ -15,6 +15,7 @@ import android.view.*
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.SeekBar
+import androidx.core.view.ViewCompat
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -235,6 +236,17 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             onBackPressed()
         }
 
+        ViewCompat.setOnApplyWindowInsetsListener(reader_menu) { _, insets ->
+            if (!window.isDefaultBar()) {
+                reader_menu.setPadding(
+                        insets.systemWindowInsetLeft,
+                        insets.systemWindowInsetTop,
+                        insets.systemWindowInsetRight,
+                        insets.systemWindowInsetBottom)
+            }
+            insets
+        }
+
         // Init listeners on bottom menu
         page_seekbar.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
             override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
@@ -274,6 +286,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             if (preferences.fullscreen().getOrDefault()) {
                 window.showBar()
             } else {
+                reader_menu.setPadding(0, 0, 0, 0)
                 window.defaultBar()
             }
             reader_menu.visibility = View.VISIBLE
@@ -299,6 +312,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             if (preferences.fullscreen().getOrDefault()) {
                 window.hideBar()
             } else {
+                reader_menu.setPadding(0, 0, 0, 0)
                 window.defaultBar()
             }
 

@@ -38,7 +38,6 @@
         android:id="@+id/reader_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
         android:theme="?attr/actionBarTheme"
         android:visibility="invisible"
         tools:visibility="visible">
@@ -84,9 +83,7 @@
             <eu.kanade.tachiyomi.ui.reader.ReaderSeekBar
                 android:id="@+id/page_seekbar"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:maxHeight="?attr/actionBarSize"
-                android:minHeight="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
                 android:layout_weight="1" />
 
             <TextView

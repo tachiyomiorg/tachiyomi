@@ -22,3 +22,5 @@ fun Window.hideBar() {
 fun Window.defaultBar() {
     decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
 }
+
+fun Window.isDefaultBar() = decorView.systemUiVisibility == View.SYSTEM_UI_FLAG_VISIBLE
