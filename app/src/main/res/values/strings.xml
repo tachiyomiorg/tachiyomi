@@ -27,6 +27,7 @@
 
     <!-- Actions -->
     <string name="action_settings">Settings</string>
+    <string name="action_menu">Menu</string>
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Downloaded</string>
     <string name="action_filter_bookmarked">Bookmarked</string>

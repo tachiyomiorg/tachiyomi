@@ -58,19 +58,18 @@
         app:layout_constraintStart_toStartOf="parent"
         android:singleLine="true" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/chapter_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?selectableItemBackgroundBorderless"
+        android:contentDescription="@string/description_cover"
+        android:layout_marginEnd="8dp"
+        android:padding="8dp"
         app:srcCompat="@drawable/ic_more_vert_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:paddingStart="24dp"
-        android:paddingEnd="16dp"
-        android:layout_marginEnd="8dp"
-        android:paddingBottom="24dp"
-        android:paddingTop="12dp"
-        android:contentDescription="@string/description_cover"/>
+        app:layout_constraintBottom_toTopOf="@+id/download_text"/>
 
     <TextView
         android:id="@+id/download_text"

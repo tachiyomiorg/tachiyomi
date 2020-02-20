@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.manga.chapter
 
 import android.view.View
 import android.widget.PopupMenu
+import androidx.appcompat.widget.TooltipCompat
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
@@ -22,6 +23,9 @@ class ChapterHolder(
         // correctly positioned. The reason being that the view may change position before the
         // PopupMenu is shown.
         chapter_menu.setOnClickListener { it.post { showPopupMenu(it) } }
+        TooltipCompat.setTooltipText(
+                chapter_menu,
+                view.context.getText(R.string.action_menu))
     }
 
     fun bind(item: ChapterItem, manga: Manga) {

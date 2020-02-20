@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.recent_updates
 
 import android.view.View
 import android.widget.PopupMenu
+import androidx.appcompat.widget.TooltipCompat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
@@ -44,6 +45,9 @@ class RecentChapterHolder(private val view: View, private val adapter: RecentCha
         // correctly positioned. The reason being that the view may change position before the
         // PopupMenu is shown.
         chapter_menu.setOnClickListener { it.post { showPopupMenu(it) } }
+        TooltipCompat.setTooltipText(
+                chapter_menu,
+                view.context.getText(R.string.action_menu))
         manga_cover.setOnClickListener {
             adapter.coverClickListener.onCoverClick(adapterPosition)
         }
@@ -64,7 +68,7 @@ class RecentChapterHolder(private val view: View, private val adapter: RecentCha
         manga_title.text = item.manga.title
 
         // Set the correct drawable for dropdown and update the tint to match theme.
-        chapter_menu_icon.setVectorCompat(R.drawable.ic_more_horiz_black_24dp, view.context.getResourceColor(R.attr.icon_color))
+        chapter_menu.setVectorCompat(R.drawable.ic_more_vert_black_24dp, view.context.getResourceColor(R.attr.icon_color))
 
         // Set cover
         GlideApp.with(itemView.context).clear(manga_cover)
