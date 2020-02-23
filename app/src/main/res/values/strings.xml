@@ -329,14 +329,14 @@
 
 
     <!-- Login dialog -->
-    <string name="login_title">Login for %1$s</string>
+    <string name="login_title">Log in as %1$s</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="show_password">Show password</string>
     <string name="login">Login</string>
-    <string name="login_success">Successfully logged in</string>
-    <string name="logout_title">Logout from %1$s?</string>
-    <string name="logout">Logout</string>
+    <string name="login_success">Logged in</string>
+    <string name="logout_title">Log out from %1$s?</string>
+    <string name="logout">Log out</string>
     <string name="logout_success">You are now logged out</string>
     <string name="invalid_login">Could not log in</string>
     <string name="unknown_error">Unknown error</string>
@@ -420,19 +420,19 @@
     <string name="download_custom">Custom</string>
     <string name="download_all">All</string>
     <string name="download_unread">Unread</string>
-    <string name="confirm_delete_chapters">Are you sure you want to delete selected chapters?</string>
+    <string name="confirm_delete_chapters">Are you sure you want to delete the selected chapters?</string>
     <string name="invalid_download_dir">Invalid download location</string>
 
     <!-- Tracking Screen -->
     <string name="manga_tracking_tab">Tracking</string>
     <string name="reading">Reading</string>
-    <string name="currently_reading">Currently Reading</string>
+    <string name="currently_reading">Currently reading</string>
     <string name="completed">Completed</string>
     <string name="dropped">Dropped</string>
     <string name="on_hold">On hold</string>
     <string name="paused">Paused</string>
     <string name="plan_to_read">Plan to read</string>
-    <string name="want_to_read">Want to Read</string>
+    <string name="want_to_read">Want to read</string>
     <string name="repeating">Rereading</string>
     <string name="score">Score</string>
     <string name="title">Title</string>
