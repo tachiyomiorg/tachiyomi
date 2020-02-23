@@ -7,7 +7,7 @@
     <string name="label_library">Bibliothèque</string>
     <string name="label_recent_manga">Lu récemment</string>
     <string name="label_catalogues">Catalogues</string>
-    <string name="label_recent_updates">Nouveautés bibliothèque</string>
+    <string name="label_recent_updates">Mises à jour récentes</string>
     <string name="label_categories">Catégories</string>
     <string name="label_selected">Sélectionné : %1$d</string>
     <string name="label_backup">Sauvegarde</string>
@@ -100,7 +100,7 @@
     <string name="pref_update_only_non_completed">Ne mettre à jour que les mangas en cours</string>
     <string name="pref_auto_update_manga_sync">Synchroniser les chapitres après les avoir lus</string>
     <string name="pref_theme">Thème de l\'application</string>
-    <string name="light_theme">Thème principal</string>
+    <string name="light_theme">Clair</string>
     <string name="dark_theme">Sombre</string>
     <string name="pref_start_screen">Page d\'accueil</string>
     <!-- Reader section -->
@@ -212,7 +212,7 @@
     <string name="star_icon">Étoile</string>
     <string name="shortcut_title">Titre de raccourci</string>
     <string name="icon_shape">Forme de l\'icône</string>
-    <string name="icon_creation_fail">Échec de la création du raccourci !</string>
+    <string name="icon_creation_fail">Échec de la création du raccourci</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapitres</string>
     <string name="display_mode_chapter">Chapitre %1$s</string>
@@ -227,8 +227,8 @@
     <string name="sorting_mode">Mode de tri</string>
     <string name="sort_by_number">Par numéro de chapitre</string>
     <string name="manga_download">Télécharger</string>
-    <string name="download_1">Télécharger le chapitre suivant</string>
-    <string name="download_5">Télécharger les 5 prochains chapitres</string>
+    <string name="download_1">Chapitre suivant</string>
+    <string name="download_5">5 prochains chapitres</string>
     <string name="download_all">Tout télécharger</string>
     <string name="download_unread">Télécharger non-lu</string>
     <!-- MyAnimeList fragment -->
@@ -317,7 +317,7 @@
     <string name="clear_database_confirmation">Êtes-vous sûr ? Les chapitres lus et la progression des mangas non présents dans la bibliothèque seront perdus</string>
     <string name="confirm_delete_chapters">Êtes-vous sûr de vouloir supprimer les chapitres sélectionnés ?</string>
     <string name="custom_dir">Répertoire personnalisé</string>
-    <string name="download_10">Télécharger les 10 chapitres suivants</string>
+    <string name="download_10">10 chapitres suivants</string>
     <string name="download_notifier_unkown_error">Une erreur inattendue s\'est produite lors du téléchargement du chapitre</string>
     <string name="fifth_to_last">Du cinquième au dernier chapitre</string>
     <string name="login_success">Connexion réussie</string>
@@ -435,12 +435,12 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="source_not_installed">Sources non installées: %1$s</string>
     <string name="custom_download">Télécharger une quantité personnalisée</string>
     <string name="custom_hint">Quantité</string>
-    <string name="download_custom">Téléchargement personalisé</string>
+    <string name="download_custom">Téléchargement personnalisé</string>
     <string name="track_status">Status</string>
     <string name="track_start_date">Démarré</string>
     <string name="track_type">Type</string>
     <string name="track_author">Auteur</string>
-    <string name="url_not_set">L\'url du manga n\'a pas été entrée, veuillez cliquer sur le titre et selectionner le manga</string>
+    <string name="url_not_set">L\'url du manga n\'a pas été entrée, veuillez cliquer sur le titre et sélectionner le manga</string>
     <string name="migration_dialog_what_to_include">Sélectionner les données à inclure</string>
     <string name="select">Sélectionner</string>
     <string name="label_migration">Migration de source</string>
@@ -484,4 +484,16 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="pref_date_format">Format de date</string>
     <string name="pref_category_library_update">Mises à jour</string>
     <string name="pref_category_library_categories">Catégories</string>
+    <string name="action_webview_back">Précédent</string>
+    <string name="action_webview_forward">Suivant</string>
+    <string name="action_webview_refresh">Rafraîchir</string>
+    <string name="invalid_download_dir">Emplacement de téléchargement invalide</string>
+    <string name="ext_obsolete">Obsolète</string>
+    <string name="pref_category_library_display">Affichage</string>
+    <string name="logout_title">Déconnecté de %1$s\?</string>
+    <string name="logout">Se déconnecter</string>
+    <string name="logout_success">Vous êtes maintenant déconnecté</string>
+    <string name="currently_reading">En cours de lecture</string>
+    <string name="paused">En suspend</string>
+    <string name="want_to_read">Souhaits de lecture</string>
 </resources>
