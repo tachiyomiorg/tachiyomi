@@ -114,7 +114,7 @@ class WebtoonPageHolder(
 
     init {
         frame.layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
-        if (viewer.config.padPages) {
+        if (viewer.config.padPagesVert) {
             frame.setPadding(0, 0, 0, 15.dpToPx)
         }
     }

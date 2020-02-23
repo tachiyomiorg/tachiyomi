@@ -250,11 +250,11 @@
         app:layout_constraintTop_toBottomOf="@id/webtoon_prefs" />
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/pad_pages_webtoon"
+        android:id="@+id/pad_pages_vert_webtoon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/pref_webtoon_padding"
+        android:text="@string/pref_webtoon_padding_vert"
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constraintTop_toBottomOf="@id/crop_borders_webtoon" />
 
@@ -273,7 +273,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="webtoon_prefs,crop_borders_webtoon" />
+        app:constraint_referenced_ids="webtoon_prefs,crop_borders_webtoon,pad_pages_vert_webtoon" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/verticalcenter"

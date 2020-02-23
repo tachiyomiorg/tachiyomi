@@ -121,8 +121,8 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = false
             }
             switchPreference {
-                key = Keys.padPagesWebtoon
-                titleRes = R.string.pref_webtoon_padding
+                key = Keys.padPagesVertWebtoon
+                titleRes = R.string.pref_webtoon_padding_vert
                 defaultValue = false
             }
         }
