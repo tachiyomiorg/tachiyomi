@@ -207,6 +207,7 @@
     <string name="pref_show_page_number">Show page number</string>
     <string name="pref_true_color">32-bit color</string>
     <string name="pref_crop_borders">Crop borders</string>
+    <string name="pref_webtoon_padding">Add padding between pages</string>
     <string name="pref_custom_brightness">Use custom brightness</string>
     <string name="pref_custom_color_filter">Use custom color filter</string>
     <string name="pref_color_filter_mode">Color filter blend mode</string>
@@ -565,6 +566,5 @@
     <string name="channel_library">Library</string>
     <string name="channel_downloader">Downloader</string>
     <string name="channel_new_chapters">Chapter updates</string>
-    <string name="padded_webtoon_viewer">Webtoon with Padding</string>
 
 </resources>

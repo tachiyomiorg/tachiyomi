@@ -31,6 +31,9 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) {
     var imageCropBorders = false
         private set
 
+    var padPages = false
+        private set
+
     var doubleTapAnimDuration = 500
         private set
 
@@ -43,6 +46,9 @@ class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) {
 
         preferences.cropBordersWebtoon()
                 .register({ imageCropBorders = it }, { imagePropertyChangedListener?.invoke() })
+
+        preferences.padPagesWebtoon()
+                .register({ padPages = it }, { imagePropertyChangedListener?.invoke() })
 
         preferences.doubleTapAnimSpeed()
                 .register({ doubleTapAnimDuration = it })

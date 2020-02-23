@@ -79,6 +79,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         scale_type.bindToPreference(preferences.imageScaleType(), 1)
         zoom_start.bindToPreference(preferences.zoomStart(), 1)
         crop_borders.bindToPreference(preferences.cropBorders())
+        pad_pages_webtoon.bindToPreference(preferences.padPagesWebtoon())
         page_transitions.bindToPreference(preferences.pageTransitions())
     }
 
@@ -88,6 +89,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
     private fun initWebtoonPreferences() {
         webtoon_prefs_group.visible()
         crop_borders_webtoon.bindToPreference(preferences.cropBordersWebtoon())
+        pad_pages_webtoon.bindToPreference(preferences.padPagesWebtoon())
     }
 
     /**

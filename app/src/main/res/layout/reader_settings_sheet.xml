@@ -249,6 +249,15 @@
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constraintTop_toBottomOf="@id/webtoon_prefs" />
 
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/pad_pages_webtoon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/pref_webtoon_padding"
+        android:textColor="?android:attr/textColorSecondary"
+        app:layout_constraintTop_toBottomOf="@id/crop_borders_webtoon" />
+
     <!-- Groups of preferences -->
 
     <androidx.constraintlayout.widget.Group

@@ -322,8 +322,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         val newViewer = when (presenter.getMangaViewer()) {
             RIGHT_TO_LEFT -> R2LPagerViewer(this)
             VERTICAL -> VerticalPagerViewer(this)
-            WEBTOON -> WebtoonViewer(this, false)
-            PADDED_WEBTOON -> WebtoonViewer(this, true)
+            WEBTOON -> WebtoonViewer(this)
             else -> L2RPagerViewer(this)
         }
 

@@ -47,6 +47,8 @@ object PreferenceKeys {
 
     const val cropBordersWebtoon = "crop_borders_webtoon"
 
+    const val padPagesWebtoon = "pad_pages_webtoon"
+
     const val readWithTapping = "reader_tap"
 
     const val readWithLongTap = "reader_long_tap"

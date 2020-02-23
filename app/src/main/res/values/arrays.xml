@@ -20,7 +20,6 @@
         <item>@string/right_to_left_viewer</item>
         <item>@string/vertical_viewer</item>
         <item>@string/webtoon_viewer</item>
-        <item>@string/padded_webtoon_viewer</item>
     </string-array>
 
     <string-array name="reader_themes">
