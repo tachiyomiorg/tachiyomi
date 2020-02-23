@@ -15,8 +15,8 @@ class SettingsReaderController : SettingsController() {
             key = Keys.defaultViewer
             titleRes = R.string.pref_viewer_type
             entriesRes = arrayOf(R.string.left_to_right_viewer, R.string.right_to_left_viewer,
-                    R.string.vertical_viewer, R.string.webtoon_viewer)
-            entryValues = arrayOf("1", "2", "3", "4")
+                    R.string.vertical_viewer, R.string.webtoon_viewer, R.string.padded_webtoon_viewer)
+            entryValues = arrayOf("1", "2", "3", "4", "5")
             defaultValue = "1"
             summary = "%s"
         }

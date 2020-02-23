@@ -565,5 +565,6 @@
     <string name="channel_library">Library</string>
     <string name="channel_downloader">Downloader</string>
     <string name="channel_new_chapters">Chapter updates</string>
+    <string name="padded_webtoon_viewer">Webtoon with Padding</string>
 
 </resources>
