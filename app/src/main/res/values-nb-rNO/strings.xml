@@ -453,4 +453,14 @@
     <string name="invalid_download_dir">Ugyldig nedlastingsmappe</string>
     <string name="ext_obsolete">Foreldet</string>
     <string name="obsolete_extension_message">Denne utvidelsen er ikke lenger tilgjengelig.</string>
+    <string name="pref_date_format">Datoformat</string>
+    <string name="pref_category_library_display">Vis</string>
+    <string name="pref_category_library_update">Oppdateringer</string>
+    <string name="pref_category_library_categories">Kategorier</string>
+    <string name="logout_title">Logg ut fra %1$s\?</string>
+    <string name="logout">Logg ut</string>
+    <string name="logout_success">Du er utlogget</string>
+    <string name="currently_reading">Leses</string>
+    <string name="paused">På pause</string>
+    <string name="want_to_read">Ønsker å lese</string>
 </resources>
