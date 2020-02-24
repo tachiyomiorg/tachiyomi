@@ -132,7 +132,7 @@
     <string name="pref_reader_theme">Hintergrundfarbe</string>
     <string name="white_background">Weiß</string>
     <string name="black_background">Schwarz</string>
-    <string name="pref_viewer_type">Standard Leserichtung</string>
+    <string name="pref_viewer_type">Standard-Leserichtung</string>
     <string name="default_viewer">Standard</string>
     <string name="left_to_right_viewer">Links nach rechts</string>
     <string name="right_to_left_viewer">Rechts nach links</string>
