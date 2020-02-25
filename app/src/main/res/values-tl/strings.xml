@@ -157,8 +157,8 @@
     <string name="pref_show_page_number">Ipakita ang bilang ng pahina</string>
     <string name="pref_true_color">Kulay na 32-bit</string>
     <string name="pref_crop_borders">I-crop ang mga gilid</string>
-    <string name="pref_custom_brightness">Gumamit ng custom brightness</string>
-    <string name="pref_custom_color_filter">Gumamit ng custom na color filter</string>
+    <string name="pref_custom_brightness">Gamitin ang pansariling kaliwanagan</string>
+    <string name="pref_custom_color_filter">Gamitin ang pansariling pagsalâ ng kulay</string>
     <string name="pref_keep_screen_on">Panatilihing nakabukas ang screen</string>
     <string name="pref_skip_read_chapters">Laktawan ang mga kabanatang namarkahang nabasa</string>
     <string name="pref_reader_navigation">Pangangalugad</string>
