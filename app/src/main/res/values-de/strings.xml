@@ -8,7 +8,7 @@
     <string name="label_settings">Einstellungen</string>
     <string name="label_download_queue">Downloadwarteschlange</string>
     <string name="label_library">Bibliothek</string>
-    <string name="label_recent_manga">Vor kurzem gelesen</string>
+    <string name="label_recent_manga">Verlauf</string>
     <string name="label_catalogues">Kataloge</string>
     <string name="label_categories">Kategorien</string>
     <string name="label_backup">Backup</string>
@@ -347,7 +347,7 @@
     <string name="download_notifier_no_network">Kein Netzwerk verfügbar</string>
     <string name="download_notifier_download_paused">Herunterladen pausiert</string>
     <string name="track">Synchronisation</string>
-    <string name="label_recent_updates">Neueste Aktualisierungen</string>
+    <string name="label_recent_updates">Aktualisierungen</string>
     <string name="action_global_search">Globale Suche</string>
     <string name="action_open">Öffnen</string>
     <string name="action_login">Einloggen</string>
@@ -403,14 +403,14 @@
     <string name="untrusted_extension">Nicht vertrauenswürdige Erweiterung</string>
     <string name="pref_double_tap_anim_speed">Doppeltipp Animationsgeschwindigkeit</string>
     <string name="custom_download">Benutzerdefinierte Anzahl herunterladen</string>
-    <string name="migration_info">Wähle die Quelle von welcher Migriert werden soll</string>
+    <string name="migration_info">Wähle die Quelle, aus welcher migriert werden soll</string>
     <string name="migration_dialog_what_to_include">Wähle zu beinhaltende Daten</string>
     <string name="pager_viewer">Seiten</string>
     <string name="source_not_installed">Quelle nicht installiert: %1$s</string>
     <string name="download_custom">Benutzerdefiniert</string>
     <string name="repeating">Am Wiederlesen</string>
     <string name="track_status">Status</string>
-    <string name="track_start_date">Gestartet</string>
+    <string name="track_start_date">Angefangen</string>
     <string name="track_type">Typ</string>
     <string name="track_author">Autor</string>
     <string name="url_not_set">Manga-URL ist nicht festgelegt. Drücken Sie auf den Titel und wählen Sie den Manga erneut aus</string>
@@ -423,9 +423,9 @@
     <string name="transition_pages_loading">Lade Seiten…</string>
     <string name="transition_pages_error">Seiten konnten nicht geladen werden: %1$s</string>
     <string name="action_open_in_web_view">In Webansicht öffnen</string>
-    <string name="pref_true_color">32-bit Farbe</string>
+    <string name="pref_true_color">32-Bit Farben</string>
     <string name="pref_skip_read_chapters">Überspringe als gelesen markierte Kapitel</string>
-    <string name="pref_read_with_long_tap">Lange für Dialog tippen</string>
+    <string name="pref_read_with_long_tap">Langes Tippen für Kontextmenü</string>
     <string name="reader_pull_up_for_more_options">Hochziehen für mehr Optionen</string>
     <string name="filter_mode_default">Standard</string>
     <string name="filter_mode_overlay">Überlagerung</string>
@@ -455,4 +455,39 @@
     <string name="currently_reading">Am Lesen</string>
     <string name="paused">Pausiert</string>
     <string name="want_to_read">Möchte ich lesen</string>
+    <string name="label_more">Mehr</string>
+    <string name="unlock_library">Bibliothek entsperren</string>
+    <string name="action_sort_latest_chapter">Neueste Kapitel</string>
+    <string name="action_view_chapters">Kapitel anzeigen</string>
+    <string name="action_cancel_all">Alle abbrechen</string>
+    <string name="pref_theme_mode">App-Design</string>
+    <string name="theme_light">Hell</string>
+    <string name="theme_dark">Dunkel</string>
+    <string name="theme_system">Systemeinstellung</string>
+    <string name="pref_theme_dark">Dunkeldesign</string>
+    <string name="theme_dark_default">Standard</string>
+    <string name="theme_dark_blue">Dunkelblau</string>
+    <string name="theme_dark_amoled">AMOLED-Schwarz</string>
+    <string name="pref_manage_notifications">Benachrichtigungen verwalten</string>
+    <string name="pref_category_security">Sicherheit</string>
+    <string name="lock_with_biometrics">Mit Biometrie sperren</string>
+    <string name="lock_when_idle">Während Inaktivität sperren</string>
+    <string name="lock_always">Immer</string>
+    <string name="lock_never">Nie</string>
+    <plurals name="lock_after_mins">
+        <item quantity="one">Nach 1 Minute</item>
+        <item quantity="other">Nach %1$s Minuten</item>
+    </plurals>
+    <string name="secure_screen">Bildschirm sichern</string>
+    <string name="ext_updates_pending">Updates ausstehend</string>
+    <string name="pref_cutout_short">Inhalt im Ausschnittbereich anzeigen</string>
+    <string name="pref_webtoon_padding_vert">Vertikaler Abstand zwischen den Seiten</string>
+    <plurals name="notification_chapters">
+        <item quantity="one">Kapitel %1$s</item>
+        <item quantity="other">Kapitel %1$s</item>
+    </plurals>
+    <string name="notification_and_n_more">und %1$d mehr</string>
+    <string name="information_cloudflare_bypass_failure">Fehler beim Umgehen von Cloudflare</string>
+    <string name="information_webview_outdated">Bitte aktualisieren Sie die WebView-App für eine bessere Kompatibilität</string>
+    <string name="channel_new_chapters">Kapitelaktualisierungen</string>
 </resources>
