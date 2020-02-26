@@ -329,7 +329,8 @@
 
 
     <!-- Login dialog -->
-    <string name="login_title">Log in as %1$s</string>
+    <!-- %1$s placeholder is MyAnimeList/Kitsu -->
+    <string name="login_title">Login for %1$s</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="show_password">Show password</string>
@@ -426,13 +427,13 @@
     <!-- Tracking Screen -->
     <string name="manga_tracking_tab">Tracking</string>
     <string name="reading">Reading</string>
-    <string name="currently_reading">Currently reading</string>
+    <string name="currently_reading">Currently Reading</string>
     <string name="completed">Completed</string>
     <string name="dropped">Dropped</string>
     <string name="on_hold">On hold</string>
     <string name="paused">Paused</string>
-    <string name="plan_to_read">Plan to read</string>
-    <string name="want_to_read">Want to read</string>
+    <string name="plan_to_read">Plan to Read</string>
+    <string name="want_to_read">Want to Read</string>
     <string name="repeating">Rereading</string>
     <string name="score">Score</string>
     <string name="title">Title</string>
