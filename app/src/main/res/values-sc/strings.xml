@@ -9,9 +9,9 @@
     <string name="label_settings">Impostatziones</string>
     <string name="label_download_queue">Fila de sos iscarrigamentos</string>
     <string name="label_library">Biblioteca</string>
-    <string name="label_recent_manga">Lèghidos dae pagu</string>
+    <string name="label_recent_manga">Cronologia</string>
     <string name="label_catalogues">Catàlogos</string>
-    <string name="label_recent_updates">Agiornamentos reghendes</string>
+    <string name="label_recent_updates">Agiornamentos</string>
     <string name="label_categories">Categorias</string>
     <string name="label_backup">Còpia de seguresa</string>
     <string name="label_migration">Tramudòngiu de sas mitzas</string>
@@ -455,4 +455,39 @@
     <string name="currently_reading">Leghende como</string>
     <string name="paused">In pàusa</string>
     <string name="want_to_read">Chi chèrgio lèghere</string>
+    <string name="label_more">Àteru</string>
+    <string name="unlock_library">Isbloca sa biblioteca</string>
+    <string name="action_sort_latest_chapter">Ùrtimu capìtulu</string>
+    <string name="action_view_chapters">Pòmpia sos capìtulos</string>
+    <string name="action_cancel_all">Annulla totu</string>
+    <string name="pref_theme_mode">Tema de s\'aplicatzione</string>
+    <string name="theme_light">Craru</string>
+    <string name="theme_dark">Iscuru</string>
+    <string name="theme_system">Sighi su sistema</string>
+    <string name="pref_theme_dark">Variante de su tema iscuru</string>
+    <string name="theme_dark_default">Predefinidu</string>
+    <string name="theme_dark_blue">Biaitu iscuru</string>
+    <string name="theme_dark_amoled">Nieddu AMOLED</string>
+    <string name="pref_manage_notifications">Amministra sas notìficas</string>
+    <string name="pref_category_security">Seguresa</string>
+    <string name="lock_with_biometrics">Bloca cun sa biometria</string>
+    <string name="lock_when_idle">Bloca cando no est ativu</string>
+    <string name="lock_always">Semper</string>
+    <string name="lock_never">Mai</string>
+    <plurals name="lock_after_mins">
+        <item quantity="one">A pustis de 1 minutu</item>
+        <item quantity="other">A pustis de %1$s minutos</item>
+    </plurals>
+    <string name="secure_screen">Ischermu seguru</string>
+    <string name="ext_updates_pending">Agiornamentos in suspesu</string>
+    <string name="pref_cutout_short">Ammustra sos cuntenutos in s\'àrea de retàlliu</string>
+    <string name="pref_webtoon_padding_vert">Separatzione verticale intre sas pàginas</string>
+    <plurals name="notification_chapters">
+        <item quantity="one">Capìtulu %1$s</item>
+        <item quantity="other">Capìtulos %1$s</item>
+    </plurals>
+    <string name="notification_and_n_more">e àteros %1$d</string>
+    <string name="information_cloudflare_bypass_failure">Isfrancamentu de Cloudflare fallidu</string>
+    <string name="information_webview_outdated">Agiorna s\'aplicatzione de WebView pro otènnere una cumpatibilidade prus manna</string>
+    <string name="channel_new_chapters">Agiornamentos de sos capìtulos</string>
 </resources>
