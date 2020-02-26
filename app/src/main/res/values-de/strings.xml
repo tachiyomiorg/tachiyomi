@@ -12,7 +12,7 @@
     <string name="label_catalogues">Kataloge</string>
     <string name="label_categories">Kategorien</string>
     <string name="label_selected">Ausgewählt: %1$d</string>
-    <string name="label_backup">Sicherung</string>
+    <string name="label_backup">Backup</string>
     <string name="action_settings">Einstellungen</string>
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Heruntergeladen</string>
@@ -43,7 +43,7 @@
     <string name="action_move_category">Zu Kategorien hinzufügen</string>
     <string name="action_edit_cover">Vorschaubild bearbeiten</string>
     <string name="action_sort_up">Aufsteigend sortieren</string>
-    <string name="action_sort_down">Absteigend Sortieren</string>
+    <string name="action_sort_down">Absteigend sortieren</string>
     <string name="action_show_downloaded">Heruntergeladen</string>
     <string name="action_next_unread">Nächstes Ungelesenes</string>
     <string name="action_start">Start</string>
@@ -53,7 +53,7 @@
     <string name="action_close">Schließen</string>
     <string name="action_previous_chapter">Vorheriges Kapitel</string>
     <string name="action_next_chapter">Nächstes Kapitel</string>
-    <string name="action_retry">Erneut Versuchen</string>
+    <string name="action_retry">Erneut versuchen</string>
     <string name="action_remove">Entfernen</string>
     <string name="action_resume">Fortfahren</string>
     <string name="action_move">Verschieben</string>
@@ -103,7 +103,7 @@
     <string name="pref_library_update_categories">Kategorien für das globale Update</string>
     <string name="all">Alle</string>
     <string name="pref_library_update_restriction">Bibliotheksaktualisierung einschränken</string>
-    <string name="pref_library_update_restriction_summary">Nur wenn folgende Bedingungen eintreffen aktualisieren</string>
+    <string name="pref_library_update_restriction_summary">Nur aktualisieren, wenn diese Bedingungen eintreffen</string>
     <string name="wifi">WLAN</string>
     <string name="charging">Am Laden</string>
     <string name="pref_update_only_non_completed">Nur fortlaufende Manga aktualisieren</string>
@@ -116,7 +116,7 @@
     <string name="pref_language">Sprache</string>
     <string name="system_default">Systemstandard</string>
     <string name="default_category">Standardkategorie</string>
-    <string name="default_category_summary">Immer Fragen</string>
+    <string name="default_category_summary">Immer fragen</string>
     <string name="pref_fullscreen">Vollbild</string>
     <string name="pref_lock_orientation">Bildschirm nicht drehen</string>
     <string name="pref_page_transitions">Seitenübergänge</string>
@@ -378,7 +378,7 @@
     <string name="ext_install">Installieren</string>
     <string name="ext_pending">Anstehend</string>
     <string name="ext_downloading">Wird heruntergeladen</string>
-    <string name="ext_installing">Installiere</string>
+    <string name="ext_installing">Wird installiert</string>
     <string name="ext_installed">Installiert</string>
     <string name="ext_uninstall">Deinstallieren</string>
     <string name="ext_preferences">Einstellungen</string>
@@ -445,7 +445,7 @@
     <string name="label_help">Hilfe</string>
     <string name="pref_library_update_prioritization">Reihenfolge der Bibliotheksaktualisierung</string>
     <string name="no_results_found">Keine Ergebnisse gefunden</string>
-    <string name="migration_selection_prompt">Suche eine Quelle zum migrieren aus</string>
+    <string name="migration_selection_prompt">Wähle eine Quelle, aus welcher migriert werden soll</string>
     <string name="action_webview_back">Zurück</string>
     <string name="action_webview_forward">Vorwärts</string>
     <string name="action_webview_refresh">Aktualisieren</string>
