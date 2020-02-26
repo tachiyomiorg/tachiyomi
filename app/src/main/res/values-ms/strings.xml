@@ -13,7 +13,6 @@
     <string name="label_catalogues">Katalog</string>
     <string name="label_recent_updates">Perubahan koleksi</string>
     <string name="label_categories">Kategori</string>
-    <string name="label_selected">%1$d dipilih</string>
     <string name="label_backup">Sandaran</string>
     <string name="action_settings">Tetapan</string>
     <string name="action_filter">Tapis</string>
@@ -52,7 +51,6 @@
     <string name="action_start">Mula</string>
     <string name="action_stop">Henti</string>
     <string name="action_pause">Henti sebentar</string>
-    <string name="action_clear">Kosongkan</string>
     <string name="action_close">Tutup</string>
     <string name="action_previous_chapter">Bab sebelumnya</string>
     <string name="action_next_chapter">Bab seterusnya</string>
@@ -113,10 +111,6 @@
     <string name="charging">Ketika mengecas</string>
     <string name="pref_update_only_non_completed">Hanya kemas kini manga yang masih berterusan</string>
     <string name="pref_auto_update_manga_sync">Sinkronkan bab setelah dibaca</string>
-    <string name="pref_theme">Tema aplikasi</string>
-    <string name="light_theme">Terang</string>
-    <string name="dark_theme">Gelap</string>
-    <string name="amoled_theme">AMOLED gelap</string>
     <string name="pref_start_screen">Skrin permulaan</string>
     <string name="pref_language">Bahasa</string>
     <string name="system_default">Tetapan sistem</string>
@@ -267,7 +261,6 @@
     <string name="circular_icon">Melingkar</string>
     <string name="rounded_icon">Berbulat</string>
     <string name="square_icon">Bersegi</string>
-    <string name="star_icon">Bintang</string>
     <string name="shortcut_title">Tajuk pintasan</string>
     <string name="shortcut_created">Pintasan telah ditambah kepada skrin utama.</string>
     <string name="icon_shape">Bentuk ikon</string>
@@ -372,7 +365,6 @@
     <string name="label_extensions">Sambungan</string>
     <string name="label_extension_info">Info sambungan</string>
     <string name="action_open_in_web_view">Buka dalam WebView</string>
-    <string name="darkblue_theme">Biru gelap</string>
     <string name="all_lang">Semua</string>
     <string name="ext_details">Perincian</string>
     <string name="ext_update">Kemaskini</string>

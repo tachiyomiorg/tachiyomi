@@ -58,10 +58,6 @@
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Töltés</string>
     <string name="pref_update_only_non_completed">Csak a folyamatban lévő mangákat frissítse</string>
-    <string name="pref_theme">Alkalmazás téma</string>
-    <string name="light_theme">Fő téma</string>
-    <string name="dark_theme">Sötét téma</string>
-    <string name="amoled_theme">AMOLED téma</string>
     <string name="pref_start_screen">Kezdőképernyő</string>
     <string name="pref_language">Nyelv</string>
     <string name="system_default">Rendszer alapértelmezése</string>
@@ -95,7 +91,6 @@
     <string name="label_download_queue">Letöltési sor</string>
     <string name="label_library">Könyvtár</string>
     <string name="label_recent_updates">Könyvtár frissítések</string>
-    <string name="label_selected">%1$d kiválasztva</string>
     <string name="action_filter">Szűrők</string>
     <string name="action_filter_downloaded">Letöltve</string>
     <string name="action_filter_bookmarked">Könyvjelzőzve</string>
@@ -129,7 +124,6 @@
     <string name="action_start">Kezdés</string>
     <string name="action_stop">Megállítás</string>
     <string name="action_pause">Szüneteltetés</string>
-    <string name="action_clear">Törlés</string>
     <string name="action_previous_chapter">Előző fejezet</string>
     <string name="action_next_chapter">Következő fejezet</string>
     <string name="action_retry">Újra</string>
@@ -168,7 +162,6 @@
     <string name="ext_untrusted">Nem megbízható</string>
     <string name="ext_uninstall">Eltávolítás</string>
     <string name="ext_preferences">Preferenciák</string>
-    <string name="darkblue_theme">Sötétkék</string>
     <string name="all_lang">Összes</string>
     <string name="label_extension_info">Bővítmény információ</string>
     <string name="ext_details">Részletek</string>

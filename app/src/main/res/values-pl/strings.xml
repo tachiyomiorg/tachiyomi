@@ -47,7 +47,6 @@
     <string name="action_start">Start</string>
     <string name="action_stop">Zatrzymaj</string>
     <string name="action_pause">Wstrzymaj</string>
-    <string name="action_clear">Wyczyść</string>
     <string name="action_close">Zamknij</string>
     <string name="action_previous_chapter">Poprzedni rozdział</string>
     <string name="action_next_chapter">Następny rozdział</string>
@@ -139,7 +138,6 @@
     <string name="download_notifier_title_error">Błąd</string>
     <string name="download_notifier_unkown_error">Podczas pobierania rozdziału wystąpił nieoczekiwany błąd</string>
     <string name="download_notifier_download_paused">Pobieranie wstrzymane</string>
-    <string name="label_selected">Zaznaczono: %1$d</string>
     <string name="action_sort_alpha">Alfabetycznie</string>
     <string name="track">Śledzenie</string>
     <string name="action_reset">Reset</string>
@@ -192,10 +190,6 @@
     <string name="charging">Ładowanie baterii</string>
     <string name="pref_update_only_non_completed">Aktualizuj tylko nieukończone mangi</string>
     <string name="pref_auto_update_manga_sync">Aktualizuj postęp po przeczytaniu rozdziału</string>
-    <string name="pref_theme">Motyw aplikacji</string>
-    <string name="light_theme">Jasny</string>
-    <string name="dark_theme">Ciemny</string>
-    <string name="amoled_theme">Ciemny AMOLED</string>
     <string name="pref_start_screen">Ekran startowy</string>
     <string name="pref_language">Język</string>
     <string name="system_default">Systemowy</string>
@@ -312,7 +306,6 @@ Nie znaleziono źródła %1$s</string>
     <string name="circular_icon">Okrągła</string>
     <string name="rounded_icon">Zaokrąglona</string>
     <string name="square_icon">Kwadratowa</string>
-    <string name="star_icon">Gwiazdka</string>
     <string name="shortcut_title">Tytuł skrótu</string>
     <string name="icon_shape">Kształt ikony</string>
     <string name="icon_creation_fail">Nie udało się utworzyć skrótu</string>
@@ -428,7 +421,6 @@ Nie znaleziono źródła %1$s</string>
     <string name="transition_no_previous">Nie ma wcześniejszych rozdziałów</string>
     <string name="transition_pages_loading">Ładowanie stron…</string>
     <string name="transition_pages_error">Nie udało się załadować stron: %1$s</string>
-    <string name="darkblue_theme">Ciemny niebieski</string>
     <string name="action_open_in_web_view">Otwórz używając WebView</string>
     <string name="pref_true_color">Kolor 32-bitowy</string>
     <string name="pref_skip_read_chapters">Pomiń rozdziały ozn. jako przeczytane</string>

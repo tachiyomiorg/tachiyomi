@@ -9,7 +9,6 @@
     <string name="label_catalogues">Каталози</string>
     <string name="label_recent_updates">Наскоро обновени</string>
     <string name="label_categories">Категории</string>
-    <string name="label_selected">Избрани: %1$d</string>
     <string name="label_backup">Резервно копие</string>
     <!-- Actions -->
     <string name="action_settings">Настройки</string>
@@ -47,7 +46,6 @@
     <string name="action_start">Започни</string>
     <string name="action_stop">Спри</string>
     <string name="action_pause">Паузирай</string>
-    <string name="action_clear">Изчисти</string>
     <string name="action_previous_chapter">Предишна глава</string>
     <string name="action_next_chapter">Следваща глава</string>
     <string name="action_retry">Опитай пак</string>
@@ -100,9 +98,6 @@
     <string name="charging">На зарядно устройство</string>
     <string name="pref_update_only_non_completed">Обновявай само излизаща манга</string>
     <string name="pref_auto_update_manga_sync">Синхронизирай глави след прочитане</string>
-    <string name="pref_theme">Тема на приложението</string>
-    <string name="light_theme">Светла</string>
-    <string name="dark_theme">Тъмна</string>
     <string name="pref_start_screen">Начален екран</string>
     <string name="pref_language">Език</string>
     <string name="system_default">По подразбиране</string>
@@ -221,7 +216,6 @@
     <string name="circular_icon">Кръгла</string>
     <string name="rounded_icon">Заоблена</string>
     <string name="square_icon">Квадратна</string>
-    <string name="star_icon">Звезда</string>
     <string name="shortcut_title">Име на пряк път</string>
     <string name="icon_shape">Форма на икона</string>
     <string name="icon_creation_fail">Пряк път не можа да бъде създаден</string>
@@ -347,7 +341,6 @@
     <string name="short_recent_updates">Обновления</string>
     <string name="update_weekly">Ежеседмично</string>
     <string name="update_monthly">Ежемесечно</string>
-    <string name="amoled_theme">AMOLED тъмна</string>
     <string name="default_category">Категория по подразбиране</string>
     <string name="default_category_summary">Питай всеки път</string>
     <string name="pref_crop_borders">Изрязвай границите</string>
@@ -463,7 +456,6 @@
     <string name="transition_no_previous">Няма предишна глава</string>
     <string name="transition_pages_loading">Зареждане на страниците…</string>
     <string name="transition_pages_error">Не бяха заредени успешно: %1$s страници</string>
-    <string name="darkblue_theme">Тъмносиня тема</string>
     <string name="pref_read_with_long_tap">Показване на прозорец след натискане</string>
     <string name="reader_pull_up_for_more_options">Издърпайте за повече опции</string>
     <string name="action_open_in_web_view">Отвори онлайн</string>

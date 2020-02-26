@@ -9,7 +9,6 @@
     <string name="label_catalogues">Catalogues</string>
     <string name="label_recent_updates">Mises à jour récentes</string>
     <string name="label_categories">Catégories</string>
-    <string name="label_selected">Sélectionné : %1$d</string>
     <string name="label_backup">Sauvegarde</string>
     <!-- Actions -->
     <string name="action_settings">Paramètres</string>
@@ -47,7 +46,6 @@
     <string name="action_start">Commencer</string>
     <string name="action_stop">Arrêter</string>
     <string name="action_pause">Pause</string>
-    <string name="action_clear">Effacer</string>
     <string name="action_previous_chapter">Chapitre précédent</string>
     <string name="action_next_chapter">Chapitre suivant</string>
     <string name="action_retry">Réessayer</string>
@@ -99,9 +97,6 @@
     <string name="charging">En charge</string>
     <string name="pref_update_only_non_completed">Ne mettre à jour que les mangas en cours</string>
     <string name="pref_auto_update_manga_sync">Synchroniser les chapitres après les avoir lus</string>
-    <string name="pref_theme">Thème de l\'application</string>
-    <string name="light_theme">Clair</string>
-    <string name="dark_theme">Sombre</string>
     <string name="pref_start_screen">Page d\'accueil</string>
     <!-- Reader section -->
     <string name="pref_fullscreen">Plein écran</string>
@@ -209,7 +204,6 @@
     <string name="manga_info_genres_label">Genres</string>
     <string name="circular_icon">Circulaire</string>
     <string name="square_icon">Carrée</string>
-    <string name="star_icon">Étoile</string>
     <string name="shortcut_title">Titre de raccourci</string>
     <string name="icon_shape">Forme de l\'icône</string>
     <string name="icon_creation_fail">Échec de la création du raccourci</string>
@@ -342,7 +336,6 @@
     <string name="app_not_available">Application indisponible</string>
     <string name="update_weekly">Chaque semaine</string>
     <string name="update_monthly">Chaque mois</string>
-    <string name="amoled_theme">AMOLED sombre</string>
     <string name="default_category">Catégorie par défaut</string>
     <string name="download_notifier_download_paused">Téléchargement en pause</string>
     <string name="local_source">Manga locaux</string>
@@ -462,7 +455,6 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="migrate">Déplacement</string>
     <string name="copy">Copier</string>
     <string name="migrating">En cours de déplacement…</string>
-    <string name="darkblue_theme">Bleu foncé</string>
     <string name="pref_read_with_long_tap">Menu contextuel (appui prolongé)</string>
     <string name="reader_pull_up_for_more_options">Plus d\'options en défilant</string>
     <string name="action_open_in_web_view">Ouvrir dans le navigateur intégré</string>

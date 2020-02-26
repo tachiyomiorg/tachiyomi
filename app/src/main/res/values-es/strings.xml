@@ -9,7 +9,6 @@
     <string name="label_recent_updates">Actualizaciones recientes</string>
     <string name="label_catalogues">Catálogos</string>
     <string name="label_categories">Categorías</string>
-    <string name="label_selected">Seleccionados: %1$d</string>
     <string name="label_backup">Copia de seguridad</string>
     <!-- Actions -->
     <string name="action_settings">Configuraciones</string>
@@ -39,7 +38,6 @@
     <string name="action_start">Comenzar</string>
     <string name="action_stop">Detener</string>
     <string name="action_pause">Pausa</string>
-    <string name="action_clear">Borrar</string>
     <string name="action_previous_chapter">Capítulo anterior</string>
     <string name="action_next_chapter">Siguiente capítulo</string>
     <string name="action_retry">Reintentar</string>
@@ -81,9 +79,6 @@
     <string name="charging">Cargando</string>
     <string name="pref_update_only_non_completed">Solo actualizar el manga en curso</string>
     <string name="pref_auto_update_manga_sync">Sincronizar capítulos después de leerlos</string>
-    <string name="pref_theme">Tema de la aplicación</string>
-    <string name="light_theme">Claro</string>
-    <string name="dark_theme">Oscuro</string>
     <!-- Reader section -->
     <string name="pref_fullscreen">Pantalla completa</string>
     <string name="pref_lock_orientation">Bloquear orientación</string>
@@ -303,7 +298,6 @@
     <string name="update_monthly">Mensualmente</string>
     <string name="pref_library_update_categories">Categorías a incluir en actualización global</string>
     <string name="all">Todos</string>
-    <string name="amoled_theme">AMOLED Oscuro</string>
     <string name="pref_start_screen">Pantalla inicial</string>
     <string name="pref_language">Idioma</string>
     <string name="system_default">Predefinido del sistema</string>
@@ -362,7 +356,6 @@
     <string name="circular_icon">Circular</string>
     <string name="rounded_icon">Redondeado</string>
     <string name="square_icon">Cuadrado</string>
-    <string name="star_icon">Estrella</string>
     <string name="shortcut_title">Título de acceso directo</string>
     <string name="icon_shape">Forma del icono</string>
     <string name="icon_creation_fail">Error al crear acceso directo</string>
@@ -456,7 +449,6 @@
     <string name="select">Seleccionar</string>
     <string name="pref_double_tap_anim_speed">Velocidad de animación de doble toque</string>
     <string name="pager_viewer">Paginado</string>
-    <string name="darkblue_theme">Azul oscuro</string>
     <string name="pref_read_with_long_tap">Diálogo de toque largo</string>
     <string name="reader_pull_up_for_more_options">Tire hacia arriba para más opciones</string>
     <string name="action_open_in_web_view">Abrir en vista web</string>

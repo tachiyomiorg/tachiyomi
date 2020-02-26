@@ -13,7 +13,6 @@
     <string name="label_catalogues">Catálogos</string>
     <string name="label_recent_updates">Atualizações recentes</string>
     <string name="label_categories">Categorias</string>
-    <string name="label_selected">Selecionado: %1$d</string>
     <string name="label_backup">Backup</string>
     <string name="action_settings">Configurações</string>
     <string name="action_filter">Filtrar</string>
@@ -51,7 +50,6 @@
     <string name="action_start">Iniciar</string>
     <string name="action_stop">Parar</string>
     <string name="action_pause">Pausar</string>
-    <string name="action_clear">Limpar</string>
     <string name="action_close">Fechar</string>
     <string name="action_previous_chapter">Capítulo anterior</string>
     <string name="action_next_chapter">Próximo capítulo</string>
@@ -110,10 +108,6 @@
     <string name="charging">Carregando</string>
     <string name="pref_update_only_non_completed">Atualizar apenas mangás em andamento</string>
     <string name="pref_auto_update_manga_sync">Sincronizar capítulos após leitura</string>
-    <string name="pref_theme">Tema do aplicativo</string>
-    <string name="light_theme">Claro</string>
-    <string name="dark_theme">Escuro</string>
-    <string name="amoled_theme">AMOLED</string>
     <string name="pref_start_screen">Tela inicial</string>
     <string name="pref_language">Idioma</string>
     <string name="system_default">Padrão do sistema</string>
@@ -258,7 +252,6 @@
     <string name="circular_icon">Círculo</string>
     <string name="rounded_icon">Arredondado</string>
     <string name="square_icon">Quadrado</string>
-    <string name="star_icon">Estrela</string>
     <string name="shortcut_title">Título do atalho</string>
     <string name="icon_shape">Formato do ícone</string>
     <string name="icon_creation_fail">Não foi possível criar o atalho</string>
@@ -429,7 +422,6 @@
     <string name="transition_no_previous">Não há capítulo anterior</string>
     <string name="transition_pages_loading">Carregando páginas…</string>
     <string name="transition_pages_error">Falha ao carregar páginas: %1$s</string>
-    <string name="darkblue_theme">Azul escuro</string>
     <string name="reader_pull_up_for_more_options">Deslize para cima para mais opções</string>
     <string name="pref_read_with_long_tap">Diálogo de toque longo</string>
     <string name="action_open_in_web_view">Abrir na WebView</string>

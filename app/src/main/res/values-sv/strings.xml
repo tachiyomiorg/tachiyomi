@@ -13,7 +13,6 @@
     <string name="label_catalogues">Kataloger</string>
     <string name="label_recent_updates">Senaste uppdateringar</string>
     <string name="label_categories">Kategorier</string>
-    <string name="label_selected">Vald: %1$d</string>
     <string name="label_backup">Säkerhetskopiering</string>
     <string name="label_migration">Källmigrering</string>
     <string name="label_extensions">Tillägg</string>
@@ -55,7 +54,6 @@
     <string name="action_start">Start</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Paus</string>
-    <string name="action_clear">Rensa</string>
     <string name="action_close">Stäng</string>
     <string name="action_previous_chapter">Föregående kapitel</string>
     <string name="action_next_chapter">Nästa kapitel</string>
@@ -117,11 +115,6 @@
     <string name="charging">Laddning</string>
     <string name="pref_update_only_non_completed">Uppdatera endast pågående manga</string>
     <string name="pref_auto_update_manga_sync">Synkronisera kapitel efter läsning</string>
-    <string name="pref_theme">Programtema</string>
-    <string name="light_theme">Ljus</string>
-    <string name="dark_theme">Mörk</string>
-    <string name="amoled_theme">AMOLED mörk</string>
-    <string name="darkblue_theme">Mörkblå</string>
     <string name="pref_start_screen">Startskärm</string>
     <string name="pref_language">Språk</string>
     <string name="system_default">System standard</string>
@@ -304,7 +297,6 @@
     <string name="circular_icon">Cirkulär</string>
     <string name="rounded_icon">Avrundad</string>
     <string name="square_icon">Fyrkantig</string>
-    <string name="star_icon">Stjärna</string>
     <string name="shortcut_title">Genvägs titel</string>
     <string name="shortcut_created">Genvägen lades till på hemskärmen.</string>
     <string name="icon_shape">Ikon form</string>

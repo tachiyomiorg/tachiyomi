@@ -13,7 +13,6 @@
     <string name="label_catalogues">सूची</string>
     <string name="label_recent_updates">पुस्तकालय अद्यतन</string>
     <string name="label_categories">श्रेणियाँ</string>
-    <string name="label_selected">श्रेणियाँ %1$d</string>
     <string name="label_backup">बैकअप</string>
     <string name="action_settings">सेटिंग</string>
     <string name="action_filter">फिल्टर</string>
@@ -52,7 +51,6 @@
     <string name="action_start">प्रारंभ</string>
     <string name="action_stop">रोके</string>
     <string name="action_pause">ठहराव</string>
-    <string name="action_clear">साफ़ करे</string>
     <string name="action_close">बंद करे</string>
     <string name="action_previous_chapter">पिछला अध्याय</string>
     <string name="action_next_chapter">अगला अध्याय</string>
@@ -114,10 +112,6 @@
     <string name="charging">चार्ज होते समय</string>
     <string name="pref_update_only_non_completed">केवल चालू मंगा का अद्यतन करे</string>
     <string name="pref_auto_update_manga_sync">अध्याय पढ़ने के बाद समकालीन करे</string>
-    <string name="pref_theme">ऐप थीम</string>
-    <string name="light_theme">सफ़ेद थीम</string>
-    <string name="dark_theme">काली थीम</string>
-    <string name="amoled_theme">अलौकिक गहरी थीम</string>
     <string name="pref_start_screen">प्रथम प्रदर्शनी</string>
     <string name="pref_language">भाषा</string>
     <string name="system_default">डिफ़ॉल्ट प्रणाली</string>
@@ -268,7 +262,6 @@
     <string name="circular_icon">परिपत्र</string>
     <string name="rounded_icon">गोल</string>
     <string name="square_icon">वर्ग</string>
-    <string name="star_icon">स्टार</string>
     <string name="shortcut_title">शॉर्टकट शीर्षक</string>
     <string name="shortcut_created">शॉर्टकट को होम स्क्रीन पर जोड़ा गया था.</string>
     <string name="icon_shape">चिह्न आकार</string>
@@ -427,7 +420,6 @@
     <string name="transition_no_previous">कोई पिछला अध्याय नहीं है</string>
     <string name="transition_pages_loading">पेज लोड हो रहे है …</string>
     <string name="transition_pages_error">पृष्ठों को लोड करने में विफल है: %1$s</string>
-    <string name="darkblue_theme">गहरा नीला</string>
     <string name="reader_pull_up_for_more_options">अधिक विकल्पों के लिए खींचो</string>
     <string name="pref_read_with_long_tap">संवाद के लिए लंबी प्रेस</string>
     <string name="action_open_in_web_view">वेब दृश्य में खोलें</string>

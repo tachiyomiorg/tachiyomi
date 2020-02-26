@@ -9,7 +9,6 @@
     <string name="label_recent_updates">Atualizações</string>
     <string name="label_catalogues">Catálogos</string>
     <string name="label_categories">Categorias</string>
-    <string name="label_selected">Selecionado: %1$d</string>
     <string name="label_backup">Cópia de segurança</string>
     <!-- Actions -->
     <string name="action_settings">Definições</string>
@@ -40,7 +39,6 @@
     <string name="action_start">Começar</string>
     <string name="action_stop">Parar</string>
     <string name="action_pause">Pausa</string>
-    <string name="action_clear">Limpar</string>
     <string name="action_previous_chapter">Capítulo anterior</string>
     <string name="action_next_chapter">Capítulo seguinte</string>
     <string name="action_retry">Tentar novamente</string>
@@ -84,9 +82,6 @@
     <string name="charging">A carregar</string>
     <string name="pref_update_only_non_completed">Atualizar apenas mangás a decorrer</string>
     <string name="pref_auto_update_manga_sync">Sincronizar capítulos após leitura</string>
-    <string name="pref_theme">Tema da aplicação</string>
-    <string name="light_theme">Tema principal</string>
-    <string name="dark_theme">Tema escuro</string>
     <!-- Reader section -->
     <string name="pref_fullscreen">Ocultar barra de estado</string>
     <string name="pref_lock_orientation">Bloquear orientação</string>
@@ -305,7 +300,6 @@
     <string name="short_recent_updates">Atualizações</string>
     <string name="update_weekly">Semanalmente</string>
     <string name="update_monthly">Mensalmente</string>
-    <string name="amoled_theme">Tema AMOLED</string>
     <string name="pref_start_screen">Ecrã inicial</string>
     <string name="pref_language">Língua</string>
     <string name="system_default">Predefinição do sistema</string>
@@ -356,7 +350,6 @@
     <string name="action_reset">Reiniciar</string>
     <string name="action_open_log">Abrir registro</string>
     <string name="pref_category_tracking">Listas</string>
-    <string name="darkblue_theme">Preto/Azul</string>
     <string name="all_lang">Tudo</string>
     <string name="pref_double_tap_anim_speed">Velocidade animação dois toques</string>
     <string name="pager_viewer">Paginas</string>
@@ -406,7 +399,6 @@
     <string name="circular_icon">Ícone circular</string>
     <string name="rounded_icon">Ícone redondo</string>
     <string name="square_icon">Ícone quadrado</string>
-    <string name="star_icon">Ícone de estrela</string>
     <string name="shortcut_title">Título do atalho</string>
     <string name="shortcut_created">O atalho foi adicionado à sua tela inicial.</string>
     <string name="icon_shape">Formato do ícone</string>

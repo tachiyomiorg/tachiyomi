@@ -13,7 +13,6 @@
     <string name="label_catalogues">Kataloglar</string>
     <string name="label_recent_updates">Son güncellemeler</string>
     <string name="label_categories">Kategoriler</string>
-    <string name="label_selected">Seçilen: %1$d</string>
     <string name="label_backup">Yedekleme</string>
     <string name="label_migration">Kaynak taşıma</string>
     <string name="label_extensions">Eklentiler</string>
@@ -55,7 +54,6 @@
     <string name="action_start">Başlat</string>
     <string name="action_stop">Durdur</string>
     <string name="action_pause">Duraklat</string>
-    <string name="action_clear">Temizle</string>
     <string name="action_close">Kapat</string>
     <string name="action_previous_chapter">Önceki bölüm</string>
     <string name="action_next_chapter">Sonraki bölüm</string>
@@ -117,10 +115,6 @@
     <string name="charging">Şarj oluyor</string>
     <string name="pref_update_only_non_completed">Yalnızca devam eden mangaları güncelleme</string>
     <string name="pref_auto_update_manga_sync">Okudukdan sonra bölümleri eşitle</string>
-    <string name="pref_theme">Uygulama teması</string>
-    <string name="light_theme">Aydınlık</string>
-    <string name="dark_theme">Karanlık</string>
-    <string name="amoled_theme">AMOLED karanlık</string>
     <string name="pref_start_screen">Başlangıç ekranı</string>
     <string name="pref_language">Dil</string>
     <string name="system_default">Sistem öntanımlı</string>
@@ -303,7 +297,6 @@
     <string name="circular_icon">Dairesel</string>
     <string name="rounded_icon">Yuvarlak</string>
     <string name="square_icon">Kare</string>
-    <string name="star_icon">Yıldız</string>
     <string name="shortcut_title">Kısayol başlığı</string>
     <string name="shortcut_created">Kısayol ana ekrana eklendi.</string>
     <string name="icon_shape">Simge şekli</string>
@@ -429,7 +422,6 @@
     <string name="transition_no_previous">Önceki bölüm yok</string>
     <string name="transition_pages_loading">Sayfalar yükleniyor…</string>
     <string name="transition_pages_error">Sayfalar yüklenemedi: %1$s</string>
-    <string name="darkblue_theme">Koyu mavi</string>
     <string name="pref_read_with_long_tap">Uzun dokunma iletişim kutusu</string>
     <string name="reader_pull_up_for_more_options">Daha çok seçenek için yukarı çekin</string>
     <string name="action_open_in_web_view">Web görünümünde aç</string>

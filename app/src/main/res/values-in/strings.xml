@@ -12,7 +12,6 @@
     <string name="label_catalogues">Katalog</string>
     <string name="label_recent_updates">Pembaruan perpustakaan</string>
     <string name="label_categories">Kategori</string>
-    <string name="label_selected">Terpilih: %1$d</string>
     <string name="label_backup">Cadangan</string>
     <string name="action_settings">Pengaturan</string>
     <string name="action_filter">Filter</string>
@@ -50,7 +49,6 @@
     <string name="action_start">Mulai</string>
     <string name="action_stop">Berhenti</string>
     <string name="action_pause">Hentikan sementara</string>
-    <string name="action_clear">Hapus</string>
     <string name="action_close">Tutup</string>
     <string name="action_previous_chapter">Bab sebelumnya</string>
     <string name="action_next_chapter">Bab selanjutnya</string>
@@ -110,10 +108,6 @@
     <string name="charging">Sedang mengisi daya</string>
     <string name="pref_update_only_non_completed">Perbarui manga yang masih belum tamat saja</string>
     <string name="pref_auto_update_manga_sync">Sinkronkan bab setelah membaca</string>
-    <string name="pref_theme">Tema App</string>
-    <string name="light_theme">Terang</string>
-    <string name="dark_theme">Gelap</string>
-    <string name="amoled_theme">AMOLED gelap</string>
     <string name="pref_start_screen">Layar mulai</string>
     <string name="pref_language">Bahasa</string>
     <string name="system_default">Bawaan sistem</string>
@@ -259,7 +253,6 @@
     <string name="circular_icon">Melingkar</string>
     <string name="rounded_icon">Dibulatkan</string>
     <string name="square_icon">Persegi</string>
-    <string name="star_icon">Bintang</string>
     <string name="shortcut_title">Judul pintasan</string>
     <string name="icon_shape">Bentuk ikon</string>
     <string name="icon_creation_fail">Gagal membuat pintasan</string>
@@ -421,7 +414,6 @@
     <string name="track_type">Tipe</string>
     <string name="track_author">Penulis</string>
     <string name="url_not_set">URL Manga belum siap, silahkan klik judul dan pilih manga lagi</string>
-    <string name="darkblue_theme">Biru gelap</string>
     <string name="transition_finished">Selesai:</string>
     <string name="transition_current">Saat ini:</string>
     <string name="transition_next">Selanjutnya:</string>

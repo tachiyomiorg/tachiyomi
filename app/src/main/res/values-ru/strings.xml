@@ -5,7 +5,6 @@
     <string name="action_add_to_home_screen">Добавить на главный экран</string>
     <string name="action_bookmark">Закладка</string>
     <string name="action_cancel">Отмена</string>
-    <string name="action_clear">Очистить</string>
     <string name="action_delete">Удалить</string>
     <string name="action_display">Отобразить</string>
     <string name="action_display_grid">Сетка</string>
@@ -85,7 +84,6 @@
     <string name="cover_updated">Обложка обновлена</string>
     <string name="custom_dir">Пользовательский каталог</string>
     <string name="custom_filter">Пользовательский фильтр</string>
-    <string name="dark_theme">Темная</string>
     <string name="decode_image_error">Не удалось декодировать изображение</string>
     <string name="default_columns">По умолчанию</string>
     <string name="default_viewer">По умолчанию</string>
@@ -134,14 +132,12 @@
     <string name="label_library">Библиотека</string>
     <string name="label_recent_manga">История</string>
     <string name="label_recent_updates">Обновления библиотеки</string>
-    <string name="label_selected">Выбраны: %1$d</string>
     <string name="label_settings">Настройки</string>
     <string name="landscape">Горизонтальная</string>
     <string name="last_read_chapter">Последняя прочитанная глава</string>
     <string name="left_to_right_viewer">Слева направо</string>
     <string name="library_search_hint">Название или автор…</string>
     <string name="licensed">Лицензировано</string>
-    <string name="light_theme">Светлая</string>
     <string name="loading">Загрузка…</string>
     <string name="login">Авторизация</string>
     <string name="login_success">Успешный вход</string>
@@ -221,7 +217,6 @@
     <string name="pref_rotation_type">Ориентация</string>
     <string name="pref_show_page_number">Показывать номер страницы</string>
     <string name="pref_start_screen">Стартовый экран</string>
-    <string name="pref_theme">Тема приложения</string>
     <string name="pref_update_only_non_completed">Обновлять только ongoing мангу</string>
     <string name="pref_viewer_type">Направление чтения</string>
     <string name="pref_zoom_start">Стартовая позиция увеличения</string>
@@ -256,7 +251,6 @@
     <string name="sorting_mode">Метод сортировки</string>
     <string name="source_requires_login">Этот каталог требует авторизации</string>
     <string name="square_icon">Квадратная</string>
-    <string name="star_icon">Звезда</string>
     <string name="status">Статус</string>
     <string name="system_default">Системный</string>
     <string name="third_to_last">Третью от прочитанной главы</string>
@@ -303,7 +297,6 @@
     <string name="action_undo">Отменить</string>
     <string name="added_to_library">Эта манга уже добавлена в библиотеку</string>
     <string name="also_delete_chapters">Так же удалить загруженные главы</string>
-    <string name="amoled_theme">AMOLED темная</string>
     <string name="backup_choice">Что вы хотите бэкапить?</string>
     <string name="backup_created">Бэкап создан</string>
     <string name="backup_restore_content">При восстановлении используются данные из каталогов, что может вызвать большой расход трафика.
@@ -428,7 +421,6 @@
     <string name="transition_no_previous">Предыдущей части нет</string>
     <string name="transition_pages_loading">Идёт загрузка страниц…</string>
     <string name="transition_pages_error">Не удалось загрузить страницы: %1$s</string>
-    <string name="darkblue_theme">Темно-синяя</string>
     <string name="pref_read_with_long_tap">Диалог при долгом нажатии</string>
     <string name="reader_pull_up_for_more_options">Потяните вверх для раскрытия меню</string>
     <string name="action_open_in_web_view">Открыть в Web View</string>

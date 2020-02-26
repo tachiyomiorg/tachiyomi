@@ -12,7 +12,6 @@
     <string name="label_catalogues">搜索</string>
     <string name="label_recent_updates">最近更新</string>
     <string name="label_categories">分类</string>
-    <string name="label_selected">已选择: %1$d</string>
     <string name="label_backup">备份</string>
     <string name="label_extensions">扩展插件</string>
     <string name="label_extension_info">插件信息</string>
@@ -50,7 +49,6 @@
     <string name="action_start">开始</string>
     <string name="action_stop">停止</string>
     <string name="action_pause">暂停</string>
-    <string name="action_clear">清除</string>
     <string name="action_close">关闭</string>
     <string name="action_previous_chapter">上一章</string>
     <string name="action_next_chapter">下一章</string>
@@ -117,10 +115,6 @@
     <string name="charging">充电中</string>
     <string name="pref_update_only_non_completed">只更新连载中的漫画</string>
     <string name="pref_auto_update_manga_sync">阅读之后同步</string>
-    <string name="pref_theme">主题</string>
-    <string name="light_theme">亮色</string>
-    <string name="dark_theme">暗色</string>
-    <string name="amoled_theme">AMOLED黑</string>
     <string name="pref_start_screen">开始页面</string>
     <string name="pref_language">语言</string>
     <string name="system_default">系统默认</string>
@@ -302,7 +296,6 @@
     <string name="circular_icon">圆形图标</string>
     <string name="rounded_icon">方圆形图标</string>
     <string name="square_icon">方形图标</string>
-    <string name="star_icon">星形图标</string>
     <string name="shortcut_title">快捷方式标题</string>
     <string name="shortcut_created">已添加快捷方式至手机桌面</string>
     <string name="icon_shape">图标形状</string>
@@ -429,7 +422,6 @@
     <string name="channel_common">普通</string>
     <string name="channel_library">书架</string>
     <string name="channel_downloader">下载</string>
-    <string name="darkblue_theme">暗蓝色</string>
     <string name="pref_read_with_long_tap">长按菜单</string>
     <string name="reader_pull_up_for_more_options">上拉显示更多选项</string>
     <string name="action_open_in_web_view">用外部浏览器打开</string>

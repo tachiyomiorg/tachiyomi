@@ -13,7 +13,6 @@
     <string name="label_catalogues">Κατάλογοι</string>
     <string name="label_recent_updates">Ενημερώσεις βιβλιοθήκης</string>
     <string name="label_categories">Κατηγορίες</string>
-    <string name="label_selected">Επιλεγμένο: %1$d</string>
     <string name="label_backup">Αντίγραφο ασφάλειας</string>
     <string name="label_migration">Μεταφορά πηγής</string>
     <string name="label_extensions">Επεκτάσεις</string>
@@ -55,7 +54,6 @@
     <string name="action_start">Εκκίνηση</string>
     <string name="action_stop">Σταμάτημα</string>
     <string name="action_pause">Παύση</string>
-    <string name="action_clear">Απαλοιφή</string>
     <string name="action_close">Κλείσιμο</string>
     <string name="action_previous_chapter">Προηγούμενο κεφάλαιο</string>
     <string name="action_next_chapter">Επόμενο κεφάλαιο</string>
@@ -117,11 +115,6 @@
     <string name="charging">Φόρτωση</string>
     <string name="pref_update_only_non_completed">Ενημέρωση μόνο manga σε εξέλιξη</string>
     <string name="pref_auto_update_manga_sync">Συγχρονισμός κεφάλαιων μετά τη ανάγνωση</string>
-    <string name="pref_theme">Θέμα εφαρμογής</string>
-    <string name="light_theme">Κύριο θέμα</string>
-    <string name="dark_theme">Σκοτεινό θέμα</string>
-    <string name="amoled_theme">Θέμα AMOLED</string>
-    <string name="darkblue_theme">Σκούρο μπλε</string>
     <string name="pref_start_screen">Οθόνη εκκίνησης</string>
     <string name="pref_language">Γλώσσα</string>
     <string name="system_default">Προεπιλογή συστήματος</string>
@@ -304,7 +297,6 @@
     <string name="circular_icon">Κυκλικό</string>
     <string name="rounded_icon">Στρογγυλεμένο</string>
     <string name="square_icon">Τετράγωνο</string>
-    <string name="star_icon">Αστέρι</string>
     <string name="shortcut_title">Συντόμευση τίτλου</string>
     <string name="shortcut_created">Η συντόμευση προστέθηκε στην αρχική οθόνη.</string>
     <string name="icon_shape">Σχήμα εικονιδίου</string>

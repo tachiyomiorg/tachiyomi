@@ -13,7 +13,6 @@
     <string name="label_catalogues">Surse</string>
     <string name="label_recent_updates">Actualizări recente</string>
     <string name="label_categories">Categorii</string>
-    <string name="label_selected">Selectat: %1$d</string>
     <string name="label_backup">Copie de rezervă</string>
     <string name="label_migration">Migrarea sursei</string>
     <string name="label_extensions">Extensii</string>
@@ -53,7 +52,6 @@
     <string name="action_start">Start</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Pauză</string>
-    <string name="action_clear">Curățare</string>
     <string name="action_close">Închide</string>
     <string name="action_previous_chapter">Capitolul anterior</string>
     <string name="action_next_chapter">Capitolul următor</string>
@@ -113,10 +111,6 @@
     <string name="charging">Se încarcă</string>
     <string name="pref_update_only_non_completed">Actualizează doar manga în curs de desfășurare</string>
     <string name="pref_auto_update_manga_sync">Sincronizează capitolele după citire</string>
-    <string name="pref_theme">Tema aplicației</string>
-    <string name="light_theme">Deschis</string>
-    <string name="dark_theme">Întunecat</string>
-    <string name="amoled_theme">AMOLED întunecat</string>
     <string name="pref_start_screen">Ecran principal</string>
     <string name="pref_language">Limbă</string>
     <string name="system_default">Prestabilită de sistem</string>
@@ -151,7 +145,6 @@
     <string name="action_sort_down">Sortare de jos</string>
     <string name="action_display_download_badge">Insigne descărcate</string>
     <string name="landscape">Peisaj</string>
-    <string name="darkblue_theme">Albastru închis</string>
     <string name="pref_double_tap_anim_speed">Animație pentru apăsare dublă</string>
     <string name="pref_show_page_number">Arată numărul paginii</string>
     <string name="pref_crop_borders">Taie marginile</string>
@@ -304,7 +297,6 @@
     <string name="circular_icon">Circulară</string>
     <string name="rounded_icon">Rotunjită</string>
     <string name="square_icon">Pătrată</string>
-    <string name="star_icon">Stea</string>
     <string name="shortcut_title">Scurtătură titlu</string>
     <string name="shortcut_created">Scurtătura a fost adăugată ecranului principal.</string>
     <string name="icon_shape">Forma pictogramei</string>

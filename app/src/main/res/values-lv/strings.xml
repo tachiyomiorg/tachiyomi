@@ -13,7 +13,6 @@
     <string name="label_catalogues">Katalogi</string>
     <string name="label_recent_updates">Bibliotēkas atjauninājumi</string>
     <string name="label_categories">Kategorijas</string>
-    <string name="label_selected">Atlasīts: %1$d</string>
     <string name="label_backup">Rezerves kopija</string>
     <string name="action_settings">Iestatījumi</string>
     <string name="action_filter">Filtrs</string>
@@ -51,7 +50,6 @@
     <string name="action_start">Sākt</string>
     <string name="action_stop">Beigt</string>
     <string name="action_pause">Pārtraukt</string>
-    <string name="action_clear">Notīrīt</string>
     <string name="action_close">Aizvērt</string>
     <string name="action_previous_chapter">Iepriekšēja nodaļa</string>
     <string name="action_next_chapter">Nākama nodaļa</string>

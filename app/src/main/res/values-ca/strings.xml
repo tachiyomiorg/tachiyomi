@@ -13,7 +13,6 @@
     <string name="label_catalogues">Catàlegs</string>
     <string name="label_recent_updates">Actualitzacions recents</string>
     <string name="label_categories">Categories</string>
-    <string name="label_selected">Seleccionats: %1$d</string>
     <string name="label_backup">Còpia de seguretat</string>
     <string name="label_migration">Migració de fonts</string>
     <string name="label_extensions">Extensions</string>
@@ -55,7 +54,6 @@
     <string name="action_start">Comença</string>
     <string name="action_stop">Atura</string>
     <string name="action_pause">Pausa</string>
-    <string name="action_clear">Esborra</string>
     <string name="action_close">Tanca</string>
     <string name="action_previous_chapter">Capítol anterior</string>
     <string name="action_next_chapter">Capítol següent</string>
@@ -117,11 +115,6 @@
     <string name="charging">Carregant</string>
     <string name="pref_update_only_non_completed">Actualitza només el manga en curs</string>
     <string name="pref_auto_update_manga_sync">Sincronitza els capítols després de llegir-los</string>
-    <string name="pref_theme">Tema de l\'aplicació</string>
-    <string name="light_theme">Clar</string>
-    <string name="dark_theme">Fosc</string>
-    <string name="amoled_theme">Fosc AMOLED</string>
-    <string name="darkblue_theme">Blau fosc</string>
     <string name="pref_start_screen">Pantalla d\'inici</string>
     <string name="pref_language">Idioma</string>
     <string name="system_default">Per defecte del sistema</string>
@@ -304,7 +297,6 @@
     <string name="circular_icon">Circular</string>
     <string name="rounded_icon">Arrodonida</string>
     <string name="square_icon">Quadrada</string>
-    <string name="star_icon">Estel</string>
     <string name="shortcut_title">Títol de la drecera</string>
     <string name="shortcut_created">S\'ha afegit la drecera a la pantalla d\'inici.</string>
     <string name="icon_shape">Forma de la icona</string>

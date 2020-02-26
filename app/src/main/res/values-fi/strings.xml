@@ -19,7 +19,6 @@
     <string name="chapters">Luvut</string>
     <string name="label_recent_updates">Viimeisimmät</string>
     <string name="label_catalogues">Katalokit</string>
-    <string name="label_selected">Valittu: %1$d</string>
     <string name="action_sort_total">Lukuja yhteensä</string>
     <string name="action_sort_last_updated">Viimeksi päivitetty</string>
     <string name="action_global_search">Globaali haku</string>
@@ -130,7 +129,6 @@
     <string name="action_start">Aloita</string>
     <string name="action_stop">Lopeta</string>
     <string name="action_pause">Pysäytä</string>
-    <string name="action_clear">Tyhjennä</string>
     <string name="action_close">Sulje</string>
     <string name="action_previous_chapter">Aiempi luku</string>
     <string name="action_next_chapter">Seuraava luku</string>
@@ -191,11 +189,6 @@
     <string name="charging">Latauksessa</string>
     <string name="pref_update_only_non_completed">Päivitä vain jatkuvat sarjat</string>
     <string name="pref_auto_update_manga_sync">Synkronoi luvut lukemisen jälkeen</string>
-    <string name="pref_theme">Sovelluksen teema</string>
-    <string name="light_theme">Vaalea</string>
-    <string name="dark_theme">Tumma</string>
-    <string name="amoled_theme">AMOLED musta</string>
-    <string name="darkblue_theme">Tumman sininen</string>
     <string name="pref_start_screen">Aloitusnäyttö</string>
     <string name="pref_language">Kieli</string>
     <string name="system_default">Järjestelmän oletus</string>
@@ -352,7 +345,6 @@
     <string name="circular_icon">Pyöreä</string>
     <string name="rounded_icon">Pyöristetty</string>
     <string name="square_icon">Neliö</string>
-    <string name="star_icon">Tähti</string>
     <string name="shortcut_title">Pikakuvakkeen nimi</string>
     <string name="shortcut_created">Pikakuvake on lisätty kotinäytölle.</string>
     <string name="icon_shape">Ikonin muoto</string>

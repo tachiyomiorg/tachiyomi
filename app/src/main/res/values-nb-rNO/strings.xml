@@ -12,7 +12,6 @@
     <string name="label_catalogues">Kataloger</string>
     <string name="label_recent_updates">Bibliotekoppdateringer</string>
     <string name="label_categories">Kategorier</string>
-    <string name="label_selected">Valgt: %1$d</string>
     <string name="label_backup">Sikkerhetskopi</string>
     <string name="label_migration">Kildeflytting</string>
     <string name="label_extensions">Utvidelser</string>
@@ -53,7 +52,6 @@
     <string name="action_start">Start</string>
     <string name="action_stop">Stopp</string>
     <string name="action_pause">Pause</string>
-    <string name="action_clear">Tøm</string>
     <string name="action_close">Lukk</string>
     <string name="action_previous_chapter">Forrige kapittel</string>
     <string name="action_next_chapter">Neste kapittel</string>
@@ -104,10 +102,6 @@
     <string name="all">Alle</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Lading</string>
-    <string name="light_theme">Lys</string>
-    <string name="dark_theme">Mørk</string>
-    <string name="amoled_theme">AMOLED-drakt</string>
-    <string name="darkblue_theme">Mørkeblå</string>
     <string name="pref_start_screen">Startskjerm</string>
     <string name="pref_language">Språk</string>
     <string name="system_default">Systemforvalg</string>
@@ -147,7 +141,6 @@
     <string name="pref_library_update_restriction_summary">Kun oppdater når disse vilkårene oppfylles</string>
     <string name="pref_update_only_non_completed">Kun oppdater pågående manga</string>
     <string name="pref_auto_update_manga_sync">Synkroniser kapitler etter lesing</string>
-    <string name="pref_theme">Programdrakt</string>
     <string name="pref_true_color">32-biters fargerom</string>
     <string name="pref_crop_borders">Beskjær kanter</string>
     <string name="pref_custom_brightness">Bruk egendefinert lysstyrke</string>
@@ -295,7 +288,6 @@
     <string name="circular_icon">Rund</string>
     <string name="rounded_icon">Avrundet</string>
     <string name="square_icon">Firkantig</string>
-    <string name="star_icon">Stjerne</string>
     <string name="shortcut_title">Snarveistittel</string>
     <string name="shortcut_created">Snarveien ble lagt til på hjemmeskjermen.</string>
     <string name="icon_shape">Ikonform</string>

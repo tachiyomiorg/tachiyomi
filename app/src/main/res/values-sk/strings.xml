@@ -13,7 +13,6 @@
     <string name="label_catalogues">Katalógy</string>
     <string name="label_recent_updates">Updaty</string>
     <string name="label_categories">Kategórie</string>
-    <string name="label_selected">Vybraté: %1$d</string>
     <string name="label_backup">Záloha</string>
     <string name="label_migration">Presun zdrojov</string>
     <string name="label_extensions">Rozšírenia</string>
@@ -56,7 +55,6 @@
     <string name="action_start">Začať</string>
     <string name="action_stop">Zastaviť</string>
     <string name="action_pause">Pauza</string>
-    <string name="action_clear">Zmazať</string>
     <string name="action_close">Zatvoriť</string>
     <string name="action_previous_chapter">Predošlá kapitola</string>
     <string name="action_next_chapter">Nasledujúca kapitola</string>
@@ -120,11 +118,6 @@
     <string name="charging">Nabíjanie</string>
     <string name="pref_update_only_non_completed">Aktualizovať iba nedokončenú Mangu</string>
     <string name="pref_auto_update_manga_sync">Synchronizovať kapitoly po prečítaní</string>
-    <string name="pref_theme">Motív aplikácie</string>
-    <string name="light_theme">Svetlá téma</string>
-    <string name="dark_theme">Tmavý motív</string>
-    <string name="amoled_theme">AMOLED tmavý motív</string>
-    <string name="darkblue_theme">Tmavomodrá téma</string>
     <string name="pref_start_screen">Úvodná obrazovka</string>
     <string name="pref_language">Jazyk</string>
     <string name="system_default">Predvolené nastavenie systému</string>
@@ -323,7 +316,6 @@
     <string name="circular_icon">Kruhová ikona</string>
     <string name="rounded_icon">Zaoblená ikona</string>
     <string name="square_icon">Štvorcová ikona</string>
-    <string name="star_icon">Hviezdicová ikona</string>
     <string name="shortcut_title">Názov zástupca</string>
     <string name="shortcut_created">Zástupca bol pridaný na plochu.</string>
     <string name="icon_shape">Tvar ikony</string>

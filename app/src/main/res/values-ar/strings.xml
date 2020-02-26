@@ -13,7 +13,6 @@
     <string name="label_catalogues">قائمة المانجا</string>
     <string name="label_recent_updates">تحديثات المكتبة</string>
     <string name="label_categories">الأقسام</string>
-    <string name="label_selected">حدّدت: %1$d</string>
     <string name="label_backup">النسخ الاحتياطي</string>
     <string name="action_settings">اﻹعدادات</string>
     <string name="action_filter">المرشح</string>
@@ -52,7 +51,6 @@
     <string name="action_start">بدء</string>
     <string name="action_stop">إيقاف</string>
     <string name="action_pause">إيقاف موقت</string>
-    <string name="action_clear">مسح</string>
     <string name="action_close">إغلاق</string>
     <string name="action_previous_chapter">الفصل السابق</string>
     <string name="action_next_chapter">الفصل التالى</string>
@@ -111,10 +109,6 @@
     <string name="charging">أثناء الشحن</string>
     <string name="pref_update_only_non_completed">تحديث المانجا المستمرة فقط</string>
     <string name="pref_auto_update_manga_sync">مزامنة الفصول بعد القراءة</string>
-    <string name="pref_theme">سمة التطبيق</string>
-    <string name="light_theme">السمة المضئية</string>
-    <string name="dark_theme">السمة الليلية</string>
-    <string name="amoled_theme">سمة شاشات AMOLED</string>
     <string name="pref_start_screen">شاشة البداية</string>
     <string name="pref_language">اللغة</string>
     <string name="system_default">لغة النظام الافتراضية</string>
@@ -266,7 +260,6 @@
     <string name="circular_icon">دائرية</string>
     <string name="rounded_icon">مدوره</string>
     <string name="square_icon">مربعة</string>
-    <string name="star_icon">نجمة</string>
     <string name="shortcut_title">عنوان الاختصار</string>
     <string name="shortcut_created">تمت إضافة الاختصار إلى الشاشة الرئيسية.</string>
     <string name="icon_shape">شكل اﻷيقونة</string>
@@ -421,7 +414,6 @@
     <string name="copy">نسخ</string>
     <string name="migrating">الترحيل…</string>
     <string name="information_empty_category">لا توجد لديك أي فئات. اضغط زر اﻹضافة لإنشاء واحد لتنظيم المكتبة الخاصة بك.</string>
-    <string name="darkblue_theme">أزرق غامق</string>
     <string name="transition_finished">تمَّ الانتهاء من:</string>
     <string name="transition_current">الحالي:</string>
     <string name="transition_next">التّالي:</string>

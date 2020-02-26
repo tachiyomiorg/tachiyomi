@@ -12,7 +12,6 @@
     <string name="label_catalogues">カタログ</string>
     <string name="label_recent_updates">最近の更新</string>
     <string name="label_categories">カテゴリ</string>
-    <string name="label_selected">選択: %1$d</string>
     <string name="label_backup">バックアップ</string>
     <string name="action_settings">設定</string>
     <string name="action_filter">フィルター</string>
@@ -49,7 +48,6 @@
     <string name="action_edit_cover">表紙画像を編集</string>
     <string name="action_start">開始</string>
     <string name="action_pause">一時停止</string>
-    <string name="action_clear">クリア</string>
     <string name="action_close">クリア</string>
     <string name="action_previous_chapter">前の章</string>
     <string name="action_next_chapter">次の章</string>
@@ -99,11 +97,6 @@
     <string name="charging">充電</string>
     <string name="pref_update_only_non_completed">進行中の漫画のみ更新</string>
     <string name="pref_auto_update_manga_sync">読んだ後に章を同期</string>
-    <string name="pref_theme">アプリケーションテーマ</string>
-    <string name="light_theme">ライト</string>
-    <string name="dark_theme">ダーク</string>
-    <string name="amoled_theme">AMOLEDダーク</string>
-    <string name="darkblue_theme">ダークブルー</string>
     <string name="pref_start_screen">スタート画面</string>
     <string name="pref_language">言語</string>
     <string name="system_default">システム標準</string>
@@ -302,7 +295,6 @@
     <string name="circular_icon">円形</string>
     <string name="rounded_icon">丸い方形</string>
     <string name="square_icon">方形</string>
-    <string name="star_icon">スター形</string>
     <string name="shortcut_title">ショートカットタイトル</string>
     <string name="shortcut_created">ショートカットをホーム画面に追加しました。</string>
     <string name="icon_shape">アイコンの形状</string>

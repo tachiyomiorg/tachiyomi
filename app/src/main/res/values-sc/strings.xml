@@ -13,7 +13,6 @@
     <string name="label_catalogues">Catàlogos</string>
     <string name="label_recent_updates">Agiornamentos reghendes</string>
     <string name="label_categories">Categorias</string>
-    <string name="label_selected">Ischertados: %1$d</string>
     <string name="label_backup">Còpia de seguresa</string>
     <string name="label_migration">Tramudòngiu de sas mitzas</string>
     <string name="label_extensions">Estensiones</string>
@@ -55,7 +54,6 @@
     <string name="action_start">Incumintza</string>
     <string name="action_stop">Firma</string>
     <string name="action_pause">Pone in pàusa</string>
-    <string name="action_clear">Isbòida</string>
     <string name="action_close">Serra</string>
     <string name="action_previous_chapter">Capìtulu antepostu</string>
     <string name="action_next_chapter">Capìtulu imbeniente</string>
@@ -117,11 +115,6 @@
     <string name="charging">Carrighende</string>
     <string name="pref_update_only_non_completed">Agiorna sos manga in cursu ebbia</string>
     <string name="pref_auto_update_manga_sync">Sincroniza sos capìtulos a pustis de sa leghidura</string>
-    <string name="pref_theme">Tema de s\'aplicatzione</string>
-    <string name="light_theme">Craru</string>
-    <string name="dark_theme">Iscuru</string>
-    <string name="amoled_theme">AMOLED iscuru</string>
-    <string name="darkblue_theme">Biaitu iscuru</string>
     <string name="pref_start_screen">Ischermada de incumintzu</string>
     <string name="pref_language">Limba</string>
     <string name="system_default">Predefinida de su sistema</string>
@@ -305,7 +298,6 @@
     <string name="circular_icon">Tzirculare</string>
     <string name="rounded_icon">Atundada</string>
     <string name="square_icon">Cuadrada</string>
-    <string name="star_icon">Isteddu</string>
     <string name="shortcut_title">Tìtulu de s\'incurtzadura</string>
     <string name="shortcut_created">S\'incurtzadura est istada annanta a s\'ischermada printzipale tua.</string>
     <string name="icon_shape">Forma de s\'icona</string>

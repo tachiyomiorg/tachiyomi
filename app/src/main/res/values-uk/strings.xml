@@ -13,7 +13,6 @@
     <string name="label_catalogues">Каталоги</string>
     <string name="label_recent_updates">Оновлення бібліотеки</string>
     <string name="label_categories">Категорії</string>
-    <string name="label_selected">Обрані: %1$d</string>
     <string name="label_backup">Резервна копія</string>
     <string name="label_migration">Міграція джерела</string>
     <string name="label_extensions">Розширення</string>
@@ -55,7 +54,6 @@
     <string name="action_start">Старт</string>
     <string name="action_stop">Стоп</string>
     <string name="action_pause">Пауза</string>
-    <string name="action_clear">Очистити</string>
     <string name="action_close">Закрити</string>
     <string name="action_previous_chapter">Попередня глава</string>
     <string name="action_next_chapter">Наступна глава</string>
@@ -117,11 +115,6 @@
     <string name="charging">Заряджається</string>
     <string name="pref_update_only_non_completed">Оновлювати тільки ongoing мангу</string>
     <string name="pref_auto_update_manga_sync">Синхронізувати глави після прочитання</string>
-    <string name="pref_theme">Тема програми</string>
-    <string name="light_theme">Основна тема</string>
-    <string name="dark_theme">Темна тема</string>
-    <string name="amoled_theme">AMOLED тема</string>
-    <string name="darkblue_theme">Темно-синя</string>
     <string name="pref_start_screen">Стартовий екран</string>
     <string name="pref_language">Мова</string>
     <string name="system_default">Системний</string>
@@ -304,7 +297,6 @@
     <string name="circular_icon">Кругла</string>
     <string name="rounded_icon">Скруглені</string>
     <string name="square_icon">Квадратна</string>
-    <string name="star_icon">Зоряна</string>
     <string name="shortcut_title">Назва ярлика</string>
     <string name="shortcut_created">Ярлика було додано на головний екран.</string>
     <string name="icon_shape">Форма іконки</string>

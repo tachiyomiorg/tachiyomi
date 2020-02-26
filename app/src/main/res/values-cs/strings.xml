@@ -8,7 +8,6 @@
     <string name="label_library">Knihovna</string>
     <string name="label_recent_manga">Nedávno čteno</string>
     <string name="label_categories">Kategorie</string>
-    <string name="label_selected">Vybráno: %1$d</string>
     <string name="label_backup">Záloha</string>
     <string name="label_migration">Zdroj migrace</string>
     <string name="label_extensions">Rozšíření</string>
@@ -67,11 +66,6 @@
     <string name="update_monthly">Měsíčně</string>
     <string name="pref_update_only_non_completed">Aktualizovat pouze vycházející mangy</string>
     <string name="pref_auto_update_manga_sync">Synchronizovat kapitoly po přečtení</string>
-    <string name="pref_theme">Téma aplikace</string>
-    <string name="light_theme">Světlé téma</string>
-    <string name="dark_theme">Tmavé téma</string>
-    <string name="amoled_theme">AMOLED tmavé téma</string>
-    <string name="darkblue_theme">Tmavě modrá</string>
     <string name="pref_start_screen">Úvodní obrazovka</string>
     <string name="pref_language">Jazyk</string>
     <string name="system_default">Výchozí</string>
@@ -244,7 +238,6 @@
     <string name="action_start">Start</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Pauza</string>
-    <string name="action_clear">Vymazat</string>
     <string name="action_retry">Opakovat</string>
     <string name="action_resume">Pokračovat</string>
     <string name="action_display_mode">Režim zobrazení</string>
@@ -352,7 +345,6 @@
     <string name="circular_icon">Kruhová ikona</string>
     <string name="rounded_icon">Zaoblená ikona</string>
     <string name="square_icon">Čtvercová ikona</string>
-    <string name="star_icon">Hvězdicová ikona</string>
     <string name="shortcut_title">Název zástupce</string>
     <string name="icon_shape">Tvar ikony</string>
     <string name="copied_to_clipboard">%1$s zkopírováno do schránky</string>
