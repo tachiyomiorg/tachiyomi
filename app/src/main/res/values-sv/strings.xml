@@ -9,9 +9,9 @@
     <string name="label_settings">Inställningar</string>
     <string name="label_download_queue">Nedladdningskö</string>
     <string name="label_library">Bibliotek</string>
-    <string name="label_recent_manga">Nyligen läst</string>
+    <string name="label_recent_manga">Historik</string>
     <string name="label_catalogues">Kataloger</string>
-    <string name="label_recent_updates">Senaste uppdateringar</string>
+    <string name="label_recent_updates">Uppdateringar</string>
     <string name="label_categories">Kategorier</string>
     <string name="label_backup">Säkerhetskopiering</string>
     <string name="label_migration">Källmigrering</string>
@@ -210,7 +210,7 @@
     <string name="pref_restore_backup">Återställ säkerhetskopia</string>
     <string name="pref_restore_backup_summ">Återställ biblioteket från en säkerhetskopia</string>
     <string name="pref_backup_directory">Säkerhetskopieringsplats</string>
-    <string name="pref_backup_service_category">Service</string>
+    <string name="pref_backup_service_category">Tjänst</string>
     <string name="pref_backup_interval">Säkerhetskopieringsfrekvens</string>
     <string name="pref_backup_slots">Max automatiska säkerhetskopior</string>
     <string name="dialog_restoring_backup">Återställer säkerhetskopia
@@ -455,4 +455,39 @@
     <string name="currently_reading">Läser för tillfället</string>
     <string name="paused">Pausad</string>
     <string name="want_to_read">Vill läsa</string>
+    <string name="label_more">Mer</string>
+    <string name="unlock_library">Lås upp bilblioteket</string>
+    <string name="action_sort_latest_chapter">Senaste kapitel</string>
+    <string name="action_view_chapters">Visa kapitel</string>
+    <string name="action_cancel_all">Avbryt alla</string>
+    <string name="pref_theme_mode">App-tema</string>
+    <string name="theme_light">Ljus</string>
+    <string name="theme_dark">Mörk</string>
+    <string name="theme_system">Följ systemet</string>
+    <string name="pref_theme_dark">Mörk temavariant</string>
+    <string name="theme_dark_default">Standard</string>
+    <string name="theme_dark_blue">Mörkblå</string>
+    <string name="theme_dark_amoled">AMOLED svart</string>
+    <string name="pref_manage_notifications">Hantera aviseringar</string>
+    <string name="pref_category_security">Säkerhet</string>
+    <string name="lock_with_biometrics">Lås med biometri</string>
+    <string name="lock_when_idle">Lås vid inaktivitet</string>
+    <string name="lock_always">Alltid</string>
+    <string name="lock_never">Aldrig</string>
+    <plurals name="lock_after_mins">
+        <item quantity="one">Efter 1 minut</item>
+        <item quantity="other">Efter %1$s minuter</item>
+    </plurals>
+    <string name="secure_screen">Säker skärm</string>
+    <string name="ext_updates_pending">Uppdateringar väntar</string>
+    <string name="pref_cutout_short">Visa innehåll i utskärningsområdet</string>
+    <string name="pref_webtoon_padding_vert">Vertikal fyllning mellan sidor</string>
+    <plurals name="notification_chapters">
+        <item quantity="one">Kapitel %1$s</item>
+        <item quantity="other">Kapitel %1$s</item>
+    </plurals>
+    <string name="notification_and_n_more">och %1$d till</string>
+    <string name="information_cloudflare_bypass_failure">Det gick inte att kringgå Cloudflare</string>
+    <string name="information_webview_outdated">Uppdatera WebView-appen för bättre kompatibilitet</string>
+    <string name="channel_new_chapters">Kapiteluppdateringar</string>
 </resources>
