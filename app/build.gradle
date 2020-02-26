@@ -5,6 +5,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.zellius.shortcut-helper'
+apply plugin: "org.jmailen.kotlinter"
+
 
 shortcutHelper.filePath = './shortcuts.xml'
 
@@ -263,6 +265,9 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile).all {
 androidExtensions {
     experimental = true
 }
+
+preBuild.dependsOn(lintKotlin)
+lintKotlin.dependsOn(formatKotlin)
 
 if (getGradle().getStartParameter().getTaskRequests().toString().contains("Standard")) {
     apply plugin: 'com.google.gms.google-services'
