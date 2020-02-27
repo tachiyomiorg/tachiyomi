@@ -131,7 +131,7 @@
     <string name="label_download_queue">Очередь загрузки</string>
     <string name="label_library">Библиотека</string>
     <string name="label_recent_manga">История</string>
-    <string name="label_recent_updates">Обновления библиотеки</string>
+    <string name="label_recent_updates">Обновления</string>
     <string name="label_settings">Настройки</string>
     <string name="landscape">Горизонтальная</string>
     <string name="last_read_chapter">Последняя прочитанная глава</string>
@@ -454,4 +454,41 @@
     <string name="currently_reading">В настоящее время читаю</string>
     <string name="paused">Пауза</string>
     <string name="want_to_read">Хочу почитать</string>
+    <string name="label_more">Еще</string>
+    <string name="unlock_library">Разблокировать Библиотеку</string>
+    <string name="action_sort_latest_chapter">Последняя глава</string>
+    <string name="action_view_chapters">Посмотреть главы</string>
+    <string name="action_cancel_all">Отменить все</string>
+    <string name="pref_theme_mode">Тема приложения</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Темная</string>
+    <string name="theme_system">Системная</string>
+    <string name="pref_theme_dark">Темный вариант</string>
+    <string name="theme_dark_default">По умолчанию</string>
+    <string name="theme_dark_blue">Темно-синяя</string>
+    <string name="theme_dark_amoled">AMOLED черная</string>
+    <string name="pref_manage_notifications">Управлять уведомлениями</string>
+    <string name="pref_category_security">Безопасность</string>
+    <string name="lock_with_biometrics">Блокировать биометрией</string>
+    <string name="lock_when_idle">Блокировать в режиме ожидания</string>
+    <string name="lock_always">Всегда</string>
+    <string name="lock_never">Никогда</string>
+    <plurals name="lock_after_mins">
+        <item quantity="one">После 1 минуты</item>
+        <item quantity="few">После %1$s минут</item>
+        <item quantity="many">После %1$s минут</item>
+    </plurals>
+    <string name="secure_screen">Экран безопасности</string>
+    <string name="ext_updates_pending">Обновления ожидаются</string>
+    <string name="pref_cutout_short">Отображать содержимое в вырезанной области</string>
+    <string name="pref_webtoon_padding_vert">Вертикальный отступ между страницами</string>
+    <plurals name="notification_chapters">
+        <item quantity="one">Глава %1$s</item>
+        <item quantity="few">Главы %1$s</item>
+        <item quantity="many">Главы %1$s</item>
+    </plurals>
+    <string name="notification_and_n_more">и еще %1$d</string>
+    <string name="information_cloudflare_bypass_failure">Не удалось обойти Cloudflare</string>
+    <string name="information_webview_outdated">Пожалуйста, обновите WebView для лучшей совместимости</string>
+    <string name="channel_new_chapters">Обновления глав</string>
 </resources>
