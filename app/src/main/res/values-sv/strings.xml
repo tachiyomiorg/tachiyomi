@@ -92,11 +92,11 @@
     <string name="pref_category_tracking">Spårning</string>
     <string name="pref_category_advanced">Avancerat</string>
     <string name="pref_category_about">Om appen</string>
-    <string name="pref_library_columns">Bibilioteksmanga per rad</string>
+    <string name="pref_library_columns">Manga per rad</string>
     <string name="portrait">Stående</string>
     <string name="landscape">Liggande</string>
     <string name="default_columns">Standard</string>
-    <string name="pref_library_update_interval">Bibliotekets uppdateringsfrekvens</string>
+    <string name="pref_library_update_interval">Uppdateringsfrekvens</string>
     <string name="update_never">Manuell</string>
     <string name="update_1hour">Varje timme</string>
     <string name="update_2hour">Varannan timme</string>
@@ -107,9 +107,9 @@
     <string name="update_48hour">Varannan dag</string>
     <string name="update_weekly">Varje vecka</string>
     <string name="update_monthly">Varje månad</string>
-    <string name="pref_library_update_categories">Kategorier som ska inkluderas i global uppdatering</string>
+    <string name="pref_library_update_categories">Kategorier för global uppdatering</string>
     <string name="all">Alla</string>
-    <string name="pref_library_update_restriction">Biblioteks uppdateringsrestriktioner</string>
+    <string name="pref_library_update_restriction">Uppdateringsrestriktioner</string>
     <string name="pref_library_update_restriction_summary">Uppdatera endast när vilkoren är uppfyllda</string>
     <string name="wifi">WiFi</string>
     <string name="charging">Laddning</string>
@@ -118,7 +118,7 @@
     <string name="pref_start_screen">Startskärm</string>
     <string name="pref_language">Språk</string>
     <string name="system_default">System standard</string>
-    <string name="default_category">Standard kategori</string>
+    <string name="default_category">Standardkategori</string>
     <string name="default_category_summary">Fråga alltid</string>
     <string name="all_lang">Alla</string>
     <string name="ext_details">Detaljer</string>
@@ -145,7 +145,7 @@
     <string name="pref_fullscreen">Fullskärm</string>
     <string name="pref_lock_orientation">Lås orientering</string>
     <string name="pref_page_transitions">Sidövergångar</string>
-    <string name="pref_double_tap_anim_speed">Dubbelklicka animationshastighet</string>
+    <string name="pref_double_tap_anim_speed">Animationshastighet för dubbelklick</string>
     <string name="pref_show_page_number">Visa sidnummer</string>
     <string name="pref_crop_borders">Beskär kanter</string>
     <string name="pref_custom_brightness">Använd egen ljusstyrka</string>
@@ -154,7 +154,7 @@
     <string name="pref_reader_navigation">Navigering</string>
     <string name="pref_read_with_volume_keys">Volymknapparna</string>
     <string name="pref_read_with_volume_keys_inverted">Invertera volymknapparna</string>
-    <string name="pref_read_with_tapping">Tryckning</string>
+    <string name="pref_read_with_tapping">Skärmtryck</string>
     <string name="pref_reader_theme">Bakgrundsfärg</string>
     <string name="white_background">Vit</string>
     <string name="black_background">Svart</string>
@@ -271,7 +271,7 @@
     <string name="no_more_results">Inga mer resultat</string>
     <string name="local_source">Lokal manga</string>
     <string name="other_source">Andra</string>
-    <string name="invalid_combination">Standard inte kan väljas med andra kategorier</string>
+    <string name="invalid_combination">Standard kan inte väljas med andra kategorier</string>
     <string name="added_to_library">Mangan har lagts till i din bibliotek</string>
     <string name="action_global_search_hint">Global sökning…</string>
     <string name="latest">Senaste</string>
@@ -424,8 +424,8 @@
     <string name="channel_downloader">Nedladdare</string>
     <string name="action_open_in_web_view">Öppna i webbvisning</string>
     <string name="pref_true_color">32-bitars färg</string>
-    <string name="pref_skip_read_chapters">Skippa över kapitel markerad som läst</string>
-    <string name="pref_read_with_long_tap">Långtrycks dialog</string>
+    <string name="pref_skip_read_chapters">Skippa lästa kapitel</string>
+    <string name="pref_read_with_long_tap">Långtrycksdialog</string>
     <string name="reader_pull_up_for_more_options">Dra upp för fler alternativ</string>
     <string name="pref_color_filter_mode">Färgfilterblandningsläge</string>
     <string name="filter_mode_default">Standard</string>
@@ -435,7 +435,7 @@
     <string name="filter_mode_lighten">Ljusna</string>
     <string name="filter_mode_darken">Mörkna</string>
     <string name="label_help">Hjälp</string>
-    <string name="pref_library_update_prioritization">Bibliotekets uppdateringsordning</string>
+    <string name="pref_library_update_prioritization">Uppdateringsordning</string>
     <string name="no_results_found">Inga resultat funna</string>
     <string name="migration_selection_prompt">Välj en källa att migrera ifrån</string>
     <string name="action_webview_back">Bakåt</string>
