@@ -132,7 +132,7 @@
     <string name="right_to_left_viewer">Rechts nach links</string>
     <string name="vertical_viewer">Vertikal</string>
     <string name="webtoon_viewer">Webtoon</string>
-    <string name="pref_image_decoder">Bilddecoder</string>
+    <string name="pref_image_decoder">Bild-Decoder</string>
     <string name="pref_image_scale_type">Skalierung</string>
     <string name="scale_type_fit_screen">Bild ausfüllen</string>
     <string name="scale_type_stretch">Strecken</string>
@@ -361,7 +361,7 @@
     <string name="channel_downloader">Downloader</string>
     <string name="action_display_download_badge">Downloadzähler</string>
     <string name="local_source_badge">Lokal</string>
-    <string name="information_empty_category">Keine Kategorien vorhanden. Tippen Sie auf die Plus-Schaltfläche, um eine zum Sortieren Ihrer Bibliothek zu erstellen.</string>
+    <string name="information_empty_category">Keine Kategorien vorhanden. Tippen Sie auf die Plus-Schaltfläche, um eine Kategorie zum Sortieren Ihrer Bibliothek zu erstellen.</string>
     <string name="label_migration">Quellenmigration</string>
     <string name="label_extensions">Erweiterungen</string>
     <string name="label_extension_info">Erweiterungsinformationen</string>
@@ -405,7 +405,7 @@
     <string name="custom_download">Benutzerdefinierte Anzahl herunterladen</string>
     <string name="migration_info">Wähle die Quelle, aus welcher migriert werden soll</string>
     <string name="migration_dialog_what_to_include">Wähle zu beinhaltende Daten</string>
-    <string name="pager_viewer">Seiten</string>
+    <string name="pager_viewer">Traditionelle Seiten</string>
     <string name="source_not_installed">Quelle nicht installiert: %1$s</string>
     <string name="download_custom">Benutzerdefiniert</string>
     <string name="repeating">Am Wiederlesen</string>
@@ -481,7 +481,7 @@
     <string name="secure_screen">Bildschirm sichern</string>
     <string name="ext_updates_pending">Updates ausstehend</string>
     <string name="pref_cutout_short">Inhalt im Ausschnittbereich anzeigen</string>
-    <string name="pref_webtoon_padding_vert">Vertikaler Abstand zwischen den Seiten</string>
+    <string name="pref_webtoon_padding_vert">Vertikaler Seitenabstand</string>
     <plurals name="notification_chapters">
         <item quantity="one">Kapitel %1$s</item>
         <item quantity="other">Kapitel %1$s</item>
