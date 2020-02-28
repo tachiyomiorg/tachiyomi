@@ -9,9 +9,9 @@
     <string name="label_settings">Tetapan</string>
     <string name="label_download_queue">Giliran muat turun</string>
     <string name="label_library">Koleksi</string>
-    <string name="label_recent_manga">Baru dibaca</string>
+    <string name="label_recent_manga">Sejarah</string>
     <string name="label_catalogues">Katalog</string>
-    <string name="label_recent_updates">Perubahan koleksi</string>
+    <string name="label_recent_updates">Kemas kini</string>
     <string name="label_categories">Kategori</string>
     <string name="label_backup">Sandaran</string>
     <string name="action_settings">Tetapan</string>
@@ -113,7 +113,7 @@
     <string name="pref_auto_update_manga_sync">Sinkronkan bab setelah dibaca</string>
     <string name="pref_start_screen">Skrin permulaan</string>
     <string name="pref_language">Bahasa</string>
-    <string name="system_default">Tetapan sistem</string>
+    <string name="system_default">Lalai sistem</string>
     <string name="default_category">Kategori lalai</string>
     <string name="default_category_summary">Sentiasa tanya</string>
     <string name="pref_fullscreen">Skrin penuh</string>
@@ -455,4 +455,37 @@
     <string name="currently_reading">Sedang baca</string>
     <string name="paused">Ditangguh</string>
     <string name="want_to_read">Ingin baca</string>
+    <string name="label_more">Lain-lain</string>
+    <string name="unlock_library">Buka kunci Tachiyomi</string>
+    <string name="action_sort_latest_chapter">Bab terkini</string>
+    <string name="action_view_chapters">Buka bab</string>
+    <string name="action_cancel_all">Batalkan semua</string>
+    <string name="pref_theme_mode">Tema aplikasi</string>
+    <string name="theme_light">Terang</string>
+    <string name="theme_dark">Gelap</string>
+    <string name="theme_system">Ikut sistem</string>
+    <string name="pref_theme_dark">Varian tema gelap</string>
+    <string name="theme_dark_default">Lalai</string>
+    <string name="theme_dark_blue">Biru gelap</string>
+    <string name="theme_dark_amoled">AMOLED</string>
+    <string name="pref_manage_notifications">Uruskan pemberitahuan</string>
+    <string name="pref_category_security">Keselamatan</string>
+    <string name="lock_with_biometrics">Kunci dengan biometrik</string>
+    <string name="lock_when_idle">Kunci apabila terbiar</string>
+    <string name="lock_always">Selalu</string>
+    <string name="lock_never">Tidak</string>
+    <plurals name="lock_after_mins">
+        <item quantity="other">Selepas %1$s minit</item>
+    </plurals>
+    <string name="secure_screen">Skrin keselamatan</string>
+    <string name="ext_updates_pending">Mengemaskini</string>
+    <string name="pref_cutout_short">Tunjuk kandungan dalam kawasan bertakuk</string>
+    <string name="pref_webtoon_padding_vert">Pemisah antara halaman</string>
+    <plurals name="notification_chapters">
+        <item quantity="other">Bab %1$s</item>
+    </plurals>
+    <string name="notification_and_n_more">dan %1$d lagi</string>
+    <string name="information_cloudflare_bypass_failure">Gagal untuk memintas Cloudflare</string>
+    <string name="information_webview_outdated">Sila kemas kini aplikasi WebView untuk keserasian yang lebih baik</string>
+    <string name="channel_new_chapters">Pengemaskinian bab</string>
 </resources>
