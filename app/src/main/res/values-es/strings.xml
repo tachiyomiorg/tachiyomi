@@ -508,12 +508,12 @@
     <string name="secure_screen">Pantalla segura</string>
     <string name="ext_updates_pending">Actualizaciones pendientes</string>
     <string name="pref_cutout_short">Mostrar contenido en el área recortada</string>
-    <string name="pref_webtoon_padding_vert">Espacio vertical entre páginas.</string>
+    <string name="pref_webtoon_padding_vert">Relleno vertical entre páginas</string>
     <plurals name="notification_chapters">
         <item quantity="one">Capítulo %1$s</item>
         <item quantity="other">Capitulos %1$s</item>
     </plurals>
-    <string name="notification_and_n_more">"y  %1$d más"</string>
+    <string name="notification_and_n_more">y %1$d más</string>
     <string name="information_cloudflare_bypass_failure">Fallo al evitar Cloudflare</string>
     <string name="information_webview_outdated">Por favor actualizar la aplicación WebView para mejor compatibilidad</string>
     <string name="channel_new_chapters">Capitulos actualizados</string>
