@@ -8,7 +8,7 @@
     <string name="history">Sejarah</string>
     <string name="label_settings">Tetapan</string>
     <string name="label_download_queue">Giliran muat turun</string>
-    <string name="label_library">Koleksi</string>
+    <string name="label_library">Pustaka</string>
     <string name="label_recent_manga">Sejarah</string>
     <string name="label_catalogues">Katalog</string>
     <string name="label_recent_updates">Kemas kini</string>
@@ -32,11 +32,11 @@
     <string name="action_mark_as_unread">Tandakan sebagai belum dibaca</string>
     <string name="action_mark_previous_as_read">Tandakan yang sebelum sebagai sudah dibaca</string>
     <string name="action_download">Muat turun</string>
-    <string name="action_bookmark">Tambah kepada koleksi</string>
-    <string name="action_remove_bookmark">Keluarkan daripada koleksi</string>
+    <string name="action_bookmark">Penanda</string>
+    <string name="action_remove_bookmark">Buang penanda</string>
     <string name="action_delete">Padam</string>
     <string name="action_update">Kemas kini</string>
-    <string name="action_update_library">Kemas kini koleksi</string>
+    <string name="action_update_library">Kemas kini pustaka</string>
     <string name="action_edit">Ubah</string>
     <string name="action_add">Tambah</string>
     <string name="action_add_category">Tambah kategori</string>
@@ -88,11 +88,11 @@
     <string name="pref_category_tracking">Penjejakan</string>
     <string name="pref_category_advanced">Lanjutan</string>
     <string name="pref_category_about">Tentang</string>
-    <string name="pref_library_columns">Manga per baris koleksi</string>
+    <string name="pref_library_columns">Manga per baris pustaka</string>
     <string name="portrait">Potret</string>
     <string name="landscape">Landskap</string>
     <string name="default_columns">Lalai</string>
-    <string name="pref_library_update_interval">Kekerapan kemas kini koleksi</string>
+    <string name="pref_library_update_interval">Kekerapan kemas kini pustaka</string>
     <string name="update_never">Manual</string>
     <string name="update_1hour">Setiap jam</string>
     <string name="update_2hour">Setiap 2 jam</string>
@@ -105,7 +105,7 @@
     <string name="update_monthly">Setiap bulan</string>
     <string name="pref_library_update_categories">Kategori bagi kemas kini keseluruhan</string>
     <string name="all">Semua</string>
-    <string name="pref_library_update_restriction">Batasan kemas kini koleksi</string>
+    <string name="pref_library_update_restriction">Batasan kemas kini pustaka</string>
     <string name="pref_library_update_restriction_summary">Kemas kini hanya apabila syarat dipenuhi</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Ketika mengecas</string>
@@ -175,15 +175,15 @@
     <string name="services">Perkhidmatan</string>
     <string name="backup">Sandaran</string>
     <string name="pref_create_backup">Buat sandaran</string>
-    <string name="pref_create_backup_summ">Boleh digunakan untuk memulihkan koleksi semasa</string>
+    <string name="pref_create_backup_summ">Boleh digunakan untuk memulihkan pustaka semasa</string>
     <string name="pref_restore_backup">Pulihkan sandaran</string>
-    <string name="pref_restore_backup_summ">Pulihkan koleksi daripada fail sandaran</string>
+    <string name="pref_restore_backup_summ">Pulihkan pustaka daripada fail sandaran</string>
     <string name="pref_backup_directory">Lokasi sandaran</string>
     <string name="pref_backup_service_category">Perkhidmatan</string>
     <string name="pref_backup_interval">Kekerapan sandaran</string>
     <string name="pref_backup_slots">Sandaran automatik maksimum</string>
-    <string name="dialog_restoring_backup">Dalam proses memulihkan sandaran
-\n%1$s ditambah kepada koleksi</string>
+    <string name="dialog_restoring_backup">Dalam proses memulihkan sandaran 
+\n%1$s ditambah kepada pustaka</string>
     <string name="source_not_found">Sumber tidak ditemui</string>
     <string name="dialog_restoring_source_not_found">Dalam proses memulihkan sandaran
 \n%1$s sumber tidak ditemui</string>
@@ -207,10 +207,10 @@
     <string name="cookies_cleared">Cookies dihapuskan</string>
     <string name="choices_reset">Pilihan dialog diset semula</string>
     <string name="pref_clear_database">Hapus pangkalan data</string>
-    <string name="pref_clear_database_summary">Hapus manga dan bab yang tidak ada di dalam koleksi</string>
-    <string name="clear_database_confirmation">Adakah anda pasti? Status bab dibaca dan progres bacaan manga yang tidak ada di dalam koleksi akan hilang</string>
+    <string name="pref_clear_database_summary">Hapus manga dan bab yang tidak ada di dalam pustaka</string>
+    <string name="clear_database_confirmation">Adakah anda pasti\? Status bab dibaca dan progres bacaan manga yang tidak ada di dalam pustaka akan hilang</string>
     <string name="clear_database_completed">Pangkalan data dihapuskan</string>
-    <string name="pref_refresh_library_metadata">Muat semula metadata koleksi</string>
+    <string name="pref_refresh_library_metadata">Muat semula metadata pustaka</string>
     <string name="pref_refresh_library_metadata_summary">Kemas kini muka hadapan, genre, keterangan dan maklumat status manga</string>
     <string name="pref_refresh_library_tracking">Muat semula metadata penjejakan</string>
     <string name="pref_refresh_library_tracking_summary">Kemas kini status, skor dan bab terakhir dibaca dari perkhidmatan penjejakan</string>
@@ -240,7 +240,7 @@
     <string name="local_source">Manga setempat</string>
     <string name="other_source">Lain</string>
     <string name="invalid_combination">Lalai tidak boleh dipilih bersama kategori lain</string>
-    <string name="added_to_library">Manga ini telah ditambahkan ke koleksi anda</string>
+    <string name="added_to_library">Manga ini telah ditambahkan ke pustaka anda</string>
     <string name="action_global_search_hint">Carian keseluruhan…</string>
     <string name="latest">Terkini</string>
     <string name="browse">Semak imbas</string>
@@ -250,7 +250,7 @@
     <string name="ongoing">Berterusan</string>
     <string name="unknown">Tidak diketahui</string>
     <string name="licensed">Berlesen</string>
-    <string name="remove_from_library">Keluarkan daripada koleksi</string>
+    <string name="remove_from_library">Keluarkan daripada pustaka</string>
     <string name="manga_info_author_label">Pengarang</string>
     <string name="manga_info_artist_label">Artis</string>
     <string name="manga_info_chapters_label">Bab</string>
@@ -301,7 +301,7 @@
     <string name="snack_categories_deleted">Kategori dipadam</string>
     <string name="dialog_with_checkbox_remove_description">Tarikh bacaan bab ini akan dipadam. Adakah anda pasti?</string>
     <string name="dialog_with_checkbox_reset">Set semula semua bab bagi manga ini</string>
-    <string name="snack_add_to_library">Tambah manga kepada koleksi?</string>
+    <string name="snack_add_to_library">Tambah manga kepada pustaka\?</string>
     <string name="action_display_download_badge">Lambang muat turun</string>
     <string name="picture_saved">Gambar disimpan</string>
     <string name="saving_picture">Simpan gambar</string>
@@ -325,7 +325,7 @@
     <string name="notification_new_chapters">Bab baharu dijumpai</string>
     <string name="notification_new_chapters_text">Bagi %1$d judul</string>
     <string name="notification_cover_update_failed">Gagal untuk kemas kini muka hadapan</string>
-    <string name="notification_first_add_to_library">Mohon tambahkan manga kepada koleksi sebelum melakukan ini</string>
+    <string name="notification_first_add_to_library">Mohon tambahkan manga kepada pustaka sebelum melakukan ini</string>
     <string name="notification_not_connected_to_ac_title">Sinkronisasi dibatalkan</string>
     <string name="notification_not_connected_to_ac_body">Tidak bersambung dengan bekalan kuasa</string>
     <string name="notification_no_connection_title">Sinkronisasi dibatalkan</string>
@@ -349,7 +349,7 @@
     <string name="information_no_downloads">Tiada muat turun</string>
     <string name="information_no_recent">Tiada bab baru dibaca</string>
     <string name="information_no_recent_manga">Tiada manga baru dibaca</string>
-    <string name="information_empty_library">Koleksi kosong, tambah siri ke koleksi menggunakan katalog.</string>
+    <string name="information_empty_library">Pustaka kosong, tambah siri ke pustaka menggunakan katalog.</string>
     <string name="download_notifier_downloader_title">Pemuat turun</string>
     <string name="download_notifier_title_error">Ralat</string>
     <string name="download_notifier_unkown_error">Ralat tidak diketahui ketika memuat turun bab</string>
@@ -359,7 +359,7 @@
     <string name="download_notifier_no_network">Tiada sambungan rangkaian tersedia</string>
     <string name="download_notifier_download_paused">Muat turun dihentikan sebentar</string>
     <string name="channel_common">Biasa</string>
-    <string name="channel_library">Koleksi</string>
+    <string name="channel_library">Pustaka</string>
     <string name="channel_downloader">Pemuat turun</string>
     <string name="label_migration">Pindah sumber</string>
     <string name="label_extensions">Sambungan</string>
@@ -397,8 +397,8 @@
     <string name="double_tap_anim_speed_fast">Laju</string>
     <string name="source_search_options">Carian penapis</string>
     <string name="manga_info_full_title_label">Tajuk</string>
-    <string name="manga_added_library">Ditambah ke koleksi</string>
-    <string name="manga_removed_library">Dibuang dari koleksi</string>
+    <string name="manga_added_library">Ditambah ke pustaka</string>
+    <string name="manga_removed_library">Dibuang dari pustaka</string>
     <string name="manga_info_latest_data_label">Dikemaskini</string>
     <string name="copied_to_clipboard">%1$s disalin ke papan keratan</string>
     <string name="source_not_installed">Sumber tidak dipasang: %1$s</string>
@@ -426,10 +426,10 @@
     <string name="migrate">Beralih</string>
     <string name="copy">Salin</string>
     <string name="migrating">Menukar…</string>
-    <string name="information_empty_category">Tiada kategori dijumpai. Tekan butang tambah untuk membuat satu bagi menyusun koleksi.</string>
+    <string name="information_empty_category">Tiada kategori dijumpai. Tekan butang tambah untuk membuat satu bagi menyusun pustaka.</string>
     <string name="pref_color_filter_mode">"Mod  turas warna campuran"</string>
     <string name="label_help">Bantuan</string>
-    <string name="pref_library_update_prioritization">Susunan kemas kini koleksi</string>
+    <string name="pref_library_update_prioritization">Susunan kemas kini pustaka</string>
     <string name="filter_mode_default">Biasa</string>
     <string name="filter_mode_overlay">Lapisan atas</string>
     <string name="filter_mode_multiply">Berganda</string>
@@ -441,7 +441,7 @@
     <string name="action_webview_back">Ke belakang</string>
     <string name="action_webview_forward">Ke depan</string>
     <string name="action_webview_refresh">Segar semula</string>
-    <string name="pref_category_library">Koleksi</string>
+    <string name="pref_category_library">Pustaka</string>
     <string name="invalid_download_dir">Lokasi muat turun tidak sah</string>
     <string name="ext_obsolete">Usang</string>
     <string name="obsolete_extension_message">Sambungan ini tidak lagi ada.</string>
@@ -478,7 +478,7 @@
         <item quantity="other">Selepas %1$s minit</item>
     </plurals>
     <string name="secure_screen">Skrin keselamatan</string>
-    <string name="ext_updates_pending">Mengemaskini</string>
+    <string name="ext_updates_pending">Kemas kini belum selesai</string>
     <string name="pref_cutout_short">Tunjuk kandungan dalam kawasan bertakuk</string>
     <string name="pref_webtoon_padding_vert">Pemisah antara halaman</string>
     <plurals name="notification_chapters">
