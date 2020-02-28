@@ -5,9 +5,9 @@
     <string name="label_settings">Impostazioni</string>
     <string name="label_download_queue">Coda dei download</string>
     <string name="label_library">La mia libreria</string>
-    <string name="label_recent_manga">Letti di recente</string>
+    <string name="label_recent_manga">Cronologia</string>
     <string name="label_catalogues">Cataloghi</string>
-    <string name="label_recent_updates">Aggiornamenti libreria</string>
+    <string name="label_recent_updates">Aggiornamenti</string>
     <string name="label_categories">Categorie</string>
     <string name="label_backup">Backup</string>
     <!-- Actions -->
