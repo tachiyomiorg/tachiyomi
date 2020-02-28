@@ -5,8 +5,8 @@
     <string name="label_settings">Configuraciones</string>
     <string name="label_download_queue">Cola de descargas</string>
     <string name="label_library">Librería</string>
-    <string name="label_recent_manga">Leído Recientemente</string>
-    <string name="label_recent_updates">Actualizaciones recientes</string>
+    <string name="label_recent_manga">Historial</string>
+    <string name="label_recent_updates">Actualizaciones</string>
     <string name="label_catalogues">Catálogos</string>
     <string name="label_categories">Categorías</string>
     <string name="label_backup">Copia de seguridad</string>
@@ -482,4 +482,39 @@
     <string name="pref_category_library_display">Visualización</string>
     <string name="logout_title">Cerrado de sesión desde %1$s\?</string>
     <string name="want_to_read">Quiero leer</string>
+    <string name="label_more">Más</string>
+    <string name="unlock_library">Desbloquear librería</string>
+    <string name="action_sort_latest_chapter">Último capítulo</string>
+    <string name="action_view_chapters">Ver capítulos</string>
+    <string name="action_cancel_all">Cancelar todo</string>
+    <string name="pref_theme_mode">Tema</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Oscuro</string>
+    <string name="theme_system">Usar el del sistema</string>
+    <string name="pref_theme_dark">Variación del tema oscuro</string>
+    <string name="theme_dark_default">Por defecto</string>
+    <string name="theme_dark_blue">Azul oscuro</string>
+    <string name="theme_dark_amoled">AMOLED Oscuro</string>
+    <string name="pref_manage_notifications">Administrar notificaciones</string>
+    <string name="pref_category_security">Seguridad</string>
+    <string name="lock_with_biometrics">Bloquear con huella</string>
+    <string name="lock_when_idle">Bloquear cuando está inactivo</string>
+    <string name="lock_always">Siempre</string>
+    <string name="lock_never">Nunca</string>
+    <plurals name="lock_after_mins">
+        <item quantity="one">Después de 1 minuto</item>
+        <item quantity="other">Después de %1$s minutos</item>
+    </plurals>
+    <string name="secure_screen">Pantalla segura</string>
+    <string name="ext_updates_pending">Actualizaciones pendientes</string>
+    <string name="pref_cutout_short">Mostrar contenido en el área recortada</string>
+    <string name="pref_webtoon_padding_vert">Espacio vertical entre páginas.</string>
+    <plurals name="notification_chapters">
+        <item quantity="one">Capítulo %1$s</item>
+        <item quantity="other">Capitulos %1$s</item>
+    </plurals>
+    <string name="notification_and_n_more">"y  %1$d más"</string>
+    <string name="information_cloudflare_bypass_failure">Fallo al evitar Cloudflare</string>
+    <string name="information_webview_outdated">Por favor actualizar la aplicación WebView para mejor compatibilidad</string>
+    <string name="channel_new_chapters">Capitulos actualizados</string>
 </resources>
