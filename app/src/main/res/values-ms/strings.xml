@@ -446,7 +446,6 @@
     <string name="ext_obsolete">Usang</string>
     <string name="obsolete_extension_message">Sambungan ini tidak lagi ada.</string>
     <string name="pref_date_format">Format tarikh</string>
-    <string name="pref_category_library_display">Paparan</string>
     <string name="pref_category_library_update">Pengemaskinian</string>
     <string name="pref_category_library_categories">Kategori</string>
     <string name="logout_title">Log keluar daripada %1$s\?</string>
@@ -456,7 +455,6 @@
     <string name="paused">Ditangguh</string>
     <string name="want_to_read">Ingin baca</string>
     <string name="label_more">Lain-lain</string>
-    <string name="unlock_library">Buka kunci Tachiyomi</string>
     <string name="action_sort_latest_chapter">Bab terkini</string>
     <string name="action_view_chapters">Buka bab</string>
     <string name="action_cancel_all">Batalkan semua</string>

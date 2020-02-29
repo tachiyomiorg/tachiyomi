@@ -439,7 +439,6 @@
     <string name="ext_obsolete">廃止済み</string>
     <string name="obsolete_extension_message">この拡張は利用不可になりました。</string>
     <string name="pref_date_format">日付形式</string>
-    <string name="pref_category_library_display">表示</string>
     <string name="pref_category_library_update">更新</string>
     <string name="pref_category_library_categories">カテゴリー</string>
     <string name="logout_title">%1$sからログアウトしますか？</string>

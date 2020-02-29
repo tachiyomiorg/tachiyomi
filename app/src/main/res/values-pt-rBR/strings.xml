@@ -446,7 +446,6 @@
     <string name="migration_selection_prompt">Escolha uma fonte da qual migrar</string>
     <string name="invalid_download_dir">Local de download inválido</string>
     <string name="pref_date_format">Formato da data</string>
-    <string name="pref_category_library_display">Visualização</string>
     <string name="pref_category_library_update">Atualizações</string>
     <string name="pref_category_library_categories">Categorias</string>
     <string name="logout_title">Desconectar de %1$s\?</string>
@@ -456,7 +455,6 @@
     <string name="paused">Pausado</string>
     <string name="want_to_read">Quero ler</string>
     <string name="label_more">Mais</string>
-    <string name="unlock_library">Desbloquear a Biblioteca</string>
     <string name="action_sort_latest_chapter">Último capítulo</string>
     <string name="action_view_chapters">Visualizar os capítulos</string>
     <string name="action_cancel_all">Cancelar tudo</string>

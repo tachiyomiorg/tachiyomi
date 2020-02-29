@@ -446,7 +446,6 @@
     <string name="ext_obsolete">Застарілий</string>
     <string name="obsolete_extension_message">Це розширення більше не доступне.</string>
     <string name="pref_date_format">Формат дати</string>
-    <string name="pref_category_library_display">Дисплей</string>
     <string name="pref_category_library_update">Оновлення</string>
     <string name="pref_category_library_categories">Категорії</string>
     <string name="logout_title">Вихід із %1$s\?</string>

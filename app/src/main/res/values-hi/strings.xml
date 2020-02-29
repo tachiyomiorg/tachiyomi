@@ -444,7 +444,6 @@
     <string name="ext_obsolete">अप्रचलित</string>
     <string name="obsolete_extension_message">यह एक्सटेंशन अब उपलब्ध नहीं है।</string>
     <string name="pref_date_format">दिनांक स्वरूप</string>
-    <string name="pref_category_library_display">प्रदर्शन</string>
     <string name="pref_category_library_update">अद्यतन</string>
     <string name="pref_category_library_categories">श्रेणियाँ</string>
     <string name="logout_title">% 1 $ s से लॉगआउट करें\?</string>
@@ -454,7 +453,6 @@
     <string name="paused">रोका हुआ</string>
     <string name="want_to_read">पढ़ना चाहते हैं</string>
     <string name="label_more">अधिक</string>
-    <string name="unlock_library">पुस्तकालय खोले</string>
     <string name="action_sort_latest_chapter">नवीनतम अध्याय</string>
     <string name="action_view_chapters">अध्याय देखें</string>
     <string name="action_cancel_all">सब रद्द करो</string>

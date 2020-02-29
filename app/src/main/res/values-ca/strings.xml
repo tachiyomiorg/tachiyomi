@@ -446,7 +446,6 @@
     <string name="ext_obsolete">Obsoleta</string>
     <string name="obsolete_extension_message">Aquesta extensió ja no està disponible.</string>
     <string name="pref_date_format">Format de data</string>
-    <string name="pref_category_library_display">Visualització</string>
     <string name="pref_category_library_update">Actualitzacions</string>
     <string name="pref_category_library_categories">Categories</string>
     <string name="logout_title">Voleu tancar la sessió a %1$s\?</string>
@@ -456,7 +455,6 @@
     <string name="paused">Pausat</string>
     <string name="want_to_read">Pendent de llegir</string>
     <string name="label_more">Més</string>
-    <string name="unlock_library">Desbloca la biblioteca</string>
     <string name="action_sort_latest_chapter">Darrer capítol</string>
     <string name="action_view_chapters">Mostra els capítols</string>
     <string name="action_cancel_all">Cancel·la-ho tot</string>

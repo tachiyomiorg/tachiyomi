@@ -446,7 +446,6 @@
     <string name="ext_obsolete">Obsoleta</string>
     <string name="obsolete_extension_message">Cust\'estensione no est prus disponìbile.</string>
     <string name="pref_date_format">Formadu de sa data</string>
-    <string name="pref_category_library_display">Visualizatzione</string>
     <string name="pref_category_library_update">Agiornamentos</string>
     <string name="pref_category_library_categories">Categorias</string>
     <string name="logout_title">Essire dae %1$s\?</string>
@@ -456,7 +455,6 @@
     <string name="paused">In pàusa</string>
     <string name="want_to_read">Chi chèrgio lèghere</string>
     <string name="label_more">Àteru</string>
-    <string name="unlock_library">Isbloca sa biblioteca</string>
     <string name="action_sort_latest_chapter">Ùrtimu capìtulu</string>
     <string name="action_view_chapters">Pòmpia sos capìtulos</string>
     <string name="action_cancel_all">Annulla totu</string>

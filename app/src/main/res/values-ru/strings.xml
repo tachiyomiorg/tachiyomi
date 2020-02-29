@@ -445,7 +445,6 @@
     <string name="ext_obsolete">Устарело</string>
     <string name="obsolete_extension_message">Это дополнение больше недоступно.</string>
     <string name="pref_date_format">Формат даты</string>
-    <string name="pref_category_library_display">Дисплей</string>
     <string name="pref_category_library_update">Обновить</string>
     <string name="pref_category_library_categories">Категории</string>
     <string name="logout_title">Выйти из %1$s\?</string>
@@ -455,7 +454,6 @@
     <string name="paused">Пауза</string>
     <string name="want_to_read">Хочу почитать</string>
     <string name="label_more">Еще</string>
-    <string name="unlock_library">Разблокировать Библиотеку</string>
     <string name="action_sort_latest_chapter">Последняя глава</string>
     <string name="action_view_chapters">Посмотреть главы</string>
     <string name="action_cancel_all">Отменить все</string>

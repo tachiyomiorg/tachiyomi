@@ -446,7 +446,6 @@
     <string name="ext_obsolete">Vanhentunut</string>
     <string name="obsolete_extension_message">Tämä laajennus ei ole enää saatavilla.</string>
     <string name="pref_date_format">Päivämäärän muoto</string>
-    <string name="pref_category_library_display">Näkymä</string>
     <string name="pref_category_library_update">Päivitykset</string>
     <string name="pref_category_library_categories">Kategoriat</string>
     <string name="logout_title">Kirjaa ulos kohteesta %1$s\?</string>
@@ -456,7 +455,6 @@
     <string name="paused">Pysäytetty</string>
     <string name="want_to_read">Halu lukea</string>
     <string name="label_more">Lisää</string>
-    <string name="unlock_library">Avaa kirjasto</string>
     <string name="action_sort_latest_chapter">Viimeisin luku</string>
     <string name="action_view_chapters">Näytä luvut</string>
     <string name="action_cancel_all">Peruuta kaikki</string>

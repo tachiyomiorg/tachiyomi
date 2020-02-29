@@ -479,11 +479,9 @@
     <string name="logout_success">Has cerrado sesión</string>
     <string name="currently_reading">Leyendo actualmente</string>
     <string name="paused">En pausa</string>
-    <string name="pref_category_library_display">Visualización</string>
     <string name="logout_title">Cerrado de sesión desde %1$s\?</string>
     <string name="want_to_read">Quiero leer</string>
     <string name="label_more">Más</string>
-    <string name="unlock_library">Desbloquear librería</string>
     <string name="action_sort_latest_chapter">Último capítulo</string>
     <string name="action_view_chapters">Ver capítulos</string>
     <string name="action_cancel_all">Cancelar todo</string>

@@ -446,7 +446,6 @@
     <string name="ext_obsolete">Veraltet</string>
     <string name="obsolete_extension_message">Diese Erweiterung ist nicht länger verfügbar.</string>
     <string name="pref_date_format">Datumsformat</string>
-    <string name="pref_category_library_display">Anzeige</string>
     <string name="pref_category_library_update">Aktualisierungen</string>
     <string name="pref_category_library_categories">Kategorien</string>
     <string name="logout_title">Aus %1$s abmelden\?</string>
@@ -456,7 +455,6 @@
     <string name="paused">Pausiert</string>
     <string name="want_to_read">Möchte ich lesen</string>
     <string name="label_more">Mehr</string>
-    <string name="unlock_library">Bibliothek entsperren</string>
     <string name="action_sort_latest_chapter">Neueste Kapitel</string>
     <string name="action_view_chapters">Kapitel anzeigen</string>
     <string name="action_cancel_all">Alle abbrechen</string>

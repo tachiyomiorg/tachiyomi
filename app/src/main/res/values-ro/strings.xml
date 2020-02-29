@@ -446,7 +446,6 @@
     <string name="ext_obsolete">Învechit</string>
     <string name="obsolete_extension_message">Această extensie nu mai este disponibilă.</string>
     <string name="pref_date_format">Formatul datei</string>
-    <string name="pref_category_library_display">Afișaj</string>
     <string name="pref_category_library_update">Actualizări</string>
     <string name="pref_category_library_categories">Categorii</string>
     <string name="logout_title">Deconectare de la %1$s\?</string>

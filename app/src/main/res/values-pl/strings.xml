@@ -445,7 +445,6 @@ Nie znaleziono źródła %1$s</string>
     <string name="ext_obsolete">Przestarzałe</string>
     <string name="obsolete_extension_message">To rozszerzenie nie jest już dostępne.</string>
     <string name="pref_date_format">Format daty</string>
-    <string name="pref_category_library_display">Wyświetlanie</string>
     <string name="pref_category_library_update">Aktualizacje</string>
     <string name="pref_category_library_categories">Kategorie</string>
     <string name="logout_title">Wylogować z %1$s\?</string>

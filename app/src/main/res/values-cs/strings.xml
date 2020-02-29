@@ -450,5 +450,4 @@
     <string name="pref_category_library_categories">Kategorie</string>
     <string name="logout_title">Odhlásit z %1$s\?</string>
     <string name="logout_success">Byl jste odhlášen</string>
-    <string name="pref_category_library_display">Zobrazení</string>
 </resources>

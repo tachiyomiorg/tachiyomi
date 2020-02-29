@@ -446,7 +446,6 @@
     <string name="ext_obsolete">Obsolet</string>
     <string name="obsolete_extension_message">Detta tillägg är inte längre tillgänglig.</string>
     <string name="pref_date_format">Datumformat</string>
-    <string name="pref_category_library_display">Visa</string>
     <string name="pref_category_library_update">Uppdateringar</string>
     <string name="pref_category_library_categories">Kategorier</string>
     <string name="logout_title">Logga ut från %1$s\?</string>
@@ -456,7 +455,6 @@
     <string name="paused">Pausad</string>
     <string name="want_to_read">Vill läsa</string>
     <string name="label_more">Mer</string>
-    <string name="unlock_library">Lås upp bilblioteket</string>
     <string name="action_sort_latest_chapter">Senaste kapitel</string>
     <string name="action_view_chapters">Visa kapitel</string>
     <string name="action_cancel_all">Avbryt alla</string>
