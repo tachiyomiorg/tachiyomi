@@ -6,7 +6,7 @@
     <string name="history">Historie</string>
     <string name="label_settings">Nastavení</string>
     <string name="label_library">Knihovna</string>
-    <string name="label_recent_manga">Nedávno čteno</string>
+    <string name="label_recent_manga">Historie</string>
     <string name="label_categories">Kategorie</string>
     <string name="label_backup">Záloha</string>
     <string name="label_migration">Zdroj migrace</string>
@@ -226,7 +226,7 @@
     <string name="name">Název</string>
     <string name="track">Sledování</string>
     <string name="label_catalogues">Katalogy</string>
-    <string name="label_recent_updates">Nedávné aktualizace</string>
+    <string name="label_recent_updates">Aktualizace</string>
     <string name="action_filter_bookmarked">Založeno</string>
     <string name="action_sort_total">Celkem kapitol</string>
     <string name="action_bookmark">Založit</string>
