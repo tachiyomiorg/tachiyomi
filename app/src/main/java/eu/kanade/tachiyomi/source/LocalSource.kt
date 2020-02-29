@@ -183,6 +183,10 @@ class LocalSource(private val context: Context) : CatalogueSource {
         return extension.toLowerCase() in setOf("zip", "rar", "cbr", "cbz", "epub")
     }
 
+    fun getBaseDirectory(): File? {
+        return getBaseDirectories(context).firstOrNull()
+    }
+
     fun getFormat(chapter: SChapter): Format {
         val baseDirs = getBaseDirectories(context)
 
