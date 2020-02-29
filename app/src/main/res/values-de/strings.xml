@@ -488,4 +488,5 @@
     <string name="information_cloudflare_bypass_failure">Fehler beim Umgehen von Cloudflare</string>
     <string name="information_webview_outdated">Bitte aktualisiere die WebView-App für eine bessere Kompatibilität</string>
     <string name="channel_new_chapters">Kapitelaktualisierungen</string>
+    <string name="action_menu">Menü</string>
 </resources>
