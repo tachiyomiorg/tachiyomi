@@ -187,11 +187,11 @@
     <string name="error_opening_log">Log konnte nicht geöffnet werden</string>
     <string name="restore_completed_content">Das Wiederherstellen hat %1$s gedauert.
 \n%2$s Fehler gefunden.</string>
-    <string name="backup_restore_content">Beim Wiederherstellen eines Backups werden Daten von den Quellen abgerufen, wodurch möglicherweise Mobilfunkkosten enstehen können. 
-\n
+    <string name="backup_restore_content">Beim Wiederherstellen eines Backups werden Daten von den Quellen abgerufen, wodurch Mobilfunkkosten enstehen können. 
+\n 
 \nVergewissern Sie sich zudem, dass Sie alle benötigen Seitenlogins bereitgestellt haben, bevor Sie mit dem Wiederherstellen beginnen.</string>
     <string name="file_saved">Datei in %1$s gespeichert</string>
-    <string name="backup_choice">Was wollen Sie sichern?</string>
+    <string name="backup_choice">Was möchtest du sichern\?</string>
     <string name="restoring_backup">Backup wird wiederhergestellt</string>
     <string name="creating_backup">Erstelle Backup</string>
     <string name="pref_clear_chapter_cache">Kapitel-Zwischenspeicher leeren</string>
@@ -203,7 +203,7 @@
     <string name="choices_reset">Standardantworten zurücksetzen</string>
     <string name="pref_clear_database">Datenbank leeren</string>
     <string name="pref_clear_database_summary">Alle Manga und Kapitel die nicht in der Bibliothek sind löschen</string>
-    <string name="clear_database_confirmation">Sind Sie sicher? Der Lesestatus aller Manga, die nicht in der Bibliothek sind, wird gelöscht</string>
+    <string name="clear_database_confirmation">Bist du sicher\? Gelesene Kapitel und der Fortschritt von Manga, die nicht in der Bibliothek sind gehen verloren</string>
     <string name="clear_database_completed">Einträge gelöscht</string>
     <string name="pref_refresh_library_metadata">Bibliotheksmetadaten erneuern</string>
     <string name="pref_refresh_library_metadata_summary">Aktualisiert Vorschaubilder, Genres, Beschreibungen und andere Manga-Informationen</string>
@@ -225,11 +225,11 @@
     <string name="unknown_error">Unbekannter Fehler</string>
     <string name="library_search_hint">Titel oder Autor…</string>
     <string name="updating_category">Kategorie wird aktualisiert</string>
-    <string name="confirm_delete_manga">Sind Sie sicher, dass Sie diesen Manga entfernen wollen?</string>
+    <string name="confirm_delete_manga">Bist du sicher, dass du diesen Manga entfernen willst\?</string>
     <string name="also_delete_chapters">Auch heruntergeladene Kapitel löschen</string>
-    <string name="source_requires_login">Für diese Quelle müssen Sie sich anmelden</string>
-    <string name="select_source">Wählen Sie eine Quelle</string>
-    <string name="no_valid_sources">Bitte wählen Sie zumindest eine gültige Quelle</string>
+    <string name="source_requires_login">Für diese Quelle musst du dich anmelden</string>
+    <string name="select_source">Wähle eine Quelle</string>
+    <string name="no_valid_sources">Bitte wähle mindestens eine gültige Quelle</string>
     <string name="no_more_results">Keine weiteren Ergebnisse</string>
     <string name="local_source">Lokale Manga</string>
     <string name="invalid_combination">Standard kann nicht zusammen mit anderen Kategorien gewählt werden</string>
@@ -276,7 +276,7 @@
     <string name="download_10">Nächste 10 Kapitel</string>
     <string name="download_all">Alle</string>
     <string name="download_unread">Ungelesene Kapitel</string>
-    <string name="confirm_delete_chapters">Sind Sie sicher, dass Sie die ausgewählten Kapitel löschen wollen?</string>
+    <string name="confirm_delete_chapters">Bist du sicher, dass du die ausgewählten Kapitel löschen willst\?</string>
     <string name="manga_tracking_tab">Synchronisation</string>
     <string name="reading">Am Lesen</string>
     <string name="completed">Abgeschlossen</string>
@@ -288,7 +288,7 @@
     <string name="status">Status</string>
     <string name="error_category_exists">Eine Kategorie mit diesem Namen existiert bereits!</string>
     <string name="snack_categories_deleted">Kategorien gelöscht</string>
-    <string name="dialog_with_checkbox_remove_description">Das Lesedatum dieses Kapitels wird gelöscht. Sind Sie sicher?</string>
+    <string name="dialog_with_checkbox_remove_description">Das Lesedatum dieses Kapitels wird gelöscht. Bist du sicher\?</string>
     <string name="dialog_with_checkbox_reset">Alle Kapitel dieses Mangas zurücksetzen</string>
     <string name="snack_add_to_library">Manga zur Bibliothek hinzufügen?</string>
     <string name="picture_saved">Bild gespeichert</string>
@@ -308,12 +308,12 @@
     <string name="confirm_set_image_as_cover">Dieses Bild als Vorschaubild setzen\?</string>
     <string name="viewer_for_this_series">Leser dieser Serie</string>
     <string name="recent_manga_source">%1$s - Kap.%2$s</string>
-    <string name="download_queue_error">Fehler beim Herunterladen der Kapitel. Sie können es in der Downloadsektion erneut versuchen</string>
+    <string name="download_queue_error">Fehler beim Herunterladen der Kapitel. Du kannst es in der Downloadsektion erneut versuchen</string>
     <string name="notification_update_progress">Aktualisierungsfortschritt: %1$d/%2$d</string>
     <string name="notification_new_chapters">Neue Kapitel gefunden</string>
     <string name="notification_new_chapters_text">Für %1$d Titel</string>
     <string name="notification_cover_update_failed">Ändern des Vorschaubildes fehlgeschlagen</string>
-    <string name="notification_first_add_to_library">Fügen Sie den Manga Ihrer Bibliothek hinzu, bevor Sie dies tun</string>
+    <string name="notification_first_add_to_library">Füge den Manga deiner Bibliothek hinzu, bevor du dies tust</string>
     <string name="notification_not_connected_to_ac_title">Synchronisation abgebrochen</string>
     <string name="notification_not_connected_to_ac_body">Nicht mit dem Stromnetz verbunden</string>
     <string name="notification_no_connection_title">Synchronisation abgebrochen</string>
@@ -337,7 +337,7 @@
     <string name="information_no_downloads">Keine Downloads</string>
     <string name="information_no_recent">Keine neuen Kapitel</string>
     <string name="information_no_recent_manga">Keine kürzlich gelesene Manga</string>
-    <string name="information_empty_library">Ihre Bibliothek ist leer. Fügen Sie neue Serien über den Katalog hinzu.</string>
+    <string name="information_empty_library">Ihre Bibliothek ist leer. Füge neue Serien über den Katalog hinzu.</string>
     <string name="download_notifier_downloader_title">Downloader</string>
     <string name="download_notifier_title_error">Fehler</string>
     <string name="download_notifier_unkown_error">Kapitel konnte aufgrund eines unerwarteten Fehlers nicht heruntergeladen werden</string>
@@ -345,7 +345,7 @@
     <string name="download_notifier_page_ready_error">Eine Seite wurde nicht geladen</string>
     <string name="download_notifier_text_only_wifi">Keine WLAN-Verbindung verfügbar</string>
     <string name="download_notifier_no_network">Kein Netzwerk verfügbar</string>
-    <string name="download_notifier_download_paused">Herunterladen pausiert</string>
+    <string name="download_notifier_download_paused">Download pausiert</string>
     <string name="track">Synchronisation</string>
     <string name="label_recent_updates">Aktualisierungen</string>
     <string name="action_global_search">Globale Suche</string>
@@ -361,13 +361,13 @@
     <string name="channel_downloader">Downloader</string>
     <string name="action_display_download_badge">Downloadzähler</string>
     <string name="local_source_badge">Lokal</string>
-    <string name="information_empty_category">Keine Kategorien vorhanden. Tippen Sie auf die Plus-Schaltfläche, um eine Kategorie zum Sortieren Ihrer Bibliothek zu erstellen.</string>
+    <string name="information_empty_category">Keine Kategorien vorhanden. Tippe auf die Plus-Schaltfläche, um eine Kategorie zum Sortieren deiner Bibliothek zu erstellen.</string>
     <string name="label_migration">Quellenmigration</string>
     <string name="label_extensions">Erweiterungen</string>
     <string name="label_extension_info">Erweiterungsinformationen</string>
     <string name="all_lang">Alle</string>
     <string name="ext_details">Details</string>
-    <string name="ext_update">Aktualisierung</string>
+    <string name="ext_update">Aktualisieren</string>
     <string name="ext_install">Installieren</string>
     <string name="ext_pending">Anstehend</string>
     <string name="ext_downloading">Wird heruntergeladen</string>
@@ -413,7 +413,7 @@
     <string name="track_start_date">Angefangen</string>
     <string name="track_type">Typ</string>
     <string name="track_author">Autor</string>
-    <string name="url_not_set">Manga-URL ist nicht festgelegt. Drücken Sie auf den Titel und wählen Sie den Manga erneut aus</string>
+    <string name="url_not_set">Manga-URL ist nicht festgelegt. Drücke auf den Titel und wähle den Manga erneut aus</string>
     <string name="transition_finished">Beendet:</string>
     <string name="transition_current">Aktuell:</string>
     <string name="transition_next">Nächste:</string>
@@ -451,7 +451,7 @@
     <string name="pref_category_library_categories">Kategorien</string>
     <string name="logout_title">Aus %1$s abmelden\?</string>
     <string name="logout">Abmelden</string>
-    <string name="logout_success">Sie sind jetzt abgemeldet</string>
+    <string name="logout_success">Du bist jetzt abgemeldet</string>
     <string name="currently_reading">Am Lesen</string>
     <string name="paused">Pausiert</string>
     <string name="want_to_read">Möchte ich lesen</string>
@@ -488,6 +488,6 @@
     </plurals>
     <string name="notification_and_n_more">und %1$d mehr</string>
     <string name="information_cloudflare_bypass_failure">Fehler beim Umgehen von Cloudflare</string>
-    <string name="information_webview_outdated">Bitte aktualisieren Sie die WebView-App für eine bessere Kompatibilität</string>
+    <string name="information_webview_outdated">Bitte aktualisiere die WebView-App für eine bessere Kompatibilität</string>
     <string name="channel_new_chapters">Kapitelaktualisierungen</string>
 </resources>
