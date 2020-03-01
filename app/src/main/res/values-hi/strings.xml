@@ -486,4 +486,8 @@
     <string name="information_cloudflare_bypass_failure">Cloudflare को बायपास करने में विफल</string>
     <string name="information_webview_outdated">बेहतर संगतता के लिए कृपया WebView ऐप को अपडेट करें</string>
     <string name="channel_new_chapters">अध्याय अद्यतन</string>
+    <string name="unlock_app">अनलॉक Tachiyomi</string>
+    <string name="action_menu">मेन्यू</string>
+    <string name="secure_screen_summary">एप्लिकेशन स्विच करते समय एप्लिकेशन सामग्री छिपाएं और स्क्रीनशॉट ब्लॉक करें</string>
+    <string name="pref_category_display">प्रदर्शन</string>
 </resources>
