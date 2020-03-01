@@ -277,7 +277,7 @@
     <string name="download_all">Alle</string>
     <string name="download_unread">Ungelesene Kapitel</string>
     <string name="confirm_delete_chapters">Bist du sicher, dass du die ausgewählten Kapitel löschen willst\?</string>
-    <string name="manga_tracking_tab">Synchronisation</string>
+    <string name="manga_tracking_tab">Sync</string>
     <string name="reading">Am Lesen</string>
     <string name="completed">Abgeschlossen</string>
     <string name="dropped">Abgebrochen</string>
