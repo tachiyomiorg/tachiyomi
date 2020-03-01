@@ -102,5 +102,4 @@ class TabsAnimator(val tabs: TabLayout) {
      */
     private val isMeasured: Boolean
         get() = tabsHeight > 0
-
 }

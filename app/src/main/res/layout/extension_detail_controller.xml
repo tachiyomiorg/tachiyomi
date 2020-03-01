@@ -10,21 +10,21 @@
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/extension_title"
+        android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toBottomOf="@id/extension_pkg"
-        android:src="@mipmap/ic_launcher"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/extension_title" />
 
     <TextView
         android:id="@+id/extension_title"
+        style="@style/TextAppearance.Regular.SubHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
-        style="@style/TextAppearance.Regular.SubHeading"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@id/extension_icon"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Tachiyomi: Extension"/>
+        tools:text="Tachiyomi: Extension" />
 
     <TextView
         android:id="@+id/extension_version"
@@ -33,8 +33,8 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/extension_title"
         app:layout_constraintStart_toStartOf="@id/extension_title"
+        app:layout_constraintTop_toBottomOf="@id/extension_title"
         tools:text="Version: 1.0.0" />
 
     <TextView
@@ -44,8 +44,8 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/extension_version"
         app:layout_constraintStart_toStartOf="@id/extension_title"
+        app:layout_constraintTop_toBottomOf="@id/extension_version"
         tools:text="Language: English" />
 
     <TextView
@@ -53,12 +53,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:singleLine="true"
         android:ellipsize="middle"
-        app:layout_constraintTop_toBottomOf="@id/extension_lang"
-        app:layout_constraintStart_toStartOf="@id/extension_title"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="eu.kanade.tachiyomi.extension.en.myext"/>
+        app:layout_constraintStart_toStartOf="@id/extension_title"
+        app:layout_constraintTop_toBottomOf="@id/extension_lang"
+        tools:text="eu.kanade.tachiyomi.extension.en.myext" />
 
     <TextView
         android:id="@+id/extension_obsolete"
@@ -78,15 +78,15 @@
 
     <Button
         android:id="@+id/extension_uninstall_button"
+        style="@style/Theme.Widget.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/ext_uninstall"
-        style="@style/Theme.Widget.Button.Colored"
-        app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/extension_obsolete" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -95,20 +95,20 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/extension_uninstall_button"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/extension_uninstall_button" />
 
     <eu.kanade.tachiyomi.widget.EmptyView
         android:id="@+id/extension_prefs_empty_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="gone"
         android:gravity="center"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/extension_uninstall_button"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/extension_uninstall_button" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

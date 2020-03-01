@@ -34,6 +34,12 @@
 
     </FrameLayout>
 
+    <eu.kanade.tachiyomi.ui.reader.ReaderColorFilterView
+        android:id="@+id/color_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
     <FrameLayout
         android:id="@+id/reader_menu"
         android:layout_width="match_parent"
@@ -84,9 +90,9 @@
                 android:id="@+id/page_seekbar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:minHeight="?attr/actionBarSize"
+                android:layout_weight="1"
                 android:maxHeight="?attr/actionBarSize"
-                android:layout_weight="1" />
+                android:minHeight="?attr/actionBarSize" />
 
             <TextView
                 android:id="@+id/right_page_text"
@@ -111,12 +117,6 @@
 
     <View
         android:id="@+id/brightness_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
-
-    <eu.kanade.tachiyomi.ui.reader.ReaderColorFilterView
-        android:id="@+id/color_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />

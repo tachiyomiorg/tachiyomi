@@ -18,8 +18,12 @@ class CatalogueSearchCardItem(val manga: Manga) : AbstractFlexibleItem<Catalogue
         return CatalogueSearchCardHolder(view, adapter as CatalogueSearchCardAdapter)
     }
 
-    override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: CatalogueSearchCardHolder,
-                                position: Int, payloads: List<Any?>?) {
+    override fun bindViewHolder(
+        adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
+        holder: CatalogueSearchCardHolder,
+        position: Int,
+        payloads: List<Any?>?
+    ) {
         holder.bind(manga)
     }
 
@@ -33,5 +37,4 @@ class CatalogueSearchCardItem(val manga: Manga) : AbstractFlexibleItem<Catalogue
     override fun hashCode(): Int {
         return manga.id?.toInt() ?: 0
     }
-
 }

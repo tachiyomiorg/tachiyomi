@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.data.track.anilist
 import okhttp3.Interceptor
 import okhttp3.Response
 
-
 class AnilistInterceptor(val anilist: Anilist, private var token: String?) : Interceptor {
 
     /**
@@ -54,5 +53,4 @@ class AnilistInterceptor(val anilist: Anilist, private var token: String?) : Int
         this.oauth = oauth
         anilist.saveOAuth(oauth)
     }
-
 }

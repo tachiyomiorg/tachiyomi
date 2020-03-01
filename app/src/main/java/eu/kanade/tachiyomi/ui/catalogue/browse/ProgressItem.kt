@@ -10,7 +10,6 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
 
-
 class ProgressItem : AbstractFlexibleItem<ProgressItem.Holder>() {
 
     private var loadMore = true
@@ -47,5 +46,4 @@ class ProgressItem : AbstractFlexibleItem<ProgressItem.Holder>() {
         val progressBar: ProgressBar = view.findViewById(R.id.progress_bar)
         val progressMessage: TextView = view.findViewById(R.id.progress_message)
     }
-
 }

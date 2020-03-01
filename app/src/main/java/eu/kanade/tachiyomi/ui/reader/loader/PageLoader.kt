@@ -42,5 +42,4 @@ abstract class PageLoader {
      * online source is used.
      */
     open fun retryPage(page: ReaderPage) {}
-
 }

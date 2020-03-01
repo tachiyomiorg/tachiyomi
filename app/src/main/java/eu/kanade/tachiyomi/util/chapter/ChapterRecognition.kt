@@ -140,5 +140,4 @@ object ChapterRecognition {
     private fun parseAlphaPostFix(alpha: Char): Float {
         return ("0." + (alpha.toInt() - 96).toString()).toFloat()
     }
-
 }

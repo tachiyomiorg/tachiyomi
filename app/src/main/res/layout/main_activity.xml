@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    android:id="@+id/drawer"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/main_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <eu.kanade.tachiyomi.widget.ElevationAppBarLayout
             android:id="@+id/appbar"
@@ -23,36 +21,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                android:theme="?attr/actionBarTheme"/>
+                android:theme="?attr/actionBarTheme" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/Theme.ActionBar.Tab"
+                app:tabGravity="center"
                 app:tabIndicatorColor="@android:color/white"
                 app:tabInlineLabel="true"
-                app:tabGravity="center"
-                app:tabMode="scrollable"
-                app:tabMinWidth="75dp"/>
+                app:tabMinWidth="75dp"
+                app:tabMode="scrollable" />
 
         </eu.kanade.tachiyomi.widget.ElevationAppBarLayout>
 
         <com.bluelinelabs.conductor.ChangeHandlerFrameLayout
             android:id="@+id/controller_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="?attr/colorPrimary"
+            app:itemIconTint="@drawable/bottom_nav_item_selector"
+            app:itemTextColor="@drawable/bottom_nav_item_selector"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_nav" />
 
     </LinearLayout>
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        android:theme="?attr/navigation_view_theme"
-        app:headerLayout="@layout/navigation_header"
-        app:menu="@menu/menu_navigation"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

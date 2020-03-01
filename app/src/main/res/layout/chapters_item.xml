@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
@@ -12,75 +11,75 @@
         style="@style/TextAppearance.Regular.Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:ellipsize="end"
         android:maxLines="1"
-        tools:text="Title"
+        app:layout_constraintEnd_toStartOf="@+id/chapter_menu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/chapter_menu"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="16dp"/>
+        tools:text="Title" />
 
     <TextView
         android:id="@+id/chapter_scanlator"
         style="@style/TextAppearance.Regular.Caption.Hint"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Scanlator"
+        android:layout_marginStart="16dp"
         android:maxLines="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chapter_title"
         app:layout_constraintBottom_toTopOf="@+id/chapter_date"
         app:layout_constraintEnd_toStartOf="@+id/chapter_menu"
-        android:layout_marginStart="16dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chapter_title"
+        tools:text="Scanlator" />
 
     <TextView
         android:id="@+id/chapter_date"
         style="@style/TextAppearance.Regular.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="22/02/2016"
-        android:ellipsize="marquee"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginStart="16dp"
-        android:singleLine="true" />
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="22/02/2016" />
 
     <TextView
         android:id="@+id/chapter_pages"
         style="@style/TextAppearance.Regular.Caption.Hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Pages: 45"
         android:ellipsize="marquee"
+        android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:singleLine="true" />
+        tools:text="Pages: 45" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/chapter_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_more_vert_black_24dp"
+        android:layout_marginEnd="8dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:contentDescription="@string/action_menu"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:paddingStart="24dp"
-        android:paddingEnd="16dp"
-        android:layout_marginEnd="8dp"
-        android:paddingBottom="24dp"
-        android:paddingTop="12dp"
-        android:contentDescription="@string/description_cover"/>
+        app:layout_constraintBottom_toTopOf="@+id/download_text"
+        app:srcCompat="@drawable/ic_more_vert_black_24dp"
+        app:tint="?attr/icon_color" />
 
     <TextView
         android:id="@+id/download_text"
         style="@style/TextAppearance.Regular.Caption.Hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="DOWNLOADED"
+        android:layout_marginEnd="16dp"
         android:textAllCaps="true"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="16dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="DOWNLOADED" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,5 +28,4 @@ class MangaViewerPutResolver : PutResolver<Manga>() {
     fun mapToContentValues(manga: Manga) = ContentValues(1).apply {
         put(MangaTable.COL_VIEWER, manga.viewer)
     }
-
 }

@@ -12,5 +12,4 @@ class LatestUpdatesPresenter(sourceId: Long) : BrowseCataloguePresenter(sourceId
     override fun createPager(query: String, filters: FilterList): Pager {
         return LatestUpdatesPager(source)
     }
-
 }

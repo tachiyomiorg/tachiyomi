@@ -60,5 +60,4 @@ class HistoryLastReadPutResolver : HistoryPutResolver() {
     fun mapToUpdateContentValues(history: History) = ContentValues(1).apply {
         put(HistoryTable.COL_LAST_READ, history.last_read)
     }
-
 }

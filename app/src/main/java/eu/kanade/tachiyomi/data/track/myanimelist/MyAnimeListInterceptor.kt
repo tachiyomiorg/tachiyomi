@@ -8,7 +8,7 @@ import okhttp3.Response
 import okio.Buffer
 import org.json.JSONObject
 
-class MyAnimeListInterceptor(private val myanimelist: Myanimelist) : Interceptor {
+class MyAnimeListInterceptor(private val myanimelist: MyAnimeList) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         myanimelist.ensureLoggedIn()

@@ -32,11 +32,11 @@ data class LangItem(val code: String) : AbstractHeaderItem<LangHolder>() {
      * Binds this item to the given view holder.
      */
     override fun bindViewHolder(
-            adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
-            holder: LangHolder,
-            position: Int,
-            payloads: MutableList<Any>) {
+        adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
+        holder: LangHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
         holder.bind(this)
     }
-
 }

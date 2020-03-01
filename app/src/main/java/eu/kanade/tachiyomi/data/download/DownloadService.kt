@@ -194,5 +194,4 @@ class DownloadService : Service() {
             setContentTitle(getString(R.string.download_notifier_downloader_title))
         }
     }
-
 }

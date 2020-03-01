@@ -3,8 +3,13 @@ package eu.kanade.tachiyomi.ui.setting
 import android.os.Build
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.util.preference.*
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
+import eu.kanade.tachiyomi.util.preference.defaultValue
+import eu.kanade.tachiyomi.util.preference.entriesRes
+import eu.kanade.tachiyomi.util.preference.intListPreference
+import eu.kanade.tachiyomi.util.preference.preferenceCategory
+import eu.kanade.tachiyomi.util.preference.switchPreference
+import eu.kanade.tachiyomi.util.preference.titleRes
 
 class SettingsReaderController : SettingsController() {
 
@@ -120,6 +125,11 @@ class SettingsReaderController : SettingsController() {
                 titleRes = R.string.pref_crop_borders
                 defaultValue = false
             }
+            switchPreference {
+                key = Keys.padPagesVertWebtoon
+                titleRes = R.string.pref_webtoon_padding_vert
+                defaultValue = false
+            }
         }
         preferenceCategory {
             titleRes = R.string.pref_reader_navigation
@@ -146,5 +156,4 @@ class SettingsReaderController : SettingsController() {
             }.apply { dependency = Keys.readWithVolumeKeys }
         }
     }
-
 }

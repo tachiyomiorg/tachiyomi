@@ -28,6 +28,4 @@ class MangaFlagsPutResolver : PutResolver<Manga>() {
     fun mapToContentValues(manga: Manga) = ContentValues(1).apply {
         put(MangaTable.COL_CHAPTER_FLAGS, manga.chapter_flags)
     }
-
 }
-

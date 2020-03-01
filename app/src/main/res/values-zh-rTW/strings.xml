@@ -10,9 +10,7 @@
     <string name="label_recent_manga">近期閱讀</string>
     <string name="label_catalogues">書目檢索</string>
     <string name="label_recent_updates">新書上架</string>
-    <string name="label_latest_updates">最近更新</string>
     <string name="label_categories">分類</string>
-    <string name="label_selected">已選取：%1$d</string>
     <string name="label_backup">備份</string>
     <string name="label_migration">來源遷移</string>
     <string name="label_extensions">擴充套件</string>
@@ -54,7 +52,6 @@
     <string name="action_start">開始</string>
     <string name="action_stop">停止</string>
     <string name="action_pause">暫停</string>
-    <string name="action_clear">清除</string>
     <string name="action_close">關閉</string>
     <string name="action_previous_chapter">上一章</string>
     <string name="action_next_chapter">下一章</string>
@@ -90,7 +87,6 @@
     <string name="pref_category_general">一般</string>
     <string name="pref_category_reader">閱讀</string>
     <string name="pref_category_downloads">下載</string>
-    <string name="pref_category_sources">來源</string>
     <string name="pref_category_advanced">進階</string>
     <string name="pref_category_about">關於</string>
     <string name="portrait">縱向螢幕</string>
@@ -114,11 +110,6 @@
     <string name="wifi">僅限 Wi-Fi</string>
     <string name="charging">僅限充電時</string>
     <string name="pref_update_only_non_completed">僅更新連載中的漫畫</string>
-    <string name="pref_theme">佈景主題</string>
-    <string name="light_theme">預設</string>
-    <string name="dark_theme">深色</string>
-    <string name="amoled_theme">全黑</string>
-    <string name="darkblue_theme">深色帶藍</string>
     <string name="pref_start_screen">起始畫面</string>
     <string name="pref_language">語言</string>
     <string name="system_default">系統預設</string>
@@ -316,7 +307,6 @@
     <string name="circular_icon">圓形圖示</string>
     <string name="rounded_icon">圓角方形圖示</string>
     <string name="square_icon">方形圖示</string>
-    <string name="star_icon">星形圖示</string>
     <string name="shortcut_title">捷徑名稱</string>
     <string name="shortcut_created">捷徑已新增至主畫面。</string>
     <string name="icon_shape">圖示形狀</string>
@@ -429,7 +419,6 @@
     <string name="track_author">作者</string>
     <string name="url_not_set">漫畫網址未設置，請點擊標題再選擇一次漫畫</string>
     <string name="dialog_with_checkbox_remove_description">這將會清除此章節的閱讀日期，確定嗎？</string>
-    <string name="confirm_update_manga_sync">要從伺服器上同步上次已讀的最新章節到%1$d嗎？</string>
     <string name="transition_current">當前章節:</string>
     <string name="transition_previous">上一章：</string>
     <string name="recent_manga_source">%1$s - 第%2$s章</string>
@@ -452,7 +441,6 @@
     <string name="action_webview_forward">向前</string>
     <string name="action_webview_refresh">重新整理</string>
     <string name="pref_category_library">資料庫</string>
-    <string name="pref_ask_update_manga_sync">確認更新</string>
     <string name="invalid_download_dir">下載路徑無法使用</string>
     <string name="ext_obsolete">過舊</string>
     <string name="obsolete_extension_message">這個擴充元件已無法使用。</string>

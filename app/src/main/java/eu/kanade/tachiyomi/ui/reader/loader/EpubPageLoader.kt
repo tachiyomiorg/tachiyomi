@@ -3,8 +3,8 @@ package eu.kanade.tachiyomi.ui.reader.loader
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.util.storage.EpubFile
-import rx.Observable
 import java.io.File
+import rx.Observable
 
 /**
  * Loader used to load a chapter from a .epub file.
@@ -50,5 +50,4 @@ class EpubPageLoader(file: File) : PageLoader() {
             Page.READY
         })
     }
-
 }

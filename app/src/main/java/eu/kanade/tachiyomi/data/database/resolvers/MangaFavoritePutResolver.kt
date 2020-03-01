@@ -28,6 +28,4 @@ class MangaFavoritePutResolver : PutResolver<Manga>() {
     fun mapToContentValues(manga: Manga) = ContentValues(1).apply {
         put(MangaTable.COL_FAVORITE, manga.favorite)
     }
-
 }
-

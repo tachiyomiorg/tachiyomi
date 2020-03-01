@@ -15,8 +15,8 @@ import uy.kohesive.injekt.injectLazy
  * @param context the application context.
  */
 class DownloadStore(
-        context: Context,
-        private val sourceManager: SourceManager
+    context: Context,
+    private val sourceManager: SourceManager
 ) {
 
     /**
@@ -133,5 +133,4 @@ class DownloadStore(
      * @param order the order of the download in the queue.
      */
     data class DownloadObject(val mangaId: Long, val chapterId: Long, val order: Int)
-
 }

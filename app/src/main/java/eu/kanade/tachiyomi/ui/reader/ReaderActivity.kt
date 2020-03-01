@@ -11,7 +11,12 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.View
+import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.SeekBar
@@ -25,7 +30,9 @@ import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.activity.BaseRxActivity
-import eu.kanade.tachiyomi.ui.reader.ReaderPresenter.SetAsCoverResult.*
+import eu.kanade.tachiyomi.ui.reader.ReaderPresenter.SetAsCoverResult.AddToLibraryFirst
+import eu.kanade.tachiyomi.ui.reader.ReaderPresenter.SetAsCoverResult.Error
+import eu.kanade.tachiyomi.ui.reader.ReaderPresenter.SetAsCoverResult.Success
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
@@ -41,7 +48,23 @@ import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.*
 import eu.kanade.tachiyomi.widget.SimpleAnimationListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
-import kotlinx.android.synthetic.main.reader_activity.*
+import java.io.File
+import java.util.concurrent.TimeUnit
+import kotlin.math.abs
+import kotlinx.android.synthetic.main.reader_activity.brightness_overlay
+import kotlinx.android.synthetic.main.reader_activity.color_overlay
+import kotlinx.android.synthetic.main.reader_activity.left_chapter
+import kotlinx.android.synthetic.main.reader_activity.left_page_text
+import kotlinx.android.synthetic.main.reader_activity.page_number
+import kotlinx.android.synthetic.main.reader_activity.page_seekbar
+import kotlinx.android.synthetic.main.reader_activity.please_wait
+import kotlinx.android.synthetic.main.reader_activity.reader_menu
+import kotlinx.android.synthetic.main.reader_activity.reader_menu_bottom
+import kotlinx.android.synthetic.main.reader_activity.right_chapter
+import kotlinx.android.synthetic.main.reader_activity.right_page_text
+import kotlinx.android.synthetic.main.reader_activity.toolbar
+import kotlinx.android.synthetic.main.reader_activity.viewer_container
+import me.zhanghai.android.systemuihelper.SystemUiHelper
 import nucleus.factory.RequiresPresenter
 import rx.Observable
 import rx.Subscription
@@ -49,9 +72,6 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.subscriptions.CompositeSubscription
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
-import java.io.File
-import java.util.concurrent.TimeUnit
-import kotlin.math.abs
 
 /**
  * Activity containing the reader of Tachiyomi. This activity is mostly a container of the
@@ -759,7 +779,5 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             color_overlay.visibility = View.VISIBLE
             color_overlay.setFilterColor(value, preferences.colorFilterMode().getOrDefault())
         }
-
     }
-
 }

@@ -18,5 +18,4 @@ class LatestUpdatesPager(val source: CatalogueSource) : Pager() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext { onPageReceived(it) }
     }
-
 }

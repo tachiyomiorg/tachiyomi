@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout android:id="@+id/nnf_item_container"
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="?android:listPreferredItemHeight"
-              android:background="?selectableItemBackground"
-              android:focusable="true"
-              android:minHeight="?android:listPreferredItemHeight"
-              android:nextFocusLeft="@+id/nnf_button_cancel"
-              android:nextFocusRight="@+id/nnf_button_ok"
-              android:orientation="horizontal">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nnf_item_container"
+    android:layout_width="match_parent"
+    android:layout_height="?android:listPreferredItemHeight"
+    android:background="?selectableItemBackground"
+    android:focusable="true"
+    android:minHeight="?android:listPreferredItemHeight"
+    android:nextFocusLeft="@+id/nnf_button_cancel"
+    android:nextFocusRight="@+id/nnf_button_ok"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/item_icon"
@@ -21,7 +20,7 @@
         android:src="@drawable/nnf_ic_file_folder"
         android:tint="?attr/colorAccent"
         android:visibility="visible"
-        tools:ignore="ContentDescription"/>
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@android:id/text1"
@@ -33,5 +32,6 @@
         android:maxLines="1"
         android:padding="8dp"
         android:singleLine="true"
-        android:text="@string/nnf_name"/>
+        android:text="@string/nnf_name" />
+
 </LinearLayout>

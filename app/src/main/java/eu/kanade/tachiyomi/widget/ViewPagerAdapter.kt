@@ -30,5 +30,4 @@ abstract class ViewPagerAdapter : PagerAdapter() {
     interface PositionableView {
         val item: Any
     }
-
 }

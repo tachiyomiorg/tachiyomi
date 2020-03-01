@@ -15,8 +15,8 @@
     <string name="action_filter_read">Przeczytane</string>
     <string name="action_search">Szukaj</string>
     <string name="action_select_all">Zaznacz wszystko</string>
-    <string name="label_library">Moja biblioteka</string>
-    <string name="label_recent_updates">Aktualizacje biblioteki</string>
+    <string name="label_library">Biblioteka</string>
+    <string name="label_recent_updates">Ostatnie aktualizacje</string>
     <string name="label_categories">Kategorie</string>
     <string name="label_backup">Kopia zapasowa</string>
     <string name="action_filter_bookmarked">Zakładki</string>
@@ -47,7 +47,6 @@
     <string name="action_start">Start</string>
     <string name="action_stop">Zatrzymaj</string>
     <string name="action_pause">Wstrzymaj</string>
-    <string name="action_clear">Wyczyść</string>
     <string name="action_close">Zamknij</string>
     <string name="action_previous_chapter">Poprzedni rozdział</string>
     <string name="action_next_chapter">Następny rozdział</string>
@@ -57,7 +56,7 @@
     <string name="action_move">Przenieś</string>
     <string name="action_open_in_browser">Otwórz w przeglądarce</string>
     <string name="action_add_to_home_screen">Dodaj do ekranu głównego</string>
-    <string name="action_display_mode">Zmień tryb wyświetlania</string>
+    <string name="action_display_mode">Tryb wyświetlania</string>
     <string name="action_display">Widok</string>
     <string name="action_display_grid">Siatka</string>
     <string name="action_display_list">Lista</string>
@@ -78,7 +77,6 @@
     <string name="pref_category_general">Ogólne</string>
     <string name="pref_category_reader">Czytnik</string>
     <string name="pref_category_downloads">Pobieranie</string>
-    <string name="pref_category_sources">Źródła</string>
     <string name="pref_category_advanced">Zaawansowane</string>
     <string name="pref_category_about">O aplikacji</string>
     <string name="pref_library_columns">Ilość rzędów biblioteki</string>
@@ -140,8 +138,6 @@
     <string name="download_notifier_title_error">Błąd</string>
     <string name="download_notifier_unkown_error">Podczas pobierania rozdziału wystąpił nieoczekiwany błąd</string>
     <string name="download_notifier_download_paused">Pobieranie wstrzymane</string>
-    <string name="label_latest_updates">Ostatnio zaktualizowane</string>
-    <string name="label_selected">Zaznaczono: %1$d</string>
     <string name="action_sort_alpha">Alfabetycznie</string>
     <string name="track">Śledzenie</string>
     <string name="action_reset">Reset</string>
@@ -170,8 +166,8 @@
     <string name="no_more_results">Nie ma więcej wyników</string>
     <string name="added_to_library">Manga została dodana do twojej biblioteki</string>
     <string name="action_open_log">Otwórz log</string>
-    <string name="show_title">Pokaż tytuł</string>
-    <string name="show_chapter_number">Pokaż numer rozdziału</string>
+    <string name="show_title">Tytuł</string>
+    <string name="show_chapter_number">Numer rozdziału</string>
     <string name="portrait">Orientacja pionowa</string>
     <string name="landscape">Orientacja pozioma</string>
     <string name="default_columns">Domyślnie</string>
@@ -194,10 +190,6 @@
     <string name="charging">Ładowanie baterii</string>
     <string name="pref_update_only_non_completed">Aktualizuj tylko nieukończone mangi</string>
     <string name="pref_auto_update_manga_sync">Aktualizuj postęp po przeczytaniu rozdziału</string>
-    <string name="pref_theme">Motyw aplikacji</string>
-    <string name="light_theme">Jasny</string>
-    <string name="dark_theme">Ciemny</string>
-    <string name="amoled_theme">Ciemny AMOLED</string>
     <string name="pref_start_screen">Ekran startowy</string>
     <string name="pref_language">Język</string>
     <string name="system_default">Systemowy</string>
@@ -245,11 +237,11 @@
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
-    <string name="pref_download_directory">Folder pobierania</string>
+    <string name="pref_download_directory">Lokalizacja pobierania</string>
     <string name="pref_download_only_over_wifi">Pobieraj tylko przez Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Usuwaj po oznaczeniu jako przeczytane</string>
     <string name="pref_remove_after_read">Usuwaj rozdziały po przeczytaniu</string>
-    <string name="custom_dir">Folder niestandardowy</string>
+    <string name="custom_dir">Niestandardowa lokalizacja</string>
     <string name="disabled">Nie usuwaj</string>
     <string name="last_read_chapter">Ostatnio czytany rozdział</string>
     <string name="second_to_last">Przedostatnio czytany rozdział</string>
@@ -266,7 +258,7 @@
     <string name="pref_create_backup_summ">Może być użyta do przywrócenia aktualnej biblioteki</string>
     <string name="pref_restore_backup">Przywróć kopię zapasową</string>
     <string name="pref_restore_backup_summ">Przywraca bibliotekę z pliku kopii zapasowej</string>
-    <string name="pref_backup_directory">Folder kopii zapasowych</string>
+    <string name="pref_backup_directory">Lokalizacja kopii zapasowych</string>
     <string name="pref_backup_interval">Częstotliwość tworzenia kopii</string>
     <string name="pref_backup_slots">Maks. ilosć kopii automatycznych</string>
     <string name="pref_backup_service_category">Cykliczna kopia zapasowa</string>
@@ -303,7 +295,7 @@ Nie znaleziono źródła %1$s</string>
     <string name="pref_refresh_library_tracking">Odśwież metadane śledzenia</string>
     <string name="pref_refresh_library_tracking_summary">Aktualizuje status, ocenę i ostatnio czytany rozdział na podstawie usług śledzenia</string>
     <string name="build_time">Build utworzony</string>
-    <string name="login_success">Zalogowano</string>
+    <string name="login_success">Zalogowano poprawnie</string>
     <string name="local_source">Lokalne mangi</string>
     <string name="ongoing">Nieukończone</string>
     <string name="unknown">Nieznane</string>
@@ -314,7 +306,6 @@ Nie znaleziono źródła %1$s</string>
     <string name="circular_icon">Okrągła</string>
     <string name="rounded_icon">Zaokrąglona</string>
     <string name="square_icon">Kwadratowa</string>
-    <string name="star_icon">Gwiazdka</string>
     <string name="shortcut_title">Tytuł skrótu</string>
     <string name="icon_shape">Kształt ikony</string>
     <string name="icon_creation_fail">Nie udało się utworzyć skrótu</string>
@@ -337,7 +328,6 @@ Nie znaleziono źródła %1$s</string>
     <string name="custom_filter">Filtr niestandardowy</string>
     <string name="page_downloaded">Strona skopiowana do %1$s</string>
     <string name="decode_image_error">Nie udało się wczytać obrazka</string>
-    <string name="confirm_update_manga_sync">Zaktualizować ostatni przeczytany rozdział na %1$d?</string>
     <string name="confirm_set_image_as_cover">Ustawić ten obrazek jako okładkę\?</string>
     <string name="viewer_for_this_series">Widok dla tej serii</string>
     <string name="download_queue_error">Nie udało się pobrać rozdziałów. Możesz spróbować ponownie w sekcji pobierania</string>
@@ -431,7 +421,6 @@ Nie znaleziono źródła %1$s</string>
     <string name="transition_no_previous">Nie ma wcześniejszych rozdziałów</string>
     <string name="transition_pages_loading">Ładowanie stron…</string>
     <string name="transition_pages_error">Nie udało się załadować stron: %1$s</string>
-    <string name="darkblue_theme">Ciemny niebieski</string>
     <string name="action_open_in_web_view">Otwórz używając WebView</string>
     <string name="pref_true_color">Kolor 32-bitowy</string>
     <string name="pref_skip_read_chapters">Pomiń rozdziały ozn. jako przeczytane</string>
@@ -452,8 +441,16 @@ Nie znaleziono źródła %1$s</string>
     <string name="action_webview_forward">Dalej</string>
     <string name="action_webview_refresh">Odśwież</string>
     <string name="pref_category_library">Biblioteka</string>
-    <string name="pref_ask_update_manga_sync">Potwierdzaj przed aktualizacją</string>
-    <string name="invalid_download_dir">Nieprawidłowy folder pobierania</string>
+    <string name="invalid_download_dir">Nieprawidłowa lokalizacja pobierania</string>
     <string name="ext_obsolete">Przestarzałe</string>
     <string name="obsolete_extension_message">To rozszerzenie nie jest już dostępne.</string>
+    <string name="pref_date_format">Format daty</string>
+    <string name="pref_category_library_update">Aktualizacje</string>
+    <string name="pref_category_library_categories">Kategorie</string>
+    <string name="logout_title">Wylogować z %1$s\?</string>
+    <string name="logout">Wyloguj</string>
+    <string name="logout_success">Wylogowano</string>
+    <string name="currently_reading">Obecnie czytane ponownie</string>
+    <string name="paused">Wstrzymane</string>
+    <string name="want_to_read">Chcę przeczytać</string>
 </resources>

@@ -8,8 +8,8 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 class ExtensionDetailsPresenter(
-        val pkgName: String,
-        private val extensionManager: ExtensionManager = Injekt.get()
+    val pkgName: String,
+    private val extensionManager: ExtensionManager = Injekt.get()
 ) : BasePresenter<ExtensionDetailsController>() {
 
     val extension = extensionManager.installedExtensions.find { it.pkgName == pkgName }

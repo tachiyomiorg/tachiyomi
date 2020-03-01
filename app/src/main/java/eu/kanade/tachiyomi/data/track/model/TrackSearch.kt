@@ -59,5 +59,4 @@ class TrackSearch : Track {
             sync_id = serviceId
         }
     }
-
 }

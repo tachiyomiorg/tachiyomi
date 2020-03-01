@@ -5,9 +5,7 @@
     <string name="manga">만화</string>
     <string name="chapters">챕터</string>
     <string name="track">동기화</string>
-    <string name="label_latest_updates">최근 업데이트</string>
     <string name="label_categories">카테고리</string>
-    <string name="label_selected">%1$d 선택됨</string>
     <string name="label_backup">백업</string>
     <string name="action_settings">설정</string>
     <string name="action_filter">필터</string>
@@ -61,7 +59,6 @@
     <string name="action_sort_down">아래로 정렬</string>
     <string name="action_next_unread">다음 안 읽은 챕터로</string>
     <string name="action_start">읽기 시작</string>
-    <string name="action_clear">기록 지우기</string>
     <string name="action_close">닫기</string>
     <string name="action_previous_chapter">이전 챕터</string>
     <string name="action_next_chapter">다음 챕터</string>
@@ -84,7 +81,6 @@
     <string name="pref_category_general">일반</string>
     <string name="pref_category_reader">리더</string>
     <string name="pref_category_downloads">다운로드</string>
-    <string name="pref_category_sources">소스</string>
     <string name="pref_category_tracking">동기화</string>
     <string name="pref_category_advanced">고급 설정</string>
     <string name="pref_category_about">정보</string>
@@ -113,11 +109,6 @@
     <string name="pref_library_update_restriction">서재 업데이트 제한</string>
     <string name="pref_library_update_restriction_summary">조건들이 충족 될 때에만 업데이트</string>
     <string name="charging">충전중</string>
-    <string name="pref_theme">어플리케이션 테마</string>
-    <string name="light_theme">메인 테마</string>
-    <string name="dark_theme">어두운 테마</string>
-    <string name="amoled_theme">AMOLED 테마</string>
-    <string name="darkblue_theme">다크 블루</string>
     <string name="pref_start_screen">시작 화면</string>
     <string name="pref_language">언어</string>
     <string name="system_default">시스템 기본값</string>
@@ -395,7 +386,6 @@
     <string name="circular_icon">원형 아이콘</string>
     <string name="rounded_icon">둥근 아이콘</string>
     <string name="square_icon">사각형 아이콘</string>
-    <string name="star_icon">별 아이콘</string>
     <string name="icon_shape">아이콘 모양</string>
     <string name="copied_to_clipboard">클립보드에 %1$s 복사됨</string>
     <string name="manga_chapter_no_title">제목 없음</string>
@@ -415,7 +405,6 @@
     <string name="url_not_set">만화 URL이 설정 되지 않았습니다. 제목을 클릭하고 만화를 다시 선택해주세요</string>
     <string name="error_category_exists">같은 이름을 가진 카테고리가 이미 존재합니다!</string>
     <string name="page_downloaded">페이지가 %1$s로 복사됨</string>
-    <string name="confirm_update_manga_sync">활성화 된 서비스에 있는 마지막으로 읽은 챕터를 %1$d에 업데이트합니까\?</string>
     <string name="reader_pull_up_for_more_options">끌어 올려 더 많은 설정 표시</string>
     <string name="migration_info">탭하여 이동할 소스 선택</string>
     <string name="migration_dialog_what_to_include">선택하여 데이터 포함</string>

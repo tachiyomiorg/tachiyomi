@@ -6,5 +6,4 @@ sealed class DevRepoUpdateResult : UpdateResult() {
 
     class NewUpdate(release: DevRepoRelease) : UpdateResult.NewUpdate<DevRepoRelease>(release)
     class NoNewUpdate : UpdateResult.NoNewUpdate()
-
 }

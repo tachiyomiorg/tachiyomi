@@ -21,5 +21,4 @@ class LibraryMangaGetResolver : DefaultGetResolver<LibraryManga>(), BaseMangaGet
 
         return manga
     }
-
 }

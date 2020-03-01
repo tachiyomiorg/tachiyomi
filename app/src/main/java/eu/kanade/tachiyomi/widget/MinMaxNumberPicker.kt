@@ -20,4 +20,3 @@ class MinMaxNumberPicker @JvmOverloads constructor(context: Context, attrs: Attr
         }
     }
 }
-

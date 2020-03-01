@@ -22,7 +22,6 @@ abstract class CatalogueHolder(view: View, adapter: FlexibleAdapter<*>) :
      */
     abstract fun onSetValues(manga: Manga)
 
-
     /**
      * Updates the image for this holder. Useful to update the image when the manga is initialized
      * and the url is now known.

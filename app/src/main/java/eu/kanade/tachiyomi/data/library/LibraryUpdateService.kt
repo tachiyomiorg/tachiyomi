@@ -39,16 +39,16 @@ import eu.kanade.tachiyomi.util.system.isServiceRunning
 import eu.kanade.tachiyomi.util.system.notification
 import eu.kanade.tachiyomi.util.system.notificationBuilder
 import eu.kanade.tachiyomi.util.system.notificationManager
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.ArrayList
+import java.util.concurrent.atomic.AtomicInteger
 import rx.Observable
 import rx.Subscription
 import rx.schedulers.Schedulers
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
-import java.util.ArrayList
-import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * This class will take care of updating the chapters of the manga from the library. It can be
@@ -59,11 +59,11 @@ import java.util.concurrent.atomic.AtomicInteger
  * destroyed.
  */
 class LibraryUpdateService(
-        val db: DatabaseHelper = Injekt.get(),
-        val sourceManager: SourceManager = Injekt.get(),
-        val preferences: PreferencesHelper = Injekt.get(),
-        val downloadManager: DownloadManager = Injekt.get(),
-        val trackManager: TrackManager = Injekt.get()
+    val db: DatabaseHelper = Injekt.get(),
+    val sourceManager: SourceManager = Injekt.get(),
+    val preferences: PreferencesHelper = Injekt.get(),
+    val downloadManager: DownloadManager = Injekt.get(),
+    val trackManager: TrackManager = Injekt.get()
 ) : Service() {
 
     /**
@@ -109,8 +109,8 @@ class LibraryUpdateService(
      */
     enum class Target {
         CHAPTERS, // Manga chapters
-        DETAILS,  // Manga metadata
-        TRACKING  // Tracking metadata
+        DETAILS, // Manga metadata
+        TRACKING // Tracking metadata
     }
 
     companion object {
@@ -169,7 +169,6 @@ class LibraryUpdateService(
         fun stop(context: Context) {
             context.stopService(Intent(context, LibraryUpdateService::class.java))
         }
-
     }
 
     /**
@@ -589,5 +588,4 @@ class LibraryUpdateService(
         }
         return PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
-
 }

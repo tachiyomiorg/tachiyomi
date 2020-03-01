@@ -9,20 +9,23 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.webkit.WebChromeClient
-import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import androidx.core.graphics.ColorUtils
-import androidx.webkit.WebViewClientCompat
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
+import eu.kanade.tachiyomi.util.system.WebViewClientCompat
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.openInBrowser
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.invisible
 import eu.kanade.tachiyomi.util.view.visible
-import kotlinx.android.synthetic.main.webview_activity.*
+import kotlinx.android.synthetic.main.webview_activity.nested_view
+import kotlinx.android.synthetic.main.webview_activity.progress_bar
+import kotlinx.android.synthetic.main.webview_activity.swipe_refresh
+import kotlinx.android.synthetic.main.webview_activity.toolbar
+import kotlinx.android.synthetic.main.webview_activity.webview
 import uy.kohesive.injekt.injectLazy
 
 class WebViewActivity : BaseActivity() {
@@ -75,8 +78,8 @@ class WebViewActivity : BaseActivity() {
             }
 
             webview.webViewClient = object : WebViewClientCompat() {
-                override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
-                    view.loadUrl(request.url.toString())
+                override fun shouldOverrideUrlCompat(view: WebView, url: String): Boolean {
+                    view.loadUrl(url)
                     return true
                 }
 
@@ -94,7 +97,7 @@ class WebViewActivity : BaseActivity() {
                     invalidateOptionsMenu()
                 }
 
-                override fun onPageCommitVisible(view: WebView, url: String) {
+                override fun onPageCommitVisible(view: WebView?, url: String?) {
                     super.onPageCommitVisible(view, url)
 
                     // Reset to top when page refreshes

@@ -42,5 +42,4 @@ class KitsuInterceptor(val kitsu: Kitsu, val gson: Gson) : Interceptor {
         this.oauth = oauth
         kitsu.saveToken(oauth)
     }
-
 }

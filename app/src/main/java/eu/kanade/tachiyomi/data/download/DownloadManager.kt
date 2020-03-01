@@ -206,5 +206,4 @@ class DownloadManager(context: Context) {
             deleteChapters(chapters, manga, source)
         }
     }
-
 }

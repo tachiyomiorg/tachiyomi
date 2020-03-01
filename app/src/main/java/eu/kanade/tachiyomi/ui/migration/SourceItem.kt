@@ -34,10 +34,13 @@ data class SourceItem(val source: Source, val header: SelectionHeader? = null) :
     /**
      * Binds this item to the given view holder.
      */
-    override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: SourceHolder,
-                                position: Int, payloads: List<Any?>?) {
+    override fun bindViewHolder(
+        adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
+        holder: SourceHolder,
+        position: Int,
+        payloads: List<Any?>?
+    ) {
 
         holder.bind(this)
     }
-
 }

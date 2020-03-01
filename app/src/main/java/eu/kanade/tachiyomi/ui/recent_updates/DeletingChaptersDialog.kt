@@ -23,5 +23,4 @@ class DeletingChaptersDialog(bundle: Bundle? = null) : DialogController(bundle) 
     override fun showDialog(router: Router) {
         showDialog(router, TAG)
     }
-
 }

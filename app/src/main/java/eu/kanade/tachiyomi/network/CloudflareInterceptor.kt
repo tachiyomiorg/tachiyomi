@@ -2,28 +2,25 @@ package eu.kanade.tachiyomi.network
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
-import android.webkit.WebResourceRequest
-import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.Toast
-import androidx.webkit.WebResourceErrorCompat
-import androidx.webkit.WebViewClientCompat
-import androidx.webkit.WebViewFeature
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.util.system.WebViewClientCompat
 import eu.kanade.tachiyomi.util.system.isOutdated
 import eu.kanade.tachiyomi.util.system.toast
+import java.io.IOException
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 import okhttp3.Cookie
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import uy.kohesive.injekt.injectLazy
-import java.io.IOException
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
 
 class CloudflareInterceptor(private val context: Context) : Interceptor {
 
@@ -102,39 +99,24 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
                     }
 
                     // HTTP error codes are only received since M
-                    if (WebViewFeature.isFeatureSupported(WebViewFeature.RECEIVE_WEB_RESOURCE_ERROR) &&
-                            url == origRequestUrl && !challengeFound
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                        url == origRequestUrl && !challengeFound
                     ) {
                         // The first request didn't return the challenge, abort.
                         latch.countDown()
                     }
                 }
 
-                override fun onReceivedHttpError(
-                        view: WebView,
-                        request: WebResourceRequest,
-                        errorResponse: WebResourceResponse
+                override fun onReceivedErrorCompat(
+                    view: WebView,
+                    errorCode: Int,
+                    description: String?,
+                    failingUrl: String,
+                    isMainFrame: Boolean
                 ) {
-                    if (request.isForMainFrame) {
-                        if (errorResponse.statusCode == 503) {
-                            // Found the Cloudflare challenge page.
-                            challengeFound = true
-                        } else {
-                            // Unlock thread, the challenge wasn't found.
-                            latch.countDown()
-                        }
-                    }
-                }
-
-                @SuppressLint("RequiresFeature")
-                override fun onReceivedError(
-                        view: WebView,
-                        request: WebResourceRequest,
-                        error: WebResourceErrorCompat
-                ) {
-                    if (request.isForMainFrame) {
-                        if (error.errorCode == 503) {
-                            // Found the Cloudflare challenge page.
+                    if (isMainFrame) {
+                        if (errorCode == 503) {
+                            // Found the cloudflare challenge page.
                             challengeFound = true
                         } else {
                             // Unlock thread, the challenge wasn't found.
@@ -175,5 +157,4 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
         private val SERVER_CHECK = arrayOf("cloudflare-nginx", "cloudflare")
         private val COOKIE_NAMES = listOf("__cfduid", "cf_clearance")
     }
-
 }

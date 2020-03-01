@@ -10,8 +10,8 @@ import kotlinx.android.synthetic.main.catalogue_global_search_controller_card_it
 import kotlinx.android.synthetic.main.catalogue_global_search_controller_card_item.progress
 import kotlinx.android.synthetic.main.catalogue_global_search_controller_card_item.tvTitle
 
-class CatalogueSearchCardHolder(view: View, adapter: CatalogueSearchCardAdapter)
-    : BaseFlexibleViewHolder(view, adapter) {
+class CatalogueSearchCardHolder(view: View, adapter: CatalogueSearchCardAdapter) :
+    BaseFlexibleViewHolder(view, adapter) {
 
     init {
         // Call onMangaClickListener when item is pressed.
@@ -50,5 +50,4 @@ class CatalogueSearchCardHolder(view: View, adapter: CatalogueSearchCardAdapter)
                     .into(StateImageViewTarget(itemImage, progress))
         }
     }
-
 }

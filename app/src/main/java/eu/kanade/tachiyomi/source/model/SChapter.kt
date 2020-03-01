@@ -27,5 +27,4 @@ interface SChapter : Serializable {
             return SChapterImpl()
         }
     }
-
 }

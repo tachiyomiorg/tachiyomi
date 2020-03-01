@@ -61,5 +61,4 @@ object ChapterTable {
 
     val addScanlator: String
         get() = "ALTER TABLE $TABLE ADD COLUMN $COL_SCANLATOR TEXT DEFAULT NULL"
-
 }

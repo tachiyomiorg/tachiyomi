@@ -1,19 +1,23 @@
 package eu.kanade.tachiyomi.data.track.anilist
 
 import android.net.Uri
-import com.github.salomonbrys.kotson.*
+import com.github.salomonbrys.kotson.array
+import com.github.salomonbrys.kotson.get
+import com.github.salomonbrys.kotson.jsonObject
+import com.github.salomonbrys.kotson.nullInt
+import com.github.salomonbrys.kotson.nullString
+import com.github.salomonbrys.kotson.obj
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.asObservableSuccess
+import java.util.Calendar
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import rx.Observable
-import java.util.Calendar
-
 
 class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
@@ -143,7 +147,6 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 }
     }
 
-
     fun findLibManga(track: Track, userid: Int): Observable<Track?> {
         val query = """
             |query (${'$'}id: Int!, ${'$'}manga_id: Int!) {
@@ -201,7 +204,6 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                     val media = page["mediaList"].array
                     val entries = media.map { jsonToALUserManga(it.obj) }
                     entries.firstOrNull()?.toTrack()
-
                 }
     }
 
@@ -283,5 +285,4 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                 .appendQueryParameter("response_type", "token")
                 .build()
     }
-
 }

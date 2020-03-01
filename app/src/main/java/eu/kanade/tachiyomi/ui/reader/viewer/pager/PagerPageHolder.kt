@@ -37,20 +37,20 @@ import eu.kanade.tachiyomi.util.system.dpToPx
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.ViewPagerAdapter
+import java.io.InputStream
+import java.util.concurrent.TimeUnit
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import java.io.InputStream
-import java.util.concurrent.TimeUnit
 
 /**
  * View of the ViewPager that contains a page of a chapter.
  */
 @SuppressLint("ViewConstructor")
 class PagerPageHolder(
-        val viewer: PagerViewer,
-        val page: ReaderPage
+    val viewer: PagerViewer,
+    val page: ReaderPage
 ) : FrameLayout(viewer.activity), ViewPagerAdapter.PositionableView {
 
     /**
@@ -442,21 +442,21 @@ class PagerPageHolder(
                 .transition(DrawableTransitionOptions.with(NoTransition.getFactory()))
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(
-                            e: GlideException?,
-                            model: Any?,
-                            target: Target<Drawable>?,
-                            isFirstResource: Boolean
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
                     ): Boolean {
                         onImageDecodeError()
                         return false
                     }
 
                     override fun onResourceReady(
-                            resource: Drawable?,
-                            model: Any?,
-                            target: Target<Drawable>?,
-                            dataSource: DataSource?,
-                            isFirstResource: Boolean
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
                     ): Boolean {
                         if (resource is GifDrawable) {
                             resource.setLoopCount(GifDrawable.LOOP_INTRINSIC)
@@ -467,5 +467,4 @@ class PagerPageHolder(
                 })
                 .into(this)
     }
-
 }

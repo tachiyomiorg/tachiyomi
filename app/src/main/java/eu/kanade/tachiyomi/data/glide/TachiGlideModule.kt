@@ -15,9 +15,9 @@ import com.bumptech.glide.module.AppGlideModule
 import com.bumptech.glide.request.RequestOptions
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.network.NetworkHelper
+import java.io.InputStream
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.io.InputStream
 
 /**
  * Class used to update Glide module settings

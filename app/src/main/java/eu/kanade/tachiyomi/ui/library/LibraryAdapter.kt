@@ -99,5 +99,4 @@ class LibraryAdapter(private val controller: LibraryController) : RecyclerViewPa
             }
         }
     }
-
 }

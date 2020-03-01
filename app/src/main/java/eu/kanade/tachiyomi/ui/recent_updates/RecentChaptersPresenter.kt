@@ -8,21 +8,21 @@ import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
+import java.util.Calendar
+import java.util.Date
+import java.util.TreeMap
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.util.Calendar
-import java.util.Date
-import java.util.TreeMap
 
 class RecentChaptersPresenter(
-        val preferences: PreferencesHelper = Injekt.get(),
-        private val db: DatabaseHelper = Injekt.get(),
-        private val downloadManager: DownloadManager = Injekt.get(),
-        private val sourceManager: SourceManager = Injekt.get()
+    val preferences: PreferencesHelper = Injekt.get(),
+    private val db: DatabaseHelper = Injekt.get(),
+    private val downloadManager: DownloadManager = Injekt.get(),
+    private val sourceManager: SourceManager = Injekt.get()
 ) : BasePresenter<RecentChaptersController>() {
 
     /**
@@ -204,5 +204,4 @@ class RecentChaptersPresenter(
             }
         }
     }
-
 }

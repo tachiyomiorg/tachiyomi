@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="32dp"
     android:background="?attr/colorPrimary"
+    android:elevation="4dp"
     android:gravity="center_vertical"
-    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
     android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-    android:elevation="4dp">
+    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd">
 
     <TextView
         android:id="@+id/section_text"
@@ -15,6 +14,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:maxLines="1"/>
+        android:maxLines="1" />
 
 </FrameLayout>

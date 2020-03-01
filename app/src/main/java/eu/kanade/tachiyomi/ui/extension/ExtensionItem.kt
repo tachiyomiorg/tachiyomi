@@ -16,9 +16,11 @@ import eu.kanade.tachiyomi.source.CatalogueSource
  * @param source Instance of [CatalogueSource] containing source information.
  * @param header The header for this item.
  */
-data class ExtensionItem(val extension: Extension,
-                         val header: ExtensionGroupItem? = null,
-                         val installStep: InstallStep? = null) :
+data class ExtensionItem(
+    val extension: Extension,
+    val header: ExtensionGroupItem? = null,
+    val installStep: InstallStep? = null
+) :
         AbstractSectionableItem<ExtensionHolder, ExtensionGroupItem>(header) {
 
     /**
@@ -38,8 +40,12 @@ data class ExtensionItem(val extension: Extension,
     /**
      * Binds this item to the given view holder.
      */
-    override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: ExtensionHolder,
-                                position: Int, payloads: List<Any?>?) {
+    override fun bindViewHolder(
+        adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
+        holder: ExtensionHolder,
+        position: Int,
+        payloads: List<Any?>?
+    ) {
 
         if (payloads == null || payloads.isEmpty()) {
             holder.bind(this)
@@ -57,5 +63,4 @@ data class ExtensionItem(val extension: Extension,
     override fun hashCode(): Int {
         return extension.pkgName.hashCode()
     }
-
 }

@@ -28,5 +28,4 @@ open class CataloguePager(val source: CatalogueSource, val query: String, val fi
                     }
                 }
     }
-
 }

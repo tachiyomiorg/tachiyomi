@@ -52,5 +52,4 @@ class RemoveHistoryDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
     interface Listener {
         fun removeHistory(manga: Manga, history: History, all: Boolean)
     }
-
 }

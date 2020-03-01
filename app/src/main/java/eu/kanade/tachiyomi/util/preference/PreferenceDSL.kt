@@ -1,7 +1,17 @@
 package eu.kanade.tachiyomi.util.preference
 
 import androidx.core.graphics.drawable.DrawableCompat
-import androidx.preference.*
+import androidx.preference.CheckBoxPreference
+import androidx.preference.DialogPreference
+import androidx.preference.EditTextPreference
+import androidx.preference.ListPreference
+import androidx.preference.MultiSelectListPreference
+import androidx.preference.Preference
+import androidx.preference.PreferenceCategory
+import androidx.preference.PreferenceGroup
+import androidx.preference.PreferenceManager
+import androidx.preference.PreferenceScreen
+import androidx.preference.SwitchPreferenceCompat
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import eu.kanade.tachiyomi.widget.preference.IntListPreference
 import eu.kanade.tachiyomi.widget.preference.SwitchPreferenceCategory

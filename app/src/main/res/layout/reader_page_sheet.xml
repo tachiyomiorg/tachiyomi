@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="?android:colorBackground"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?android:colorBackground"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/set_as_cover_layout"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:gravity="center"
         android:clickable="true"
         android:focusable="true"
-        android:foreground="?attr/selectableItemBackground">
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <ImageView
             android:layout_width="24dp"
@@ -28,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:text="@string/set_as_cover"/>
+            android:text="@string/set_as_cover" />
 
     </LinearLayout>
 
@@ -36,12 +35,12 @@
         android:id="@+id/share_layout"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:gravity="center"
         android:clickable="true"
         android:focusable="true"
-        android:foreground="?attr/selectableItemBackground">
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <ImageView
             android:layout_width="24dp"
@@ -53,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:text="@string/action_share"/>
+            android:text="@string/action_share" />
 
     </LinearLayout>
 
@@ -61,12 +60,12 @@
         android:id="@+id/save_layout"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:gravity="center"
         android:clickable="true"
         android:focusable="true"
-        android:foreground="?attr/selectableItemBackground">
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <ImageView
             android:layout_width="24dp"
@@ -78,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:text="@string/action_save"/>
+            android:text="@string/action_save" />
 
     </LinearLayout>
 

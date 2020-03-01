@@ -37,7 +37,7 @@ class CoverCache(private val context: Context) {
      * Copy the given stream to this cache.
      *
      * @param thumbnailUrl url of the thumbnail.
-     * @param inputStream  the stream to copy.
+     * @param inputStream the stream to copy.
      * @throws IOException if there's any error.
      */
     @Throws(IOException::class)
@@ -63,5 +63,4 @@ class CoverCache(private val context: Context) {
         val file = getCoverFile(thumbnailUrl)
         return file.exists() && file.delete()
     }
-
 }

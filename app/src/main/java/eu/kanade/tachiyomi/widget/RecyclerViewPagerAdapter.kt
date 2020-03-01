@@ -31,6 +31,4 @@ abstract class RecyclerViewPagerAdapter : ViewStatePagerAdapter() {
         recycleView(view, position)
         if (recycle) pool.push(view)
     }
-
-
 }

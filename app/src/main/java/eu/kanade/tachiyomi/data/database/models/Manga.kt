@@ -88,5 +88,4 @@ interface Manga : SManga {
             this.source = source
         }
     }
-
 }

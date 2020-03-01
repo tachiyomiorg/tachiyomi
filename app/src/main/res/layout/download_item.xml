@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingStart="@dimen/material_layout_keylines_screen_edge_margin"
-    android:paddingEnd="@dimen/material_layout_keylines_screen_edge_margin"
-    android:paddingTop="@dimen/material_component_lists_padding_above_list">
+    android:paddingTop="@dimen/material_component_lists_padding_above_list"
+    android:paddingEnd="@dimen/material_layout_keylines_screen_edge_margin">
 
     <TextView
         android:id="@+id/download_progress_text"
@@ -15,34 +14,34 @@
         android:layout_alignParentEnd="true"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Regular.Caption.Hint"
-        tools:text="(0/10)"/>
+        tools:text="(0/10)" />
 
     <TextView
         android:id="@+id/manga_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@id/download_progress_text"
         android:layout_alignParentStart="true"
-        android:maxLines="1"
+        android:layout_toStartOf="@id/download_progress_text"
         android:ellipsize="end"
+        android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Regular.Body1"
-        tools:text="Manga title"/>
+        tools:text="Manga title" />
 
     <TextView
         android:id="@+id/chapter_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/manga_title"
-        android:maxLines="1"
         android:ellipsize="end"
-        tools:text="Chapter Title"
-        android:textAppearance="@style/TextAppearance.Regular.Caption"/>
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.Regular.Caption"
+        tools:text="Chapter Title" />
 
     <ProgressBar
         android:id="@+id/download_progress"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/chapter_title"
-        style="?android:attr/progressBarStyleHorizontal"/>
+        android:layout_below="@id/chapter_title" />
 
 </RelativeLayout>

@@ -5,6 +5,6 @@
     style="@style/Theme.Widget.GridView.Catalogue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnWidth="140dp"
     android:clipToPadding="false"
+    android:columnWidth="140dp"
     tools:listitem="@layout/catalogue_grid_item" />

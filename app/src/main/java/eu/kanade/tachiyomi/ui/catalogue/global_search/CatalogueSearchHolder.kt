@@ -103,5 +103,4 @@ class CatalogueSearchHolder(view: View, val adapter: CatalogueSearchAdapter) :
         title.gone()
         source_card.gone()
     }
-
 }

@@ -49,10 +49,12 @@ class LibraryItem(val manga: LibraryManga, private val libraryAsList: Preference
         }
     }
 
-    override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
-                                holder: LibraryHolder,
-                                position: Int,
-                                payloads: List<Any?>?) {
+    override fun bindViewHolder(
+        adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
+        holder: LibraryHolder,
+        position: Int,
+        payloads: List<Any?>?
+    ) {
         holder.onSetValues(this)
     }
 

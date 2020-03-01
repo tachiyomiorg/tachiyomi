@@ -7,6 +7,7 @@ import com.github.salomonbrys.kotson.string
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import eu.kanade.tachiyomi.extension.model.Extension
+import eu.kanade.tachiyomi.extension.util.ExtensionLoader
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.network.await
@@ -34,17 +35,23 @@ internal class ExtensionGithubApi {
 
         val json = gson.fromJson<JsonArray>(text)
 
-        return json.map { element ->
-            val name = element["name"].string.substringAfter("Tachiyomi: ")
-            val pkgName = element["pkg"].string
-            val apkName = element["apk"].string
-            val versionName = element["version"].string
-            val versionCode = element["code"].int
-            val lang = element["lang"].string
-            val icon = "$REPO_URL/icon/${apkName.replace(".apk", ".png")}"
+        return json
+                .filter { element ->
+                    val versionName = element["version"].string
+                    val libVersion = versionName.substringBeforeLast('.').toDouble()
+                    libVersion >= ExtensionLoader.LIB_VERSION_MIN && libVersion <= ExtensionLoader.LIB_VERSION_MAX
+                }
+                .map { element ->
+                    val name = element["name"].string.substringAfter("Tachiyomi: ")
+                    val pkgName = element["pkg"].string
+                    val apkName = element["apk"].string
+                    val versionName = element["version"].string
+                    val versionCode = element["code"].int
+                    val lang = element["lang"].string
+                    val icon = "$REPO_URL/icon/${apkName.replace(".apk", ".png")}"
 
-            Extension.Available(name, pkgName, versionName, versionCode, lang, apkName, icon)
-        }
+                    Extension.Available(name, pkgName, versionName, versionCode, lang, apkName, icon)
+                }
     }
 
     fun getApkUrl(extension: Extension.Available): String {

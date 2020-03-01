@@ -6,12 +6,12 @@ import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.History
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import uy.kohesive.injekt.injectLazy
 import java.util.Calendar
 import java.util.Comparator
 import java.util.Date
+import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import uy.kohesive.injekt.injectLazy
 
 /**
  * Presenter of RecentlyReadFragment.
@@ -107,5 +107,4 @@ class RecentlyReadPresenter : BasePresenter<RecentlyReadController>() {
             else -> throw NotImplementedError("Unknown sorting method")
         }
     }
-
 }

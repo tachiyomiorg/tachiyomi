@@ -43,5 +43,4 @@ class NucleusConductorDelegate<P : Presenter<*>>(private val factory: PresenterF
     fun onDestroy() {
         presenter?.destroy()
     }
-
 }

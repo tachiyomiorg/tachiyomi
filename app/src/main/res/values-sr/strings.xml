@@ -12,9 +12,7 @@
     <string name="label_recent_manga">Nedavno čitano</string>
     <string name="label_catalogues">Katalozi</string>
     <string name="label_recent_updates">Ažuriranja biblioteke</string>
-    <string name="label_latest_updates">Najnovija ažuriranja</string>
     <string name="label_categories">Kategorije</string>
-    <string name="label_selected">Izabrano: %1$d</string>
     <string name="label_backup">Rezerva</string>
     <string name="label_migration">Migracija izvora</string>
     <string name="label_extensions">Dodaci</string>
@@ -56,7 +54,6 @@
     <string name="action_start">Počni</string>
     <string name="action_stop">Zaustavi</string>
     <string name="action_pause">Pauziraj</string>
-    <string name="action_clear">Očisti</string>
     <string name="action_close">Zatvori</string>
     <string name="action_previous_chapter">Prijašnje poglavlje</string>
     <string name="action_next_chapter">Naredno poglavlje</string>
@@ -92,7 +89,6 @@
     <string name="pref_category_general">Opšte</string>
     <string name="pref_category_reader">Čitač</string>
     <string name="pref_category_downloads">Preuzimanja</string>
-    <string name="pref_category_sources">Izvori</string>
     <string name="pref_category_tracking">Praćenja</string>
     <string name="pref_category_advanced">Napredno</string>
     <string name="pref_category_about">O</string>
@@ -119,11 +115,6 @@
     <string name="charging">Punjenje</string>
     <string name="pref_update_only_non_completed">Samo ažuriraj mangu koja je u toku</string>
     <string name="pref_auto_update_manga_sync">Sinhronizuj poglavlja nakon čitanja</string>
-    <string name="pref_theme">Tema aplikacije</string>
-    <string name="light_theme">Glavna tema</string>
-    <string name="dark_theme">Tamna tema</string>
-    <string name="amoled_theme">AMOLED tema</string>
-    <string name="darkblue_theme">Tamno plava</string>
     <string name="pref_start_screen">Početni ekran</string>
     <string name="pref_language">Jezik</string>
     <string name="system_default">Podrazumevani jezik sistema</string>
@@ -306,7 +297,6 @@
     <string name="circular_icon">Kružna ikonica</string>
     <string name="rounded_icon">Okrugla ikonica</string>
     <string name="square_icon">Kvadratasta ikonica</string>
-    <string name="star_icon">Zvezdasta ikonica</string>
     <string name="shortcut_title">Ime prečice</string>
     <string name="shortcut_created">Prečica je postavljena na vaš početni ekran.</string>
     <string name="icon_shape">Oblik ikonice</string>

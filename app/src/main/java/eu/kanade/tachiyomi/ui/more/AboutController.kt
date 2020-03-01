@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.setting
+package eu.kanade.tachiyomi.ui.more
 
 import android.app.Dialog
 import android.content.Intent
@@ -8,6 +8,7 @@ import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.updater.UpdateChecker
@@ -16,20 +17,26 @@ import eu.kanade.tachiyomi.data.updater.UpdaterJob
 import eu.kanade.tachiyomi.data.updater.UpdaterService
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.main.ChangelogDialogController
+import eu.kanade.tachiyomi.ui.setting.SettingsController
 import eu.kanade.tachiyomi.util.lang.launchNow
 import eu.kanade.tachiyomi.util.lang.toTimestampString
-import eu.kanade.tachiyomi.util.preference.*
+import eu.kanade.tachiyomi.util.preference.defaultValue
+import eu.kanade.tachiyomi.util.preference.onChange
+import eu.kanade.tachiyomi.util.preference.onClick
+import eu.kanade.tachiyomi.util.preference.preference
+import eu.kanade.tachiyomi.util.preference.summaryRes
+import eu.kanade.tachiyomi.util.preference.switchPreference
+import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.toast
-import timber.log.Timber
-import uy.kohesive.injekt.injectLazy
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
-import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
+import timber.log.Timber
+import uy.kohesive.injekt.injectLazy
 
-class SettingsAboutController : SettingsController() {
+class AboutController : SettingsController() {
 
     /**
      * Checks for new releases
@@ -45,12 +52,6 @@ class SettingsAboutController : SettingsController() {
     override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
         titleRes = R.string.pref_category_about
 
-        switchPreference {
-            key = "acra.enable"
-            titleRes = R.string.pref_enable_acra
-            summaryRes = R.string.pref_acra_summary
-            defaultValue = true
-        }
         switchPreference {
             key = Keys.automaticUpdates
             titleRes = R.string.pref_enable_automatic_updates

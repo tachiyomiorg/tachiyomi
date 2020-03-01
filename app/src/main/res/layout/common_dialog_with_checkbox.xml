@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.Regular.Body1"/>
+        android:textAppearance="@style/TextAppearance.Regular.Body1" />
 
     <CheckBox
         android:id="@+id/checkbox_option"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="-5dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginTop="@dimen/material_component_dialogs_padding_between_text_and_touch_target"/>
+        android:layout_marginTop="@dimen/material_component_dialogs_padding_between_text_and_touch_target"
+        android:layout_marginEnd="0dp" />
 
 </LinearLayout>

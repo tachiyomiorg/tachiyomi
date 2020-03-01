@@ -11,11 +11,12 @@
     <string name="history">History</string>
 
     <!-- Activities and fragments labels (toolbar title) -->
+    <string name="label_more">More</string>
     <string name="label_settings">Settings</string>
     <string name="label_download_queue">Download queue</string>
     <string name="label_library">Library</string>
-    <string name="label_recent_updates">Recent updates</string>
-    <string name="label_recent_manga">Recently read</string>
+    <string name="label_recent_updates">Updates</string>
+    <string name="label_recent_manga">History</string>
     <string name="label_catalogues">Catalogues</string>
     <string name="label_categories">Categories</string>
     <string name="label_backup">Backup</string>
@@ -24,9 +25,11 @@
     <string name="label_extension_info">Extension info</string>
     <string name="label_help">Help</string>
 
+    <string name="unlock_app">Unlock Tachiyomi</string>
 
     <!-- Actions -->
     <string name="action_settings">Settings</string>
+    <string name="action_menu">Menu</string>
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Downloaded</string>
     <string name="action_filter_bookmarked">Bookmarked</string>
@@ -65,7 +68,6 @@
     <string name="action_start">Start</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Pause</string>
-    <string name="action_clear">Clear</string>
     <string name="action_close">Close</string>
     <string name="action_previous_chapter">Previous chapter</string>
     <string name="action_next_chapter">Next chapter</string>
@@ -83,6 +85,7 @@
     <string name="action_display_download_badge">Download badges</string>
     <string name="action_set_filter">Set filter</string>
     <string name="action_cancel">Cancel</string>
+    <string name="action_cancel_all">Cancel all</string>
     <string name="action_sort">Sort</string>
     <string name="action_install">Install</string>
     <string name="action_share">Share</string>
@@ -118,18 +121,34 @@
     <string name="pref_category_about">About</string>
 
       <!-- General section -->
-    <string name="pref_theme">App theme</string>
-    <string name="light_theme">Light</string>
-    <string name="dark_theme">Dark</string>
-    <string name="amoled_theme">AMOLED dark</string>
-    <string name="darkblue_theme">Dark blue</string>
+    <string name="pref_theme_mode">App theme</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_system">Follow system</string>
+    <string name="pref_theme_dark">Dark theme variant</string>
+    <string name="theme_dark_default">Default</string>
+    <string name="theme_dark_blue">Dark blue</string>
+    <string name="theme_dark_amoled">AMOLED black</string>
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>
     <string name="system_default">System default</string>
     <string name="pref_date_format">Date format</string>
+    <string name="pref_manage_notifications">Manage notifications</string>
+
+    <string name="pref_category_security">Security</string>
+    <string name="lock_with_biometrics">Lock with biometrics</string>
+    <string name="lock_when_idle">Lock when idle</string>
+    <string name="lock_always">Always</string>
+    <string name="lock_never">Never</string>
+    <plurals name="lock_after_mins">
+        <item quantity="one">After 1 minute</item>
+        <item quantity="other">After %1$s minutes</item>
+    </plurals>
+    <string name="secure_screen">Secure screen</string>
+    <string name="secure_screen_summary">Hide app contents when switching apps and block screenshots</string>
 
       <!-- Library section -->
-    <string name="pref_category_library_display">Display</string>
+    <string name="pref_category_display">Display</string>
     <string name="pref_library_columns">Library manga per row</string>
     <string name="portrait">Portrait</string>
     <string name="landscape">Landscape</string>
@@ -192,6 +211,7 @@
     <string name="pref_show_page_number">Show page number</string>
     <string name="pref_true_color">32-bit color</string>
     <string name="pref_crop_borders">Crop borders</string>
+    <string name="pref_webtoon_padding_vert">Vertical padding between pages</string>
     <string name="pref_custom_brightness">Use custom brightness</string>
     <string name="pref_custom_color_filter">Use custom color filter</string>
     <string name="pref_color_filter_mode">Color filter blend mode</string>
@@ -314,14 +334,14 @@
 
 
     <!-- Login dialog -->
-    <string name="login_title">Login for %1$s</string>
+    <string name="login_title">Log in to %1$s</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="show_password">Show password</string>
     <string name="login">Login</string>
-    <string name="login_success">Successfully logged in</string>
-    <string name="logout_title">Logout from %1$s?</string>
-    <string name="logout">Logout</string>
+    <string name="login_success">Logged in</string>
+    <string name="logout_title">Log out from %1$s?</string>
+    <string name="logout">Log out</string>
     <string name="logout_success">You are now logged out</string>
     <string name="invalid_login">Could not log in</string>
     <string name="unknown_error">Unknown error</string>
@@ -405,19 +425,19 @@
     <string name="download_custom">Custom</string>
     <string name="download_all">All</string>
     <string name="download_unread">Unread</string>
-    <string name="confirm_delete_chapters">Are you sure you want to delete selected chapters?</string>
+    <string name="confirm_delete_chapters">Are you sure you want to delete the selected chapters?</string>
     <string name="invalid_download_dir">Invalid download location</string>
 
     <!-- Tracking Screen -->
     <string name="manga_tracking_tab">Tracking</string>
     <string name="reading">Reading</string>
-    <string name="currently_reading">Currently Reading</string>
+    <string name="currently_reading">Currently reading</string>
     <string name="completed">Completed</string>
     <string name="dropped">Dropped</string>
     <string name="on_hold">On hold</string>
     <string name="paused">Paused</string>
     <string name="plan_to_read">Plan to read</string>
-    <string name="want_to_read">Want to Read</string>
+    <string name="want_to_read">Want to read</string>
     <string name="repeating">Rereading</string>
     <string name="score">Score</string>
     <string name="title">Title</string>

@@ -16,9 +16,9 @@ import timber.log.Timber
  * Loader used to retrieve the [PageLoader] for a given chapter.
  */
 class ChapterLoader(
-        private val downloadManager: DownloadManager,
-        private val manga: Manga,
-        private val source: Source
+    private val downloadManager: DownloadManager,
+    private val manga: Manga,
+    private val source: Source
 ) {
 
     /**
@@ -80,5 +80,4 @@ class ChapterLoader(
             else -> error("Loader not implemented")
         }
     }
-
 }

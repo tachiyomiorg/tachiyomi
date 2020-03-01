@@ -7,8 +7,8 @@ import eu.kanade.tachiyomi.ui.base.holder.BaseViewHolder
 import rx.Subscription
 
 abstract class WebtoonBaseHolder(
-        view: View,
-        protected val viewer: WebtoonViewer
+    view: View,
+    protected val viewer: WebtoonViewer
 ) : BaseViewHolder(view) {
 
     /**
@@ -42,5 +42,4 @@ abstract class WebtoonBaseHolder(
     protected fun View.wrapContent() {
         layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
     }
-
 }

@@ -40,5 +40,4 @@ interface Source {
      * @param chapter the chapter.
      */
     fun fetchPageList(chapter: SChapter): Observable<List<Page>>
-
 }

@@ -37,5 +37,4 @@ class ChapterImpl : Chapter {
     override fun hashCode(): Int {
         return url.hashCode()
     }
-
 }

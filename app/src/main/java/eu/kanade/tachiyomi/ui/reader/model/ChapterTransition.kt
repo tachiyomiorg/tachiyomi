@@ -6,11 +6,13 @@ sealed class ChapterTransition {
     abstract val to: ReaderChapter?
 
     class Prev(
-            override val from: ReaderChapter, override val to: ReaderChapter?
+        override val from: ReaderChapter,
+        override val to: ReaderChapter?
     ) : ChapterTransition()
 
     class Next(
-            override val from: ReaderChapter, override val to: ReaderChapter?
+        override val from: ReaderChapter,
+        override val to: ReaderChapter?
     ) : ChapterTransition()
 
     override fun equals(other: Any?): Boolean {
@@ -30,5 +32,4 @@ sealed class ChapterTransition {
     override fun toString(): String {
         return "${javaClass.simpleName}(from=${from.chapter.url}, to=${to?.chapter?.url})"
     }
-
 }

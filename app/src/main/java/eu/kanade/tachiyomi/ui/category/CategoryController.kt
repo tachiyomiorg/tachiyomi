@@ -1,6 +1,10 @@
 package eu.kanade.tachiyomi.ui.category
 
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -244,7 +248,7 @@ class CategoryController : NucleusController<CategoryPresenter>(),
     private fun toggleSelection(position: Int) {
         val adapter = adapter ?: return
 
-        //Mark the position selected
+        // Mark the position selected
         adapter.toggleSelection(position)
 
         if (adapter.selectedItemCount == 0) {
@@ -321,5 +325,4 @@ class CategoryController : NucleusController<CategoryPresenter>(),
     fun onCategoryExistsError() {
         activity?.toast(R.string.error_category_exists)
     }
-
 }

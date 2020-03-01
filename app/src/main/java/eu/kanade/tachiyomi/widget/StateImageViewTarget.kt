@@ -21,10 +21,12 @@ import eu.kanade.tachiyomi.util.view.visible
  * @param errorDrawableRes the error drawable resource to show.
  * @param errorScaleType the scale type for the error drawable, [ScaleType.CENTER] by default.
  */
-class StateImageViewTarget(view: ImageView,
-                           val progress: View? = null,
-                           val errorDrawableRes: Int = R.drawable.ic_broken_image_grey_24dp,
-                           val errorScaleType: ScaleType = ScaleType.CENTER) :
+class StateImageViewTarget(
+    view: ImageView,
+    val progress: View? = null,
+    val errorDrawableRes: Int = R.drawable.ic_broken_image_grey_24dp,
+    val errorScaleType: ScaleType = ScaleType.CENTER
+) :
 
         ImageViewTarget<Drawable>(view) {
 

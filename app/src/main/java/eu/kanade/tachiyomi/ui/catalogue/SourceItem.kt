@@ -35,11 +35,11 @@ data class SourceItem(val source: CatalogueSource, val header: LangItem? = null)
      * Binds this item to the given view holder.
      */
     override fun bindViewHolder(
-            adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
-            holder: SourceHolder,
-            position: Int,
-            payloads: MutableList<Any>) {
+        adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
+        holder: SourceHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
         holder.bind(this)
     }
-
 }

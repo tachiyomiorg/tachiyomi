@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name">नाव</string>
+    <string name="chapters">अध्याय</string>
+    <string name="label_more">अधिक</string>
+    <string name="label_settings">सेटिंग्ज</string>
+    <string name="label_recent_manga">इतिहास</string>
+    <string name="label_backup">बॅकअप</string>
+    <string name="label_help">मदत</string>
+    <string name="action_settings">सेटिंग्ज</string>
+    <string name="action_filter">फिल्टर</string>
+    <string name="action_filter_unread">न वाचलेले</string>
+    <string name="action_filter_read">वाचा</string>
+    <string name="action_filter_empty">फिल्टर काढा</string>
+    <string name="action_sort_total">एकूण अध्याय</string>
+</resources>

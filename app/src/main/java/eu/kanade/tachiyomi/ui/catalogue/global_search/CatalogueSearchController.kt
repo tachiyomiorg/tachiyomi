@@ -1,7 +1,12 @@
 package eu.kanade.tachiyomi.ui.catalogue.global_search
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding.support.v7.widget.queryTextChangeEvents
@@ -19,8 +24,8 @@ import kotlinx.android.synthetic.main.catalogue_global_search_controller.recycle
  * [CatalogueSearchCardAdapter.OnMangaClickListener] called when manga is clicked in global search
  */
 open class CatalogueSearchController(
-        protected val initialQuery: String? = null,
-        protected val extensionFilter: String? = null
+    protected val initialQuery: String? = null,
+    protected val extensionFilter: String? = null
 ) : NucleusController<CatalogueSearchPresenter>(),
         CatalogueSearchCardAdapter.OnMangaClickListener {
 
@@ -186,5 +191,4 @@ open class CatalogueSearchController(
     fun onMangaInitialized(source: CatalogueSource, manga: Manga) {
         getHolder(source)?.setImage(manga)
     }
-
 }

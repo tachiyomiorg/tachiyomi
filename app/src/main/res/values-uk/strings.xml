@@ -12,9 +12,7 @@
     <string name="label_recent_manga">Нещодавно прочитане</string>
     <string name="label_catalogues">Каталоги</string>
     <string name="label_recent_updates">Оновлення бібліотеки</string>
-    <string name="label_latest_updates">Останні оновлення</string>
     <string name="label_categories">Категорії</string>
-    <string name="label_selected">Обрані: %1$d</string>
     <string name="label_backup">Резервна копія</string>
     <string name="label_migration">Міграція джерела</string>
     <string name="label_extensions">Розширення</string>
@@ -56,7 +54,6 @@
     <string name="action_start">Старт</string>
     <string name="action_stop">Стоп</string>
     <string name="action_pause">Пауза</string>
-    <string name="action_clear">Очистити</string>
     <string name="action_close">Закрити</string>
     <string name="action_previous_chapter">Попередня глава</string>
     <string name="action_next_chapter">Наступна глава</string>
@@ -66,7 +63,7 @@
     <string name="action_move">Перемістити</string>
     <string name="action_open_in_browser">Відкрити в браузері</string>
     <string name="action_add_to_home_screen">Додати на домашній екран</string>
-    <string name="action_display_mode">Змінити режим відображення</string>
+    <string name="action_display_mode">Режим відображення</string>
     <string name="action_display">Відобразити</string>
     <string name="action_display_grid">Сітка</string>
     <string name="action_display_list">Список</string>
@@ -92,7 +89,6 @@
     <string name="pref_category_general">Головні</string>
     <string name="pref_category_reader">Читалка</string>
     <string name="pref_category_downloads">Завантаження</string>
-    <string name="pref_category_sources">Джерела</string>
     <string name="pref_category_tracking">Відстеження</string>
     <string name="pref_category_advanced">Додатково</string>
     <string name="pref_category_about">Інформація</string>
@@ -119,11 +115,6 @@
     <string name="charging">Заряджається</string>
     <string name="pref_update_only_non_completed">Оновлювати тільки ongoing мангу</string>
     <string name="pref_auto_update_manga_sync">Синхронізувати глави після прочитання</string>
-    <string name="pref_theme">Тема програми</string>
-    <string name="light_theme">Основна тема</string>
-    <string name="dark_theme">Темна тема</string>
-    <string name="amoled_theme">AMOLED тема</string>
-    <string name="darkblue_theme">Темно-синя</string>
     <string name="pref_start_screen">Стартовий екран</string>
     <string name="pref_language">Мова</string>
     <string name="system_default">Системний</string>
@@ -172,7 +163,7 @@
     <string name="left_to_right_viewer">Зліва направо</string>
     <string name="right_to_left_viewer">Справа наліво</string>
     <string name="vertical_viewer">Вертикальний</string>
-    <string name="webtoon_viewer">Комікс</string>
+    <string name="webtoon_viewer">Webtoon</string>
     <string name="pager_viewer">Сторінка</string>
     <string name="pref_image_decoder">Декодер зображення</string>
     <string name="pref_image_scale_type">Масштабування</string>
@@ -232,8 +223,9 @@
     <string name="error_opening_log">Помилка відкриття лог файла</string>
     <string name="restore_completed_content">Відновлення зайняло %1$s.
 \n%2$s знайдено помилок.</string>
-    <string name="backup_restore_content">При відновленні використовуються данні з каталогів, що може викликати великий споживання трафіку.
-\nТакож авторизуйтесь в каталогах, що цього вимагають.</string>
+    <string name="backup_restore_content">Відновлення використовує джерела для отримання даних, можуть застосовуватися витрати оператора.
+\n
+\nПереконайтеся, що ви встановили всі необхідні розширення та ввійшли до джерел та служб відстеження перед відновленням.</string>
     <string name="file_saved">Файл збережено в %1$s</string>
     <string name="backup_choice">Що ви хочете зберегти до резервної копії\?</string>
     <string name="restoring_backup">Відновлення резервної копії</string>
@@ -284,7 +276,7 @@
     <string name="action_global_search_hint">Глобальний пошук…</string>
     <string name="latest">Остання</string>
     <string name="browse">Переглянути</string>
-    <string name="manga_not_in_db">Ця манга було видалена з бази даних!</string>
+    <string name="manga_not_in_db">Ця манга була видалена з бази даних.</string>
     <string name="manga_detail_tab">Інформація</string>
     <string name="description">Опис</string>
     <string name="ongoing">Випускається</string>
@@ -302,14 +294,13 @@
     <string name="manga_info_status_label">Статус</string>
     <string name="manga_info_source_label">Джерело</string>
     <string name="manga_info_genres_label">Жанри</string>
-    <string name="circular_icon">Кругла іконка</string>
-    <string name="rounded_icon">Скруглені іконки</string>
-    <string name="square_icon">Квадратна іконка</string>
-    <string name="star_icon">Зоряна іконка</string>
+    <string name="circular_icon">Кругла</string>
+    <string name="rounded_icon">Скруглені</string>
+    <string name="square_icon">Квадратна</string>
     <string name="shortcut_title">Назва ярлика</string>
     <string name="shortcut_created">Ярлика було додано на головний екран.</string>
     <string name="icon_shape">Форма іконки</string>
-    <string name="icon_creation_fail">Неможливо створити ярлик!</string>
+    <string name="icon_creation_fail">Неможливо створити ярлик</string>
     <string name="delete_downloads_for_manga">Видаляти завантажені глави\?</string>
     <string name="copied_to_clipboard">%1$s скопійовано до буфера</string>
     <string name="source_not_installed">Джерело не встановлено: %1$s</string>
@@ -323,15 +314,15 @@
     <string name="chapter_error">Помилка</string>
     <string name="chapter_paused">Пауза</string>
     <string name="fetch_chapters_error">Помилка при видобуванні глав</string>
-    <string name="show_title">Показувати назву</string>
-    <string name="show_chapter_number">Показувати номер глави</string>
+    <string name="show_title">Назва</string>
+    <string name="show_chapter_number">Номер глави</string>
     <string name="sorting_mode">Метод сортування</string>
     <string name="sort_by_source">За каталогом</string>
     <string name="sort_by_number">За номером глави</string>
     <string name="manga_download">Завантажити</string>
     <string name="custom_download">Завантажити певну кількість</string>
     <string name="custom_hint">кількість</string>
-    <string name="download_1">Завантажити наступну главу</string>
+    <string name="download_1">Наступна глава</string>
     <string name="download_5">Завантажити 5 наступних глав</string>
     <string name="download_10">Завантажити 10 наступних глав</string>
     <string name="download_custom">Завантажити іншу кількість</string>
@@ -344,7 +335,7 @@
     <string name="dropped">Кинуто</string>
     <string name="on_hold">Заморожено</string>
     <string name="plan_to_read">Планую почитати</string>
-    <string name="repeating">Перечитую</string>
+    <string name="repeating">Перечітую</string>
     <string name="score">Оцінка</string>
     <string name="title">Заголовок</string>
     <string name="status">Статус</string>
@@ -352,7 +343,7 @@
     <string name="track_start_date">Розпочато</string>
     <string name="track_type">Тип</string>
     <string name="track_author">Автор</string>
-    <string name="url_not_set">Посилання манги не встановлено, будь ласка натисніть на заголовок та виберіть мангу знову</string>
+    <string name="url_not_set">URL-адреса манги не встановлена, натисніть заголовок та виберіть мангу знову</string>
     <string name="error_category_exists">Категорія з таким іменем вже існує!</string>
     <string name="snack_categories_deleted">Категорію видалено</string>
     <string name="dialog_with_checkbox_remove_description">Ця дія видалить дату прочитання глави. Ви впевнені\?</string>
@@ -372,7 +363,6 @@
     <string name="no_next_chapter">Наступну главу не знайдено</string>
     <string name="no_previous_chapter">Попередню главу не знайдено</string>
     <string name="decode_image_error">Зображення не може бути декодовано</string>
-    <string name="confirm_update_manga_sync">Оновити останню прочитану главу на сервісі %1$d\?</string>
     <string name="confirm_set_image_as_cover">Ви бажаєте встановити цю картинку як обкладинку\?</string>
     <string name="viewer_for_this_series">Відображення для цієї серії</string>
     <string name="transition_finished">Завершено:</string>
@@ -403,14 +393,14 @@
     <string name="file_select_cover">Вибрати обкладинку</string>
     <string name="file_select_backup">Виберіть файл резервної копії</string>
     <string name="file_select_icon">Вибрати ярлик</string>
-    <string name="update_check_title">Доступні нові оновлення!</string>
+    <string name="update_check_title">Доступне нове оновлення!</string>
     <string name="update_check_confirm">Завантажити</string>
     <string name="update_check_ignore">Ігнорувати</string>
     <string name="update_check_no_new_updates">Оновлень не виявлено</string>
     <string name="update_check_download_started">Завантаження розпочалось</string>
-    <string name="update_check_look_for_updates">Шукаю оновлення</string>
+    <string name="update_check_look_for_updates">Перевірити оновлення…</string>
     <string name="update_check_notification_file_download">Оновлення завантаження</string>
-    <string name="update_check_notification_download_in_progress">Завантаження в процесі</string>
+    <string name="update_check_notification_download_in_progress">Завантаження в процесі…</string>
     <string name="update_check_notification_download_complete">Завантаження завершено</string>
     <string name="update_check_notification_download_error">Помилка завантаження</string>
     <string name="update_check_notification_update_available">Доступно оновлення</string>
@@ -446,4 +436,22 @@
     <string name="filter_mode_darken">Темніше</string>
     <string name="label_help">Допомога</string>
     <string name="pref_library_update_prioritization">Порядок оновлення бібліотеки</string>
+    <string name="no_results_found">Нічого не знайдено</string>
+    <string name="migration_selection_prompt">Виберіть джерело, з якого потрібно мігрувати</string>
+    <string name="action_webview_back">Назад</string>
+    <string name="action_webview_forward">Вперед</string>
+    <string name="action_webview_refresh">Оновити</string>
+    <string name="pref_category_library">Бібліотека</string>
+    <string name="invalid_download_dir">Недійсне місце завантаження</string>
+    <string name="ext_obsolete">Застарілий</string>
+    <string name="obsolete_extension_message">Це розширення більше не доступне.</string>
+    <string name="pref_date_format">Формат дати</string>
+    <string name="pref_category_library_update">Оновлення</string>
+    <string name="pref_category_library_categories">Категорії</string>
+    <string name="logout_title">Вихід із %1$s\?</string>
+    <string name="logout">Вийти</string>
+    <string name="logout_success">Ви вийшли з системи</string>
+    <string name="currently_reading">Нині чітається</string>
+    <string name="paused">Призупинено</string>
+    <string name="want_to_read">Хочу читати</string>
 </resources>

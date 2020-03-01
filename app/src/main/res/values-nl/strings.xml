@@ -10,9 +10,7 @@
     <string name="label_library">Mijn bibliotheek</string>
     <string name="label_recent_manga">Onlangs gelezen</string>
     <string name="label_catalogues">Catalogi</string>
-    <string name="label_latest_updates">Laatste updates</string>
     <string name="label_categories">Categorieën</string>
-    <string name="label_selected">Geselecteerd: %1$d</string>
     <string name="label_backup">Back-up</string>
     <string name="action_settings">Instellingen</string>
     <string name="action_filter">Filter</string>
@@ -77,7 +75,6 @@
     <string name="pref_category_general">Algemeen</string>
     <string name="pref_category_reader">Lezer</string>
     <string name="pref_category_downloads">Downloads</string>
-    <string name="pref_category_sources">Bronnen</string>
     <string name="pref_category_tracking">Tracking</string>
     <string name="pref_category_advanced">Geavanceerd</string>
     <string name="pref_library_columns">Manga per rij in de bibliotheek</string>
@@ -94,8 +91,6 @@
     <string name="update_weekly">Iedere week</string>
     <string name="update_monthly">Iedere maand</string>
     <string name="all">Alles</string>
-    <string name="dark_theme">Donker</string>
-    <string name="amoled_theme">AMOLED donker</string>
     <string name="pref_start_screen">Beginscherm</string>
     <string name="pref_language">Taal</string>
     <string name="system_default">Systeemstandaard</string>
@@ -279,8 +274,6 @@
     <string name="pref_library_update_restriction_summary">Update alleen wanneer de voorwaarden zijn voldaan</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Aan het opladen</string>
-    <string name="pref_theme">App thema</string>
-    <string name="light_theme">Licht</string>
     <string name="pref_reader_navigation">Navigatie</string>
     <string name="pref_read_with_volume_keys_inverted">Keer volumeknoppen om</string>
     <string name="pref_image_decoder">Afbeeldingdecoder</string>
@@ -308,7 +301,6 @@
     <string name="information_no_recent_manga">Geen recentelijk gelezen manga</string>
     <string name="download_notifier_unkown_error">Het is niet mogelijk om dit hoofdstuk te downloaden door eenonverwachte fout</string>
     <string name="download_notifier_page_error">Er ontbreekt een pagina</string>
-    <string name="action_clear">Legen</string>
     <string name="pref_library_update_restriction">Bibliotheek updatebeperkingen</string>
     <string name="pref_library_update_categories">Categorieën om op te nemen in globale update</string>
     <string name="pref_update_only_non_completed">Update alleen actieve manga</string>
@@ -324,7 +316,6 @@
     <string name="circular_icon">Circulair</string>
     <string name="rounded_icon">Afgerond</string>
     <string name="square_icon">Vierkant</string>
-    <string name="star_icon">Stervormig</string>
     <string name="icon_shape">Icoonvorm</string>
     <string name="icon_creation_fail">Maken van snelkoppeling mislukt!</string>
     <string name="delete_downloads_for_manga">Verwijder gedownloade hoofdstukken?</string>
@@ -356,7 +347,6 @@
     <string name="login_success">Login geslaagd</string>
     <string name="invalid_login">Kon niet inloggen</string>
     <string name="shortcut_title">Titel van de snelkoppeling</string>
-    <string name="confirm_update_manga_sync">Update het laatst gelezen hoofdstuk in de ingeschakelde services op %1$d?</string>
     <string name="licensed">Gelicenseerd</string>
     <string name="plan_to_read">Van plan te lezen</string>
     <string name="action_global_search">Globaal zoeken</string>
@@ -376,7 +366,6 @@
     <string name="label_extensions">Extensies</string>
     <string name="label_extension_info">Informatie over extensie</string>
     <string name="custom_hint">hoeveelheid</string>
-    <string name="darkblue_theme">Donkerblauw</string>
     <string name="all_lang">Alles</string>
     <string name="ext_details">Details</string>
     <string name="ext_update">Bijwerken</string>
@@ -453,6 +442,5 @@
     <string name="action_webview_forward">Vooruit</string>
     <string name="action_webview_refresh">verversen</string>
     <string name="pref_category_library">Bibliotheek</string>
-    <string name="pref_ask_update_manga_sync">Bevestigen voordat u gaat updaten</string>
     <string name="invalid_download_dir">Ongeldige download map</string>
 </resources>

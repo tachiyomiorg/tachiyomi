@@ -6,15 +6,18 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
-import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.setVectorCompat
-import kotlinx.android.synthetic.main.chapters_item.*
 import java.util.Date
+import kotlinx.android.synthetic.main.chapters_item.chapter_date
+import kotlinx.android.synthetic.main.chapters_item.chapter_menu
+import kotlinx.android.synthetic.main.chapters_item.chapter_pages
+import kotlinx.android.synthetic.main.chapters_item.chapter_scanlator
+import kotlinx.android.synthetic.main.chapters_item.chapter_title
+import kotlinx.android.synthetic.main.chapters_item.download_text
 
 class ChapterHolder(
-        private val view: View,
-        private val adapter: ChaptersAdapter
+    private val view: View,
+    private val adapter: ChaptersAdapter
 ) : BaseFlexibleViewHolder(view, adapter) {
 
     init {
@@ -35,9 +38,6 @@ class ChapterHolder(
             else -> chapter.name
         }
 
-        // Set the correct drawable for dropdown and update the tint to match theme.
-        chapter_menu.setVectorCompat(R.drawable.ic_more_vert_black_24dp, view.context.getResourceColor(R.attr.icon_color))
-
         // Set correct text color
         chapter_title.setTextColor(if (chapter.read) adapter.readColor else adapter.unreadColor)
         if (chapter.bookmark) chapter_title.setTextColor(adapter.bookmarkedColor)
@@ -49,9 +49,9 @@ class ChapterHolder(
             chapter_date.text = ""
         }
 
-        //add scanlator if exists
+        // add scanlator if exists
         chapter_scanlator.text = chapter.scanlator
-        //allow longer titles if there is no scanlator (most sources)
+        // allow longer titles if there is no scanlator (most sources)
         if (chapter_scanlator.text.isNullOrBlank()) {
             chapter_title.maxLines = 2
             chapter_scanlator.gone()
@@ -118,5 +118,4 @@ class ChapterHolder(
         // Finally show the PopupMenu
         popup.show()
     }
-
 }

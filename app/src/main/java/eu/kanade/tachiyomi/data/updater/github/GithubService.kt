@@ -26,5 +26,4 @@ interface GithubService {
 
     @GET("/repos/inorichi/tachiyomi/releases/latest")
     suspend fun getLatestVersion(): GithubRelease
-
 }

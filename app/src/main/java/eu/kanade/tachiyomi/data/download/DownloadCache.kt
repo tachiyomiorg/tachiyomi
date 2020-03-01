@@ -8,9 +8,9 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.SourceManager
+import java.util.concurrent.TimeUnit
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.util.concurrent.TimeUnit
 
 /**
  * Cache where we dump the downloads directory from the filesystem. This class is needed because
@@ -24,10 +24,10 @@ import java.util.concurrent.TimeUnit
  * @param preferences the preferences of the app.
  */
 class DownloadCache(
-        private val context: Context,
-        private val provider: DownloadProvider,
-        private val sourceManager: SourceManager,
-        private val preferences: PreferencesHelper = Injekt.get()
+    private val context: Context,
+    private val provider: DownloadProvider,
+    private val sourceManager: SourceManager,
+    private val preferences: PreferencesHelper = Injekt.get()
 ) {
 
     /**
@@ -233,20 +233,26 @@ class DownloadCache(
     /**
      * Class to store the files under the root downloads directory.
      */
-    private class RootDirectory(val dir: UniFile,
-                                var files: Map<Long, SourceDirectory> = hashMapOf())
+    private class RootDirectory(
+        val dir: UniFile,
+        var files: Map<Long, SourceDirectory> = hashMapOf()
+    )
 
     /**
      * Class to store the files under a source directory.
      */
-    private class SourceDirectory(val dir: UniFile,
-                                  var files: Map<String, MangaDirectory> = hashMapOf())
+    private class SourceDirectory(
+        val dir: UniFile,
+        var files: Map<String, MangaDirectory> = hashMapOf()
+    )
 
     /**
      * Class to store the files under a manga directory.
      */
-    private class MangaDirectory(val dir: UniFile,
-                                 var files: Set<String> = hashSetOf())
+    private class MangaDirectory(
+        val dir: UniFile,
+        var files: Set<String> = hashSetOf()
+    )
 
     /**
      * Returns a new map containing only the key entries of [transform] that are not null.
@@ -270,5 +276,4 @@ class DownloadCache(
         }
         return destination
     }
-
 }

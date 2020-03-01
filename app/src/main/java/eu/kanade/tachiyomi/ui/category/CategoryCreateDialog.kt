@@ -43,5 +43,4 @@ class CategoryCreateDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
     interface Listener {
         fun createCategory(name: String)
     }
-
 }

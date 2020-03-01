@@ -24,12 +24,15 @@
         <item name="android:divider">@color/dividerLight</item>
         <item name="android:listDivider">@drawable/line_divider_light</item>
 
+        <!-- Handles RTL text -->
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:textDirection">locale</item>
+
         <!-- Themes -->
         <item name="windowActionModeOverlay">true</item>
         <item name="actionBarTheme">@style/Theme.ActionBar.Light</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Light</item>
-
 
         <!-- Custom Attributes-->
         <item name="selectable_list_drawable">@drawable/list_item_selector_light</item>
@@ -37,6 +40,8 @@
         <item name="text_color_primary">@color/textColorPrimaryLight</item>
         <item name="background_card">@color/dialogLight</item>
         <item name="icon_color">@color/iconColorLight</item>
+        <item name="tabBarIconColor">@android:color/white</item>
+        <item name="tabBarIconInactive">@color/textColorHintDark</item>
     </style>
 
     <!--===========-->
@@ -78,14 +83,14 @@
         <item name="md_background_color">@color/dialogDark</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
 
-
         <!-- Custom Attributes-->
-        <item name="navigation_view_theme">@style/Theme.Widget.NavigationView.Dark</item>
         <item name="selectable_list_drawable">@drawable/list_item_selector_dark</item>
         <item name="selectable_library_drawable">@drawable/library_item_selector_dark</item>
         <item name="text_color_primary">@color/textColorPrimaryDark</item>
         <item name="background_card">@color/dialogDark</item>
         <item name="icon_color">@color/iconColorDark</item>
+        <item name="tabBarIconColor">@android:color/white</item>
+        <item name="tabBarIconInactive">@color/textColorHintDark</item>
     </style>
 
     <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
@@ -161,9 +166,11 @@
     <!-- Launch Screen -->
     <!--===============-->
     <style name="Theme.Splash" parent="Theme.Tachiyomi">
+        <item name="colorBackgroundSplash">@color/colorPrimary</item>
+
         <item name="android:windowBackground">@drawable/splash_background</item>
-        <item name="android:statusBarColor">@color/splashBackgroundColor</item>
-        <item name="android:navigationBarColor">@color/splashBackgroundColor</item>
+        <item name="android:statusBarColor">?attr/colorBackgroundSplash</item>
+        <item name="android:navigationBarColor">?attr/colorBackgroundSplash</item>
     </style>
 
 

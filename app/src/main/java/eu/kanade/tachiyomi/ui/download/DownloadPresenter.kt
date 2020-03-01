@@ -5,11 +5,11 @@ import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.download.model.DownloadQueue
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
+import java.util.ArrayList
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
-import java.util.ArrayList
 
 /**
  * Presenter of [DownloadController].
@@ -61,5 +61,4 @@ class DownloadPresenter : BasePresenter<DownloadController>() {
     fun clearQueue() {
         downloadManager.clearQueue()
     }
-
 }

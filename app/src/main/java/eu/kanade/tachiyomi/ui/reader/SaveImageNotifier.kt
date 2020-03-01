@@ -103,5 +103,4 @@ class SaveImageNotifier(private val context: Context) {
         }
         updateNotification()
     }
-
 }

@@ -12,8 +12,8 @@ import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
  */
 
 abstract class LibraryHolder(
-        view: View,
-        adapter: FlexibleAdapter<*>
+    view: View,
+    adapter: FlexibleAdapter<*>
 ) : BaseFlexibleViewHolder(view, adapter) {
 
     /**
@@ -23,5 +23,4 @@ abstract class LibraryHolder(
      * @param item the manga item to bind.
      */
     abstract fun onSetValues(item: LibraryItem)
-
 }

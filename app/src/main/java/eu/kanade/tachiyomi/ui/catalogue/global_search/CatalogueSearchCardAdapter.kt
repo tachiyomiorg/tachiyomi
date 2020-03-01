@@ -24,5 +24,4 @@ class CatalogueSearchCardAdapter(controller: CatalogueSearchController) :
         fun onMangaClick(manga: Manga)
         fun onMangaLongClick(manga: Manga)
     }
-
 }

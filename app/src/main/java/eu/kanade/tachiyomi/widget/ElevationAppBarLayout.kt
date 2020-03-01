@@ -8,8 +8,8 @@ import com.google.android.material.R
 import com.google.android.material.appbar.AppBarLayout
 
 class ElevationAppBarLayout @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null
+    context: Context,
+    attrs: AttributeSet? = null
 ) : AppBarLayout(context, attrs) {
 
     private var origStateAnimator: StateListAnimator? = null
@@ -37,5 +37,4 @@ class ElevationAppBarLayout @JvmOverloads constructor(
             addState(IntArray(0), objAnimator)
         }
     }
-
 }

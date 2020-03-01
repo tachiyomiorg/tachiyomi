@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="true">
+    <changelogversion versionName="v0.8.5" changeDate="">
+        <changelogtext>[b]Future releases will only support Android 5+[/b]</changelogtext>
+        <changelogtext>New: open in browser/webview from catalogue</changelogtext>
+        <changelogtext>New: reader color filter blend modes</changelogtext>
+        <changelogtext>New: link to help website in sidebar</changelogtext>
+        <changelogtext>New: long press bookmark icon in manga info to change categories</changelogtext>
+        <changelogtext>New: update prioritization setting</changelogtext>
+        <changelogtext>New: Bangumi tracker</changelogtext>
+        <changelogtext>New: extension search</changelogtext>
+        <changelogtext>New: see changelog by pressing Settings > About > Build time</changelogtext>
+        <changelogtext>Enhancement: ignore case when sorting library</changelogtext>
+        <changelogtext>Enhancement: available extensions grouped by languages</changelogtext>
+        <changelogtext>Enhancement: webview navigation</changelogtext>
+        <changelogtext>Enhancement: improved loading speed when skipping pages in a chapter</changelogtext>
+        <changelogtext>Fix: Cloudflare issues</changelogtext>
+        <changelogtext>Fix: sharing issues when filename is long</changelogtext>
+        <changelogtext>Fix: handle errors during global search</changelogtext>
+        <changelogtext>Fix: looping GIFs now loop</changelogtext>
+        <changelogtext>Fix: .nomedia files generated to avoid pages appearing in gallery apps</changelogtext>
+        <changelogtext>Fix: download queue won't autostart if it was previously paused</changelogtext>
+        <changelogtext>Fix: remove DOWNLOADED text after marking chapter as read (if setting is enabled)</changelogtext>
+        <changelogtext>Fix: backup dialog showing "null" when saving to cloud storage</changelogtext>
+        <changelogtext>Fix: MAL and Shikimori tracker issues</changelogtext>
+    </changelogversion>
+
     <changelogversion versionName="v0.8.4" changeDate="">
         <changelogtext>All the internal sources have been removed. They now need to be
             installed as an extension.</changelogtext>

@@ -24,9 +24,9 @@ import kotlin.math.min
  * user also approximately knows how much the operation will take.
  */
 class ReaderProgressBar @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
     /**
@@ -209,5 +209,4 @@ class ReaderProgressBar @JvmOverloads constructor(
             start()
         }
     }
-
 }

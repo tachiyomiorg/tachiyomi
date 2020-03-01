@@ -65,5 +65,4 @@ class DownloadHolder(private val view: View) : BaseViewHolder(view) {
         val pages = download.pages ?: return
         view.download_progress_text.text = "${download.downloadedImages}/${pages.size}"
     }
-
 }

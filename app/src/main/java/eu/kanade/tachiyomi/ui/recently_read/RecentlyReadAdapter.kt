@@ -4,10 +4,10 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.SourceManager
-import uy.kohesive.injekt.injectLazy
 import java.text.DateFormat
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
+import uy.kohesive.injekt.injectLazy
 
 /**
  * Adapter of RecentlyReadHolder.
@@ -17,8 +17,8 @@ import java.text.DecimalFormatSymbols
  * @param controller a RecentlyReadController object
  * @constructor creates an instance of the adapter.
  */
-class RecentlyReadAdapter(controller: RecentlyReadController)
-    : FlexibleAdapter<RecentlyReadItem>(null, controller, true) {
+class RecentlyReadAdapter(controller: RecentlyReadController) :
+    FlexibleAdapter<RecentlyReadItem>(null, controller, true) {
 
     val sourceManager by injectLazy<SourceManager>()
 

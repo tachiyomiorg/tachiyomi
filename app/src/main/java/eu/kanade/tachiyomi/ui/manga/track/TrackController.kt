@@ -139,5 +139,4 @@ class TrackController : NucleusController<TrackPresenter>(),
     private companion object {
         const val TAG_SEARCH_CONTROLLER = "track_search_controller"
     }
-
 }

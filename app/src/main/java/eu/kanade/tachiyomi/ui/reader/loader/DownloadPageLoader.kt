@@ -15,10 +15,10 @@ import uy.kohesive.injekt.injectLazy
  * Loader used to load a chapter from the downloaded chapters.
  */
 class DownloadPageLoader(
-        private val chapter: ReaderChapter,
-        private val manga: Manga,
-        private val source: Source,
-        private val downloadManager: DownloadManager
+    private val chapter: ReaderChapter,
+    private val manga: Manga,
+    private val source: Source,
+    private val downloadManager: DownloadManager
 ) : PageLoader() {
 
     /**
@@ -45,5 +45,4 @@ class DownloadPageLoader(
     override fun getPage(page: ReaderPage): Observable<Int> {
         return Observable.just(Page.READY) // TODO maybe check if file still exists?
     }
-
 }

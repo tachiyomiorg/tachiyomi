@@ -31,9 +31,7 @@
             android:paddingBottom="@dimen/fab_list_padding"
             android:clipToPadding="false"
             android:descendantFocusability="blocksDescendants"
-            tools:listitem="@layout/chapters_item">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            tools:listitem="@layout/chapters_item" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

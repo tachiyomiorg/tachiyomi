@@ -17,17 +17,17 @@ import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.util.lang.combineLatest
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
+import java.io.IOException
+import java.io.InputStream
+import java.util.ArrayList
+import java.util.Collections
+import java.util.Comparator
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.io.IOException
-import java.io.InputStream
-import java.util.ArrayList
-import java.util.Collections
-import java.util.Comparator
 
 /**
  * Class containing library information.
@@ -43,11 +43,11 @@ private typealias LibraryMap = Map<Int, List<LibraryItem>>
  * Presenter of [LibraryController].
  */
 class LibraryPresenter(
-        private val db: DatabaseHelper = Injekt.get(),
-        private val preferences: PreferencesHelper = Injekt.get(),
-        private val coverCache: CoverCache = Injekt.get(),
-        private val sourceManager: SourceManager = Injekt.get(),
-        private val downloadManager: DownloadManager = Injekt.get()
+    private val db: DatabaseHelper = Injekt.get(),
+    private val preferences: PreferencesHelper = Injekt.get(),
+    private val coverCache: CoverCache = Injekt.get(),
+    private val sourceManager: SourceManager = Injekt.get(),
+    private val downloadManager: DownloadManager = Injekt.get()
 ) : BasePresenter<LibraryController>() {
 
     private val context = preferences.context
@@ -375,5 +375,4 @@ class LibraryPresenter(
         }
         return false
     }
-
 }

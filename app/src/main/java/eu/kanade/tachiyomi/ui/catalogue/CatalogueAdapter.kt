@@ -45,4 +45,3 @@ class CatalogueAdapter(val controller: CatalogueController) :
         fun onLatestClick(position: Int)
     }
 }
-

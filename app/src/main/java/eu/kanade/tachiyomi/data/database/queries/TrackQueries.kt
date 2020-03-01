@@ -30,5 +30,4 @@ interface TrackQueries : DbProvider {
                     .whereArgs(manga.id, sync.id)
                     .build())
             .prepare()
-
 }

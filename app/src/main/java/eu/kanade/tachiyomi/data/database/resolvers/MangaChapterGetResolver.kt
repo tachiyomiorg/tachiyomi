@@ -24,5 +24,4 @@ class MangaChapterGetResolver : DefaultGetResolver<MangaChapter>() {
 
         return MangaChapter(manga, chapter)
     }
-
 }

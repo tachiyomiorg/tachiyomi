@@ -27,5 +27,4 @@ abstract class Pager(var currentPage: Int = 1) {
         hasNextPage = mangasPage.hasNextPage && mangasPage.mangas.isNotEmpty()
         results.call(Pair(page, mangasPage.mangas))
     }
-
 }

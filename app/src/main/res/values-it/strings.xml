@@ -5,12 +5,10 @@
     <string name="label_settings">Impostazioni</string>
     <string name="label_download_queue">Coda dei download</string>
     <string name="label_library">La mia libreria</string>
-    <string name="label_recent_manga">Letti di recente</string>
+    <string name="label_recent_manga">Cronologia</string>
     <string name="label_catalogues">Cataloghi</string>
-    <string name="label_recent_updates">Aggiornamenti libreria</string>
-    <string name="label_latest_updates">Ultimi aggiornamenti</string>
+    <string name="label_recent_updates">Aggiornamenti</string>
     <string name="label_categories">Categorie</string>
-    <string name="label_selected">Selezionati: %1$d</string>
     <string name="label_backup">Backup</string>
     <!-- Actions -->
     <string name="action_settings">Impostazioni</string>
@@ -47,7 +45,6 @@
     <string name="action_start">Avvia</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Pausa</string>
-    <string name="action_clear">Azzera</string>
     <string name="action_previous_chapter">Capitolo precedente</string>
     <string name="action_next_chapter">Prossimo capito</string>
     <string name="action_retry">Riprova</string>
@@ -73,7 +70,6 @@
     <string name="pref_category_general">Generali</string>
     <string name="pref_category_reader">Lettore</string>
     <string name="pref_category_downloads">Download</string>
-    <string name="pref_category_sources">Fonti</string>
     <string name="pref_category_advanced">Avanzate</string>
     <string name="pref_category_about">Informazioni</string>
     <!-- General section -->
@@ -98,9 +94,6 @@
     <string name="charging">Caricamento</string>
     <string name="pref_update_only_non_completed">Aggiorna solo manga in corso</string>
     <string name="pref_auto_update_manga_sync">Sincronizza capitoli dopo la lettura</string>
-    <string name="pref_theme">Tema dell\'applicazione</string>
-    <string name="light_theme">Tema principale</string>
-    <string name="dark_theme">Tema scuro</string>
     <string name="pref_start_screen">Schermata iniziale</string>
     <string name="pref_language">Lingua</string>
     <string name="system_default">Predefinita di sistema</string>
@@ -217,7 +210,6 @@
     <string name="circular_icon">Icona circolare</string>
     <string name="rounded_icon">Icona arrotondata</string>
     <string name="square_icon">Icona quadrata</string>
-    <string name="star_icon">Icona a stella</string>
     <string name="shortcut_title">Titolo della scorciatoia</string>
     <string name="icon_shape">Forma dell\'icona</string>
     <string name="icon_creation_fail">Impossibile creare la scorciatoia!</string>
@@ -274,7 +266,6 @@
     <string name="no_next_chapter">Capitolo successivo non trovato</string>
     <string name="no_previous_chapter">Capitolo precedente non trovato</string>
     <string name="decode_image_error">L\'immagine non può essere decodificata</string>
-    <string name="confirm_update_manga_sync">Aggiornare nei servizi abilitati l\'ultimo capitolo letto a %1$d?</string>
     <string name="confirm_set_image_as_cover">Vuoi impostare questa immagine come copertina?</string>
     <string name="viewer_for_this_series">Visualizzatore per questa serie</string>
     <!-- Backup fragment -->
@@ -341,7 +332,6 @@
     <string name="short_recent_updates">Aggiornamenti</string>
     <string name="update_weekly">Settimanalmente</string>
     <string name="update_monthly">Mensilmente</string>
-    <string name="amoled_theme">Tema AMOLED</string>
     <string name="default_category">Categoria predefinita</string>
     <string name="track">Monitoraggio</string>
     <string name="pref_category_tracking">Monitoraggio</string>
@@ -464,7 +454,6 @@
     <string name="transition_no_previous">Nessun capitolo precedente</string>
     <string name="transition_pages_loading">Caricamento pagine…</string>
     <string name="transition_pages_error">Caricamento pagine fallito: %1$s</string>
-    <string name="darkblue_theme">Blu scuro</string>
     <string name="action_open_in_web_view">Apri nella WebView</string>
     <string name="pref_true_color">Colori a 32 bit</string>
     <string name="pref_skip_read_chapters">Salta i capitoli segnati come letti</string>

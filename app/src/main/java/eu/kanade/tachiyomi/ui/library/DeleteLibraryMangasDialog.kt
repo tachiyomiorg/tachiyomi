@@ -28,8 +28,8 @@ class DeleteLibraryMangasDialog<T>(bundle: Bundle? = null) :
         return MaterialDialog.Builder(activity!!)
                 .title(R.string.action_remove)
                 .customView(view, true)
-                .positiveText(android.R.string.yes)
-                .negativeText(android.R.string.no)
+                .positiveText(android.R.string.ok)
+                .negativeText(android.R.string.cancel)
                 .onPositive { _, _ ->
                     val deleteChapters = view.isChecked()
                     (targetController as? Listener)?.deleteMangasFromLibrary(mangas, deleteChapters)

@@ -43,10 +43,10 @@ import timber.log.Timber
  * @param sourceManager the source manager.
  */
 class Downloader(
-        private val context: Context,
-        private val provider: DownloadProvider,
-        private val cache: DownloadCache,
-        private val sourceManager: SourceManager
+    private val context: Context,
+    private val provider: DownloadProvider,
+    private val cache: DownloadCache,
+    private val sourceManager: SourceManager
 ) {
 
     /**
@@ -152,7 +152,7 @@ class Downloader(
     fun clearQueue(isNotification: Boolean = false) {
         destroySubscriptions()
 
-        //Needed to update the chapter view
+        // Needed to update the chapter view
         if (isNotification) {
             queue
                     .filter { it.status == Download.QUEUE }
@@ -291,7 +291,6 @@ class Downloader(
                     notifier.onError(error.message, download.chapter.name)
                     download
                 }
-
     }
 
     /**
@@ -394,8 +393,12 @@ class Downloader(
      * @param tmpDir the directory where the download is currently stored.
      * @param dirname the real (non temporary) directory name of the download.
      */
-    private fun ensureSuccessfulDownload(download: Download, mangaDir: UniFile,
-                                         tmpDir: UniFile, dirname: String) {
+    private fun ensureSuccessfulDownload(
+        download: Download,
+        mangaDir: UniFile,
+        tmpDir: UniFile,
+        dirname: String
+    ) {
 
         // Ensure that the chapter folder has all the images.
         val downloadedImages = tmpDir.listFiles().orEmpty().filterNot { it.name!!.endsWith(".tmp") }
@@ -439,5 +442,4 @@ class Downloader(
     companion object {
         const val TMP_DIR_SUFFIX = "_tmp"
     }
-
 }

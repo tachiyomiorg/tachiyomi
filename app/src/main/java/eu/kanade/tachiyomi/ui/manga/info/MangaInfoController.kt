@@ -10,7 +10,12 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
@@ -45,12 +50,25 @@ import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.lang.truncateCenter
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.snack
-import jp.wasabeef.glide.transformations.CropSquareTransformation
-import kotlinx.android.synthetic.main.manga_info_controller.*
-import uy.kohesive.injekt.injectLazy
 import java.text.DateFormat
 import java.text.DecimalFormat
 import java.util.Date
+import jp.wasabeef.glide.transformations.CropSquareTransformation
+import kotlinx.android.synthetic.main.manga_info_controller.backdrop
+import kotlinx.android.synthetic.main.manga_info_controller.fab_favorite
+import kotlinx.android.synthetic.main.manga_info_controller.manga_artist
+import kotlinx.android.synthetic.main.manga_info_controller.manga_artist_label
+import kotlinx.android.synthetic.main.manga_info_controller.manga_author
+import kotlinx.android.synthetic.main.manga_info_controller.manga_chapters
+import kotlinx.android.synthetic.main.manga_info_controller.manga_cover
+import kotlinx.android.synthetic.main.manga_info_controller.manga_full_title
+import kotlinx.android.synthetic.main.manga_info_controller.manga_genres_tags
+import kotlinx.android.synthetic.main.manga_info_controller.manga_last_update
+import kotlinx.android.synthetic.main.manga_info_controller.manga_source
+import kotlinx.android.synthetic.main.manga_info_controller.manga_status
+import kotlinx.android.synthetic.main.manga_info_controller.manga_summary
+import kotlinx.android.synthetic.main.manga_info_controller.swipe_refresh
+import uy.kohesive.injekt.injectLazy
 
 /**
  * Fragment that shows manga information.
@@ -153,14 +171,13 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
      * If true update view with manga information,
      * if false fetch manga information
      *
-     * @param manga  manga object containing information about manga.
+     * @param manga manga object containing information about manga.
      * @param source the source of the manga.
      */
     fun onNextManga(manga: Manga, source: Source) {
         if (manga.initialized) {
             // Update view.
             setMangaInfo(manga, source)
-
         } else {
             // Initialize manga.
             fetchMangaFromSource()
@@ -176,7 +193,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     private fun setMangaInfo(manga: Manga, source: Source?) {
         val view = view ?: return
 
-        //update full title TextView.
+        // update full title TextView.
         manga_full_title.text = if (manga.title.isBlank()) {
             view.context.getString(R.string.unknown)
         } else {
@@ -338,7 +355,6 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         // Call presenter and start fetching manga information
         presenter.fetchMangaFromSource()
     }
-
 
     /**
      * Update swipe refresh to stop showing refresh in progress spinner.
@@ -577,5 +593,4 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
                     successCallback.intentSender)
         }
     }
-
 }

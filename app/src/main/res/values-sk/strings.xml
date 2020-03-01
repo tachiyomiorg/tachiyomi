@@ -12,9 +12,7 @@
     <string name="label_recent_manga">Nedávno čítané</string>
     <string name="label_catalogues">Katalógy</string>
     <string name="label_recent_updates">Updaty</string>
-    <string name="label_latest_updates">Nedávno aktualizované</string>
     <string name="label_categories">Kategórie</string>
-    <string name="label_selected">Vybraté: %1$d</string>
     <string name="label_backup">Záloha</string>
     <string name="label_migration">Presun zdrojov</string>
     <string name="label_extensions">Rozšírenia</string>
@@ -57,7 +55,6 @@
     <string name="action_start">Začať</string>
     <string name="action_stop">Zastaviť</string>
     <string name="action_pause">Pauza</string>
-    <string name="action_clear">Zmazať</string>
     <string name="action_close">Zatvoriť</string>
     <string name="action_previous_chapter">Predošlá kapitola</string>
     <string name="action_next_chapter">Nasledujúca kapitola</string>
@@ -94,7 +91,6 @@
     <string name="pref_category_general">Všeobecné</string>
     <string name="pref_category_reader">Prehliadač</string>
     <string name="pref_category_downloads">Sťahovanie</string>
-    <string name="pref_category_sources">Zdroje</string>
     <string name="pref_category_tracking">Sledovanie</string>
     <string name="pref_category_advanced">Rozšírené</string>
     <string name="pref_category_about">O Aplikácii</string>
@@ -122,11 +118,6 @@
     <string name="charging">Nabíjanie</string>
     <string name="pref_update_only_non_completed">Aktualizovať iba nedokončenú Mangu</string>
     <string name="pref_auto_update_manga_sync">Synchronizovať kapitoly po prečítaní</string>
-    <string name="pref_theme">Motív aplikácie</string>
-    <string name="light_theme">Svetlá téma</string>
-    <string name="dark_theme">Tmavý motív</string>
-    <string name="amoled_theme">AMOLED tmavý motív</string>
-    <string name="darkblue_theme">Tmavomodrá téma</string>
     <string name="pref_start_screen">Úvodná obrazovka</string>
     <string name="pref_language">Jazyk</string>
     <string name="system_default">Predvolené nastavenie systému</string>
@@ -266,7 +257,6 @@
     <string name="action_webview_forward">Vpred</string>
     <string name="action_webview_refresh">Obnoviť</string>
     <string name="pref_category_library">Knižnica</string>
-    <string name="pref_ask_update_manga_sync">Potvrdiť pred aktualizáciou</string>
     <string name="ext_obsolete">Zastaraný</string>
     <string name="obsolete_extension_message">Toto rozšírenie už nie je k dispozícii.</string>
     <string name="clear_database_completed">Záznamy boli odstránené</string>
@@ -326,7 +316,6 @@
     <string name="circular_icon">Kruhová ikona</string>
     <string name="rounded_icon">Zaoblená ikona</string>
     <string name="square_icon">Štvorcová ikona</string>
-    <string name="star_icon">Hviezdicová ikona</string>
     <string name="shortcut_title">Názov zástupca</string>
     <string name="shortcut_created">Zástupca bol pridaný na plochu.</string>
     <string name="icon_shape">Tvar ikony</string>
@@ -393,7 +382,6 @@
     <string name="no_next_chapter">Ďalšia kapitola nebola nájdená</string>
     <string name="no_previous_chapter">Predchádzajúca kapitola nebola nájdená</string>
     <string name="decode_image_error">Obrázok sa nepodarilo dekódovať</string>
-    <string name="confirm_update_manga_sync">Aktualizovať poslednú čítanú kapitolu v povolených službách na %1$d\?</string>
     <string name="confirm_set_image_as_cover">Chcete použiť tento obrázok ako obal\?</string>
     <string name="viewer_for_this_series">Prehliadač tejto série</string>
     <string name="transition_finished">Dokončená:</string>

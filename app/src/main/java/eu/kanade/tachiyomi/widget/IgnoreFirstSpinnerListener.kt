@@ -17,6 +17,5 @@ class IgnoreFirstSpinnerListener(private val block: (Int) -> Unit) : OnItemSelec
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
-
     }
 }

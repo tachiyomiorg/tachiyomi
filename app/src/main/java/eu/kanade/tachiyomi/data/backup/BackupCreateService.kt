@@ -5,8 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import com.google.gson.JsonArray
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
+import eu.kanade.tachiyomi.data.database.models.Manga
 
 /**
  * [IntentService] used to backup [Manga] information to [JsonArray]
@@ -45,7 +45,6 @@ class BackupCreateService : IntentService(NAME) {
             }
             context.startService(intent)
         }
-
     }
 
     private val backupManager by lazy { BackupManager(this) }
@@ -59,5 +58,4 @@ class BackupCreateService : IntentService(NAME) {
         // Create backup
         backupManager.createBackup(uri, flags, false)
     }
-
 }

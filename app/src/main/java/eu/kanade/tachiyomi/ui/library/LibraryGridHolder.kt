@@ -5,7 +5,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.source.LocalSource
-import kotlinx.android.synthetic.main.catalogue_grid_item.*
+import kotlinx.android.synthetic.main.catalogue_grid_item.download_text
+import kotlinx.android.synthetic.main.catalogue_grid_item.local_text
+import kotlinx.android.synthetic.main.catalogue_grid_item.thumbnail
+import kotlinx.android.synthetic.main.catalogue_grid_item.title
+import kotlinx.android.synthetic.main.catalogue_grid_item.unread_text
 
 /**
  * Class used to hold the displayed data of a manga in the library, like the cover or the title.
@@ -17,9 +21,8 @@ import kotlinx.android.synthetic.main.catalogue_grid_item.*
  * @constructor creates a new library holder.
  */
 class LibraryGridHolder(
-        private val view: View,
-        private val adapter: FlexibleAdapter<*>
-
+    private val view: View,
+    private val adapter: FlexibleAdapter<*>
 ) : LibraryHolder(view, adapter) {
 
     /**
@@ -42,7 +45,7 @@ class LibraryGridHolder(
             visibility = if (item.downloadCount > 0) View.VISIBLE else View.GONE
             text = item.downloadCount.toString()
         }
-        //set local visibility if its local manga
+        // set local visibility if its local manga
         local_text.visibility = if (item.manga.source == LocalSource.ID) View.VISIBLE else View.GONE
 
         // Update the cover.
@@ -53,5 +56,4 @@ class LibraryGridHolder(
                 .centerCrop()
                 .into(thumbnail)
     }
-
 }

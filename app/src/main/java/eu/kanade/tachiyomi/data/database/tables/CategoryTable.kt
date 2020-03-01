@@ -19,5 +19,4 @@ object CategoryTable {
             $COL_ORDER INTEGER NOT NULL,
             $COL_FLAGS INTEGER NOT NULL
             )"""
-
 }

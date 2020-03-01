@@ -17,4 +17,3 @@ fun File.getUriCompat(context: Context): Uri {
         FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", this)
     else Uri.fromFile(this)
 }
-

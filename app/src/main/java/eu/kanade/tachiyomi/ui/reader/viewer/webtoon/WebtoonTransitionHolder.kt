@@ -24,8 +24,8 @@ import rx.android.schedulers.AndroidSchedulers
  * Holder of the webtoon viewer that contains a chapter transition.
  */
 class WebtoonTransitionHolder(
-        val layout: LinearLayout,
-        viewer: WebtoonViewer
+    val layout: LinearLayout,
+    viewer: WebtoonViewer
 ) : WebtoonBaseHolder(layout, viewer) {
 
     /**
@@ -212,5 +212,4 @@ class WebtoonTransitionHolder(
         pagesContainer.addView(textView)
         pagesContainer.addView(retryBtn)
     }
-
 }

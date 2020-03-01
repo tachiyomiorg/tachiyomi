@@ -27,12 +27,12 @@ import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersController
 import eu.kanade.tachiyomi.ui.manga.info.MangaInfoController
 import eu.kanade.tachiyomi.ui.manga.track.TrackController
 import eu.kanade.tachiyomi.util.system.toast
+import java.util.Date
 import kotlinx.android.synthetic.main.main_activity.tabs
 import kotlinx.android.synthetic.main.manga_controller.manga_pager
 import rx.Subscription
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.util.Date
 
 class MangaController : RxController, TabbedController {
 
@@ -170,7 +170,6 @@ class MangaController : RxController, TabbedController {
         override fun getPageTitle(position: Int): CharSequence {
             return tabTitles[position]
         }
-
     }
 
     companion object {
@@ -181,5 +180,4 @@ class MangaController : RxController, TabbedController {
         const val CHAPTERS_CONTROLLER = 1
         const val TRACK_CONTROLLER = 2
     }
-
 }

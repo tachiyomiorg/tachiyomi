@@ -35,11 +35,12 @@ class ChapterItem(val chapter: Chapter, val manga: Manga) : AbstractFlexibleItem
         return ChapterHolder(view, adapter as ChaptersAdapter)
     }
 
-    override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
-                                holder: ChapterHolder,
-                                position: Int,
-                                payloads: List<Any?>?) {
-
+    override fun bindViewHolder(
+        adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
+        holder: ChapterHolder,
+        position: Int,
+        payloads: List<Any?>?
+    ) {
         holder.bind(this, manga)
     }
 
@@ -54,5 +55,4 @@ class ChapterItem(val chapter: Chapter, val manga: Manga) : AbstractFlexibleItem
     override fun hashCode(): Int {
         return chapter.id!!.hashCode()
     }
-
 }

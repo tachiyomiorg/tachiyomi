@@ -49,5 +49,4 @@ class CatalogueListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
                     .into(thumbnail)
         }
     }
-
 }

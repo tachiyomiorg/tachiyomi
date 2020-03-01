@@ -1,13 +1,13 @@
 package eu.kanade.tachiyomi.util
 
 import android.content.SharedPreferences
+import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.flowOn
-import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
 inline fun <reified T> SharedPreferences.getKey(key: String, default: T, dispatcher: CoroutineContext = Dispatchers.Default): Flow<T> {

@@ -74,7 +74,6 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
                     val response = parser.parse(responseBody).array
                     response.map { jsonToSearch(it.obj) }
                 }
-
     }
 
     private fun jsonToSearch(obj: JsonObject): TrackSearch {
@@ -171,7 +170,6 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
                     .build()
     )
 
-
     companion object {
         private const val clientId = "1aaf4cf232372708e98b5abc813d795b539c5a916dbbfe9ac61bf02a360832cc"
         private const val clientSecret = "229942c742dd4cde803125d17d64501d91c0b12e14cb1e5120184d77d67024c0"
@@ -195,7 +193,6 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
                         .appendQueryParameter("response_type", "code")
                         .build()
 
-
         fun refreshTokenRequest(token: String) = POST(oauthUrl,
                 body = FormBody.Builder()
                         .add("grant_type", "refresh_token")
@@ -203,7 +200,5 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
                         .add("client_secret", clientSecret)
                         .add("refresh_token", token)
                         .build())
-
     }
-
 }

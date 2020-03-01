@@ -8,8 +8,11 @@ import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.util.system.getResourceColor
-import eu.kanade.tachiyomi.util.view.setVectorCompat
-import kotlinx.android.synthetic.main.recent_chapters_item.*
+import kotlinx.android.synthetic.main.recent_chapters_item.chapter_menu
+import kotlinx.android.synthetic.main.recent_chapters_item.chapter_title
+import kotlinx.android.synthetic.main.recent_chapters_item.download_text
+import kotlinx.android.synthetic.main.recent_chapters_item.manga_cover
+import kotlinx.android.synthetic.main.recent_chapters_item.manga_title
 
 /**
  * Holder that contains chapter item
@@ -62,9 +65,6 @@ class RecentChapterHolder(private val view: View, private val adapter: RecentCha
 
         // Set manga title
         manga_title.text = item.manga.title
-
-        // Set the correct drawable for dropdown and update the tint to match theme.
-        chapter_menu_icon.setVectorCompat(R.drawable.ic_more_horiz_black_24dp, view.context.getResourceColor(R.attr.icon_color))
 
         // Set cover
         GlideApp.with(itemView.context).clear(manga_cover)

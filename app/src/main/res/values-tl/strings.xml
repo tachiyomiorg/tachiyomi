@@ -11,9 +11,7 @@
     <string name="label_recent_manga">Kakabasa</string>
     <string name="label_catalogues">Katalogo</string>
     <string name="label_recent_updates">Mga update sa aklatan</string>
-    <string name="label_latest_updates">Mga pinakabagong update</string>
     <string name="label_categories">Mga Kategorya</string>
-    <string name="label_selected">Napili: %1$d</string>
     <string name="label_backup">Backup</string>
     <string name="label_migration">Paglipat ng Source</string>
     <string name="label_extensions">Mga Karugtong (Extension)</string>
@@ -56,7 +54,6 @@
     <string name="action_start">Mag-umpisa</string>
     <string name="action_stop">Itigil</string>
     <string name="action_pause">Ihinto</string>
-    <string name="action_clear">Linisin</string>
     <string name="action_close">Isara</string>
     <string name="action_previous_chapter">Nakaraang kabanata</string>
     <string name="action_next_chapter">Susunod na kabanata</string>
@@ -93,7 +90,6 @@
     <string name="pref_category_general">Pangkalahatan</string>
     <string name="pref_category_reader">Reader</string>
     <string name="pref_category_downloads">Mga Download</string>
-    <string name="pref_category_sources">Mga Source</string>
     <string name="pref_category_tracking">Sinusundan</string>
     <string name="pref_category_advanced">Advanced</string>
     <string name="pref_category_about">Tungkol</string>
@@ -120,11 +116,6 @@
     <string name="charging">Habang nagtsa-charge</string>
     <string name="pref_update_only_non_completed">I-update lamang ang (mga) nagpapatuloy na manga</string>
     <string name="pref_auto_update_manga_sync">I-sync ang mga kabanata pagkatapos basahin</string>
-    <string name="pref_theme">Tema ng app</string>
-    <string name="light_theme">Maliwanag</string>
-    <string name="dark_theme">Madilim</string>
-    <string name="amoled_theme">Madilim na AMOLED</string>
-    <string name="darkblue_theme">Madilim na bughaw</string>
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Wika</string>
     <string name="system_default">Default ng sistema</string>
@@ -159,8 +150,8 @@
     <string name="pref_show_page_number">Ipakita ang bilang ng pahina</string>
     <string name="pref_true_color">Kulay na 32-bit</string>
     <string name="pref_crop_borders">I-crop ang mga gilid</string>
-    <string name="pref_custom_brightness">Gumamit ng custom brightness</string>
-    <string name="pref_custom_color_filter">Gumamit ng custom na color filter</string>
+    <string name="pref_custom_brightness">Gamitin ang pansariling kaliwanagan</string>
+    <string name="pref_custom_color_filter">Gamitin ang pansariling pagsalâ ng kulay</string>
     <string name="pref_keep_screen_on">Panatilihing nakabukas ang screen</string>
     <string name="pref_skip_read_chapters">Laktawan ang mga kabanatang namarkahang nabasa</string>
     <string name="pref_reader_navigation">Pangangalugad</string>
@@ -318,7 +309,6 @@
     <string name="circular_icon">Icon na pabilog</string>
     <string name="rounded_icon">Icon na paikot</string>
     <string name="square_icon">Icon na parisukat</string>
-    <string name="star_icon">Icon na bituin</string>
     <string name="shortcut_title">Pamagat ng shortcut</string>
     <string name="shortcut_created">Nailagay sa home screen ang shortcut.</string>
     <string name="icon_shape">Hugis ng icon</string>
@@ -385,7 +375,6 @@
     <string name="no_next_chapter">Hindi nakita ang susunod na kabanata</string>
     <string name="no_previous_chapter">Hindi nakita ang nakaraang kabanata</string>
     <string name="decode_image_error">Hindi ma-decode ang larawan</string>
-    <string name="confirm_update_manga_sync">I-update ang huling nabasang kabanata sa mga ini-enable na mga serbisyo sa %1$d\?</string>
     <string name="confirm_set_image_as_cover">Gusto mo bang i-set ang larawang ito bilang pabalat\?</string>
     <string name="viewer_for_this_series">Viewer para sa seryeng ito</string>
     <string name="transition_finished">Natapos:</string>

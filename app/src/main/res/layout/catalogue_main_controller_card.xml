@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -10,9 +9,9 @@
         style="@style/TextAppearance.Regular.SubHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingStart="@dimen/material_component_text_fields_padding_above_and_below_label"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:paddingStart="@dimen/material_component_text_fields_padding_above_and_below_label"
         tools:text="Title" />
 
 </FrameLayout>

@@ -9,13 +9,13 @@ import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.util.storage.DiskUtil
 import eu.kanade.tachiyomi.util.storage.saveTo
+import java.io.File
+import java.io.IOException
 import okhttp3.Response
 import okio.buffer
 import okio.sink
 import rx.Observable
 import uy.kohesive.injekt.injectLazy
-import java.io.File
-import java.io.IOException
 
 /**
  * Class used to create chapter cache
@@ -135,7 +135,6 @@ class ChapterCache(private val context: Context) {
             diskCache.flush()
             editor.commit()
             editor.abortUnlessCommitted()
-
         } catch (e: Exception) {
             // Ignore.
         } finally {
@@ -201,4 +200,3 @@ class ChapterCache(private val context: Context) {
         return "${chapter.manga_id}${chapter.url}"
     }
 }
-

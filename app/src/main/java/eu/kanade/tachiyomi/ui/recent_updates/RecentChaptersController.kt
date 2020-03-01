@@ -1,6 +1,10 @@
 package eu.kanade.tachiyomi.ui.recent_updates
 
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -182,7 +186,7 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
         if (size > 0) {
             empty_view?.hide()
         } else {
-            empty_view?.show(R.drawable.ic_update_black_128dp, R.string.information_no_recent)
+            empty_view?.show(R.drawable.ic_new_releases_black_128dp, R.string.information_no_recent)
         }
     }
 
@@ -254,7 +258,6 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
     override fun onCoverClick(position: Int) {
         val chapterClicked = adapter?.getItem(position) as? RecentChapterItem ?: return
         openManga(chapterClicked)
-
     }
 
     fun openManga(chapter: RecentChapterItem) {
@@ -333,5 +336,4 @@ class RecentChaptersController : NucleusController<RecentChaptersPresenter>(),
         adapter?.clearSelection()
         actionMode = null
     }
-
 }

@@ -267,7 +267,6 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
         controller.invalidateActionMode()
     }
 
-
     /**
      * Tells the presenter to set the selection for the given position.
      *
@@ -279,5 +278,4 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
         controller.setSelection(item.manga, true)
         controller.invalidateActionMode()
     }
-
 }

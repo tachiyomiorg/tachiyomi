@@ -106,5 +106,4 @@ class CategoryTest {
         c.name = name
         db.insertCategory(c).executeAsBlocking()
     }
-
 }

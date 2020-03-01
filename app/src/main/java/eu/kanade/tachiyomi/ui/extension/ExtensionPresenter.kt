@@ -10,22 +10,22 @@ import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.InstallStep
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.util.system.LocaleHelper
+import java.util.concurrent.TimeUnit
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.util.concurrent.TimeUnit
 
-private typealias ExtensionTuple
-        = Triple<List<Extension.Installed>, List<Extension.Untrusted>, List<Extension.Available>>
+private typealias ExtensionTuple =
+        Triple<List<Extension.Installed>, List<Extension.Untrusted>, List<Extension.Available>>
 
 /**
  * Presenter of [ExtensionController].
  */
 open class ExtensionPresenter(
-        private val extensionManager: ExtensionManager = Injekt.get(),
-        private val preferences: PreferencesHelper = Injekt.get()
+    private val extensionManager: ExtensionManager = Injekt.get(),
+    private val preferences: PreferencesHelper = Injekt.get()
 ) : BasePresenter<ExtensionController>() {
 
     private var extensions = emptyList<ExtensionItem>()
@@ -45,8 +45,7 @@ open class ExtensionPresenter(
         val availableObservable = extensionManager.getAvailableExtensionsObservable()
                 .startWith(emptyList<Extension.Available>())
 
-        return Observable.combineLatest(installedObservable, untrustedObservable, availableObservable)
-        { installed, untrusted, available -> Triple(installed, untrusted, available) }
+        return Observable.combineLatest(installedObservable, untrustedObservable, availableObservable) { installed, untrusted, available -> Triple(installed, untrusted, available) }
                 .debounce(100, TimeUnit.MILLISECONDS)
                 .map(::toItems)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -68,9 +67,9 @@ open class ExtensionPresenter(
         val availableSorted = available
                 // Filter out already installed extensions and disabled languages
                 .filter { avail ->
-                    installed.none { it.pkgName == avail.pkgName }
-                            && untrusted.none { it.pkgName == avail.pkgName }
-                            && (avail.lang in activeLangs || avail.lang == "all")
+                    installed.none { it.pkgName == avail.pkgName } &&
+                            untrusted.none { it.pkgName == avail.pkgName } &&
+                            (avail.lang in activeLangs || avail.lang == "all")
                 }
                 .sortedBy { it.pkgName }
 
@@ -153,5 +152,4 @@ open class ExtensionPresenter(
     fun trustSignature(signatureHash: String) {
         extensionManager.trustSignature(signatureHash)
     }
-
 }

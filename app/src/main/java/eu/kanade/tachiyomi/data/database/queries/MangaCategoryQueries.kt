@@ -28,5 +28,4 @@ interface MangaCategoryQueries : DbProvider {
             insertMangasCategories(mangasCategories).executeAsBlocking()
         }
     }
-
 }

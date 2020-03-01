@@ -5,10 +5,10 @@ import eu.kanade.tachiyomi.network.ProgressListener
 import rx.subjects.Subject
 
 open class Page(
-        val index: Int,
-        val url: String = "",
-        var imageUrl: String? = null,
-        @Transient var uri: Uri? = null // Deprecated but can't be deleted due to extensions
+    val index: Int,
+    val url: String = "",
+    var imageUrl: String? = null,
+    @Transient var uri: Uri? = null // Deprecated but can't be deleted due to extensions
 ) : ProgressListener {
 
     val number: Int
@@ -48,5 +48,4 @@ open class Page(
         const val READY = 3
         const val ERROR = 4
     }
-
 }

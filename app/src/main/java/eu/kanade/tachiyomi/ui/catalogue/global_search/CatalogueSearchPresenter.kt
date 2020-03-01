@@ -12,7 +12,6 @@ import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.source.model.MangasPage
 import eu.kanade.tachiyomi.source.model.SManga
-import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.catalogue.browse.BrowseCataloguePresenter
 import rx.Observable
@@ -34,11 +33,11 @@ import uy.kohesive.injekt.injectLazy
  * @param preferencesHelper manages the preference calls.
  */
 open class CatalogueSearchPresenter(
-        val initialQuery: String? = "",
-        val initialExtensionFilter: String? = null,
-        val sourceManager: SourceManager = Injekt.get(),
-        val db: DatabaseHelper = Injekt.get(),
-        val preferencesHelper: PreferencesHelper = Injekt.get()
+    val initialQuery: String? = "",
+    val initialExtensionFilter: String? = null,
+    val sourceManager: SourceManager = Injekt.get(),
+    val db: DatabaseHelper = Injekt.get(),
+    val preferencesHelper: PreferencesHelper = Injekt.get()
 ) : BasePresenter<CatalogueSearchController>() {
 
     /**
@@ -105,7 +104,6 @@ open class CatalogueSearchPresenter(
 
         return sourceManager.getCatalogueSources()
                 .filter { it.lang in languages }
-                .filterNot { it is LoginSource && !it.isLogged() }
                 .filterNot { it.id.toString() in hiddenCatalogues }
                 .sortedBy { "(${it.lang}) ${it.name}" }
     }
@@ -204,7 +202,6 @@ open class CatalogueSearchPresenter(
                             .map { Pair(it, source) }
                             .concatMap { getMangaDetailsObservable(it.first, it.second) }
                             .map { Pair(source as CatalogueSource, it) }
-
                 }
                 .onBackpressureBuffer()
                 .observeOn(AndroidSchedulers.mainThread())

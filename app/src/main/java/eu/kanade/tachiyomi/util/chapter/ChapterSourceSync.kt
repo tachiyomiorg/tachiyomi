@@ -18,10 +18,12 @@ import java.util.TreeSet
  * @param source the source of the chapters.
  * @return a pair of new insertions and deletions.
  */
-fun syncChaptersWithSource(db: DatabaseHelper,
-                           rawSourceChapters: List<SChapter>,
-                           manga: Manga,
-                           source: Source): Pair<List<Chapter>, List<Chapter>> {
+fun syncChaptersWithSource(
+    db: DatabaseHelper,
+    rawSourceChapters: List<SChapter>,
+    manga: Manga,
+    source: Source
+): Pair<List<Chapter>, List<Chapter>> {
 
     if (rawSourceChapters.isEmpty()) {
         throw Exception("No chapters found")
@@ -51,7 +53,7 @@ fun syncChaptersWithSource(db: DatabaseHelper,
         if (dbChapter == null) {
             toAdd.add(sourceChapter)
         } else {
-            //this forces metadata update for the main viewable things in the chapter list
+            // this forces metadata update for the main viewable things in the chapter list
             if (source is HttpSource) {
                 source.prepareNewChapter(sourceChapter, manga)
             }
@@ -137,7 +139,7 @@ fun syncChaptersWithSource(db: DatabaseHelper,
     return Pair(toAdd.subtract(readded).toList(), toDelete.subtract(readded).toList())
 }
 
-//checks if the chapter in db needs updated
+// checks if the chapter in db needs updated
 private fun shouldUpdateDbChapter(dbChapter: Chapter, sourceChapter: SChapter): Boolean {
     return dbChapter.scanlator != sourceChapter.scanlator || dbChapter.name != sourceChapter.name ||
             dbChapter.date_upload != sourceChapter.date_upload ||

@@ -6,5 +6,4 @@ sealed class GithubUpdateResult : UpdateResult() {
 
     class NewUpdate(release: GithubRelease) : UpdateResult.NewUpdate<GithubRelease>(release)
     class NoNewUpdate : UpdateResult.NoNewUpdate()
-
 }

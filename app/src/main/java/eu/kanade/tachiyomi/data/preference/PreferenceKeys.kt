@@ -5,7 +5,9 @@ package eu.kanade.tachiyomi.data.preference
  */
 object PreferenceKeys {
 
-    const val theme = "pref_theme_key"
+    const val themeMode = "pref_theme_mode_key"
+
+    const val themeDark = "pref_theme_dark_key"
 
     const val rotation = "pref_rotation_type_key"
 
@@ -44,6 +46,8 @@ object PreferenceKeys {
     const val cropBorders = "crop_borders"
 
     const val cropBordersWebtoon = "crop_borders_webtoon"
+
+    const val padPagesVertWebtoon = "pad_pages_vert_webtoon"
 
     const val readWithTapping = "reader_tap"
 
@@ -103,6 +107,14 @@ object PreferenceKeys {
 
     const val startScreen = "start_screen"
 
+    const val useBiometricLock = "use_biometric_lock"
+
+    const val lockAppAfter = "lock_app_after"
+
+    const val lastAppUnlock = "last_app_unlock"
+
+    const val secureScreen = "secure_screen"
+
     const val downloadNew = "download_new"
 
     const val downloadNewCategories = "download_new_categories"
@@ -119,18 +131,9 @@ object PreferenceKeys {
 
     const val downloadBadge = "display_download_badge"
 
-    @Deprecated("Use the preferences of the source")
-    fun sourceUsername(sourceId: Long) = "pref_source_username_$sourceId"
-
-    @Deprecated("Use the preferences of the source")
-    fun sourcePassword(sourceId: Long) = "pref_source_password_$sourceId"
-
-    fun sourceSharedPref(sourceId: Long) = "source_$sourceId"
-
     fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 
     fun trackPassword(syncId: Int) = "pref_mangasync_password_$syncId"
 
     fun trackToken(syncId: Int) = "track_token_$syncId"
-
 }

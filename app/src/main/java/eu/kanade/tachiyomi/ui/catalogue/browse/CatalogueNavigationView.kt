@@ -12,9 +12,8 @@ import kotlinx.android.synthetic.main.catalogue_drawer_content.view.reset_btn
 import kotlinx.android.synthetic.main.catalogue_drawer_content.view.search_btn
 import kotlinx.android.synthetic.main.catalogue_drawer_content.view.title
 
-
-class CatalogueNavigationView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null)
-    : SimpleNavigationView(context, attrs) {
+class CatalogueNavigationView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
+    SimpleNavigationView(context, attrs) {
 
     val adapter: FlexibleAdapter<IFlexible<*>> = FlexibleAdapter<IFlexible<*>>(null)
             .setDisplayHeadersAtStartUp(true)
@@ -38,5 +37,4 @@ class CatalogueNavigationView @JvmOverloads constructor(context: Context, attrs:
     fun setFilters(items: List<IFlexible<*>>) {
         adapter.updateDataSet(items)
     }
-
 }

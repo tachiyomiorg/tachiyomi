@@ -13,7 +13,7 @@ import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchPresenter
 import uy.kohesive.injekt.injectLazy
 
 class SearchController(
-        private var manga: Manga? = null
+    private var manga: Manga? = null
 ) : CatalogueSearchController(manga?.title) {
 
     private var newManga: Manga? = null
@@ -95,7 +95,5 @@ class SearchController(
                     }
                     .build()
         }
-
     }
-
 }

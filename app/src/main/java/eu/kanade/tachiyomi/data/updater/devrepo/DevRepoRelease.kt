@@ -10,5 +10,4 @@ class DevRepoRelease(override val info: String) : Release {
     companion object {
         const val LATEST_URL = "https://tachiyomi.kanade.eu/latest"
     }
-
 }

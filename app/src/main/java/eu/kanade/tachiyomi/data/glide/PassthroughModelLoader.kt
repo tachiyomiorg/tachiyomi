@@ -14,10 +14,10 @@ import java.io.InputStream
 class PassthroughModelLoader : ModelLoader<InputStream, InputStream> {
 
     override fun buildLoadData(
-            model: InputStream,
-            width: Int,
-            height: Int,
-            options: Options
+        model: InputStream,
+        width: Int,
+        height: Int,
+        options: Options
     ): ModelLoader.LoadData<InputStream>? {
         return ModelLoader.LoadData(ObjectKey(model), Fetcher(model))
     }
@@ -49,12 +49,11 @@ class PassthroughModelLoader : ModelLoader<InputStream, InputStream> {
         }
 
         override fun loadData(
-                priority: Priority,
-                callback: DataFetcher.DataCallback<in InputStream>
+            priority: Priority,
+            callback: DataFetcher.DataCallback<in InputStream>
         ) {
             callback.onDataReady(stream)
         }
-
     }
 
     /**
@@ -63,12 +62,11 @@ class PassthroughModelLoader : ModelLoader<InputStream, InputStream> {
     class Factory : ModelLoaderFactory<InputStream, InputStream> {
 
         override fun build(
-                multiFactory: MultiModelLoaderFactory
+            multiFactory: MultiModelLoaderFactory
         ): ModelLoader<InputStream, InputStream> {
             return PassthroughModelLoader()
         }
 
         override fun teardown() {}
     }
-
 }

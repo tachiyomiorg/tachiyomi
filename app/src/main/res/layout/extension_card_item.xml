@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -33,12 +32,12 @@
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.Regular.SubHeading"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@id/image"
-            app:layout_constraintEnd_toStartOf="@id/ext_button"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/lang"
+            app:layout_constraintEnd_toStartOf="@id/ext_button"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
-            tools:text="Batoto"/>
+            tools:text="Batoto" />
 
         <TextView
             android:id="@+id/lang"
@@ -47,38 +46,38 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/image"
             app:layout_constraintTop_toBottomOf="@+id/ext_title"
-            app:layout_constraintBottom_toBottomOf="parent"
             tools:text="English"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/version"
             style="@style/TextAppearance.Regular.Body1.Secondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:maxLines="1"
             android:textSize="12sp"
             app:layout_constraintBaseline_toBaselineOf="@id/lang"
             app:layout_constraintStart_toEndOf="@id/lang"
-            android:layout_marginStart="4dp"
             tools:text="Version" />
 
         <Button
             android:id="@+id/ext_button"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:foreground="?attr/selectableItemBackground"
             android:background="@drawable/button_bg_transparent"
+            android:foreground="?attr/selectableItemBackground"
             android:textColor="@drawable/button_bg_transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Details"/>
+            tools:text="Details" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

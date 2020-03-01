@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,23 +24,23 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:maxLines="1"
-            tools:text="Title"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="@color/textColorPrimaryDark"/>
+            android:textColor="@color/textColorPrimaryDark"
+            tools:text="Title" />
 
     </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
-        android:layout_gravity="top"/>
+        android:layout_gravity="top"
+        android:layout_weight="3" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="?android:attr/divider"/>
+        android:background="?android:attr/divider" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,7 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/action_reset"/>
+            android:text="@string/action_reset" />
 
         <Button
             android:id="@+id/search_btn"
@@ -63,7 +62,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/action_search"/>
+            android:text="@string/action_search" />
 
     </LinearLayout>
 

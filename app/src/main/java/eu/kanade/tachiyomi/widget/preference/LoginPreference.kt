@@ -26,5 +26,4 @@ class LoginPreference @JvmOverloads constructor(context: Context, attrs: Attribu
     public override fun notifyChanged() {
         super.notifyChanged()
     }
-
 }

@@ -18,9 +18,9 @@ import kotlin.math.abs
  * Implementation of a [RecyclerView] used by the webtoon reader.
  */
 open class WebtoonRecyclerView @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyle: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0
 ) : RecyclerView(context, attrs, defStyle) {
 
     private var isZooming = false
@@ -77,12 +77,12 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
     }
 
     private fun zoom(
-            fromRate: Float,
-            toRate: Float,
-            fromX: Float,
-            toX: Float,
-            fromY: Float,
-            toY: Float
+        fromRate: Float,
+        toRate: Float,
+        fromX: Float,
+        toX: Float,
+        fromY: Float,
+        toY: Float
     ) {
         isZooming = true
         val animatorSet = AnimatorSet()
@@ -102,7 +102,6 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
         animatorSet.start()
         animatorSet.addListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {
-
             }
 
             override fun onAnimationEnd(animation: Animator) {
@@ -111,11 +110,9 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
             }
 
             override fun onAnimationCancel(animation: Animator) {
-
             }
 
             override fun onAnimationRepeat(animation: Animator) {
-
             }
         })
     }
@@ -222,7 +219,6 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
                 performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
             }
         }
-
     }
 
     inner class Detector : GestureDetectorWithLongTap(context, listener) {
@@ -310,7 +306,6 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
             }
             return super.onTouchEvent(ev)
         }
-
     }
 
     private companion object {
@@ -318,5 +313,4 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
         const val DEFAULT_RATE = 1f
         const val MAX_SCALE_RATE = 3f
     }
-
 }

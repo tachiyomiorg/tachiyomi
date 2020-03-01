@@ -9,8 +9,6 @@
     <string name="label_settings">ตั้งค่า</string>
     <string name="label_download_queue">คิวดาวน์โหลด</string>
     <string name="label_library">ห้องสมุดของฉัน</string>
-    <string name="label_latest_updates">อัพเดทล่าสุด</string>
-    <string name="label_selected">เลือก: %1$d</string>
     <string name="label_backup">การสำรองข้อมูล</string>
     <string name="label_extensions">ส่วนขยาย</string>
     <string name="label_extension_info">ข้อมูลส่วนขยาย</string>
@@ -62,7 +60,6 @@
     <string name="short_recent_updates">อัพเดท</string>
     <string name="pref_category_general">ทั่วไป</string>
     <string name="pref_category_reader">ตัวอ่าน</string>
-    <string name="pref_category_sources">แหล่งที่มา</string>
     <string name="pref_category_advanced">ขั้นสูง</string>
     <string name="pref_category_about">เกี่ยวกับ</string>
     <string name="default_columns">ค่าเริ่มต้น</string>
@@ -108,7 +105,6 @@
     <string name="action_start">เริ่มต้น</string>
     <string name="action_stop">จุดจบ</string>
     <string name="action_pause">หยุดพัก</string>
-    <string name="action_clear">ล้าง</string>
     <string name="action_remove">ลบออก</string>
     <string name="action_resume">เล่นต่อ</string>
     <string name="action_add_to_home_screen">เพิ่มไปที่หน้าหลัก</string>
@@ -136,11 +132,6 @@
     <string name="wifi">Wi-Fi</string>
     <string name="pref_update_only_non_completed">ปรับปรุงเฉพาะมังงะที่ดำเนินต่อ</string>
     <string name="pref_auto_update_manga_sync">ซิงค์ตอนหลังการอ่าน</string>
-    <string name="pref_theme">รูปแบบโปรแกรม</string>
-    <string name="light_theme">รูปแบบหน้าจอหลัก</string>
-    <string name="dark_theme">รูปแบบสีดำ</string>
-    <string name="amoled_theme">รูปแบบ AMOLED</string>
-    <string name="darkblue_theme">รูปแบบสีน้ำเงิน</string>
     <string name="pref_start_screen">เปิดหน้าแรก</string>
     <string name="default_category">ค่าเรื่มต้นประเภท</string>
     <string name="all_lang">ทั้งหมด</string>
@@ -305,7 +296,6 @@
     <string name="circular_icon">ไอคอนวงกลม</string>
     <string name="rounded_icon">ไอคอนโค้งมน</string>
     <string name="square_icon">ไอคอนสี่เหลี่ยม</string>
-    <string name="star_icon">ไอคอนดาว</string>
     <string name="shortcut_title">ชื่อทางลัด</string>
     <string name="shortcut_created">เพิ่มทางลัดไปยังหน้าจอหลักแล้ว</string>
     <string name="icon_shape">รูปร่างไอคอน</string>
@@ -384,7 +374,6 @@
     <string name="no_next_chapter">ไม่พบบทถัดไป</string>
     <string name="no_previous_chapter">ไม่พบบทก่อนหน้านี้</string>
     <string name="decode_image_error">ไม่สามารถถอดรหัสรูปภาพได้</string>
-    <string name="confirm_update_manga_sync">เปิดบริการอัปเดตบทที่อ่านล่าสุด %1$d หรือไม่\?</string>
     <string name="confirm_set_image_as_cover">คุณต้องการที่จะตั้งค่าภาพเป็นภาพที่ปกใช่มั้ย\?</string>
     <string name="viewer_for_this_series">ตัวแสดงสำหรับชุดนี้</string>
     <string name="transition_finished">เสร็จแล้ว:</string>

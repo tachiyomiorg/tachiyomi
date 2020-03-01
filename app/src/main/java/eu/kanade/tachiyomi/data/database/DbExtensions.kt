@@ -22,4 +22,3 @@ inline fun <T> StorIOSQLite.inTransactionReturn(block: () -> T): T {
         lowLevel().endTransaction()
     }
 }
-

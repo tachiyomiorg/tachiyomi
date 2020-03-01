@@ -16,10 +16,12 @@ import java.io.InputStream
  * @param manga the manga of the cover to load.
  * @param file the file where this cover should be. It may exists or not.
  */
-class LibraryMangaUrlFetcher(private val networkFetcher: DataFetcher<InputStream>,
-                             private val manga: Manga,
-                             private val file: File)
-    : FileFetcher(file) {
+class LibraryMangaUrlFetcher(
+    private val networkFetcher: DataFetcher<InputStream>,
+    private val manga: Manga,
+    private val file: File
+) :
+    FileFetcher(file) {
 
     override fun loadData(priority: Priority, callback: DataFetcher.DataCallback<in InputStream>) {
         if (!file.exists()) {
@@ -52,7 +54,6 @@ class LibraryMangaUrlFetcher(private val networkFetcher: DataFetcher<InputStream
                 override fun onLoadFailed(e: Exception) {
                     callback.onLoadFailed(e)
                 }
-
             })
         } else {
             loadFromFile(callback)
@@ -68,5 +69,4 @@ class LibraryMangaUrlFetcher(private val networkFetcher: DataFetcher<InputStream
         super.cancel()
         networkFetcher.cancel()
     }
-
 }

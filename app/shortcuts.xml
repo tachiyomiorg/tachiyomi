@@ -13,7 +13,7 @@
     </shortcut>
     <shortcut
         android:enabled="true"
-        android:icon="@drawable/sc_update_48dp"
+        android:icon="@drawable/sc_new_releases_48dp"
         android:shortcutDisabledMessage="@string/app_not_available"
         android:shortcutId="show_recently_updated"
         android:shortcutLongLabel="@string/label_recent_updates"
@@ -24,7 +24,7 @@
     </shortcut>
     <shortcut
         android:enabled="true"
-        android:icon="@drawable/sc_glasses_48dp"
+        android:icon="@drawable/sc_history_48dp"
         android:shortcutDisabledMessage="@string/app_not_available"
         android:shortcutId="show_recently_read"
         android:shortcutLongLabel="@string/label_recent_manga"

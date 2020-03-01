@@ -46,7 +46,7 @@ abstract class DialogController : RestoreViewOnCreateController {
                 dialog!!.onRestoreInstanceState(dialogState)
             }
         }
-        return View(activity) //stub view
+        return View(activity) // stub view
     }
 
     override fun onSaveViewState(view: View, outState: Bundle) {

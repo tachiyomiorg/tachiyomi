@@ -209,6 +209,4 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
             null
         }
     }
-
 }
-

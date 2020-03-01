@@ -20,27 +20,26 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="?selectable_list_drawable"
-        android:tint="?colorAccent"
         android:padding="8dp"
+        android:tint="?colorAccent"
         app:srcCompat="@drawable/ic_chevron_left_black_24dp" />
 
     <EditText
         android:id="@+id/myNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:digits="0123456789"
         android:inputType="number"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:padding="8dp"
-        android:layout_width="wrap_content" />
-
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_increase"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="?selectable_list_drawable"
-        android:tint="?colorAccent"
         android:padding="8dp"
+        android:tint="?colorAccent"
         app:srcCompat="@drawable/ic_chevron_right_black_24dp" />
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -48,8 +47,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="?selectable_list_drawable"
-        android:tint="?colorAccent"
         android:padding="8dp"
+        android:tint="?colorAccent"
         app:srcCompat="@drawable/ic_chevron_right_double_black_24dp" />
 
 </LinearLayout>

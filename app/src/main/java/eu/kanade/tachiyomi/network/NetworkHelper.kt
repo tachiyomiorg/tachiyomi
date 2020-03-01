@@ -1,9 +1,9 @@
 package eu.kanade.tachiyomi.network
 
 import android.content.Context
+import java.io.File
 import okhttp3.Cache
 import okhttp3.OkHttpClient
-import java.io.File
 
 class NetworkHelper(context: Context) {
 
@@ -21,5 +21,4 @@ class NetworkHelper(context: Context) {
     val cloudflareClient = client.newBuilder()
             .addInterceptor(CloudflareInterceptor(context))
             .build()
-
 }

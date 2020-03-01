@@ -76,5 +76,4 @@ class SetTrackScoreDialog<T> : DialogController
     private companion object {
         const val KEY_ITEM_TRACK = "SetTrackScoreDialog.item.track"
     }
-
 }

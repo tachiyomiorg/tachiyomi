@@ -17,8 +17,8 @@ class DeleteChaptersDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialDialog.Builder(activity!!)
                 .content(R.string.confirm_delete_chapters)
-                .positiveText(android.R.string.yes)
-                .negativeText(android.R.string.no)
+                .positiveText(android.R.string.ok)
+                .negativeText(android.R.string.cancel)
                 .onPositive { _, _ ->
                     (targetController as? Listener)?.deleteChapters()
                 }
@@ -28,5 +28,4 @@ class DeleteChaptersDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
     interface Listener {
         fun deleteChapters()
     }
-
 }

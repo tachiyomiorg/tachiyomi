@@ -33,5 +33,4 @@ class TrackLogoutDialog(bundle: Bundle? = null) : DialogController(bundle) {
     interface Listener {
         fun trackLogoutDialogClosed(service: TrackService)
     }
-
 }

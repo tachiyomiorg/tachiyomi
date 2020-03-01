@@ -29,5 +29,4 @@ class NucleusConductorLifecycleListener(private val delegate: NucleusConductorDe
     companion object {
         private const val PRESENTER_STATE_KEY = "presenter_state"
     }
-
 }

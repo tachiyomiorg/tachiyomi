@@ -15,8 +15,8 @@ import kotlinx.android.synthetic.main.reader_page_sheet.share_layout
  * Sheet to show when a page is long clicked.
  */
 class ReaderPageSheet(
-        private val activity: ReaderActivity,
-        private val page: ReaderPage
+    private val activity: ReaderActivity,
+    private val page: ReaderPage
 ) : BottomSheetDialog(activity) {
 
     /**
@@ -48,8 +48,8 @@ class ReaderPageSheet(
 
         MaterialDialog.Builder(activity)
                 .content(activity.getString(R.string.confirm_set_image_as_cover))
-                .positiveText(android.R.string.yes)
-                .negativeText(android.R.string.no)
+                .positiveText(android.R.string.ok)
+                .negativeText(android.R.string.cancel)
                 .onPositive { _, _ ->
                     activity.setAsCover(page)
                     dismiss()
@@ -72,5 +72,4 @@ class ReaderPageSheet(
         activity.saveImage(page)
         dismiss()
     }
-
 }

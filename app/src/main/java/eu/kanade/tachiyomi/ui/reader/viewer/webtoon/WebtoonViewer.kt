@@ -12,6 +12,8 @@ import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
+import kotlin.math.max
+import kotlin.math.min
 import rx.subscriptions.CompositeSubscription
 import timber.log.Timber
 
@@ -108,6 +110,10 @@ class WebtoonViewer(val activity: ReaderActivity) : BaseViewer {
                 }
             }
             false
+        }
+
+        config.imagePropertyChangedListener = {
+            refreshAdapter()
         }
 
         frame.layoutParams = ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT)
@@ -250,4 +256,12 @@ class WebtoonViewer(val activity: ReaderActivity) : BaseViewer {
         return false
     }
 
+    /**
+     * Notifies adapter of changes around the current page to trigger a relayout in the recycler.
+     * Used when a image configuration is changed.
+     */
+    private fun refreshAdapter() {
+        val position = layoutManager.findLastEndVisibleItemPosition()
+        adapter.notifyItemRangeChanged(max(0, position - 1), min(2, adapter.itemCount - position))
+    }
 }

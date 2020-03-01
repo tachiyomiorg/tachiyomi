@@ -471,7 +471,6 @@ class ChapterRecognitionTest {
         assertThat(chapter.chapter_number).isEqualTo(7f)
     }
 
-
     /**
      * Test for chapters in format sx - chapter xx
      */

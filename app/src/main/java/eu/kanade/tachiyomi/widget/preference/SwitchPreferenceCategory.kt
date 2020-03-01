@@ -16,9 +16,10 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.system.getResourceColor
 
 class SwitchPreferenceCategory @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null)
-    : PreferenceCategory(
+    context: Context,
+    attrs: AttributeSet? = null
+) :
+    PreferenceCategory(
         context,
         attrs,
         R.attr.switchPreferenceCompatStyle),
@@ -121,5 +122,4 @@ class SwitchPreferenceCategory @JvmOverloads constructor(
         else
             defaultValue as Boolean)
     }
-
 }

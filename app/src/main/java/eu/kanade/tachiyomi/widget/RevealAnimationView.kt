@@ -64,5 +64,4 @@ class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: Att
         anim.start()
         return true
     }
-
 }

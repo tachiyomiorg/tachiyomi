@@ -8,13 +8,13 @@ import android.preference.PreferenceManager
 import com.f2prateek.rx.preferences.Preference
 import com.f2prateek.rx.preferences.RxSharedPreferences
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
+import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
 import eu.kanade.tachiyomi.data.track.TrackService
-import eu.kanade.tachiyomi.source.Source
 import java.io.File
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Locale
-import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 
 fun <T> Preference<T>.getOrDefault(): T = get() ?: defaultValue()!!
 
@@ -51,9 +51,19 @@ class PreferencesHelper(val context: Context) {
 
     fun startScreen() = prefs.getInt(Keys.startScreen, 1)
 
+    fun useBiometricLock() = rxPrefs.getBoolean(Keys.useBiometricLock, false)
+
+    fun lockAppAfter() = rxPrefs.getInteger(Keys.lockAppAfter, 0)
+
+    fun lastAppUnlock() = rxPrefs.getLong(Keys.lastAppUnlock, 0)
+
+    fun secureScreen() = rxPrefs.getBoolean(Keys.secureScreen, false)
+
     fun clear() = prefs.edit().clear().apply()
 
-    fun theme() = prefs.getInt(Keys.theme, 1)
+    fun themeMode() = rxPrefs.getString(Keys.themeMode, Values.THEME_MODE_SYSTEM)
+
+    fun themeDark() = prefs.getString(Keys.themeDark, Values.THEME_DARK_DEFAULT)
 
     fun rotation() = rxPrefs.getInteger(Keys.rotation, 1)
 
@@ -93,6 +103,8 @@ class PreferencesHelper(val context: Context) {
 
     fun cropBordersWebtoon() = rxPrefs.getBoolean(Keys.cropBordersWebtoon, false)
 
+    fun padPagesVertWebtoon() = rxPrefs.getBoolean(Keys.padPagesVertWebtoon, false)
+
     fun readWithTapping() = rxPrefs.getBoolean(Keys.readWithTapping, true)
 
     fun readWithLongTap() = rxPrefs.getBoolean(Keys.readWithLongTap, true)
@@ -118,17 +130,6 @@ class PreferencesHelper(val context: Context) {
     fun catalogueAsList() = rxPrefs.getBoolean(Keys.catalogueAsList, false)
 
     fun enabledLanguages() = rxPrefs.getStringSet(Keys.enabledLanguages, setOf("en", Locale.getDefault().language))
-
-    fun sourceUsername(source: Source) = prefs.getString(Keys.sourceUsername(source.id), "")
-
-    fun sourcePassword(source: Source) = prefs.getString(Keys.sourcePassword(source.id), "")
-
-    fun setSourceCredentials(source: Source, username: String, password: String) {
-        prefs.edit()
-                .putString(Keys.sourceUsername(source.id), username)
-                .putString(Keys.sourcePassword(source.id), password)
-                .apply()
-    }
 
     fun trackUsername(sync: TrackService) = prefs.getString(Keys.trackUsername(sync.id), "")
 

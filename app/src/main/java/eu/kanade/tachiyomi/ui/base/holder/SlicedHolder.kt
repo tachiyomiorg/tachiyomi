@@ -41,8 +41,13 @@ interface SlicedHolder {
         }
     }
 
-    private fun applySlice(radius: Float, topRect: Boolean, bottomRect: Boolean,
-                           topShadow: Boolean, bottomShadow: Boolean) {
+    private fun applySlice(
+        radius: Float,
+        topRect: Boolean,
+        bottomRect: Boolean,
+        topShadow: Boolean,
+        bottomShadow: Boolean
+    ) {
         val margin = margin
 
         slice.setRadius(radius)
@@ -62,5 +67,4 @@ interface SlicedHolder {
 
     val margin
         get() = 8.dpToPx
-
 }

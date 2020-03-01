@@ -22,5 +22,4 @@ class PreCachingLayoutManager(context: Context) : LinearLayoutManager(context) {
         }
         return DEFAULT_EXTRA_LAYOUT_SPACE
     }
-
 }

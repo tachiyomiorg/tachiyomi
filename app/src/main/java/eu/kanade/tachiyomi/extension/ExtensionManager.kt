@@ -29,8 +29,8 @@ import uy.kohesive.injekt.api.get
  * @param preferences The application preferences.
  */
 class ExtensionManager(
-        private val context: Context,
-        private val preferences: PreferencesHelper = Injekt.get()
+    private val context: Context,
+    private val preferences: PreferencesHelper = Injekt.get()
 ) {
 
     /**
@@ -341,5 +341,4 @@ class ExtensionManager(
         }
         return this
     }
-
 }

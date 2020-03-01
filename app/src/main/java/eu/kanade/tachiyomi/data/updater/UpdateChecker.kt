@@ -20,5 +20,4 @@ abstract class UpdateChecker {
      * Returns observable containing release information
      */
     abstract suspend fun checkForUpdate(): UpdateResult
-
 }

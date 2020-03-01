@@ -10,8 +10,8 @@ import androidx.appcompat.widget.AppCompatSeekBar
  * Seekbar to show current chapter progress.
  */
 class ReaderSeekBar @JvmOverloads constructor(
-        context: Context,
-        attrs: AttributeSet? = null
+    context: Context,
+    attrs: AttributeSet? = null
 ) : AppCompatSeekBar(context, attrs) {
 
     /**
@@ -41,5 +41,4 @@ class ReaderSeekBar @JvmOverloads constructor(
         }
         return super.onTouchEvent(event)
     }
-
 }

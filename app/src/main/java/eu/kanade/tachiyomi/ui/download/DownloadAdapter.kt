@@ -68,5 +68,4 @@ class DownloadAdapter : RecyclerView.Adapter<DownloadHolder>() {
         val download = items[position]
         holder.onSetValues(download)
     }
-
 }

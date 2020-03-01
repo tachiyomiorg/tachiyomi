@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView android:id="@+id/cv_manga"
-                                    style="@style/Theme.Widget.CardView.Item"
-                                    xmlns:android="http://schemas.android.com/apk/res/android"
-                                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                                    xmlns:tools="http://schemas.android.com/tools"
-                                    android:padding="0dp">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_manga"
+    style="@style/Theme.Widget.CardView.Item"
+    android:padding="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
@@ -17,32 +17,32 @@
             android:id="@+id/track_search_cover"
             android:layout_width="135dp"
             android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:contentDescription="@string/description_cover"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            tools:src="@mipmap/ic_launcher"/>
+            tools:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/track_search_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:maxLines="3"
             android:textAppearance="@style/TextAppearance.Regular.Body1.Bold"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/track_search_cover"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="One Piece"/>
+            tools:text="One Piece" />
 
         <TextView
             android:id="@+id/track_search_type"
@@ -54,8 +54,7 @@
             android:textAppearance="@style/TextAppearance.Regular.Body1.Bold"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/track_search_cover"
-            app:layout_constraintTop_toBottomOf="@id/track_search_title"
-            />
+            app:layout_constraintTop_toBottomOf="@id/track_search_title" />
 
         <TextView
             android:id="@+id/track_search_type_result"
@@ -67,8 +66,7 @@
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/track_search_type"
             app:layout_constraintTop_toBottomOf="@id/track_search_title"
-            tools:text="Manga"
-            />
+            tools:text="Manga" />
 
         <TextView
             android:id="@+id/track_search_start"
@@ -80,8 +78,7 @@
             android:textAppearance="@style/TextAppearance.Regular.Body1.Bold"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/track_search_cover"
-            app:layout_constraintTop_toBottomOf="@id/track_search_type"
-            />
+            app:layout_constraintTop_toBottomOf="@id/track_search_type" />
 
         <TextView
             android:id="@+id/track_search_start_result"
@@ -93,8 +90,7 @@
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/track_search_start"
             app:layout_constraintTop_toBottomOf="@id/track_search_type"
-            tools:text="2018-10-01"
-            />
+            tools:text="2018-10-01" />
 
         <TextView
             android:id="@+id/track_search_status"
@@ -106,8 +102,7 @@
             android:textAppearance="@style/TextAppearance.Regular.Body1.Bold"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/track_search_cover"
-            app:layout_constraintTop_toBottomOf="@id/track_search_start"
-            />
+            app:layout_constraintTop_toBottomOf="@id/track_search_start" />
 
         <TextView
             android:id="@+id/track_search_status_result"
@@ -125,10 +120,10 @@
             android:id="@+id/track_search_summary"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:ellipsize="end"
             android:maxLines="7"
             android:textAppearance="@style/TextAppearance.Regular.Body1.Secondary"
@@ -139,14 +134,14 @@
             app:layout_constraintStart_toEndOf="@id/track_search_cover"
             app:layout_constraintTop_toBottomOf="@+id/track_search_status"
             app:layout_constraintVertical_bias="0.333"
-            tools:text="This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits "/>
+            tools:text="This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits This is the summary of the manga that fits " />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="150dp"/>
+            app:layout_constraintGuide_begin="150dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -18,7 +18,7 @@ class ChangelogDialogController : DialogController() {
         return MaterialDialog.Builder(activity)
                 .title(if (BuildConfig.DEBUG) "Notices" else "Changelog")
                 .customView(view, false)
-                .positiveText(android.R.string.yes)
+                .positiveText(R.string.action_close)
                 .build()
     }
 

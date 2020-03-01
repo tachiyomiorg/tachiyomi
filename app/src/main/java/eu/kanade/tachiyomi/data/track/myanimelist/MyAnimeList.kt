@@ -11,7 +11,7 @@ import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import rx.Completable
 import rx.Observable
 
-class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
+class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
 
     companion object {
         const val READING = 1
@@ -159,5 +159,4 @@ class Myanimelist(private val context: Context, id: Int) : TrackService(id) {
 
         return ckCount == 2
     }
-
 }

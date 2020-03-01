@@ -59,5 +59,4 @@ object Migrations {
         }
         return false
     }
-
 }

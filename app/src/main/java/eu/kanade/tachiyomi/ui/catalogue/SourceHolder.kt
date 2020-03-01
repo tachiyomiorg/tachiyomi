@@ -2,14 +2,17 @@ package eu.kanade.tachiyomi.ui.catalogue
 
 import android.view.View
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.source.online.LoginSource
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.holder.SlicedHolder
 import eu.kanade.tachiyomi.util.view.getRound
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.visible
 import io.github.mthli.slice.Slice
-import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.*
+import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.card
+import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.image
+import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.source_browse
+import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.source_latest
+import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.title
 
 class SourceHolder(view: View, override val adapter: CatalogueAdapter) :
         BaseFlexibleViewHolder(view, adapter),
@@ -44,17 +47,11 @@ class SourceHolder(view: View, override val adapter: CatalogueAdapter) :
             image.setImageDrawable(image.getRound(source.name.take(1).toUpperCase(), false))
         }
 
-        // If source is login, show only login option
-        if (source is LoginSource && !source.isLogged()) {
-            source_browse.setText(R.string.login)
-            source_latest.gone()
+        source_browse.setText(R.string.browse)
+        if (source.supportsLatest) {
+            source_latest.visible()
         } else {
-            source_browse.setText(R.string.browse)
-            if (source.supportsLatest) {
-                source_latest.visible()
-            } else {
-                source_latest.gone()
-            }
+            source_latest.gone()
         }
     }
 }

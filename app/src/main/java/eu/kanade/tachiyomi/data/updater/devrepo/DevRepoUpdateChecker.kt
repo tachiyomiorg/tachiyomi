@@ -38,5 +38,4 @@ class DevRepoUpdateChecker : UpdateChecker() {
             DevRepoUpdateResult.NoNewUpdate()
         }
     }
-
 }

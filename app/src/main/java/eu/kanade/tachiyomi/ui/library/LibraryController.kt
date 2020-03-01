@@ -6,7 +6,12 @@ import android.content.res.Configuration
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.appcompat.widget.SearchView
@@ -33,9 +38,9 @@ import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
-import eu.kanade.tachiyomi.ui.migration.MigrationController
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.inflate
+import java.io.IOException
 import kotlinx.android.synthetic.main.library_controller.empty_view
 import kotlinx.android.synthetic.main.library_controller.library_pager
 import kotlinx.android.synthetic.main.main_activity.drawer
@@ -44,12 +49,10 @@ import rx.Subscription
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.io.IOException
-
 
 class LibraryController(
-        bundle: Bundle? = null,
-        private val preferences: PreferencesHelper = Injekt.get()
+    bundle: Bundle? = null,
+    private val preferences: PreferencesHelper = Injekt.get()
 ) : NucleusController<LibraryPresenter>(bundle),
         TabbedController,
         SecondaryDrawerController,
@@ -396,10 +399,6 @@ class LibraryController(
                 preferences.downloadBadge().set(item.isChecked)
                 onDownloadBadgeChanged()
             }
-
-            R.id.action_source_migration -> {
-                router.pushController(MigrationController().withFadeTransaction())
-            }
         }
 
         return super.onOptionsItemSelected(item)
@@ -561,5 +560,4 @@ class LibraryController(
          */
         const val REQUEST_IMAGE_OPEN = 101
     }
-
 }

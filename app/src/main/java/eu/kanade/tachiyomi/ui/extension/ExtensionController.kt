@@ -1,6 +1,11 @@
 package eu.kanade.tachiyomi.ui.extension
 
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -17,7 +22,6 @@ import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import kotlinx.android.synthetic.main.extension_controller.ext_recycler
 import kotlinx.android.synthetic.main.extension_controller.ext_swipe_refresh
-
 
 /**
  * Controller to manage the catalogues available in the app.

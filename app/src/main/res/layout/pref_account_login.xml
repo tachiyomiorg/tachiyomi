@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:padding="24dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
 
     <TextView
         android:id="@+id/dialog_title"
@@ -12,45 +12,45 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textSize="16sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <View
         android:id="@+id/titleDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="24dp"
         android:layout_marginTop="6dp"
-        android:background="@color/dividerLight"/>
+        android:layout_marginBottom="24dp"
+        android:background="@color/dividerLight" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/username"/>
+        android:text="@string/username" />
 
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/password"/>
+        android:text="@string/password" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword" />
 
     <CheckBox
         android:id="@+id/show_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/show_password"/>
+        android:text="@string/show_password" />
 
     <com.dd.processbutton.iml.ActionProcessButton
         android:id="@+id/login"
@@ -61,6 +61,6 @@
         android:textColor="@android:color/white"
         app:pb_textComplete="@string/login_success"
         app:pb_textError="@string/invalid_login"
-        app:pb_textProgress="@string/loading"/>
+        app:pb_textProgress="@string/loading" />
 
 </LinearLayout>

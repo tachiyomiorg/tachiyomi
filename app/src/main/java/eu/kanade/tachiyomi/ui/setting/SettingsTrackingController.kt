@@ -5,18 +5,23 @@ import android.content.Intent
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.AnilistApi
 import eu.kanade.tachiyomi.data.track.bangumi.BangumiApi
 import eu.kanade.tachiyomi.data.track.shikimori.ShikimoriApi
-import eu.kanade.tachiyomi.util.preference.*
+import eu.kanade.tachiyomi.util.preference.defaultValue
+import eu.kanade.tachiyomi.util.preference.initThenAdd
+import eu.kanade.tachiyomi.util.preference.onClick
+import eu.kanade.tachiyomi.util.preference.preferenceCategory
+import eu.kanade.tachiyomi.util.preference.switchPreference
+import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.widget.preference.LoginPreference
 import eu.kanade.tachiyomi.widget.preference.TrackLoginDialog
 import eu.kanade.tachiyomi.widget.preference.TrackLogoutDialog
 import uy.kohesive.injekt.injectLazy
-import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 
 class SettingsTrackingController : SettingsController(),
         TrackLoginDialog.Listener,
@@ -70,8 +75,8 @@ class SettingsTrackingController : SettingsController(),
     }
 
     private inline fun PreferenceScreen.trackPreference(
-            service: TrackService,
-            crossinline login: () -> Unit
+        service: TrackService,
+        crossinline login: () -> Unit
     ): LoginPreference {
         return initThenAdd(LoginPreference(context).apply {
             key = Keys.trackUsername(service.id)
@@ -110,5 +115,4 @@ class SettingsTrackingController : SettingsController(),
     override fun trackLogoutDialogClosed(service: TrackService) {
         updatePreference(service.id)
     }
-
 }

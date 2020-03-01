@@ -14,8 +14,8 @@ import uy.kohesive.injekt.injectLazy
 /**
  * The navigation view shown in a drawer with the different options to show the library.
  */
-class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null)
-    : ExtendedNavigationView(context, attrs) {
+class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
+    ExtendedNavigationView(context, attrs) {
 
     /**
      * Preferences helper.
@@ -161,6 +161,5 @@ class LibraryNavigationView @JvmOverloads constructor(context: Context, attrs: A
 
             item.group.items.forEach { adapter.notifyItemChanged(it) }
         }
-
     }
 }

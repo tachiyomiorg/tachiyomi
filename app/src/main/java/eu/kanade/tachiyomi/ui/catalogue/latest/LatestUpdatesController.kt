@@ -33,7 +33,5 @@ class LatestUpdatesController(bundle: Bundle) : BrowseCatalogueController(bundle
     }
 
     override fun cleanupSecondaryDrawer(drawer: DrawerLayout) {
-
     }
-
 }

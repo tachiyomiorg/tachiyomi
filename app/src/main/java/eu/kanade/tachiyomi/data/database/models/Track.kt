@@ -37,5 +37,4 @@ interface Track : Serializable {
             sync_id = serviceId
         }
     }
-
 }

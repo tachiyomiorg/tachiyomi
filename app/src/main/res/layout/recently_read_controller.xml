@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="4dp"
-        android:paddingTop="4dp"
         android:clipToPadding="false"
-        tools:listitem="@layout/recently_read_item">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        tools:listitem="@layout/recently_read_item" />
 
     <eu.kanade.tachiyomi.widget.EmptyView
         android:id="@+id/empty_view"
-        android:visibility="gone"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_height="wrap_content"/>
+        android:visibility="gone" />
 
 </FrameLayout>

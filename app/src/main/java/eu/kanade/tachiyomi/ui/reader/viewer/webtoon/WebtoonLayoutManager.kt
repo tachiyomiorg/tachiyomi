@@ -51,5 +51,4 @@ class WebtoonLayoutManager(activity: ReaderActivity) : LinearLayoutManager(activ
 
         return if (child == null) NO_POSITION else getPosition(child)
     }
-
 }

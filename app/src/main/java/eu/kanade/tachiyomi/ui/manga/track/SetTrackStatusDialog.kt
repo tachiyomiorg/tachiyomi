@@ -54,5 +54,4 @@ class SetTrackStatusDialog<T> : DialogController
     private companion object {
         const val KEY_ITEM_TRACK = "SetTrackStatusDialog.item.track"
     }
-
 }

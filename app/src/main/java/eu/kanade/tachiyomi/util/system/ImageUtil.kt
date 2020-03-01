@@ -70,5 +70,4 @@ object ImageUtil {
         GIF("image/gif", "gif"),
         WEBP("image/webp", "webp")
     }
-
 }

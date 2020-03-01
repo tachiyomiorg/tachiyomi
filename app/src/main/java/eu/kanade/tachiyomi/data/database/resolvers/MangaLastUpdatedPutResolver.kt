@@ -28,6 +28,4 @@ class MangaLastUpdatedPutResolver : PutResolver<Manga>() {
     fun mapToContentValues(manga: Manga) = ContentValues(1).apply {
         put(MangaTable.COL_LAST_UPDATE, manga.last_update)
     }
-
 }
-

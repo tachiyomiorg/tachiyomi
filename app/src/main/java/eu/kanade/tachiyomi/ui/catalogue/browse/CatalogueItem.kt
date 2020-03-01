@@ -27,8 +27,8 @@ class CatalogueItem(val manga: Manga, private val catalogueAsList: Preference<Bo
     }
 
     override fun createViewHolder(
-            view: View,
-            adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>
+        view: View,
+        adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>
     ): CatalogueHolder {
         val parent = adapter.recyclerView
         return if (parent is AutofitRecyclerView) {
@@ -45,10 +45,10 @@ class CatalogueItem(val manga: Manga, private val catalogueAsList: Preference<Bo
     }
 
     override fun bindViewHolder(
-            adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
-            holder: CatalogueHolder,
-            position: Int,
-            payloads: List<Any?>?
+        adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
+        holder: CatalogueHolder,
+        position: Int,
+        payloads: List<Any?>?
     ) {
         holder.onSetValues(manga)
     }
@@ -64,5 +64,4 @@ class CatalogueItem(val manga: Manga, private val catalogueAsList: Preference<Bo
     override fun hashCode(): Int {
         return manga.id!!.hashCode()
     }
-
 }

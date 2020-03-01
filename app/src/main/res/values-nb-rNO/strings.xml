@@ -11,9 +11,7 @@
     <string name="label_recent_manga">Nylig lest</string>
     <string name="label_catalogues">Kataloger</string>
     <string name="label_recent_updates">Bibliotekoppdateringer</string>
-    <string name="label_latest_updates">Nyeste oppdateringer</string>
     <string name="label_categories">Kategorier</string>
-    <string name="label_selected">Valgt: %1$d</string>
     <string name="label_backup">Sikkerhetskopi</string>
     <string name="label_migration">Kildeflytting</string>
     <string name="label_extensions">Utvidelser</string>
@@ -54,7 +52,6 @@
     <string name="action_start">Start</string>
     <string name="action_stop">Stopp</string>
     <string name="action_pause">Pause</string>
-    <string name="action_clear">Tøm</string>
     <string name="action_close">Lukk</string>
     <string name="action_previous_chapter">Forrige kapittel</string>
     <string name="action_next_chapter">Neste kapittel</string>
@@ -89,7 +86,6 @@
     <string name="pref_category_general">Generelt</string>
     <string name="pref_category_reader">Leser</string>
     <string name="pref_category_downloads">Nedlastinger</string>
-    <string name="pref_category_sources">Kilder</string>
     <string name="pref_category_advanced">Avansert</string>
     <string name="pref_category_about">Om</string>
     <string name="default_columns">Forvalg</string>
@@ -106,10 +102,6 @@
     <string name="all">Alle</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Lading</string>
-    <string name="light_theme">Lys</string>
-    <string name="dark_theme">Mørk</string>
-    <string name="amoled_theme">AMOLED-drakt</string>
-    <string name="darkblue_theme">Mørkeblå</string>
     <string name="pref_start_screen">Startskjerm</string>
     <string name="pref_language">Språk</string>
     <string name="system_default">Systemforvalg</string>
@@ -149,7 +141,6 @@
     <string name="pref_library_update_restriction_summary">Kun oppdater når disse vilkårene oppfylles</string>
     <string name="pref_update_only_non_completed">Kun oppdater pågående manga</string>
     <string name="pref_auto_update_manga_sync">Synkroniser kapitler etter lesing</string>
-    <string name="pref_theme">Programdrakt</string>
     <string name="pref_true_color">32-biters fargerom</string>
     <string name="pref_crop_borders">Beskjær kanter</string>
     <string name="pref_custom_brightness">Bruk egendefinert lysstyrke</string>
@@ -297,7 +288,6 @@
     <string name="circular_icon">Rund</string>
     <string name="rounded_icon">Avrundet</string>
     <string name="square_icon">Firkantig</string>
-    <string name="star_icon">Stjerne</string>
     <string name="shortcut_title">Snarveistittel</string>
     <string name="shortcut_created">Snarveien ble lagt til på hjemmeskjermen.</string>
     <string name="icon_shape">Ikonform</string>
@@ -403,7 +393,6 @@
     <string name="backup_restore_content">Gjenoppretting bruker kilde for å hente data, mobilkostnader kan tilkomme.
 \n
 \nForsikre deg om at du har installert alle nødvendige utvidelser og er logget inn i kilder og sporingstjenester før du gjenoppretter.</string>
-    <string name="confirm_update_manga_sync">Oppdater siste leste kapittel i eksterne tjenester for %1$d\?</string>
     <string name="confirm_set_image_as_cover">Bruk dette bildet som omslag\?</string>
     <string name="viewer_for_this_series">Leser for denne serien</string>
     <string name="migration_info">Trykk for å velge kilde å migrere fra</string>
@@ -453,8 +442,16 @@
     <string name="action_webview_forward">Fram</string>
     <string name="action_webview_refresh">Gjenoppfrisk</string>
     <string name="pref_category_library">Bibliotek</string>
-    <string name="pref_ask_update_manga_sync">Bekreft før oppdatering</string>
     <string name="invalid_download_dir">Ugyldig nedlastingsmappe</string>
     <string name="ext_obsolete">Foreldet</string>
     <string name="obsolete_extension_message">Denne utvidelsen er ikke lenger tilgjengelig.</string>
+    <string name="pref_date_format">Datoformat</string>
+    <string name="pref_category_library_update">Oppdateringer</string>
+    <string name="pref_category_library_categories">Kategorier</string>
+    <string name="logout_title">Logg ut fra %1$s\?</string>
+    <string name="logout">Logg ut</string>
+    <string name="logout_success">Du er utlogget</string>
+    <string name="currently_reading">Leses</string>
+    <string name="paused">På pause</string>
+    <string name="want_to_read">Ønsker å lese</string>
 </resources>

@@ -39,11 +39,9 @@ open class MangaImpl : Manga {
         val manga = other as Manga
 
         return url == manga.url
-
     }
 
     override fun hashCode(): Int {
         return url.hashCode()
     }
-
 }

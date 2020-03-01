@@ -82,5 +82,4 @@ class CategoryRenameDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
     private companion object {
         const val CATEGORY_KEY = "CategoryRenameDialog.category"
     }
-
 }

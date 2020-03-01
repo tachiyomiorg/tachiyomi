@@ -3,18 +3,26 @@ package eu.kanade.tachiyomi
 import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.multidex.MultiDex
 import com.evernote.android.job.JobManager
 import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.notification.Notifications
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.updater.UpdaterJob
+import eu.kanade.tachiyomi.ui.security.SecureActivityDelegate
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import org.acra.ACRA
 import org.acra.annotation.ReportsCrashes
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.InjektScope
+import uy.kohesive.injekt.injectLazy
 import uy.kohesive.injekt.registry.default.DefaultRegistrar
 
 @ReportsCrashes(
@@ -24,7 +32,7 @@ import uy.kohesive.injekt.registry.default.DefaultRegistrar
         buildConfigClass = BuildConfig::class,
         excludeMatchingSharedPreferencesKeys = [".*username.*", ".*password.*", ".*token.*"]
 )
-open class App : Application() {
+open class App : Application(), LifecycleObserver {
 
     override fun onCreate() {
         super.onCreate()
@@ -38,6 +46,8 @@ open class App : Application() {
         setupNotificationChannels()
 
         LocaleHelper.updateConfiguration(this, resources.configuration)
+
+        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
     }
 
     override fun attachBaseContext(base: Context) {
@@ -48,6 +58,14 @@ open class App : Application() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         LocaleHelper.updateConfiguration(this, newConfig, true)
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    fun onAppBackgrounded() {
+        val preferences: PreferencesHelper by injectLazy()
+        if (preferences.lockAppAfter().getOrDefault() >= 0) {
+            SecureActivityDelegate.locked = true
+        }
     }
 
     protected open fun setupAcra() {
@@ -72,5 +90,4 @@ open class App : Application() {
     protected open fun setupNotificationChannels() {
         Notifications.createChannels(this)
     }
-
 }

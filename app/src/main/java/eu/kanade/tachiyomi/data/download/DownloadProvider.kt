@@ -126,5 +126,4 @@ class DownloadProvider(private val context: Context) {
     fun getChapterDirName(chapter: Chapter): String {
         return DiskUtil.buildValidFilename(chapter.name)
     }
-
 }

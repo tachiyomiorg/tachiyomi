@@ -41,5 +41,4 @@ class TrackImpl : Track {
         result = 31 * result + media_id
         return result
     }
-
 }

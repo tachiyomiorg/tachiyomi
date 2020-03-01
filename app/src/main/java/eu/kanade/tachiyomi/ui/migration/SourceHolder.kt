@@ -7,7 +7,11 @@ import eu.kanade.tachiyomi.ui.base.holder.SlicedHolder
 import eu.kanade.tachiyomi.util.view.getRound
 import eu.kanade.tachiyomi.util.view.gone
 import io.github.mthli.slice.Slice
-import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.*
+import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.card
+import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.image
+import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.source_browse
+import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.source_latest
+import kotlinx.android.synthetic.main.catalogue_main_controller_card_item.title
 
 class SourceHolder(view: View, override val adapter: SourceAdapter) :
         BaseFlexibleViewHolder(view, adapter),

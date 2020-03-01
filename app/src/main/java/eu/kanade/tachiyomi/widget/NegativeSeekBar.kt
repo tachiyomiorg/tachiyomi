@@ -7,7 +7,6 @@ import android.widget.SeekBar
 import eu.kanade.tachiyomi.R
 import kotlin.math.abs
 
-
 class NegativeSeekBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
         SeekBar(context, attrs) {
 
@@ -66,5 +65,4 @@ class NegativeSeekBar @JvmOverloads constructor(context: Context, attrs: Attribu
         super.onRestoreInstanceState(state)
         super.setProgress(origProgress)
     }
-
 }

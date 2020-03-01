@@ -66,5 +66,4 @@ open class BasePresenter<V> : RxPresenter<V>() {
                     }
         }
     }
-
 }

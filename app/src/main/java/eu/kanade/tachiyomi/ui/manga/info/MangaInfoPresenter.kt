@@ -12,13 +12,13 @@ import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
+import java.util.Date
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.util.Date
 
 /**
  * Presenter of MangaInfoFragment.
@@ -26,14 +26,14 @@ import java.util.Date
  * Observable updates should be called from here.
  */
 class MangaInfoPresenter(
-        val manga: Manga,
-        val source: Source,
-        private val chapterCountRelay: BehaviorRelay<Float>,
-        private val lastUpdateRelay: BehaviorRelay<Date>,
-        private val mangaFavoriteRelay: PublishRelay<Boolean>,
-        private val db: DatabaseHelper = Injekt.get(),
-        private val downloadManager: DownloadManager = Injekt.get(),
-        private val coverCache: CoverCache = Injekt.get()
+    val manga: Manga,
+    val source: Source,
+    private val chapterCountRelay: BehaviorRelay<Float>,
+    private val lastUpdateRelay: BehaviorRelay<Date>,
+    private val mangaFavoriteRelay: PublishRelay<Boolean>,
+    private val db: DatabaseHelper = Injekt.get(),
+    private val downloadManager: DownloadManager = Injekt.get(),
+    private val coverCache: CoverCache = Injekt.get()
 ) : BasePresenter<MangaInfoController>() {
 
     /**
@@ -59,7 +59,7 @@ class MangaInfoPresenter(
                 .subscribe { setFavorite(it) }
                 .apply { add(this) }
 
-        //update last update date
+        // update last update date
         lastUpdateRelay.observeOn(AndroidSchedulers.mainThread())
                 .subscribeLatestCache(MangaInfoController::setLastUpdateDate)
     }
@@ -169,5 +169,4 @@ class MangaInfoPresenter(
     fun moveMangaToCategory(manga: Manga, category: Category?) {
         moveMangaToCategories(manga, listOfNotNull(category))
     }
-
 }

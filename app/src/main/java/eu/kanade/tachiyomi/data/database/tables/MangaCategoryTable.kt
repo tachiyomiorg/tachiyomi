@@ -20,5 +20,4 @@ object MangaCategoryTable {
             FOREIGN KEY($COL_MANGA_ID) REFERENCES ${MangaTable.TABLE} (${MangaTable.COL_ID})
             ON DELETE CASCADE
             )"""
-
 }

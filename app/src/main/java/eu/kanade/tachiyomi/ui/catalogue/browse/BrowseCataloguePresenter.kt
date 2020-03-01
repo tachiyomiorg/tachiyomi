@@ -15,7 +15,19 @@ import eu.kanade.tachiyomi.source.model.Filter
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import eu.kanade.tachiyomi.ui.catalogue.filter.*
+import eu.kanade.tachiyomi.ui.catalogue.filter.CheckboxItem
+import eu.kanade.tachiyomi.ui.catalogue.filter.CheckboxSectionItem
+import eu.kanade.tachiyomi.ui.catalogue.filter.GroupItem
+import eu.kanade.tachiyomi.ui.catalogue.filter.HeaderItem
+import eu.kanade.tachiyomi.ui.catalogue.filter.SelectItem
+import eu.kanade.tachiyomi.ui.catalogue.filter.SelectSectionItem
+import eu.kanade.tachiyomi.ui.catalogue.filter.SeparatorItem
+import eu.kanade.tachiyomi.ui.catalogue.filter.SortGroup
+import eu.kanade.tachiyomi.ui.catalogue.filter.SortItem
+import eu.kanade.tachiyomi.ui.catalogue.filter.TextItem
+import eu.kanade.tachiyomi.ui.catalogue.filter.TextSectionItem
+import eu.kanade.tachiyomi.ui.catalogue.filter.TriStateItem
+import eu.kanade.tachiyomi.ui.catalogue.filter.TriStateSectionItem
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -29,11 +41,11 @@ import uy.kohesive.injekt.api.get
  * Presenter of [BrowseCatalogueController].
  */
 open class BrowseCataloguePresenter(
-        sourceId: Long,
-        sourceManager: SourceManager = Injekt.get(),
-        private val db: DatabaseHelper = Injekt.get(),
-        private val prefs: PreferencesHelper = Injekt.get(),
-        private val coverCache: CoverCache = Injekt.get()
+    sourceId: Long,
+    sourceManager: SourceManager = Injekt.get(),
+    private val db: DatabaseHelper = Injekt.get(),
+    private val prefs: PreferencesHelper = Injekt.get(),
+    private val coverCache: CoverCache = Injekt.get()
 ) : BasePresenter<BrowseCatalogueController>() {
 
     /**
@@ -372,5 +384,4 @@ open class BrowseCataloguePresenter(
             changeMangaFavorite(manga)
         }
     }
-
 }

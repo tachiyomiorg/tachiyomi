@@ -8,9 +8,7 @@
     <string name="label_recent_manga">Đã đọc gần đây</string>
     <string name="label_catalogues">Danh mục</string>
     <string name="label_recent_updates">Cập nhật mới của thư viện</string>
-    <string name="label_latest_updates">Cập nhật mới nhất</string>
     <string name="label_categories">Hạng mục</string>
-    <string name="label_selected">Đã chọn: %1$d</string>
     <string name="label_backup">Sao lưu</string>
     <!-- Actions -->
     <string name="action_settings">Cài đặt</string>
@@ -48,7 +46,6 @@
     <string name="action_start">Bắt đầu</string>
     <string name="action_stop">Dừng lại</string>
     <string name="action_pause">Tạm dừng</string>
-    <string name="action_clear">Dọn dẹp</string>
     <string name="action_previous_chapter">Chương trước</string>
     <string name="action_next_chapter">Chương kế</string>
     <string name="action_retry">Thử lại</string>
@@ -76,7 +73,6 @@
     <string name="pref_category_general">Chung</string>
     <string name="pref_category_reader">Trình đọc</string>
     <string name="pref_category_downloads">Tải xuống</string>
-    <string name="pref_category_sources">Nguồn truyện</string>
     <string name="pref_category_tracking">Theo dõi</string>
     <string name="pref_category_advanced">Nâng cao</string>
     <string name="pref_category_about">Giới thiệu</string>
@@ -102,9 +98,6 @@
     <string name="charging">Đang sạc</string>
     <string name="pref_update_only_non_completed">Chỉ cập nhật truyện đang tiến hành</string>
     <string name="pref_auto_update_manga_sync">Đồng bộ các chương sau khi đọc</string>
-    <string name="pref_theme">Chủ đề ứng dụng</string>
-    <string name="light_theme">Chủ đề chính</string>
-    <string name="dark_theme">Chủ đề tối</string>
     <string name="pref_start_screen">Màn hình khởi động</string>
     <string name="pref_language">Ngôn ngữ</string>
     <string name="system_default">Mặc định hệ thống</string>
@@ -223,7 +216,6 @@
     <string name="circular_icon">Biểu tượng hình tròn</string>
     <string name="rounded_icon">Biểu tượng hình chữ nhật</string>
     <string name="square_icon">Biểu tượng hình vuông</string>
-    <string name="star_icon">Biểu tượng hình ngôi sao</string>
     <string name="shortcut_title">Tiêu đề của lối tắt</string>
     <string name="icon_shape">Kiểu biểu tượng</string>
     <string name="icon_creation_fail">Tạo lối tắt thất bại!</string>
@@ -285,7 +277,6 @@
     <string name="no_next_chapter">Không tìm thấy chương kế tiếp</string>
     <string name="no_previous_chapter">Không tìm thấy chương trước</string>
     <string name="decode_image_error">Không thể giải mã hình ảnh</string>
-    <string name="confirm_update_manga_sync">Cập nhật chương mới nhất của dịch vụ đang bật đến %1$d\?</string>
     <string name="confirm_set_image_as_cover">Bạn có chắc muốn đặt ảnh này làm ảnh bìa?</string>
     <string name="viewer_for_this_series">Kiểu đọc cho series này</string>
     <!-- Backup fragment -->
@@ -359,8 +350,6 @@
     <string name="short_recent_updates">Cập nhật</string>
     <string name="update_weekly">Mỗi tuần</string>
     <string name="update_monthly">Mỗi tháng</string>
-    <string name="amoled_theme">Chủ đề AMOLED</string>
-    <string name="darkblue_theme">Xanh đậm</string>
     <string name="default_category">Danh mục Mặc định</string>
     <string name="default_category_summary">Luôn hỏi</string>
     <string name="all_lang">Tất cả</string>

@@ -21,9 +21,9 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 class MigrationPresenter(
-        private val sourceManager: SourceManager = Injekt.get(),
-        private val db: DatabaseHelper = Injekt.get(),
-        private val preferences: PreferencesHelper = Injekt.get()
+    private val sourceManager: SourceManager = Injekt.get(),
+    private val db: DatabaseHelper = Injekt.get(),
+    private val preferences: PreferencesHelper = Injekt.get()
 ) : BasePresenter<MigrationController>() {
 
     var state = ViewState()
@@ -94,8 +94,13 @@ class MigrationPresenter(
                 .subscribe()
     }
 
-    private fun migrateMangaInternal(source: Source, sourceChapters: List<SChapter>,
-                                     prevManga: Manga, manga: Manga, replace: Boolean) {
+    private fun migrateMangaInternal(
+        source: Source,
+        sourceChapters: List<SChapter>,
+        prevManga: Manga,
+        manga: Manga,
+        replace: Boolean
+    ) {
 
         val flags = preferences.migrateFlags().getOrDefault()
         val migrateChapters = MigrationFlags.hasChapters(flags)

@@ -20,5 +20,4 @@ class GithubUpdateChecker : UpdateChecker() {
             GithubUpdateResult.NoNewUpdate()
         }
     }
-
 }

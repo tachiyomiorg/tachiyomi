@@ -5,7 +5,18 @@ import android.view.View
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.base.holder.BaseViewHolder
 import eu.kanade.tachiyomi.util.view.visibleIf
-import kotlinx.android.synthetic.main.track_item.*
+import kotlinx.android.synthetic.main.track_item.chapters_container
+import kotlinx.android.synthetic.main.track_item.logo_container
+import kotlinx.android.synthetic.main.track_item.score_container
+import kotlinx.android.synthetic.main.track_item.status_container
+import kotlinx.android.synthetic.main.track_item.title_container
+import kotlinx.android.synthetic.main.track_item.track_chapters
+import kotlinx.android.synthetic.main.track_item.track_details
+import kotlinx.android.synthetic.main.track_item.track_logo
+import kotlinx.android.synthetic.main.track_item.track_score
+import kotlinx.android.synthetic.main.track_item.track_set
+import kotlinx.android.synthetic.main.track_item.track_status
+import kotlinx.android.synthetic.main.track_item.track_title
 
 class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
 

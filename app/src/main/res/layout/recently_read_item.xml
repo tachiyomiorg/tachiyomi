@@ -51,21 +51,21 @@
             </RelativeLayout>
 
             <Button
-                style="@style/Theme.Widget.Button.Borderless.Negative"
                 android:id="@+id/remove"
+                style="@style/Theme.Widget.Button.Borderless.Negative"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:text="@string/action_remove" />
 
             <Button
-                style="@style/Theme.Widget.Button.Borderless"
                 android:id="@+id/resume"
+                style="@style/Theme.Widget.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_toEndOf="@id/remove"
-                android:text="@string/action_resume"/>
+                android:text="@string/action_resume" />
 
         </RelativeLayout>
 

@@ -17,5 +17,4 @@ class MangaCategory {
             return mc
         }
     }
-
 }

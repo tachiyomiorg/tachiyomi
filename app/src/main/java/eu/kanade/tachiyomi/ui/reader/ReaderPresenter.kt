@@ -23,6 +23,9 @@ import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.util.storage.DiskUtil
 import eu.kanade.tachiyomi.util.system.ImageUtil
+import java.io.File
+import java.util.Date
+import java.util.concurrent.TimeUnit
 import rx.Completable
 import rx.Observable
 import rx.Subscription
@@ -31,19 +34,16 @@ import rx.schedulers.Schedulers
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
-import java.io.File
-import java.util.Date
-import java.util.concurrent.TimeUnit
 
 /**
  * Presenter used by the activity to perform background operations.
  */
 class ReaderPresenter(
-        private val db: DatabaseHelper = Injekt.get(),
-        private val sourceManager: SourceManager = Injekt.get(),
-        private val downloadManager: DownloadManager = Injekt.get(),
-        private val coverCache: CoverCache = Injekt.get(),
-        private val preferences: PreferencesHelper = Injekt.get()
+    private val db: DatabaseHelper = Injekt.get(),
+    private val sourceManager: SourceManager = Injekt.get(),
+    private val downloadManager: DownloadManager = Injekt.get(),
+    private val coverCache: CoverCache = Injekt.get(),
+    private val preferences: PreferencesHelper = Injekt.get()
 ) : BasePresenter<ReaderActivity>() {
 
     /**
@@ -237,8 +237,8 @@ class ReaderPresenter(
      * Callers must also handle the onError event.
      */
     private fun getLoadObservable(
-            loader: ChapterLoader,
-            chapter: ReaderChapter
+        loader: ChapterLoader,
+        chapter: ReaderChapter
     ): Observable<ViewerChapters> {
         return loader.loadChapter(chapter)
                 .andThen(Observable.fromCallable {
@@ -638,5 +638,4 @@ class ReaderPresenter(
                 .subscribeOn(Schedulers.io())
                 .subscribe()
     }
-
 }

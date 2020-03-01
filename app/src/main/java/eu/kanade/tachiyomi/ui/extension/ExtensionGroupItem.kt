@@ -32,8 +32,12 @@ data class ExtensionGroupItem(val name: String, val size: Int, val showSize: Boo
     /**
      * Binds this item to the given view holder.
      */
-    override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: ExtensionGroupHolder,
-                                position: Int, payloads: List<Any?>?) {
+    override fun bindViewHolder(
+        adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>,
+        holder: ExtensionGroupHolder,
+        position: Int,
+        payloads: List<Any?>?
+    ) {
 
         holder.bind(this)
     }
@@ -49,5 +53,4 @@ data class ExtensionGroupItem(val name: String, val size: Int, val showSize: Boo
     override fun hashCode(): Int {
         return name.hashCode()
     }
-
 }

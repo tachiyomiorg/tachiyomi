@@ -55,6 +55,9 @@
         <activity
             android:name=".ui.reader.ReaderActivity" />
         <activity
+            android:name=".ui.security.BiometricUnlockActivity"
+            android:theme="@style/Theme.Splash" />
+        <activity
             android:name=".ui.webview.WebViewActivity"
             android:configChanges="uiMode|orientation|screenSize" />
         <activity

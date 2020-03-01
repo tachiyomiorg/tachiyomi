@@ -36,9 +36,12 @@ class ExtensionDividerItemDecoration(context: Context) : RecyclerView.ItemDecora
         }
     }
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView,
-                                state: RecyclerView.State) {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
         outRect.set(0, 0, 0, divider.intrinsicHeight)
     }
-
 }

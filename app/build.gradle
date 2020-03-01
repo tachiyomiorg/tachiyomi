@@ -5,6 +5,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.zellius.shortcut-helper'
+apply plugin: "org.jmailen.kotlinter"
+
 
 shortcutHelper.filePath = './shortcuts.xml'
 
@@ -38,8 +40,8 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        versionCode 41
-        versionName "0.8.4"
+        versionCode 42
+        versionName "0.8.5"
 
         buildConfigField "String", "COMMIT_COUNT", "\"${getCommitCount()}\""
         buildConfigField "String", "COMMIT_SHA", "\"${getGitSha()}\""
@@ -116,7 +118,11 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.browser:browser:1.2.0'
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.webkit:webkit:1.1.0'
+    implementation 'androidx.biometric:biometric:1.0.1'
+
+    final lifecycle_version = '2.2.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
     // UI library
     implementation 'com.google.android.material:material:1.1.0'
@@ -157,8 +163,10 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.12.1'
 
     // Job scheduling
-    implementation 'com.evernote:android-job:1.2.5'
-    implementation 'com.google.android.gms:play-services-gcm:17.0.0'
+    implementation 'com.evernote:android-job:1.4.2'
+    final workManagerVersion = '2.3.2'
+    implementation "android.arch.work:work-runtime:$workManagerVersion"
+    implementation "android.arch.work:work-runtime-ktx:$workManagerVersion"
 
     // Changelog
     implementation 'com.github.gabrielemariotti.changeloglib:changelog:2.1.0'
@@ -258,6 +266,9 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile).all {
 androidExtensions {
     experimental = true
 }
+
+preBuild.dependsOn(lintKotlin)
+lintKotlin.dependsOn(formatKotlin)
 
 if (getGradle().getStartParameter().getTaskRequests().toString().contains("Standard")) {
     apply plugin: 'com.google.gms.google-services'

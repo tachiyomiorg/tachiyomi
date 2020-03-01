@@ -44,5 +44,4 @@ class LibraryCategoryAdapter(view: LibraryCategoryView) :
         }
         updateDataSet(mangas.filter { it.filter(s) })
     }
-
 }

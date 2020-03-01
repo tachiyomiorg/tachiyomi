@@ -5,11 +5,9 @@
     <string name="chapters">Kapitoly</string>
     <string name="history">Historie</string>
     <string name="label_settings">Nastavení</string>
-    <string name="label_library">Moje knihovna</string>
+    <string name="label_library">Knihovna</string>
     <string name="label_recent_manga">Nedávno čteno</string>
-    <string name="label_latest_updates">Poslední aktualizace</string>
     <string name="label_categories">Kategorie</string>
-    <string name="label_selected">Vybráno: %1$d</string>
     <string name="label_backup">Záloha</string>
     <string name="label_migration">Zdroj migrace</string>
     <string name="label_extensions">Rozšíření</string>
@@ -68,11 +66,6 @@
     <string name="update_monthly">Měsíčně</string>
     <string name="pref_update_only_non_completed">Aktualizovat pouze vycházející mangy</string>
     <string name="pref_auto_update_manga_sync">Synchronizovat kapitoly po přečtení</string>
-    <string name="pref_theme">Téma aplikace</string>
-    <string name="light_theme">Světlé téma</string>
-    <string name="dark_theme">Tmavé téma</string>
-    <string name="amoled_theme">AMOLED tmavé téma</string>
-    <string name="darkblue_theme">Tmavě modrá</string>
     <string name="pref_start_screen">Úvodní obrazovka</string>
     <string name="pref_language">Jazyk</string>
     <string name="system_default">Výchozí</string>
@@ -127,7 +120,7 @@
     <string name="password">Heslo</string>
     <string name="show_password">Zobrazit heslo</string>
     <string name="login">Přihlásit se</string>
-    <string name="login_success">Přihlášení úspěšné</string>
+    <string name="login_success">Přihlášení proběhlo úspěšně</string>
     <string name="invalid_login">Chyba při přihlašování</string>
     <string name="unknown_error">Neznámá chyba</string>
     <string name="confirm_delete_manga">Opravdu chcete odstranit vybrané mangy\?</string>
@@ -233,7 +226,7 @@
     <string name="name">Název</string>
     <string name="track">Sledování</string>
     <string name="label_catalogues">Katalogy</string>
-    <string name="label_recent_updates">Aktualizace knihovny</string>
+    <string name="label_recent_updates">Nedávné aktualizace</string>
     <string name="action_filter_bookmarked">Založeno</string>
     <string name="action_sort_total">Celkem kapitol</string>
     <string name="action_bookmark">Založit</string>
@@ -245,10 +238,9 @@
     <string name="action_start">Start</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Pauza</string>
-    <string name="action_clear">Vymazat</string>
     <string name="action_retry">Opakovat</string>
     <string name="action_resume">Pokračovat</string>
-    <string name="action_display_mode">Změnit režim zobrazení</string>
+    <string name="action_display_mode">Režim zobrazení</string>
     <string name="action_display">Zobrazení</string>
     <string name="action_display_download_badge">Odznáček stažení</string>
     <string name="action_set_filter">Nastavit filtr</string>
@@ -259,7 +251,6 @@
     <string name="short_recent_updates">Aktualizace</string>
     <string name="pref_category_general">Obecné</string>
     <string name="pref_category_reader">Čtečka</string>
-    <string name="pref_category_sources">Zdroje</string>
     <string name="pref_category_tracking">Sledování</string>
     <string name="pref_category_advanced">Pokročilé</string>
     <string name="pref_category_about">O aplikaci</string>
@@ -354,7 +345,6 @@
     <string name="circular_icon">Kruhová ikona</string>
     <string name="rounded_icon">Zaoblená ikona</string>
     <string name="square_icon">Čtvercová ikona</string>
-    <string name="star_icon">Hvězdicová ikona</string>
     <string name="shortcut_title">Název zástupce</string>
     <string name="icon_shape">Tvar ikony</string>
     <string name="copied_to_clipboard">%1$s zkopírováno do schránky</string>
@@ -411,7 +401,6 @@
     <string name="url_not_set">Url mangy není nastaveno, klikněte prosím na název a vyberte mangu znovu.</string>
     <string name="error_category_exists">Kategorie s tímto jménem již existuje!</string>
     <string name="dialog_with_checkbox_remove_description">Toto odstraní datum přečtení této kapitoly. Jste si jistý\?</string>
-    <string name="confirm_update_manga_sync">Aktualizovat poslední přečtenou kapitolu v povolených službách na %1$d\?</string>
     <string name="confirm_set_image_as_cover">Chcete tento obrázek nastavit jako obal\?</string>
     <string name="viewer_for_this_series">Prohlížeč této série</string>
     <string name="transition_pages_error">Chyba při načítání stránek: %1$s</string>
@@ -452,8 +441,13 @@
     <string name="action_webview_forward">Vpřed</string>
     <string name="action_webview_refresh">Obnovit</string>
     <string name="pref_category_library">Knihovna</string>
-    <string name="pref_ask_update_manga_sync">Potvrdit před aktualizací</string>
     <string name="invalid_download_dir">Neplatný adresář stahování</string>
     <string name="ext_obsolete">Zastaralý</string>
     <string name="obsolete_extension_message">Tohle rozšíření již není dostupné.</string>
+    <string name="logout">Odhlásit se</string>
+    <string name="pref_date_format">Formát data</string>
+    <string name="pref_category_library_update">Aktualizace</string>
+    <string name="pref_category_library_categories">Kategorie</string>
+    <string name="logout_title">Odhlásit z %1$s\?</string>
+    <string name="logout_success">Byl jste odhlášen</string>
 </resources>

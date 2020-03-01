@@ -8,8 +8,7 @@
     <string name="label_settings">Asetukset</string>
     <string name="label_download_queue">Latausjono</string>
     <string name="label_library">Kirjasto</string>
-    <string name="label_recent_manga">Viimeksi luetut</string>
-    <string name="label_latest_updates">Viimeksi päivittyneet</string>
+    <string name="label_recent_manga">Historia</string>
     <string name="label_categories">Kategoriat</string>
     <string name="action_settings">Asetukset</string>
     <string name="action_sort_last_read">Viimeksi luettu</string>
@@ -18,9 +17,8 @@
     <string name="pref_category_tracking">Seuranta</string>
     <string name="manga_tracking_tab">Seuranta</string>
     <string name="chapters">Luvut</string>
-    <string name="label_recent_updates">Kirjastopäivitykset</string>
+    <string name="label_recent_updates">Päivitykset</string>
     <string name="label_catalogues">Katalokit</string>
-    <string name="label_selected">Valittu: %1$d</string>
     <string name="action_sort_total">Lukuja yhteensä</string>
     <string name="action_sort_last_updated">Viimeksi päivitetty</string>
     <string name="action_global_search">Globaali haku</string>
@@ -44,7 +42,6 @@
     <string name="no_next_chapter">Seuraavaa lukua ei löydy</string>
     <string name="no_previous_chapter">Aiempaa lukua ei löydy</string>
     <string name="decode_image_error">Kuvaa ei voitu decoodata</string>
-    <string name="confirm_update_manga_sync">Päivitä viimeiseksi luettu kappale käytössä oleviin palveluihin %1$d\?</string>
     <string name="confirm_set_image_as_cover">Käytetäänkö tätä kuvaa kansikuvana\?</string>
     <string name="viewer_for_this_series">Katselin tälle sarjalle</string>
     <string name="transition_finished">Valmistunut:</string>
@@ -132,7 +129,6 @@
     <string name="action_start">Aloita</string>
     <string name="action_stop">Lopeta</string>
     <string name="action_pause">Pysäytä</string>
-    <string name="action_clear">Tyhjennä</string>
     <string name="action_close">Sulje</string>
     <string name="action_previous_chapter">Aiempi luku</string>
     <string name="action_next_chapter">Seuraava luku</string>
@@ -142,7 +138,7 @@
     <string name="action_open_in_browser">Avaa selaimessa</string>
     <string name="action_open_in_web_view">Avaa WebViewissä</string>
     <string name="action_add_to_home_screen">Lisää kotinäytölle</string>
-    <string name="action_display_mode">Muuta näkymää</string>
+    <string name="action_display_mode">Näkymä</string>
     <string name="action_display">Näkymä</string>
     <string name="action_display_grid">Ruudukko</string>
     <string name="action_display_list">Lista</string>
@@ -168,7 +164,6 @@
     <string name="pref_category_general">Yleiset</string>
     <string name="pref_category_reader">Lukija</string>
     <string name="pref_category_downloads">Lataukset</string>
-    <string name="pref_category_sources">Lähteet</string>
     <string name="pref_category_advanced">Kehittyneet</string>
     <string name="pref_category_about">Tietoja</string>
     <string name="pref_library_columns">Kirjaston sarjoja per rivi</string>
@@ -194,11 +189,6 @@
     <string name="charging">Latauksessa</string>
     <string name="pref_update_only_non_completed">Päivitä vain jatkuvat sarjat</string>
     <string name="pref_auto_update_manga_sync">Synkronoi luvut lukemisen jälkeen</string>
-    <string name="pref_theme">Sovelluksen teema</string>
-    <string name="light_theme">Vaalea</string>
-    <string name="dark_theme">Tumma</string>
-    <string name="amoled_theme">AMOLED musta</string>
-    <string name="darkblue_theme">Tumman sininen</string>
     <string name="pref_start_screen">Aloitusnäyttö</string>
     <string name="pref_language">Kieli</string>
     <string name="system_default">Järjestelmän oletus</string>
@@ -277,7 +267,7 @@
     <string name="color_filter_g_value">Vihreä</string>
     <string name="color_filter_b_value">Sininen</string>
     <string name="color_filter_a_value">Alpha</string>
-    <string name="pref_download_directory">Latausten kansio</string>
+    <string name="pref_download_directory">Lataus kansio</string>
     <string name="pref_download_only_over_wifi">Lataa vain Wi-Fin yli</string>
     <string name="pref_remove_after_marked_as_read">Poista luetuksi merkitsemisen jälkeen</string>
     <string name="pref_remove_after_read">Poista lukemisen jälkeen</string>
@@ -339,7 +329,7 @@
     <string name="password">Salasana</string>
     <string name="show_password">Näytä salasana</string>
     <string name="login">Kirjaudu</string>
-    <string name="login_success">Kirjauduttu sisään</string>
+    <string name="login_success">Sisäänkirjautuminen onnistui</string>
     <string name="invalid_login">Kirjautuminen epäonnistui</string>
     <string name="unknown_error">Tuntematon virhe</string>
     <string name="library_search_hint">Nimike tai kirjailija…</string>
@@ -355,7 +345,6 @@
     <string name="circular_icon">Pyöreä</string>
     <string name="rounded_icon">Pyöristetty</string>
     <string name="square_icon">Neliö</string>
-    <string name="star_icon">Tähti</string>
     <string name="shortcut_title">Pikakuvakkeen nimi</string>
     <string name="shortcut_created">Pikakuvake on lisätty kotinäytölle.</string>
     <string name="icon_shape">Ikonin muoto</string>
@@ -372,8 +361,8 @@
     <string name="chapter_error">Virhe</string>
     <string name="chapter_paused">Pysäytetty</string>
     <string name="fetch_chapters_error">Lukujen hakeminen epäonnistui</string>
-    <string name="show_title">Näytä nimike</string>
-    <string name="show_chapter_number">Näytä luvun numero</string>
+    <string name="show_title">Nimike</string>
+    <string name="show_chapter_number">Luvun numero</string>
     <string name="sorting_mode">Lajittelutila</string>
     <string name="sort_by_source">Lähteen mukaan</string>
     <string name="sort_by_number">Luvun numeron mukaan</string>
@@ -453,8 +442,37 @@
     <string name="action_webview_forward">Eteenpäin</string>
     <string name="action_webview_refresh">Päivitä</string>
     <string name="pref_category_library">Kirjasto</string>
-    <string name="pref_ask_update_manga_sync">Vahvista ennen päivittämistä</string>
     <string name="invalid_download_dir">Virheellinen latauskansio</string>
     <string name="ext_obsolete">Vanhentunut</string>
     <string name="obsolete_extension_message">Tämä laajennus ei ole enää saatavilla.</string>
+    <string name="pref_date_format">Päivämäärän muoto</string>
+    <string name="pref_category_library_update">Päivitykset</string>
+    <string name="pref_category_library_categories">Kategoriat</string>
+    <string name="logout_title">Kirjaa ulos kohteesta %1$s\?</string>
+    <string name="logout">Kirjaudu ulos</string>
+    <string name="logout_success">Kirjauduttu ulos</string>
+    <string name="currently_reading">Tällä hetkellä luettavana</string>
+    <string name="paused">Pysäytetty</string>
+    <string name="want_to_read">Halu lukea</string>
+    <string name="label_more">Lisää</string>
+    <string name="action_sort_latest_chapter">Viimeisin luku</string>
+    <string name="action_view_chapters">Näytä luvut</string>
+    <string name="action_cancel_all">Peruuta kaikki</string>
+    <string name="pref_theme_mode">Sovelluksen teema</string>
+    <string name="theme_light">Vaalea</string>
+    <string name="theme_dark">Tumma</string>
+    <string name="theme_system">Seuraa järjestelmää</string>
+    <string name="pref_theme_dark">Tumman teeman variantti</string>
+    <string name="theme_dark_default">Oletus</string>
+    <string name="theme_dark_blue">Tummansininen</string>
+    <string name="theme_dark_amoled">AMOLED musta</string>
+    <string name="pref_manage_notifications">Hallitse ilmoituksia</string>
+    <string name="pref_category_security">Turvallisuus</string>
+    <string name="lock_with_biometrics">Lukitse biometrisillä tiedoilla</string>
+    <string name="lock_always">Aina</string>
+    <string name="lock_never">Ei koskaan</string>
+    <plurals name="lock_after_mins">
+        <item quantity="one">Minuutin jälkeen</item>
+        <item quantity="other">%1$s minuutin jälkeen</item>
+    </plurals>
 </resources>

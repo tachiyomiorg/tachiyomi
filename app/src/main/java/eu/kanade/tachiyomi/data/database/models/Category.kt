@@ -23,5 +23,4 @@ interface Category : Serializable {
 
         fun createDefault(): Category = create("Default").apply { id = 0 }
     }
-
 }

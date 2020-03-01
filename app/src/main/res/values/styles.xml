@@ -36,15 +36,6 @@
         <item name="android:background">@color/colorAmoledPrimary</item>
     </style>
 
-    <!--==============-->
-    <!--NavigationView-->
-    <!--==============-->
-    <style name="Theme.Widget.NavigationView" />
-
-    <style name="Theme.Widget.NavigationView.Dark">
-        <item name="colorControlHighlight">@color/md_grey_900</item>
-        <item name="colorPrimary">?colorAccent</item>
-    </style>
 
     <!--===============-->
     <!--Text Appearance-->

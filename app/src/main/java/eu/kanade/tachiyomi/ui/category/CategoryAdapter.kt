@@ -46,5 +46,4 @@ class CategoryAdapter(controller: CategoryController) :
          */
         fun onItemReleased(position: Int)
     }
-
 }

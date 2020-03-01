@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -27,8 +26,8 @@
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Regular.Body1"
         app:layout_constraintBottom_toTopOf="@+id/chapter_title"
-        app:layout_constraintStart_toEndOf="@+id/manga_cover"
         app:layout_constraintEnd_toStartOf="@+id/chapter_menu"
+        app:layout_constraintStart_toEndOf="@+id/manga_cover"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="Manga title" />
@@ -42,10 +41,10 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Regular.Caption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/download_text"
         app:layout_constraintStart_toEndOf="@+id/manga_cover"
         app:layout_constraintTop_toBottomOf="@+id/manga_title"
-        app:layout_constraintEnd_toStartOf="@+id/download_text"
-        app:layout_constraintBottom_toBottomOf="parent"
         tools:text="Chapter title" />
 
     <TextView
@@ -56,26 +55,23 @@
         android:layout_marginBottom="3dp"
         android:textAllCaps="true"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="Downloaded" />
 
-    <FrameLayout
+    <ImageButton
         android:id="@+id/chapter_menu"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        android:paddingBottom="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|end"
+        android:layout_marginEnd="8dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:contentDescription="@string/action_menu"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/download_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/chapter_menu_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center|end"
-            android:layout_marginEnd="16dp" />
-
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_more_horiz_black_24dp"
+        app:tint="?attr/icon_color" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,13 @@
 package eu.kanade.tachiyomi.network
 
+import java.io.IOException
 import okhttp3.MediaType
 import okhttp3.ResponseBody
-import okio.*
-import java.io.IOException
+import okio.Buffer
+import okio.BufferedSource
+import okio.ForwardingSource
+import okio.Source
+import okio.buffer
 
 class ProgressResponseBody(private val responseBody: ResponseBody, private val progressListener: ProgressListener) : ResponseBody() {
 

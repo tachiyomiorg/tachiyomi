@@ -16,12 +16,11 @@ import rx.schedulers.Schedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
-
 class TrackPresenter(
-        val manga: Manga,
-        preferences: PreferencesHelper = Injekt.get(),
-        private val db: DatabaseHelper = Injekt.get(),
-        private val trackManager: TrackManager = Injekt.get()
+    val manga: Manga,
+    preferences: PreferencesHelper = Injekt.get(),
+    private val db: DatabaseHelper = Injekt.get(),
+    private val trackManager: TrackManager = Injekt.get()
 ) : BasePresenter<TrackController>() {
 
     private val context = preferences.context
@@ -130,5 +129,4 @@ class TrackPresenter(
         track.last_chapter_read = chapterNumber
         updateRemote(track, item.service)
     }
-
 }

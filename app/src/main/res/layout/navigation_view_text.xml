@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="?attr/listPreferredItemHeightSmall"
-    android:paddingStart="?attr/listPreferredItemPaddingStart"
-    android:paddingEnd="?attr/listPreferredItemPaddingEnd"
     android:background="?attr/selectableItemBackground"
-    android:focusable="true">
+    android:focusable="true"
+    android:paddingStart="?attr/listPreferredItemPaddingStart"
+    android:paddingEnd="?attr/listPreferredItemPaddingEnd">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nav_view_item_wrapper"
@@ -19,9 +18,9 @@
             android:id="@+id/nav_view_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:maxLines="1"
-            android:inputType="text"
             android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLines="1"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     </com.google.android.material.textfield.TextInputLayout>

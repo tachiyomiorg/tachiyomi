@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,11 +9,11 @@
         android:id="@+id/track_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/title"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/title"
         android:inputType="text"
-        android:maxLines="1"/>
+        android:maxLines="1" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -26,36 +25,36 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:layout_marginTop="32dp"
             android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
             android:visibility="invisible"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
         <ListView
             android:id="@+id/track_search_list"
             style="@style/Theme.Widget.CardView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
             android:choiceMode="singleChoice"
+            android:clipToPadding="false"
             android:divider="@null"
             android:dividerHeight="10dp"
             android:footerDividersEnabled="true"
             android:headerDividersEnabled="true"
             android:listSelector="?attr/selectable_list_drawable"
-            android:paddingBottom="4dp"
             android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             android:scrollbars="none"
             android:visibility="invisible"
             tools:listitem="@layout/track_search_item"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
     </FrameLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="?android:attr/divider"/>
+        android:background="?android:attr/divider" />
 
 </LinearLayout>

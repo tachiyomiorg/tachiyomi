@@ -3,8 +3,15 @@ package eu.kanade.tachiyomi.data.backup
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import com.github.salomonbrys.kotson.*
-import com.google.gson.*
+import com.github.salomonbrys.kotson.fromJson
+import com.github.salomonbrys.kotson.registerTypeAdapter
+import com.github.salomonbrys.kotson.registerTypeHierarchyAdapter
+import com.github.salomonbrys.kotson.set
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonArray
+import com.google.gson.JsonElement
+import com.google.gson.JsonObject
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.data.backup.BackupCreateService.Companion.BACKUP_CATEGORY
 import eu.kanade.tachiyomi.data.backup.BackupCreateService.Companion.BACKUP_CATEGORY_MASK
@@ -22,9 +29,21 @@ import eu.kanade.tachiyomi.data.backup.models.Backup.HISTORY
 import eu.kanade.tachiyomi.data.backup.models.Backup.MANGA
 import eu.kanade.tachiyomi.data.backup.models.Backup.TRACK
 import eu.kanade.tachiyomi.data.backup.models.DHistory
-import eu.kanade.tachiyomi.data.backup.serializer.*
+import eu.kanade.tachiyomi.data.backup.serializer.CategoryTypeAdapter
+import eu.kanade.tachiyomi.data.backup.serializer.ChapterTypeAdapter
+import eu.kanade.tachiyomi.data.backup.serializer.HistoryTypeAdapter
+import eu.kanade.tachiyomi.data.backup.serializer.MangaTypeAdapter
+import eu.kanade.tachiyomi.data.backup.serializer.TrackTypeAdapter
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
-import eu.kanade.tachiyomi.data.database.models.*
+import eu.kanade.tachiyomi.data.database.models.CategoryImpl
+import eu.kanade.tachiyomi.data.database.models.Chapter
+import eu.kanade.tachiyomi.data.database.models.ChapterImpl
+import eu.kanade.tachiyomi.data.database.models.History
+import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.database.models.MangaCategory
+import eu.kanade.tachiyomi.data.database.models.MangaImpl
+import eu.kanade.tachiyomi.data.database.models.Track
+import eu.kanade.tachiyomi.data.database.models.TrackImpl
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.track.TrackManager
@@ -32,10 +51,10 @@ import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.system.sendLocalBroadcast
+import kotlin.math.max
 import rx.Observable
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
-import kotlin.math.max
 
 class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
 

@@ -1,6 +1,11 @@
 package eu.kanade.tachiyomi.data.track.kitsu
 
-import com.github.salomonbrys.kotson.*
+import com.github.salomonbrys.kotson.array
+import com.github.salomonbrys.kotson.get
+import com.github.salomonbrys.kotson.int
+import com.github.salomonbrys.kotson.jsonObject
+import com.github.salomonbrys.kotson.obj
+import com.github.salomonbrys.kotson.string
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import eu.kanade.tachiyomi.data.database.models.Track
@@ -11,7 +16,16 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Headers
+import retrofit2.http.PATCH
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 import rx.Observable
 
 class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) {
@@ -94,7 +108,6 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
         }
     }
 
-
     fun search(query: String): Observable<List<TrackSearch>> {
         return searchRest
                 .getKey().map { json ->
@@ -103,7 +116,6 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
                     algoliaSearch(key, query)
                 }
     }
-
 
     private fun algoliaSearch(key: String, query: String): Observable<List<TrackSearch>> {
         val jsonObject = jsonObject("params" to "query=$query$algoliaFilter")
@@ -163,35 +175,33 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
         @Headers("Content-Type: application/vnd.api+json")
         @POST("library-entries")
         fun addLibManga(
-                @Body data: JsonObject
+            @Body data: JsonObject
         ): Observable<JsonObject>
 
         @Headers("Content-Type: application/vnd.api+json")
         @PATCH("library-entries/{id}")
         fun updateLibManga(
-                @Path("id") remoteId: Int,
-                @Body data: JsonObject
+            @Path("id") remoteId: Int,
+            @Body data: JsonObject
         ): Observable<JsonObject>
-
 
         @GET("library-entries")
         fun findLibManga(
-                @Query("filter[manga_id]", encoded = true) remoteId: Int,
-                @Query("filter[user_id]", encoded = true) userId: String,
-                @Query("include") includes: String = "manga"
+            @Query("filter[manga_id]", encoded = true) remoteId: Int,
+            @Query("filter[user_id]", encoded = true) userId: String,
+            @Query("include") includes: String = "manga"
         ): Observable<JsonObject>
 
         @GET("library-entries")
         fun getLibManga(
-                @Query("filter[id]", encoded = true) remoteId: Int,
-                @Query("include") includes: String = "manga"
+            @Query("filter[id]", encoded = true) remoteId: Int,
+            @Query("include") includes: String = "manga"
         ): Observable<JsonObject>
 
         @GET("users")
         fun getCurrentUser(
-                @Query("filter[self]", encoded = true) self: Boolean = true
+            @Query("filter[self]", encoded = true) self: Boolean = true
         ): Observable<JsonObject>
-
     }
 
     private interface SearchKeyRest {
@@ -209,13 +219,12 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
         @FormUrlEncoded
         @POST("oauth/token")
         fun requestAccessToken(
-                @Field("username") username: String,
-                @Field("password") password: String,
-                @Field("grant_type") grantType: String = "password",
-                @Field("client_id") client_id: String = clientId,
-                @Field("client_secret") client_secret: String = clientSecret
+            @Field("username") username: String,
+            @Field("password") password: String,
+            @Field("grant_type") grantType: String = "password",
+            @Field("client_id") client_id: String = clientId,
+            @Field("client_secret") client_secret: String = clientSecret
         ): Observable<OAuth>
-
     }
 
     companion object {
@@ -229,11 +238,9 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
         private const val algoliaAppId = "AWQO5J657S"
         private const val algoliaFilter = "&facetFilters=%5B%22kind%3Amanga%22%5D&attributesToRetrieve=%5B%22synopsis%22%2C%22canonicalTitle%22%2C%22chapterCount%22%2C%22posterImage%22%2C%22startDate%22%2C%22subtype%22%2C%22endDate%22%2C%20%22id%22%5D"
 
-
         fun mangaUrl(remoteId: Int): String {
             return baseMangaUrl + remoteId
         }
-
 
         fun refreshTokenRequest(token: String) = POST("${loginUrl}oauth/token",
                 body = FormBody.Builder()
@@ -242,7 +249,5 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
                         .add("client_secret", clientSecret)
                         .add("refresh_token", token)
                         .build())
-
     }
-
 }

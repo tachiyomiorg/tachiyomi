@@ -21,5 +21,4 @@ class PagerButton(context: Context, viewer: PagerViewer) : AppCompatButton(conte
             false
         }
     }
-
 }

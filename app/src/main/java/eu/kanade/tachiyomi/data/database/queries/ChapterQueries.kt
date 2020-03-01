@@ -88,5 +88,4 @@ interface ChapterQueries : DbProvider {
             .objects(chapters)
             .withPutResolver(ChapterSourceOrderPutResolver())
             .prepare()
-
 }

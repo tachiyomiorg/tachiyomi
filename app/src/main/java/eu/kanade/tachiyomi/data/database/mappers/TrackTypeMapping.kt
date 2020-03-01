@@ -54,7 +54,6 @@ class TrackPutResolver : DefaultPutResolver<Track>() {
         put(COL_STATUS, obj.status)
         put(COL_TRACKING_URL, obj.tracking_url)
         put(COL_SCORE, obj.score)
-
     }
 }
 
