@@ -116,7 +116,7 @@
     <string name="pref_update_only_non_completed">Actualitza només el manga en curs</string>
     <string name="pref_auto_update_manga_sync">Sincronitza els capítols després de llegir-los</string>
     <string name="pref_start_screen">Pantalla d\'inici</string>
-    <string name="pref_language">Idioma</string>
+    <string name="pref_language">Llengua</string>
     <string name="system_default">Per defecte del sistema</string>
     <string name="default_category">Categoria per defecte</string>
     <string name="default_category_summary">Demana-ho sempre</string>
@@ -140,7 +140,7 @@
 \n 
 \nSi confieu en aquest certificat, accepteu aquests riscos.</string>
     <string name="ext_version_info">Versió: %1$s</string>
-    <string name="ext_language_info">Idioma: %1$s</string>
+    <string name="ext_language_info">Llengua: %1$s</string>
     <string name="ext_empty_preferences">No hi ha preferències editables en aquesta extensió</string>
     <string name="pref_fullscreen">Pantalla completa</string>
     <string name="pref_lock_orientation">Bloca l\'orientació</string>
@@ -231,7 +231,7 @@
     <string name="restoring_backup">S\'està restaurant la còpia de seguretat</string>
     <string name="creating_backup">S\'està creant la còpia de seguretat</string>
     <string name="pref_clear_chapter_cache">Buida la memòria cau de capítols</string>
-    <string name="used_cache">Ús: $1$s</string>
+    <string name="used_cache">Ús: %1$s</string>
     <string name="cache_deleted">S\'ha buidat la memòria cau. S\'han suprimit %1$d fitxers</string>
     <string name="cache_delete_error">S\'ha produït un error en buidar la memòria cau</string>
     <string name="pref_clear_cookies">Esborra les galetes</string>
@@ -410,7 +410,7 @@
     <string name="information_no_recent">No hi ha capítols recents</string>
     <string name="information_no_recent_manga">No hi ha manga llegit recentment</string>
     <string name="information_empty_library">La vostra biblioteca és buida, afegiu-hi sèries als catàlegs.</string>
-    <string name="information_empty_category">No teniu categories. Premeu el botó més oer a crear-ne una i organitzar la vostra biblioteca.</string>
+    <string name="information_empty_category">No teniu categories. Premeu el botó més per a crear-ne una i organitzar la vostra biblioteca.</string>
     <string name="download_notifier_downloader_title">Baixador</string>
     <string name="download_notifier_title_error">Error</string>
     <string name="download_notifier_unkown_error">No s\'ha pogut baixar el capítol a causa d\'un error inesperat</string>
@@ -488,4 +488,8 @@
     <string name="information_cloudflare_bypass_failure">No s\'ha pogut evitar el Cloudflare</string>
     <string name="information_webview_outdated">Actualitzeu l\'aplicació de WebView per a tenir més bona compatibilitat</string>
     <string name="channel_new_chapters">Actualitzacions de capítols</string>
+    <string name="unlock_app">Desbloca Tachiyomi</string>
+    <string name="action_menu">Menú</string>
+    <string name="secure_screen_summary">Amaga el contingut de l\'aplicació en canviar entre aplicacions i bloca les captures de pantalla</string>
+    <string name="pref_category_display">Visualització</string>
 </resources>
