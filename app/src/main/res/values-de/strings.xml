@@ -76,7 +76,7 @@
     <string name="deleting">Wird gelöscht…</string>
     <string name="loading">Wird geladen…</string>
     <string name="app_not_available">App nicht verfügbar</string>
-    <string name="short_recent_updates">Aktualisierungen</string>
+    <string name="short_recent_updates">Neu</string>
     <string name="pref_category_general">Allgemein</string>
     <string name="pref_category_reader">Lese-Einstellungen</string>
     <string name="pref_category_downloads">Downloads</string>
@@ -347,7 +347,7 @@
     <string name="download_notifier_no_network">Kein Netzwerk verfügbar</string>
     <string name="download_notifier_download_paused">Download pausiert</string>
     <string name="track">Synchronisation</string>
-    <string name="label_recent_updates">Aktualisierungen</string>
+    <string name="label_recent_updates">Neu</string>
     <string name="action_global_search">Globale Suche</string>
     <string name="action_open">Öffnen</string>
     <string name="action_login">Einloggen</string>
@@ -424,7 +424,7 @@
     <string name="transition_pages_error">Seiten konnten nicht geladen werden: %1$s</string>
     <string name="action_open_in_web_view">In Webansicht öffnen</string>
     <string name="pref_true_color">32-Bit Farben</string>
-    <string name="pref_skip_read_chapters">Überspringe als gelesen markierte Kapitel</string>
+    <string name="pref_skip_read_chapters">Überspringe gelesene Kapitel</string>
     <string name="pref_read_with_long_tap">Langes Tippen für Kontextmenü</string>
     <string name="reader_pull_up_for_more_options">Hochziehen für mehr Optionen</string>
     <string name="filter_mode_default">Standard</string>
@@ -465,7 +465,7 @@
     <string name="pref_theme_dark">Dunkeldesign</string>
     <string name="theme_dark_default">Standard</string>
     <string name="theme_dark_blue">Dunkelblau</string>
-    <string name="theme_dark_amoled">AMOLED-Schwarz</string>
+    <string name="theme_dark_amoled">AMOLED Schwarz</string>
     <string name="pref_manage_notifications">Benachrichtigungen verwalten</string>
     <string name="pref_category_security">Sicherheit</string>
     <string name="lock_with_biometrics">Mit Biometrie sperren</string>
@@ -489,4 +489,7 @@
     <string name="information_webview_outdated">Bitte aktualisiere die WebView-App für eine bessere Kompatibilität</string>
     <string name="channel_new_chapters">Kapitelaktualisierungen</string>
     <string name="action_menu">Menü</string>
+    <string name="unlock_app">Tachiyomi entsperren</string>
+    <string name="secure_screen_summary">App-Inhalte beim App-Wechseln verbergen und Screenshots blockieren</string>
+    <string name="pref_category_display">Anzeige</string>
 </resources>
