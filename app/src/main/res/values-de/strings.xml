@@ -282,7 +282,7 @@
     <string name="completed">Abgeschlossen</string>
     <string name="dropped">Abgebrochen</string>
     <string name="on_hold">Pausiert</string>
-    <string name="plan_to_read">Will ich lesen</string>
+    <string name="plan_to_read">Lesen geplant</string>
     <string name="score">Bewertung</string>
     <string name="title">Titel</string>
     <string name="status">Status</string>
