@@ -11,7 +11,7 @@
     <string name="label_library">Bibliotek</string>
     <string name="label_recent_manga">Historik</string>
     <string name="label_catalogues">Kataloger</string>
-    <string name="label_recent_updates">Uppdateringar</string>
+    <string name="label_recent_updates">Nytt</string>
     <string name="label_categories">Kategorier</string>
     <string name="label_backup">Säkerhetskopiering</string>
     <string name="label_migration">Källmigrering</string>
@@ -85,7 +85,7 @@
     <string name="deleting">Tar bort…</string>
     <string name="loading">Laddar…</string>
     <string name="app_not_available">Programmet är inte tillgänglig</string>
-    <string name="short_recent_updates">Uppdateringar</string>
+    <string name="short_recent_updates">Nytt</string>
     <string name="pref_category_general">Allmänt</string>
     <string name="pref_category_reader">Läsare</string>
     <string name="pref_category_downloads">Nedladdningar</string>
