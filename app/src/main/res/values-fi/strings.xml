@@ -475,4 +475,14 @@
         <item quantity="one">Minuutin jälkeen</item>
         <item quantity="other">%1$s minuutin jälkeen</item>
     </plurals>
+    <plurals name="notification_chapters">
+        <item quantity="one">Luku %1$s</item>
+        <item quantity="other">Luvut %1$s</item>
+    </plurals>
+    <string name="notification_and_n_more">ja %1$d lisää</string>
+    <string name="information_cloudflare_bypass_failure">Cloudflaren ohittaminen epäonnistui</string>
+    <string name="channel_new_chapters">Lukujen päivitykset</string>
+    <string name="unlock_app">Avaa Tachiyomi</string>
+    <string name="action_menu">Valikko</string>
+    <string name="pref_category_display">Näyttö</string>
 </resources>
