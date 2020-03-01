@@ -488,4 +488,8 @@
     <string name="information_cloudflare_bypass_failure">Falha ao contornar o Cloudflare</string>
     <string name="information_webview_outdated">Por favor, atualize o aplicativo de WebView para uma melhor compatibilidade</string>
     <string name="channel_new_chapters">Atualizações de capítulos</string>
+    <string name="unlock_app">Desbloquear o Tachiyomi</string>
+    <string name="action_menu">Menu</string>
+    <string name="secure_screen_summary">Esconde os conteúdos do aplicativo durante a troca de aplicativos e impede capturas de tela</string>
+    <string name="pref_category_display">Visualização</string>
 </resources>
