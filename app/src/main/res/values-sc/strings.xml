@@ -488,4 +488,8 @@
     <string name="information_cloudflare_bypass_failure">Isfrancamentu de Cloudflare fallidu</string>
     <string name="information_webview_outdated">Agiorna s\'aplicatzione de WebView pro otènnere una cumpatibilidade prus manna</string>
     <string name="channel_new_chapters">Agiornamentos de sos capìtulos</string>
+    <string name="unlock_app">Isbloca Tachiyomi</string>
+    <string name="action_menu">Menù</string>
+    <string name="secure_screen_summary">Cua sos cuntenutos de s\'aplicatzione cando mudas de aplicatzione e bloca sas ischermadas</string>
+    <string name="pref_category_display">Visualizatzione</string>
 </resources>
