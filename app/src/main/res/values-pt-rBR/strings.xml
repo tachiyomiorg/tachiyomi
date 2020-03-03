@@ -222,7 +222,7 @@
     <string name="password">Senha</string>
     <string name="show_password">Mostrar senha</string>
     <string name="login">Fazer login</string>
-    <string name="login_success">Login bem sucedido</string>
+    <string name="login_success">Login realizado</string>
     <string name="invalid_login">Não foi possível realizar o login</string>
     <string name="unknown_error">Erro desconhecido</string>
     <string name="library_search_hint">Título ou autor…</string>
@@ -443,7 +443,7 @@
     <string name="ext_obsolete">Obsoleto</string>
     <string name="obsolete_extension_message">Esta extensão não está mais disponível.</string>
     <string name="no_results_found">Nenhum resultado encontrado</string>
-    <string name="migration_selection_prompt">Escolha uma fonte da qual migrar</string>
+    <string name="migration_selection_prompt">Selecione uma fonte da qual migrar</string>
     <string name="invalid_download_dir">Local de download inválido</string>
     <string name="pref_date_format">Formato da data</string>
     <string name="pref_category_library_update">Atualizações</string>
@@ -487,4 +487,16 @@
     <string name="action_menu">Menu</string>
     <string name="secure_screen_summary">Esconde os conteúdos do aplicativo durante a troca de aplicativos e impede capturas de tela</string>
     <string name="pref_category_display">Visualização</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 capítulo novo</item>
+        <item quantity="other">%1$d novos capítulos</item>
+    </plurals>
+    <string name="notification_chapters_single">Capítulo %1$s</string>
+    <string name="notification_chapters_single_and_more">Capítulo %1$s e %2$d mais</string>
+    <string name="notification_chapters_multiple">Capítulos %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Capítulo %1$s e 1 mais</item>
+        <item quantity="other">Capítulos %1$s e %2$d mais</item>
+    </plurals>
+    <string name="hide_catalogue">Esconder %1$s\?</string>
 </resources>
