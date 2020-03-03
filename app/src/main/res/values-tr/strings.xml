@@ -251,12 +251,12 @@
     <string name="pref_enable_automatic_updates_summary">Yeni uygulama sürümlerini kendiliğinden denetle</string>
     <string name="pref_enable_acra">Çökme bildirimi gönder</string>
     <string name="pref_acra_summary">Hataların düzeltilmesine yardımcı olur. Hiçbir hassas veri gönderilmez</string>
-    <string name="login_title">%1$s için giriş</string>
+    <string name="login_title">%1$s \'e giriş yap</string>
     <string name="username">Kullanıcı adı</string>
     <string name="password">Parola</string>
     <string name="show_password">Parolayı göster</string>
     <string name="login">Giriş</string>
-    <string name="login_success">Başarıyla giriş yapıldı</string>
+    <string name="login_success">Giriş yapıldı</string>
     <string name="invalid_login">Giriş yapılamadı</string>
     <string name="unknown_error">Bilinmeyen hata</string>
     <string name="library_search_hint">Başlık veya yazar…</string>
@@ -451,9 +451,9 @@
     <string name="logout_title">%1$s \'den çıkılsın mı\?</string>
     <string name="logout">Çıkış</string>
     <string name="logout_success">Şimdi çıktınız</string>
-    <string name="currently_reading">Şu Anda Okunan</string>
+    <string name="currently_reading">Şu anda okunan</string>
     <string name="paused">Duraklatıldı</string>
-    <string name="want_to_read">Okunmak İstenen</string>
+    <string name="want_to_read">Okunmak istenen</string>
     <string name="label_more">Daha</string>
     <string name="action_sort_latest_chapter">Son bölüm</string>
     <string name="action_view_chapters">Bölümleri görüntüle</string>
@@ -487,4 +487,16 @@
     <string name="action_menu">Menu</string>
     <string name="secure_screen_summary">İçeriği uygulamaları değiştirirken gizle ve ekran görüntülerini engelle</string>
     <string name="pref_category_display">Ekran</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 yeni bölüm</item>
+        <item quantity="other">%1$d yeni bölüm</item>
+    </plurals>
+    <string name="notification_chapters_single">Bölüm %1$s</string>
+    <string name="notification_chapters_single_and_more">Bölüm %1$s ve %2$d daha</string>
+    <string name="notification_chapters_multiple">Bölüm %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Bölüm %1$s ve 1 daha</item>
+        <item quantity="other">Bölüm %1$s ve %2$d daha</item>
+    </plurals>
+    <string name="hide_catalogue">%1$s gizlensin mi\?</string>
 </resources>
