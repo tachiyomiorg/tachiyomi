@@ -251,12 +251,12 @@
     <string name="pref_enable_automatic_updates_summary">Comprova automàticament si hi ha versions noves de l\'aplicació</string>
     <string name="pref_enable_acra">Envia informes de fallades</string>
     <string name="pref_acra_summary">Ajuda a solucionar errades. No s\'enviaran dades sensibles</string>
-    <string name="login_title">Inicieu la sessió a %1$s</string>
+    <string name="login_title">Inicia la sessió a %1$s</string>
     <string name="username">Nom d\'usuari</string>
     <string name="password">Contrasenya</string>
     <string name="show_password">Mostra la contrasenya</string>
     <string name="login">Inicia la sessió</string>
-    <string name="login_success">S\'ha iniciat la sessió satisfactòriament</string>
+    <string name="login_success">S\'ha iniciat la sessió</string>
     <string name="invalid_login">No s\'ha pogut iniciar la sessió</string>
     <string name="unknown_error">S\'ha produït un error desconegut</string>
     <string name="library_search_hint">Títol o autor…</string>
@@ -487,4 +487,15 @@
     <string name="action_menu">Menú</string>
     <string name="secure_screen_summary">Amaga el contingut de l\'aplicació en canviar entre aplicacions i bloca les captures de pantalla</string>
     <string name="pref_category_display">Visualització</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 capítol nou</item>
+        <item quantity="other">%1$d capítols nous</item>
+    </plurals>
+    <string name="notification_chapters_single">Capítol %1$s</string>
+    <string name="notification_chapters_single_and_more">Capítol %1$s i %2$d més</string>
+    <string name="notification_chapters_multiple">Capítols %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Capítol %1$s i 1 més</item>
+        <item quantity="other">Capítols %1$s i %2$d més</item>
+    </plurals>
 </resources>
