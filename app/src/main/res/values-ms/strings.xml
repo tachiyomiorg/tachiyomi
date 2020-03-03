@@ -220,7 +220,7 @@
     <string name="pref_enable_automatic_updates_summary">Semak sama ada wujud versi baharu secara automatik</string>
     <string name="pref_enable_acra">Hantar laporan ranap</string>
     <string name="pref_acra_summary">Bantu membaiki aplikasi. Tiada data sensitif dihantar</string>
-    <string name="login_title">Log masuk untuk %1$s</string>
+    <string name="login_title">Log masuk ke %1$s</string>
     <string name="username">Nama pengguna</string>
     <string name="password">Kata laluan</string>
     <string name="show_password">Perlihatkan kata laluan</string>
@@ -486,4 +486,14 @@
     <string name="action_menu">Menu</string>
     <string name="secure_screen_summary">Sorok kandungan aplikasi apabila menukar aplikasi dan sekat tangkapan skrin</string>
     <string name="pref_category_display">Paparan</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="other">%1$d bab baharu</item>
+    </plurals>
+    <string name="notification_chapters_single">Bab %1$s</string>
+    <string name="notification_chapters_single_and_more">Bab %1$s dan %2$d lagi</string>
+    <string name="notification_chapters_multiple">Bab %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="other">Bab %1$s dan %2$d lagi</item>
+    </plurals>
+    <string name="hide_catalogue">Sembunyikan %1$s\?</string>
 </resources>
