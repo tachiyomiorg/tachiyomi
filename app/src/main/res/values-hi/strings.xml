@@ -478,11 +478,6 @@
     <string name="ext_updates_pending">अपडेट लंबित हैं</string>
     <string name="pref_cutout_short">कटआउट क्षेत्र में सामग्री दिखाएं</string>
     <string name="pref_webtoon_padding_vert">पृष्ठों के बीच लंबवत पैडिंग</string>
-    <plurals name="notification_chapters">
-        <item quantity="one">अध्याय %1$s</item>
-        <item quantity="other">अध्याय %1$s</item>
-    </plurals>
-    <string name="notification_and_n_more">और %1$d अधिक</string>
     <string name="information_cloudflare_bypass_failure">Cloudflare को बायपास करने में विफल</string>
     <string name="information_webview_outdated">बेहतर संगतता के लिए कृपया WebView ऐप को अपडेट करें</string>
     <string name="channel_new_chapters">अध्याय अद्यतन</string>

@@ -513,11 +513,6 @@
     <string name="ext_updates_pending">Aggiornamenti in sospeso</string>
     <string name="pref_cutout_short">Mostra il contenuto dell\'area ritagliata</string>
     <string name="pref_webtoon_padding_vert">Spaziatura verticale tra le pagine</string>
-    <plurals name="notification_chapters">
-        <item quantity="one">Capitolo %1$s</item>
-        <item quantity="other">Capitoli %1$s</item>
-    </plurals>
-    <string name="notification_and_n_more">e %1$d in più</string>
     <string name="information_cloudflare_bypass_failure">Impossibile bypassare Cloudflare</string>
     <string name="information_webview_outdated">Aggiornare l\'app WebView per una migliore compatibilità</string>
     <string name="channel_new_chapters">Aggiornamenti del capitolo</string>

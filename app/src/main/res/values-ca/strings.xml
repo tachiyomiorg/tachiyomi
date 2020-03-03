@@ -480,11 +480,6 @@
     <string name="ext_updates_pending">Actualitzacions pendents</string>
     <string name="pref_cutout_short">Mostra el contingut a l\'àrea de retall</string>
     <string name="pref_webtoon_padding_vert">Separació vertical entre pàgines</string>
-    <plurals name="notification_chapters">
-        <item quantity="one">Capítol %1$s</item>
-        <item quantity="other">Capítols %1$s</item>
-    </plurals>
-    <string name="notification_and_n_more">i %1$d més</string>
     <string name="information_cloudflare_bypass_failure">No s\'ha pogut evitar el Cloudflare</string>
     <string name="information_webview_outdated">Actualitzeu l\'aplicació de WebView per a tenir més bona compatibilitat</string>
     <string name="channel_new_chapters">Actualitzacions de capítols</string>

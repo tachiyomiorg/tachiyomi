@@ -480,11 +480,6 @@
     <string name="ext_updates_pending">Uppdateringar väntar</string>
     <string name="pref_cutout_short">Visa innehåll i utskärningsområdet</string>
     <string name="pref_webtoon_padding_vert">Vertikal fyllning mellan sidor</string>
-    <plurals name="notification_chapters">
-        <item quantity="one">Kapitel %1$s</item>
-        <item quantity="other">Kapitel %1$s</item>
-    </plurals>
-    <string name="notification_and_n_more">och %1$d till</string>
     <string name="information_cloudflare_bypass_failure">Det gick inte att kringgå Cloudflare</string>
     <string name="information_webview_outdated">Uppdatera WebView-appen för bättre kompatibilitet</string>
     <string name="channel_new_chapters">Kapiteluppdateringar</string>

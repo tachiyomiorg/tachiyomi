@@ -472,14 +472,10 @@
     <string name="lock_never">从不</string>
     <plurals name="lock_after_mins">
         <item quantity="one">%1$s 分钟后</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="secure_screen">安全屏幕</string>
     <string name="ext_updates_pending">待更新</string>
-    <plurals name="notification_chapters">
-        <item quantity="one">第 %1$s 章</item>
-        <item quantity="other"></item>
-    </plurals>
     <string name="information_cloudflare_bypass_failure">无法绕过 Cloudflare</string>
     <string name="information_webview_outdated">请更新 WebView 应用以获得更好的兼容性</string>
     <string name="unlock_app">解锁 Tachiyomi</string>
