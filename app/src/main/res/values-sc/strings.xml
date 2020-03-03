@@ -252,12 +252,12 @@
     <string name="pref_enable_automatic_updates_summary">Chirca automaticamente versiones noas de s\'aplicatzione</string>
     <string name="pref_enable_acra">Imbia raportos a pitzu de sos arrestos anòmalos</string>
     <string name="pref_acra_summary">Agiudat a acontzare cale si siat faddina. Perunu datu sensìbile at a èssere imbiadu</string>
-    <string name="login_title">Intrada pro %1$s</string>
+    <string name="login_title">Intra in %1$s</string>
     <string name="username">Nùmene impreadore</string>
     <string name="password">Crae de intrada</string>
     <string name="show_password">Ammustra sa crae</string>
     <string name="login">Intra</string>
-    <string name="login_success">Ses intradu chene problemas</string>
+    <string name="login_success">Ses intradu</string>
     <string name="invalid_login">Intrada fallida</string>
     <string name="unknown_error">Errore disconnotu</string>
     <string name="library_search_hint">Tìtulu o autore…</string>
@@ -487,4 +487,16 @@
     <string name="action_menu">Menù</string>
     <string name="secure_screen_summary">Cua sos cuntenutos de s\'aplicatzione cando mudas de aplicatzione e bloca sas ischermadas</string>
     <string name="pref_category_display">Visualizatzione</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 capìtulu nou</item>
+        <item quantity="other">%1$d capìtulos noos</item>
+    </plurals>
+    <string name="notification_chapters_single">Capìtulu %1$s</string>
+    <string name="notification_chapters_single_and_more">Capìtulu %1$s e àteros %2$d</string>
+    <string name="notification_chapters_multiple">Capìtulos %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Capìtulu %1$s e 1 àteru</item>
+        <item quantity="other">Capìtulos %1$s e àteros %2$d</item>
+    </plurals>
+    <string name="hide_catalogue">Cheres cuare %1$s\?</string>
 </resources>
