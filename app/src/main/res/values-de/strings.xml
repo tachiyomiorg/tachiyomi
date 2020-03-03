@@ -220,7 +220,7 @@
     <string name="password">Kennwort</string>
     <string name="show_password">Kennwort anzeigen</string>
     <string name="login">Anmelden</string>
-    <string name="login_success">Anmeldung erfolgreich</string>
+    <string name="login_success">Eingeloggt</string>
     <string name="invalid_login">Anmeldung fehlgeschlagen</string>
     <string name="unknown_error">Unbekannter Fehler</string>
     <string name="library_search_hint">Titel oder Autor…</string>
@@ -487,4 +487,16 @@
     <string name="unlock_app">Tachiyomi entsperren</string>
     <string name="secure_screen_summary">App-Inhalte beim App-Wechseln verbergen und Screenshots blockieren</string>
     <string name="pref_category_display">Anzeige</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 neues Kapitel</item>
+        <item quantity="other">%1$d neue Kapitel</item>
+    </plurals>
+    <string name="notification_chapters_single">Kapitel %1$s</string>
+    <string name="notification_chapters_single_and_more">Kapitel %1$s und %2$d mehr</string>
+    <string name="notification_chapters_multiple">Kapitel %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Kapitel %1$s und 1 mehr</item>
+        <item quantity="other">Kapitel %1$s und %2$d mehr</item>
+    </plurals>
+    <string name="hide_catalogue">%1$s verbergen\?</string>
 </resources>
