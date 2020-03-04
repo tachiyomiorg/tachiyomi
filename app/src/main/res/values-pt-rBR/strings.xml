@@ -180,15 +180,15 @@
     <string name="pref_backup_interval">Frequência de backup</string>
     <string name="pref_backup_slots">Máximo de backups automáticos</string>
     <string name="dialog_restoring_backup">Restaurando backup
-%1$s adicionado à biblioteca</string>
+\n%1$s adicionado à biblioteca</string>
     <string name="source_not_found">Fonte não encontrada</string>
     <string name="dialog_restoring_source_not_found">Restoring backup
-%1$s fonte não encontrada</string>
+\nFonte %1$s não encontrada</string>
     <string name="backup_created">Backup concluído</string>
     <string name="restore_completed">Restauração concluída</string>
     <string name="error_opening_log">Não foi possível abrir o registro de eventos</string>
     <string name="restore_completed_content">A restauração levou %1$s.
-%2$s erros encontrados.</string>
+\n%2$s erros encontrados.</string>
     <string name="backup_restore_content">Restaurar usa as fontes para obter dados, cobranças podem ser efetuadas.
 \n
 \nVerifique se instalou as extensões e se logou às fontes e aos serviços de monitoramento antes de restaurar.</string>
@@ -199,7 +199,7 @@
     <string name="pref_clear_chapter_cache">Limpar o cache de capítulos</string>
     <string name="used_cache">Total usado: %1$s</string>
     <string name="cache_deleted">Cache limpo. %1$d arquivos foram excluídos</string>
-    <string name="cache_delete_error">Ocorreu um erro ao limpar o cache</string>
+    <string name="cache_delete_error">Um erro ocorreu ao limpar o cache</string>
     <string name="pref_clear_cookies">Excluir cookies</string>
     <string name="cookies_cleared">Cookies excluídos</string>
     <string name="choices_reset">Restaurar escolhas de diálogos</string>
@@ -265,7 +265,7 @@
     <string name="chapter_downloading_progress">Fazendo download (%1$d/%2$d)</string>
     <string name="chapter_error">Erro</string>
     <string name="chapter_paused">Pausado</string>
-    <string name="fetch_chapters_error">Não foi possível obter capítulos</string>
+    <string name="fetch_chapters_error">Não foi possível obter os capítulos</string>
     <string name="show_title">Título</string>
     <string name="show_chapter_number">Número do capítulo</string>
     <string name="sorting_mode">Modo de classificação</string>
@@ -338,7 +338,7 @@
     <string name="information_no_downloads">Nenhum download</string>
     <string name="information_no_recent">Sem capítulos recentes</string>
     <string name="information_no_recent_manga">Sem mangás lidos recentemente</string>
-    <string name="information_empty_library">A sua biblioteca está vazia. Você pode adicionar séries à biblioteca pelo menu de catálogos.</string>
+    <string name="information_empty_library">A sua biblioteca está vazia. Você pode adicionar séries a partir dos catálogos.</string>
     <string name="download_notifier_downloader_title">Gerenciador de downloads</string>
     <string name="download_notifier_title_error">Erro</string>
     <string name="download_notifier_unkown_error">Não foi possível realizar o download do capítulo por um erro inesperado</string>
