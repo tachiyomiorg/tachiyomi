@@ -9,9 +9,9 @@
     <string name="label_settings">Налаштування</string>
     <string name="label_download_queue">Черга завантаження</string>
     <string name="label_library">Бібліотека</string>
-    <string name="label_recent_manga">Нещодавно прочитане</string>
+    <string name="label_recent_manga">Історія</string>
     <string name="label_catalogues">Каталоги</string>
-    <string name="label_recent_updates">Оновлення бібліотеки</string>
+    <string name="label_recent_updates">Оновлення</string>
     <string name="label_categories">Категорії</string>
     <string name="label_backup">Резервна копія</string>
     <string name="label_migration">Міграція джерела</string>
@@ -134,10 +134,10 @@
     <string name="ext_preferences">Налаштування</string>
     <string name="ext_available">Доступно</string>
     <string name="untrusted_extension">Ненадійне розширення</string>
-    <string name="untrusted_extension_message">Це розширення було підписано ненадійним сертифікатом та не було активовано.
-\n
-\nШкідливе розширення может зчитувати будь-які облікові дані для входу, що зберігаються в Tachiyomi, або виконувати довільний код.
-\n
+    <string name="untrusted_extension_message">Це розширення було підписане ненадійним сертифікатом і не було активовано. 
+\n 
+\nЗловмисне розширення може прочитати будь-які дані для входу, що зберігаються в Tachiyomi, або виконати довільний код. 
+\n 
 \nДовіряючи цьому сертифікату, ви приймаєте ці ризики.</string>
     <string name="ext_version_info">Версія:%1$s</string>
     <string name="ext_language_info">Мова: %1$s</string>
@@ -251,7 +251,7 @@
     <string name="pref_enable_automatic_updates_summary">Автоматично перевіряти нові версії</string>
     <string name="pref_enable_acra">Надсилати звіти про падіння</string>
     <string name="pref_acra_summary">Допомагає виправляти будь-які баги. Особисті дані не передаються</string>
-    <string name="login_title">Авторизація для %1$s</string>
+    <string name="login_title">Авторизація до %1$s</string>
     <string name="username">Ім`я користувача</string>
     <string name="password">Пароль</string>
     <string name="show_password">Показувати пароль</string>
@@ -453,5 +453,53 @@
     <string name="logout_success">Ви вийшли з системи</string>
     <string name="currently_reading">Нині чітається</string>
     <string name="paused">Призупинено</string>
-    <string name="want_to_read">Хочу читати</string>
+    <string name="want_to_read">Читатиму</string>
+    <string name="label_more">Ще</string>
+    <string name="action_sort_latest_chapter">Остання глава</string>
+    <string name="action_view_chapters">Подивитись глави</string>
+    <string name="action_cancel_all">Відмінити все</string>
+    <string name="pref_theme_mode">Тема застосунку</string>
+    <string name="theme_light">Світла</string>
+    <string name="theme_dark">Темна</string>
+    <string name="theme_system">Використовувати системну</string>
+    <string name="pref_theme_dark">Темний варіант</string>
+    <string name="theme_dark_default">За замовчуванням</string>
+    <string name="theme_dark_blue">Темно-синя</string>
+    <string name="theme_dark_amoled">AMOLED чорна</string>
+    <string name="pref_manage_notifications">Керування сповіщеннями</string>
+    <string name="pref_category_security">Безпека</string>
+    <string name="lock_with_biometrics">Біометричне блокування</string>
+    <string name="lock_when_idle">Блокувати в режимі очікування</string>
+    <string name="lock_always">Завжди</string>
+    <string name="lock_never">Ніколи</string>
+    <plurals name="lock_after_mins">
+        <item quantity="one">Після 1 хвилини</item>
+        <item quantity="few">Після 1%$s хвилин</item>
+        <item quantity="many">Після 1%$s хвилин</item>
+    </plurals>
+    <string name="secure_screen">Екран безпеки</string>
+    <string name="ext_updates_pending">Очікуються оновлення</string>
+    <string name="pref_cutout_short">Відображати вміст обітнутої області</string>
+    <string name="pref_webtoon_padding_vert">Вертикальний відступ між сторінками</string>
+    <string name="information_cloudflare_bypass_failure">Не вдалось обійти Cloudflare</string>
+    <string name="information_webview_outdated">Будь ласка, оновіть WebView для кращої сумісності</string>
+    <string name="channel_new_chapters">Оновлення глав</string>
+    <string name="unlock_app">Відчинити Tachiyomi</string>
+    <string name="action_menu">Меню</string>
+    <string name="secure_screen_summary">Ховати вміст застосунку при перемиканні програм та блокувати скріншоти</string>
+    <string name="pref_category_display">Відображення</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 нова глава</item>
+        <item quantity="few">%1$d нових глав</item>
+        <item quantity="many">%1$d нових глав</item>
+    </plurals>
+    <string name="notification_chapters_single">Глава %1$s</string>
+    <string name="notification_chapters_single_and_more">Глава %1$s та %2$d більше</string>
+    <string name="notification_chapters_multiple">Глави %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Глава %1$s та 1 більше</item>
+        <item quantity="few">Глави %1$s та %2$d більше</item>
+        <item quantity="many">Глави %1$s та %2$d більше</item>
+    </plurals>
+    <string name="hide_catalogue">Приховати %1$s\?</string>
 </resources>
