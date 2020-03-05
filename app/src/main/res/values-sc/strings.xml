@@ -498,4 +498,7 @@
         <item quantity="one">Capìtulu %1$s e 1 àteru</item>
         <item quantity="other">Capìtulos %1$s e àteros %2$d</item>
     </plurals>
+    <string name="action_hide">Cua</string>
+    <string name="hide_notification_content">Cua su cuntenutu de sas notìficas</string>
+    <string name="notification_check_updates">Chirchende capìtulos noos</string>
 </resources>
