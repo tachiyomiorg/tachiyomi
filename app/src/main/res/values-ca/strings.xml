@@ -498,4 +498,7 @@
         <item quantity="one">Capítol %1$s i 1 més</item>
         <item quantity="other">Capítols %1$s i %2$d més</item>
     </plurals>
+    <string name="action_hide">Amaga</string>
+    <string name="hide_notification_content">Amaga el contingut de les notificacions</string>
+    <string name="notification_check_updates">S\'està comprovant si hi ha capítols nous</string>
 </resources>
