@@ -498,4 +498,7 @@
         <item quantity="one">Kapitel %1$s und 1 mehr</item>
         <item quantity="other">Kapitel %1$s und %2$d mehr</item>
     </plurals>
+    <string name="action_hide">Verbergen</string>
+    <string name="hide_notification_content">Benachrichtigungsinhalt verbergen</string>
+    <string name="notification_check_updates">Überprüfe auf neue Kapitel</string>
 </resources>
