@@ -498,4 +498,7 @@
         <item quantity="one">Capítulo %1$s e 1 mais</item>
         <item quantity="other">Capítulos %1$s e %2$d mais</item>
     </plurals>
+    <string name="action_hide">Ocultar</string>
+    <string name="hide_notification_content">Ocultar conteúdo da notificação</string>
+    <string name="notification_check_updates">Verificando por novos capítulos</string>
 </resources>
