@@ -501,4 +501,7 @@
         <item quantity="few">Глави %1$s та %2$d більше</item>
         <item quantity="many">Глави %1$s та %2$d більше</item>
     </plurals>
+    <string name="action_hide">Приховати</string>
+    <string name="hide_notification_content">Приховати вміст сповіщення</string>
+    <string name="notification_check_updates">Перевірка нових глав</string>
 </resources>
