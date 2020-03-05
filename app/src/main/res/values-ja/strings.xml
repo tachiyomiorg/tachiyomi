@@ -476,5 +476,4 @@
         <item quantity="other">%1$d新しい章</item>
     </plurals>
     <string name="notification_chapters_single">%1$s章</string>
-    <string name="hide_catalogue">%1$sを隠す？</string>
 </resources>

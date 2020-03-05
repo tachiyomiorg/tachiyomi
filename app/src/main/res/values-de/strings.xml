@@ -498,5 +498,4 @@
         <item quantity="one">Kapitel %1$s und 1 mehr</item>
         <item quantity="other">Kapitel %1$s und %2$d mehr</item>
     </plurals>
-    <string name="hide_catalogue">%1$s verbergen\?</string>
 </resources>

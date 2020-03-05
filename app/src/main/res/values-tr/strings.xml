@@ -498,5 +498,4 @@
         <item quantity="one">Bölüm %1$s ve 1 daha</item>
         <item quantity="other">Bölüm %1$s ve %2$d daha</item>
     </plurals>
-    <string name="hide_catalogue">%1$s gizlensin mi\?</string>
 </resources>

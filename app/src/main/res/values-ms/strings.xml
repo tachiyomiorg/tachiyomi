@@ -495,5 +495,4 @@
     <plurals name="notification_chapters_multiple_and_more">
         <item quantity="other">Bab %1$s dan %2$d lagi</item>
     </plurals>
-    <string name="hide_catalogue">Sembunyikan %1$s\?</string>
 </resources>

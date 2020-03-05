@@ -501,5 +501,4 @@
         <item quantity="few">Глави %1$s та %2$d більше</item>
         <item quantity="many">Глави %1$s та %2$d більше</item>
     </plurals>
-    <string name="hide_catalogue">Приховати %1$s\?</string>
 </resources>

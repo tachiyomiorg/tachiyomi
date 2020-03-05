@@ -498,5 +498,4 @@
         <item quantity="one">Capìtulu %1$s e 1 àteru</item>
         <item quantity="other">Capìtulos %1$s e àteros %2$d</item>
     </plurals>
-    <string name="hide_catalogue">Cheres cuare %1$s\?</string>
 </resources>
