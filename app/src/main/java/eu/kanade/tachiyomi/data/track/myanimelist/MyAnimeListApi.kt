@@ -12,6 +12,11 @@ import eu.kanade.tachiyomi.util.selectInt
 import eu.kanade.tachiyomi.util.selectText
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 import java.util.zip.GZIPInputStream
 import okhttp3.FormBody
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -25,11 +30,6 @@ import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.jsoup.parser.Parser
 import rx.Observable
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.Date
-import java.util.Calendar
 
 class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListInterceptor) {
 
@@ -172,21 +172,19 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                 }
                 .map {
                     val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-                    val startDateStr = it.selectText("my_start_date")
-                    val finishDateStr = it.selectText("my_finish_date")
 
                     var startDate: Date? = null
+                    val startDateStr = it.selectText("my_start_date")
                     if (!startDateStr.isNullOrBlank() && startDateStr != "0000-00-00") {
                         startDate =
-                                try { dateFormat.parse(startDateStr) }
-                                catch (e: ParseException) { null }
+                                try { dateFormat.parse(startDateStr) } catch (e: ParseException) { null }
                     }
 
                     var finishDate: Date? = null
+                    val finishDateStr = it.selectText("my_finish_date")
                     if (!finishDateStr.isNullOrBlank() && finishDateStr != "0000-00-00") {
                         finishDate =
-                                try { dateFormat.parse(finishDateStr) }
-                                catch (e: ParseException) { null }
+                                try { dateFormat.parse(finishDateStr) } catch (e: ParseException) { null }
                     }
 
                     TrackSearch.create(TrackManager.MYANIMELIST).apply {

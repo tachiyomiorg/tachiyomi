@@ -449,6 +449,7 @@
     <string name="track_finish_date">Finished</string>
     <string name="track_type">Type</string>
     <string name="track_author">Author</string>
+    <string name="error_invalid_date_supplied">Invalid date supplied</string>
     <string name="url_not_set">Manga URL not set, please click title and select manga again</string>
 
     <!-- Category activity -->

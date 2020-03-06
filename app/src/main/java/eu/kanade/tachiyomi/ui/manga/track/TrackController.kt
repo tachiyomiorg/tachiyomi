@@ -12,6 +12,7 @@ import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.toast
+import java.util.Date
 import kotlinx.android.synthetic.main.track_controller.swipe_refresh
 import kotlinx.android.synthetic.main.track_controller.track_recycler
 import timber.log.Timber
@@ -20,7 +21,8 @@ class TrackController : NucleusController<TrackPresenter>(),
         TrackAdapter.OnClickListener,
         SetTrackStatusDialog.Listener,
         SetTrackChaptersDialog.Listener,
-        SetTrackScoreDialog.Listener {
+        SetTrackScoreDialog.Listener,
+        SetTrackReadingDatesDialog.Listener {
 
     private var adapter: TrackAdapter? = null
 
@@ -121,6 +123,20 @@ class TrackController : NucleusController<TrackPresenter>(),
         SetTrackScoreDialog(this, item).showDialog(router)
     }
 
+    override fun onStartDateClick(position: Int) {
+        val item = adapter?.getItem(position) ?: return
+        if (item.track == null) return
+
+        SetTrackReadingDatesDialog(this, SetTrackReadingDatesDialog.SET_START_DATE, item).showDialog(router)
+    }
+
+    override fun onFinishDateClick(position: Int) {
+        val item = adapter?.getItem(position) ?: return
+        if (item.track == null) return
+
+        SetTrackReadingDatesDialog(this, SetTrackReadingDatesDialog.SET_FINISH_DATE, item).showDialog(router)
+    }
+
     override fun setStatus(item: TrackItem, selection: Int) {
         presenter.setStatus(item, selection)
         swipe_refresh?.isRefreshing = true
@@ -133,6 +149,16 @@ class TrackController : NucleusController<TrackPresenter>(),
 
     override fun setChaptersRead(item: TrackItem, chaptersRead: Int) {
         presenter.setLastChapterRead(item, chaptersRead)
+        swipe_refresh?.isRefreshing = true
+    }
+
+    override fun setStartDate(item: TrackItem, date: Date) {
+        presenter.setStartDate(item, date)
+        swipe_refresh?.isRefreshing = true
+    }
+
+    override fun setFinishDate(item: TrackItem, date: Date) {
+        presenter.setFinishDate(item, date)
         swipe_refresh?.isRefreshing = true
     }
 

@@ -36,6 +36,8 @@ class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
         status_container.setOnClickListener { listener.onStatusClick(adapterPosition) }
         chapters_container.setOnClickListener { listener.onChaptersClick(adapterPosition) }
         score_container.setOnClickListener { listener.onScoreClick(adapterPosition) }
+        start_date_container.setOnClickListener { listener.onStartDateClick(adapterPosition) }
+        finish_date_container.setOnClickListener { listener.onFinishDateClick(adapterPosition) }
 
         track_set.setOnClickListener { listener.onTitleClick(adapterPosition) }
     }
@@ -64,17 +66,14 @@ class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
                 finish_date_container.visible() // Keep hidden if status is reading?
 
                 val dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM)
-                if (track.started_reading_date != null) {
-                    track_start_date.text = dateFormat.format(track.started_reading_date!!)
-                } else {
-                    track_start_date.text = "-"
-                }
 
-                if (track.finished_reading_date != null) {
-                    track_finish_date.text = dateFormat.format(track.finished_reading_date!!)
-                } else {
-                    track_finish_date.text = "-"
-                }
+                track_start_date.text =
+                        if (track.started_reading_date != null) dateFormat.format(track.started_reading_date!!)
+                        else "-"
+
+                track_finish_date.text =
+                        if (track.finished_reading_date != null) dateFormat.format(track.finished_reading_date!!)
+                        else "-"
             }
         }
     }
