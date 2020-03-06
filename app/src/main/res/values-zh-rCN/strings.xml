@@ -118,7 +118,7 @@
     <string name="pref_start_screen">开始页面</string>
     <string name="pref_language">语言</string>
     <string name="system_default">系统默认</string>
-    <string name="default_category">默认标签</string>
+    <string name="default_category">默认分类</string>
     <string name="default_category_summary">总是询问</string>
     <string name="all_lang">全部</string>
     <string name="ext_details">详细</string>
@@ -202,7 +202,7 @@
     <string name="fourth_to_last">至倒数第四章</string>
     <string name="fifth_to_last">至倒数第五章</string>
     <string name="pref_download_new">自动下载新章节</string>
-    <string name="pref_download_new_categories">自动下载标签</string>
+    <string name="pref_download_new_categories">自动下载的分类</string>
     <string name="services">服务</string>
     <string name="backup">备份</string>
     <string name="pref_create_backup">创建备份</string>
@@ -259,7 +259,7 @@
     <string name="invalid_login">登录失败</string>
     <string name="unknown_error">未知错误</string>
     <string name="library_search_hint">标题或作者…</string>
-    <string name="updating_category">升级标签中</string>
+    <string name="updating_category">正在更新分类</string>
     <string name="local_source_badge">本地</string>
     <string name="confirm_delete_manga">确定要删除选中的漫画吗？</string>
     <string name="also_delete_chapters">同时删除已下载章节</string>
@@ -343,7 +343,7 @@
     <string name="track_type">类型</string>
     <string name="track_author">作者</string>
     <string name="url_not_set">漫画链接不存在，请点击标题再次选择漫画</string>
-    <string name="error_category_exists">已存在相同标签！</string>
+    <string name="error_category_exists">已有名称相同的分类！</string>
     <string name="snack_categories_deleted">分类已删除</string>
     <string name="dialog_with_checkbox_remove_description">将清除此章节的阅读日期，确定吗？</string>
     <string name="dialog_with_checkbox_reset">重置此漫画所有章节</string>
@@ -482,4 +482,8 @@
     <string name="action_menu">菜单</string>
     <string name="secure_screen_summary">切换应用时隐藏应用内容并阻止屏幕截图</string>
     <string name="pref_category_display">显示</string>
+    <string name="pref_theme_dark">默认深色主题</string>
+    <string name="channel_new_chapters">章节更新</string>
+    <string name="action_hide">隐藏</string>
+    <string name="hide_notification_content">隐藏通知内容</string>
 </resources>
