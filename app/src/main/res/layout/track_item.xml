@@ -171,6 +171,70 @@
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="?android:attr/divider" />
+
+            <LinearLayout
+                android:id="@+id/start_date_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:clickable="true"
+                android:padding="16dp">
+
+                <TextView
+                    style="@style/TextAppearance.Regular.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/track_start_date" />
+
+                <TextView
+                    android:id="@+id/track_start_date"
+                    style="@style/TextAppearance.Regular.Body1.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:gravity="end"
+                    tools:text="12/20/2020" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="?android:attr/divider" />
+
+            <LinearLayout
+                android:id="@+id/finish_date_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:clickable="true"
+                android:padding="16dp">
+
+                <TextView
+                    style="@style/TextAppearance.Regular.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/track_finish_date" />
+
+                <TextView
+                    android:id="@+id/track_finish_date"
+                    style="@style/TextAppearance.Regular.Body1.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:gravity="end"
+                    tools:text="12/20/2020" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

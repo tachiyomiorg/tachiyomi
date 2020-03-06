@@ -1,5 +1,7 @@
 package eu.kanade.tachiyomi.data.database.models
 
+import java.util.Date
+
 class TrackImpl : Track {
 
     override var id: Long? = null
@@ -21,6 +23,10 @@ class TrackImpl : Track {
     override var score: Float = 0f
 
     override var status: Int = 0
+
+    override var started_reading_date: Date? = null
+
+    override var finished_reading_date: Date? = null
 
     override var tracking_url: String = ""
 

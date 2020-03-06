@@ -25,6 +25,11 @@ import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.jsoup.parser.Parser
 import rx.Observable
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.Date
+import java.util.Calendar
 
 class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListInterceptor) {
 
@@ -91,12 +96,36 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                         if (it.priorResponse?.isRedirect != true) {
                             val trackForm = Jsoup.parse(it.consumeBody())
 
+                            val startMonth = trackForm.select("#add_manga_start_date_month > option[selected]").`val`().toIntOrNull()
+                            val startDay = trackForm.select("#add_manga_start_date_day > option[selected]").`val`().toIntOrNull()
+                            val startYear = trackForm.select("#add_manga_start_date_year > option[selected]").`val`().toIntOrNull()
+
+                            val finishMonth = trackForm.select("#add_manga_finish_date_month > option[selected]").`val`().toIntOrNull()
+                            val finishDay = trackForm.select("#add_manga_finish_date_day > option[selected]").`val`().toIntOrNull()
+                            val finishYear = trackForm.select("#add_manga_finish_date_year > option[selected]").`val`().toIntOrNull()
+
+                            val calendar = Calendar.getInstance()
+
+                            var startDate: Date? = null
+                            if (startMonth != null && startDay != null && startYear != null) {
+                                calendar.set(startYear, startMonth - 1, startDay)
+                                startDate = calendar.time
+                            }
+
+                            var finishDate: Date? = null
+                            if (finishMonth != null && finishDay != null && finishYear != null) {
+                                calendar.set(finishYear, finishMonth - 1, finishDay)
+                                finishDate = calendar.time
+                            }
+
                             libTrack = Track.create(TrackManager.MYANIMELIST).apply {
                                 last_chapter_read = trackForm.select("#add_manga_num_read_chapters").`val`().toInt()
                                 total_chapters = trackForm.select("#totalChap").text().toInt()
                                 status = trackForm.select("#add_manga_status > option[selected]").`val`().toInt()
                                 score = trackForm.select("#add_manga_score > option[selected]").`val`().toFloatOrNull()
                                         ?: 0f
+                                started_reading_date = startDate
+                                finished_reading_date = finishDate
                             }
                         }
                     }
@@ -142,6 +171,24 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                     Observable.from(doc.select("manga"))
                 }
                 .map {
+                    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+                    val startDateStr = it.selectText("my_start_date")
+                    val finishDateStr = it.selectText("my_finish_date")
+
+                    var startDate: Date? = null
+                    if (!startDateStr.isNullOrBlank() && startDateStr != "0000-00-00") {
+                        startDate =
+                                try { dateFormat.parse(startDateStr) }
+                                catch (e: ParseException) { null }
+                    }
+
+                    var finishDate: Date? = null
+                    if (!finishDateStr.isNullOrBlank() && finishDateStr != "0000-00-00") {
+                        finishDate =
+                                try { dateFormat.parse(finishDateStr) }
+                                catch (e: ParseException) { null }
+                    }
+
                     TrackSearch.create(TrackManager.MYANIMELIST).apply {
                         title = it.selectText("manga_title")!!
                         media_id = it.selectInt("manga_mangadb_id")
@@ -150,6 +197,8 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                         score = it.selectInt("my_score").toFloat()
                         total_chapters = it.selectInt("manga_chapters")
                         tracking_url = mangaUrl(media_id)
+                        started_reading_date = startDate
+                        finished_reading_date = finishDate
                     }
                 }
                 .toList()

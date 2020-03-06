@@ -22,6 +22,8 @@ abstract class TrackService(val id: Int) {
     // Name of the manga sync service to display
     abstract val name: String
 
+    abstract val supports_reading_dates: Boolean
+
     @DrawableRes
     abstract fun getLogo(): Int
 

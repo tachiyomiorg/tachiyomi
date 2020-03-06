@@ -34,6 +34,8 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
     override val name: String
         get() = "MyAnimeList"
 
+    override val supports_reading_dates = true
+
     override fun getLogo() = R.drawable.tracker_mal
 
     override fun getLogoColor() = Color.rgb(46, 81, 162)
