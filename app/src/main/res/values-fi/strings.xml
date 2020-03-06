@@ -329,7 +329,7 @@
     <string name="password">Salasana</string>
     <string name="show_password">Näytä salasana</string>
     <string name="login">Kirjaudu</string>
-    <string name="login_success">Sisäänkirjautuminen onnistui</string>
+    <string name="login_success">Kirjauduttu sisään</string>
     <string name="invalid_login">Kirjautuminen epäonnistui</string>
     <string name="unknown_error">Tuntematon virhe</string>
     <string name="library_search_hint">Nimike tai kirjailija…</string>
@@ -480,4 +480,20 @@
     <string name="unlock_app">Avaa Tachiyomi</string>
     <string name="action_menu">Valikko</string>
     <string name="pref_category_display">Näyttö</string>
+    <string name="ext_updates_pending">Päivitettävät</string>
+    <string name="information_webview_outdated">Päivitä WebView-sovellus yhteensopivuuden parantamiseksi</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 uusi luku</item>
+        <item quantity="other">%1$d uutta lukua</item>
+    </plurals>
+    <string name="notification_chapters_single">Luku %1$s</string>
+    <string name="notification_chapters_single_and_more">Luku %1$s ja %2$d lisää</string>
+    <string name="notification_chapters_multiple">Luvut %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Luku %1$s ja 1 lisää</item>
+        <item quantity="other">Luvut %1$s ja %2$d lisää</item>
+    </plurals>
+    <string name="action_hide">Piilota</string>
+    <string name="hide_notification_content">Piilota ilmoitusten sisältö</string>
+    <string name="notification_check_updates">Etsitään uusia lukuja</string>
 </resources>
