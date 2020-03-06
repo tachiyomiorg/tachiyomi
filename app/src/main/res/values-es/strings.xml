@@ -150,7 +150,7 @@
     <string name="password">Contraseña</string>
     <string name="show_password">Mostrar contraseña</string>
     <string name="login">Iniciar sesión</string>
-    <string name="login_success">Inicio de sesión exitoso</string>
+    <string name="login_success">Conectado</string>
     <string name="invalid_login">No se pudo iniciar sesión</string>
     <string name="unknown_error">Error desconocido</string>
     <!-- Library fragment -->
@@ -194,7 +194,7 @@
     <string name="download_10">Siguientes 10 capítulos</string>
     <string name="download_all">Todos</string>
     <string name="download_unread">No leídos</string>
-    <string name="confirm_delete_chapters">¿Estás seguro de eliminar los capítulos seleccionados?</string>
+    <string name="confirm_delete_chapters">¿Estás seguro de que deseas eliminar los capítulos seleccionados\?</string>
     <!-- MyAnimeList fragment -->
     <string name="reading">Leyendo</string>
     <string name="completed">Completo</string>
@@ -479,7 +479,7 @@
     <string name="logout_success">Has cerrado sesión</string>
     <string name="currently_reading">Leyendo actualmente</string>
     <string name="paused">En pausa</string>
-    <string name="logout_title">Cerrado de sesión desde %1$s\?</string>
+    <string name="logout_title">Cerrar sesión de %1$s\?</string>
     <string name="want_to_read">Quiero leer</string>
     <string name="label_more">Más</string>
     <string name="action_sort_latest_chapter">Último capítulo</string>
@@ -514,4 +514,18 @@
     <string name="action_menu">Menú</string>
     <string name="secure_screen_summary">Ocultar el contenido de la aplicación al cambiar de aplicación y bloquear capturas de pantalla</string>
     <string name="pref_category_display">Monitor</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 nuevo capítulo</item>
+        <item quantity="other">%1$d nuevos capítulos</item>
+    </plurals>
+    <string name="notification_chapters_single">Capítulo %1$s</string>
+    <string name="notification_chapters_single_and_more">Capítulo %1$s y %2$d más</string>
+    <string name="notification_chapters_multiple">Capítulos %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Capítulo %1$s y 1 más</item>
+        <item quantity="other">Capítulos %1$s y %2$d más</item>
+    </plurals>
+    <string name="action_hide">Ocultar</string>
+    <string name="hide_notification_content">Ocultar contenido de notificaciones</string>
+    <string name="notification_check_updates">Buscando nuevos capítulos</string>
 </resources>
