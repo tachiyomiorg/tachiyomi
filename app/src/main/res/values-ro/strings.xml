@@ -454,4 +454,21 @@
     <string name="currently_reading">Acum citesc</string>
     <string name="paused">Întrerupt</string>
     <string name="want_to_read">Vreau să citesc</string>
+    <string name="label_more">Mai mult</string>
+    <string name="action_view_chapters">Vezi capitolele</string>
+    <string name="action_cancel_all">Anulează tot</string>
+    <string name="pref_theme_mode">Tema aplicației</string>
+    <string name="theme_light">Alb</string>
+    <string name="theme_dark">Întunecat</string>
+    <string name="theme_system">Tema sistemului</string>
+    <string name="pref_theme_dark">Variantă temă întunecată</string>
+    <string name="theme_dark_default">Implicită</string>
+    <string name="theme_dark_blue">Albastru întunecată</string>
+    <string name="theme_dark_amoled">Negru AMOLED</string>
+    <string name="pref_manage_notifications">Setări notificări</string>
+    <string name="pref_category_security">Securitate</string>
+    <string name="lock_with_biometrics">Blocare amprentă</string>
+    <string name="unlock_app">Deblochează Tachiyomi</string>
+    <string name="action_menu">Meniu</string>
+    <string name="action_hide">Ascunde</string>
 </resources>
