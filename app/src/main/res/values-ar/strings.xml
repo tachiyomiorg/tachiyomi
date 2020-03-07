@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="name">الاسم</string>
-    <string name="categories">اﻷقسام</string>
-    <string name="manga">المانجا</string>
+    <string name="categories">التصنيفات</string>
+    <string name="manga">المانغا</string>
     <string name="chapters">الفصول</string>
     <string name="track">التتبع</string>
     <string name="history">السجل</string>
     <string name="label_settings">اﻹعدادات</string>
     <string name="label_download_queue">طابور التنزيل</string>
     <string name="label_library">مكتبتي</string>
-    <string name="label_recent_manga">المقروءة حديثا</string>
-    <string name="label_catalogues">قائمة المانجا</string>
+    <string name="label_recent_manga">السجل</string>
+    <string name="label_catalogues">المصادر</string>
     <string name="label_recent_updates">تحديثات المكتبة</string>
-    <string name="label_categories">الأقسام</string>
+    <string name="label_categories">التصنيفات</string>
     <string name="label_backup">النسخ الاحتياطي</string>
     <string name="action_settings">اﻹعدادات</string>
     <string name="action_filter">المرشح</string>
@@ -359,7 +359,7 @@
     <string name="channel_common">عام</string>
     <string name="channel_library">المكتبة</string>
     <string name="channel_downloader">مدير التحميل</string>
-    <string name="label_migration">ترحيل المصدر</string>
+    <string name="label_migration">تغيير المصدر</string>
     <string name="label_extensions">اﻹضافات</string>
     <string name="label_extension_info">معلومات اﻹضافة</string>
     <string name="action_display_download_badge">تحميل الشارات</string>
@@ -430,7 +430,7 @@
     <string name="filter_mode_overlay">غطاءالغطاء</string>
     <string name="filter_mode_multiply">مضاعفة</string>
     <string name="filter_mode_screen">الشاشة</string>
-    <string name="label_help">المساعدة</string>
+    <string name="label_help">ساعدني</string>
     <string name="pref_library_update_prioritization">طلبات تحديث المكتبة</string>
     <string name="reader_pull_up_for_more_options">"سحب  لمزيد من الخيارات"</string>
     <string name="pref_color_filter_mode">فلتر الألوان ”وضع الألوان الممزوجة“</string>
@@ -443,4 +443,7 @@
     <string name="action_webview_refresh">تحديث</string>
     <string name="pref_category_library">المكتبة</string>
     <string name="invalid_download_dir">مجلد تحميل غير صالح</string>
+    <string name="label_more">مزيد</string>
+    <string name="unlock_app">افتح تاتشييومي</string>
+    <string name="action_menu">القائمة</string>
 </resources>
