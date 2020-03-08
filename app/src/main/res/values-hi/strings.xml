@@ -226,7 +226,7 @@
     <string name="password">पासवर्ड</string>
     <string name="show_password">पासवर्ड दिखाए</string>
     <string name="login">लॉग इन करें</string>
-    <string name="login_success">सफलतापूर्वक लॉग इन किया गया</string>
+    <string name="login_success">लॉग इन किया गया</string>
     <string name="invalid_login">लॉग इन नहीं कर सका</string>
     <string name="unknown_error">अज्ञात त्रुटि</string>
     <string name="library_search_hint">शीर्षक या लेखक …</string>
@@ -484,4 +484,22 @@
     <string name="unlock_app">अनलॉक Tachiyomi</string>
     <string name="secure_screen_summary">एप्लिकेशन स्विच करते समय एप्लिकेशन सामग्री छिपाएं और स्क्रीनशॉट ब्लॉक करें</string>
     <string name="pref_category_display">प्रदर्शन</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 नया अध्याय</item>
+        <item quantity="other">%1$d नए अध्याय</item>
+    </plurals>
+    <string name="notification_chapters_single">अध्याय %1 $ s</string>
+    <string name="notification_chapters_single_and_more">अध्याय% 1 $ s और% 2 $ d अधिक</string>
+    <string name="notification_chapters_multiple">अध्याय %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">अध्याय %1 $ s और 1 अधिक</item>
+        <item quantity="other">अध्याय %1 $ s और % 2$ s अधिक</item>
+    </plurals>
+    <string name="action_hide">छिपाएं</string>
+    <string name="hide_notification_content">अधिसूचना सामग्री छुपाएं</string>
+    <string name="notification_check_updates">नए अध्यायों के लिए जांच</string>
+    <string name="pref_disable_battery_optimization">बैटरी अनुकूलन को अक्षम करना</string>
+    <string name="pref_disable_battery_optimization_summary">पृष्ठभूमि पुस्तकालय अपडेट और बैकअप के साथ मदद करता है</string>
+    <string name="battery_optimization_disabled">बैटरी अनुकूलन पहले से ही अक्षम है</string>
+    <string name="email">ईमेल पता</string>
 </resources>
