@@ -454,4 +454,31 @@
     <string name="currently_reading">Leses</string>
     <string name="paused">På pause</string>
     <string name="want_to_read">Ønsker å lese</string>
+    <string name="label_more">Mer</string>
+    <string name="action_view_chapters">Vis kapitler</string>
+    <string name="action_cancel_all">Avbryt alle</string>
+    <string name="pref_theme_mode">Drakt</string>
+    <string name="theme_light">Lys</string>
+    <string name="theme_dark">Mørk</string>
+    <string name="theme_system">System</string>
+    <string name="pref_theme_dark">Mørkt draktvalg</string>
+    <string name="theme_dark_default">Forvalg</string>
+    <string name="theme_dark_blue">Mørkeblå</string>
+    <string name="theme_dark_amoled">AMOLED-sort</string>
+    <string name="pref_manage_notifications">Håndter merknader</string>
+    <string name="pref_category_security">Sikkerhet</string>
+    <string name="lock_with_biometrics">Lås med biometri</string>
+    <string name="lock_when_idle">Lås ved lediggang</string>
+    <string name="lock_always">Alltid</string>
+    <string name="lock_never">Aldri</string>
+    <plurals name="lock_after_mins">
+        <item quantity="one">Etter ett minutt</item>
+        <item quantity="other">Etter %1$s minutter</item>
+    </plurals>
+    <string name="secure_screen">Sikker skjerm</string>
+    <string name="channel_new_chapters">Kapitteloppdateringer</string>
+    <string name="unlock_app">Lås opp Tachiyomi</string>
+    <string name="notification_chapters_single">Kapittel %1$s</string>
+    <string name="action_hide">Skjul</string>
+    <string name="email">E-postadresse</string>
 </resources>
