@@ -495,4 +495,12 @@
     <string name="action_hide">Piilota</string>
     <string name="hide_notification_content">Piilota ilmoitusten sisältö</string>
     <string name="notification_check_updates">Etsitään uusia lukuja</string>
+    <string name="lock_when_idle">Lukitse käyttämättömänä</string>
+    <string name="secure_screen">Salaa näyttö</string>
+    <string name="pref_webtoon_padding_vert">Pystytäyttö sivujen välillä</string>
+    <string name="secure_screen_summary">Piilota sovelluksen sisältö kun sovelluksia vaihdetaan ja estä kuvakaappauksien otto</string>
+    <string name="pref_disable_battery_optimization">Poista akun optimointi käytöstä</string>
+    <string name="pref_disable_battery_optimization_summary">Auttaa taustalla pyörivien kirjaston päivitysten ja varmuuskopioiden kanssa</string>
+    <string name="battery_optimization_disabled">Akun optimointi on jo poistettu käytöstä</string>
+    <string name="email">Sähköpostiosoite</string>
 </resources>
