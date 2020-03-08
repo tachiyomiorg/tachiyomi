@@ -11,7 +11,7 @@ import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.util.system.toast
 import java.text.DateFormatSymbols
-import java.util.Date
+import java.util.Calendar
 import java.util.GregorianCalendar
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -48,6 +48,17 @@ class SetTrackReadingDatesDialog<T> : DialogController
                 .customView(R.layout.track_date_dialog, false)
                 .positiveText(android.R.string.ok)
                 .negativeText(android.R.string.cancel)
+                .neutralText(R.string.action_remove)
+                .autoDismiss(false)
+                .onNegative { dialog, _ -> dismissDialog() }
+                .onNeutral { dialog, _ ->
+                    val listener = (targetController as Listener)
+                    if (isStart)
+                        listener.setStartDate(item, null)
+                    else
+                        listener.setFinishDate(item, null)
+                    dismissDialog()
+                }
                 .onPositive { dialog, _ ->
                     val view = dialog.customView
                     if (view != null) {
@@ -63,9 +74,10 @@ class SetTrackReadingDatesDialog<T> : DialogController
 
                             val listener = (targetController as Listener)
                             if (isStart)
-                                listener.setStartDate(item, calendar.time)
+                                listener.setStartDate(item, calendar)
                             else
-                                listener.setFinishDate(item, calendar.time)
+                                listener.setFinishDate(item, calendar)
+                            dismissDialog()
                         } catch (e: Exception) {
                             activity?.toast(R.string.error_invalid_date_supplied)
                         }
@@ -94,8 +106,8 @@ class SetTrackReadingDatesDialog<T> : DialogController
     }
 
     interface Listener {
-        fun setStartDate(item: TrackItem, date: Date)
-        fun setFinishDate(item: TrackItem, date: Date)
+        fun setStartDate(item: TrackItem, date: Calendar?)
+        fun setFinishDate(item: TrackItem, date: Calendar?)
     }
 
     companion object {

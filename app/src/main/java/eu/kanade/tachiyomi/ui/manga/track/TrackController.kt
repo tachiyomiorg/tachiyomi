@@ -12,7 +12,7 @@ import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.toast
-import java.util.Date
+import java.util.Calendar
 import kotlinx.android.synthetic.main.track_controller.swipe_refresh
 import kotlinx.android.synthetic.main.track_controller.track_recycler
 import timber.log.Timber
@@ -152,12 +152,12 @@ class TrackController : NucleusController<TrackPresenter>(),
         swipe_refresh?.isRefreshing = true
     }
 
-    override fun setStartDate(item: TrackItem, date: Date) {
+    override fun setStartDate(item: TrackItem, date: Calendar?) {
         presenter.setStartDate(item, date)
         swipe_refresh?.isRefreshing = true
     }
 
-    override fun setFinishDate(item: TrackItem, date: Date) {
+    override fun setFinishDate(item: TrackItem, date: Calendar?) {
         presenter.setFinishDate(item, date)
         swipe_refresh?.isRefreshing = true
     }

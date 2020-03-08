@@ -12,10 +12,9 @@ import eu.kanade.tachiyomi.util.selectInt
 import eu.kanade.tachiyomi.util.selectText
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
+import java.util.GregorianCalendar
 import java.util.Locale
 import java.util.zip.GZIPInputStream
 import okhttp3.FormBody
@@ -104,19 +103,17 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                             val finishDay = trackForm.select("#add_manga_finish_date_day > option[selected]").`val`().toIntOrNull()
                             val finishYear = trackForm.select("#add_manga_finish_date_year > option[selected]").`val`().toIntOrNull()
 
-                            val calendar = Calendar.getInstance()
+                            val startDate =
+                                    if (startYear != null && startMonth != null && startDay != null)
+                                        GregorianCalendar(startYear, startMonth, startDay)
+                                    else
+                                        null
 
-                            var startDate: Date? = null
-                            if (startMonth != null && startDay != null && startYear != null) {
-                                calendar.set(startYear, startMonth - 1, startDay)
-                                startDate = calendar.time
-                            }
-
-                            var finishDate: Date? = null
-                            if (finishMonth != null && finishDay != null && finishYear != null) {
-                                calendar.set(finishYear, finishMonth - 1, finishDay)
-                                finishDate = calendar.time
-                            }
+                            val finishDate =
+                                    if (finishYear != null && finishMonth != null && finishDay != null)
+                                        GregorianCalendar(finishYear, finishMonth, finishDay)
+                                    else
+                                        null
 
                             libTrack = Track.create(TrackManager.MYANIMELIST).apply {
                                 last_chapter_read = trackForm.select("#add_manga_num_read_chapters").`val`().toInt()
@@ -173,19 +170,27 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                 .map {
                     val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
 
-                    var startDate: Date? = null
                     val startDateStr = it.selectText("my_start_date")
-                    if (!startDateStr.isNullOrBlank() && startDateStr != "0000-00-00") {
-                        startDate =
-                                try { dateFormat.parse(startDateStr) } catch (e: ParseException) { null }
-                    }
+                    val startDate =
+                            if (!startDateStr.isNullOrBlank() && startDateStr != "0000-00-00") {
+                                val date = dateFormat.parse(startDateStr) // Can this throw?
+                                if (date != null) {
+                                    val cal = GregorianCalendar.getInstance()
+                                    cal.time = date
+                                    cal
+                                } else null
+                            } else null
 
-                    var finishDate: Date? = null
                     val finishDateStr = it.selectText("my_finish_date")
-                    if (!finishDateStr.isNullOrBlank() && finishDateStr != "0000-00-00") {
-                        finishDate =
-                                try { dateFormat.parse(finishDateStr) } catch (e: ParseException) { null }
-                    }
+                    val finishDate =
+                            if (!finishDateStr.isNullOrBlank() && finishDateStr != "0000-00-00") {
+                                val date = dateFormat.parse(finishDateStr) // Can this throw?
+                                if (date != null) {
+                                    val cal = GregorianCalendar.getInstance()
+                                    cal.time = date
+                                    cal
+                                } else null
+                            } else null
 
                     TrackSearch.create(TrackManager.MYANIMELIST).apply {
                         title = it.selectText("manga_title")!!

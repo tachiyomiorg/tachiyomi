@@ -1,7 +1,7 @@
 package eu.kanade.tachiyomi.data.database.models
 
 import java.io.Serializable
-import java.util.Date
+import java.util.Calendar
 
 interface Track : Serializable {
 
@@ -25,9 +25,9 @@ interface Track : Serializable {
 
     var status: Int
 
-    var started_reading_date: Date?
+    var started_reading_date: Calendar?
 
-    var finished_reading_date: Date?
+    var finished_reading_date: Calendar?
 
     var tracking_url: String
 
