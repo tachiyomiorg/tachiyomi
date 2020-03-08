@@ -501,7 +501,7 @@
     <string name="hide_notification_content">Ocultar conteúdo da notificação</string>
     <string name="notification_check_updates">Verificando por novos capítulos</string>
     <string name="pref_disable_battery_optimization">Desabilitar a otimização de bateria</string>
-    <string name="pref_disable_battery_optimization_summary">Ajuda com as atualizações da biblioteca e backups em segundo plano</string>
+    <string name="pref_disable_battery_optimization_summary">Ajuda com as atualizações e backups da biblioteca em segundo plano</string>
     <string name="battery_optimization_disabled">A otimização de bateria já está desabilitada</string>
     <string name="email">Endereço de email</string>
 </resources>
