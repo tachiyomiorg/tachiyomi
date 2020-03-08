@@ -186,7 +186,7 @@
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Cette source demande de vous identifier</string>
     <string name="select_source">Sélectionner une source</string>
-    <string name="no_valid_sources">Veuillez au moins activer une source valide</string>
+    <string name="no_valid_sources">Veuillez activer au moins une source valide</string>
     <!-- Manga activity -->
     <string name="manga_not_in_db">Ce manga a été supprimé de la base de données.</string>
     <!-- Manga info fragment -->
@@ -408,9 +408,9 @@
     <string name="ext_preferences">Préférences</string>
     <string name="ext_available">Disponible</string>
     <string name="untrusted_extension">Extension non reconnue</string>
-    <string name="untrusted_extension_message">Cette extension a été signé avec un certificat non fiable et n\'a pas été activée. 
+    <string name="untrusted_extension_message">Cette extension a été signé avec un certificat non reconnu et n\'a pas été activée. 
 \n 
-\nUne extension malveillante peut lire les identifiants de connexion sauvegardés sur Tachiyomi ou exécuter du code arbitraire. 
+\nUne extension malveillante peut lire les identifiants de connexion sauvegardés sur Tachiyomi ou exécuter du code malicieux. 
 \n 
 \nEn faisant confiance à ce certificat vous acceptez ces risques.</string>
     <string name="ext_version_info">Version : %1$s</string>
