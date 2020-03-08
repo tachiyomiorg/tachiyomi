@@ -469,6 +469,5 @@
     <string name="pref_category_security">Securitate</string>
     <string name="lock_with_biometrics">Blocare amprentă</string>
     <string name="unlock_app">Deblochează Tachiyomi</string>
-    <string name="action_menu">Meniu</string>
     <string name="action_hide">Ascunde</string>
 </resources>

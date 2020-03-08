@@ -471,7 +471,6 @@
     </plurals>
     <string name="secure_screen">安全画面</string>
     <string name="unlock_app">Tachiyomiを開ける</string>
-    <string name="action_menu">メニュー</string>
     <plurals name="notification_chapters_generic">
         <item quantity="other">%1$d新しい章</item>
     </plurals>

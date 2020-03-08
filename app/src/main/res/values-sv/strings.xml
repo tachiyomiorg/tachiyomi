@@ -484,7 +484,6 @@
     <string name="information_webview_outdated">Uppdatera WebView-appen för bättre kompatibilitet</string>
     <string name="channel_new_chapters">Kapiteluppdateringar</string>
     <string name="unlock_app">Lås upp Tachiyomi</string>
-    <string name="action_menu">Meny</string>
     <string name="secure_screen_summary">Dölj app-innehåll när du byter appar och blockera skärmdumpar</string>
     <string name="pref_category_display">Skärmvisning</string>
 </resources>

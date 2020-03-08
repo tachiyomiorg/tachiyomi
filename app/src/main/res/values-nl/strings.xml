@@ -483,7 +483,6 @@
     <string name="information_webview_outdated">Gelieve de WebView-app bij te werken voor betere compatibiliteit</string>
     <string name="channel_new_chapters">Hoofdstukupdates</string>
     <string name="unlock_app">Ontgrendel Tachiyomi</string>
-    <string name="action_menu">Menu</string>
     <string name="secure_screen_summary">Verberg inhoud van app bij omschakelen tussen apps en blokkeer schermafbeeldingen</string>
     <string name="pref_category_display">Weergave</string>
 </resources>

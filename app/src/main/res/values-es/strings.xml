@@ -511,7 +511,6 @@
     <string name="information_webview_outdated">Por favor actualizar la aplicación WebView para mejor compatibilidad</string>
     <string name="channel_new_chapters">Capitulos actualizados</string>
     <string name="unlock_app">Desbloquear Tachiyomi</string>
-    <string name="action_menu">Menú</string>
     <string name="secure_screen_summary">Ocultar el contenido de la aplicación al cambiar de aplicación y bloquear capturas de pantalla</string>
     <string name="pref_category_display">Monitor</string>
     <plurals name="notification_chapters_generic">

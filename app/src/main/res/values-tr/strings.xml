@@ -484,7 +484,6 @@
     <string name="information_webview_outdated">Daha iyi uyumluluk için lütfen WebView uygulamasını güncelleyin</string>
     <string name="channel_new_chapters">Bölüm güncellemeleri</string>
     <string name="unlock_app">Tachiyomi\'yi Aç</string>
-    <string name="action_menu">Menu</string>
     <string name="secure_screen_summary">İçeriği uygulamaları değiştirirken gizle ve ekran görüntülerini engelle</string>
     <string name="pref_category_display">Ekran</string>
     <plurals name="notification_chapters_generic">

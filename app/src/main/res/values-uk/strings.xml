@@ -485,7 +485,6 @@
     <string name="information_webview_outdated">Будь ласка, оновіть WebView для кращої сумісності</string>
     <string name="channel_new_chapters">Оновлення глав</string>
     <string name="unlock_app">Відчинити Tachiyomi</string>
-    <string name="action_menu">Меню</string>
     <string name="secure_screen_summary">Ховати вміст застосунку при перемиканні програм та блокувати скріншоти</string>
     <string name="pref_category_display">Відображення</string>
     <plurals name="notification_chapters_generic">

@@ -483,7 +483,6 @@
     <string name="information_webview_outdated">Sila kemas kini aplikasi WebView untuk keserasian yang lebih baik</string>
     <string name="channel_new_chapters">Pengemaskinian bab</string>
     <string name="unlock_app">Buka kunci Tachiyomi</string>
-    <string name="action_menu">Menu</string>
     <string name="secure_screen_summary">Sorok kandungan aplikasi apabila menukar aplikasi dan sekat tangkapan skrin</string>
     <string name="pref_category_display">Paparan</string>
     <plurals name="notification_chapters_generic">
