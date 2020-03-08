@@ -36,7 +36,7 @@
     <string name="action_mark_previous_as_read">Marca els anteriors com a llegits</string>
     <string name="action_download">Baixa</string>
     <string name="action_bookmark">Afegeix a preferits</string>
-    <string name="action_remove_bookmark">Elimina de preferits</string>
+    <string name="action_remove_bookmark">Elimina dels preferits</string>
     <string name="action_delete">Suprimeix</string>
     <string name="action_update">Actualitza</string>
     <string name="action_update_library">Actualitza la biblioteca</string>
@@ -503,4 +503,5 @@
     <string name="pref_disable_battery_optimization">Desactiva l\'optimització de la bateria</string>
     <string name="pref_disable_battery_optimization_summary">Fa que funcionin millor les actualitzacions de la biblioteca en segon pla i les còpies de seguretat</string>
     <string name="battery_optimization_disabled">L\'optimització de la bateria ja està desactivada</string>
+    <string name="email">Adreça electrònica</string>
 </resources>
