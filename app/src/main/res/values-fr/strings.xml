@@ -534,4 +534,8 @@
     <string name="action_hide">Cacher</string>
     <string name="hide_notification_content">Cacher le contenu des notifications</string>
     <string name="notification_check_updates">Recherche de nouveaux chapitres</string>
+    <string name="pref_disable_battery_optimization">Désactiver la fonction Optimisation utilisation batterie</string>
+    <string name="pref_disable_battery_optimization_summary">Aide aux mises à jour et sauvegardes de la bibliothèque en arrière-plan</string>
+    <string name="battery_optimization_disabled">La fonction Optimisation utilisation batterie est déjà désactivée</string>
+    <string name="email">Adresse email</string>
 </resources>
