@@ -156,15 +156,15 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">Speicherort</string>
     <string name="pref_download_only_over_wifi">Nur über WLAN herunterladen</string>
-    <string name="pref_remove_after_marked_as_read">Gelesene Kapitel löschen</string>
-    <string name="pref_remove_after_read">Gelesene Kapitel löschen ab dem</string>
+    <string name="pref_remove_after_marked_as_read">Als gelesen markierte Kap. löschen</string>
+    <string name="pref_remove_after_read">Nach dem Lesen löschen</string>
     <string name="custom_dir">Eigener Speicherort</string>
     <string name="disabled">Deaktiviert</string>
-    <string name="last_read_chapter">Zuletzt gelesenem Kapitel</string>
-    <string name="second_to_last">Zweitletzt gelesenem Kapitel</string>
-    <string name="third_to_last">Drittletzt gelesenem Kapitel</string>
-    <string name="fourth_to_last">Viertletzt gelesenem Kapitel</string>
-    <string name="fifth_to_last">Fünftletzt gelesenem Kapitel</string>
+    <string name="last_read_chapter">Zuletzt gelesenes Kapitel</string>
+    <string name="second_to_last">Zweitletzt gelesenes Kapitel</string>
+    <string name="third_to_last">Drittletzt gelesenes Kapitel</string>
+    <string name="fourth_to_last">Viertletzt gelesenes Kapitel</string>
+    <string name="fifth_to_last">Fünftletzt gelesenes Kapitel</string>
     <string name="pref_download_new">Neue Kapitel herunterladen</string>
     <string name="pref_download_new_categories">Kategorien die Heruntergeladen werden sollen</string>
     <string name="services">Anbieter</string>
@@ -501,4 +501,7 @@
     <string name="action_hide">Verbergen</string>
     <string name="hide_notification_content">Benachrichtigungsinhalt verbergen</string>
     <string name="notification_check_updates">Überprüfe auf neue Kapitel</string>
+    <string name="pref_disable_battery_optimization">Akkuverbrauch-Optimierung deaktivieren</string>
+    <string name="pref_disable_battery_optimization_summary">Hilft bei Bibliotheksaktualisierungen und Backups im Hintergrund</string>
+    <string name="battery_optimization_disabled">Akkuverbrauch-Optimierung ist bereits deaktiviert</string>
 </resources>
