@@ -501,4 +501,7 @@
     <string name="action_hide">Amaga</string>
     <string name="hide_notification_content">Amaga el contingut de les notificacions</string>
     <string name="notification_check_updates">S\'està comprovant si hi ha capítols nous</string>
+    <string name="pref_disable_battery_optimization">Desactiva l\'optimització de la bateria</string>
+    <string name="pref_disable_battery_optimization_summary">Fa que funcionin millor les actualitzacions de la biblioteca en segon pla i les còpies de seguretat</string>
+    <string name="battery_optimization_disabled">L\'optimització de la bateria ja està desactivada</string>
 </resources>
