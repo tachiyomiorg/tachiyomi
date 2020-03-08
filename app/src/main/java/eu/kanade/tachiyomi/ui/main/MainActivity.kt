@@ -10,6 +10,8 @@ import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
+import com.bluelinelabs.conductor.changehandler.SimpleSwapChangeHandler
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
@@ -23,6 +25,7 @@ import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
 import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
 import eu.kanade.tachiyomi.ui.download.DownloadController
+import eu.kanade.tachiyomi.ui.extension.ExtensionController
 import eu.kanade.tachiyomi.ui.library.LibraryController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.more.MoreController
@@ -152,6 +155,20 @@ class MainActivity : BaseActivity() {
             SHORTCUT_RECENTLY_UPDATED -> setSelectedDrawerItem(R.id.nav_updates)
             SHORTCUT_RECENTLY_READ -> setSelectedDrawerItem(R.id.nav_history)
             SHORTCUT_CATALOGUES -> setSelectedDrawerItem(R.id.nav_catalogues)
+            SHORTCUT_EXTENSIONS -> {
+                if (router.backstack.none { it.controller() is ExtensionController }) {
+                    if (router.backstack.isEmpty()) {
+                        bottom_nav.selectedItemId = R.id.nav_more
+                        router.pushController(
+                            RouterTransaction.with(ExtensionController()).pushChangeHandler(
+                                SimpleSwapChangeHandler()
+                            ).popChangeHandler(FadeChangeHandler())
+                        )
+                    } else {
+                        router.pushController(ExtensionController().withFadeTransaction())
+                    }
+                }
+            }
             SHORTCUT_MANGA -> {
                 val extras = intent.extras ?: return false
                 setSelectedDrawerItem(R.id.nav_library)
@@ -267,6 +284,7 @@ class MainActivity : BaseActivity() {
         const val SHORTCUT_CATALOGUES = "eu.kanade.tachiyomi.SHOW_CATALOGUES"
         const val SHORTCUT_DOWNLOADS = "eu.kanade.tachiyomi.SHOW_DOWNLOADS"
         const val SHORTCUT_MANGA = "eu.kanade.tachiyomi.SHOW_MANGA"
+        const val SHORTCUT_EXTENSIONS = "eu.kanade.tachiyomi.EXTENSIONS"
 
         const val INTENT_SEARCH = "eu.kanade.tachiyomi.SEARCH"
         const val INTENT_SEARCH_QUERY = "query"

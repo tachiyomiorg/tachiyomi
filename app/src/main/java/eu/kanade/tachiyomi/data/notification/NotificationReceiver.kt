@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Handler
-import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -24,10 +23,11 @@ import eu.kanade.tachiyomi.util.storage.DiskUtil
 import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.system.notificationManager
 import eu.kanade.tachiyomi.util.system.toast
-import java.io.File
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
+import java.io.File
+import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
 
 /**
  * Global [BroadcastReceiver] that runs on UI thread
@@ -436,6 +436,20 @@ class NotificationReceiver : BroadcastReceiver() {
                 action = ACTION_CANCEL_LIBRARY_UPDATE
             }
             return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
+
+        /**
+         * Returns [PendingIntent] that opens the extensions controller,
+         *
+         * @param context context of application
+         */
+        internal fun openExtensionsPendingActivity(context: Context): PendingIntent {
+            val newIntent =
+                Intent(context, MainActivity::class.java).setAction(MainActivity.SHORTCUT_EXTENSIONS)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            return PendingIntent.getActivity(
+                context, 0, newIntent, PendingIntent.FLAG_UPDATE_CURRENT
+            )
         }
     }
 }

@@ -16,4 +16,10 @@
         app:iconTint="?attr/colorOnPrimary"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/action_auto_check"
+        android:title="@string/action_auto_check_extensions"
+        android:checkable="true"
+        app:showAsAction="never"/>
+
 </menu>

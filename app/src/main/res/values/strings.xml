@@ -211,6 +211,7 @@
     <string name="ext_version_info">Version: %1$s</string>
     <string name="ext_language_info">Language: %1$s</string>
     <string name="ext_empty_preferences">No preferences to edit for this extension</string>
+    <string name="action_auto_check_extensions">Auto-check for updates</string>
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>
@@ -566,6 +567,16 @@
     <string name="update_check_notification_download_error">Download error</string>
     <string name="update_check_notification_update_available">Update available</string>
 
+    <!--Extension Updates Notifications-->
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">Extension update available</item>
+        <item quantity="other">%d extension updates available</item>
+    </plurals>
+    <plurals name="notification_and_n_more_ext">
+        <item quantity="one">and %1$d more extension</item>
+        <item quantity="other">and %1$d more extensions</item>
+    </plurals>
+
     <!--Content Description-->
     <string name="description_backdrop">Backdrop image of manga</string>
     <string name="description_cover">Cover of manga</string>
@@ -594,5 +605,6 @@
     <string name="channel_library">Library</string>
     <string name="channel_downloader">Downloader</string>
     <string name="channel_new_chapters">Chapter updates</string>
+    <string name="channel_ext_updates">Extension Updates</string>
 
 </resources>

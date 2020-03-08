@@ -107,6 +107,8 @@ object PreferenceKeys {
 
     const val automaticUpdates = "automatic_updates"
 
+    const val automaticExtUpdates = "automatic_ext_updates"
+
     const val startScreen = "start_screen"
 
     const val useBiometricLock = "use_biometric_lock"
