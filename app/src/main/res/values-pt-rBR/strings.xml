@@ -32,7 +32,7 @@
     <string name="action_mark_previous_as_read">Marcar anteriores como lidos</string>
     <string name="action_download">Fazer download</string>
     <string name="action_bookmark">Adicionar aos favoritos</string>
-    <string name="action_remove_bookmark">Remover dos favoritos</string>
+    <string name="action_remove_bookmark">Desfavoritar</string>
     <string name="action_delete">Excluir</string>
     <string name="action_update">Atualizar</string>
     <string name="action_update_library">Atualizar biblioteca</string>
@@ -500,4 +500,8 @@
     <string name="action_hide">Ocultar</string>
     <string name="hide_notification_content">Ocultar conteúdo da notificação</string>
     <string name="notification_check_updates">Verificando por novos capítulos</string>
+    <string name="pref_disable_battery_optimization">Desabilitar a otimização de bateria</string>
+    <string name="pref_disable_battery_optimization_summary">Ajuda com as atualizações da biblioteca e backups em segundo plano</string>
+    <string name="battery_optimization_disabled">A otimização de bateria já está desabilitada</string>
+    <string name="email">Endereço de email</string>
 </resources>
