@@ -36,7 +36,7 @@
     <string name="action_mark_previous_as_read">Markera tidigare som läst</string>
     <string name="action_download">Ladda ner</string>
     <string name="action_bookmark">Bokmärke</string>
-    <string name="action_remove_bookmark">Ta bort bokmärke</string>
+    <string name="action_remove_bookmark">Radera bokmärke</string>
     <string name="action_delete">Radera</string>
     <string name="action_update">Uppdatera</string>
     <string name="action_update_library">Uppdatera biblioteket</string>
@@ -251,12 +251,12 @@
     <string name="pref_enable_automatic_updates_summary">Kontrollera automatiskt om det finns nya programuppdateringar</string>
     <string name="pref_enable_acra">Skicka kraschrapporter</string>
     <string name="pref_acra_summary">Hjälper till att fixa eventuella buggar. Inga känsliga uppgifter skickas</string>
-    <string name="login_title">Login för %1$s</string>
+    <string name="login_title">Logga in för %1$s</string>
     <string name="username">Användarnamn</string>
     <string name="password">Lösenord</string>
     <string name="show_password">Visa lösenord</string>
     <string name="login">Logga in</string>
-    <string name="login_success">Inloggningen lyckades</string>
+    <string name="login_success">Inloggad</string>
     <string name="invalid_login">Inloggningsfel</string>
     <string name="unknown_error">Okänt fel</string>
     <string name="library_search_hint">Titel eller författare…</string>
@@ -486,4 +486,22 @@
     <string name="unlock_app">Lås upp Tachiyomi</string>
     <string name="secure_screen_summary">Dölj app-innehåll när du byter appar och blockera skärmdumpar</string>
     <string name="pref_category_display">Skärmvisning</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 nytt kapitel</item>
+        <item quantity="other">%1$d nya kapitel</item>
+    </plurals>
+    <string name="notification_chapters_single">Kapitel %1$s</string>
+    <string name="notification_chapters_single_and_more">Kapitel %1$s och %2$d till</string>
+    <string name="notification_chapters_multiple">Kapitlen %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Kapitel %1$s och 1 till</item>
+        <item quantity="other">Kapitlen %1$s och %2$d till</item>
+    </plurals>
+    <string name="action_hide">Dölj</string>
+    <string name="hide_notification_content">Dölj notisinnehåll</string>
+    <string name="notification_check_updates">Letar efter nya kapitel</string>
+    <string name="pref_disable_battery_optimization">Inaktivera batterioptimering</string>
+    <string name="pref_disable_battery_optimization_summary">Hjälper till med uppdateringar och säkerhetskopior i bakgrunden</string>
+    <string name="battery_optimization_disabled">Batterioptimering är redan inaktiverat</string>
+    <string name="email">E-postaddress</string>
 </resources>
