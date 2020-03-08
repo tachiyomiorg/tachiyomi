@@ -217,8 +217,8 @@
     <string name="pref_acra_summary">Hilft Fehler zu beheben. Keine sensiblen Daten werden gesendet</string>
     <string name="login_title">Bei %1$s anmelden</string>
     <string name="username">Nutzername</string>
-    <string name="password">Kennwort</string>
-    <string name="show_password">Kennwort anzeigen</string>
+    <string name="password">Passwort</string>
+    <string name="show_password">Passwort anzeigen</string>
     <string name="login">Anmelden</string>
     <string name="login_success">Eingeloggt</string>
     <string name="invalid_login">Anmeldung fehlgeschlagen</string>
@@ -503,4 +503,5 @@
     <string name="pref_disable_battery_optimization">Akkuverbrauch-Optimierung deaktivieren</string>
     <string name="pref_disable_battery_optimization_summary">Hilft bei Bibliotheksaktualisierungen und Backups im Hintergrund</string>
     <string name="battery_optimization_disabled">Akkuverbrauch-Optimierung ist bereits deaktiviert</string>
+    <string name="email">E-Mail-Adresse</string>
 </resources>
