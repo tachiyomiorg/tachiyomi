@@ -500,4 +500,8 @@
     <string name="action_hide">Gizle</string>
     <string name="hide_notification_content">Bildirim içeriğini gizle</string>
     <string name="notification_check_updates">Yeni bölümler aranıyor</string>
+    <string name="pref_disable_battery_optimization">Pil iyileştirmeyi devre dışı bırak</string>
+    <string name="pref_disable_battery_optimization_summary">Arkaplan kitaplık güncellemelerine ve yedeklemelerine yardım eder</string>
+    <string name="battery_optimization_disabled">Pil iyileştirme zaten devre dışı</string>
+    <string name="email">Eposta adresi</string>
 </resources>
