@@ -504,4 +504,5 @@
     <string name="pref_disable_battery_optimization_summary">Fa que funcionin millor les actualitzacions de la biblioteca en segon pla i les còpies de seguretat</string>
     <string name="battery_optimization_disabled">L\'optimització de la bateria ja està desactivada</string>
     <string name="email">Adreça electrònica</string>
+    <string name="pref_always_show_chapter_transition">Mostra sempre la transició de capítol</string>
 </resources>
