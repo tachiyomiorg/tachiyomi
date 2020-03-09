@@ -503,4 +503,8 @@
     <string name="action_hide">Приховати</string>
     <string name="hide_notification_content">Приховати вміст сповіщення</string>
     <string name="notification_check_updates">Перевірка нових глав</string>
+    <string name="pref_disable_battery_optimization">Вимкнути збереження батареї</string>
+    <string name="pref_disable_battery_optimization_summary">Допомагає фоновому оновленню бібліотеки та резервним копіям</string>
+    <string name="battery_optimization_disabled">Збереження батареї вже вимкнено</string>
+    <string name="email">Електропошта</string>
 </resources>
