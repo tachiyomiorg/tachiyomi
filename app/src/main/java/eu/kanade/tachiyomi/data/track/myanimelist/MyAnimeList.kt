@@ -38,6 +38,10 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
 
     override fun getLogoColor() = Color.rgb(46, 81, 162)
 
+    override fun getStatusList(): List<Int> {
+        return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLAN_TO_READ)
+    }
+
     override fun getStatus(status: Int): String = with(context) {
         when (status) {
             READING -> getString(R.string.reading)
@@ -49,9 +53,7 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
         }
     }
 
-    override fun getStatusList(): List<Int> {
-        return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLAN_TO_READ)
-    }
+    override fun getCompletionStatus(): Int = COMPLETED
 
     override fun getScoreList(): List<String> {
         return IntRange(0, 10).map(Int::toString)
@@ -66,10 +68,6 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun update(track: Track): Observable<Track> {
-        if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
-            track.status = COMPLETED
-        }
-
         return api.updateLibManga(track)
     }
 

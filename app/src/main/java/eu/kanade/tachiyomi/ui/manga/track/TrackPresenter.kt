@@ -115,6 +115,9 @@ class TrackPresenter(
     fun setStatus(item: TrackItem, index: Int) {
         val track = item.track!!
         track.status = item.service.getStatusList()[index]
+        if (track.status == item.service.getCompletionStatus() && track.total_chapters != 0) {
+            track.last_chapter_read = track.total_chapters
+        }
         updateRemote(track, item.service)
     }
 
@@ -127,6 +130,9 @@ class TrackPresenter(
     fun setLastChapterRead(item: TrackItem, chapterNumber: Int) {
         val track = item.track!!
         track.last_chapter_read = chapterNumber
+        if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
+            track.status = item.service.getCompletionStatus()
+        }
         updateRemote(track, item.service)
     }
 }

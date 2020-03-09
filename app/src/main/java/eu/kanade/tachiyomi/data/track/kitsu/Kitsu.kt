@@ -56,6 +56,8 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
         }
     }
 
+    override fun getCompletionStatus(): Int = COMPLETED
+
     override fun getScoreList(): List<String> {
         val df = DecimalFormat("0.#")
         return listOf("0") + IntRange(2, 20).map { df.format(it / 2f) }
@@ -75,10 +77,6 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun update(track: Track): Observable<Track> {
-        if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
-            track.status = COMPLETED
-        }
-
         return api.updateLibManga(track)
     }
 

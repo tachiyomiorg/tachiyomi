@@ -72,6 +72,8 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
         }
     }
 
+    override fun getCompletionStatus(): Int = COMPLETED
+
     override fun getScoreList(): List<String> {
         return when (scorePreference.getOrDefault()) {
             // 10 point
@@ -133,9 +135,6 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun update(track: Track): Observable<Track> {
-        if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
-            track.status = COMPLETED
-        }
         // If user was using API v1 fetch library_id
         if (track.library_id == null || track.library_id!! == 0L) {
             return api.findLibManga(track, getUsername().toInt()).flatMap {
