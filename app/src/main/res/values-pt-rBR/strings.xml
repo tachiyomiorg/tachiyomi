@@ -343,7 +343,7 @@
     <string name="download_notifier_title_error">Erro</string>
     <string name="download_notifier_unkown_error">Não foi possível realizar o download do capítulo por um erro inesperado</string>
     <string name="download_notifier_page_error">Uma página está faltando na pasta</string>
-    <string name="download_notifier_page_ready_error">Página não foi carregada</string>
+    <string name="download_notifier_page_ready_error">A página não foi carregada</string>
     <string name="download_notifier_text_only_wifi">Nenhuma conexão Wi-Fi disponível</string>
     <string name="download_notifier_no_network">Conexão à rede indisponível</string>
     <string name="download_notifier_download_paused">Download pausado</string>
