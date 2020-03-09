@@ -383,7 +383,6 @@
     <string name="download_queue_error">下载章节失败，请重试</string>
     <string name="notification_update_progress">更新中：%1$d/%2$d</string>
     <string name="notification_new_chapters">发现新章节</string>
-    <string name="notification_new_chapters_text">%1$d</string>
     <string name="notification_cover_update_failed">更新封面失败</string>
     <string name="notification_first_add_to_library">请先收藏漫画到书架再进行更新</string>
     <string name="notification_not_connected_to_ac_title">同步取消</string>

@@ -372,7 +372,6 @@
     <string name="set_as_cover">Establecer como cubierta</string>
     <string name="cover_updated">Cubierta actualizada</string>
     <string name="page_downloaded">Página copiada a %1$s</string>
-    <string name="notification_new_chapters_text">Para %1$d títulos</string>
     <string name="notification_cover_update_failed">Error al actualizar la portada</string>
     <string name="file_select_icon">Seleccionar icono de acceso directo</string>
     <string name="download_notifier_downloader_title">Descargador</string>

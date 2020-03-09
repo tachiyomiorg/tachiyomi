@@ -312,7 +312,6 @@
     <string name="download_queue_error">Não foi possível fazer o download dos capítulos. Você pode tentar novamente na seção de downloads</string>
     <string name="notification_update_progress">Progresso da atualização: %1$d/%2$d</string>
     <string name="notification_new_chapters">Novos capítulos encontrados</string>
-    <string name="notification_new_chapters_text">Para %1$d títulos</string>
     <string name="notification_cover_update_failed">Erro ao atualizar a capa</string>
     <string name="notification_first_add_to_library">Por favor, adicione o mangá à sua biblioteca antes de fazer isso</string>
     <string name="notification_not_connected_to_ac_title">Sincronização cancelada</string>

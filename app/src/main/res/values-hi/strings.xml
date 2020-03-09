@@ -323,7 +323,6 @@
     <string name="download_queue_error">चैप्टर डाउनलोड नहीं कर सके। आप डाउनलोड अनुभाग में फिर से आज़मा सकते हैं</string>
     <string name="notification_update_progress">अपडेट प्रगति: %1$d/%2$d</string>
     <string name="notification_new_chapters">नए अध्याय पाए गए</string>
-    <string name="notification_new_chapters_text">%1$d शीर्षक के लिए</string>
     <string name="notification_cover_update_failed">कवर को अपडेट करने में विफल</string>
     <string name="notification_first_add_to_library">ऐसा करने से पहले कृपया अपनी लाइब्रेरी में मंगा को जोड़ें</string>
     <string name="notification_not_connected_to_ac_title">समन्वयन रद्द</string>

@@ -332,7 +332,6 @@ Nie znaleziono źródła %1$s</string>
     <string name="viewer_for_this_series">Widok dla tej serii</string>
     <string name="download_queue_error">Nie udało się pobrać rozdziałów. Możesz spróbować ponownie w sekcji pobierania</string>
     <string name="notification_update_progress">Stan aktualizacji: %1$d/%2$d</string>
-    <string name="notification_new_chapters_text">Dla %1$d tytułów</string>
     <string name="notification_cover_update_failed">Nie udało się zaktualizować okładki</string>
     <string name="notification_first_add_to_library">Zanim to zrobisz, dodaj tę mangę do biblioteki</string>
     <string name="file_select_backup">Wybierz plik kopii zapasowej</string>

@@ -383,7 +383,6 @@
     <string name="download_queue_error">Сталась помилка при завантаженні глав. Спробуйте ще раз у розділі завантаження</string>
     <string name="notification_update_progress">Стан оновлення: %1$d/%2$d</string>
     <string name="notification_new_chapters">Знайдено нові глави</string>
-    <string name="notification_new_chapters_text">Для %1$d тайтлів</string>
     <string name="notification_cover_update_failed">"Не вдалось оновити обкладинку "</string>
     <string name="notification_first_add_to_library">Будь ласка, додайте мангу до своєї бібліотеки перед тим як робити це</string>
     <string name="notification_not_connected_to_ac_title">Синхронізацію скасовано</string>

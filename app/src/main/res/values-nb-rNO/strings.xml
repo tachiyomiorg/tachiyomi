@@ -372,7 +372,6 @@
     <string name="channel_library">Bibliotek</string>
     <string name="channel_downloader">Nedlaster</string>
     <string name="notification_new_chapters">Nye kapitler funnet</string>
-    <string name="notification_new_chapters_text">For %1$d titler</string>
     <string name="notification_cover_update_failed">Klarte ikke å oppdatere omslag</string>
     <string name="update_check_confirm">Last ned</string>
     <string name="update_check_ignore">Ignorer</string>

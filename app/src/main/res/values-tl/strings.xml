@@ -396,7 +396,6 @@
     <string name="download_queue_error">Nagkaproblema habang nagda-download ng mga kabanata. Maaring mong ulitin ito sa Downloads section.</string>
     <string name="notification_update_progress">Progreso ng update: %1$d/%2$d</string>
     <string name="notification_new_chapters">May nakitang bagong (mga) kabanata</string>
-    <string name="notification_new_chapters_text">Para sa (mga) %1$d na title</string>
     <string name="notification_cover_update_failed">Pumalya sa pag-update ng pabalat</string>
     <string name="notification_first_add_to_library">Mangyaring idagdag muna ang manga sa iyong aklatan bago gawin ito</string>
     <string name="notification_not_connected_to_ac_title">Kinansela ang pag-sync</string>

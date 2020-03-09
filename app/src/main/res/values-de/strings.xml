@@ -311,7 +311,6 @@
     <string name="download_queue_error">Fehler beim Herunterladen der Kapitel. Du kannst es in der Downloadsektion erneut versuchen</string>
     <string name="notification_update_progress">Aktualisierungsfortschritt: %1$d/%2$d</string>
     <string name="notification_new_chapters">Neue Kapitel gefunden</string>
-    <string name="notification_new_chapters_text">Für %1$d Titel</string>
     <string name="notification_cover_update_failed">Ändern des Vorschaubildes fehlgeschlagen</string>
     <string name="notification_first_add_to_library">Füge den Manga deiner Bibliothek hinzu, bevor du dies tust</string>
     <string name="notification_not_connected_to_ac_title">Synchronisation abgebrochen</string>

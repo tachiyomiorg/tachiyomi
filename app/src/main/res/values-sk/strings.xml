@@ -403,7 +403,6 @@
     <string name="download_queue_error">Kapitoly sa nepodarilo stiahnuť. Môžete to skúsiť znova v sekcii sťahovania</string>
     <string name="notification_update_progress">Priebeh aktualizácie: %1$d/%2$d</string>
     <string name="notification_new_chapters">Boli nájdené nové kapitoly</string>
-    <string name="notification_new_chapters_text">Pre %1$d titulov</string>
     <string name="notification_cover_update_failed">Chyba pri aktualizácii obalu</string>
     <string name="notification_first_add_to_library">Predtým, ako to urobíte, pridajte do svojej knižnice mangu</string>
     <string name="notification_not_connected_to_ac_title">Synchronizácia bola zrušená</string>

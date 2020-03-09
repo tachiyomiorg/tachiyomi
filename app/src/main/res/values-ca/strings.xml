@@ -383,7 +383,6 @@
     <string name="download_queue_error">No s\'han pogut baixar capítols. Podeu tornar-ho a provar a la secció de baixades</string>
     <string name="notification_update_progress">Progrés de l\'actualització: %1$d/%2$d</string>
     <string name="notification_new_chapters">S\'han trobat nous capítols</string>
-    <string name="notification_new_chapters_text">Per a %1$d títols</string>
     <string name="notification_cover_update_failed">No s\'ha pogut actualitzar la portada</string>
     <string name="notification_first_add_to_library">Afegiu el manga a la vostra biblioteca abans de fer això</string>
     <string name="notification_not_connected_to_ac_title">S\'ha cancel·lat la sincronització</string>

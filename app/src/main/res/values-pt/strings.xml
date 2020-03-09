@@ -442,7 +442,6 @@
     <string name="migrate">Migrar</string>
     <string name="copy">Copiar</string>
     <string name="migrating">Migrando…</string>
-    <string name="notification_new_chapters_text">Para %1$d títulos</string>
     <string name="notification_cover_update_failed">Erro ao atualizar a capa</string>
     <string name="file_select_icon">Selecionar ícone do atalho</string>
     <string name="information_empty_category">Você ainda não tem nenhuma categoria. Pressione o botão (+) para criar uma e organizar a sua biblioteca.</string>

@@ -383,7 +383,6 @@
     <string name="download_queue_error">Kunde inte ladda ned kapitlen. Du kan försöka igen i nedladdningssektionen</string>
     <string name="notification_update_progress">Uppdateringsframsteg: %1$d/%2$d</string>
     <string name="notification_new_chapters">Nya kapitel hittades</string>
-    <string name="notification_new_chapters_text">För %1$d titlar</string>
     <string name="notification_cover_update_failed">Misslyckades att uppdatera omslag</string>
     <string name="notification_first_add_to_library">Vänligen lägg till mangan i ditt bibliotek innan du gör detta</string>
     <string name="notification_not_connected_to_ac_title">Synkronisering avbruten</string>

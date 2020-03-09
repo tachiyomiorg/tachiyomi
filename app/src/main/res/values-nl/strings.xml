@@ -240,7 +240,6 @@
     <string name="recent_manga_source">%1$s - Hfdst.%2$s</string>
     <string name="notification_update_progress">Updatevoortgang: %1$d/%2$d</string>
     <string name="notification_new_chapters">Nieuwe hoofdstukken gevonden</string>
-    <string name="notification_new_chapters_text">Voor %1$d titels</string>
     <string name="notification_first_add_to_library">Gelieve eerst de manga aan je bibliotheek toe te voegen</string>
     <string name="file_select_cover">Selecteer omslagfoto</string>
     <string name="file_select_backup">Selecteer back-upbestand</string>

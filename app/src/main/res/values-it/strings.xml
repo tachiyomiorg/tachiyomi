@@ -442,7 +442,6 @@
     <string name="migrate">Migrare</string>
     <string name="copy">Copia</string>
     <string name="migrating">Migrazione…</string>
-    <string name="notification_new_chapters_text">Per %1$d titoli</string>
     <string name="information_empty_category">Non hai categorie. Aggiungine una per creare e organizzare la tua libreria.</string>
     <string name="channel_common">Comune</string>
     <string name="channel_library">Libreria</string>

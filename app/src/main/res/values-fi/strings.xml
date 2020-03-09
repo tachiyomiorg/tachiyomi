@@ -63,7 +63,6 @@
     <string name="download_queue_error">Lukujen lataaminen epäonnistui. Voit yrittää uudelleen lataukset-osiossa</string>
     <string name="notification_update_progress">Päivityksen tilanne: %1$d/%2$d</string>
     <string name="notification_new_chapters">Uusia lukuja löydetty</string>
-    <string name="notification_new_chapters_text">%1$d sarjalle</string>
     <string name="notification_cover_update_failed">Kansikuvan päivitys epäonnistui</string>
     <string name="notification_first_add_to_library">Lisää sarja kirjastoosi ensin</string>
     <string name="notification_not_connected_to_ac_title">Synkronointi peruttu</string>

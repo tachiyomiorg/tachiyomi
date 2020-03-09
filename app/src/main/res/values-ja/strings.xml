@@ -371,7 +371,6 @@
     <string name="download_queue_error">チャプターのダウンロードに失敗しました。「ダウンロード」にて再試行してください</string>
     <string name="notification_update_progress">更新中：%1$d/%2$d</string>
     <string name="notification_new_chapters">新しいチャプターが見つかりました</string>
-    <string name="notification_new_chapters_text">%1$d</string>
     <string name="notification_cover_update_failed">カバーを更新できませんでした</string>
     <string name="notification_first_add_to_library">まずはマンガをライブラリに追加してください</string>
     <string name="notification_not_connected_to_ac_title">同期がキャンセルされました</string>

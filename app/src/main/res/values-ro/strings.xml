@@ -383,7 +383,6 @@
     <string name="download_queue_error">Nu s-au putut descărca capitole. Puteți încerca din nou în secțiunea descărcări</string>
     <string name="notification_update_progress">Progresul actualizării: %1$d/%2$d</string>
     <string name="notification_new_chapters">Capitol nou găsit</string>
-    <string name="notification_new_chapters_text">Pentru %1$d titluri</string>
     <string name="notification_cover_update_failed">Actualizare copertă eșuată</string>
     <string name="notification_first_add_to_library">Vă rugăma să adăugați mangaul la bibliotecă incinte de a face asta</string>
     <string name="notification_not_connected_to_ac_title">Sincronizare anulată</string>

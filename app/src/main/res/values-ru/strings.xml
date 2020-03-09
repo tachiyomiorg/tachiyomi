@@ -321,7 +321,6 @@
     <string name="manga">Манга</string>
     <string name="manga_info_last_chapter_label">Последняя глава</string>
     <string name="no_more_results">Больше нет результатов</string>
-    <string name="notification_new_chapters_text">Для %1$d тайтлов</string>
     <string name="pref_backup_directory">Каталог бэкапа</string>
     <string name="pref_backup_interval">Частота бэкапа</string>
     <string name="pref_backup_service_category">Служба</string>

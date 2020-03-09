@@ -407,7 +407,6 @@
     <string name="recent_manga_source">%1$s - K.%2$s</string>
     <string name="migration_info">Klepnutím vyberte zdroj, ze kterého chcete migrovat</string>
     <string name="migration_dialog_what_to_include">Vyberte data, která chcete zahrnout</string>
-    <string name="notification_new_chapters_text">Pro %1$d titulů</string>
     <string name="notification_cover_update_failed">Chyba při aktualizaci obalu</string>
     <string name="notification_first_add_to_library">Přidejte si prosím mangu do knihovny před tím, než toto uděláte</string>
     <string name="file_select_cover">Vybrat obrázek obalu</string>

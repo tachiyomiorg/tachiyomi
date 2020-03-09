@@ -425,7 +425,6 @@
     <string name="migration_info">選擇需要遷移的來源</string>
     <string name="migration_dialog_what_to_include">選擇需要移動的數據</string>
     <string name="download_queue_error">該章節無法下載。請再試一次</string>
-    <string name="notification_new_chapters_text">%1$d</string>
     <string name="notification_no_connection_body">連接不可用</string>
     <string name="description_backdrop">漫畫背景</string>
     <string name="download_notifier_unkown_error">下載時發生不可預期的錯誤</string>

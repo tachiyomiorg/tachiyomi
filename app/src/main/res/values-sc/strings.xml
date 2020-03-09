@@ -385,7 +385,6 @@
     <string name="download_queue_error">Iscarrigamentu de sos capìtulos fallidu. Podes torrare a proare in sa setzione de sos iscarrigamentos</string>
     <string name="notification_update_progress">Progressu de s\'agiornamentu: %1$d/%2$d</string>
     <string name="notification_new_chapters">Capìtulos noos agatados</string>
-    <string name="notification_new_chapters_text">Pro %1$d tìtulos</string>
     <string name="notification_cover_update_failed">Agiornamentu de sa cobertedda fallidu</string>
     <string name="notification_first_add_to_library">Pro praghere annanghe su manga a sa biblioteca tua in antis de fàghere custu</string>
     <string name="notification_not_connected_to_ac_title">Sincronizatzione annullada</string>

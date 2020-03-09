@@ -394,7 +394,6 @@
     <string name="download_queue_error">เกิดข้อผิดพลาดขณะดาวน์โหลดบท คุณสามารถลองอีกครั้งในส่วนการดาวน์โหลด</string>
     <string name="notification_update_progress">ความคืบหน้าในการอัพเดต: %1$d/%2$d</string>
     <string name="notification_new_chapters">พบบทใหม่</string>
-    <string name="notification_new_chapters_text">สำหรับชื่อ %1$d</string>
     <string name="notification_cover_update_failed">ไม่สามารถอัปเดตหน้าปก</string>
     <string name="notification_first_add_to_library">กรุณาเพิ่มมังงะในห้องสมุดของคุณก่อนที่จะทำเช่นนี้</string>
     <string name="notification_not_connected_to_ac_title">การซิงค์ถูกยกเลิก</string>

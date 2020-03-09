@@ -450,7 +450,6 @@
     <string name="migrate">Di chuyển</string>
     <string name="copy">Sao chép</string>
     <string name="migrating">Đang di chuyển…</string>
-    <string name="notification_new_chapters_text">Dành cho %1$d tiêu đề</string>
     <string name="information_empty_category">Không có danh mục. Nhấn vào dấu cộng để tạo một nhóm từ thư viện.</string>
     <string name="channel_common">Thường gặp</string>
     <string name="channel_library">Thư viện</string>
