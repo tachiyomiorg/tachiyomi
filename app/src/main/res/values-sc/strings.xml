@@ -500,4 +500,8 @@
     <string name="action_hide">Cua</string>
     <string name="hide_notification_content">Cua su cuntenutu de sas notìficas</string>
     <string name="notification_check_updates">Chirchende capìtulos noos</string>
+    <string name="pref_disable_battery_optimization">Disabìlita s\'otimizatzione de sa bateria</string>
+    <string name="pref_disable_battery_optimization_summary">Agiudat cun sos agiornamentos de sa biblioteca e sas còpias de seguresa</string>
+    <string name="battery_optimization_disabled">S\'otimizatzione de sa bateria est giai disabilitada</string>
+    <string name="email">Indiritzu de posta eletrònica</string>
 </resources>
