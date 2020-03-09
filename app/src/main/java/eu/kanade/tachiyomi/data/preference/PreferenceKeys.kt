@@ -133,6 +133,8 @@ object PreferenceKeys {
 
     const val downloadBadge = "display_download_badge"
 
+    const val alwaysShowChapterTransition = "always_show_chapter_transition"
+
     fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 
     fun trackPassword(syncId: Int) = "pref_mangasync_password_$syncId"

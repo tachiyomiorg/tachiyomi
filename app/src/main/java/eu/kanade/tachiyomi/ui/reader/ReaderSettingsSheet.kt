@@ -31,6 +31,8 @@ import kotlinx.android.synthetic.main.reader_settings_sheet.show_page_number
 import kotlinx.android.synthetic.main.reader_settings_sheet.viewer
 import kotlinx.android.synthetic.main.reader_settings_sheet.webtoon_prefs_group
 import kotlinx.android.synthetic.main.reader_settings_sheet.zoom_start
+import kotlinx.android.synthetic.main.reader_settings_sheet.always_show_chapter_transition
+import kotlinx.android.synthetic.main.reader_settings_sheet.always_show_chapter_transition_webtoon
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -96,6 +98,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         crop_borders.bindToPreference(preferences.cropBorders())
         pad_pages_vert_webtoon.bindToPreference(preferences.padPagesVertWebtoon())
         page_transitions.bindToPreference(preferences.pageTransitions())
+        always_show_chapter_transition.bindToPreference(preferences.alwaysShowChapterTransition())
     }
 
     /**
@@ -105,6 +108,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         webtoon_prefs_group.visible()
         crop_borders_webtoon.bindToPreference(preferences.cropBordersWebtoon())
         pad_pages_vert_webtoon.bindToPreference(preferences.padPagesVertWebtoon())
+        always_show_chapter_transition_webtoon.bindToPreference(preferences.alwaysShowChapterTransition())
     }
 
     /**

@@ -185,7 +185,8 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
      */
     private fun setChaptersInternal(chapters: ViewerChapters) {
         Timber.d("setChaptersInternal")
-        adapter.setChapters(chapters)
+        var forceTransition = config.alwaysShowChapterTransition || adapter.items.getOrNull(pager.currentItem) is ChapterTransition
+        adapter.setChapters(chapters, forceTransition)
 
         // Layout the pager once a chapter is being set
         if (pager.visibility == View.GONE) {
