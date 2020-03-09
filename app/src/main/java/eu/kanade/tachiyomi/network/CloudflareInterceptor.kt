@@ -57,17 +57,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
                     .firstOrNull { it.name == "cf_clearance" }
             resolveWithWebView(originalRequest, oldCookie)
 
-            // Avoid use empty User-Agent
-            return if (originalRequest.header("User-Agent").isNullOrEmpty()) {
-                val newRequest = originalRequest
-                        .newBuilder()
-                        .removeHeader("User-Agent")
-                        .addHeader("User-Agent", HttpSource.DEFAULT_USERAGENT)
-                        .build()
-                chain.proceed(newRequest)
-            } else {
-                chain.proceed(originalRequest)
-            }
+            return chain.proceed(originalRequest)
         } catch (e: Exception) {
             // Because OkHttp's enqueue only handles IOExceptions, wrap the exception so that
             // we don't crash the entire app
