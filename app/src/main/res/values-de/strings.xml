@@ -503,4 +503,9 @@
     <string name="pref_disable_battery_optimization_summary">Hilft bei Bibliotheksaktualisierungen und Backups im Hintergrund</string>
     <string name="battery_optimization_disabled">Akkuverbrauch-Optimierung ist bereits deaktiviert</string>
     <string name="email">E-Mail-Adresse</string>
+    <string name="pref_always_show_chapter_transition">Kapitelübergang immer anzeigen</string>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">Für 1 Titel</item>
+        <item quantity="other">Für %d Titel</item>
+    </plurals>
 </resources>
