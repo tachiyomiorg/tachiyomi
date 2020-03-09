@@ -503,4 +503,9 @@
     <string name="pref_disable_battery_optimization_summary">Agiudat cun sos agiornamentos de sa biblioteca e sas còpias de seguresa</string>
     <string name="battery_optimization_disabled">S\'otimizatzione de sa bateria est giai disabilitada</string>
     <string name="email">Indiritzu de posta eletrònica</string>
+    <string name="pref_always_show_chapter_transition">Ammustra semper sa transitzione de capìtulu</string>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">Pro 1 tìtulu</item>
+        <item quantity="other">Pro %d tìtulos</item>
+    </plurals>
 </resources>
