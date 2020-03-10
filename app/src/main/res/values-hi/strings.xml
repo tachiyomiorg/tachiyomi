@@ -501,4 +501,9 @@
     <string name="pref_disable_battery_optimization_summary">पृष्ठभूमि पुस्तकालय अपडेट और बैकअप के साथ मदद करता है</string>
     <string name="battery_optimization_disabled">बैटरी अनुकूलन पहले से ही अक्षम है</string>
     <string name="email">ईमेल पता</string>
+    <string name="pref_always_show_chapter_transition">हमेशा अध्याय संक्रमण दिखाएं</string>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">1 शीर्षक के लिए</item>
+        <item quantity="other">%d शीर्षक के लिए</item>
+    </plurals>
 </resources>
