@@ -506,4 +506,10 @@
     <string name="pref_disable_battery_optimization_summary">Допомагає фоновому оновленню бібліотеки та резервним копіям</string>
     <string name="battery_optimization_disabled">Збереження батареї вже вимкнено</string>
     <string name="email">Електропошта</string>
+    <string name="pref_always_show_chapter_transition">Завжди показувати перехід глави</string>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">Для 1 тайтлу</item>
+        <item quantity="few">Для %d тайтлів</item>
+        <item quantity="many">Для %d тайтлів</item>
+    </plurals>
 </resources>
