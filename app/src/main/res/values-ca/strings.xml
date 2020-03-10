@@ -504,4 +504,8 @@
     <string name="battery_optimization_disabled">L\'optimització de la bateria ja està desactivada</string>
     <string name="email">Adreça electrònica</string>
     <string name="pref_always_show_chapter_transition">Mostra sempre la transició de capítol</string>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">Per a 1 títol</item>
+        <item quantity="other">Per a %d títols</item>
+    </plurals>
 </resources>
