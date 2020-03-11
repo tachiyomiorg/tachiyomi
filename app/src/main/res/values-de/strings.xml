@@ -283,7 +283,7 @@
     <string name="dropped">Abgebrochen</string>
     <string name="on_hold">Pausiert</string>
     <string name="plan_to_read">Lesen geplant</string>
-    <string name="score">Wertung</string>
+    <string name="score">Bewertung</string>
     <string name="title">Titel</string>
     <string name="status">Status</string>
     <string name="error_category_exists">Eine Kategorie mit diesem Namen existiert bereits!</string>
