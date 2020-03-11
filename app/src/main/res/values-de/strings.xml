@@ -415,7 +415,7 @@
     <string name="url_not_set">Manga-URL ist nicht festgelegt. Drücke auf den Titel und wähle den Manga erneut aus</string>
     <string name="transition_finished">Beendet:</string>
     <string name="transition_current">Aktuell:</string>
-    <string name="transition_next">Als nächstes:</string>
+    <string name="transition_next">Als Nächstes:</string>
     <string name="transition_previous">Zuvor:</string>
     <string name="transition_no_next">Es gibt kein nächstes Kapitel</string>
     <string name="transition_no_previous">Es gibt kein vorheriges Kapitel</string>
