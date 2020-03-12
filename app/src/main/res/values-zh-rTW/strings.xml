@@ -19,9 +19,9 @@
     <string name="action_settings">設定</string>
     <string name="action_filter">篩選</string>
     <string name="action_filter_downloaded">已下載</string>
-    <string name="action_filter_bookmarked">已加書籤</string>
-    <string name="action_filter_unread">尚未閱讀</string>
-    <string name="action_filter_read">已閱畢</string>
+    <string name="action_filter_bookmarked">已新增書籤</string>
+    <string name="action_filter_unread">未讀</string>
+    <string name="action_filter_read">閱畢</string>
     <string name="action_filter_empty">清除篩選器</string>
     <string name="action_sort_alpha">名稱</string>
     <string name="action_sort_total">章節數</string>
@@ -384,7 +384,7 @@
     <string name="download_notifier_page_error">部分頁面遺失</string>
     <string name="download_notifier_page_ready_error">未載入部分頁面</string>
     <string name="name">名稱</string>
-    <string name="track">追隨中</string>
+    <string name="track">追蹤中</string>
     <string name="action_next_unread">移至下個未讀</string>
     <string name="action_open_log">打開記錄檔</string>
     <string name="pref_category_tracking">跟隨中</string>
