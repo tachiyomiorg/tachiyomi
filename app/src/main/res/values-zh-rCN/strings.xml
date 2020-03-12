@@ -357,7 +357,7 @@
     <string name="page_downloaded">页面已复制到%1$s</string>
     <string name="downloading">下载中…</string>
     <string name="download_progress">已下载%1$d%%</string>
-    <string name="chapter_progress">页数:%1$d</string>
+    <string name="chapter_progress">第 %1$d 页</string>
     <string name="chapter_subtitle">第 %1$s 章</string>
     <string name="no_next_chapter">下面没有啦</string>
     <string name="no_previous_chapter">前面没有啦</string>
@@ -424,7 +424,7 @@
     <string name="pref_read_with_long_tap">长按菜单</string>
     <string name="reader_pull_up_for_more_options">上拉显示更多选项</string>
     <string name="action_open_in_web_view">用外部浏览器打开</string>
-    <string name="pref_true_color">32位色彩</string>
+    <string name="pref_true_color">32 位色彩</string>
     <string name="pref_skip_read_chapters">跳过已读章节</string>
     <string name="pref_color_filter_mode">滤镜调和模式</string>
     <string name="filter_mode_default">默认</string>
@@ -484,28 +484,28 @@
     <string name="channel_new_chapters">章节更新</string>
     <string name="action_hide">隐藏</string>
     <string name="hide_notification_content">隐藏通知内容</string>
-    <string name="lock_with_biometrics">用生物特征锁定</string>
+    <string name="lock_with_biometrics">启用生物识别锁定</string>
     <string name="pref_cutout_short">在刘海屏区域显示内容</string>
     <string name="pref_webtoon_padding_vert">页面之间的垂直填充</string>
     <plurals name="notification_chapters_generic">
-        <item quantity="one">%1$d新章节</item>
+        <item quantity="one">%1$d 个新章节</item>
         <item quantity="other"></item>
     </plurals>
-    <string name="notification_chapters_single">章节%1$s</string>
-    <string name="notification_chapters_single_and_more">章节 %1$s 及另外%2$d章</string>
-    <string name="notification_chapters_multiple">%1$s章</string>
+    <string name="notification_chapters_single">第 %1$s 章</string>
+    <string name="notification_chapters_single_and_more">第 %1$s 章及另外 %2$d 章</string>
+    <string name="notification_chapters_multiple">第 %1$s 章</string>
     <plurals name="notification_chapters_multiple_and_more">
-        <item quantity="one">%1$s章及另外%2$d章</item>
+        <item quantity="one">第 %1$s 章及另外 %2$d 章</item>
         <item quantity="other"></item>
     </plurals>
     <string name="notification_check_updates">正检查新章节</string>
     <string name="pref_disable_battery_optimization">禁用电池优化</string>
-    <string name="pref_disable_battery_optimization_summary">帮助后台库更新和备份</string>
+    <string name="pref_disable_battery_optimization_summary">有助于后台更新书架和备份</string>
     <string name="battery_optimization_disabled">电池优化已被禁用</string>
-    <string name="email">电邮地址</string>
-    <string name="pref_always_show_chapter_transition">始终显示章节过渡</string>
+    <string name="email">邮箱地址</string>
+    <string name="pref_always_show_chapter_transition">总是显示章节之间的过渡界面</string>
     <plurals name="notification_new_chapters_summary">
         <item quantity="one">共%d标题</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
 </resources>
