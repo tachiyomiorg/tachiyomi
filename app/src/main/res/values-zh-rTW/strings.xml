@@ -34,7 +34,7 @@
     <string name="action_mark_as_unread">標示為未讀</string>
     <string name="action_mark_previous_as_read">標示過往章節為已讀</string>
     <string name="action_download">下載</string>
-    <string name="action_bookmark">加上書籤</string>
+    <string name="action_bookmark">新增書籤</string>
     <string name="action_remove_bookmark">移除書籤</string>
     <string name="action_delete">刪除</string>
     <string name="action_update">更新</string>
