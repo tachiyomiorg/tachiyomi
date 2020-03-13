@@ -287,7 +287,7 @@
     <string name="download_10">10 bab seterusnya</string>
     <string name="download_all">Semua</string>
     <string name="download_unread">Belum dibaca</string>
-    <string name="confirm_delete_chapters">Adakah anda pasti ingin memadamkan bab-bab yang dipilih\?</string>
+    <string name="confirm_delete_chapters">Adakah anda pasti ingin memadamkan bab yang dipilih\?</string>
     <string name="manga_tracking_tab">Penjejakan</string>
     <string name="reading">Sedang baca</string>
     <string name="completed">Selesai</string>
@@ -501,4 +501,7 @@
     <string name="battery_optimization_disabled">Pengoptimuman bateri sudah dinyahdayakan</string>
     <string name="email">Alamat e-mel</string>
     <string name="pref_always_show_chapter_transition">Sentiasa tunjuk peralihan bab</string>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="other">Untuk %d tajuk</item>
+    </plurals>
 </resources>
