@@ -508,4 +508,6 @@
         <item quantity="one">Para 1 título</item>
         <item quantity="other">Para %d títulos</item>
     </plurals>
+    <string name="notices">Avisos</string>
+    <string name="changelog">Registro de alterações</string>
 </resources>
