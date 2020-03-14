@@ -508,4 +508,6 @@
         <item quantity="one">Per a 1 títol</item>
         <item quantity="other">Per a %d títols</item>
     </plurals>
+    <string name="notices">Avisos</string>
+    <string name="changelog">Registre de canvis</string>
 </resources>
