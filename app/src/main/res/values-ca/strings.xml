@@ -510,4 +510,7 @@
     </plurals>
     <string name="notices">Avisos</string>
     <string name="changelog">Registre de canvis</string>
+    <string name="pref_theme_light">Variant del tema clar</string>
+    <string name="theme_light_default">Per defecte</string>
+    <string name="theme_light_blue">Blau clar</string>
 </resources>
