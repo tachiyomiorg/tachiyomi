@@ -299,11 +299,13 @@ class PagerPageHolder(
         if (subsamplingImageView != null) return subsamplingImageView!!
 
         val config = viewer.config
-
         subsamplingImageView = SubsamplingScaleImageView(context).apply {
             layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
             setMaxTileSize(viewer.activity.maxBitmapSize)
-            setDoubleTapZoomStyle(SubsamplingScaleImageView.ZOOM_FOCUS_FIXED)
+            setDoubleTapZoomStyle(when (config.doubleTapZoomStyle) {
+                PagerConfig.DoubleTapZoomStyle.Fixed -> SubsamplingScaleImageView.ZOOM_FOCUS_FIXED
+                else -> SubsamplingScaleImageView.ZOOM_FOCUS_CENTER
+            })
             setDoubleTapZoomDuration(config.doubleTapAnimDuration)
             setPanLimit(SubsamplingScaleImageView.PAN_LIMIT_INSIDE)
             setMinimumScaleType(config.imageScaleType)
@@ -466,5 +468,12 @@ class PagerPageHolder(
                     }
                 })
                 .into(this)
+    }
+
+    fun updateZoomStyle(zoomStyle: PagerConfig.DoubleTapZoomStyle) {
+        subsamplingImageView?.setDoubleTapZoomStyle(when (zoomStyle) {
+            PagerConfig.DoubleTapZoomStyle.Fixed -> SubsamplingScaleImageView.ZOOM_FOCUS_FIXED
+            else -> SubsamplingScaleImageView.ZOOM_FOCUS_CENTER
+        })
     }
 }

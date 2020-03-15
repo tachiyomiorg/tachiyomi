@@ -101,6 +101,15 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
         config.imagePropertyChangedListener = {
             refreshAdapter()
         }
+
+        config.doubleTapZoomStyleChangedListener = {
+            for (i in 0 until pager.childCount) {
+                val ph = pager.getChildAt(i)
+                if (ph is PagerPageHolder) {
+                    ph.updateZoomStyle(it)
+                }
+            }
+        }
     }
 
     /**

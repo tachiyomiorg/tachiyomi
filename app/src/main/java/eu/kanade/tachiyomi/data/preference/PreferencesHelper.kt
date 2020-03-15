@@ -205,4 +205,6 @@ class PreferencesHelper(val context: Context) {
     fun trustedSignatures() = rxPrefs.getStringSet("trusted_signatures", emptySet())
 
     fun alwaysShowChapterTransition() = rxPrefs.getBoolean(Keys.alwaysShowChapterTransition, true)
+
+    fun doubleTapZoomStyle() = rxPrefs.getInteger(Keys.doubleTapZoomStyle, 1)
 }

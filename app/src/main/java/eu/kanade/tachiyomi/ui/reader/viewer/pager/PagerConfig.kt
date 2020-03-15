@@ -16,6 +16,8 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
 
     var imagePropertyChangedListener: (() -> Unit)? = null
 
+    var doubleTapZoomStyleChangedListener: ((DoubleTapZoomStyle) -> Unit)? = null
+
     var tappingEnabled = true
         private set
 
@@ -44,6 +46,9 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
         private set
 
     var alwaysShowChapterTransition = true
+        private set
+
+    var doubleTapZoomStyle = DoubleTapZoomStyle.Fixed
         private set
 
     init {
@@ -76,6 +81,9 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
 
         preferences.alwaysShowChapterTransition()
                 .register({ alwaysShowChapterTransition = it })
+
+        preferences.doubleTapZoomStyle()
+                .register({ doubleTapZoomStyleFromPreference(it) }, { doubleTapZoomStyleChangedListener?.invoke(doubleTapZoomStyle) })
     }
 
     fun unsubscribe() {
@@ -93,6 +101,13 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
                 .doOnNext(onChanged)
                 .subscribe()
                 .addTo(subscriptions)
+    }
+
+    private fun doubleTapZoomStyleFromPreference(value: Int) {
+        doubleTapZoomStyle = when (value) {
+            1 -> DoubleTapZoomStyle.Fixed
+            else -> DoubleTapZoomStyle.Center
+        }
     }
 
     private fun zoomTypeFromPreference(value: Int) {
@@ -114,5 +129,9 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
 
     enum class ZoomType {
         Left, Center, Right
+    }
+
+    enum class DoubleTapZoomStyle {
+        Fixed, Center
     }
 }

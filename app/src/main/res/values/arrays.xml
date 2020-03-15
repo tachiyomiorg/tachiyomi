@@ -53,6 +53,16 @@
         <item>@string/scale_type_smart_fit</item>
     </string-array>
 
+    <string-array name="double_tap_zoom_style">
+        <item>@string/double_tap_zoom_style_fixed</item>
+        <item>@string/double_tap_zoom_style_center</item>
+    </string-array>
+
+    <string-array name="double_tap_zoom_style_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
     <string-array name="image_scale_type_values">
         <item>1</item>
         <item>2</item>

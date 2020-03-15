@@ -111,7 +111,14 @@ class SettingsReaderController : SettingsController() {
 
         preferenceCategory {
             titleRes = R.string.pager_viewer
-
+            intListPreference {
+                key = Keys.doubleTapZoomStyle
+                titleRes = R.string.pref_double_tap_zoom_style
+                entriesRes = arrayOf(R.string.double_tap_zoom_style_fixed, R.string.double_tap_zoom_style_center)
+                entryValues = arrayOf("1", "2")
+                defaultValue = "1"
+                summary = "%s"
+            }
             switchPreference {
                 key = Keys.enableTransitions
                 titleRes = R.string.pref_page_transitions

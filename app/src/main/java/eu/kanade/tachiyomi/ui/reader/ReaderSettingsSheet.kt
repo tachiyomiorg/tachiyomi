@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.reader_settings_sheet.background_color
 import kotlinx.android.synthetic.main.reader_settings_sheet.crop_borders
 import kotlinx.android.synthetic.main.reader_settings_sheet.crop_borders_webtoon
 import kotlinx.android.synthetic.main.reader_settings_sheet.cutout_short
+import kotlinx.android.synthetic.main.reader_settings_sheet.double_tap_zoom_style
 import kotlinx.android.synthetic.main.reader_settings_sheet.fullscreen
 import kotlinx.android.synthetic.main.reader_settings_sheet.keepscreen
 import kotlinx.android.synthetic.main.reader_settings_sheet.long_tap
@@ -104,7 +105,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         scale_type.bindToPreference(preferences.imageScaleType(), 1)
         zoom_start.bindToPreference(preferences.zoomStart(), 1)
         crop_borders.bindToPreference(preferences.cropBorders())
-        pad_pages_vert_webtoon.bindToPreference(preferences.padPagesVertWebtoon())
+        double_tap_zoom_style.bindToPreference(preferences.doubleTapZoomStyle(), 1)
         page_transitions.bindToPreference(preferences.pageTransitions())
     }
 

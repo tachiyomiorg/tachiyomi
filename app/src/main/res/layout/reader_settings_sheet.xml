@@ -212,6 +212,25 @@
         app:layout_constraintStart_toEndOf="@id/verticalcenter"
         app:layout_constraintTop_toBottomOf="@id/scale_type" />
 
+    <TextView
+        android:id="@+id/double_tap_zoom_style_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_double_tap_zoom_style"
+        app:layout_constraintBaseline_toBaselineOf="@id/double_tap_zoom_style"
+        app:layout_constraintEnd_toStartOf="@id/verticalcenter"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/double_tap_zoom_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:entries="@array/double_tap_zoom_style"
+        app:layout_constraintEnd_toEndOf="@id/spinner_end"
+        app:layout_constraintStart_toEndOf="@id/verticalcenter"
+        app:layout_constraintTop_toBottomOf="@id/zoom_start" />
+
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/crop_borders"
         android:layout_width="match_parent"
@@ -219,7 +238,7 @@
         android:layout_marginTop="10dp"
         android:text="@string/pref_crop_borders"
         android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/zoom_start" />
+        app:layout_constraintTop_toBottomOf="@id/double_tap_zoom_style" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/page_transitions"
@@ -266,7 +285,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="pager_prefs,scale_type_text,scale_type,zoom_start_text,zoom_start,crop_borders,page_transitions"
+        app:constraint_referenced_ids="pager_prefs,scale_type_text,scale_type,zoom_start_text,zoom_start,crop_borders,page_transitions,double_tap_zoom_style,double_tap_zoom_style_text"
         tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.Group
