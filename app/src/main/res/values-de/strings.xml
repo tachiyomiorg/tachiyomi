@@ -83,7 +83,7 @@
     <string name="pref_category_tracking">Synchronisation</string>
     <string name="pref_category_advanced">Erweitert</string>
     <string name="pref_category_about">Über</string>
-    <string name="pref_library_columns">Manga pro Reihe in der Bibliothek</string>
+    <string name="pref_library_columns">Manga pro Zeile in der Bibliothek</string>
     <string name="portrait">Hochformat</string>
     <string name="landscape">Querformat</string>
     <string name="default_columns">Standard</string>
@@ -214,7 +214,7 @@
     <string name="pref_enable_automatic_updates">Nach Updates suchen</string>
     <string name="pref_enable_automatic_updates_summary">Automatisch nach neuen App-Versionen suchen</string>
     <string name="pref_enable_acra">Fehlerberichte senden</string>
-    <string name="pref_acra_summary">Hilft Fehler zu beheben. Keine sensiblen Daten werden gesendet</string>
+    <string name="pref_acra_summary">Hilft bei der Behebung von Fehlern. Keine sensiblen Daten werden gesendet</string>
     <string name="login_title">Bei %1$s anmelden</string>
     <string name="username">Nutzername</string>
     <string name="password">Passwort</string>
@@ -508,4 +508,6 @@
         <item quantity="one">Für 1 Titel</item>
         <item quantity="other">Für %d Titel</item>
     </plurals>
+    <string name="notices">Changelog</string>
+    <string name="changelog">Changelog</string>
 </resources>
