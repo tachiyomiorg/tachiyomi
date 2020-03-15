@@ -506,4 +506,6 @@
         <item quantity="one">1 शीर्षक के लिए</item>
         <item quantity="other">%d शीर्षक के लिए</item>
     </plurals>
+    <string name="notices">नोटिस</string>
+    <string name="changelog">बदलाव लॉग</string>
 </resources>
