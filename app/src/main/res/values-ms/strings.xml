@@ -504,4 +504,6 @@
     <plurals name="notification_new_chapters_summary">
         <item quantity="other">Untuk %d tajuk</item>
     </plurals>
+    <string name="notices">Notis</string>
+    <string name="changelog">Log perubahan</string>
 </resources>
