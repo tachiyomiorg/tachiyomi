@@ -84,7 +84,7 @@
     <string name="action_login">Logga in</string>
     <string name="deleting">Tar bort…</string>
     <string name="loading">Laddar…</string>
-    <string name="app_not_available">Programmet är inte tillgänglig</string>
+    <string name="app_not_available">Applikationen är inte tillgänglig</string>
     <string name="short_recent_updates">Nytt</string>
     <string name="pref_category_general">Allmänt</string>
     <string name="pref_category_reader">Läsare</string>
@@ -450,14 +450,14 @@
     <string name="logout_title">Logga ut från %1$s\?</string>
     <string name="logout">Logga ut</string>
     <string name="logout_success">Du är nu utloggad</string>
-    <string name="currently_reading">Läser för tillfället</string>
+    <string name="currently_reading">Läser</string>
     <string name="paused">Pausad</string>
-    <string name="want_to_read">Vill läsa</string>
+    <string name="want_to_read">Planerar att läsa</string>
     <string name="label_more">Mer</string>
     <string name="action_sort_latest_chapter">Senaste kapitel</string>
     <string name="action_view_chapters">Visa kapitel</string>
     <string name="action_cancel_all">Avbryt alla</string>
-    <string name="pref_theme_mode">App-tema</string>
+    <string name="pref_theme_mode">Applikationstema</string>
     <string name="theme_light">Ljus</string>
     <string name="theme_dark">Mörk</string>
     <string name="theme_system">Följ systemet</string>
@@ -483,7 +483,7 @@
     <string name="information_webview_outdated">Uppdatera WebView-appen för bättre kompatibilitet</string>
     <string name="channel_new_chapters">Kapiteluppdateringar</string>
     <string name="unlock_app">Lås upp Tachiyomi</string>
-    <string name="secure_screen_summary">Dölj app-innehåll när du byter appar och blockera skärmdumpar</string>
+    <string name="secure_screen_summary">Dölj app-innehåll när du byter appar, och blockera skärmdumpar</string>
     <string name="pref_category_display">Skärmvisning</string>
     <plurals name="notification_chapters_generic">
         <item quantity="one">1 nytt kapitel</item>
@@ -508,4 +508,15 @@
         <item quantity="one">För 1 titel</item>
         <item quantity="other">För %d titlar</item>
     </plurals>
+    <string name="notices">Nyheter</string>
+    <string name="changelog">Ändringslogg</string>
+    <string name="pref_theme_light">Ljus temavariant</string>
+    <string name="theme_light_default">Standard</string>
+    <string name="theme_light_blue">Ljusblå</string>
+    <string name="action_menu">Meny</string>
+    <string name="action_reorganize_by">Ändra ordning</string>
+    <string name="action_newest">Nyaste</string>
+    <string name="action_oldest">Äldsta</string>
+    <string name="action_move_to_top">Flytta till toppen</string>
+    <string name="action_move_to_bottom">Flytta till botten</string>
 </resources>

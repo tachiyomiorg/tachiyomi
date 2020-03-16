@@ -510,4 +510,13 @@
     </plurals>
     <string name="notices">Avisos</string>
     <string name="changelog">Registro de alterações</string>
+    <string name="pref_theme_light">Variação do tema claro</string>
+    <string name="theme_light_default">Padrão</string>
+    <string name="theme_light_blue">Azul claro</string>
+    <string name="action_menu">Menu</string>
+    <string name="action_reorganize_by">Reordenar</string>
+    <string name="action_newest">Mais novos</string>
+    <string name="action_oldest">Mais antigos</string>
+    <string name="action_move_to_top">Mover para o início</string>
+    <string name="action_move_to_bottom">Mover para o fim</string>
 </resources>

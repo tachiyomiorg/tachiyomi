@@ -134,13 +134,13 @@
     <string name="ext_preferences">偏好</string>
     <string name="ext_available">可安装扩展</string>
     <string name="untrusted_extension">不可信扩展</string>
-    <string name="untrusted_extension_message">这个扩展是用一个不可信的证书签名的，并且它没有被激活。
-\n
-\n恶意扩展可以读取存储在Tachiyomi中的任何登录凭据或执行任意代码。
-\n
+    <string name="untrusted_extension_message">这个扩展是用一个不可信的证书签名的，并且它没有被激活。 
+\n 
+\n恶意扩展可以读取存储在 Tachiyomi 中的任何登录凭据或执行任意代码。 
+\n 
 \n信任这个证书，即代表你接受可能的风险。</string>
-    <string name="ext_version_info">版本: %1$s</string>
-    <string name="ext_language_info">语言: %1$s</string>
+    <string name="ext_version_info">版本：%1$s</string>
+    <string name="ext_language_info">语言：%1$s</string>
     <string name="ext_empty_preferences">此插件没有可用的偏好设置</string>
     <string name="pref_fullscreen">全屏</string>
     <string name="pref_lock_orientation">锁定方向</string>
@@ -302,7 +302,7 @@
     <string name="icon_creation_fail">创建快捷方式失败</string>
     <string name="delete_downloads_for_manga">删除已下载的章节？</string>
     <string name="copied_to_clipboard">已复制%1$s到剪贴板</string>
-    <string name="source_not_installed">未安装图源:%1$s</string>
+    <string name="source_not_installed">未安装图源：%1$s</string>
     <string name="manga_chapters_tab">章节</string>
     <string name="manga_chapter_no_title">无标题</string>
     <string name="display_mode_chapter">第 %1$s 章</string>
@@ -365,14 +365,14 @@
 \n请尝试更换图片解码器或选择以下选项</string>
     <string name="confirm_set_image_as_cover">要将此页设为封面吗？</string>
     <string name="viewer_for_this_series">阅读模式</string>
-    <string name="transition_finished">已读完:</string>
-    <string name="transition_current">"当前: "</string>
+    <string name="transition_finished">已读完：</string>
+    <string name="transition_current">当前：</string>
     <string name="transition_next">下一章：</string>
     <string name="transition_previous">上一章：</string>
     <string name="transition_no_next">下面没有啦</string>
     <string name="transition_no_previous">前面没有啦</string>
     <string name="transition_pages_loading">页面加载中…</string>
-    <string name="transition_pages_error">加载页面: %1$s失败</string>
+    <string name="transition_pages_error">第 %1$s 页加载失败</string>
     <string name="recent_manga_source">%1$s - 第 %2$s 章</string>
     <string name="migration_info">选择需要迁移的来源</string>
     <string name="migration_dialog_what_to_include">选择需要迁移的数据</string>
@@ -422,7 +422,7 @@
     <string name="channel_library">书架</string>
     <string name="channel_downloader">下载</string>
     <string name="pref_read_with_long_tap">长按菜单</string>
-    <string name="reader_pull_up_for_more_options">上拉显示更多选项</string>
+    <string name="reader_pull_up_for_more_options">向上滑动以显示更多选项</string>
     <string name="action_open_in_web_view">用外部浏览器打开</string>
     <string name="pref_true_color">32 位色彩</string>
     <string name="pref_skip_read_chapters">跳过已读章节</string>
@@ -489,14 +489,14 @@
     <string name="pref_webtoon_padding_vert">页面之间的垂直填充</string>
     <plurals name="notification_chapters_generic">
         <item quantity="one">%1$d 个新章节</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="notification_chapters_single">第 %1$s 章</string>
     <string name="notification_chapters_single_and_more">第 %1$s 章及另外 %2$d 章</string>
     <string name="notification_chapters_multiple">第 %1$s 章</string>
     <plurals name="notification_chapters_multiple_and_more">
         <item quantity="one">第 %1$s 章及另外 %2$d 章</item>
-        <item quantity="other"></item>
+        <item quantity="other"/>
     </plurals>
     <string name="notification_check_updates">正检查新章节</string>
     <string name="pref_disable_battery_optimization">禁用电池优化</string>
@@ -506,6 +506,17 @@
     <string name="pref_always_show_chapter_transition">总是显示章节之间的过渡界面</string>
     <plurals name="notification_new_chapters_summary">
         <item quantity="one">共%d标题</item>
-        <item quantity="other"/>
+        <item quantity="other"></item>
     </plurals>
+    <string name="pref_theme_light">默认浅色主题</string>
+    <string name="theme_light_default">默认</string>
+    <string name="theme_light_blue">浅蓝</string>
+    <string name="notices">告示</string>
+    <string name="changelog">更新日志</string>
+    <string name="action_menu">菜单</string>
+    <string name="action_reorganize_by">重新排序</string>
+    <string name="action_newest">最新</string>
+    <string name="action_oldest">最旧</string>
+    <string name="action_move_to_top">移至顶部</string>
+    <string name="action_move_to_bottom">移至底部</string>
 </resources>

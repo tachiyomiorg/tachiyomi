@@ -506,4 +506,13 @@
     </plurals>
     <string name="notices">Notis</string>
     <string name="changelog">Log perubahan</string>
+    <string name="pref_theme_light">Varian tema terang</string>
+    <string name="theme_light_default">Lalai</string>
+    <string name="theme_light_blue">Biru terang</string>
+    <string name="action_menu">Menu</string>
+    <string name="action_reorganize_by">Susun semula</string>
+    <string name="action_newest">Terbaru</string>
+    <string name="action_oldest">Terlama</string>
+    <string name="action_move_to_top">Naik ke atas</string>
+    <string name="action_move_to_bottom">Turun ke bawah</string>
 </resources>

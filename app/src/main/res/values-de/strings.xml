@@ -508,6 +508,15 @@
         <item quantity="one">Für 1 Titel</item>
         <item quantity="other">Für %d Titel</item>
     </plurals>
-    <string name="notices">Changelog</string>
+    <string name="notices">Änderungen</string>
     <string name="changelog">Changelog</string>
+    <string name="pref_theme_light">Helldesign</string>
+    <string name="theme_light_default">Standard</string>
+    <string name="theme_light_blue">Hellblau</string>
+    <string name="action_menu">Menü</string>
+    <string name="action_reorganize_by">Umordnen</string>
+    <string name="action_newest">Neueste</string>
+    <string name="action_oldest">Älteste</string>
+    <string name="action_move_to_top">Nach oben verschieben</string>
+    <string name="action_move_to_bottom">Nach unten verschieben</string>
 </resources>

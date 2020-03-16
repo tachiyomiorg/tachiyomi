@@ -11,7 +11,7 @@
     <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Historial</string>
     <string name="label_catalogues">Catàlegs</string>
-    <string name="label_recent_updates">Actualitzacions</string>
+    <string name="label_recent_updates">Novetats</string>
     <string name="label_categories">Categories</string>
     <string name="label_backup">Còpia de seguretat</string>
     <string name="label_migration">Migració de fonts</string>
@@ -35,8 +35,8 @@
     <string name="action_mark_as_unread">Marca com a no llegit</string>
     <string name="action_mark_previous_as_read">Marca els anteriors com a llegits</string>
     <string name="action_download">Baixa</string>
-    <string name="action_bookmark">Afegeix a preferits</string>
-    <string name="action_remove_bookmark">Elimina dels preferits</string>
+    <string name="action_bookmark">Marca</string>
+    <string name="action_remove_bookmark">Desmarca</string>
     <string name="action_delete">Suprimeix</string>
     <string name="action_update">Actualitza</string>
     <string name="action_update_library">Actualitza la biblioteca</string>
@@ -51,7 +51,7 @@
     <string name="action_sort_down">Ordena en ordre descendent</string>
     <string name="action_show_downloaded">Baixats</string>
     <string name="action_next_unread">Següent sense llegir</string>
-    <string name="action_start">Comença</string>
+    <string name="action_start">Inicia</string>
     <string name="action_stop">Atura</string>
     <string name="action_pause">Pausa</string>
     <string name="action_close">Tanca</string>
@@ -85,7 +85,7 @@
     <string name="deleting">S\'està suprimint…</string>
     <string name="loading">S\'està carregant…</string>
     <string name="app_not_available">Aplicació no disponible</string>
-    <string name="short_recent_updates">Actualitzacions</string>
+    <string name="short_recent_updates">Novetats</string>
     <string name="pref_category_general">General</string>
     <string name="pref_category_reader">Lector</string>
     <string name="pref_category_downloads">Baixades</string>
@@ -114,7 +114,7 @@
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Carregant</string>
     <string name="pref_update_only_non_completed">Actualitza només el manga en curs</string>
-    <string name="pref_auto_update_manga_sync">Sincronitza els capítols després de llegir-los</string>
+    <string name="pref_auto_update_manga_sync">Sincronitza capítols després de llegir-los</string>
     <string name="pref_start_screen">Pantalla d\'inici</string>
     <string name="pref_language">Llengua</string>
     <string name="system_default">Per defecte del sistema</string>
@@ -153,7 +153,7 @@
     <string name="pref_reader_navigation">Navegació</string>
     <string name="pref_read_with_volume_keys">Tecles de volum</string>
     <string name="pref_read_with_volume_keys_inverted">Inverteix les tecles de volum</string>
-    <string name="pref_read_with_tapping">Prement la pantalla</string>
+    <string name="pref_read_with_tapping">En prémer</string>
     <string name="pref_reader_theme">Color de fons</string>
     <string name="white_background">Blanc</string>
     <string name="black_background">Negre</string>
@@ -191,8 +191,8 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_download_directory">Ubicació de les baixades</string>
     <string name="pref_download_only_over_wifi">Baixa només amb Wi-Fi</string>
-    <string name="pref_remove_after_marked_as_read">Elimina quan es marqui com a llegit</string>
-    <string name="pref_remove_after_read">Elimina després de llegir-lo</string>
+    <string name="pref_remove_after_marked_as_read">Elimina en marcar com a llegit</string>
+    <string name="pref_remove_after_read">Elimina després de llegir</string>
     <string name="pref_double_tap_anim_speed">Velocitat de l\'animació del doble toc</string>
     <string name="custom_dir">Ubicació personalitzada</string>
     <string name="disabled">Desactivat</string>
@@ -249,7 +249,7 @@
     <string name="build_time">Hora de compilació</string>
     <string name="pref_enable_automatic_updates">Comprova si hi ha actualitzacions</string>
     <string name="pref_enable_automatic_updates_summary">Comprova automàticament si hi ha versions noves de l\'aplicació</string>
-    <string name="pref_enable_acra">Envia informes de fallades</string>
+    <string name="pref_enable_acra">Envia informes d\'errors</string>
     <string name="pref_acra_summary">Ajuda a solucionar errades. No s\'enviaran dades sensibles</string>
     <string name="login_title">Inicia la sessió a %1$s</string>
     <string name="username">Nom d\'usuari</string>
@@ -290,7 +290,7 @@
     <string name="manga_info_artist_label">Artista</string>
     <string name="manga_info_chapters_label">Capítols</string>
     <string name="manga_info_last_chapter_label">Darrer capítol</string>
-    <string name="manga_info_latest_data_label">Actuaitzat</string>
+    <string name="manga_info_latest_data_label">Actualitzat</string>
     <string name="manga_info_status_label">Estat</string>
     <string name="manga_info_source_label">Font</string>
     <string name="manga_info_genres_label">Gèneres</string>
@@ -315,7 +315,7 @@
     <string name="chapter_paused">Pausat</string>
     <string name="fetch_chapters_error">No s\'han pogut obtenir els capítols</string>
     <string name="show_title">Títol</string>
-    <string name="show_chapter_number">Número del capítol</string>
+    <string name="show_chapter_number">Número de capítol</string>
     <string name="sorting_mode">Mode d\'ordenació</string>
     <string name="sort_by_source">Per font</string>
     <string name="sort_by_number">Per número de capítol</string>
@@ -331,7 +331,7 @@
     <string name="confirm_delete_chapters">Esteu segur que voleu suprimir els capítols seleccionats\?</string>
     <string name="manga_tracking_tab">En seguiment</string>
     <string name="reading">Llegint</string>
-    <string name="completed">Completat</string>
+    <string name="completed">Completats</string>
     <string name="dropped">Abandonat</string>
     <string name="on_hold">En espera</string>
     <string name="plan_to_read">Pendent de llegir</string>
@@ -410,7 +410,7 @@
     <string name="information_no_recent_manga">No hi ha manga llegit recentment</string>
     <string name="information_empty_library">La vostra biblioteca és buida, afegiu-hi sèries als catàlegs.</string>
     <string name="information_empty_category">No teniu categories. Premeu el botó més per a crear-ne una i organitzar la vostra biblioteca.</string>
-    <string name="download_notifier_downloader_title">Baixador</string>
+    <string name="download_notifier_downloader_title">Baixades</string>
     <string name="download_notifier_title_error">Error</string>
     <string name="download_notifier_unkown_error">No s\'ha pogut baixar el capítol a causa d\'un error inesperat</string>
     <string name="download_notifier_page_error">Manca una pàgina al directori</string>
@@ -418,14 +418,14 @@
     <string name="download_notifier_text_only_wifi">No hi ha cap connexió Wi-Fi disponible</string>
     <string name="download_notifier_no_network">No hi ha cap connexió de xarxa disponible</string>
     <string name="download_notifier_download_paused">Baixada pausada</string>
-    <string name="channel_common">Comú</string>
+    <string name="channel_common">General</string>
     <string name="channel_library">Biblioteca</string>
-    <string name="channel_downloader">Baixador</string>
+    <string name="channel_downloader">Baixades</string>
     <string name="pref_read_with_long_tap">Finestra de toc llarg</string>
     <string name="reader_pull_up_for_more_options">Estireu cap amunt per a altres opcions</string>
     <string name="action_open_in_web_view">Obre en una visualització web</string>
     <string name="pref_true_color">Color de 32 bits</string>
-    <string name="pref_skip_read_chapters">Omet els capítols marcats com a llegits</string>
+    <string name="pref_skip_read_chapters">Omet capítols marcats com a llegits</string>
     <string name="pref_color_filter_mode">Mode de mescla del filtre de color</string>
     <string name="filter_mode_default">Per defecte</string>
     <string name="filter_mode_overlay">Sobreposa</string>
@@ -475,13 +475,13 @@
         <item quantity="one">Després d\'1 minut</item>
         <item quantity="other">Després de %1$s minuts</item>
     </plurals>
-    <string name="secure_screen">Pantalla segura</string>
+    <string name="secure_screen">Mode discret</string>
     <string name="ext_updates_pending">Actualitzacions pendents</string>
     <string name="pref_cutout_short">Mostra el contingut a l\'àrea de retall</string>
     <string name="pref_webtoon_padding_vert">Separació vertical entre pàgines</string>
     <string name="information_cloudflare_bypass_failure">No s\'ha pogut evitar el Cloudflare</string>
     <string name="information_webview_outdated">Actualitzeu l\'aplicació de WebView per a tenir més bona compatibilitat</string>
-    <string name="channel_new_chapters">Actualitzacions de capítols</string>
+    <string name="channel_new_chapters">Novetats de capítols</string>
     <string name="unlock_app">Desbloca Tachiyomi</string>
     <string name="secure_screen_summary">Amaga el contingut de l\'aplicació en canviar entre aplicacions i bloca les captures de pantalla</string>
     <string name="pref_category_display">Visualització</string>
@@ -513,4 +513,10 @@
     <string name="pref_theme_light">Variant del tema clar</string>
     <string name="theme_light_default">Per defecte</string>
     <string name="theme_light_blue">Blau clar</string>
+    <string name="action_menu">Menú</string>
+    <string name="action_reorganize_by">Reordena</string>
+    <string name="action_newest">Els més nous</string>
+    <string name="action_oldest">Els més antics</string>
+    <string name="action_move_to_top">Mou a dalt de tot</string>
+    <string name="action_move_to_bottom">Mou a sota de tot</string>
 </resources>

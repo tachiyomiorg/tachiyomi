@@ -110,7 +110,7 @@
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
-    <string name="pref_download_directory">Složka pro stahování</string>
+    <string name="pref_download_directory">Umístění pro stažení</string>
     <string name="pref_download_only_over_wifi">Stahovat pouze na Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Odstranit po označení jako přečtené</string>
     <string name="pref_remove_after_read">Odstranit po čtení</string>

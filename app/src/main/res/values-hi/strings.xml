@@ -508,4 +508,13 @@
     </plurals>
     <string name="notices">नोटिस</string>
     <string name="changelog">बदलाव लॉग</string>
+    <string name="pref_theme_light">लाइट थीम वैरिएंट</string>
+    <string name="theme_light_default">डिफ़ॉल्ट</string>
+    <string name="theme_light_blue">हल्का नीला</string>
+    <string name="action_menu">मेन्यू</string>
+    <string name="action_reorganize_by">पुनःक्रमित</string>
+    <string name="action_newest">नवीनतम</string>
+    <string name="action_oldest">सबसे पुराना</string>
+    <string name="action_move_to_top">शीर्ष पर ले जाएँ</string>
+    <string name="action_move_to_bottom">नीचे की ओर ले जाएं</string>
 </resources>
