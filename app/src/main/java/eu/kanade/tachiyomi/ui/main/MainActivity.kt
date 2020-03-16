@@ -13,6 +13,9 @@ import com.bluelinelabs.conductor.RouterTransaction
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.extension.api.ExtensionGithubApi
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
@@ -30,6 +33,13 @@ import eu.kanade.tachiyomi.ui.more.MoreController
 import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import kotlinx.android.synthetic.main.main_activity.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import timber.log.Timber
+import uy.kohesive.injekt.injectLazy
+import java.util.Date
+import java.util.concurrent.TimeUnit
 
 class MainActivity : BaseActivity() {
 
@@ -130,11 +140,46 @@ class MainActivity : BaseActivity() {
                 ChangelogDialogController().showDialog(router)
             }
         }
+        preferences.extensionUpdatesCount().asObservable().subscribe {
+            setExtensionsBadge()
+        }
+        setExtensionsBadge()
     }
 
     override fun onNewIntent(intent: Intent) {
         if (!handleIntentAction(intent)) {
             super.onNewIntent(intent)
+        }
+    }
+
+    private fun setExtensionsBadge() {
+        val updates = preferences.extensionUpdatesCount().getOrDefault()
+        if (updates > 0) {
+            val badge = bottom_nav.getOrCreateBadge(R.id.nav_more)
+            badge.number = updates
+        } else {
+            bottom_nav.removeBadge(R.id.nav_more)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getExtensionUpdates()
+    }
+
+    private fun getExtensionUpdates() {
+        if (Date().time >= preferences.lastExtCheck().getOrDefault() +
+            TimeUnit.HOURS.toMillis(2)) {
+            GlobalScope.launch(Dispatchers.IO) {
+                val preferences: PreferencesHelper by injectLazy()
+                try {
+                    val pendingUpdates = ExtensionGithubApi().checkForUpdates(this@MainActivity)
+                    preferences.extensionUpdatesCount().set(pendingUpdates.size)
+                    preferences.lastExtCheck().set(Date().time)
+                } catch (e: java.lang.Exception) {
+                    Timber.e(e)
+                }
+            }
         }
     }
 

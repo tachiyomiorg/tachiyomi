@@ -162,6 +162,7 @@ class ExtensionManager(
      */
     private fun updatedInstalledExtensionsStatuses(availableExtensions: List<Extension.Available>) {
         if (availableExtensions.isEmpty()) {
+            preferences.extensionUpdatesCount().set(0)
             return
         }
 
@@ -186,6 +187,7 @@ class ExtensionManager(
         if (changed) {
             installedExtensions = mutInstalledExtensions
         }
+        preferences.extensionUpdatesCount().set(installedExtensions.count { it.hasUpdate })
     }
 
     /**

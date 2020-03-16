@@ -46,7 +46,7 @@ class ExtensionUpdateJob(private val context: Context, workerParams: WorkerParam
                         val extNames = names.joinToString(", ")
                         setContentText(extNames)
                         setStyle(NotificationCompat.BigTextStyle().bigText(extNames))
-                        setSmallIcon(R.drawable.ic_extension_black_24dp)
+                        setSmallIcon(R.drawable.ic_extension_24dp)
                         setContentIntent(
                             NotificationReceiver.openExtensionsPendingActivity(
                                 context

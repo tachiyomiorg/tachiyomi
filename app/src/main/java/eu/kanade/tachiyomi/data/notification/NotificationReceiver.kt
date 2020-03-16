@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Handler
+import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -23,11 +24,10 @@ import eu.kanade.tachiyomi.util.storage.DiskUtil
 import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.system.notificationManager
 import eu.kanade.tachiyomi.util.system.toast
+import java.io.File
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
-import java.io.File
-import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
 
 /**
  * Global [BroadcastReceiver] that runs on UI thread
