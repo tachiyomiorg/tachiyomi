@@ -25,7 +25,7 @@ internal class ExtensionGithubApi {
     private val gson: Gson by injectLazy()
 
     suspend fun findExtensions(): List<Extension.Available> {
-        val call = GET("$REPO_URL/index.json")
+        val call = GET(EXT_URL)
 
         return withContext(Dispatchers.IO) {
             parseResponse(network.client.newCall(call).await())
@@ -34,7 +34,7 @@ internal class ExtensionGithubApi {
 
     suspend fun checkForUpdates(context: Context): List<Extension.Installed> {
         return withContext(Dispatchers.IO) {
-            val call = GET("$REPO_URL/index.json")
+            val call = GET(EXT_URL)
             val response = network.client.newCall(call).await()
 
             if (response.isSuccessful) {
@@ -44,8 +44,7 @@ internal class ExtensionGithubApi {
                 val installedExtensions = ExtensionLoader.loadExtensions(context)
                     .filterIsInstance<LoadResult.Success>()
                     .map { it.extension }
-                val mutInstalledExtensions = installedExtensions.toMutableList()
-                for (installedExt in mutInstalledExtensions) {
+                for (installedExt in installedExtensions) {
                     val pkgName = installedExt.pkgName
                     val availableExt = extensions.find { it.pkgName == pkgName } ?: continue
 
@@ -91,5 +90,6 @@ internal class ExtensionGithubApi {
 
     companion object {
         private const val REPO_URL = "https://raw.githubusercontent.com/inorichi/tachiyomi-extensions/repo"
+        private const val EXT_URL = "$REPO_URL/index.json"
     }
 }

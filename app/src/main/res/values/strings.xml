@@ -572,10 +572,6 @@
         <item quantity="one">Extension update available</item>
         <item quantity="other">%d extension updates available</item>
     </plurals>
-    <plurals name="notification_and_n_more_ext">
-        <item quantity="one">and %1$d more extension</item>
-        <item quantity="other">and %1$d more extensions</item>
-    </plurals>
 
     <!--Content Description-->
     <string name="description_backdrop">Backdrop image of manga</string>

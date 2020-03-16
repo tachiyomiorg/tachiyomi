@@ -10,8 +10,6 @@ import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
-import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
-import com.bluelinelabs.conductor.changehandler.SimpleSwapChangeHandler
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
@@ -31,11 +29,7 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.more.MoreController
 import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
-import kotlinx.android.synthetic.main.main_activity.appbar
-import kotlinx.android.synthetic.main.main_activity.bottom_nav
-import kotlinx.android.synthetic.main.main_activity.drawer
-import kotlinx.android.synthetic.main.main_activity.tabs
-import kotlinx.android.synthetic.main.main_activity.toolbar
+import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : BaseActivity() {
 
@@ -156,18 +150,8 @@ class MainActivity : BaseActivity() {
             SHORTCUT_RECENTLY_READ -> setSelectedDrawerItem(R.id.nav_history)
             SHORTCUT_CATALOGUES -> setSelectedDrawerItem(R.id.nav_catalogues)
             SHORTCUT_EXTENSIONS -> {
-                if (router.backstack.none { it.controller() is ExtensionController }) {
-                    if (router.backstack.isEmpty()) {
-                        bottom_nav.selectedItemId = R.id.nav_more
-                        router.pushController(
-                            RouterTransaction.with(ExtensionController()).pushChangeHandler(
-                                SimpleSwapChangeHandler()
-                            ).popChangeHandler(FadeChangeHandler())
-                        )
-                    } else {
-                        router.pushController(ExtensionController().withFadeTransaction())
-                    }
-                }
+                setSelectedDrawerItem(R.id.nav_more)
+                router.pushController(ExtensionController().withFadeTransaction())
             }
             SHORTCUT_MANGA -> {
                 val extras = intent.extras ?: return false

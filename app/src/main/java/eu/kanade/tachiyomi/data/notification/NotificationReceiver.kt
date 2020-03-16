@@ -439,7 +439,7 @@ class NotificationReceiver : BroadcastReceiver() {
         }
 
         /**
-         * Returns [PendingIntent] that opens the extensions controller,
+         * Returns [PendingIntent] that opens the extensions controller.
          *
          * @param context context of application
          */
