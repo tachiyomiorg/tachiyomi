@@ -26,7 +26,7 @@ class ChapterLoader(
      * completes if the chapter is already loaded.
      */
     fun loadChapter(chapter: ReaderChapter): Completable {
-        if (chapter.state is ReaderChapter.State.Loaded) {
+        if (chapterIsReady(chapter)) {
             return Completable.complete()
         }
 
@@ -59,6 +59,13 @@ class ChapterLoader(
                 }
                 .toCompletable()
                 .doOnError { chapter.state = ReaderChapter.State.Error(it) }
+    }
+
+    /**
+     * Checks [chapter] to be loaded based on present pages and loader in addition to state.
+     */
+    private fun chapterIsReady(chapter: ReaderChapter): Boolean {
+        return chapter.state is ReaderChapter.State.Loaded && chapter.pageLoader != null && chapter.pages?.count() != 0
     }
 
     /**
