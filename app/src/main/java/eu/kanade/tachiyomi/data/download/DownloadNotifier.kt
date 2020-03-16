@@ -87,7 +87,7 @@ internal class DownloadNotifier(private val context: Context) {
                 setContentIntent(NotificationHandler.openDownloadManagerPendingActivity(context))
                 isDownloading = true
                 // Pause action
-                addAction(R.drawable.ic_pause_white_24dp,
+                addAction(R.drawable.ic_pause_24dp,
                         context.getString(R.string.action_pause),
                         NotificationReceiver.pauseDownloadsPendingBroadcast(context))
             }
@@ -119,18 +119,18 @@ internal class DownloadNotifier(private val context: Context) {
         with(notificationBuilder) {
             setContentTitle(context.getString(R.string.chapter_paused))
             setContentText(context.getString(R.string.download_notifier_download_paused))
-            setSmallIcon(R.drawable.ic_pause_white_24dp)
+            setSmallIcon(R.drawable.ic_pause_24dp)
             setAutoCancel(false)
             setProgress(0, 0, false)
             clearActions()
             // Open download manager when clicked
             setContentIntent(NotificationHandler.openDownloadManagerPendingActivity(context))
             // Resume action
-            addAction(R.drawable.ic_play_arrow_white_24dp,
+            addAction(R.drawable.ic_play_arrow_24dp,
                     context.getString(R.string.action_resume),
                     NotificationReceiver.resumeDownloadsPendingBroadcast(context))
             // Clear action
-            addAction(R.drawable.ic_close_white_24dp,
+            addAction(R.drawable.ic_close_24dp,
                     context.getString(R.string.action_cancel_all),
                     NotificationReceiver.clearDownloadsPendingBroadcast(context))
         }

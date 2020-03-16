@@ -13,7 +13,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
 
-@Config(constants = BuildConfig::class, sdk = intArrayOf(Build.VERSION_CODES.LOLLIPOP))
+@Config(constants = BuildConfig::class, sdk = [Build.VERSION_CODES.LOLLIPOP])
 @RunWith(CustomRobolectricGradleTestRunner::class)
 class CategoryTest {
 

@@ -23,7 +23,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito
 import org.mockito.Mockito.RETURNS_DEEP_STUBS
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.anyLong
@@ -74,7 +73,7 @@ class BackupTest {
         // Mock the source manager
         val module = object : InjektModule {
             override fun InjektRegistrar.registerInjectables() {
-                addSingleton(Mockito.mock(SourceManager::class.java, RETURNS_DEEP_STUBS))
+                addSingleton(mock(SourceManager::class.java, RETURNS_DEEP_STUBS))
             }
         }
         Injekt.importModule(module)

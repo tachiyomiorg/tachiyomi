@@ -96,11 +96,11 @@ class LibraryUpdateService(
     private val progressNotificationBuilder by lazy {
         notificationBuilder(Notifications.CHANNEL_LIBRARY) {
             setContentTitle(getString(R.string.app_name))
-            setSmallIcon(R.drawable.ic_refresh_white_24dp)
+            setSmallIcon(R.drawable.ic_refresh_24dp)
             setLargeIcon(notificationBitmap)
             setOngoing(true)
             setOnlyAlertOnce(true)
-            addAction(R.drawable.ic_close_white_24dp, getString(android.R.string.cancel), cancelIntent)
+            addAction(R.drawable.ic_close_24dp, getString(android.R.string.cancel), cancelIntent)
         }
     }
 
@@ -535,7 +535,7 @@ class LibraryUpdateService(
                     NotificationReceiver.markAsReadPendingBroadcast(this@LibraryUpdateService,
                             manga, chapters, Notifications.ID_NEW_CHAPTERS))
             // View chapters action
-            addAction(R.drawable.ic_book_white_24dp, getString(R.string.action_view_chapters),
+            addAction(R.drawable.ic_book_24dp, getString(R.string.action_view_chapters),
                     NotificationReceiver.openChapterPendingActivity(this@LibraryUpdateService,
                             manga, Notifications.ID_NEW_CHAPTERS))
         }

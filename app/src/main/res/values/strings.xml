@@ -29,6 +29,7 @@
 
     <!-- Actions -->
     <string name="action_settings">Settings</string>
+    <string name="action_menu">Menu</string>
     <string name="action_filter">Filter</string>
     <string name="action_filter_downloaded">Downloaded</string>
     <string name="action_filter_bookmarked">Bookmarked</string>
@@ -87,6 +88,11 @@
     <string name="action_cancel">Cancel</string>
     <string name="action_cancel_all">Cancel all</string>
     <string name="action_sort">Sort</string>
+    <string name="action_reorganize_by">Reorder</string>
+    <string name="action_newest">Newest</string>
+    <string name="action_oldest">Oldest</string>
+    <string name="action_move_to_top">Move to top</string>
+    <string name="action_move_to_bottom">Move to bottom</string>
     <string name="action_install">Install</string>
     <string name="action_share">Share</string>
     <string name="action_save">Save</string>

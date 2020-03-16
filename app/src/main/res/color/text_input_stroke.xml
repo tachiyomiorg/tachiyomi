@@ -4,7 +4,7 @@ The regular version uses ?attr/colorPrimary when focused, which doesn't work wel
 https://github.com/material-components/material-components-android/blob/master/lib/java/com/google/android/material/textfield/res/color/mtrl_filled_stroke_color.xml
 -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="?attr/colorAccent" android:state_focused="true" />
+    <item android:color="?attr/colorSecondary" android:state_focused="true" />
     <item android:alpha="0.87" android:color="?attr/colorOnSurface" android:state_hovered="true" />
     <item android:alpha="0.12" android:color="?attr/colorOnSurface" android:state_enabled="false" />
     <item android:alpha="0.38" android:color="?attr/colorOnSurface" />

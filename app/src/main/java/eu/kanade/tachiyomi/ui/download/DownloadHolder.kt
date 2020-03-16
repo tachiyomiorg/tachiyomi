@@ -1,12 +1,16 @@
 package eu.kanade.tachiyomi.ui.download
 
 import android.view.View
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
-import eu.kanade.tachiyomi.ui.base.holder.BaseViewHolder
-import kotlinx.android.synthetic.main.download_item.view.chapter_title
-import kotlinx.android.synthetic.main.download_item.view.download_progress
-import kotlinx.android.synthetic.main.download_item.view.download_progress_text
-import kotlinx.android.synthetic.main.download_item.view.manga_title
+import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
+import eu.kanade.tachiyomi.util.view.popupMenu
+import kotlinx.android.synthetic.main.download_item.chapter_title
+import kotlinx.android.synthetic.main.download_item.download_progress
+import kotlinx.android.synthetic.main.download_item.download_progress_text
+import kotlinx.android.synthetic.main.download_item.manga_full_title
+import kotlinx.android.synthetic.main.download_item.menu
+import kotlinx.android.synthetic.main.download_item.reorder
 
 /**
  * Class used to hold the data of a download.
@@ -15,33 +19,37 @@ import kotlinx.android.synthetic.main.download_item.view.manga_title
  * @param view the inflated view for this holder.
  * @constructor creates a new download holder.
  */
-class DownloadHolder(private val view: View) : BaseViewHolder(view) {
+class DownloadHolder(private val view: View, val adapter: DownloadAdapter) :
+    BaseFlexibleViewHolder(view, adapter) {
+
+    init {
+        setDragHandleView(reorder)
+        menu.setOnClickListener { it.post { showPopupMenu(it) } }
+    }
 
     private lateinit var download: Download
 
     /**
-     * Method called from [DownloadAdapter.onBindViewHolder]. It updates the data for this
-     * holder with the given download.
+     * Binds this holder with the given category.
      *
-     * @param download the download to bind.
+     * @param category The category to bind.
      */
-    fun onSetValues(download: Download) {
+    fun bind(download: Download) {
         this.download = download
-
         // Update the chapter name.
-        view.chapter_title.text = download.chapter.name
+        chapter_title.text = download.chapter.name
 
         // Update the manga title
-        view.manga_title.text = download.manga.title
+        manga_full_title.text = download.manga.title
 
         // Update the progress bar and the number of downloaded pages
         val pages = download.pages
         if (pages == null) {
-            view.download_progress.progress = 0
-            view.download_progress.max = 1
-            view.download_progress_text.text = ""
+            download_progress.progress = 0
+            download_progress.max = 1
+            download_progress_text.text = ""
         } else {
-            view.download_progress.max = pages.size * 100
+            download_progress.max = pages.size * 100
             notifyProgress()
             notifyDownloadedPages()
         }
@@ -52,10 +60,10 @@ class DownloadHolder(private val view: View) : BaseViewHolder(view) {
      */
     fun notifyProgress() {
         val pages = download.pages ?: return
-        if (view.download_progress.max == 1) {
-            view.download_progress.max = pages.size * 100
+        if (download_progress.max == 1) {
+            download_progress.max = pages.size * 100
         }
-        view.download_progress.progress = download.totalProgress
+        download_progress.progress = download.totalProgress
     }
 
     /**
@@ -63,6 +71,22 @@ class DownloadHolder(private val view: View) : BaseViewHolder(view) {
      */
     fun notifyDownloadedPages() {
         val pages = download.pages ?: return
-        view.download_progress_text.text = "${download.downloadedImages}/${pages.size}"
+        download_progress_text.text = "${download.downloadedImages}/${pages.size}"
+    }
+
+    override fun onItemReleased(position: Int) {
+        super.onItemReleased(position)
+        adapter.downloadItemListener.onItemReleased(position)
+    }
+
+    private fun showPopupMenu(view: View) {
+        view.popupMenu(R.menu.download_single, {
+            findItem(R.id.move_to_top).isVisible = adapterPosition != 0
+            findItem(R.id.move_to_bottom).isVisible =
+                adapterPosition != adapter.itemCount - 1
+        }, {
+            adapter.downloadItemListener.onMenuItemClick(adapterPosition, this)
+            true
+        })
     }
 }

@@ -4,11 +4,16 @@
     <!--========-->
     <!--Toolbars-->
     <!--========-->
-    <style name="Theme.ActionBar" parent="@style/ThemeOverlay.MaterialComponents.ActionBar" />
+    <style name="Theme.Toolbar" parent="@style/ThemeOverlay.MaterialComponents.ActionBar" />
 
-    <style name="Theme.ActionBar.Light" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+    <style name="Theme.Toolbar.Light" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
         <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
     </style>
+
+    <style name="Theme.Toolbar.Navigation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="tint">?attr/colorOnPrimary</item>
+    </style>
+
 
     <!--===========-->
     <!--AlertDialog-->
@@ -206,12 +211,12 @@
 
     <style name="Theme.Widget.TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/text_input_stroke</item>
-        <item name="hintTextColor">?attr/colorAccent</item>
+        <item name="hintTextColor">?attr/colorSecondary</item>
     </style>
 
     <style name="Theme.Widget.TextInputLayout.OutlinedBox.Dense" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="boxStrokeColor">@color/text_input_stroke</item>
-        <item name="hintTextColor">?attr/colorAccent</item>
+        <item name="hintTextColor">?attr/colorSecondary</item>
     </style>
 
 

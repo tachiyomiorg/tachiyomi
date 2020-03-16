@@ -213,7 +213,7 @@
         app:layout_constraintBottom_toBottomOf="@id/brightness_seekbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/brightness_seekbar"
-        app:srcCompat="@drawable/ic_brightness_5_black_24dp" />
+        app:srcCompat="@drawable/ic_brightness_5_24dp" />
 
     <TextView
         android:id="@+id/txt_brightness_seekbar_value"

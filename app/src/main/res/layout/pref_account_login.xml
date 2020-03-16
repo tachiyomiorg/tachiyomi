@@ -4,23 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp">
-
-    <TextView
-        android:id="@+id/dialog_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <View
-        android:id="@+id/titleDivider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="24dp"
-        android:background="?android:attr/divider" />
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_label"

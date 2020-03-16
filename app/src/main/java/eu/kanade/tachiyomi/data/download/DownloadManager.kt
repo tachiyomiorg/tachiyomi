@@ -5,6 +5,7 @@ import com.hippo.unifile.UniFile
 import com.jakewharton.rxrelay.BehaviorRelay
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.download.model.DownloadQueue
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
@@ -19,7 +20,7 @@ import uy.kohesive.injekt.injectLazy
  *
  * @param context the application context.
  */
-class DownloadManager(context: Context) {
+class DownloadManager(private val context: Context) {
 
     /**
      * The sources manager.
@@ -93,6 +94,29 @@ class DownloadManager(context: Context) {
     }
 
     /**
+     * Reorders the download queue.
+     *
+     * @param downloads value to set the download queue to
+     */
+    fun reorderQueue(downloads: List<Download>) {
+        val wasRunning = downloader.isRunning
+
+        if (downloads.isEmpty()) {
+            DownloadService.stop(context)
+            downloader.queue.clear()
+            return
+        }
+
+        downloader.pause()
+        downloader.queue.clear()
+        downloader.queue.addAll(downloads)
+
+        if (wasRunning) {
+            downloader.start()
+        }
+    }
+
+    /**
      * Tells the downloader to enqueue the given list of chapters.
      *
      * @param manga the manga of the chapters.
@@ -155,6 +179,15 @@ class DownloadManager(context: Context) {
      */
     fun getDownloadCount(manga: Manga): Int {
         return cache.getDownloadCount(manga)
+    }
+
+    /**
+     * Calls delete chapter, which deletes a temp download.
+     *
+     * @param download the download to cancel.
+     */
+    fun deletePendingDownload(download: Download) {
+        deleteChapters(listOf(download.chapter), download.manga, download.source)
     }
 
     /**

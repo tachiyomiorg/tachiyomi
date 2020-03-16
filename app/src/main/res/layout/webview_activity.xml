@@ -17,7 +17,7 @@
             android:background="?attr/colorPrimary"
             android:theme="?attr/actionBarTheme"
             app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:navigationIcon="@drawable/ic_close_white_24dp" />
+            app:navigationIcon="@drawable/ic_close_24dp" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

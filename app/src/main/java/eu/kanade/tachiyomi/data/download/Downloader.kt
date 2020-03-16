@@ -83,7 +83,8 @@ class Downloader(
      * Whether the downloader is running.
      */
     @Volatile
-    private var isRunning: Boolean = false
+    var isRunning: Boolean = false
+        private set
 
     init {
         launchNow {

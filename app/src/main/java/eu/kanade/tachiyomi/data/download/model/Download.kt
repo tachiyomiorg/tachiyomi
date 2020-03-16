@@ -24,17 +24,30 @@ class Download(val source: HttpSource, val manga: Manga, val chapter: Chapter) {
         set(status) {
             field = status
             statusSubject?.onNext(this)
+            statusCallback?.invoke(this)
         }
 
     @Transient
     private var statusSubject: PublishSubject<Download>? = null
 
+    @Transient
+    private var statusCallback: ((Download) -> Unit)? = null
+
+    val progress: Int
+        get() {
+            val pages = pages ?: return 0
+            return pages.map(Page::progress).average().toInt()
+        }
+
     fun setStatusSubject(subject: PublishSubject<Download>?) {
         statusSubject = subject
     }
 
-    companion object {
+    fun setStatusCallback(f: ((Download) -> Unit)?) {
+        statusCallback = f
+    }
 
+    companion object {
         const val NOT_DOWNLOADED = 0
         const val QUEUE = 1
         const val DOWNLOADING = 2

@@ -2,11 +2,11 @@ package eu.kanade.tachiyomi.widget.preference
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.StringRes
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.util.system.toast
-import kotlinx.android.synthetic.main.pref_account_login.view.dialog_title
 import kotlinx.android.synthetic.main.pref_account_login.view.login
 import kotlinx.android.synthetic.main.pref_account_login.view.password
 import kotlinx.android.synthetic.main.pref_account_login.view.username
@@ -15,18 +15,21 @@ import rx.schedulers.Schedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
-class TrackLoginDialog(usernameLabel: String? = null, bundle: Bundle? = null) :
-        LoginDialogPreference(usernameLabel, bundle) {
+class TrackLoginDialog(
+    @StringRes titleRes: Int? = null,
+    titleFormatArgs: Any? = null,
+    @StringRes usernameLabelRes: Int? = null,
+    bundle: Bundle? = null
+) : LoginDialogPreference(titleRes, titleFormatArgs, usernameLabelRes, bundle) {
 
     private val service = Injekt.get<TrackManager>().getService(args.getInt("key"))!!
 
     constructor(service: TrackService) : this(service, null)
 
-    constructor(service: TrackService, usernameLabel: String?) :
-            this(usernameLabel, Bundle().apply { putInt("key", service.id) })
+    constructor(service: TrackService, @StringRes usernameLabelRes: Int?) :
+            this(R.string.login_title, service.name, usernameLabelRes, Bundle().apply { putInt("key", service.id) })
 
     override fun setCredentialsOnView(view: View) = with(view) {
-        dialog_title.text = context.getString(R.string.login_title, service.name)
         username.setText(service.getUsername())
         password.setText(service.getPassword())
     }

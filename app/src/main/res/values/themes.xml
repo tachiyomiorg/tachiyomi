@@ -45,6 +45,7 @@
         <!-- Themes -->
         <item name="windowActionModeOverlay">true</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
+        <item name="toolbarNavigationButtonStyle">@style/Theme.Toolbar.Navigation</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="dialogTheme">@style/Theme.AlertDialog.Light</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
@@ -77,7 +78,7 @@
         <item name="colorOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 
-        <item name="actionBarTheme">@style/Theme.ActionBar.Light</item>
+        <item name="actionBarTheme">@style/Theme.Toolbar.Light</item>
     </style>
 
     <!--=============-->
@@ -120,6 +121,7 @@
         <item name="windowActionModeOverlay">true</item>
         <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
+        <item name="toolbarNavigationButtonStyle">@style/Theme.Toolbar.Navigation</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="dialogTheme">@style/Theme.AlertDialog.Dark</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
@@ -175,6 +177,7 @@
     <!--==============-->
     <style name="Theme.Base.Reader.Dark" parent="Theme.Base.Dark">
         <item name="colorPrimary">@color/readerColorDarkPrimary</item>
+        <item name="colorOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/readerColorDarkPrimary</item>
         <item name="colorSurface">@color/md_black_1000</item>
 
@@ -188,6 +191,7 @@
 
     <style name="Theme.Base.Reader.Light" parent="Theme.Base">
         <item name="colorPrimary">@color/readerColorDarkPrimary</item>
+        <item name="colorOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/readerColorDarkPrimary</item>
         <item name="colorSurface">@color/md_white_1000</item>
 

@@ -194,8 +194,6 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation "com.github.bumptech.glide:okhttp3-integration:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
-
-    // Transformations
     implementation 'jp.wasabeef:glide-transformations:4.0.0'
 
     // Logging
@@ -213,7 +211,7 @@ dependencies {
     implementation 'com.github.amulyakhare:TextDrawable:558677e'
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
     implementation 'com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.1.0'
-    implementation 'com.github.mthli:Slice:v1.2'
+    implementation 'com.github.mthli:Slice:v1.3'
     implementation 'me.gujun.android.taggroup:library:1.4@aar'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'com.github.carlosesco:DirectionalViewPager:a844dbca0a'
@@ -234,7 +232,7 @@ dependencies {
 
     // Tests
     testImplementation 'junit:junit:4.13'
-    testImplementation 'org.assertj:assertj-core:1.7.1'
+    testImplementation 'org.assertj:assertj-core:3.12.2'
     testImplementation 'org.mockito:mockito-core:1.10.19'
 
     final robolectric_version = '3.1.4'

@@ -71,7 +71,8 @@
                 android:background="?selectableItemBackgroundBorderless"
                 android:contentDescription="@string/action_previous_chapter"
                 android:padding="@dimen/material_layout_keylines_screen_edge_margin"
-                app:srcCompat="@drawable/ic_skip_previous_white_24dp" />
+                app:srcCompat="@drawable/ic_skip_previous_24dp"
+                app:tint="?attr/colorOnPrimary" />
 
             <TextView
                 android:id="@+id/left_page_text"
@@ -108,7 +109,8 @@
                 android:background="?selectableItemBackgroundBorderless"
                 android:contentDescription="@string/action_next_chapter"
                 android:padding="@dimen/material_layout_keylines_screen_edge_margin"
-                app:srcCompat="@drawable/ic_skip_next_white_24dp" />
+                app:srcCompat="@drawable/ic_skip_next_24dp"
+                app:tint="?attr/colorOnPrimary" />
 
         </LinearLayout>
 
