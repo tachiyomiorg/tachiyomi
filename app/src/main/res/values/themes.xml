@@ -128,6 +128,8 @@
         <item name="snackbarButtonStyle">@style/Theme.Widget.Button.Borderless</item>
         <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
+        <!-- Surface-colored snackbar -->
+        <item name="snackbarStyle">@style/Theme.Widget.Snackbar</item>
 
         <item name="md_background_color">?attr/colorSurface</item>
 
@@ -160,8 +162,6 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
 
         <!-- Themes -->
-        <!-- Surface-colored snackbar -->
-        <item name="snackbarStyle">@style/Theme.Widget.Snackbar</item>
         <item name="md_background_color">@color/colorAmoledPrimary</item>
 
         <!-- Custom Attributes-->
