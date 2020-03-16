@@ -65,7 +65,7 @@ class ChapterLoader(
      * Checks [chapter] to be loaded based on present pages and loader in addition to state.
      */
     private fun chapterIsReady(chapter: ReaderChapter): Boolean {
-        return chapter.state is ReaderChapter.State.Loaded && chapter.pageLoader != null && chapter.pages?.count() != 0
+        return chapter.state is ReaderChapter.State.Loaded && chapter.pageLoader != null
     }
 
     /**
