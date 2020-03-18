@@ -149,7 +149,7 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
         // 1. Going to next chapter from chapter transition
         // 2. Going between pages of same chapter
         // 3. Next chapter page
-        return when (page?.chapter) {
+        return when (page!!.chapter) {
             (currentPage as? ChapterTransition.Next)?.to -> true
             (currentPage as? ReaderPage)?.chapter -> true
             adapter.nextTransition?.to -> true
