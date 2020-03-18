@@ -74,10 +74,11 @@ class WebtoonViewer(val activity: ReaderActivity) : BaseViewer {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 val position = layoutManager.findLastEndVisibleItemPosition()
                 val item = adapter.items.getOrNull(position)
+                val allowPreload = checkAllowPreload(item as? ReaderPage)
                 if (item != null && currentPage != item) {
                     currentPage = item
                     when (item) {
-                        is ReaderPage -> onPageSelected(item, position)
+                        is ReaderPage -> onPageSelected(item, allowPreload)
                         is ChapterTransition -> onTransitionSelected(item)
                     }
                 }
@@ -122,6 +123,40 @@ class WebtoonViewer(val activity: ReaderActivity) : BaseViewer {
         frame.addView(recycler)
     }
 
+    private fun checkAllowPreload(page: ReaderPage?): Boolean {
+        // Page is transition page - preload allowed
+        if (page == null)
+            return true
+
+        // Initial opening - preload allowed
+        if (currentPage == null) {
+            return true
+        }
+
+        // Going to previous chapter page from a chapter transition - no preload
+        if (page.chapter == (currentPage as? ChapterTransition.Prev)?.to) {
+            return false
+        }
+
+        // Going between pages of same chapter - can preload
+        if (page.chapter == (currentPage as? ReaderPage)?.chapter) {
+            return true
+        }
+
+        // Next chapter page - allow preload, necessary for 1-3 page chapters.
+        val nextItem = adapter.items.getOrNull(adapter.items.count() - 1)
+        val nextChapter = (nextItem as? ChapterTransition.Next)?.to ?: (nextItem as? ReaderPage)?.chapter
+        if (page.chapter == nextChapter) {
+            return true
+        }
+
+        // Other cases, no preload is necessary.
+        // 1. Going back to chapter from Next transition
+        // 2. Going back to chapter from From transition
+        // 3. Going back to a loaded page of previous chapter (no transition)
+        return false
+    }
+
     /**
      * Returns the view this viewer uses.
      */
@@ -142,18 +177,20 @@ class WebtoonViewer(val activity: ReaderActivity) : BaseViewer {
      * Called from the RecyclerView listener when a [page] is marked as active. It notifies the
      * activity of the change and requests the preload of the next chapter if this is the last page.
      */
-    private fun onPageSelected(page: ReaderPage, position: Int) {
+    private fun onPageSelected(page: ReaderPage, allowPreload: Boolean) {
         val pages = page.chapter.pages!! // Won't be null because it's the loaded chapter
         Timber.d("onPageSelected: ${page.number}/${pages.size}")
         activity.onPageSelected(page)
 
         // Preload next chapter once we're within the last 3 pages of the current chapter
         val inPreloadRange = pages.size - page.number < 3
-        if (inPreloadRange) {
+        if (inPreloadRange && allowPreload) {
             Timber.d("Request preload next chapter because we're at page ${page.number} of ${pages.size}")
-            val transition = adapter.items.getOrNull(pages.size + 1) as? ChapterTransition.Next
-            if (transition?.to != null) {
-                activity.requestPreloadChapter(transition.to)
+            val nextItem = adapter.items.getOrNull(adapter.items.size - 1)
+            val transitionChapter = (nextItem as? ChapterTransition.Next)?.to ?: (nextItem as?ReaderPage)?.chapter
+            if (transitionChapter != null) {
+                Timber.d("Requesting to preload chapter ${transitionChapter.chapter.chapter_number}")
+                activity.requestPreloadChapter(transitionChapter)
             }
         }
     }
