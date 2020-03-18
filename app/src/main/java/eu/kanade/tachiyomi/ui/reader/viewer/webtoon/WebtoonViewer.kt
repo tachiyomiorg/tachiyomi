@@ -136,17 +136,11 @@ class WebtoonViewer(val activity: ReaderActivity) : BaseViewer {
         // Allow preload for
         // 1. Going between pages of same chapter
         // 2. Next chapter page
-        when (page?.chapter) {
-            (currentPage as? ReaderPage)?.chapter -> return true
-            nextChapter -> return true
+        return when (page?.chapter) {
+            (currentPage as? ReaderPage)?.chapter -> true
+            nextChapter -> true
+            else-> false
         }
-
-        // Other cases, no preload is allowed.
-        // 1. Going back to chapter from Next transition
-        // 2. Going back to chapter from From transition
-        // 3. Going back to a loaded page of previous chapter (no transition)
-        // 4. Going to previous chapter page from a chapter transition
-        return false
     }
 
     /**

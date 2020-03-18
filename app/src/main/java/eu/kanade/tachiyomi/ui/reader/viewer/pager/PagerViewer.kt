@@ -149,18 +149,12 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
         // 1. Going to next chapter from chapter transition
         // 2. Going between pages of same chapter
         // 3. Next chapter page
-        when (page?.chapter) {
-            (currentPage as? ChapterTransition.Next)?.to -> return true
-            (currentPage as? ReaderPage)?.chapter -> return true
-            adapter.nextTransition?.to -> return true
+        return when (page?.chapter) {
+            (currentPage as? ChapterTransition.Next)?.to -> true
+            (currentPage as? ReaderPage)?.chapter -> true
+            adapter.nextTransition?.to -> true
+            else -> false
         }
-
-        // Other cases, no preload is allowed.
-        // 1. Going back to chapter from Next transition
-        // 2. Going back to chapter from From transition
-        // 3. Going back to a loaded page of previous chapter (no transition)
-        // 4. Going to previous chapter page from a chapter transition
-        return false
     }
 
     /**
