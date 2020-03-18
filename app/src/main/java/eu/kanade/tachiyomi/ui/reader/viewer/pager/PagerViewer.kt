@@ -129,26 +129,64 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
     private fun onPageChange(position: Int) {
         val page = adapter.items.getOrNull(position)
         if (page != null && currentPage != page) {
+            val allowPreload = checkAllowPreload(page as? ReaderPage)
             currentPage = page
             when (page) {
-                is ReaderPage -> onReaderPageSelected(page)
+                is ReaderPage -> onReaderPageSelected(page, allowPreload)
                 is ChapterTransition -> onTransitionSelected(page)
             }
         }
+    }
+
+    private fun checkAllowPreload(page: ReaderPage?): Boolean {
+        // Page is transition page - preload allowed
+        if (page == null)
+            return true
+
+        // Initial opening - preload allowed
+        if (currentPage == null) {
+            return true
+        }
+
+        // Going to previous chapter page from a chapter transition - no preload
+        if (page.chapter == (currentPage as? ChapterTransition.Prev)?.to) {
+            return false
+        }
+
+        // Going to next chapter from chapter transition - allow preload
+        if (page.chapter == (currentPage as? ChapterTransition.Next)?.to) {
+            return true
+        }
+
+        // Going between pages of same chapter - can preload
+        if (page.chapter == (currentPage as? ReaderPage)?.chapter) {
+            return true
+        }
+
+        // Next chapter page - allow preload, necessary for 1-3 page chapters.
+        if (page.chapter == adapter.nextTransition?.to) {
+            return true
+        }
+
+        // Other cases, no preload is necessary.
+        // 1. Going back to chapter from Next transition
+        // 2. Going back to chapter from From transition
+        // 3. Going back to a loaded page of previous chapter (no transition)
+        return false
     }
 
     /**
      * Called when a [ReaderPage] is marked as active. It notifies the
      * activity of the change and requests the preload of the next chapter if this is the last page.
      */
-    private fun onReaderPageSelected(page: ReaderPage) {
+    private fun onReaderPageSelected(page: ReaderPage, allowPreload: Boolean) {
         val pages = page.chapter.pages!! // Won't be null because it's the loaded chapter
         Timber.d("onReaderPageSelected: ${page.number}/${pages.size}")
         activity.onPageSelected(page)
 
         // Preload next chapter once we're within the last 3 pages of the current chapter
-        val inPreloadRange = pages.size - page.number < 3
-        if (inPreloadRange) {
+        val inPreloadRange = (pages.size - page.number < 3)
+        if (inPreloadRange && allowPreload) {
             Timber.d("Request preload next chapter because we're at page ${page.number} of ${pages.size}")
             adapter.nextTransition?.to?.let {
                 activity.requestPreloadChapter(it)
