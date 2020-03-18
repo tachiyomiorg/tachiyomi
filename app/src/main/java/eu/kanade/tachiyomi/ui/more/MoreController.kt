@@ -9,6 +9,7 @@ import eu.kanade.tachiyomi.ui.extension.ExtensionController
 import eu.kanade.tachiyomi.ui.migration.MigrationController
 import eu.kanade.tachiyomi.ui.setting.SettingsController
 import eu.kanade.tachiyomi.ui.setting.SettingsMainController
+import eu.kanade.tachiyomi.util.preference.extensionPreference
 import eu.kanade.tachiyomi.util.preference.iconRes
 import eu.kanade.tachiyomi.util.preference.iconTint
 import eu.kanade.tachiyomi.util.preference.onClick
@@ -25,7 +26,7 @@ class MoreController : SettingsController(), RootController {
 
         val tintColor = context.getResourceColor(R.attr.colorAccent)
 
-        preference {
+        extensionPreference {
             titleRes = R.string.label_extensions
             iconRes = R.drawable.ic_extension_24dp
             iconTint = tintColor

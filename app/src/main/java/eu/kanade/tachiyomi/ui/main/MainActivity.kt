@@ -32,14 +32,14 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.more.MoreController
 import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
+import java.util.Date
+import java.util.concurrent.TimeUnit
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
-import java.util.Date
-import java.util.concurrent.TimeUnit
 
 class MainActivity : BaseActivity() {
 

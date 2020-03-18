@@ -318,10 +318,12 @@ class ExtensionManager(
 
         override fun onExtensionInstalled(extension: Extension.Installed) {
             registerNewExtension(extension.withUpdateCheck())
+            preferences.extensionUpdatesCount().set(installedExtensions.count { it.hasUpdate })
         }
 
         override fun onExtensionUpdated(extension: Extension.Installed) {
             registerUpdatedExtension(extension.withUpdateCheck())
+            preferences.extensionUpdatesCount().set(installedExtensions.count { it.hasUpdate })
         }
 
         override fun onExtensionUntrusted(extension: Extension.Untrusted) {
@@ -330,6 +332,7 @@ class ExtensionManager(
 
         override fun onPackageUninstalled(pkgName: String) {
             unregisterExtension(pkgName)
+            preferences.extensionUpdatesCount().set(installedExtensions.count { it.hasUpdate })
         }
     }
 
