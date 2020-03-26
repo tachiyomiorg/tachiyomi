@@ -83,7 +83,7 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
             authClient.newCall(GET(url = editPageUrl(track.media_id)))
                     .asObservableSuccess()
                     .map { response ->
-                        var libTrack: MyAnimeListTrack?
+                        var libTrack: MyAnimeListEditData?
                         response.use {
                             if (response.priorResponse?.isRedirect != true) {
                                 val tables = Jsoup.parse(it.consumeBody())
@@ -112,7 +112,7 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                                 val is_asked_to_discuss = tables[1].select("#add_manga_is_asked_to_discuss > option[selected]").`val`()
                                 val sns_post_type = tables[1].select("#add_manga_sns_post_type > option[selected]").`val`()
 
-                                libTrack = MyAnimeListTrack(
+                                libTrack = MyAnimeListEditData(
                                         entry_id,
                                         manga_id,
                                         status,
@@ -355,7 +355,7 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
             return body.toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
         }
 
-        private fun mangaEditPostBody(track: MyAnimeListTrack): RequestBody {
+        private fun mangaEditPostBody(track: MyAnimeListEditData): RequestBody {
             return FormBody.Builder()
                     .add("entry_id", track.entry_id)
                     .add("manga_id", track.manga_id)
@@ -437,7 +437,7 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
         }
     }
 
-    private class MyAnimeListTrack(
+    private class MyAnimeListEditData(
             // entry_id: 0
         var entry_id: String,
 
