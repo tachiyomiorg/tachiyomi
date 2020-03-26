@@ -134,7 +134,7 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
 
                                 libTrack!!.copyPersonalFrom(track)
 
-                                authClient.newCall(POST(url = editPageUrl(track.media_id), body = mangaEditPayload(libTrack!!))).execute()
+                                authClient.newCall(POST(url = editPageUrl(track.media_id), body = mangaEditPostBody(libTrack!!))).execute()
                             }
                         }
 
@@ -374,7 +374,7 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
             return body.toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
         }
 
-        private fun mangaEditPayload(track: MyAnimeListTrack): RequestBody {
+        private fun mangaEditPostBody(track: MyAnimeListTrack): RequestBody {
             return FormBody.Builder()
                     .add("entry_id", track.entry_id)
                     .add("manga_id", track.manga_id)
