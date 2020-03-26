@@ -13,8 +13,6 @@ import eu.kanade.tachiyomi.util.selectText
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.text.SimpleDateFormat
-import java.util.GregorianCalendar
-import java.util.Locale
 import java.util.zip.GZIPInputStream
 import okhttp3.FormBody
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -28,6 +26,7 @@ import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.jsoup.parser.Parser
 import rx.Observable
+import java.util.*
 
 class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListInterceptor) {
 
@@ -152,34 +151,14 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                         if (it.priorResponse?.isRedirect != true) {
                             val trackForm = Jsoup.parse(it.consumeBody())
 
-                            val startMonth = trackForm.selectFirst("#add_manga_start_date_month > option[selected]")?.`val`()
-                            val startDay = trackForm.selectFirst("#add_manga_start_date_day > option[selected]")?.`val`()
-                            val startYear = trackForm.selectFirst("#add_manga_start_date_year > option[selected]")?.`val`()
-
-                            val finishMonth = trackForm.selectFirst("#add_manga_finish_date_month > option[selected]")?.`val`()
-                            val finishDay = trackForm.selectFirst("#add_manga_finish_date_day > option[selected]")?.`val`()
-                            val finishYear = trackForm.selectFirst("#add_manga_finish_date_year > option[selected]")?.`val`()
-
-                            val startDate =
-                                    if (startYear != null && startMonth != null && startDay != null)
-                                        GregorianCalendar(startYear.toInt(), startMonth.toInt() - 1, startDay.toInt())
-                                    else
-                                        null
-
-                            val finishDate =
-                                    if (finishYear != null && finishMonth != null && finishDay != null)
-                                        GregorianCalendar(finishYear.toInt(), finishMonth.toInt() - 1, finishDay.toInt())
-                                    else
-                                        null
-
                             libTrack = Track.create(TrackManager.MYANIMELIST).apply {
                                 last_chapter_read = trackForm.select("#add_manga_num_read_chapters").`val`().toInt()
                                 total_chapters = trackForm.select("#totalChap").text().toInt()
                                 status = trackForm.select("#add_manga_status > option[selected]").`val`().toInt()
                                 score = trackForm.select("#add_manga_score > option[selected]").`val`().toFloatOrNull()
                                         ?: 0f
-                                started_reading_date = startDate
-                                finished_reading_date = finishDate
+                                started_reading_date = trackForm.getEditStartDate()
+                                finished_reading_date = trackForm.getEditFinishDate()
                             }
                         }
                     }
@@ -400,6 +379,26 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                     .add("add_manga[sns_post_type]", track.sns_post_type)
                     .add("submitIt", track.submitIt)
                     .build()
+        }
+
+        private fun Element.getEditStartDate(): Calendar? {
+            val month = selectFirst("#add_manga_start_date_month > option[selected]")?.`val`()
+            val day = selectFirst("#add_manga_start_date_day > option[selected]")?.`val`()
+            val year = selectFirst("#add_manga_start_date_year > option[selected]")?.`val`()
+            if (year == null || month == null || day == null)
+                return null;
+
+            return GregorianCalendar(year.toInt(), month.toInt() - 1, day.toInt())
+        }
+
+        private fun Element.getEditFinishDate(): Calendar? {
+            val month = selectFirst("#add_manga_finish_date_month > option[selected]")?.`val`()
+            val day = selectFirst("#add_manga_finish_date_day > option[selected]")?.`val`()
+            val year = selectFirst("#add_manga_finish_date_year > option[selected]")?.`val`()
+            if (year == null || month == null || day == null)
+                return null;
+
+            return GregorianCalendar(year.toInt(), month.toInt() - 1, day.toInt())
         }
 
         private fun Element.searchTitle() = select("strong").text()!!
