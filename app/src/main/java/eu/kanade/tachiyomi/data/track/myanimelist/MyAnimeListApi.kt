@@ -87,28 +87,28 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                                 val tables = Jsoup.parse(it.consumeBody())
                                         .select("form#main-form table")
 
-                                val entry_id = tables[0].selectFirst("input[name=entry_id]").`val`() // Always 0
-                                val manga_id = tables[0].selectFirst("#manga_id").`val`()
-                                val status = tables[0].selectFirst("#add_manga_status > option[selected]").`val`()
-                                val num_read_volumes = tables[0].selectFirst("#add_manga_num_read_volumes").`val`()
-                                val last_completed_vol = tables[0].selectFirst("input[name=last_completed_vol]").`val`() // Always Empty
-                                val num_read_chapters = tables[0].selectFirst("#add_manga_num_read_chapters").`val`()
-                                val score = tables[0].selectFirst("#add_manga_score > option[selected]")?.`val`() ?: ""
-                                val start_date_month = tables[0].selectFirst("#add_manga_start_date_month > option[selected]")?.`val`() ?: ""
-                                val start_date_day = tables[0].selectFirst("#add_manga_start_date_day > option[selected]")?.`val`() ?: ""
-                                val start_date_year = tables[0].selectFirst("#add_manga_start_date_year > option[selected]")?.`val`() ?: ""
-                                val finish_date_month = tables[0].selectFirst("#add_manga_finish_date_month > option[selected]")?.`val`() ?: ""
-                                val finish_date_day = tables[0].selectFirst("#add_manga_finish_date_day > option[selected]")?.`val`() ?: ""
-                                val finish_date_year = tables[0].selectFirst("#add_manga_finish_date_year > option[selected]")?.`val`() ?: ""
-                                val tags = tables[1].selectFirst("#add_manga_tags").`val`()
-                                val priority = tables[1].selectFirst("#add_manga_priority > option[selected]").`val`()
-                                val storage_type = tables[1].selectFirst("#add_manga_storage_type > option[selected]")?.`val`() ?: ""
-                                val num_retail_volumes = tables[1].selectFirst("#add_manga_num_retail_volumes").`val`()
-                                val num_read_times = tables[1].selectFirst("#add_manga_num_read_times").`val`()
-                                val reread_value = tables[1].selectFirst("#add_manga_reread_value > option[selected]")?.`val`() ?: ""
-                                val comments = tables[1].selectFirst("#add_manga_comments").`val`()
-                                val is_asked_to_discuss = tables[1].selectFirst("#add_manga_is_asked_to_discuss > option[selected]").`val`()
-                                val sns_post_type = tables[1].selectFirst("#add_manga_sns_post_type > option[selected]").`val`()
+                                val entry_id = tables[0].select("input[name=entry_id]").`val`() // Always 0
+                                val manga_id = tables[0].select("#manga_id").`val`()
+                                val status = tables[0].select("#add_manga_status > option[selected]").`val`()
+                                val num_read_volumes = tables[0].select("#add_manga_num_read_volumes").`val`()
+                                val last_completed_vol = tables[0].select("input[name=last_completed_vol]").`val`() // Always Empty
+                                val num_read_chapters = tables[0].select("#add_manga_num_read_chapters").`val`()
+                                val score = tables[0].select("#add_manga_score > option[selected]")?.`val`() ?: ""
+                                val start_date_month = tables[0].select("#add_manga_start_date_month > option[selected]")?.`val`() ?: ""
+                                val start_date_day = tables[0].select("#add_manga_start_date_day > option[selected]")?.`val`() ?: ""
+                                val start_date_year = tables[0].select("#add_manga_start_date_year > option[selected]")?.`val`() ?: ""
+                                val finish_date_month = tables[0].select("#add_manga_finish_date_month > option[selected]")?.`val`() ?: ""
+                                val finish_date_day = tables[0].select("#add_manga_finish_date_day > option[selected]")?.`val`() ?: ""
+                                val finish_date_year = tables[0].select("#add_manga_finish_date_year > option[selected]")?.`val`() ?: ""
+                                val tags = tables[1].select("#add_manga_tags").`val`()
+                                val priority = tables[1].select("#add_manga_priority > option[selected]").`val`()
+                                val storage_type = tables[1].select("#add_manga_storage_type > option[selected]")?.`val`() ?: ""
+                                val num_retail_volumes = tables[1].select("#add_manga_num_retail_volumes").`val`()
+                                val num_read_times = tables[1].select("#add_manga_num_read_times").`val`()
+                                val reread_value = tables[1].select("#add_manga_reread_value > option[selected]")?.`val`() ?: ""
+                                val comments = tables[1].select("#add_manga_comments").`val`()
+                                val is_asked_to_discuss = tables[1].select("#add_manga_is_asked_to_discuss > option[selected]").`val`()
+                                val sns_post_type = tables[1].select("#add_manga_sns_post_type > option[selected]").`val`()
 
                                 libTrack = MyAnimeListTrack(
                                         entry_id,
@@ -382,23 +382,23 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
         }
 
         private fun Element.getEditStartDate(): Calendar? {
-            val month = selectFirst("#add_manga_start_date_month > option[selected]")?.`val`()
-            val day = selectFirst("#add_manga_start_date_day > option[selected]")?.`val`()
-            val year = selectFirst("#add_manga_start_date_year > option[selected]")?.`val`()
+            val month = select("#add_manga_start_date_month > option[selected]").`val`().toIntOrNull()
+            val day = select("#add_manga_start_date_day > option[selected]").`val`().toIntOrNull()
+            val year = select("#add_manga_start_date_year > option[selected]").`val`().toIntOrNull()
             if (year == null || month == null || day == null)
-                return null;
+                return null
 
-            return GregorianCalendar(year.toInt(), month.toInt() - 1, day.toInt())
+            return GregorianCalendar(year, month - 1, day)
         }
 
         private fun Element.getEditFinishDate(): Calendar? {
-            val month = selectFirst("#add_manga_finish_date_month > option[selected]")?.`val`()
-            val day = selectFirst("#add_manga_finish_date_day > option[selected]")?.`val`()
-            val year = selectFirst("#add_manga_finish_date_year > option[selected]")?.`val`()
+            val month = select("#add_manga_finish_date_month > option[selected]").`val`().toIntOrNull()
+            val day = select("#add_manga_finish_date_day > option[selected]").`val`().toIntOrNull()
+            val year = select("#add_manga_finish_date_year > option[selected]").`val`().toIntOrNull()
             if (year == null || month == null || day == null)
-                return null;
+                return null
 
-            return GregorianCalendar(year.toInt(), month.toInt() - 1, day.toInt())
+            return GregorianCalendar(year, month - 1, day)
         }
 
         private fun Element.searchTitle() = select("strong").text()!!
