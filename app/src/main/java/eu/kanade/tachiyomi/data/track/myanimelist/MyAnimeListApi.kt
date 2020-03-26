@@ -79,7 +79,7 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
 
     fun updateLibManga(track: Track): Observable<Track> {
         return Observable.defer {
-            authClient.newCall(GET(url = editUrl(track.media_id)))
+            authClient.newCall(GET(url = editPageUrl(track.media_id)))
                     .asObservableSuccess()
                     .map { response ->
                         var libTrack: MyAnimeListTrack? = null
@@ -134,7 +134,7 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
 
                                 libTrack!!.copyPersonalFrom(track)
 
-                                authClient.newCall(POST(url = editUrl(track.media_id), body = mangaEditPayload(libTrack!!))).execute()
+                                authClient.newCall(POST(url = editPageUrl(track.media_id), body = mangaEditPayload(libTrack!!))).execute()
                             }
                         }
 
@@ -144,7 +144,7 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
     }
 
     fun findLibManga(track: Track): Observable<Track?> {
-        return authClient.newCall(GET(url = listEntryUrl(track.media_id)))
+        return authClient.newCall(GET(url = editPageUrl(track.media_id)))
                 .asObservable()
                 .map { response ->
                     var libTrack: Track? = null
@@ -341,18 +341,13 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                 .appendPath("edit.json")
                 .toString()
 
-        private fun editUrl(mangaId: Int) = Uri.parse(baseModifyListUrl).buildUpon()
-                .appendPath(mangaId.toString())
+        private fun editPageUrl(mediaId: Int) = Uri.parse(baseModifyListUrl).buildUpon()
+                .appendPath(mediaId.toString())
                 .appendPath("edit")
                 .toString()
 
         private fun addUrl() = Uri.parse(baseModifyListUrl).buildUpon()
                 .appendPath("add.json")
-                .toString()
-
-        private fun listEntryUrl(mediaId: Int) = Uri.parse(baseModifyListUrl).buildUpon()
-                .appendPath(mediaId.toString())
-                .appendPath("edit")
                 .toString()
 
         private fun loginPostBody(username: String, password: String, csrf: String): RequestBody {
