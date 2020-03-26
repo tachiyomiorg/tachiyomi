@@ -82,7 +82,7 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
             authClient.newCall(GET(url = editPageUrl(track.media_id)))
                     .asObservableSuccess()
                     .map { response ->
-                        var libTrack: MyAnimeListTrack? = null
+                        var libTrack: MyAnimeListTrack?
                         response.use {
                             if (response.priorResponse?.isRedirect != true) {
                                 val tables = Jsoup.parse(it.consumeBody())
@@ -335,10 +335,6 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
         private fun exportListUrl() = Uri.parse(baseUrl).buildUpon()
                 .appendPath("panel.php")
                 .appendQueryParameter("go", "export")
-                .toString()
-
-        private fun updateUrl() = Uri.parse(baseModifyListUrl).buildUpon()
-                .appendPath("edit.json")
                 .toString()
 
         private fun editPageUrl(mediaId: Int) = Uri.parse(baseModifyListUrl).buildUpon()
