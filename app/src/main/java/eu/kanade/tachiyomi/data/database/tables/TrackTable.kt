@@ -55,4 +55,10 @@ object TrackTable {
 
     val addLibraryId: String
         get() = "ALTER TABLE $TABLE ADD COLUMN $COL_LIBRARY_ID INTEGER NULL"
+
+    val addStartDate: String
+        get() = "ALTER TABLE $TABLE ADD COLUMN $COL_START_DATE TEXT NOT NULL DEFAULT ''"
+
+    val addFinishDate: String
+        get() = "ALTER TABLE $TABLE ADD COLUMN $COL_FINISH_DATE TEXT NOT NULL DEFAULT ''"
 }

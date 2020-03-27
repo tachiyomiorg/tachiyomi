@@ -69,6 +69,10 @@ class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
             db.execSQL(MangaTable.createLibraryIndexQuery)
             db.execSQL(ChapterTable.createUnreadChaptersIndexQuery)
         }
+        if (oldVersion < 9) {
+            db.execSQL(TrackTable.addStartDate)
+            db.execSQL(TrackTable.addFinishDate)
+        }
     }
 
     override fun onConfigure(db: SupportSQLiteDatabase) {

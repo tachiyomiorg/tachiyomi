@@ -91,6 +91,8 @@ class TrackGetResolver : DefaultGetResolver<Track>() {
 
     companion object {
         private fun String.fromDateString(): Calendar? {
+            if (this.isBlank())
+                return null
             return SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(this)?.let {
                 val calendar = GregorianCalendar()
                 calendar.time = it

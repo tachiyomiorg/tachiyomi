@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.ui.manga.track
 import android.annotation.SuppressLint
 import android.view.View
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.PreferenceKeys.dateFormat
 import eu.kanade.tachiyomi.ui.base.holder.BaseViewHolder
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.util.view.visibleIf
