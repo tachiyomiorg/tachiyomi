@@ -20,7 +20,7 @@ class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
         /**
          * Version of the database.
          */
-        const val DATABASE_VERSION = 8
+        const val DATABASE_VERSION = 9
     }
 
     override fun onCreate(db: SupportSQLiteDatabase) = with(db) {

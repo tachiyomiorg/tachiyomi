@@ -11,18 +11,24 @@ import com.pushtorefresh.storio.sqlite.queries.InsertQuery
 import com.pushtorefresh.storio.sqlite.queries.UpdateQuery
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.database.models.TrackImpl
+import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_FINISH_DATE
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_ID
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_LAST_CHAPTER_READ
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_LIBRARY_ID
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_MANGA_ID
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_MEDIA_ID
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_SCORE
+import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_START_DATE
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_STATUS
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_SYNC_ID
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_TITLE
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_TOTAL_CHAPTERS
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_TRACKING_URL
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.TABLE
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.GregorianCalendar
+import java.util.Locale
 
 class TrackTypeMapping : SQLiteTypeMapping<Track>(
         TrackPutResolver(),
@@ -54,6 +60,14 @@ class TrackPutResolver : DefaultPutResolver<Track>() {
         put(COL_STATUS, obj.status)
         put(COL_TRACKING_URL, obj.tracking_url)
         put(COL_SCORE, obj.score)
+        put(COL_START_DATE, obj.started_reading_date?.toDateString() ?: "")
+        put(COL_FINISH_DATE, obj.finished_reading_date?.toDateString() ?: "")
+    }
+
+    companion object {
+        private fun Calendar.toDateString(): String {
+            return SimpleDateFormat("yyyy-MM-dd", Locale.US).format(time)
+        }
     }
 }
 
@@ -71,6 +85,18 @@ class TrackGetResolver : DefaultGetResolver<Track>() {
         status = cursor.getInt(cursor.getColumnIndex(COL_STATUS))
         score = cursor.getFloat(cursor.getColumnIndex(COL_SCORE))
         tracking_url = cursor.getString(cursor.getColumnIndex(COL_TRACKING_URL))
+        started_reading_date = cursor.getString(cursor.getColumnIndex(COL_START_DATE)).fromDateString()
+        started_reading_date = cursor.getString(cursor.getColumnIndex(COL_FINISH_DATE)).fromDateString()
+    }
+
+    companion object {
+        private fun String.fromDateString(): Calendar? {
+            return SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(this)?.let {
+                val calendar = GregorianCalendar()
+                calendar.time = it
+                calendar
+            }
+        }
     }
 }
 
