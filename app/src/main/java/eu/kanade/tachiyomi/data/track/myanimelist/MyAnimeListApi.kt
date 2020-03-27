@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.data.track.myanimelist
 
 import android.net.Uri
 import eu.kanade.tachiyomi.data.database.models.Track
+import eu.kanade.tachiyomi.data.preference.PreferenceKeys.dateFormat
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.GET
@@ -206,30 +207,6 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                     Observable.from(doc.select("manga"))
                 }
                 .map {
-                    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
-
-                    val startDateStr = it.selectText("my_start_date")
-                    val startDate =
-                            if (!startDateStr.isNullOrBlank() && startDateStr != "0000-00-00") {
-                                val date = dateFormat.parse(startDateStr) // Can this throw?
-                                if (date != null) {
-                                    val cal = GregorianCalendar.getInstance()
-                                    cal.time = date
-                                    cal
-                                } else null
-                            } else null
-
-                    val finishDateStr = it.selectText("my_finish_date")
-                    val finishDate =
-                            if (!finishDateStr.isNullOrBlank() && finishDateStr != "0000-00-00") {
-                                val date = dateFormat.parse(finishDateStr) // Can this throw?
-                                if (date != null) {
-                                    val cal = GregorianCalendar.getInstance()
-                                    cal.time = date
-                                    cal
-                                } else null
-                            } else null
-
                     TrackSearch.create(TrackManager.MYANIMELIST).apply {
                         title = it.selectText("manga_title")!!
                         media_id = it.selectInt("manga_mangadb_id")
@@ -238,8 +215,8 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                         score = it.selectInt("my_score").toFloat()
                         total_chapters = it.selectInt("manga_chapters")
                         tracking_url = mangaUrl(media_id)
-                        started_reading_date = startDate
-                        finished_reading_date = finishDate
+                        started_reading_date = it.searchDateXml("my_start_date")
+                        finished_reading_date = it.searchDateXml("my_finish_date")
                     }
                 }
                 .toList()
@@ -403,6 +380,18 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
             return GregorianCalendar(year, month - 1, day)
         }
 
+        private fun Element.searchDateXml(field: String): Calendar? {
+            val text = selectText(field, "0000-00-00")!!
+            if (text == "0000-00-00")
+                return null;
+
+            return SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(text)?.let { date ->
+                val calendar = GregorianCalendar()
+                calendar.time = date
+                calendar
+            }
+        }
+
         private fun Element.searchTitle() = select("strong").text()!!
 
         private fun Element.searchTotalChapters() = if (select(TD)[4].text() == "-") 0 else select(TD)[4].text().toInt()
@@ -438,73 +427,73 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
     }
 
     private class MyAnimeListEditData(
-            // entry_id: 0
+        // entry_id
         var entry_id: String,
 
-            // manga_id: 2
+        // manga_id
         var manga_id: String,
 
-            // add_manga[status]: 1
+        // add_manga[status]
         var status: String,
 
-            // add_manga[num_read_volumes]: 0
+        // add_manga[num_read_volumes]
         var num_read_volumes: String,
 
-            // last_completed_vol:
+        // last_completed_vol
         var last_completed_vol: String,
 
-            // add_manga[num_read_chapters]: 0
+        // add_manga[num_read_chapters]
         var num_read_chapters: String,
 
-            // add_manga[score]:
+        // add_manga[score]
         var score: String,
 
-            // add_manga[start_date][month]:
+        // add_manga[start_date][month]
         var start_date_month: String, // [1-12]
 
-            // add_manga[start_date][day]:
+        // add_manga[start_date][day]
         var start_date_day: String,
 
-            // add_manga[start_date][year]:
+        // add_manga[start_date][year]
         var start_date_year: String,
 
-            // add_manga[finish_date][month]:
+        // add_manga[finish_date][month]
         var finish_date_month: String, // [1-12]
 
-            // add_manga[finish_date][day]:
+        // add_manga[finish_date][day]
         var finish_date_day: String,
 
-            // add_manga[finish_date][year]:
+        // add_manga[finish_date][year]
         var finish_date_year: String,
 
-            // add_manga[tags]:
+        // add_manga[tags]
         var tags: String,
 
-            // add_manga[priority]: 0
+        // add_manga[priority]
         var priority: String,
 
-            // add_manga[storage_type]:
+        // add_manga[storage_type]
         var storage_type: String,
 
-            // add_manga[num_retail_volumes]: 0
+        // add_manga[num_retail_volumes]
         var num_retail_volumes: String,
 
-            // add_manga[num_read_times]: 0
+        // add_manga[num_read_times]
         var num_read_times: String,
 
-            // add_manga[reread_value]:
+        // add_manga[reread_value]
         var reread_value: String,
 
-            // add_manga[comments]:
+        // add_manga[comments]
         var comments: String,
 
-            // add_manga[is_asked_to_discuss]: 0
+        // add_manga[is_asked_to_discuss]
         var is_asked_to_discuss: String,
 
-            // add_manga[sns_post_type]: 0
+        // add_manga[sns_post_type]
         var sns_post_type: String,
 
-            // submitIt: 0
+        // submitIt
         val submitIt: String = "0"
     ) {
         fun copyPersonalFrom(track: Track) {
@@ -513,15 +502,15 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
             if (numScore in 1..9)
                 score = numScore.toString()
             status = track.status.toString()
-            if (track.started_reading_date != null) {
-                start_date_month = (track.started_reading_date!!.get(Calendar.MONTH) + 1).toString()
-                start_date_day = track.started_reading_date!!.get(Calendar.DAY_OF_MONTH).toString()
-                start_date_year = track.started_reading_date!!.get(Calendar.YEAR).toString()
+            track.started_reading_date?.let {
+                start_date_month = (it.get(Calendar.MONTH) + 1).toString()
+                start_date_day = it.get(Calendar.DAY_OF_MONTH).toString()
+                start_date_year = it.get(Calendar.YEAR).toString()
             }
-            if (track.finished_reading_date != null) {
-                finish_date_month = (track.finished_reading_date!!.get(Calendar.MONTH) + 1).toString()
-                finish_date_day = track.finished_reading_date!!.get(Calendar.DAY_OF_MONTH).toString()
-                finish_date_year = track.finished_reading_date!!.get(Calendar.YEAR).toString()
+            track.finished_reading_date?.let {
+                finish_date_month = (it.get(Calendar.MONTH) + 1).toString()
+                finish_date_day = it.get(Calendar.DAY_OF_MONTH).toString()
+                finish_date_year = it.get(Calendar.YEAR).toString()
             }
         }
     }
