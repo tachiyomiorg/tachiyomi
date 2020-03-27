@@ -86,7 +86,7 @@ class TrackGetResolver : DefaultGetResolver<Track>() {
         score = cursor.getFloat(cursor.getColumnIndex(COL_SCORE))
         tracking_url = cursor.getString(cursor.getColumnIndex(COL_TRACKING_URL))
         started_reading_date = cursor.getString(cursor.getColumnIndex(COL_START_DATE)).fromDateString()
-        started_reading_date = cursor.getString(cursor.getColumnIndex(COL_FINISH_DATE)).fromDateString()
+        finished_reading_date = cursor.getString(cursor.getColumnIndex(COL_FINISH_DATE)).fromDateString()
     }
 
     companion object {

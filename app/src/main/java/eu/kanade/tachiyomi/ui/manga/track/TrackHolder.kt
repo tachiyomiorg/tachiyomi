@@ -7,8 +7,7 @@ import eu.kanade.tachiyomi.data.preference.PreferenceKeys.dateFormat
 import eu.kanade.tachiyomi.ui.base.holder.BaseViewHolder
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.util.view.visibleIf
-import java.text.SimpleDateFormat
-import java.util.Locale
+import java.text.DateFormat
 import kotlinx.android.synthetic.main.track_item.chapters_container
 import kotlinx.android.synthetic.main.track_item.finish_date_container
 import kotlinx.android.synthetic.main.track_item.logo_container
@@ -25,7 +24,6 @@ import kotlinx.android.synthetic.main.track_item.track_set
 import kotlinx.android.synthetic.main.track_item.track_start_date
 import kotlinx.android.synthetic.main.track_item.track_status
 import kotlinx.android.synthetic.main.track_item.track_title
-import java.text.DateFormat
 
 class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
 
