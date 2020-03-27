@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.data.track.myanimelist
 
 import android.net.Uri
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.preference.PreferenceKeys.dateFormat
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.network.GET
@@ -383,7 +382,7 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
         private fun Element.searchDateXml(field: String): Calendar? {
             val text = selectText(field, "0000-00-00")!!
             if (text == "0000-00-00")
-                return null;
+                return null
 
             return SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(text)?.let { date ->
                 val calendar = GregorianCalendar()
