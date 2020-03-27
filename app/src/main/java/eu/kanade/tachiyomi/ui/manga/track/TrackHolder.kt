@@ -3,10 +3,12 @@ package eu.kanade.tachiyomi.ui.manga.track
 import android.annotation.SuppressLint
 import android.view.View
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferenceKeys.dateFormat
 import eu.kanade.tachiyomi.ui.base.holder.BaseViewHolder
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.util.view.visibleIf
-import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.Locale
 import kotlinx.android.synthetic.main.track_item.chapters_container
 import kotlinx.android.synthetic.main.track_item.finish_date_container
 import kotlinx.android.synthetic.main.track_item.logo_container
@@ -23,6 +25,7 @@ import kotlinx.android.synthetic.main.track_item.track_set
 import kotlinx.android.synthetic.main.track_item.track_start_date
 import kotlinx.android.synthetic.main.track_item.track_status
 import kotlinx.android.synthetic.main.track_item.track_title
+import java.text.DateFormat
 
 class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
 
@@ -67,13 +70,8 @@ class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
 
                 val dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM)
 
-                track_start_date.text =
-                        if (track.started_reading_date != null) dateFormat.format(track.started_reading_date!!)
-                        else "-"
-
-                track_finish_date.text =
-                        if (track.finished_reading_date != null) dateFormat.format(track.finished_reading_date!!)
-                        else "-"
+                track_start_date.text = track.started_reading_date?.let { dateFormat.format(it.time) } ?: "-"
+                track_finish_date.text = track.finished_reading_date?.let { dateFormat.format(it.time) } ?: "-"
             }
         }
     }
