@@ -54,7 +54,7 @@ class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
             divider_2.visibleIf { item.service.supports_reading_dates }
             date_support_container.visibleIf { item.service.supports_reading_dates }
             if (item.service.supports_reading_dates) {
-                val dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM)
+                val dateFormat = DateFormat.getDateInstance(DateFormat.SHORT)
 
                 track_start_date.text = track.started_reading_date?.let { dateFormat.format(it.time) } ?: "-"
                 track_finish_date.text = track.finished_reading_date?.let { dateFormat.format(it.time) } ?: "-"
