@@ -5,9 +5,9 @@
     <string name="label_settings">Paramètres</string>
     <string name="label_download_queue">File de téléchargement</string>
     <string name="label_library">Bibliothèque</string>
-    <string name="label_recent_manga">Lu récemment</string>
+    <string name="label_recent_manga">Historique</string>
     <string name="label_catalogues">Catalogues</string>
-    <string name="label_recent_updates">Mises à jour récentes</string>
+    <string name="label_recent_updates">Mises à jour</string>
     <string name="label_categories">Catégories</string>
     <string name="label_backup">Sauvegarde</string>
     <!-- Actions -->
@@ -173,7 +173,7 @@
     <string name="pref_enable_acra">Envoyer des rapports de crash</string>
     <string name="pref_acra_summary">Cela aide à corriger les bugs. Aucune donnée sensible ne sera envoyée</string>
     <!-- Login dialog -->
-    <string name="login_title">Connexion vers %1$s</string>
+    <string name="login_title">Connexion à %1$s</string>
     <string name="username">Nom d\'utilisateur</string>
     <string name="password">Mot de passe</string>
     <string name="show_password">Afficher le mot de passe</string>
@@ -186,7 +186,7 @@
     <!-- Catalogue fragment -->
     <string name="source_requires_login">Cette source demande de vous identifier</string>
     <string name="select_source">Sélectionner une source</string>
-    <string name="no_valid_sources">Veuillez au moins activer une source valide</string>
+    <string name="no_valid_sources">Veuillez activer au moins une source valide</string>
     <!-- Manga activity -->
     <string name="manga_not_in_db">Ce manga a été supprimé de la base de données.</string>
     <!-- Manga info fragment -->
@@ -266,12 +266,12 @@
     <!-- Recent manga fragment -->
     <string name="recent_manga_source">%1$s - Ch.%2$s</string>
     <!-- Downloads activity and service -->
-    <string name="download_queue_error">Une erreur est survenue lors du téléchargement des chapitres. Vous pouvez recommencer à nouveau dans la section téléchargements</string>
+    <string name="download_queue_error">Une erreur est survenue lors du téléchargement des chapitres. Vous pouvez réessayer dans la section téléchargements</string>
     <!-- Library update service notifications -->
     <string name="notification_update_progress">Progression mise à jour: %1$d/%2$d</string>
     <string name="notification_new_chapters">Des nouveaux chapitres ont été trouvés</string>
     <string name="notification_cover_update_failed">La mise à jour de la couverture a échoué</string>
-    <string name="notification_first_add_to_library">Veuillez ajouter le manga dans votre bibliothèque avant</string>
+    <string name="notification_first_add_to_library">Veuillez au préalable ajouter le manga à votre bibliothèque</string>
     <string name="notification_not_connected_to_ac_body">Non branché</string>
     <string name="notification_no_connection_title">Synchronisation annulée</string>
     <string name="notification_no_connection_body">Connexion non disponible</string>
@@ -299,7 +299,7 @@
     <string name="information_no_downloads">Aucun téléchargement</string>
     <string name="information_no_recent">Aucun chapitre récent</string>
     <string name="information_no_recent_manga">Aucun manga lu récemment</string>
-    <string name="information_empty_library">Votre bibliothèque est vide, vous pouvez ajouter des séries à votre bibliothèque depuis le Catalogue.</string>
+    <string name="information_empty_library">Bibliothèque vide, ajouter des séries à votre bibliothèque depuis le Catalogue.</string>
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Téléchargement</string>
     <string name="download_notifier_title_error">Erreur</string>
@@ -309,12 +309,12 @@
     <string name="download_notifier_no_network">Aucune connexion disponible</string>
     <string name="pref_language">Langue</string>
     <string name="clear_database_confirmation">Êtes-vous sûr ? Les chapitres lus et la progression des mangas non présents dans la bibliothèque seront perdus</string>
-    <string name="confirm_delete_chapters">Êtes-vous sûr de vouloir supprimer les chapitres sélectionnés ?</string>
+    <string name="confirm_delete_chapters">Supprimer les chapitres sélectionnés \?</string>
     <string name="custom_dir">Répertoire personnalisé</string>
-    <string name="download_10">10 chapitres suivants</string>
+    <string name="download_10">10 prochains chapitres</string>
     <string name="download_notifier_unkown_error">Une erreur inattendue s\'est produite lors du téléchargement du chapitre</string>
     <string name="fifth_to_last">Du cinquième au dernier chapitre</string>
-    <string name="login_success">Connexion réussie</string>
+    <string name="login_success">Connecté</string>
     <string name="manga_chapter_no_title">Pas de titre</string>
     <string name="notification_not_connected_to_ac_title">Synchronisation annulée</string>
     <string name="pref_clear_chapter_cache">Effacer le cache des chapitres</string>
@@ -353,7 +353,6 @@
     <string name="backup_choice">Que voulez-vous sauvegarder ?</string>
     <string name="invalid_combination">Le défaut ne peut pas être selectionné avec des autres catégories</string>
     <string name="delete_downloads_for_manga">Supprimer les chapitres téléchargés ?</string>
-    <string name="notification_new_chapters_text">Pour %1$d chapitres</string>
     <string name="track">Suivi</string>
     <string name="action_sort_total">Nombre de chapitres</string>
     <string name="short_recent_updates">Mises à jour</string>
@@ -364,8 +363,8 @@
     <string name="pref_restore_backup_summ">Restaurer la bibliothèque à partir d\'un fichier de sauvegarde</string>
     <string name="pref_backup_interval">Fréquence de sauvegarde</string>
     <string name="pref_backup_slots">Nombre maximal de sauvegardes automatiques</string>
-    <string name="dialog_restoring_backup">Restauration de sauvegarde en cours
-\n%1$s ajouté à la bibliothèque</string>
+    <string name="dialog_restoring_backup">Restauration de la sauvegarde en cours 
+\n%1$s ajoutés à la bibliothèque</string>
     <string name="dialog_restoring_source_not_found">Restauration de sauvegarde en cours
 %1$s source introuvable</string>
     <string name="backup_created">Sauvegarde créée</string>
@@ -379,8 +378,9 @@
     <string name="default_category_summary">Toujours demander</string>
     <string name="pref_read_with_volume_keys_inverted">Inverser les boutons de volume</string>
     <string name="pref_crop_borders">Rogner les bordures</string>
-    <string name="backup_restore_content">La restauration utilise la source pour obtenir des données, des frais de l\'opérateur peuvent s\'appliquer.
-Assurez-vous que vous êtes connecté à des sources qui le demande avant de commencer la restauration.</string>
+    <string name="backup_restore_content">La restauration utilise des sources pour obtenir les données, des frais d\'opérateur peuvent s\'appliquer.
+\n
+\nAssurez-vous d\'avoir installé toutes les extensions nécessaires et d\'être connecté aux sources et services de suivi avant de commencer la restauration.</string>
     <string name="action_global_search">Recherche globale</string>
     <string name="action_open">Ouvrir</string>
     <string name="action_login">Connexion</string>
@@ -394,7 +394,7 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="local_source_badge">Local</string>
     <string name="channel_common">Général</string>
     <string name="channel_downloader">Téléchargeur</string>
-    <string name="information_empty_category">Vous n\'avez aucune catégorie. Appuyez sur le bouton plus pour en créeer un pour organiser votre bibliothèque.</string>
+    <string name="information_empty_category">Vous n\'avez aucune catégorie. Appuyez sur le bouton plus pour en créer une afin d\'organiser votre bibliothèque.</string>
     <string name="label_extensions">Extensions</string>
     <string name="ext_details">Détails</string>
     <string name="ext_update">Mettre à jour</string>
@@ -409,7 +409,7 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="untrusted_extension">Extension non reconnue</string>
     <string name="untrusted_extension_message">Cette extension a été signé avec un certificat non reconnu et n\'a pas été activée. 
 \n 
-\nUne extension malveillante peut lire les identifiants de connexion sauvegardés sur Tachiyomi ou exécuter du code arbitraire. 
+\nUne extension malveillante peut lire les identifiants de connexion sauvegardés sur Tachiyomi ou exécuter du code malicieux. 
 \n 
 \nEn faisant confiance à ce certificat vous acceptez ces risques.</string>
     <string name="ext_version_info">Version : %1$s</string>
@@ -428,12 +428,12 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="source_not_installed">Sources non installées: %1$s</string>
     <string name="custom_download">Télécharger une quantité personnalisée</string>
     <string name="custom_hint">Quantité</string>
-    <string name="download_custom">Téléchargement personnalisé</string>
+    <string name="download_custom">Personnalisé</string>
     <string name="track_status">Status</string>
     <string name="track_start_date">Démarré</string>
     <string name="track_type">Type</string>
     <string name="track_author">Auteur</string>
-    <string name="url_not_set">L\'url du manga n\'a pas été entrée, veuillez cliquer sur le titre et sélectionner le manga</string>
+    <string name="url_not_set">L\'URL du manga n\'a pas été définie, veuillez cliquer sur le titre et sélectionner à nouveau le manga</string>
     <string name="migration_dialog_what_to_include">Sélectionner les données à inclure</string>
     <string name="select">Sélectionner</string>
     <string name="label_migration">Migration de source</string>
@@ -461,14 +461,14 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="pref_true_color">Couleurs à 32 bits</string>
     <string name="pref_skip_read_chapters">Passer les chapitres marqués comme lus</string>
     <string name="filter_mode_default">Par défaut</string>
-    <string name="filter_mode_multiply">Multiplier</string>
+    <string name="filter_mode_multiply">Produit</string>
     <string name="filter_mode_screen">Écran</string>
     <string name="pref_color_filter_mode">Mode de filtrage via couleurs mélangées</string>
-    <string name="filter_mode_overlay">Interface</string>
+    <string name="filter_mode_overlay">Incrustation</string>
     <string name="label_help">Aide</string>
     <string name="pref_library_update_prioritization">Ordre de mise à jour de la bibliothèque</string>
-    <string name="filter_mode_lighten">Densité/Éclaircir</string>
-    <string name="filter_mode_darken">Brûlé / Assombri</string>
+    <string name="filter_mode_lighten">Éclaircir</string>
+    <string name="filter_mode_darken">Obscurcir</string>
     <string name="no_results_found">Aucun résultats trouvés</string>
     <string name="migration_selection_prompt">Sélectionner une source depuis laquelle migrer</string>
     <string name="pref_category_library">Bibliothèque</string>
@@ -478,13 +478,63 @@ Assurez-vous que vous êtes connecté à des sources qui le demande avant de com
     <string name="pref_category_library_categories">Catégories</string>
     <string name="action_webview_back">Précédent</string>
     <string name="action_webview_forward">Suivant</string>
-    <string name="action_webview_refresh">Rafraîchir</string>
-    <string name="invalid_download_dir">Emplacement de téléchargement invalide</string>
+    <string name="action_webview_refresh">Actualiser</string>
+    <string name="invalid_download_dir">Répertoire de téléchargement invalide</string>
     <string name="ext_obsolete">Obsolète</string>
     <string name="logout_title">Déconnecté de %1$s\?</string>
     <string name="logout">Se déconnecter</string>
     <string name="logout_success">Vous êtes maintenant déconnecté</string>
     <string name="currently_reading">En cours de lecture</string>
     <string name="paused">En suspend</string>
-    <string name="want_to_read">Souhaits de lecture</string>
+    <string name="want_to_read">À lire plus tard</string>
+    <string name="label_more">Plus</string>
+    <string name="action_sort_latest_chapter">Dernier chapitre</string>
+    <string name="action_view_chapters">Voir les chapitres</string>
+    <string name="action_cancel_all">Tout annuler</string>
+    <string name="pref_theme_mode">Thème</string>
+    <string name="theme_light">Clair</string>
+    <string name="theme_dark">Sombre</string>
+    <string name="theme_system">Par défaut du système</string>
+    <string name="pref_theme_dark">Variantes du thème sombre</string>
+    <string name="theme_dark_default">Par défaut</string>
+    <string name="theme_dark_blue">Bleu foncé</string>
+    <string name="theme_dark_amoled">Noir AMOLED</string>
+    <string name="pref_manage_notifications">Notifications</string>
+    <string name="pref_category_security">Sécurité</string>
+    <string name="lock_with_biometrics">Déverrouillage biométrique</string>
+    <string name="lock_when_idle">Verrouiller quand inactif</string>
+    <string name="lock_always">Toujours</string>
+    <string name="lock_never">Jamais</string>
+    <plurals name="lock_after_mins">
+        <item quantity="one">Après 1 minute</item>
+        <item quantity="other">Après %1$s minutes</item>
+    </plurals>
+    <string name="secure_screen">Mode discret</string>
+    <string name="ext_updates_pending">Mises à jour en attente</string>
+    <string name="pref_cutout_short">Utiliser la zone de l\'encoche</string>
+    <string name="pref_webtoon_padding_vert">Espace entre les pages</string>
+    <string name="information_cloudflare_bypass_failure">Impossible de contourner Cloudflare</string>
+    <string name="information_webview_outdated">Veillez mettre à jour l\'application WebView pour une meilleure compatibilité</string>
+    <string name="channel_new_chapters">Mises à jour des chapitres</string>
+    <string name="unlock_app">Débloquer Tachiyomi</string>
+    <string name="secure_screen_summary">Cacher le contenu lors du changement d\'application et bloquer les captures d\'écran</string>
+    <string name="pref_category_display">Affichage</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 nouveau chapitre</item>
+        <item quantity="other">%1$d nouveaux chapitres</item>
+    </plurals>
+    <string name="notification_chapters_single">Chapitre %1$s</string>
+    <string name="notification_chapters_single_and_more">Chapitre %1$s et %2$d autres</string>
+    <string name="notification_chapters_multiple">Chapitres %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Chapitre %1$s et 1 autre</item>
+        <item quantity="other">Chapitres %1$s et %2$d autres</item>
+    </plurals>
+    <string name="action_hide">Cacher</string>
+    <string name="hide_notification_content">Cacher le contenu des notifications</string>
+    <string name="notification_check_updates">Recherche de nouveaux chapitres</string>
+    <string name="pref_disable_battery_optimization">Désactiver la fonction Optimisation utilisation batterie</string>
+    <string name="pref_disable_battery_optimization_summary">Aide aux mises à jour et sauvegardes de la bibliothèque en arrière-plan</string>
+    <string name="battery_optimization_disabled">La fonction Optimisation utilisation batterie est déjà désactivée</string>
+    <string name="email">Adresse email</string>
 </resources>

@@ -10,7 +10,7 @@
         android:id="@+id/title_background"
         android:layout_width="match_parent"
         android:layout_height="?attr/listPreferredItemHeightSmall"
-        android:background="?colorPrimary"
+        android:background="?attr/colorPrimary"
         android:elevation="2dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -25,7 +25,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="@color/textColorPrimaryDark"
+            android:textColor="?attr/colorOnPrimary"
             tools:text="Title" />
 
     </LinearLayout>
@@ -50,7 +50,7 @@
 
         <Button
             android:id="@+id/reset_btn"
-            style="@style/Theme.Widget.Button.Borderless"
+            style="@style/Theme.Widget.Button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -58,7 +58,7 @@
 
         <Button
             android:id="@+id/search_btn"
-            style="@style/Theme.Widget.Button.Colored"
+            style="@style/Theme.Widget.Button.FilledAccent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

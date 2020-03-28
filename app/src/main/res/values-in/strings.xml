@@ -313,7 +313,6 @@
     <string name="download_queue_error">Tidak dapat mengunduh bab. Anda bisa mencoba lagi di halaman unduhan</string>
     <string name="notification_update_progress">Proses pembaruan sedang berlangsung: %1$d/%2$d</string>
     <string name="notification_new_chapters">Bab baru ditemukan</string>
-    <string name="notification_new_chapters_text">Untuk %1$d judul</string>
     <string name="notification_cover_update_failed">Gagal memperbarui sampul</string>
     <string name="notification_first_add_to_library">Tolong tambahkan manga ke perpustakaan Anda sebelum melakukan ini</string>
     <string name="notification_not_connected_to_ac_title">Sinkronisasi dibatalkan</string>

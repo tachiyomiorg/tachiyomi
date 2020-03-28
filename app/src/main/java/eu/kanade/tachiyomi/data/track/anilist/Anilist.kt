@@ -56,7 +56,7 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
 
     override fun getLogo() = R.drawable.tracker_anilist
 
-    override fun getLogoColor() = Color.rgb(18, 25, 35)
+    override fun getLogoColor() = Color.rgb(0x12, 0x19, 0x23)
 
     override fun getStatusList(): List<Int> {
         return listOf(READING, PLANNING, COMPLETED, REPEATING, PAUSED, DROPPED)
@@ -73,6 +73,8 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
             else -> ""
         }
     }
+
+    override fun getCompletionStatus(): Int = COMPLETED
 
     override fun getScoreList(): List<String> {
         return when (scorePreference.getOrDefault()) {
@@ -135,9 +137,6 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun update(track: Track): Observable<Track> {
-        if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
-            track.status = COMPLETED
-        }
         // If user was using API v1 fetch library_id
         if (track.library_id == null || track.library_id!! == 0L) {
             return api.findLibManga(track, getUsername().toInt()).flatMap {

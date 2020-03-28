@@ -15,7 +15,7 @@
         android:elevation="5dp"
         android:visibility="invisible"/>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,7 +33,7 @@
             android:descendantFocusability="blocksDescendants"
             tools:listitem="@layout/chapters_item" />
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout>
 
     <eu.davidea.fastscroller.FastScroller
         android:id="@+id/fast_scroller"
@@ -44,10 +44,16 @@
         app:fastScrollerBubbleEnabled="false"
         tools:visibility="visible"/>
 
+    <eu.kanade.tachiyomi.widget.ActionToolbar
+        android:id="@+id/action_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         style="@style/Theme.Widget.FAB"
         app:layout_anchor="@id/recycler"
-        app:srcCompat="@drawable/ic_play_arrow_white_24dp"/>
+        app:srcCompat="@drawable/ic_play_arrow_24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

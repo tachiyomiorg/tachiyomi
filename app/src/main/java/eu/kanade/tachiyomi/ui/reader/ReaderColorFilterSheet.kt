@@ -11,6 +11,8 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.util.lang.plusAssign
+import eu.kanade.tachiyomi.util.view.gone
+import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import java.util.concurrent.TimeUnit
@@ -234,11 +236,11 @@ class ReaderColorFilterSheet(activity: ReaderActivity) : BottomSheetDialog(activ
     private fun setCustomBrightnessValue(value: Int, view: View, isDisabled: Boolean = false) = with(view) {
         // Set black overlay visibility.
         if (value < 0) {
-            brightness_overlay.visibility = View.VISIBLE
+            brightness_overlay.visible()
             val alpha = (abs(value) * 2.56).toInt()
             brightness_overlay.setBackgroundColor(Color.argb(alpha, 0, 0, 0))
         } else {
-            brightness_overlay.visibility = View.GONE
+            brightness_overlay.gone()
         }
 
         if (!isDisabled)
@@ -259,7 +261,7 @@ class ReaderColorFilterSheet(activity: ReaderActivity) : BottomSheetDialog(activ
             subscriptions.add(customFilterColorSubscription)
         } else {
             customFilterColorSubscription?.let { subscriptions.remove(it) }
-            color_overlay.visibility = View.GONE
+            color_overlay.gone()
         }
         setColorFilterSeekBar(enabled, view)
     }
@@ -270,7 +272,7 @@ class ReaderColorFilterSheet(activity: ReaderActivity) : BottomSheetDialog(activ
      * @param view view of the dialog
      */
     private fun setColorFilterValue(@ColorInt color: Int, view: View) = with(view) {
-        color_overlay.visibility = View.VISIBLE
+        color_overlay.visible()
         color_overlay.setFilterColor(color, preferences.colorFilterMode().getOrDefault())
         setValues(color, view)
     }

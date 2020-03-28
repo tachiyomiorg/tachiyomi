@@ -321,7 +321,6 @@
     <string name="download_queue_error">অধ্যায়গুলি ডাউনলোড করা যায়নি। ডাউনলোড বিভাগে আপনি আবার চেষ্টা করতে পারেন</string>
     <string name="notification_update_progress">আপডেট হচ্ছে: %1$d/%2$d</string>
     <string name="notification_new_chapters">নতুন অধ্যায় পাওয়া গিয়েছে</string>
-    <string name="notification_new_chapters_text">জন্য %1$d শিরোনাম</string>
     <string name="notification_cover_update_failed">কভার আপডেট করতে অসফল হয়েছে</string>
     <string name="notification_first_add_to_library">এটা করার আগে দয়া করে মাংগাটি আপনার মাংগাশালায় যোগ করুন</string>
     <string name="notification_not_connected_to_ac_title">সুসংগতি বাতিল করা হয়েছে</string>

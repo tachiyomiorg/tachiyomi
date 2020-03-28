@@ -10,18 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:theme="?attr/actionBarTheme"
             app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:navigationIcon="@drawable/ic_close_white_24dp" />
+            app:navigationIcon="@drawable/ic_close_24dp" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout
         android:id="@id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -50,6 +50,6 @@
 
         </androidx.core.widget.NestedScrollView>
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -342,7 +342,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         // Set the Favorite drawable to the correct one.
         // Border drawable if false, filled drawable if true.
         fab_favorite?.setImageResource(if (isFavorite)
-            R.drawable.ic_bookmark_white_24dp
+            R.drawable.ic_bookmark_24dp
         else
             R.drawable.ic_add_to_library_24dp)
     }

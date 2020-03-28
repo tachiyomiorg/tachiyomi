@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@id/swipe_refresh"
@@ -33,7 +33,7 @@
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_bookmark_border_white_24dp" />
+            app:srcCompat="@drawable/ic_bookmark_border_24dp" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/info_scrollview"
@@ -247,4 +247,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout>

@@ -96,11 +96,11 @@ class LibraryUpdateService(
     private val progressNotificationBuilder by lazy {
         notificationBuilder(Notifications.CHANNEL_LIBRARY) {
             setContentTitle(getString(R.string.app_name))
-            setSmallIcon(R.drawable.ic_refresh_white_24dp)
+            setSmallIcon(R.drawable.ic_refresh_24dp)
             setLargeIcon(notificationBitmap)
             setOngoing(true)
             setOnlyAlertOnce(true)
-            addAction(R.drawable.ic_close_white_24dp, getString(android.R.string.cancel), cancelIntent)
+            addAction(R.drawable.ic_close_24dp, getString(android.R.string.cancel), cancelIntent)
         }
     }
 
@@ -476,7 +476,7 @@ class LibraryUpdateService(
                 if (updates.size == 1 && !preferences.hideNotificationContent()) {
                     setContentText(updates.first().first.title.chop(NOTIF_TITLE_MAX_LEN))
                 } else {
-                    setContentText(resources.getQuantityString(R.plurals.notification_new_chapters_text, updates.size, updates.size))
+                    setContentText(resources.getQuantityString(R.plurals.notification_new_chapters_summary, updates.size, updates.size))
 
                     if (!preferences.hideNotificationContent()) {
                         setStyle(NotificationCompat.BigTextStyle().bigText(updates.joinToString("\n") {
@@ -535,7 +535,7 @@ class LibraryUpdateService(
                     NotificationReceiver.markAsReadPendingBroadcast(this@LibraryUpdateService,
                             manga, chapters, Notifications.ID_NEW_CHAPTERS))
             // View chapters action
-            addAction(R.drawable.ic_book_white_24dp, getString(R.string.action_view_chapters),
+            addAction(R.drawable.ic_book_24dp, getString(R.string.action_view_chapters),
                     NotificationReceiver.openChapterPendingActivity(this@LibraryUpdateService,
                             manga, Notifications.ID_NEW_CHAPTERS))
         }
@@ -569,7 +569,7 @@ class LibraryUpdateService(
                 .apply { decimalSeparator = '.' })
 
         val displayableChapterNumbers = chapters
-                .filter { it.chapter_number >= 0 }
+                .filter { it.isRecognizedNumber }
                 .sortedBy { it.chapter_number }
                 .map { formatter.format(it.chapter_number) }
                 .toSet()
@@ -601,7 +601,7 @@ class LibraryUpdateService(
                     resources.getQuantityString(R.plurals.notification_chapters_multiple_and_more, remaining, joinedChapterNumbers, remaining)
                 } else {
                     // "Chapters 1, 2.5, 3"
-                    resources.getString(R.string.notification_chapters_multiple, displayableChapterNumbers.joinToString(","))
+                    resources.getString(R.string.notification_chapters_multiple, displayableChapterNumbers.joinToString(", "))
                 }
             }
         }

@@ -106,7 +106,7 @@ class SettingsBackupController : SettingsController() {
 
                 onChange { newValue ->
                     val interval = (newValue as String).toInt()
-                    BackupCreatorJob.setupTask(interval)
+                    BackupCreatorJob.setupTask(context, interval)
                     true
                 }
             }

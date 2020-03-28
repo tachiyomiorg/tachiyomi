@@ -5,7 +5,6 @@ import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.download.model.DownloadQueue
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
-import java.util.ArrayList
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import timber.log.Timber
@@ -16,9 +15,6 @@ import uy.kohesive.injekt.injectLazy
  */
 class DownloadPresenter : BasePresenter<DownloadController>() {
 
-    /**
-     * Download manager.
-     */
     val downloadManager: DownloadManager by injectLazy()
 
     /**
@@ -32,7 +28,7 @@ class DownloadPresenter : BasePresenter<DownloadController>() {
 
         downloadQueue.getUpdatedObservable()
                 .observeOn(AndroidSchedulers.mainThread())
-                .map { ArrayList(it) }
+                .map { it.map(::DownloadItem) }
                 .subscribeLatestCache(DownloadController::onNextDownloads) { _, error ->
                     Timber.e(error)
                 }
@@ -60,5 +56,13 @@ class DownloadPresenter : BasePresenter<DownloadController>() {
      */
     fun clearQueue() {
         downloadManager.clearQueue()
+    }
+
+    fun reorder(downloads: List<Download>) {
+        downloadManager.reorderQueue(downloads)
+    }
+
+    fun cancelDownload(download: Download) {
+        downloadManager.deletePendingDownload(download)
     }
 }

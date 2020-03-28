@@ -1,7 +1,14 @@
 package eu.kanade.tachiyomi.ui.setting
 
+import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context.POWER_SERVICE
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.PowerManager
+import android.provider.Settings
 import android.view.View
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
@@ -35,6 +42,7 @@ class SettingsAdvancedController : SettingsController() {
 
     private val db: DatabaseHelper by injectLazy()
 
+    @SuppressLint("BatteryLife")
     override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
         titleRes = R.string.pref_category_advanced
 
@@ -80,6 +88,26 @@ class SettingsAdvancedController : SettingsController() {
             summaryRes = R.string.pref_refresh_library_tracking_summary
 
             onClick { LibraryUpdateService.start(context, target = Target.TRACKING) }
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            preference {
+                titleRes = R.string.pref_disable_battery_optimization
+                summaryRes = R.string.pref_disable_battery_optimization_summary
+
+                onClick {
+                    val packageName: String = context.packageName
+                    val pm = context.getSystemService(POWER_SERVICE) as PowerManager?
+                    if (!pm!!.isIgnoringBatteryOptimizations(packageName)) {
+                        val intent = Intent().apply {
+                            action = Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+                            data = Uri.parse("package:$packageName")
+                        }
+                        startActivity(intent)
+                    } else {
+                        context.toast(R.string.battery_optimization_disabled)
+                    }
+                }
+            }
         }
     }
 

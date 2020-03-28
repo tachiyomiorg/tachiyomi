@@ -22,7 +22,6 @@ import uy.kohesive.injekt.injectLazy
 class BangumiApi(private val client: OkHttpClient, interceptor: BangumiInterceptor) {
 
     private val gson: Gson by injectLazy()
-    private val parser = JsonParser()
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
     fun addLibManga(track: Track): Observable<Track> {
@@ -91,7 +90,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
                     if (responseBody.contains("\"code\":404")) {
                         responseBody = "{\"results\":0,\"list\":[]}"
                     }
-                    val response = parser.parse(responseBody).obj["list"]?.array
+                    val response = JsonParser.parseString(responseBody).obj["list"]?.array
                     response?.filter { it.obj["type"].asInt == 1 }?.map { jsonToSearch(it.obj) }
                 }
     }
@@ -130,7 +129,7 @@ class BangumiApi(private val client: OkHttpClient, interceptor: BangumiIntercept
                 .map { netResponse ->
                     // get comic info
                     val responseBody = netResponse.body?.string().orEmpty()
-                    jsonToTrack(parser.parse(responseBody).obj)
+                    jsonToTrack(JsonParser.parseString(responseBody).obj)
                 }
     }
 

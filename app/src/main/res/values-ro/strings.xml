@@ -383,7 +383,6 @@
     <string name="download_queue_error">Nu s-au putut descărca capitole. Puteți încerca din nou în secțiunea descărcări</string>
     <string name="notification_update_progress">Progresul actualizării: %1$d/%2$d</string>
     <string name="notification_new_chapters">Capitol nou găsit</string>
-    <string name="notification_new_chapters_text">Pentru %1$d titluri</string>
     <string name="notification_cover_update_failed">Actualizare copertă eșuată</string>
     <string name="notification_first_add_to_library">Vă rugăma să adăugați mangaul la bibliotecă incinte de a face asta</string>
     <string name="notification_not_connected_to_ac_title">Sincronizare anulată</string>
@@ -454,4 +453,20 @@
     <string name="currently_reading">Acum citesc</string>
     <string name="paused">Întrerupt</string>
     <string name="want_to_read">Vreau să citesc</string>
+    <string name="label_more">Mai mult</string>
+    <string name="action_view_chapters">Vezi capitolele</string>
+    <string name="action_cancel_all">Anulează tot</string>
+    <string name="pref_theme_mode">Tema aplicației</string>
+    <string name="theme_light">Alb</string>
+    <string name="theme_dark">Întunecat</string>
+    <string name="theme_system">Tema sistemului</string>
+    <string name="pref_theme_dark">Variantă temă întunecată</string>
+    <string name="theme_dark_default">Implicită</string>
+    <string name="theme_dark_blue">Albastru întunecată</string>
+    <string name="theme_dark_amoled">Negru AMOLED</string>
+    <string name="pref_manage_notifications">Setări notificări</string>
+    <string name="pref_category_security">Securitate</string>
+    <string name="lock_with_biometrics">Blocare amprentă</string>
+    <string name="unlock_app">Deblochează Tachiyomi</string>
+    <string name="action_hide">Ascunde</string>
 </resources>

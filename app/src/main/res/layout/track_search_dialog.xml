@@ -42,7 +42,7 @@
             android:dividerHeight="10dp"
             android:footerDividersEnabled="true"
             android:headerDividersEnabled="true"
-            android:listSelector="?attr/selectable_list_drawable"
+            android:listSelector="@drawable/list_item_selector"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
             android:scrollbars="none"

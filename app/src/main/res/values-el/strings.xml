@@ -383,7 +383,6 @@
     <string name="download_queue_error">Δεν ήταν δυνατή η λήψη κεφαλαίων. Μπορείτε να δοκιμάσετε ξανά στο τμήμα λήψεων</string>
     <string name="notification_update_progress">Ενημέρωση προόδου: %1$d/%2$d</string>
     <string name="notification_new_chapters">Βρέθηκαν νέα κεφάλαια</string>
-    <string name="notification_new_chapters_text">Για %1$d τίτλους</string>
     <string name="notification_cover_update_failed">Δεν ήταν δυνατή η ενημέρωση του εξώφυλλου</string>
     <string name="notification_first_add_to_library">Παρακαλώ προσθέστε το manga στη βιβλιοθήκη σας πριν κάνετε κάτι τέτοιο</string>
     <string name="notification_not_connected_to_ac_title">Ο συγχρονισμός ακυρώθηκε</string>

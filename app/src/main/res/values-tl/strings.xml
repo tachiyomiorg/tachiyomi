@@ -88,7 +88,7 @@
     <string name="app_not_available">Hindi available ang app</string>
     <string name="short_recent_updates">Mga Update</string>
     <string name="pref_category_general">Pangkalahatan</string>
-    <string name="pref_category_reader">Reader</string>
+    <string name="pref_category_reader">Mambabasa</string>
     <string name="pref_category_downloads">Mga Download</string>
     <string name="pref_category_tracking">Sinusundan</string>
     <string name="pref_category_advanced">Advanced</string>
@@ -396,7 +396,6 @@
     <string name="download_queue_error">Nagkaproblema habang nagda-download ng mga kabanata. Maaring mong ulitin ito sa Downloads section.</string>
     <string name="notification_update_progress">Progreso ng update: %1$d/%2$d</string>
     <string name="notification_new_chapters">May nakitang bagong (mga) kabanata</string>
-    <string name="notification_new_chapters_text">Para sa (mga) %1$d na title</string>
     <string name="notification_cover_update_failed">Pumalya sa pag-update ng pabalat</string>
     <string name="notification_first_add_to_library">Mangyaring idagdag muna ang manga sa iyong aklatan bago gawin ito</string>
     <string name="notification_not_connected_to_ac_title">Kinansela ang pag-sync</string>
@@ -437,4 +436,10 @@
     <string name="channel_downloader">Tagapag-download</string>
     <string name="no_results_found">Walang nahanap na resulta</string>
     <string name="action_webview_back">Bumalik</string>
+    <string name="action_webview_forward">Susunod</string>
+    <string name="pref_category_library">Aklatan</string>
+    <string name="action_sort_latest_chapter">Bagong Kabanata</string>
+    <string name="action_view_chapters">Mga kabanata</string>
+    <string name="action_cancel_all">Ikansela lahat</string>
+    <string name="action_hide">Itago</string>
 </resources>

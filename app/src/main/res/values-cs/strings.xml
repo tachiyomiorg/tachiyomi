@@ -6,7 +6,7 @@
     <string name="history">Historie</string>
     <string name="label_settings">Nastavení</string>
     <string name="label_library">Knihovna</string>
-    <string name="label_recent_manga">Nedávno čteno</string>
+    <string name="label_recent_manga">Historie</string>
     <string name="label_categories">Kategorie</string>
     <string name="label_backup">Záloha</string>
     <string name="label_migration">Zdroj migrace</string>
@@ -110,7 +110,7 @@
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
-    <string name="pref_download_directory">Složka pro stahování</string>
+    <string name="pref_download_directory">Umístění pro stažení</string>
     <string name="pref_download_only_over_wifi">Stahovat pouze na Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Odstranit po označení jako přečtené</string>
     <string name="pref_remove_after_read">Odstranit po čtení</string>
@@ -226,7 +226,7 @@
     <string name="name">Název</string>
     <string name="track">Sledování</string>
     <string name="label_catalogues">Katalogy</string>
-    <string name="label_recent_updates">Nedávné aktualizace</string>
+    <string name="label_recent_updates">Aktualizace</string>
     <string name="action_filter_bookmarked">Založeno</string>
     <string name="action_sort_total">Celkem kapitol</string>
     <string name="action_bookmark">Založit</string>
@@ -393,7 +393,7 @@
     <string name="choices_reset">Volby dialogu se vynulují</string>
     <string name="pref_refresh_library_metadata_summary">Aktualizuje obaly, žánry, popisy a informace o stavu mangy</string>
     <string name="pref_enable_automatic_updates_summary">Automaticky kontrolovat aktualizace aplikace</string>
-    <string name="login_title">Přihlášení pro %1$s</string>
+    <string name="login_title">Přihlásit se do %1$s</string>
     <string name="library_search_hint">Název nebo autor…</string>
     <string name="invalid_combination">Výchozí nemůže být vybrána s ostatními kategoriemi</string>
     <string name="show_title">Zobrazit název</string>
@@ -407,7 +407,6 @@
     <string name="recent_manga_source">%1$s - K.%2$s</string>
     <string name="migration_info">Klepnutím vyberte zdroj, ze kterého chcete migrovat</string>
     <string name="migration_dialog_what_to_include">Vyberte data, která chcete zahrnout</string>
-    <string name="notification_new_chapters_text">Pro %1$d titulů</string>
     <string name="notification_cover_update_failed">Chyba při aktualizaci obalu</string>
     <string name="notification_first_add_to_library">Přidejte si prosím mangu do knihovny před tím, než toto uděláte</string>
     <string name="file_select_cover">Vybrat obrázek obalu</string>

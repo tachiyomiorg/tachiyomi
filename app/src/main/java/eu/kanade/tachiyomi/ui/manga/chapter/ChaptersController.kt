@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.ui.manga.chapter
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
@@ -13,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -28,9 +28,11 @@ import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.popControllerWithTag
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
+import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.getCoordinates
 import eu.kanade.tachiyomi.util.view.snack
+import kotlinx.android.synthetic.main.chapters_controller.action_toolbar
 import kotlinx.android.synthetic.main.chapters_controller.fab
 import kotlinx.android.synthetic.main.chapters_controller.fast_scroller
 import kotlinx.android.synthetic.main.chapters_controller.recycler
@@ -42,7 +44,6 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         ActionMode.Callback,
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
-        ChaptersAdapter.OnMenuItemClickListener,
         DownloadCustomChaptersDialog.Listener,
         DeleteChaptersDialog.Listener {
 
@@ -114,8 +115,9 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     }
 
     override fun onDestroyView(view: View) {
+        destroyActionModeIfNeeded()
+        action_toolbar.destroy()
         adapter = null
-        actionMode = null
         super.onDestroyView(view)
     }
 
@@ -141,12 +143,23 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         val menuFilterUnread = menu.findItem(R.id.action_filter_unread)
         val menuFilterDownloaded = menu.findItem(R.id.action_filter_downloaded)
         val menuFilterBookmarked = menu.findItem(R.id.action_filter_bookmarked)
+        val menuFilterEmpty = menu.findItem(R.id.action_filter_empty)
 
         // Set correct checkbox values.
         menuFilterRead.isChecked = presenter.onlyRead()
         menuFilterUnread.isChecked = presenter.onlyUnread()
         menuFilterDownloaded.isChecked = presenter.onlyDownloaded()
         menuFilterBookmarked.isChecked = presenter.onlyBookmarked()
+
+        val filterSet = presenter.onlyRead() || presenter.onlyUnread() || presenter.onlyDownloaded() || presenter.onlyBookmarked()
+
+        if (filterSet) {
+            val filterColor = activity!!.getResourceColor(R.attr.colorFilterActive)
+            DrawableCompat.setTint(menu.findItem(R.id.action_filter).icon, filterColor)
+        }
+
+        // Only show remove filter option if there's a filter set.
+        menuFilterEmpty.isVisible = filterSet
 
         // Disable unread filter option if read filter is enabled.
         if (presenter.onlyRead())
@@ -207,10 +220,12 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
             R.id.action_filter_downloaded -> {
                 item.isChecked = !item.isChecked
                 presenter.setDownloadedFilter(item.isChecked)
+                activity?.invalidateOptionsMenu()
             }
             R.id.action_filter_bookmarked -> {
                 item.isChecked = !item.isChecked
                 presenter.setBookmarkedFilter(item.isChecked)
+                activity?.invalidateOptionsMenu()
             }
             R.id.action_filter_empty -> {
                 presenter.removeFilters()
@@ -342,6 +357,10 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     private fun createActionModeIfNeeded() {
         if (actionMode == null) {
             actionMode = (activity as? AppCompatActivity)?.startSupportActionMode(this)
+            action_toolbar.show(
+                    actionMode!!,
+                    R.menu.chapter_selection
+            ) { onActionItemClicked(actionMode!!, it!!) }
         }
     }
 
@@ -351,12 +370,11 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     }
 
     override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
-        mode.menuInflater.inflate(R.menu.chapter_selection, menu)
+        mode.menuInflater.inflate(R.menu.generic_selection, menu)
         adapter?.mode = SelectableAdapter.Mode.MULTI
         return true
     }
 
-    @SuppressLint("StringFormatInvalid")
     override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
         val count = adapter?.selectedItemCount ?: 0
         if (count == 0) {
@@ -364,6 +382,17 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
             destroyActionModeIfNeeded()
         } else {
             mode.title = count.toString()
+
+            val chapters = getSelectedChapters()
+            action_toolbar.findItem(R.id.action_download)?.isVisible = chapters.any { !it.isDownloaded }
+            action_toolbar.findItem(R.id.action_delete)?.isVisible = chapters.any { it.isDownloaded }
+            action_toolbar.findItem(R.id.action_bookmark)?.isVisible = chapters.any { !it.chapter.bookmark }
+            action_toolbar.findItem(R.id.action_remove_bookmark)?.isVisible = chapters.all { it.chapter.bookmark }
+            action_toolbar.findItem(R.id.action_mark_as_read)?.isVisible = chapters.any { !it.chapter.read }
+            action_toolbar.findItem(R.id.action_mark_as_unread)?.isVisible = chapters.all { it.chapter.read }
+
+            // Hide FAB to avoid interfering with the bottom action toolbar
+            fab.hide()
         }
         return false
     }
@@ -376,6 +405,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
             R.id.action_remove_bookmark -> bookmarkChapters(getSelectedChapters(), false)
             R.id.action_mark_as_read -> markAsRead(getSelectedChapters())
             R.id.action_mark_as_unread -> markAsUnread(getSelectedChapters())
+            R.id.action_mark_previous_as_read -> markPreviousAsRead(getSelectedChapters())
             R.id.action_select_all -> selectAll()
             else -> return false
         }
@@ -383,30 +413,18 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     }
 
     override fun onDestroyActionMode(mode: ActionMode) {
+        action_toolbar.hide()
         adapter?.mode = SelectableAdapter.Mode.SINGLE
         adapter?.clearSelection()
         selectedItems.clear()
         actionMode = null
+
+        fab.show()
     }
 
     override fun onDetach(view: View) {
         destroyActionModeIfNeeded()
         super.onDetach(view)
-    }
-
-    override fun onMenuItemClick(position: Int, item: MenuItem) {
-        val chapter = adapter?.getItem(position) ?: return
-        val chapters = listOf(chapter)
-
-        when (item.itemId) {
-            R.id.action_download -> downloadChapters(chapters)
-            R.id.action_delete -> deleteChapters(chapters)
-            R.id.action_bookmark -> bookmarkChapters(chapters, true)
-            R.id.action_remove_bookmark -> bookmarkChapters(chapters, false)
-            R.id.action_mark_as_read -> markAsRead(chapters)
-            R.id.action_mark_as_unread -> markAsUnread(chapters)
-            R.id.action_mark_previous_as_read -> markPreviousAsRead(chapter)
-        }
     }
 
     // SELECTION MODE ACTIONS
@@ -431,7 +449,6 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
 
     private fun downloadChapters(chapters: List<ChapterItem>) {
         val view = view
-        destroyActionModeIfNeeded()
         presenter.downloadChapters(chapters)
         if (view != null && !presenter.manga.favorite) {
             recycler?.snack(view.context.getString(R.string.snack_add_to_library), Snackbar.LENGTH_INDEFINITE) {
@@ -450,22 +467,20 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         deleteChapters(getSelectedChapters())
     }
 
-    private fun markPreviousAsRead(chapter: ChapterItem) {
+    private fun markPreviousAsRead(chapters: List<ChapterItem>) {
         val adapter = adapter ?: return
-        val chapters = if (presenter.sortDescending()) adapter.items.reversed() else adapter.items
-        val chapterPos = chapters.indexOf(chapter)
+        val prevChapters = if (presenter.sortDescending()) adapter.items.reversed() else adapter.items
+        val chapterPos = prevChapters.indexOf(chapters.last())
         if (chapterPos != -1) {
-            markAsRead(chapters.take(chapterPos))
+            markAsRead(prevChapters.take(chapterPos))
         }
     }
 
     private fun bookmarkChapters(chapters: List<ChapterItem>, bookmarked: Boolean) {
-        destroyActionModeIfNeeded()
         presenter.bookmarkChapters(chapters, bookmarked)
     }
 
     fun deleteChapters(chapters: List<ChapterItem>) {
-        destroyActionModeIfNeeded()
         if (chapters.isEmpty()) return
 
         DeletingChaptersDialog().showDialog(router)

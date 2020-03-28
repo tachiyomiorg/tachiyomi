@@ -5,11 +5,17 @@ package eu.kanade.tachiyomi.util.view
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.Typeface
+import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.MenuRes
+import androidx.appcompat.widget.PopupMenu
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
 import com.google.android.material.snackbar.Snackbar
+import eu.kanade.tachiyomi.R
 import kotlin.math.min
 
 /**
@@ -34,6 +40,25 @@ inline fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG, f: Sn
     snack.f()
     snack.show()
     return snack
+}
+
+/**
+ * Shows a popup menu on top of this view.
+ *
+ * @param menuRes menu items to inflate the menu with.
+ * @param initMenu function to execute when the menu after is inflated.
+ * @param onMenuItemClick function to execute when a menu item is clicked.
+ */
+fun View.popupMenu(@MenuRes menuRes: Int, initMenu: (Menu.() -> Unit)? = null, onMenuItemClick: MenuItem.() -> Boolean) {
+    val popup = PopupMenu(context, this, Gravity.NO_GRAVITY, R.attr.actionOverflowMenuStyle, 0)
+    popup.menuInflater.inflate(menuRes, popup.menu)
+
+    if (initMenu != null) {
+        popup.menu.initMenu()
+    }
+    popup.setOnMenuItemClickListener { it.onMenuItemClick() }
+
+    popup.show()
 }
 
 inline fun View.visible() {

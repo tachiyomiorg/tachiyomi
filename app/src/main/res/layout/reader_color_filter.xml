@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <androidx.legacy.widget.Space
+    <android.widget.Space
         android:id="@+id/spinner_end"
         android:layout_width="16dp"
         android:layout_height="0dp"
@@ -13,7 +13,7 @@
 
     <!-- Color filter -->
 
-    <androidx.appcompat.widget.SwitchCompat
+    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/switch_color_filter"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
 
     <!-- Brightness -->
 
-    <androidx.appcompat.widget.SwitchCompat
+    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/custom_brightness"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -213,7 +213,7 @@
         app:layout_constraintBottom_toBottomOf="@id/brightness_seekbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/brightness_seekbar"
-        app:srcCompat="@drawable/ic_brightness_5_black_24dp" />
+        app:srcCompat="@drawable/ic_brightness_5_24dp" />
 
     <TextView
         android:id="@+id/txt_brightness_seekbar_value"

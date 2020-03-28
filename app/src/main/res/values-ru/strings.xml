@@ -321,7 +321,6 @@
     <string name="manga">Манга</string>
     <string name="manga_info_last_chapter_label">Последняя глава</string>
     <string name="no_more_results">Больше нет результатов</string>
-    <string name="notification_new_chapters_text">Для %1$d тайтлов</string>
     <string name="pref_backup_directory">Каталог бэкапа</string>
     <string name="pref_backup_interval">Частота бэкапа</string>
     <string name="pref_backup_service_category">Служба</string>
@@ -480,12 +479,6 @@
     <string name="ext_updates_pending">Обновления ожидаются</string>
     <string name="pref_cutout_short">Отображать содержимое в вырезанной области</string>
     <string name="pref_webtoon_padding_vert">Вертикальный отступ между страницами</string>
-    <plurals name="notification_chapters">
-        <item quantity="one">Глава %1$s</item>
-        <item quantity="few">Главы %1$s</item>
-        <item quantity="many">Главы %1$s</item>
-    </plurals>
-    <string name="notification_and_n_more">и еще %1$d</string>
     <string name="information_cloudflare_bypass_failure">Не удалось обойти Cloudflare</string>
     <string name="information_webview_outdated">Пожалуйста, обновите WebView для лучшей совместимости</string>
     <string name="channel_new_chapters">Обновления глав</string>

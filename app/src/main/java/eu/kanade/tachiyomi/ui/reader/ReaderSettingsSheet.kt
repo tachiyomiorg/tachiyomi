@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.ui.reader
 
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.widget.CompoundButton
 import android.widget.Spinner
 import androidx.core.widget.NestedScrollView
@@ -13,8 +12,10 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.PagerViewer
 import eu.kanade.tachiyomi.ui.reader.viewer.webtoon.WebtoonViewer
+import eu.kanade.tachiyomi.util.view.invisible
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
+import kotlinx.android.synthetic.main.reader_settings_sheet.always_show_chapter_transition
 import kotlinx.android.synthetic.main.reader_settings_sheet.background_color
 import kotlinx.android.synthetic.main.reader_settings_sheet.crop_borders
 import kotlinx.android.synthetic.main.reader_settings_sheet.crop_borders_webtoon
@@ -71,6 +72,12 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
     private fun initGeneralPreferences() {
         viewer.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
             activity.presenter.setMangaViewer(position)
+
+            if (activity.presenter.getMangaViewer() == ReaderActivity.WEBTOON) {
+                initWebtoonPreferences()
+            } else {
+                initPagerPreferences()
+            }
         }
         viewer.setSelection(activity.presenter.manga?.viewer ?: 0, false)
 
@@ -79,18 +86,21 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         show_page_number.bindToPreference(preferences.showPageNumber())
         fullscreen.bindToPreference(preferences.fullscreen())
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            cutout_short.visibility = View.VISIBLE
+            cutout_short.visible()
             cutout_short.bindToPreference(preferences.cutoutShort())
         }
         keepscreen.bindToPreference(preferences.keepScreenOn())
         long_tap.bindToPreference(preferences.readWithLongTap())
+        always_show_chapter_transition.bindToPreference(preferences.alwaysShowChapterTransition())
     }
 
     /**
      * Init the preferences for the pager reader.
      */
     private fun initPagerPreferences() {
+        webtoon_prefs_group.invisible()
         pager_prefs_group.visible()
+
         scale_type.bindToPreference(preferences.imageScaleType(), 1)
         zoom_start.bindToPreference(preferences.zoomStart(), 1)
         crop_borders.bindToPreference(preferences.cropBorders())
@@ -102,7 +112,9 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
      * Init the preferences for the webtoon reader.
      */
     private fun initWebtoonPreferences() {
+        pager_prefs_group.invisible()
         webtoon_prefs_group.visible()
+
         crop_borders_webtoon.bindToPreference(preferences.cropBordersWebtoon())
         pad_pages_vert_webtoon.bindToPreference(preferences.padPagesVertWebtoon())
     }

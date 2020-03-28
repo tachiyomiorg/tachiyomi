@@ -36,9 +36,6 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun update(track: Track): Observable<Track> {
-        if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
-            track.status = COMPLETED
-        }
         return api.updateLibManga(track)
     }
 
@@ -100,6 +97,8 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
             else -> ""
         }
     }
+
+    override fun getCompletionStatus(): Int = COMPLETED
 
     override fun login(username: String, password: String) = login(password)
 

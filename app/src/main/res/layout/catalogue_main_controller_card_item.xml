@@ -9,7 +9,7 @@
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="@dimen/material_component_lists_two_line_height"
-        android:background="?attr/selectable_list_drawable">
+        android:background="@drawable/list_item_selector">
 
         <ImageView
             android:id="@+id/image"
@@ -39,9 +39,11 @@
 
         <Button
             android:id="@+id/source_latest"
-            style="@style/Theme.Widget.Button.Borderless.Small"
+            style="@style/Theme.Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxHeight="48dp"
+            android:minHeight="48dp"
             android:text="@string/latest"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/source_browse"
@@ -49,9 +51,11 @@
 
         <Button
             android:id="@+id/source_browse"
-            style="@style/Theme.Widget.Button.Borderless.Small"
+            style="@style/Theme.Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxHeight="48dp"
+            android:minHeight="48dp"
             android:text="@string/browse"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

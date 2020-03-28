@@ -16,8 +16,8 @@
             android:id="@+id/thumbnail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="?android:attr/colorBackground"
-            tools:background="?android:attr/colorBackground"
+            android:background="?attr/colorSurface"
+            tools:background="?attr/colorSurface"
             tools:ignore="ContentDescription"
             tools:src="@mipmap/ic_launcher" />
 

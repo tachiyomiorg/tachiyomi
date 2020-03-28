@@ -16,6 +16,7 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.system.getResourceColor
+import eu.kanade.tachiyomi.util.view.gone
 import kotlin.math.min
 
 /**
@@ -155,14 +156,14 @@ class ReaderProgressBar @JvmOverloads constructor(
         if (visibility == View.GONE) return
 
         if (!animate) {
-            visibility = View.GONE
+            gone()
         } else {
             ObjectAnimator.ofFloat(this, "alpha", 1f, 0f).apply {
                 interpolator = DecelerateInterpolator()
                 duration = 1000
                 addListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator?) {
-                        visibility = View.GONE
+                        gone()
                         alpha = 1f
                     }
 

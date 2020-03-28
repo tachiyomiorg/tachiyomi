@@ -352,10 +352,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
         snack?.dismiss()
 
         if (catalogue_view != null) {
-            val message = if (error is NoResultsException) catalogue_view.context.getString(R.string.no_results_found) else (error.message
-                    ?: "")
-
-            snack = catalogue_view.snack(message, Snackbar.LENGTH_INDEFINITE) {
+            snack = catalogue_view.snack(getErrorMessage(error), Snackbar.LENGTH_INDEFINITE) {
                 setAction(R.string.action_retry) {
                     // If not the first page, show bottom progress bar.
                     if (adapter.mainItemCount > 0) {
@@ -367,6 +364,18 @@ open class BrowseCatalogueController(bundle: Bundle) :
                     presenter.requestNext()
                 }
             }
+        }
+    }
+
+    private fun getErrorMessage(error: Throwable): String {
+        if (error is NoResultsException) {
+            return catalogue_view.context.getString(R.string.no_results_found)
+        }
+
+        return when {
+            error.message == null -> ""
+            error.message!!.startsWith("HTTP error") -> "${error.message}: ${catalogue_view.context.getString(R.string.http_error_hint)}"
+            else -> error.message!!
         }
     }
 

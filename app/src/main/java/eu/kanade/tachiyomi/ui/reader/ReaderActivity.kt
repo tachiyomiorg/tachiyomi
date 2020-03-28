@@ -20,6 +20,7 @@ import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.SeekBar
+import androidx.core.view.ViewCompat
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -44,7 +45,11 @@ import eu.kanade.tachiyomi.util.lang.plusAssign
 import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.system.GLUtil
 import eu.kanade.tachiyomi.util.system.toast
+import eu.kanade.tachiyomi.util.view.defaultBar
 import eu.kanade.tachiyomi.util.view.gone
+import eu.kanade.tachiyomi.util.view.hideBar
+import eu.kanade.tachiyomi.util.view.isDefaultBar
+import eu.kanade.tachiyomi.util.view.showBar
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.SimpleAnimationListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
@@ -64,7 +69,6 @@ import kotlinx.android.synthetic.main.reader_activity.right_chapter
 import kotlinx.android.synthetic.main.reader_activity.right_page_text
 import kotlinx.android.synthetic.main.reader_activity.toolbar
 import kotlinx.android.synthetic.main.reader_activity.viewer_container
-import me.zhanghai.android.systemuihelper.SystemUiHelper
 import nucleus.factory.RequiresPresenter
 import rx.Observable
 import rx.Subscription
@@ -103,11 +107,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         private set
 
     /**
-     * System UI helper to hide status & navigation bar on all different API levels.
-     */
-    private var systemUi: SystemUiHelper? = null
-
-    /**
      * Configuration at reader level, like background color or forced orientation.
      */
     private var config: ReaderConfig? = null
@@ -139,12 +138,12 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     /**
      * Called when the activity is created. Initializes the presenter and configuration.
      */
-    override fun onCreate(savedState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(when (preferences.readerTheme().getOrDefault()) {
             0 -> R.style.Theme_Reader_Light
             else -> R.style.Theme_Reader
         })
-        super.onCreate(savedState)
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.reader_activity)
 
         if (presenter.needsInit()) {
@@ -160,8 +159,8 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             else presenter.init(manga, chapterUrl)
         }
 
-        if (savedState != null) {
-            menuVisible = savedState.getBoolean(::menuVisible.name)
+        if (savedInstanceState != null) {
+            menuVisible = savedInstanceState.getBoolean(::menuVisible.name)
         }
 
         config = ReaderConfig()
@@ -261,6 +260,17 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             onBackPressed()
         }
 
+        ViewCompat.setOnApplyWindowInsetsListener(reader_menu) { _, insets ->
+            if (!window.isDefaultBar()) {
+                reader_menu.setPadding(
+                        insets.systemWindowInsetLeft,
+                        insets.systemWindowInsetTop,
+                        insets.systemWindowInsetRight,
+                        insets.systemWindowInsetBottom)
+            }
+            insets
+        }
+
         // Init listeners on bottom menu
         page_seekbar.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
             override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
@@ -297,8 +307,12 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     private fun setMenuVisibility(visible: Boolean, animate: Boolean = true) {
         menuVisible = visible
         if (visible) {
-            systemUi?.show()
-            reader_menu.visibility = View.VISIBLE
+            if (preferences.fullscreen().getOrDefault()) {
+                window.showBar()
+            } else {
+                resetDefaultMenuAndBar()
+            }
+            reader_menu.visible()
 
             if (animate) {
                 val toolbarAnimation = AnimationUtils.loadAnimation(this, R.anim.enter_from_top)
@@ -313,14 +327,22 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 val bottomAnimation = AnimationUtils.loadAnimation(this, R.anim.enter_from_bottom)
                 reader_menu_bottom.startAnimation(bottomAnimation)
             }
+
+            if (preferences.showPageNumber().getOrDefault()) {
+                config?.setPageNumberVisibility(false)
+            }
         } else {
-            systemUi?.hide()
+            if (preferences.fullscreen().getOrDefault()) {
+                window.hideBar()
+            } else {
+                resetDefaultMenuAndBar()
+            }
 
             if (animate) {
                 val toolbarAnimation = AnimationUtils.loadAnimation(this, R.anim.exit_to_top)
                 toolbarAnimation.setAnimationListener(object : SimpleAnimationListener() {
                     override fun onAnimationEnd(animation: Animation) {
-                        reader_menu.visibility = View.GONE
+                        reader_menu.gone()
                     }
                 })
                 toolbar.startAnimation(toolbarAnimation)
@@ -328,7 +350,19 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 val bottomAnimation = AnimationUtils.loadAnimation(this, R.anim.exit_to_bottom)
                 reader_menu_bottom.startAnimation(bottomAnimation)
             }
+
+            if (preferences.showPageNumber().getOrDefault()) {
+                config?.setPageNumberVisibility(true)
+            }
         }
+    }
+
+    /**
+     * Reset menu padding and system bar
+     */
+    private fun resetDefaultMenuAndBar() {
+        reader_menu.setPadding(0, 0, 0, 0)
+        window.defaultBar()
     }
 
     /**
@@ -589,9 +623,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             subscriptions += preferences.trueColor().asObservable()
                     .subscribe { setTrueColor(it) }
 
-            subscriptions += preferences.fullscreen().asObservable()
-                    .subscribe { setFullscreen(it) }
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 subscriptions += preferences.cutoutShort().asObservable()
                         .subscribe { setCutoutShort(it) }
@@ -649,7 +680,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         /**
          * Sets the visibility of the bottom page indicator according to [visible].
          */
-        private fun setPageNumberVisibility(visible: Boolean) {
+        fun setPageNumberVisibility(visible: Boolean) {
             page_number.visibility = if (visible) View.VISIBLE else View.INVISIBLE
         }
 
@@ -661,21 +692,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 SubsamplingScaleImageView.setPreferredBitmapConfig(Bitmap.Config.ARGB_8888)
             else
                 SubsamplingScaleImageView.setPreferredBitmapConfig(Bitmap.Config.RGB_565)
-        }
-
-        /**
-         * Sets the fullscreen reading mode (immersive) according to [enabled].
-         */
-        private fun setFullscreen(enabled: Boolean) {
-            systemUi = if (enabled) {
-                val level = SystemUiHelper.LEVEL_IMMERSIVE
-                val flags = SystemUiHelper.FLAG_IMMERSIVE_STICKY or
-                        SystemUiHelper.FLAG_LAYOUT_IN_SCREEN_OLDER_DEVICES
-
-                SystemUiHelper(this@ReaderActivity, level, flags)
-            } else {
-                null
-            }
         }
 
         @TargetApi(Build.VERSION_CODES.P)
@@ -725,7 +741,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
                 subscriptions.add(customFilterColorSubscription)
             } else {
                 customFilterColorSubscription?.let { subscriptions.remove(it) }
-                color_overlay.visibility = View.GONE
+                color_overlay.gone()
             }
         }
 
@@ -751,11 +767,11 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
             // Set black overlay visibility.
             if (value < 0) {
-                brightness_overlay.visibility = View.VISIBLE
+                brightness_overlay.visible()
                 val alpha = (abs(value) * 2.56).toInt()
                 brightness_overlay.setBackgroundColor(Color.argb(alpha, 0, 0, 0))
             } else {
-                brightness_overlay.visibility = View.GONE
+                brightness_overlay.gone()
             }
         }
 
@@ -763,7 +779,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
          * Sets the color filter [value].
          */
         private fun setColorFilterValue(value: Int) {
-            color_overlay.visibility = View.VISIBLE
+            color_overlay.visible()
             color_overlay.setFilterColor(value, preferences.colorFilterMode().getOrDefault())
         }
     }

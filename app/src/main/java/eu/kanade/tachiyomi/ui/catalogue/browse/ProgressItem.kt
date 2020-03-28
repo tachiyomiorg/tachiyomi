@@ -9,6 +9,8 @@ import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.davidea.viewholders.FlexibleViewHolder
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.util.view.gone
+import eu.kanade.tachiyomi.util.view.visible
 
 class ProgressItem : AbstractFlexibleItem<ProgressItem.Holder>() {
 
@@ -23,17 +25,17 @@ class ProgressItem : AbstractFlexibleItem<ProgressItem.Holder>() {
     }
 
     override fun bindViewHolder(adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>, holder: Holder, position: Int, payloads: List<Any?>) {
-        holder.progressBar.visibility = View.GONE
-        holder.progressMessage.visibility = View.GONE
+        holder.progressBar.gone()
+        holder.progressMessage.gone()
 
         if (!adapter.isEndlessScrollEnabled) {
             loadMore = false
         }
 
         if (loadMore) {
-            holder.progressBar.visibility = View.VISIBLE
+            holder.progressBar.visible()
         } else {
-            holder.progressMessage.visibility = View.VISIBLE
+            holder.progressMessage.visible()
         }
     }
 

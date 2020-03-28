@@ -8,7 +8,7 @@
     <string name="label_settings">設定</string>
     <string name="label_download_queue">ダウンロードキュー</string>
     <string name="label_library">ライブラリ</string>
-    <string name="label_recent_manga">最近読んだ</string>
+    <string name="label_recent_manga">履歴</string>
     <string name="label_catalogues">カタログ</string>
     <string name="label_recent_updates">最近の更新</string>
     <string name="label_categories">カテゴリ</string>
@@ -192,7 +192,7 @@
     <string name="pref_enable_automatic_updates">アップデートを確認</string>
     <string name="pref_enable_automatic_updates_summary">アプリのアップデートを自動的に確認</string>
     <string name="pref_enable_acra">クラッシュレポートを送信する</string>
-    <string name="login_title">%1$s にログイン</string>
+    <string name="login_title">%1$sにログイン</string>
     <string name="username">ユーザー名</string>
     <string name="password">パスワード</string>
     <string name="show_password">パスワードを表示</string>
@@ -371,7 +371,6 @@
     <string name="download_queue_error">チャプターのダウンロードに失敗しました。「ダウンロード」にて再試行してください</string>
     <string name="notification_update_progress">更新中：%1$d/%2$d</string>
     <string name="notification_new_chapters">新しいチャプターが見つかりました</string>
-    <string name="notification_new_chapters_text">%1$d</string>
     <string name="notification_cover_update_failed">カバーを更新できませんでした</string>
     <string name="notification_first_add_to_library">まずはマンガをライブラリに追加してください</string>
     <string name="notification_not_connected_to_ac_title">同期がキャンセルされました</string>
@@ -447,4 +446,32 @@
     <string name="currently_reading">現在の位置</string>
     <string name="paused">一時停止</string>
     <string name="want_to_read">読みたい</string>
+    <string name="other_source">他</string>
+    <string name="label_more">他</string>
+    <string name="action_sort_latest_chapter">最新章</string>
+    <string name="action_view_chapters">章を見る</string>
+    <string name="action_cancel_all">取り消す</string>
+    <string name="pref_theme_mode">アプリテーマ</string>
+    <string name="theme_light">ライト</string>
+    <string name="theme_dark">ダーク</string>
+    <string name="theme_system">システム設定</string>
+    <string name="pref_theme_dark">ダークテーマ版</string>
+    <string name="theme_dark_default">初期設定</string>
+    <string name="theme_dark_blue">濃紺</string>
+    <string name="theme_dark_amoled">AMOLED黒い</string>
+    <string name="pref_manage_notifications">通知設定</string>
+    <string name="pref_category_security">安全</string>
+    <string name="lock_with_biometrics">生体認証</string>
+    <string name="lock_when_idle">タイムアウトロック</string>
+    <string name="lock_always">いつも</string>
+    <string name="lock_never">しない</string>
+    <plurals name="lock_after_mins">
+        <item quantity="other">後%1$s分</item>
+    </plurals>
+    <string name="secure_screen">安全画面</string>
+    <string name="unlock_app">Tachiyomiを開ける</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="other">%1$d新しい章</item>
+    </plurals>
+    <string name="notification_chapters_single">%1$s章</string>
 </resources>

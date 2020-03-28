@@ -56,6 +56,12 @@ class SetTrackChaptersDialog<T> : DialogController
             val np: NumberPicker = view.findViewById(R.id.chapters_picker)
             // Set initial value
             np.value = item.track?.last_chapter_read ?: 0
+
+            // Enforce maximum value if tracker has total number of chapters set
+            if (item.track != null && item.track.total_chapters > 0) {
+                np.maxValue = item.track.total_chapters
+            }
+
             // Don't allow to go from 0 to 9999
             np.wrapSelectorWheel = false
         }

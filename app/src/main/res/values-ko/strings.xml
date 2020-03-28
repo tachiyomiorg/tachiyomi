@@ -304,7 +304,6 @@
     <string name="select">선택</string>
     <string name="notification_update_progress">업데이트 진행중: %1$d/%2$d</string>
     <string name="notification_new_chapters">새로운 챕터 발견</string>
-    <string name="notification_new_chapters_text">%1$d개의 타이틀</string>
     <string name="notification_cover_update_failed">표지 업데이트 실패</string>
     <string name="notification_not_connected_to_ac_title">동기화 취소됨</string>
     <string name="notification_not_connected_to_ac_body">외부 전원에 연결되지 않음</string>

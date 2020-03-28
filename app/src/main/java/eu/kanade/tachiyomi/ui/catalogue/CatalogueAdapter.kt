@@ -13,7 +13,7 @@ import eu.kanade.tachiyomi.util.system.getResourceColor
 class CatalogueAdapter(val controller: CatalogueController) :
         FlexibleAdapter<IFlexible<*>>(null, controller, true) {
 
-    val cardBackground = controller.activity!!.getResourceColor(R.attr.background_card)
+    val cardBackground = controller.activity!!.getResourceColor(R.attr.colorSurface)
 
     init {
         setDisplayHeadersAtStartUp(true)

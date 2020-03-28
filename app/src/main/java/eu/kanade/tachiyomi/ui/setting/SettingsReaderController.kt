@@ -103,6 +103,12 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = false
             }
         }
+        switchPreference {
+            key = Keys.alwaysShowChapterTransition
+            titleRes = R.string.pref_always_show_chapter_transition
+            defaultValue = true
+        }
+
         preferenceCategory {
             titleRes = R.string.pager_viewer
 

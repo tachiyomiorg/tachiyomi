@@ -55,9 +55,9 @@ class UpdaterJob(private val context: Context, workerParams: WorkerParameters) :
     }
 
     companion object {
-        const val TAG = "UpdateChecker"
+        private const val TAG = "UpdateChecker"
 
-        fun setupTask() {
+        fun setupTask(context: Context) {
             val constraints = Constraints.Builder()
                     .setRequiredNetworkType(NetworkType.CONNECTED)
                     .build()
@@ -69,11 +69,11 @@ class UpdaterJob(private val context: Context, workerParams: WorkerParameters) :
                     .setConstraints(constraints)
                     .build()
 
-            WorkManager.getInstance().enqueueUniquePeriodicWork(TAG, ExistingPeriodicWorkPolicy.REPLACE, request)
+            WorkManager.getInstance(context).enqueueUniquePeriodicWork(TAG, ExistingPeriodicWorkPolicy.REPLACE, request)
         }
 
-        fun cancelTask() {
-            WorkManager.getInstance().cancelAllWorkByTag(TAG)
+        fun cancelTask(context: Context) {
+            WorkManager.getInstance(context).cancelAllWorkByTag(TAG)
         }
     }
 }

@@ -21,7 +21,6 @@ import rx.Observable
 
 class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
-    private val parser = JsonParser()
     private val jsonMime = "application/json; charset=utf-8".toMediaTypeOrNull()
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
@@ -56,7 +55,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                     if (responseBody.isEmpty()) {
                         throw Exception("Null Response")
                     }
-                    val response = parser.parse(responseBody).obj
+                    val response = JsonParser.parseString(responseBody).obj
                     track.library_id = response["data"]["SaveMediaListEntry"]["id"].asLong
                     track
                 }
@@ -138,7 +137,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                     if (responseBody.isEmpty()) {
                         throw Exception("Null Response")
                     }
-                    val response = parser.parse(responseBody).obj
+                    val response = JsonParser.parseString(responseBody).obj
                     val data = response["data"]!!.obj
                     val page = data["Page"].obj
                     val media = page["media"].array
@@ -198,7 +197,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                     if (responseBody.isEmpty()) {
                         throw Exception("Null Response")
                     }
-                    val response = parser.parse(responseBody).obj
+                    val response = JsonParser.parseString(responseBody).obj
                     val data = response["data"]!!.obj
                     val page = data["Page"].obj
                     val media = page["mediaList"].array
@@ -242,7 +241,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
                     if (responseBody.isEmpty()) {
                         throw Exception("Null Response")
                     }
-                    val response = parser.parse(responseBody).obj
+                    val response = JsonParser.parseString(responseBody).obj
                     val data = response["data"]!!.obj
                     val viewer = data["Viewer"].obj
                     Pair(viewer["id"].asInt, viewer["mediaListOptions"]["scoreFormat"].asString)

@@ -4,22 +4,35 @@
 
     <item
         android:id="@+id/start_queue"
-        android:icon="@drawable/ic_play_arrow_white_24dp"
+        android:icon="@drawable/ic_play_arrow_24dp"
         android:title="@string/action_start"
-        android:visible="false"
+        app:iconTint="?attr/colorOnPrimary"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/pause_queue"
-        android:icon="@drawable/ic_pause_white_24dp"
+        android:icon="@drawable/ic_pause_24dp"
         android:title="@string/action_pause"
-        android:visible="false"
+        app:iconTint="?attr/colorOnPrimary"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/reorder"
+        android:title="@string/action_reorganize_by"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/newest"
+                android:title="@string/action_newest" />
+            <item
+                android:id="@+id/oldest"
+                android:title="@string/action_oldest" />
+        </menu>
+    </item>
 
     <item
         android:id="@+id/clear_queue"
         android:title="@string/action_cancel_all"
-        android:visible="false"
         app:showAsAction="never" />
 
 </menu>

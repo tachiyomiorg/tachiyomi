@@ -13,6 +13,7 @@ import androidx.preference.PreferenceManager
 import androidx.preference.PreferenceScreen
 import androidx.preference.SwitchPreferenceCompat
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import eu.kanade.tachiyomi.widget.preference.BadgePreference
 import eu.kanade.tachiyomi.widget.preference.IntListPreference
 import eu.kanade.tachiyomi.widget.preference.SwitchPreferenceCategory
 
@@ -54,6 +55,10 @@ inline fun PreferenceGroup.intListPreference(block: (@DSL IntListPreference).() 
 
 inline fun PreferenceGroup.multiSelectListPreference(block: (@DSL MultiSelectListPreference).() -> Unit): MultiSelectListPreference {
     return initThenAdd(MultiSelectListPreference(context), block).also(::initDialog)
+}
+
+inline fun PreferenceGroup.badgePreference(block: (@DSL BadgePreference).() -> Unit): BadgePreference {
+    return initThenAdd(BadgePreference(context), block)
 }
 
 inline fun PreferenceScreen.preferenceCategory(block: (@DSL PreferenceCategory).() -> Unit): PreferenceCategory {

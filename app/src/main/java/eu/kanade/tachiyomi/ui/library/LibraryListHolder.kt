@@ -5,6 +5,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.source.LocalSource
+import eu.kanade.tachiyomi.util.view.visibleIf
 import kotlinx.android.synthetic.main.catalogue_list_item.download_text
 import kotlinx.android.synthetic.main.catalogue_list_item.local_text
 import kotlinx.android.synthetic.main.catalogue_list_item.thumbnail
@@ -38,16 +39,16 @@ class LibraryListHolder(
 
         // Update the unread count and its visibility.
         with(unread_text) {
-            visibility = if (item.manga.unread > 0) View.VISIBLE else View.GONE
+            visibleIf { item.manga.unread > 0 }
             text = item.manga.unread.toString()
         }
         // Update the download count and its visibility.
         with(download_text) {
-            visibility = if (item.downloadCount > 0) View.VISIBLE else View.GONE
+            visibleIf { item.downloadCount > 0 }
             text = "${item.downloadCount}"
         }
         // show local text badge if local manga
-        local_text.visibility = if (item.manga.source == LocalSource.ID) View.VISIBLE else View.GONE
+        local_text.visibleIf { item.manga.source == LocalSource.ID }
 
         // Create thumbnail onclick to simulate long click
         thumbnail.setOnClickListener {

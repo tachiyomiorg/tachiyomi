@@ -6,7 +6,7 @@
     android:viewportWidth="48">
 
     <path
-        android:fillColor="@color/backgroundLight"
+        android:fillColor="@color/textColorPrimaryDark"
         android:pathData="M24,24m-22,0a22,22 0,1 1,44 0a22,22 0,1 1,-44 0" />
 
     <group

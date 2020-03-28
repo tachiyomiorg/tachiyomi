@@ -4,36 +4,39 @@
     <!--========-->
     <!--Toolbars-->
     <!--========-->
-    <style name="Theme.ActionBar" parent="@style/ThemeOverlay.AppCompat.ActionBar" />
+    <style name="Theme.Toolbar" parent="@style/ThemeOverlay.MaterialComponents.ActionBar" />
 
-    <style name="Theme.ActionBar.Light" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    <style name="Theme.Toolbar.Light" parent="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
     </style>
 
-    <!--====-->
-    <!--Tabs-->
-    <!--====-->
-    <style name="Theme.ActionBar.Tab" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Toolbar.Navigation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="tint">?attr/colorOnPrimary</item>
+    </style>
+
 
     <!--===========-->
     <!--AlertDialog-->
     <!--===========-->
-    <style name="Theme.AlertDialog" />
-
-    <style name="Theme.AlertDialog.Light" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="Theme.AlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
         <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="android:textColorPrimary">?attr/colorOnSurface</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+
+        <item name="buttonBarPositiveButtonStyle">@style/Theme.Widget.Button</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Theme.Widget.Button</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Theme.Widget.Button</item>
+    </style>
+
+    <style name="Theme.AlertDialog.Light" parent="Theme.AlertDialog">
         <item name="colorAccent">@color/colorAccentLight</item>
     </style>
 
-    <style name="Theme.AlertDialog.Dark" parent="Theme.AppCompat.Dialog.Alert">
-        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
-        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+    <style name="Theme.AlertDialog.Dark" parent="Theme.AlertDialog">
         <item name="colorAccent">@color/colorAccentDark</item>
-    </style>
-
-    <style name="Theme.AlertDialog.Amoled" parent="Theme.AlertDialog.Dark">
-        <item name="android:background">@color/colorAmoledPrimary</item>
     </style>
 
 
@@ -120,12 +123,20 @@
         <item name="android:textColor">?android:attr/textColorHint</item>
     </style>
 
+    <style name="TextAppearance.Widget.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Widget.Menu" parent="TextAppearance.AppCompat.Menu">
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
     <!--=======-->
     <!--Widgets-->
     <!--=======-->
     <style name="Theme.Widget" />
 
-    <style name="Theme.Widget.FAB">
+    <style name="Theme.Widget.FAB" parent="@style/Widget.MaterialComponents.FloatingActionButton">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="fabCustomSize">@dimen/fab_size</item>
@@ -133,7 +144,6 @@
         <item name="android:layout_margin">@dimen/fab_margin</item>
         <item name="android:scaleType">fitCenter</item>
         <item name="layout_anchorGravity">bottom|right|end</item>
-        <item name="android:tint">@color/md_white_1000</item>
     </style>
 
     <style name="Theme.Widget.CardView" parent="CardView">
@@ -150,7 +160,7 @@
         </item>
         <item name="android:layout_marginEnd">@dimen/material_component_cards_space_between_cards
         </item>
-        <item name="cardBackgroundColor">?attr/background_card</item>
+        <item name="cardBackgroundColor">?attr/colorSurface</item>
         <item name="cardElevation">2dp</item>
     </style>
 
@@ -185,34 +195,60 @@
 
 
     <style name="Theme.Widget.SpinnerItem" parent="Widget.AppCompat.DropDownItem.Spinner">
-        <item name="android:textColor">?attr/text_color_primary</item>
-        <item name="android:background">?attr/selectable_list_drawable</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:background">@drawable/list_item_selector</item>
     </style>
+
+
+    <style name="Theme.Widget.Snackbar" parent="Widget.MaterialComponents.Snackbar">
+        <item name="android:background">@drawable/snackbar_bg</item>
+    </style>
+
+
+    <!--=======================-->
+    <!--Widgets.TextInputLayout-->
+    <!--=======================-->
+
+    <style name="Theme.Widget.TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/text_input_stroke</item>
+        <item name="hintTextColor">?attr/colorSecondary</item>
+    </style>
+
+    <style name="Theme.Widget.TextInputLayout.OutlinedBox.Dense" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/text_input_stroke</item>
+        <item name="hintTextColor">?attr/colorSecondary</item>
+    </style>
+
 
     <!--==============-->
     <!--Widgets.Button-->
     <!--==============-->
-    <style name="Theme.Widget.Button" parent="Widget.AppCompat.Button"/>
-
-    <style name="Theme.Widget.Button.Colored" parent="Widget.AppCompat.Button.Colored"/>
-
-    <style name="Theme.Widget.Button.Borderless" parent="Widget.AppCompat.Button.Borderless">
+    <style name="Theme.Widget.Button" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textColor">?attr/colorAccent</item>
+        <item name="rippleColor">?attr/colorAccent</item>
     </style>
 
-    <style name="Theme.Widget.Button.Borderless.Negative">
-        <item name="android:textColor">@color/md_red_500</item>
+    <style name="Theme.Widget.Button.Error" parent="Theme.Widget.Button">
+        <item name="android:textColor">?attr/colorError</item>
+        <item name="rippleColor">?attr/colorError</item>
     </style>
 
-    <style name="Theme.Widget.Button.Borderless.Small">
-        <item name="android:minHeight">48dip</item>
-        <item name="android:minWidth">48dip</item>
+    <style name="Theme.Widget.Button.FilledAccent" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+        <item name="backgroundTint">?attr/colorAccent</item>
+        <item name="rippleColor">?attr/colorAccent</item>
     </style>
+
+    <style name="Theme.Widget.Button.Outlined.Accent" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">?attr/colorAccent</item>
+        <item name="rippleColor">?attr/colorAccent</item>
+    </style>
+
 
     <!--===-->
     <!--OLD-->
     <!--===-->
-    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="AlertDialogStyle" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="android:windowTitleStyle">@style/DialogTitleText</item>
         <item name="colorAccent">?attr/colorPrimary</item>
     </style>
@@ -234,7 +270,7 @@
         <item name="nnf_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
     </style>
 
-    <style name="FilePickerAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert"></style>
+    <style name="FilePickerAlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert" />
 
     <style name="reader_settings_popup_animation">
         <item name="android:windowEnterAnimation">@anim/enter_from_right</item>
@@ -245,6 +281,5 @@
         <item name="android:windowEnterAnimation">@anim/enter_from_left</item>
         <item name="android:windowExitAnimation">@anim/exit_to_left</item>
     </style>
-
 
 </resources>

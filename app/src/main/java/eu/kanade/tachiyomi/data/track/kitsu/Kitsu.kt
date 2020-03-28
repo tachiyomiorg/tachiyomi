@@ -40,7 +40,7 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun getLogoColor(): Int {
-        return Color.rgb(51, 37, 50)
+        return Color.rgb(0x33, 0x25, 0x32)
     }
 
     override fun getStatusList(): List<Int> {
@@ -57,6 +57,8 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
             else -> ""
         }
     }
+
+    override fun getCompletionStatus(): Int = COMPLETED
 
     override fun getScoreList(): List<String> {
         val df = DecimalFormat("0.#")
@@ -77,10 +79,6 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun update(track: Track): Observable<Track> {
-        if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
-            track.status = COMPLETED
-        }
-
         return api.updateLibManga(track)
     }
 

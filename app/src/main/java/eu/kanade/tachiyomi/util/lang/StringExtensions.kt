@@ -32,3 +32,24 @@ fun String.truncateCenter(count: Int, replacement: String = "..."): String {
 fun String.compareToCaseInsensitiveNaturalOrder(other: String): Int {
     return String.CASE_INSENSITIVE_ORDER.then(naturalOrder()).compare(this, other)
 }
+
+/**
+ * Returns the size of the string as the number of bytes.
+ */
+fun String.byteSize(): Int {
+    return toByteArray(Charsets.UTF_8).size
+}
+
+/**
+ * Returns a string containing the first [n] bytes from this string, or the entire string if this
+ * string is shorter.
+ */
+@OptIn(ExperimentalStdlibApi::class)
+fun String.takeBytes(n: Int): String {
+    val bytes = toByteArray(Charsets.UTF_8)
+    return if (bytes.size <= n) {
+        this
+    } else {
+        bytes.decodeToString(endIndex = n).replace("\uFFFD", "")
+    }
+}

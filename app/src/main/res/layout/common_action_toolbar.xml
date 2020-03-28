@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/common_action_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="bottom"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:visibility="gone"
+        android:elevation="2dp"
+        app:contentInsetStart="8dp"
+        app:contentInsetEnd="8dp">
+
+        <androidx.appcompat.widget.ActionMenuView
+            android:id="@+id/common_action_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+</FrameLayout>

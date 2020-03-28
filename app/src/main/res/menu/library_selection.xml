@@ -1,30 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_edit_cover"
-        android:icon="@drawable/ic_create_white_24dp"
+        android:icon="@drawable/ic_edit_24dp"
         android:title="@string/action_edit_cover"
-        app:showAsAction="ifRoom" />
+        app:iconTint="?attr/colorOnPrimary"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_move_to_category"
-        android:icon="@drawable/ic_label_white_24dp"
+        android:icon="@drawable/ic_label_24dp"
         android:title="@string/action_move_category"
-        app:showAsAction="ifRoom" />
+        app:iconTint="?attr/colorOnPrimary"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_delete"
-        android:icon="@drawable/ic_delete_white_24dp"
+        android:icon="@drawable/ic_delete_24dp"
         android:title="@string/action_delete"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_select_all"
-        android:icon="@drawable/ic_select_all_white_24dp"
-        android:title="@string/action_select_all"
-        app:showAsAction="ifRoom" />
+        app:iconTint="?attr/colorOnPrimary"
+        app:showAsAction="always" />
 
 </menu>

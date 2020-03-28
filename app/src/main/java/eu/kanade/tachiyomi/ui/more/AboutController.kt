@@ -19,7 +19,7 @@ import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.main.ChangelogDialogController
 import eu.kanade.tachiyomi.ui.setting.SettingsController
 import eu.kanade.tachiyomi.util.lang.launchNow
-import eu.kanade.tachiyomi.util.lang.toTimestampString
+import eu.kanade.tachiyomi.util.lang.toDateTimestampString
 import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.onChange
 import eu.kanade.tachiyomi.util.preference.onClick
@@ -56,15 +56,15 @@ class AboutController : SettingsController() {
             key = Keys.automaticUpdates
             titleRes = R.string.pref_enable_automatic_updates
             summaryRes = R.string.pref_enable_automatic_updates_summary
-            defaultValue = false
+            defaultValue = true
 
             if (isUpdaterEnabled) {
                 onChange { newValue ->
                     val checked = newValue as Boolean
                     if (checked) {
-                        UpdaterJob.setupTask()
+                        UpdaterJob.setupTask(context)
                     } else {
-                        UpdaterJob.cancelTask()
+                        UpdaterJob.cancelTask(context)
                     }
                     true
                 }
@@ -180,7 +180,7 @@ class AboutController : SettingsController() {
                     DateFormat.MEDIUM, DateFormat.SHORT, Locale.getDefault())
             outputDf.timeZone = TimeZone.getDefault()
 
-            return buildTime.toTimestampString(dateFormat)
+            return buildTime.toDateTimestampString(dateFormat)
         } catch (e: ParseException) {
             return BuildConfig.BUILD_TIME
         }

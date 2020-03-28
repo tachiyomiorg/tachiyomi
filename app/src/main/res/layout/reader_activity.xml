@@ -44,24 +44,22 @@
         android:id="@+id/reader_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
         android:theme="?attr/actionBarTheme"
         android:visibility="invisible"
         tools:visibility="visible">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?colorPrimary"
-            android:elevation="4dp" />
+            android:background="?attr/colorPrimary" />
 
         <LinearLayout
             android:id="@+id/reader_menu_bottom"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="bottom"
-            android:background="?colorPrimary"
+            android:background="?attr/colorPrimary"
             android:descendantFocusability="blocksDescendants"
             android:gravity="center"
             android:orientation="horizontal">
@@ -73,7 +71,8 @@
                 android:background="?selectableItemBackgroundBorderless"
                 android:contentDescription="@string/action_previous_chapter"
                 android:padding="@dimen/material_layout_keylines_screen_edge_margin"
-                app:srcCompat="@drawable/ic_skip_previous_white_24dp" />
+                app:srcCompat="@drawable/ic_skip_previous_24dp"
+                app:tint="?attr/colorOnPrimary" />
 
             <TextView
                 android:id="@+id/left_page_text"
@@ -110,7 +109,8 @@
                 android:background="?selectableItemBackgroundBorderless"
                 android:contentDescription="@string/action_next_chapter"
                 android:padding="@dimen/material_layout_keylines_screen_edge_margin"
-                app:srcCompat="@drawable/ic_skip_next_white_24dp" />
+                app:srcCompat="@drawable/ic_skip_next_24dp"
+                app:tint="?attr/colorOnPrimary" />
 
         </LinearLayout>
 

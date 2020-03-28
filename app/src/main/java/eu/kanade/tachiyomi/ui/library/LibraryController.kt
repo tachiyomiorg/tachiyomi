@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.ui.library
 import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -33,14 +32,17 @@ import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.SecondaryDrawerController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.inflate
 import java.io.IOException
+import kotlinx.android.synthetic.main.library_controller.action_toolbar
 import kotlinx.android.synthetic.main.library_controller.empty_view
 import kotlinx.android.synthetic.main.library_controller.library_pager
 import kotlinx.android.synthetic.main.main_activity.drawer
@@ -54,6 +56,7 @@ class LibraryController(
     bundle: Bundle? = null,
     private val preferences: PreferencesHelper = Injekt.get()
 ) : NucleusController<LibraryPresenter>(bundle),
+        RootController,
         TabbedController,
         SecondaryDrawerController,
         ActionMode.Callback,
@@ -177,9 +180,10 @@ class LibraryController(
     }
 
     override fun onDestroyView(view: View) {
+        destroyActionModeIfNeeded()
+        action_toolbar.destroy()
         adapter?.onDestroy()
         adapter = null
-        actionMode = null
         tabsVisibilitySubscription?.unsubscribe()
         tabsVisibilitySubscription = null
         super.onDestroyView(view)
@@ -233,7 +237,7 @@ class LibraryController(
         if (mangaMap.isNotEmpty()) {
             empty_view.hide()
         } else {
-            empty_view.show(R.drawable.ic_book_black_128dp, R.string.information_empty_library)
+            empty_view.show(R.string.information_empty_library)
         }
 
         // Get the current active category.
@@ -312,13 +316,17 @@ class LibraryController(
     fun createActionModeIfNeeded() {
         if (actionMode == null) {
             actionMode = (activity as AppCompatActivity).startSupportActionMode(this)
+            action_toolbar.show(
+                    actionMode!!,
+                    R.menu.library_selection
+            ) { onActionItemClicked(actionMode!!, it!!) }
         }
     }
 
     /**
      * Destroys the action mode.
      */
-    fun destroyActionModeIfNeeded() {
+    private fun destroyActionModeIfNeeded() {
         actionMode?.finish()
     }
 
@@ -359,8 +367,10 @@ class LibraryController(
         val filterItem = menu.findItem(R.id.action_filter)
 
         // Tint icon if there's a filter active
-        val filterColor = if (navView.hasActiveFilters()) Color.rgb(255, 238, 7) else Color.WHITE
-        DrawableCompat.setTint(filterItem.icon, filterColor)
+        if (navView.hasActiveFilters()) {
+            val filterColor = activity!!.getResourceColor(R.attr.colorFilterActive)
+            DrawableCompat.setTint(filterItem.icon, filterColor)
+        }
 
         // Display submenu
         if (preferences.libraryAsList().getOrDefault()) {
@@ -412,7 +422,7 @@ class LibraryController(
     }
 
     override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
-        mode.menuInflater.inflate(R.menu.library_selection, menu)
+        mode.menuInflater.inflate(R.menu.generic_selection, menu)
         return true
     }
 
@@ -423,7 +433,8 @@ class LibraryController(
             destroyActionModeIfNeeded()
         } else {
             mode.title = count.toString()
-            menu.findItem(R.id.action_edit_cover)?.isVisible = count == 1
+
+            action_toolbar.findItem(R.id.action_edit_cover)?.isVisible = count == 1
         }
         return false
     }
@@ -443,6 +454,7 @@ class LibraryController(
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {
+        action_toolbar.hide()
         // Clear all the manga selections and notify child views.
         selectedMangas.clear()
         selectionRelay.call(LibrarySelectionEvent.Cleared())

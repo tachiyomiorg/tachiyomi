@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="?attr/selectable_list_drawable"
+    android:background="@drawable/list_item_selector"
     android:orientation="vertical"
     android:paddingStart="4dp"
     android:paddingTop="8dp"

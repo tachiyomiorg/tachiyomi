@@ -251,12 +251,12 @@
     <string name="pref_enable_automatic_updates_summary">Yeni uygulama sürümlerini kendiliğinden denetle</string>
     <string name="pref_enable_acra">Çökme bildirimi gönder</string>
     <string name="pref_acra_summary">Hataların düzeltilmesine yardımcı olur. Hiçbir hassas veri gönderilmez</string>
-    <string name="login_title">%1$s için giriş</string>
+    <string name="login_title">%1$s \'e giriş yap</string>
     <string name="username">Kullanıcı adı</string>
     <string name="password">Parola</string>
     <string name="show_password">Parolayı göster</string>
     <string name="login">Giriş</string>
-    <string name="login_success">Başarıyla giriş yapıldı</string>
+    <string name="login_success">Giriş yapıldı</string>
     <string name="invalid_login">Giriş yapılamadı</string>
     <string name="unknown_error">Bilinmeyen hata</string>
     <string name="library_search_hint">Başlık veya yazar…</string>
@@ -375,7 +375,6 @@
     <string name="download_queue_error">Bölümler indirilemedi. İndirmeler bölümünden yeniden deneyebilirsiniz</string>
     <string name="notification_update_progress">Güncelleme ilerlemesi: %1$d/%2$d</string>
     <string name="notification_new_chapters">Yeni bölümler bulundu</string>
-    <string name="notification_new_chapters_text">%1$d başlık için</string>
     <string name="notification_cover_update_failed">Kapak güncellenemedi</string>
     <string name="notification_first_add_to_library">Lütfen bunu yapmadan önce mangayı kitaplığınıza ekleyin</string>
     <string name="notification_not_connected_to_ac_title">Eşitleme iptal edildi</string>
@@ -451,9 +450,9 @@
     <string name="logout_title">%1$s \'den çıkılsın mı\?</string>
     <string name="logout">Çıkış</string>
     <string name="logout_success">Şimdi çıktınız</string>
-    <string name="currently_reading">Şu Anda Okunan</string>
+    <string name="currently_reading">Şu anda okunan</string>
     <string name="paused">Duraklatıldı</string>
-    <string name="want_to_read">Okunmak İstenen</string>
+    <string name="want_to_read">Okunmak istenen</string>
     <string name="label_more">Daha</string>
     <string name="action_sort_latest_chapter">Son bölüm</string>
     <string name="action_view_chapters">Bölümleri görüntüle</string>
@@ -480,12 +479,33 @@
     <string name="ext_updates_pending">Bekleyen güncellemeler</string>
     <string name="pref_cutout_short">İçeriği kesme alanında göster</string>
     <string name="pref_webtoon_padding_vert">Sayfalar arasında dikey boşluk</string>
-    <plurals name="notification_chapters">
-        <item quantity="one">%1$s bölüm</item>
-        <item quantity="other">%1$s bölüm</item>
-    </plurals>
-    <string name="notification_and_n_more">ve %1$d daha</string>
     <string name="information_cloudflare_bypass_failure">Cloudflare bypass edilemedi</string>
     <string name="information_webview_outdated">Daha iyi uyumluluk için lütfen WebView uygulamasını güncelleyin</string>
     <string name="channel_new_chapters">Bölüm güncellemeleri</string>
+    <string name="unlock_app">Tachiyomi\'yi Aç</string>
+    <string name="secure_screen_summary">İçeriği uygulamaları değiştirirken gizle ve ekran görüntülerini engelle</string>
+    <string name="pref_category_display">Ekran</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 yeni bölüm</item>
+        <item quantity="other">%1$d yeni bölüm</item>
+    </plurals>
+    <string name="notification_chapters_single">Bölüm %1$s</string>
+    <string name="notification_chapters_single_and_more">Bölüm %1$s ve %2$d daha</string>
+    <string name="notification_chapters_multiple">Bölüm %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Bölüm %1$s ve 1 daha</item>
+        <item quantity="other">Bölüm %1$s ve %2$d daha</item>
+    </plurals>
+    <string name="action_hide">Gizle</string>
+    <string name="hide_notification_content">Bildirim içeriğini gizle</string>
+    <string name="notification_check_updates">Yeni bölümler aranıyor</string>
+    <string name="pref_disable_battery_optimization">Pil iyileştirmeyi devre dışı bırak</string>
+    <string name="pref_disable_battery_optimization_summary">Arkaplan kitaplık güncellemelerine ve yedeklemelerine yardım eder</string>
+    <string name="battery_optimization_disabled">Pil iyileştirme zaten devre dışı</string>
+    <string name="email">Eposta adresi</string>
+    <string name="pref_always_show_chapter_transition">Bölüm geçişini her zaman göster</string>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">1 başlık için</item>
+        <item quantity="other">%d başlık için</item>
+    </plurals>
 </resources>

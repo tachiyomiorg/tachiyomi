@@ -32,7 +32,7 @@
     <string name="action_mark_previous_as_read">Marcar anteriores como lidos</string>
     <string name="action_download">Fazer download</string>
     <string name="action_bookmark">Adicionar aos favoritos</string>
-    <string name="action_remove_bookmark">Remover dos favoritos</string>
+    <string name="action_remove_bookmark">Desfavoritar</string>
     <string name="action_delete">Excluir</string>
     <string name="action_update">Atualizar</string>
     <string name="action_update_library">Atualizar biblioteca</string>
@@ -180,15 +180,15 @@
     <string name="pref_backup_interval">Frequência de backup</string>
     <string name="pref_backup_slots">Máximo de backups automáticos</string>
     <string name="dialog_restoring_backup">Restaurando backup
-%1$s adicionado à biblioteca</string>
+\n%1$s adicionado à biblioteca</string>
     <string name="source_not_found">Fonte não encontrada</string>
     <string name="dialog_restoring_source_not_found">Restoring backup
-%1$s fonte não encontrada</string>
+\nFonte %1$s não encontrada</string>
     <string name="backup_created">Backup concluído</string>
     <string name="restore_completed">Restauração concluída</string>
     <string name="error_opening_log">Não foi possível abrir o registro de eventos</string>
     <string name="restore_completed_content">A restauração levou %1$s.
-%2$s erros encontrados.</string>
+\n%2$s erros encontrados.</string>
     <string name="backup_restore_content">Restaurar usa as fontes para obter dados, cobranças podem ser efetuadas.
 \n
 \nVerifique se instalou as extensões e se logou às fontes e aos serviços de monitoramento antes de restaurar.</string>
@@ -199,7 +199,7 @@
     <string name="pref_clear_chapter_cache">Limpar o cache de capítulos</string>
     <string name="used_cache">Total usado: %1$s</string>
     <string name="cache_deleted">Cache limpo. %1$d arquivos foram excluídos</string>
-    <string name="cache_delete_error">Ocorreu um erro ao limpar o cache</string>
+    <string name="cache_delete_error">Um erro ocorreu ao limpar o cache</string>
     <string name="pref_clear_cookies">Excluir cookies</string>
     <string name="cookies_cleared">Cookies excluídos</string>
     <string name="choices_reset">Restaurar escolhas de diálogos</string>
@@ -222,7 +222,7 @@
     <string name="password">Senha</string>
     <string name="show_password">Mostrar senha</string>
     <string name="login">Fazer login</string>
-    <string name="login_success">Login bem sucedido</string>
+    <string name="login_success">Login realizado</string>
     <string name="invalid_login">Não foi possível realizar o login</string>
     <string name="unknown_error">Erro desconhecido</string>
     <string name="library_search_hint">Título ou autor…</string>
@@ -265,7 +265,7 @@
     <string name="chapter_downloading_progress">Fazendo download (%1$d/%2$d)</string>
     <string name="chapter_error">Erro</string>
     <string name="chapter_paused">Pausado</string>
-    <string name="fetch_chapters_error">Não foi possível obter capítulos</string>
+    <string name="fetch_chapters_error">Não foi possível obter os capítulos</string>
     <string name="show_title">Título</string>
     <string name="show_chapter_number">Número do capítulo</string>
     <string name="sorting_mode">Modo de classificação</string>
@@ -312,7 +312,6 @@
     <string name="download_queue_error">Não foi possível fazer o download dos capítulos. Você pode tentar novamente na seção de downloads</string>
     <string name="notification_update_progress">Progresso da atualização: %1$d/%2$d</string>
     <string name="notification_new_chapters">Novos capítulos encontrados</string>
-    <string name="notification_new_chapters_text">Para %1$d títulos</string>
     <string name="notification_cover_update_failed">Erro ao atualizar a capa</string>
     <string name="notification_first_add_to_library">Por favor, adicione o mangá à sua biblioteca antes de fazer isso</string>
     <string name="notification_not_connected_to_ac_title">Sincronização cancelada</string>
@@ -338,12 +337,12 @@
     <string name="information_no_downloads">Nenhum download</string>
     <string name="information_no_recent">Sem capítulos recentes</string>
     <string name="information_no_recent_manga">Sem mangás lidos recentemente</string>
-    <string name="information_empty_library">A sua biblioteca está vazia. Você pode adicionar séries à biblioteca pelo menu de catálogos.</string>
+    <string name="information_empty_library">A sua biblioteca está vazia. Você pode adicionar séries a partir dos catálogos.</string>
     <string name="download_notifier_downloader_title">Gerenciador de downloads</string>
     <string name="download_notifier_title_error">Erro</string>
     <string name="download_notifier_unkown_error">Não foi possível realizar o download do capítulo por um erro inesperado</string>
     <string name="download_notifier_page_error">Uma página está faltando na pasta</string>
-    <string name="download_notifier_page_ready_error">Página não foi carregada</string>
+    <string name="download_notifier_page_ready_error">A página não foi carregada</string>
     <string name="download_notifier_text_only_wifi">Nenhuma conexão Wi-Fi disponível</string>
     <string name="download_notifier_no_network">Conexão à rede indisponível</string>
     <string name="download_notifier_download_paused">Download pausado</string>
@@ -425,7 +424,7 @@
     <string name="reader_pull_up_for_more_options">Deslize para cima para mais opções</string>
     <string name="pref_read_with_long_tap">Diálogo de toque longo</string>
     <string name="action_open_in_web_view">Abrir na WebView</string>
-    <string name="pref_true_color">32-bit color</string>
+    <string name="pref_true_color">Cor de 32 bits</string>
     <string name="pref_skip_read_chapters">Pular capítulos lidos</string>
     <string name="filter_mode_default">Padrão</string>
     <string name="filter_mode_screen">Tela</string>
@@ -443,7 +442,7 @@
     <string name="ext_obsolete">Obsoleto</string>
     <string name="obsolete_extension_message">Esta extensão não está mais disponível.</string>
     <string name="no_results_found">Nenhum resultado encontrado</string>
-    <string name="migration_selection_prompt">Escolha uma fonte da qual migrar</string>
+    <string name="migration_selection_prompt">Selecione uma fonte da qual migrar</string>
     <string name="invalid_download_dir">Local de download inválido</string>
     <string name="pref_date_format">Formato da data</string>
     <string name="pref_category_library_update">Atualizações</string>
@@ -480,12 +479,44 @@
     <string name="ext_updates_pending">Atualizações pendentes</string>
     <string name="pref_cutout_short">Mostrar conteúdo na área de corte</string>
     <string name="pref_webtoon_padding_vert">Espaçamento vertical entre páginas</string>
-    <plurals name="notification_chapters">
-        <item quantity="one">Capítulo %1$s</item>
-        <item quantity="other">Capítulos %1$s</item>
-    </plurals>
-    <string name="notification_and_n_more">e mais %1$d</string>
     <string name="information_cloudflare_bypass_failure">Falha ao contornar o Cloudflare</string>
     <string name="information_webview_outdated">Por favor, atualize o aplicativo de WebView para uma melhor compatibilidade</string>
     <string name="channel_new_chapters">Atualizações de capítulos</string>
+    <string name="unlock_app">Desbloquear o Tachiyomi</string>
+    <string name="secure_screen_summary">Esconde os conteúdos do aplicativo durante a troca de aplicativos e impede capturas de tela</string>
+    <string name="pref_category_display">Visualização</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 capítulo novo</item>
+        <item quantity="other">%1$d novos capítulos</item>
+    </plurals>
+    <string name="notification_chapters_single">Capítulo %1$s</string>
+    <string name="notification_chapters_single_and_more">Capítulo %1$s e %2$d mais</string>
+    <string name="notification_chapters_multiple">Capítulos %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Capítulo %1$s e 1 mais</item>
+        <item quantity="other">Capítulos %1$s e %2$d mais</item>
+    </plurals>
+    <string name="action_hide">Ocultar</string>
+    <string name="hide_notification_content">Ocultar conteúdo da notificação</string>
+    <string name="notification_check_updates">Verificando por novos capítulos</string>
+    <string name="pref_disable_battery_optimization">Desabilitar a otimização de bateria</string>
+    <string name="pref_disable_battery_optimization_summary">Ajuda com as atualizações e backups da biblioteca em segundo plano</string>
+    <string name="battery_optimization_disabled">A otimização de bateria já está desabilitada</string>
+    <string name="email">Endereço de email</string>
+    <string name="pref_always_show_chapter_transition">Sempre mostrar a transição entre capítulos</string>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">Para 1 título</item>
+        <item quantity="other">Para %d títulos</item>
+    </plurals>
+    <string name="notices">Avisos</string>
+    <string name="changelog">Registro de alterações</string>
+    <string name="pref_theme_light">Variação do tema claro</string>
+    <string name="theme_light_default">Padrão</string>
+    <string name="theme_light_blue">Azul claro</string>
+    <string name="action_menu">Menu</string>
+    <string name="action_reorganize_by">Reordenar</string>
+    <string name="action_newest">Mais novos</string>
+    <string name="action_oldest">Mais antigos</string>
+    <string name="action_move_to_top">Mover para o início</string>
+    <string name="action_move_to_bottom">Mover para o fim</string>
 </resources>

@@ -1,5 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="true">
+    <changelogversion versionName="v0.9.0" changeDate="">
+        <changelogtext>Removed: support for Android 4.x</changelogtext>
+        <changelogtext>Removed: sort library by source</changelogtext>
+        <changelogtext>Removed: star shaped manga shortcuts</changelogtext>
+        <changelogtext>Moved: edit categories moved to library settings</changelogtext>
+        <changelogtext>Moved: open in browser option in webview menu</changelogtext>
+        <changelogtext>New: splash screen</changelogtext>
+        <changelogtext>New: automatic system dark theme (Android 9+)</changelogtext>
+        <changelogtext>New: bottom navigation</changelogtext>
+        <changelogtext>New: extensions no longer available are marked as "obsolete"</changelogtext>
+        <changelogtext>New: filter extensions by language</changelogtext>
+        <changelogtext>New: long hold range selection in library and chapters lists</changelogtext>
+        <changelogtext>New: JSON metadata for local manga</changelogtext>
+        <changelogtext>New: tapping genre tag in favorited manga performs a library search</changelogtext>
+        <changelogtext>New: select all option in library</changelogtext>
+        <changelogtext>New: sort library by latest chapter</changelogtext>
+        <changelogtext>New: date format setting</changelogtext>
+        <changelogtext>New: warn if webview version is too old when Cloudflare bypass fails</changelogtext>
+        <changelogtext>New: translucent reader toolbars (Android 8+)</changelogtext>
+        <changelogtext>New: option for showing reader content in cutout area (notches)</changelogtext>
+        <changelogtext>New: nicer chapter update notifications</changelogtext>
+        <changelogtext>New: security options (biometrics lock, secure screen, hide notification content)</changelogtext>
+        <changelogtext>New: webtoon pager vertical padding option</changelogtext>
+        <changelogtext>Enhancement: reorganized some settings</changelogtext>
+        <changelogtext>Enhancement: search library by artist, genre, or source</changelogtext>
+        <changelogtext>Enhancement: tracker logout</changelogtext>
+        <changelogtext>Enhancement: more pure black backgrounds for AMOLEd theme</changelogtext>
+        <changelogtext>Enhancement: option to explicitly remove tracking from track search dialog</changelogtext>
+        <changelogtext>Enhancement: increased chapter cache size</changelogtext>
+        <changelogtext>Enhancement: allow selecting default category for auto download</changelogtext>
+        <changelogtext>Enhancement: bookmarking options in chapter selection menu</changelogtext>
+        <changelogtext>Enhancement: hide catalogue by long pressing</changelogtext>
+        <changelogtext>Enhancement: sticky date section headers in history</changelogtext>
+        <changelogtext>Enhancement: app auto update enabled by default for new installs</changelogtext>
+        <changelogtext>Fix: catalogue search focus automatically being removed</changelogtext>
+        <changelogtext>Fix: manga closing if opening app from launcher</changelogtext>
+        <changelogtext>Fix: ignore temporary directories for download badges</changelogtext>
+        <changelogtext>Fix: sort chapters in recent updates</changelogtext>
+        <changelogtext>Fix: show reader toolbars on top of color filter</changelogtext>
+        <changelogtext>Fix: manga favoriting logic with categories when long pressing icon</changelogtext>
+        <changelogtext>Fix: filename length when saving pages</changelogtext>
+    </changelogversion>
+
     <changelogversion versionName="v0.8.5" changeDate="">
         <changelogtext>[b]Future releases will only support Android 5+[/b]</changelogtext>
         <changelogtext>New: open in browser/webview from catalogue</changelogtext>

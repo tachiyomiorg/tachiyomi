@@ -18,19 +18,19 @@ class SettingsMainController : SettingsController() {
         val tintColor = context.getResourceColor(R.attr.colorAccent)
 
         preference {
-            iconRes = R.drawable.ic_tune_black_24dp
+            iconRes = R.drawable.ic_tune_24dp
             iconTint = tintColor
             titleRes = R.string.pref_category_general
             onClick { navigateTo(SettingsGeneralController()) }
         }
         preference {
-            iconRes = R.drawable.ic_book_black_24dp
+            iconRes = R.drawable.ic_collections_bookmark_24dp
             iconTint = tintColor
             titleRes = R.string.pref_category_library
             onClick { navigateTo(SettingsLibraryController()) }
         }
         preference {
-            iconRes = R.drawable.ic_chrome_reader_mode_black_24dp
+            iconRes = R.drawable.ic_chrome_reader_mode_24dp
             iconTint = tintColor
             titleRes = R.string.pref_category_reader
             onClick { navigateTo(SettingsReaderController()) }
@@ -42,25 +42,25 @@ class SettingsMainController : SettingsController() {
             onClick { navigateTo(SettingsDownloadController()) }
         }
         preference {
-            iconRes = R.drawable.ic_sync_black_24dp
+            iconRes = R.drawable.ic_sync_24dp
             iconTint = tintColor
             titleRes = R.string.pref_category_tracking
             onClick { navigateTo(SettingsTrackingController()) }
         }
         preference {
-            iconRes = R.drawable.ic_backup_black_24dp
+            iconRes = R.drawable.ic_backup_24dp
             iconTint = tintColor
             titleRes = R.string.backup
             onClick { navigateTo(SettingsBackupController()) }
         }
         preference {
-            iconRes = R.drawable.ic_security_black_24dp
+            iconRes = R.drawable.ic_security_24dp
             iconTint = tintColor
             titleRes = R.string.pref_category_security
             onClick { navigateTo(SettingsSecurityController()) }
         }
         preference {
-            iconRes = R.drawable.ic_code_black_24dp
+            iconRes = R.drawable.ic_code_24dp
             iconTint = tintColor
             titleRes = R.string.pref_category_advanced
             onClick { navigateTo(SettingsAdvancedController()) }

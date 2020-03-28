@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
-    android:background="?attr/selectable_list_drawable">
+    android:background="@drawable/list_item_selector">
 
     <ImageView
         android:id="@+id/image"

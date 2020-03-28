@@ -2,22 +2,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image_view"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/text_face"
+        style="@style/TextAppearance.Medium.Body2.Hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:textSize="48sp"
+        tools:text="-_-" />
 
     <TextView
         android:id="@+id/text_label"
         style="@style/TextAppearance.Medium.Body2.Hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/image_view"
+        android:layout_below="@+id/text_face"
         android:layout_centerHorizontal="true"
         android:layout_margin="16dp"
-        android:gravity="center" />
+        android:gravity="center"
+        tools:text="Label" />
 
 </RelativeLayout>

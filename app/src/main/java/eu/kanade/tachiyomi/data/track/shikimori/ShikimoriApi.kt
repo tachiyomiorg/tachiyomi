@@ -25,7 +25,6 @@ import uy.kohesive.injekt.injectLazy
 class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInterceptor) {
 
     private val gson: Gson by injectLazy()
-    private val parser = JsonParser()
     private val jsonime = "application/json; charset=utf-8".toMediaTypeOrNull()
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
@@ -71,7 +70,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
                     if (responseBody.isEmpty()) {
                         throw Exception("Null Response")
                     }
-                    val response = parser.parse(responseBody).array
+                    val response = JsonParser.parseString(responseBody).array
                     response.map { jsonToSearch(it.obj) }
                 }
     }
@@ -124,7 +123,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
                 .asObservableSuccess()
                 .map { netResponse ->
                     val responseBody = netResponse.body?.string().orEmpty()
-                    parser.parse(responseBody).obj
+                    JsonParser.parseString(responseBody).obj
                 }.flatMap { mangas ->
                     authClient.newCall(request)
                             .asObservableSuccess()
@@ -133,7 +132,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
                                 if (responseBody.isEmpty()) {
                                     throw Exception("Null Response")
                                 }
-                                val response = parser.parse(responseBody).array
+                                val response = JsonParser.parseString(responseBody).array
                                 if (response.size() > 1) {
                                     throw Exception("Too much mangas in response")
                                 }
@@ -147,7 +146,7 @@ class ShikimoriApi(private val client: OkHttpClient, interceptor: ShikimoriInter
 
     fun getCurrentUser(): Int {
         val user = authClient.newCall(GET("$apiUrl/users/whoami")).execute().body?.string()
-        return parser.parse(user).obj["id"].asInt
+        return JsonParser.parseString(user).obj["id"].asInt
     }
 
     fun accessToken(code: String): Observable<OAuth> {

@@ -252,12 +252,12 @@
     <string name="pref_enable_automatic_updates_summary">Chirca automaticamente versiones noas de s\'aplicatzione</string>
     <string name="pref_enable_acra">Imbia raportos a pitzu de sos arrestos anòmalos</string>
     <string name="pref_acra_summary">Agiudat a acontzare cale si siat faddina. Perunu datu sensìbile at a èssere imbiadu</string>
-    <string name="login_title">Intrada pro %1$s</string>
+    <string name="login_title">Intra in %1$s</string>
     <string name="username">Nùmene impreadore</string>
     <string name="password">Crae de intrada</string>
     <string name="show_password">Ammustra sa crae</string>
     <string name="login">Intra</string>
-    <string name="login_success">Ses intradu chene problemas</string>
+    <string name="login_success">Ses intradu</string>
     <string name="invalid_login">Intrada fallida</string>
     <string name="unknown_error">Errore disconnotu</string>
     <string name="library_search_hint">Tìtulu o autore…</string>
@@ -385,7 +385,6 @@
     <string name="download_queue_error">Iscarrigamentu de sos capìtulos fallidu. Podes torrare a proare in sa setzione de sos iscarrigamentos</string>
     <string name="notification_update_progress">Progressu de s\'agiornamentu: %1$d/%2$d</string>
     <string name="notification_new_chapters">Capìtulos noos agatados</string>
-    <string name="notification_new_chapters_text">Pro %1$d tìtulos</string>
     <string name="notification_cover_update_failed">Agiornamentu de sa cobertedda fallidu</string>
     <string name="notification_first_add_to_library">Pro praghere annanghe su manga a sa biblioteca tua in antis de fàghere custu</string>
     <string name="notification_not_connected_to_ac_title">Sincronizatzione annullada</string>
@@ -480,12 +479,33 @@
     <string name="ext_updates_pending">Agiornamentos in suspesu</string>
     <string name="pref_cutout_short">Ammustra sos cuntenutos in s\'àrea de retàlliu</string>
     <string name="pref_webtoon_padding_vert">Separatzione verticale intre sas pàginas</string>
-    <plurals name="notification_chapters">
-        <item quantity="one">Capìtulu %1$s</item>
-        <item quantity="other">Capìtulos %1$s</item>
-    </plurals>
-    <string name="notification_and_n_more">e àteros %1$d</string>
     <string name="information_cloudflare_bypass_failure">Isfrancamentu de Cloudflare fallidu</string>
     <string name="information_webview_outdated">Agiorna s\'aplicatzione de WebView pro otènnere una cumpatibilidade prus manna</string>
     <string name="channel_new_chapters">Agiornamentos de sos capìtulos</string>
+    <string name="unlock_app">Isbloca Tachiyomi</string>
+    <string name="secure_screen_summary">Cua sos cuntenutos de s\'aplicatzione cando mudas de aplicatzione e bloca sas ischermadas</string>
+    <string name="pref_category_display">Visualizatzione</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 capìtulu nou</item>
+        <item quantity="other">%1$d capìtulos noos</item>
+    </plurals>
+    <string name="notification_chapters_single">Capìtulu %1$s</string>
+    <string name="notification_chapters_single_and_more">Capìtulu %1$s e àteros %2$d</string>
+    <string name="notification_chapters_multiple">Capìtulos %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Capìtulu %1$s e 1 àteru</item>
+        <item quantity="other">Capìtulos %1$s e àteros %2$d</item>
+    </plurals>
+    <string name="action_hide">Cua</string>
+    <string name="hide_notification_content">Cua su cuntenutu de sas notìficas</string>
+    <string name="notification_check_updates">Chirchende capìtulos noos</string>
+    <string name="pref_disable_battery_optimization">Disabìlita s\'otimizatzione de sa bateria</string>
+    <string name="pref_disable_battery_optimization_summary">Agiudat cun sos agiornamentos de sa biblioteca e sas còpias de seguresa</string>
+    <string name="battery_optimization_disabled">S\'otimizatzione de sa bateria est giai disabilitada</string>
+    <string name="email">Indiritzu de posta eletrònica</string>
+    <string name="pref_always_show_chapter_transition">Ammustra semper sa transitzione de capìtulu</string>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">Pro 1 tìtulu</item>
+        <item quantity="other">Pro %d tìtulos</item>
+    </plurals>
 </resources>

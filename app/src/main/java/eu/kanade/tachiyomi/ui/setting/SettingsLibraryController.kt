@@ -87,7 +87,7 @@ class SettingsLibraryController : SettingsController() {
 
                 onChange { newValue ->
                     val interval = (newValue as String).toInt()
-                    LibraryUpdateJob.setupTask(interval)
+                    LibraryUpdateJob.setupTask(context, interval)
                     true
                 }
             }
@@ -103,7 +103,7 @@ class SettingsLibraryController : SettingsController() {
 
                 onChange {
                     // Post to event looper to allow the preference to be updated.
-                    Handler().post { LibraryUpdateJob.setupTask() }
+                    Handler().post { LibraryUpdateJob.setupTask(context) }
                     true
                 }
             }
@@ -137,7 +137,7 @@ class SettingsLibraryController : SettingsController() {
                 // ../../data/library/LibraryUpdateRanker.kt
                 val priorities = arrayOf(
                         Pair("0", R.string.action_sort_alpha),
-                        Pair("1", R.string.action_sort_last_updated)
+                        Pair("1", R.string.action_sort_last_checked)
                 )
                 val defaultPriority = priorities[0]
 

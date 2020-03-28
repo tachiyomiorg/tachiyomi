@@ -9,6 +9,7 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.widget.Toast
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.util.system.WebViewClientCompat
 import eu.kanade.tachiyomi.util.system.isOutdated
 import eu.kanade.tachiyomi.util.system.toast
@@ -55,6 +56,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
             val oldCookie = networkHelper.cookieManager.get(originalRequest.url)
                     .firstOrNull { it.name == "cf_clearance" }
             resolveWithWebView(originalRequest, oldCookie)
+
             return chain.proceed(originalRequest)
         } catch (e: Exception) {
             // Because OkHttp's enqueue only handles IOExceptions, wrap the exception so that
@@ -81,9 +83,11 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
         handler.post {
             val webview = WebView(context)
             webView = webview
-
             webview.settings.javaScriptEnabled = true
+
+            // Avoid set empty User-Agent, Chromium WebView will reset to default if empty
             webview.settings.userAgentString = request.header("User-Agent")
+                    ?: HttpSource.DEFAULT_USERAGENT
 
             webview.webViewClient = object : WebViewClientCompat() {
                 override fun onPageFinished(view: WebView, url: String) {

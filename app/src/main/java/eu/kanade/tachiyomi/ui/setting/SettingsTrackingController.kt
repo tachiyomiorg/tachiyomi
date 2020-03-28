@@ -53,7 +53,7 @@ class SettingsTrackingController : SettingsController(),
                 tabsIntent.launchUrl(activity!!, AnilistApi.authUrl())
             }
             trackPreference(trackManager.kitsu) {
-                val dialog = TrackLoginDialog(trackManager.kitsu)
+                val dialog = TrackLoginDialog(trackManager.kitsu, R.string.email)
                 dialog.targetController = this@SettingsTrackingController
                 dialog.showDialog(router)
             }

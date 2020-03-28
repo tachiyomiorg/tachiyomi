@@ -4,14 +4,16 @@
 
     <item
         android:id="@+id/action_custom_filter"
-        android:icon="@drawable/ic_brightness_4_white_24dp"
+        android:icon="@drawable/ic_brightness_4_24dp"
         android:title="@string/custom_filter"
+        app:iconTint="?attr/colorOnPrimary"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_settings"
-        android:icon="@drawable/ic_settings_white_24dp"
+        android:icon="@drawable/ic_settings_24dp"
         android:title="@string/label_settings"
+        app:iconTint="?attr/colorOnPrimary"
         app:showAsAction="ifRoom" />
 
 </menu>

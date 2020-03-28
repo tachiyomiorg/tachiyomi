@@ -23,9 +23,9 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
     }
 
     companion object {
-        const val TAG = "LibraryUpdate"
+        private const val TAG = "LibraryUpdate"
 
-        fun setupTask(prefInterval: Int? = null) {
+        fun setupTask(context: Context, prefInterval: Int? = null) {
             val preferences = Injekt.get<PreferencesHelper>()
             val interval = prefInterval ?: preferences.libraryUpdateInterval().getOrDefault()
             if (interval > 0) {
@@ -48,9 +48,9 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
                         .setConstraints(constraints)
                         .build()
 
-                WorkManager.getInstance().enqueueUniquePeriodicWork(TAG, ExistingPeriodicWorkPolicy.REPLACE, request)
+                WorkManager.getInstance(context).enqueueUniquePeriodicWork(TAG, ExistingPeriodicWorkPolicy.REPLACE, request)
             } else {
-                WorkManager.getInstance().cancelAllWorkByTag(TAG)
+                WorkManager.getInstance(context).cancelAllWorkByTag(TAG)
             }
         }
     }

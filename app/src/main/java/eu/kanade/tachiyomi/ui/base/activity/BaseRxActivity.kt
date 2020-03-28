@@ -8,6 +8,9 @@ import nucleus.view.NucleusAppCompatActivity
 
 abstract class BaseRxActivity<P : BasePresenter<*>> : NucleusAppCompatActivity<P>() {
 
+    @Suppress("LeakingThis")
+    private val secureActivityDelegate = SecureActivityDelegate(this)
+
     init {
         @Suppress("LeakingThis")
         LocaleHelper.updateConfiguration(this)
@@ -16,12 +19,18 @@ abstract class BaseRxActivity<P : BasePresenter<*>> : NucleusAppCompatActivity<P
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        SecureActivityDelegate.onCreate(this)
+        secureActivityDelegate.onCreate()
     }
 
     override fun onResume() {
         super.onResume()
 
-        SecureActivityDelegate.onResume(this)
+        secureActivityDelegate.onResume()
+    }
+
+    override fun onDestroy() {
+        secureActivityDelegate.onDestroy()
+
+        super.onDestroy()
     }
 }

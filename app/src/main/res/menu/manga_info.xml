@@ -4,8 +4,9 @@
 
     <item
         android:id="@+id/action_share"
-        android:icon="@drawable/ic_share_white_24dp"
+        android:icon="@drawable/ic_share_24dp"
         android:title="@string/action_share"
+        app:iconTint="?attr/colorOnPrimary"
         app:showAsAction="ifRoom" />
 
     <item

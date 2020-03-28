@@ -220,7 +220,7 @@
     <string name="pref_enable_automatic_updates_summary">Semak sama ada wujud versi baharu secara automatik</string>
     <string name="pref_enable_acra">Hantar laporan ranap</string>
     <string name="pref_acra_summary">Bantu membaiki aplikasi. Tiada data sensitif dihantar</string>
-    <string name="login_title">Log masuk untuk %1$s</string>
+    <string name="login_title">Log masuk ke %1$s</string>
     <string name="username">Nama pengguna</string>
     <string name="password">Kata laluan</string>
     <string name="show_password">Perlihatkan kata laluan</string>
@@ -287,7 +287,7 @@
     <string name="download_10">10 bab seterusnya</string>
     <string name="download_all">Semua</string>
     <string name="download_unread">Belum dibaca</string>
-    <string name="confirm_delete_chapters">Adakah anda pasti ingin memadamkan bab-bab yang dipilih\?</string>
+    <string name="confirm_delete_chapters">Adakah anda pasti ingin memadamkan bab yang dipilih\?</string>
     <string name="manga_tracking_tab">Penjejakan</string>
     <string name="reading">Sedang baca</string>
     <string name="completed">Selesai</string>
@@ -323,7 +323,6 @@
     <string name="download_queue_error">Memuat turun bab tidak berjaya. Anda boleh mencuba lagi di bahagian muat turun</string>
     <string name="notification_update_progress">Progres kemas kini: %1$d/%2$d</string>
     <string name="notification_new_chapters">Bab baharu dijumpai</string>
-    <string name="notification_new_chapters_text">Bagi %1$d judul</string>
     <string name="notification_cover_update_failed">Gagal untuk kemas kini muka hadapan</string>
     <string name="notification_first_add_to_library">Mohon tambahkan manga kepada pustaka sebelum melakukan ini</string>
     <string name="notification_not_connected_to_ac_title">Sinkronisasi dibatalkan</string>
@@ -476,14 +475,44 @@
         <item quantity="other">Selepas %1$s minit</item>
     </plurals>
     <string name="secure_screen">Skrin keselamatan</string>
-    <string name="ext_updates_pending">Kemas kini belum selesai</string>
+    <string name="ext_updates_pending">Kemas kini baharu</string>
     <string name="pref_cutout_short">Tunjuk kandungan dalam kawasan bertakuk</string>
     <string name="pref_webtoon_padding_vert">Pemisah antara halaman</string>
-    <plurals name="notification_chapters">
-        <item quantity="other">Bab %1$s</item>
-    </plurals>
-    <string name="notification_and_n_more">dan %1$d lagi</string>
     <string name="information_cloudflare_bypass_failure">Gagal untuk memintas Cloudflare</string>
     <string name="information_webview_outdated">Sila kemas kini aplikasi WebView untuk keserasian yang lebih baik</string>
     <string name="channel_new_chapters">Pengemaskinian bab</string>
+    <string name="unlock_app">Buka kunci Tachiyomi</string>
+    <string name="secure_screen_summary">Sorok kandungan aplikasi apabila menukar aplikasi dan sekat tangkapan skrin</string>
+    <string name="pref_category_display">Paparan</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="other">%1$d bab baharu</item>
+    </plurals>
+    <string name="notification_chapters_single">Bab %1$s</string>
+    <string name="notification_chapters_single_and_more">Bab %1$s dan %2$d lagi</string>
+    <string name="notification_chapters_multiple">Bab %1$s</string>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="other">Bab %1$s dan %2$d lagi</item>
+    </plurals>
+    <string name="action_hide">Sembunyikan</string>
+    <string name="hide_notification_content">Sembunyikan kandungan pemberitahuan</string>
+    <string name="notification_check_updates">Mencari bab baharu</string>
+    <string name="pref_disable_battery_optimization">Nyahdaya pengoptimuman bateri</string>
+    <string name="pref_disable_battery_optimization_summary">Membantu dengan pengemaskinian latar belakang pustaka dan sandaran</string>
+    <string name="battery_optimization_disabled">Pengoptimuman bateri sudah dinyahdayakan</string>
+    <string name="email">Alamat e-mel</string>
+    <string name="pref_always_show_chapter_transition">Sentiasa tunjuk peralihan bab</string>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="other">Untuk %d tajuk</item>
+    </plurals>
+    <string name="notices">Notis</string>
+    <string name="changelog">Log perubahan</string>
+    <string name="pref_theme_light">Varian tema terang</string>
+    <string name="theme_light_default">Lalai</string>
+    <string name="theme_light_blue">Biru terang</string>
+    <string name="action_menu">Menu</string>
+    <string name="action_reorganize_by">Susun semula</string>
+    <string name="action_newest">Terbaru</string>
+    <string name="action_oldest">Terlama</string>
+    <string name="action_move_to_top">Naik ke atas</string>
+    <string name="action_move_to_bottom">Turun ke bawah</string>
 </resources>

@@ -13,6 +13,28 @@ import uy.kohesive.injekt.injectLazy
 
 class Shikimori(private val context: Context, id: Int) : TrackService(id) {
 
+    companion object {
+        const val READING = 1
+        const val COMPLETED = 2
+        const val ON_HOLD = 3
+        const val DROPPED = 4
+        const val PLANNING = 5
+        const val REPEATING = 6
+
+        const val DEFAULT_STATUS = READING
+        const val DEFAULT_SCORE = 0
+    }
+
+    override val name = "Shikimori"
+
+    override val supports_reading_dates = false
+
+    private val gson: Gson by injectLazy()
+
+    private val interceptor by lazy { ShikimoriInterceptor(this, gson) }
+
+    private val api by lazy { ShikimoriApi(client, interceptor) }
+
     override fun getScoreList(): List<String> {
         return IntRange(0, 10).map(Int::toString)
     }
@@ -26,9 +48,6 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
     }
 
     override fun update(track: Track): Observable<Track> {
-        if (track.total_chapters != 0 && track.last_chapter_read == track.total_chapters) {
-            track.status = COMPLETED
-        }
         return api.updateLibManga(track, getUsername())
     }
 
@@ -63,31 +82,9 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
                 }
     }
 
-    companion object {
-        const val READING = 1
-        const val COMPLETED = 2
-        const val ON_HOLD = 3
-        const val DROPPED = 4
-        const val PLANNING = 5
-        const val REPEATING = 6
-
-        const val DEFAULT_STATUS = READING
-        const val DEFAULT_SCORE = 0
-    }
-
-    override val name = "Shikimori"
-
-    override val supports_reading_dates = false
-
-    private val gson: Gson by injectLazy()
-
-    private val interceptor by lazy { ShikimoriInterceptor(this, gson) }
-
-    private val api by lazy { ShikimoriApi(client, interceptor) }
-
     override fun getLogo() = R.drawable.tracker_shikimori
 
-    override fun getLogoColor() = Color.rgb(40, 40, 40)
+    override fun getLogoColor() = Color.rgb(0x28, 0x28, 0x28)
 
     override fun getStatusList(): List<Int> {
         return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLANNING, REPEATING)
@@ -104,6 +101,8 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
             else -> ""
         }
     }
+
+    override fun getCompletionStatus(): Int = COMPLETED
 
     override fun login(username: String, password: String) = login(password)
 

@@ -13,25 +13,31 @@ import com.bluelinelabs.conductor.RouterTransaction
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
+import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.extension.api.ExtensionGithubApi
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
+import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.SecondaryDrawerController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.catalogue.CatalogueController
 import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
 import eu.kanade.tachiyomi.ui.download.DownloadController
+import eu.kanade.tachiyomi.ui.extension.ExtensionController
 import eu.kanade.tachiyomi.ui.library.LibraryController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.more.MoreController
-import eu.kanade.tachiyomi.ui.recent_updates.RecentChaptersController
-import eu.kanade.tachiyomi.ui.recently_read.RecentlyReadController
-import kotlinx.android.synthetic.main.main_activity.appbar
-import kotlinx.android.synthetic.main.main_activity.bottom_nav
-import kotlinx.android.synthetic.main.main_activity.drawer
-import kotlinx.android.synthetic.main.main_activity.tabs
-import kotlinx.android.synthetic.main.main_activity.toolbar
+import eu.kanade.tachiyomi.ui.recent.history.HistoryController
+import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
+import java.util.Date
+import java.util.concurrent.TimeUnit
+import kotlinx.android.synthetic.main.main_activity.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class MainActivity : BaseActivity() {
 
@@ -47,7 +53,8 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    lateinit var tabAnimator: TabsAnimator
+    lateinit var tabAnimator: ViewHeightAnimator
+    private lateinit var bottomNavAnimator: ViewHeightAnimator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +69,8 @@ class MainActivity : BaseActivity() {
 
         setSupportActionBar(toolbar)
 
-        tabAnimator = TabsAnimator(tabs)
+        tabAnimator = ViewHeightAnimator(tabs)
+        bottomNavAnimator = ViewHeightAnimator(bottom_nav)
 
         // Set behavior of bottom nav
         bottom_nav.setOnNavigationItemSelectedListener { item ->
@@ -72,8 +80,8 @@ class MainActivity : BaseActivity() {
             if (currentRoot?.tag()?.toIntOrNull() != id) {
                 when (id) {
                     R.id.nav_library -> setRoot(LibraryController(), id)
-                    R.id.nav_updates -> setRoot(RecentChaptersController(), id)
-                    R.id.nav_history -> setRoot(RecentlyReadController(), id)
+                    R.id.nav_updates -> setRoot(UpdatesController(), id)
+                    R.id.nav_history -> setRoot(HistoryController(), id)
                     R.id.nav_catalogues -> setRoot(CatalogueController(), id)
                     R.id.nav_more -> setRoot(MoreController(), id)
                 }
@@ -130,11 +138,46 @@ class MainActivity : BaseActivity() {
                 ChangelogDialogController().showDialog(router)
             }
         }
+        preferences.extensionUpdatesCount().asObservable().subscribe {
+            setExtensionsBadge()
+        }
+        setExtensionsBadge()
     }
 
     override fun onNewIntent(intent: Intent) {
         if (!handleIntentAction(intent)) {
             super.onNewIntent(intent)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getExtensionUpdates()
+    }
+
+    private fun setExtensionsBadge() {
+        val updates = preferences.extensionUpdatesCount().getOrDefault()
+        if (updates > 0) {
+            bottom_nav.getOrCreateBadge(R.id.nav_more).number = updates
+        } else {
+            bottom_nav.removeBadge(R.id.nav_more)
+        }
+    }
+
+    private fun getExtensionUpdates() {
+        // Limit checks to once every 2 hours at most
+        val now = Date().time
+        if (now < preferences.lastExtCheck().getOrDefault() + TimeUnit.HOURS.toMillis(2)) {
+            return
+        }
+
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val pendingUpdates = ExtensionGithubApi().checkForUpdates(this@MainActivity)
+                preferences.extensionUpdatesCount().set(pendingUpdates.size)
+            } catch (e: Exception) {
+                Timber.e(e)
+            }
         }
     }
 
@@ -149,6 +192,10 @@ class MainActivity : BaseActivity() {
             SHORTCUT_RECENTLY_UPDATED -> setSelectedDrawerItem(R.id.nav_updates)
             SHORTCUT_RECENTLY_READ -> setSelectedDrawerItem(R.id.nav_history)
             SHORTCUT_CATALOGUES -> setSelectedDrawerItem(R.id.nav_catalogues)
+            SHORTCUT_EXTENSIONS -> {
+                setSelectedDrawerItem(R.id.nav_more)
+                router.pushController(ExtensionController().withFadeTransaction())
+            }
             SHORTCUT_MANGA -> {
                 val extras = intent.extras ?: return false
                 setSelectedDrawerItem(R.id.nav_library)
@@ -220,6 +267,13 @@ class MainActivity : BaseActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(router.backstackSize != 1)
 
+        if ((from == null || from is RootController) && to !is RootController) {
+            bottomNavAnimator.collapse()
+        }
+        if (to is RootController && from !is RootController) {
+            bottomNavAnimator.expand()
+        }
+
         if (from is TabbedController) {
             from.cleanupTabs(tabs)
         }
@@ -257,6 +311,7 @@ class MainActivity : BaseActivity() {
         const val SHORTCUT_CATALOGUES = "eu.kanade.tachiyomi.SHOW_CATALOGUES"
         const val SHORTCUT_DOWNLOADS = "eu.kanade.tachiyomi.SHOW_DOWNLOADS"
         const val SHORTCUT_MANGA = "eu.kanade.tachiyomi.SHOW_MANGA"
+        const val SHORTCUT_EXTENSIONS = "eu.kanade.tachiyomi.EXTENSIONS"
 
         const val INTENT_SEARCH = "eu.kanade.tachiyomi.SEARCH"
         const val INTENT_SEARCH_QUERY = "query"

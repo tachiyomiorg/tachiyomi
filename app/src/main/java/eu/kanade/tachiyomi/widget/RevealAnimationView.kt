@@ -6,6 +6,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewAnimationUtils
+import eu.kanade.tachiyomi.util.view.invisible
+import eu.kanade.tachiyomi.util.view.visible
 
 class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
         View(context, attrs) {
@@ -19,7 +21,7 @@ class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: Att
      */
     fun hideRevealEffect(centerX: Int, centerY: Int, initialRadius: Int) {
         // Make the view visible.
-        this.visibility = View.VISIBLE
+        this.visible()
 
         // Create the animation (the final radius is zero).
         val anim = ViewAnimationUtils.createCircularReveal(
@@ -32,7 +34,7 @@ class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: Att
         anim.addListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
-                this@RevealAnimationView.visibility = View.INVISIBLE
+                this@RevealAnimationView.invisible()
             }
         })
 
@@ -49,7 +51,7 @@ class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: Att
      * @return sdk version lower then 21
      */
     fun showRevealEffect(centerX: Int, centerY: Int, listener: Animator.AnimatorListener): Boolean {
-        this.visibility = View.VISIBLE
+        this.visible()
 
         val height = this.height
 

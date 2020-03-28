@@ -3,6 +3,7 @@
     <!-- Application Colors -->
     <color name="colorPrimary">#54759E</color>
     <color name="colorPrimaryDark">#435E7E</color>
+
     <!-- Dark Application Colors -->
     <color name="colorDarkPrimary">#212121</color>
     <color name="colorDarkPrimaryDark">#1C1C1D</color>
@@ -17,16 +18,9 @@
     <color name="textColorHintLight">@color/md_black_1000_38</color>
     <color name="dividerLight">@color/md_black_1000_12</color>
     <color name="rippleColorLight">@color/md_black_1000_12</color>
-
-    <color name="preference_fallback_accent_color">@color/colorAccentLight</color>
-
-    <color name="statusBarLight">@color/md_grey_300</color>
-    <color name="appBarLight">@color/md_grey_100</color>
     <color name="backgroundLight">@color/md_grey_50</color>
     <color name="dialogLight">@color/md_white_1000</color>
-
     <color name="selectorColorLight">@color/md_blue_A400_38</color>
-    <color name="iconColorLight">@color/md_black_1000_54</color>
 
     <!-- Dark Theme -->
     <color name="colorAccentDark">#3399FF</color>
@@ -35,20 +29,17 @@
     <color name="textColorHintDark">@color/md_white_1000_50</color>
     <color name="dividerDark">@android:color/transparent</color>
     <color name="rippleColorDark">@color/md_white_1000_20</color>-
-
-    <color name="statusBarDark">@color/md_black_1000</color>
-    <color name="appBarDark">@color/md_grey_900</color>
     <color name="backgroundDark">@color/colorDarkPrimaryDark</color>
     <color name="dialogDark">@color/colorDarkPrimary</color>
-
     <color name="selectorColorDark">@color/md_blue_A200_50</color>
-    <color name="iconColorDark">@color/md_white_1000_54</color>
 
     <!-- Reader Theme -->
     <color name="readerColorDarkPrimary">@color/colorDarkPrimary</color>
-    <color name="readerColorDarkPrimaryDark">@color/colorDarkPrimaryDark</color>
     <color name="pageNumberBackgroundLight">@color/md_grey_50_75</color>
     <color name="pageNumberBackgroundDark">@color/md_grey_900_75</color>
+
+    <color name="filterColorLight">#FFC107</color>
+    <color name="filterColorDark">#FFEB3B</color>
 
     <!-- Text Colors -->
     <color name="md_black_1000_87">#DE000000</color>

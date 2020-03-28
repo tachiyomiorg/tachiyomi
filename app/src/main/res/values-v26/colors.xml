@@ -3,6 +3,5 @@
 
     <!-- Reader Theme -->
     <color name="readerColorDarkPrimary">#BF212121</color>
-    <color name="readerColorDarkPrimaryDark">#BF1C1C1D</color>
 
 </resources>

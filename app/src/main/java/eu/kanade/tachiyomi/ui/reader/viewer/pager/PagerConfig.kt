@@ -43,6 +43,9 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
     var doubleTapAnimDuration = 500
         private set
 
+    var alwaysShowChapterTransition = true
+        private set
+
     init {
         preferences.readWithTapping()
                 .register({ tappingEnabled = it })
@@ -70,6 +73,9 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
 
         preferences.readWithVolumeKeysInverted()
                 .register({ volumeKeysInverted = it })
+
+        preferences.alwaysShowChapterTransition()
+                .register({ alwaysShowChapterTransition = it })
     }
 
     fun unsubscribe() {

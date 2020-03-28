@@ -303,7 +303,7 @@ class PagerPageHolder(
         subsamplingImageView = SubsamplingScaleImageView(context).apply {
             layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
             setMaxTileSize(viewer.activity.maxBitmapSize)
-            setDoubleTapZoomStyle(SubsamplingScaleImageView.ZOOM_FOCUS_FIXED)
+            setDoubleTapZoomStyle(SubsamplingScaleImageView.ZOOM_FOCUS_CENTER)
             setDoubleTapZoomDuration(config.doubleTapAnimDuration)
             setPanLimit(SubsamplingScaleImageView.PAN_LIMIT_INSIDE)
             setMinimumScaleType(config.imageScaleType)

@@ -4,5 +4,5 @@
     style="@style/Theme.Widget.SpinnerItem"
     android:layout_width="match_parent"
     android:layout_height="?attr/dropdownListPreferredItemHeight"
-    android:ellipsize="marquee"
+    android:ellipsize="end"
     android:singleLine="true" />

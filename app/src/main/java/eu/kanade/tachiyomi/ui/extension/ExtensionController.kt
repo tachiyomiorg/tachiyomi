@@ -17,11 +17,15 @@ import com.jakewharton.rxbinding.support.v7.widget.queryTextChanges
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.extension.ExtensionUpdateJob
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
-import kotlinx.android.synthetic.main.extension_controller.ext_recycler
-import kotlinx.android.synthetic.main.extension_controller.ext_swipe_refresh
+import kotlinx.android.synthetic.main.extension_controller.*
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 /**
  * Controller to manage the catalogues available in the app.
@@ -31,6 +35,8 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
         ExtensionTrustDialog.Listener {
+
+    private val preferences: PreferencesHelper = Injekt.get()
 
     /**
      * Adapter containing the list of manga from the catalogue.
@@ -71,6 +77,7 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
         ext_recycler.layoutManager = LinearLayoutManager(view.context)
         ext_recycler.adapter = adapter
         ext_recycler.addItemDecoration(ExtensionDividerItemDecoration(view.context))
+        adapter?.fastScroller = fast_scroller
     }
 
     override fun onDestroyView(view: View) {
@@ -86,6 +93,12 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
                         .popChangeHandler(SettingsExtensionsFadeChangeHandler())
                         .pushChangeHandler(FadeChangeHandler()))
             }
+            R.id.action_auto_check -> {
+                item.isChecked = !item.isChecked
+                preferences.automaticExtUpdates().set(item.isChecked)
+                ExtensionUpdateJob.setupTask(activity!!, item.isChecked)
+            }
+            else -> return super.onOptionsItemSelected(item)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -138,6 +151,8 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
 
         // Fixes problem with the overflow icon showing up in lieu of search
         searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })
+
+        menu.findItem(R.id.action_auto_check).isChecked = preferences.automaticExtUpdates().getOrDefault()
     }
 
     override fun onItemClick(view: View, position: Int): Boolean {

@@ -27,9 +27,11 @@ class SettingsGeneralController : SettingsController() {
         intListPreference {
             key = Keys.startScreen
             titleRes = R.string.pref_start_screen
-            entriesRes = arrayOf(R.string.label_library, R.string.label_recent_manga,
-                    R.string.label_recent_updates)
-            entryValues = arrayOf("1", "2", "3")
+            entriesRes = arrayOf(
+                    R.string.label_library,
+                    R.string.label_recent_updates,
+                    R.string.label_recent_manga)
+            entryValues = arrayOf("1", "3", "2")
             defaultValue = "1"
             summary = "%s"
         }
@@ -113,6 +115,28 @@ class SettingsGeneralController : SettingsController() {
 
                 onChange {
                     activity?.recreate()
+                    true
+                }
+            }
+            listPreference {
+                key = Keys.themeLight
+                titleRes = R.string.pref_theme_light
+                entriesRes = arrayOf(
+                        R.string.theme_light_default,
+                        R.string.theme_light_blue)
+                entryValues = arrayOf(
+                        Values.THEME_LIGHT_DEFAULT,
+                        Values.THEME_LIGHT_BLUE)
+                defaultValue = Values.THEME_LIGHT_DEFAULT
+                summary = "%s"
+
+                preferences.themeMode().asObservable()
+                        .subscribeUntilDestroy { isVisible = it != Values.THEME_MODE_DARK }
+
+                onChange {
+                    if (preferences.themeMode().getOrDefault() != Values.THEME_MODE_DARK) {
+                        activity?.recreate()
+                    }
                     true
                 }
             }
