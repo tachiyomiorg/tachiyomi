@@ -26,7 +26,6 @@
     <string name="action_sort_alpha">名稱</string>
     <string name="action_sort_total">章節數</string>
     <string name="action_sort_last_read">最近閱讀</string>
-    <string name="action_sort_last_updated">更新時間</string>
     <string name="action_search">搜尋</string>
     <string name="action_global_search">全域搜尋</string>
     <string name="action_select_all">全選</string>
@@ -193,11 +192,9 @@
     <string name="set_as_cover">設為書封</string>
     <string name="cover_updated">書封已更新</string>
     <string name="copy">複製</string>
-    <string name="update_check_title">有可用的更新！</string>
     <string name="update_check_confirm">下載</string>
     <string name="update_check_ignore">忽略</string>
     <string name="update_check_no_new_updates">沒有可用的更新</string>
-    <string name="update_check_download_started">已開始下載</string>
     <string name="update_check_look_for_updates">正在檢查更新</string>
     <string name="update_check_notification_file_download">下載更新</string>
     <string name="update_check_notification_download_in_progress">下載進行中</string>
@@ -333,7 +330,6 @@
     <string name="track_status">狀態</string>
     <string name="options">選項</string>
     <string name="decode_image_error">無法解碼該圖片</string>
-    <string name="reader_pull_up_for_more_options">向上滑動以顯示更多選項</string>
     <string name="select">選擇</string>
     <string name="notification_first_add_to_library">請先將漫畫收藏至書櫃再進行更新</string>
     <string name="notification_not_connected_to_ac_title">已取消同步</string>

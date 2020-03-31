@@ -27,7 +27,6 @@
     <string name="action_sort_alpha">Αλφαβητικά</string>
     <string name="action_sort_total">Σύνολο κεφαλαίων</string>
     <string name="action_sort_last_read">Τελευταίο αναγνωρισμένο</string>
-    <string name="action_sort_last_updated">Τελευταίο ενημερωμένο</string>
     <string name="action_search">Αναζήτηση</string>
     <string name="action_global_search">Καθολική αναζήτηση</string>
     <string name="action_select_all">Επιλογή όλων</string>
@@ -392,11 +391,9 @@
     <string name="file_select_cover">Επιλέξτε εικόνα εξωφύλλου</string>
     <string name="file_select_backup">Επιλέξτε αρχείο αντιγράφου ασφαλείας</string>
     <string name="file_select_icon">Επιλέξτε εικονίδιο συντόμευσης</string>
-    <string name="update_check_title">Νέα διαθέσιμη έκδοση!</string>
     <string name="update_check_confirm">Λήψη</string>
     <string name="update_check_ignore">Παράλειψη</string>
     <string name="update_check_no_new_updates">Δεν υπάρχουν διαθέσιμες νέες ενημερώσεις</string>
-    <string name="update_check_download_started">Ξεκίνησε η λήψη</string>
     <string name="update_check_look_for_updates">Αναζήτηση για ενημερώσεις…</string>
     <string name="update_check_notification_file_download">Λήψη ενημέρωσης</string>
     <string name="update_check_notification_download_in_progress">Γίνεται λήψη…</string>
@@ -431,7 +428,6 @@
     <string name="filter_mode_screen">Οθόνη</string>
     <string name="label_help">Βοήθεια</string>
     <string name="pref_library_update_prioritization">Συχνότητα ανανέωσης της Βιβλιοθήκης</string>
-    <string name="reader_pull_up_for_more_options">Τραβήξτε πάνω για περισσότερες επιλογές</string>
     <string name="pref_color_filter_mode">Μέθοδος μίξης χρωματικού φίλτρου</string>
     <string name="filter_mode_lighten">Dodge / Φωτήστε</string>
     <string name="filter_mode_darken">Burn / Σκουραιώστε</string>

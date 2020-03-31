@@ -27,7 +27,6 @@
     <string name="action_sort_alpha">Alfabetik</string>
     <string name="action_sort_total">Toplam bölüm</string>
     <string name="action_sort_last_read">Son okunan</string>
-    <string name="action_sort_last_updated">Son Güncellenen</string>
     <string name="action_search">Ara</string>
     <string name="action_global_search">Genel arama</string>
     <string name="action_select_all">Tümünü seç</string>
@@ -384,17 +383,15 @@
     <string name="file_select_cover">Kapak görselini seç</string>
     <string name="file_select_backup">Yedek dosyasını seç</string>
     <string name="file_select_icon">Kısayol simgesi seç</string>
-    <string name="update_check_title">Yeni sürüm var!</string>
     <string name="update_check_confirm">İndir</string>
     <string name="update_check_ignore">Yok say</string>
     <string name="update_check_no_new_updates">Yeni güncelleme yok</string>
-    <string name="update_check_download_started">İndirme başladı</string>
     <string name="update_check_look_for_updates">Güncellemeler aranıyor…</string>
     <string name="update_check_notification_file_download">Güncellemeyi indir</string>
     <string name="update_check_notification_download_in_progress">İndiriliyor…</string>
     <string name="update_check_notification_download_complete">İndirme tamamlandı</string>
     <string name="update_check_notification_download_error">İndirme hatası</string>
-    <string name="update_check_notification_update_available">Güncelleme var</string>
+    <string name="update_check_notification_update_available">Yeni sürüm var!</string>
     <string name="description_backdrop">Manganın art alan görseli</string>
     <string name="description_cover">Manganın kapağı</string>
     <string name="information_no_downloads">İndirme yok</string>
@@ -422,7 +419,6 @@
     <string name="transition_pages_loading">Sayfalar yükleniyor…</string>
     <string name="transition_pages_error">Sayfalar yüklenemedi: %1$s</string>
     <string name="pref_read_with_long_tap">Uzun dokunma iletişim kutusu</string>
-    <string name="reader_pull_up_for_more_options">Daha çok seçenek için yukarı çekin</string>
     <string name="action_open_in_web_view">Web görünümünde aç</string>
     <string name="pref_true_color">32-bit renk</string>
     <string name="pref_skip_read_chapters">Okunmuş olarak işaretli bölümleri atla</string>
@@ -508,4 +504,24 @@
         <item quantity="one">1 başlık için</item>
         <item quantity="other">%d başlık için</item>
     </plurals>
+    <string name="notices">Bildirimler</string>
+    <string name="changelog">Değişiklikler</string>
+    <string name="pref_theme_light">Aydınlık tema çeşidi</string>
+    <string name="theme_light_default">Öntanımlı</string>
+    <string name="theme_light_blue">Açık mavi</string>
+    <string name="action_menu">Menü</string>
+    <string name="action_reorganize_by">Yeniden sırala</string>
+    <string name="action_newest">En yeni</string>
+    <string name="action_oldest">En eski</string>
+    <string name="action_move_to_top">En üste taşı</string>
+    <string name="action_move_to_bottom">En alta taşı</string>
+    <string name="action_sort_last_checked">Son denetleme</string>
+    <string name="pref_enable_automatic_extension_updates">Uzantı güncellemelerini denetle</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">Uzantı güncellemesi var</item>
+        <item quantity="other">%d uzantı güncellemesi var</item>
+    </plurals>
+    <string name="http_error_hint">Web sitesini WebWiew ile görüntüle</string>
+    <string name="channel_ext_updates">Uzantı güncellemeleri</string>
+    <string name="updating_library">Kitaplık güncelleniyor</string>
 </resources>

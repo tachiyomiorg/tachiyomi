@@ -30,7 +30,6 @@
     <string name="action_sort_alpha">حروف تہجی کے لحاظ سے</string>
     <string name="action_sort_total">کل ابواب</string>
     <string name="action_sort_last_read">آخری بار پڑھا گیا</string>
-    <string name="action_sort_last_updated">آخری دفعہ اپڈیٹڈ</string>
     <string name="action_sort_latest_chapter">تازہ ترین باب</string>
     <string name="action_search">تلاش</string>
     <string name="action_global_search">عالمی تلاش</string>

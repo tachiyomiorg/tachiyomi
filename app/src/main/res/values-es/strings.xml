@@ -235,11 +235,9 @@
     <string name="file_select_cover">Seleccione la imagen de portada</string>
     <string name="file_select_backup">Seleccione la copia de seguridad</string>
     <!--UpdateCheck-->
-    <string name="update_check_title">¡Nueva version disponible!</string>
     <string name="update_check_confirm">Descargar</string>
     <string name="update_check_ignore">Ignorar</string>
     <string name="update_check_no_new_updates">No hay nueva actualización</string>
-    <string name="update_check_download_started">Comenzando descarga</string>
     <string name="update_check_look_for_updates">Buscando actualizaciones…</string>
     <!--UpdateCheck Notifications-->
     <string name="update_check_notification_file_download">Descargar actualización</string>
@@ -270,7 +268,6 @@
     <string name="action_sort_alpha">Alfabéticamente</string>
     <string name="action_sort_total">Numero de capítulos</string>
     <string name="action_sort_last_read">Ultimo leído</string>
-    <string name="action_sort_last_updated">Ultimo actualizado</string>
     <string name="action_bookmark">Marcar</string>
     <string name="action_remove_bookmark">Desmarcar</string>
     <string name="action_add">Añadir</string>
@@ -449,7 +446,6 @@
     <string name="pref_double_tap_anim_speed">Velocidad de animación de doble toque</string>
     <string name="pager_viewer">Paginado</string>
     <string name="pref_read_with_long_tap">Diálogo de toque largo</string>
-    <string name="reader_pull_up_for_more_options">Tire hacia arriba para más opciones</string>
     <string name="action_open_in_web_view">Abrir en vista web</string>
     <string name="pref_skip_read_chapters">Saltar capítulos marcados como leídos</string>
     <string name="pref_true_color">Color en 32 bits</string>
@@ -540,4 +536,10 @@
     <string name="pref_theme_light">Variación del tema claro</string>
     <string name="theme_light_default">Defecto</string>
     <string name="theme_light_blue">Azul y blanco</string>
+    <string name="action_menu">Menú</string>
+    <string name="action_reorganize_by">Reordenar</string>
+    <string name="action_newest">Lo nuevo</string>
+    <string name="action_oldest">Lo más Antiguo</string>
+    <string name="action_move_to_top">Mover al principio</string>
+    <string name="action_move_to_bottom">Mover al final</string>
 </resources>

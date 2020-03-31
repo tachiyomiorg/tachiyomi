@@ -27,7 +27,6 @@
     <string name="action_sort_alpha">Alfabetiskt</string>
     <string name="action_sort_total">Totalt kapitel</string>
     <string name="action_sort_last_read">Senast läst</string>
-    <string name="action_sort_last_updated">Senast uppdaterad</string>
     <string name="action_search">Sök</string>
     <string name="action_global_search">Global sökning</string>
     <string name="action_select_all">Välj alla</string>
@@ -392,11 +391,9 @@
     <string name="file_select_cover">Välj omslagsbild</string>
     <string name="file_select_backup">Välj säkerhetskopia</string>
     <string name="file_select_icon">Välj genvägsikon</string>
-    <string name="update_check_title">Ny version tillgänglig!</string>
     <string name="update_check_confirm">Ladda ner</string>
     <string name="update_check_ignore">Ignorera</string>
     <string name="update_check_no_new_updates">Inga nya uppdateringar tillgängliga</string>
-    <string name="update_check_download_started">Nedladdning startades</string>
     <string name="update_check_look_for_updates">Söker efter uppdateringar…</string>
     <string name="update_check_notification_file_download">Ladda ner uppdatering</string>
     <string name="update_check_notification_download_in_progress">Laddar ner…</string>
@@ -425,7 +422,6 @@
     <string name="pref_true_color">32-bitars färg</string>
     <string name="pref_skip_read_chapters">Skippa lästa kapitel</string>
     <string name="pref_read_with_long_tap">Långtrycksdialog</string>
-    <string name="reader_pull_up_for_more_options">Dra upp för fler alternativ</string>
     <string name="pref_color_filter_mode">Färgfilterblandningsläge</string>
     <string name="filter_mode_default">Standard</string>
     <string name="filter_mode_overlay">Överlägg</string>

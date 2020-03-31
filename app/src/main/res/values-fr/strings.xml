@@ -20,7 +20,6 @@
     <string name="action_filter_empty">Enlever le filtre</string>
     <string name="action_sort_alpha">Alphabétiquement</string>
     <string name="action_sort_last_read">Dernier lu</string>
-    <string name="action_sort_last_updated">Dernier mis à jour</string>
     <string name="action_search">Rechercher</string>
     <string name="action_select_all">Tout sélectionner</string>
     <string name="action_mark_as_read">Marquer comme lu</string>
@@ -280,11 +279,9 @@
     <string name="file_select_backup">Sélectionner fichier de sauvegarde</string>
     <string name="file_select_icon">Sélectionner une icône de raccourci</string>
     <!--UpdateCheck-->
-    <string name="update_check_title">Nouvelle mise à jour disponible !</string>
     <string name="update_check_confirm">Télécharger</string>
     <string name="update_check_ignore">Ignorer</string>
     <string name="update_check_no_new_updates">Aucune mise à jour disponible</string>
-    <string name="update_check_download_started">Téléchargement commencé</string>
     <string name="update_check_look_for_updates">Vérification des mises à jour…</string>
     <!--UpdateCheck Notifications-->
     <string name="update_check_notification_file_download">Télécharger la mise à jour</string>
@@ -456,7 +453,6 @@
     <string name="copy">Copier</string>
     <string name="migrating">En cours de déplacement…</string>
     <string name="pref_read_with_long_tap">Menu contextuel (appui prolongé)</string>
-    <string name="reader_pull_up_for_more_options">Plus d\'options en défilant</string>
     <string name="action_open_in_web_view">Ouvrir dans le navigateur intégré</string>
     <string name="pref_true_color">Couleurs à 32 bits</string>
     <string name="pref_skip_read_chapters">Passer les chapitres marqués comme lus</string>
@@ -537,4 +533,28 @@
     <string name="pref_disable_battery_optimization_summary">Aide aux mises à jour et sauvegardes de la bibliothèque en arrière-plan</string>
     <string name="battery_optimization_disabled">La fonction Optimisation utilisation batterie est déjà désactivée</string>
     <string name="email">Adresse email</string>
+    <string name="pref_always_show_chapter_transition">Toujours afficher la transition entre les chapitres</string>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">Pour 1 titre</item>
+        <item quantity="other">Pour %d titres</item>
+    </plurals>
+    <string name="changelog">Journal de changement</string>
+    <string name="theme_light_default">Défaut</string>
+    <string name="theme_light_blue">Bleu clair</string>
+    <string name="action_menu">Menu</string>
+    <string name="action_reorganize_by">Réorganiser</string>
+    <string name="action_newest">Plus récent</string>
+    <string name="action_oldest">Plus ancien</string>
+    <string name="notices">Avis</string>
+    <string name="pref_theme_light">Variante du thème clair</string>
+    <string name="action_move_to_top">Déplacer au début</string>
+    <string name="action_move_to_bottom">Déplacer à la fin</string>
+    <string name="channel_ext_updates">Mises à jour d\'extension</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">Mise à jour d\'extension disponible</item>
+        <item quantity="other">%d mises à jour d\'extension disponibles</item>
+    </plurals>
+    <string name="http_error_hint">Consultez le site Web de WebView</string>
+    <string name="pref_enable_automatic_extension_updates">Vérifier les mises à jour d’extension</string>
+    <string name="action_sort_last_checked">Dernière vérification</string>
 </resources>

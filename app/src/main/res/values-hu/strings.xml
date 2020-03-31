@@ -100,7 +100,6 @@
     <string name="action_sort_alpha">Betűrendben</string>
     <string name="action_sort_total">Összes fejezet</string>
     <string name="action_sort_last_read">Legutóbb olvasott</string>
-    <string name="action_sort_last_updated">Legutóbb frissített</string>
     <string name="action_global_search">Globális keresés</string>
     <string name="action_mark_as_read">Olvasottnak jelölés</string>
     <string name="action_mark_as_unread">Olvasatlannak jelölés</string>

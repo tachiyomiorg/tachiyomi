@@ -24,7 +24,6 @@
     <string name="action_sort_alpha">أبجديا</string>
     <string name="action_sort_total">كامل الفصول</string>
     <string name="action_sort_last_read">آخر قراءة</string>
-    <string name="action_sort_last_updated">آخر تحديث</string>
     <string name="action_search">بحث</string>
     <string name="action_select_all">اختر الكل
 \n</string>
@@ -330,11 +329,9 @@
     <string name="file_select_cover">اختر صورة الغلاف</string>
     <string name="file_select_backup">اختر ملف النسخ الاحتياطي</string>
     <string name="file_select_icon">اختر أيقونة الاختصار</string>
-    <string name="update_check_title">إصدار جديد متاح!</string>
     <string name="update_check_confirm">تحميل</string>
     <string name="update_check_ignore">تجاهل</string>
     <string name="update_check_no_new_updates">لا تتوفر تحديثات جديدة</string>
-    <string name="update_check_download_started">بدأ التحميل</string>
     <string name="update_check_look_for_updates">البحث عن التحديثات…</string>
     <string name="update_check_notification_file_download">تحميل التحديث</string>
     <string name="update_check_notification_download_in_progress">جار التحميل…</string>
@@ -431,7 +428,6 @@
     <string name="filter_mode_screen">الشاشة</string>
     <string name="label_help">ساعدني</string>
     <string name="pref_library_update_prioritization">طلبات تحديث المكتبة</string>
-    <string name="reader_pull_up_for_more_options">"سحب  لمزيد من الخيارات"</string>
     <string name="pref_color_filter_mode">فلتر الألوان ”وضع الألوان الممزوجة“</string>
     <string name="filter_mode_lighten">مراوغة / تفتيح</string>
     <string name="filter_mode_darken">حرق / تغميق</string>

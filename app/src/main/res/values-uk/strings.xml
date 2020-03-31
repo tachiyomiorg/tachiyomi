@@ -27,7 +27,6 @@
     <string name="action_sort_alpha">В алфавітному порядку</string>
     <string name="action_sort_total">За кількістю глав</string>
     <string name="action_sort_last_read">Остання прочитана</string>
-    <string name="action_sort_last_updated">Остання оновлена</string>
     <string name="action_search">Пошук</string>
     <string name="action_global_search">Глобальний пошук</string>
     <string name="action_select_all">Обрати все</string>
@@ -392,11 +391,9 @@
     <string name="file_select_cover">Вибрати обкладинку</string>
     <string name="file_select_backup">Виберіть файл резервної копії</string>
     <string name="file_select_icon">Вибрати ярлик</string>
-    <string name="update_check_title">Доступне нове оновлення!</string>
     <string name="update_check_confirm">Завантажити</string>
     <string name="update_check_ignore">Ігнорувати</string>
     <string name="update_check_no_new_updates">Оновлень не виявлено</string>
-    <string name="update_check_download_started">Завантаження розпочалось</string>
     <string name="update_check_look_for_updates">Перевірити оновлення…</string>
     <string name="update_check_notification_file_download">Оновлення завантаження</string>
     <string name="update_check_notification_download_in_progress">Завантаження в процесі…</string>
@@ -422,7 +419,6 @@
     <string name="channel_library">Бібліотека</string>
     <string name="channel_downloader">Завантажувач</string>
     <string name="pref_read_with_long_tap">Діалог тривалого тицяння</string>
-    <string name="reader_pull_up_for_more_options">Потягніть задля додаткових опцій</string>
     <string name="action_open_in_web_view">Відкрити у web view</string>
     <string name="pref_true_color">32-бітний колір</string>
     <string name="pref_skip_read_chapters">Пропускати глави, відмічені як прочитані</string>
@@ -512,4 +508,24 @@
         <item quantity="few">Для %d тайтлів</item>
         <item quantity="many">Для %d тайтлів</item>
     </plurals>
+    <string name="notices">Примітки</string>
+    <string name="changelog">Чейнджлог</string>
+    <string name="pref_theme_light">Варіант світлої теми</string>
+    <string name="theme_light_default">За замовчуванням</string>
+    <string name="theme_light_blue">Блакитна</string>
+    <string name="action_menu">Меню</string>
+    <string name="action_reorganize_by">Переупорядкувати</string>
+    <string name="action_newest">Найновіші</string>
+    <string name="action_oldest">Найстаріші</string>
+    <string name="action_move_to_top">Перемістити догори</string>
+    <string name="action_move_to_bottom">Перемістити додолу</string>
+    <string name="action_sort_last_checked">Востаннє перевірено</string>
+    <string name="pref_enable_automatic_extension_updates">Перевірити оновлення розширень</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">Наявне оновлення для розширення</item>
+        <item quantity="few">%d наявних оновлень розширень</item>
+        <item quantity="many">%d наявних оновлень розширень</item>
+    </plurals>
+    <string name="channel_ext_updates">Оновлення розширень</string>
+    <string name="http_error_hint">Глипнути сайт в WebView</string>
 </resources>

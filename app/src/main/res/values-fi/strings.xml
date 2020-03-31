@@ -20,7 +20,6 @@
     <string name="label_recent_updates">Päivitykset</string>
     <string name="label_catalogues">Katalokit</string>
     <string name="action_sort_total">Lukuja yhteensä</string>
-    <string name="action_sort_last_updated">Viimeksi päivitetty</string>
     <string name="action_global_search">Globaali haku</string>
     <string name="action_mark_as_unread">Merkitse lukemattomaksi</string>
     <string name="action_mark_previous_as_read">Merkitse aiemmat luetuiksi</string>
@@ -52,7 +51,6 @@
     <string name="transition_no_previous">Aiempaa lukua ei ole</string>
     <string name="transition_pages_loading">Ladataan sivuja…</string>
     <string name="transition_pages_error">Sivujen lataus epäonnistui: %1$s</string>
-    <string name="reader_pull_up_for_more_options">Vedä ylös saadaksesi lisää asetuksia</string>
     <string name="recent_manga_source">%1$s - Luku %2$s</string>
     <string name="migration_info">Kosketa valitaksesi lähde josta vaihdetaan</string>
     <string name="migration_dialog_what_to_include">Valitse sisällytettävä tieto</string>
@@ -72,11 +70,9 @@
     <string name="file_select_cover">Valitse kansikuva</string>
     <string name="file_select_backup">Valitse varmuuskopio-tiedosto</string>
     <string name="file_select_icon">Valitse pikakuvakkeen ikoni</string>
-    <string name="update_check_title">Uusi versio saatavilla!</string>
     <string name="update_check_confirm">Lataa</string>
     <string name="update_check_ignore">Ohita</string>
     <string name="update_check_no_new_updates">Ei päivityksiä saatavilla</string>
-    <string name="update_check_download_started">Lataus aloitettu</string>
     <string name="update_check_look_for_updates">Etsitään päivityksiä…</string>
     <string name="update_check_notification_file_download">Lataa päivitys</string>
     <string name="update_check_notification_download_in_progress">Ladataan…</string>
@@ -503,4 +499,27 @@
     <string name="battery_optimization_disabled">Akun optimointi on jo poistettu käytöstä</string>
     <string name="email">Sähköpostiosoite</string>
     <string name="pref_cutout_short">Näytä sisältö leikkausalueella</string>
+    <string name="pref_always_show_chapter_transition">Näytä aina luvun vaihdos</string>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">Yhdelle sarjalle</item>
+        <item quantity="other">%d sarjalle</item>
+    </plurals>
+    <string name="notices">Ilmoitukset</string>
+    <string name="changelog">Muutoshistoria</string>
+    <string name="pref_theme_light">Vaalean teeman variantti</string>
+    <string name="theme_light_default">Oletus</string>
+    <string name="theme_light_blue">Vaaleansininen</string>
+    <string name="action_menu">Valikko</string>
+    <string name="action_reorganize_by">Uudelleenjärjestä</string>
+    <string name="action_newest">Uusin</string>
+    <string name="action_oldest">Vanhin</string>
+    <string name="action_move_to_top">Siirrä alkuun</string>
+    <string name="action_move_to_bottom">Siirrä loppuun</string>
+    <string name="action_sort_last_checked">Viimeksi tarkistettu</string>
+    <string name="pref_enable_automatic_extension_updates">Tarkista laajennuspäivitykset automaattisesti</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">Laajennuspäivitys saatavilla</item>
+        <item quantity="other">%d laajennuspäivitystä saatavilla</item>
+    </plurals>
+    <string name="channel_ext_updates">Laajennuspäivitykset</string>
 </resources>

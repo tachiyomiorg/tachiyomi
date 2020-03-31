@@ -26,7 +26,6 @@
     <string name="action_sort_alpha">Alfabetisk</string>
     <string name="action_sort_total">Totale kapittel</string>
     <string name="action_sort_last_read">Sist lest</string>
-    <string name="action_sort_last_updated">Sist oppdatert</string>
     <string name="action_search">Søk</string>
     <string name="action_select_all">Velg alt</string>
     <string name="action_mark_as_read">Marker som lest</string>
@@ -362,7 +361,6 @@
     <string name="transition_no_previous">Det er ikke noe tidligere kapittel</string>
     <string name="transition_pages_loading">Laster inn sider…</string>
     <string name="transition_pages_error">Klarte ikke å laste inn sider: %1$s</string>
-    <string name="reader_pull_up_for_more_options">Dra oppover for flere valg</string>
     <string name="recent_manga_source">%1$s - Kap.%2$s</string>
     <string name="migration_dialog_what_to_include">Velg data å inkludere</string>
     <string name="select">Velg</string>
@@ -405,9 +403,7 @@
     <string name="file_select_cover">Velg omslagsbilde</string>
     <string name="file_select_backup">Velg sikkerhetskopifil</string>
     <string name="file_select_icon">Velg snarveisikon</string>
-    <string name="update_check_title">Ny versjon tilgjengelig!</string>
     <string name="update_check_no_new_updates">Ingen nye oppdateringer tilgjengelige</string>
-    <string name="update_check_download_started">Nedlasting startet</string>
     <string name="update_check_look_for_updates">Ser etter oppdateringer…</string>
     <string name="update_check_notification_file_download">Last ned oppdatering</string>
     <string name="update_check_notification_download_in_progress">Laster ned…</string>

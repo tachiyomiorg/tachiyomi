@@ -22,7 +22,6 @@
     <string name="action_filter_bookmarked">Zakładki</string>
     <string name="action_filter_empty">Usuń filtrowanie</string>
     <string name="action_sort_last_read">Ostatnio czytane</string>
-    <string name="action_sort_last_updated">Ostatnio zaktualizowane</string>
     <string name="action_mark_as_read">Oznacz jako przeczytane</string>
     <string name="action_mark_as_unread">Oznacz jako nieprzeczytane</string>
     <string name="action_mark_previous_as_read">Oznacz poprzednie jako przeczytane</string>
@@ -123,11 +122,9 @@
     <string name="notification_no_connection_title">Synchronizacja anulowana</string>
     <string name="notification_no_connection_body">Brak połączenia</string>
     <string name="file_select_cover">Wybierz okładkę</string>
-    <string name="update_check_title">Dostępna nowa wersja!</string>
     <string name="update_check_confirm">Pobierz</string>
     <string name="update_check_ignore">Ignoruj</string>
     <string name="update_check_no_new_updates">Brak nowych aktualizacji</string>
-    <string name="update_check_download_started">Rozpoczęto pobieranie</string>
     <string name="update_check_look_for_updates">Szukanie aktualizacji…</string>
     <string name="update_check_notification_file_download">Pobierz aktualizację</string>
     <string name="update_check_notification_download_in_progress">Pobieranie…</string>
@@ -424,7 +421,6 @@ Nie znaleziono źródła %1$s</string>
     <string name="pref_true_color">Kolor 32-bitowy</string>
     <string name="pref_skip_read_chapters">Pomiń rozdziały ozn. jako przeczytane</string>
     <string name="pref_read_with_long_tap">Dialog po przytrzymaniu</string>
-    <string name="reader_pull_up_for_more_options">Wyciągnij po więcej opcji</string>
     <string name="pref_color_filter_mode">Tryb mieszania kolorów</string>
     <string name="filter_mode_default">Domyślny</string>
     <string name="filter_mode_overlay">Nakładka</string>

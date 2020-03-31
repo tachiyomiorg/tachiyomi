@@ -25,7 +25,6 @@
     <string name="action_sort_alpha">名称</string>
     <string name="action_sort_total">总章节</string>
     <string name="action_sort_last_read">最近阅读</string>
-    <string name="action_sort_last_updated">最近更新</string>
     <string name="action_search">搜索</string>
     <string name="action_global_search">全局搜索</string>
     <string name="action_select_all">全选</string>
@@ -392,11 +391,9 @@
     <string name="file_select_cover">选择封面图片</string>
     <string name="file_select_backup">选择备份文件</string>
     <string name="file_select_icon">选择快捷方式图标</string>
-    <string name="update_check_title">发现新版本！</string>
     <string name="update_check_confirm">下载</string>
     <string name="update_check_ignore">忽略</string>
     <string name="update_check_no_new_updates">没有发现新版本</string>
-    <string name="update_check_download_started">下载开始</string>
     <string name="update_check_look_for_updates">检查更新中…</string>
     <string name="update_check_notification_file_download">下载更新</string>
     <string name="update_check_notification_download_in_progress">下载中…</string>
@@ -422,8 +419,7 @@
     <string name="channel_library">书架</string>
     <string name="channel_downloader">下载</string>
     <string name="pref_read_with_long_tap">长按菜单</string>
-    <string name="reader_pull_up_for_more_options">向上滑动以显示更多选项</string>
-    <string name="action_open_in_web_view">用外部浏览器打开</string>
+    <string name="action_open_in_web_view">在 WebView 中打开</string>
     <string name="pref_true_color">32 位色彩</string>
     <string name="pref_skip_read_chapters">跳过已读章节</string>
     <string name="pref_color_filter_mode">滤镜调和模式</string>
@@ -502,7 +498,8 @@
     <string name="email">邮箱地址</string>
     <string name="pref_always_show_chapter_transition">总是显示章节之间的过渡界面</string>
     <plurals name="notification_new_chapters_summary">
-        <item quantity="other">共%d标题</item>
+        <item quantity="one">共 %d 个标题</item>
+        <item quantity="other"/>
     </plurals>
     <string name="pref_theme_light">默认浅色主题</string>
     <string name="theme_light_default">默认</string>
@@ -515,4 +512,12 @@
     <string name="action_oldest">最旧</string>
     <string name="action_move_to_top">移至顶部</string>
     <string name="action_move_to_bottom">移至底部</string>
+    <string name="action_sort_last_checked">最近检查</string>
+    <string name="pref_enable_automatic_extension_updates">检查扩展插件更新</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">%d 个扩展插件可更新</item>
+        <item quantity="other"/>
+    </plurals>
+    <string name="channel_ext_updates">扩展插件更新</string>
+    <string name="http_error_hint">在 WebView 中检查网站</string>
 </resources>

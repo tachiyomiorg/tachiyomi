@@ -16,7 +16,6 @@
     <string name="action_filter_empty">필터 제거</string>
     <string name="action_sort_alpha">알파벳 순으로</string>
     <string name="action_sort_last_read">읽은 순으로</string>
-    <string name="action_sort_last_updated">업데이트된 순으로</string>
     <string name="action_search">검색</string>
     <string name="action_select_all">전체 선택</string>
     <string name="action_mark_as_read">읽음으로 표시</string>
@@ -312,11 +311,9 @@
     <string name="file_select_cover">표지 이미지 선택</string>
     <string name="file_select_backup">백업 파일 선택</string>
     <string name="file_select_icon">바로가기 아이콘 선택</string>
-    <string name="update_check_title">새로운 업데이트 이용가능!</string>
     <string name="update_check_confirm">다운로드</string>
     <string name="update_check_ignore">무시</string>
     <string name="update_check_no_new_updates">새로운 업데이트 없음</string>
-    <string name="update_check_download_started">다운로드 시작됨</string>
     <string name="update_check_look_for_updates">"업데이트를 찾는중 "</string>
     <string name="update_check_notification_file_download">업데이트 다운로드</string>
     <string name="update_check_notification_download_in_progress">다운로드 진행중</string>
@@ -404,7 +401,6 @@
     <string name="url_not_set">만화 URL이 설정 되지 않았습니다. 제목을 클릭하고 만화를 다시 선택해주세요</string>
     <string name="error_category_exists">같은 이름을 가진 카테고리가 이미 존재합니다!</string>
     <string name="page_downloaded">페이지가 %1$s로 복사됨</string>
-    <string name="reader_pull_up_for_more_options">끌어 올려 더 많은 설정 표시</string>
     <string name="migration_info">탭하여 이동할 소스 선택</string>
     <string name="migration_dialog_what_to_include">선택하여 데이터 포함</string>
     <string name="migrate">이동</string>

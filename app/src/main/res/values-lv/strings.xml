@@ -24,7 +24,6 @@
     <string name="action_sort_alpha">Alfabētiski</string>
     <string name="action_sort_total">Nodaļu daudzums</string>
     <string name="action_sort_last_read">Pēdēji izlasīti</string>
-    <string name="action_sort_last_updated">Pēdēji atjaunināti</string>
     <string name="action_search">Meklēt</string>
     <string name="action_select_all">Atlasīt visus</string>
     <string name="action_mark_as_read">Atzīmēt kā izlasītu</string>

@@ -27,7 +27,6 @@
     <string name="action_sort_alpha">Alfabetno</string>
     <string name="action_sort_total">Ukupno poglavlja</string>
     <string name="action_sort_last_read">Zadnje čitano</string>
-    <string name="action_sort_last_updated">Zadnje ažurirano</string>
     <string name="action_search">Pretraži</string>
     <string name="action_global_search">Pretraži globalno</string>
     <string name="action_select_all">Izaberi sve</string>

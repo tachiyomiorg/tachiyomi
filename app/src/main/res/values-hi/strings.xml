@@ -24,7 +24,6 @@
     <string name="action_sort_alpha">वर्णक्रमानुसार</string>
     <string name="action_sort_total">कुल अध्याय</string>
     <string name="action_sort_last_read">आखिर में पढ़ा हुआ</string>
-    <string name="action_sort_last_updated">आखिरी अद्यतन</string>
     <string name="action_search">खोज</string>
     <string name="action_global_search">विश्वीय खोज</string>
     <string name="action_select_all">सभी का चयन करे</string>
@@ -332,11 +331,9 @@
     <string name="file_select_cover">कवर छवि का चयन करें</string>
     <string name="file_select_backup">बैकअप फ़ाइल का चयन करें</string>
     <string name="file_select_icon">शॉर्टकट आइकन चुनें</string>
-    <string name="update_check_title">नया संस्करण उपलब्ध है!</string>
     <string name="update_check_confirm">डाउनलोड</string>
     <string name="update_check_ignore">नज़रअंदाज़ करे</string>
     <string name="update_check_no_new_updates">कोई नया अद्यतन उपलब्ध नहीं है</string>
-    <string name="update_check_download_started">डाउनलोड शुरू</string>
     <string name="update_check_look_for_updates">अपडेट के लिए खोज…</string>
     <string name="update_check_notification_file_download">अद्यतन डाउनलोड करे</string>
     <string name="update_check_notification_download_in_progress">डाउनलोड…</string>
@@ -419,7 +416,6 @@
     <string name="transition_no_previous">कोई पिछला अध्याय नहीं है</string>
     <string name="transition_pages_loading">पेज लोड हो रहे है …</string>
     <string name="transition_pages_error">पृष्ठों को लोड करने में विफल है: %1$s</string>
-    <string name="reader_pull_up_for_more_options">अधिक विकल्पों के लिए खींचो</string>
     <string name="pref_read_with_long_tap">संवाद के लिए लंबी प्रेस</string>
     <string name="action_open_in_web_view">वेब दृश्य में खोलें</string>
     <string name="pref_true_color">32 बिट रंग</string>
@@ -517,4 +513,12 @@
     <string name="action_oldest">सबसे पुराना</string>
     <string name="action_move_to_top">शीर्ष पर ले जाएँ</string>
     <string name="action_move_to_bottom">नीचे की ओर ले जाएं</string>
+    <string name="action_sort_last_checked">अंतिम बार जाँच की गई</string>
+    <string name="pref_enable_automatic_extension_updates">एक्सटेंशन अपडेट की जांच करें</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">एक्सटेंशन अपडेट उपलब्ध</item>
+        <item quantity="other">%d एक्सटेंशन अपडेट उपलब्ध</item>
+    </plurals>
+    <string name="channel_ext_updates">एक्सटेंशन अपडेट</string>
+    <string name="http_error_hint">वेबव्यू में वेबसाइट देखें</string>
 </resources>

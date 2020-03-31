@@ -24,7 +24,6 @@
     <string name="action_sort_alpha">Abjad</string>
     <string name="action_sort_total">Jumlah bab</string>
     <string name="action_sort_last_read">Bacaan terakhir</string>
-    <string name="action_sort_last_updated">Kemas kini terakhir</string>
     <string name="action_search">Carian</string>
     <string name="action_global_search">Carian keseluruhan</string>
     <string name="action_select_all">Pilih semua</string>
@@ -332,11 +331,9 @@
     <string name="file_select_cover">Pilih imej muka hadapan</string>
     <string name="file_select_backup">Pilih fail sandaran</string>
     <string name="file_select_icon">Pilih ikon pintasan</string>
-    <string name="update_check_title">Versi baharu boleh didapati!</string>
     <string name="update_check_confirm">Muat turun</string>
     <string name="update_check_ignore">Abaikan</string>
     <string name="update_check_no_new_updates">Tiada versi baharu tersedia</string>
-    <string name="update_check_download_started">Muat turun dimulakan</string>
     <string name="update_check_look_for_updates">Mencari versi baharu…</string>
     <string name="update_check_notification_file_download">Muat turun versi baharu</string>
     <string name="update_check_notification_download_in_progress">Memuat turun…</string>
@@ -418,7 +415,6 @@
     <string name="transition_no_previous">Tiada bab sebelumnya dijumpai</string>
     <string name="transition_pages_loading">Memuatkan halaman…</string>
     <string name="transition_pages_error">Gagal untuk memuatkan halaman: %1$s</string>
-    <string name="reader_pull_up_for_more_options">Tarik atas untuk lebih banyak pilihan</string>
     <string name="migration_info">Pilih sumber untuk ditukar</string>
     <string name="migration_dialog_what_to_include">Pilih data untuk disertakan</string>
     <string name="select">Pilih</string>
@@ -515,4 +511,11 @@
     <string name="action_oldest">Terlama</string>
     <string name="action_move_to_top">Naik ke atas</string>
     <string name="action_move_to_bottom">Turun ke bawah</string>
+    <string name="action_sort_last_checked">Akhir disemak</string>
+    <string name="pref_enable_automatic_extension_updates">Menyemak kemas kini sambungan</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="other">%d kemas kini sambungan tersedia</item>
+    </plurals>
+    <string name="channel_ext_updates">Kemas kini sambungan</string>
+    <string name="http_error_hint">Semak laman web dalam WebView</string>
 </resources>

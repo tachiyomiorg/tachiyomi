@@ -27,7 +27,6 @@
     <string name="action_sort_alpha">Alfabeticamente</string>
     <string name="action_sort_total">Capìtulos totales</string>
     <string name="action_sort_last_read">Ùrtimos lèghidos</string>
-    <string name="action_sort_last_updated">Ùrtimos agiornados</string>
     <string name="action_search">Chirca</string>
     <string name="action_global_search">Chirca globale</string>
     <string name="action_select_all">Ischerta totu</string>
@@ -374,7 +373,6 @@
     <string name="transition_no_previous">Non b\'at unu capìtulu antepostu</string>
     <string name="transition_pages_loading">Carrighende pàginas…</string>
     <string name="transition_pages_error">Carrigamentu de pàginas fallidu: %1$s</string>
-    <string name="reader_pull_up_for_more_options">Tira a susu pro àteras optziones</string>
     <string name="recent_manga_source">%1$s - Cap.%2$s</string>
     <string name="migration_info">Toca pro ischertare sa mitza dae sa cale migrare</string>
     <string name="migration_dialog_what_to_include">Ischerta sos datos de incluire</string>
@@ -394,17 +392,15 @@
     <string name="file_select_cover">Ischerta s\'immàgine de cobertedda</string>
     <string name="file_select_backup">Ischerta sa còpia de seguresa</string>
     <string name="file_select_icon">Ischerta s\'icona de s\'incurtzadura</string>
-    <string name="update_check_title">Versione noa disponìbile!</string>
     <string name="update_check_confirm">Iscàrriga</string>
     <string name="update_check_ignore">Ignora</string>
     <string name="update_check_no_new_updates">Non bi sunt agiornamentos disponìbiles noos</string>
-    <string name="update_check_download_started">Iscarrigamentu incumintzadu</string>
     <string name="update_check_look_for_updates">Chirchende agiornamentos…</string>
     <string name="update_check_notification_file_download">Iscàrriga s\'agiornamentu</string>
     <string name="update_check_notification_download_in_progress">Iscarrighende…</string>
     <string name="update_check_notification_download_complete">Iscarrigamentu acabadu</string>
     <string name="update_check_notification_download_error">Errore de iscarrigamentu</string>
-    <string name="update_check_notification_update_available">Agiornamentu disponìbile</string>
+    <string name="update_check_notification_update_available">Versione noa a disponimentu!</string>
     <string name="description_backdrop">Immàgine de isfundu de su manga</string>
     <string name="description_cover">Cobertedda de su manga</string>
     <string name="information_no_downloads">Perunu iscarrigamentu</string>
@@ -423,7 +419,7 @@
     <string name="channel_common">Comunu</string>
     <string name="channel_library">Biblioteca</string>
     <string name="channel_downloader">Iscarrigadore</string>
-    <string name="action_open_in_web_view">Aberi in sa vista</string>
+    <string name="action_open_in_web_view">Aberi in sa vista web</string>
     <string name="pref_true_color">Colore a 32 bit</string>
     <string name="pref_skip_read_chapters">Brinca sos capìtulos marcados comente lèghidos</string>
     <string name="pref_color_filter_mode">Modalidade de fusione de su filtru colore</string>
@@ -508,4 +504,24 @@
         <item quantity="one">Pro 1 tìtulu</item>
         <item quantity="other">Pro %d tìtulos</item>
     </plurals>
+    <string name="notices">Avisos</string>
+    <string name="changelog">Registru de sas modìficas</string>
+    <string name="pref_theme_light">Variatzione de su tema craru</string>
+    <string name="theme_light_default">Predefinidu</string>
+    <string name="theme_light_blue">Biaitu craru</string>
+    <string name="action_menu">Menù</string>
+    <string name="action_reorganize_by">Riòrdina</string>
+    <string name="action_newest">Prus noos</string>
+    <string name="action_oldest">Prus betzos</string>
+    <string name="action_move_to_top">Manda a pitzus</string>
+    <string name="action_move_to_bottom">Manda a fundu</string>
+    <string name="action_sort_last_checked">Ùrtima chirca</string>
+    <string name="pref_enable_automatic_extension_updates">Chirca agiornamentos de sas estensiones</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">B\'at un\'agiornamentu disponìbile pro un\'estensione</item>
+        <item quantity="other">B\'ant agiornamentos disponìbiles pro %d estensiones</item>
+    </plurals>
+    <string name="channel_ext_updates">Agiornamentos de sas estensiones</string>
+    <string name="http_error_hint">Verìfica su situ web cun sa visualizatzione web</string>
+    <string name="updating_library">Agiornende sa biblioteca</string>
 </resources>

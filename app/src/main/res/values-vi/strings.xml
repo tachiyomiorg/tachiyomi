@@ -20,7 +20,6 @@
     <string name="action_filter_empty">Bỏ bộ lọc</string>
     <string name="action_sort_alpha">Theo bảng chữ cái</string>
     <string name="action_sort_last_read">Đã đọc gần nhất</string>
-    <string name="action_sort_last_updated">Cập nhật mới nhất</string>
     <string name="action_search">Tìm kiếm</string>
     <string name="action_select_all">Chọn tất cả</string>
     <string name="action_mark_as_read">Đánh dấu là đã đọc</string>
@@ -299,11 +298,9 @@
     <string name="file_select_backup">Chọn file sao lưu</string>
     <string name="file_select_icon">Chọn biểu tượng phím tắt</string>
     <!--UpdateCheck-->
-    <string name="update_check_title">Có bản cập nhật mới!</string>
     <string name="update_check_confirm">Tải xuống</string>
     <string name="update_check_ignore">Bỏ qua</string>
     <string name="update_check_no_new_updates">Không có cập nhật mới</string>
-    <string name="update_check_download_started">Đã bắt đầu tải xuống</string>
     <string name="update_check_look_for_updates">Đang tìm bản cập nhật mới</string>
     <!--UpdateCheck Notifications-->
     <string name="update_check_notification_file_download">Tải xuống cập nhật</string>
@@ -455,7 +452,6 @@
     <string name="channel_library">Thư viện</string>
     <string name="channel_downloader">Trình tải xuống</string>
     <string name="pref_read_with_long_tap">Nhấn giữ mở hộp thoại</string>
-    <string name="reader_pull_up_for_more_options">Kéo xuống có nhiều tuỳ chọn</string>
     <string name="action_open_in_web_view">Mở bằng webview</string>
     <string name="pref_true_color">Màu 32-bit</string>
     <string name="pref_skip_read_chapters">Bỏ qua chap đã đọc</string>
