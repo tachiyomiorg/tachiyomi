@@ -9,7 +9,6 @@
     <string name="label_download_queue">Sedang diunduh</string>
     <string name="label_library">Perpustakaan</string>
     <string name="label_recent_manga">Riwayat</string>
-    <string name="label_catalogues">Katalog</string>
     <string name="label_recent_updates">Pembaruan</string>
     <string name="label_categories">Kategori</string>
     <string name="label_backup">Cadangan</string>
@@ -329,13 +328,13 @@
     <string name="update_check_notification_download_in_progress">Mengunduh…</string>
     <string name="update_check_notification_download_complete">Mengunduh selesai</string>
     <string name="update_check_notification_download_error">Terjadi kesalahan saat mengunduh</string>
-    <string name="update_check_notification_update_available">Versi terbaru tersedia</string>
+    <string name="update_check_notification_update_available">Versi baru tersedia!</string>
     <string name="description_backdrop">Gambar latar belakang manga</string>
     <string name="description_cover">Sampul manga</string>
     <string name="information_no_downloads">Tidak ada unduhan</string>
     <string name="information_no_recent">Tidak ada bab terbaru</string>
     <string name="information_no_recent_manga">Tidak ada manga yang baru saja dibaca</string>
-    <string name="information_empty_library">Perpustakaan Anda kosong, tambahkan seri ke perpustakaan Anda dari katalog.</string>
+    <string name="information_empty_library">Perpustakaan Anda kosong, tambahkan seri ke perpustakaan Anda dari sumber.</string>
     <string name="download_notifier_downloader_title">Pengunduh</string>
     <string name="download_notifier_title_error">Gagal</string>
     <string name="download_notifier_unkown_error">Terjadi kesalahan tak terduga saat mengunduh bab</string>
@@ -394,7 +393,6 @@
     <string name="manga_info_latest_data_label">Terbarui</string>
     <string name="copied_to_clipboard">%1$s tersalin ke clipboard</string>
     <string name="custom_download">Unduh sejumlah tertentu</string>
-    <string name="custom_hint">jumlah</string>
     <string name="download_custom">Kustom</string>
     <string name="migration_info">Ketuk untuk memilih sumber awal</string>
     <string name="migration_dialog_what_to_include">Pilih data yang ikut dipindah</string>
@@ -511,4 +509,9 @@
         <item quantity="other">Untuk judul %d</item>
     </plurals>
     <string name="changelog">Catatan perubahan</string>
+    <string name="label_sources">Sumber</string>
+    <string name="channel_ext_updates">Pembaruan ekstensi</string>
+    <string name="pref_enable_automatic_extension_updates">Periksa untuk pembaruan extension</string>
+    <string name="pref_category_reading">Membaca</string>
+    <string name="action_sort_last_checked">Terakhir diperiksa</string>
 </resources>

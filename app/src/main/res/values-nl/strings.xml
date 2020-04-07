@@ -9,7 +9,6 @@
     <string name="label_settings">Instellingen</string>
     <string name="label_library">Bibliotheek</string>
     <string name="label_recent_manga">Geschiedenis</string>
-    <string name="label_catalogues">Catalogi</string>
     <string name="label_categories">Categorieën</string>
     <string name="label_backup">Back-up</string>
     <string name="action_settings">Instellingen</string>
@@ -361,7 +360,6 @@
     <string name="label_migration">Bronmigratie</string>
     <string name="label_extensions">Extensies</string>
     <string name="label_extension_info">Informatie over extensie</string>
-    <string name="custom_hint">hoeveelheid</string>
     <string name="all_lang">Alles</string>
     <string name="ext_details">Details</string>
     <string name="ext_update">Bijwerken</string>
@@ -480,4 +478,11 @@
     <string name="unlock_app">Ontgrendel Tachiyomi</string>
     <string name="secure_screen_summary">Verberg inhoud van app bij omschakelen tussen apps en blokkeer schermafbeeldingen</string>
     <string name="pref_category_display">Weergave</string>
+    <string name="action_move_to_bottom">Verplaats naar beneden</string>
+    <string name="action_oldest">Oudste</string>
+    <string name="action_newest">Nieuwste</string>
+    <string name="action_reorganize_by">Opnieuw organiseren</string>
+    <string name="action_hide">Verbergen</string>
+    <string name="action_sort_last_checked">Laatst gecheckt</string>
+    <string name="action_menu">Menu</string>
 </resources>

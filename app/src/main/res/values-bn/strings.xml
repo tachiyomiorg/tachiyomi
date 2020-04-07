@@ -10,7 +10,6 @@
     <string name="label_download_queue">ডাউনলোড</string>
     <string name="label_library">মাংগা সংগ্রহ</string>
     <string name="label_recent_manga">সম্প্রতি পঠিত</string>
-    <string name="label_catalogues">তালিকাগুলো</string>
     <string name="label_recent_updates">সংগ্রহ হালনাগাদ</string>
     <string name="label_categories">বিভাগ সমূহ</string>
     <string name="label_backup">ব্যাকআপ</string>
@@ -392,7 +391,6 @@
     <string name="manga_info_latest_data_label">আপডেট হয়েছে</string>
     <string name="copied_to_clipboard">%1$s ক্লিপবোর্ডে কপি হয়েছে</string>
     <string name="custom_download">কাস্টম পরিমাণ ডাউনলোড করুন</string>
-    <string name="custom_hint">পরিমাণ</string>
     <string name="download_custom">কাস্টম</string>
     <string name="migration_info">সরিয়ে নেয়ার জন্য উৎস নির্বাচন করুন</string>
     <string name="migration_dialog_what_to_include">যোগ করার জন্য উপাত্ত নির্বাচন করুন</string>

@@ -6,7 +6,6 @@
     <string name="label_download_queue">Coda dei download</string>
     <string name="label_library">Collezione</string>
     <string name="label_recent_manga">Cronologia</string>
-    <string name="label_catalogues">Cataloghi</string>
     <string name="label_recent_updates">Aggiornamenti</string>
     <string name="label_categories">Categorie</string>
     <string name="label_backup">Backup</string>
@@ -296,7 +295,7 @@
     <string name="update_check_notification_download_in_progress">Scaricamento…</string>
     <string name="update_check_notification_download_complete">Download completato</string>
     <string name="update_check_notification_download_error">Errore di download</string>
-    <string name="update_check_notification_update_available">Aggiornamento disponibile</string>
+    <string name="update_check_notification_update_available">Aggiornamento disponibile!</string>
     <!--Content Description-->
     <string name="description_backdrop">Immagine di sfondo del manga</string>
     <string name="description_cover">Copertina del manga</string>
@@ -304,7 +303,7 @@
     <string name="information_no_downloads">Nessun download</string>
     <string name="information_no_recent">Non ci sono capitoli più recenti</string>
     <string name="information_no_recent_manga">Non ci sono manga letti di recente</string>
-    <string name="information_empty_library">Collezione vuota, aggiungi delle serie alla collezione dai cataloghi.</string>
+    <string name="information_empty_library">Libraria vuota, aggiungi delle serie dalle fonti.</string>
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Scaricamento</string>
     <string name="download_notifier_title_error">Errore</string>
@@ -424,7 +423,6 @@
     <string name="copied_to_clipboard">%1$s copiato negli appunti</string>
     <string name="source_not_installed">Sorgente non installata: %1$s</string>
     <string name="custom_download">Scarica quantità personalizzata</string>
-    <string name="custom_hint">quantità</string>
     <string name="download_custom">Personalizzato</string>
     <string name="repeating">Rileggendo</string>
     <string name="track_status">Stato</string>
@@ -556,4 +554,8 @@
     <string name="action_newest">Nuovi</string>
     <string name="action_sort_last_checked">Ultimi controllati</string>
     <string name="action_menu">Menu</string>
+    <string name="label_sources">Fonti</string>
+    <string name="updating_library">Libreria in aggiornamento</string>
+    <string name="pref_category_reading">In Lettura</string>
+    <string name="pref_skip_filtered_chapters">Salta capitoli filtrati</string>
 </resources>

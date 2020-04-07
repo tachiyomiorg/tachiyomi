@@ -9,7 +9,6 @@
     <string name="label_download_queue">ダウンロードキュー</string>
     <string name="label_library">ライブラリ</string>
     <string name="label_recent_manga">履歴</string>
-    <string name="label_catalogues">カタログ</string>
     <string name="label_recent_updates">最近の更新</string>
     <string name="label_categories">カテゴリ</string>
     <string name="label_backup">バックアップ</string>
@@ -317,7 +316,6 @@
     <string name="sort_by_number">チャプター番号別</string>
     <string name="manga_download">ダウンロード</string>
     <string name="custom_download">カスタムの数でダウンロード</string>
-    <string name="custom_hint">数量</string>
     <string name="download_1">次のチャプター</string>
     <string name="download_5">次の5チャプター</string>
     <string name="download_10">次の10チャプター</string>

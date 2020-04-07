@@ -10,7 +10,6 @@
     <string name="label_download_queue">İndirme kuyruğu</string>
     <string name="label_library">Kitaplık</string>
     <string name="label_recent_manga">Geçmiş</string>
-    <string name="label_catalogues">Kataloglar</string>
     <string name="label_recent_updates">Güncellemeler</string>
     <string name="label_categories">Kategoriler</string>
     <string name="label_backup">Yedekleme</string>
@@ -18,12 +17,12 @@
     <string name="label_extensions">Eklentiler</string>
     <string name="label_extension_info">Eklenti bilgisi</string>
     <string name="action_settings">Ayarlar</string>
-    <string name="action_filter">Süz</string>
+    <string name="action_filter">Filtrele</string>
     <string name="action_filter_downloaded">İndirilen</string>
     <string name="action_filter_bookmarked">İşaretli</string>
     <string name="action_filter_unread">Okunmamış</string>
     <string name="action_filter_read">Okunmuş</string>
-    <string name="action_filter_empty">Süzgeçi kaldır</string>
+    <string name="action_filter_empty">Filtreyi kaldır</string>
     <string name="action_sort_alpha">Alfabetik</string>
     <string name="action_sort_total">Toplam bölüm</string>
     <string name="action_sort_last_read">Son okunan</string>
@@ -67,7 +66,7 @@
     <string name="action_display_grid">Izgara</string>
     <string name="action_display_list">Liste</string>
     <string name="action_display_download_badge">Rozetleri indir</string>
-    <string name="action_set_filter">Süzgeç ayarla</string>
+    <string name="action_set_filter">Filtre ayarla</string>
     <string name="action_cancel">İptal</string>
     <string name="action_sort">Sırala</string>
     <string name="action_install">Kur</string>
@@ -148,7 +147,7 @@
     <string name="pref_show_page_number">Sayfa numarası göster</string>
     <string name="pref_crop_borders">Kenarları kırp</string>
     <string name="pref_custom_brightness">Özel parlaklık kullan</string>
-    <string name="pref_custom_color_filter">Özel renk süzgeçi kullan</string>
+    <string name="pref_custom_color_filter">Özel renk filtresi kullan</string>
     <string name="pref_keep_screen_on">Ekranı açık tut</string>
     <string name="pref_reader_navigation">Gezinti</string>
     <string name="pref_read_with_volume_keys">Ses tuşları</string>
@@ -263,7 +262,7 @@
     <string name="local_source_badge">Yerel</string>
     <string name="confirm_delete_manga">Seçilen mangayı kaldırmak istediğinizden emin misiniz?</string>
     <string name="also_delete_chapters">İndirilen bölümleri de sil</string>
-    <string name="source_search_options">Arama süzgeçleri</string>
+    <string name="source_search_options">Arama filtreleri</string>
     <string name="source_requires_login">Bu kaynak giriş yapmanızı gerektirir</string>
     <string name="select_source">Bir kaynak seç</string>
     <string name="no_valid_sources">Lütfen en az bir geçerli kaynağı etkinleştirin</string>
@@ -320,7 +319,6 @@
     <string name="sort_by_number">Bölüm numarasına göre</string>
     <string name="manga_download">İndir</string>
     <string name="custom_download">Özel toplamda indir</string>
-    <string name="custom_hint">Toplam</string>
     <string name="download_1">Sonraki bölüm</string>
     <string name="download_5">Sonraki 5 bölüm</string>
     <string name="download_10">Sonraki 10 bölüm</string>
@@ -351,7 +349,7 @@
     <string name="picture_saved">Resim kaydedildi</string>
     <string name="saving_picture">Resim kaydediliyor</string>
     <string name="options">Seçenekler</string>
-    <string name="custom_filter">Özel süzgeç</string>
+    <string name="custom_filter">Özel filtre</string>
     <string name="set_as_cover">Kapak olarak ayarla</string>
     <string name="cover_updated">Kapak güncellendi</string>
     <string name="page_downloaded">Sayfa %1$s konumuna kopyalandı</string>
@@ -397,7 +395,7 @@
     <string name="information_no_downloads">İndirme yok</string>
     <string name="information_no_recent">Yeni bölüm yok</string>
     <string name="information_no_recent_manga">Yakında okunan manga yok</string>
-    <string name="information_empty_library">Kitaplığınız boş, kataloglardan kitaplığınıza serileri ekleyin.</string>
+    <string name="information_empty_library">Kitaplığınız boş, serileri kaynaklardan kitaplığınıza ekleyin.</string>
     <string name="information_empty_category">Kategoriniz yok. Kitaplığınızı düzenlemek için bir tane oluşturmak için artı düğmesine basın.</string>
     <string name="download_notifier_downloader_title">İndirici</string>
     <string name="download_notifier_title_error">Hata</string>
@@ -422,7 +420,7 @@
     <string name="action_open_in_web_view">Web görünümünde aç</string>
     <string name="pref_true_color">32-bit renk</string>
     <string name="pref_skip_read_chapters">Okunmuş olarak işaretli bölümleri atla</string>
-    <string name="pref_color_filter_mode">Renk süzgeçi karışım kipi</string>
+    <string name="pref_color_filter_mode">Renk filtresi karışım kipi</string>
     <string name="filter_mode_default">Öntanımlı</string>
     <string name="filter_mode_overlay">Kaplama</string>
     <string name="filter_mode_multiply">Çarpma</string>
@@ -524,4 +522,8 @@
     <string name="http_error_hint">Web sitesini WebWiew ile görüntüle</string>
     <string name="channel_ext_updates">Uzantı güncellemeleri</string>
     <string name="updating_library">Kitaplık güncelleniyor</string>
+    <string name="pref_category_reading">Okunan</string>
+    <string name="pref_skip_filtered_chapters">Filtrelenmiş bölümleri geç</string>
+    <string name="label_sources">Kaynaklar</string>
+    <string name="action_select_inverse">Tersini seç</string>
 </resources>

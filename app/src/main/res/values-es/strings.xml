@@ -7,7 +7,6 @@
     <string name="label_library">Librería</string>
     <string name="label_recent_manga">Historial</string>
     <string name="label_recent_updates">Actualizaciones</string>
-    <string name="label_catalogues">Catálogos</string>
     <string name="label_categories">Categorías</string>
     <string name="label_backup">Copia de seguridad</string>
     <!-- Actions -->
@@ -97,7 +96,7 @@
     <string name="left_to_right_viewer">Izquierda a derecha</string>
     <string name="right_to_left_viewer">Derecha a izquierda</string>
     <string name="vertical_viewer">Vertical</string>
-    <string name="webtoon_viewer">WEBTOON</string>
+    <string name="webtoon_viewer">Webcomic</string>
     <string name="pref_image_decoder">Decodificador de imagen</string>
     <string name="pref_image_scale_type">Tipo de escalado</string>
     <string name="scale_type_fit_screen">Ajustar a la pantalla</string>
@@ -244,7 +243,7 @@
     <string name="update_check_notification_download_in_progress">Descargando…</string>
     <string name="update_check_notification_download_complete">Descarga completa</string>
     <string name="update_check_notification_download_error">Error en la descargar</string>
-    <string name="update_check_notification_update_available">Actualización disponible</string>
+    <string name="update_check_notification_update_available">Nueva versión disponible!</string>
     <!--Content Description-->
     <string name="description_backdrop">Imagen de fondo del manga</string>
     <string name="description_cover">Imagen de fondo del manga</string>
@@ -252,7 +251,7 @@
     <string name="information_no_downloads">No hay descargas</string>
     <string name="information_no_recent">No hay capítulos recientes</string>
     <string name="information_no_recent_manga">No hay mangas leídos recientes</string>
-    <string name="information_empty_library">Tu biblioteca está vacía, agrega series a tu biblioteca desde los catálogos.</string>
+    <string name="information_empty_library">Tu biblioteca está vacía, agrega series a tu biblioteca desde las fuentes.</string>
     <!-- Download Notification -->
     <string name="download_notifier_title_error">Error</string>
     <string name="download_notifier_unkown_error">No se pudo descargar el capítulo debido a un error inesperado</string>
@@ -407,7 +406,6 @@
     <string name="ext_language_info">Idioma: %1$s</string>
     <string name="double_tap_anim_speed_normal">Normal</string>
     <string name="double_tap_anim_speed_fast">Rápida</string>
-    <string name="custom_hint">cantidad</string>
     <string name="transition_next">Siguiente:</string>
     <string name="transition_previous">Anterior:</string>
     <string name="transition_no_next">No hay capítulo siguiente</string>
@@ -446,7 +444,7 @@
     <string name="pref_double_tap_anim_speed">Velocidad de animación de doble toque</string>
     <string name="pager_viewer">Paginado</string>
     <string name="pref_read_with_long_tap">Diálogo de toque largo</string>
-    <string name="action_open_in_web_view">Abrir en vista web</string>
+    <string name="action_open_in_web_view">Abrir en WebView</string>
     <string name="pref_skip_read_chapters">Saltar capítulos marcados como leídos</string>
     <string name="pref_true_color">Color en 32 bits</string>
     <string name="pref_color_filter_mode">Modo de mezcla de filtro de color</string>
@@ -477,7 +475,7 @@
     <string name="logout_title">Cerrar sesión de %1$s\?</string>
     <string name="want_to_read">Quiero leer</string>
     <string name="label_more">Más</string>
-    <string name="action_sort_latest_chapter">Último capítulo</string>
+    <string name="action_sort_latest_chapter">Ultimo capítulo</string>
     <string name="action_view_chapters">Ver capítulos</string>
     <string name="action_cancel_all">Cancelar todo</string>
     <string name="pref_theme_mode">Tema</string>
@@ -487,7 +485,7 @@
     <string name="pref_theme_dark">Variación del tema oscuro</string>
     <string name="theme_dark_default">Por defecto</string>
     <string name="theme_dark_blue">Negro y azul</string>
-    <string name="theme_dark_amoled">AMOLED Negro</string>
+    <string name="theme_dark_amoled">AMOLED negro</string>
     <string name="pref_manage_notifications">Administrar notificaciones</string>
     <string name="pref_category_security">Seguridad</string>
     <string name="lock_with_biometrics">Bloquear con huella</string>
@@ -516,7 +514,7 @@
     <string name="notification_chapters_single_and_more">Capítulo %1$s y %2$d más</string>
     <string name="notification_chapters_multiple">Capítulos %1$s</string>
     <plurals name="notification_chapters_multiple_and_more">
-        <item quantity="one">Capítulo %1$s y 1 más</item>
+        <item quantity="one">Capítulos %1$s y 1 más</item>
         <item quantity="other">Capítulos %1$s y %2$d más</item>
     </plurals>
     <string name="action_hide">Ocultar</string>
@@ -538,8 +536,21 @@
     <string name="theme_light_blue">Azul y blanco</string>
     <string name="action_menu">Menú</string>
     <string name="action_reorganize_by">Reordenar</string>
-    <string name="action_newest">Lo nuevo</string>
-    <string name="action_oldest">Lo más Antiguo</string>
+    <string name="action_newest">Lo más nuevo</string>
+    <string name="action_oldest">Lo más antiguo</string>
     <string name="action_move_to_top">Mover al principio</string>
     <string name="action_move_to_bottom">Mover al final</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">Esta disponible actualización para extension</item>
+        <item quantity="other">Estan disponibles %d actualizaciónes para extensiones</item>
+    </plurals>
+    <string name="updating_library">Librería esta actualizando</string>
+    <string name="http_error_hint">Revisar la pagina en WebView</string>
+    <string name="pref_enable_automatic_extension_updates">Revisar actualizaciones de extensiones</string>
+    <string name="action_sort_last_checked">Ultimo revisado</string>
+    <string name="channel_ext_updates">Actualizacion de extensión</string>
+    <string name="pref_skip_filtered_chapters">Saltar capítulos filtrados</string>
+    <string name="pref_category_reading">Leer</string>
+    <string name="label_sources">Fuentes</string>
+    <string name="action_select_inverse">Seleccion inversa</string>
 </resources>

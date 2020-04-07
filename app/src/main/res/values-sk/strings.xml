@@ -10,7 +10,6 @@
     <string name="label_download_queue">Sťahujúce sa</string>
     <string name="label_library">Knižnica</string>
     <string name="label_recent_manga">Nedávno čítané</string>
-    <string name="label_catalogues">Katalógy</string>
     <string name="label_recent_updates">Updaty</string>
     <string name="label_categories">Kategórie</string>
     <string name="label_backup">Záloha</string>
@@ -339,7 +338,6 @@
     <string name="sort_by_number">Podľa čísla kapitoly</string>
     <string name="manga_download">Stiahnuť</string>
     <string name="custom_download">Stiahnutie vlastného počtu</string>
-    <string name="custom_hint">počet</string>
     <string name="download_1">Stiahnuť ďalšiu kapitolu</string>
     <string name="download_5">Stiahnuť ďalších 5 kapitol</string>
     <string name="download_10">Stiahnuť ďalších 10 kapitol</string>

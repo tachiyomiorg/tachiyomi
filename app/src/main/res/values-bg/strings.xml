@@ -6,7 +6,6 @@
     <string name="label_download_queue">Изтегляния</string>
     <string name="label_library">Библиотека</string>
     <string name="label_recent_manga">Наскоро прочетени</string>
-    <string name="label_catalogues">Каталози</string>
     <string name="label_recent_updates">Наскоро обновени</string>
     <string name="label_categories">Категории</string>
     <string name="label_backup">Резервно копие</string>
@@ -428,7 +427,6 @@
     <string name="manga_info_latest_data_label">Обновена</string>
     <string name="copied_to_clipboard">%1$s копирано към клипборда</string>
     <string name="custom_download">Изтегли определен брой</string>
-    <string name="custom_hint">брой</string>
     <string name="download_custom">Определен брой</string>
     <string name="migration_info">Натисни, за да избереш от кой източник да мигрираш</string>
     <string name="migration_dialog_what_to_include">Изберете кои данни ще мигрирате</string>

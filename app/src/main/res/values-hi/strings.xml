@@ -10,7 +10,6 @@
     <string name="label_download_queue">डाउनलोड कतार</string>
     <string name="label_library">पुस्तकालय</string>
     <string name="label_recent_manga">इतिहास</string>
-    <string name="label_catalogues">सूची</string>
     <string name="label_recent_updates">अद्यतन</string>
     <string name="label_categories">श्रेणियाँ</string>
     <string name="label_backup">बैकअप</string>
@@ -339,13 +338,13 @@
     <string name="update_check_notification_download_in_progress">डाउनलोड…</string>
     <string name="update_check_notification_download_complete">डाउनलोड सम्पन्न हुआ</string>
     <string name="update_check_notification_download_error">डाउनलोड त्रुटि</string>
-    <string name="update_check_notification_update_available">अद्यतन उपलब्ध है</string>
+    <string name="update_check_notification_update_available">नया संस्करण उपलब्ध है!</string>
     <string name="description_backdrop">मैंगा की पृष्ठभूमि छवि</string>
     <string name="description_cover">मंगा का आवरण</string>
     <string name="information_no_downloads">कोई डाउनलोड नहीं है</string>
     <string name="information_no_recent">हाल के कोई अध्याय नहीं है</string>
     <string name="information_no_recent_manga">हाल ही में मंगा पढ़ा नहीं है</string>
-    <string name="information_empty_library">आपकी लाइब्रेरी खाली है, कैटलॉग से आपकी लाइब्रेरी में श्रृंखला जोड़ें।</string>
+    <string name="information_empty_library">आपकी लाइब्रेरी खाली है, स्रोतों से अपनी लाइब्रेरी में श्रृंखला जोड़ें।</string>
     <string name="information_empty_category">आपके पास कोई श्रेणियां नहीं हैं अपने पुस्तकालय के आयोजन के लिए एक बनाने के लिए प्लस बटन को दबाएं।</string>
     <string name="download_notifier_downloader_title">डाउनलोडर</string>
     <string name="download_notifier_title_error">त्रुटि</string>
@@ -392,7 +391,6 @@
     <string name="manga_info_latest_data_label">अपडेट किया गया</string>
     <string name="copied_to_clipboard">%1$s क्लिपबोर्ड पर नकल</string>
     <string name="custom_download">कस्टम राशि डाउनलोड करें</string>
-    <string name="custom_hint">रकम</string>
     <string name="download_custom">कस्टम</string>
     <string name="migration_info">से माइग्रेट करने के लिए स्रोत का चयन करने के लिए टैप करें</string>
     <string name="migration_dialog_what_to_include">शामिल करने के लिए डेटा का चयन करें</string>
@@ -521,4 +519,8 @@
     </plurals>
     <string name="channel_ext_updates">एक्सटेंशन अपडेट</string>
     <string name="http_error_hint">वेबव्यू में वेबसाइट देखें</string>
+    <string name="updating_library">अद्यतन पुस्तकालय</string>
+    <string name="pref_category_reading">पठन</string>
+    <string name="pref_skip_filtered_chapters">फ़िल्टर किए गए अध्यायों को छोड़ें</string>
+    <string name="label_sources">स्रोत</string>
 </resources>

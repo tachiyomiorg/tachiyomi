@@ -7,7 +7,6 @@
     <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Histórico</string>
     <string name="label_recent_updates">Atualizações</string>
-    <string name="label_catalogues">Catálogos</string>
     <string name="label_categories">Categorias</string>
     <string name="label_backup">Cópia de segurança</string>
     <!-- Actions -->
@@ -407,7 +406,6 @@
     <string name="source_not_installed">Fonte não instalada: %1$s</string>
     <string name="chapter_paused">Pausado</string>
     <string name="custom_download">Fazer download de uma quantidade personalizada</string>
-    <string name="custom_hint">quantidade</string>
     <string name="manga_tracking_tab">Monitoramento</string>
     <string name="repeating">Relendo</string>
     <string name="track_status">Situação</string>

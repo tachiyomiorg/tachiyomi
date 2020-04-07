@@ -10,7 +10,6 @@
     <string name="label_download_queue">Fila de sos iscarrigamentos</string>
     <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Cronologia</string>
-    <string name="label_catalogues">Catàlogos</string>
     <string name="label_recent_updates">Agiornamentos</string>
     <string name="label_categories">Categorias</string>
     <string name="label_backup">Còpia de seguresa</string>
@@ -321,7 +320,6 @@
     <string name="sort_by_number">Pro nùmeru de capìtulu</string>
     <string name="manga_download">Iscàrriga</string>
     <string name="custom_download">Iscàrriga una cantidade personalizada</string>
-    <string name="custom_hint">cantidade</string>
     <string name="download_1">Capìtulu imbeniente</string>
     <string name="download_5">Sos 5 capìtulos imbenientes</string>
     <string name="download_10">Sos 10 capìtulos imbenientes</string>
@@ -406,7 +404,7 @@
     <string name="information_no_downloads">Perunu iscarrigamentu</string>
     <string name="information_no_recent">Perunu capìtulu reghente</string>
     <string name="information_no_recent_manga">Perunu manga lèghidu dae pagu</string>
-    <string name="information_empty_library">Sa biblioteca tua est bòida, annanghe sèries a sa biblioteca tua dae sos catàlogos.</string>
+    <string name="information_empty_library">Sa biblioteca tua est bòida, annanghe sèries a sa biblioteca tua dae sas mitzas.</string>
     <string name="information_empty_category">Non tenes categorias. Incarca su butone de su \"prus\" pro nde creare una pro organizare sa biblioteca tua.</string>
     <string name="download_notifier_downloader_title">Iscarrigadore</string>
     <string name="download_notifier_title_error">Errore</string>
@@ -489,7 +487,7 @@
     <string name="notification_chapters_single_and_more">Capìtulu %1$s e àteros %2$d</string>
     <string name="notification_chapters_multiple">Capìtulos %1$s</string>
     <plurals name="notification_chapters_multiple_and_more">
-        <item quantity="one">Capìtulu %1$s e 1 àteru</item>
+        <item quantity="one">Capìtulos %1$s e 1 àteru</item>
         <item quantity="other">Capìtulos %1$s e àteros %2$d</item>
     </plurals>
     <string name="action_hide">Cua</string>
@@ -524,4 +522,7 @@
     <string name="channel_ext_updates">Agiornamentos de sas estensiones</string>
     <string name="http_error_hint">Verìfica su situ web cun sa visualizatzione web</string>
     <string name="updating_library">Agiornende sa biblioteca</string>
+    <string name="pref_category_reading">Leghende</string>
+    <string name="pref_skip_filtered_chapters">Brinca sos capìtulos filtrados</string>
+    <string name="label_sources">Mitzas</string>
 </resources>

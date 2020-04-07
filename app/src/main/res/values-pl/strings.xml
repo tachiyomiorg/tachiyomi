@@ -6,7 +6,6 @@
     <string name="history">Historia</string>
     <string name="label_settings">Ustawienia</string>
     <string name="label_download_queue">Kolejka pobierania</string>
-    <string name="label_catalogues">Katalogi</string>
     <string name="label_recent_manga">Ostatnio czytane</string>
     <string name="action_settings">Ustawienia</string>
     <string name="action_filter">Filtrowanie</string>
@@ -378,7 +377,6 @@ Nie znaleziono źródła %1$s</string>
     <string name="label_migration">Migracja źródła</string>
     <string name="manga_info_latest_data_label">Zaktualizowano</string>
     <string name="copied_to_clipboard">%1$s skopiowano do schowka</string>
-    <string name="custom_hint">ilość</string>
     <string name="copy">Kopiuj</string>
     <string name="label_extension_info">Szczegóły rozszerzenia</string>
     <string name="ext_update">Aktualizuj</string>

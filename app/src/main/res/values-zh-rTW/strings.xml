@@ -8,7 +8,6 @@
     <string name="label_download_queue">下載佇列</string>
     <string name="label_library">我的書櫃</string>
     <string name="label_recent_manga">近期閱讀</string>
-    <string name="label_catalogues">書目檢索</string>
     <string name="label_recent_updates">新書上架</string>
     <string name="label_categories">分類</string>
     <string name="label_backup">備份</string>
@@ -257,7 +256,7 @@
     <string name="pref_refresh_library_metadata">重新整理書櫃資料</string>
     <string name="build_time">組建時間</string>
     <string name="pref_acra_summary">協助我們修復錯誤，傳送的資料將不包含個人敏感訊息</string>
-    <string name="login_title">"登入  %1$s"</string>
+    <string name="login_title">登入 %1$s</string>
     <string name="username">使用者名稱</string>
     <string name="updating_category">正在更新分類</string>
     <string name="action_global_search_hint">全域搜尋…</string>
@@ -342,7 +341,6 @@
     <string name="download_notifier_downloader_title">下載管理員</string>
     <string name="source_search_options">篩選器</string>
     <string name="custom_download">下載自訂範圍</string>
-    <string name="custom_hint">章數</string>
     <string name="download_custom">下載自訂範圍</string>
     <string name="download_all">下載全部</string>
     <string name="download_unread">下載未讀</string>

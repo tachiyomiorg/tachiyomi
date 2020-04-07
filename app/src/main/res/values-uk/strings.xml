@@ -10,7 +10,6 @@
     <string name="label_download_queue">Черга завантаження</string>
     <string name="label_library">Бібліотека</string>
     <string name="label_recent_manga">Історія</string>
-    <string name="label_catalogues">Каталоги</string>
     <string name="label_recent_updates">Оновлення</string>
     <string name="label_categories">Категорії</string>
     <string name="label_backup">Резервна копія</string>
@@ -320,7 +319,6 @@
     <string name="sort_by_number">За номером глави</string>
     <string name="manga_download">Завантажити</string>
     <string name="custom_download">Завантажити певну кількість</string>
-    <string name="custom_hint">кількість</string>
     <string name="download_1">Наступна глава</string>
     <string name="download_5">Завантажити 5 наступних глав</string>
     <string name="download_10">Завантажити 10 наступних глав</string>
@@ -399,13 +397,13 @@
     <string name="update_check_notification_download_in_progress">Завантаження в процесі…</string>
     <string name="update_check_notification_download_complete">Завантаження завершено</string>
     <string name="update_check_notification_download_error">Помилка завантаження</string>
-    <string name="update_check_notification_update_available">Доступно оновлення</string>
+    <string name="update_check_notification_update_available">Доступне оновлення!</string>
     <string name="description_backdrop">Фонове зображення манги</string>
     <string name="description_cover">Обкладинка манги</string>
     <string name="information_no_downloads">Немає завантажень</string>
     <string name="information_no_recent">Немає нових глав</string>
     <string name="information_no_recent_manga">Немає нещодавно прочитаних глав</string>
-    <string name="information_empty_library">Ваша бібліотека порожня, ви можете додати з каталогу.</string>
+    <string name="information_empty_library">Ваша бібліотека порожня, ви можете додати тайтли з джерел.</string>
     <string name="information_empty_category">У вас немає категорій. Натисніть кнопку + для початку облаштування вашої бібліотеки.</string>
     <string name="download_notifier_downloader_title">Завантажувач</string>
     <string name="download_notifier_title_error">Помилка</string>
@@ -419,7 +417,7 @@
     <string name="channel_library">Бібліотека</string>
     <string name="channel_downloader">Завантажувач</string>
     <string name="pref_read_with_long_tap">Діалог тривалого тицяння</string>
-    <string name="action_open_in_web_view">Відкрити у web view</string>
+    <string name="action_open_in_web_view">Відкрити у WebView</string>
     <string name="pref_true_color">32-бітний колір</string>
     <string name="pref_skip_read_chapters">Пропускати глави, відмічені як прочитані</string>
     <string name="pref_color_filter_mode">Режим накладання кольорового фільтру</string>
@@ -528,4 +526,8 @@
     </plurals>
     <string name="channel_ext_updates">Оновлення розширень</string>
     <string name="http_error_hint">Глипнути сайт в WebView</string>
+    <string name="pref_category_reading">Читання</string>
+    <string name="label_sources">Джерела</string>
+    <string name="updating_library">Оновлення бібліотеки</string>
+    <string name="pref_skip_filtered_chapters">Пропускати фільтровані глави</string>
 </resources>

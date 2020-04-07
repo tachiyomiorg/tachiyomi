@@ -9,7 +9,6 @@
     <string name="label_download_queue">Nedlastingskø</string>
     <string name="label_library">Mitt bibliotek</string>
     <string name="label_recent_manga">Nylig lest</string>
-    <string name="label_catalogues">Kataloger</string>
     <string name="label_recent_updates">Bibliotekoppdateringer</string>
     <string name="label_categories">Kategorier</string>
     <string name="label_backup">Sikkerhetskopi</string>
@@ -311,7 +310,6 @@
     <string name="sort_by_number">Etter kapittelnummer</string>
     <string name="manga_download">Last ned</string>
     <string name="custom_download">Last ned egendefinert mengde</string>
-    <string name="custom_hint">mengde</string>
     <string name="download_1">Neste kapittel</string>
     <string name="download_5">Neste fem kapittel</string>
     <string name="download_10">Neste ti kapittel</string>

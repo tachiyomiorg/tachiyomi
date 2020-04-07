@@ -14,7 +14,6 @@
     <string name="label_extension_info">ข้อมูลส่วนขยาย</string>
     <string name="action_settings">ตั้งค่า</string>
     <string name="action_filter">ตัวกรอง</string>
-    <string name="label_catalogues">แคตตาล็อก</string>
     <string name="label_recent_updates">อัพเดทห้องสมุด</string>
     <string name="label_categories">ประเภท</string>
     <string name="action_filter_downloaded">ดาวน์โหลดแล้ว</string>
@@ -319,7 +318,6 @@
     <string name="sort_by_number">ตามหมายเลขบท</string>
     <string name="manga_download">ดาวน์โหลด</string>
     <string name="custom_download">จำนวนดาวน์โหลดที่กำหนดเอง</string>
-    <string name="custom_hint">จำนวน</string>
     <string name="download_1">ดาวน์โหลดบทถัดไป</string>
     <string name="download_5">ดาวน์โหลด 5 บทถัดไป</string>
     <string name="download_10">ดาวน์โหลด 10 บทถัดไป</string>

@@ -10,7 +10,6 @@
     <string name="label_download_queue">Ουρά λήψεων</string>
     <string name="label_library">Η βιβλιοθήκη μου</string>
     <string name="label_recent_manga">Πρόσφατα αναγνωρισμένο</string>
-    <string name="label_catalogues">Κατάλογοι</string>
     <string name="label_recent_updates">Ενημερώσεις βιβλιοθήκης</string>
     <string name="label_categories">Κατηγορίες</string>
     <string name="label_backup">Αντίγραφο ασφάλειας</string>
@@ -320,7 +319,6 @@
     <string name="sort_by_number">Ανά αριθμό κεφαλαίου</string>
     <string name="manga_download">Λήψη</string>
     <string name="custom_download">Λήψη προσαρμοσμένου ποσού</string>
-    <string name="custom_hint">ποσό</string>
     <string name="download_1">Επόμενου κεφαλαίου</string>
     <string name="download_5">Επόμενων 5 κεφάλαιων</string>
     <string name="download_10">Επόμενων 10 κεφάλαιων</string>

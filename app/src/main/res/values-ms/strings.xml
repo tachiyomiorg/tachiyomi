@@ -10,7 +10,6 @@
     <string name="label_download_queue">Giliran muat turun</string>
     <string name="label_library">Pustaka</string>
     <string name="label_recent_manga">Sejarah</string>
-    <string name="label_catalogues">Katalog</string>
     <string name="label_recent_updates">Kemas kini</string>
     <string name="label_categories">Kategori</string>
     <string name="label_backup">Sandaran</string>
@@ -399,7 +398,6 @@
     <string name="copied_to_clipboard">%1$s disalin ke papan keratan</string>
     <string name="source_not_installed">Sumber tidak dipasang: %1$s</string>
     <string name="custom_download">Muat turun jumlah tersuai</string>
-    <string name="custom_hint">Jumlah</string>
     <string name="download_custom">Tersuai</string>
     <string name="repeating">Membaca semula</string>
     <string name="track_status">Status</string>

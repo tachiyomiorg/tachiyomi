@@ -223,7 +223,6 @@
     <string name="label_download_queue">Stahovací fronta</string>
     <string name="name">Název</string>
     <string name="track">Sledování</string>
-    <string name="label_catalogues">Katalogy</string>
     <string name="label_recent_updates">Aktualizace</string>
     <string name="action_filter_bookmarked">Založeno</string>
     <string name="action_sort_total">Celkem kapitol</string>
@@ -351,7 +350,6 @@
     <string name="sorting_mode">Režim seřazení</string>
     <string name="sort_by_number">Podle čísla kapitoly</string>
     <string name="custom_download">Stažení vlastního počtu</string>
-    <string name="custom_hint">počet</string>
     <string name="manga_tracking_tab">Sledování</string>
     <string name="dropped">Upuštěno</string>
     <string name="on_hold">Pozastaveno</string>

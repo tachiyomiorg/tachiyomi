@@ -51,7 +51,6 @@
     <string name="label_download_queue">다운로드 대기열</string>
     <string name="label_library">내 서재</string>
     <string name="label_recent_manga">최근 읽음</string>
-    <string name="label_catalogues">카탈로그</string>
     <string name="label_recent_updates">서재 업데이트</string>
     <string name="action_sort_total">모든 챕터</string>
     <string name="action_sort_up">위로 정렬</string>
@@ -417,7 +416,6 @@
     <string name="download_notifier_no_network">네트워크 연결 사용 불가능</string>
     <string name="channel_common">일반</string>
     <string name="pref_read_with_long_tap">길게 눌러 대화상자 표시</string>
-    <string name="custom_hint">갯수</string>
     <string name="action_open_in_web_view">웹뷰로 열기</string>
     <string name="pref_true_color">32비트 컬러</string>
     <string name="pref_skip_read_chapters">읽음 표시된 챕터 건너뛰기</string>

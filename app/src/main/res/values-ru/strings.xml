@@ -16,14 +16,14 @@
     <string name="action_edit_cover">Изменить обложку</string>
     <string name="action_filter">Фильтр</string>
     <string name="action_filter_bookmarked">Закладки</string>
-    <string name="action_filter_downloaded">Загруженные</string>
+    <string name="action_filter_downloaded">Загружено</string>
     <string name="action_filter_empty">Удалить фильтр</string>
     <string name="action_filter_read">Читать</string>
-    <string name="action_filter_unread">Непрочитанные</string>
+    <string name="action_filter_unread">Непрочитано</string>
     <string name="action_install">Установить</string>
     <string name="action_mark_as_read">Отметить как прочитанное</string>
     <string name="action_mark_as_unread">Пометить как непрочитанное</string>
-    <string name="action_mark_previous_as_read">Отметить предыдущие как прочитанные</string>
+    <string name="action_mark_previous_as_read">Отметить предыдущее как прочитанное</string>
     <string name="action_move_category">Поместить в категорию</string>
     <string name="action_next_chapter">Следующая глава</string>
     <string name="action_next_unread">Следующая непрочитанная</string>
@@ -42,7 +42,7 @@
     <string name="action_set_filter">Установить фильтр</string>
     <string name="action_settings">Настройки</string>
     <string name="action_share">Поделиться</string>
-    <string name="action_show_downloaded">Загруженные</string>
+    <string name="action_show_downloaded">Загружено</string>
     <string name="action_sort">Сортировать</string>
     <string name="action_sort_alpha">По алфавиту</string>
     <string name="action_sort_down">По убыванию</string>
@@ -57,7 +57,7 @@
     <string name="black_background">Черный</string>
     <string name="build_time">Дата сборки</string>
     <string name="cache_delete_error">Возникла ошибка при удалении кэша</string>
-    <string name="cache_deleted">Кэш очищен. %1$d файлов было удалено</string>
+    <string name="cache_deleted">Кэш очищен. %1$d файл(ов/а) был(о) удален(о)</string>
     <string name="chapter_downloaded">Загружено</string>
     <string name="chapter_downloading">Загружается</string>
     <string name="chapter_downloading_progress">Загружается (%1$d/%2$d)</string>
@@ -70,18 +70,18 @@
     <string name="choices_reset">Опции выбора сбросятся</string>
     <string name="circular_icon">Круглая</string>
     <string name="clear_database_completed">Данные удалены</string>
-    <string name="clear_database_confirmation">Вы уверены? Прочитанные главы и прогресс не библиотечной манги будет потерян</string>
+    <string name="clear_database_confirmation">Вы уверены\? Прочитанные главы и прогресс не-библиотечной манги будет потерян</string>
     <string name="color_filter_a_value">А</string>
     <string name="color_filter_r_value">R</string>
     <string name="color_filter_g_value">G</string>
     <string name="color_filter_b_value">B</string>
     <string name="completed">Завершено</string>
-    <string name="confirm_delete_chapters">Вы уверены что хотите удалить выбранные главы?</string>
+    <string name="confirm_delete_chapters">Вы уверены что хотите удалить выбранн(ые/ую) глав(ы/у)\?</string>
     <string name="confirm_delete_manga">Вы уверены что хотите удалить выбранную мангу\?</string>
     <string name="confirm_set_image_as_cover">Использовать эту картинку как обложку\?</string>
     <string name="cookies_cleared">Куки удалены</string>
     <string name="cover_updated">Обложка обновлена</string>
-    <string name="custom_dir">Пользовательский каталог</string>
+    <string name="custom_dir">Пользовательская директория</string>
     <string name="custom_filter">Пользовательский фильтр</string>
     <string name="decode_image_error">Не удалось декодировать изображение</string>
     <string name="default_columns">По умолчанию</string>
@@ -105,27 +105,26 @@
     <string name="download_notifier_text_only_wifi">Нет Wi-Fi соединения</string>
     <string name="download_notifier_title_error">Ошибка</string>
     <string name="download_notifier_unkown_error">Не могу скачать главу из-за непревиденной ошибки</string>
-    <string name="download_progress">Загружено %1$d%%</string>
+    <string name="download_progress">Загружен(о) %1$d%%</string>
     <string name="download_queue_error">Невозможно скачать главы. Можете попробовать еще раз в разделе загрузки</string>
-    <string name="download_unread">Непрочитанные</string>
+    <string name="download_unread">Непрочитано</string>
     <string name="downloading">Загрузка…</string>
     <string name="dropped">Заброшенно</string>
     <string name="error_category_exists">Категория с таким именем уже существует!</string>
     <string name="fetch_chapters_error">Не могу извлечь главы</string>
-    <string name="fifth_to_last">Пятую от прочитанной главы</string>
+    <string name="fifth_to_last">Пятая от прочитанной главы</string>
     <string name="file_select_backup">Выбрать файл бэкапа</string>
     <string name="file_select_cover">Выбрать обложку</string>
     <string name="file_select_icon">Выбрать ярлык</string>
-    <string name="fourth_to_last">Четвертую от прочитанной</string>
+    <string name="fourth_to_last">Четвёртая от прочитанной главы</string>
     <string name="icon_creation_fail">Невозможно создать ярлык</string>
     <string name="icon_shape">Форма иконки</string>
-    <string name="information_empty_library">Ваша библиотека пуста, добавьте тайтлы из каталогов.</string>
+    <string name="information_empty_library">Ваша библиотека пуста, добавьте тайтлы в библиотеку из источников.</string>
     <string name="information_no_downloads">Нет загрузок</string>
     <string name="information_no_recent">Нет новых глав</string>
-    <string name="information_no_recent_manga">Нет недавно прочитанных глав</string>
+    <string name="information_no_recent_manga">Нет недавно прочитанной манги</string>
     <string name="invalid_login">Ошибка входа</string>
-    <string name="label_backup">Резервное копирование</string>
-    <string name="label_catalogues">Каталоги</string>
+    <string name="label_backup">Бэкап</string>
     <string name="label_categories">Категории</string>
     <string name="label_download_queue">Очередь загрузки</string>
     <string name="label_library">Библиотека</string>
@@ -138,7 +137,7 @@
     <string name="library_search_hint">Название или автор…</string>
     <string name="licensed">Лицензировано</string>
     <string name="loading">Загрузка…</string>
-    <string name="login">Авторизация</string>
+    <string name="login">Вход</string>
     <string name="login_success">Успешный вход</string>
     <string name="login_title">Войти в %1$s</string>
     <string name="manga_chapter_no_title">Нет названия</string>
@@ -219,7 +218,7 @@
     <string name="pref_update_only_non_completed">Обновлять только незавершенную мангу</string>
     <string name="pref_viewer_type">Направление чтения</string>
     <string name="pref_zoom_start">Стартовая позиция увеличения</string>
-    <string name="reading">В процессе чтения</string>
+    <string name="reading">Читаю</string>
     <string name="recent_manga_source">%1$s - Гл.%2$s</string>
     <string name="remove_from_library">Удалить из библиотеки</string>
     <string name="right_to_left_viewer">Справа налево</string>
@@ -246,13 +245,13 @@
     <string name="show_title">Название</string>
     <string name="snack_add_to_library">Добавить мангу в библиотеку?</string>
     <string name="sort_by_number">По номеру главы</string>
-    <string name="sort_by_source">По каталогу</string>
+    <string name="sort_by_source">По источнику</string>
     <string name="sorting_mode">Метод сортировки</string>
     <string name="source_requires_login">Этот источник требует входа</string>
     <string name="square_icon">Квадратная</string>
     <string name="status">Статус</string>
     <string name="system_default">Системный</string>
-    <string name="third_to_last">Третью от прочитанной главы</string>
+    <string name="third_to_last">Третья от прочитанной главы</string>
     <string name="title">Заголовок</string>
     <string name="unknown">Неизвестно</string>
     <string name="unknown_error">Неизвестная ошибка</string>
@@ -279,7 +278,7 @@
     <string name="version">Версия</string>
     <string name="vertical_viewer">Вертикальный</string>
     <string name="viewer_for_this_series">Отображение для этой серии</string>
-    <string name="webtoon_viewer">Веб-комикс</string>
+    <string name="webtoon_viewer">Вебкомикс</string>
     <string name="white_background">Белый</string>
     <string name="wifi">Wi-Fi</string>
     <string name="zoom_start_automatic">Автоматическая</string>
@@ -294,9 +293,9 @@
     <string name="action_undo">Отменить</string>
     <string name="added_to_library">Эта манга уже добавлена в библиотеку</string>
     <string name="also_delete_chapters">Так же удалить загруженные главы</string>
-    <string name="backup_choice">Что вы хотите резервировать\?</string>
+    <string name="backup_choice">Что вы хотите бэкапить\?</string>
     <string name="backup_created">Бэкап создан</string>
-    <string name="backup_restore_content">При восстановлении используются данные из каталогов, что может вызвать большой расход трафика. 
+    <string name="backup_restore_content">При восстановлении используются данные из источников, что может вызвать большой расход трафика. 
 \n 
 \nТакже убедитесь, что установили и авторизировались во всех нужных расширениях и сервисах отслеживания, перед восстановлением.</string>
     <string name="categories">Категории</string>
@@ -304,11 +303,11 @@
     <string name="creating_backup">Создаем бэкап</string>
     <string name="default_category">Категория по умолчанию</string>
     <string name="default_category_summary">Всегда спрашивать</string>
-    <string name="delete_downloads_for_manga">Удалять загруженные главы?</string>
+    <string name="delete_downloads_for_manga">Удалить загруженные главы\?</string>
     <string name="dialog_restoring_backup">Восстановление бэкапа 
-\n%1$s добавлен(а/о) в библиотеку</string>
+\n%1$s добавлено в библиотеку</string>
     <string name="dialog_restoring_source_not_found">Восстановление бэкапа 
-\n%1$s, каталог не найден</string>
+\n%1$s, источик не найден</string>
     <string name="download_notifier_download_paused">Загрузка приостановлена</string>
     <string name="error_opening_log">Ошибка открытия лога</string>
     <string name="file_saved">Файл сохранен в %1$s</string>
@@ -327,15 +326,16 @@
     <string name="pref_crop_borders">Границы обрезки</string>
     <string name="pref_download_new_categories">Категории для включения в загружаемые</string>
     <string name="pref_refresh_library_tracking">Обновить отслеживаемую метадату</string>
-    <string name="pref_refresh_library_tracking_summary">Обновить статус, счет и последнюю главу от отслеживаемых каталогов</string>
+    <string name="pref_refresh_library_tracking_summary">Обновить статус, счет и последнюю главу от отслеживаемых сервисов</string>
     <string name="pref_restore_backup">Восстановить бэкап</string>
     <string name="pref_restore_backup_summ">Восстановить библиотеку из бэкапа</string>
     <string name="restore_completed">Восстановление закончено</string>
-    <string name="restore_completed_content">Восстановление заняло %1$s.\n%2$s ошибок обнаружено.</string>
+    <string name="restore_completed_content">Восстановление заняло %1$s. 
+\n%2$s ошибок(а/и) обнаружен(a/o).</string>
     <string name="restoring_backup">Восстановление бэкапа</string>
     <string name="short_recent_updates">Обновления</string>
     <string name="snack_categories_deleted">Категория удалена</string>
-    <string name="source_not_found">Каталог не найден</string>
+    <string name="source_not_found">Источник не найден</string>
     <string name="track">Отслеживание</string>
     <string name="update_monthly">Ежемесячно</string>
     <string name="update_weekly">Еженедельно</string>
@@ -356,7 +356,7 @@
     <string name="channel_common">Обычный</string>
     <string name="channel_library">Библиотека</string>
     <string name="channel_downloader">Загрузчик</string>
-    <string name="information_empty_category">У вас нет категорий. Нажмите кнопку + для начала организации вашей библиотеки.</string>
+    <string name="information_empty_category">У вас нет категорий. Нажмите кнопку + чтобы создать категорию для организации вашей библиотеки.</string>
     <string name="label_migration">Перемещение источника</string>
     <string name="label_extensions">Дополнения</string>
     <string name="label_extension_info">Информация о дополнении</string>
@@ -368,15 +368,15 @@
     <string name="ext_downloading">Скачивается</string>
     <string name="ext_installing">Устанавливается</string>
     <string name="ext_installed">Установлено</string>
-    <string name="ext_untrusted">Ненадежное</string>
+    <string name="ext_untrusted">Ненадёжное</string>
     <string name="ext_uninstall">Удалить</string>
     <string name="ext_preferences">Настройки</string>
     <string name="ext_available">Доступно</string>
-    <string name="untrusted_extension">Ненадежное расширение</string>
-    <string name="untrusted_extension_message">Это расширение было подписано ненадежным сертификатом и не было активировано.
-\n
-\nВредоносное расширение может считывать любые учетные данные для входа, хранящиеся в Tachiyomi, или выполнять произвольный код.
-\n
+    <string name="untrusted_extension">Ненадёжное расширение</string>
+    <string name="untrusted_extension_message">Это расширение было подписано ненадёжным сертификатом и не было активировано. 
+\n 
+\nВредоносное расширение может считывать любые учетные данные для входа, хранящиеся в Tachiyomi, или выполнять произвольный код. 
+\n 
 \nДоверяя этому сертификату, вы принимаете эти риски.</string>
     <string name="ext_version_info">Версия: %1$s</string>
     <string name="ext_language_info">Язык: %1$s</string>
@@ -389,9 +389,8 @@
     <string name="manga_added_library">Добавить в библиотеку</string>
     <string name="manga_removed_library">Удалить из библиотеки</string>
     <string name="manga_info_latest_data_label">Обновлено</string>
-    <string name="copied_to_clipboard">%1$s скопорован в буфер</string>
+    <string name="copied_to_clipboard">\"%1$s\" скопированно в буфер</string>
     <string name="custom_download">Загрузить определенное количество</string>
-    <string name="custom_hint">Количество</string>
     <string name="download_custom">Другое кол-во</string>
     <string name="migration_info">Нажмите, чтобы выбрать источник для миграции</string>
     <string name="migration_dialog_what_to_include">Выберите данные для включения</string>
@@ -400,8 +399,8 @@
     <string name="copy">Копировать</string>
     <string name="migrating">Мигрирую…</string>
     <string name="source_search_options">Поисковые фильтры</string>
-    <string name="ext_trust">Доверенное</string>
-    <string name="pager_viewer">Страница</string>
+    <string name="ext_trust">Надёжное</string>
+    <string name="pager_viewer">Пейджер</string>
     <string name="source_not_installed">Источник не установлен: %1$s</string>
     <string name="repeating">Перечитываю</string>
     <string name="track_status">Статус</string>
@@ -445,7 +444,7 @@
     <string name="logout_title">Выйти из %1$s\?</string>
     <string name="logout">Выйти</string>
     <string name="logout_success">Вы вышли из системы</string>
-    <string name="currently_reading">В настоящее время читаю</string>
+    <string name="currently_reading">Сейчас читаю</string>
     <string name="paused">Пауза</string>
     <string name="want_to_read">Хочу почитать</string>
     <string name="label_more">Еще</string>
@@ -462,7 +461,7 @@
     <string name="theme_dark_amoled">AMOLED черная</string>
     <string name="pref_manage_notifications">Управлять уведомлениями</string>
     <string name="pref_category_security">Безопасность</string>
-    <string name="lock_with_biometrics">Блокировать биометрией</string>
+    <string name="lock_with_biometrics">Блокировать отпечатком</string>
     <string name="lock_when_idle">Блокировать в режиме ожидания</string>
     <string name="lock_always">Всегда</string>
     <string name="lock_never">Никогда</string>
@@ -479,7 +478,7 @@
     <string name="information_webview_outdated">Пожалуйста, обновите WebView для лучшей совместимости</string>
     <string name="channel_new_chapters">Обновления глав</string>
     <plurals name="notification_chapters_multiple_and_more">
-        <item quantity="one">Глава %1$s и ещё 1</item>
+        <item quantity="one">Главы %1$s и ещё 1</item>
         <item quantity="few">Главы %1$s и ещё %2$d</item>
         <item quantity="many">Главы %1$s и ещё %2$d</item>
     </plurals>
@@ -513,8 +512,8 @@
     </plurals>
     <string name="email">Адрес почты</string>
     <string name="pref_always_show_chapter_transition">Всегда показывать переходы глав</string>
-    <string name="pref_enable_automatic_extension_updates">Проверять обновления расширений</string>
-    <string name="hide_notification_content">Скрывать содержимое уведомлений</string>
+    <string name="pref_enable_automatic_extension_updates">Проверять обновления для расширений</string>
+    <string name="hide_notification_content">Скрыть содержимое уведомлений</string>
     <string name="secure_screen_summary">Скрыть содержимое приложений, когда переключаешь приложения, и блокируешь скриншоты</string>
     <string name="theme_light_blue">Бело-синяя</string>
     <string name="pref_theme_light">Белый вариант</string>
@@ -528,4 +527,8 @@
     <string name="channel_ext_updates">Обновления расширений</string>
     <string name="unlock_app">Разблокировать Tachiyomi</string>
     <string name="action_menu">Меню</string>
+    <string name="label_sources">Источники</string>
+    <string name="pref_category_reading">Чтение</string>
+    <string name="pref_skip_filtered_chapters">Пропускать фильтрованные главы</string>
+    <string name="action_select_inverse">Выбрать наоборот</string>
 </resources>

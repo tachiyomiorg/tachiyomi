@@ -9,7 +9,6 @@
     <string name="label_download_queue">Toka sa Download</string>
     <string name="label_library">Aklatan</string>
     <string name="label_recent_manga">Kakabasa</string>
-    <string name="label_catalogues">Katalogo</string>
     <string name="label_recent_updates">Mga update sa aklatan</string>
     <string name="label_categories">Mga Kategorya</string>
     <string name="label_backup">Backup</string>
@@ -61,7 +60,7 @@
     <string name="action_resume">Ipagpatuloy</string>
     <string name="action_move">Ilipat</string>
     <string name="action_open_in_browser">Buksan sa browser</string>
-    <string name="action_open_in_web_view">Buksan sa web view</string>
+    <string name="action_open_in_web_view">Buksan sa WebView</string>
     <string name="action_add_to_home_screen">Ilagay sa home screen</string>
     <string name="action_display_mode">Palitan ang display mode</string>
     <string name="action_display">Display</string>
@@ -332,7 +331,6 @@
     <string name="sort_by_number">Base sa bilang ng kabanata</string>
     <string name="manga_download">I-download</string>
     <string name="custom_download">I-download ang custom na rami</string>
-    <string name="custom_hint">dami</string>
     <string name="download_1">Susunod na kabanata</string>
     <string name="download_5">Susunod na 5 kabanata</string>
     <string name="download_10">Susunod na 10 kabanata</string>

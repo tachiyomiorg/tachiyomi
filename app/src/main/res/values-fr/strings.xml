@@ -6,7 +6,6 @@
     <string name="label_download_queue">File de téléchargement</string>
     <string name="label_library">Bibliothèque</string>
     <string name="label_recent_manga">Historique</string>
-    <string name="label_catalogues">Catalogues</string>
     <string name="label_recent_updates">Mises à jour</string>
     <string name="label_categories">Catégories</string>
     <string name="label_backup">Sauvegarde</string>
@@ -288,7 +287,7 @@
     <string name="update_check_notification_download_in_progress">Téléchargement en cours…</string>
     <string name="update_check_notification_download_complete">Téléchargement terminé</string>
     <string name="update_check_notification_download_error">Erreur lors du téléchargement</string>
-    <string name="update_check_notification_update_available">Mise à jour disponible</string>
+    <string name="update_check_notification_update_available">Mise à jour disponible !</string>
     <!--Content Description-->
     <string name="description_backdrop">Image de fond du manga</string>
     <string name="description_cover">Couverture du manga</string>
@@ -424,7 +423,6 @@
     <string name="copied_to_clipboard">%1$s a été copié dans le presse papier</string>
     <string name="source_not_installed">Sources non installées: %1$s</string>
     <string name="custom_download">Télécharger une quantité personnalisée</string>
-    <string name="custom_hint">Quantité</string>
     <string name="download_custom">Personnalisé</string>
     <string name="track_status">Status</string>
     <string name="track_start_date">Démarré</string>
@@ -557,4 +555,5 @@
     <string name="http_error_hint">Consultez le site Web de WebView</string>
     <string name="pref_enable_automatic_extension_updates">Vérifier les mises à jour d’extension</string>
     <string name="action_sort_last_checked">Dernière vérification</string>
+    <string name="updating_library">Mise à jour de la bibliothèque</string>
 </resources>

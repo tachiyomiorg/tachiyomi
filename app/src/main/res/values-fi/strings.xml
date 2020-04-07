@@ -18,7 +18,6 @@
     <string name="manga_tracking_tab">Seuranta</string>
     <string name="chapters">Luvut</string>
     <string name="label_recent_updates">Päivitykset</string>
-    <string name="label_catalogues">Katalokit</string>
     <string name="action_sort_total">Lukuja yhteensä</string>
     <string name="action_global_search">Globaali haku</string>
     <string name="action_mark_as_unread">Merkitse lukemattomaksi</string>
@@ -407,7 +406,6 @@
     <string name="manga_info_genres_label">Lajityypit</string>
     <string name="manga_chapters_tab">Luvut</string>
     <string name="custom_download">Lataa muokautettu määrä</string>
-    <string name="custom_hint">määrä</string>
     <string name="download_1">Seuraava luku</string>
     <string name="download_5">Seuraavat 5 lukua</string>
     <string name="download_10">Seuraavat 10 lukua</string>
