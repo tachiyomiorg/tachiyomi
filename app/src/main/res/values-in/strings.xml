@@ -482,7 +482,6 @@
     <string name="currently_reading">Sedang dibaca</string>
     <string name="paused">Dijeda</string>
     <string name="want_to_read">Ingin dibaca</string>
-    <string name="pref_webtoon_padding_vert">Jarak vertikal antar halaman</string>
     <string name="information_cloudflare_bypass_failure">Gagal untuk menembus Cloudflare</string>
     <string name="information_webview_outdated">Harap perbarui aplikasi WebView untuk kompatibilitas yang lebih baik</string>
     <string name="channel_new_chapters">Pembaruan bab</string>

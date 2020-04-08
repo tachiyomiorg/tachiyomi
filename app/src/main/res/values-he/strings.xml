@@ -434,7 +434,6 @@
     <string name="filter_mode_default">ברירת מחדל</string>
     <string name="pref_custom_color_filter">השתמש במסנן צבע מותאם אישית</string>
     <string name="pref_custom_brightness">השתמש בבהירות מותאמת אישית</string>
-    <string name="pref_webtoon_padding_vert">ריפוד אנכי בין העמודים</string>
     <string name="pref_crop_borders">חתוך גבולות</string>
     <string name="pref_true_color">צבע 32-סיביות</string>
     <string name="pref_show_page_number">הצג מספר עמוד</string>
