@@ -53,14 +53,22 @@ class SettingsGeneralController : SettingsController() {
             listPreference {
                 key = Keys.lang
                 titleRes = R.string.pref_language
-                entryValues = arrayOf("", "ar", "bg", "bn", "ca", "cs", "de", "el", "en-US", "en-GB",
-                        "es", "fr", "hi", "hu", "in", "it", "ja", "ko", "lv", "ms", "nb-rNO", "nl", "pl", "pt",
-                        "pt-BR", "ro", "ru", "sc", "sr", "sv", "th", "tl", "tr", "uk", "vi", "zh-rCN")
-                entries = entryValues.map { value ->
-                    val locale = LocaleHelper.getLocaleFromString(value.toString())
-                    locale?.getDisplayName(locale)?.capitalize()
-                            ?: context.getString(R.string.system_default)
-                }.toTypedArray()
+
+                val langs = mutableListOf<Pair<String, String>>()
+                langs += Pair("", context.getString(R.string.system_default))
+                langs += arrayOf(
+                    "ar", "bg", "bn", "ca", "cs", "de", "el", "en-US", "en-GB", "es", "fr", "he",
+                    "hi", "hu", "in", "it", "ja", "ko", "lv", "ms", "nb-rNO", "nl", "pl", "pt",
+                    "pt-BR", "ro", "ru", "sc", "sr", "sv", "th", "tl", "tr", "uk", "vi", "zh-rCN"
+                )
+                    .map {
+                        val locale = LocaleHelper.getLocaleFromString(it)
+                        Pair(it, locale!!.getDisplayName(locale).capitalize())
+                    }
+                    .sortedBy { it.second }
+
+                entryValues = langs.map { it.first }.toTypedArray()
+                entries = langs.map { it.second }.toTypedArray()
                 defaultValue = ""
                 summary = "%s"
 

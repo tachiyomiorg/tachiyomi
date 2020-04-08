@@ -20,8 +20,7 @@ open class ExtendedNavigationView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) :
-    SimpleNavigationView(context, attrs, defStyleAttr) {
+) : SimpleNavigationView(context, attrs, defStyleAttr) {
 
     /**
      * Every item of the nav view. Generic items must belong to this list, custom items could be

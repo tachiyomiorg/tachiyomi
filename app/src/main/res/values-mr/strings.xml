@@ -13,4 +13,21 @@
     <string name="action_filter_read">वाचा</string>
     <string name="action_filter_empty">फिल्टर काढा</string>
     <string name="action_sort_total">एकूण अध्याय</string>
+    <string name="history">इतिहास</string>
+    <string name="action_filter_downloaded">डाउनलोड</string>
+    <string name="action_sort_alpha">वर्णक्रमानुसार</string>
+    <string name="action_sort_last_read">शेवटचे वाचले</string>
+    <string name="action_sort_latest_chapter">नवीन अध्याय</string>
+    <string name="action_search">शोध</string>
+    <string name="action_select_all">सर्व निवडा</string>
+    <string name="action_mark_as_read">वाचलेले म्हणून चिन्हांकित करा</string>
+    <string name="action_mark_as_unread">वाचले नाही अशी खुण करा</string>
+    <string name="action_download">डाउनलोड</string>
+    <string name="action_delete">हटवा</string>
+    <string name="action_update">अद्यतनित करा</string>
+    <string name="pref_true_color">३२-बिट रंग</string>
+    <string name="black_background">काळा</string>
+    <string name="channel_common">सामान्य</string>
+    <string name="channel_downloader">डाउनलोडर</string>
+    <string name="action_menu">मेनू</string>
 </resources>

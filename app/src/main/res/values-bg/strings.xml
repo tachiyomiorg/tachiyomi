@@ -6,7 +6,6 @@
     <string name="label_download_queue">Изтегляния</string>
     <string name="label_library">Библиотека</string>
     <string name="label_recent_manga">Наскоро прочетени</string>
-    <string name="label_catalogues">Каталози</string>
     <string name="label_recent_updates">Наскоро обновени</string>
     <string name="label_categories">Категории</string>
     <string name="label_backup">Резервно копие</string>
@@ -20,7 +19,6 @@
     <string name="action_filter_empty">Премахни филтрирането</string>
     <string name="action_sort_alpha">Азбучен ред</string>
     <string name="action_sort_last_read">Последно четене</string>
-    <string name="action_sort_last_updated">Последно обновление</string>
     <string name="action_search">Търсене</string>
     <string name="action_select_all">Избери всички</string>
     <string name="action_mark_as_read">Отбележи като прочетена</string>
@@ -298,11 +296,9 @@
     <string name="file_select_backup">Изберете резервно копие</string>
     <string name="file_select_icon">Изберете икона за пряк път</string>
     <!--UpdateCheck-->
-    <string name="update_check_title">Има нова версия!</string>
     <string name="update_check_confirm">Изтегли</string>
     <string name="update_check_ignore">Игнорирай</string>
     <string name="update_check_no_new_updates">Няма налични актуализации</string>
-    <string name="update_check_download_started">Изтеглянето започна</string>
     <string name="update_check_look_for_updates">Търсене на актуализации…</string>
     <!--UpdateCheck Notifications-->
     <string name="update_check_notification_file_download">Изтегли актуализацията</string>
@@ -431,7 +427,6 @@
     <string name="manga_info_latest_data_label">Обновена</string>
     <string name="copied_to_clipboard">%1$s копирано към клипборда</string>
     <string name="custom_download">Изтегли определен брой</string>
-    <string name="custom_hint">брой</string>
     <string name="download_custom">Определен брой</string>
     <string name="migration_info">Натисни, за да избереш от кой източник да мигрираш</string>
     <string name="migration_dialog_what_to_include">Изберете кои данни ще мигрирате</string>
@@ -456,7 +451,6 @@
     <string name="transition_pages_loading">Зареждане на страниците…</string>
     <string name="transition_pages_error">Не бяха заредени успешно: %1$s страници</string>
     <string name="pref_read_with_long_tap">Показване на прозорец след натискане</string>
-    <string name="reader_pull_up_for_more_options">Издърпайте за повече опции</string>
     <string name="action_open_in_web_view">Отвори онлайн</string>
     <string name="pref_true_color">32-битови цветове</string>
     <string name="pref_skip_read_chapters">Пропускай прочетените глави</string>

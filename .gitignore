@@ -7,3 +7,6 @@
 *iml
 *.iml
 */build
+
+# Hebrew assets are copied on build
+app/src/main/res/values-iw/

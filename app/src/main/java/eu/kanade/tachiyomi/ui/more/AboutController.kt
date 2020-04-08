@@ -149,7 +149,7 @@ class AboutController : SettingsController() {
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
             return MaterialDialog.Builder(activity!!)
-                    .title(R.string.update_check_title)
+                    .title(R.string.update_check_notification_update_available)
                     .content(args.getString(BODY_KEY) ?: "")
                     .positiveText(R.string.update_check_confirm)
                     .negativeText(R.string.update_check_ignore)

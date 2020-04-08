@@ -72,7 +72,7 @@ class CatalogueController : NucleusController<CataloguePresenter>(),
      * @return title.
      */
     override fun getTitle(): String? {
-        return applicationContext?.getString(R.string.label_catalogues)
+        return applicationContext?.getString(R.string.label_sources)
     }
 
     /**

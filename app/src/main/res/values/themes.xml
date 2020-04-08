@@ -50,6 +50,8 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="dialogTheme">@style/Theme.AlertDialog.Light</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
+        <item name="chipStyle">@style/Theme.Widget.Chip</item>
+        <item name="buttonStyle">@style/Theme.Widget.Button.Outlined.Accent</item>
         <item name="snackbarButtonStyle">@style/Theme.Widget.Button</item>
         <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
@@ -127,6 +129,9 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="dialogTheme">@style/Theme.AlertDialog.Dark</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
+        <item name="chipStyle">@style/Theme.Widget.Chip</item>
+        <item name="buttonStyle">@style/Theme.Widget.Button.Outlined.Accent</item>
+        <item name="snackbarStyle">@style/Theme.Widget.Snackbar</item>
         <item name="snackbarButtonStyle">@style/Theme.Widget.Button</item>
         <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
@@ -162,8 +167,6 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
 
         <!-- Themes -->
-        <!-- Surface-colored snackbar -->
-        <item name="snackbarStyle">@style/Theme.Widget.Snackbar</item>
         <item name="md_background_color">@color/colorAmoledPrimary</item>
 
         <!-- Custom Attributes-->

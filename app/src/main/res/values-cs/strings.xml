@@ -20,7 +20,6 @@
     <string name="action_filter_empty">Odstranit filtr</string>
     <string name="action_sort_alpha">Abecedně</string>
     <string name="action_sort_last_read">Naposledy čteno</string>
-    <string name="action_sort_last_updated">Poslední aktualizace</string>
     <string name="action_search">Vyhledávání</string>
     <string name="action_global_search">Globální vyhledávání</string>
     <string name="action_select_all">Vybrat vše</string>
@@ -114,7 +113,7 @@
     <string name="pref_download_only_over_wifi">Stahovat pouze na Wi-Fi</string>
     <string name="pref_remove_after_marked_as_read">Odstranit po označení jako přečtené</string>
     <string name="pref_remove_after_read">Odstranit po čtení</string>
-    <string name="custom_dir">Vlastní adresář</string>
+    <string name="custom_dir">Vlastní umístění</string>
     <string name="pref_download_new">Stahovat nové kapitoly</string>
     <string name="username">Uživatelské jméno</string>
     <string name="password">Heslo</string>
@@ -203,7 +202,6 @@
     <string name="notification_no_connection_body">Připojení není k dispozici</string>
     <string name="file_select_backup">Vybrat záložní soubor</string>
     <string name="file_select_icon">Vybrat ikonu zástupce</string>
-    <string name="update_check_title">Dostupná nová aktualizace!</string>
     <string name="update_check_confirm">Stáhnout</string>
     <string name="update_check_ignore">Ignorovat</string>
     <string name="update_check_no_new_updates">Žádné nové aktualizace</string>
@@ -225,7 +223,6 @@
     <string name="label_download_queue">Stahovací fronta</string>
     <string name="name">Název</string>
     <string name="track">Sledování</string>
-    <string name="label_catalogues">Katalogy</string>
     <string name="label_recent_updates">Aktualizace</string>
     <string name="action_filter_bookmarked">Založeno</string>
     <string name="action_sort_total">Celkem kapitol</string>
@@ -353,7 +350,6 @@
     <string name="sorting_mode">Režim seřazení</string>
     <string name="sort_by_number">Podle čísla kapitoly</string>
     <string name="custom_download">Stažení vlastního počtu</string>
-    <string name="custom_hint">počet</string>
     <string name="manga_tracking_tab">Sledování</string>
     <string name="dropped">Upuštěno</string>
     <string name="on_hold">Pozastaveno</string>
@@ -410,7 +406,6 @@
     <string name="notification_cover_update_failed">Chyba při aktualizaci obalu</string>
     <string name="notification_first_add_to_library">Přidejte si prosím mangu do knihovny před tím, než toto uděláte</string>
     <string name="file_select_cover">Vybrat obrázek obalu</string>
-    <string name="update_check_download_started">Stahování začalo</string>
     <string name="update_check_notification_download_in_progress">Probíhá stahování…</string>
     <string name="description_backdrop">Obrázek pozadí manga</string>
     <string name="description_cover">Obal mangy</string>
@@ -420,7 +415,6 @@
     <string name="download_notifier_downloader_title">Stahovač</string>
     <string name="channel_common">Běžný</string>
     <string name="channel_downloader">Stahovač</string>
-    <string name="reader_pull_up_for_more_options">Vytáhnout pro více možností</string>
     <string name="label_help">Nápověda</string>
     <string name="action_open_in_web_view">Otevřít ve web view</string>
     <string name="pref_read_with_long_tap">Nabídka při dlouhém podržení</string>

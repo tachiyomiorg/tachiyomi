@@ -25,24 +25,4 @@
         app:iconTint="?attr/colorOnPrimary"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:title="@string/action_display"
-        app:showAsAction="never">
-        <menu>
-            <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/action_display_grid"
-                    android:title="@string/action_display_grid" />
-                <item
-                    android:id="@+id/action_display_list"
-                    android:title="@string/action_display_list" />
-            </group>
-
-            <item
-                android:id="@+id/action_display_download_badge"
-                android:checkable="true"
-                android:title="@string/action_display_download_badge" />
-        </menu>
-    </item>
-
 </menu>

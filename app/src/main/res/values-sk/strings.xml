@@ -10,7 +10,6 @@
     <string name="label_download_queue">Sťahujúce sa</string>
     <string name="label_library">Knižnica</string>
     <string name="label_recent_manga">Nedávno čítané</string>
-    <string name="label_catalogues">Katalógy</string>
     <string name="label_recent_updates">Updaty</string>
     <string name="label_categories">Kategórie</string>
     <string name="label_backup">Záloha</string>
@@ -28,7 +27,6 @@
     <string name="action_sort_alpha">Abecedne</string>
     <string name="action_sort_total">Všetky kapitoly</string>
     <string name="action_sort_last_read">Naposledy čítané</string>
-    <string name="action_sort_last_updated">Naposledy aktualizované</string>
     <string name="action_search">Hľadať</string>
     <string name="action_global_search">Hľadať všade</string>
     <string name="action_select_all">Vybrať všetko</string>
@@ -37,7 +35,7 @@
     <string name="action_mark_previous_as_read">Označiť predošlé ako prečítané</string>
     <string name="action_download">Stiahnuť</string>
     <string name="action_bookmark">Uložiť</string>
-    <string name="action_remove_bookmark">Odstrániť z uložených</string>
+    <string name="action_remove_bookmark">Odstrániť záložku</string>
     <string name="action_delete">Vymazať</string>
     <string name="action_update">Aktualizovať</string>
     <string name="action_update_library">Aktualizovať knižnicu</string>
@@ -340,7 +338,6 @@
     <string name="sort_by_number">Podľa čísla kapitoly</string>
     <string name="manga_download">Stiahnuť</string>
     <string name="custom_download">Stiahnutie vlastného počtu</string>
-    <string name="custom_hint">počet</string>
     <string name="download_1">Stiahnuť ďalšiu kapitolu</string>
     <string name="download_5">Stiahnuť ďalších 5 kapitol</string>
     <string name="download_10">Stiahnuť ďalších 10 kapitol</string>
@@ -392,7 +389,6 @@
     <string name="transition_no_previous">Žiadna predchádzajúca kapitola</string>
     <string name="transition_pages_loading">Načítání stránok…</string>
     <string name="transition_pages_error">Chyba pri načítání stránok: %1$s</string>
-    <string name="reader_pull_up_for_more_options">Vytiahnuť pre viacero možností</string>
     <string name="recent_manga_source">%1$s - K.%2$s</string>
     <string name="migration_info">Klepnutím vyberte zdroj, z ktorého chcete migrovať</string>
     <string name="migration_dialog_what_to_include">Vyberte data, ktoré chcete zahrnúť</string>
@@ -412,11 +408,9 @@
     <string name="file_select_cover">Vyberte obrázok obalu</string>
     <string name="file_select_backup">Vyberte záložný súbor</string>
     <string name="file_select_icon">Vyberte ikonu zástupca</string>
-    <string name="update_check_title">Dostupná nová aktualizácia!</string>
     <string name="update_check_confirm">Stiahnuť</string>
     <string name="update_check_ignore">Ignorovať</string>
     <string name="update_check_no_new_updates">Žiadné nové aktualizácie</string>
-    <string name="update_check_download_started">Sťahovaní započalo</string>
     <string name="update_check_look_for_updates">Vyhľadávanie aktualizácií…</string>
     <string name="update_check_notification_file_download">Stiahnuť aktualizáciu</string>
     <string name="update_check_notification_download_in_progress">Prebiehá stahovanie…</string>
@@ -444,4 +438,14 @@
     <string name="no_results_found">Neboli nájdené žiadne výsledky</string>
     <string name="migration_selection_prompt">Vyberte zdroj zo ktorého chcete migrovat</string>
     <string name="invalid_download_dir">Neplatný adresár sťahovania</string>
+    <string name="action_sort_latest_chapter">Najnovšia kapitola</string>
+    <string name="action_view_chapters">Zobraziť kapitoly</string>
+    <string name="action_cancel_all">Zrušiť všetky</string>
+    <string name="unlock_app">Odomknúť Tachiyomi</string>
+    <string name="action_hide">Skryť</string>
+    <string name="action_menu">Menu</string>
+    <string name="action_reorganize_by">Zmeniť poradie</string>
+    <string name="action_newest">Najnovšie</string>
+    <string name="action_oldest">Najstaršie</string>
+    <string name="action_move_to_top">Presunúť navrch</string>
 </resources>

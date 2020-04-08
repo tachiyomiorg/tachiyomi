@@ -2,7 +2,7 @@
 
     <shortcut
         android:enabled="true"
-        android:icon="@drawable/sc_book_48dp"
+        android:icon="@drawable/sc_collections_bookmark_48dp"
         android:shortcutDisabledMessage="@string/app_not_available"
         android:shortcutId="show_library"
         android:shortcutLongLabel="@string/label_library"
@@ -38,8 +38,8 @@
         android:icon="@drawable/sc_explore_48dp"
         android:shortcutDisabledMessage="@string/app_not_available"
         android:shortcutId="show_catalogues"
-        android:shortcutLongLabel="@string/label_catalogues"
-        android:shortcutShortLabel="@string/label_catalogues">
+        android:shortcutLongLabel="@string/label_sources"
+        android:shortcutShortLabel="@string/label_sources">
         <intent
             android:action="eu.kanade.tachiyomi.SHOW_CATALOGUES"
             android:targetClass="eu.kanade.tachiyomi.ui.main.MainActivity" />

@@ -274,19 +274,15 @@
 
         </androidx.core.widget.NestedScrollView>
 
-        <me.gujun.android.taggroup.TagGroup
+        <com.google.android.material.chip.ChipGroup
             android:id="@+id/manga_genres_tags"
-            style="@style/TagGroup"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            app:atg_backgroundColor="@android:color/transparent"
-            app:atg_borderColor="@color/md_blue_A400"
-            app:atg_borderStrokeWidth="1dp"
-            app:atg_textColor="@color/md_blue_A400"
+            app:chipSpacingHorizontal="4dp"
             app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

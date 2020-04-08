@@ -8,7 +8,6 @@
     <string name="history">Előzmények</string>
     <string name="label_settings">Beállítások</string>
     <string name="label_recent_manga">Legutóbb olvasott</string>
-    <string name="label_catalogues">Katalógusok</string>
     <string name="label_categories">Kategóriák</string>
     <string name="label_backup">Biztonsági mentés</string>
     <string name="action_settings">Beállítások</string>
@@ -100,7 +99,6 @@
     <string name="action_sort_alpha">Betűrendben</string>
     <string name="action_sort_total">Összes fejezet</string>
     <string name="action_sort_last_read">Legutóbb olvasott</string>
-    <string name="action_sort_last_updated">Legutóbb frissített</string>
     <string name="action_global_search">Globális keresés</string>
     <string name="action_mark_as_read">Olvasottnak jelölés</string>
     <string name="action_mark_as_unread">Olvasatlannak jelölés</string>

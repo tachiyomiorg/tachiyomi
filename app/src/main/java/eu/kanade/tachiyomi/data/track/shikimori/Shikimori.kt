@@ -82,9 +82,9 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
                 }
     }
 
-    override fun getLogo() = R.drawable.tracker_shikimori
+    override fun getLogo() = R.drawable.ic_tracker_shikimori
 
-    override fun getLogoColor() = Color.rgb(0x28, 0x28, 0x28)
+    override fun getLogoColor() = Color.rgb(40, 40, 40)
 
     override fun getStatusList(): List<Int> {
         return listOf(READING, COMPLETED, ON_HOLD, DROPPED, PLANNING, REPEATING)

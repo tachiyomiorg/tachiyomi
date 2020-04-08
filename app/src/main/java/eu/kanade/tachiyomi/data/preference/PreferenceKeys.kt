@@ -49,8 +49,6 @@ object PreferenceKeys {
 
     const val cropBordersWebtoon = "crop_borders_webtoon"
 
-    const val padPagesVertWebtoon = "pad_pages_vert_webtoon"
-
     const val readWithTapping = "reader_tap"
 
     const val readWithLongTap = "reader_long_tap"
@@ -134,6 +132,8 @@ object PreferenceKeys {
     const val defaultCategory = "default_category"
 
     const val skipRead = "skip_read"
+
+    const val skipFiltered = "skip_filtered"
 
     const val downloadBadge = "display_download_badge"
 

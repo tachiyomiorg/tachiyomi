@@ -107,8 +107,6 @@ class PreferencesHelper(val context: Context) {
 
     fun cropBordersWebtoon() = rxPrefs.getBoolean(Keys.cropBordersWebtoon, false)
 
-    fun padPagesVertWebtoon() = rxPrefs.getBoolean(Keys.padPagesVertWebtoon, false)
-
     fun readWithTapping() = rxPrefs.getBoolean(Keys.readWithTapping, true)
 
     fun readWithLongTap() = rxPrefs.getBoolean(Keys.readWithLongTap, true)
@@ -207,6 +205,8 @@ class PreferencesHelper(val context: Context) {
     fun defaultCategory() = prefs.getInt(Keys.defaultCategory, -1)
 
     fun skipRead() = prefs.getBoolean(Keys.skipRead, false)
+
+    fun skipFiltered() = prefs.getBoolean(Keys.skipFiltered, false)
 
     fun migrateFlags() = rxPrefs.getInteger("migrate_flags", Int.MAX_VALUE)
 

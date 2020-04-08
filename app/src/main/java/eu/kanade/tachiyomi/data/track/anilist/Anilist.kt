@@ -54,9 +54,9 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
         }
     }
 
-    override fun getLogo() = R.drawable.tracker_anilist
+    override fun getLogo() = R.drawable.ic_tracker_anilist
 
-    override fun getLogoColor() = Color.rgb(0x12, 0x19, 0x23)
+    override fun getLogoColor() = Color.rgb(18, 25, 35)
 
     override fun getStatusList(): List<Int> {
         return listOf(READING, PLANNING, COMPLETED, REPEATING, PAUSED, DROPPED)

@@ -10,7 +10,6 @@
     <string name="label_download_queue">Redosled preuzimanja</string>
     <string name="label_library">Biblioteka</string>
     <string name="label_recent_manga">Istorija</string>
-    <string name="label_catalogues">Katalozi</string>
     <string name="label_recent_updates">Apdejti</string>
     <string name="label_categories">Kategorije</string>
     <string name="label_backup">Rezerva</string>
@@ -27,7 +26,6 @@
     <string name="action_sort_alpha">Alfabetno</string>
     <string name="action_sort_total">Ukupno poglavlja</string>
     <string name="action_sort_last_read">Zadnje čitano</string>
-    <string name="action_sort_last_updated">Zadnje ažurirano</string>
     <string name="action_search">Pretraži</string>
     <string name="action_global_search">Pretraži globalno</string>
     <string name="action_select_all">Izaberi sve</string>
@@ -321,7 +319,6 @@
     <string name="sort_by_number">Prema broju poglavlja</string>
     <string name="manga_download">Preuzmi</string>
     <string name="custom_download">Preuzmi određen broj</string>
-    <string name="custom_hint">količina</string>
     <string name="download_1">Sledeće poglavlje</string>
     <string name="download_5">Sledećih 5 poglavlja</string>
     <string name="download_10">Sledećih 10 poglavlja</string>

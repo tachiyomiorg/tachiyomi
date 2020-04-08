@@ -6,7 +6,6 @@
     <string name="label_download_queue">Coda dei download</string>
     <string name="label_library">Collezione</string>
     <string name="label_recent_manga">Cronologia</string>
-    <string name="label_catalogues">Cataloghi</string>
     <string name="label_recent_updates">Aggiornamenti</string>
     <string name="label_categories">Categorie</string>
     <string name="label_backup">Backup</string>
@@ -20,7 +19,6 @@
     <string name="action_filter_empty">Elimina filtri</string>
     <string name="action_sort_alpha">Alfabeticamente</string>
     <string name="action_sort_last_read">Ultimi letti</string>
-    <string name="action_sort_last_updated">Ultimi aggiornati</string>
     <string name="action_search">Ricerca</string>
     <string name="action_select_all">Seleziona tutto</string>
     <string name="action_mark_as_read">Segna come letto</string>
@@ -176,7 +174,7 @@
     <string name="pref_enable_acra">Invia segnalazioni</string>
     <string name="pref_acra_summary">Aiuta a correggere eventuali bug. Non verranno inviati dati sensibili</string>
     <!-- Login dialog -->
-    <string name="login_title">Login per %1$s</string>
+    <string name="login_title">Accedi a %1$s</string>
     <string name="username">Nome utente</string>
     <string name="password">Password</string>
     <string name="show_password">Mostra password</string>
@@ -288,18 +286,16 @@
     <string name="file_select_backup">Seleziona il file di backup</string>
     <string name="file_select_icon">Seleziona l\'icona della scorciatoia</string>
     <!--UpdateCheck-->
-    <string name="update_check_title">Nuova versione disponibile!</string>
     <string name="update_check_confirm">Scarica</string>
     <string name="update_check_ignore">Ignora</string>
     <string name="update_check_no_new_updates">Non ci sono nuovi aggiornamenti disponibili</string>
-    <string name="update_check_download_started">Download iniziato</string>
     <string name="update_check_look_for_updates">Ricerca aggiornamenti…</string>
     <!--UpdateCheck Notifications-->
     <string name="update_check_notification_file_download">Download aggiornamento</string>
     <string name="update_check_notification_download_in_progress">Scaricamento…</string>
     <string name="update_check_notification_download_complete">Download completato</string>
     <string name="update_check_notification_download_error">Errore di download</string>
-    <string name="update_check_notification_update_available">Aggiornamento disponibile</string>
+    <string name="update_check_notification_update_available">Aggiornamento disponibile!</string>
     <!--Content Description-->
     <string name="description_backdrop">Immagine di sfondo del manga</string>
     <string name="description_cover">Copertina del manga</string>
@@ -307,7 +303,7 @@
     <string name="information_no_downloads">Nessun download</string>
     <string name="information_no_recent">Non ci sono capitoli più recenti</string>
     <string name="information_no_recent_manga">Non ci sono manga letti di recente</string>
-    <string name="information_empty_library">Collezione vuota, aggiungi delle serie alla collezione dai cataloghi.</string>
+    <string name="information_empty_library">Libraria vuota, aggiungi delle serie dalle fonti.</string>
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Scaricamento</string>
     <string name="download_notifier_title_error">Errore</string>
@@ -427,7 +423,6 @@
     <string name="copied_to_clipboard">%1$s copiato negli appunti</string>
     <string name="source_not_installed">Sorgente non installata: %1$s</string>
     <string name="custom_download">Scarica quantità personalizzata</string>
-    <string name="custom_hint">quantità</string>
     <string name="download_custom">Personalizzato</string>
     <string name="repeating">Rileggendo</string>
     <string name="track_status">Stato</string>
@@ -460,7 +455,6 @@
     <string name="filter_mode_default">Default</string>
     <string name="filter_mode_screen">Schermo</string>
     <string name="pref_read_with_long_tap">Dialogo dopo pressione lunga</string>
-    <string name="reader_pull_up_for_more_options">Trascina verso l\'alto per maggiori opzioni</string>
     <string name="pref_color_filter_mode">Modalità di filtraggio del colore</string>
     <string name="filter_mode_overlay">Sovrimpressione</string>
     <string name="filter_mode_multiply">Moltiplica</string>
@@ -480,7 +474,7 @@
     <string name="pref_date_format">Formato della data</string>
     <string name="pref_category_library_update">Aggiornamenti</string>
     <string name="pref_category_library_categories">Categorie</string>
-    <string name="logout_title">Disconnettersi da %1 s\?</string>
+    <string name="logout_title">Disconnettersi da %1$s\?</string>
     <string name="logout">Esci</string>
     <string name="logout_success">Ora sei disconnesso</string>
     <string name="currently_reading">In lettura</string>
@@ -518,4 +512,50 @@
     <string name="unlock_app">Sblocca Tachiyomi</string>
     <string name="secure_screen_summary">Nascondi i contenuti dell\'app quando cambi applicazione e blocca gli screenshot</string>
     <string name="pref_category_display">Visualizzazione</string>
+    <string name="action_reorganize_by">Riordina</string>
+    <string name="action_hide">Nascondi</string>
+    <string name="channel_ext_updates">Aggiornamenti estensione</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">Aggiornamento estensione disponibile</item>
+        <item quantity="other">%d estensioni hanno aggiornamenti disponibili</item>
+    </plurals>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Capitolo %1$s e un\'altro</item>
+        <item quantity="other">Capitoli %1$s e altri %2$d</item>
+    </plurals>
+    <string name="notification_chapters_multiple">Capitoli %1$s</string>
+    <string name="notification_chapters_single_and_more">Capitolo %1$s e altri %2$d</string>
+    <string name="notification_chapters_single">Capitolo %1$s</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">Un nuovo capitolo</item>
+        <item quantity="other">%1$d nuovi capitoli</item>
+    </plurals>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">Per un titolo</item>
+        <item quantity="other">Per %d titoli</item>
+    </plurals>
+    <string name="notification_check_updates">Controllando nuove pubblicazioni</string>
+    <string name="http_error_hint">Controlla il sito in WebView</string>
+    <string name="email">Indirizzo email</string>
+    <string name="changelog">Cambiamenti</string>
+    <string name="notices">Avvisi</string>
+    <string name="battery_optimization_disabled">Ottimizzazione batteria già disattivata</string>
+    <string name="pref_disable_battery_optimization_summary">Facilita gli aggiornamenti in background e i backup</string>
+    <string name="pref_disable_battery_optimization">Disattiva ottimizzazione batteria</string>
+    <string name="pref_always_show_chapter_transition">Mostra sempre la transizione tra capitoli</string>
+    <string name="pref_enable_automatic_extension_updates">Controlla aggiornamenti per le estensioni</string>
+    <string name="hide_notification_content">Nascondi contenuto notifica</string>
+    <string name="theme_light_blue">Blu chiaro</string>
+    <string name="theme_light_default">Default</string>
+    <string name="pref_theme_light">Tema chiaro</string>
+    <string name="action_move_to_bottom">Muovi in fondo</string>
+    <string name="action_move_to_top">Muovi in cima</string>
+    <string name="action_oldest">Vecchi</string>
+    <string name="action_newest">Nuovi</string>
+    <string name="action_sort_last_checked">Ultimi controllati</string>
+    <string name="action_menu">Menu</string>
+    <string name="label_sources">Fonti</string>
+    <string name="updating_library">Libreria in aggiornamento</string>
+    <string name="pref_category_reading">In Lettura</string>
+    <string name="pref_skip_filtered_chapters">Salta capitoli filtrati</string>
 </resources>

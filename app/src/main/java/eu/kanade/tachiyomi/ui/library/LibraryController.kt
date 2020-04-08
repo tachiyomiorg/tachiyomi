@@ -15,8 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.appcompat.widget.SearchView
 import androidx.core.graphics.drawable.DrawableCompat
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.f2prateek.rx.preferences.Preference
@@ -33,19 +31,16 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
-import eu.kanade.tachiyomi.ui.base.controller.SecondaryDrawerController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
-import eu.kanade.tachiyomi.util.view.inflate
 import java.io.IOException
 import kotlinx.android.synthetic.main.library_controller.action_toolbar
 import kotlinx.android.synthetic.main.library_controller.empty_view
 import kotlinx.android.synthetic.main.library_controller.library_pager
-import kotlinx.android.synthetic.main.main_activity.drawer
 import kotlinx.android.synthetic.main.main_activity.tabs
 import rx.Subscription
 import timber.log.Timber
@@ -58,7 +53,6 @@ class LibraryController(
 ) : NucleusController<LibraryPresenter>(bundle),
         RootController,
         TabbedController,
-        SecondaryDrawerController,
         ActionMode.Callback,
         ChangeMangaCategoriesDialog.Listener,
         DeleteLibraryMangasDialog.Listener {
@@ -107,6 +101,11 @@ class LibraryController(
     val selectAllRelay: PublishRelay<Int> = PublishRelay.create()
 
     /**
+     * Relay to notify the library's viewpager to select the inverse
+     */
+    val selectInverseRelay: PublishRelay<Int> = PublishRelay.create()
+
+    /**
      * Number of manga per row in grid mode.
      */
     var mangaPerRow = 0
@@ -118,14 +117,9 @@ class LibraryController(
     private var adapter: LibraryAdapter? = null
 
     /**
-     * Navigation view containing filter/sort/display items.
+     * Sheet containing filter/sort/display items.
      */
-    private var navView: LibraryNavigationView? = null
-
-    /**
-     * Drawer listener to allow swipe only for closing the drawer.
-     */
-    private var drawerListener: DrawerLayout.DrawerListener? = null
+    private var settingsSheet: LibrarySettingsSheet? = null
 
     private var tabsVisibilityRelay: BehaviorRelay<Boolean> = BehaviorRelay.create(false)
 
@@ -169,6 +163,15 @@ class LibraryController(
         if (selectedMangas.isNotEmpty()) {
             createActionModeIfNeeded()
         }
+
+        settingsSheet = LibrarySettingsSheet(activity!!) { group ->
+            when (group) {
+                is LibrarySettingsSheet.Settings.FilterGroup -> onFilterChanged()
+                is LibrarySettingsSheet.Settings.SortGroup -> onSortChanged()
+                is LibrarySettingsSheet.Settings.DisplayGroup -> reattachAdapter()
+                is LibrarySettingsSheet.Settings.BadgeGroup -> onDownloadBadgeChanged()
+            }
+        }
     }
 
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
@@ -184,28 +187,10 @@ class LibraryController(
         action_toolbar.destroy()
         adapter?.onDestroy()
         adapter = null
+        settingsSheet = null
         tabsVisibilitySubscription?.unsubscribe()
         tabsVisibilitySubscription = null
         super.onDestroyView(view)
-    }
-
-    override fun createSecondaryDrawer(drawer: DrawerLayout): ViewGroup {
-        val view = drawer.inflate(R.layout.library_drawer) as LibraryNavigationView
-        navView = view
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, GravityCompat.END)
-
-        navView?.onGroupClicked = { group ->
-            when (group) {
-                is LibraryNavigationView.FilterGroup -> onFilterChanged()
-                is LibraryNavigationView.SortGroup -> onSortChanged()
-            }
-        }
-
-        return view
-    }
-
-    override fun cleanupSecondaryDrawer(drawer: DrawerLayout) {
-        navView = null
     }
 
     override fun configureTabs(tabs: TabLayout) {
@@ -227,6 +212,10 @@ class LibraryController(
     override fun cleanupTabs(tabs: TabLayout) {
         tabsVisibilitySubscription?.unsubscribe()
         tabsVisibilitySubscription = null
+    }
+
+    fun showSettingsSheet() {
+        settingsSheet?.show()
     }
 
     fun onNextLibraryUpdate(categories: List<Category>, mangaMap: Map<Int, List<LibraryItem>>) {
@@ -362,52 +351,27 @@ class LibraryController(
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
-        val navView = navView ?: return
+        val settingsSheet = settingsSheet ?: return
 
         val filterItem = menu.findItem(R.id.action_filter)
 
         // Tint icon if there's a filter active
-        if (navView.hasActiveFilters()) {
+        if (settingsSheet.hasActiveFilters()) {
             val filterColor = activity!!.getResourceColor(R.attr.colorFilterActive)
             DrawableCompat.setTint(filterItem.icon, filterColor)
-        }
-
-        // Display submenu
-        if (preferences.libraryAsList().getOrDefault()) {
-            menu.findItem(R.id.action_display_list).isChecked = true
-        } else {
-            menu.findItem(R.id.action_display_grid).isChecked = true
-        }
-        if (preferences.downloadBadge().getOrDefault()) {
-            menu.findItem(R.id.action_display_download_badge).isChecked = true
         }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_search -> expandActionViewFromInteraction = true
-            R.id.action_filter -> {
-                navView?.let { activity?.drawer?.openDrawer(GravityCompat.END) }
-            }
+            R.id.action_filter -> showSettingsSheet()
             R.id.action_update_library -> {
-                activity?.let { LibraryUpdateService.start(it) }
-            }
-
-            // Display submenu
-            R.id.action_display_grid -> {
-                item.isChecked = true
-                preferences.libraryAsList().set(false)
-                reattachAdapter()
-            }
-            R.id.action_display_list -> {
-                item.isChecked = true
-                preferences.libraryAsList().set(true)
-                reattachAdapter()
-            }
-            R.id.action_display_download_badge -> {
-                item.isChecked = !item.isChecked
-                preferences.downloadBadge().set(item.isChecked)
-                onDownloadBadgeChanged()
+                activity?.let {
+                    if (LibraryUpdateService.start(it)) {
+                        it.toast(R.string.updating_library)
+                    }
+                }
             }
         }
 
@@ -448,6 +412,7 @@ class LibraryController(
             R.id.action_move_to_category -> showChangeMangaCategoriesDialog()
             R.id.action_delete -> showDeleteMangaDialog()
             R.id.action_select_all -> selectAllCategoryManga()
+            R.id.action_select_inverse -> selectInverseCategoryManga()
             else -> return false
         }
         return true
@@ -483,6 +448,19 @@ class LibraryController(
             if (selectedMangas.remove(manga)) {
                 selectionRelay.call(LibrarySelectionEvent.Unselected(manga))
             }
+        }
+    }
+
+    /**
+     * Toggles the current selection state for a given manga.
+     *
+     * @param manga the manga whose selection to change.
+     */
+    fun toggleSelection(manga: Manga) {
+        if (selectedMangas.add(manga)) {
+            selectionRelay.call(LibrarySelectionEvent.Selected(manga))
+        } else if (selectedMangas.remove(manga)) {
+            selectionRelay.call(LibrarySelectionEvent.Unselected(manga))
         }
     }
 
@@ -539,6 +517,12 @@ class LibraryController(
     private fun selectAllCategoryManga() {
         adapter?.categories?.getOrNull(library_pager.currentItem)?.id?.let {
             selectAllRelay.call(it)
+        }
+    }
+
+    private fun selectInverseCategoryManga() {
+        adapter?.categories?.getOrNull(library_pager.currentItem)?.id?.let {
+            selectInverseRelay.call(it)
         }
     }
 

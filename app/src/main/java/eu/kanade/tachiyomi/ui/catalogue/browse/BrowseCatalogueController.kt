@@ -41,8 +41,10 @@ import eu.kanade.tachiyomi.util.view.inflate
 import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
+import eu.kanade.tachiyomi.widget.EmptyView
 import java.util.concurrent.TimeUnit
 import kotlinx.android.synthetic.main.catalogue_controller.catalogue_view
+import kotlinx.android.synthetic.main.catalogue_controller.empty_view
 import kotlinx.android.synthetic.main.catalogue_controller.progress
 import kotlinx.android.synthetic.main.main_activity.drawer
 import rx.Observable
@@ -311,7 +313,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
      *
      * @param newQuery the new query.
      */
-    private fun searchWithQuery(newQuery: String) {
+    fun searchWithQuery(newQuery: String) {
         // If text didn't change, do nothing
         if (presenter.query == newQuery)
             return
@@ -352,16 +354,31 @@ open class BrowseCatalogueController(bundle: Bundle) :
         snack?.dismiss()
 
         if (catalogue_view != null) {
-            snack = catalogue_view.snack(getErrorMessage(error), Snackbar.LENGTH_INDEFINITE) {
-                setAction(R.string.action_retry) {
-                    // If not the first page, show bottom progress bar.
-                    if (adapter.mainItemCount > 0) {
-                        val item = progressItem ?: return@setAction
-                        adapter.addScrollableFooterWithDelay(item, 0, true)
-                    } else {
-                        showProgressBar()
+            val message = getErrorMessage(error)
+            val retryAction = View.OnClickListener {
+
+                // If not the first page, show bottom progress bar.
+                if (adapter.mainItemCount > 0 && progressItem != null) {
+                    adapter.addScrollableFooterWithDelay(progressItem!!, 0, true)
+                } else {
+                    showProgressBar()
+                }
+                presenter.requestNext()
+            }
+
+            if (adapter.isEmpty) {
+                val actions = mutableListOf(EmptyView.Action(R.string.action_retry, retryAction))
+                if (presenter.source is HttpSource) {
+                    val openInWebViewAction = View.OnClickListener {
+                        openInWebView()
                     }
-                    presenter.requestNext()
+                    actions += EmptyView.Action(R.string.action_open_in_web_view, openInWebViewAction)
+                }
+
+                empty_view.show(message, actions)
+            } else {
+                snack = catalogue_view.snack(message, Snackbar.LENGTH_INDEFINITE) {
+                    setAction(R.string.action_retry, retryAction)
                 }
             }
         }
@@ -476,6 +493,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
      * Hides active progress bars.
      */
     private fun hideProgressBar() {
+        empty_view.hide()
         progress?.gone()
     }
 

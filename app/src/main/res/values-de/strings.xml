@@ -9,7 +9,6 @@
     <string name="label_download_queue">Downloadwarteschlange</string>
     <string name="label_library">Bibliothek</string>
     <string name="label_recent_manga">Verlauf</string>
-    <string name="label_catalogues">Kataloge</string>
     <string name="label_categories">Kategorien</string>
     <string name="label_backup">Backup</string>
     <string name="action_settings">Einstellungen</string>
@@ -22,7 +21,6 @@
     <string name="action_sort_alpha">Alphabetisch</string>
     <string name="action_sort_total">Kapitelanzahl</string>
     <string name="action_sort_last_read">Zuletzt gelesen</string>
-    <string name="action_sort_last_updated">Zuletzt aktualisiert</string>
     <string name="action_search">Suche</string>
     <string name="action_select_all">Alle auswählen</string>
     <string name="action_mark_as_read">Als gelesen markieren</string>
@@ -320,23 +318,21 @@
     <string name="file_select_cover">Wähle ein Vorschaubild</string>
     <string name="file_select_backup">Wähle eine Backup-Datei</string>
     <string name="file_select_icon">Wähle ein Verknüpfungssymbol</string>
-    <string name="update_check_title">Neue Version verfügbar!</string>
     <string name="update_check_confirm">Herunterladen</string>
     <string name="update_check_ignore">Ignorieren</string>
     <string name="update_check_no_new_updates">Kein neues Update verfügbar</string>
-    <string name="update_check_download_started">Download gestartet</string>
     <string name="update_check_look_for_updates">Suche nach Updates…</string>
     <string name="update_check_notification_file_download">Update herunterladen</string>
     <string name="update_check_notification_download_in_progress">Herunterladen…</string>
     <string name="update_check_notification_download_complete">Download abgeschlossen</string>
     <string name="update_check_notification_download_error">Fehler beim Herunterladen</string>
-    <string name="update_check_notification_update_available">Update verfügbar</string>
+    <string name="update_check_notification_update_available">Neue Version verfügbar!</string>
     <string name="description_backdrop">Hintergrundbild vom Manga</string>
     <string name="description_cover">Manga-Cover</string>
     <string name="information_no_downloads">Keine Downloads</string>
     <string name="information_no_recent">Keine neuen Kapitel</string>
     <string name="information_no_recent_manga">Keine kürzlich gelesene Manga</string>
-    <string name="information_empty_library">Ihre Bibliothek ist leer. Füge neue Serien über den Katalog hinzu.</string>
+    <string name="information_empty_library">Ihre Bibliothek ist leer. Füge neue Serien aus den Quellen hinzu.</string>
     <string name="download_notifier_downloader_title">Downloader</string>
     <string name="download_notifier_title_error">Fehler</string>
     <string name="download_notifier_unkown_error">Kapitel konnte aufgrund eines unerwarteten Fehlers nicht heruntergeladen werden</string>
@@ -392,7 +388,6 @@
     <string name="manga_removed_library">Aus der Bibliothek entfernt</string>
     <string name="manga_info_latest_data_label">Aktualisiert</string>
     <string name="copied_to_clipboard">%1$s in Zwischenablage gespeichert</string>
-    <string name="custom_hint">Anzahl</string>
     <string name="select">Auswählen</string>
     <string name="migrate">Migrieren</string>
     <string name="copy">Kopieren</string>
@@ -416,7 +411,7 @@
     <string name="transition_finished">Beendet:</string>
     <string name="transition_current">Aktuell:</string>
     <string name="transition_next">Als Nächstes:</string>
-    <string name="transition_previous">Zuvor:</string>
+    <string name="transition_previous">Davor:</string>
     <string name="transition_no_next">Es gibt kein nächstes Kapitel</string>
     <string name="transition_no_previous">Es gibt kein vorheriges Kapitel</string>
     <string name="transition_pages_loading">Lade Seiten…</string>
@@ -425,7 +420,6 @@
     <string name="pref_true_color">32-Bit Farben</string>
     <string name="pref_skip_read_chapters">Überspringe gelesene Kapitel</string>
     <string name="pref_read_with_long_tap">Langes Tippen für Kontextmenü</string>
-    <string name="reader_pull_up_for_more_options">Hochziehen für mehr Optionen</string>
     <string name="filter_mode_default">Standard</string>
     <string name="filter_mode_overlay">Überlagerung</string>
     <string name="filter_mode_multiply">Multiplizieren</string>
@@ -519,4 +513,17 @@
     <string name="action_oldest">Älteste</string>
     <string name="action_move_to_top">Nach oben verschieben</string>
     <string name="action_move_to_bottom">Nach unten verschieben</string>
+    <string name="action_sort_last_checked">Zuletzt überprüft</string>
+    <string name="pref_enable_automatic_extension_updates">Nach Erweiterungsupdates suchen</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">Erweiterungsupdate verfügbar</item>
+        <item quantity="other">%d Erweiterungsupdates verfügbar</item>
+    </plurals>
+    <string name="channel_ext_updates">Erweiterungsupdates</string>
+    <string name="http_error_hint">Website in Webansicht prüfen</string>
+    <string name="updating_library">Bibliothek wird aktualisiert</string>
+    <string name="pref_skip_filtered_chapters">Überspringe gefilterte Kapitel</string>
+    <string name="pref_category_reading">Am Lesen</string>
+    <string name="label_sources">Quellen</string>
+    <string name="action_select_inverse">Auswahl umkehren</string>
 </resources>

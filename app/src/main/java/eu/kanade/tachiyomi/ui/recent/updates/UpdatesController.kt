@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.recent.updates
 
 import android.view.LayoutInflater
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
@@ -59,6 +60,10 @@ class UpdatesController : NucleusController<UpdatesPresenter>(),
     var adapter: UpdatesAdapter? = null
         private set
 
+    init {
+        setHasOptionsMenu(true)
+    }
+
     override fun getTitle(): String? {
         return resources?.getString(R.string.label_recent_updates)
     }
@@ -94,10 +99,8 @@ class UpdatesController : NucleusController<UpdatesPresenter>(),
 
         swipe_refresh.setDistanceToTriggerSync((2 * 64 * view.resources.displayMetrics.density).toInt())
         swipe_refresh.refreshes().subscribeUntilDestroy {
-            if (!LibraryUpdateService.isRunning(view.context)) {
-                LibraryUpdateService.start(view.context)
-                view.context.toast(R.string.action_update_library)
-            }
+            updateLibrary()
+
             // It can be a very long operation, so we disable swipe refresh and show a toast.
             swipe_refresh.isRefreshing = false
         }
@@ -108,6 +111,26 @@ class UpdatesController : NucleusController<UpdatesPresenter>(),
         action_toolbar.destroy()
         adapter = null
         super.onDestroyView(view)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.updates, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_update_library -> updateLibrary()
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun updateLibrary() {
+        activity?.let {
+            if (LibraryUpdateService.start(it)) {
+                it.toast(R.string.updating_library)
+            }
+        }
     }
 
     /**
@@ -315,6 +338,7 @@ class UpdatesController : NucleusController<UpdatesPresenter>(),
     override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_select_all -> selectAll()
+            R.id.action_select_inverse -> selectInverse()
             R.id.action_download -> downloadChapters(getSelectedChapters())
             R.id.action_delete -> ConfirmDeleteChaptersDialog(this, getSelectedChapters())
                     .showDialog(router)
@@ -340,5 +364,14 @@ class UpdatesController : NucleusController<UpdatesPresenter>(),
         val adapter = adapter ?: return
         adapter.selectAll()
         actionMode?.invalidate()
+    }
+
+    private fun selectInverse() {
+        val adapter = adapter ?: return
+        for (i in 0..adapter.itemCount) {
+            adapter.toggleSelection(i)
+        }
+        actionMode?.invalidate()
+        adapter.notifyDataSetChanged()
     }
 }

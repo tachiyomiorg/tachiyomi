@@ -17,7 +17,7 @@
     <string name="label_library">Library</string>
     <string name="label_recent_updates">Updates</string>
     <string name="label_recent_manga">History</string>
-    <string name="label_catalogues">Catalogues</string>
+    <string name="label_sources">Sources</string>
     <string name="label_categories">Categories</string>
     <string name="label_backup">Backup</string>
     <string name="label_migration">Source migration</string>
@@ -44,6 +44,7 @@
     <string name="action_search">Search</string>
     <string name="action_global_search">Global search</string>
     <string name="action_select_all">Select all</string>
+    <string name="action_select_inverse">Select inverse</string>
     <string name="action_mark_as_read">Mark as read</string>
     <string name="action_mark_as_unread">Mark as unread</string>
     <string name="action_mark_previous_as_read">Mark previous as read</string>
@@ -76,7 +77,7 @@
     <string name="action_resume">Resume</string>
     <string name="action_move">Move</string>
     <string name="action_open_in_browser">Open in browser</string>
-    <string name="action_open_in_web_view">Open in web view</string>
+    <string name="action_open_in_web_view">Open in WebView</string>
     <string name="action_add_to_home_screen">Add to home screen</string>
     <string name="action_display_mode">Display mode</string>
     <string name="action_display">Display</string>
@@ -222,7 +223,6 @@
     <string name="pref_show_page_number">Show page number</string>
     <string name="pref_true_color">32-bit color</string>
     <string name="pref_crop_borders">Crop borders</string>
-    <string name="pref_webtoon_padding_vert">Vertical padding between pages</string>
     <string name="pref_custom_brightness">Use custom brightness</string>
     <string name="pref_custom_color_filter">Use custom color filter</string>
     <string name="pref_color_filter_mode">Color filter blend mode</string>
@@ -234,6 +234,7 @@
     <string name="filter_mode_darken">Burn / Darken</string>
     <string name="pref_keep_screen_on">Keep screen on</string>
     <string name="pref_skip_read_chapters">Skip chapters marked read</string>
+    <string name="pref_skip_filtered_chapters">Skip filtered chapters</string>
     <string name="pref_reader_navigation">Navigation</string>
     <string name="pref_read_with_volume_keys">Volume keys</string>
     <string name="pref_read_with_volume_keys_inverted">Invert volume keys</string>
@@ -248,6 +249,7 @@
     <string name="right_to_left_viewer">Right to left</string>
     <string name="vertical_viewer">Vertical</string>
     <string name="webtoon_viewer">Webtoon</string>
+    <string name="vertical_plus_viewer">Continuous vertical</string>
     <string name="pager_viewer">Pager</string>
     <string name="pref_image_decoder">Image decoder</string>
     <string name="pref_image_scale_type">Scale type</string>
@@ -275,6 +277,7 @@
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">A</string>
     <string name="pref_always_show_chapter_transition">Always show chapter transition</string>
+    <string name="pref_category_reading">Reading</string>
 
       <!-- Downloads section -->
     <string name="pref_download_directory">Download location</string>
@@ -418,6 +421,7 @@
     <string name="delete_downloads_for_manga">Delete downloaded chapters?</string>
     <string name="copied_to_clipboard">%1$s copied to clipboard</string>
     <string name="source_not_installed">Source not installed: %1$s</string>
+    <string name="snack_add_to_library">Add manga to library?</string>
 
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapters</string>
@@ -437,7 +441,6 @@
     <string name="sort_by_number">By chapter number</string>
     <string name="manga_download">Download</string>
     <string name="custom_download">Download custom amount</string>
-    <string name="custom_hint">amount</string>
     <string name="download_1">Next chapter</string>
     <string name="download_5">Next 5 chapters</string>
     <string name="download_10">Next 10 chapters</string>
@@ -477,9 +480,6 @@
     <string name="dialog_with_checkbox_remove_description">This will remove the read date of this chapter. Are you sure?</string>
     <string name="dialog_with_checkbox_reset">Reset all chapters for this manga</string>
 
-    <!-- SnackBar -->
-    <string name="snack_add_to_library">Add manga to library?</string>
-
     <!-- Image notifier -->
     <string name="picture_saved">Picture saved</string>
     <string name="saving_picture">Saving picture</string>
@@ -507,9 +507,11 @@
     <string name="transition_no_previous">There\'s no previous chapter</string>
     <string name="transition_pages_loading">Loading pages…</string>
     <string name="transition_pages_error">Failed to load pages: %1$s</string>
-    <string name="reader_pull_up_for_more_options">Pull up for more options</string>
 
-    <!-- Recent manga fragment -->
+    <!-- Updates fragment -->
+    <string name="updating_library">Updating library</string>
+
+    <!-- History fragment -->
     <string name="recent_manga_source">%1$s - Ch.%2$s</string>
 
     <!-- Source migration screen -->
@@ -540,7 +542,7 @@
     <string name="notification_chapters_single_and_more">Chapter %1$s and %2$d more</string>
     <string name="notification_chapters_multiple">Chapters %1$s</string>
     <plurals name="notification_chapters_multiple_and_more">
-        <item quantity="one">Chapter %1$s and 1 more</item>
+        <item quantity="one">Chapters %1$s and 1 more</item>
         <item quantity="other">Chapters %1$s and %2$d more</item>
     </plurals>
     <string name="notification_cover_update_failed">Failed to update cover</string>
@@ -556,11 +558,9 @@
     <string name="file_select_icon">Select shortcut icon</string>
 
     <!--UpdateCheck-->
-    <string name="update_check_title">New version available!</string>
     <string name="update_check_confirm">Download</string>
     <string name="update_check_ignore">Ignore</string>
     <string name="update_check_no_new_updates">No new updates available</string>
-    <string name="update_check_download_started">Download started</string>
     <string name="update_check_look_for_updates">Searching for updates…</string>
 
     <!--UpdateCheck Notifications-->
@@ -568,7 +568,7 @@
     <string name="update_check_notification_download_in_progress">Downloading…</string>
     <string name="update_check_notification_download_complete">Download complete</string>
     <string name="update_check_notification_download_error">Download error</string>
-    <string name="update_check_notification_update_available">Update available</string>
+    <string name="update_check_notification_update_available">New version available!</string>
 
     <!--Extension Updates Notifications-->
     <plurals name="update_check_notification_ext_updates">
@@ -584,7 +584,7 @@
     <string name="information_no_downloads">No downloads</string>
     <string name="information_no_recent">No recent chapters</string>
     <string name="information_no_recent_manga">No recently read manga</string>
-    <string name="information_empty_library">Your library is empty, add series to your library from the catalogues.</string>
+    <string name="information_empty_library">Your library is empty, add series to your library from the sources.</string>
     <string name="information_empty_category">You have no categories. Hit the plus button to create one for organizing your library.</string>
     <string name="information_cloudflare_bypass_failure">Failed to bypass Cloudflare</string>
     <string name="information_webview_outdated">Please update the WebView app for better compatibility</string>

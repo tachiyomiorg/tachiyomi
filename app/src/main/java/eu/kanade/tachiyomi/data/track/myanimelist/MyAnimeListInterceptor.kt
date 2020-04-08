@@ -18,6 +18,7 @@ class MyAnimeListInterceptor(private val myanimelist: MyAnimeList) : Interceptor
 
         if (response.code == 400) {
             myanimelist.refreshLogin()
+            response.close()
             response = chain.proceed(updateRequest(request))
         }
 

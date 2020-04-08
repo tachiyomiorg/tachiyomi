@@ -11,14 +11,12 @@ import rx.subjects.PublishSubject
 
 class DownloadQueue(
     private val store: DownloadStore,
-    private val queue: MutableList<Download> = CopyOnWriteArrayList<Download>()
+    private val queue: MutableList<Download> = CopyOnWriteArrayList()
 ) : List<Download> by queue {
 
     private val statusSubject = PublishSubject.create<Download>()
 
     private val updatedRelay = PublishRelay.create<Unit>()
-
-    private val downloadListeners = mutableListOf<DownloadListener>()
 
     fun addAll(downloads: List<Download>) {
         downloads.forEach { download ->
@@ -39,7 +37,6 @@ class DownloadQueue(
         if (download.status == Download.DOWNLOADING || download.status == Download.QUEUE) {
             download.status = Download.NOT_DOWNLOADED
         }
-        callListeners(download)
         if (removed) {
             updatedRelay.call(Unit)
         }
@@ -66,7 +63,6 @@ class DownloadQueue(
             if (download.status == Download.DOWNLOADING || download.status == Download.QUEUE) {
                 download.status = Download.NOT_DOWNLOADED
             }
-            callListeners(download)
         }
         queue.clear()
         store.clear()
@@ -83,21 +79,9 @@ class DownloadQueue(
             .map { this }
 
     private fun setPagesFor(download: Download) {
-        if (download.status == Download.DOWNLOADING) {
-            download.pages?.forEach { page ->
-                page.setStatusCallback {
-                    callListeners(download)
-                }
-            }
-        } else if (download.status == Download.DOWNLOADED || download.status == Download.ERROR) {
+        if (download.status == Download.DOWNLOADED || download.status == Download.ERROR) {
             setPagesSubject(download.pages, null)
         }
-
-        callListeners(download)
-    }
-
-    private fun callListeners(download: Download) {
-        downloadListeners.forEach { it.updateDownload(download) }
     }
 
     fun getProgressObservable(): Observable<Download> {
@@ -107,14 +91,12 @@ class DownloadQueue(
                     if (download.status == Download.DOWNLOADING) {
                         val pageStatusSubject = PublishSubject.create<Int>()
                         setPagesSubject(download.pages, pageStatusSubject)
-                        callListeners(download)
                         return@flatMap pageStatusSubject
                                 .onBackpressureBuffer()
                                 .filter { it == Page.READY }
                                 .map { download }
                     } else if (download.status == Download.DOWNLOADED || download.status == Download.ERROR) {
                         setPagesSubject(download.pages, null)
-                        callListeners(download)
                     }
                     Observable.just(download)
                 }
@@ -122,22 +104,6 @@ class DownloadQueue(
     }
 
     private fun setPagesSubject(pages: List<Page>?, subject: PublishSubject<Int>?) {
-        if (pages != null) {
-            for (page in pages) {
-                page.setStatusSubject(subject)
-            }
-        }
-    }
-
-    fun addListener(listener: DownloadListener) {
-        downloadListeners.add(listener)
-    }
-
-    fun removeListener(listener: DownloadListener) {
-        downloadListeners.remove(listener)
-    }
-
-    interface DownloadListener {
-        fun updateDownload(download: Download)
+        pages?.forEach { it.setStatusSubject(subject) }
     }
 }

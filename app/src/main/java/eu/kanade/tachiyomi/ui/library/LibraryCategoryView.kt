@@ -18,6 +18,7 @@ import eu.kanade.tachiyomi.util.lang.plusAssign
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.inflate
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
+import kotlinx.android.synthetic.main.library_category.view.fast_scroller
 import kotlinx.android.synthetic.main.library_category.view.swipe_refresh
 import rx.subscriptions.CompositeSubscription
 import uy.kohesive.injekt.injectLazy
@@ -81,6 +82,7 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
         recycler.setHasFixedSize(true)
         recycler.adapter = adapter
         swipe_refresh.addView(recycler)
+        adapter.fastScroller = fast_scroller
 
         recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recycler: RecyclerView, newState: Int) {
@@ -94,10 +96,10 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
         // Double the distance required to trigger sync
         swipe_refresh.setDistanceToTriggerSync((2 * 64 * resources.displayMetrics.density).toInt())
         swipe_refresh.setOnRefreshListener {
-            if (!LibraryUpdateService.isRunning(context)) {
-                LibraryUpdateService.start(context, category)
+            if (LibraryUpdateService.start(context, category)) {
                 context.toast(R.string.updating_category)
             }
+
             // It can be a very long operation, so we disable swipe refresh and show a toast.
             swipe_refresh.isRefreshing = false
         }
@@ -131,6 +133,15 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
                     }
                     controller.invalidateActionMode()
                 }
+
+        subscriptions += controller.selectInverseRelay
+            .filter { it == category.id }
+            .subscribe {
+                adapter.currentItems.forEach { item ->
+                    controller.toggleSelection(item.manga)
+                }
+                controller.invalidateActionMode()
+            }
     }
 
     fun onRecycle() {

@@ -9,7 +9,6 @@
     <string name="label_download_queue">Toka sa Download</string>
     <string name="label_library">Aklatan</string>
     <string name="label_recent_manga">Kakabasa</string>
-    <string name="label_catalogues">Katalogo</string>
     <string name="label_recent_updates">Mga update sa aklatan</string>
     <string name="label_categories">Mga Kategorya</string>
     <string name="label_backup">Backup</string>
@@ -26,7 +25,6 @@
     <string name="action_sort_alpha">Pa-alpabeto</string>
     <string name="action_sort_total">Kabuuan</string>
     <string name="action_sort_last_read">Huling nabasa</string>
-    <string name="action_sort_last_updated">Huling na-update</string>
     <string name="action_search">Maghanap</string>
     <string name="action_global_search">Panlahatang paghahanap</string>
     <string name="action_select_all">Piliin lahat</string>
@@ -62,7 +60,7 @@
     <string name="action_resume">Ipagpatuloy</string>
     <string name="action_move">Ilipat</string>
     <string name="action_open_in_browser">Buksan sa browser</string>
-    <string name="action_open_in_web_view">Buksan sa web view</string>
+    <string name="action_open_in_web_view">Buksan sa WebView</string>
     <string name="action_add_to_home_screen">Ilagay sa home screen</string>
     <string name="action_display_mode">Palitan ang display mode</string>
     <string name="action_display">Display</string>
@@ -333,7 +331,6 @@
     <string name="sort_by_number">Base sa bilang ng kabanata</string>
     <string name="manga_download">I-download</string>
     <string name="custom_download">I-download ang custom na rami</string>
-    <string name="custom_hint">dami</string>
     <string name="download_1">Susunod na kabanata</string>
     <string name="download_5">Susunod na 5 kabanata</string>
     <string name="download_10">Susunod na 10 kabanata</string>
@@ -385,7 +382,6 @@
     <string name="transition_no_previous">Walang nakaraang kabanata</string>
     <string name="transition_pages_loading">Kinakarga ang mga pahina…</string>
     <string name="transition_pages_error">Pumalya sa pagkarga ng mga pahina: %1$s</string>
-    <string name="reader_pull_up_for_more_options">Hilahin pataas para sa mas maraming pagpipilian</string>
     <string name="recent_manga_source">%1$s - Kab. %2$s</string>
     <string name="migration_info">Pindutin para mapili ang source na paglilipat</string>
     <string name="migration_dialog_what_to_include">Piliin ang mga isasamang data</string>
@@ -405,11 +401,9 @@
     <string name="file_select_cover">Pumili ng larawang pabalat</string>
     <string name="file_select_backup">Pumili ng backup file</string>
     <string name="file_select_icon">Pumili ng shortcut icon</string>
-    <string name="update_check_title">Mayroong bagong version!</string>
     <string name="update_check_confirm">Download</string>
     <string name="update_check_ignore">Pabayaan</string>
     <string name="update_check_no_new_updates">Walang mga bagong update</string>
-    <string name="update_check_download_started">Nagsimula ang pag-download</string>
     <string name="update_check_look_for_updates">Naghahanap ng mga update…</string>
     <string name="update_check_notification_file_download">Download update</string>
     <string name="update_check_notification_download_in_progress">Kasalukuyang nagda-download</string>

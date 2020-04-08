@@ -146,8 +146,9 @@ class LibraryUpdateService(
          * @param context the application context.
          * @param category a specific category to update, or null for global update.
          * @param target defines what should be updated.
+         * @return true if service newly started, false otherwise
          */
-        fun start(context: Context, category: Category? = null, target: Target = Target.CHAPTERS) {
+        fun start(context: Context, category: Category? = null, target: Target = Target.CHAPTERS): Boolean {
             if (!isRunning(context)) {
                 val intent = Intent(context, LibraryUpdateService::class.java).apply {
                     putExtra(KEY_TARGET, target)
@@ -158,7 +159,11 @@ class LibraryUpdateService(
                 } else {
                     context.startForegroundService(intent)
                 }
+
+                return true
             }
+
+            return false
         }
 
         /**

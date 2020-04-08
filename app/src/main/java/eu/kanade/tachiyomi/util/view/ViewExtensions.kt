@@ -9,6 +9,7 @@ import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.MenuRes
 import androidx.appcompat.widget.PopupMenu
@@ -78,19 +79,18 @@ inline fun View.visibleIf(block: () -> Boolean) {
 }
 
 /**
- * Returns a TextDrawable determined by input
+ * Sets a round TextDrawable into an ImageView determined by input.
  *
  * @param text text of [TextDrawable]
- * @param random random color
  */
-fun View.getRound(text: String, random: Boolean = true): TextDrawable {
+fun ImageView.roundTextIcon(text: String) {
+    val letter = text.take(1).toUpperCase()
     val size = min(this.width, this.height)
-    return TextDrawable.builder()
-            .beginConfig()
-            .width(size)
-            .height(size)
-            .textColor(Color.WHITE)
-            .useFont(Typeface.DEFAULT)
-            .endConfig()
-            .buildRound(text, if (random) ColorGenerator.MATERIAL.randomColor else ColorGenerator.MATERIAL.getColor(text))
+
+    setImageDrawable(
+        TextDrawable.builder().beginConfig().width(size).height(size).textColor(Color.WHITE)
+            .useFont(Typeface.DEFAULT).endConfig().buildRound(
+                letter, ColorGenerator.MATERIAL.getColor(letter)
+            )
+    )
 }

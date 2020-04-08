@@ -91,8 +91,27 @@ class ReaderPresenter(
                 ?: error("Requested chapter of id $chapterId not found in chapter list")
 
         val chaptersForReader =
-                if (preferences.skipRead()) {
-                    val list = dbChapters.filter { !it.read }.toMutableList()
+                if (preferences.skipRead() || preferences.skipFiltered()) {
+                    val list = dbChapters
+                        .filter {
+                            if (preferences.skipRead() && it.read) {
+                                return@filter false
+                            } else if (preferences.skipFiltered()) {
+                                if (
+                                    (manga.readFilter == Manga.SHOW_READ && !it.read) ||
+                                    (manga.readFilter == Manga.SHOW_UNREAD && it.read) ||
+                                    (manga.downloadedFilter == Manga.SHOW_DOWNLOADED &&
+                                        !downloadManager.isChapterDownloaded(it, manga)) ||
+                                    (manga.bookmarkedFilter == Manga.SHOW_BOOKMARKED && !it.bookmark)
+                                ) {
+                                    return@filter false
+                                }
+                            }
+
+                            true
+                        }
+                        .toMutableList()
+
                     val find = list.find { it.id == chapterId }
                     if (find == null) {
                         list.add(selectedChapter)
@@ -405,6 +424,19 @@ class ReaderPresenter(
      */
     fun getCurrentChapter(): ReaderChapter? {
         return viewerChaptersRelay.value?.currChapter
+    }
+
+    /**
+     * Bookmarks the currently active chapter.
+     */
+    fun bookmarkCurrentChapter(bookmarked: Boolean) {
+        if (getCurrentChapter()?.chapter == null) {
+            return
+        }
+
+        val chapter = getCurrentChapter()?.chapter!!
+        chapter.bookmark = bookmarked
+        db.updateChapterProgress(chapter).executeAsBlocking()
     }
 
     /**

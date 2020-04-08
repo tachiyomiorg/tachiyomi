@@ -26,7 +26,7 @@
                 android:id="@+id/track_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                tools:src="@drawable/tracker_mal" />
+                tools:src="@drawable/ic_tracker_mal" />
 
             <ImageButton
                 android:id="@+id/track_set"

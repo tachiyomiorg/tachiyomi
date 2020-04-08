@@ -30,7 +30,9 @@ fun String.truncateCenter(count: Int, replacement: String = "..."): String {
  * Case-insensitive natural comparator for strings.
  */
 fun String.compareToCaseInsensitiveNaturalOrder(other: String): Int {
-    return String.CASE_INSENSITIVE_ORDER.then(naturalOrder()).compare(this, other)
+    return compareBy<String> { it.length }
+        .then(String.CASE_INSENSITIVE_ORDER)
+        .then(naturalOrder()).compare(this, other)
 }
 
 /**

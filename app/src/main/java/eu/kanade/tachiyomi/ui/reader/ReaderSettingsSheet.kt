@@ -23,7 +23,6 @@ import kotlinx.android.synthetic.main.reader_settings_sheet.cutout_short
 import kotlinx.android.synthetic.main.reader_settings_sheet.fullscreen
 import kotlinx.android.synthetic.main.reader_settings_sheet.keepscreen
 import kotlinx.android.synthetic.main.reader_settings_sheet.long_tap
-import kotlinx.android.synthetic.main.reader_settings_sheet.pad_pages_vert_webtoon
 import kotlinx.android.synthetic.main.reader_settings_sheet.page_transitions
 import kotlinx.android.synthetic.main.reader_settings_sheet.pager_prefs_group
 import kotlinx.android.synthetic.main.reader_settings_sheet.rotation_mode
@@ -73,7 +72,8 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         viewer.onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
             activity.presenter.setMangaViewer(position)
 
-            if (activity.presenter.getMangaViewer() == ReaderActivity.WEBTOON) {
+            val mangaViewer = activity.presenter.getMangaViewer()
+            if (mangaViewer == ReaderActivity.WEBTOON || mangaViewer == ReaderActivity.VERTICAL_PLUS) {
                 initWebtoonPreferences()
             } else {
                 initPagerPreferences()
@@ -104,7 +104,6 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         scale_type.bindToPreference(preferences.imageScaleType(), 1)
         zoom_start.bindToPreference(preferences.zoomStart(), 1)
         crop_borders.bindToPreference(preferences.cropBorders())
-        pad_pages_vert_webtoon.bindToPreference(preferences.padPagesVertWebtoon())
         page_transitions.bindToPreference(preferences.pageTransitions())
     }
 
@@ -116,7 +115,6 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         webtoon_prefs_group.visible()
 
         crop_borders_webtoon.bindToPreference(preferences.cropBordersWebtoon())
-        pad_pages_vert_webtoon.bindToPreference(preferences.padPagesVertWebtoon())
     }
 
     /**

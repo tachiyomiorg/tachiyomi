@@ -35,13 +35,9 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
 
     private val api by lazy { KitsuApi(client, interceptor) }
 
-    override fun getLogo(): Int {
-        return R.drawable.tracker_kitsu
-    }
+    override fun getLogo() = R.drawable.ic_tracker_kitsu
 
-    override fun getLogoColor(): Int {
-        return Color.rgb(0x33, 0x25, 0x32)
-    }
+    override fun getLogoColor() = Color.rgb(51, 37, 50)
 
     override fun getStatusList(): List<Int> {
         return listOf(READING, PLAN_TO_READ, COMPLETED, ON_HOLD, DROPPED)

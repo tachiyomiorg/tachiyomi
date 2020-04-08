@@ -7,7 +7,28 @@
     android:background="?attr/colorSurface"
     android:clipToPadding="false"
     android:orientation="vertical"
-    android:padding="@dimen/material_component_dialogs_padding_around_content_area">
+    android:paddingStart="24dp"
+    android:paddingTop="0dp"
+    android:paddingEnd="24dp"
+    android:paddingBottom="24dp">
+
+    <ImageView
+        android:id="@id/pull_up_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:alpha="0.5"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_drag_pill_24dp"
+        android:tint="?attr/colorOnBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.widget.Space
+        android:id="@+id/spinner_end"
+        android:layout_width="16dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="parent" />
 
     <!-- General preferences -->
 
@@ -19,23 +40,7 @@
         android:textColor="?attr/colorAccent"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/pull_up_for_more"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/reader_pull_up_for_more_options"
-        android:textColor="?android:attr/textColorHint"
-        app:layout_constraintStart_toEndOf="@id/general_prefs"
-        app:layout_constraintTop_toTopOf="@id/general_prefs" />
-
-    <android.widget.Space
-        android:id="@+id/spinner_end"
-        android:layout_width="16dp"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/pull_up_bar" />
 
     <TextView
         android:id="@+id/viewer_text"
@@ -54,7 +59,7 @@
         android:entries="@array/viewers_selector"
         app:layout_constraintEnd_toEndOf="@id/spinner_end"
         app:layout_constraintStart_toEndOf="@id/verticalcenter"
-        app:layout_constraintTop_toBottomOf="@id/pull_up_for_more" />
+        app:layout_constraintTop_toBottomOf="@id/general_prefs" />
 
     <TextView
         android:id="@+id/rotation_mode_text"
@@ -251,14 +256,6 @@
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constraintTop_toBottomOf="@id/webtoon_prefs" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/pad_pages_vert_webtoon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/pref_webtoon_padding_vert"
-        android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintTop_toBottomOf="@id/crop_borders_webtoon" />
-
     <!-- Groups of preferences -->
 
     <androidx.constraintlayout.widget.Group
@@ -274,7 +271,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="webtoon_prefs,crop_borders_webtoon,pad_pages_vert_webtoon" />
+        app:constraint_referenced_ids="webtoon_prefs,crop_borders_webtoon" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/verticalcenter"

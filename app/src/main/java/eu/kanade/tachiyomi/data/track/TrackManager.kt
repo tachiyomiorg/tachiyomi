@@ -7,7 +7,7 @@ import eu.kanade.tachiyomi.data.track.kitsu.Kitsu
 import eu.kanade.tachiyomi.data.track.myanimelist.MyAnimeList
 import eu.kanade.tachiyomi.data.track.shikimori.Shikimori
 
-class TrackManager(private val context: Context) {
+class TrackManager(context: Context) {
 
     companion object {
         const val MYANIMELIST = 1

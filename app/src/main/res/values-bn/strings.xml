@@ -10,7 +10,6 @@
     <string name="label_download_queue">ডাউনলোড</string>
     <string name="label_library">মাংগা সংগ্রহ</string>
     <string name="label_recent_manga">সম্প্রতি পঠিত</string>
-    <string name="label_catalogues">তালিকাগুলো</string>
     <string name="label_recent_updates">সংগ্রহ হালনাগাদ</string>
     <string name="label_categories">বিভাগ সমূহ</string>
     <string name="label_backup">ব্যাকআপ</string>
@@ -24,7 +23,6 @@
     <string name="action_sort_alpha">বর্ণানুক্রমে</string>
     <string name="action_sort_total">মোট অধ্যায়</string>
     <string name="action_sort_last_read">শেষ পঠিত</string>
-    <string name="action_sort_last_updated">সর্বশেষ আপডেট</string>
     <string name="action_search">খোঁজ</string>
     <string name="action_global_search">সর্বত্র খোঁজ</string>
     <string name="action_select_all">সব নির্বাচন</string>
@@ -330,11 +328,9 @@
     <string name="file_select_cover">কভার ছবি নির্বাচন করুন</string>
     <string name="file_select_backup">ব্যাকআপ ফাইল নির্বাচন করুন</string>
     <string name="file_select_icon">শর্টকাট আইকন নির্বাচন করুন</string>
-    <string name="update_check_title">নতুন আপডেট বের হয়েছে!</string>
     <string name="update_check_confirm">ডাউনলোড</string>
     <string name="update_check_ignore">এড়িয়ে যান</string>
     <string name="update_check_no_new_updates">নতুন কোন আপডেট নেই</string>
-    <string name="update_check_download_started">ডাউনলোড শুরু হয়েছে</string>
     <string name="update_check_look_for_updates">আপডেট খোঁজা হচ্ছে</string>
     <string name="update_check_notification_file_download">আপডেট ডাউনলোড করুন</string>
     <string name="update_check_notification_download_in_progress">ডাউনলোড হচ্ছে</string>
@@ -395,7 +391,6 @@
     <string name="manga_info_latest_data_label">আপডেট হয়েছে</string>
     <string name="copied_to_clipboard">%1$s ক্লিপবোর্ডে কপি হয়েছে</string>
     <string name="custom_download">কাস্টম পরিমাণ ডাউনলোড করুন</string>
-    <string name="custom_hint">পরিমাণ</string>
     <string name="download_custom">কাস্টম</string>
     <string name="migration_info">সরিয়ে নেয়ার জন্য উৎস নির্বাচন করুন</string>
     <string name="migration_dialog_what_to_include">যোগ করার জন্য উপাত্ত নির্বাচন করুন</string>
@@ -420,7 +415,6 @@
     <string name="transition_pages_error">পৃষ্ঠা লোড করতে ব্যর্থ হয়েছে: %1$s</string>
     <string name="url_not_set">মাংগা ইউআরএল সেট না শিরোনাম ক্লিক করুন এবং আবার মাংগা নির্বাচন করুন</string>
     <string name="pref_read_with_long_tap">দীর্ঘক্ষণ ট্যাপ ডায়ালগ</string>
-    <string name="reader_pull_up_for_more_options">আরও বিকল্পের জন্য ওপরে টান দিন</string>
     <string name="action_open_in_web_view">ওয়েব দর্শনে খুলুন</string>
     <string name="pref_true_color">৩২-বিট রঙ</string>
     <string name="pref_skip_read_chapters">পঠিত অধ্যায়গুলো এড়িয়ে যান</string>

@@ -399,6 +399,8 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
 
     override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.action_select_all -> selectAll()
+            R.id.action_select_inverse -> selectInverse()
             R.id.action_download -> downloadChapters(getSelectedChapters())
             R.id.action_delete -> showDeleteChaptersConfirmationDialog()
             R.id.action_bookmark -> bookmarkChapters(getSelectedChapters(), true)
@@ -406,7 +408,6 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
             R.id.action_mark_as_read -> markAsRead(getSelectedChapters())
             R.id.action_mark_as_unread -> markAsUnread(getSelectedChapters())
             R.id.action_mark_previous_as_read -> markPreviousAsRead(getSelectedChapters())
-            R.id.action_select_all -> selectAll()
             else -> return false
         }
         return true
@@ -434,6 +435,15 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         adapter.selectAll()
         selectedItems.addAll(adapter.items)
         actionMode?.invalidate()
+    }
+
+    private fun selectInverse() {
+        val adapter = adapter ?: return
+        for (i in 0..adapter.itemCount) {
+            adapter.toggleSelection(i)
+        }
+        actionMode?.invalidate()
+        adapter.notifyDataSetChanged()
     }
 
     private fun markAsRead(chapters: List<ChapterItem>) {

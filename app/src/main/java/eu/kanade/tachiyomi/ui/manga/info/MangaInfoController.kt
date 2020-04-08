@@ -25,6 +25,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.google.android.material.chip.Chip
 import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import com.jakewharton.rxbinding.view.clicks
 import com.jakewharton.rxbinding.view.longClicks
@@ -36,11 +37,13 @@ import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.Source
+import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.catalogue.browse.BrowseCatalogueController
 import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.library.LibraryController
@@ -68,6 +71,8 @@ import kotlinx.android.synthetic.main.manga_info_controller.manga_source
 import kotlinx.android.synthetic.main.manga_info_controller.manga_status
 import kotlinx.android.synthetic.main.manga_info_controller.manga_summary
 import kotlinx.android.synthetic.main.manga_info_controller.swipe_refresh
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -142,8 +147,6 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
             copyToClipboard(view.context.getString(R.string.description), manga_summary.text.toString())
         }
 
-        manga_genres_tags.setOnTagClickListener { tag -> performLocalSearch(tag) }
-
         manga_cover.longClicks().subscribeUntilDestroy {
             copyToClipboard(view.context.getString(R.string.title), presenter.manga.title)
         }
@@ -215,11 +218,31 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         }
 
         // If manga source is known update source TextView.
-        manga_source.text = source?.toString() ?: view.context.getString(R.string.unknown)
+        val mangaSource = source?.toString()
+        with(manga_source) {
+            if (mangaSource != null) {
+                text = mangaSource
+                setOnClickListener {
+                    val sourceManager = Injekt.get<SourceManager>()
+                    performSearch(sourceManager.getOrStub(source.id).name)
+                }
+            } else {
+                text = view.context.getString(R.string.unknown)
+            }
+        }
 
         // Update genres list
-        if (manga.genre.isNullOrBlank().not()) {
-            manga_genres_tags.setTags(manga.genre?.split(", "))
+        if (!manga.genre.isNullOrBlank()) {
+            manga_genres_tags.removeAllViews()
+
+            manga.genre?.split(", ")?.forEach { genre ->
+                val chip = Chip(view.context).apply {
+                    text = genre
+                    setOnClickListener { performSearch(genre) }
+                }
+
+                manga_genres_tags.addView(chip)
+            }
         }
 
         // Update description TextView.
@@ -256,11 +279,6 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
                         .into(backdrop)
             }
         }
-    }
-
-    override fun onDestroyView(view: View) {
-        manga_genres_tags.setOnTagClickListener(null)
-        super.onDestroyView(view)
     }
 
     /**
@@ -548,16 +566,27 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     }
 
     /**
-     * Perform a local search using the provided query.
+     * Perform a search using the provided query.
      *
-     * @param query the search query to pass to the library controller
+     * @param query the search query to the parent controller
      */
-    private fun performLocalSearch(query: String) {
+    private fun performSearch(query: String) {
         val router = parentController?.router ?: return
-        val firstController = router.backstack.first()?.controller()
-        if (firstController is LibraryController && router.backstack.size == 2) {
-            router.handleBack()
-            firstController.search(query)
+
+        if (router.backstackSize < 2) {
+            return
+        }
+
+        val previousController = router.backstack[router.backstackSize - 2].controller()
+        when (previousController) {
+            is LibraryController -> {
+                router.handleBack()
+                previousController.search(query)
+            }
+            is BrowseCatalogueController -> {
+                router.handleBack()
+                previousController.searchWithQuery(query)
+            }
         }
     }
 

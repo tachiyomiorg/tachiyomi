@@ -108,6 +108,10 @@ android {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
 dependencies {
 
     // Modified dependencies
@@ -165,7 +169,7 @@ dependencies {
     implementation 'com.github.inorichi:unifile:e9ee588'
 
     // HTML parser
-    implementation 'org.jsoup:jsoup:1.12.1'
+    implementation 'org.jsoup:jsoup:1.13.1'
 
     // Job scheduling
     final work_version = '2.3.4'
@@ -179,7 +183,7 @@ dependencies {
     implementation 'androidx.sqlite:sqlite:2.1.0'
     implementation 'com.github.inorichi.storio:storio-common:8be19de@aar'
     implementation 'com.github.inorichi.storio:storio-sqlite:8be19de@aar'
-    implementation 'io.requery:sqlite-android:3.25.2'
+    implementation 'io.requery:sqlite-android:3.31.0'
 
     // Model View Presenter
     final nucleus_version = '3.0.0'
@@ -194,7 +198,7 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation "com.github.bumptech.glide:okhttp3-integration:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
-    implementation 'jp.wasabeef:glide-transformations:4.0.0'
+    implementation 'jp.wasabeef:glide-transformations:4.1.0'
 
     // Logging
     implementation 'com.jakewharton.timber:timber:4.7.1'
@@ -212,7 +216,6 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
     implementation 'com.nightlynexus.viewstatepageradapter:viewstatepageradapter:1.1.0'
     implementation 'com.github.mthli:Slice:v1.3'
-    implementation 'me.gujun.android.taggroup:library:1.4@aar'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'com.github.carlosesco:DirectionalViewPager:a844dbca0a'
 
@@ -269,11 +272,14 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile).all {
     kotlinOptions.freeCompilerArgs += ["-Xuse-experimental=kotlin.Experimental"]
 }
 
-androidExtensions {
-    experimental = true
+// Duplicating Hebrew string assets due to some locale code issues on different devices
+task copyResources(type: Copy) {
+    from './src/main/res/values-he'
+    into './src/main/res/values-iw'
+    include '**/*'
 }
 
-preBuild.dependsOn(lintKotlin)
+preBuild.dependsOn(lintKotlin, copyResources)
 lintKotlin.dependsOn(formatKotlin)
 
 if (getGradle().getStartParameter().getTaskRequests().toString().contains("Standard")) {

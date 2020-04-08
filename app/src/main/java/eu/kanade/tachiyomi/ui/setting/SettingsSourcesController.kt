@@ -7,6 +7,7 @@ import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.SourceManager
+import eu.kanade.tachiyomi.source.icon
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.util.preference.onChange
 import eu.kanade.tachiyomi.util.preference.switchPreferenceCategory
@@ -81,6 +82,11 @@ class SettingsSourcesController : SettingsController() {
                 key = getSourceKey(source.id)
                 isPersistent = false
                 isChecked = id !in hiddenCatalogues
+
+                val sourceIcon = source.icon()
+                if (sourceIcon != null) {
+                    icon = sourceIcon
+                }
 
                 onChange { newValue ->
                     val checked = newValue as Boolean

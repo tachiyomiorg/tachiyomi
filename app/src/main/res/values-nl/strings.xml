@@ -9,7 +9,6 @@
     <string name="label_settings">Instellingen</string>
     <string name="label_library">Bibliotheek</string>
     <string name="label_recent_manga">Geschiedenis</string>
-    <string name="label_catalogues">Catalogi</string>
     <string name="label_categories">Categorieën</string>
     <string name="label_backup">Back-up</string>
     <string name="action_settings">Instellingen</string>
@@ -20,7 +19,6 @@
     <string name="action_filter_empty">Verwijder filter</string>
     <string name="action_sort_alpha">Alfabetisch</string>
     <string name="action_sort_last_read">Laatst gelezen</string>
-    <string name="action_sort_last_updated">Laatst geüpdatet</string>
     <string name="action_search">Zoeken</string>
     <string name="action_select_all">Alles selecteren</string>
     <string name="action_mark_as_read">Als gelezen markeren</string>
@@ -243,11 +241,9 @@
     <string name="notification_first_add_to_library">Gelieve eerst de manga aan je bibliotheek toe te voegen</string>
     <string name="file_select_cover">Selecteer omslagfoto</string>
     <string name="file_select_backup">Selecteer back-upbestand</string>
-    <string name="update_check_title">Nieuwe versie beschikbaar!</string>
     <string name="update_check_confirm">Download</string>
     <string name="update_check_ignore">Negeren</string>
     <string name="update_check_no_new_updates">Geen nieuwe updates beschikbaar</string>
-    <string name="update_check_download_started">Download gestart</string>
     <string name="update_check_notification_download_complete">Download voltooid</string>
     <string name="update_check_notification_update_available">Update beschikbaar</string>
     <string name="description_cover">Omslag van de manga</string>
@@ -364,7 +360,6 @@
     <string name="label_migration">Bronmigratie</string>
     <string name="label_extensions">Extensies</string>
     <string name="label_extension_info">Informatie over extensie</string>
-    <string name="custom_hint">hoeveelheid</string>
     <string name="all_lang">Alles</string>
     <string name="ext_details">Details</string>
     <string name="ext_update">Bijwerken</string>
@@ -416,7 +411,6 @@
     <string name="transition_no_previous">Er is geen vorig hoofdstuk</string>
     <string name="transition_pages_loading">Pagina\'s aan het laden…</string>
     <string name="transition_pages_error">Fout bij het laden van pagina\'s : %1$s</string>
-    <string name="reader_pull_up_for_more_options">Trek omhoog voor meer opties</string>
     <string name="migration_info">Tik om een bron te selecteren om naar toe te migreren</string>
     <string name="migration_dialog_what_to_include">Selecteer data om mee te tellen</string>
     <string name="select">Selecteer</string>
@@ -484,4 +478,11 @@
     <string name="unlock_app">Ontgrendel Tachiyomi</string>
     <string name="secure_screen_summary">Verberg inhoud van app bij omschakelen tussen apps en blokkeer schermafbeeldingen</string>
     <string name="pref_category_display">Weergave</string>
+    <string name="action_move_to_bottom">Verplaats naar beneden</string>
+    <string name="action_oldest">Oudste</string>
+    <string name="action_newest">Nieuwste</string>
+    <string name="action_reorganize_by">Opnieuw organiseren</string>
+    <string name="action_hide">Verbergen</string>
+    <string name="action_sort_last_checked">Laatst gecheckt</string>
+    <string name="action_menu">Menu</string>
 </resources>

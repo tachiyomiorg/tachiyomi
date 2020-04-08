@@ -10,7 +10,6 @@
     <string name="label_download_queue">Cua de baixades</string>
     <string name="label_library">Biblioteca</string>
     <string name="label_recent_manga">Historial</string>
-    <string name="label_catalogues">Catàlegs</string>
     <string name="label_recent_updates">Novetats</string>
     <string name="label_categories">Categories</string>
     <string name="label_backup">Còpia de seguretat</string>
@@ -27,7 +26,6 @@
     <string name="action_sort_alpha">Alfabèticament</string>
     <string name="action_sort_total">Capítols en total</string>
     <string name="action_sort_last_read">Darrera lectura</string>
-    <string name="action_sort_last_updated">Darrera actualització</string>
     <string name="action_search">Cerca</string>
     <string name="action_global_search">Cerca global</string>
     <string name="action_select_all">Selecciona-ho tot</string>
@@ -321,7 +319,6 @@
     <string name="sort_by_number">Per número de capítol</string>
     <string name="manga_download">Baixa</string>
     <string name="custom_download">Baixa\'n una quantitat personalitzada</string>
-    <string name="custom_hint">quantitat</string>
     <string name="download_1">El capítol següent</string>
     <string name="download_5">Els 5 capítols següents</string>
     <string name="download_10">Els 10 capítols següents</string>
@@ -392,23 +389,21 @@
     <string name="file_select_cover">Seleccioneu la imatge de portada</string>
     <string name="file_select_backup">Seleccioneu el fitxer de còpia de seguretat</string>
     <string name="file_select_icon">Seleccioneu la icona de la drecera</string>
-    <string name="update_check_title">Nova versió disponible!</string>
     <string name="update_check_confirm">Baixa</string>
     <string name="update_check_ignore">Ignora</string>
     <string name="update_check_no_new_updates">No hi ha cap nova actualització disponible</string>
-    <string name="update_check_download_started">Baixada iniciada</string>
     <string name="update_check_look_for_updates">S\'estan cercant actualitzacions…</string>
     <string name="update_check_notification_file_download">Baixa l\'actualització</string>
     <string name="update_check_notification_download_in_progress">S\'està baixant…</string>
     <string name="update_check_notification_download_complete">Baixada completada</string>
     <string name="update_check_notification_download_error">Error de baixada</string>
-    <string name="update_check_notification_update_available">Actualització disponible</string>
+    <string name="update_check_notification_update_available">Nova versió disponible!</string>
     <string name="description_backdrop">Imatge de fons del manga</string>
     <string name="description_cover">Portada del manga</string>
     <string name="information_no_downloads">No hi ha baixades</string>
     <string name="information_no_recent">No hi ha capítols recents</string>
     <string name="information_no_recent_manga">No hi ha manga llegit recentment</string>
-    <string name="information_empty_library">La vostra biblioteca és buida, afegiu-hi sèries als catàlegs.</string>
+    <string name="information_empty_library">La vostra biblioteca és buida, afegiu-hi sèries de les fonts.</string>
     <string name="information_empty_category">No teniu categories. Premeu el botó més per a crear-ne una i organitzar la vostra biblioteca.</string>
     <string name="download_notifier_downloader_title">Baixades</string>
     <string name="download_notifier_title_error">Error</string>
@@ -422,7 +417,6 @@
     <string name="channel_library">Biblioteca</string>
     <string name="channel_downloader">Baixades</string>
     <string name="pref_read_with_long_tap">Finestra de toc llarg</string>
-    <string name="reader_pull_up_for_more_options">Estireu cap amunt per a altres opcions</string>
     <string name="action_open_in_web_view">Obre en una visualització web</string>
     <string name="pref_true_color">Color de 32 bits</string>
     <string name="pref_skip_read_chapters">Omet capítols marcats com a llegits</string>
@@ -493,7 +487,7 @@
     <string name="notification_chapters_single_and_more">Capítol %1$s i %2$d més</string>
     <string name="notification_chapters_multiple">Capítols %1$s</string>
     <plurals name="notification_chapters_multiple_and_more">
-        <item quantity="one">Capítol %1$s i 1 més</item>
+        <item quantity="one">Capítols %1$s i 1 més</item>
         <item quantity="other">Capítols %1$s i %2$d més</item>
     </plurals>
     <string name="action_hide">Amaga</string>
@@ -519,4 +513,17 @@
     <string name="action_oldest">Els més antics</string>
     <string name="action_move_to_top">Mou a dalt de tot</string>
     <string name="action_move_to_bottom">Mou a sota de tot</string>
+    <string name="action_sort_last_checked">Darrera comprovació</string>
+    <string name="pref_enable_automatic_extension_updates">Comprova si hi ha actualitzacions de les extensions</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">Hi ha una actualització d\'una extensió</item>
+        <item quantity="other">Hi ha actualitzacions de %d extensions</item>
+    </plurals>
+    <string name="channel_ext_updates">Actualitzacions d\'extensions</string>
+    <string name="http_error_hint">Comproveu el lloc web en una visualització web</string>
+    <string name="updating_library">S\'està actualitzant la biblioteca</string>
+    <string name="pref_category_reading">Lectura</string>
+    <string name="pref_skip_filtered_chapters">Omet els capítols filtrats</string>
+    <string name="label_sources">Fonts</string>
+    <string name="action_select_inverse">Inverteix la selecció</string>
 </resources>

@@ -28,8 +28,7 @@ open class SimpleNavigationView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) :
-    ScrimInsetsFrameLayout(context, attrs, defStyleAttr) {
+) : ScrimInsetsFrameLayout(context, attrs, defStyleAttr) {
 
     /**
      * Max width of the navigation view.

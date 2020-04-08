@@ -10,7 +10,6 @@
     <string name="label_download_queue">Nedladdningskö</string>
     <string name="label_library">Bibliotek</string>
     <string name="label_recent_manga">Historik</string>
-    <string name="label_catalogues">Kataloger</string>
     <string name="label_recent_updates">Nytt</string>
     <string name="label_categories">Kategorier</string>
     <string name="label_backup">Säkerhetskopiering</string>
@@ -27,7 +26,6 @@
     <string name="action_sort_alpha">Alfabetiskt</string>
     <string name="action_sort_total">Totalt kapitel</string>
     <string name="action_sort_last_read">Senast läst</string>
-    <string name="action_sort_last_updated">Senast uppdaterad</string>
     <string name="action_search">Sök</string>
     <string name="action_global_search">Global sökning</string>
     <string name="action_select_all">Välj alla</string>
@@ -321,7 +319,6 @@
     <string name="sort_by_number">Efter kapitelnummer</string>
     <string name="manga_download">Ladda ner</string>
     <string name="custom_download">Ladda ner anpassat belopp</string>
-    <string name="custom_hint">Belopp</string>
     <string name="download_1">Nästa kapitel</string>
     <string name="download_5">Nästa 5 kapitel</string>
     <string name="download_10">Nästa 10 kapitel</string>
@@ -392,23 +389,21 @@
     <string name="file_select_cover">Välj omslagsbild</string>
     <string name="file_select_backup">Välj säkerhetskopia</string>
     <string name="file_select_icon">Välj genvägsikon</string>
-    <string name="update_check_title">Ny version tillgänglig!</string>
     <string name="update_check_confirm">Ladda ner</string>
     <string name="update_check_ignore">Ignorera</string>
     <string name="update_check_no_new_updates">Inga nya uppdateringar tillgängliga</string>
-    <string name="update_check_download_started">Nedladdning startades</string>
     <string name="update_check_look_for_updates">Söker efter uppdateringar…</string>
     <string name="update_check_notification_file_download">Ladda ner uppdatering</string>
     <string name="update_check_notification_download_in_progress">Laddar ner…</string>
     <string name="update_check_notification_download_complete">Nedladdning färdig</string>
     <string name="update_check_notification_download_error">Nedladdningsfel</string>
-    <string name="update_check_notification_update_available">Uppdatering tillgänglig</string>
+    <string name="update_check_notification_update_available">Ny version tillgänglig!</string>
     <string name="description_backdrop">Bakgrundsbild av mangan</string>
     <string name="description_cover">Omslag av mangan</string>
     <string name="information_no_downloads">Inga nedladdningar</string>
     <string name="information_no_recent">Inga nya kapitel</string>
     <string name="information_no_recent_manga">Ingen nyligen läst manga</string>
-    <string name="information_empty_library">Biblioteket är tomt, lägg till serier i ditt bibliotek ifrån katalogerna.</string>
+    <string name="information_empty_library">Biblioteket är tomt, lägg till serier i ditt bibliotek ifrån källorna.</string>
     <string name="information_empty_category">Du har inga kategorier. Tryck på plus-knappen för att skapa en för att organisera ditt bibliotek.</string>
     <string name="download_notifier_downloader_title">Nedladdare</string>
     <string name="download_notifier_title_error">Fel</string>
@@ -421,11 +416,10 @@
     <string name="channel_common">Vanlig</string>
     <string name="channel_library">Bibliotek</string>
     <string name="channel_downloader">Nedladdare</string>
-    <string name="action_open_in_web_view">Öppna i webbvisning</string>
+    <string name="action_open_in_web_view">Öppna i WebView</string>
     <string name="pref_true_color">32-bitars färg</string>
     <string name="pref_skip_read_chapters">Skippa lästa kapitel</string>
     <string name="pref_read_with_long_tap">Långtrycksdialog</string>
-    <string name="reader_pull_up_for_more_options">Dra upp för fler alternativ</string>
     <string name="pref_color_filter_mode">Färgfilterblandningsläge</string>
     <string name="filter_mode_default">Standard</string>
     <string name="filter_mode_overlay">Överlägg</string>
@@ -519,4 +513,16 @@
     <string name="action_oldest">Äldsta</string>
     <string name="action_move_to_top">Flytta till toppen</string>
     <string name="action_move_to_bottom">Flytta till botten</string>
+    <string name="channel_ext_updates">Tilläggsuppdateringar</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">Tilläggsuppdatering tillgänglig</item>
+        <item quantity="other">%d tilläggsuppdateringar tillgängliga</item>
+    </plurals>
+    <string name="updating_library">Uppdaterar biblioteket</string>
+    <string name="http_error_hint">Kontrollera webbplatsen i WebView</string>
+    <string name="pref_enable_automatic_extension_updates">Sök efter tilläggsuppdateringar</string>
+    <string name="action_sort_last_checked">Senast kontrollerad</string>
+    <string name="pref_category_reading">Läser</string>
+    <string name="pref_skip_filtered_chapters">Skippa filtrerade kapitel</string>
+    <string name="label_sources">Källor</string>
 </resources>

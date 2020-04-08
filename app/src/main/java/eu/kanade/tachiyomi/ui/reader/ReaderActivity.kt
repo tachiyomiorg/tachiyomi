@@ -123,6 +123,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         const val RIGHT_TO_LEFT = 2
         const val VERTICAL = 3
         const val WEBTOON = 4
+        const val VERTICAL_PLUS = 5
 
         fun newIntent(context: Context, manga: Manga, chapter: Chapter): Intent {
             return Intent(context, ReaderActivity::class.java).apply {
@@ -208,6 +209,11 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
      */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.reader, menu)
+
+        val isChapterBookmarked = presenter?.getCurrentChapter()?.chapter?.bookmark ?: false
+        menu.findItem(R.id.action_bookmark).isVisible = !isChapterBookmarked
+        menu.findItem(R.id.action_remove_bookmark).isVisible = isChapterBookmarked
+
         return true
     }
 
@@ -217,6 +223,14 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.action_bookmark -> {
+                presenter.bookmarkCurrentChapter(true)
+                invalidateOptionsMenu()
+            }
+            R.id.action_remove_bookmark -> {
+                presenter.bookmarkCurrentChapter(false)
+                invalidateOptionsMenu()
+            }
             R.id.action_settings -> ReaderSettingsSheet(this).show()
             R.id.action_custom_filter -> ReaderColorFilterSheet(this).show()
         }
@@ -375,6 +389,7 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
             RIGHT_TO_LEFT -> R2LPagerViewer(this)
             VERTICAL -> VerticalPagerViewer(this)
             WEBTOON -> WebtoonViewer(this)
+            VERTICAL_PLUS -> WebtoonViewer(this, isContinuous = false)
             else -> L2RPagerViewer(this)
         }
 
@@ -402,6 +417,9 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
         please_wait.gone()
         viewer?.setChapters(viewerChapters)
         toolbar.subtitle = viewerChapters.currChapter.chapter.name
+
+        // Invalidate menu to show proper chapter bookmark state
+        invalidateOptionsMenu()
     }
 
     /**

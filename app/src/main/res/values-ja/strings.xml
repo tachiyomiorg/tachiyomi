@@ -9,7 +9,6 @@
     <string name="label_download_queue">ダウンロードキュー</string>
     <string name="label_library">ライブラリ</string>
     <string name="label_recent_manga">履歴</string>
-    <string name="label_catalogues">カタログ</string>
     <string name="label_recent_updates">最近の更新</string>
     <string name="label_categories">カテゴリ</string>
     <string name="label_backup">バックアップ</string>
@@ -23,7 +22,6 @@
     <string name="action_sort_alpha">アルファベット順</string>
     <string name="action_sort_total">すべての章</string>
     <string name="action_sort_last_read">最後に読んだ</string>
-    <string name="action_sort_last_updated">最終更新</string>
     <string name="action_search">検索</string>
     <string name="action_global_search">グローバル検索</string>
     <string name="action_select_all">すべて選択</string>
@@ -318,7 +316,6 @@
     <string name="sort_by_number">チャプター番号別</string>
     <string name="manga_download">ダウンロード</string>
     <string name="custom_download">カスタムの数でダウンロード</string>
-    <string name="custom_hint">数量</string>
     <string name="download_1">次のチャプター</string>
     <string name="download_5">次の5チャプター</string>
     <string name="download_10">次の10チャプター</string>
@@ -380,11 +377,9 @@
     <string name="file_select_cover">カバー画像を選択</string>
     <string name="file_select_backup">バックアップファイルを選択</string>
     <string name="file_select_icon">ショートカットアイコンを選択</string>
-    <string name="update_check_title">新しいバージョンがあります！</string>
     <string name="update_check_confirm">ダウンロード</string>
     <string name="update_check_ignore">無視</string>
     <string name="update_check_no_new_updates">新しいバージョンがありません</string>
-    <string name="update_check_download_started">ダウンロードを開始しました</string>
     <string name="update_check_look_for_updates">アップデートを確認中…</string>
     <string name="update_check_notification_file_download">アップデートをダウンロード</string>
     <string name="update_check_notification_download_in_progress">ダウンロード中…</string>
@@ -420,7 +415,6 @@
     <string name="transition_pages_loading">ページをロード中…</string>
     <string name="transition_pages_error">ページのロードに失敗：%1$s</string>
     <string name="pref_read_with_long_tap">コンテキストメニュー（長押し）</string>
-    <string name="reader_pull_up_for_more_options">上へ引っ張ってその他のオプションを表示します</string>
     <string name="pref_true_color">32ビットカラー</string>
     <string name="pref_skip_read_chapters">読み終わったチャプターをスキップ</string>
     <string name="pref_color_filter_mode">カラー フィルター ブレンド モード</string>

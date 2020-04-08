@@ -14,7 +14,6 @@
     <string name="label_extension_info">ข้อมูลส่วนขยาย</string>
     <string name="action_settings">ตั้งค่า</string>
     <string name="action_filter">ตัวกรอง</string>
-    <string name="label_catalogues">แคตตาล็อก</string>
     <string name="label_recent_updates">อัพเดทห้องสมุด</string>
     <string name="label_categories">ประเภท</string>
     <string name="action_filter_downloaded">ดาวน์โหลดแล้ว</string>
@@ -24,7 +23,6 @@
     <string name="action_sort_alpha">ตามตัวอักษร</string>
     <string name="action_sort_total">จำนวนตอน</string>
     <string name="action_sort_last_read">อ่านล่าสุด</string>
-    <string name="action_sort_last_updated">อัพเดทล่าสุด</string>
     <string name="action_search">ค้นหา</string>
     <string name="action_select_all">เลือกทั้งหมด</string>
     <string name="action_mark_as_read">ตั้งเป็นอ่านแล้ว</string>
@@ -320,7 +318,6 @@
     <string name="sort_by_number">ตามหมายเลขบท</string>
     <string name="manga_download">ดาวน์โหลด</string>
     <string name="custom_download">จำนวนดาวน์โหลดที่กำหนดเอง</string>
-    <string name="custom_hint">จำนวน</string>
     <string name="download_1">ดาวน์โหลดบทถัดไป</string>
     <string name="download_5">ดาวน์โหลด 5 บทถัดไป</string>
     <string name="download_10">ดาวน์โหลด 10 บทถัดไป</string>
@@ -403,11 +400,9 @@
     <string name="file_select_cover">เลือกภาพหน้าปก</string>
     <string name="file_select_backup">เลือกไฟล์สำรองข้อมูล</string>
     <string name="file_select_icon">เลือกไอคอนทางลัด</string>
-    <string name="update_check_title">มีการอัปเดตใหม่!</string>
     <string name="update_check_confirm">ดาวน์โหลด</string>
     <string name="update_check_ignore">ไม่สนใจ</string>
     <string name="update_check_no_new_updates">ไม่มีการอัปเดตใหม่</string>
-    <string name="update_check_download_started">เริ่มต้นการดาวน์โหลดแล้ว</string>
     <string name="update_check_look_for_updates">กำลังมองหาการปรับปรุง</string>
     <string name="update_check_notification_file_download">ดาวน์โหลดการปรับปรุง</string>
     <string name="update_check_notification_download_in_progress">กำลังดาวน์โหลด</string>
@@ -432,7 +427,6 @@
     <string name="channel_common">ร่วมกัน</string>
     <string name="channel_library">ห้องสมุด</string>
     <string name="channel_downloader">การดาวน์โหลด</string>
-    <string name="reader_pull_up_for_more_options">ดึงขึ้นเพื่อดูตัวเลือกเพิ่มเติม</string>
     <string name="filter_mode_multiply">หลากหลาย</string>
     <string name="filter_mode_darken">มืดมิด</string>
     <string name="migration_selection_prompt">เลือกแหล่งที่มา</string>

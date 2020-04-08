@@ -159,7 +159,7 @@ internal class ExtensionInstaller(private val context: Context) {
      *
      * @param pkgName The package name of the download to delete.
      */
-    fun deleteDownload(pkgName: String) {
+    private fun deleteDownload(pkgName: String) {
         val downloadId = activeDownloads.remove(pkgName)
         if (downloadId != null) {
             downloadManager.remove(downloadId)

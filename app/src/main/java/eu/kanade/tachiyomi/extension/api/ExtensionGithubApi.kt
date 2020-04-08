@@ -31,42 +31,37 @@ internal class ExtensionGithubApi {
         val call = GET(EXT_URL)
 
         return withContext(Dispatchers.IO) {
-            parseResponse(network.client.newCall(call).await())
-        }
-    }
-
-    suspend fun checkForUpdates(context: Context): List<Extension.Installed> {
-        val call = GET(EXT_URL)
-
-        return withContext(Dispatchers.IO) {
             val response = network.client.newCall(call).await()
-
-            preferences.lastExtCheck().set(Date().time)
-
             if (response.isSuccessful) {
-                val extensions = parseResponse(response)
-
-                val installedExtensions = ExtensionLoader.loadExtensions(context)
-                    .filterIsInstance<LoadResult.Success>()
-                    .map { it.extension }
-
-                val extensionsWithUpdate = mutableListOf<Extension.Installed>()
-                for (installedExt in installedExtensions) {
-                    val pkgName = installedExt.pkgName
-                    val availableExt = extensions.find { it.pkgName == pkgName } ?: continue
-
-                    val hasUpdate = availableExt.versionCode > installedExt.versionCode
-                    if (hasUpdate) {
-                        extensionsWithUpdate.add(installedExt)
-                    }
-                }
-
-                extensionsWithUpdate
+                parseResponse(response)
             } else {
                 response.close()
                 throw Exception("Failed to get extensions")
             }
         }
+    }
+
+    suspend fun checkForUpdates(context: Context): List<Extension.Installed> {
+        val extensions = findExtensions()
+
+        preferences.lastExtCheck().set(Date().time)
+
+        val installedExtensions = ExtensionLoader.loadExtensions(context)
+            .filterIsInstance<LoadResult.Success>()
+            .map { it.extension }
+
+        val extensionsWithUpdate = mutableListOf<Extension.Installed>()
+        for (installedExt in installedExtensions) {
+            val pkgName = installedExt.pkgName
+            val availableExt = extensions.find { it.pkgName == pkgName } ?: continue
+
+            val hasUpdate = availableExt.versionCode > installedExt.versionCode
+            if (hasUpdate) {
+                extensionsWithUpdate.add(installedExt)
+            }
+        }
+
+        return extensionsWithUpdate
     }
 
     private fun parseResponse(response: Response): List<Extension.Available> {

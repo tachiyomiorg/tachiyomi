@@ -8,6 +8,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
+import eu.kanade.tachiyomi.ui.base.controller.popControllerWithTag
 import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
 import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchPresenter
 import uy.kohesive.injekt.injectLazy
@@ -35,21 +36,17 @@ class SearchController(
     }
 
     fun migrateManga() {
-        val target = targetController as? MigrationController ?: return
         val manga = manga ?: return
         val newManga = newManga ?: return
 
-        router.popController(this)
-        target.migrateManga(manga, newManga)
+        (presenter as? SearchPresenter)?.migrateManga(manga, newManga, true)
     }
 
     fun copyManga() {
-        val target = targetController as? MigrationController ?: return
         val manga = manga ?: return
         val newManga = newManga ?: return
 
-        router.popController(this)
-        target.copyManga(manga, newManga)
+        (presenter as? SearchPresenter)?.migrateManga(manga, newManga, false)
     }
 
     override fun onMangaClick(manga: Manga) {
@@ -62,6 +59,17 @@ class SearchController(
     override fun onMangaLongClick(manga: Manga) {
         // Call parent's default click listener
         super.onMangaClick(manga)
+    }
+
+    fun renderIsReplacingManga(isReplacingManga: Boolean) {
+        if (isReplacingManga) {
+            if (router.getControllerWithTag(LOADING_DIALOG_TAG) == null) {
+                LoadingController().showDialog(router, LOADING_DIALOG_TAG)
+            }
+        } else {
+            router.popControllerWithTag(LOADING_DIALOG_TAG)
+            router.popController(this)
+        }
     }
 
     class MigrationDialog : DialogController() {
@@ -95,5 +103,20 @@ class SearchController(
                     }
                     .build()
         }
+    }
+
+    class LoadingController : DialogController() {
+
+        override fun onCreateDialog(savedViewState: Bundle?): Dialog {
+            return MaterialDialog.Builder(activity!!)
+                    .progress(true, 0)
+                    .content(R.string.migrating)
+                    .cancelable(false)
+                    .build()
+        }
+    }
+
+    companion object {
+        const val LOADING_DIALOG_TAG = "LoadingDialog"
     }
 }

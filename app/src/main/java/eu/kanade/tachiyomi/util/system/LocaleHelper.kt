@@ -64,8 +64,8 @@ object LocaleHelper {
         }
     }
 
-    /*Return Locale from string language code
-
+    /**
+     * Return Locale from string language code
      */
     private fun getLocale(lang: String): Locale {
         val sp = lang.split("_", "-")

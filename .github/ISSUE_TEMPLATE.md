@@ -1,17 +1,26 @@
-**DO NOT OPEN ISSUES/REQUESTS RELATING TO EXTENSIONS/CATALOGUES IN THIS REPOSITORY. Open them at the following repository  https://github.com/inorichi/tachiyomi-extensions/**
+**PLEASE READ THIS**
 
-**For all other requests Please fill out the form below and remove the first 3 lines of this template**
+I acknowledge that:
 
-**App version:**
+- I have updated to the latest version of the app (stable is v0.8.5)
+- I have updated all extensions
+- If this is an issue with an extension, that I should be opening an issue in https://github.com/inorichi/tachiyomi-extensions
 
-**Android version:**
+**DELETE THIS SECTION IF YOU HAVE READ AND ACKNOWLEDGED IT**
 
-**Issue/Request:**
+---
 
-**Steps to reproduce (if applicable)**
+### Device information
+* Tachiyomi version: ?
+* Android version: ?
+* Device: ?
 
- 1.
- 2.
- 3.
+## Steps to reproduce
+1. First step
+2. Second step
 
-**Other details:**
+## Issue/Request
+?
+
+## Other details
+Additional details and attachments.
