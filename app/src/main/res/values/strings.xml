@@ -250,6 +250,7 @@
     <string name="right_to_left_viewer">Right to left</string>
     <string name="vertical_viewer">Vertical</string>
     <string name="webtoon_viewer">Webtoon</string>
+    <string name="vertical_plus_viewer">Continuous Vertical</string>
     <string name="pager_viewer">Pager</string>
     <string name="pref_image_decoder">Image decoder</string>
     <string name="pref_image_scale_type">Scale type</string>

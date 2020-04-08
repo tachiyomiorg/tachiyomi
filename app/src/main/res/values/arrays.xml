@@ -20,6 +20,7 @@
         <item>@string/right_to_left_viewer</item>
         <item>@string/vertical_viewer</item>
         <item>@string/webtoon_viewer</item>
+        <item>@string/vertical_plus_viewer</item>
     </string-array>
 
     <string-array name="reader_themes">
@@ -107,5 +108,4 @@
         <item>@string/filter_mode_multiply</item>
         <item>@string/filter_mode_screen</item>
     </string-array>
-
 </resources>

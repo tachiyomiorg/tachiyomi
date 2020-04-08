@@ -22,7 +22,7 @@ import timber.log.Timber
 /**
  * Implementation of a [BaseViewer] to display pages with a [RecyclerView].
  */
-class WebtoonViewer(val activity: ReaderActivity) : BaseViewer {
+class WebtoonViewer(val activity: ReaderActivity, val isVerticalPlus: Boolean = false) : BaseViewer {
 
     /**
      * Recycler view used by this viewer.
