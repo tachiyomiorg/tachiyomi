@@ -125,7 +125,7 @@ class WebtoonPageHolder(
 
     private fun refreshLayoutParams() {
         frame.layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT).apply {
-            if (viewer.config.padPagesVert || viewer.isVerticalPlus) {
+            if (viewer.isVerticalPlus) {
                 bottomMargin = 15.dpToPx
             }
         }
