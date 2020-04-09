@@ -496,8 +496,7 @@
     <string name="email">邮箱地址</string>
     <string name="pref_always_show_chapter_transition">总是显示章节之间的过渡界面</string>
     <plurals name="notification_new_chapters_summary">
-        <item quantity="one">共 %d 个标题</item>
-        <item quantity="other"/>
+        <item quantity="other">共 %d 个标题</item>
     </plurals>
     <string name="pref_theme_light">默认浅色主题</string>
     <string name="theme_light_default">默认</string>
@@ -513,8 +512,7 @@
     <string name="action_sort_last_checked">最近检查</string>
     <string name="pref_enable_automatic_extension_updates">检查扩展插件更新</string>
     <plurals name="update_check_notification_ext_updates">
-        <item quantity="one">%d 个扩展插件可更新</item>
-        <item quantity="other"/>
+        <item quantity="other">%d 个扩展插件可更新</item>
     </plurals>
     <string name="channel_ext_updates">扩展插件更新</string>
     <string name="http_error_hint">在 WebView 中检查网站</string>
