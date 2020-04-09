@@ -84,9 +84,6 @@ import uy.kohesive.injekt.injectLazy
 @RequiresPresenter(ReaderPresenter::class)
 class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
 
-    /**
-     * Preferences helper.
-     */
     private val preferences by injectLazy<PreferencesHelper>()
 
     /**

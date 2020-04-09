@@ -36,6 +36,7 @@ import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.databinding.MangaInfoControllerBinding
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SManga
@@ -57,20 +58,6 @@ import java.text.DateFormat
 import java.text.DecimalFormat
 import java.util.Date
 import jp.wasabeef.glide.transformations.CropSquareTransformation
-import kotlinx.android.synthetic.main.manga_info_controller.backdrop
-import kotlinx.android.synthetic.main.manga_info_controller.fab_favorite
-import kotlinx.android.synthetic.main.manga_info_controller.manga_artist
-import kotlinx.android.synthetic.main.manga_info_controller.manga_artist_label
-import kotlinx.android.synthetic.main.manga_info_controller.manga_author
-import kotlinx.android.synthetic.main.manga_info_controller.manga_chapters
-import kotlinx.android.synthetic.main.manga_info_controller.manga_cover
-import kotlinx.android.synthetic.main.manga_info_controller.manga_full_title
-import kotlinx.android.synthetic.main.manga_info_controller.manga_genres_tags
-import kotlinx.android.synthetic.main.manga_info_controller.manga_last_update
-import kotlinx.android.synthetic.main.manga_info_controller.manga_source
-import kotlinx.android.synthetic.main.manga_info_controller.manga_status
-import kotlinx.android.synthetic.main.manga_info_controller.manga_summary
-import kotlinx.android.synthetic.main.manga_info_controller.swipe_refresh
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
@@ -83,14 +70,13 @@ import uy.kohesive.injekt.injectLazy
 class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         ChangeMangaCategoriesDialog.Listener {
 
-    /**
-     * Preferences helper.
-     */
     private val preferences: PreferencesHelper by injectLazy()
 
     private val dateFormat: DateFormat by lazy {
         preferences.dateFormat().getOrDefault()
     }
+
+    private lateinit var binding: MangaInfoControllerBinding
 
     init {
         setHasOptionsMenu(true)
@@ -104,50 +90,51 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.manga_info_controller, container, false)
+        binding = MangaInfoControllerBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
 
         // Set onclickListener to toggle favorite when FAB clicked.
-        fab_favorite.clicks().subscribeUntilDestroy { onFabClick() }
+        binding.fabFavorite.clicks().subscribeUntilDestroy { onFabClick() }
 
         // Set onLongClickListener to manage categories when FAB is clicked.
-        fab_favorite.longClicks().subscribeUntilDestroy { onFabLongClick() }
+        binding.fabFavorite.longClicks().subscribeUntilDestroy { onFabLongClick() }
 
         // Set SwipeRefresh to refresh manga data.
-        swipe_refresh.refreshes().subscribeUntilDestroy { fetchMangaFromSource() }
+        binding.swipeRefresh.refreshes().subscribeUntilDestroy { fetchMangaFromSource() }
 
-        manga_full_title.longClicks().subscribeUntilDestroy {
-            copyToClipboard(view.context.getString(R.string.title), manga_full_title.text.toString())
+        binding.mangaFullTitle.longClicks().subscribeUntilDestroy {
+            copyToClipboard(view.context.getString(R.string.title), binding.mangaFullTitle.text.toString())
         }
 
-        manga_full_title.clicks().subscribeUntilDestroy {
-            performGlobalSearch(manga_full_title.text.toString())
+        binding.mangaFullTitle.clicks().subscribeUntilDestroy {
+            performGlobalSearch(binding.mangaFullTitle.text.toString())
         }
 
-        manga_artist.longClicks().subscribeUntilDestroy {
-            copyToClipboard(manga_artist_label.text.toString(), manga_artist.text.toString())
+        binding.mangaArtist.longClicks().subscribeUntilDestroy {
+            copyToClipboard(binding.mangaArtistLabel.text.toString(), binding.mangaArtist.text.toString())
         }
 
-        manga_artist.clicks().subscribeUntilDestroy {
-            performGlobalSearch(manga_artist.text.toString())
+        binding.mangaArtist.clicks().subscribeUntilDestroy {
+            performGlobalSearch(binding.mangaArtist.text.toString())
         }
 
-        manga_author.longClicks().subscribeUntilDestroy {
-            copyToClipboard(manga_author.text.toString(), manga_author.text.toString())
+        binding.mangaAuthor.longClicks().subscribeUntilDestroy {
+            copyToClipboard(binding.mangaAuthor.text.toString(), binding.mangaAuthor.text.toString())
         }
 
-        manga_author.clicks().subscribeUntilDestroy {
-            performGlobalSearch(manga_author.text.toString())
+        binding.mangaAuthor.clicks().subscribeUntilDestroy {
+            performGlobalSearch(binding.mangaAuthor.text.toString())
         }
 
-        manga_summary.longClicks().subscribeUntilDestroy {
-            copyToClipboard(view.context.getString(R.string.description), manga_summary.text.toString())
+        binding.mangaSummary.longClicks().subscribeUntilDestroy {
+            copyToClipboard(view.context.getString(R.string.description), binding.mangaSummary.text.toString())
         }
 
-        manga_cover.longClicks().subscribeUntilDestroy {
+        binding.mangaCover.longClicks().subscribeUntilDestroy {
             copyToClipboard(view.context.getString(R.string.title), presenter.manga.title)
         }
     }
@@ -197,21 +184,21 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         val view = view ?: return
 
         // update full title TextView.
-        manga_full_title.text = if (manga.title.isBlank()) {
+        binding.mangaFullTitle.text = if (manga.title.isBlank()) {
             view.context.getString(R.string.unknown)
         } else {
             manga.title
         }
 
         // Update artist TextView.
-        manga_artist.text = if (manga.artist.isNullOrBlank()) {
+        binding.mangaArtist.text = if (manga.artist.isNullOrBlank()) {
             view.context.getString(R.string.unknown)
         } else {
             manga.artist
         }
 
         // Update author TextView.
-        manga_author.text = if (manga.author.isNullOrBlank()) {
+        binding.mangaAuthor.text = if (manga.author.isNullOrBlank()) {
             view.context.getString(R.string.unknown)
         } else {
             manga.author
@@ -219,7 +206,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
 
         // If manga source is known update source TextView.
         val mangaSource = source?.toString()
-        with(manga_source) {
+        with(binding.mangaSource) {
             if (mangaSource != null) {
                 text = mangaSource
                 setOnClickListener {
@@ -233,7 +220,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
 
         // Update genres list
         if (!manga.genre.isNullOrBlank()) {
-            manga_genres_tags.removeAllViews()
+            binding.mangaGenresTags.removeAllViews()
 
             manga.genre?.split(", ")?.forEach { genre ->
                 val chip = Chip(view.context).apply {
@@ -241,19 +228,19 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
                     setOnClickListener { performSearch(genre) }
                 }
 
-                manga_genres_tags.addView(chip)
+                binding.mangaGenresTags.addView(chip)
             }
         }
 
         // Update description TextView.
-        manga_summary.text = if (manga.description.isNullOrBlank()) {
+        binding.mangaSummary.text = if (manga.description.isNullOrBlank()) {
             view.context.getString(R.string.unknown)
         } else {
             manga.description
         }
 
         // Update status TextView.
-        manga_status.setText(when (manga.status) {
+        binding.mangaStatus.setText(when (manga.status) {
             SManga.ONGOING -> R.string.ongoing
             SManga.COMPLETED -> R.string.completed
             SManga.LICENSED -> R.string.licensed
@@ -264,19 +251,19 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         setFavoriteDrawable(manga.favorite)
 
         // Set cover if it wasn't already.
-        if (manga_cover.drawable == null && !manga.thumbnail_url.isNullOrEmpty()) {
+        if (binding.mangaCover.drawable == null && !manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(view.context)
                     .load(manga)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .centerCrop()
-                    .into(manga_cover)
+                    .into(binding.mangaCover)
 
-            if (backdrop != null) {
+            if (binding.backdrop != null) {
                 GlideApp.with(view.context)
                         .load(manga)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                         .centerCrop()
-                        .into(backdrop)
+                        .into(binding.backdrop!!)
             }
         }
     }
@@ -288,17 +275,17 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
      */
     fun setChapterCount(count: Float) {
         if (count > 0f) {
-            manga_chapters?.text = DecimalFormat("#.#").format(count)
+            binding.mangaChapters.text = DecimalFormat("#.#").format(count)
         } else {
-            manga_chapters?.text = resources?.getString(R.string.unknown)
+            binding.mangaChapters.text = resources?.getString(R.string.unknown)
         }
     }
 
     fun setLastUpdateDate(date: Date) {
         if (date.time != 0L) {
-            manga_last_update?.text = dateFormat.format(date)
+            binding.mangaLastUpdate.text = dateFormat.format(date)
         } else {
-            manga_last_update?.text = resources?.getString(R.string.unknown)
+            binding.mangaLastUpdate.text = resources?.getString(R.string.unknown)
         }
     }
 
@@ -359,7 +346,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     private fun setFavoriteDrawable(isFavorite: Boolean) {
         // Set the Favorite drawable to the correct one.
         // Border drawable if false, filled drawable if true.
-        fab_favorite?.setImageResource(if (isFavorite)
+        binding.fabFavorite.setImageResource(if (isFavorite)
             R.drawable.ic_bookmark_24dp
         else
             R.drawable.ic_add_to_library_24dp)
@@ -395,7 +382,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
      * @param value whether it should be refreshing or not.
      */
     private fun setRefreshing(value: Boolean) {
-        swipe_refresh?.isRefreshing = value
+        binding.swipeRefresh.isRefreshing = value
     }
 
     private fun onFabClick() {

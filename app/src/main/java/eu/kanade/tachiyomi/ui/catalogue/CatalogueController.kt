@@ -20,6 +20,7 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.databinding.CatalogueMainControllerBinding
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
@@ -30,8 +31,6 @@ import eu.kanade.tachiyomi.ui.catalogue.browse.BrowseCatalogueController
 import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
 import eu.kanade.tachiyomi.ui.catalogue.latest.LatestUpdatesController
 import eu.kanade.tachiyomi.ui.setting.SettingsSourcesController
-import kotlinx.android.synthetic.main.catalogue_main_controller.fast_scroller
-import kotlinx.android.synthetic.main.catalogue_main_controller.recycler
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -48,9 +47,6 @@ class CatalogueController : NucleusController<CataloguePresenter>(),
         CatalogueAdapter.OnBrowseClickListener,
         CatalogueAdapter.OnLatestClickListener {
 
-    /**
-     * Application preferences.
-     */
     private val preferences: PreferencesHelper = Injekt.get()
 
     /**
@@ -58,9 +54,8 @@ class CatalogueController : NucleusController<CataloguePresenter>(),
      */
     private var adapter: CatalogueAdapter? = null
 
-    /**
-     * Called when controller is initialized.
-     */
+    private lateinit var binding: CatalogueMainControllerBinding
+
     init {
         // Enable the option menu
         setHasOptionsMenu(true)
@@ -92,7 +87,8 @@ class CatalogueController : NucleusController<CataloguePresenter>(),
      * @return inflated view.
      */
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.catalogue_main_controller, container, false)
+        binding = CatalogueMainControllerBinding.inflate(inflater)
+        return binding.root
     }
 
     /**
@@ -106,10 +102,10 @@ class CatalogueController : NucleusController<CataloguePresenter>(),
         adapter = CatalogueAdapter(this)
 
         // Create recycler and set adapter.
-        recycler.layoutManager = LinearLayoutManager(view.context)
-        recycler.adapter = adapter
-        recycler.addItemDecoration(SourceDividerItemDecoration(view.context))
-        adapter?.fastScroller = fast_scroller
+        binding.recycler.layoutManager = LinearLayoutManager(view.context)
+        binding.recycler.adapter = adapter
+        binding.recycler.addItemDecoration(SourceDividerItemDecoration(view.context))
+        adapter?.fastScroller = binding.fastScroller
 
         requestPermissionsSafe(arrayOf(WRITE_EXTERNAL_STORAGE), 301)
     }

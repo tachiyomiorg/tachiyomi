@@ -25,6 +25,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.databinding.CatalogueControllerBinding
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.source.online.HttpSource
@@ -43,9 +44,6 @@ import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import eu.kanade.tachiyomi.widget.EmptyView
 import java.util.concurrent.TimeUnit
-import kotlinx.android.synthetic.main.catalogue_controller.catalogue_view
-import kotlinx.android.synthetic.main.catalogue_controller.empty_view
-import kotlinx.android.synthetic.main.catalogue_controller.progress
 import kotlinx.android.synthetic.main.main_activity.drawer
 import rx.Observable
 import rx.Subscription
@@ -68,9 +66,6 @@ open class BrowseCatalogueController(bundle: Bundle) :
         putLong(SOURCE_ID_KEY, source.id)
     })
 
-    /**
-     * Preferences helper.
-     */
     private val preferences: PreferencesHelper by injectLazy()
 
     /**
@@ -108,6 +103,8 @@ open class BrowseCatalogueController(bundle: Bundle) :
      */
     private var progressItem: ProgressItem? = null
 
+    private lateinit var binding: CatalogueControllerBinding
+
     init {
         setHasOptionsMenu(true)
     }
@@ -121,7 +118,8 @@ open class BrowseCatalogueController(bundle: Bundle) :
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.catalogue_controller, container, false)
+        binding = CatalogueControllerBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View) {
@@ -133,7 +131,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
 
         navView?.setFilters(presenter.filterItems)
 
-        progress?.visible()
+        binding.progress.visible()
     }
 
     override fun onDestroyView(view: View) {
@@ -180,12 +178,12 @@ open class BrowseCatalogueController(bundle: Bundle) :
         numColumnsSubscription?.unsubscribe()
 
         var oldPosition = RecyclerView.NO_POSITION
-        val oldRecycler = catalogue_view?.getChildAt(1)
+        val oldRecycler = binding.catalogueView.getChildAt(1)
         if (oldRecycler is RecyclerView) {
             oldPosition = (oldRecycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
             oldRecycler.adapter = null
 
-            catalogue_view?.removeView(oldRecycler)
+            binding.catalogueView.removeView(oldRecycler)
         }
 
         val recycler = if (presenter.isListMode) {
@@ -196,7 +194,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
                 addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             }
         } else {
-            (catalogue_view.inflate(R.layout.catalogue_recycler_autofit) as AutofitRecyclerView).apply {
+            (binding.catalogueView.inflate(R.layout.catalogue_recycler_autofit) as AutofitRecyclerView).apply {
                 numColumnsSubscription = getColumnsPreferenceForCurrentOrientation().asObservable()
                         .doOnNext { spanCount = it }
                         .skip(1)
@@ -216,7 +214,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
         recycler.setHasFixedSize(true)
         recycler.adapter = adapter
 
-        catalogue_view.addView(recycler, 1)
+        binding.catalogueView.addView(recycler, 1)
 
         if (oldPosition != RecyclerView.NO_POSITION) {
             recycler.layoutManager?.scrollToPosition(oldPosition)
@@ -353,45 +351,43 @@ open class BrowseCatalogueController(bundle: Bundle) :
 
         snack?.dismiss()
 
-        if (catalogue_view != null) {
-            val message = getErrorMessage(error)
-            val retryAction = View.OnClickListener {
+        val message = getErrorMessage(error)
+        val retryAction = View.OnClickListener {
 
-                // If not the first page, show bottom progress bar.
-                if (adapter.mainItemCount > 0 && progressItem != null) {
-                    adapter.addScrollableFooterWithDelay(progressItem!!, 0, true)
-                } else {
-                    showProgressBar()
+            // If not the first page, show bottom progress bar.
+            if (adapter.mainItemCount > 0 && progressItem != null) {
+                adapter.addScrollableFooterWithDelay(progressItem!!, 0, true)
+            } else {
+                showProgressBar()
+            }
+            presenter.requestNext()
+        }
+
+        if (adapter.isEmpty) {
+            val actions = mutableListOf(EmptyView.Action(R.string.action_retry, retryAction))
+            if (presenter.source is HttpSource) {
+                val openInWebViewAction = View.OnClickListener {
+                    openInWebView()
                 }
-                presenter.requestNext()
+                actions += EmptyView.Action(R.string.action_open_in_web_view, openInWebViewAction)
             }
 
-            if (adapter.isEmpty) {
-                val actions = mutableListOf(EmptyView.Action(R.string.action_retry, retryAction))
-                if (presenter.source is HttpSource) {
-                    val openInWebViewAction = View.OnClickListener {
-                        openInWebView()
-                    }
-                    actions += EmptyView.Action(R.string.action_open_in_web_view, openInWebViewAction)
-                }
-
-                empty_view.show(message, actions)
-            } else {
-                snack = catalogue_view.snack(message, Snackbar.LENGTH_INDEFINITE) {
-                    setAction(R.string.action_retry, retryAction)
-                }
+            binding.emptyView.show(message, actions)
+        } else {
+            snack = binding.catalogueView.snack(message, Snackbar.LENGTH_INDEFINITE) {
+                setAction(R.string.action_retry, retryAction)
             }
         }
     }
 
     private fun getErrorMessage(error: Throwable): String {
         if (error is NoResultsException) {
-            return catalogue_view.context.getString(R.string.no_results_found)
+            return binding.catalogueView.context.getString(R.string.no_results_found)
         }
 
         return when {
             error.message == null -> ""
-            error.message!!.startsWith("HTTP error") -> "${error.message}: ${catalogue_view.context.getString(R.string.http_error_hint)}"
+            error.message!!.startsWith("HTTP error") -> "${error.message}: ${binding.catalogueView.context.getString(R.string.http_error_hint)}"
             else -> error.message!!
         }
     }
@@ -484,7 +480,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
      * Shows the progress bar.
      */
     private fun showProgressBar() {
-        progress?.visible()
+        binding.progress.visible()
         snack?.dismiss()
         snack = null
     }
@@ -493,8 +489,8 @@ open class BrowseCatalogueController(bundle: Bundle) :
      * Hides active progress bars.
      */
     private fun hideProgressBar() {
-        empty_view.hide()
-        progress?.gone()
+        binding.emptyView.hide()
+        binding.progress.gone()
     }
 
     /**

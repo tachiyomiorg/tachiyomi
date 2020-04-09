@@ -18,6 +18,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.databinding.MangaControllerBinding
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.controller.RxController
@@ -29,7 +30,6 @@ import eu.kanade.tachiyomi.ui.manga.track.TrackController
 import eu.kanade.tachiyomi.util.system.toast
 import java.util.Date
 import kotlinx.android.synthetic.main.main_activity.tabs
-import kotlinx.android.synthetic.main.manga_controller.manga_pager
 import rx.Subscription
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -68,6 +68,8 @@ class MangaController : RxController, TabbedController {
 
     val mangaFavoriteRelay: PublishRelay<Boolean> = PublishRelay.create()
 
+    private lateinit var binding: MangaControllerBinding
+
     private val trackingIconRelay: BehaviorRelay<Boolean> = BehaviorRelay.create()
 
     private var trackingIconSubscription: Subscription? = null
@@ -77,7 +79,8 @@ class MangaController : RxController, TabbedController {
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.manga_controller, container, false)
+        binding = MangaControllerBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View) {
@@ -88,11 +91,11 @@ class MangaController : RxController, TabbedController {
         requestPermissionsSafe(arrayOf(WRITE_EXTERNAL_STORAGE), 301)
 
         adapter = MangaDetailAdapter()
-        manga_pager.offscreenPageLimit = 3
-        manga_pager.adapter = adapter
+        binding.mangaPager.offscreenPageLimit = 3
+        binding.mangaPager.adapter = adapter
 
         if (!fromCatalogue)
-            manga_pager.currentItem = CHAPTERS_CONTROLLER
+            binding.mangaPager.currentItem = CHAPTERS_CONTROLLER
     }
 
     override fun onDestroyView(view: View) {
@@ -103,7 +106,7 @@ class MangaController : RxController, TabbedController {
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         super.onChangeStarted(handler, type)
         if (type.isEnter) {
-            activity?.tabs?.setupWithViewPager(manga_pager)
+            activity?.tabs?.setupWithViewPager(binding.mangaPager)
             trackingIconSubscription = trackingIconRelay.subscribe { setTrackingIconInternal(it) }
         }
     }

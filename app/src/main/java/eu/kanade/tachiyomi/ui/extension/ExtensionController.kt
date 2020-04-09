@@ -19,11 +19,11 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.databinding.ExtensionControllerBinding
 import eu.kanade.tachiyomi.extension.ExtensionUpdateJob
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
-import kotlinx.android.synthetic.main.extension_controller.*
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -47,6 +47,8 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
 
     private var query = ""
 
+    private lateinit var binding: ExtensionControllerBinding
+
     init {
         setHasOptionsMenu(true)
     }
@@ -60,24 +62,25 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.extension_controller, container, false)
+        binding = ExtensionControllerBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
 
-        ext_swipe_refresh.isRefreshing = true
-        ext_swipe_refresh.refreshes().subscribeUntilDestroy {
+        binding.extSwipeRefresh.isRefreshing = true
+        binding.extSwipeRefresh.refreshes().subscribeUntilDestroy {
             presenter.findAvailableExtensions()
         }
 
         // Initialize adapter, scroll listener and recycler views
         adapter = ExtensionAdapter(this)
         // Create recycler and set adapter.
-        ext_recycler.layoutManager = LinearLayoutManager(view.context)
-        ext_recycler.adapter = adapter
-        ext_recycler.addItemDecoration(ExtensionDividerItemDecoration(view.context))
-        adapter?.fastScroller = fast_scroller
+        binding.extRecycler.layoutManager = LinearLayoutManager(view.context)
+        binding.extRecycler.adapter = adapter
+        binding.extRecycler.addItemDecoration(ExtensionDividerItemDecoration(view.context))
+        adapter?.fastScroller = binding.fastScroller
     }
 
     override fun onDestroyView(view: View) {
@@ -184,7 +187,7 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
     }
 
     fun setExtensions(extensions: List<ExtensionItem>) {
-        ext_swipe_refresh?.isRefreshing = false
+        binding.extSwipeRefresh.isRefreshing = false
         this.extensions = extensions
         drawExtensions()
     }

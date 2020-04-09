@@ -10,12 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.download.model.Download
+import eu.kanade.tachiyomi.databinding.DownloadControllerBinding
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import java.util.HashMap
 import java.util.concurrent.TimeUnit
-import kotlinx.android.synthetic.main.download_controller.empty_view
-import kotlinx.android.synthetic.main.download_controller.recycler
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -42,12 +41,15 @@ class DownloadController : NucleusController<DownloadPresenter>(),
      */
     private var isRunning: Boolean = false
 
+    private lateinit var binding: DownloadControllerBinding
+
     init {
         setHasOptionsMenu(true)
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.download_controller, container, false)
+        binding = DownloadControllerBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun createPresenter(): DownloadPresenter {
@@ -66,12 +68,12 @@ class DownloadController : NucleusController<DownloadPresenter>(),
 
         // Initialize adapter.
         adapter = DownloadAdapter(this@DownloadController)
-        recycler.adapter = adapter
+        binding.recycler.adapter = adapter
         adapter?.isHandleDragEnabled = true
 
         // Set the layout manager for the recycler and fixed size.
-        recycler.layoutManager = LinearLayoutManager(view.context)
-        recycler.setHasFixedSize(true)
+        binding.recycler.layoutManager = LinearLayoutManager(view.context)
+        binding.recycler.setHasFixedSize(true)
 
         // Subscribe to changes
         DownloadService.runningRelay
@@ -242,7 +244,7 @@ class DownloadController : NucleusController<DownloadPresenter>(),
      * @return the holder of the download or null if it's not bound.
      */
     private fun getHolder(download: Download): DownloadHolder? {
-        return recycler?.findViewHolderForItemId(download.chapter.id!!) as? DownloadHolder
+        return binding.recycler.findViewHolderForItemId(download.chapter.id!!) as? DownloadHolder
     }
 
     /**
@@ -250,9 +252,9 @@ class DownloadController : NucleusController<DownloadPresenter>(),
      */
     private fun setInformationView() {
         if (presenter.downloadQueue.isEmpty()) {
-            empty_view?.show(R.string.information_no_downloads)
+            binding.emptyView.show(R.string.information_no_downloads)
         } else {
-            empty_view?.hide()
+            binding.emptyView.hide()
         }
     }
 

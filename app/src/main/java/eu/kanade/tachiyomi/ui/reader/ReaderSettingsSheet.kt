@@ -38,9 +38,6 @@ import uy.kohesive.injekt.injectLazy
  */
 class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDialog(activity) {
 
-    /**
-     * Preferences helper.
-     */
     private val preferences by injectLazy<PreferencesHelper>()
 
     init {

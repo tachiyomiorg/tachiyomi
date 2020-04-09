@@ -16,11 +16,9 @@ import eu.davidea.flexibleadapter.SelectableAdapter
 import eu.davidea.flexibleadapter.helpers.UndoHelper
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
+import eu.kanade.tachiyomi.databinding.CategoriesControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.util.system.toast
-import kotlinx.android.synthetic.main.categories_controller.empty_view
-import kotlinx.android.synthetic.main.categories_controller.fab
-import kotlinx.android.synthetic.main.categories_controller.recycler
 
 /**
  * Controller to manage the categories for the users' library.
@@ -49,6 +47,8 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      */
     private var undoHelper: UndoHelper? = null
 
+    private lateinit var binding: CategoriesControllerBinding
+
     /**
      * Creates the presenter for this controller. Not to be manually called.
      */
@@ -68,7 +68,8 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      * @param container The parent view for this one.
      */
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.categories_controller, container, false)
+        binding = CategoriesControllerBinding.inflate(inflater)
+        return binding.root
     }
 
     /**
@@ -80,13 +81,13 @@ class CategoryController : NucleusController<CategoryPresenter>(),
         super.onViewCreated(view)
 
         adapter = CategoryAdapter(this@CategoryController)
-        recycler.layoutManager = LinearLayoutManager(view.context)
-        recycler.setHasFixedSize(true)
-        recycler.adapter = adapter
+        binding.recycler.layoutManager = LinearLayoutManager(view.context)
+        binding.recycler.setHasFixedSize(true)
+        binding.recycler.adapter = adapter
         adapter?.isHandleDragEnabled = true
         adapter?.isPermanentDelete = false
 
-        fab.clicks().subscribeUntilDestroy {
+        binding.fab.clicks().subscribeUntilDestroy {
             CategoryCreateDialog(this@CategoryController).showDialog(router, null)
         }
     }
@@ -114,13 +115,13 @@ class CategoryController : NucleusController<CategoryPresenter>(),
         actionMode?.finish()
         adapter?.updateDataSet(categories)
         if (categories.isNotEmpty()) {
-            empty_view.hide()
+            binding.emptyView.hide()
             val selected = categories.filter { it.isSelected }
             if (selected.isNotEmpty()) {
                 selected.forEach { onItemLongClick(categories.indexOf(it)) }
             }
         } else {
-            empty_view.show(R.string.information_empty_category)
+            binding.emptyView.show(R.string.information_empty_category)
         }
     }
 

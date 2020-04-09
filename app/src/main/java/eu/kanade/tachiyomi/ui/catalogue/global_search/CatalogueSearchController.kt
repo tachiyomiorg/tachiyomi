@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding.support.v7.widget.queryTextChangeEvents
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.databinding.CatalogueGlobalSearchControllerBinding
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.manga.MangaController
-import kotlinx.android.synthetic.main.catalogue_global_search_controller.recycler
 
 /**
  * This controller shows and manages the different search result in global search.
@@ -34,6 +34,8 @@ open class CatalogueSearchController(
      */
     protected var adapter: CatalogueSearchAdapter? = null
 
+    private lateinit var binding: CatalogueGlobalSearchControllerBinding
+
     /**
      * Called when controller is initialized.
      */
@@ -48,8 +50,9 @@ open class CatalogueSearchController(
      * @param container containing parent views.
      * @return inflated view
      */
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): android.view.View {
-        return inflater.inflate(R.layout.catalogue_global_search_controller, container, false)
+    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
+        binding = CatalogueGlobalSearchControllerBinding.inflate(inflater)
+        return binding.root
     }
 
     /**
@@ -136,8 +139,8 @@ open class CatalogueSearchController(
         adapter = CatalogueSearchAdapter(this)
 
         // Create recycler and set adapter.
-        recycler.layoutManager = LinearLayoutManager(view.context)
-        recycler.adapter = adapter
+        binding.recycler.layoutManager = LinearLayoutManager(view.context)
+        binding.recycler.adapter = adapter
     }
 
     override fun onDestroyView(view: View) {

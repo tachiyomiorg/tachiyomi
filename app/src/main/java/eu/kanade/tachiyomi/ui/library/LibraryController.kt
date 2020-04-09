@@ -29,6 +29,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
+import eu.kanade.tachiyomi.databinding.LibraryControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
@@ -38,9 +39,6 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import java.io.IOException
-import kotlinx.android.synthetic.main.library_controller.action_toolbar
-import kotlinx.android.synthetic.main.library_controller.empty_view
-import kotlinx.android.synthetic.main.library_controller.library_pager
 import kotlinx.android.synthetic.main.main_activity.tabs
 import rx.Subscription
 import timber.log.Timber
@@ -127,6 +125,8 @@ class LibraryController(
 
     private var searchViewSubscription: Subscription? = null
 
+    private lateinit var binding: LibraryControllerBinding
+
     init {
         setHasOptionsMenu(true)
         retainViewMode = RetainViewMode.RETAIN_DETACH
@@ -141,15 +141,16 @@ class LibraryController(
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return inflater.inflate(R.layout.library_controller, container, false)
+        binding = LibraryControllerBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
 
         adapter = LibraryAdapter(this)
-        library_pager.adapter = adapter
-        library_pager.pageSelections().skip(1).subscribeUntilDestroy {
+        binding.libraryPager.adapter = adapter
+        binding.libraryPager.pageSelections().skip(1).subscribeUntilDestroy {
             preferences.lastUsedCategory().set(it)
             activeCategory = it
         }
@@ -177,14 +178,14 @@ class LibraryController(
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         super.onChangeStarted(handler, type)
         if (type.isEnter) {
-            activity?.tabs?.setupWithViewPager(library_pager)
+            activity?.tabs?.setupWithViewPager(binding.libraryPager)
             presenter.subscribeLibrary()
         }
     }
 
     override fun onDestroyView(view: View) {
         destroyActionModeIfNeeded()
-        action_toolbar.destroy()
+        binding.actionToolbar.destroy()
         adapter?.onDestroy()
         adapter = null
         settingsSheet = null
@@ -224,14 +225,14 @@ class LibraryController(
 
         // Show empty view if needed
         if (mangaMap.isNotEmpty()) {
-            empty_view.hide()
+            binding.emptyView.hide()
         } else {
-            empty_view.show(R.string.information_empty_library)
+            binding.emptyView.show(R.string.information_empty_library)
         }
 
         // Get the current active category.
         val activeCat = if (adapter.categories.isNotEmpty())
-            library_pager.currentItem
+            binding.libraryPager.currentItem
         else
             activeCategory
 
@@ -239,14 +240,14 @@ class LibraryController(
         adapter.categories = categories
 
         // Restore active category.
-        library_pager.setCurrentItem(activeCat, false)
+        binding.libraryPager.setCurrentItem(activeCat, false)
 
         tabsVisibilityRelay.call(categories.size > 1)
 
         // Delay the scroll position to allow the view to be properly measured.
         view.post {
             if (isAttached) {
-                activity?.tabs?.setScrollPosition(library_pager.currentItem, 0f, true)
+                activity?.tabs?.setScrollPosition(binding.libraryPager.currentItem, 0f, true)
             }
         }
 
@@ -291,11 +292,11 @@ class LibraryController(
     private fun reattachAdapter() {
         val adapter = adapter ?: return
 
-        val position = library_pager.currentItem
+        val position = binding.libraryPager.currentItem
 
         adapter.recycle = false
-        library_pager.adapter = adapter
-        library_pager.currentItem = position
+        binding.libraryPager.adapter = adapter
+        binding.libraryPager.currentItem = position
         adapter.recycle = true
     }
 
@@ -305,7 +306,7 @@ class LibraryController(
     fun createActionModeIfNeeded() {
         if (actionMode == null) {
             actionMode = (activity as AppCompatActivity).startSupportActionMode(this)
-            action_toolbar.show(
+            binding.actionToolbar.show(
                     actionMode!!,
                     R.menu.library_selection
             ) { onActionItemClicked(actionMode!!, it!!) }
@@ -398,7 +399,7 @@ class LibraryController(
         } else {
             mode.title = count.toString()
 
-            action_toolbar.findItem(R.id.action_edit_cover)?.isVisible = count == 1
+            binding.actionToolbar.findItem(R.id.action_edit_cover)?.isVisible = count == 1
         }
         return false
     }
@@ -419,7 +420,7 @@ class LibraryController(
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {
-        action_toolbar.hide()
+        binding.actionToolbar.hide()
         // Clear all the manga selections and notify child views.
         selectedMangas.clear()
         selectionRelay.call(LibrarySelectionEvent.Cleared())
@@ -515,13 +516,13 @@ class LibraryController(
     }
 
     private fun selectAllCategoryManga() {
-        adapter?.categories?.getOrNull(library_pager.currentItem)?.id?.let {
+        adapter?.categories?.getOrNull(binding.libraryPager.currentItem)?.id?.let {
             selectAllRelay.call(it)
         }
     }
 
     private fun selectInverseCategoryManga() {
-        adapter?.categories?.getOrNull(library_pager.currentItem)?.id?.let {
+        adapter?.categories?.getOrNull(binding.libraryPager.currentItem)?.id?.let {
             selectInverseRelay.call(it)
         }
     }

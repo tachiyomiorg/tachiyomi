@@ -16,14 +16,8 @@ import uy.kohesive.injekt.injectLazy
 @Suppress("DEPRECATION")
 object LocaleHelper {
 
-    /**
-     * Preferences helper.
-     */
     private val preferences: PreferencesHelper by injectLazy()
 
-    /**
-     * The system's locale.
-     */
     private var systemLocale: Locale? = null
 
     /**

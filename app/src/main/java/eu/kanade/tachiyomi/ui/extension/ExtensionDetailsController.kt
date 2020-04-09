@@ -26,21 +26,13 @@ import com.jakewharton.rxbinding.view.clicks
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.EmptyPreferenceDataStore
 import eu.kanade.tachiyomi.data.preference.SharedPreferencesDataStore
+import eu.kanade.tachiyomi.databinding.ExtensionDetailControllerBinding
 import eu.kanade.tachiyomi.source.ConfigurableSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import eu.kanade.tachiyomi.util.view.visible
-import kotlinx.android.synthetic.main.extension_detail_controller.extension_icon
-import kotlinx.android.synthetic.main.extension_detail_controller.extension_lang
-import kotlinx.android.synthetic.main.extension_detail_controller.extension_obsolete
-import kotlinx.android.synthetic.main.extension_detail_controller.extension_pkg
-import kotlinx.android.synthetic.main.extension_detail_controller.extension_prefs_empty_view
-import kotlinx.android.synthetic.main.extension_detail_controller.extension_prefs_recycler
-import kotlinx.android.synthetic.main.extension_detail_controller.extension_title
-import kotlinx.android.synthetic.main.extension_detail_controller.extension_uninstall_button
-import kotlinx.android.synthetic.main.extension_detail_controller.extension_version
 
 @SuppressLint("RestrictedApi")
 class ExtensionDetailsController(bundle: Bundle? = null) :
@@ -52,14 +44,16 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
 
     private var preferenceScreen: PreferenceScreen? = null
 
+    private lateinit var binding: ExtensionDetailControllerBinding
+
     constructor(pkgName: String) : this(Bundle().apply {
         putString(PKGNAME_KEY, pkgName)
     })
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
         val themedInflater = inflater.cloneInContext(getPreferenceThemeContext())
-
-        return themedInflater.inflate(R.layout.extension_detail_controller, container, false)
+        binding = ExtensionDetailControllerBinding.inflate(themedInflater)
+        return binding.root
     }
 
     override fun createPresenter(): ExtensionDetailsPresenter {
@@ -77,17 +71,17 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         val extension = presenter.extension ?: return
         val context = view.context
 
-        extension_title.text = extension.name
-        extension_version.text = context.getString(R.string.ext_version_info, extension.versionName)
-        extension_lang.text = context.getString(R.string.ext_language_info, LocaleHelper.getDisplayName(extension.lang, context))
-        extension_pkg.text = extension.pkgName
-        extension.getApplicationIcon(context)?.let { extension_icon.setImageDrawable(it) }
-        extension_uninstall_button.clicks().subscribeUntilDestroy {
+        binding.extensionTitle.text = extension.name
+        binding.extensionVersion.text = context.getString(R.string.ext_version_info, extension.versionName)
+        binding.extensionLang.text = context.getString(R.string.ext_language_info, LocaleHelper.getDisplayName(extension.lang, context))
+        binding.extensionPkg.text = extension.pkgName
+        extension.getApplicationIcon(context)?.let { binding.extensionIcon.setImageDrawable(it) }
+        binding.extensionUninstallButton.clicks().subscribeUntilDestroy {
             presenter.uninstallExtension()
         }
 
         if (extension.isObsolete) {
-            extension_obsolete.visible()
+            binding.extensionObsolete.visible()
         }
 
         val themedContext by lazy { getPreferenceThemeContext() }
@@ -107,12 +101,12 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
 
         manager.setPreferences(screen)
 
-        extension_prefs_recycler.layoutManager = LinearLayoutManager(context)
-        extension_prefs_recycler.adapter = PreferenceGroupAdapter(screen)
-        extension_prefs_recycler.addItemDecoration(DividerItemDecoration(context, VERTICAL))
+        binding.extensionPrefsRecycler.layoutManager = LinearLayoutManager(context)
+        binding.extensionPrefsRecycler.adapter = PreferenceGroupAdapter(screen)
+        binding.extensionPrefsRecycler.addItemDecoration(DividerItemDecoration(context, VERTICAL))
 
         if (screen.preferenceCount == 0) {
-            extension_prefs_empty_view.show(R.string.ext_empty_preferences)
+            binding.extensionPrefsEmptyView.show(R.string.ext_empty_preferences)
         }
     }
 

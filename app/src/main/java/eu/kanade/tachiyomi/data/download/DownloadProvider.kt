@@ -20,9 +20,6 @@ import uy.kohesive.injekt.injectLazy
  */
 class DownloadProvider(private val context: Context) {
 
-    /**
-     * Preferences helper.
-     */
     private val preferences: PreferencesHelper by injectLazy()
 
     /**

@@ -63,14 +63,8 @@ class DownloadService : Service() {
         }
     }
 
-    /**
-     * Download manager.
-     */
     private val downloadManager: DownloadManager by injectLazy()
 
-    /**
-     * Preferences helper.
-     */
     private val preferences: PreferencesHelper by injectLazy()
 
     /**
