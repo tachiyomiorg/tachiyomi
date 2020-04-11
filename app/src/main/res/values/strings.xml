@@ -85,7 +85,8 @@
     <string name="action_display_list">List</string>
     <string name="action_display_download_badge">Download badges</string>
     <string name="action_hide">Hide</string>
-    <string name="action_set_filter">Set filter</string>
+    <string name="action_pin">Pin</string>
+    <string name="action_unpin">Unpin</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_cancel_all">Cancel all</string>
     <string name="action_sort">Sort</string>
@@ -278,6 +279,12 @@
     <string name="color_filter_a_value">A</string>
     <string name="pref_always_show_chapter_transition">Always show chapter transition</string>
     <string name="pref_category_reading">Reading</string>
+    <string name="pref_webtoon_side_padding">Side padding</string>
+    <string name="webtoon_side_padding_0">None</string>
+    <string name="webtoon_side_padding_10">10%</string>
+    <string name="webtoon_side_padding_15">15%</string>
+    <string name="webtoon_side_padding_20">20%</string>
+    <string name="webtoon_side_padding_25">25%</string>
 
       <!-- Downloads section -->
     <string name="pref_download_directory">Download location</string>
@@ -375,7 +382,6 @@
     <string name="also_delete_chapters">Also delete downloaded chapters</string>
 
     <!-- Catalogue fragment -->
-    <string name="source_search_options">Search filters</string>
     <string name="source_requires_login">This source requires you to log in</string>
     <string name="select_source">Select a source</string>
     <string name="no_valid_sources">Please enable at least one valid source</string>
@@ -384,6 +390,7 @@
     <string name="http_error_hint">Check website in WebView</string>
     <string name="local_source">Local manga</string>
     <string name="other_source">Other</string>
+    <string name="pinned_sources">Pinned</string>
     <string name="invalid_combination">Default can\'t be selected with other categories</string>
     <string name="added_to_library">The manga has been added to your library</string>
     <string name="action_global_search_hint">Global search…</string>
@@ -496,7 +503,7 @@
     <string name="chapter_subtitle">Chapter %1$s</string>
     <string name="no_next_chapter">Next chapter not found</string>
     <string name="no_previous_chapter">Previous chapter not found</string>
-    <string name="decode_image_error">The image could not be decoded</string>
+    <string name="decode_image_error">The image couldn\'t be loaded</string>
     <string name="confirm_set_image_as_cover">Use this image as cover art?</string>
     <string name="viewer_for_this_series">Viewer for this series</string>
     <string name="transition_finished">Finished:</string>

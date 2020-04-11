@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="?attr/listPreferredItemHeightSmall"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="?attr/selectableItemBackground"
     android:focusable="true"
     android:paddingStart="?attr/listPreferredItemPaddingStart"
@@ -10,7 +11,9 @@
     <TextView
         android:id="@+id/nav_view_item_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        tools:text="Filter:" />
 
     <Spinner
         android:id="@+id/nav_view_item"

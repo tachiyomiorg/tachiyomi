@@ -11,8 +11,10 @@
 
     <item
         android:id="@+id/action_open_in_web_view"
+        android:icon="@drawable/ic_public_24dp"
         android:title="@string/action_open_in_web_view"
-        app:showAsAction="never" />
+        app:iconTint="?attr/colorOnPrimary"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_add_to_home_screen"

@@ -32,6 +32,7 @@ import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.getCoordinates
+import eu.kanade.tachiyomi.util.view.shrinkOnScroll
 import eu.kanade.tachiyomi.util.view.snack
 import timber.log.Timber
 
@@ -110,6 +111,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
                 view.context.toast(R.string.no_next_chapter)
             }
         }
+        binding.fab.shrinkOnScroll(binding.recycler)
     }
 
     override fun onDestroyView(view: View) {

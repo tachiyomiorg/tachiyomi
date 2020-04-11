@@ -256,6 +256,25 @@
         android:textColor="?android:attr/textColorSecondary"
         app:layout_constraintTop_toBottomOf="@id/webtoon_prefs" />
 
+    <TextView
+        android:id="@+id/webtoon_side_padding_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/pref_webtoon_side_padding"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/verticalcenter"
+        app:layout_constraintBaseline_toBaselineOf="@id/webtoon_side_padding"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/webtoon_side_padding"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:entries="@array/webtoon_side_padding"
+        app:layout_constraintLeft_toRightOf="@id/verticalcenter"
+        app:layout_constraintRight_toRightOf="@id/spinner_end"
+        app:layout_constraintTop_toBottomOf="@id/crop_borders_webtoon"/>
+
     <!-- Groups of preferences -->
 
     <androidx.constraintlayout.widget.Group
@@ -271,7 +290,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="webtoon_prefs,crop_borders_webtoon" />
+        app:constraint_referenced_ids="webtoon_prefs,crop_borders_webtoon,webtoon_side_padding_text,webtoon_side_padding" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/verticalcenter"

@@ -472,7 +472,6 @@
     <string name="secure_screen">Bildschirm sichern</string>
     <string name="ext_updates_pending">Updates ausstehend</string>
     <string name="pref_cutout_short">Inhalt im Ausschnittbereich anzeigen</string>
-    <string name="pref_webtoon_padding_vert">Vertikaler Seitenabstand</string>
     <string name="information_cloudflare_bypass_failure">Fehler beim Umgehen von Cloudflare</string>
     <string name="information_webview_outdated">Bitte aktualisiere die WebView-App für eine bessere Kompatibilität</string>
     <string name="channel_new_chapters">Kapitelaktualisierungen</string>
@@ -523,7 +522,8 @@
     <string name="http_error_hint">Website in Webansicht prüfen</string>
     <string name="updating_library">Bibliothek wird aktualisiert</string>
     <string name="pref_skip_filtered_chapters">Überspringe gefilterte Kapitel</string>
-    <string name="pref_category_reading">Am Lesen</string>
+    <string name="pref_category_reading">Beim Lesen</string>
     <string name="label_sources">Quellen</string>
     <string name="action_select_inverse">Auswahl umkehren</string>
+    <string name="vertical_plus_viewer">Kontinuierlich vertikal</string>
 </resources>

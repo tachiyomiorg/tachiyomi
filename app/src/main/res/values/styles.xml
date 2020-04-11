@@ -227,12 +227,18 @@
     <!--Widgets.TextInputLayout-->
     <!--=======================-->
 
+    <style name="ThemeOverlay.Widget.TextInputEditText.OutlinedBox" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="colorControlActivated">?attr/colorSecondary</item>
+    </style>
+
     <style name="Theme.Widget.TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Widget.TextInputEditText.OutlinedBox</item>
         <item name="boxStrokeColor">@color/text_input_stroke</item>
         <item name="hintTextColor">?attr/colorSecondary</item>
     </style>
 
     <style name="Theme.Widget.TextInputLayout.OutlinedBox.Dense" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Widget.TextInputEditText.OutlinedBox</item>
         <item name="boxStrokeColor">@color/text_input_stroke</item>
         <item name="hintTextColor">?attr/colorSecondary</item>
     </style>

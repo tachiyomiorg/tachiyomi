@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
-import android.os.Build
+import android.os.Environment
 import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.InstallStep
@@ -63,9 +63,11 @@ internal class ExtensionInstaller(private val context: Context) {
         // Register the receiver after removing (and unregistering) the previous download
         downloadReceiver.register()
 
-        val request = DownloadManager.Request(Uri.parse(url))
+        val downloadUri = Uri.parse(url)
+        val request = DownloadManager.Request(downloadUri)
                 .setTitle(extension.name)
                 .setMimeType(APK_MIME)
+                .setDestinationInExternalFilesDir(context, Environment.DIRECTORY_DOWNLOADS, downloadUri.lastPathSegment)
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
 
         val id = downloadManager.enqueue(request)
@@ -221,20 +223,15 @@ internal class ExtensionInstaller(private val context: Context) {
                 return
             }
 
-            // Due to a bug in Android versions prior to N, the installer can't open files that do
-            // not contain the extension in the path, even if you specify the correct MIME.
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                val query = DownloadManager.Query().setFilterById(id)
-                downloadManager.query(query).use { cursor ->
-                    if (cursor.moveToFirst()) {
-                        @Suppress("DEPRECATION")
-                        val uriCompat = File(cursor.getString(cursor.getColumnIndex(
-                                DownloadManager.COLUMN_LOCAL_FILENAME))).getUriCompat(context)
-                        installApk(id, uriCompat)
-                    }
+            val query = DownloadManager.Query().setFilterById(id)
+            downloadManager.query(query).use { cursor ->
+                if (cursor.moveToFirst()) {
+                    val localUri = cursor.getString(
+                            cursor.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI)
+                    ).removePrefix(FILE_SCHEME)
+
+                    installApk(id, File(localUri).getUriCompat(context))
                 }
-            } else {
-                installApk(id, uri)
             }
         }
     }
@@ -242,5 +239,6 @@ internal class ExtensionInstaller(private val context: Context) {
     companion object {
         const val APK_MIME = "application/vnd.android.package-archive"
         const val EXTRA_DOWNLOAD_ID = "ExtensionInstaller.extra.DOWNLOAD_ID"
+        const val FILE_SCHEME = "file://"
     }
 }

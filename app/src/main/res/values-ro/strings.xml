@@ -328,7 +328,7 @@
     <string name="confirm_delete_chapters">Sigur doriți să ștergeți capitolele selectate\?</string>
     <string name="manga_tracking_tab">"Urmărind "</string>
     <string name="reading">Citind</string>
-    <string name="completed">Finalizat</string>
+    <string name="completed">Finalizată</string>
     <string name="dropped">Abandonat</string>
     <string name="on_hold">Pe pauză</string>
     <string name="plan_to_read">Planificat pentru citit</string>
@@ -475,7 +475,6 @@
     <string name="secure_screen">Securizează ecran</string>
     <string name="ext_updates_pending">Actualizare în așteptare</string>
     <string name="pref_cutout_short">Afișare conținut în zona decupată</string>
-    <string name="pref_webtoon_padding_vert">Căptușeală verticală între pagini</string>
     <string name="information_cloudflare_bypass_failure">A eșuat evitarea Cloudflare</string>
     <string name="information_webview_outdated">Actualizați aplicația WebView pentru o mai bună compatibilitate</string>
     <string name="channel_new_chapters">Actualizări de capitole</string>
@@ -531,4 +530,5 @@
     <string name="pref_skip_filtered_chapters">Săriți peste capitolele filtrate</string>
     <string name="label_sources">Surse</string>
     <string name="action_select_inverse">Selectează invers</string>
+    <string name="vertical_plus_viewer">Vertical continuu</string>
 </resources>

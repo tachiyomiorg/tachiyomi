@@ -13,8 +13,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.MenuRes
 import androidx.appcompat.widget.PopupMenu
+import androidx.recyclerview.widget.RecyclerView
 import com.amulyakhare.textdrawable.TextDrawable
 import com.amulyakhare.textdrawable.util.ColorGenerator
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import eu.kanade.tachiyomi.R
 import kotlin.math.min
@@ -93,4 +95,20 @@ fun ImageView.roundTextIcon(text: String) {
                 letter, ColorGenerator.MATERIAL.getColor(letter)
             )
     )
+}
+
+/**
+ * Shrink an ExtendedFloatingActionButton when the associated RecyclerView is scrolled down.
+ *
+ * @param recycler [RecyclerView] that the FAB should shrink/extend in response to.
+ */
+fun ExtendedFloatingActionButton.shrinkOnScroll(recycler: RecyclerView) {
+    recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            if (dy <= 0)
+                extend()
+            else
+                shrink()
+        }
+    })
 }

@@ -474,7 +474,6 @@
     <string name="pref_category_reading">اعدادات القرآءة</string>
     <string name="pref_always_show_chapter_transition">اظهار فواصل الانتقال بين الفصول</string>
     <string name="pref_skip_filtered_chapters">تخطي الفصول المفلترة</string>
-    <string name="pref_webtoon_padding_vert">الفراغ الأفقي بن الصفحات</string>
     <string name="pref_cutout_short">اظهار محتوى المناطق المقطوعة</string>
     <string name="pref_enable_automatic_extension_updates">التحقق من التحديثات للإضافات</string>
     <string name="obsolete_extension_message">هذه الإضافة لم تعد متوفرة.</string>

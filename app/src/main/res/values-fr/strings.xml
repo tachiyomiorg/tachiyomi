@@ -506,7 +506,6 @@
     <string name="secure_screen">Mode discret</string>
     <string name="ext_updates_pending">Mises à jour en attente</string>
     <string name="pref_cutout_short">Utiliser la zone de l\'encoche</string>
-    <string name="pref_webtoon_padding_vert">Espace entre les pages</string>
     <string name="information_cloudflare_bypass_failure">Impossible de contourner Cloudflare</string>
     <string name="information_webview_outdated">Veillez mettre à jour l\'application WebView pour une meilleure compatibilité</string>
     <string name="channel_new_chapters">Mises à jour des chapitres</string>

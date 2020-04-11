@@ -286,10 +286,12 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
 
     /**
      * Notifies adapter of changes around the current page to trigger a relayout in the recycler.
-     * Used when a image configuration is changed.
+     * Used when an image configuration is changed.
      */
     private fun refreshAdapter() {
         val position = layoutManager.findLastEndVisibleItemPosition()
-        adapter.notifyItemRangeChanged(max(0, position - 1), min(2, adapter.itemCount - position))
+        adapter.notifyItemRangeChanged(
+            max(0, position - 2),
+            min(position + 2, adapter.itemCount - 1))
     }
 }

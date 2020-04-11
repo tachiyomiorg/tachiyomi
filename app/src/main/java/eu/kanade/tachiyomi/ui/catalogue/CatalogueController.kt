@@ -57,24 +57,13 @@ class CatalogueController : NucleusController<CataloguePresenter>(),
     private lateinit var binding: CatalogueMainControllerBinding
 
     init {
-        // Enable the option menu
         setHasOptionsMenu(true)
     }
 
-    /**
-     * Set the title of controller.
-     *
-     * @return title.
-     */
     override fun getTitle(): String? {
         return applicationContext?.getString(R.string.label_sources)
     }
 
-    /**
-     * Create the [CataloguePresenter] used in controller.
-     *
-     * @return instance of [CataloguePresenter]
-     */
     override fun createPresenter(): CataloguePresenter {
         return CataloguePresenter()
     }
@@ -91,11 +80,6 @@ class CatalogueController : NucleusController<CataloguePresenter>(),
         return binding.root
     }
 
-    /**
-     * Called when the view is created
-     *
-     * @param view view of controller
-     */
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
 
@@ -133,14 +117,18 @@ class CatalogueController : NucleusController<CataloguePresenter>(),
         val activity = activity ?: return
         val item = adapter?.getItem(position) as? SourceItem ?: return
 
+        val isPinned = item.header?.code?.equals(CataloguePresenter.PINNED_KEY) ?: false
+
         MaterialDialog.Builder(activity)
                 .title(item.source.name)
-                .items(activity.getString(R.string.action_hide))
+                .items(
+                    activity.getString(R.string.action_hide),
+                    activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin)
+                )
                 .itemsCallback { _, _, which, _ ->
                     when (which) {
-                        0 -> {
-                            hideCatalogue(item.source)
-                        }
+                        0 -> hideCatalogue(item.source)
+                        1 -> pinCatalogue(item.source, isPinned)
                     }
                 }.show()
     }
@@ -148,6 +136,17 @@ class CatalogueController : NucleusController<CataloguePresenter>(),
     private fun hideCatalogue(source: Source) {
         val current = preferences.hiddenCatalogues().getOrDefault()
         preferences.hiddenCatalogues().set(current + source.id.toString())
+
+        presenter.updateSources()
+    }
+
+    private fun pinCatalogue(source: Source, isPinned: Boolean) {
+        val current = preferences.pinnedCatalogues().getOrDefault()
+        if (isPinned) {
+            preferences.pinnedCatalogues().set(current - source.id.toString())
+        } else {
+            preferences.pinnedCatalogues().set(current + source.id.toString())
+        }
 
         presenter.updateSources()
     }

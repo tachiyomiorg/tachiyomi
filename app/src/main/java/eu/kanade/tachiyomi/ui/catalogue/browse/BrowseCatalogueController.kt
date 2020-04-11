@@ -9,8 +9,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,7 +28,6 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.ui.base.controller.SecondaryDrawerController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.manga.MangaController
@@ -39,12 +36,12 @@ import eu.kanade.tachiyomi.util.system.connectivityManager
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.inflate
+import eu.kanade.tachiyomi.util.view.shrinkOnScroll
 import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import eu.kanade.tachiyomi.widget.EmptyView
 import java.util.concurrent.TimeUnit
-import kotlinx.android.synthetic.main.main_activity.drawer
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -56,7 +53,6 @@ import uy.kohesive.injekt.injectLazy
  */
 open class BrowseCatalogueController(bundle: Bundle) :
         NucleusController<BrowseCataloguePresenter>(bundle),
-        SecondaryDrawerController,
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
         FlexibleAdapter.EndlessScrollListener,
@@ -79,9 +75,9 @@ open class BrowseCatalogueController(bundle: Bundle) :
     private var snack: Snackbar? = null
 
     /**
-     * Navigation view containing filter items.
+     * Sheet containing filter items.
      */
-    private var navView: CatalogueNavigationView? = null
+    private var filterSheet: CatalogueFilterSheet? = null
 
     /**
      * Recycler view with the list of results.
@@ -129,9 +125,34 @@ open class BrowseCatalogueController(bundle: Bundle) :
         adapter = FlexibleAdapter(null, this)
         setupRecycler(view)
 
-        navView?.setFilters(presenter.filterItems)
+        // Prepare filter sheet
+        if (presenter.sourceFilters.isNotEmpty()) {
+            initFilterSheet()
+
+            binding.fabFilter.setOnClickListener { filterSheet?.show() }
+            binding.fabFilter.visible()
+        }
 
         binding.progress.visible()
+    }
+
+    private fun initFilterSheet() {
+        filterSheet = CatalogueFilterSheet(
+            activity!!,
+            onSearchClicked = {
+                val allDefault = presenter.sourceFilters == presenter.source.getFilterList()
+                showProgressBar()
+                adapter?.clear()
+                presenter.setSourceFilter(if (allDefault) FilterList() else presenter.sourceFilters)
+            },
+            onResetClicked = {
+                presenter.appliedFilters = FilterList()
+                val newFilters = presenter.source.getFilterList()
+                presenter.sourceFilters = newFilters
+                filterSheet?.setFilters(presenter.filterItems)
+            }
+        )
+        filterSheet?.setFilters(presenter.filterItems)
     }
 
     override fun onDestroyView(view: View) {
@@ -143,35 +164,6 @@ open class BrowseCatalogueController(bundle: Bundle) :
         snack = null
         recycler = null
         super.onDestroyView(view)
-    }
-
-    override fun createSecondaryDrawer(drawer: DrawerLayout): ViewGroup? {
-        // Inflate and prepare drawer
-        val navView = drawer.inflate(R.layout.catalogue_drawer) as CatalogueNavigationView
-        this.navView = navView
-        navView.setFilters(presenter.filterItems)
-
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, GravityCompat.END)
-
-        navView.onSearchClicked = {
-            val allDefault = presenter.sourceFilters == presenter.source.getFilterList()
-            showProgressBar()
-            adapter?.clear()
-            drawer.closeDrawer(GravityCompat.END)
-            presenter.setSourceFilter(if (allDefault) FilterList() else presenter.sourceFilters)
-        }
-
-        navView.onResetClicked = {
-            presenter.appliedFilters = FilterList()
-            val newFilters = presenter.source.getFilterList()
-            presenter.sourceFilters = newFilters
-            navView.setFilters(presenter.filterItems)
-        }
-        return navView
-    }
-
-    override fun cleanupSecondaryDrawer(drawer: DrawerLayout) {
-        navView = null
     }
 
     private fun setupRecycler(view: View) {
@@ -211,6 +203,20 @@ open class BrowseCatalogueController(bundle: Bundle) :
                 }
             }
         }
+
+        if (presenter.sourceFilters.isNotEmpty()) {
+            // Add bottom padding if filter FAB is visible
+            recycler.setPadding(
+                0,
+                0,
+                0,
+                view.resources.getDimensionPixelOffset(R.dimen.fab_list_padding)
+            )
+            recycler.clipToPadding = false
+
+            binding.fabFilter.shrinkOnScroll(recycler)
+        }
+
         recycler.setHasFixedSize(true)
         recycler.adapter = adapter
 
@@ -259,18 +265,6 @@ open class BrowseCatalogueController(bundle: Bundle) :
                 }
         )
 
-        // Setup filters button
-        menu.findItem(R.id.action_set_filter).apply {
-            icon.mutate()
-            if (presenter.sourceFilters.isEmpty()) {
-                isEnabled = false
-                icon.alpha = 128
-            } else {
-                isEnabled = true
-                icon.alpha = 255
-            }
-        }
-
         // Show next display mode
         menu.findItem(R.id.action_display_mode).apply {
             val icon = if (presenter.isListMode)
@@ -292,7 +286,6 @@ open class BrowseCatalogueController(bundle: Bundle) :
         when (item.itemId) {
             R.id.action_search -> expandActionViewFromInteraction = true
             R.id.action_display_mode -> swapDisplayMode()
-            R.id.action_set_filter -> navView?.let { activity?.drawer?.openDrawer(GravityCompat.END) }
             R.id.action_open_in_web_view -> openInWebView()
         }
         return super.onOptionsItemSelected(item)
@@ -302,7 +295,7 @@ open class BrowseCatalogueController(bundle: Bundle) :
         val source = presenter.source as? HttpSource ?: return
 
         val activity = activity ?: return
-        val intent = WebViewActivity.newIntent(activity, source.id, source.baseUrl, presenter.source.name)
+        val intent = WebViewActivity.newIntent(activity, source.baseUrl, source.id, presenter.source.name)
         startActivity(intent)
     }
 

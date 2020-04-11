@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.CompoundButton
 import android.widget.Spinner
+import androidx.annotation.ArrayRes
 import androidx.core.widget.NestedScrollView
 import com.f2prateek.rx.preferences.Preference
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -30,6 +31,7 @@ import kotlinx.android.synthetic.main.reader_settings_sheet.scale_type
 import kotlinx.android.synthetic.main.reader_settings_sheet.show_page_number
 import kotlinx.android.synthetic.main.reader_settings_sheet.viewer
 import kotlinx.android.synthetic.main.reader_settings_sheet.webtoon_prefs_group
+import kotlinx.android.synthetic.main.reader_settings_sheet.webtoon_side_padding
 import kotlinx.android.synthetic.main.reader_settings_sheet.zoom_start
 import uy.kohesive.injekt.injectLazy
 
@@ -112,6 +114,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         webtoon_prefs_group.visible()
 
         crop_borders_webtoon.bindToPreference(preferences.cropBordersWebtoon())
+        webtoon_side_padding.bindToIntPreference(preferences.webtoonSidePadding(), R.array.webtoon_side_padding_values)
     }
 
     /**
@@ -130,5 +133,18 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
             pref.set(position + offset)
         }
         setSelection(pref.getOrDefault() - offset, false)
+    }
+
+    /**
+     * Binds a spinner to an int preference. The position of the spinner item must
+     * correlate with the [intValues] resource item (in arrays.xml), which is a <string-array>
+     * of int values that will be parsed here and applied to the preference.
+     */
+    private fun Spinner.bindToIntPreference(pref: Preference<Int>, @ArrayRes intValuesResource: Int) {
+        val intValues = resources.getStringArray(intValuesResource).map { it.toIntOrNull() }
+        onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
+            pref.set(intValues[position])
+        }
+        setSelection(intValues.indexOf(pref.getOrDefault()), false)
     }
 }

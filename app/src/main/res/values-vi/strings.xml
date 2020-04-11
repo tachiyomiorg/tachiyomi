@@ -495,7 +495,6 @@
     <string name="pref_always_show_chapter_transition">Luôn hiển thị chuyển tiếp chương</string>
     <string name="pref_skip_filtered_chapters">Bỏ qua các chương đã lọc</string>
     <string name="filter_mode_screen">Màn hình</string>
-    <string name="pref_webtoon_padding_vert">Phần ngăn cách dọc giữa các trang</string>
     <string name="pref_cutout_short">Hiển thị nội dung ở phần rìa</string>
     <string name="pref_enable_automatic_extension_updates">Kiểm tra cập nhật của các tiện ích bổ sung</string>
     <string name="obsolete_extension_message">Tiện ích bổ sung này không còn tồn tại.</string>

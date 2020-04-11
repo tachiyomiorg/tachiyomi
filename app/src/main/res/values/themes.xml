@@ -43,6 +43,8 @@
         <item name="android:textDirection">locale</item>
 
         <!-- Themes -->
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor">?attr/colorPrimary</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="elevationOverlayEnabled">false</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
@@ -65,7 +67,6 @@
     <!-- Main Theme-->
     <!--===========-->
     <style name="Theme.Tachiyomi.Light" parent="Theme.Base">
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@color/md_black_1000_54</item>
         <item name="android:navigationBarColor">@color/md_black_1000_54</item>
 
@@ -73,10 +74,6 @@
     </style>
 
     <style name="Theme.Tachiyomi.LightBlue" parent="Theme.Base">
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
-
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/textColorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -116,11 +113,9 @@
         <item name="android:divider">@color/dividerDark</item>
         <item name="android:listDivider">@drawable/line_divider</item>
 
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@color/colorDarkPrimary</item>
-
         <!-- Themes -->
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor">?attr/colorPrimary</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="elevationOverlayEnabled">false</item>
         <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
@@ -144,14 +139,11 @@
     </style>
 
     <style name="Theme.Tachiyomi.Dark" parent="Theme.Base.Dark">
-        <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 
     <style name="Theme.Tachiyomi.DarkBlue" parent="Theme.Base.Dark">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
-
-        <item name="android:navigationBarColor">@color/colorPrimary</item>
     </style>
 
     <!--==============-->
@@ -164,6 +156,7 @@
 
         <item name="android:colorBackground">@color/colorAmoledPrimary</item>
 
+        <!-- Some ROMs make black navbars white (e.g. OxygenOS) -->
         <item name="android:navigationBarColor">@android:color/transparent</item>
 
         <!-- Themes -->

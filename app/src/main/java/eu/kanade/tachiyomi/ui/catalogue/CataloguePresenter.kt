@@ -27,9 +27,6 @@ class CataloguePresenter(
     private val preferences: PreferencesHelper = Injekt.get()
 ) : BasePresenter<CatalogueController>() {
 
-    /**
-     * Enabled sources.
-     */
     var sources = getEnabledSources()
 
     /**
@@ -48,8 +45,11 @@ class CataloguePresenter(
     /**
      * Unsubscribe and create a new subscription to fetch enabled sources.
      */
-    fun loadSources() {
+    private fun loadSources() {
         sourceSubscription?.unsubscribe()
+
+        val pinnedSources = mutableListOf<SourceItem>()
+        val pinnedCatalogues = preferences.pinnedCatalogues().getOrDefault()
 
         val map = TreeMap<String, MutableList<CatalogueSource>> { d1, d2 ->
             // Catalogues without a lang defined will be placed at the end
@@ -60,9 +60,19 @@ class CataloguePresenter(
             }
         }
         val byLang = sources.groupByTo(map, { it.lang })
-        val sourceItems = byLang.flatMap {
+        var sourceItems = byLang.flatMap {
             val langItem = LangItem(it.key)
-            it.value.map { source -> SourceItem(source, langItem) }
+            it.value.map { source ->
+                if (source.id.toString() in pinnedCatalogues) {
+                    pinnedSources.add(SourceItem(source, LangItem(PINNED_KEY)))
+                }
+
+                SourceItem(source, langItem)
+            }
+        }
+
+        if (pinnedSources.isNotEmpty()) {
+            sourceItems = pinnedSources + sourceItems
         }
 
         sourceSubscription = Observable.just(sourceItems)
@@ -100,5 +110,9 @@ class CataloguePresenter(
                 .filterNot { it.id.toString() in hiddenCatalogues }
                 .sortedBy { "(${it.lang}) ${it.name}" } +
                 sourceManager.get(LocalSource.ID) as LocalSource
+    }
+
+    companion object {
+        const val PINNED_KEY = "pinned"
     }
 }

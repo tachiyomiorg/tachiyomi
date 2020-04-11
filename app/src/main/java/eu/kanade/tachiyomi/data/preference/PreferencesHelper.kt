@@ -107,6 +107,8 @@ class PreferencesHelper(val context: Context) {
 
     fun cropBordersWebtoon() = rxPrefs.getBoolean(Keys.cropBordersWebtoon, false)
 
+    fun webtoonSidePadding() = rxPrefs.getInteger(Keys.webtoonSidePadding, 0)
+
     fun readWithTapping() = rxPrefs.getBoolean(Keys.readWithTapping, true)
 
     fun readWithLongTap() = rxPrefs.getBoolean(Keys.readWithLongTap, true)
@@ -195,6 +197,8 @@ class PreferencesHelper(val context: Context) {
     fun lastExtCheck() = rxPrefs.getLong("last_ext_check", 0)
 
     fun hiddenCatalogues() = rxPrefs.getStringSet("hidden_catalogues", emptySet())
+
+    fun pinnedCatalogues() = rxPrefs.getStringSet("pinned_catalogues", emptySet())
 
     fun downloadNew() = rxPrefs.getBoolean(Keys.downloadNew, false)
 

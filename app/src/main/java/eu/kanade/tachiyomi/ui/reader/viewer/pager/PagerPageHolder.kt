@@ -1,10 +1,8 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.PointF
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.view.GestureDetector
 import android.view.Gravity
 import android.view.MotionEvent
@@ -32,6 +30,7 @@ import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.viewer.ReaderProgressBar
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.PagerConfig.ZoomType
+import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.system.ImageUtil
 import eu.kanade.tachiyomi.util.system.dpToPx
 import eu.kanade.tachiyomi.util.view.gone
@@ -417,9 +416,9 @@ class PagerPageHolder(
                 layoutParams = FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
                     setMargins(margins, margins, margins, margins)
                 }
-                setText(R.string.action_open_in_browser)
+                setText(R.string.action_open_in_web_view)
                 setOnClickListener {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(imageUrl))
+                    val intent = WebViewActivity.newIntent(context, imageUrl!!)
                     context.startActivity(intent)
                 }
 

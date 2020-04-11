@@ -20,7 +20,6 @@ import com.google.android.material.internal.ScrimInsetsFrameLayout
 import com.google.android.material.textfield.TextInputLayout
 import eu.kanade.tachiyomi.R as TR
 import eu.kanade.tachiyomi.util.view.inflate
-import kotlin.math.min
 
 @Suppress("LeakingThis")
 @SuppressLint("PrivateResource", "RestrictedApi")
@@ -29,11 +28,6 @@ open class SimpleNavigationView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ScrimInsetsFrameLayout(context, attrs, defStyleAttr) {
-
-    /**
-     * Max width of the navigation view.
-     */
-    private var maxWidth: Int
 
     /**
      * Recycler view containing all the items.
@@ -54,30 +48,9 @@ open class SimpleNavigationView @JvmOverloads constructor(
                     R.styleable.NavigationView_elevation, 0).toFloat())
         }
 
-        @Suppress("DEPRECATION")
-        ViewCompat.setFitsSystemWindows(this,
-                a.getBoolean(R.styleable.NavigationView_android_fitsSystemWindows, false))
-
-        maxWidth = a.getDimensionPixelSize(R.styleable.NavigationView_android_maxWidth, 0)
-
         a.recycle()
 
         recycler.layoutManager = LinearLayoutManager(context)
-    }
-
-    /**
-     * Overriden to measure the width of the navigation view.
-     */
-    @SuppressLint("SwitchIntDef")
-    override fun onMeasure(widthSpec: Int, heightSpec: Int) {
-        val width = when (MeasureSpec.getMode(widthSpec)) {
-            MeasureSpec.AT_MOST -> MeasureSpec.makeMeasureSpec(
-                    min(MeasureSpec.getSize(widthSpec), maxWidth), MeasureSpec.EXACTLY)
-            MeasureSpec.UNSPECIFIED -> MeasureSpec.makeMeasureSpec(maxWidth, MeasureSpec.EXACTLY)
-            else -> widthSpec
-        }
-        // Let super sort out the height
-        super.onMeasure(width, heightSpec)
     }
 
     /**

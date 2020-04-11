@@ -15,11 +15,11 @@
     <string name="action_edit_categories">Изменить категорию</string>
     <string name="action_edit_cover">Изменить обложку</string>
     <string name="action_filter">Фильтр</string>
-    <string name="action_filter_bookmarked">Закладки</string>
+    <string name="action_filter_bookmarked">Закладка</string>
     <string name="action_filter_downloaded">Загружено</string>
     <string name="action_filter_empty">Удалить фильтр</string>
     <string name="action_filter_read">Читать</string>
-    <string name="action_filter_unread">Непрочитано</string>
+    <string name="action_filter_unread">Не прочитано</string>
     <string name="action_install">Установить</string>
     <string name="action_mark_as_read">Отметить как прочитанное</string>
     <string name="action_mark_as_unread">Пометить как непрочитанное</string>
@@ -107,7 +107,7 @@
     <string name="download_notifier_unkown_error">Не могу скачать главу из-за непревиденной ошибки</string>
     <string name="download_progress">Загружен(о) %1$d%%</string>
     <string name="download_queue_error">Невозможно скачать главы. Можете попробовать еще раз в разделе загрузки</string>
-    <string name="download_unread">Непрочитано</string>
+    <string name="download_unread">Не прочитано</string>
     <string name="downloading">Загрузка…</string>
     <string name="dropped">Заброшенно</string>
     <string name="error_category_exists">Категория с таким именем уже существует!</string>
@@ -276,7 +276,7 @@
     <string name="used_cache">Использовано: %1$s</string>
     <string name="username">Имя пользователя</string>
     <string name="version">Версия</string>
-    <string name="vertical_viewer">Вертикальный</string>
+    <string name="vertical_viewer">Вертикально</string>
     <string name="viewer_for_this_series">Отображение для этой серии</string>
     <string name="webtoon_viewer">Вебкомикс</string>
     <string name="white_background">Белый</string>
@@ -473,7 +473,6 @@
     <string name="secure_screen">Экран безопасности</string>
     <string name="ext_updates_pending">Обновления ожидаются</string>
     <string name="pref_cutout_short">Отображать содержимое в вырезанной области</string>
-    <string name="pref_webtoon_padding_vert">Вертикальный отступ между страницами</string>
     <string name="information_cloudflare_bypass_failure">Не удалось обойти Cloudflare</string>
     <string name="information_webview_outdated">Пожалуйста, обновите WebView для лучшей совместимости</string>
     <string name="channel_new_chapters">Обновления глав</string>
@@ -531,4 +530,5 @@
     <string name="pref_category_reading">Чтение</string>
     <string name="pref_skip_filtered_chapters">Пропускать фильтрованные главы</string>
     <string name="action_select_inverse">Выбрать наоборот</string>
+    <string name="vertical_plus_viewer">Непрерывно-вертикально</string>
 </resources>

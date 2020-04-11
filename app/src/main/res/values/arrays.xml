@@ -54,6 +54,22 @@
         <item>@string/scale_type_smart_fit</item>
     </string-array>
 
+    <string-array name="webtoon_side_padding">
+        <item>@string/webtoon_side_padding_0</item>
+        <item>@string/webtoon_side_padding_10</item>
+        <item>@string/webtoon_side_padding_15</item>
+        <item>@string/webtoon_side_padding_20</item>
+        <item>@string/webtoon_side_padding_25</item>
+    </string-array>
+
+    <string-array name="webtoon_side_padding_values">
+        <item>0</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+    </string-array>
+
     <string-array name="image_scale_type_values">
         <item>1</item>
         <item>2</item>
@@ -83,7 +99,7 @@
         <item>@string/rotation_force_portrait</item>
         <item>@string/rotation_force_landscape</item>
     </string-array>
-    
+
     <string-array name="rotation_type_values">
         <item>1</item>
         <item>2</item>

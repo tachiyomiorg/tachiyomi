@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/catalogue_view"
@@ -25,6 +25,14 @@
                 android:visibility="gone" />
 
         </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_filter"
+            style="@style/Theme.Widget.FAB"
+            android:text="@string/action_filter"
+            android:visibility="gone"
+            app:icon="@drawable/ic_filter_list_24dp"
+            app:layout_anchor="@id/catalogue_view" />
 
         <eu.kanade.tachiyomi.widget.EmptyView
             android:id="@+id/empty_view"
