@@ -204,6 +204,9 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$glide_version"
     implementation 'jp.wasabeef:glide-transformations:4.1.0'
 
+    //GIF Drawable
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+
     // Logging
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
