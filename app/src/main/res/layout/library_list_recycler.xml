@@ -4,4 +4,4 @@
     android:id="@+id/library_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:listitem="@layout/catalogue_list_item" />
+    tools:listitem="@layout/source_list_item" />

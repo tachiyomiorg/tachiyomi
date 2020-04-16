@@ -44,12 +44,12 @@ import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
-import eu.kanade.tachiyomi.ui.catalogue.browse.BrowseCatalogueController
-import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.library.LibraryController
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.ui.source.browse.BrowseSourceController
+import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.lang.truncateCenter
 import eu.kanade.tachiyomi.util.system.toast
@@ -549,7 +549,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
      */
     private fun performGlobalSearch(query: String) {
         val router = parentController?.router ?: return
-        router.pushController(CatalogueSearchController(query).withFadeTransaction())
+        router.pushController(GlobalSearchController(query).withFadeTransaction())
     }
 
     /**
@@ -570,7 +570,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
                 router.handleBack()
                 previousController.search(query)
             }
-            is BrowseCatalogueController -> {
+            is BrowseSourceController -> {
                 router.handleBack()
                 previousController.searchWithQuery(query)
             }

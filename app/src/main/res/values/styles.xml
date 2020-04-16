@@ -176,7 +176,7 @@
         <item name="android:scrollbarStyle">outsideOverlay</item>
     </style>
 
-    <style name="Theme.Widget.GridView.Catalogue">
+    <style name="Theme.Widget.GridView.Source">
         <item name="android:padding">5dp</item>
         <item name="android:gravity">top|left</item>
         <item name="android:smoothScrollbar">true</item>
@@ -220,6 +220,11 @@
 
         <!-- Collapse horizontal margin -->
         <item name="chipMinTouchTargetSize">30dp</item>
+    </style>
+
+
+    <style name="Theme.Widget.BasicSwitch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="useMaterialThemeColors">false</item>
     </style>
 
 

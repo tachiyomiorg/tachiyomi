@@ -2,9 +2,9 @@
 <eu.kanade.tachiyomi.widget.AutofitRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/library_grid"
-    style="@style/Theme.Widget.GridView.Catalogue"
+    style="@style/Theme.Widget.GridView.Source"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
     android:columnWidth="140dp"
-    tools:listitem="@layout/catalogue_grid_item" />
+    tools:listitem="@layout/source_grid_item" />

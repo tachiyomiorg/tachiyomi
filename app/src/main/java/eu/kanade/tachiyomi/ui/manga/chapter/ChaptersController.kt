@@ -32,8 +32,10 @@ import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.getCoordinates
+import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.shrinkOnScroll
 import eu.kanade.tachiyomi.util.view.snack
+import eu.kanade.tachiyomi.util.view.visible
 import timber.log.Timber
 
 class ChaptersController : NucleusController<ChaptersPresenter>(),
@@ -392,7 +394,8 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
             binding.actionToolbar.findItem(R.id.action_mark_as_unread)?.isVisible = chapters.all { it.chapter.read }
 
             // Hide FAB to avoid interfering with the bottom action toolbar
-            binding.fab.hide()
+            // binding.fab.hide()
+            binding.fab.gone()
         }
         return false
     }
@@ -420,7 +423,10 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
         selectedItems.clear()
         actionMode = null
 
-        binding.fab.show()
+        // TODO: there seems to be a bug in MaterialComponents where the [ExtendedFloatingActionButton]
+        // fails to show up properly
+        // binding.fab.show()
+        binding.fab.visible()
     }
 
     override fun onDetach(view: View) {

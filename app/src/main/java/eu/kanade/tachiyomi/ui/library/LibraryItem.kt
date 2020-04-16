@@ -15,8 +15,8 @@ import eu.kanade.tachiyomi.data.database.models.LibraryManga
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
-import kotlinx.android.synthetic.main.catalogue_grid_item.view.card
-import kotlinx.android.synthetic.main.catalogue_grid_item.view.gradient
+import kotlinx.android.synthetic.main.source_grid_item.view.card
+import kotlinx.android.synthetic.main.source_grid_item.view.gradient
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -29,9 +29,9 @@ class LibraryItem(val manga: LibraryManga, private val libraryAsList: Preference
 
     override fun getLayoutRes(): Int {
         return if (libraryAsList.getOrDefault())
-            R.layout.catalogue_list_item
+            R.layout.source_list_item
         else
-            R.layout.catalogue_grid_item
+            R.layout.source_grid_item
     }
 
     override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): LibraryHolder {

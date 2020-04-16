@@ -74,6 +74,7 @@ abstract class SettingsController : PreferenceController() {
         if (type.isEnter) {
             setTitle()
         }
+        setHasOptionsMenu(type.isEnter)
         super.onChangeStarted(handler, type)
     }
 

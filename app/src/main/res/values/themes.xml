@@ -185,6 +185,7 @@
 
         <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
+        <item name="switchStyle">@style/Theme.Widget.BasicSwitch</item>
     </style>
 
     <style name="Theme.Base.Reader.Light" parent="Theme.Base">
@@ -199,6 +200,7 @@
 
         <item name="actionBarTheme">@style/ThemeOverlay.MaterialComponents.Dark.ActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
+        <item name="switchStyle">@style/Theme.Widget.BasicSwitch</item>
     </style>
 
     <style name="Theme.Reader" parent="Theme.Base.Reader.Dark">

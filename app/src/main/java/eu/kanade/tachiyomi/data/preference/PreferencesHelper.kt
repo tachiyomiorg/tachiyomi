@@ -101,7 +101,7 @@ class PreferencesHelper(val context: Context) {
 
     fun zoomStart() = rxPrefs.getInteger(Keys.zoomStart, 1)
 
-    fun readerTheme() = rxPrefs.getInteger(Keys.readerTheme, 0)
+    fun readerTheme() = rxPrefs.getInteger(Keys.readerTheme, 1)
 
     fun cropBorders() = rxPrefs.getBoolean(Keys.cropBorders, false)
 

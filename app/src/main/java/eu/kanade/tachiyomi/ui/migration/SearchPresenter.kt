@@ -9,9 +9,9 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.model.SManga
-import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchCardItem
-import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchItem
-import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchPresenter
+import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchCardItem
+import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchItem
+import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchPresenter
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -20,7 +20,7 @@ import rx.schedulers.Schedulers
 class SearchPresenter(
     initialQuery: String? = "",
     private val manga: Manga
-) : CatalogueSearchPresenter(initialQuery) {
+) : GlobalSearchPresenter(initialQuery) {
 
     private val replacingMangaRelay = BehaviorRelay.create<Boolean>()
 
@@ -36,9 +36,9 @@ class SearchPresenter(
                 .sortedByDescending { it.id == manga.source }
     }
 
-    override fun createCatalogueSearchItem(source: CatalogueSource, results: List<CatalogueSearchCardItem>?): CatalogueSearchItem {
+    override fun createCatalogueSearchItem(source: CatalogueSource, results: List<GlobalSearchCardItem>?): GlobalSearchItem {
         // Set the catalogue search item as highlighted if the source matches that of the selected manga
-        return CatalogueSearchItem(source, results, source.id == manga.source)
+        return GlobalSearchItem(source, results, source.id == manga.source)
     }
 
     override fun networkToLocalManga(sManga: SManga, sourceId: Long): Manga {
@@ -70,7 +70,7 @@ class SearchPresenter(
         manga: Manga,
         replace: Boolean
     ) {
-        val flags = preferencesHelper.migrateFlags().getOrDefault()
+        val flags = preferences.migrateFlags().getOrDefault()
         val migrateChapters = MigrationFlags.hasChapters(flags)
         val migrateCategories = MigrationFlags.hasCategories(flags)
         val migrateTracks = MigrationFlags.hasTracks(flags)

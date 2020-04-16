@@ -9,17 +9,17 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.popControllerWithTag
-import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchController
-import eu.kanade.tachiyomi.ui.catalogue.global_search.CatalogueSearchPresenter
+import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchController
+import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchPresenter
 import uy.kohesive.injekt.injectLazy
 
 class SearchController(
     private var manga: Manga? = null
-) : CatalogueSearchController(manga?.title) {
+) : GlobalSearchController(manga?.title) {
 
     private var newManga: Manga? = null
 
-    override fun createPresenter(): CatalogueSearchPresenter {
+    override fun createPresenter(): GlobalSearchPresenter {
         return SearchPresenter(initialQuery, manga!!)
     }
 

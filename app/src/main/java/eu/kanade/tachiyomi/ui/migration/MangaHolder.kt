@@ -5,8 +5,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
-import kotlinx.android.synthetic.main.catalogue_list_item.thumbnail
-import kotlinx.android.synthetic.main.catalogue_list_item.title
+import kotlinx.android.synthetic.main.source_list_item.thumbnail
+import kotlinx.android.synthetic.main.source_list_item.title
 
 class MangaHolder(
     private val view: View,

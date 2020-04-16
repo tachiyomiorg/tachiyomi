@@ -11,7 +11,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 class MangaItem(val manga: Manga) : AbstractFlexibleItem<MangaHolder>() {
 
     override fun getLayoutRes(): Int {
-        return R.layout.catalogue_list_item
+        return R.layout.source_list_item
     }
 
     override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): MangaHolder {

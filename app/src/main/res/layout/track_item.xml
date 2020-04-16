@@ -9,234 +9,202 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/logo_container"
-            android:layout_width="48dp"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="4dp"
-            tools:background="#2E51A2">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/track_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                tools:src="@drawable/ic_tracker_mal" />
+            <LinearLayout
+                android:id="@+id/logo_container"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                tools:background="#2E51A2">
 
-            <ImageButton
-                android:id="@+id/track_set"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/track_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:src="@drawable/ic_tracker_mal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="?selectableItemBackgroundBorderless"
-                android:contentDescription="@string/action_edit"
-                android:padding="8dp"
-                app:srcCompat="@drawable/ic_edit_24dp"
-                app:tint="@color/md_white_1000_50" />
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:id="@+id/track_set"
+                    style="@style/Theme.Widget.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/add_tracking"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/track_title"
+                    style="@style/TextAppearance.Regular.Body1.Secondary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/list_item_selector"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    tools:text="Title" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/track_details"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/status_container"
-                android:layout_width="match_parent"
+            <View
+                android:id="@+id/top_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:alpha="0.25"
+                android:background="?android:attr/textColorHint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/track_status"
+                style="@style/TextAppearance.Regular.Body1.Secondary"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/list_item_selector"
-                android:clickable="true"
-                android:focusable="true"
-                android:orientation="horizontal"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
                 android:padding="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/vert_divider_1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    style="@style/TextAppearance.Regular.Body1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/status" />
-
-                <TextView
-                    android:id="@+id/track_status"
-                    style="@style/TextAppearance.Regular.Body1.Secondary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    tools:text="Reading" />
-
-            </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/top_divider"
+                tools:text="Reading" />
 
             <View
-                android:id="@+id/divider_1"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:id="@+id/vert_divider_1"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:alpha="0.25"
                 android:background="?android:attr/textColorHint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/status_container" />
+                app:layout_constraintBottom_toTopOf="@+id/bottom_divider"
+                app:layout_constraintEnd_toStartOf="@+id/track_chapters"
+                app:layout_constraintStart_toEndOf="@+id/track_status"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:id="@+id/chapters_score_container"
+            <TextView
+                android:id="@+id/track_chapters"
+                style="@style/TextAppearance.Regular.Body1.Secondary"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@+id/divider_2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider_1">
-
-                <LinearLayout
-                    android:id="@+id/chapters_container"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/list_item_selector"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:orientation="horizontal"
-                    android:padding="16dp">
-
-                    <TextView
-                        style="@style/TextAppearance.Regular.Body1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/chapters" />
-
-                    <TextView
-                        android:id="@+id/track_chapters"
-                        style="@style/TextAppearance.Regular.Body1.Secondary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:gravity="end"
-                        tools:text="12/24" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/score_container"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/list_item_selector"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:orientation="horizontal"
-                    android:padding="16dp">
-
-                    <TextView
-                        style="@style/TextAppearance.Regular.Body1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/score" />
-
-                    <TextView
-                        android:id="@+id/track_score"
-                        style="@style/TextAppearance.Regular.Body1.Secondary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:gravity="end"
-                        tools:text="10" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+                android:background="@drawable/list_item_selector"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/vert_divider_2"
+                app:layout_constraintStart_toEndOf="@+id/vert_divider_1"
+                app:layout_constraintTop_toBottomOf="@+id/top_divider"
+                tools:text="12/24" />
 
             <View
-                android:id="@+id/divider_2"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:id="@+id/vert_divider_2"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:alpha="0.25"
                 android:background="?android:attr/textColorHint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chapters_score_container" />
+                app:layout_constraintBottom_toTopOf="@+id/bottom_divider"
+                app:layout_constraintEnd_toStartOf="@+id/track_score"
+                app:layout_constraintStart_toEndOf="@+id/track_chapters"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:id="@+id/date_support_container"
+            <TextView
+                android:id="@+id/track_score"
+                style="@style/TextAppearance.Regular.Body1.Secondary"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:background="@drawable/list_item_selector"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="16dp"
+                app:layout_constraintStart_toEndOf="@+id/vert_divider_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/top_divider"
+                tools:text="10" />
+
+            <View
+                android:id="@+id/bottom_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:alpha="0.25"
+                android:background="?android:attr/textColorHint"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/track_score" />
+
+            <TextView
+                android:id="@+id/track_start_date"
+                style="@style/TextAppearance.Regular.Body1.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_item_selector"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/vert_divider_3"
+                app:layout_constraintTop_toBottomOf="@+id/bottom_divider"
+                tools:text="4/16/2020" />
+
+            <View
+                android:id="@+id/vert_divider_3"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:alpha="0.25"
+                android:background="?android:attr/textColorHint"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/track_start_date"
+                app:layout_constraintEnd_toStartOf="@+id/track_finish_date"
+                app:layout_constraintTop_toTopOf="@+id/bottom_divider" />
+
+            <TextView
+                android:id="@+id/track_finish_date"
+                style="@style/TextAppearance.Regular.Body1.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_item_selector"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="16dp"
+                app:layout_constraintStart_toEndOf="@+id/vert_divider_3"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider_2">
-
-                <LinearLayout
-                    android:id="@+id/start_date_container"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/list_item_selector"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:orientation="horizontal"
-                    android:padding="16dp">
-
-                    <TextView
-                        style="@style/TextAppearance.Regular.Body1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/track_start_date" />
-
-                    <TextView
-                        android:id="@+id/track_start_date"
-                        style="@style/TextAppearance.Regular.Body1.Secondary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:gravity="end"
-                        tools:text="03/23/2020" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/finish_date_container"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/list_item_selector"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:orientation="horizontal"
-                    android:padding="16dp">
-
-                    <TextView
-                        style="@style/TextAppearance.Regular.Body1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/track_finish_date" />
-
-                    <TextView
-                        android:id="@+id/track_finish_date"
-                        style="@style/TextAppearance.Regular.Body1.Secondary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:gravity="end"
-                        tools:text="02/23/2020" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/bottom_divider"
+                tools:text="4/16/2020" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -61,6 +61,7 @@ abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateContr
         if (type.isEnter) {
             setTitle()
         }
+        setHasOptionsMenu(type.isEnter)
         super.onChangeStarted(handler, type)
     }
 

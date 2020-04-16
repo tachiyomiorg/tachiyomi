@@ -459,6 +459,7 @@
 
     <!-- Tracking Screen -->
     <string name="manga_tracking_tab">Tracking</string>
+    <string name="add_tracking">Add tracking</string>
     <string name="reading">Reading</string>
     <string name="currently_reading">Currently reading</string>
     <string name="completed">Completed</string>
