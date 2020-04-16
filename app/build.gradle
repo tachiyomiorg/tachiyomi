@@ -32,8 +32,7 @@ ext {
 
 android {
     compileSdkVersion 29
-    buildToolsVersion '29.0.2'
-    publishNonDefault true
+    buildToolsVersion '29.0.3'
 
     defaultConfig {
         applicationId "eu.kanade.tachiyomi"
@@ -225,7 +224,7 @@ dependencies {
 
     // Conductor
     implementation 'com.bluelinelabs:conductor:2.1.5'
-    implementation ("com.bluelinelabs:conductor-support:2.1.5") {
+    implementation("com.bluelinelabs:conductor-support:2.1.5") {
         exclude group: "com.android.support"
     }
     implementation 'com.github.inorichi:conductor-support-preference:a32c357'
@@ -258,7 +257,7 @@ dependencies {
 }
 
 buildscript {
-    ext.kotlin_version = '1.3.71'
+    ext.kotlin_version = '1.3.72'
     repositories {
         mavenCentral()
     }
