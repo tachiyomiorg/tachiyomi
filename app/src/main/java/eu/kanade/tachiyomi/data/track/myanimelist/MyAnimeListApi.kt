@@ -79,35 +79,6 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
         }
     }
 
-    private fun extractDataFromEditPage(page: Document): MyAnimeListEditData {
-        val tables = page.select("form#main-form table")
-
-        return MyAnimeListEditData(
-            entry_id = tables[0].select("input[name=entry_id]").`val`(), // Always 0
-            manga_id = tables[0].select("#manga_id").`val`(),
-            status = tables[0].select("#add_manga_status > option[selected]").`val`(),
-            num_read_volumes = tables[0].select("#add_manga_num_read_volumes").`val`(),
-            last_completed_vol = tables[0].select("input[name=last_completed_vol]").`val`(), // Always empty
-            num_read_chapters = tables[0].select("#add_manga_num_read_chapters").`val`(),
-            score = tables[0].select("#add_manga_score > option[selected]").`val`(),
-            start_date_month = tables[0].select("#add_manga_start_date_month > option[selected]").`val`(),
-            start_date_day = tables[0].select("#add_manga_start_date_day > option[selected]").`val`(),
-            start_date_year = tables[0].select("#add_manga_start_date_year > option[selected]").`val`(),
-            finish_date_month = tables[0].select("#add_manga_finish_date_month > option[selected]").`val`(),
-            finish_date_day = tables[0].select("#add_manga_finish_date_day > option[selected]").`val`(),
-            finish_date_year = tables[0].select("#add_manga_finish_date_year > option[selected]").`val`(),
-            tags = tables[1].select("#add_manga_tags").`val`(),
-            priority = tables[1].select("#add_manga_priority > option[selected]").`val`(),
-            storage_type = tables[1].select("#add_manga_storage_type > option[selected]").`val`(),
-            num_retail_volumes = tables[1].select("#add_manga_num_retail_volumes").`val`(),
-            num_read_times = tables[1].select("#add_manga_num_read_times").`val`(),
-            reread_value = tables[1].select("#add_manga_reread_value > option[selected]").`val`(),
-            comments = tables[1].select("#add_manga_comments").`val`(),
-            is_asked_to_discuss = tables[1].select("#add_manga_is_asked_to_discuss > option[selected]").`val`(),
-            sns_post_type = tables[1].select("#add_manga_sns_post_type > option[selected]").`val`()
-        )
-    }
-
     fun updateLibManga(track: Track): Observable<Track> {
         return Observable.defer {
             // Get track data
@@ -245,6 +216,35 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                 return sb.toString()
             }
         }
+    }
+
+    private fun extractDataFromEditPage(page: Document): MyAnimeListEditData {
+        val tables = page.select("form#main-form table")
+
+        return MyAnimeListEditData(
+                entry_id = tables[0].select("input[name=entry_id]").`val`(), // Always 0
+                manga_id = tables[0].select("#manga_id").`val`(),
+                status = tables[0].select("#add_manga_status > option[selected]").`val`(),
+                num_read_volumes = tables[0].select("#add_manga_num_read_volumes").`val`(),
+                last_completed_vol = tables[0].select("input[name=last_completed_vol]").`val`(), // Always empty
+                num_read_chapters = tables[0].select("#add_manga_num_read_chapters").`val`(),
+                score = tables[0].select("#add_manga_score > option[selected]").`val`(),
+                start_date_month = tables[0].select("#add_manga_start_date_month > option[selected]").`val`(),
+                start_date_day = tables[0].select("#add_manga_start_date_day > option[selected]").`val`(),
+                start_date_year = tables[0].select("#add_manga_start_date_year > option[selected]").`val`(),
+                finish_date_month = tables[0].select("#add_manga_finish_date_month > option[selected]").`val`(),
+                finish_date_day = tables[0].select("#add_manga_finish_date_day > option[selected]").`val`(),
+                finish_date_year = tables[0].select("#add_manga_finish_date_year > option[selected]").`val`(),
+                tags = tables[1].select("#add_manga_tags").`val`(),
+                priority = tables[1].select("#add_manga_priority > option[selected]").`val`(),
+                storage_type = tables[1].select("#add_manga_storage_type > option[selected]").`val`(),
+                num_retail_volumes = tables[1].select("#add_manga_num_retail_volumes").`val`(),
+                num_read_times = tables[1].select("#add_manga_num_read_times").`val`(),
+                reread_value = tables[1].select("#add_manga_reread_value > option[selected]").`val`(),
+                comments = tables[1].select("#add_manga_comments").`val`(),
+                is_asked_to_discuss = tables[1].select("#add_manga_is_asked_to_discuss > option[selected]").`val`(),
+                sns_post_type = tables[1].select("#add_manga_sns_post_type > option[selected]").`val`()
+        )
     }
 
     companion object {
