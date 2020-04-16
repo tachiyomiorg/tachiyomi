@@ -2,6 +2,8 @@ package eu.kanade.tachiyomi.ui.manga.track
 
 import android.annotation.SuppressLint
 import android.view.View
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.holder.BaseViewHolder
 import eu.kanade.tachiyomi.util.view.visibleIf
 import java.text.DateFormat
@@ -21,10 +23,15 @@ import kotlinx.android.synthetic.main.track_item.track_score
 import kotlinx.android.synthetic.main.track_item.track_set
 import kotlinx.android.synthetic.main.track_item.track_start_date
 import kotlinx.android.synthetic.main.track_item.track_status
+import uy.kohesive.injekt.injectLazy
 
 class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
 
-    private val context = view.context
+    private val preferences: PreferencesHelper by injectLazy()
+
+    private val dateFormat: DateFormat by lazy {
+        preferences.dateFormat().getOrDefault()
+    }
 
     init {
         val listener = adapter.rowClickListener
@@ -51,13 +58,13 @@ class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
             track_status.text = item.service.getStatus(track.status)
             track_score.text = if (track.score == 0f) "-" else item.service.displayScore(track)
 
-            divider_2.visibleIf { item.service.supports_reading_dates }
-            date_support_container.visibleIf { item.service.supports_reading_dates }
-            if (item.service.supports_reading_dates) {
-                val dateFormat = DateFormat.getDateInstance(DateFormat.SHORT)
-
-                track_start_date.text = track.started_reading_date?.let { dateFormat.format(it.time) } ?: "-"
-                track_finish_date.text = track.finished_reading_date?.let { dateFormat.format(it.time) } ?: "-"
+            divider_2.visibleIf { item.service.supportsReadingDates }
+            date_support_container.visibleIf { item.service.supportsReadingDates }
+            if (item.service.supportsReadingDates) {
+                track_start_date.text =
+                        if (track.started_reading_date != 0L) dateFormat.format(track.started_reading_date) else "-"
+                track_finish_date.text =
+                        if (track.finished_reading_date != 0L) dateFormat.format(track.finished_reading_date) else "-"
             }
         }
     }

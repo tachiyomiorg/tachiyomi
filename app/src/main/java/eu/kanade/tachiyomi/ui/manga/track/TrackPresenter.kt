@@ -9,7 +9,6 @@ import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.util.system.toast
-import java.util.Calendar
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -137,13 +136,13 @@ class TrackPresenter(
         updateRemote(track, item.service)
     }
 
-    fun setStartDate(item: TrackItem, date: Calendar?) {
+    fun setStartDate(item: TrackItem, date: Long) {
         val track = item.track!!
         track.started_reading_date = date
         updateRemote(track, item.service)
     }
 
-    fun setFinishDate(item: TrackItem, date: Calendar?) {
+    fun setFinishDate(item: TrackItem, date: Long) {
         val track = item.track!!
         track.finished_reading_date = date
         updateRemote(track, item.service)

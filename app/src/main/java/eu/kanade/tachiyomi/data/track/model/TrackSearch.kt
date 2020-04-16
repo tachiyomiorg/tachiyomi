@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.data.track.model
 
 import eu.kanade.tachiyomi.data.database.models.Track
-import java.util.Calendar
 
 class TrackSearch : Track {
 
@@ -25,9 +24,9 @@ class TrackSearch : Track {
 
     override var status: Int = 0
 
-    override var started_reading_date: Calendar? = null
+    override var started_reading_date: Long = 0
 
-    override var finished_reading_date: Calendar? = null
+    override var finished_reading_date: Long = 0
 
     override lateinit var tracking_url: String
 

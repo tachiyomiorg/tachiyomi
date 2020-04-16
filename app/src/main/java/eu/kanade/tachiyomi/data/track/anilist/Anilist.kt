@@ -34,8 +34,6 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
 
     override val name = "AniList"
 
-    override val supports_reading_dates = false
-
     private val gson: Gson by injectLazy()
 
     private val interceptor by lazy { AnilistInterceptor(this, getPassword()) }

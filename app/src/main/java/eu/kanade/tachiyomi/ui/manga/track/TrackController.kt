@@ -13,7 +13,6 @@ import eu.kanade.tachiyomi.databinding.TrackControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.toast
-import java.util.Calendar
 import timber.log.Timber
 
 class TrackController : NucleusController<TrackPresenter>(),
@@ -127,14 +126,14 @@ class TrackController : NucleusController<TrackPresenter>(),
         val item = adapter?.getItem(position) ?: return
         if (item.track == null) return
 
-        SetTrackReadingDatesDialog(this, SetTrackReadingDatesDialog.SET_START_DATE, item).showDialog(router)
+        SetTrackReadingDatesDialog(this, SetTrackReadingDatesDialog.ReadingDate.Start, item).showDialog(router)
     }
 
     override fun onFinishDateClick(position: Int) {
         val item = adapter?.getItem(position) ?: return
         if (item.track == null) return
 
-        SetTrackReadingDatesDialog(this, SetTrackReadingDatesDialog.SET_FINISH_DATE, item).showDialog(router)
+        SetTrackReadingDatesDialog(this, SetTrackReadingDatesDialog.ReadingDate.Finish, item).showDialog(router)
     }
 
     override fun setStatus(item: TrackItem, selection: Int) {
@@ -152,13 +151,11 @@ class TrackController : NucleusController<TrackPresenter>(),
         binding.swipeRefresh.isRefreshing = true
     }
 
-    override fun setStartDate(item: TrackItem, date: Calendar?) {
-        presenter.setStartDate(item, date)
-        binding.swipeRefresh.isRefreshing = true
-    }
-
-    override fun setFinishDate(item: TrackItem, date: Calendar?) {
-        presenter.setFinishDate(item, date)
+    override fun setReadingDate(item: TrackItem, type: SetTrackReadingDatesDialog.ReadingDate, date: Long) {
+        when (type) {
+            SetTrackReadingDatesDialog.ReadingDate.Start -> presenter.setStartDate(item, date)
+            SetTrackReadingDatesDialog.ReadingDate.Finish -> presenter.setFinishDate(item, date)
+        }
         binding.swipeRefresh.isRefreshing = true
     }
 

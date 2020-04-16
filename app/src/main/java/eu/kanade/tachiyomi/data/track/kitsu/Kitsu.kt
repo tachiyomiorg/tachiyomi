@@ -27,8 +27,6 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
 
     override val name = "Kitsu"
 
-    override val supports_reading_dates = false
-
     private val gson: Gson by injectLazy()
 
     private val interceptor by lazy { KitsuInterceptor(this, gson) }
