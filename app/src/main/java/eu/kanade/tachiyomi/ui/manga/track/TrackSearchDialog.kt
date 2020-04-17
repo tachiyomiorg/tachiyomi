@@ -102,7 +102,7 @@ class TrackSearchDialog : DialogController {
 
     override fun onAttach(view: View) {
         super.onAttach(view)
-        dialogView!!.track_search.textChanges(false)
+        dialogView!!.track_search.textChanges()
                 .debounce(TimeUnit.SECONDS.toMillis(1))
                 .map { it.toString() }
                 .filter { it.isNotBlank() }

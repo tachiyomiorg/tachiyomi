@@ -232,7 +232,6 @@ dependencies {
 
     // RxBindings
     final rxbindings_version = '1.0.1'
-    implementation "com.jakewharton.rxbinding:rxbinding-appcompat-v7-kotlin:$rxbindings_version"
     implementation "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$rxbindings_version"
 
     // FlowBinding
