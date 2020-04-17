@@ -245,14 +245,16 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         if (!manga.genre.isNullOrBlank()) {
             binding.mangaGenresTags.removeAllViews()
 
-            manga.genre?.split(", ")?.forEach { genre ->
-                val chip = Chip(view.context).apply {
-                    text = genre
-                    setOnClickListener { performSearch(genre) }
-                }
+            manga.genre?.split(", ").orEmpty()
+                .map { it.trim() }
+                .forEach { genre ->
+                    val chip = Chip(view.context).apply {
+                        text = genre
+                        setOnClickListener { performSearch(genre) }
+                    }
 
-                binding.mangaGenresTags.addView(chip)
-            }
+                    binding.mangaGenresTags.addView(chip)
+                }
         }
 
         // Update description TextView.
