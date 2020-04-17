@@ -30,7 +30,7 @@ import uy.kohesive.injekt.registry.default.DefaultRegistrar
         excludeMatchingSharedPreferencesKeys = [".*username.*", ".*password.*", ".*token.*"]
 )
 @AcraHttpSender(
-        uri = "http://tachiyomi.kanade.eu/crash_report",
+        uri = "https://tachiyomi.kanade.eu/crash_report",
         httpMethod = HttpSender.Method.PUT
 )
 open class App : Application(), LifecycleObserver {
