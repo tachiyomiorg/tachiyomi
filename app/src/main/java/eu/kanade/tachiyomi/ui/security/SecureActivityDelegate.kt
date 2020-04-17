@@ -5,30 +5,33 @@ import android.view.WindowManager
 import androidx.biometric.BiometricManager
 import androidx.fragment.app.FragmentActivity
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import java.util.Date
-import rx.Subscription
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import uy.kohesive.injekt.injectLazy
 
 class SecureActivityDelegate(private val activity: FragmentActivity) {
 
     private val preferences by injectLazy<PreferencesHelper>()
 
-    private var secureScreenSubscription: Subscription? = null
+    private val uiScope = CoroutineScope(Dispatchers.Main)
 
     fun onCreate() {
-        secureScreenSubscription = preferences.secureScreen().asObservable()
-                .subscribe {
-                    if (it) {
-                        activity.window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
-                    } else {
-                        activity.window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
-                    }
+        preferences.secureScreen().asFlow()
+            .onEach {
+                if (it) {
+                    activity.window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
+                } else {
+                    activity.window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
                 }
+            }
+            .launchIn(uiScope)
     }
 
     fun onResume() {
-        val lockApp = preferences.useBiometricLock().getOrDefault()
+        val lockApp = preferences.useBiometricLock().get()
         if (lockApp && BiometricManager.from(activity).canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS) {
             if (isAppLocked()) {
                 val intent = Intent(activity, BiometricUnlockActivity::class.java)
@@ -40,14 +43,10 @@ class SecureActivityDelegate(private val activity: FragmentActivity) {
         }
     }
 
-    fun onDestroy() {
-        secureScreenSubscription?.unsubscribe()
-    }
-
     private fun isAppLocked(): Boolean {
         return locked &&
-                (preferences.lockAppAfter().getOrDefault() <= 0 ||
-                        Date().time >= preferences.lastAppUnlock().getOrDefault() + 60 * 1000 * preferences.lockAppAfter().getOrDefault())
+                (preferences.lockAppAfter().get() <= 0 ||
+                        Date().time >= preferences.lastAppUnlock().get() + 60 * 1000 * preferences.lockAppAfter().get())
     }
 
     companion object {

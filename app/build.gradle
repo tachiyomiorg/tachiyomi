@@ -145,7 +145,6 @@ dependencies {
     implementation 'io.reactivex:rxandroid:1.2.1'
     implementation 'io.reactivex:rxjava:1.3.8'
     implementation 'com.jakewharton.rxrelay:rxrelay:1.2.0'
-    implementation 'com.f2prateek.rx.preferences:rx-preferences:1.0.2'
     implementation 'com.github.pwittchen:reactivenetwork:0.13.0'
 
     // Network client
@@ -187,6 +186,10 @@ dependencies {
     implementation 'com.github.inorichi.storio:storio-common:8be19de@aar'
     implementation 'com.github.inorichi.storio:storio-sqlite:8be19de@aar'
     implementation 'io.requery:sqlite-android:3.31.0'
+
+    // Preferences
+    implementation 'com.f2prateek.rx.preferences:rx-preferences:1.0.2'
+    implementation 'com.github.tfcporciuncula:flow-preferences:1.1.1'
 
     // Model View Presenter
     final nucleus_version = '3.0.0'

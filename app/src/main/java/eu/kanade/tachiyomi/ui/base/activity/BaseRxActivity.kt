@@ -27,10 +27,4 @@ abstract class BaseRxActivity<P : BasePresenter<*>> : NucleusAppCompatActivity<P
 
         secureActivityDelegate.onResume()
     }
-
-    override fun onDestroy() {
-        secureActivityDelegate.onDestroy()
-
-        super.onDestroy()
-    }
 }

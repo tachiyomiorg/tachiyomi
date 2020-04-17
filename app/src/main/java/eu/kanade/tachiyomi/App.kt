@@ -12,7 +12,6 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.multidex.MultiDex
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.security.SecureActivityDelegate
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import org.acra.ACRA
@@ -72,7 +71,7 @@ open class App : Application(), LifecycleObserver {
     @Suppress("unused")
     fun onAppBackgrounded() {
         val preferences: PreferencesHelper by injectLazy()
-        if (preferences.lockAppAfter().getOrDefault() >= 0) {
+        if (preferences.lockAppAfter().get() >= 0) {
             SecureActivityDelegate.locked = true
         }
     }

@@ -77,10 +77,4 @@ abstract class BaseActivity : AppCompatActivity() {
 
         secureActivityDelegate.onResume()
     }
-
-    override fun onDestroy() {
-        secureActivityDelegate.onDestroy()
-
-        super.onDestroy()
-    }
 }
