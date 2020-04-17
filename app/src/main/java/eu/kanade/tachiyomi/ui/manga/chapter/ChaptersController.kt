@@ -34,8 +34,6 @@ import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.shrinkOnScroll
 import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.util.view.visible
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
@@ -65,8 +63,6 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     private val selectedItems = mutableSetOf<ChapterItem>()
 
     private var lastClickPosition = -1
-
-    private val uiScope = CoroutineScope(Dispatchers.Main)
 
     private lateinit var binding: ChaptersControllerBinding
 

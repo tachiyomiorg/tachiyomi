@@ -27,8 +27,6 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.system.notificationManager
 import eu.kanade.tachiyomi.util.system.toast
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.recyclerview.scrollStateChanges
@@ -60,8 +58,6 @@ class UpdatesController : NucleusController<UpdatesPresenter>(),
      */
     var adapter: UpdatesAdapter? = null
         private set
-
-    private val uiScope = CoroutineScope(Dispatchers.Main)
 
     private lateinit var binding: UpdatesControllerBinding
 

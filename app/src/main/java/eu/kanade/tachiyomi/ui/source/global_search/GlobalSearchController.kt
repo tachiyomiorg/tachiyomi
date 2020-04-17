@@ -16,8 +16,6 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.manga.MangaController
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -39,8 +37,6 @@ open class GlobalSearchController(
      * Adapter containing search results grouped by lang.
      */
     protected var adapter: GlobalSearchAdapter? = null
-
-    private val uiScope = CoroutineScope(Dispatchers.Main)
 
     private lateinit var binding: GlobalSearchControllerBinding
 

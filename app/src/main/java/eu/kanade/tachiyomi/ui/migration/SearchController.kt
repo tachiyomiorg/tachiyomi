@@ -6,7 +6,6 @@ import com.afollestad.materialdialogs.MaterialDialog
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.popControllerWithTag
 import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchController
@@ -77,7 +76,7 @@ class SearchController(
         private val preferences: PreferencesHelper by injectLazy()
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            val prefValue = preferences.migrateFlags().getOrDefault()
+            val prefValue = preferences.migrateFlags().get()
 
             val preselected = MigrationFlags.getEnabledFlagsPositions(prefValue)
 

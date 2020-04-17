@@ -16,8 +16,6 @@ import java.util.concurrent.TimeUnit
 import kotlinx.android.synthetic.main.track_search_dialog.view.progress
 import kotlinx.android.synthetic.main.track_search_dialog.view.track_search
 import kotlinx.android.synthetic.main.track_search_dialog.view.track_search_list
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
@@ -40,8 +38,6 @@ class TrackSearchDialog : DialogController {
 
     private val trackController
         get() = targetController as TrackController
-
-    private val uiScope = CoroutineScope(Dispatchers.Main)
 
     constructor(target: TrackController, service: TrackService) : super(Bundle().apply {
         putInt(KEY_SERVICE, service.id)

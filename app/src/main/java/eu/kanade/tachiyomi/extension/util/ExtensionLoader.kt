@@ -6,7 +6,6 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import dalvik.system.PathClassLoader
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.LoadResult
 import eu.kanade.tachiyomi.source.CatalogueSource
@@ -36,7 +35,7 @@ internal object ExtensionLoader {
      * List of the trusted signatures.
      */
     var trustedSignatures = mutableSetOf<String>() +
-            Injekt.get<PreferencesHelper>().trustedSignatures().getOrDefault() +
+            Injekt.get<PreferencesHelper>().trustedSignatures().get() +
             // inorichi's key
             "7ce04da7773d41b489f4693a366c36bcd0a11fc39b547168553c285bd7348e23"
 

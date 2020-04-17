@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.security.SecureActivityDelegate
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import uy.kohesive.injekt.injectLazy
@@ -20,7 +19,7 @@ abstract class BaseActivity : AppCompatActivity() {
     private val secureActivityDelegate = SecureActivityDelegate(this)
 
     private val lightTheme: Int by lazy {
-        when (preferences.themeLight()) {
+        when (preferences.themeLight().get()) {
             Values.THEME_LIGHT_BLUE -> R.style.Theme_Tachiyomi_LightBlue
             else -> {
                 when {
@@ -42,7 +41,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     private val darkTheme: Int by lazy {
-        when (preferences.themeDark()) {
+        when (preferences.themeDark().get()) {
             Values.THEME_DARK_BLUE -> R.style.Theme_Tachiyomi_DarkBlue
             Values.THEME_DARK_AMOLED -> R.style.Theme_Tachiyomi_Amoled
             else -> R.style.Theme_Tachiyomi_Dark
@@ -55,7 +54,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(when (preferences.themeMode().getOrDefault()) {
+        setTheme(when (preferences.themeMode().get()) {
             Values.THEME_MODE_SYSTEM -> {
                 if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
                     darkTheme

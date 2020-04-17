@@ -53,8 +53,6 @@ import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.util.view.visible
 import jp.wasabeef.glide.transformations.CropSquareTransformation
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
@@ -73,8 +71,6 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         ChangeMangaCategoriesDialog.Listener {
 
     private val preferences: PreferencesHelper by injectLazy()
-
-    private val uiScope = CoroutineScope(Dispatchers.Main)
 
     private lateinit var binding: MangaInfoControllerBinding
 

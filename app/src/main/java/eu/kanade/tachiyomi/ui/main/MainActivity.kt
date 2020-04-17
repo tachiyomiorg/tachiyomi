@@ -170,7 +170,7 @@ class MainActivity : BaseActivity() {
     private fun getExtensionUpdates() {
         // Limit checks to once a day at most
         val now = Date().time
-        if (now < preferences.lastExtCheck().getOrDefault() + TimeUnit.DAYS.toMillis(1)) {
+        if (now < preferences.lastExtCheck().get() + TimeUnit.DAYS.toMillis(1)) {
             return
         }
 

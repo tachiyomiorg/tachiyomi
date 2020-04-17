@@ -16,14 +16,11 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.databinding.ExtensionControllerBinding
 import eu.kanade.tachiyomi.extension.ExtensionUpdateJob
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -51,8 +48,6 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
     private var extensions: List<ExtensionItem> = emptyList()
 
     private var query = ""
-
-    private val uiScope = CoroutineScope(Dispatchers.Main)
 
     private lateinit var binding: ExtensionControllerBinding
 
@@ -163,7 +158,7 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
         // Fixes problem with the overflow icon showing up in lieu of search
         searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })
 
-        menu.findItem(R.id.action_auto_check).isChecked = preferences.automaticExtUpdates().getOrDefault()
+        menu.findItem(R.id.action_auto_check).isChecked = preferences.automaticExtUpdates().get()
     }
 
     override fun onItemClick(view: View, position: Int): Boolean {

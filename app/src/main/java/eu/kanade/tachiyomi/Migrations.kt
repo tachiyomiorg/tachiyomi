@@ -28,7 +28,7 @@ object Migrations {
                 if (BuildConfig.INCLUDE_UPDATER && preferences.automaticUpdates()) {
                     UpdaterJob.setupTask(context)
                 }
-                if (preferences.automaticExtUpdates().getOrDefault()) {
+                if (preferences.automaticExtUpdates().get()) {
                     ExtensionUpdateJob.setupTask(context)
                 }
                 return false

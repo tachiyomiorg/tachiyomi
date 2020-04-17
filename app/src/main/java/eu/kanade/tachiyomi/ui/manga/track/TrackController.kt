@@ -12,8 +12,6 @@ import eu.kanade.tachiyomi.databinding.TrackControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.toast
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
@@ -26,8 +24,6 @@ class TrackController : NucleusController<TrackPresenter>(),
         SetTrackScoreDialog.Listener {
 
     private var adapter: TrackAdapter? = null
-
-    private val uiScope = CoroutineScope(Dispatchers.Main)
 
     private lateinit var binding: TrackControllerBinding
 

@@ -20,8 +20,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 fun <T> Preference<T>.getOrDefault(): T = get() ?: defaultValue()!!
 
-fun Preference<Boolean>.invert(): Boolean = getOrDefault().let { set(!it); !it }
-
 private class DateFormatConverter : Preference.Adapter<DateFormat> {
     override fun get(key: String, preferences: SharedPreferences): DateFormat {
         val dateFormat = preferences.getString(Keys.dateFormat, "")!!
@@ -67,11 +65,11 @@ class PreferencesHelper(val context: Context) {
 
     fun clear() = prefs.edit().clear().apply()
 
-    fun themeMode() = rxPrefs.getString(Keys.themeMode, Values.THEME_MODE_SYSTEM)
+    fun themeMode() = flowPrefs.getString(Keys.themeMode, Values.THEME_MODE_SYSTEM)
 
-    fun themeLight() = prefs.getString(Keys.themeLight, Values.THEME_DARK_DEFAULT)
+    fun themeLight() = flowPrefs.getString(Keys.themeLight, Values.THEME_DARK_DEFAULT)
 
-    fun themeDark() = prefs.getString(Keys.themeDark, Values.THEME_LIGHT_DEFAULT)
+    fun themeDark() = flowPrefs.getString(Keys.themeDark, Values.THEME_LIGHT_DEFAULT)
 
     fun rotation() = rxPrefs.getInteger(Keys.rotation, 1)
 
@@ -194,11 +192,11 @@ class PreferencesHelper(val context: Context) {
 
     fun automaticUpdates() = prefs.getBoolean(Keys.automaticUpdates, true)
 
-    fun automaticExtUpdates() = rxPrefs.getBoolean(Keys.automaticExtUpdates, true)
+    fun automaticExtUpdates() = flowPrefs.getBoolean(Keys.automaticExtUpdates, true)
 
     fun extensionUpdatesCount() = rxPrefs.getInteger("ext_updates_count", 0)
 
-    fun lastExtCheck() = rxPrefs.getLong("last_ext_check", 0)
+    fun lastExtCheck() = flowPrefs.getLong("last_ext_check", 0)
 
     fun hiddenCatalogues() = rxPrefs.getStringSet("hidden_catalogues", emptySet())
 
@@ -216,9 +214,9 @@ class PreferencesHelper(val context: Context) {
 
     fun skipFiltered() = prefs.getBoolean(Keys.skipFiltered, false)
 
-    fun migrateFlags() = rxPrefs.getInteger("migrate_flags", Int.MAX_VALUE)
+    fun migrateFlags() = flowPrefs.getInt("migrate_flags", Int.MAX_VALUE)
 
-    fun trustedSignatures() = rxPrefs.getStringSet("trusted_signatures", emptySet())
+    fun trustedSignatures() = flowPrefs.getStringSet("trusted_signatures", emptySet())
 
     fun alwaysShowChapterTransition() = rxPrefs.getBoolean(Keys.alwaysShowChapterTransition, true)
 }

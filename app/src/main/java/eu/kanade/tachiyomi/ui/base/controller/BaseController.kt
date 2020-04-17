@@ -12,6 +12,8 @@ import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RestoreViewOnCreateController
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.clearFindViewByIdCache
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 
 abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateController(bundle),
@@ -40,6 +42,8 @@ abstract class BaseController(bundle: Bundle? = null) : RestoreViewOnCreateContr
             }
         })
     }
+
+    val uiScope = CoroutineScope(Dispatchers.Main)
 
     override val containerView: View?
         get() = view

@@ -9,6 +9,8 @@ import com.bluelinelabs.conductor.RestoreViewOnCreateController
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.SimpleSwapChangeHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 
 /**
  * A controller that displays a dialog window, floating on top of its activity's window.
@@ -23,6 +25,8 @@ abstract class DialogController : RestoreViewOnCreateController {
         private set
 
     private var dismissed = false
+
+    val uiScope = CoroutineScope(Dispatchers.Main)
 
     /**
      * Convenience constructor for use when no arguments are needed.

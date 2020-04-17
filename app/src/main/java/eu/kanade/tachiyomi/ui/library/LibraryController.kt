@@ -39,8 +39,6 @@ import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import java.io.IOException
 import kotlinx.android.synthetic.main.main_activity.tabs
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -127,8 +125,6 @@ class LibraryController(
     private var tabsVisibilityRelay: BehaviorRelay<Boolean> = BehaviorRelay.create(false)
 
     private var tabsVisibilitySubscription: Subscription? = null
-
-    private val uiScope = CoroutineScope(Dispatchers.Main)
 
     private lateinit var binding: LibraryControllerBinding
 
