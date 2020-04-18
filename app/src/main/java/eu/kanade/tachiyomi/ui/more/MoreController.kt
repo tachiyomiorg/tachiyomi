@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.ui.more
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.download.DownloadController
@@ -34,7 +33,7 @@ class MoreController : SettingsController(), RootController {
             titleRes = R.string.label_extensions
             iconRes = R.drawable.ic_extension_24dp
             iconTint = tintColor
-            setBadge(Injekt.get<PreferencesHelper>().extensionUpdatesCount().getOrDefault())
+            setBadge(Injekt.get<PreferencesHelper>().extensionUpdatesCount().get())
             onClick {
                 router.pushController(ExtensionController().withFadeTransaction())
             }
