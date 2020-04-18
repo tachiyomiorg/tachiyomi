@@ -143,9 +143,8 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        setExtensionsBadge()
         preferences.extensionUpdatesCount().asFlow()
-            .onEach { setExtensionsBadge() }
+            .onEach { setExtensionsBadge(it) }
             .launchInUI()
     }
 
@@ -160,8 +159,7 @@ class MainActivity : BaseActivity() {
         getExtensionUpdates()
     }
 
-    private fun setExtensionsBadge() {
-        val updates = preferences.extensionUpdatesCount().get()
+    private fun setExtensionsBadge(updates: Int) {
         if (updates > 0) {
             binding.bottomNav.getOrCreateBadge(R.id.nav_more).number = updates
         } else {
