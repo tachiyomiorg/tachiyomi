@@ -156,12 +156,12 @@ class UpdatesController : NucleusController<UpdatesControllerBinding, UpdatesPre
 
         // Get item from position
         val item = adapter.getItem(position) as? UpdatesItem ?: return false
-        if (actionMode != null && adapter.mode == SelectableAdapter.Mode.MULTI) {
+        return if (actionMode != null && adapter.mode == SelectableAdapter.Mode.MULTI) {
             toggleSelection(position)
-            return true
+            true
         } else {
             openChapter(item)
-            return false
+            false
         }
     }
 

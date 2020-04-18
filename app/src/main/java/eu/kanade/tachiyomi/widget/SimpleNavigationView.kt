@@ -76,7 +76,7 @@ open class SimpleNavigationView @JvmOverloads constructor(
     /**
      * Clickable view holder.
      */
-    abstract class ClickableHolder(view: View, listener: View.OnClickListener?) : Holder(view) {
+    abstract class ClickableHolder(view: View, listener: OnClickListener?) : Holder(view) {
         init {
             itemView.setOnClickListener(listener)
         }
@@ -85,7 +85,7 @@ open class SimpleNavigationView @JvmOverloads constructor(
     /**
      * Radio view holder.
      */
-    class RadioHolder(parent: ViewGroup, listener: View.OnClickListener?) :
+    class RadioHolder(parent: ViewGroup, listener: OnClickListener?) :
         ClickableHolder(parent.inflate(TR.layout.navigation_view_radio), listener) {
 
         val radio: RadioButton = itemView.findViewById(TR.id.nav_view_item)
@@ -94,7 +94,7 @@ open class SimpleNavigationView @JvmOverloads constructor(
     /**
      * Checkbox view holder.
      */
-    class CheckboxHolder(parent: ViewGroup, listener: View.OnClickListener?) :
+    class CheckboxHolder(parent: ViewGroup, listener: OnClickListener?) :
         ClickableHolder(parent.inflate(TR.layout.navigation_view_checkbox), listener) {
 
         val check: CheckBox = itemView.findViewById(TR.id.nav_view_item)
@@ -103,7 +103,7 @@ open class SimpleNavigationView @JvmOverloads constructor(
     /**
      * Multi state view holder.
      */
-    class MultiStateHolder(parent: ViewGroup, listener: View.OnClickListener?) :
+    class MultiStateHolder(parent: ViewGroup, listener: OnClickListener?) :
         ClickableHolder(parent.inflate(TR.layout.navigation_view_checkedtext), listener) {
 
         val text: CheckedTextView = itemView.findViewById(TR.id.nav_view_item)

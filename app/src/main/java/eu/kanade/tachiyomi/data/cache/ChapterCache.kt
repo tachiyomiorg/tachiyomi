@@ -80,13 +80,13 @@ class ChapterCache(private val context: Context) {
         if (file == "journal" || file.startsWith("journal."))
             return false
 
-        try {
+        return try {
             // Remove the extension from the file to get the key of the cache
             val key = file.substringBeforeLast(".")
             // Remove file from cache.
-            return diskCache.remove(key)
+            diskCache.remove(key)
         } catch (e: Exception) {
-            return false
+            false
         }
     }
 
@@ -149,10 +149,10 @@ class ChapterCache(private val context: Context) {
      * @return true if in cache otherwise false.
      */
     fun isImageInCache(imageUrl: String): Boolean {
-        try {
-            return diskCache.get(DiskUtil.hashKeyForDisk(imageUrl)) != null
+        return try {
+            diskCache.get(DiskUtil.hashKeyForDisk(imageUrl)) != null
         } catch (e: IOException) {
-            return false
+            false
         }
     }
 

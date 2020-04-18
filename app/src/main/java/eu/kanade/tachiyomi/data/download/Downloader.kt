@@ -283,7 +283,7 @@ class Downloader(
                 // Do when page is downloaded.
                 .doOnNext { notifier.onProgressChange(download) }
                 .toList()
-                .map { _ -> download }
+                .map { download }
                 // Do after download completes
                 .doOnNext { ensureSuccessfulDownload(download, mangaDir, tmpDir, chapterDirname) }
                 // If the page list threw, it will resume here

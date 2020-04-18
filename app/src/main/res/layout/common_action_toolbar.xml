@@ -10,11 +10,11 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
         android:background="?attr/colorPrimary"
+        android:elevation="2dp"
         android:theme="?attr/actionBarTheme"
         android:visibility="gone"
-        android:elevation="2dp"
-        app:contentInsetStart="8dp"
-        app:contentInsetEnd="8dp">
+        app:contentInsetEnd="8dp"
+        app:contentInsetStart="8dp">
 
         <androidx.appcompat.widget.ActionMenuView
             android:id="@+id/common_action_menu"

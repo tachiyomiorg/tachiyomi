@@ -85,7 +85,7 @@ object DiskUtil {
      */
     fun buildValidFilename(origName: String): String {
         val name = origName.trim('.', ' ')
-        if (name.isNullOrEmpty()) {
+        if (name.isEmpty()) {
             return "(invalid)"
         }
         val sb = StringBuilder(name.length)

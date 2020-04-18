@@ -207,14 +207,14 @@ abstract class HttpSource : CatalogueSource {
      * @param manga the manga to look for chapters.
      */
     override fun fetchChapterList(manga: SManga): Observable<List<SChapter>> {
-        if (manga.status != SManga.LICENSED) {
-            return client.newCall(chapterListRequest(manga))
+        return if (manga.status != SManga.LICENSED) {
+            client.newCall(chapterListRequest(manga))
                     .asObservableSuccess()
                     .map { response ->
                         chapterListParse(response)
                     }
         } else {
-            return Observable.error(Exception("Licensed - No chapters to show"))
+            Observable.error(Exception("Licensed - No chapters to show"))
         }
     }
 
@@ -340,16 +340,16 @@ abstract class HttpSource : CatalogueSource {
      * @param orig the full url.
      */
     private fun getUrlWithoutDomain(orig: String): String {
-        try {
+        return try {
             val uri = URI(orig)
             var out = uri.path
             if (uri.query != null)
                 out += "?" + uri.query
             if (uri.fragment != null)
                 out += "#" + uri.fragment
-            return out
+            out
         } catch (e: URISyntaxException) {
-            return orig
+            orig
         }
     }
 

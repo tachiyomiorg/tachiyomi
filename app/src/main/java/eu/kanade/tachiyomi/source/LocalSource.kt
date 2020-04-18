@@ -81,16 +81,16 @@ class LocalSource(private val context: Context) : CatalogueSource {
         val state = ((if (filters.isEmpty()) POPULAR_FILTERS else filters)[0] as OrderBy).state
         when (state?.index) {
             0 -> {
-                if (state.ascending)
-                    mangaDirs = mangaDirs.sortedBy { it.name.toLowerCase(Locale.ENGLISH) }
+                mangaDirs = if (state.ascending)
+                    mangaDirs.sortedBy { it.name.toLowerCase(Locale.ENGLISH) }
                 else
-                    mangaDirs = mangaDirs.sortedByDescending { it.name.toLowerCase(Locale.ENGLISH) }
+                    mangaDirs.sortedByDescending { it.name.toLowerCase(Locale.ENGLISH) }
             }
             1 -> {
-                if (state.ascending)
-                    mangaDirs = mangaDirs.sortedBy(File::lastModified)
+                mangaDirs = if (state.ascending)
+                    mangaDirs.sortedBy(File::lastModified)
                 else
-                    mangaDirs = mangaDirs.sortedByDescending(File::lastModified)
+                    mangaDirs.sortedByDescending(File::lastModified)
             }
         }
 
@@ -131,17 +131,14 @@ class LocalSource(private val context: Context) : CatalogueSource {
         getBaseDirectories(context)
                 .mapNotNull { File(it, manga.url).listFiles()?.toList() }
                 .flatten()
-                .filter { it.extension.equals("json") }
-                .firstOrNull()
+                .firstOrNull { it.extension == "json" }
                 ?.apply {
                     val json = Gson().fromJson(Scanner(this).useDelimiter("\\Z").next(), JsonObject::class.java)
                     manga.title = json["title"]?.asString ?: manga.title
                     manga.author = json["author"]?.asString ?: manga.author
                     manga.artist = json["artist"]?.asString ?: manga.artist
                     manga.description = json["description"]?.asString ?: manga.description
-                    manga.genre = json["genre"]?.asJsonArray
-                            ?.map { it.asString }
-                            ?.joinToString(", ")
+                    manga.genre = json["genre"]?.asJsonArray?.joinToString(", ") { it.asString }
                             ?: manga.genre
                     manga.status = json["status"]?.asInt ?: manga.status
                 }
@@ -150,6 +147,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
 
     override fun fetchChapterList(manga: SManga): Observable<List<SChapter>> {
         val chapters = getBaseDirectories(context)
+                .asSequence()
                 .mapNotNull { File(it, manga.url).listFiles()?.toList() }
                 .flatten()
                 .filter { it.isDirectory || isSupportedFile(it.extension) }
@@ -171,6 +169,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
                     val c = c2.chapter_number.compareTo(c1.chapter_number)
                     if (c == 0) c2.name.compareToCaseInsensitiveNaturalOrder(c1.name) else c
                 })
+                .toList()
 
         return Observable.just(chapters)
     }
@@ -211,8 +210,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
     }
 
     private fun updateCover(chapter: SChapter, manga: SManga): File? {
-        val format = getFormat(chapter)
-        return when (format) {
+        return when (val format = getFormat(chapter)) {
             is Format.Directory -> {
                 val entry = format.file.listFiles()
                         .sortedWith(Comparator<File> { f1, f2 -> f1.name.compareToCaseInsensitiveNaturalOrder(f2.name) })
@@ -250,7 +248,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
         }
     }
 
-    private class OrderBy : Filter.Sort("Order by", arrayOf("Title", "Date"), Filter.Sort.Selection(0, true))
+    private class OrderBy : Filter.Sort("Order by", arrayOf("Title", "Date"), Selection(0, true))
 
     override fun getFilterList() = FilterList(OrderBy())
 

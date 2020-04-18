@@ -259,7 +259,7 @@ class DownloadCache(
      */
     private inline fun <K, V, R> Map<out K, V>.mapNotNullKeys(transform: (Map.Entry<K?, V>) -> R?): Map<R, V> {
         val destination = LinkedHashMap<R, V>()
-        forEach { element -> transform(element)?.let { destination.put(it, element.value) } }
+        forEach { element -> transform(element)?.let { destination[it] = element.value } }
         return destination
     }
 

@@ -53,9 +53,9 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
                     val map = TreeMap<Date, MutableList<MangaChapterHistory>> { d1, d2 -> d2.compareTo(d1) }
                     val byDay = recents
                             .groupByTo(map, { it.history.last_read.toDateKey() })
-                    byDay.flatMap {
-                        val dateItem = DateSectionItem(it.key)
-                        it.value.map { HistoryItem(it, dateItem) }
+                    byDay.flatMap { entry ->
+                        val dateItem = DateSectionItem(entry.key)
+                        entry.value.map { HistoryItem(it, dateItem) }
                     }
                 }
                 .observeOn(AndroidSchedulers.mainThread())
@@ -102,7 +102,7 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
         }
 
         val chapters = db.getChapters(manga).executeAsBlocking()
-                .sortedWith(Comparator<Chapter> { c1, c2 -> sortFunction(c1, c2) })
+                .sortedWith(Comparator { c1, c2 -> sortFunction(c1, c2) })
 
         val currChapterIndex = chapters.indexOfFirst { chapter.id == it.id }
         return when (manga.sorting) {

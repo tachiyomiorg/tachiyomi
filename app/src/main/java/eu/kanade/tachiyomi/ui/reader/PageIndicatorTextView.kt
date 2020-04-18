@@ -7,7 +7,6 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ScaleXSpan
 import android.util.AttributeSet
-import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import eu.kanade.tachiyomi.widget.OutlineSpan
 
@@ -39,7 +38,7 @@ class PageIndicatorTextView(
             }
         }
 
-        super.setText(finalText, TextView.BufferType.SPANNABLE)
+        super.setText(finalText, BufferType.SPANNABLE)
     }
 
     private companion object {

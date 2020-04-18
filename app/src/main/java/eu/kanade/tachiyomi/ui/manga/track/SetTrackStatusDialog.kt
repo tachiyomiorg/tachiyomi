@@ -33,7 +33,7 @@ class SetTrackStatusDialog<T> : DialogController
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         val item = item
         val statusList = item.service.getStatusList()
-        val statusString = statusList.mapNotNull { item.service.getStatus(it) }
+        val statusString = statusList.map { item.service.getStatus(it) }
         val selectedIndex = statusList.indexOf(item.track?.status)
 
         return MaterialDialog.Builder(activity!!)

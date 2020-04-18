@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewpager.widget.PagerAdapter
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
@@ -93,8 +92,7 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
      * Creates a new view for the item at the given [position].
      */
     override fun createView(container: ViewGroup, position: Int): View {
-        val item = items[position]
-        return when (item) {
+        return when (val item = items[position]) {
             is ReaderPage -> PagerPageHolder(viewer, item)
             is ChapterTransition -> PagerTransitionHolder(viewer, item)
             else -> throw NotImplementedError("Holder for ${item.javaClass} not implemented")
@@ -113,6 +111,6 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
                 Timber.d("Position for ${view.item} not found")
             }
         }
-        return PagerAdapter.POSITION_NONE
+        return POSITION_NONE
     }
 }

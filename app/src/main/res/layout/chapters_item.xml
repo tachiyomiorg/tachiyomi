@@ -5,8 +5,8 @@
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:background="@drawable/list_item_selector"
-    android:paddingEnd="16dp"
-    android:paddingStart="16dp">
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
 
     <TextView
         android:id="@+id/chapter_title"
@@ -29,8 +29,8 @@
         android:layout_marginBottom="8dp"
         android:ellipsize="end"
         android:singleLine="true"
-        app:layout_constraintEnd_toStartOf="@+id/download_text"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/download_text"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="22/02/2016 • Scanlator • Page: 45" />
 

@@ -118,8 +118,8 @@ class SettingsLibraryController : SettingsController() {
                 entries = categories.map { it.name }.toTypedArray()
                 entryValues = categories.map { it.id.toString() }.toTypedArray()
                 preferences.libraryUpdateCategories().asObservable()
-                        .subscribeUntilDestroy {
-                            val selectedCategories = it
+                        .subscribeUntilDestroy { mutableSet ->
+                            val selectedCategories = mutableSet
                                     .mapNotNull { id -> categories.find { it.id == id.toInt() } }
                                     .sortedBy { it.order }
 
