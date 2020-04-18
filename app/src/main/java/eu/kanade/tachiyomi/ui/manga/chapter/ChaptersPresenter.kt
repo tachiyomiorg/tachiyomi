@@ -67,8 +67,7 @@ class ChaptersPresenter(
         // Prepare the relay.
         chaptersRelay.flatMap { applyChapterFilters(it) }
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeLatestCache(ChaptersController::onNextChapters)
-                { _, error -> Timber.e(error) }
+                .subscribeLatestCache(ChaptersController::onNextChapters) { _, error -> Timber.e(error) }
 
         // Add the subscription that retrieves the chapters from the database, keeps subscribed to
         // changes, and sends the list of chapters to the relay.
