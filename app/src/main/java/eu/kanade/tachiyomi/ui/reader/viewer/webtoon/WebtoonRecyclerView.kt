@@ -28,7 +28,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
     private var atFirstPosition = false
     private var halfWidth = 0
     private var halfHeight = 0
-    private var ogHeight = 0
+    private var originalHeight = 0
     private var heightSet = false
     private var firstVisibleItemPosition = 0
     private var lastVisibleItemPosition = 0
@@ -44,7 +44,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
         halfWidth = MeasureSpec.getSize(widthSpec) / 2
         halfHeight = MeasureSpec.getSize(heightSpec) / 2
         if (!heightSet) {
-            ogHeight = MeasureSpec.getSize(heightSpec)
+            originalHeight = MeasureSpec.getSize(heightSpec)
             heightSet = true
         }
         super.onMeasure(widthSpec, heightSpec)
@@ -82,7 +82,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
 
     private fun getPositionY(positionY: Float): Float {
         if (currentScale < 1) {
-            return (ogHeight / 2 - halfHeight).toFloat()
+            return (originalHeight / 2 - halfHeight).toFloat()
         }
         val maxPositionY = halfHeight * (currentScale - 1)
         return positionY.coerceIn(-maxPositionY, maxPositionY)
@@ -179,7 +179,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
 
         setScaleRate(currentScale)
 
-        layoutParams.height = if (currentScale < 1) { (ogHeight / currentScale).toInt() } else { ogHeight }
+        layoutParams.height = if (currentScale < 1) { (originalHeight / currentScale).toInt() } else { originalHeight }
         halfHeight = layoutParams.height / 2
 
         if (currentScale != DEFAULT_RATE) {
