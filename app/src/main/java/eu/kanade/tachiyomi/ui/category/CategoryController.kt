@@ -25,7 +25,7 @@ import reactivecircus.flowbinding.android.view.clicks
 /**
  * Controller to manage the categories for the users' library.
  */
-class CategoryController : NucleusController<CategoryPresenter>(),
+class CategoryController : NucleusController<CategoriesControllerBinding, CategoryPresenter>(),
         ActionMode.Callback,
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
@@ -48,8 +48,6 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      * Undo helper used for restoring a deleted category.
      */
     private var undoHelper: UndoHelper? = null
-
-    private lateinit var binding: CategoriesControllerBinding
 
     /**
      * Creates the presenter for this controller. Not to be manually called.

@@ -38,15 +38,13 @@ import reactivecircus.flowbinding.android.view.clicks
 
 @SuppressLint("RestrictedApi")
 class ExtensionDetailsController(bundle: Bundle? = null) :
-        NucleusController<ExtensionDetailsPresenter>(bundle),
+        NucleusController<ExtensionDetailControllerBinding, ExtensionDetailsPresenter>(bundle),
         PreferenceManager.OnDisplayPreferenceDialogListener,
         DialogPreference.TargetFragment {
 
     private var lastOpenPreferencePosition: Int? = null
 
     private var preferenceScreen: PreferenceScreen? = null
-
-    private lateinit var binding: ExtensionDetailControllerBinding
 
     constructor(pkgName: String) : this(Bundle().apply {
         putString(PKGNAME_KEY, pkgName)

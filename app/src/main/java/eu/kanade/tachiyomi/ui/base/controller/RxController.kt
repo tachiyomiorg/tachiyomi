@@ -3,11 +3,12 @@ package eu.kanade.tachiyomi.ui.base.controller
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.CallSuper
+import androidx.viewbinding.ViewBinding
 import rx.Observable
 import rx.Subscription
 import rx.subscriptions.CompositeSubscription
 
-abstract class RxController(bundle: Bundle? = null) : BaseController(bundle) {
+abstract class RxController<VB : ViewBinding>(bundle: Bundle? = null) : BaseController<VB>(bundle) {
 
     var untilDetachSubscriptions = CompositeSubscription()
         private set

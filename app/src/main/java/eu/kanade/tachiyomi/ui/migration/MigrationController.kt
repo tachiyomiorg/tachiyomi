@@ -11,7 +11,7 @@ import eu.kanade.tachiyomi.databinding.MigrationControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 
-class MigrationController : NucleusController<MigrationPresenter>(),
+class MigrationController : NucleusController<MigrationControllerBinding, MigrationPresenter>(),
         FlexibleAdapter.OnItemClickListener,
         SourceAdapter.OnSelectClickListener {
 
@@ -22,8 +22,6 @@ class MigrationController : NucleusController<MigrationPresenter>(),
             field = value
             setTitle()
         }
-
-    private lateinit var binding: MigrationControllerBinding
 
     override fun createPresenter(): MigrationPresenter {
         return MigrationPresenter()

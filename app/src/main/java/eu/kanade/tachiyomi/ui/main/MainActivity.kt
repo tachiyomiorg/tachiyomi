@@ -38,7 +38,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<MainActivityBinding>() {
 
     private lateinit var router: Router
 
@@ -54,8 +54,6 @@ class MainActivity : BaseActivity() {
     private lateinit var bottomNavAnimator: ViewHeightAnimator
 
     private var isHandlingShortcut: Boolean = false
-
-    private lateinit var binding: MainActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

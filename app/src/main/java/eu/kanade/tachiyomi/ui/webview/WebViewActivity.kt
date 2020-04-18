@@ -23,13 +23,11 @@ import eu.kanade.tachiyomi.util.view.invisible
 import eu.kanade.tachiyomi.util.view.visible
 import uy.kohesive.injekt.injectLazy
 
-class WebViewActivity : BaseActivity() {
+class WebViewActivity : BaseActivity<WebviewActivityBinding>() {
 
     private val sourceManager by injectLazy<SourceManager>()
 
     private var bundle: Bundle? = null
-
-    private lateinit var binding: WebviewActivityBinding
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {

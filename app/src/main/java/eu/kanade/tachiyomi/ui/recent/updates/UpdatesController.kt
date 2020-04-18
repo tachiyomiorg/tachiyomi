@@ -38,7 +38,7 @@ import timber.log.Timber
  * Uses [R.layout.updates_controller].
  * UI related actions should be called from here.
  */
-class UpdatesController : NucleusController<UpdatesPresenter>(),
+class UpdatesController : NucleusController<UpdatesControllerBinding, UpdatesPresenter>(),
         RootController,
         NoToolbarElevationController,
         ActionMode.Callback,
@@ -58,8 +58,6 @@ class UpdatesController : NucleusController<UpdatesPresenter>(),
      */
     var adapter: UpdatesAdapter? = null
         private set
-
-    private lateinit var binding: UpdatesControllerBinding
 
     init {
         setHasOptionsMenu(true)

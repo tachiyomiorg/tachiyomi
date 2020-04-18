@@ -61,7 +61,7 @@ abstract class SettingsController : PreferenceController() {
     fun setTitle() {
         var parentController = parentController
         while (parentController != null) {
-            if (parentController is BaseController && parentController.getTitle() != null) {
+            if (parentController is BaseController<*> && parentController.getTitle() != null) {
                 return
             }
             parentController = parentController.parentController

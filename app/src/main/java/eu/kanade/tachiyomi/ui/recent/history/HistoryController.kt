@@ -22,7 +22,7 @@ import eu.kanade.tachiyomi.util.system.toast
  * Uses [R.layout.history_controller].
  * UI related actions should be called from here.
  */
-class HistoryController : NucleusController<HistoryPresenter>(),
+class HistoryController : NucleusController<HistoryControllerBinding, HistoryPresenter>(),
         RootController,
         NoToolbarElevationController,
         FlexibleAdapter.OnUpdateListener,
@@ -36,8 +36,6 @@ class HistoryController : NucleusController<HistoryPresenter>(),
      */
     var adapter: HistoryAdapter? = null
         private set
-
-    private lateinit var binding: HistoryControllerBinding
 
     override fun getTitle(): String? {
         return resources?.getString(R.string.label_recent_manga)

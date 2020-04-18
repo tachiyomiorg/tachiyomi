@@ -32,7 +32,7 @@ import uy.kohesive.injekt.api.get
 /**
  * Controller to manage the catalogues available in the app.
  */
-open class ExtensionController : NucleusController<ExtensionPresenter>(),
+open class ExtensionController : NucleusController<ExtensionControllerBinding, ExtensionPresenter>(),
         ExtensionAdapter.OnButtonClickListener,
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
@@ -48,8 +48,6 @@ open class ExtensionController : NucleusController<ExtensionPresenter>(),
     private var extensions: List<ExtensionItem> = emptyList()
 
     private var query = ""
-
-    private lateinit var binding: ExtensionControllerBinding
 
     init {
         setHasOptionsMenu(true)

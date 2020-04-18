@@ -40,7 +40,7 @@ import reactivecircus.flowbinding.android.view.clicks
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 import timber.log.Timber
 
-class ChaptersController : NucleusController<ChaptersPresenter>(),
+class ChaptersController : NucleusController<ChaptersControllerBinding, ChaptersPresenter>(),
         ActionMode.Callback,
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
@@ -63,8 +63,6 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     private val selectedItems = mutableSetOf<ChapterItem>()
 
     private var lastClickPosition = -1
-
-    private lateinit var binding: ChaptersControllerBinding
 
     init {
         setHasOptionsMenu(true)

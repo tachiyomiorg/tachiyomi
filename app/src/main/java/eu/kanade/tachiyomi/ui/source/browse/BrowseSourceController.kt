@@ -53,7 +53,7 @@ import uy.kohesive.injekt.injectLazy
  * Controller to manage the catalogues available in the app.
  */
 open class BrowseSourceController(bundle: Bundle) :
-        NucleusController<BrowseSourcePresenter>(bundle),
+        NucleusController<SourceControllerBinding, BrowseSourcePresenter>(bundle),
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
         FlexibleAdapter.EndlessScrollListener,
@@ -94,8 +94,6 @@ open class BrowseSourceController(bundle: Bundle) :
      * Endless loading item.
      */
     private var progressItem: ProgressItem? = null
-
-    private lateinit var binding: SourceControllerBinding
 
     init {
         setHasOptionsMenu(true)

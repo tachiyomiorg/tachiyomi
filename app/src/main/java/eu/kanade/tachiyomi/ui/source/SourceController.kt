@@ -44,7 +44,7 @@ import uy.kohesive.injekt.api.get
  * [SourceAdapter.OnBrowseClickListener] call function data on browse item click.
  * [SourceAdapter.OnLatestClickListener] call function data on latest item click
  */
-class SourceController : NucleusController<SourcePresenter>(),
+class SourceController : NucleusController<SourceMainControllerBinding, SourcePresenter>(),
         RootController,
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
@@ -57,8 +57,6 @@ class SourceController : NucleusController<SourcePresenter>(),
      * Adapter containing sources.
      */
     private var adapter: SourceAdapter? = null
-
-    private lateinit var binding: SourceMainControllerBinding
 
     init {
         setHasOptionsMenu(true)

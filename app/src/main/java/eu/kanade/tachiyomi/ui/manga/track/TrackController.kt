@@ -17,15 +17,13 @@ import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 import timber.log.Timber
 
-class TrackController : NucleusController<TrackPresenter>(),
+class TrackController : NucleusController<TrackControllerBinding, TrackPresenter>(),
         TrackAdapter.OnClickListener,
         SetTrackStatusDialog.Listener,
         SetTrackChaptersDialog.Listener,
         SetTrackScoreDialog.Listener {
 
     private var adapter: TrackAdapter? = null
-
-    private lateinit var binding: TrackControllerBinding
 
     init {
         // There's no menu, but this avoids a bug when coming from the catalogue, where the menu

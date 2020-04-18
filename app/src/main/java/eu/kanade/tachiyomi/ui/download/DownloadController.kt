@@ -23,7 +23,7 @@ import rx.android.schedulers.AndroidSchedulers
  * Controller that shows the currently active downloads.
  * Uses R.layout.fragment_download_queue.
  */
-class DownloadController : NucleusController<DownloadPresenter>(),
+class DownloadController : NucleusController<DownloadControllerBinding, DownloadPresenter>(),
     DownloadAdapter.DownloadItemListener {
 
     /**
@@ -40,8 +40,6 @@ class DownloadController : NucleusController<DownloadPresenter>(),
      * Whether the download queue is running or not.
      */
     private var isRunning: Boolean = false
-
-    private lateinit var binding: DownloadControllerBinding
 
     init {
         setHasOptionsMenu(true)

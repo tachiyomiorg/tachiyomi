@@ -51,7 +51,7 @@ import uy.kohesive.injekt.api.get
 class LibraryController(
     bundle: Bundle? = null,
     private val preferences: PreferencesHelper = Injekt.get()
-) : NucleusController<LibraryPresenter>(bundle),
+) : NucleusController<LibraryControllerBinding, LibraryPresenter>(bundle),
         RootController,
         TabbedController,
         ActionMode.Callback,
@@ -125,8 +125,6 @@ class LibraryController(
     private var tabsVisibilityRelay: BehaviorRelay<Boolean> = BehaviorRelay.create(false)
 
     private var tabsVisibilitySubscription: Subscription? = null
-
-    private lateinit var binding: LibraryControllerBinding
 
     init {
         setHasOptionsMenu(true)

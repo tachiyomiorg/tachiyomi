@@ -70,7 +70,7 @@ import uy.kohesive.injekt.injectLazy
  * viewers, to which calls from the presenter or UI events are delegated.
  */
 @RequiresPresenter(ReaderPresenter::class)
-class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
+class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() {
 
     private val preferences by injectLazy<PreferencesHelper>()
 
@@ -101,8 +101,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
      */
     @Suppress("DEPRECATION")
     private var progressDialog: ProgressDialog? = null
-
-    private lateinit var binding: ReaderActivityBinding
 
     companion object {
         @Suppress("unused")
