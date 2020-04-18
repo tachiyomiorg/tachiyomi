@@ -87,7 +87,7 @@
     <string name="information_empty_category">Sinulla ei ole kategorioita. Paina plus-nappia luodaksesi uuden kategorian kirjastosi järjestelemiseksi.</string>
     <string name="download_notifier_downloader_title">Lataaja</string>
     <string name="download_notifier_title_error">Virhe</string>
-    <string name="download_notifier_unkown_error">Lukua ei voitu ladata odottamattoman virheen vuoksi</string>
+    <string name="download_notifier_unknown_error">Lukua ei voitu ladata odottamattoman virheen vuoksi</string>
     <string name="download_notifier_page_error">Sivu puuttuu kansiosta</string>
     <string name="download_notifier_page_ready_error">Sivua ei ole ladattu</string>
     <string name="download_notifier_text_only_wifi">Ei Wi-Fi yhteyttä saatavilla</string>

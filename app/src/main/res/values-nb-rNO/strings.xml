@@ -417,7 +417,7 @@
     <string name="information_empty_category">Du har ingen kategorier. Trykk på pluss-knappen for å lage en for å organisere ditt bibliotek.</string>
     <string name="download_notifier_downloader_title">Nedlaster</string>
     <string name="download_notifier_title_error">Feil</string>
-    <string name="download_notifier_unkown_error">En uventet feil oppstod mens kapittelet ble lastet ned</string>
+    <string name="download_notifier_unknown_error">En uventet feil oppstod mens kapittelet ble lastet ned</string>
     <string name="download_notifier_page_error">En side ble ikke funnet</string>
     <string name="download_notifier_page_ready_error">En side er ikke innlastet</string>
     <string name="download_notifier_text_only_wifi">Ingen trådløstilkobling tilgjengelig</string>

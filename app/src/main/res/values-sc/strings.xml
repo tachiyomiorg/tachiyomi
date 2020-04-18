@@ -408,7 +408,7 @@
     <string name="information_empty_category">Non tenes categorias. Incarca su butone de su \"prus\" pro nde creare una pro organizare sa biblioteca tua.</string>
     <string name="download_notifier_downloader_title">Iscarrigadore</string>
     <string name="download_notifier_title_error">Errore</string>
-    <string name="download_notifier_unkown_error">Iscarrigamentu de su capìtulu fallidu pro more de un\'errore imprevistu</string>
+    <string name="download_notifier_unknown_error">Iscarrigamentu de su capìtulu fallidu pro more de un\'errore imprevistu</string>
     <string name="download_notifier_page_error">Una pàgina mancat in sa cartella</string>
     <string name="download_notifier_page_ready_error">Una pàgina no est istada carrigada</string>
     <string name="download_notifier_text_only_wifi">Peruna connessione Wi-Fi disponìbile</string>

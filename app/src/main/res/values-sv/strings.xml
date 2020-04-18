@@ -407,7 +407,7 @@
     <string name="information_empty_category">Du har inga kategorier. Tryck på plus-knappen för att skapa en för att organisera ditt bibliotek.</string>
     <string name="download_notifier_downloader_title">Nedladdare</string>
     <string name="download_notifier_title_error">Fel</string>
-    <string name="download_notifier_unkown_error">Kunde inte ladda ned kapitel på grund av ett oförväntat fel</string>
+    <string name="download_notifier_unknown_error">Kunde inte ladda ned kapitel på grund av ett oförväntat fel</string>
     <string name="download_notifier_page_error">En sida saknas i katalogen</string>
     <string name="download_notifier_page_ready_error">En sida har inte laddats</string>
     <string name="download_notifier_text_only_wifi">Ingen WiFi-anslutning tillgänglig</string>

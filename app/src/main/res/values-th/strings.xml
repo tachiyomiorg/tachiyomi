@@ -418,7 +418,7 @@
     <string name="information_empty_category">คุณไม่มีหมวดหมู่ กดปุ่มเพิ่ม เพื่อเพิ่มหมวดหมู่สำหรับการจัดระเบียบห้องสมุดของคุณ</string>
     <string name="download_notifier_downloader_title">การดาวน์โหลด</string>
     <string name="download_notifier_title_error">เกิดข้อผิดพลาด</string>
-    <string name="download_notifier_unkown_error">เกิดข้อผิดพลาดที่ไม่คาดคิดขณะดาวน์โหลดบท</string>
+    <string name="download_notifier_unknown_error">เกิดข้อผิดพลาดที่ไม่คาดคิดขณะดาวน์โหลดบท</string>
     <string name="download_notifier_page_error">หน้าหายไปในไดเรกทอรี</string>
     <string name="download_notifier_page_ready_error">ไม่มีการโหลดหน้า</string>
     <string name="download_notifier_text_only_wifi">ไม่มีการเชื่อมต่อ wifi</string>

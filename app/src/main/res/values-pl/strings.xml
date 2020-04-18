@@ -132,7 +132,7 @@
     <string name="update_check_notification_update_available">Dostępna aktualizacja</string>
     <string name="information_empty_library">Twoja biblioteka jest pusta, dodaj serie do biblioteki z katalogów.</string>
     <string name="download_notifier_title_error">Błąd</string>
-    <string name="download_notifier_unkown_error">Podczas pobierania rozdziału wystąpił nieoczekiwany błąd</string>
+    <string name="download_notifier_unknown_error">Podczas pobierania rozdziału wystąpił nieoczekiwany błąd</string>
     <string name="download_notifier_download_paused">Pobieranie wstrzymane</string>
     <string name="action_sort_alpha">Alfabetycznie</string>
     <string name="track">Śledzenie</string>

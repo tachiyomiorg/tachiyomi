@@ -407,7 +407,7 @@
     <string name="information_empty_category">Nu aveți categorii. Apăsați butonul plus pentru a crea una pentru a vă organiza biblioteca.</string>
     <string name="download_notifier_downloader_title">Client de descărcare</string>
     <string name="download_notifier_title_error">Eroare</string>
-    <string name="download_notifier_unkown_error">Nu s-a putut descărca capitolul din cauza unei erori neașteptate</string>
+    <string name="download_notifier_unknown_error">Nu s-a putut descărca capitolul din cauza unei erori neașteptate</string>
     <string name="download_notifier_page_error">O pagină lipsește din director</string>
     <string name="download_notifier_page_ready_error">O pagină nu a fost încărcată</string>
     <string name="download_notifier_text_only_wifi">Nu este disponibilă nicio conexiune Wi-Fi</string>

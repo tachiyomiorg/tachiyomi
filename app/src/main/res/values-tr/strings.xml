@@ -399,7 +399,7 @@
     <string name="information_empty_category">Kategoriniz yok. Kitaplığınızı düzenlemek için bir tane oluşturmak için artı düğmesine basın.</string>
     <string name="download_notifier_downloader_title">İndirici</string>
     <string name="download_notifier_title_error">Hata</string>
-    <string name="download_notifier_unkown_error">Beklenmeyen hata sonucu bölüm indirilemedi</string>
+    <string name="download_notifier_unknown_error">Beklenmeyen hata sonucu bölüm indirilemedi</string>
     <string name="download_notifier_page_error">Dizinde bir sayda eksik</string>
     <string name="download_notifier_page_ready_error">Bir sayfa yüklenmedi</string>
     <string name="download_notifier_text_only_wifi">Wi-Fi bağlantısı yok</string>

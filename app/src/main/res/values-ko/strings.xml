@@ -325,7 +325,7 @@
     <string name="information_no_recent_manga">최근 읽은 만화 없음</string>
     <string name="download_notifier_downloader_title">다운로더</string>
     <string name="download_notifier_title_error">오류</string>
-    <string name="download_notifier_unkown_error">챕터 다운로드중에 예기치 않은 오류가 발생하였습니다</string>
+    <string name="download_notifier_unknown_error">챕터 다운로드중에 예기치 않은 오류가 발생하였습니다</string>
     <string name="download_notifier_download_paused">다운로드 일시중지됨</string>
     <string name="channel_library">서재</string>
     <string name="channel_downloader">다운로더</string>

@@ -318,7 +318,7 @@
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Trình tải xuống</string>
     <string name="download_notifier_title_error">Lỗi</string>
-    <string name="download_notifier_unkown_error">Đã xảy ra lỗi khi tải xuống chương này</string>
+    <string name="download_notifier_unknown_error">Đã xảy ra lỗi khi tải xuống chương này</string>
     <string name="download_notifier_page_error">Một trang đã bị thiếu trong thư mục</string>
     <string name="download_notifier_page_ready_error">Trang chưa được tải</string>
     <string name="download_notifier_text_only_wifi">Không có kết nối Wi-fi</string>

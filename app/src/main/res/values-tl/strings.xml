@@ -419,7 +419,7 @@
     <string name="information_empty_category">Wala kang mga kategorya. Pindutin ang plus button para makagawa ng isa para ma-organisa ang iyong aklatan.</string>
     <string name="download_notifier_downloader_title">Tagapag-download</string>
     <string name="download_notifier_title_error">Error</string>
-    <string name="download_notifier_unkown_error">Nangyari ang isang hindi inaasahang error habang dina-download ang kabanata</string>
+    <string name="download_notifier_unknown_error">Nangyari ang isang hindi inaasahang error habang dina-download ang kabanata</string>
     <string name="download_notifier_page_error">May nawawalang pahina sa directory</string>
     <string name="download_notifier_page_ready_error">Hindi naikarga ang isang pahina</string>
     <string name="download_notifier_text_only_wifi">Walang koneksyon sa Wi-Fi</string>

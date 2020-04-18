@@ -294,7 +294,7 @@
     <string name="pref_enable_acra">Rapporteer bugs</string>
     <string name="pref_acra_summary">Helpt bij het bestrijden van bugs. Geen gevoelige data wordt verzonden</string>
     <string name="information_no_recent_manga">Geen recentelijk gelezen manga</string>
-    <string name="download_notifier_unkown_error">Het is niet mogelijk om dit hoofdstuk te downloaden door eenonverwachte fout</string>
+    <string name="download_notifier_unknown_error">Het is niet mogelijk om dit hoofdstuk te downloaden door eenonverwachte fout</string>
     <string name="download_notifier_page_error">Er ontbreekt een pagina</string>
     <string name="pref_library_update_restriction">Bibliotheek updatebeperkingen</string>
     <string name="pref_library_update_categories">Categorieën om op te nemen in globale update</string>

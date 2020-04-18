@@ -307,7 +307,7 @@
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Scaricamento</string>
     <string name="download_notifier_title_error">Errore</string>
-    <string name="download_notifier_unkown_error">Impossibile scaricare il capitolo a causa di un errore imprevisto</string>
+    <string name="download_notifier_unknown_error">Impossibile scaricare il capitolo a causa di un errore imprevisto</string>
     <string name="download_notifier_page_error">Una pagina non è presente nella directory</string>
     <string name="download_notifier_page_ready_error">Una pagina non è stata caricata</string>
     <string name="download_notifier_text_only_wifi">Nessuna connessione Wi-Fi disponibile</string>

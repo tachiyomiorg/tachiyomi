@@ -336,7 +336,7 @@
     <string name="information_empty_library">A sua biblioteca está vazia. Você pode adicionar séries a partir das fontes.</string>
     <string name="download_notifier_downloader_title">Gerenciador de downloads</string>
     <string name="download_notifier_title_error">Erro</string>
-    <string name="download_notifier_unkown_error">Não foi possível realizar o download do capítulo por um erro inesperado</string>
+    <string name="download_notifier_unknown_error">Não foi possível realizar o download do capítulo por um erro inesperado</string>
     <string name="download_notifier_page_error">Uma página está faltando na pasta</string>
     <string name="download_notifier_page_ready_error">A página não foi carregada</string>
     <string name="download_notifier_text_only_wifi">Conexão Wi-Fi indisponível</string>

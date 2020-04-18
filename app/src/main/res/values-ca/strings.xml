@@ -407,7 +407,7 @@
     <string name="information_empty_category">No teniu categories. Premeu el botó més per a crear-ne una i organitzar la vostra biblioteca.</string>
     <string name="download_notifier_downloader_title">Baixades</string>
     <string name="download_notifier_title_error">Error</string>
-    <string name="download_notifier_unkown_error">No s\'ha pogut baixar el capítol a causa d\'un error inesperat</string>
+    <string name="download_notifier_unknown_error">No s\'ha pogut baixar el capítol a causa d\'un error inesperat</string>
     <string name="download_notifier_page_error">Manca una pàgina al directori</string>
     <string name="download_notifier_page_ready_error">Una pàgina no s\'ha carregat</string>
     <string name="download_notifier_text_only_wifi">No hi ha cap connexió Wi-Fi disponible</string>

@@ -213,7 +213,7 @@
     <string name="information_no_recent">Žádné nedávné kapitoly</string>
     <string name="information_no_recent_manga">Žádné nedávno čtené mangy</string>
     <string name="download_notifier_title_error">Chyba</string>
-    <string name="download_notifier_unkown_error">Došlo k neznámé chybě při stahování kapitoly</string>
+    <string name="download_notifier_unknown_error">Došlo k neznámé chybě při stahování kapitoly</string>
     <string name="download_notifier_page_error">V adresáři chybí stránka</string>
     <string name="download_notifier_page_ready_error">Stránka nebyla načtena</string>
     <string name="download_notifier_text_only_wifi">WiFi připojení není dostupné</string>

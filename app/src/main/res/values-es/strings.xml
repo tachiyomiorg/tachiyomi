@@ -254,7 +254,7 @@
     <string name="information_empty_library">Tu biblioteca está vacía, agrega series a tu biblioteca desde las fuentes.</string>
     <!-- Download Notification -->
     <string name="download_notifier_title_error">Error</string>
-    <string name="download_notifier_unkown_error">No se pudo descargar el capítulo debido a un error inesperado</string>
+    <string name="download_notifier_unknown_error">No se pudo descargar el capítulo debido a un error inesperado</string>
     <string name="download_notifier_page_error">Una página no se encuentra en el directorio</string>
     <string name="download_notifier_page_ready_error">No se ha cargado una página</string>
     <string name="download_notifier_text_only_wifi">Conexión Wi-Fi no disponible</string>

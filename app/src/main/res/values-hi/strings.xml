@@ -348,7 +348,7 @@
     <string name="information_empty_category">आपके पास कोई श्रेणियां नहीं हैं अपने पुस्तकालय के आयोजन के लिए एक बनाने के लिए प्लस बटन को दबाएं।</string>
     <string name="download_notifier_downloader_title">डाउनलोडर</string>
     <string name="download_notifier_title_error">त्रुटि</string>
-    <string name="download_notifier_unkown_error">अप्रत्याशित त्रुटि के कारण अध्याय डाउनलोड नहीं कर सका</string>
+    <string name="download_notifier_unknown_error">अप्रत्याशित त्रुटि के कारण अध्याय डाउनलोड नहीं कर सका</string>
     <string name="download_notifier_page_error">निर्देशिका में एक पृष्ठ गुम है</string>
     <string name="download_notifier_page_ready_error">एक पृष्ठ लोड नहीं किया गया है</string>
     <string name="download_notifier_text_only_wifi">कोई वाई-फ़ाई कनेक्शन उपलब्ध नहीं है</string>

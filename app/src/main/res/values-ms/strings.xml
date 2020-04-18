@@ -347,7 +347,7 @@
     <string name="information_empty_library">Pustaka kosong, tambah siri ke pustaka menggunakan katalog.</string>
     <string name="download_notifier_downloader_title">Pemuat turun</string>
     <string name="download_notifier_title_error">Ralat</string>
-    <string name="download_notifier_unkown_error">Ralat tidak diketahui ketika memuat turun bab</string>
+    <string name="download_notifier_unknown_error">Ralat tidak diketahui ketika memuat turun bab</string>
     <string name="download_notifier_page_error">Halaman hilang dalam direktori</string>
     <string name="download_notifier_page_ready_error">Halaman tidak dimuat</string>
     <string name="download_notifier_text_only_wifi">Tiada sambungan Wi-Fi yang tersedia</string>

@@ -407,7 +407,7 @@
     <string name="information_empty_category">你还没有分类。点击右下方的加号按钮创建一个分类以管理书架。</string>
     <string name="download_notifier_downloader_title">下载</string>
     <string name="download_notifier_title_error">错误</string>
-    <string name="download_notifier_unkown_error">下载时发生不可预期的错误</string>
+    <string name="download_notifier_unknown_error">下载时发生不可预期的错误</string>
     <string name="download_notifier_page_error">目录中缺少页面</string>
     <string name="download_notifier_page_ready_error">页面加载失败</string>
     <string name="download_notifier_text_only_wifi">无可用 Wi-Fi</string>

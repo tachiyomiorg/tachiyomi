@@ -426,7 +426,7 @@
     <string name="information_empty_category">Nemáte žiadne kategórie. Kliknite na tlačidlo plus a vytvorte nejakú na usporiadanie knižnice.</string>
     <string name="download_notifier_downloader_title">Sťahovač</string>
     <string name="download_notifier_title_error">Chyba</string>
-    <string name="download_notifier_unkown_error">Kapitolu sa nepodarilo stiahnuť z dôvodu neočakávanej chyby</string>
+    <string name="download_notifier_unknown_error">Kapitolu sa nepodarilo stiahnuť z dôvodu neočakávanej chyby</string>
     <string name="download_notifier_page_error">V adresári chýba stránka</string>
     <string name="download_notifier_page_ready_error">Stránka nebola načtena</string>
     <string name="download_notifier_text_only_wifi">WiFi pripojenie nie je dostupné</string>

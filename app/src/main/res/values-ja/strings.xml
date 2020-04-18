@@ -395,7 +395,7 @@
     <string name="information_empty_category">カテゴリーがありません。「+」をタップしてカテゴリーを追加し、ライブラリを整理できます。</string>
     <string name="download_notifier_downloader_title">ダウンロード</string>
     <string name="download_notifier_title_error">エラー</string>
-    <string name="download_notifier_unkown_error">予期せぬエラーが発生したため、ダウンロードは失敗しました</string>
+    <string name="download_notifier_unknown_error">予期せぬエラーが発生したため、ダウンロードは失敗しました</string>
     <string name="download_notifier_page_error">ディレクトリに見つけないページがあります</string>
     <string name="download_notifier_page_ready_error">ページをロードできませんでした</string>
     <string name="download_notifier_text_only_wifi">Wi-Fi接続は利用できません</string>

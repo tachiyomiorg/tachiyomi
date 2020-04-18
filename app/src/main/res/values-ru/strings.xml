@@ -104,7 +104,7 @@
     <string name="download_notifier_page_ready_error">Страница не загружена</string>
     <string name="download_notifier_text_only_wifi">Нет Wi-Fi соединения</string>
     <string name="download_notifier_title_error">Ошибка</string>
-    <string name="download_notifier_unkown_error">Не могу скачать главу из-за непревиденной ошибки</string>
+    <string name="download_notifier_unknown_error">Не могу скачать главу из-за непревиденной ошибки</string>
     <string name="download_progress">Загружен(о) %1$d%%</string>
     <string name="download_queue_error">Невозможно скачать главы. Можете попробовать еще раз в разделе загрузки</string>
     <string name="download_unread">Не прочитано</string>

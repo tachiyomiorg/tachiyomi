@@ -263,7 +263,7 @@
     <string name="information_empty_library">A sua biblioteca está vazia, você pode adicionar séries dos catálogos à sua biblioteca.</string>
     <!-- Download Notification -->
     <string name="download_notifier_title_error">Erro</string>
-    <string name="download_notifier_unkown_error">Não foi possível transferir o capítulo devido a um erro inesperado</string>
+    <string name="download_notifier_unknown_error">Não foi possível transferir o capítulo devido a um erro inesperado</string>
     <string name="download_notifier_page_error">Página em falta na pasta</string>
     <string name="download_notifier_page_ready_error">A Página não foi carregada</string>
     <string name="download_notifier_text_only_wifi">Sem ligação de Wi-Fi disponível</string>

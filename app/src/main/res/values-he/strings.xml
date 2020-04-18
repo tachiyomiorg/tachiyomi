@@ -9,7 +9,7 @@
     <string name="download_notifier_no_network">אין חיבור רשת זמין</string>
     <string name="download_notifier_text_only_wifi">אין חיבור Wi-Fi זמין</string>
     <string name="download_notifier_page_ready_error">דף לא נטען</string>
-    <string name="download_notifier_unkown_error">לא ניתן היה להוריד את הפרק בגלל שגיאה בלתי צפויה</string>
+    <string name="download_notifier_unknown_error">לא ניתן היה להוריד את הפרק בגלל שגיאה בלתי צפויה</string>
     <string name="download_notifier_title_error">שגיאה</string>
     <string name="information_webview_outdated">אנא עדכן את אפליקציית WebView לקבלת תאימות טובה יותר</string>
     <string name="information_cloudflare_bypass_failure">עקיפה של Cloudflare נכשלה</string>
