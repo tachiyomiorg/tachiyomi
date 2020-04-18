@@ -7,7 +7,8 @@
     android:paddingStart="@dimen/dialog_content_padding"
     android:paddingTop="@dimen/dialog_margin_top_content"
     android:paddingEnd="@dimen/dialog_content_padding"
-    android:paddingBottom="@dimen/dialog_content_padding">
+    android:paddingBottom="@dimen/dialog_content_padding"
+    android:baselineAligned="false">
 
     <LinearLayout
         android:layout_width="0dp"

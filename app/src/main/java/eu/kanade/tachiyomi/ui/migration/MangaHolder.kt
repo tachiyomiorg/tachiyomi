@@ -9,8 +9,8 @@ import kotlinx.android.synthetic.main.source_list_item.thumbnail
 import kotlinx.android.synthetic.main.source_list_item.title
 
 class MangaHolder(
-    private val view: View,
-    private val adapter: FlexibleAdapter<*>
+    view: View,
+    adapter: FlexibleAdapter<*>
 ) : BaseFlexibleViewHolder(view, adapter) {
 
     fun bind(item: MangaItem) {

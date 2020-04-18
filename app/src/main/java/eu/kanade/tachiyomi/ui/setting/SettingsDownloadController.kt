@@ -101,8 +101,8 @@ class SettingsDownloadController : SettingsController() {
                         .subscribeUntilDestroy { isVisible = it }
 
                 preferences.downloadNewCategories().asObservable()
-                        .subscribeUntilDestroy {
-                            val selectedCategories = it
+                        .subscribeUntilDestroy { mutableSet ->
+                            val selectedCategories = mutableSet
                                     .mapNotNull { id -> categories.find { it.id == id.toInt() } }
                                     .sortedBy { it.order }
 

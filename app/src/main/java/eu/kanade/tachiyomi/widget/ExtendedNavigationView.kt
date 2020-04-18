@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.widget
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.core.content.ContextCompat
@@ -160,7 +159,7 @@ open class ExtendedNavigationView @JvmOverloads constructor(
      */
     abstract inner class Adapter(private val items: List<Item>) : RecyclerView.Adapter<Holder>() {
 
-        private val onClick = View.OnClickListener {
+        private val onClick = OnClickListener {
             val pos = recycler.getChildAdapterPosition(it)
             val item = items[pos]
             onItemClicked(item)

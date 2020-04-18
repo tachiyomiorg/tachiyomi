@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.widget
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.annotation.StringRes
@@ -77,6 +76,6 @@ class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
     data class Action(
         @StringRes val resId: Int,
-        val listener: View.OnClickListener
+        val listener: OnClickListener
     )
 }

@@ -246,7 +246,7 @@ class LibraryUpdateService(
                     stopSelf(startId)
                 })
 
-        return Service.START_REDELIVER_INTENT
+        return START_REDELIVER_INTENT
     }
 
     /**

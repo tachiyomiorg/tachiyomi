@@ -308,13 +308,13 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
     override fun onItemClick(view: View?, position: Int): Boolean {
         val adapter = adapter ?: return false
         val item = adapter.getItem(position) ?: return false
-        if (actionMode != null && adapter.mode == SelectableAdapter.Mode.MULTI) {
+        return if (actionMode != null && adapter.mode == SelectableAdapter.Mode.MULTI) {
             lastClickPosition = position
             toggleSelection(position)
-            return true
+            true
         } else {
             openChapter(item.chapter)
-            return false
+            false
         }
     }
 

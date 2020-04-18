@@ -19,7 +19,7 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:tint="@color/md_white_1000_54"
+            app:tint="@color/md_white_1000_54"
             app:srcCompat="@drawable/ic_photo_24dp" />
 
         <TextView
@@ -44,7 +44,7 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:tint="@color/md_white_1000_54"
+            app:tint="@color/md_white_1000_54"
             app:srcCompat="@drawable/ic_share_24dp" />
 
         <TextView
@@ -69,7 +69,7 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:tint="@color/md_white_1000_54"
+            app:tint="@color/md_white_1000_54"
             app:srcCompat="@drawable/ic_file_download_black_24dp" />
 
         <TextView

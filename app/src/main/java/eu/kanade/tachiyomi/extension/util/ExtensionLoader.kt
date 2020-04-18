@@ -94,8 +94,7 @@ internal object ExtensionLoader {
             return LoadResult.Error(error)
         }
 
-        val extName = pkgManager.getApplicationLabel(appInfo).toString()
-                .orEmpty().substringAfter("Tachiyomi: ")
+        val extName = pkgManager.getApplicationLabel(appInfo).toString().substringAfter("Tachiyomi: ")
         val versionName = pkgInfo.versionName
         val versionCode = pkgInfo.versionCode
 
@@ -137,8 +136,7 @@ internal object ExtensionLoader {
                 }
                 .flatMap {
                     try {
-                        val obj = Class.forName(it, false, classLoader).newInstance()
-                        when (obj) {
+                        when (val obj = Class.forName(it, false, classLoader).newInstance()) {
                             is Source -> listOf(obj)
                             is SourceFactory -> obj.createSources()
                             else -> throw Exception("Unknown source class type! ${obj.javaClass}")

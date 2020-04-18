@@ -36,10 +36,10 @@ class KitsuSearchManga(obj: JsonObject) {
         cover_url = original ?: ""
         summary = synopsis
         tracking_url = KitsuApi.mangaUrl(media_id)
-        if (endDate == null) {
-            publishing_status = "Publishing"
+        publishing_status = if (endDate == null) {
+            "Publishing"
         } else {
-            publishing_status = "Finished"
+            "Finished"
         }
         publishing_type = subType ?: ""
         start_date = startDate ?: ""

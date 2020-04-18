@@ -303,7 +303,7 @@ class LibraryPresenter(
         if (mangas.isEmpty()) return emptyList()
         return mangas.toSet()
                 .map { db.getCategoriesForManga(it).executeAsBlocking() }
-                .reduce { set1: Iterable<Category>, set2 -> set1.intersect(set2) }
+                .reduce { set1: Iterable<Category>, set2 -> set1.intersect(set2).toMutableList() }
     }
 
     /**

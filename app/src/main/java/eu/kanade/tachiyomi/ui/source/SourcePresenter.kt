@@ -87,7 +87,7 @@ class SourcePresenter(
                 sharedObs.take(1),
                 sharedObs.skip(1).delay(500, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread()))
                 .distinctUntilChanged()
-                .map { (sourceManager.get(it) as? CatalogueSource)?.let { SourceItem(it) } }
+                .map { item -> (sourceManager.get(item) as? CatalogueSource)?.let { SourceItem(it) } }
                 .subscribeLatestCache(SourceController::setLastUsedSource)
     }
 

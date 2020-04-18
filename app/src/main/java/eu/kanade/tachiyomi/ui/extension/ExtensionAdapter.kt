@@ -22,7 +22,7 @@ class ExtensionAdapter(val controller: ExtensionController) :
     /**
      * Listener for browse item clicks.
      */
-    val buttonClickListener: ExtensionAdapter.OnButtonClickListener = controller
+    val buttonClickListener: OnButtonClickListener = controller
 
     interface OnButtonClickListener {
         fun onButtonClick(position: Int)

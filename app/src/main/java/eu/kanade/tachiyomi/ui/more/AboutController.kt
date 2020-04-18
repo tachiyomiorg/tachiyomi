@@ -171,7 +171,7 @@ class AboutController : SettingsController() {
     }
 
     private fun getFormattedBuildTime(): String {
-        try {
+        return try {
             val inputDf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'", Locale.US)
             inputDf.timeZone = TimeZone.getTimeZone("UTC")
             val buildTime = inputDf.parse(BuildConfig.BUILD_TIME)
@@ -180,9 +180,9 @@ class AboutController : SettingsController() {
                     DateFormat.MEDIUM, DateFormat.SHORT, Locale.getDefault())
             outputDf.timeZone = TimeZone.getDefault()
 
-            return buildTime.toDateTimestampString(dateFormat)
+            buildTime.toDateTimestampString(dateFormat)
         } catch (e: ParseException) {
-            return BuildConfig.BUILD_TIME
+            BuildConfig.BUILD_TIME
         }
     }
 }
