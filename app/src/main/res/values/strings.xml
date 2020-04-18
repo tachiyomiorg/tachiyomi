@@ -78,7 +78,6 @@
     <string name="action_move">Move</string>
     <string name="action_open_in_browser">Open in browser</string>
     <string name="action_open_in_web_view">Open in WebView</string>
-    <string name="action_add_to_home_screen">Add to home screen</string>
     <string name="action_display_mode">Display mode</string>
     <string name="action_display">Display</string>
     <string name="action_display_grid">Grid</string>
@@ -421,13 +420,6 @@
     <string name="manga_info_about_label">About</string>
     <string name="manga_info_expand">Show more info</string>
     <string name="manga_info_collapse">Show less info</string>
-    <string name="circular_icon">Circular</string>
-    <string name="rounded_icon">Rounded</string>
-    <string name="square_icon">Square</string>
-    <string name="shortcut_title">Shortcut title</string>
-    <string name="shortcut_created">Shortcut was added to home screen.</string>
-    <string name="icon_shape">Icon shape</string>
-    <string name="icon_creation_fail">Could not create shortcut</string>
     <string name="delete_downloads_for_manga">Delete downloaded chapters?</string>
     <string name="copied_to_clipboard">%1$s copied to clipboard</string>
     <string name="source_not_installed">Source not installed: %1$s</string>

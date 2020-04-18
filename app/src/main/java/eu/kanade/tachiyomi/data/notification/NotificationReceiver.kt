@@ -51,8 +51,6 @@ class NotificationReceiver : BroadcastReceiver() {
             }
             // Clear the download queue
             ACTION_CLEAR_DOWNLOADS -> downloadManager.clearQueue(true)
-            // Show message notification created
-            ACTION_SHORTCUT_CREATED -> context.toast(R.string.shortcut_created)
             // Launch share activity and dismiss notification
             ACTION_SHARE_IMAGE -> shareImage(context, intent.getStringExtra(EXTRA_FILE_LOCATION),
                     intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
@@ -219,9 +217,6 @@ class NotificationReceiver : BroadcastReceiver() {
         // Called to clear downloads.
         private const val ACTION_CLEAR_DOWNLOADS = "$ID.$NAME.ACTION_CLEAR_DOWNLOADS"
 
-        // Called to notify user shortcut is created.
-        private const val ACTION_SHORTCUT_CREATED = "$ID.$NAME.ACTION_SHORTCUT_CREATED"
-
         // Called to dismiss notification.
         private const val ACTION_DISMISS_NOTIFICATION = "$ID.$NAME.ACTION_DISMISS_NOTIFICATION"
 
@@ -275,13 +270,6 @@ class NotificationReceiver : BroadcastReceiver() {
         internal fun clearDownloadsPendingBroadcast(context: Context): PendingIntent {
             val intent = Intent(context, NotificationReceiver::class.java).apply {
                 action = ACTION_CLEAR_DOWNLOADS
-            }
-            return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-        }
-
-        internal fun shortcutCreatedBroadcast(context: Context): PendingIntent {
-            val intent = Intent(context, NotificationReceiver::class.java).apply {
-                action = ACTION_SHORTCUT_CREATED
             }
             return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }

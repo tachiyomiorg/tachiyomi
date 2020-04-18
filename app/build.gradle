@@ -204,7 +204,6 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation "com.github.bumptech.glide:okhttp3-integration:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
-    implementation 'jp.wasabeef:glide-transformations:4.1.0'
 
     // Logging
     implementation 'com.jakewharton.timber:timber:4.7.1'

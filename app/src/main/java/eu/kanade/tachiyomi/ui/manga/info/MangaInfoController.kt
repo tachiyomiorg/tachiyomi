@@ -1,50 +1,31 @@
 package eu.kanade.tachiyomi.ui.manga.info
 
-import android.app.Dialog
-import android.app.PendingIntent
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
-import android.os.Build
-import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.content.pm.ShortcutInfoCompat
-import androidx.core.content.pm.ShortcutManagerCompat
-import androidx.core.graphics.drawable.IconCompat
-import com.afollestad.materialdialogs.MaterialDialog
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.chip.Chip
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.glide.GlideApp
-import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.MangaInfoControllerBinding
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
-import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.library.LibraryController
-import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchController
@@ -56,7 +37,6 @@ import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.util.view.toggle
 import eu.kanade.tachiyomi.util.view.visible
-import jp.wasabeef.glide.transformations.CropSquareTransformation
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
 import reactivecircus.flowbinding.android.view.longClicks
@@ -75,11 +55,6 @@ class MangaInfoController(private val fromSource: Boolean = false) :
     ChangeMangaCategoriesDialog.Listener {
 
     private val preferences: PreferencesHelper by injectLazy()
-
-    init {
-        setHasOptionsMenu(true)
-        setOptionsMenuHidden(true)
-    }
 
     override fun createPresenter(): MangaInfoPresenter {
         val ctrl = parentController as MangaController
@@ -168,17 +143,6 @@ class MangaInfoController(private val fromSource: Boolean = false) :
                 copyToClipboard(view.context.getString(R.string.title), presenter.manga.title)
             }
             .launchInUI()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.manga_info, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_add_to_home_screen -> addToHomeScreen()
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     /**
@@ -507,75 +471,6 @@ class MangaInfoController(private val fromSource: Boolean = false) :
     }
 
     /**
-     * Add a shortcut of the manga to the home screen
-     */
-    private fun addToHomeScreen() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // TODO are transformations really unsupported or is it just the Pixel Launcher?
-            createShortcutForShape()
-        } else {
-            ChooseShapeDialog(this).showDialog(router)
-        }
-    }
-
-    /**
-     * Dialog to choose a shape for the icon.
-     */
-    private class ChooseShapeDialog(bundle: Bundle? = null) : DialogController(bundle) {
-
-        constructor(target: MangaInfoController) : this() {
-            targetController = target
-        }
-
-        override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            val modes = intArrayOf(R.string.circular_icon,
-                    R.string.rounded_icon,
-                    R.string.square_icon)
-
-            return MaterialDialog.Builder(activity!!)
-                    .title(R.string.icon_shape)
-                    .negativeText(android.R.string.cancel)
-                    .items(modes.map { activity?.getString(it) })
-                    .itemsCallback { _, _, i, _ ->
-                        (targetController as? MangaInfoController)?.createShortcutForShape(i)
-                    }
-                    .build()
-        }
-    }
-
-    /**
-     * Retrieves the bitmap of the shortcut with the requested shape and calls [createShortcut] when
-     * the resource is available.
-     *
-     * @param i The shape index to apply. Defaults to circle crop transformation.
-     */
-    private fun createShortcutForShape(i: Int = 0) {
-        if (activity == null) return
-        GlideApp.with(activity!!)
-                .asBitmap()
-                .load(presenter.manga)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .apply {
-                    when (i) {
-                        0 -> circleCrop()
-                        1 -> transform(RoundedCorners(5))
-                        2 -> transform(CropSquareTransformation())
-                    }
-                }
-                .into(object : CustomTarget<Bitmap>(96, 96) {
-                    override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                        createShortcut(resource)
-                    }
-
-                    override fun onLoadFailed(errorDrawable: Drawable?) {
-                        activity?.toast(R.string.icon_creation_fail)
-                    }
-
-                    override fun onLoadCleared(placeholder: Drawable?) {}
-                })
-    }
-
-    /**
      * Copies a string to clipboard
      *
      * @param label Label to show to the user describing the content
@@ -625,49 +520,6 @@ class MangaInfoController(private val fromSource: Boolean = false) :
                 router.handleBack()
                 previousController.searchWithQuery(query)
             }
-        }
-    }
-
-    /**
-     * Create shortcut using ShortcutManager.
-     *
-     * @param icon The image of the shortcut.
-     */
-    private fun createShortcut(icon: Bitmap) {
-        val activity = activity ?: return
-        val mangaControllerArgs = parentController?.args ?: return
-
-        // Create the shortcut intent.
-        val shortcutIntent = activity.intent
-                .setAction(MainActivity.SHORTCUT_MANGA)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .putExtra(MangaController.MANGA_EXTRA,
-                        mangaControllerArgs.getLong(MangaController.MANGA_EXTRA))
-
-        // Check if shortcut placement is supported
-        if (ShortcutManagerCompat.isRequestPinShortcutSupported(activity)) {
-            val shortcutId = "manga-shortcut-${presenter.manga.title}-${presenter.source.name}"
-
-            // Create shortcut info
-            val shortcutInfo = ShortcutInfoCompat.Builder(activity, shortcutId)
-                    .setShortLabel(presenter.manga.title)
-                    .setIcon(IconCompat.createWithBitmap(icon))
-                    .setIntent(shortcutIntent)
-                    .build()
-
-            val successCallback = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                // Create the CallbackIntent.
-                val intent = ShortcutManagerCompat.createShortcutResultIntent(activity, shortcutInfo)
-
-                // Configure the intent so that the broadcast receiver gets the callback successfully.
-                PendingIntent.getBroadcast(activity, 0, intent, 0)
-            } else {
-                NotificationReceiver.shortcutCreatedBroadcast(activity)
-            }
-
-            // Request shortcut.
-            ShortcutManagerCompat.requestPinShortcut(activity, shortcutInfo,
-                    successCallback.intentSender)
         }
     }
 }
