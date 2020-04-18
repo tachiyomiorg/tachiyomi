@@ -191,8 +191,11 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         f.showDialog(router)
     }
 
+    @Suppress("UNCHECKED_CAST")
     override fun <T : Preference> findPreference(key: CharSequence): T? {
-        return preferenceScreen!!.findPreference(key)
+        // We track [lastOpenPreferencePosition] when displaying the dialog
+        // [key] isn't useful since there may be duplicates
+        return preferenceScreen!!.getPreference(lastOpenPreferencePosition!!) as T
     }
 
     private companion object {
