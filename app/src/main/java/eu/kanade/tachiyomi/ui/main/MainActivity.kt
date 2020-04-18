@@ -265,7 +265,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         }
     }
 
-    private fun setSelectedNavItem(itemId: Int) {
+    fun setSelectedNavItem(itemId: Int) {
         if (!isFinishing) {
             binding.bottomNav.selectedItemId = itemId
         }
