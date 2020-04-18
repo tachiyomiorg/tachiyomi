@@ -20,7 +20,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/manga_cover" />
+                app:layout_constraintTop_toBottomOf="@+id/manga_cover_card" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
@@ -40,20 +40,28 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:background="@color/material_grey_700" />
 
-            <ImageView
-                android:id="@+id/manga_cover"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/manga_cover_card"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:contentDescription="@string/description_cover"
+                app:cardCornerRadius="@dimen/card_radius"
                 app:layout_constraintDimensionRatio="h,2:3"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:background="@color/material_grey_700" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/manga_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/description_cover"
+                    tools:background="@color/material_grey_700" />
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
@@ -195,14 +203,14 @@
                     android:text="@string/add_to_library"
                     app:icon="@drawable/ic_add_to_library_24dp" />
 
-<!--                <com.google.android.material.button.MaterialButton-->
-<!--                    android:id="@+id/btn_tracking"-->
-<!--                    style="@style/Theme.Widget.Button.Icon"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="8dp"-->
-<!--                    android:text="@string/manga_tracking_tab"-->
-<!--                    app:icon="@drawable/ic_sync_24dp" />-->
+                <!--                <com.google.android.material.button.MaterialButton-->
+                <!--                    android:id="@+id/btn_tracking"-->
+                <!--                    style="@style/Theme.Widget.Button.Icon"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="8dp"-->
+                <!--                    android:text="@string/manga_tracking_tab"-->
+                <!--                    app:icon="@drawable/ic_sync_24dp" />-->
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_share"
