@@ -28,6 +28,8 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
     private var atFirstPosition = false
     private var halfWidth = 0
     private var halfHeight = 0
+    private var ogHeight = 0
+    private var heightSet = false
     private var firstVisibleItemPosition = 0
     private var lastVisibleItemPosition = 0
     private var currentScale = DEFAULT_RATE
@@ -41,6 +43,10 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
     override fun onMeasure(widthSpec: Int, heightSpec: Int) {
         halfWidth = MeasureSpec.getSize(widthSpec) / 2
         halfHeight = MeasureSpec.getSize(heightSpec) / 2
+        if (!heightSet) {
+            ogHeight = MeasureSpec.getSize(heightSpec)
+            heightSet = true
+        }
         super.onMeasure(widthSpec, heightSpec)
     }
 
@@ -67,11 +73,17 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
     }
 
     private fun getPositionX(positionX: Float): Float {
+        if (currentScale < 1) {
+            return 0f
+        }
         val maxPositionX = halfWidth * (currentScale - 1)
         return positionX.coerceIn(-maxPositionX, maxPositionX)
     }
 
     private fun getPositionY(positionY: Float): Float {
+        if (currentScale < 1) {
+            return (ogHeight / 2 - halfHeight).toFloat()
+        }
         val maxPositionY = halfHeight * (currentScale - 1)
         return positionY.coerceIn(-maxPositionY, maxPositionY)
     }
@@ -162,10 +174,13 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
     fun onScale(scaleFactor: Float) {
         currentScale *= scaleFactor
         currentScale = currentScale.coerceIn(
-                DEFAULT_RATE,
+                MIN_RATE,
                 MAX_SCALE_RATE)
 
         setScaleRate(currentScale)
+
+        layoutParams.height = if (currentScale < 1) { (ogHeight / currentScale).toInt() } else { ogHeight }
+        halfHeight = layoutParams.height / 2
 
         if (currentScale != DEFAULT_RATE) {
             x = getPositionX(x)
@@ -174,6 +189,8 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
             x = 0f
             y = 0f
         }
+
+        requestLayout()
     }
 
     fun onScaleBegin() {
@@ -183,8 +200,8 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
     }
 
     fun onScaleEnd() {
-        if (scaleX < DEFAULT_RATE) {
-            zoom(currentScale, DEFAULT_RATE, x, 0f, y, 0f)
+        if (scaleX < MIN_RATE) {
+            zoom(currentScale, MIN_RATE, x, 0f, y, 0f)
         }
     }
 
@@ -310,6 +327,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
 
     private companion object {
         const val ANIMATOR_DURATION_TIME = 200
+        const val MIN_RATE = 0.5f
         const val DEFAULT_RATE = 1f
         const val MAX_SCALE_RATE = 3f
     }
