@@ -3,8 +3,6 @@ package eu.kanade.tachiyomi
 import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
-import android.os.Build
-import android.webkit.WebView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
@@ -47,14 +45,6 @@ open class App : Application(), LifecycleObserver {
         LocaleHelper.updateConfiguration(this, resources.configuration)
 
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
-
-        // Avoid sharing WebView instance across multiple processes
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val processName = getProcessName()
-            if (packageName != processName) {
-                WebView.setDataDirectorySuffix(processName)
-            }
-        }
     }
 
     override fun attachBaseContext(base: Context) {
