@@ -26,7 +26,7 @@ internal object ExtensionLoader {
 
     private const val EXTENSION_FEATURE = "tachiyomi.extension"
     private const val METADATA_SOURCE_CLASS = "tachiyomi.extension.class"
-    const val LIB_VERSION_MIN = 1.0
+    const val LIB_VERSION_MIN = 1.2
     const val LIB_VERSION_MAX = 1.2
 
     private const val PACKAGE_FLAGS = PackageManager.GET_CONFIGURATIONS or PackageManager.GET_SIGNATURES

@@ -6,7 +6,7 @@ private val WEBVIEW_UA_VERSION_REGEX by lazy {
     Regex(""".*Chrome/(\d+)\..*""")
 }
 
-private const val MINIMUM_WEBVIEW_VERSION = 70
+private const val MINIMUM_WEBVIEW_VERSION = 79
 
 fun WebView.isOutdated(): Boolean {
     return getWebviewMajorVersion(this) < MINIMUM_WEBVIEW_VERSION
