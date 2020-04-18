@@ -4,17 +4,16 @@ import com.f2prateek.rx.preferences.Preference
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.lang.addTo
 import rx.subscriptions.CompositeSubscription
+import eu.kanade.tachiyomi.ui.reader.viewer.ViewerConfig
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 /**
  * Configuration used by webtoon viewers.
  */
-class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) {
 
     private val subscriptions = CompositeSubscription()
-
-    var imagePropertyChangedListener: (() -> Unit)? = null
+class WebtoonConfig(preferences: PreferencesHelper = Injekt.get()) : ViewerConfig() {
 
     var tappingEnabled = true
         private set

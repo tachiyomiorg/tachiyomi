@@ -4,17 +4,17 @@ import com.f2prateek.rx.preferences.Preference
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.lang.addTo
 import rx.subscriptions.CompositeSubscription
+import eu.kanade.tachiyomi.ui.reader.viewer.ViewerConfig
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 /**
  * Configuration used by pager viewers.
  */
-class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelper = Injekt.get()) {
 
     private val subscriptions = CompositeSubscription()
-
-    var imagePropertyChangedListener: (() -> Unit)? = null
+class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelper = Injekt.get()) :
+    ViewerConfig() {
 
     var tappingEnabled = true
         private set
