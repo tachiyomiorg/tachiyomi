@@ -84,13 +84,22 @@ class SearchPresenter(
                 }
 
                 val prevMangaChapters = db.getChapters(prevManga).executeAsBlocking()
-                val maxChapterRead = prevMangaChapters.filter { it.read }
-                        .maxBy { it.chapter_number }?.chapter_number
+                val maxChapterRead = prevMangaChapters
+                    .filter { it.read }
+                    .maxBy { it.chapter_number }?.chapter_number
+                val bookmarkedChapters = prevMangaChapters
+                    .filter { it.bookmark && it.isRecognizedNumber }
+                    .map { it.chapter_number }
                 if (maxChapterRead != null) {
                     val dbChapters = db.getChapters(manga).executeAsBlocking()
                     for (chapter in dbChapters) {
-                        if (chapter.isRecognizedNumber && chapter.chapter_number <= maxChapterRead) {
-                            chapter.read = true
+                        if (chapter.isRecognizedNumber) {
+                            if (chapter.chapter_number <= maxChapterRead) {
+                                chapter.read = true
+                            }
+                            if (chapter.chapter_number in bookmarkedChapters) {
+                                chapter.bookmark = true
+                            }
                         }
                     }
                     db.insertChapters(dbChapters).executeAsBlocking()
