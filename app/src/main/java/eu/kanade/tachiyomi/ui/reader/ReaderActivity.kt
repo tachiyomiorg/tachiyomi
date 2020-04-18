@@ -28,7 +28,6 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.databinding.ReaderActivityBinding
 import eu.kanade.tachiyomi.ui.base.activity.BaseRxActivity
 import eu.kanade.tachiyomi.ui.reader.ReaderPresenter.SetAsCoverResult.AddToLibraryFirst
@@ -57,9 +56,12 @@ import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import java.io.File
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.sample
 import nucleus.factory.RequiresPresenter
 import rx.Observable
-import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.subscriptions.CompositeSubscription
 import timber.log.Timber
@@ -125,7 +127,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
      * Called when the activity is created. Initializes the presenter and configuration.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(when (preferences.readerTheme().getOrDefault()) {
+        setTheme(when (preferences.readerTheme().get()) {
             0 -> R.style.Theme_Reader_Light
             else -> R.style.Theme_Reader
         })
@@ -317,7 +319,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
     private fun setMenuVisibility(visible: Boolean, animate: Boolean = true) {
         menuVisible = visible
         if (visible) {
-            if (preferences.fullscreen().getOrDefault()) {
+            if (preferences.fullscreen().get()) {
                 window.showBar()
             } else {
                 resetDefaultMenuAndBar()
@@ -338,11 +340,11 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
                 binding.readerMenuBottom.startAnimation(bottomAnimation)
             }
 
-            if (preferences.showPageNumber().getOrDefault()) {
+            if (preferences.showPageNumber().get()) {
                 config?.setPageNumberVisibility(false)
             }
         } else {
-            if (preferences.fullscreen().getOrDefault()) {
+            if (preferences.fullscreen().get()) {
                 window.hideBar()
             } else {
                 resetDefaultMenuAndBar()
@@ -361,7 +363,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
                 binding.readerMenuBottom.startAnimation(bottomAnimation)
             }
 
-            if (preferences.showPageNumber().getOrDefault()) {
+            if (preferences.showPageNumber().get()) {
                 config?.setPageNumberVisibility(true)
             }
         }
@@ -606,16 +608,6 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         private val subscriptions = CompositeSubscription()
 
         /**
-         * Custom brightness subscription.
-         */
-        private var customBrightnessSubscription: Subscription? = null
-
-        /**
-         * Custom color filter subscription.
-         */
-        private var customFilterColorSubscription: Subscription? = null
-
-        /**
          * Initializes the reader subscriptions.
          */
         init {
@@ -627,32 +619,40 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
             subscriptions += Observable.merge(initialRotation, rotationUpdates)
                     .subscribe { setOrientation(it) }
 
-            subscriptions += preferences.readerTheme().asObservable()
-                    .skip(1) // We only care about updates
-                    .subscribe { recreate() }
+            preferences.readerTheme().asFlow()
+                .drop(1) // We only care about updates
+                .onEach { recreate() }
+                .launchIn(scope)
 
-            subscriptions += preferences.showPageNumber().asObservable()
-                    .subscribe { setPageNumberVisibility(it) }
+            preferences.showPageNumber().asFlow()
+                .onEach { setPageNumberVisibility(it) }
+                .launchIn(scope)
 
-            subscriptions += preferences.trueColor().asObservable()
-                    .subscribe { setTrueColor(it) }
+            preferences.trueColor().asFlow()
+                .onEach { setTrueColor(it) }
+                .launchIn(scope)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                subscriptions += preferences.cutoutShort().asObservable()
-                        .subscribe { setCutoutShort(it) }
+                preferences.cutoutShort().asFlow()
+                    .onEach { setCutoutShort(it) }
+                    .launchIn(scope)
             }
 
-            subscriptions += preferences.keepScreenOn().asObservable()
-                    .subscribe { setKeepScreenOn(it) }
+            preferences.keepScreenOn().asFlow()
+                .onEach { setKeepScreenOn(it) }
+                .launchIn(scope)
 
-            subscriptions += preferences.customBrightness().asObservable()
-                    .subscribe { setCustomBrightness(it) }
+            preferences.customBrightness().asFlow()
+                .onEach { setCustomBrightness(it) }
+                .launchIn(scope)
 
-            subscriptions += preferences.colorFilter().asObservable()
-                    .subscribe { setColorFilter(it) }
+            preferences.colorFilter().asFlow()
+                .onEach { setColorFilter(it) }
+                .launchIn(scope)
 
-            subscriptions += preferences.colorFilterMode().asObservable()
-                    .subscribe { setColorFilter(preferences.colorFilter().getOrDefault()) }
+            preferences.colorFilterMode().asFlow()
+                .onEach { setColorFilter(preferences.colorFilter().get()) }
+                .launchIn(scope)
         }
 
         /**
@@ -660,8 +660,6 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
          */
         fun destroy() {
             subscriptions.unsubscribe()
-            customBrightnessSubscription = null
-            customFilterColorSubscription = null
         }
 
         /**
@@ -732,13 +730,11 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
          */
         private fun setCustomBrightness(enabled: Boolean) {
             if (enabled) {
-                customBrightnessSubscription = preferences.customBrightnessValue().asObservable()
-                        .sample(100, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-                        .subscribe { setCustomBrightnessValue(it) }
-
-                subscriptions.add(customBrightnessSubscription)
+                preferences.customBrightnessValue().asFlow()
+                    .sample(100)
+                    .onEach { setCustomBrightnessValue(it) }
+                    .launchIn(scope)
             } else {
-                customBrightnessSubscription?.let { subscriptions.remove(it) }
                 setCustomBrightnessValue(0)
             }
         }
@@ -748,13 +744,11 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
          */
         private fun setColorFilter(enabled: Boolean) {
             if (enabled) {
-                customFilterColorSubscription = preferences.colorFilterValue().asObservable()
-                        .sample(100, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-                        .subscribe { setColorFilterValue(it) }
-
-                subscriptions.add(customFilterColorSubscription)
+                preferences.colorFilterValue().asFlow()
+                    .sample(100)
+                    .onEach { setColorFilterValue(it) }
+                    .launchIn(scope)
             } else {
-                customFilterColorSubscription?.let { subscriptions.remove(it) }
                 binding.colorOverlay.gone()
             }
         }
@@ -794,7 +788,7 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
          */
         private fun setColorFilterValue(value: Int) {
             binding.colorOverlay.visible()
-            binding.colorOverlay.setFilterColor(value, preferences.colorFilterMode().getOrDefault())
+            binding.colorOverlay.setFilterColor(value, preferences.colorFilterMode().get())
         }
     }
 }

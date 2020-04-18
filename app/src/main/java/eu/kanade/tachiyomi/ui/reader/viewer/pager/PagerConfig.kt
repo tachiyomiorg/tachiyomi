@@ -23,24 +23,18 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
     var imageCropBorders = false
         private set
 
-    var doubleTapAnimDuration = 500
-        private set
-
     init {
         preferences.pageTransitions()
-                .register({ usePageTransitions = it })
+            .register({ usePageTransitions = it })
 
         preferences.imageScaleType()
-                .register({ imageScaleType = it }, { imagePropertyChangedListener?.invoke() })
+            .register({ imageScaleType = it }, { imagePropertyChangedListener?.invoke() })
 
         preferences.zoomStart()
-                .register({ zoomTypeFromPreference(it) }, { imagePropertyChangedListener?.invoke() })
+            .register({ zoomTypeFromPreference(it) }, { imagePropertyChangedListener?.invoke() })
 
         preferences.cropBorders()
-                .register({ imageCropBorders = it }, { imagePropertyChangedListener?.invoke() })
-
-        preferences.doubleTapAnimSpeed()
-                .register({ doubleTapAnimDuration = it })
+            .register({ imageCropBorders = it }, { imagePropertyChangedListener?.invoke() })
     }
 
     private fun zoomTypeFromPreference(value: Int) {

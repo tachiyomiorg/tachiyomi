@@ -155,7 +155,6 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
      */
     override fun destroy() {
         super.destroy()
-        config.unsubscribe()
         subscriptions.unsubscribe()
     }
 

@@ -24,9 +24,9 @@ import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
-import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.system.notificationManager
 import eu.kanade.tachiyomi.util.system.toast
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.recyclerview.scrollStateChanges
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
@@ -97,7 +97,7 @@ class UpdatesController : NucleusController<UpdatesControllerBinding, UpdatesPre
                 val firstPos = layoutManager.findFirstCompletelyVisibleItemPosition()
                 binding.swipeRefresh.isEnabled = firstPos <= 0
             }
-            .launchInUI()
+            .launchIn(scope)
 
         binding.swipeRefresh.setDistanceToTriggerSync((2 * 64 * view.resources.displayMetrics.density).toInt())
         binding.swipeRefresh.refreshes()
@@ -107,7 +107,7 @@ class UpdatesController : NucleusController<UpdatesControllerBinding, UpdatesPre
                 // It can be a very long operation, so we disable swipe refresh and show a toast.
                 binding.swipeRefresh.isRefreshing = false
             }
-            .launchInUI()
+            .launchIn(scope)
     }
 
     override fun onDestroyView(view: View) {

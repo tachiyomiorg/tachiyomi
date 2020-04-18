@@ -17,8 +17,8 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.databinding.CategoriesControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.system.toast
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
 
@@ -91,7 +91,7 @@ class CategoryController : NucleusController<CategoriesControllerBinding, Catego
             .onEach {
                 CategoryCreateDialog(this@CategoryController).showDialog(router, null)
             }
-            .launchInUI()
+            .launchIn(scope)
     }
 
     /**

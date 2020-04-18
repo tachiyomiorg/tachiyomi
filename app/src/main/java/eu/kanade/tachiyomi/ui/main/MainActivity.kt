@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -157,7 +156,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         setExtensionsBadge()
         preferences.extensionUpdatesCount().asFlow()
             .onEach { setExtensionsBadge() }
-            .launchIn(lifecycleScope)
+            .launchIn(scope)
     }
 
     override fun onNewIntent(intent: Intent) {

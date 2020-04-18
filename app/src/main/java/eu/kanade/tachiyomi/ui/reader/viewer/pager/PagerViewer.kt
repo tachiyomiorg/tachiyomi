@@ -116,14 +116,6 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
     }
 
     /**
-     * Destroys this viewer. Called when leaving the reader or swapping viewers.
-     */
-    override fun destroy() {
-        super.destroy()
-        config.unsubscribe()
-    }
-
-    /**
      * Called when a new page (either a [ReaderPage] or [ChapterTransition]) is marked as active
      */
     private fun onPageChange(position: Int) {

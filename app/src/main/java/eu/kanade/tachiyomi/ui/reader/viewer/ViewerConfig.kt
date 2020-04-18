@@ -2,20 +2,24 @@ package eu.kanade.tachiyomi.ui.reader.viewer
 
 import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.util.lang.addTo
-import eu.kanade.tachiyomi.util.lang.launchInUI
-import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import rx.subscriptions.CompositeSubscription
 
+/**
+ * Common configuration for all viewers.
+ */
 abstract class ViewerConfig(preferences: PreferencesHelper) {
 
-    private val subscriptions = CompositeSubscription()
+    private val scope = CoroutineScope(Job() + Dispatchers.Main)
 
     var imagePropertyChangedListener: (() -> Unit)? = null
 
     var tappingEnabled = true
     var longTapEnabled = true
+    var doubleTapAnimDuration = 500
     var volumeKeysEnabled = false
     var volumeKeysInverted = false
     var alwaysShowChapterTransition = true
@@ -27,6 +31,9 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
         preferences.readWithLongTap()
             .register({ longTapEnabled = it })
 
+        preferences.doubleTapAnimSpeed()
+            .register({ doubleTapAnimDuration = it })
+
         preferences.readWithVolumeKeys()
             .register({ volumeKeysEnabled = it })
 
@@ -37,31 +44,15 @@ abstract class ViewerConfig(preferences: PreferencesHelper) {
             .register({ alwaysShowChapterTransition = it })
     }
 
-    fun unsubscribe() {
-        subscriptions.unsubscribe()
-    }
-
-    fun <T> com.f2prateek.rx.preferences.Preference<T>.register(
-        valueAssignment: (T) -> Unit,
-        onChanged: (T) -> Unit = {}
-    ) {
-        asObservable()
-            .doOnNext(valueAssignment)
-            .skip(1)
-            .distinctUntilChanged()
-            .doOnNext(onChanged)
-            .subscribe()
-            .addTo(subscriptions)
-    }
-
     fun <T> Preference<T>.register(
         valueAssignment: (T) -> Unit,
         onChanged: (T) -> Unit = {}
     ) {
         asFlow()
-            .onEach { valueAssignment(it) }
-            .distinctUntilChanged()
-            .onEach { onChanged(it) }
-            .launchInUI()
+            .onEach {
+                valueAssignment(it)
+                onChanged(it)
+            }
+            .launchIn(scope)
     }
 }

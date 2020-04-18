@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
@@ -16,6 +17,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     val preferences: PreferencesHelper by injectLazy()
 
+    val scope = lifecycleScope
     lateinit var binding: VB
 
     @Suppress("LeakingThis")

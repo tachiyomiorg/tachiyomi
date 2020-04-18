@@ -34,13 +34,13 @@ import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.ui.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
-import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.lang.truncateCenter
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.util.view.toggle
 import eu.kanade.tachiyomi.util.view.visible
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
 import reactivecircus.flowbinding.android.view.longClicks
@@ -80,12 +80,12 @@ class MangaInfoController(private val fromSource: Boolean = false) :
         // Set onclickListener to toggle favorite when favorite button clicked.
         binding.btnFavorite.clicks()
             .onEach { onFavoriteClick() }
-            .launchInUI()
+            .launchIn(scope)
 
         // Set onLongClickListener to manage categories when favorite button is clicked.
         binding.btnFavorite.longClicks()
             .onEach { onFavoriteLongClick() }
-            .launchInUI()
+            .launchIn(scope)
 
         if (presenter.source is HttpSource) {
             binding.btnWebview.visible()
@@ -93,64 +93,64 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
             binding.btnWebview.clicks()
                 .onEach { openInWebView() }
-                .launchInUI()
+                .launchIn(scope)
             binding.btnShare.clicks()
                 .onEach { shareManga() }
-                .launchInUI()
+                .launchIn(scope)
         }
 
         // Set SwipeRefresh to refresh manga data.
         binding.swipeRefresh.refreshes()
             .onEach { fetchMangaFromSource() }
-            .launchInUI()
+            .launchIn(scope)
 
         binding.mangaFullTitle.longClicks()
             .onEach {
                 copyToClipboard(view.context.getString(R.string.title), binding.mangaFullTitle.text.toString())
             }
-            .launchInUI()
+            .launchIn(scope)
 
         binding.mangaFullTitle.clicks()
             .onEach {
                 performGlobalSearch(binding.mangaFullTitle.text.toString())
             }
-            .launchInUI()
+            .launchIn(scope)
 
         binding.mangaArtist.longClicks()
             .onEach {
                 copyToClipboard(binding.mangaArtistLabel.text.toString(), binding.mangaArtist.text.toString())
             }
-            .launchInUI()
+            .launchIn(scope)
 
         binding.mangaArtist.clicks()
             .onEach {
                 performGlobalSearch(binding.mangaArtist.text.toString())
             }
-            .launchInUI()
+            .launchIn(scope)
 
         binding.mangaAuthor.longClicks()
             .onEach {
                 copyToClipboard(binding.mangaAuthor.text.toString(), binding.mangaAuthor.text.toString())
             }
-            .launchInUI()
+            .launchIn(scope)
 
         binding.mangaAuthor.clicks()
             .onEach {
                 performGlobalSearch(binding.mangaAuthor.text.toString())
             }
-            .launchInUI()
+            .launchIn(scope)
 
         binding.mangaSummary.longClicks()
             .onEach {
                 copyToClipboard(view.context.getString(R.string.description), binding.mangaSummary.text.toString())
             }
-            .launchInUI()
+            .launchIn(scope)
 
         binding.mangaCover.longClicks()
             .onEach {
                 copyToClipboard(view.context.getString(R.string.title), presenter.manga.title)
             }
-            .launchInUI()
+            .launchIn(scope)
     }
 
     /**
@@ -272,10 +272,10 @@ class MangaInfoController(private val fromSource: Boolean = false) :
             // Handle showing more or less info
             binding.mangaSummary.clicks()
                 .onEach { toggleMangaInfo(view.context) }
-                .launchInUI()
+                .launchIn(scope)
             binding.mangaInfoToggle.clicks()
                 .onEach { toggleMangaInfo(view.context) }
-                .launchInUI()
+                .launchIn(scope)
 
             // Expand manga info if navigated from source listing
             if (initialLoad && fromSource) {

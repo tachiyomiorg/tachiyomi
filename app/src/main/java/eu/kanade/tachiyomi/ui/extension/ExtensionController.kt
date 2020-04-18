@@ -21,8 +21,8 @@ import eu.kanade.tachiyomi.extension.ExtensionUpdateJob
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
-import eu.kanade.tachiyomi.util.lang.launchInUI
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.appcompat.queryTextChanges
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
@@ -72,7 +72,7 @@ open class ExtensionController : NucleusController<ExtensionControllerBinding, E
         binding.extSwipeRefresh.isRefreshing = true
         binding.extSwipeRefresh.refreshes()
             .onEach { presenter.findAvailableExtensions() }
-            .launchInUI()
+            .launchIn(scope)
 
         // Initialize adapter, scroll listener and recycler views
         adapter = ExtensionAdapter(this)
@@ -151,7 +151,7 @@ open class ExtensionController : NucleusController<ExtensionControllerBinding, E
                 query = it.toString()
                 drawExtensions()
             }
-            .launchInUI()
+            .launchIn(scope)
 
         // Fixes problem with the overflow icon showing up in lieu of search
         searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })

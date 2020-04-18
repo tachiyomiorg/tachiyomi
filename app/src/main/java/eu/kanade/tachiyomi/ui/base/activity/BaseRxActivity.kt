@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.ui.base.activity
 
 import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.ui.security.SecureActivityDelegate
@@ -12,6 +13,7 @@ abstract class BaseRxActivity<VB : ViewBinding, P : BasePresenter<*>> : NucleusA
     @Suppress("LeakingThis")
     private val secureActivityDelegate = SecureActivityDelegate(this)
 
+    val scope = lifecycleScope
     lateinit var binding: VB
 
     init {

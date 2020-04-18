@@ -26,7 +26,6 @@ import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.databinding.LibraryControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
@@ -34,12 +33,12 @@ import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
-import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import java.io.IOException
 import kotlinx.android.synthetic.main.main_activity.tabs
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.appcompat.queryTextChanges
 import reactivecircus.flowbinding.viewpager.pageSelections
@@ -61,8 +60,7 @@ class LibraryController(
     /**
      * Position of the active category.
      */
-    var activeCategory: Int = preferences.lastUsedCategory().getOrDefault()
-        private set
+    private var activeCategory: Int = preferences.lastUsedCategory().get()
 
     /**
      * Action mode for selections.
@@ -154,7 +152,7 @@ class LibraryController(
                 preferences.lastUsedCategory().set(it)
                 activeCategory = it
             }
-            .launchInUI()
+            .launchIn(scope)
 
         getColumnsPreferenceForCurrentOrientation().asObservable()
                 .doOnNext { mangaPerRow = it }
@@ -334,7 +332,7 @@ class LibraryController(
                 query = it.toString()
                 searchRelay.call(query)
             }
-            .launchInUI()
+            .launchIn(scope)
 
         if (query.isNotEmpty()) {
             searchItem.expandActionView()

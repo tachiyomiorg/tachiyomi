@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.ui.extension
 
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.ui.setting.SettingsController
 import eu.kanade.tachiyomi.util.preference.onChange
@@ -17,7 +16,7 @@ class ExtensionFilterController : SettingsController() {
     override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
         titleRes = R.string.action_filter
 
-        val activeLangs = preferences.enabledLanguages().getOrDefault()
+        val activeLangs = preferences.enabledLanguages().get()
 
         val availableLangs =
                 Injekt.get<ExtensionManager>().availableExtensions.groupBy {
@@ -37,7 +36,7 @@ class ExtensionFilterController : SettingsController() {
 
                 onChange { newValue ->
                     val checked = newValue as Boolean
-                    val currentActiveLangs = preferences.enabledLanguages().getOrDefault()
+                    val currentActiveLangs = preferences.enabledLanguages().get()
 
                     if (checked) {
                         preferences.enabledLanguages().set(currentActiveLangs + it)

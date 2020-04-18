@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.ui.source
 
 import android.os.Bundle
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.SourceManager
@@ -49,7 +48,7 @@ class SourcePresenter(
         sourceSubscription?.unsubscribe()
 
         val pinnedSources = mutableListOf<SourceItem>()
-        val pinnedCatalogues = preferences.pinnedCatalogues().getOrDefault()
+        val pinnedCatalogues = preferences.pinnedCatalogues().get()
 
         val map = TreeMap<String, MutableList<CatalogueSource>> { d1, d2 ->
             // Catalogues without a lang defined will be placed at the end
@@ -102,8 +101,8 @@ class SourcePresenter(
      * @return list containing enabled sources.
      */
     private fun getEnabledSources(): List<CatalogueSource> {
-        val languages = preferences.enabledLanguages().getOrDefault()
-        val hiddenCatalogues = preferences.hiddenCatalogues().getOrDefault()
+        val languages = preferences.enabledLanguages().get()
+        val hiddenCatalogues = preferences.hiddenCatalogues().get()
 
         return sourceManager.getCatalogueSources()
                 .filter { it.lang in languages }

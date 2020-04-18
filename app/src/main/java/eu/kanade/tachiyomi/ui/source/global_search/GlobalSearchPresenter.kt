@@ -4,7 +4,6 @@ import android.os.Bundle
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.Source
@@ -100,9 +99,9 @@ open class GlobalSearchPresenter(
      * @return list containing enabled sources.
      */
     protected open fun getEnabledSources(): List<CatalogueSource> {
-        val languages = preferences.enabledLanguages().getOrDefault()
-        val hiddenCatalogues = preferences.hiddenCatalogues().getOrDefault()
-        val pinnedCatalogues = preferences.pinnedCatalogues().getOrDefault()
+        val languages = preferences.enabledLanguages().get()
+        val hiddenCatalogues = preferences.hiddenCatalogues().get()
+        val pinnedCatalogues = preferences.pinnedCatalogues().get()
 
         return sourceManager.getCatalogueSources()
                 .filter { it.lang in languages }

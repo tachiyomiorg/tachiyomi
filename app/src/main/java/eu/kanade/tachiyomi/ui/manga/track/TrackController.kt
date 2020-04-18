@@ -11,8 +11,8 @@ import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.databinding.TrackControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.manga.MangaController
-import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.system.toast
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 import timber.log.Timber
@@ -50,7 +50,7 @@ class TrackController : NucleusController<TrackControllerBinding, TrackPresenter
         binding.swipeRefresh.isEnabled = false
         binding.swipeRefresh.refreshes()
             .onEach { presenter.refresh() }
-            .launchInUI()
+            .launchIn(scope)
     }
 
     override fun onDestroyView(view: View) {
