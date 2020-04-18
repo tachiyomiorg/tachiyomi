@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:baselineAligned="false"
     android:orientation="horizontal"
     android:paddingStart="@dimen/dialog_content_padding"
     android:paddingTop="@dimen/dialog_margin_top_content"
     android:paddingEnd="@dimen/dialog_content_padding"
-    android:paddingBottom="@dimen/dialog_content_padding"
-    android:baselineAligned="false">
+    android:paddingBottom="@dimen/dialog_content_padding">
 
     <LinearLayout
         android:layout_width="0dp"

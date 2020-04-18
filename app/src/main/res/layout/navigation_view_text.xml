@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
+    android:baselineAligned="false"
     android:focusable="true"
     android:paddingStart="?attr/listPreferredItemPaddingStart"
-    android:paddingEnd="?attr/listPreferredItemPaddingEnd"
-    android:baselineAligned="false">
+    android:paddingEnd="?attr/listPreferredItemPaddingEnd">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nav_view_item_wrapper"

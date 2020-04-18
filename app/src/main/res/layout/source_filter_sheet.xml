@@ -21,10 +21,10 @@
             android:alpha="0.5"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_drag_pill_24dp"
-            app:tint="?attr/colorOnBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?attr/colorOnBackground" />
 
         <Button
             android:id="@+id/reset_btn"

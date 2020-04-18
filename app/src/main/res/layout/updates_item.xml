@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/material_component_lists_two_line_height"
-    android:paddingEnd="16dp"
-    android:background="@drawable/list_item_selector">
+    android:background="@drawable/list_item_selector"
+    android:paddingEnd="16dp">
 
     <ImageView
         android:id="@+id/manga_cover"

@@ -19,8 +19,8 @@
         android:adjustViewBounds="true"
         android:scaleType="center"
         android:src="@drawable/nnf_ic_file_folder"
-        app:tint="?attr/colorAccent"
         android:visibility="visible"
+        app:tint="?attr/colorAccent"
         tools:ignore="ContentDescription" />
 
     <TextView

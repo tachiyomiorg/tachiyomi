@@ -14,11 +14,11 @@
         android:layout_alignParentStart="true"
         android:layout_gravity="start"
         android:scaleType="center"
-        app:tint="?android:attr/textColorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_reorder_grey_24dp" />
+        app:srcCompat="@drawable/ic_reorder_grey_24dp"
+        app:tint="?android:attr/textColorPrimary" />
 
     <TextView
         android:id="@+id/manga_full_title"

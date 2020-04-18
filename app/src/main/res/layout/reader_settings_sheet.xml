@@ -260,9 +260,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/pref_webtoon_side_padding"
+        app:layout_constraintBaseline_toBaselineOf="@id/webtoon_side_padding"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/verticalcenter"
-        app:layout_constraintBaseline_toBaselineOf="@id/webtoon_side_padding"/>
+        app:layout_constraintRight_toLeftOf="@id/verticalcenter" />
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/webtoon_side_padding"
@@ -272,7 +272,7 @@
         android:entries="@array/webtoon_side_padding"
         app:layout_constraintLeft_toRightOf="@id/verticalcenter"
         app:layout_constraintRight_toRightOf="@id/spinner_end"
-        app:layout_constraintTop_toBottomOf="@id/crop_borders_webtoon"/>
+        app:layout_constraintTop_toBottomOf="@id/crop_borders_webtoon" />
 
     <!-- Groups of preferences -->
 

@@ -98,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:ellipsize="end"
+            android:fontFamily="@font/ptsans_narrow_bold"
             android:lineSpacingExtra="-4dp"
             android:maxLines="2"
             android:padding="8dp"
@@ -105,7 +106,6 @@
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="4"
-            android:fontFamily="@font/ptsans_narrow_bold"
             tools:text="Sample name" />
 
         <ProgressBar
