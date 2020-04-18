@@ -418,6 +418,9 @@
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Source</string>
     <string name="manga_info_genres_label">Genres</string>
+    <string name="manga_info_about_label">About</string>
+    <string name="manga_info_expand">Show more info</string>
+    <string name="manga_info_collapse">Show less info</string>
     <string name="circular_icon">Circular</string>
     <string name="rounded_icon">Rounded</string>
     <string name="square_icon">Square</string>

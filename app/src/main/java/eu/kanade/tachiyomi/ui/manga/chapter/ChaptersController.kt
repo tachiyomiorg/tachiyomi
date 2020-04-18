@@ -269,7 +269,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
 
     private fun initialFetchChapters() {
         // Only fetch if this view is from the catalog and it hasn't requested previously
-        if ((parentController as MangaController).fromCatalogue && !presenter.hasRequested) {
+        if ((parentController as MangaController).fromSource && !presenter.hasRequested) {
             fetchChaptersFromSource()
         }
     }

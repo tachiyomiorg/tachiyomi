@@ -80,6 +80,7 @@
                     style="@style/TextAppearance.Medium.Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
                     android:maxLines="2"
                     android:text="@string/manga_info_full_title_label"
                     android:textIsSelectable="false"
@@ -190,7 +191,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingStart="16dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="16dp"
+                android:paddingBottom="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/guideline">
@@ -242,9 +245,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/pref_category_about"
+                android:text="@string/manga_info_about_label"
                 android:textIsSelectable="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -257,6 +259,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:maxLines="3"
                 android:textIsSelectable="false"
                 app:layout_constraintBottom_toTopOf="@id/manga_genres_tags"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -271,11 +277,24 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
+                android:visibility="gone"
                 app:chipSpacingHorizontal="4dp"
                 app:layout_constrainedHeight="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/manga_summary" />
+
+            <Button
+                android:id="@+id/manga_info_toggle"
+                style="@style/Theme.Widget.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/manga_info_expand"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/manga_genres_tags" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
