@@ -327,15 +327,6 @@ class LibraryController(
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
-        if (query.isNotEmpty()) {
-            searchItem.expandActionView()
-            searchView.setQuery(query, true)
-            searchView.clearFocus()
-        }
-
-        // Mutate the filter icon because it needs to be tinted and the resource is shared.
-        menu.findItem(R.id.action_filter).icon.mutate()
-
         searchView.queryTextChanges()
             // Ignore events if this controller isn't at the top
             .filter { router.backstack.lastOrNull()?.controller() == this }
@@ -345,7 +336,19 @@ class LibraryController(
             }
             .launchInUI()
 
+        if (query.isNotEmpty()) {
+            searchItem.expandActionView()
+            searchView.setQuery(query, true)
+            searchView.clearFocus()
+
+            // Manually trigger the search since the binding doesn't trigger for some reason
+            searchRelay.call(query)
+        }
+
         searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })
+
+        // Mutate the filter icon because it needs to be tinted and the resource is shared.
+        menu.findItem(R.id.action_filter).icon.mutate()
     }
 
     fun search(query: String) {
