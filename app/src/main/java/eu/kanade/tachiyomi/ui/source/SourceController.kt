@@ -30,8 +30,8 @@ import eu.kanade.tachiyomi.ui.setting.SettingsSourcesController
 import eu.kanade.tachiyomi.ui.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchController
 import eu.kanade.tachiyomi.ui.source.latest.LatestUpdatesController
+import eu.kanade.tachiyomi.util.lang.launchInUI
 import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.appcompat.QueryTextEvent
 import reactivecircus.flowbinding.appcompat.queryTextEvents
@@ -199,7 +199,7 @@ class SourceController : NucleusController<SourcePresenter>(),
         searchView.queryTextEvents()
             .filter { it is QueryTextEvent.QuerySubmitted }
             .onEach { performGlobalSearch(it.queryText.toString()) }
-            .launchIn(uiScope)
+            .launchInUI()
     }
 
     fun performGlobalSearch(query: String) {

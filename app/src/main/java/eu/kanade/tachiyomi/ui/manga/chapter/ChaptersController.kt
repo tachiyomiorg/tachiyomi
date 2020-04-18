@@ -27,6 +27,7 @@ import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.popControllerWithTag
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
+import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.getCoordinates
@@ -34,7 +35,6 @@ import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.shrinkOnScroll
 import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.util.view.visible
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
@@ -95,7 +95,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
 
         binding.swipeRefresh.refreshes()
             .onEach { fetchChaptersFromSource() }
-            .launchIn(uiScope)
+            .launchInUI()
 
         binding.fab.clicks()
             .onEach {
@@ -117,7 +117,7 @@ class ChaptersController : NucleusController<ChaptersPresenter>(),
                     view.context.toast(R.string.no_next_chapter)
                 }
             }
-            .launchIn(uiScope)
+            .launchInUI()
 
         binding.fab.shrinkOnScroll(binding.recycler)
     }

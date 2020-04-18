@@ -15,8 +15,6 @@ import com.bluelinelabs.conductor.ControllerChangeType
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.controller.BaseController
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import rx.Observable
 import rx.Subscription
 import rx.subscriptions.CompositeSubscription
@@ -26,8 +24,6 @@ import uy.kohesive.injekt.api.get
 abstract class SettingsController : PreferenceController() {
 
     val preferences: PreferencesHelper = Injekt.get()
-
-    val uiScope = CoroutineScope(Dispatchers.Main)
 
     var untilDestroySubscriptions = CompositeSubscription()
         private set

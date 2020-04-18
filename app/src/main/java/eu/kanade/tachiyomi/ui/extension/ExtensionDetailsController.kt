@@ -29,10 +29,10 @@ import eu.kanade.tachiyomi.databinding.ExtensionDetailControllerBinding
 import eu.kanade.tachiyomi.source.ConfigurableSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import eu.kanade.tachiyomi.util.view.visible
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
 
@@ -80,7 +80,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         extension.getApplicationIcon(context)?.let { binding.extensionIcon.setImageDrawable(it) }
         binding.extensionUninstallButton.clicks()
             .onEach { presenter.uninstallExtension() }
-            .launchIn(uiScope)
+            .launchInUI()
 
         if (extension.isObsolete) {
             binding.extensionObsolete.visible()

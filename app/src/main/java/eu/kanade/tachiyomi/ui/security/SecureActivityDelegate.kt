@@ -5,18 +5,14 @@ import android.view.WindowManager
 import androidx.biometric.BiometricManager
 import androidx.fragment.app.FragmentActivity
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.util.lang.launchInUI
 import java.util.Date
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uy.kohesive.injekt.injectLazy
 
 class SecureActivityDelegate(private val activity: FragmentActivity) {
 
     private val preferences by injectLazy<PreferencesHelper>()
-
-    private val uiScope = CoroutineScope(Dispatchers.Main)
 
     fun onCreate() {
         preferences.secureScreen().asFlow()
@@ -27,7 +23,7 @@ class SecureActivityDelegate(private val activity: FragmentActivity) {
                     activity.window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
                 }
             }
-            .launchIn(uiScope)
+            .launchInUI()
     }
 
     fun onResume() {

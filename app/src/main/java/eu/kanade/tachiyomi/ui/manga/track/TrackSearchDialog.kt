@@ -10,6 +10,7 @@ import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
+import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.view.invisible
 import eu.kanade.tachiyomi.util.view.visible
 import java.util.concurrent.TimeUnit
@@ -18,7 +19,6 @@ import kotlinx.android.synthetic.main.track_search_dialog.view.track_search
 import kotlinx.android.synthetic.main.track_search_dialog.view.track_search_list
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.widget.itemClicks
@@ -80,7 +80,7 @@ class TrackSearchDialog : DialogController {
             .onEach { position ->
                 selectedItem = adapter.getItem(position)
             }
-            .launchIn(uiScope)
+            .launchInUI()
 
         // Do an initial search based on the manga's title
         if (savedState == null) {
@@ -99,11 +99,11 @@ class TrackSearchDialog : DialogController {
     override fun onAttach(view: View) {
         super.onAttach(view)
         dialogView!!.track_search.textChanges()
-                .debounce(TimeUnit.SECONDS.toMillis(1))
-                .map { it.toString() }
-                .filter { it.isNotBlank() }
-                .onEach { search(it) }
-                .launchIn(uiScope)
+            .debounce(TimeUnit.SECONDS.toMillis(1))
+            .map { it.toString() }
+            .filter { it.isNotBlank() }
+            .onEach { search(it) }
+            .launchInUI()
     }
 
     private fun search(query: String) {

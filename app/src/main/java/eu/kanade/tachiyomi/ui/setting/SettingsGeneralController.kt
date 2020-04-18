@@ -7,6 +7,7 @@ import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
+import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.entriesRes
 import eu.kanade.tachiyomi.util.preference.intListPreference
@@ -17,7 +18,6 @@ import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.LocaleHelper
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class SettingsGeneralController : SettingsController() {
@@ -142,7 +142,7 @@ class SettingsGeneralController : SettingsController() {
                 isVisible = preferences.themeMode().get() != Values.THEME_MODE_DARK
                 preferences.themeMode().asFlow()
                     .onEach { isVisible = it != Values.THEME_MODE_DARK }
-                    .launchIn(uiScope)
+                    .launchInUI()
 
                 onChange {
                     if (preferences.themeMode().get() != Values.THEME_MODE_DARK) {
@@ -168,7 +168,7 @@ class SettingsGeneralController : SettingsController() {
                 isVisible = preferences.themeMode().get() != Values.THEME_MODE_LIGHT
                 preferences.themeMode().asFlow()
                     .onEach { isVisible = it != Values.THEME_MODE_LIGHT }
-                    .launchIn(uiScope)
+                    .launchInUI()
 
                 onChange {
                     if (preferences.themeMode().get() != Values.THEME_MODE_LIGHT) {
