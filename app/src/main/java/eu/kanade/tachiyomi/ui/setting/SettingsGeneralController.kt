@@ -62,15 +62,14 @@ class SettingsGeneralController : SettingsController() {
                 titleRes = R.string.pref_language
 
                 val langs = mutableListOf<Pair<String, String>>()
-                langs += Pair("", context.getString(R.string.system_default))
+                langs += Pair("", "${context.getString(R.string.system_default)} (${LocaleHelper.getDisplayName("")})")
                 langs += arrayOf(
                     "ar", "bg", "bn", "ca", "cs", "de", "el", "en-US", "en-GB", "es", "fr", "he",
                     "hi", "hu", "in", "it", "ja", "ko", "lv", "ms", "nb-rNO", "nl", "pl", "pt",
                     "pt-BR", "ro", "ru", "sc", "sr", "sv", "th", "tl", "tr", "uk", "vi", "zh-rCN"
                 )
                     .map {
-                        val locale = LocaleHelper.getLocaleFromString(it)
-                        Pair(it, locale!!.getDisplayName(locale).capitalize())
+                        Pair(it, LocaleHelper.getDisplayName(it))
                     }
                     .sortedBy { it.second }
 

@@ -142,7 +142,7 @@
     <string name="theme_dark_amoled">AMOLED black</string>
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>
-    <string name="system_default">System default</string>
+    <string name="system_default">Default</string>
     <string name="pref_date_format">Date format</string>
     <string name="pref_confirm_exit">Confirm exit</string>
     <string name="pref_manage_notifications">Manage notifications</string>

@@ -73,7 +73,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
 
         binding.extensionTitle.text = extension.name
         binding.extensionVersion.text = context.getString(R.string.ext_version_info, extension.versionName)
-        binding.extensionLang.text = context.getString(R.string.ext_language_info, LocaleHelper.getDisplayName(extension.lang, context))
+        binding.extensionLang.text = context.getString(R.string.ext_language_info, LocaleHelper.getSourceDisplayName(extension.lang, context))
         binding.extensionPkg.text = extension.pkgName
         extension.getApplicationIcon(context)?.let { binding.extensionIcon.setImageDrawable(it) }
         binding.extensionUninstallButton.clicks()
