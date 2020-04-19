@@ -172,14 +172,6 @@
     </style>
 
 
-    <style name="Theme.Widget.CheckBox" />
-
-    <style name="Theme.Widget.CheckBox.Light" parent="TextAppearance.Regular.Body1">
-        <item name="android:textColor">@color/md_white_1000</item>
-        <item name="buttonTint">@color/md_white_1000</item>
-    </style>
-
-
     <style name="Theme.Widget.SpinnerItem" parent="Widget.AppCompat.DropDownItem.Spinner">
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:background">@drawable/list_item_selector</item>
@@ -302,16 +294,6 @@
     <!--===-->
     <!--OLD-->
     <!--===-->
-    <style name="AlertDialogStyle" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <item name="android:windowTitleStyle">@style/DialogTitleText</item>
-        <item name="colorAccent">?attr/colorPrimary</item>
-    </style>
-
-    <style name="DialogTitleText">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
-    </style>
-
     <style name="FilePickerTheme" parent="NNF_BaseTheme.Light">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
@@ -325,15 +307,5 @@
     </style>
 
     <style name="FilePickerAlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert" />
-
-    <style name="reader_settings_popup_animation">
-        <item name="android:windowEnterAnimation">@anim/enter_from_right</item>
-        <item name="android:windowExitAnimation">@anim/exit_to_right</item>
-    </style>
-
-    <style name="reader_brightness_popup_animation">
-        <item name="android:windowEnterAnimation">@anim/enter_from_left</item>
-        <item name="android:windowExitAnimation">@anim/exit_to_left</item>
-    </style>
 
 </resources>

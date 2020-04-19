@@ -59,7 +59,8 @@
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
 
         <!-- Custom Attributes-->
-        <item name="selectable_library_drawable">@drawable/library_item_selector_light</item>
+        <item name="colorLibrarySelection">?attr/colorAccent</item>
+        <item name="colorLibrarySelectionActive">@color/selectorColorLight</item>
         <item name="colorFilterActive">@color/filterColorDark</item>
     </style>
 
@@ -134,7 +135,8 @@
         <item name="md_background_color">?attr/colorSurface</item>
 
         <!-- Custom Attributes-->
-        <item name="selectable_library_drawable">@drawable/library_item_selector_dark</item>
+        <item name="colorLibrarySelection">?attr/colorAccent</item>
+        <item name="colorLibrarySelectionActive">@color/selectorColorDark</item>
         <item name="colorFilterActive">@color/filterColorDark</item>
     </style>
 
@@ -163,7 +165,8 @@
         <item name="md_background_color">@color/colorAmoledPrimary</item>
 
         <!-- Custom Attributes-->
-        <item name="selectable_library_drawable">@drawable/library_item_selector_amoled</item>
+        <item name="colorLibrarySelection">@color/selectorColorDark</item>
+        <item name="colorLibrarySelectionActive">@color/selectorColorDark</item>
     </style>
 
     <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled">

@@ -11,7 +11,8 @@
         <attr name="max_seek" format="integer"/>
     </declare-styleable>
 
-    <attr name="selectable_library_drawable" format="reference|integer"/>
+    <attr name="colorLibrarySelection" format="reference|integer"/>
+    <attr name="colorLibrarySelectionActive" format="reference|integer"/>
     <attr name="colorFilterActive" format="reference|integer"/>
     <attr name="colorBackgroundSplash" format="reference|integer"/>
 
