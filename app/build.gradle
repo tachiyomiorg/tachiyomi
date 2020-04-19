@@ -281,7 +281,7 @@ repositories {
 
 // See https://kotlinlang.org/docs/reference/experimental.html#experimental-status-of-experimental-api-markers
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile).all {
-    kotlinOptions.freeCompilerArgs += ["-Xuse-experimental=kotlin.Experimental"]
+    kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlin.Experimental"]
 }
 
 // Duplicating Hebrew string assets due to some locale code issues on different devices
