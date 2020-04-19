@@ -26,6 +26,7 @@
     <string name="label_help">Help</string>
 
     <string name="unlock_app">Unlock Tachiyomi</string>
+    <string name="confirm_exit">Press back again to exit</string>
 
     <!-- Actions -->
     <string name="action_settings">Settings</string>
@@ -143,6 +144,7 @@
     <string name="pref_language">Language</string>
     <string name="system_default">System default</string>
     <string name="pref_date_format">Date format</string>
+    <string name="pref_confirm_exit">Confirm exit</string>
     <string name="pref_manage_notifications">Manage notifications</string>
 
     <string name="pref_category_security">Security</string>

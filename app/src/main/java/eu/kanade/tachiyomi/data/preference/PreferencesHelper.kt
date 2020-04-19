@@ -54,6 +54,8 @@ class PreferencesHelper(val context: Context) {
 
     fun startScreen() = prefs.getInt(Keys.startScreen, 1)
 
+    fun confirmExit() = prefs.getBoolean(Keys.confirmExit, false)
+
     fun useBiometricLock() = flowPrefs.getBoolean(Keys.useBiometricLock, false)
 
     fun lockAppAfter() = flowPrefs.getInt(Keys.lockAppAfter, 0)

@@ -4,6 +4,7 @@ import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
+import android.widget.Toast
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -30,10 +31,12 @@ import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.ui.source.SourceController
 import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchController
 import eu.kanade.tachiyomi.util.lang.launchInUI
+import eu.kanade.tachiyomi.util.lang.launchUI
 import java.util.Date
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -53,6 +56,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
     lateinit var tabAnimator: ViewHeightAnimator
     private lateinit var bottomNavAnimator: ViewHeightAnimator
 
+    private var isConfirmingExit: Boolean = false
     private var isHandlingShortcut: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -259,10 +263,33 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
     override fun onBackPressed() {
         val backstackSize = router.backstackSize
         if (backstackSize == 1 && router.getControllerWithTag("$startScreenId") == null) {
+            // Return to start screen
             setSelectedNavItem(startScreenId)
+        } else if (shouldHandleExitConfirmation()) {
+            // Exit confirmation (resets after 2 seconds)
+            launchUI { resetExitConfirmation() }
         } else if (backstackSize == 1 || !router.handleBack()) {
+            // Regular back
             super.onBackPressed()
         }
+    }
+
+    private suspend fun resetExitConfirmation() {
+        isConfirmingExit = true
+        val toast = Toast.makeText(this, R.string.confirm_exit, Toast.LENGTH_LONG)
+        toast.show()
+
+        delay(2000)
+
+        toast.cancel()
+        isConfirmingExit = false
+    }
+
+    private fun shouldHandleExitConfirmation(): Boolean {
+        return router.backstackSize == 1 &&
+            router.getControllerWithTag("$startScreenId") != null &&
+            preferences.confirmExit() &&
+            !isConfirmingExit
     }
 
     fun setSelectedNavItem(itemId: Int) {

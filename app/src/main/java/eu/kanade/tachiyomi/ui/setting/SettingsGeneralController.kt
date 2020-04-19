@@ -16,6 +16,7 @@ import eu.kanade.tachiyomi.util.preference.onChange
 import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
+import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import kotlinx.coroutines.flow.onEach
@@ -35,6 +36,11 @@ class SettingsGeneralController : SettingsController() {
             entryValues = arrayOf("1", "3", "2")
             defaultValue = "1"
             summary = "%s"
+        }
+        switchPreference {
+            key = Keys.confirmExit
+            titleRes = R.string.pref_confirm_exit
+            defaultValue = false
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             preference {
