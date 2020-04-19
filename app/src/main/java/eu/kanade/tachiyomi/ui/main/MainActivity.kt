@@ -32,6 +32,8 @@ import eu.kanade.tachiyomi.ui.source.SourceController
 import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchController
 import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.lang.launchUI
+import eu.kanade.tachiyomi.util.system.WebviewUtil
+import eu.kanade.tachiyomi.util.system.toast
 import java.util.Date
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.Dispatchers
@@ -63,6 +65,12 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         super.onCreate(savedInstanceState)
 
         binding = MainActivityBinding.inflate(layoutInflater)
+
+        // Enforce Webview availability
+        if (!WebviewUtil.supportsWebview(this)) {
+            toast(R.string.information_webview_required, Toast.LENGTH_LONG)
+            finishAndRemoveTask()
+        }
 
         // Do not let the launcher create a new activity http://stackoverflow.com/questions/16283079
         if (!isTaskRoot) {
