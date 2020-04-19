@@ -273,7 +273,7 @@ class BackupRestoreService : Service() {
     private fun writeErrorLog(): File {
         try {
             if (errors.isNotEmpty()) {
-                val destFile = File(externalCacheDir, "tachiyomi_restore.log")
+                val destFile = File(externalCacheDir, "tachiyomi_restore.txt")
                 val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault())
 
                 destFile.bufferedWriter().use { out ->
