@@ -59,10 +59,6 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextAppearance.Regular.Body1.Light">
-        <item name="android:textColor">@color/textColorPrimaryDark</item>
-    </style>
-
     <style name="TextAppearance.Regular.Body1.Secondary">
         <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
@@ -71,12 +67,8 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="TextAppearance.Regular.Caption.Light">
-        <item name="android:textColor">@color/textColorPrimaryDark</item>
-    </style>
-
     <style name="TextAppearance.Regular.Caption.Hint">
-        <item name="android:textColor">?android:attr/textColorHint</item>
+        <item name="android:textColor">@color/material_on_surface_emphasis_medium</item>
     </style>
 
     <style name="TextAppearance.Regular.SubHeading">
@@ -89,14 +81,6 @@
 
     <style name="TextAppearance.Regular.SubHeading.Secondary">
         <item name="android:textColor">?android:attr/textColorSecondary</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading.Light">
-        <item name="android:textColor">@color/textColorPrimaryDark</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading.Light.Bold">
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextAppearance.Medium">
@@ -190,7 +174,8 @@
 
     <style name="Theme.Widget.CheckBox" />
 
-    <style name="Theme.Widget.CheckBox.Light" parent="TextAppearance.Regular.Body1.Light">
+    <style name="Theme.Widget.CheckBox.Light" parent="TextAppearance.Regular.Body1">
+        <item name="android:textColor">@color/md_white_1000</item>
         <item name="buttonTint">@color/md_white_1000</item>
     </style>
 

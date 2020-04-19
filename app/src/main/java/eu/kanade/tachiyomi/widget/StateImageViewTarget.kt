@@ -4,11 +4,11 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.ImageView.ScaleType
+import androidx.core.content.ContextCompat
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.bumptech.glide.request.target.ImageViewTarget
 import com.bumptech.glide.request.transition.Transition
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.visible
 
@@ -24,11 +24,9 @@ import eu.kanade.tachiyomi.util.view.visible
 class StateImageViewTarget(
     view: ImageView,
     val progress: View? = null,
-    val errorDrawableRes: Int = R.drawable.ic_broken_image_grey_24dp,
-    val errorScaleType: ScaleType = ScaleType.CENTER
-) :
-
-        ImageViewTarget<Drawable>(view) {
+    private val errorDrawableRes: Int = R.drawable.ic_broken_image_grey_24dp,
+    private val errorScaleType: ScaleType = ScaleType.CENTER
+) : ImageViewTarget<Drawable>(view) {
 
     private var resource: Drawable? = null
 
@@ -48,7 +46,7 @@ class StateImageViewTarget(
         view.scaleType = errorScaleType
 
         val vector = VectorDrawableCompat.create(view.context.resources, errorDrawableRes, null)
-        vector?.setTint(view.context.getResourceColor(android.R.attr.textColorSecondary))
+        vector?.setTint(ContextCompat.getColor(view.context, com.google.android.material.R.color.material_on_background_disabled))
         view.setImageDrawable(vector)
     }
 
