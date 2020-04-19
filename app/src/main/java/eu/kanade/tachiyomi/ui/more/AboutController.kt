@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
@@ -73,6 +74,15 @@ class AboutController : SettingsController() {
             }
         }
         preference {
+            titleRes = R.string.website
+            val url = "https://tachiyomi.org"
+            summary = url
+            onClick {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+            }
+        }
+        preference {
             title = "Discord"
             val url = "https://discord.gg/tachiyomi"
             summary = url
@@ -107,6 +117,13 @@ class AboutController : SettingsController() {
 
             onClick {
                 ChangelogDialogController().showDialog(router)
+            }
+        }
+        preference {
+            titleRes = R.string.licenses
+
+            onClick {
+                startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
             }
         }
     }
