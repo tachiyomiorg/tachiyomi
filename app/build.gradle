@@ -89,11 +89,14 @@ android {
     }
 
     packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
         exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE'
+        exclude 'META-INF/*.version'
+        exclude 'META-INF/CHANGES'
+        exclude 'META-INF/README.md'
     }
 
     lintOptions {
