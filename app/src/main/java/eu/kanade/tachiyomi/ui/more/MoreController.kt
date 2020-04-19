@@ -32,8 +32,8 @@ class MoreController : SettingsController(), RootController {
         val tintColor = context.getResourceColor(R.attr.colorAccent)
 
         switchPreference {
-            key = Keys.offlineMode
-            titleRes = R.string.label_offline_mode
+            key = Keys.downloadedOnly
+            titleRes = R.string.label_downloaded_only
             iconRes = R.drawable.ic_cloud_off_24dp
             iconTint = tintColor
         }

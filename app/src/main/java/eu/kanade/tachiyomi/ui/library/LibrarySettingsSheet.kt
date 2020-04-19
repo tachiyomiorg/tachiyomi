@@ -96,8 +96,8 @@ class LibrarySettingsSheet(
             override val footer = Item.Separator()
 
             override fun initModels() {
-                downloaded.checked = preferences.offlineMode().get() || preferences.filterDownloaded().getOrDefault()
-                downloaded.enabled = !preferences.offlineMode().get()
+                downloaded.checked = preferences.downloadedOnly().get() || preferences.filterDownloaded().getOrDefault()
+                downloaded.enabled = !preferences.downloadedOnly().get()
                 unread.checked = preferences.filterUnread().getOrDefault()
                 completed.checked = preferences.filterCompleted().getOrDefault()
             }

@@ -155,7 +155,7 @@ class ChaptersController : NucleusController<ChaptersControllerBinding, Chapters
         menuFilterRead.isChecked = presenter.onlyRead()
         menuFilterUnread.isChecked = presenter.onlyUnread()
         menuFilterDownloaded.isChecked = presenter.onlyDownloaded()
-        menuFilterDownloaded.isEnabled = !presenter.isOfflineMode()
+        menuFilterDownloaded.isEnabled = !presenter.forceDownloaded()
         menuFilterBookmarked.isChecked = presenter.onlyBookmarked()
 
         val filterSet = presenter.onlyRead() || presenter.onlyUnread() || presenter.onlyDownloaded() || presenter.onlyBookmarked()

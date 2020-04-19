@@ -99,7 +99,7 @@ object PreferenceKeys {
 
     const val libraryUpdatePrioritization = "library_update_prioritization"
 
-    const val offlineMode = "pref_offline_mode"
+    const val downloadedOnly = "pref_downloaded_only"
 
     const val filterDownloaded = "pref_filter_downloaded_key"
 

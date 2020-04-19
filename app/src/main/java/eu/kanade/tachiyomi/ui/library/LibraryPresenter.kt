@@ -111,7 +111,7 @@ class LibraryPresenter(
      * @param map the map to filter.
      */
     private fun applyFilters(map: LibraryMap): LibraryMap {
-        val filterDownloaded = preferences.offlineMode().get() || preferences.filterDownloaded().getOrDefault()
+        val filterDownloaded = preferences.downloadedOnly().get() || preferences.filterDownloaded().getOrDefault()
         val filterUnread = preferences.filterUnread().getOrDefault()
         val filterCompleted = preferences.filterCompleted().getOrDefault()
 

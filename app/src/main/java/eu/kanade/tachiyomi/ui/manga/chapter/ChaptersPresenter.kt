@@ -367,17 +367,17 @@ class ChaptersPresenter(
     }
 
     /**
-     * Whether offline mode is enabled (i.e. force only downloaded content).
+     * Whether downloaded only mode is enabled.
      */
-    fun isOfflineMode(): Boolean {
-        return preferences.offlineMode().get()
+    fun forceDownloaded(): Boolean {
+        return preferences.downloadedOnly().get()
     }
 
     /**
      * Whether the display only downloaded filter is enabled.
      */
     fun onlyDownloaded(): Boolean {
-        return isOfflineMode() || manga.downloadedFilter == Manga.SHOW_DOWNLOADED
+        return forceDownloaded() || manga.downloadedFilter == Manga.SHOW_DOWNLOADED
     }
 
     /**
