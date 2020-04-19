@@ -214,7 +214,7 @@
     <string name="chapter_subtitle">Capítulo %1$s</string>
     <string name="no_next_chapter">Siguiente capítulo no encontrado</string>
     <string name="no_previous_chapter">Capítulo anterior no encontrado</string>
-    <string name="decode_image_error">"La imagen no se pudo decodificar. "</string>
+    <string name="decode_image_error">La imagen no se pudo cargar</string>
     <string name="viewer_for_this_series">Lectura para esta serie</string>
     <!-- Backup fragment -->
     <string name="backup">Copia de seguridad</string>
@@ -275,11 +275,9 @@
     <string name="confirm_set_image_as_cover">¿Usar esta imagen como portada\?</string>
     <string name="action_close">Cerrar</string>
     <string name="action_move">Mover</string>
-    <string name="action_add_to_home_screen">Añadir a pantalla de inicio</string>
     <string name="action_display">Mostrar</string>
     <string name="action_display_grid">Cuadrícula</string>
     <string name="action_display_list">Lista</string>
-    <string name="action_set_filter">Establecer filtro</string>
     <string name="action_share">Compartir</string>
     <string name="action_save">Guardar</string>
     <string name="action_reset">Reiniciar</string>
@@ -345,16 +343,9 @@
     <string name="also_delete_chapters">También eliminar capítulos descargados</string>
     <string name="no_valid_sources">Por favor habilita al menos una fuente válida</string>
     <string name="no_more_results">No hay más resultados</string>
-    <string name="local_source">Manga local</string>
+    <string name="local_source">Fuente local</string>
     <string name="added_to_library">El manga ha sido añadido a tu biblioteca</string>
     <string name="manga_not_in_db">Este manga ha sido removido de la base de datos.</string>
-    <string name="manga_info_last_chapter_label">Ultimo capítulo</string>
-    <string name="circular_icon">Circular</string>
-    <string name="rounded_icon">Redondeado</string>
-    <string name="square_icon">Cuadrado</string>
-    <string name="shortcut_title">Título de acceso directo</string>
-    <string name="icon_shape">Forma del icono</string>
-    <string name="icon_creation_fail">Error al crear acceso directo</string>
     <string name="delete_downloads_for_manga">Eliminar capítulos descargados?</string>
     <string name="chapter_paused">Pausado</string>
     <string name="manga_tracking_tab">Seguimiento</string>
@@ -381,7 +372,6 @@
     <string name="action_global_search_hint">Búsqueda global…</string>
     <string name="latest">Recientes</string>
     <string name="browse">Explorar</string>
-    <string name="shortcut_created">Acceso directo fue agregado a la pantalla de inicio.</string>
     <string name="channel_common">Común</string>
     <string name="channel_library">Librería</string>
     <string name="channel_downloader">Descargador</string>
@@ -419,11 +409,9 @@
 \nConfiando en este certificado aceptas estos riesgos.</string>
     <string name="ext_empty_preferences">No hay preferencias para editar en esta extensión</string>
     <string name="double_tap_anim_speed_0">Sin animación</string>
-    <string name="source_search_options">Filtros de búsqueda</string>
     <string name="manga_info_full_title_label">Título</string>
     <string name="manga_added_library">Añadido a la biblioteca</string>
     <string name="manga_removed_library">Quitado de la biblioteca</string>
-    <string name="manga_info_latest_data_label">Actualizado</string>
     <string name="copied_to_clipboard">%1$s copiado al portapapeles</string>
     <string name="source_not_installed">Fuente no instalada: %1$s</string>
     <string name="custom_download">Descargar cantidad personalizada</string>
@@ -540,17 +528,29 @@
     <string name="action_move_to_top">Mover al principio</string>
     <string name="action_move_to_bottom">Mover al final</string>
     <plurals name="update_check_notification_ext_updates">
-        <item quantity="one">Esta disponible actualización para extension</item>
-        <item quantity="other">Estan disponibles %d actualizaciónes para extensiones</item>
+        <item quantity="one">Actualización de extensión disponible</item>
+        <item quantity="other">Actualizaciones de extensiones disponibles</item>
     </plurals>
     <string name="updating_library">Librería esta actualizando</string>
-    <string name="http_error_hint">Revisar la pagina en WebView</string>
-    <string name="pref_enable_automatic_extension_updates">Revisar actualizaciones de extensiones</string>
-    <string name="action_sort_last_checked">Ultimo revisado</string>
+    <string name="http_error_hint">Consulta la pagina en WebView</string>
+    <string name="pref_enable_automatic_extension_updates">Buscar actualizaciones de extensiones</string>
+    <string name="action_sort_last_checked">Ultima comprobación</string>
     <string name="channel_ext_updates">Actualizacion de extensión</string>
     <string name="pref_skip_filtered_chapters">Saltar capítulos filtrados</string>
     <string name="pref_category_reading">Leer</string>
     <string name="label_sources">Fuentes</string>
     <string name="action_select_inverse">Seleccion inversa</string>
     <string name="vertical_plus_viewer">Vertical continua</string>
+    <string name="webtoon_side_padding_25">25%</string>
+    <string name="webtoon_side_padding_20">20%</string>
+    <string name="webtoon_side_padding_15">15%</string>
+    <string name="webtoon_side_padding_10">10%</string>
+    <string name="webtoon_side_padding_0">Sin margen</string>
+    <string name="pref_webtoon_side_padding">Relleno lateral</string>
+    <string name="pinned_sources">Fijado</string>
+    <string name="action_unpin">Desfijar</string>
+    <string name="action_pin">Fijar</string>
+    <string name="add_tracking">Añadir seguimiento</string>
+    <string name="in_library">En la librería</string>
+    <string name="add_to_library">Añadir a la librería</string>
 </resources>

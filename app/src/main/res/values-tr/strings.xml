@@ -60,13 +60,11 @@
     <string name="action_resume">Devam et</string>
     <string name="action_move">Taşı</string>
     <string name="action_open_in_browser">Tarayıcıda aç</string>
-    <string name="action_add_to_home_screen">Ana ekrana ekle</string>
     <string name="action_display_mode">Görüntüleme kipi</string>
     <string name="action_display">Görüntüleme</string>
     <string name="action_display_grid">Izgara</string>
     <string name="action_display_list">Liste</string>
     <string name="action_display_download_badge">Rozetleri indir</string>
-    <string name="action_set_filter">Filtre ayarla</string>
     <string name="action_cancel">İptal</string>
     <string name="action_sort">Sırala</string>
     <string name="action_install">Kur</string>
@@ -222,8 +220,8 @@
     <string name="restore_completed_content">Geri yükleme %1$s aldı. 
 \n%2$s hata bulundu.</string>
     <string name="backup_restore_content">Geri yükleme veriyi almak için kaynakları kullanır, taşıyıcı ücreti uygulanabilir. 
-\n
-\nGeri yüklemeden önce, giriş gerektiren kaynaklara ve takip hizmetlerine giriş yaptığınızdan, ve gerekli tüm uzantıları kurduğunuzdan emin olun.</string>
+\n 
+\nGeri yüklemeden önce, giriş gerektiren kaynaklara ve izleme hizmetlerine giriş yaptığınızdan, ve gerekli tüm uzantıları kurduğunuzdan emin olun.</string>
     <string name="file_saved">Dosya %1$s konumuna kaydedildi</string>
     <string name="backup_choice">Neyi yedeklemek istiyorsunuz?</string>
     <string name="restoring_backup">Yedek geri yükleniyor</string>
@@ -262,12 +260,11 @@
     <string name="local_source_badge">Yerel</string>
     <string name="confirm_delete_manga">Seçilen mangayı kaldırmak istediğinizden emin misiniz?</string>
     <string name="also_delete_chapters">İndirilen bölümleri de sil</string>
-    <string name="source_search_options">Arama filtreleri</string>
     <string name="source_requires_login">Bu kaynak giriş yapmanızı gerektirir</string>
     <string name="select_source">Bir kaynak seç</string>
     <string name="no_valid_sources">Lütfen en az bir geçerli kaynağı etkinleştirin</string>
     <string name="no_more_results">Başka sonuç yok</string>
-    <string name="local_source">Yerel manga</string>
+    <string name="local_source">Yerel kaynak</string>
     <string name="other_source">Diğer</string>
     <string name="invalid_combination">Öntanımlı diğer kategorilerle birlikte seçilemez</string>
     <string name="added_to_library">Manga kitaplığınıza eklendi</string>
@@ -287,18 +284,9 @@
     <string name="manga_info_author_label">Yazar</string>
     <string name="manga_info_artist_label">Sanatçı</string>
     <string name="manga_info_chapters_label">Bölümler</string>
-    <string name="manga_info_last_chapter_label">Son bölüm</string>
-    <string name="manga_info_latest_data_label">Güncellendi</string>
     <string name="manga_info_status_label">Durum</string>
     <string name="manga_info_source_label">Kaynak</string>
     <string name="manga_info_genres_label">Türler</string>
-    <string name="circular_icon">Dairesel</string>
-    <string name="rounded_icon">Yuvarlak</string>
-    <string name="square_icon">Kare</string>
-    <string name="shortcut_title">Kısayol başlığı</string>
-    <string name="shortcut_created">Kısayol ana ekrana eklendi.</string>
-    <string name="icon_shape">Simge şekli</string>
-    <string name="icon_creation_fail">Kısayol oluşturulamadı</string>
     <string name="delete_downloads_for_manga">İndirilen bölümler silinsin mi?</string>
     <string name="copied_to_clipboard">"%1$s panoya kopyalandı "</string>
     <string name="source_not_installed">Kaynak kurulmadı: %1$s</string>
@@ -337,7 +325,7 @@
     <string name="title">Başlık</string>
     <string name="status">Durum</string>
     <string name="track_status">Durum</string>
-    <string name="track_start_date">Başlangıç</string>
+    <string name="track_start_date">Başlama</string>
     <string name="track_type">Tür</string>
     <string name="track_author">Yazar</string>
     <string name="url_not_set">Manga URL\'si ayarlı değil, lütfen başlığa dokunun ve mangayı yeniden seçin</string>
@@ -359,7 +347,7 @@
     <string name="chapter_subtitle">Bölüm %1$s</string>
     <string name="no_next_chapter">Sonraki bölüm bulunamadı</string>
     <string name="no_previous_chapter">Önceki bölüm bulunamadı</string>
-    <string name="decode_image_error">Görsel kodu çözülemedi</string>
+    <string name="decode_image_error">Görsel yüklenemedi</string>
     <string name="confirm_set_image_as_cover">Bu görsel kapak resmi olarak kullanılsın mı\?</string>
     <string name="viewer_for_this_series">Bu dizi için görüntüleyici</string>
     <string name="recent_manga_source">%1$s - Böl.%2$s</string>
@@ -399,7 +387,7 @@
     <string name="information_empty_category">Kategoriniz yok. Kitaplığınızı düzenlemek için bir tane oluşturmak için artı düğmesine basın.</string>
     <string name="download_notifier_downloader_title">İndirici</string>
     <string name="download_notifier_title_error">Hata</string>
-    <string name="download_notifier_unknown_error">Beklenmeyen hata sonucu bölüm indirilemedi</string>
+    <string name="download_notifier_unknown_error">Bölüm, beklenmeyen hata sonucu indirilemedi</string>
     <string name="download_notifier_page_error">Dizinde bir sayda eksik</string>
     <string name="download_notifier_page_ready_error">Bir sayfa yüklenmedi</string>
     <string name="download_notifier_text_only_wifi">Wi-Fi bağlantısı yok</string>
@@ -526,4 +514,19 @@
     <string name="label_sources">Kaynaklar</string>
     <string name="action_select_inverse">Tersini seç</string>
     <string name="vertical_plus_viewer">Dikey sürekli</string>
+    <string name="webtoon_side_padding_25">%25</string>
+    <string name="webtoon_side_padding_20">%20</string>
+    <string name="webtoon_side_padding_15">%15</string>
+    <string name="webtoon_side_padding_10">%10</string>
+    <string name="webtoon_side_padding_0">Yok</string>
+    <string name="pref_webtoon_side_padding">Yan dolgu</string>
+    <string name="pinned_sources">Sabit</string>
+    <string name="action_unpin">Çöz</string>
+    <string name="action_pin">Sabitle</string>
+    <string name="add_tracking">İzleme ekle</string>
+    <string name="in_library">Kitaplıkta</string>
+    <string name="add_to_library">Kitaplığa ekle</string>
+    <string name="manga_info_collapse">Daha az bilgi göster</string>
+    <string name="manga_info_expand">Daha çok bilgi göster</string>
+    <string name="manga_info_about_label">Hakkında</string>
 </resources>

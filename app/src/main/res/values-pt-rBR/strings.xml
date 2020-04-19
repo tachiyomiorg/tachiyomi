@@ -56,12 +56,10 @@
     <string name="action_resume">Retomar</string>
     <string name="action_move">Mover</string>
     <string name="action_open_in_browser">Abrir no navegador</string>
-    <string name="action_add_to_home_screen">Adicionar à tela inicial</string>
     <string name="action_display_mode">Modo de visualização</string>
     <string name="action_display">Visualização</string>
     <string name="action_display_grid">Grade</string>
     <string name="action_display_list">Lista</string>
-    <string name="action_set_filter">Definir filtro</string>
     <string name="action_cancel">Cancelar</string>
     <string name="action_sort">Ordenar</string>
     <string name="action_install">Instalar</string>
@@ -189,7 +187,7 @@
 \n%2$s erros encontrados.</string>
     <string name="backup_restore_content">Restaurar usa as fontes para obter dados, cobranças podem ser efetuadas. 
 \n 
-\nVerifique se instalou as extensões e se logou às fontes e aos serviços de monitoramento antes de restaurar.</string>
+\nVerifique se instalou as extensões e se realizou o login nas fontes e nos serviços de monitoramento antes de restaurar.</string>
     <string name="file_saved">Arquivo salvo em %1$s</string>
     <string name="backup_choice">Do que você deseja fazer backup\?</string>
     <string name="restoring_backup">Restaurando backup</string>
@@ -231,7 +229,7 @@
     <string name="select_source">Selecione uma fonte</string>
     <string name="no_valid_sources">Por favor, ative pelo menos uma fonte válida</string>
     <string name="no_more_results">Não há mais resultados</string>
-    <string name="local_source">Mangá local</string>
+    <string name="local_source">Fonte local</string>
     <string name="added_to_library">O mangá foi adicionado à sua biblioteca</string>
     <string name="manga_not_in_db">Este mangá foi excluído do banco de dados.</string>
     <string name="manga_detail_tab">Informações</string>
@@ -243,16 +241,9 @@
     <string name="manga_info_author_label">Autor</string>
     <string name="manga_info_artist_label">Artista</string>
     <string name="manga_info_chapters_label">Capítulos</string>
-    <string name="manga_info_last_chapter_label">Capítulo mais recente</string>
     <string name="manga_info_status_label">Situação</string>
     <string name="manga_info_source_label">Fonte</string>
     <string name="manga_info_genres_label">Gêneros</string>
-    <string name="circular_icon">Circular</string>
-    <string name="rounded_icon">Arredondado</string>
-    <string name="square_icon">Quadrado</string>
-    <string name="shortcut_title">Título do atalho</string>
-    <string name="icon_shape">Forma do ícone</string>
-    <string name="icon_creation_fail">Não foi possível criar o atalho</string>
     <string name="delete_downloads_for_manga">Excluir os capítulos disponíveis offline\?</string>
     <string name="manga_chapters_tab">Capítulos</string>
     <string name="manga_chapter_no_title">Sem título</string>
@@ -303,11 +294,11 @@
     <string name="chapter_subtitle">Capítulo %1$s</string>
     <string name="no_next_chapter">Próximo capítulo não encontrado</string>
     <string name="no_previous_chapter">Capítulo anterior não encontrado</string>
-    <string name="decode_image_error">A imagem não pôde ser decodificada</string>
+    <string name="decode_image_error">A imagem não pôde ser carregada</string>
     <string name="confirm_set_image_as_cover">Usar esta imagem como capa\?</string>
     <string name="viewer_for_this_series">Leitura para esta série</string>
     <string name="recent_manga_source">%1$s - Cap.%2$s</string>
-    <string name="download_queue_error">Não foi possível fazer o download dos capítulos. Você pode tentar novamente na seção de downloads</string>
+    <string name="download_queue_error">Não foi possível realizar o download dos capítulos. Você pode tentar novamente na seção de downloads</string>
     <string name="notification_update_progress">Progresso da atualização: %1$d/%2$d</string>
     <string name="notification_new_chapters">Novos capítulos encontrados</string>
     <string name="notification_cover_update_failed">Erro ao atualizar a capa</string>
@@ -350,7 +341,6 @@
     <string name="action_global_search_hint">Pesquisa global…</string>
     <string name="latest">Recentes</string>
     <string name="browse">Navegar</string>
-    <string name="shortcut_created">O atalho foi adicionado à tela inicial.</string>
     <string name="channel_common">Comum</string>
     <string name="channel_library">Biblioteca</string>
     <string name="channel_downloader">Fila de download</string>
@@ -386,11 +376,9 @@
     <string name="double_tap_anim_speed_0">Sem animação</string>
     <string name="double_tap_anim_speed_normal">Normal</string>
     <string name="double_tap_anim_speed_fast">Rápida</string>
-    <string name="source_search_options">Filtros de busca</string>
     <string name="manga_info_full_title_label">Título</string>
     <string name="manga_added_library">Adicionado à biblioteca</string>
     <string name="manga_removed_library">Removido da biblioteca</string>
-    <string name="manga_info_latest_data_label">Última atualização</string>
     <string name="copied_to_clipboard">%1$s copiado para área de transferência</string>
     <string name="custom_download">Fazer download de uma quantidade personalizada</string>
     <string name="download_custom">Personalizado</string>
@@ -526,4 +514,19 @@
     <string name="label_sources">Fontes</string>
     <string name="action_select_inverse">Inverter a seleção</string>
     <string name="vertical_plus_viewer">Vertical contínuo</string>
+    <string name="webtoon_side_padding_25">25%</string>
+    <string name="webtoon_side_padding_20">20%</string>
+    <string name="webtoon_side_padding_15">15%</string>
+    <string name="webtoon_side_padding_10">10%</string>
+    <string name="webtoon_side_padding_0">Nenhum</string>
+    <string name="pref_webtoon_side_padding">Espaçamento lateral</string>
+    <string name="pinned_sources">Fixado</string>
+    <string name="action_unpin">Desafixar</string>
+    <string name="action_pin">Fixar</string>
+    <string name="add_tracking">Adicionar monitoramento</string>
+    <string name="add_to_library">Adicionar à biblioteca</string>
+    <string name="in_library">Na biblioteca</string>
+    <string name="manga_info_collapse">Mostrar menos informações</string>
+    <string name="manga_info_expand">Mostrar mais informações</string>
+    <string name="manga_info_about_label">Sobre</string>
 </resources>

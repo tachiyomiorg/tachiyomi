@@ -2,7 +2,6 @@
 <resources>
     <string name="action_add">Добавить</string>
     <string name="action_add_category">Добавить категорию</string>
-    <string name="action_add_to_home_screen">Добавить на главный экран</string>
     <string name="action_bookmark">Закладка</string>
     <string name="action_cancel">Отмена</string>
     <string name="action_delete">Удалить</string>
@@ -39,7 +38,6 @@
     <string name="action_save">Сохранить</string>
     <string name="action_search">Поиск</string>
     <string name="action_select_all">Выбрать всё</string>
-    <string name="action_set_filter">Установить фильтр</string>
     <string name="action_settings">Настройки</string>
     <string name="action_share">Поделиться</string>
     <string name="action_show_downloaded">Загружено</string>
@@ -68,7 +66,6 @@
     <string name="chapters">Главы</string>
     <string name="charging">Заряжается</string>
     <string name="choices_reset">Опции выбора сбросятся</string>
-    <string name="circular_icon">Круглая</string>
     <string name="clear_database_completed">Данные удалены</string>
     <string name="clear_database_confirmation">Вы уверены\? Прочитанные главы и прогресс не-библиотечной манги будет потерян</string>
     <string name="color_filter_a_value">А</string>
@@ -83,7 +80,7 @@
     <string name="cover_updated">Обложка обновлена</string>
     <string name="custom_dir">Пользовательская директория</string>
     <string name="custom_filter">Пользовательский фильтр</string>
-    <string name="decode_image_error">Не удалось декодировать изображение</string>
+    <string name="decode_image_error">Не удалось загрузить изображение</string>
     <string name="default_columns">По умолчанию</string>
     <string name="default_viewer">По умолчанию</string>
     <string name="deleting">Удаление…</string>
@@ -117,8 +114,6 @@
     <string name="file_select_cover">Выбрать обложку</string>
     <string name="file_select_icon">Выбрать ярлык</string>
     <string name="fourth_to_last">Четвёртая от прочитанной главы</string>
-    <string name="icon_creation_fail">Невозможно создать ярлык</string>
-    <string name="icon_shape">Форма иконки</string>
     <string name="information_empty_library">Ваша библиотека пуста, добавьте тайтлы в библиотеку из источников.</string>
     <string name="information_no_downloads">Нет загрузок</string>
     <string name="information_no_recent">Нет новых глав</string>
@@ -226,7 +221,6 @@
     <string name="rotation_force_portrait">Вертикальная</string>
     <string name="rotation_free">Свободная</string>
     <string name="rotation_lock">Заблокированная</string>
-    <string name="rounded_icon">Скругленная</string>
     <string name="saving_picture">Сохраняю картинку</string>
     <string name="scale_type_fit_height">По высоте</string>
     <string name="scale_type_fit_screen">По экрану</string>
@@ -239,7 +233,6 @@
     <string name="select_source">Выберите источник</string>
     <string name="services">Сервисы</string>
     <string name="set_as_cover">Установить как обложку</string>
-    <string name="shortcut_title">Название ярлыка</string>
     <string name="show_chapter_number">Номер главы</string>
     <string name="show_password">Показывать пароль</string>
     <string name="show_title">Название</string>
@@ -248,7 +241,6 @@
     <string name="sort_by_source">По источнику</string>
     <string name="sorting_mode">Метод сортировки</string>
     <string name="source_requires_login">Этот источник требует входа</string>
-    <string name="square_icon">Квадратная</string>
     <string name="status">Статус</string>
     <string name="system_default">Системный</string>
     <string name="third_to_last">Третья от прочитанной главы</string>
@@ -315,7 +307,6 @@
     <string name="invalid_combination">Категория по умолчанию не может быть выбрана вместе с другими категориями</string>
     <string name="local_source">Локальная манга</string>
     <string name="manga">Манга</string>
-    <string name="manga_info_last_chapter_label">Последняя глава</string>
     <string name="no_more_results">Больше нет результатов</string>
     <string name="pref_backup_directory">Каталог бэкапа</string>
     <string name="pref_backup_interval">Частота бэкапа</string>
@@ -352,7 +343,6 @@
     <string name="action_global_search_hint">Глобальный поиск…</string>
     <string name="latest">Последняя</string>
     <string name="browse">Смотреть</string>
-    <string name="shortcut_created">Ярлык был добавлен на главный экран.</string>
     <string name="channel_common">Обычный</string>
     <string name="channel_library">Библиотека</string>
     <string name="channel_downloader">Загрузчик</string>
@@ -388,7 +378,6 @@
     <string name="manga_info_full_title_label">Заголовок</string>
     <string name="manga_added_library">Добавить в библиотеку</string>
     <string name="manga_removed_library">Удалить из библиотеки</string>
-    <string name="manga_info_latest_data_label">Обновлено</string>
     <string name="copied_to_clipboard">\"%1$s\" скопированно в буфер</string>
     <string name="custom_download">Загрузить определенное количество</string>
     <string name="download_custom">Другое кол-во</string>
@@ -398,7 +387,6 @@
     <string name="migrate">Мигрировать</string>
     <string name="copy">Копировать</string>
     <string name="migrating">Мигрирую…</string>
-    <string name="source_search_options">Поисковые фильтры</string>
     <string name="ext_trust">Надёжное</string>
     <string name="pager_viewer">Пейджер</string>
     <string name="source_not_installed">Источник не установлен: %1$s</string>
@@ -458,7 +446,7 @@
     <string name="pref_theme_dark">Темный вариант</string>
     <string name="theme_dark_default">По умолчанию</string>
     <string name="theme_dark_blue">Темно-синяя</string>
-    <string name="theme_dark_amoled">AMOLED черная</string>
+    <string name="theme_dark_amoled">AMOLED черный</string>
     <string name="pref_manage_notifications">Управлять уведомлениями</string>
     <string name="pref_category_security">Безопасность</string>
     <string name="lock_with_biometrics">Блокировать отпечатком</string>
@@ -484,7 +472,7 @@
     <string name="notification_chapters_single_and_more">Глава %1$s и ещё %2$d</string>
     <string name="notification_chapters_multiple">Главы %1$s</string>
     <string name="notification_chapters_single">Глава %1$s</string>
-    <string name="pref_category_display">Показать категорию</string>
+    <string name="pref_category_display">Отобразить</string>
     <plurals name="notification_chapters_generic">
         <item quantity="one">Найденна новая глава</item>
         <item quantity="few">Найденны %1$d новые главы</item>
@@ -510,9 +498,9 @@
         <item quantity="many">Доступнo %d обновлений для расширений</item>
     </plurals>
     <string name="email">Адрес почты</string>
-    <string name="pref_always_show_chapter_transition">Всегда показывать переходы глав</string>
+    <string name="pref_always_show_chapter_transition">Всегда показывать главу перехода</string>
     <string name="pref_enable_automatic_extension_updates">Проверять обновления для расширений</string>
-    <string name="hide_notification_content">Скрыть содержимое уведомлений</string>
+    <string name="hide_notification_content">Скрыть содержимое уведомления</string>
     <string name="secure_screen_summary">Скрыть содержимое приложений, когда переключаешь приложения, и блокируешь скриншоты</string>
     <string name="theme_light_blue">Бело-синяя</string>
     <string name="pref_theme_light">Белый вариант</string>
@@ -530,5 +518,15 @@
     <string name="pref_category_reading">Чтение</string>
     <string name="pref_skip_filtered_chapters">Пропускать фильтрованные главы</string>
     <string name="action_select_inverse">Выбрать наоборот</string>
-    <string name="vertical_plus_viewer">Непрерывно-вертикально</string>
+    <string name="vertical_plus_viewer">Непрерывно вертикально</string>
+    <string name="pref_webtoon_side_padding">Боковой отступ</string>
+    <string name="webtoon_side_padding_25">25%</string>
+    <string name="webtoon_side_padding_20">20%</string>
+    <string name="webtoon_side_padding_15">15%</string>
+    <string name="webtoon_side_padding_10">10%</string>
+    <string name="webtoon_side_padding_0">Без отступа</string>
+    <string name="pinned_sources">Закрепленно</string>
+    <string name="action_unpin">Открепить</string>
+    <string name="action_pin">Закрепить</string>
+    <string name="add_tracking">Добавить отслеживание</string>
 </resources>

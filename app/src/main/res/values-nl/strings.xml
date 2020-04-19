@@ -51,12 +51,10 @@
     <string name="action_resume">Hervatten</string>
     <string name="action_move">Verplaatsen</string>
     <string name="action_open_in_browser">Openen in browser</string>
-    <string name="action_add_to_home_screen">Toevoegen aan beginscherm</string>
     <string name="action_display_mode">Weergavemodus</string>
     <string name="action_display">Weergave</string>
     <string name="action_display_grid">Raster</string>
     <string name="action_display_list">Lijst</string>
-    <string name="action_set_filter">Filter instellen</string>
     <string name="action_cancel">Annuleren</string>
     <string name="action_sort">Sorteren</string>
     <string name="action_install">Installeren</string>
@@ -189,7 +187,6 @@
     <string name="manga_info_author_label">Auteur</string>
     <string name="manga_info_artist_label">Artiest</string>
     <string name="manga_info_chapters_label">Hoofdstukken</string>
-    <string name="manga_info_last_chapter_label">Laatste hoofdstuk</string>
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Bron</string>
     <string name="display_mode_chapter">Hoofdstuk %1$s</string>
@@ -308,11 +305,6 @@
     <string name="source_requires_login">Deze bron vereist dat je inlogt</string>
     <string name="ongoing">Lopend</string>
     <string name="manga_info_genres_label">Genres</string>
-    <string name="circular_icon">Circulair</string>
-    <string name="rounded_icon">Afgerond</string>
-    <string name="square_icon">Vierkant</string>
-    <string name="icon_shape">Icoonvorm</string>
-    <string name="icon_creation_fail">Kon geen snelkoppeling maken</string>
     <string name="delete_downloads_for_manga">Verwijder gedownloade hoofdstukken?</string>
     <string name="manga_chapters_tab">Hoofdstukken</string>
     <string name="manga_chapter_no_title">Geen titel</string>
@@ -341,7 +333,6 @@
     <string name="choices_reset">Keuzes gereset</string>
     <string name="login_success">Log-in geslaagd</string>
     <string name="invalid_login">Kon niet inloggen</string>
-    <string name="shortcut_title">Titel van de snelkoppeling</string>
     <string name="licensed">Gelicenseerd</string>
     <string name="plan_to_read">Van plan te lezen</string>
     <string name="action_global_search">Globaal zoeken</string>
@@ -352,7 +343,6 @@
     <string name="other_source">Alternatief</string>
     <string name="action_global_search_hint">Globaal zoeken…</string>
     <string name="latest">Recent</string>
-    <string name="shortcut_created">Snelkoppeling toegevoegd aan startscherm.</string>
     <string name="channel_library">Bibliotheek</string>
     <string name="channel_downloader">Downloader</string>
     <string name="browse">Bladeren</string>
@@ -388,11 +378,9 @@
     <string name="double_tap_anim_speed_0">Geen animatie</string>
     <string name="double_tap_anim_speed_normal">Normaal</string>
     <string name="double_tap_anim_speed_fast">Snel</string>
-    <string name="source_search_options">Zoek filters</string>
     <string name="manga_info_full_title_label">Titel</string>
     <string name="manga_added_library">Toegevoegd aan bibliotheek</string>
     <string name="manga_removed_library">Verwijderd uit bibliotheek</string>
-    <string name="manga_info_latest_data_label">Bijgewerkt</string>
     <string name="copied_to_clipboard">%1$s gekopieerd naar het klembord</string>
     <string name="source_not_installed">Bron niet geïnstalleerd: %1$s</string>
     <string name="custom_download">Download aangepaste hoeveelheid</string>

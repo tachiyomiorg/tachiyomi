@@ -62,8 +62,6 @@
     <string name="action_next_chapter">다음 챕터</string>
     <string name="action_retry">재시도</string>
     <string name="action_move">이동</string>
-    <string name="action_add_to_home_screen">홈 화면에 추가</string>
-    <string name="action_set_filter">필터 설정</string>
     <string name="action_share">공유</string>
     <string name="action_save">저장</string>
     <string name="action_reset">리셋</string>
@@ -220,7 +218,6 @@
     <string name="updating_category">카테고리 업데이트중</string>
     <string name="confirm_delete_manga">선택된 만화들을 정말로 제거하시겠습니까\?</string>
     <string name="also_delete_chapters">다운로드된 챕터들도 지우기</string>
-    <string name="source_search_options">검색 필터</string>
     <string name="source_requires_login">이 소스는 로그인을 필요로 합니다</string>
     <string name="select_source">소스 선택</string>
     <string name="no_valid_sources">최소한 1개의 유효한 소스를 선택해주세요</string>
@@ -238,13 +235,8 @@
     <string name="manga_info_author_label">저자</string>
     <string name="manga_info_artist_label">그림</string>
     <string name="manga_info_chapters_label">챕터</string>
-    <string name="manga_info_last_chapter_label">마지막 챕터</string>
-    <string name="manga_info_latest_data_label">업데이트</string>
     <string name="manga_info_status_label">상태</string>
     <string name="manga_info_genres_label">장르</string>
-    <string name="shortcut_title">바로가지 제목</string>
-    <string name="shortcut_created">바로가기가 홈 화면에 추가되었습니다.</string>
-    <string name="icon_creation_fail">바로가기 생성 실패!</string>
     <string name="delete_downloads_for_manga">다운로드된 챕터를 삭제합니까\?</string>
     <string name="source_not_installed">소스 미설치: %1$s</string>
     <string name="manga_chapters_tab">챕터</string>
@@ -378,10 +370,6 @@
     <string name="manga_not_in_db">이 만화는 데이터베이스에서 제거되었습니다!</string>
     <string name="licensed">판권작</string>
     <string name="manga_info_source_label">소스</string>
-    <string name="circular_icon">원형 아이콘</string>
-    <string name="rounded_icon">둥근 아이콘</string>
-    <string name="square_icon">사각형 아이콘</string>
-    <string name="icon_shape">아이콘 모양</string>
     <string name="copied_to_clipboard">클립보드에 %1$s 복사됨</string>
     <string name="manga_chapter_no_title">제목 없음</string>
     <string name="chapter_queued">대기중</string>

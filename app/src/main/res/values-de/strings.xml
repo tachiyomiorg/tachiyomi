@@ -54,12 +54,10 @@
     <string name="action_resume">Fortfahren</string>
     <string name="action_move">Verschieben</string>
     <string name="action_open_in_browser">Im Browser öffnen</string>
-    <string name="action_add_to_home_screen">Zum Startbildschirm hinzufügen</string>
     <string name="action_display_mode">Anzeigemodus</string>
     <string name="action_display">Anzeige</string>
     <string name="action_display_grid">Kacheln</string>
     <string name="action_display_list">Liste</string>
-    <string name="action_set_filter">Filter setzen</string>
     <string name="action_cancel">Abbrechen</string>
     <string name="action_sort">Sortierung</string>
     <string name="action_install">Installieren</string>
@@ -229,7 +227,7 @@
     <string name="select_source">Wähle eine Quelle</string>
     <string name="no_valid_sources">Bitte wähle mindestens eine gültige Quelle</string>
     <string name="no_more_results">Keine weiteren Ergebnisse</string>
-    <string name="local_source">Lokale Manga</string>
+    <string name="local_source">Lokale Quelle</string>
     <string name="invalid_combination">Standard kann nicht zusammen mit anderen Kategorien gewählt werden</string>
     <string name="added_to_library">Der Manga wurde Ihrer Bibliothek hinzugefügt</string>
     <string name="manga_not_in_db">Dieser Manga wurde aus der Datenbank entfernt.</string>
@@ -242,16 +240,9 @@
     <string name="manga_info_author_label">Autor</string>
     <string name="manga_info_artist_label">Künstler</string>
     <string name="manga_info_chapters_label">Kapitel</string>
-    <string name="manga_info_last_chapter_label">Letztes Kapitel</string>
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Quelle</string>
     <string name="manga_info_genres_label">Genres</string>
-    <string name="circular_icon">Rund</string>
-    <string name="rounded_icon">Abgerundet</string>
-    <string name="square_icon">Eckig</string>
-    <string name="shortcut_title">Verknüpfungsname</string>
-    <string name="icon_shape">Symbolform</string>
-    <string name="icon_creation_fail">Verknüpfung konnte nicht erstellt werden</string>
     <string name="delete_downloads_for_manga">Heruntergeladene Kapitel löschen?</string>
     <string name="manga_chapters_tab">Kapitel</string>
     <string name="manga_chapter_no_title">Kein Titel</string>
@@ -302,7 +293,7 @@
     <string name="chapter_subtitle">Kapitel %1$s</string>
     <string name="no_next_chapter">Nächstes Kapitel nicht gefunden</string>
     <string name="no_previous_chapter">Vorheriges Kapitel nicht gefunden</string>
-    <string name="decode_image_error">Das Bild konnte nicht dekodiert werden</string>
+    <string name="decode_image_error">Das Bild konnte nicht geladen werden</string>
     <string name="confirm_set_image_as_cover">Dieses Bild als Vorschaubild setzen\?</string>
     <string name="viewer_for_this_series">Leser für diese Serie</string>
     <string name="recent_manga_source">%1$s - Kap.%2$s</string>
@@ -350,7 +341,6 @@
     <string name="action_global_search_hint">Globale Suche…</string>
     <string name="latest">Letzte</string>
     <string name="browse">Umsehen</string>
-    <string name="shortcut_created">Verknüpfung zum Startbildschirm hinzugefügt.</string>
     <string name="channel_library">Bibliothek</string>
     <string name="channel_common">Allgemein</string>
     <string name="channel_downloader">Downloader</string>
@@ -382,11 +372,9 @@
     <string name="double_tap_anim_speed_0">Keine Animation</string>
     <string name="double_tap_anim_speed_normal">Normal</string>
     <string name="double_tap_anim_speed_fast">Schnell</string>
-    <string name="source_search_options">Suchfilter</string>
     <string name="manga_info_full_title_label">Titel</string>
     <string name="manga_added_library">Zur Bibliothek hinzugefügt</string>
     <string name="manga_removed_library">Aus der Bibliothek entfernt</string>
-    <string name="manga_info_latest_data_label">Aktualisiert</string>
     <string name="copied_to_clipboard">%1$s in Zwischenablage gespeichert</string>
     <string name="select">Auswählen</string>
     <string name="migrate">Migrieren</string>
@@ -513,7 +501,7 @@
     <string name="action_move_to_top">Nach oben verschieben</string>
     <string name="action_move_to_bottom">Nach unten verschieben</string>
     <string name="action_sort_last_checked">Zuletzt überprüft</string>
-    <string name="pref_enable_automatic_extension_updates">Nach Erweiterungsupdates suchen</string>
+    <string name="pref_enable_automatic_extension_updates">Nach Erweit.-Updates suchen</string>
     <plurals name="update_check_notification_ext_updates">
         <item quantity="one">Erweiterungsupdate verfügbar</item>
         <item quantity="other">%d Erweiterungsupdates verfügbar</item>
@@ -526,4 +514,19 @@
     <string name="label_sources">Quellen</string>
     <string name="action_select_inverse">Auswahl umkehren</string>
     <string name="vertical_plus_viewer">Kontinuierlich vertikal</string>
+    <string name="webtoon_side_padding_25">25 %</string>
+    <string name="webtoon_side_padding_20">20 %</string>
+    <string name="webtoon_side_padding_15">15 %</string>
+    <string name="webtoon_side_padding_10">10 %</string>
+    <string name="webtoon_side_padding_0">Kein Rand</string>
+    <string name="pref_webtoon_side_padding">Seitenpolster</string>
+    <string name="pinned_sources">Angeheftet</string>
+    <string name="action_unpin">Loslösen</string>
+    <string name="action_pin">Anheften</string>
+    <string name="add_tracking">Synchronisation hinzufügen</string>
+    <string name="manga_info_collapse">Weniger Infos anzeigen</string>
+    <string name="manga_info_expand">Mehr Infos anzeigen</string>
+    <string name="manga_info_about_label">Inhalt</string>
+    <string name="in_library">In der Bibliothek</string>
+    <string name="add_to_library">Zur Bibliothek hinzufügen</string>
 </resources>

@@ -131,13 +131,11 @@
     <string name="action_move">Siirrä</string>
     <string name="action_open_in_browser">Avaa selaimessa</string>
     <string name="action_open_in_web_view">Avaa WebViewissä</string>
-    <string name="action_add_to_home_screen">Lisää kotinäytölle</string>
     <string name="action_display_mode">Näkymä</string>
     <string name="action_display">Näkymä</string>
     <string name="action_display_grid">Ruudukko</string>
     <string name="action_display_list">Lista</string>
     <string name="action_display_download_badge">Näytä ladattujen määrä</string>
-    <string name="action_set_filter">Aseta suodatin</string>
     <string name="action_cancel">Peruuta</string>
     <string name="action_sort">Järjestä</string>
     <string name="action_install">Asenna</string>
@@ -336,13 +334,6 @@
     <string name="invalid_combination">Oletus ei voi olla valittuna muiden kategorioiden kanssa</string>
     <string name="added_to_library">Sarja on lisätty kirjastoon</string>
     <string name="action_global_search_hint">Globaali haku…</string>
-    <string name="circular_icon">Pyöreä</string>
-    <string name="rounded_icon">Pyöristetty</string>
-    <string name="square_icon">Neliö</string>
-    <string name="shortcut_title">Pikakuvakkeen nimi</string>
-    <string name="shortcut_created">Pikakuvake on lisätty kotinäytölle.</string>
-    <string name="icon_shape">Ikonin muoto</string>
-    <string name="icon_creation_fail">Pikakuvakkeen luominen epäonnistui</string>
     <string name="delete_downloads_for_manga">Poista ladatut luvut\?</string>
     <string name="copied_to_clipboard">%1$s kopioitu leikepöydälle</string>
     <string name="source_not_installed">Lähdettä ei ole asennettu: %1$s</string>
@@ -380,7 +371,6 @@
     <string name="pref_restore_backup">Palauta varmuuskopio</string>
     <string name="pref_backup_directory">Varmuuskopio kansio</string>
     <string name="also_delete_chapters">Poista myös ladatut luvut</string>
-    <string name="source_search_options">Hakusuodattimet</string>
     <string name="select_source">Valitse lähde</string>
     <string name="local_source">Paikalliset sarjat</string>
     <string name="other_source">Muut</string>
@@ -399,8 +389,6 @@
     <string name="manga_info_author_label">Kirjailija</string>
     <string name="manga_info_artist_label">Artisti</string>
     <string name="manga_info_chapters_label">Luvut</string>
-    <string name="manga_info_last_chapter_label">Viimeisin luku</string>
-    <string name="manga_info_latest_data_label">Päivitetty</string>
     <string name="manga_info_status_label">Tila</string>
     <string name="manga_info_source_label">Lähde</string>
     <string name="manga_info_genres_label">Lajityypit</string>

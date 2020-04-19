@@ -49,12 +49,10 @@
     <string name="action_remove">Rimuovi</string>
     <string name="action_resume">Riprendi</string>
     <string name="action_open_in_browser">Apri nel browser</string>
-    <string name="action_add_to_home_screen">Aggiungi alla Home</string>
     <string name="action_display_mode">Modalità di visualizzazione</string>
     <string name="action_display">Visualizzazione</string>
     <string name="action_display_grid">Griglia</string>
     <string name="action_display_list">Lista</string>
-    <string name="action_set_filter">Imposta filtro</string>
     <string name="action_cancel">Annulla</string>
     <string name="action_sort">Ordina</string>
     <string name="action_install">Installa</string>
@@ -205,12 +203,6 @@
     <string name="manga_info_status_label">Stato</string>
     <string name="manga_info_source_label">Fonte</string>
     <string name="manga_info_genres_label">Generi</string>
-    <string name="circular_icon">Circolare</string>
-    <string name="rounded_icon">Arrotondata</string>
-    <string name="square_icon">Quadrata</string>
-    <string name="shortcut_title">Titolo della scorciatoia</string>
-    <string name="icon_shape">Forma dell\'icona</string>
-    <string name="icon_creation_fail">Impossibile creare il collegamento</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Capitoli</string>
     <string name="manga_chapter_no_title">Senza titolo</string>
@@ -263,7 +255,7 @@
     <string name="chapter_subtitle">Capitolo %1$s</string>
     <string name="no_next_chapter">Capitolo successivo non trovato</string>
     <string name="no_previous_chapter">Capitolo precedente non trovato</string>
-    <string name="decode_image_error">L\'immagine non può essere decodificata</string>
+    <string name="decode_image_error">Impossibile caricare l\'immagine</string>
     <string name="confirm_set_image_as_cover">Usare questa immagine come copertina\?</string>
     <string name="viewer_for_this_series">Visualizzatore per questa serie</string>
     <!-- Backup fragment -->
@@ -366,7 +358,6 @@
     <string name="no_more_results">Non ci sono altri risultati</string>
     <string name="local_source">Manga locale</string>
     <string name="added_to_library">Il manga è stato aggiunto alla tua libreria</string>
-    <string name="manga_info_last_chapter_label">Ultimo capitolo</string>
     <string name="delete_downloads_for_manga">Eliminare i capitoli scaricati?</string>
     <string name="chapter_paused">In pausa</string>
     <string name="manga_tracking_tab">Monitoraggio</string>
@@ -409,7 +400,6 @@
     <string name="double_tap_anim_speed_fast">Veloce</string>
     <string name="choices_reset">Ripristino scelte dialogo</string>
     <string name="local_source_badge">Locale</string>
-    <string name="source_search_options">Filtri ricerca</string>
     <string name="other_source">Altro</string>
     <string name="invalid_combination">Predefinito non può essere selezionato con altre categorie</string>
     <string name="action_global_search_hint">Ricerca globale…</string>
@@ -418,8 +408,6 @@
     <string name="manga_info_full_title_label">Titolo</string>
     <string name="manga_added_library">Aggiunto alla libreria</string>
     <string name="manga_removed_library">Rimosso dalla libreria</string>
-    <string name="manga_info_latest_data_label">Aggiornato</string>
-    <string name="shortcut_created">Collegamento aggiunto alla home.</string>
     <string name="copied_to_clipboard">%1$s copiato negli appunti</string>
     <string name="source_not_installed">Sorgente non installata: %1$s</string>
     <string name="custom_download">Scarica quantità personalizzata</string>
@@ -557,4 +545,18 @@
     <string name="updating_library">Libreria in aggiornamento</string>
     <string name="pref_category_reading">In Lettura</string>
     <string name="pref_skip_filtered_chapters">Salta capitoli filtrati</string>
+    <string name="action_pin">Fissa</string>
+    <string name="add_tracking">Aggiungi monitoraggio</string>
+    <string name="in_library">In libreria</string>
+    <string name="add_to_library">Aggiungi alla libreria</string>
+    <string name="pinned_sources">Fissato</string>
+    <string name="webtoon_side_padding_25">25%</string>
+    <string name="webtoon_side_padding_20">20%</string>
+    <string name="webtoon_side_padding_15">15%</string>
+    <string name="webtoon_side_padding_10">10%</string>
+    <string name="webtoon_side_padding_0">Nessuno</string>
+    <string name="pref_webtoon_side_padding">Distanziamento laterale</string>
+    <string name="vertical_plus_viewer">Verticale continuo</string>
+    <string name="action_unpin">Rimuovi</string>
+    <string name="action_select_inverse">Seleziona inverso</string>
 </resources>

@@ -55,12 +55,10 @@
     <string name="action_resume">继续阅读</string>
     <string name="action_move">移动</string>
     <string name="action_open_in_browser">在浏览器中打开</string>
-    <string name="action_add_to_home_screen">添加至主屏幕</string>
     <string name="action_display_mode">显示模式</string>
     <string name="action_display">显示</string>
     <string name="action_display_grid">网格</string>
     <string name="action_display_list">列表</string>
-    <string name="action_set_filter">设置筛选</string>
     <string name="action_cancel">取消</string>
     <string name="action_sort">排序</string>
     <string name="action_install">安装</string>
@@ -78,8 +76,8 @@
     <string name="action_restore">恢复</string>
     <string name="action_open">打开</string>
     <string name="action_login">登录</string>
-    <string name="deleting">删除中…</string>
-    <string name="loading">加载中…</string>
+    <string name="deleting">正在删除…</string>
+    <string name="loading">正在加载…</string>
     <string name="action_sort_down">降序</string>
     <string name="action_display_download_badge">已下载标记</string>
     <string name="app_not_available">应用程序不可用</string>
@@ -262,7 +260,6 @@
     <string name="local_source_badge">本地</string>
     <string name="confirm_delete_manga">确定要删除选中的漫画吗？</string>
     <string name="also_delete_chapters">同时删除已下载章节</string>
-    <string name="source_search_options">筛选</string>
     <string name="source_requires_login">此图源需要登录</string>
     <string name="select_source">选择图源</string>
     <string name="no_valid_sources">请至少启用一个有效图源</string>
@@ -287,18 +284,9 @@
     <string name="manga_info_author_label">原作</string>
     <string name="manga_info_artist_label">画师</string>
     <string name="manga_info_chapters_label">章节</string>
-    <string name="manga_info_last_chapter_label">最新章节</string>
-    <string name="manga_info_latest_data_label">更新日期</string>
     <string name="manga_info_status_label">状态</string>
     <string name="manga_info_source_label">图源</string>
     <string name="manga_info_genres_label">类型</string>
-    <string name="circular_icon">圆形图标</string>
-    <string name="rounded_icon">方圆形图标</string>
-    <string name="square_icon">方形图标</string>
-    <string name="shortcut_title">快捷方式标题</string>
-    <string name="shortcut_created">已添加快捷方式至主屏幕。</string>
-    <string name="icon_shape">图标形状</string>
-    <string name="icon_creation_fail">创建快捷方式失败</string>
     <string name="delete_downloads_for_manga">删除已下载的章节？</string>
     <string name="copied_to_clipboard">「%1$s」已复制到剪贴板</string>
     <string name="source_not_installed">未安装图源：%1$s</string>
@@ -359,7 +347,7 @@
     <string name="chapter_subtitle">第 %1$s 章</string>
     <string name="no_next_chapter">下面没有啦</string>
     <string name="no_previous_chapter">前面没有啦</string>
-    <string name="decode_image_error">图片解码失败</string>
+    <string name="decode_image_error">图片加载失败</string>
     <string name="confirm_set_image_as_cover">要将此页设为封面吗？</string>
     <string name="viewer_for_this_series">阅读模式</string>
     <string name="transition_finished">已读完：</string>
@@ -368,7 +356,7 @@
     <string name="transition_previous">上一章：</string>
     <string name="transition_no_next">下面没有啦</string>
     <string name="transition_no_previous">前面没有啦</string>
-    <string name="transition_pages_loading">页面加载中…</string>
+    <string name="transition_pages_loading">正在加载页面…</string>
     <string name="transition_pages_error">第 %1$s 页加载失败</string>
     <string name="recent_manga_source">%1$s - 第 %2$s 章</string>
     <string name="migration_info">选择需要迁移的图源</string>
@@ -519,4 +507,16 @@
     <string name="updating_library">正在更新书架</string>
     <string name="pref_category_reading">阅读</string>
     <string name="pref_skip_filtered_chapters">跳过已筛选章节</string>
+    <string name="pinned_sources">已置顶</string>
+    <string name="action_unpin">取消置顶</string>
+    <string name="action_pin">置顶</string>
+    <string name="webtoon_side_padding_25">25%</string>
+    <string name="webtoon_side_padding_20">20%</string>
+    <string name="webtoon_side_padding_15">15%</string>
+    <string name="webtoon_side_padding_10">10%</string>
+    <string name="webtoon_side_padding_0">无</string>
+    <string name="pref_webtoon_side_padding">侧边填充</string>
+    <string name="vertical_plus_viewer">从上到下（连续）</string>
+    <string name="action_select_inverse">反选</string>
+    <string name="add_tracking">添加同步</string>
 </resources>
