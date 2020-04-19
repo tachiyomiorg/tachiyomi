@@ -529,4 +529,6 @@
     <string name="manga_info_collapse">Mostrar menos informações</string>
     <string name="manga_info_expand">Mostrar mais informações</string>
     <string name="manga_info_about_label">Sobre</string>
+    <string name="pref_confirm_exit">Confirmar saída</string>
+    <string name="confirm_exit">Pressione novamente para sair</string>
 </resources>
