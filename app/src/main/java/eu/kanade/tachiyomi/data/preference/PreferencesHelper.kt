@@ -215,7 +215,7 @@ class PreferencesHelper(val context: Context) {
 
     fun skipRead() = prefs.getBoolean(Keys.skipRead, false)
 
-    fun skipFiltered() = prefs.getBoolean(Keys.skipFiltered, false)
+    fun skipFiltered() = prefs.getBoolean(Keys.skipFiltered, true)
 
     fun migrateFlags() = flowPrefs.getInt("migrate_flags", Int.MAX_VALUE)
 
