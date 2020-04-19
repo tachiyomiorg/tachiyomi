@@ -183,6 +183,8 @@ class PreferencesHelper(val context: Context) {
 
     fun downloadBadge() = rxPrefs.getBoolean(Keys.downloadBadge, false)
 
+    fun offlineMode() = flowPrefs.getBoolean(Keys.offlineMode, false)
+
     fun filterDownloaded() = rxPrefs.getBoolean(Keys.filterDownloaded, false)
 
     fun filterUnread() = rxPrefs.getBoolean(Keys.filterUnread, false)

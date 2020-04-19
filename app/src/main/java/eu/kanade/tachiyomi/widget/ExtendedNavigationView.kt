@@ -40,7 +40,7 @@ open class ExtendedNavigationView @JvmOverloads constructor(
         /**
          * A checkbox.
          */
-        open class Checkbox(val resTitle: Int, var checked: Boolean = false) : Item()
+        open class Checkbox(val resTitle: Int, var checked: Boolean = false, var enabled: Boolean = true) : Item()
 
         /**
          * A checkbox belonging to a group. The group must handle selections and restrictions.
@@ -218,6 +218,7 @@ open class ExtendedNavigationView @JvmOverloads constructor(
                     val item = items[position] as Item.CheckboxGroup
                     holder.check.setText(item.resTitle)
                     holder.check.isChecked = item.checked
+                    holder.check.isEnabled = item.enabled
                 }
                 is MultiStateHolder -> {
                     val item = items[position] as Item.MultiStateGroup

@@ -12,6 +12,7 @@
 
     <!-- Activities and fragments labels (toolbar title) -->
     <string name="label_more">More</string>
+    <string name="label_offline_mode">Offline mode</string>
     <string name="label_settings">Settings</string>
     <string name="label_download_queue">Download queue</string>
     <string name="label_library">Library</string>
