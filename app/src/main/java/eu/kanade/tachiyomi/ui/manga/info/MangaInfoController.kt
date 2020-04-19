@@ -284,24 +284,26 @@ class MangaInfoController(private val fromSource: Boolean = false) :
     }
 
     private fun toggleMangaInfo(context: Context) {
+        val isExpanded = binding.mangaInfoToggle.text == context.getString(R.string.manga_info_collapse)
+
         binding.mangaInfoToggle.text =
-            if (binding.mangaInfoToggle.text == context.getString(R.string.manga_info_expand))
-                context.getString(R.string.manga_info_collapse)
-            else
+            if (isExpanded)
                 context.getString(R.string.manga_info_expand)
+            else
+                context.getString(R.string.manga_info_collapse)
 
         with(binding.mangaSummary) {
             maxLines =
-                if (maxLines == Int.MAX_VALUE)
+                if (isExpanded)
                     3
                 else
                     Int.MAX_VALUE
 
             ellipsize =
-                if (ellipsize == TextUtils.TruncateAt.END)
-                    null
-                else
+                if (isExpanded)
                     TextUtils.TruncateAt.END
+                else
+                    null
         }
 
         binding.mangaGenresTags.toggle()

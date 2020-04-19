@@ -206,15 +206,6 @@
                     android:text="@string/add_to_library"
                     app:icon="@drawable/ic_add_to_library_24dp" />
 
-                <!--                <com.google.android.material.button.MaterialButton-->
-                <!--                    android:id="@+id/btn_tracking"-->
-                <!--                    style="@style/Theme.Widget.Button.Icon"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginStart="8dp"-->
-                <!--                    android:text="@string/manga_tracking_tab"-->
-                <!--                    app:icon="@drawable/ic_sync_24dp" />-->
-
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_share"
                     style="@style/Theme.Widget.Button.Icon.Textless"
