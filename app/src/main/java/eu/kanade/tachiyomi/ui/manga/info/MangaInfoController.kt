@@ -62,6 +62,8 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
     private var initialLoad: Boolean = true
 
+    private var thumbnailUrl: String? = null
+
     override fun createPresenter(): MangaInfoPresenter {
         val ctrl = parentController as MangaController
         return MangaInfoPresenter(ctrl.manga!!, ctrl.source!!, ctrl.mangaFavoriteRelay)
@@ -225,7 +227,8 @@ class MangaInfoController(private val fromSource: Boolean = false) :
         setFavoriteButtonState(manga.favorite)
 
         // Set cover if it wasn't already.
-        if (binding.mangaCover.drawable == null && !manga.thumbnail_url.isNullOrEmpty()) {
+        if (binding.mangaCover.drawable == null || manga.thumbnail_url != thumbnailUrl) {
+            thumbnailUrl = manga.thumbnail_url
             val mangaThumbnail = manga.toMangaThumbnail()
 
             GlideApp.with(view.context)
