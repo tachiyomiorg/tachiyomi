@@ -475,6 +475,16 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
             if (numScore in 1..9)
                 score = numScore.toString()
             status = track.status.toString()
+            if (track.started_reading_date == 0L) {
+                start_date_month = ""
+                start_date_day = ""
+                start_date_year = ""
+            }
+            if (track.finished_reading_date == 0L) {
+                finish_date_month = ""
+                finish_date_day = ""
+                finish_date_year = ""
+            }
             track.started_reading_date.toCalendar()?.let { cal ->
                 start_date_month = (cal[Calendar.MONTH] + 1).toString()
                 start_date_day = cal[Calendar.DAY_OF_MONTH].toString()
