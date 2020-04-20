@@ -232,16 +232,13 @@ dependencies {
     }
     implementation 'com.github.inorichi:conductor-support-preference:a32c357'
 
-    // RxBindings
-    final rxbindings_version = '1.0.1'
-    implementation "com.jakewharton.rxbinding:rxbinding-support-v4-kotlin:$rxbindings_version"
-
     // FlowBinding
-    final flowbinding_version = '0.10.2'
+    final flowbinding_version = '0.11.1'
     implementation "io.github.reactivecircus.flowbinding:flowbinding-android:$flowbinding_version"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-appcompat:$flowbinding_version"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-recyclerview:$flowbinding_version"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-swiperefreshlayout:$flowbinding_version"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-viewpager:$flowbinding_version"
 
     // Tests
     testImplementation 'junit:junit:4.13'

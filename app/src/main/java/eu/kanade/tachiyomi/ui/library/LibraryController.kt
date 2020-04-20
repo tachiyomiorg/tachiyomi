@@ -19,7 +19,6 @@ import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.f2prateek.rx.preferences.Preference
 import com.google.android.material.tabs.TabLayout
-import com.jakewharton.rxbinding.support.v4.view.pageSelections
 import com.jakewharton.rxrelay.BehaviorRelay
 import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.R
@@ -43,6 +42,7 @@ import kotlinx.android.synthetic.main.main_activity.tabs
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.appcompat.queryTextChanges
+import reactivecircus.flowbinding.viewpager.pageSelections
 import rx.Subscription
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
@@ -149,10 +149,12 @@ class LibraryController(
 
         adapter = LibraryAdapter(this)
         binding.libraryPager.adapter = adapter
-        binding.libraryPager.pageSelections().skip(1).subscribeUntilDestroy {
-            preferences.lastUsedCategory().set(it)
-            activeCategory = it
-        }
+        binding.libraryPager.pageSelections()
+            .onEach {
+                preferences.lastUsedCategory().set(it)
+                activeCategory = it
+            }
+            .launchInUI()
 
         getColumnsPreferenceForCurrentOrientation().asObservable()
                 .doOnNext { mangaPerRow = it }
