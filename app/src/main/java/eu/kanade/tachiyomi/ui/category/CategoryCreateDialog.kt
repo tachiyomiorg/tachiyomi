@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.category
 import android.app.Dialog
 import android.os.Bundle
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.input.input
 import com.bluelinelabs.conductor.Controller
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
@@ -29,15 +30,18 @@ class CategoryCreateDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
      * @return a new dialog instance.
      */
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        return MaterialDialog.Builder(activity!!)
+        return MaterialDialog(activity!!)
                 .title(R.string.action_add_category)
-                .negativeText(android.R.string.cancel)
-                .alwaysCallInputCallback()
-                .input(resources?.getString(R.string.name), currentName, false) { _, input ->
+                .negativeButton(android.R.string.cancel)
+                .input(
+                    hint = resources?.getString(R.string.name),
+                    prefill = currentName
+                ) { _, input ->
                     currentName = input.toString()
                 }
-                .onPositive { _, _ -> (targetController as? Listener)?.createCategory(currentName) }
-                .build()
+                .positiveButton(android.R.string.ok) {
+                    (targetController as? Listener)?.createCategory(currentName)
+                }
     }
 
     interface Listener {

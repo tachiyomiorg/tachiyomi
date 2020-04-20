@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.listItems
 import com.f2prateek.rx.preferences.Preference
 import com.google.android.material.snackbar.Snackbar
 import eu.davidea.flexibleadapter.FlexibleAdapter
@@ -498,9 +499,11 @@ open class BrowseSourceController(bundle: Bundle) :
         val manga = (adapter?.getItem(position) as? SourceItem?)?.manga ?: return
 
         if (manga.favorite) {
-            MaterialDialog.Builder(activity)
-                    .items(activity.getString(R.string.remove_from_library))
-                    .itemsCallback { _, _, which, _ ->
+            MaterialDialog(activity)
+                    .listItems(
+                        items = listOf(activity.getString(R.string.remove_from_library)),
+                        waitForPositiveButton = false
+                    ) { _, which, _ ->
                         when (which) {
                             0 -> {
                                 presenter.changeMangaFavorite(manga)
@@ -508,7 +511,8 @@ open class BrowseSourceController(bundle: Bundle) :
                                 activity.toast(activity.getString(R.string.manga_removed_library))
                             }
                         }
-                    }.show()
+                    }
+                    .show()
         } else {
             val categories = presenter.getCategories()
             val defaultCategoryId = preferences.defaultCategory()

@@ -165,12 +165,10 @@ class AboutController : SettingsController() {
         })
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog.Builder(activity!!)
-                    .title(R.string.update_check_notification_update_available)
-                    .content(args.getString(BODY_KEY) ?: "")
-                    .positiveText(R.string.update_check_confirm)
-                    .negativeText(R.string.update_check_ignore)
-                    .onPositive { _, _ ->
+            return MaterialDialog(activity!!)
+                    .title(res = R.string.update_check_notification_update_available)
+                    .message(text = args.getString(BODY_KEY) ?: "")
+                    .positiveButton(R.string.update_check_confirm) {
                         val appContext = applicationContext
                         if (appContext != null) {
                             // Start download
@@ -178,7 +176,7 @@ class AboutController : SettingsController() {
                             UpdaterService.downloadUpdate(appContext, url)
                         }
                     }
-                    .build()
+                    .negativeButton(R.string.update_check_ignore)
         }
 
         private companion object {

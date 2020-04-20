@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.listItems
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RouterTransaction
@@ -121,18 +122,22 @@ class SourceController : NucleusController<SourceMainControllerBinding, SourcePr
 
         val isPinned = item.header?.code?.equals(SourcePresenter.PINNED_KEY) ?: false
 
-        MaterialDialog.Builder(activity)
-                .title(item.source.name)
-                .items(
-                    activity.getString(R.string.action_hide),
-                    activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin)
-                )
-                .itemsCallback { _, _, which, _ ->
+        MaterialDialog(activity)
+                .title(text = item.source.name)
+                .listItems(
+                    items = listOf(
+                        activity.getString(R.string.action_hide),
+                        activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin)
+                    ),
+                    waitForPositiveButton = false
+                ) { dialog, which, _ ->
                     when (which) {
                         0 -> hideCatalogue(item.source)
                         1 -> pinCatalogue(item.source, isPinned)
                     }
-                }.show()
+                    dialog.dismiss()
+                }
+                .show()
     }
 
     private fun hideCatalogue(source: Source) {

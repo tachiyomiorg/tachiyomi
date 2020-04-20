@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.backup.BackupConst
@@ -231,12 +232,14 @@ class SettingsBackupController : SettingsController() {
                     R.string.track, R.string.history)
                     .map { activity.getString(it) }
 
-            return MaterialDialog.Builder(activity)
+            return MaterialDialog(activity)
                     .title(R.string.pref_create_backup)
-                    .content(R.string.backup_choice)
-                    .items(options)
-                    .itemsDisabledIndices(0)
-                    .itemsCallbackMultiChoice(arrayOf(0, 1, 2, 3, 4)) { _, positions, _ ->
+                    .message(R.string.backup_choice)
+                    .listItemsMultiChoice(
+                        items = options,
+                        disabledIndices = intArrayOf(0),
+                        initialSelection = intArrayOf(0, 1, 2, 3, 4)
+                    ) { _, positions, _ ->
                         var flags = 0
                         for (i in 1 until positions.size) {
                             when (positions[i]) {
@@ -248,11 +251,9 @@ class SettingsBackupController : SettingsController() {
                         }
 
                         (targetController as? SettingsBackupController)?.createBackup(flags)
-                        true
                     }
-                    .positiveText(R.string.action_create)
-                    .negativeText(android.R.string.cancel)
-                    .build()
+                    .positiveButton(R.string.action_create)
+                    .negativeButton(android.R.string.cancel)
         }
     }
 
@@ -262,11 +263,10 @@ class SettingsBackupController : SettingsController() {
         })
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog.Builder(activity!!)
+            return MaterialDialog(activity!!)
                     .title(R.string.pref_restore_backup)
-                    .content(R.string.backup_restore_content)
-                    .positiveText(R.string.action_restore)
-                    .onPositive { _, _ ->
+                    .message(R.string.backup_restore_content)
+                    .positiveButton(R.string.action_restore) {
                         val context = applicationContext
                         if (context != null) {
                             (targetController as SettingsBackupController).notifier.showRestoreProgress()
@@ -274,7 +274,6 @@ class SettingsBackupController : SettingsController() {
                             isRestoreStarted = true
                         }
                     }
-                    .build()
         }
 
         private companion object {

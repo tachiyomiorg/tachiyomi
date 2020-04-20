@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
@@ -52,14 +53,11 @@ class TrackSearchDialog : DialogController {
     }
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        val dialog = MaterialDialog.Builder(activity!!)
-                .customView(R.layout.track_search_dialog, false)
-                .positiveText(android.R.string.ok)
-                .onPositive { _, _ -> onPositiveButtonClick() }
-                .negativeText(android.R.string.cancel)
-                .neutralText(R.string.action_remove)
-                .onNeutral { _, _ -> onRemoveButtonClick() }
-                .build()
+        val dialog = MaterialDialog(activity!!)
+                .customView(R.layout.track_search_dialog)
+                .positiveButton(android.R.string.ok) { onPositiveButtonClick() }
+                .negativeButton(android.R.string.cancel)
+                .neutralButton(R.string.action_remove) { onRemoveButtonClick() }
 
         dialogView = dialog.view
         onViewCreated(dialog.view, savedViewState)

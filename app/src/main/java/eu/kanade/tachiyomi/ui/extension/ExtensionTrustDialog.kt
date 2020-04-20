@@ -18,18 +18,15 @@ class ExtensionTrustDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
     }
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        return MaterialDialog.Builder(activity!!)
+        return MaterialDialog(activity!!)
                 .title(R.string.untrusted_extension)
-                .content(R.string.untrusted_extension_message)
-                .positiveText(R.string.ext_trust)
-                .negativeText(R.string.ext_uninstall)
-                .onPositive { _, _ ->
+                .message(R.string.untrusted_extension_message)
+                .positiveButton(R.string.ext_trust) {
                     (targetController as? Listener)?.trustSignature(args.getString(SIGNATURE_KEY)!!)
                 }
-                .onNegative { _, _ ->
+                .negativeButton(R.string.ext_uninstall) {
                     (targetController as? Listener)?.uninstallExtension(args.getString(PKGNAME_KEY)!!)
                 }
-                .build()
     }
 
     private companion object {

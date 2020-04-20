@@ -10,6 +10,7 @@ import android.os.Environment
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
@@ -155,21 +156,21 @@ class SettingsDownloadController : SettingsController() {
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
             val activity = activity!!
             val currentDir = preferences.downloadsDirectory().getOrDefault()
-            val externalDirs = getExternalDirs() + File(activity.getString(R.string.custom_dir))
-            val selectedIndex = externalDirs.map(File::toString).indexOfFirst { it in currentDir }
+            val externalDirs = (getExternalDirs() + File(activity.getString(R.string.custom_dir))).map(File::toString)
+            val selectedIndex = externalDirs.indexOfFirst { it in currentDir }
 
-            return MaterialDialog.Builder(activity)
-                    .items(externalDirs)
-                    .itemsCallbackSingleChoice(selectedIndex) { _, _, which, text ->
+            return MaterialDialog(activity)
+                    .listItemsSingleChoice(
+                        items = externalDirs,
+                        initialSelection = selectedIndex
+                    ) { _, position, text ->
                         val target = targetController as? SettingsDownloadController
-                        if (which == externalDirs.lastIndex) {
+                        if (position == externalDirs.lastIndex) {
                             target?.customDirectorySelected(currentDir)
                         } else {
                             target?.predefinedDirectorySelected(text.toString())
                         }
-                        true
                     }
-                    .build()
         }
 
         private fun getExternalDirs(): List<File> {

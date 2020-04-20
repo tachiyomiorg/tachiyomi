@@ -137,14 +137,12 @@ class SettingsAdvancedController : SettingsController() {
 
     class ClearDatabaseDialogController : DialogController() {
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog.Builder(activity!!)
-                    .content(R.string.clear_database_confirmation)
-                    .positiveText(android.R.string.ok)
-                    .negativeText(android.R.string.cancel)
-                    .onPositive { _, _ ->
+            return MaterialDialog(activity!!)
+                    .message(R.string.clear_database_confirmation)
+                    .positiveButton(android.R.string.ok) {
                         (targetController as? SettingsAdvancedController)?.clearDatabase()
                     }
-                    .build()
+                    .negativeButton(android.R.string.cancel)
         }
     }
 

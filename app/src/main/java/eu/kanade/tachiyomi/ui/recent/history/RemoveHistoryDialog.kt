@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.recent.history
 import android.app.Dialog
 import android.os.Bundle
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
 import com.bluelinelabs.conductor.Controller
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.History
@@ -32,13 +33,11 @@ class RemoveHistoryDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
             setOptionDescription(R.string.dialog_with_checkbox_reset)
         }
 
-        return MaterialDialog.Builder(activity)
+        return MaterialDialog(activity)
                 .title(R.string.action_remove)
-                .customView(dialogCheckboxView, true)
-                .positiveText(R.string.action_remove)
-                .negativeText(android.R.string.cancel)
-                .onPositive { _, _ -> onPositive(dialogCheckboxView.isChecked()) }
-                .build()
+                .customView(view = dialogCheckboxView, horizontalPadding = true)
+                .positiveButton(R.string.action_remove) { onPositive(dialogCheckboxView.isChecked()) }
+                .negativeButton(android.R.string.cancel)
     }
 
     private fun onPositive(checked: Boolean) {

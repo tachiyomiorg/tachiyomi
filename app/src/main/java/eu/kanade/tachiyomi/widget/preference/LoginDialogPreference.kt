@@ -6,6 +6,7 @@ import android.text.method.PasswordTransformationMethod
 import android.view.View
 import androidx.annotation.StringRes
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.dd.processbutton.iml.ActionProcessButton
@@ -35,15 +36,13 @@ abstract class LoginDialogPreference(
     var requestSubscription: Subscription? = null
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        var dialogBuilder = MaterialDialog.Builder(activity!!)
-                .customView(R.layout.pref_account_login, false)
-                .negativeText(android.R.string.cancel)
+        var dialog = MaterialDialog(activity!!)
+                .customView(R.layout.pref_account_login)
+                .negativeButton(android.R.string.cancel)
 
         if (titleRes != null) {
-            dialogBuilder = dialogBuilder.title(activity!!.getString(titleRes, titleFormatArgs))
+            dialog = dialog.title(text = activity!!.getString(titleRes, titleFormatArgs))
         }
-
-        val dialog = dialogBuilder.build()
 
         onViewCreated(dialog.view)
 

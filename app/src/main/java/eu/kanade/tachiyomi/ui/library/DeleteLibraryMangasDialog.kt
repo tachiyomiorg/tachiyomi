@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.library
 import android.app.Dialog
 import android.os.Bundle
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
 import com.bluelinelabs.conductor.Controller
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -25,16 +26,17 @@ class DeleteLibraryMangasDialog<T>(bundle: Bundle? = null) :
             setOptionDescription(R.string.also_delete_chapters)
         }
 
-        return MaterialDialog.Builder(activity!!)
+        return MaterialDialog(activity!!)
                 .title(R.string.action_remove)
-                .customView(view, true)
-                .positiveText(android.R.string.ok)
-                .negativeText(android.R.string.cancel)
-                .onPositive { _, _ ->
+                .customView(
+                    view = view,
+                    horizontalPadding = true
+                )
+                .positiveButton(android.R.string.ok) {
                     val deleteChapters = view.isChecked()
                     (targetController as? Listener)?.deleteMangasFromLibrary(mangas, deleteChapters)
                 }
-                .build()
+                .negativeButton(android.R.string.cancel)
     }
 
     interface Listener {
