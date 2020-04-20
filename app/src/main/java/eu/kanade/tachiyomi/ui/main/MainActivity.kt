@@ -13,7 +13,6 @@ import com.bluelinelabs.conductor.RouterTransaction
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
-import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.databinding.MainActivityBinding
 import eu.kanade.tachiyomi.extension.api.ExtensionGithubApi
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
@@ -154,8 +153,9 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
             }
         }
 
-        preferences.extensionUpdatesCount().asImmediateFlow()
-            .onEach { setExtensionsBadge(it) }
+        setExtensionsBadge()
+        preferences.extensionUpdatesCount().asFlow()
+            .onEach { setExtensionsBadge() }
             .launchInUI()
     }
 
@@ -170,7 +170,8 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         getExtensionUpdates()
     }
 
-    private fun setExtensionsBadge(updates: Int) {
+    private fun setExtensionsBadge() {
+        val updates = preferences.extensionUpdatesCount().get()
         if (updates > 0) {
             binding.bottomNav.getOrCreateBadge(R.id.nav_more).number = updates
         } else {
