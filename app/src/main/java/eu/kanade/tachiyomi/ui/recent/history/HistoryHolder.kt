@@ -5,6 +5,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.MangaChapterHistory
 import eu.kanade.tachiyomi.data.glide.GlideApp
+import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.util.lang.toTimestampString
 import java.util.Date
@@ -67,7 +68,7 @@ class HistoryHolder(
         GlideApp.with(itemView.context).clear(cover)
         if (!manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(itemView.context)
-                    .load(manga)
+                    .load(manga.toMangaThumbnail())
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .centerCrop()
                     .into(cover)

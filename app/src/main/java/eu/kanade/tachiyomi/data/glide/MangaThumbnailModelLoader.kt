@@ -31,7 +31,7 @@ import uy.kohesive.injekt.injectLazy
  *
  * @param context the application context.
  */
-class MangaModelLoader : ModelLoader<Manga, InputStream> {
+class MangaThumbnailModelLoader : ModelLoader<MangaThumbnail, InputStream> {
 
     /**
      * Cover cache where persistent covers are stored.
@@ -60,18 +60,18 @@ class MangaModelLoader : ModelLoader<Manga, InputStream> {
     private val cachedHeaders = hashMapOf<Long, LazyHeaders>()
 
     /**
-     * Factory class for creating [MangaModelLoader] instances.
+     * Factory class for creating [MangaThumbnailModelLoader] instances.
      */
-    class Factory : ModelLoaderFactory<Manga, InputStream> {
+    class Factory : ModelLoaderFactory<MangaThumbnail, InputStream> {
 
-        override fun build(multiFactory: MultiModelLoaderFactory): ModelLoader<Manga, InputStream> {
-            return MangaModelLoader()
+        override fun build(multiFactory: MultiModelLoaderFactory): ModelLoader<MangaThumbnail, InputStream> {
+            return MangaThumbnailModelLoader()
         }
 
         override fun teardown() {}
     }
 
-    override fun handles(model: Manga): Boolean {
+    override fun handles(model: MangaThumbnail): Boolean {
         return true
     }
 
@@ -83,16 +83,18 @@ class MangaModelLoader : ModelLoader<Manga, InputStream> {
      * @param height the height of the view where the resource will be loaded.
      */
     override fun buildLoadData(
-        manga: Manga,
-        width: Int,
-        height: Int,
-        options: Options
+            mangaThumbnail: MangaThumbnail,
+            width: Int,
+            height: Int,
+            options: Options
     ): ModelLoader.LoadData<InputStream>? {
         // Check thumbnail is not null or empty
-        val url = manga.thumbnail_url
+        val url = mangaThumbnail.url
         if (url == null || url.isEmpty()) {
             return null
         }
+
+        val manga = mangaThumbnail.manga
 
         if (url.startsWith("http")) {
             val source = sourceManager.get(manga.source) as? HttpSource
@@ -126,7 +128,7 @@ class MangaModelLoader : ModelLoader<Manga, InputStream> {
      *
      * @param manga the model.
      */
-    fun getHeaders(manga: Manga, source: HttpSource?): Headers {
+    private fun getHeaders(manga: Manga, source: HttpSource?): Headers {
         if (source == null) return LazyHeaders.DEFAULT
 
         return cachedHeaders.getOrPut(manga.source) {
