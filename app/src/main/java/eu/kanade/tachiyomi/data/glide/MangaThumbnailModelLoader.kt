@@ -96,7 +96,7 @@ class MangaThumbnailModelLoader : ModelLoader<MangaThumbnail, InputStream> {
 
         val manga = mangaThumbnail.manga
 
-        if (url.startsWith("http")) {
+        if (url.startsWith("http", true)) {
             val source = sourceManager.get(manga.source) as? HttpSource
             val glideUrl = GlideUrl(url, getHeaders(manga, source))
 
