@@ -411,7 +411,7 @@ class PagerPageHolder(
         }
 
         val imageUrl = page.imageUrl
-        if (imageUrl.orEmpty().startsWith("http")) {
+        if (imageUrl.orEmpty().startsWith("http", true)) {
             PagerButton(context, viewer).apply {
                 layoutParams = LayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
                     setMargins(margins, margins, margins, margins)

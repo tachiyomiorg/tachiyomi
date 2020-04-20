@@ -454,7 +454,7 @@ class WebtoonPageHolder(
         }
 
         val imageUrl = page?.imageUrl
-        if (imageUrl.orEmpty().startsWith("http")) {
+        if (imageUrl.orEmpty().startsWith("http", true)) {
             AppCompatButton(context).apply {
                 layoutParams = FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT).apply {
                     setMargins(0, margins, 0, margins)
