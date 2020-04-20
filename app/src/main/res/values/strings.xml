@@ -593,7 +593,7 @@
     <string name="information_empty_library">Your library is empty, add series to your library from the sources.</string>
     <string name="information_empty_category">You have no categories. Hit the plus button to create one for organizing your library.</string>
     <string name="information_cloudflare_bypass_failure">Failed to bypass Cloudflare</string>
-    <string name="information_webview_required">Webview is required for Tachiyomi</string>
+    <string name="information_webview_required">WebView is required for Tachiyomi</string>
     <string name="information_webview_outdated">Please update the WebView app for better compatibility</string>
 
     <!-- Download Notification -->
