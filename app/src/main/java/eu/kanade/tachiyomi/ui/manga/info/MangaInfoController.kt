@@ -59,6 +59,8 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
     private val preferences: PreferencesHelper by injectLazy()
 
+    private var initialLoad: Boolean = true
+
     override fun createPresenter(): MangaInfoPresenter {
         val ctrl = parentController as MangaController
         return MangaInfoPresenter(ctrl.manga!!, ctrl.source!!, ctrl.mangaFavoriteRelay)
@@ -270,8 +272,9 @@ class MangaInfoController(private val fromSource: Boolean = false) :
                 .launchInUI()
 
             // Expand manga info if navigated from source listing
-            if (fromSource) {
+            if (initialLoad && fromSource) {
                 toggleMangaInfo(view.context)
+                initialLoad = false
             }
         }
     }
