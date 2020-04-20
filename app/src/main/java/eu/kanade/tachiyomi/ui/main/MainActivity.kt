@@ -13,6 +13,7 @@ import com.bluelinelabs.conductor.RouterTransaction
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
+import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.databinding.MainActivityBinding
 import eu.kanade.tachiyomi.extension.api.ExtensionGithubApi
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
@@ -153,7 +154,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
             }
         }
 
-        preferences.extensionUpdatesCount().asFlow()
+        preferences.extensionUpdatesCount().asImmediateFlow()
             .onEach { setExtensionsBadge(it) }
             .launchInUI()
     }

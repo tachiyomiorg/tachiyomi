@@ -5,9 +5,10 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Environment
 import androidx.preference.PreferenceManager
-import com.f2prateek.rx.preferences.Preference
+import com.f2prateek.rx.preferences.Preference as RxPreference
 import com.f2prateek.rx.preferences.RxSharedPreferences
 import com.tfcporciuncula.flow.FlowSharedPreferences
+import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
@@ -18,10 +19,17 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Locale
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import reactivecircus.flowbinding.common.startWithCurrentValue
 
-fun <T> Preference<T>.getOrDefault(): T = get() ?: defaultValue()!!
+fun <T> RxPreference<T>.getOrDefault(): T = get() ?: defaultValue()!!
 
-private class DateFormatConverter : Preference.Adapter<DateFormat> {
+fun <T> Preference<T>.asImmediateFlow(): Flow<T> {
+    return asFlow()
+        .startWithCurrentValue(true) { get() }
+}
+
+private class DateFormatConverter : RxPreference.Adapter<DateFormat> {
     override fun get(key: String, preferences: SharedPreferences): DateFormat {
         val dateFormat = preferences.getString(Keys.dateFormat, "")!!
 
