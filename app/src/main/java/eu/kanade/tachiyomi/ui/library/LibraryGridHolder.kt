@@ -4,6 +4,7 @@ import android.view.View
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.glide.GlideApp
+import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.util.view.visibleIf
 import kotlinx.android.synthetic.main.source_grid_item.download_text
@@ -52,7 +53,7 @@ class LibraryGridHolder(
         // Update the cover.
         GlideApp.with(view.context).clear(thumbnail)
         GlideApp.with(view.context)
-                .load(item.manga)
+                .load(item.manga.toMangaThumbnail())
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .centerCrop()
                 .into(thumbnail)

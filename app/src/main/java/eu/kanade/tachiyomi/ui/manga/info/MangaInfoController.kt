@@ -16,6 +16,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.glide.GlideApp
+import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.MangaInfoControllerBinding
 import eu.kanade.tachiyomi.source.Source
@@ -60,6 +61,8 @@ class MangaInfoController(private val fromSource: Boolean = false) :
     private val preferences: PreferencesHelper by injectLazy()
 
     private var initialLoad: Boolean = true
+
+    private var thumbnailUrl: String? = null
 
     override fun createPresenter(): MangaInfoPresenter {
         val ctrl = parentController as MangaController
@@ -224,15 +227,18 @@ class MangaInfoController(private val fromSource: Boolean = false) :
         setFavoriteButtonState(manga.favorite)
 
         // Set cover if it wasn't already.
-        if (binding.mangaCover.drawable == null && !manga.thumbnail_url.isNullOrEmpty()) {
+        if (binding.mangaCover.drawable == null || manga.thumbnail_url != thumbnailUrl) {
+            thumbnailUrl = manga.thumbnail_url
+            val mangaThumbnail = manga.toMangaThumbnail()
+
             GlideApp.with(view.context)
-                    .load(manga)
+                    .load(mangaThumbnail)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .centerCrop()
                     .into(binding.mangaCover)
 
             GlideApp.with(view.context)
-                    .load(manga)
+                    .load(mangaThumbnail)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .centerCrop()
                     .into(binding.backdrop)

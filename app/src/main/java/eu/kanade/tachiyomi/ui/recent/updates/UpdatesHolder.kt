@@ -6,6 +6,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.glide.GlideApp
+import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import kotlinx.android.synthetic.main.updates_item.chapter_title
@@ -58,7 +59,7 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
         GlideApp.with(itemView.context).clear(manga_cover)
         if (!item.manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(itemView.context)
-                    .load(item.manga)
+                    .load(item.manga.toMangaThumbnail())
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .circleCrop()
                     .into(manga_cover)

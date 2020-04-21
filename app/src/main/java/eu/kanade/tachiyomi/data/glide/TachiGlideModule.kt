@@ -13,7 +13,6 @@ import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.module.AppGlideModule
 import com.bumptech.glide.request.RequestOptions
-import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.network.NetworkHelper
 import java.io.InputStream
 import uy.kohesive.injekt.Injekt
@@ -36,7 +35,7 @@ class TachiGlideModule : AppGlideModule() {
         val networkFactory = OkHttpUrlLoader.Factory(Injekt.get<NetworkHelper>().client)
 
         registry.replace(GlideUrl::class.java, InputStream::class.java, networkFactory)
-        registry.append(Manga::class.java, InputStream::class.java, MangaModelLoader.Factory())
+        registry.append(MangaThumbnail::class.java, InputStream::class.java, MangaThumbnailModelLoader.Factory())
         registry.append(InputStream::class.java, InputStream::class.java, PassthroughModelLoader
                 .Factory())
     }

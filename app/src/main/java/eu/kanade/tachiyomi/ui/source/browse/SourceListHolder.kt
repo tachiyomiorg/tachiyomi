@@ -7,6 +7,7 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.glide.GlideApp
+import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import kotlinx.android.synthetic.main.source_list_item.thumbnail
 import kotlinx.android.synthetic.main.source_list_item.title
@@ -42,7 +43,7 @@ class SourceListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
         GlideApp.with(view.context).clear(thumbnail)
         if (!manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(view.context)
-                    .load(manga)
+                    .load(manga.toMangaThumbnail())
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .centerCrop()
                     .circleCrop()
