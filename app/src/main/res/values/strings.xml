@@ -517,7 +517,7 @@
     <string name="updating_library">Updating library</string>
 
     <!-- History fragment -->
-    <string name="recent_manga_source">%1$s - Ch.%2$s</string>
+    <string name="recent_manga_time">Ch. %1$s - %2$s</string>
 
     <!-- Source migration screen -->
     <string name="migration_info">Tap to select the source to migrate from</string>

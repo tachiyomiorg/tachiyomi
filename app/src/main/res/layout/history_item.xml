@@ -5,15 +5,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="128dp"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/cover"
-            android:layout_width="100dp"
+            android:layout_width="85dp"
             android:layout_height="match_parent"
             android:clickable="true"
             android:contentDescription="@string/description_cover"
+            android:focusable="true"
             android:scaleType="centerCrop" />
 
         <RelativeLayout
@@ -35,18 +36,11 @@
                     android:textAppearance="@style/TextAppearance.Medium.Title" />
 
                 <TextView
-                    android:id="@+id/manga_source"
+                    android:id="@+id/manga_subtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/manga_title"
-                    android:textAppearance="@style/TextAppearance.Medium.Body2" />
+                    android:layout_below="@id/manga_title" />
 
-                <TextView
-                    android:id="@+id/last_read"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/manga_source"
-                    android:textAppearance="@style/TextAppearance.Medium.Body2.Hint" />
             </RelativeLayout>
 
             <Button
