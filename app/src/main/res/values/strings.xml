@@ -526,7 +526,6 @@
     <string name="select">Select</string>
     <string name="migrate">Migrate</string>
     <string name="copy">Copy</string>
-    <string name="migrating">Migrating…</string>
 
     <!-- Downloads activity and service -->
     <string name="download_queue_error">Could not download chapters. You can try again in the downloads section</string>
