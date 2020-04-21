@@ -9,7 +9,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
-import android.view.View
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
 import com.bluelinelabs.conductor.RouterTransaction
@@ -117,10 +116,6 @@ class SettingsAdvancedController : SettingsController() {
 
         var deletedFiles = 0
 
-        val ctrl = DeletingFilesDialogController()
-        ctrl.total = files.size
-        ctrl.showDialog(router)
-
         Observable.defer { Observable.from(files) }
                 .doOnNext { file ->
                     if (chapterCache.removeFileFromCache(file.name)) {
@@ -129,50 +124,15 @@ class SettingsAdvancedController : SettingsController() {
                 }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    ctrl.setProgress(deletedFiles)
-                }, {
+                .doOnError {
                     activity?.toast(R.string.cache_delete_error)
-                }, {
-                    ctrl.finish()
+                }
+                .doOnCompleted {
                     activity?.toast(resources?.getString(R.string.cache_deleted, deletedFiles))
                     findPreference(CLEAR_CACHE_KEY)?.summary =
-                            resources?.getString(R.string.used_cache, chapterCache.readableSize)
-                })
-    }
-
-    class DeletingFilesDialogController : DialogController() {
-
-        var total = 0
-
-        private var materialDialog: MaterialDialog? = null
-
-        override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog.Builder(activity!!)
-                    .title(R.string.deleting)
-                    .progress(false, total, true)
-                    .cancelable(false)
-                    .build()
-                    .also { materialDialog = it }
-        }
-
-        override fun onDestroyView(view: View) {
-            super.onDestroyView(view)
-            materialDialog = null
-        }
-
-        override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-            super.onRestoreInstanceState(savedInstanceState)
-            finish()
-        }
-
-        fun setProgress(deletedFiles: Int) {
-            materialDialog?.setProgress(deletedFiles)
-        }
-
-        fun finish() {
-            router.popController(this)
-        }
+                        resources?.getString(R.string.used_cache, chapterCache.readableSize)
+                }
+                .subscribe()
     }
 
     class ClearDatabaseDialogController : DialogController() {

@@ -112,7 +112,6 @@
     <string name="action_webview_refresh">Refresh</string>
 
     <!-- Operations -->
-    <string name="deleting">Deleting…</string>
     <string name="loading">Loading…</string>
 
     <!-- Shortcuts-->

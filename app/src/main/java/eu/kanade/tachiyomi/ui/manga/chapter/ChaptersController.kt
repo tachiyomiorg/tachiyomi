@@ -24,7 +24,6 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.databinding.ChaptersControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.ui.base.controller.popControllerWithTag
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.lang.launchInUI
@@ -504,12 +503,10 @@ class ChaptersController : NucleusController<ChaptersControllerBinding, Chapters
     fun deleteChapters(chapters: List<ChapterItem>) {
         if (chapters.isEmpty()) return
 
-        DeletingChaptersDialog().showDialog(router)
         presenter.deleteChapters(chapters)
     }
 
     fun onChaptersDeleted(chapters: List<ChapterItem>) {
-        dismissDeletingDialog()
         // this is needed so the downloaded text gets removed from the item
         chapters.forEach {
             adapter?.updateItem(it)
@@ -518,12 +515,7 @@ class ChaptersController : NucleusController<ChaptersControllerBinding, Chapters
     }
 
     fun onChaptersDeletedError(error: Throwable) {
-        dismissDeletingDialog()
         Timber.e(error)
-    }
-
-    private fun dismissDeletingDialog() {
-        router.popControllerWithTag(DeletingChaptersDialog.TAG)
     }
 
     // OVERFLOW MENU DIALOGS
