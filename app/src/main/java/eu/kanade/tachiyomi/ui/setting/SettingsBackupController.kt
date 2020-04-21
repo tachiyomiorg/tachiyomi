@@ -25,6 +25,7 @@ import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.popControllerWithTag
 import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
+import eu.kanade.tachiyomi.ui.setting.backup.BackupNotifier
 import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.entriesRes
 import eu.kanade.tachiyomi.util.preference.intListPreference
@@ -48,6 +49,8 @@ class SettingsBackupController : SettingsController() {
      * Flags containing information of what to backup.
      */
     private var backupFlags = 0
+
+    private val notifier by lazy { BackupNotifier(preferences.context) }
 
     private val receiver = BackupBroadcastReceiver()
 
@@ -179,7 +182,7 @@ class SettingsBackupController : SettingsController() {
 
                 val file = UniFile.fromUri(activity, uri)
 
-                CreatingBackupDialog().showDialog(router, TAG_CREATING_BACKUP_DIALOG)
+                notifier.showBackupNotification()
                 BackupCreateService.makeBackup(activity, file.uri, backupFlags)
             }
             CODE_BACKUP_RESTORE -> if (data != null && resultCode == Activity.RESULT_OK) {
@@ -241,22 +244,6 @@ class SettingsBackupController : SettingsController() {
                     .positiveText(R.string.action_create)
                     .negativeText(android.R.string.cancel)
                     .build()
-        }
-    }
-
-    class CreatingBackupDialog : DialogController() {
-        override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog.Builder(activity!!)
-                    .title(R.string.backup)
-                    .content(R.string.creating_backup)
-                    .progress(true, 0)
-                    .cancelable(false)
-                    .build()
-        }
-
-        override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-            super.onRestoreInstanceState(savedInstanceState)
-            router.popController(this)
         }
     }
 
@@ -405,7 +392,7 @@ class SettingsBackupController : SettingsController() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.getStringExtra(BackupConst.ACTION)) {
                 BackupConst.ACTION_BACKUP_COMPLETED_DIALOG -> {
-                    router.popControllerWithTag(TAG_CREATING_BACKUP_DIALOG)
+                    notifier.dismiss()
                     val uri = Uri.parse(intent.getStringExtra(BackupConst.EXTRA_URI))
                     CreatedBackupDialog(uri).showDialog(router)
                 }
@@ -427,7 +414,7 @@ class SettingsBackupController : SettingsController() {
                     }
                 }
                 BackupConst.ACTION_ERROR_BACKUP_DIALOG -> {
-                    router.popControllerWithTag(TAG_CREATING_BACKUP_DIALOG)
+                    notifier.dismiss()
                     context.toast(intent.getStringExtra(BackupConst.EXTRA_ERROR_MESSAGE))
                 }
                 BackupConst.ACTION_ERROR_RESTORE_DIALOG -> {
@@ -443,7 +430,6 @@ class SettingsBackupController : SettingsController() {
         const val CODE_BACKUP_RESTORE = 502
         const val CODE_BACKUP_DIR = 503
 
-        const val TAG_CREATING_BACKUP_DIALOG = "CreatingBackupDialog"
         const val TAG_RESTORING_BACKUP_DIALOG = "RestoringBackupDialog"
     }
 }

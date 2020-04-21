@@ -46,6 +46,12 @@ object Notifications {
     const val ID_UPDATES_TO_EXTS = -401
 
     /**
+     * Notification channel and ids used by the backup/restore system.
+     */
+    const val CHANNEL_BACKUP = "backup_channel"
+    const val ID_BACKUP = -501
+
+    /**
      * Creates the notification channels introduced in Android Oreo.
      *
      * @param context The application context.
