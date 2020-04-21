@@ -610,5 +610,6 @@
     <string name="channel_downloader">Downloader</string>
     <string name="channel_new_chapters">Chapter updates</string>
     <string name="channel_ext_updates">Extension updates</string>
+    <string name="channel_backup_restore">Backup and restore</string>
 
 </resources>

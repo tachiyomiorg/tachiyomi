@@ -48,7 +48,7 @@ object Notifications {
     /**
      * Notification channel and ids used by the backup/restore system.
      */
-    const val CHANNEL_BACKUP = "backup_channel"
+    const val CHANNEL_BACKUP_RESTORE = "backup_restore_channel"
     const val ID_BACKUP = -501
 
     /**
@@ -73,8 +73,11 @@ object Notifications {
                 NotificationChannel(CHANNEL_NEW_CHAPTERS, context.getString(R.string.channel_new_chapters),
                         NotificationManager.IMPORTANCE_DEFAULT),
                 NotificationChannel(CHANNEL_UPDATES_TO_EXTS, context.getString(R.string.channel_ext_updates),
-                        NotificationManager.IMPORTANCE_DEFAULT
-        )
+                        NotificationManager.IMPORTANCE_DEFAULT),
+                NotificationChannel(CHANNEL_BACKUP_RESTORE, context.getString(R.string.channel_backup_restore),
+                    NotificationManager.IMPORTANCE_LOW).apply {
+                    setShowBadge(false)
+                }
         )
         context.notificationManager.createNotificationChannels(channels)
     }

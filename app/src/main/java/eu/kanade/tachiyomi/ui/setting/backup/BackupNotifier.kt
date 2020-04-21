@@ -10,7 +10,7 @@ import eu.kanade.tachiyomi.util.system.notificationManager
 
 internal class BackupNotifier(private val context: Context) {
 
-    private val notificationBuilder = context.notificationBuilder(Notifications.CHANNEL_DOWNLOADER) {
+    private val notificationBuilder = context.notificationBuilder(Notifications.CHANNEL_BACKUP_RESTORE) {
         setLargeIcon(BitmapFactory.decodeResource(context.resources, R.mipmap.ic_launcher))
     }
 
