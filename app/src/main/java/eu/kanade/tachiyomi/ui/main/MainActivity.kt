@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -30,7 +31,6 @@ import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.ui.source.SourceController
 import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchController
-import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.lang.launchUI
 import eu.kanade.tachiyomi.util.system.WebViewUtil
 import eu.kanade.tachiyomi.util.system.toast
@@ -39,6 +39,7 @@ import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -156,7 +157,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         setExtensionsBadge()
         preferences.extensionUpdatesCount().asFlow()
             .onEach { setExtensionsBadge() }
-            .launchInUI()
+            .launchIn(lifecycleScope)
     }
 
     override fun onNewIntent(intent: Intent) {

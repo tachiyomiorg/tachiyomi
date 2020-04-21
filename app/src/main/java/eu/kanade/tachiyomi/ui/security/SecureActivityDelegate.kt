@@ -4,9 +4,10 @@ import android.content.Intent
 import android.view.WindowManager
 import androidx.biometric.BiometricManager
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.lifecycleScope
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.util.lang.launchInUI
 import java.util.Date
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uy.kohesive.injekt.injectLazy
 
@@ -23,7 +24,7 @@ class SecureActivityDelegate(private val activity: FragmentActivity) {
                     activity.window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
                 }
             }
-            .launchInUI()
+            .launchIn(activity.lifecycleScope)
     }
 
     fun onResume() {

@@ -133,8 +133,9 @@ dependencies {
     implementation 'androidx.biometric:biometric:1.0.1'
 
     final lifecycle_version = '2.2.0'
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
     // UI library
     implementation 'com.google.android.material:material:1.1.0'
