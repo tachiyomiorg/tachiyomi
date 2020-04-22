@@ -251,7 +251,7 @@ class BackupRestoreService : Service() {
                         putExtra(BackupConst.EXTRA_ERRORS, errors.size)
                         putExtra(BackupConst.EXTRA_ERROR_FILE_PATH, logFile.parent)
                         putExtra(BackupConst.EXTRA_ERROR_FILE, logFile.name)
-                        putExtra(BackupConst.ACTION, BackupConst.ACTION_RESTORE_COMPLETED_DIALOG)
+                        putExtra(BackupConst.ACTION, BackupConst.ACTION_RESTORE_COMPLETED)
                     }
                     sendLocalBroadcast(completeIntent)
                 }
@@ -259,7 +259,7 @@ class BackupRestoreService : Service() {
                     Timber.e(error)
                     writeErrorLog()
                     val errorIntent = Intent(BackupConst.INTENT_FILTER).apply {
-                        putExtra(BackupConst.ACTION, BackupConst.ACTION_ERROR_RESTORE_DIALOG)
+                        putExtra(BackupConst.ACTION, BackupConst.ACTION_RESTORE_ERROR)
                         putExtra(BackupConst.EXTRA_ERROR_MESSAGE, error.message)
                     }
                     sendLocalBroadcast(errorIntent)
@@ -463,7 +463,7 @@ class BackupRestoreService : Service() {
             putExtra(BackupConst.EXTRA_AMOUNT, amount)
             putExtra(BackupConst.EXTRA_CONTENT, content)
             putExtra(BackupConst.EXTRA_ERRORS, errors)
-            putExtra(BackupConst.ACTION, BackupConst.ACTION_SET_PROGRESS_DIALOG)
+            putExtra(BackupConst.ACTION, BackupConst.ACTION_RESTORE_PROGRESS)
         }
         sendLocalBroadcast(intent)
     }

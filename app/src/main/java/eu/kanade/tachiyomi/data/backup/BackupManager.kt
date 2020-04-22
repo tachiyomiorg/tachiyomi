@@ -179,7 +179,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
 
                 // Show completed dialog
                 val intent = Intent(BackupConst.INTENT_FILTER).apply {
-                    putExtra(BackupConst.ACTION, BackupConst.ACTION_BACKUP_COMPLETED_DIALOG)
+                    putExtra(BackupConst.ACTION, BackupConst.ACTION_BACKUP_COMPLETED)
                     putExtra(BackupConst.EXTRA_URI, file.uri.toString())
                 }
                 context.sendLocalBroadcast(intent)
@@ -189,7 +189,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
             if (!isJob) {
                 // Show error dialog
                 val intent = Intent(BackupConst.INTENT_FILTER).apply {
-                    putExtra(BackupConst.ACTION, BackupConst.ACTION_ERROR_BACKUP_DIALOG)
+                    putExtra(BackupConst.ACTION, BackupConst.ACTION_BACKUP_ERROR)
                     putExtra(BackupConst.EXTRA_ERROR_MESSAGE, e.message)
                 }
                 context.sendLocalBroadcast(intent)
