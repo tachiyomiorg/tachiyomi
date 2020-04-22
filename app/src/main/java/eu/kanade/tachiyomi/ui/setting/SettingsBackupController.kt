@@ -23,7 +23,6 @@ import eu.kanade.tachiyomi.data.backup.models.Backup
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import eu.kanade.tachiyomi.ui.base.controller.popControllerWithTag
 import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
 import eu.kanade.tachiyomi.ui.setting.backup.BackupNotifier
 import eu.kanade.tachiyomi.util.preference.defaultValue
@@ -197,7 +196,9 @@ class SettingsBackupController : SettingsController() {
             CODE_BACKUP_RESTORE -> if (data != null && resultCode == Activity.RESULT_OK) {
                 val uri = data.data
                 if (uri != null) {
-                    RestoreBackupDialog(uri).showDialog(router)
+                    val ctrl = RestoreBackupDialog(uri)
+                    ctrl.targetController = this@SettingsBackupController
+                    ctrl.showDialog(router)
                 }
             }
         }
@@ -268,9 +269,8 @@ class SettingsBackupController : SettingsController() {
                     .onPositive { _, _ ->
                         val context = applicationContext
                         if (context != null) {
-                            RestoringBackupDialog().showDialog(router, TAG_RESTORING_BACKUP_DIALOG)
+                            (targetController as SettingsBackupController).notifier.showRestoreProgress()
                             BackupRestoreService.start(context, args.getParcelable(KEY_URI)!!)
-
                             isRestoreStarted = true
                         }
                     }
@@ -279,41 +279,6 @@ class SettingsBackupController : SettingsController() {
 
         private companion object {
             const val KEY_URI = "RestoreBackupDialog.uri"
-        }
-    }
-
-    class RestoringBackupDialog : DialogController() {
-        private var materialDialog: MaterialDialog? = null
-
-        override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog.Builder(activity!!)
-                    .title(R.string.backup)
-                    .content(R.string.restoring_backup)
-                    .progress(false, 100, true)
-                    .cancelable(false)
-                    .negativeText(R.string.action_stop)
-                    .onNegative { _, _ ->
-                        applicationContext?.let { BackupRestoreService.stop(it) }
-                    }
-                    .build()
-                    .also { materialDialog = it }
-        }
-
-        override fun onDestroyView(view: View) {
-            super.onDestroyView(view)
-            materialDialog = null
-        }
-
-        override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-            super.onRestoreInstanceState(savedInstanceState)
-            router.popController(this)
-        }
-
-        fun updateProgress(content: String?, progress: Int, amount: Int) {
-            val dialog = materialDialog ?: return
-            dialog.setContent(content)
-            dialog.setProgress(progress)
-            dialog.maxProgress = amount
         }
     }
 
@@ -336,13 +301,11 @@ class SettingsBackupController : SettingsController() {
                     val progress = intent.getIntExtra(BackupConst.EXTRA_PROGRESS, 0)
                     val amount = intent.getIntExtra(BackupConst.EXTRA_AMOUNT, 0)
                     val content = intent.getStringExtra(BackupConst.EXTRA_CONTENT)
-                    (router.getControllerWithTag(TAG_RESTORING_BACKUP_DIALOG)
-                            as? RestoringBackupDialog)?.updateProgress(content, progress, amount)
+                    notifier.showRestoreProgress(content, progress, amount)
                 }
                 BackupConst.ACTION_RESTORE_COMPLETED -> {
                     isRestoreStarted = false
 
-                    router.popControllerWithTag(TAG_RESTORING_BACKUP_DIALOG)
                     val time = intent.getLongExtra(BackupConst.EXTRA_TIME, 0)
                     val errorCount = intent.getIntExtra(BackupConst.EXTRA_ERRORS, 0)
                     val path = intent.getStringExtra(BackupConst.EXTRA_ERROR_FILE_PATH)
@@ -352,7 +315,6 @@ class SettingsBackupController : SettingsController() {
                 BackupConst.ACTION_RESTORE_ERROR -> {
                     isRestoreStarted = false
 
-                    router.popControllerWithTag(TAG_RESTORING_BACKUP_DIALOG)
                     notifier.showRestoreError(intent.getStringExtra(BackupConst.EXTRA_ERROR_MESSAGE))
                 }
             }
@@ -363,8 +325,6 @@ class SettingsBackupController : SettingsController() {
         const val CODE_BACKUP_CREATE = 501
         const val CODE_BACKUP_RESTORE = 502
         const val CODE_BACKUP_DIR = 503
-
-        const val TAG_RESTORING_BACKUP_DIALOG = "RestoringBackupDialog"
 
         var isBackupStarted = false
         var isRestoreStarted = false

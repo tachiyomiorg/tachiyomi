@@ -58,20 +58,10 @@ import uy.kohesive.injekt.injectLazy
 
 class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
 
-    /**
-     * Database.
-     */
     internal val databaseHelper: DatabaseHelper by injectLazy()
-
-    /**
-     * Source manager.
-     */
     internal val sourceManager: SourceManager by injectLazy()
-
-    /**
-     * Tracking manager
-     */
     internal val trackManager: TrackManager by injectLazy()
+    private val preferences: PreferencesHelper by injectLazy()
 
     /**
      * Version of parser
@@ -83,11 +73,6 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
      * Json Parser
      */
     var parser: Gson = initParser()
-
-    /**
-     * Preferences
-     */
-    private val preferences: PreferencesHelper by injectLazy()
 
     /**
      * Set version of parser

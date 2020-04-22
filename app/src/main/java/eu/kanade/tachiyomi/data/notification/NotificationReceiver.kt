@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Handler
 import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.backup.BackupRestoreService
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -60,6 +61,8 @@ class NotificationReceiver : BroadcastReceiver() {
                     intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
             // Share backup file
             ACTION_SHARE_BACKUP -> shareBackup(context, intent.getParcelableExtra(EXTRA_URI),
+                    intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
+            ACTION_CANCEL_RESTORE -> cancelRestore(context,
                     intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
             // Cancel library update and dismiss notification
             ACTION_CANCEL_LIBRARY_UPDATE -> cancelLibraryUpdate(context, Notifications.ID_LIBRARY_PROGRESS)
@@ -171,6 +174,17 @@ class NotificationReceiver : BroadcastReceiver() {
     }
 
     /**
+     * Method called when user wants to stop a backup restore job.
+     *
+     * @param context context of application
+     * @param notificationId id of notification
+     */
+    private fun cancelRestore(context: Context, notificationId: Int) {
+        BackupRestoreService.stop(context)
+        Handler().post { dismissNotification(context, notificationId) }
+    }
+
+    /**
      * Method called when user wants to stop a library update
      *
      * @param context context of application
@@ -221,6 +235,9 @@ class NotificationReceiver : BroadcastReceiver() {
 
         // Called to launch send intent.
         private const val ACTION_SHARE_BACKUP = "$ID.$NAME.SEND_BACKUP"
+
+        // Called to cancel backup restore job.
+        private const val ACTION_CANCEL_RESTORE = "$ID.$NAME.CANCEL_RESTORE"
 
         // Called to cancel library update.
         private const val ACTION_CANCEL_LIBRARY_UPDATE = "$ID.$NAME.CANCEL_LIBRARY_UPDATE"
@@ -475,7 +492,7 @@ class NotificationReceiver : BroadcastReceiver() {
          * @param notificationId id of notification
          * @return [PendingIntent]
          */
-        internal fun shareBackup(context: Context, uri: Uri, notificationId: Int): PendingIntent {
+        internal fun shareBackupPendingBroadcast(context: Context, uri: Uri, notificationId: Int): PendingIntent {
             val intent = Intent(context, NotificationReceiver::class.java).apply {
                 action = ACTION_SHARE_BACKUP
                 putExtra(EXTRA_URI, uri)
@@ -491,13 +508,28 @@ class NotificationReceiver : BroadcastReceiver() {
          * @param uri uri of error log file
          * @return [PendingIntent]
          */
-        internal fun openErrorLog(context: Context, uri: Uri): PendingIntent {
+        internal fun openErrorLogPendingActivity(context: Context, uri: Uri): PendingIntent {
             val intent = Intent().apply {
                 action = Intent.ACTION_VIEW
                 setDataAndType(uri, "text/plain")
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
             }
             return PendingIntent.getActivity(context, 0, intent, 0)
+        }
+
+        /**
+         * Returns [PendingIntent] that cancels a backup restore job.
+         *
+         * @param context context of application
+         * @param notificationId id of notification
+         * @return [PendingIntent]
+         */
+        internal fun cancelRestorePendingBroadcast(context: Context, notificationId: Int): PendingIntent {
+            val intent = Intent(context, NotificationReceiver::class.java).apply {
+                action = ACTION_CANCEL_RESTORE
+                putExtra(EXTRA_NOTIFICATION_ID, notificationId)
+            }
+            return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }
     }
 }

@@ -66,14 +66,30 @@ internal class BackupNotifier(private val context: Context) {
 
             addAction(R.drawable.ic_share_24dp,
                 context.getString(R.string.action_share),
-                NotificationReceiver.shareBackup(context, unifile.uri, Notifications.ID_BACKUP))
+                NotificationReceiver.shareBackupPendingBroadcast(context, unifile.uri, Notifications.ID_BACKUP))
         }
 
         notificationBuilder.show(Notifications.ID_BACKUP)
     }
 
-    fun showRestoreProgress() {
-        // TODO
+    fun showRestoreProgress(content: String = "", progress: Int = 0, maxAmount: Int = 100) {
+        with(notificationBuilder) {
+            setContentTitle(context.getString(R.string.restoring_backup))
+            setContentText(content)
+
+            setProgress(maxAmount, progress, false)
+
+            // Clear old actions if they exist
+            if (mActions.isNotEmpty()) {
+                mActions.clear()
+            }
+
+            addAction(R.drawable.ic_close_24dp,
+                context.getString(R.string.action_stop),
+                NotificationReceiver.cancelRestorePendingBroadcast(context, Notifications.ID_RESTORE))
+        }
+
+        notificationBuilder.show(Notifications.ID_RESTORE)
     }
 
     fun showRestoreError(error: String?) {
@@ -116,7 +132,7 @@ internal class BackupNotifier(private val context: Context) {
 
                 addAction(R.drawable.nnf_ic_file_folder,
                     context.getString(R.string.action_open_log),
-                    NotificationReceiver.openErrorLog(context, uri))
+                    NotificationReceiver.openErrorLogPendingActivity(context, uri))
             }
         }
 

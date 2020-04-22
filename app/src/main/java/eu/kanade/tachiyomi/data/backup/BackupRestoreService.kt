@@ -81,6 +81,12 @@ class BackupRestoreService : Service() {
          */
         fun stop(context: Context) {
             context.stopService(Intent(context, BackupRestoreService::class.java))
+
+            val errorIntent = Intent(BackupConst.INTENT_FILTER).apply {
+                putExtra(BackupConst.ACTION, BackupConst.ACTION_RESTORE_ERROR)
+                putExtra(BackupConst.EXTRA_ERROR_MESSAGE, context.getString(R.string.restoring_backup_canceled))
+            }
+            context.sendLocalBroadcast(errorIntent)
         }
     }
 
@@ -456,7 +462,7 @@ class BackupRestoreService : Service() {
         amount: Int,
         title: String,
         errors: Int,
-        content: String = getString(R.string.dialog_restoring_backup, title.chop(15))
+        content: String = title.chop(30)
     ) {
         val intent = Intent(BackupConst.INTENT_FILTER).apply {
             putExtra(BackupConst.EXTRA_PROGRESS, progress)
