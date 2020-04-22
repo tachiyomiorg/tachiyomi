@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/holder"
     style="@style/Theme.Widget.CardView.Item"
     android:padding="0dp">
 
@@ -12,9 +13,7 @@
             android:id="@+id/cover"
             android:layout_width="85dp"
             android:layout_height="match_parent"
-            android:clickable="true"
             android:contentDescription="@string/description_cover"
-            android:focusable="true"
             android:scaleType="centerCrop" />
 
         <RelativeLayout
@@ -32,6 +31,7 @@
                     android:id="@+id/manga_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:maxLines="2"
                     android:textAppearance="@style/TextAppearance.Medium.Title" />
 

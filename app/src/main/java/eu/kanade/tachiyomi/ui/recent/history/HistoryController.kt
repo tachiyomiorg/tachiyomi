@@ -28,7 +28,7 @@ class HistoryController : NucleusController<HistoryControllerBinding, HistoryPre
         FlexibleAdapter.OnUpdateListener,
         HistoryAdapter.OnRemoveClickListener,
         HistoryAdapter.OnResumeClickListener,
-        HistoryAdapter.OnCoverClickListener,
+        HistoryAdapter.OnItemClickListener,
         RemoveHistoryDialog.Listener {
 
     /**
@@ -105,7 +105,7 @@ class HistoryController : NucleusController<HistoryControllerBinding, HistoryPre
         RemoveHistoryDialog(this, manga, history).showDialog(router)
     }
 
-    override fun onCoverClick(position: Int) {
+    override fun onItemClick(position: Int) {
         val manga = adapter?.getItem(position)?.mch?.manga ?: return
         router.pushController(MangaController(manga).withFadeTransaction())
     }
