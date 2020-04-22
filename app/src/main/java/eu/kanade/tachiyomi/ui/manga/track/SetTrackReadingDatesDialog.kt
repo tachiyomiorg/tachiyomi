@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.ui.manga.track
 
 import android.app.Dialog
 import android.os.Bundle
-import android.view.View
 import android.widget.NumberPicker
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
@@ -48,26 +47,26 @@ class SetTrackReadingDatesDialog<T> : DialogController
                 .title(if (dateToUpdate == ReadingDate.Start) R.string.track_start_date else R.string.track_finish_date)
                 .customView(R.layout.track_date_dialog, dialogWrapContent = false)
                 .positiveButton(android.R.string.ok) { dialog ->
-                    val view = dialog.getCustomView()
-                    onDialogConfirm(view)
+                    onDialogConfirm(dialog)
                 }
-                .negativeButton(android.R.string.cancel) {
-                    dismissDialog()
+                .negativeButton(android.R.string.cancel) { dialog ->
+                    dialog.dismiss()
                 }
-                .neutralButton(R.string.action_remove) {
+                .neutralButton(R.string.action_remove) { dialog ->
                     val listener = (targetController as? Listener)
                     listener?.setReadingDate(item, dateToUpdate, 0L)
-                    dismissDialog()
+                    dialog.dismiss()
                 }
                 .noAutoDismiss()
 
-        val view = dialog.getCustomView()
-        onDialogCreated(view)
+        onDialogCreated(dialog)
 
         return dialog
     }
 
-    private fun onDialogCreated(view: View) {
+    private fun onDialogCreated(dialog: MaterialDialog) {
+        val view = dialog.getCustomView()
+
         val dayPicker: NumberPicker = view.findViewById(R.id.day_picker)
         val monthPicker: NumberPicker = view.findViewById(R.id.month_picker)
         val yearPicker: NumberPicker = view.findViewById(R.id.year_picker)
@@ -90,7 +89,9 @@ class SetTrackReadingDatesDialog<T> : DialogController
         yearPicker.value = calendar[Calendar.YEAR]
     }
 
-    private fun onDialogConfirm(view: View) {
+    private fun onDialogConfirm(dialog: MaterialDialog) {
+        val view = dialog.getCustomView()
+
         val dayPicker: NumberPicker = view.findViewById(R.id.day_picker)
         val monthPicker: NumberPicker = view.findViewById(R.id.month_picker)
         val yearPicker: NumberPicker = view.findViewById(R.id.year_picker)
@@ -102,7 +103,7 @@ class SetTrackReadingDatesDialog<T> : DialogController
 
             val listener = (targetController as? Listener)
             listener?.setReadingDate(item, dateToUpdate, calendar.timeInMillis)
-            dismissDialog()
+            dialog.dismiss()
         } catch (e: Exception) {
             activity?.toast(R.string.error_invalid_date_supplied)
         }
