@@ -202,9 +202,9 @@ open class BrowseSourceController(bundle: Bundle) :
         if (filterSheet != null) {
             // Add bottom padding if filter FAB is visible
             recycler.setPadding(
-                0,
-                0,
-                0,
+                recycler.paddingLeft,
+                recycler.paddingTop,
+                recycler.paddingRight,
                 view.resources.getDimensionPixelOffset(R.dimen.fab_list_padding)
             )
             recycler.clipToPadding = false
