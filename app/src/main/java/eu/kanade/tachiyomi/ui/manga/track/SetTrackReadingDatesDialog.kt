@@ -44,7 +44,10 @@ class SetTrackReadingDatesDialog<T> : DialogController
         val item = item
 
         val dialog = MaterialDialog(activity!!)
-                .title(if (dateToUpdate == ReadingDate.Start) R.string.track_start_date else R.string.track_finish_date)
+                .title(when (dateToUpdate) {
+                    ReadingDate.Start -> R.string.track_started_reading_date
+                    ReadingDate.Finish -> R.string.track_finished_reading_date
+                })
                 .customView(R.layout.track_date_dialog, dialogWrapContent = false)
                 .positiveButton(android.R.string.ok) { dialog ->
                     onDialogConfirm(dialog)

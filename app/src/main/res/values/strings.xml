@@ -475,7 +475,8 @@
     <string name="status">Status</string>
     <string name="track_status">Status</string>
     <string name="track_start_date">Started</string>
-    <string name="track_finish_date">Finished</string>
+    <string name="track_started_reading_date">Started reading date</string>
+    <string name="track_finished_reading_date">Finished reading date</string>
     <string name="track_type">Type</string>
     <string name="track_author">Author</string>
     <string name="error_invalid_date_supplied">Invalid date supplied</string>
