@@ -17,7 +17,6 @@
     <string name="action_remove">Eltávolítás</string>
     <string name="action_move">Áthelyezés</string>
     <string name="action_open_in_browser">Megnyitás böngészőben</string>
-    <string name="action_add_to_home_screen">Kezdőképernyőhöz adás</string>
     <string name="action_display_grid">Rács</string>
     <string name="action_display_list">Lista</string>
     <string name="action_install">Telepítés</string>
@@ -132,7 +131,6 @@
     <string name="chapter_downloading">Letöltődik</string>
     <string name="chapter_queued">Várakozik</string>
     <string name="action_select_all">Összes kijelölése</string>
-    <string name="action_set_filter">Szűrő alkalmazása</string>
     <string name="action_cancel">Mégse</string>
     <string name="action_open_log">Napló megnyitása</string>
     <string name="action_create">Létrehozás</string>

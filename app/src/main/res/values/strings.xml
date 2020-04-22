@@ -12,6 +12,7 @@
 
     <!-- Activities and fragments labels (toolbar title) -->
     <string name="label_more">More</string>
+    <string name="label_downloaded_only">Downloaded only</string>
     <string name="label_settings">Settings</string>
     <string name="label_download_queue">Download queue</string>
     <string name="label_library">Library</string>
@@ -26,6 +27,7 @@
     <string name="label_help">Help</string>
 
     <string name="unlock_app">Unlock Tachiyomi</string>
+    <string name="confirm_exit">Press back again to exit</string>
 
     <!-- Actions -->
     <string name="action_settings">Settings</string>
@@ -78,7 +80,6 @@
     <string name="action_move">Move</string>
     <string name="action_open_in_browser">Open in browser</string>
     <string name="action_open_in_web_view">Open in WebView</string>
-    <string name="action_add_to_home_screen">Add to home screen</string>
     <string name="action_display_mode">Display mode</string>
     <string name="action_display">Display</string>
     <string name="action_display_grid">Grid</string>
@@ -100,7 +101,6 @@
     <string name="action_save">Save</string>
     <string name="action_reset">Reset</string>
     <string name="action_undo">Undo</string>
-    <string name="action_export">Export</string>
     <string name="action_open_log">Open log</string>
     <string name="action_create">Create</string>
     <string name="action_restore">Restore</string>
@@ -111,7 +111,6 @@
     <string name="action_webview_refresh">Refresh</string>
 
     <!-- Operations -->
-    <string name="deleting">Deleting…</string>
     <string name="loading">Loading…</string>
 
     <!-- Shortcuts-->
@@ -142,8 +141,9 @@
     <string name="theme_dark_amoled">AMOLED black</string>
     <string name="pref_start_screen">Start screen</string>
     <string name="pref_language">Language</string>
-    <string name="system_default">System default</string>
+    <string name="system_default">Default</string>
     <string name="pref_date_format">Date format</string>
+    <string name="pref_confirm_exit">Confirm exit</string>
     <string name="pref_manage_notifications">Manage notifications</string>
 
     <string name="pref_category_security">Security</string>
@@ -315,18 +315,21 @@
     <string name="pref_backup_service_category">Service</string>
     <string name="pref_backup_interval">Backup frequency</string>
     <string name="pref_backup_slots">Max automatic backups</string>
-    <string name="dialog_restoring_backup">Restoring backup\n%1$s added to library</string>
     <string name="source_not_found">Source not found</string>
     <string name="dialog_restoring_source_not_found">Restoring backup\n%1$s source not found</string>
     <string name="backup_created">Backup created</string>
     <string name="restore_completed">Restore completed</string>
-    <string name="error_opening_log">Could not open log</string>
-    <string name="restore_completed_content">Restore took %1$s.\n%2$s errors found.</string>
+    <string name="restore_completed_content">Restore took %1$s with %2$s errors</string>
     <string name="backup_restore_content">Restore uses sources to fetch data, carrier costs may apply.\n\nMake sure you have installed all necessary extensions and are logged in to sources and tracking services before restoring.</string>
     <string name="file_saved">File saved at %1$s</string>
+    <string name="backup_in_progress">Backup is already in progress</string>
     <string name="backup_choice">What do you want to backup?</string>
-    <string name="restoring_backup">Restoring backup</string>
     <string name="creating_backup">Creating backup</string>
+    <string name="creating_backup_error">Backup failed</string>
+    <string name="restore_in_progress">Restore is already in progress</string>
+    <string name="restoring_backup">Restoring backup</string>
+    <string name="restoring_backup_error">Restoring backup failed</string>
+    <string name="restoring_backup_canceled">Canceled restore</string>
 
       <!-- Advanced section -->
     <string name="pref_clear_chapter_cache">Clear chapter cache</string>
@@ -349,10 +352,12 @@
     <string name="battery_optimization_disabled">Battery optimization is already disabled</string>
 
       <!-- About section -->
+    <string name="website">Website</string>
     <string name="version">Version</string>
     <string name="build_time">Build time</string>
     <string name="notices">Notices</string>
     <string name="changelog">Changelog</string>
+    <string name="licenses">Open source licenses</string>
     <string name="pref_enable_automatic_updates">Check for updates</string>
     <string name="pref_enable_automatic_updates_summary">Automatically check for new app versions</string>
     <!-- ACRA -->
@@ -388,7 +393,7 @@
     <string name="no_more_results">No more results</string>
     <string name="no_results_found">No results found</string>
     <string name="http_error_hint">Check website in WebView</string>
-    <string name="local_source">Local manga</string>
+    <string name="local_source">Local source</string>
     <string name="other_source">Other</string>
     <string name="pinned_sources">Pinned</string>
     <string name="invalid_combination">Default can\'t be selected with other categories</string>
@@ -406,6 +411,8 @@
     <string name="ongoing">Ongoing</string>
     <string name="unknown">Unknown</string>
     <string name="licensed">Licensed</string>
+    <string name="add_to_library">Add to library</string>
+    <string name="in_library">In library</string>
     <string name="remove_from_library">Remove from library</string>
     <string name="manga_info_full_title_label">Title</string>
     <string name="manga_added_library">Added to library</string>
@@ -413,18 +420,12 @@
     <string name="manga_info_author_label">Author</string>
     <string name="manga_info_artist_label">Artist</string>
     <string name="manga_info_chapters_label">Chapters</string>
-    <string name="manga_info_last_chapter_label">Last chapter</string>
-    <string name="manga_info_latest_data_label">Updated</string>
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Source</string>
     <string name="manga_info_genres_label">Genres</string>
-    <string name="circular_icon">Circular</string>
-    <string name="rounded_icon">Rounded</string>
-    <string name="square_icon">Square</string>
-    <string name="shortcut_title">Shortcut title</string>
-    <string name="shortcut_created">Shortcut was added to home screen.</string>
-    <string name="icon_shape">Icon shape</string>
-    <string name="icon_creation_fail">Could not create shortcut</string>
+    <string name="manga_info_about_label">About</string>
+    <string name="manga_info_expand">Show more info</string>
+    <string name="manga_info_collapse">Show less info</string>
     <string name="delete_downloads_for_manga">Delete downloaded chapters?</string>
     <string name="copied_to_clipboard">%1$s copied to clipboard</string>
     <string name="source_not_installed">Source not installed: %1$s</string>
@@ -520,7 +521,7 @@
     <string name="updating_library">Updating library</string>
 
     <!-- History fragment -->
-    <string name="recent_manga_source">%1$s - Ch.%2$s</string>
+    <string name="recent_manga_time">Ch. %1$s - %2$s</string>
 
     <!-- Source migration screen -->
     <string name="migration_info">Tap to select the source to migrate from</string>
@@ -529,7 +530,6 @@
     <string name="select">Select</string>
     <string name="migrate">Migrate</string>
     <string name="copy">Copy</string>
-    <string name="migrating">Migrating…</string>
 
     <!-- Downloads activity and service -->
     <string name="download_queue_error">Could not download chapters. You can try again in the downloads section</string>
@@ -595,12 +595,13 @@
     <string name="information_empty_library">Your library is empty, add series to your library from the sources.</string>
     <string name="information_empty_category">You have no categories. Hit the plus button to create one for organizing your library.</string>
     <string name="information_cloudflare_bypass_failure">Failed to bypass Cloudflare</string>
+    <string name="information_webview_required">WebView is required for Tachiyomi</string>
     <string name="information_webview_outdated">Please update the WebView app for better compatibility</string>
 
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Downloader</string>
     <string name="download_notifier_title_error">Error</string>
-    <string name="download_notifier_unkown_error">Could not download chapter due to unexpected error</string>
+    <string name="download_notifier_unknown_error">Could not download chapter due to unexpected error</string>
     <string name="download_notifier_page_error">A page is missing in directory</string>
     <string name="download_notifier_page_ready_error">A page has not been loaded</string>
     <string name="download_notifier_text_only_wifi">No Wi-Fi connection available</string>
@@ -613,5 +614,6 @@
     <string name="channel_downloader">Downloader</string>
     <string name="channel_new_chapters">Chapter updates</string>
     <string name="channel_ext_updates">Extension updates</string>
+    <string name="channel_backup_restore">Backup and restore</string>
 
 </resources>

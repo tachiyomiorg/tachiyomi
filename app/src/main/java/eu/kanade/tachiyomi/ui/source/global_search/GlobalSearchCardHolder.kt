@@ -4,6 +4,7 @@ import android.view.View
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.glide.GlideApp
+import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.widget.StateImageViewTarget
 import kotlinx.android.synthetic.main.global_search_controller_card_item.itemImage
@@ -16,13 +17,13 @@ class GlobalSearchCardHolder(view: View, adapter: GlobalSearchCardAdapter) :
     init {
         // Call onMangaClickListener when item is pressed.
         itemView.setOnClickListener {
-            val item = adapter.getItem(adapterPosition)
+            val item = adapter.getItem(bindingAdapterPosition)
             if (item != null) {
                 adapter.mangaClickListener.onMangaClick(item.manga)
             }
         }
         itemView.setOnLongClickListener {
-            val item = adapter.getItem(adapterPosition)
+            val item = adapter.getItem(bindingAdapterPosition)
             if (item != null) {
                 adapter.mangaClickListener.onMangaLongClick(item.manga)
             }
@@ -42,7 +43,7 @@ class GlobalSearchCardHolder(view: View, adapter: GlobalSearchCardAdapter) :
         GlideApp.with(itemView.context).clear(itemImage)
         if (!manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(itemView.context)
-                    .load(manga)
+                    .load(manga.toMangaThumbnail())
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .centerCrop()
                     .skipMemoryCache(true)

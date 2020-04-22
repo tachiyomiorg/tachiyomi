@@ -6,7 +6,6 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import dalvik.system.PathClassLoader
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.extension.model.LoadResult
 import eu.kanade.tachiyomi.source.CatalogueSource
@@ -27,7 +26,7 @@ internal object ExtensionLoader {
 
     private const val EXTENSION_FEATURE = "tachiyomi.extension"
     private const val METADATA_SOURCE_CLASS = "tachiyomi.extension.class"
-    const val LIB_VERSION_MIN = 1.0
+    const val LIB_VERSION_MIN = 1.2
     const val LIB_VERSION_MAX = 1.2
 
     private const val PACKAGE_FLAGS = PackageManager.GET_CONFIGURATIONS or PackageManager.GET_SIGNATURES
@@ -36,7 +35,7 @@ internal object ExtensionLoader {
      * List of the trusted signatures.
      */
     var trustedSignatures = mutableSetOf<String>() +
-            Injekt.get<PreferencesHelper>().trustedSignatures().getOrDefault() +
+            Injekt.get<PreferencesHelper>().trustedSignatures().get() +
             // inorichi's key
             "7ce04da7773d41b489f4693a366c36bcd0a11fc39b547168553c285bd7348e23"
 
@@ -95,8 +94,7 @@ internal object ExtensionLoader {
             return LoadResult.Error(error)
         }
 
-        val extName = pkgManager.getApplicationLabel(appInfo).toString()
-                .orEmpty().substringAfter("Tachiyomi: ")
+        val extName = pkgManager.getApplicationLabel(appInfo).toString().substringAfter("Tachiyomi: ")
         val versionName = pkgInfo.versionName
         val versionCode = pkgInfo.versionCode
 
@@ -138,8 +136,7 @@ internal object ExtensionLoader {
                 }
                 .flatMap {
                     try {
-                        val obj = Class.forName(it, false, classLoader).newInstance()
-                        when (obj) {
+                        when (val obj = Class.forName(it, false, classLoader).newInstance()) {
                             is Source -> listOf(obj)
                             is SourceFactory -> obj.createSources()
                             else -> throw Exception("Unknown source class type! ${obj.javaClass}")

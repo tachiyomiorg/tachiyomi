@@ -58,20 +58,10 @@ import uy.kohesive.injekt.injectLazy
 
 class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
 
-    /**
-     * Database.
-     */
     internal val databaseHelper: DatabaseHelper by injectLazy()
-
-    /**
-     * Source manager.
-     */
     internal val sourceManager: SourceManager by injectLazy()
-
-    /**
-     * Tracking manager
-     */
     internal val trackManager: TrackManager by injectLazy()
+    private val preferences: PreferencesHelper by injectLazy()
 
     /**
      * Version of parser
@@ -83,11 +73,6 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
      * Json Parser
      */
     var parser: Gson = initParser()
-
-    /**
-     * Preferences
-     */
-    private val preferences: PreferencesHelper by injectLazy()
 
     /**
      * Set version of parser
@@ -128,7 +113,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
         val categoryEntries = JsonArray()
 
         // Add value's to root
-        root[Backup.VERSION] = Backup.CURRENT_VERSION
+        root[Backup.VERSION] = CURRENT_VERSION
         root[Backup.MANGAS] = mangaEntries
         root[CATEGORIES] = categoryEntries
 
@@ -179,7 +164,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
 
                 // Show completed dialog
                 val intent = Intent(BackupConst.INTENT_FILTER).apply {
-                    putExtra(BackupConst.ACTION, BackupConst.ACTION_BACKUP_COMPLETED_DIALOG)
+                    putExtra(BackupConst.ACTION, BackupConst.ACTION_BACKUP_COMPLETED)
                     putExtra(BackupConst.EXTRA_URI, file.uri.toString())
                 }
                 context.sendLocalBroadcast(intent)
@@ -189,7 +174,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
             if (!isJob) {
                 // Show error dialog
                 val intent = Intent(BackupConst.INTENT_FILTER).apply {
-                    putExtra(BackupConst.ACTION, BackupConst.ACTION_ERROR_BACKUP_DIALOG)
+                    putExtra(BackupConst.ACTION, BackupConst.ACTION_BACKUP_ERROR)
                     putExtra(BackupConst.EXTRA_ERROR_MESSAGE, e.message)
                 }
                 context.sendLocalBroadcast(intent)
@@ -303,8 +288,8 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
     fun restoreChapterFetchObservable(source: Source, manga: Manga, chapters: List<Chapter>): Observable<Pair<List<Chapter>, List<Chapter>>> {
         return source.fetchChapterList(manga)
                 .map { syncChaptersWithSource(databaseHelper, it, manga, source) }
-                .doOnNext {
-                    if (it.first.isNotEmpty()) {
+                .doOnNext { pair ->
+                    if (pair.first.isNotEmpty()) {
                         chapters.forEach { it.manga_id = manga.id }
                         insertChapters(chapters)
                     }

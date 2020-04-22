@@ -1,10 +1,12 @@
 package eu.kanade.tachiyomi.ui.recent.updates
 
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.glide.GlideApp
+import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import kotlinx.android.synthetic.main.updates_item.chapter_title
@@ -25,15 +27,8 @@ import kotlinx.android.synthetic.main.updates_item.manga_title
 class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter) :
         BaseFlexibleViewHolder(view, adapter) {
 
-    /**
-     * Color of read chapter
-     */
-    private var readColor = view.context.getResourceColor(android.R.attr.textColorHint)
-
-    /**
-     * Color of unread chapter
-     */
-    private var unreadColor = view.context.getResourceColor(android.R.attr.textColorPrimary)
+    private var readColor = ContextCompat.getColor(view.context, R.color.material_on_surface_disabled)
+    private var unreadColor = view.context.getResourceColor(R.attr.colorOnSurface)
 
     /**
      * Currently bound item.
@@ -42,7 +37,7 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
 
     init {
         manga_cover.setOnClickListener {
-            adapter.coverClickListener.onCoverClick(adapterPosition)
+            adapter.coverClickListener.onCoverClick(bindingAdapterPosition)
         }
     }
 
@@ -64,7 +59,7 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
         GlideApp.with(itemView.context).clear(manga_cover)
         if (!item.manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(itemView.context)
-                    .load(item.manga)
+                    .load(item.manga.toMangaThumbnail())
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .circleCrop()
                     .into(manga_cover)

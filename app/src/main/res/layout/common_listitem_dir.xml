@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nnf_item_container"
     android:layout_width="match_parent"
@@ -18,8 +19,8 @@
         android:adjustViewBounds="true"
         android:scaleType="center"
         android:src="@drawable/nnf_ic_file_folder"
-        android:tint="?attr/colorAccent"
         android:visibility="visible"
+        app:tint="?attr/colorAccent"
         tools:ignore="ContentDescription" />
 
     <TextView

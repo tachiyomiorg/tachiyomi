@@ -149,9 +149,9 @@ open class BrowseSourcePresenter(
         pagerSubscription?.let { remove(it) }
         pagerSubscription = pager.results()
                 .observeOn(Schedulers.io())
-                .map { it.first to it.second.map { networkToLocalManga(it, sourceId) } }
+                .map { pair -> pair.first to pair.second.map { networkToLocalManga(it, sourceId) } }
                 .doOnNext { initializeMangas(it.second) }
-                .map { it.first to it.second.map { SourceItem(it, catalogueAsList) } }
+                .map { pair -> pair.first to pair.second.map { SourceItem(it, catalogueAsList) } }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeReplay({ view, (page, mangas) ->
                     view.onAddPage(page, mangas)
@@ -292,17 +292,17 @@ open class BrowseSourcePresenter(
     }
 
     private fun FilterList.toItems(): List<IFlexible<*>> {
-        return mapNotNull {
-            when (it) {
-                is Filter.Header -> HeaderItem(it)
-                is Filter.Separator -> SeparatorItem(it)
-                is Filter.CheckBox -> CheckboxItem(it)
-                is Filter.TriState -> TriStateItem(it)
-                is Filter.Text -> TextItem(it)
-                is Filter.Select<*> -> SelectItem(it)
+        return mapNotNull { filter ->
+            when (filter) {
+                is Filter.Header -> HeaderItem(filter)
+                is Filter.Separator -> SeparatorItem(filter)
+                is Filter.CheckBox -> CheckboxItem(filter)
+                is Filter.TriState -> TriStateItem(filter)
+                is Filter.Text -> TextItem(filter)
+                is Filter.Select<*> -> SelectItem(filter)
                 is Filter.Group<*> -> {
-                    val group = GroupItem(it)
-                    val subItems = it.state.mapNotNull {
+                    val group = GroupItem(filter)
+                    val subItems = filter.state.mapNotNull {
                         when (it) {
                             is Filter.CheckBox -> CheckboxSectionItem(it)
                             is Filter.TriState -> TriStateSectionItem(it)
@@ -316,8 +316,8 @@ open class BrowseSourcePresenter(
                     group
                 }
                 is Filter.Sort -> {
-                    val group = SortGroup(it)
-                    val subItems = it.values.map {
+                    val group = SortGroup(filter)
+                    val subItems = filter.values.map {
                         SortItem(it, group)
                     }
                     group.subItems = subItems

@@ -31,7 +31,7 @@ class ExtensionFilterController : SettingsController() {
         availableLangs.forEach {
             switchPreference {
                 preferenceScreen.addPreference(this)
-                title = LocaleHelper.getDisplayName(it, context)
+                title = LocaleHelper.getSourceDisplayName(it, context)
                 isPersistent = false
                 isChecked = it in activeLangs
 

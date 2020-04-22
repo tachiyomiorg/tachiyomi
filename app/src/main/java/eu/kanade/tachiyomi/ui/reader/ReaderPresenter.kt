@@ -361,7 +361,7 @@ class ReaderPresenter(
 
         if (selectedChapter != currentChapters.currChapter) {
             Timber.d("Setting ${selectedChapter.chapter.url} as active")
-            onChapterChanged(currentChapters.currChapter, selectedChapter)
+            onChapterChanged(currentChapters.currChapter)
             loadNewChapter(selectedChapter)
         }
     }
@@ -370,7 +370,7 @@ class ReaderPresenter(
      * Called when a chapter changed from [fromChapter] to [toChapter]. It updates [fromChapter]
      * on the database.
      */
-    private fun onChapterChanged(fromChapter: ReaderChapter, toChapter: ReaderChapter) {
+    private fun onChapterChanged(fromChapter: ReaderChapter) {
         saveChapterProgress(fromChapter)
         saveChapterHistory(fromChapter)
     }

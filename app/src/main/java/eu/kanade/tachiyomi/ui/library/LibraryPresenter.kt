@@ -111,10 +111,8 @@ class LibraryPresenter(
      * @param map the map to filter.
      */
     private fun applyFilters(map: LibraryMap): LibraryMap {
-        val filterDownloaded = preferences.filterDownloaded().getOrDefault()
-
+        val filterDownloaded = preferences.downloadedOnly().get() || preferences.filterDownloaded().getOrDefault()
         val filterUnread = preferences.filterUnread().getOrDefault()
-
         val filterCompleted = preferences.filterCompleted().getOrDefault()
 
         val filterFn: (LibraryItem) -> Boolean = f@{ item ->
@@ -303,7 +301,7 @@ class LibraryPresenter(
         if (mangas.isEmpty()) return emptyList()
         return mangas.toSet()
                 .map { db.getCategoriesForManga(it).executeAsBlocking() }
-                .reduce { set1: Iterable<Category>, set2 -> set1.intersect(set2) }
+                .reduce { set1: Iterable<Category>, set2 -> set1.intersect(set2).toMutableList() }
     }
 
     /**

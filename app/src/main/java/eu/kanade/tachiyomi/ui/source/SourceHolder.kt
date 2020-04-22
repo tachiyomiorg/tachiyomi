@@ -28,11 +28,11 @@ class SourceHolder(view: View, override val adapter: SourceAdapter) :
 
     init {
         source_browse.setOnClickListener {
-            adapter.browseClickListener.onBrowseClick(adapterPosition)
+            adapter.browseClickListener.onBrowseClick(bindingAdapterPosition)
         }
 
         source_latest.setOnClickListener {
-            adapter.latestClickListener.onLatestClick(adapterPosition)
+            adapter.latestClickListener.onLatestClick(bindingAdapterPosition)
         }
     }
 

@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?selectable_library_drawable"
+    android:background="@drawable/library_item_selector"
     android:padding="4dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="wrap_content"
         android:layout_height="220dp"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="@dimen/card_radius">
 
         <ImageView
             android:id="@+id/thumbnail"
@@ -37,7 +37,7 @@
 
             <TextView
                 android:id="@+id/unread_text"
-                style="@style/TextAppearance.Regular.Caption.Light"
+                style="@style/TextAppearance.Regular.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -47,6 +47,7 @@
                 android:paddingTop="1dp"
                 android:paddingEnd="3dp"
                 android:paddingBottom="1dp"
+                android:textColor="@color/md_white_1000"
                 android:visibility="gone"
                 app:layout_constraintStart_toEndOf="@+id/download_text"
                 app:layout_constraintTop_toTopOf="parent"
@@ -55,7 +56,7 @@
 
             <TextView
                 android:id="@+id/download_text"
-                style="@style/TextAppearance.Regular.Caption.Light"
+                style="@style/TextAppearance.Regular.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -65,6 +66,7 @@
                 android:paddingTop="1dp"
                 android:paddingEnd="3dp"
                 android:paddingBottom="1dp"
+                android:textColor="@color/md_white_1000"
                 android:visibility="gone"
                 app:layout_constraintStart_toEndOf="@+id/local_text"
                 app:layout_constraintTop_toTopOf="parent"
@@ -73,7 +75,7 @@
 
             <TextView
                 android:id="@+id/local_text"
-                style="@style/TextAppearance.Regular.Caption.Light"
+                style="@style/TextAppearance.Regular.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -84,6 +86,7 @@
                 android:paddingEnd="3dp"
                 android:paddingBottom="1dp"
                 android:text="@string/local_source_badge"
+                android:textColor="@color/md_white_1000"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -93,11 +96,12 @@
 
         <TextView
             android:id="@+id/title"
-            style="@style/TextAppearance.Regular.Body1.Light"
+            style="@style/TextAppearance.Regular.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:ellipsize="end"
+            android:fontFamily="@font/ptsans_narrow_bold"
             android:lineSpacingExtra="-4dp"
             android:maxLines="2"
             android:padding="8dp"
@@ -105,7 +109,7 @@
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="4"
-            android:fontFamily="@font/ptsans_narrow_bold"
+            android:textColor="@color/md_white_1000"
             tools:text="Sample name" />
 
         <ProgressBar

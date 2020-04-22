@@ -95,8 +95,8 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
         recycler.tapListener = { event ->
             val positionX = event.rawX
             when {
-                positionX < recycler.width * 0.33 -> if (config.tappingEnabled) scrollUp()
-                positionX > recycler.width * 0.66 -> if (config.tappingEnabled) scrollDown()
+                positionX < recycler.width * 0.33 -> if (config.tappingEnabled) scrollUp() else activity.toggleMenu()
+                positionX > recycler.width * 0.66 -> if (config.tappingEnabled) scrollDown() else activity.toggleMenu()
                 else -> activity.toggleMenu()
             }
         }
@@ -170,7 +170,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
 
         // Preload next chapter once we're within the last 3 pages of the current chapter
         val inPreloadRange = pages.size - page.number < 3
-        if (inPreloadRange && allowPreload) {
+        if (inPreloadRange && allowPreload && page.chapter == adapter.currentChapter) {
             Timber.d("Request preload next chapter because we're at page ${page.number} of ${pages.size}")
             val nextItem = adapter.items.getOrNull(adapter.items.size - 1)
             val transitionChapter = (nextItem as? ChapterTransition.Next)?.to ?: (nextItem as?ReaderPage)?.chapter
@@ -202,7 +202,7 @@ class WebtoonViewer(val activity: ReaderActivity, val isContinuous: Boolean = tr
      */
     override fun setChapters(chapters: ViewerChapters) {
         Timber.d("setChapters")
-        var forceTransition = config.alwaysShowChapterTransition || currentPage is ChapterTransition
+        val forceTransition = config.alwaysShowChapterTransition || currentPage is ChapterTransition
         adapter.setChapters(chapters, forceTransition)
 
         if (recycler.visibility == View.GONE) {

@@ -59,10 +59,6 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextAppearance.Regular.Body1.Light">
-        <item name="android:textColor">@color/textColorPrimaryDark</item>
-    </style>
-
     <style name="TextAppearance.Regular.Body1.Secondary">
         <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
@@ -71,12 +67,8 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="TextAppearance.Regular.Caption.Light">
-        <item name="android:textColor">@color/textColorPrimaryDark</item>
-    </style>
-
     <style name="TextAppearance.Regular.Caption.Hint">
-        <item name="android:textColor">?android:attr/textColorHint</item>
+        <item name="android:textColor">@color/material_on_surface_emphasis_medium</item>
     </style>
 
     <style name="TextAppearance.Regular.SubHeading">
@@ -89,14 +81,6 @@
 
     <style name="TextAppearance.Regular.SubHeading.Secondary">
         <item name="android:textColor">?android:attr/textColorSecondary</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading.Light">
-        <item name="android:textColor">@color/textColorPrimaryDark</item>
-    </style>
-
-    <style name="TextAppearance.Regular.SubHeading.Light.Bold">
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextAppearance.Medium">
@@ -140,10 +124,12 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="fabCustomSize">@dimen/fab_size</item>
+        <item name="android:minHeight">@dimen/fab_size</item>
         <item name="android:layout_gravity">bottom|end</item>
         <item name="android:layout_margin">@dimen/fab_margin</item>
         <item name="android:scaleType">fitCenter</item>
         <item name="layout_anchorGravity">bottom|right|end</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="Theme.Widget.CardView" parent="CardView">
@@ -161,6 +147,7 @@
         <item name="android:layout_marginEnd">@dimen/material_component_cards_space_between_cards
         </item>
         <item name="cardBackgroundColor">?attr/colorSurface</item>
+        <item name="cardCornerRadius">@dimen/card_radius</item>
         <item name="cardElevation">2dp</item>
     </style>
 
@@ -184,13 +171,6 @@
         <item name="android:fastScrollEnabled">true</item>
         <item name="android:horizontalSpacing">0dp</item>
         <item name="android:verticalSpacing">0dp</item>
-    </style>
-
-
-    <style name="Theme.Widget.CheckBox" />
-
-    <style name="Theme.Widget.CheckBox.Light" parent="TextAppearance.Regular.Body1.Light">
-        <item name="buttonTint">@color/md_white_1000</item>
     </style>
 
 
@@ -273,23 +253,52 @@
         <item name="rippleColor">?attr/colorAccent</item>
     </style>
 
+    <style name="Theme.Widget.Button.Icon" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:paddingBottom">4dp</item>
+
+        <item name="elevation">0dp</item>
+
+        <item name="android:textSize">12sp</item>
+        <item name="textAllCaps">false</item>
+        <item name="cornerRadius">16dp</item>
+
+        <item name="iconTint">?colorAccent</item>
+        <item name="rippleColor">?colorAccent</item>
+        <item name="android:textColor">?attr/colorOnBackground</item>
+    </style>
+
+    <style name="Theme.Widget.Button.Icon.Textless">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="iconPadding">0dp</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+
+    <!--=================-->
+    <!--Widgets.TabLayout-->
+    <!--=================-->
+    <style name="Theme.Widget.Tabs" parent="Widget.MaterialComponents.TabLayout.Colored">
+        <item name="tabGravity">center</item>
+        <item name="tabIndicator">@drawable/tab_indicator</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabInlineLabel">true</item>
+        <item name="tabMinWidth">75dp</item>
+        <item name="tabMode">scrollable</item>
+    </style>
+
 
     <!--===-->
     <!--OLD-->
     <!--===-->
-    <style name="AlertDialogStyle" parent="Theme.MaterialComponents.Light.Dialog.Alert">
-        <item name="android:windowTitleStyle">@style/DialogTitleText</item>
-        <item name="colorAccent">?attr/colorPrimary</item>
-    </style>
-
-    <style name="DialogTitleText">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
-    </style>
-
     <style name="FilePickerTheme" parent="NNF_BaseTheme.Light">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccentLight</item>
         <item name="colorButtonNormal">@color/colorPrimary</item>
         <item name="android:textSize">14sp</item>
@@ -300,15 +309,5 @@
     </style>
 
     <style name="FilePickerAlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert" />
-
-    <style name="reader_settings_popup_animation">
-        <item name="android:windowEnterAnimation">@anim/enter_from_right</item>
-        <item name="android:windowExitAnimation">@anim/exit_to_right</item>
-    </style>
-
-    <style name="reader_brightness_popup_animation">
-        <item name="android:windowEnterAnimation">@anim/enter_from_left</item>
-        <item name="android:windowExitAnimation">@anim/exit_to_left</item>
-    </style>
 
 </resources>

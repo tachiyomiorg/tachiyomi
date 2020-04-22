@@ -28,17 +28,16 @@ import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersController
 import eu.kanade.tachiyomi.ui.manga.info.MangaInfoController
 import eu.kanade.tachiyomi.ui.manga.track.TrackController
 import eu.kanade.tachiyomi.util.system.toast
-import java.util.Date
 import kotlinx.android.synthetic.main.main_activity.tabs
 import rx.Subscription
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
-class MangaController : RxController, TabbedController {
+class MangaController : RxController<MangaControllerBinding>, TabbedController {
 
-    constructor(manga: Manga?, fromCatalogue: Boolean = false) : super(Bundle().apply {
+    constructor(manga: Manga?, fromSource: Boolean = false) : super(Bundle().apply {
         putLong(MANGA_EXTRA, manga?.id ?: 0)
-        putBoolean(FROM_CATALOGUE_EXTRA, fromCatalogue)
+        putBoolean(FROM_SOURCE_EXTRA, fromSource)
     }) {
         this.manga = manga
         if (manga != null) {
@@ -60,15 +59,9 @@ class MangaController : RxController, TabbedController {
 
     private var adapter: MangaDetailAdapter? = null
 
-    val fromCatalogue = args.getBoolean(FROM_CATALOGUE_EXTRA, false)
-
-    val lastUpdateRelay: BehaviorRelay<Date> = BehaviorRelay.create()
-
-    val chapterCountRelay: BehaviorRelay<Float> = BehaviorRelay.create()
+    val fromSource = args.getBoolean(FROM_SOURCE_EXTRA, false)
 
     val mangaFavoriteRelay: PublishRelay<Boolean> = PublishRelay.create()
-
-    private lateinit var binding: MangaControllerBinding
 
     private val trackingIconRelay: BehaviorRelay<Boolean> = BehaviorRelay.create()
 
@@ -94,7 +87,7 @@ class MangaController : RxController, TabbedController {
         binding.mangaPager.offscreenPageLimit = 3
         binding.mangaPager.adapter = adapter
 
-        if (!fromCatalogue)
+        if (!fromSource)
             binding.mangaPager.currentItem = CHAPTERS_CONTROLLER
     }
 
@@ -161,7 +154,7 @@ class MangaController : RxController, TabbedController {
         override fun configureRouter(router: Router, position: Int) {
             if (!router.hasRootController()) {
                 val controller = when (position) {
-                    INFO_CONTROLLER -> MangaInfoController()
+                    INFO_CONTROLLER -> MangaInfoController(fromSource)
                     CHAPTERS_CONTROLLER -> ChaptersController()
                     TRACK_CONTROLLER -> TrackController()
                     else -> error("Wrong position $position")
@@ -176,7 +169,7 @@ class MangaController : RxController, TabbedController {
     }
 
     companion object {
-        const val FROM_CATALOGUE_EXTRA = "from_catalogue"
+        const val FROM_SOURCE_EXTRA = "from_source"
         const val MANGA_EXTRA = "manga"
 
         const val INFO_CONTROLLER = 0

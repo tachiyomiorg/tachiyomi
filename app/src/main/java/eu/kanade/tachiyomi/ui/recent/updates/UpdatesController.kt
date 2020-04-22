@@ -10,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jakewharton.rxbinding.support.v4.widget.refreshes
-import com.jakewharton.rxbinding.support.v7.widget.scrollStateChanges
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.SelectableAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
@@ -23,12 +21,15 @@ import eu.kanade.tachiyomi.databinding.UpdatesControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
-import eu.kanade.tachiyomi.ui.base.controller.popControllerWithTag
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
+import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.system.notificationManager
 import eu.kanade.tachiyomi.util.system.toast
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.recyclerview.scrollStateChanges
+import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 import timber.log.Timber
 
 /**
@@ -36,7 +37,7 @@ import timber.log.Timber
  * Uses [R.layout.updates_controller].
  * UI related actions should be called from here.
  */
-class UpdatesController : NucleusController<UpdatesPresenter>(),
+class UpdatesController : NucleusController<UpdatesControllerBinding, UpdatesPresenter>(),
         RootController,
         NoToolbarElevationController,
         ActionMode.Callback,
@@ -56,8 +57,6 @@ class UpdatesController : NucleusController<UpdatesPresenter>(),
      */
     var adapter: UpdatesAdapter? = null
         private set
-
-    private lateinit var binding: UpdatesControllerBinding
 
     init {
         setHasOptionsMenu(true)
@@ -92,19 +91,23 @@ class UpdatesController : NucleusController<UpdatesPresenter>(),
         adapter = UpdatesAdapter(this@UpdatesController)
         binding.recycler.adapter = adapter
 
-        binding.recycler.scrollStateChanges().subscribeUntilDestroy {
-            // Disable swipe refresh when view is not at the top
-            val firstPos = layoutManager.findFirstCompletelyVisibleItemPosition()
-            binding.swipeRefresh.isEnabled = firstPos <= 0
-        }
+        binding.recycler.scrollStateChanges()
+            .onEach {
+                // Disable swipe refresh when view is not at the top
+                val firstPos = layoutManager.findFirstCompletelyVisibleItemPosition()
+                binding.swipeRefresh.isEnabled = firstPos <= 0
+            }
+            .launchInUI()
 
         binding.swipeRefresh.setDistanceToTriggerSync((2 * 64 * view.resources.displayMetrics.density).toInt())
-        binding.swipeRefresh.refreshes().subscribeUntilDestroy {
-            updateLibrary()
+        binding.swipeRefresh.refreshes()
+            .onEach {
+                updateLibrary()
 
-            // It can be a very long operation, so we disable swipe refresh and show a toast.
-            binding.swipeRefresh.isRefreshing = false
-        }
+                // It can be a very long operation, so we disable swipe refresh and show a toast.
+                binding.swipeRefresh.isRefreshing = false
+            }
+            .launchInUI()
     }
 
     override fun onDestroyView(view: View) {
@@ -152,12 +155,12 @@ class UpdatesController : NucleusController<UpdatesPresenter>(),
 
         // Get item from position
         val item = adapter.getItem(position) as? UpdatesItem ?: return false
-        if (actionMode != null && adapter.mode == SelectableAdapter.Mode.MULTI) {
+        return if (actionMode != null && adapter.mode == SelectableAdapter.Mode.MULTI) {
             toggleSelection(position)
-            return true
+            true
         } else {
             openChapter(item)
-            return false
+            false
         }
     }
 
@@ -258,7 +261,6 @@ class UpdatesController : NucleusController<UpdatesPresenter>(),
     }
 
     override fun deleteChapters(chaptersToDelete: List<UpdatesItem>) {
-        DeletingChaptersDialog().showDialog(router)
         presenter.deleteChapters(chaptersToDelete)
     }
 
@@ -282,7 +284,6 @@ class UpdatesController : NucleusController<UpdatesPresenter>(),
      * Called when chapters are deleted
      */
     fun onChaptersDeleted() {
-        dismissDeletingDialog()
         adapter?.notifyDataSetChanged()
     }
 
@@ -291,15 +292,7 @@ class UpdatesController : NucleusController<UpdatesPresenter>(),
      * @param error error message
      */
     fun onChaptersDeletedError(error: Throwable) {
-        dismissDeletingDialog()
         Timber.e(error)
-    }
-
-    /**
-     * Called to dismiss deleting dialog
-     */
-    private fun dismissDeletingDialog() {
-        router.popControllerWithTag(DeletingChaptersDialog.TAG)
     }
 
     /**

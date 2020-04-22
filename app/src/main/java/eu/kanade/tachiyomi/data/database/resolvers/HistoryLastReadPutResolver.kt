@@ -27,17 +27,15 @@ class HistoryLastReadPutResolver : HistoryPutResolver() {
 
         val putResult: PutResult
 
-        try {
-            if (cursor.count == 0) {
+        putResult = cursor.use { putCursor ->
+            if (putCursor.count == 0) {
                 val insertQuery = mapToInsertQuery(history)
                 val insertedId = db.lowLevel().insert(insertQuery, mapToContentValues(history))
-                putResult = PutResult.newInsertResult(insertedId, insertQuery.table())
+                PutResult.newInsertResult(insertedId, insertQuery.table())
             } else {
                 val numberOfRowsUpdated = db.lowLevel().update(updateQuery, mapToUpdateContentValues(history))
-                putResult = PutResult.newUpdateResult(numberOfRowsUpdated, updateQuery.table())
+                PutResult.newUpdateResult(numberOfRowsUpdated, updateQuery.table())
             }
-        } finally {
-            cursor.close()
         }
 
         putResult

@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.ui.manga.chapter
 
 import android.os.Bundle
-import com.jakewharton.rxrelay.BehaviorRelay
 import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -14,7 +13,6 @@ import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
-import java.util.Date
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -29,8 +27,6 @@ import uy.kohesive.injekt.api.get
 class ChaptersPresenter(
     val manga: Manga,
     val source: Source,
-    private val chapterCountRelay: BehaviorRelay<Float>,
-    private val lastUpdateRelay: BehaviorRelay<Date>,
     private val mangaFavoriteRelay: PublishRelay<Boolean>,
     val preferences: PreferencesHelper = Injekt.get(),
     private val db: DatabaseHelper = Injekt.get(),
@@ -71,8 +67,7 @@ class ChaptersPresenter(
         // Prepare the relay.
         chaptersRelay.flatMap { applyChapterFilters(it) }
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeLatestCache(ChaptersController::onNextChapters,
-                        { _, error -> Timber.e(error) })
+                .subscribeLatestCache(ChaptersController::onNextChapters) { _, error -> Timber.e(error) }
 
         // Add the subscription that retrieves the chapters from the database, keeps subscribed to
         // changes, and sends the list of chapters to the relay.
@@ -90,14 +85,6 @@ class ChaptersPresenter(
 
                     // Listen for download status changes
                     observeDownloads()
-
-                    // Emit the number of chapters to the info tab.
-                    chapterCountRelay.call(chapters.maxBy { it.chapter_number }?.chapter_number
-                            ?: 0f)
-
-                    // Emit the upload date of the most recent chapter
-                    lastUpdateRelay.call(Date(chapters.maxBy { it.date_upload }?.date_upload
-                            ?: 0))
                 }
                 .subscribe { chaptersRelay.call(it) })
     }
@@ -380,10 +367,17 @@ class ChaptersPresenter(
     }
 
     /**
+     * Whether downloaded only mode is enabled.
+     */
+    fun forceDownloaded(): Boolean {
+        return preferences.downloadedOnly().get()
+    }
+
+    /**
      * Whether the display only downloaded filter is enabled.
      */
     fun onlyDownloaded(): Boolean {
-        return manga.downloadedFilter == Manga.SHOW_DOWNLOADED
+        return forceDownloaded() || manga.downloadedFilter == Manga.SHOW_DOWNLOADED
     }
 
     /**

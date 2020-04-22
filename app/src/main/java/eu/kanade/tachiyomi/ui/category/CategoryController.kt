@@ -10,7 +10,6 @@ import androidx.appcompat.view.ActionMode
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.jakewharton.rxbinding.view.clicks
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.SelectableAdapter
 import eu.davidea.flexibleadapter.helpers.UndoHelper
@@ -18,12 +17,15 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.databinding.CategoriesControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.system.toast
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.android.view.clicks
 
 /**
  * Controller to manage the categories for the users' library.
  */
-class CategoryController : NucleusController<CategoryPresenter>(),
+class CategoryController : NucleusController<CategoriesControllerBinding, CategoryPresenter>(),
         ActionMode.Callback,
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
@@ -46,8 +48,6 @@ class CategoryController : NucleusController<CategoryPresenter>(),
      * Undo helper used for restoring a deleted category.
      */
     private var undoHelper: UndoHelper? = null
-
-    private lateinit var binding: CategoriesControllerBinding
 
     /**
      * Creates the presenter for this controller. Not to be manually called.
@@ -87,9 +87,11 @@ class CategoryController : NucleusController<CategoryPresenter>(),
         adapter?.isHandleDragEnabled = true
         adapter?.isPermanentDelete = false
 
-        binding.fab.clicks().subscribeUntilDestroy {
-            CategoryCreateDialog(this@CategoryController).showDialog(router, null)
-        }
+        binding.fab.clicks()
+            .onEach {
+                CategoryCreateDialog(this@CategoryController).showDialog(router, null)
+            }
+            .launchInUI()
     }
 
     /**

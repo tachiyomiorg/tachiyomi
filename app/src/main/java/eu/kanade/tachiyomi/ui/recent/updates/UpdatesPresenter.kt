@@ -63,15 +63,15 @@ class UpdatesPresenter(
                     val map = TreeMap<Date, MutableList<MangaChapter>> { d1, d2 -> d2.compareTo(d1) }
                     val byDay = mangaChapters
                             .groupByTo(map, { it.chapter.date_fetch.toDateKey() })
-                    byDay.flatMap {
-                        val dateItem = DateSectionItem(it.key)
-                        it.value
+                    byDay.flatMap { entry ->
+                        val dateItem = DateSectionItem(entry.key)
+                        entry.value
                                 .sortedWith(compareBy({ it.chapter.date_fetch }, { it.chapter.chapter_number })).asReversed()
                                 .map { UpdatesItem(it.chapter, it.manga, dateItem) }
                     }
                 }
-                .doOnNext {
-                    it.forEach { item ->
+                .doOnNext { list ->
+                    list.forEach { item ->
                         // Find an active download for this chapter.
                         val download = downloadManager.queue.find { it.chapter.id == item.chapter.id }
 
@@ -81,8 +81,8 @@ class UpdatesPresenter(
                             item.download = download
                         }
                     }
-                    setDownloadedChapters(it)
-                    chapters = it
+                    setDownloadedChapters(list)
+                    chapters = list
                 }
     }
 

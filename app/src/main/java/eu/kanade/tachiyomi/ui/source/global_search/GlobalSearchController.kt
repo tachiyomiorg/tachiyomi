@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jakewharton.rxbinding.support.v7.widget.queryTextChangeEvents
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.databinding.GlobalSearchControllerBinding
@@ -17,6 +16,11 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.util.lang.launchInUI
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.appcompat.QueryTextEvent
+import reactivecircus.flowbinding.appcompat.queryTextEvents
 
 /**
  * This controller shows and manages the different search result in global search.
@@ -26,7 +30,7 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 open class GlobalSearchController(
     protected val initialQuery: String? = null,
     protected val extensionFilter: String? = null
-) : NucleusController<GlobalSearchPresenter>(),
+) : NucleusController<GlobalSearchControllerBinding, GlobalSearchPresenter>(),
         GlobalSearchCardAdapter.OnMangaClickListener {
 
     /**
@@ -34,11 +38,6 @@ open class GlobalSearchController(
      */
     protected var adapter: GlobalSearchAdapter? = null
 
-    private lateinit var binding: GlobalSearchControllerBinding
-
-    /**
-     * Called when controller is initialized.
-     */
     init {
         setHasOptionsMenu(true)
     }
@@ -55,11 +54,6 @@ open class GlobalSearchController(
         return binding.root
     }
 
-    /**
-     * Set the title of controller.
-     *
-     * @return title.
-     */
     override fun getTitle(): String? {
         return presenter.query
     }
@@ -119,13 +113,14 @@ open class GlobalSearchController(
             }
         })
 
-        searchView.queryTextChangeEvents()
-                .filter { it.isSubmitted }
-                .subscribeUntilDestroy {
-                    presenter.search(it.queryText().toString())
-                    searchItem.collapseActionView()
-                    setTitle() // Update toolbar title
-                }
+        searchView.queryTextEvents()
+            .filter { it is QueryTextEvent.QuerySubmitted }
+            .onEach {
+                presenter.search(it.queryText.toString())
+                searchItem.collapseActionView()
+                setTitle() // Update toolbar title
+            }
+            .launchInUI()
     }
 
     /**
@@ -168,7 +163,7 @@ open class GlobalSearchController(
         val adapter = adapter ?: return null
 
         adapter.allBoundViewHolders.forEach { holder ->
-            val item = adapter.getItem(holder.adapterPosition)
+            val item = adapter.getItem(holder.bindingAdapterPosition)
             if (item != null && source.id == item.source.id) {
                 return holder as GlobalSearchHolder
             }

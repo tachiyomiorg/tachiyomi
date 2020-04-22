@@ -7,6 +7,7 @@
     <dimen name="margin_left">16dp</dimen>
     <dimen name="margin_right">16dp</dimen>
     <dimen name="space_between_cards">4dp</dimen>
+    <dimen name="card_radius">4dp</dimen>
 
     <dimen name="fab_size">56dp</dimen>
     <dimen name="fab_margin">16dp</dimen>

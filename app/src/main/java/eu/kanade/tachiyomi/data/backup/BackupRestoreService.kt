@@ -81,6 +81,12 @@ class BackupRestoreService : Service() {
          */
         fun stop(context: Context) {
             context.stopService(Intent(context, BackupRestoreService::class.java))
+
+            val errorIntent = Intent(BackupConst.INTENT_FILTER).apply {
+                putExtra(BackupConst.ACTION, BackupConst.ACTION_RESTORE_ERROR)
+                putExtra(BackupConst.EXTRA_ERROR_MESSAGE, context.getString(R.string.restoring_backup_canceled))
+            }
+            context.sendLocalBroadcast(errorIntent)
         }
     }
 
@@ -164,7 +170,7 @@ class BackupRestoreService : Service() {
      * @return the start value of the command.
      */
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (intent == null) return Service.START_NOT_STICKY
+        if (intent == null) return START_NOT_STICKY
 
         val uri = intent.getParcelableExtra<Uri>(BackupConst.EXTRA_URI)
 
@@ -179,7 +185,7 @@ class BackupRestoreService : Service() {
                 .subscribeOn(Schedulers.from(executor))
                 .subscribe()
 
-        return Service.START_NOT_STICKY
+        return START_NOT_STICKY
     }
 
     /**
@@ -251,7 +257,7 @@ class BackupRestoreService : Service() {
                         putExtra(BackupConst.EXTRA_ERRORS, errors.size)
                         putExtra(BackupConst.EXTRA_ERROR_FILE_PATH, logFile.parent)
                         putExtra(BackupConst.EXTRA_ERROR_FILE, logFile.name)
-                        putExtra(BackupConst.ACTION, BackupConst.ACTION_RESTORE_COMPLETED_DIALOG)
+                        putExtra(BackupConst.ACTION, BackupConst.ACTION_RESTORE_COMPLETED)
                     }
                     sendLocalBroadcast(completeIntent)
                 }
@@ -259,7 +265,7 @@ class BackupRestoreService : Service() {
                     Timber.e(error)
                     writeErrorLog()
                     val errorIntent = Intent(BackupConst.INTENT_FILTER).apply {
-                        putExtra(BackupConst.ACTION, BackupConst.ACTION_ERROR_RESTORE_DIALOG)
+                        putExtra(BackupConst.ACTION, BackupConst.ACTION_RESTORE_ERROR)
                         putExtra(BackupConst.EXTRA_ERROR_MESSAGE, error.message)
                     }
                     sendLocalBroadcast(errorIntent)
@@ -273,7 +279,7 @@ class BackupRestoreService : Service() {
     private fun writeErrorLog(): File {
         try {
             if (errors.isNotEmpty()) {
-                val destFile = File(externalCacheDir, "tachiyomi_restore.log")
+                val destFile = File(externalCacheDir, "tachiyomi_restore.txt")
                 val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault())
 
                 destFile.bufferedWriter().use { out ->
@@ -456,14 +462,14 @@ class BackupRestoreService : Service() {
         amount: Int,
         title: String,
         errors: Int,
-        content: String = getString(R.string.dialog_restoring_backup, title.chop(15))
+        content: String = title.chop(30)
     ) {
         val intent = Intent(BackupConst.INTENT_FILTER).apply {
             putExtra(BackupConst.EXTRA_PROGRESS, progress)
             putExtra(BackupConst.EXTRA_AMOUNT, amount)
             putExtra(BackupConst.EXTRA_CONTENT, content)
             putExtra(BackupConst.EXTRA_ERRORS, errors)
-            putExtra(BackupConst.ACTION, BackupConst.ACTION_SET_PROGRESS_DIALOG)
+            putExtra(BackupConst.ACTION, BackupConst.ACTION_RESTORE_PROGRESS)
         }
         sendLocalBroadcast(intent)
     }

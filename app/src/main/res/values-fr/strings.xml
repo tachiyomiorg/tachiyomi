@@ -25,8 +25,8 @@
     <string name="action_mark_as_unread">Marquer comme non lu</string>
     <string name="action_mark_previous_as_read">Marquer précédent comme lu</string>
     <string name="action_download">Télécharger</string>
-    <string name="action_bookmark">Ajouter signet</string>
-    <string name="action_remove_bookmark">Enlever signet</string>
+    <string name="action_bookmark">Ajouter un signet</string>
+    <string name="action_remove_bookmark">Enlever un signet</string>
     <string name="action_delete">Supprimer</string>
     <string name="action_update">Mettre à jour</string>
     <string name="action_update_library">Mettre à jour la bibliothèque</string>
@@ -50,12 +50,10 @@
     <string name="action_remove">Supprimer</string>
     <string name="action_resume">Reprendre</string>
     <string name="action_open_in_browser">Ouvrir dans le navigateur</string>
-    <string name="action_add_to_home_screen">Ajouter à l\'écran d\'accueil</string>
     <string name="action_display_mode">Mode d\'affichage</string>
     <string name="action_display">Affichage</string>
     <string name="action_display_grid">Grille</string>
     <string name="action_display_list">Liste</string>
-    <string name="action_set_filter">Appliquer filtre</string>
     <string name="action_cancel">Annuler</string>
     <string name="action_sort">Trier</string>
     <string name="action_install">Installer</string>
@@ -168,14 +166,14 @@
     <string name="pref_enable_automatic_updates">Vérifier les mises à jour</string>
     <string name="pref_enable_automatic_updates_summary">Automatiquement vérifier les nouvelles versions de l\'application</string>
     <!-- ACRA -->
-    <string name="pref_enable_acra">Envoyer des rapports de crash</string>
-    <string name="pref_acra_summary">Cela aide à corriger les bugs. Aucune donnée sensible ne sera envoyée</string>
+    <string name="pref_enable_acra">Envoyer les rapports de plantage</string>
+    <string name="pref_acra_summary">Aide à corriger les bugs. Aucune donnée sensible ne sera envoyée</string>
     <!-- Login dialog -->
     <string name="login_title">Connexion à %1$s</string>
     <string name="username">Nom d\'utilisateur</string>
     <string name="password">Mot de passe</string>
     <string name="show_password">Afficher le mot de passe</string>
-    <string name="login">Connexion</string>
+    <string name="login">Se connecter</string>
     <string name="invalid_login">Erreur de connexion</string>
     <string name="unknown_error">Erreur inconnue</string>
     <!-- Library fragment -->
@@ -200,11 +198,6 @@
     <string name="manga_info_status_label">Statut</string>
     <string name="manga_info_source_label">Source</string>
     <string name="manga_info_genres_label">Genres</string>
-    <string name="circular_icon">Circulaire</string>
-    <string name="square_icon">Carrée</string>
-    <string name="shortcut_title">Titre de raccourci</string>
-    <string name="icon_shape">Forme de l\'icône</string>
-    <string name="icon_creation_fail">Échec de la création du raccourci</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Chapitres</string>
     <string name="display_mode_chapter">Chapitre %1$s</string>
@@ -256,7 +249,7 @@
     <string name="chapter_subtitle">Chapitre %1$s</string>
     <string name="no_next_chapter">Chapitre suivant non trouvé</string>
     <string name="no_previous_chapter">Chapitre précédent non trouvé</string>
-    <string name="decode_image_error">L\'image n\'a pas pu être décodée</string>
+    <string name="decode_image_error">L\'image n\'a pas pu être chargée</string>
     <string name="confirm_set_image_as_cover">Voulez-vous mettre cette image comme couverture ?</string>
     <string name="viewer_for_this_series">Lecteur pour cette série</string>
     <!-- Backup fragment -->
@@ -308,14 +301,13 @@
     <string name="confirm_delete_chapters">Supprimer les chapitres sélectionnés \?</string>
     <string name="custom_dir">Répertoire personnalisé</string>
     <string name="download_10">10 prochains chapitres</string>
-    <string name="download_notifier_unkown_error">Une erreur inattendue s\'est produite lors du téléchargement du chapitre</string>
+    <string name="download_notifier_unknown_error">Une erreur inattendue s\'est produite lors du téléchargement du chapitre</string>
     <string name="fifth_to_last">Du cinquième au dernier chapitre</string>
     <string name="login_success">Connecté</string>
     <string name="manga_chapter_no_title">Pas de titre</string>
     <string name="notification_not_connected_to_ac_title">Synchronisation annulée</string>
     <string name="pref_clear_chapter_cache">Effacer le cache des chapitres</string>
     <string name="pref_remove_after_marked_as_read">Supprimer quand marqué comme lu</string>
-    <string name="rounded_icon">Ronde</string>
     <string name="sort_by_source">Par source</string>
     <string name="system_default">Par défaut système</string>
     <string name="updating_category">Mise à jour de la catégorie</string>
@@ -336,7 +328,6 @@
     <string name="download_notifier_download_paused">Téléchargement en pause</string>
     <string name="local_source">Manga locaux</string>
     <string name="added_to_library">Ce manga a été ajouté à votre bibliothèque</string>
-    <string name="manga_info_last_chapter_label">Dernier chapitre</string>
     <string name="chapter_paused">En pause</string>
     <string name="action_open_log">Ouvrir le fichier journal</string>
     <string name="action_restore">Restaurer</string>
@@ -379,12 +370,11 @@
 \nAssurez-vous d\'avoir installé toutes les extensions nécessaires et d\'être connecté aux sources et services de suivi avant de commencer la restauration.</string>
     <string name="action_global_search">Recherche globale</string>
     <string name="action_open">Ouvrir</string>
-    <string name="action_login">Connexion</string>
+    <string name="action_login">Se connecter</string>
     <string name="other_source">Autre</string>
     <string name="action_global_search_hint">Recherche globale…</string>
     <string name="latest">Récents</string>
     <string name="browse">Explorer</string>
-    <string name="shortcut_created">Un raccourci a été ajouté à la page d\'accueil.</string>
     <string name="channel_library">Bibliothèque</string>
     <string name="action_display_download_badge">Badges des téléchargements</string>
     <string name="local_source_badge">Local</string>
@@ -415,11 +405,9 @@
     <string name="double_tap_anim_speed_0">Sans animation</string>
     <string name="double_tap_anim_speed_normal">Normale</string>
     <string name="double_tap_anim_speed_fast">Rapide</string>
-    <string name="source_search_options">Filtre de recherche</string>
     <string name="manga_info_full_title_label">Titre</string>
     <string name="manga_added_library">Ajouté à la bibliothèque</string>
     <string name="manga_removed_library">Supprimé de la bibliothèque</string>
-    <string name="manga_info_latest_data_label">Mis à jour</string>
     <string name="copied_to_clipboard">%1$s a été copié dans le presse papier</string>
     <string name="source_not_installed">Sources non installées: %1$s</string>
     <string name="custom_download">Télécharger une quantité personnalisée</string>
@@ -495,7 +483,7 @@
     <string name="theme_dark_amoled">Noir AMOLED</string>
     <string name="pref_manage_notifications">Notifications</string>
     <string name="pref_category_security">Sécurité</string>
-    <string name="lock_with_biometrics">Déverrouillage biométrique</string>
+    <string name="lock_with_biometrics">Verrouillage biométrique</string>
     <string name="lock_when_idle">Verrouiller quand inactif</string>
     <string name="lock_always">Toujours</string>
     <string name="lock_never">Jamais</string>
@@ -529,14 +517,14 @@
     <string name="pref_disable_battery_optimization">Désactiver la fonction Optimisation utilisation batterie</string>
     <string name="pref_disable_battery_optimization_summary">Aide aux mises à jour et sauvegardes de la bibliothèque en arrière-plan</string>
     <string name="battery_optimization_disabled">La fonction Optimisation utilisation batterie est déjà désactivée</string>
-    <string name="email">Adresse email</string>
+    <string name="email">Adresse courriel</string>
     <string name="pref_always_show_chapter_transition">Toujours afficher la transition entre les chapitres</string>
     <plurals name="notification_new_chapters_summary">
         <item quantity="one">Pour 1 titre</item>
         <item quantity="other">Pour %d titres</item>
     </plurals>
     <string name="changelog">Journal de changement</string>
-    <string name="theme_light_default">Défaut</string>
+    <string name="theme_light_default">Par défaut</string>
     <string name="theme_light_blue">Bleu clair</string>
     <string name="action_menu">Menu</string>
     <string name="action_reorganize_by">Réorganiser</string>
@@ -555,4 +543,21 @@
     <string name="pref_enable_automatic_extension_updates">Vérifier les mises à jour d’extension</string>
     <string name="action_sort_last_checked">Dernière vérification</string>
     <string name="updating_library">Mise à jour de la bibliothèque</string>
+    <string name="label_sources">Sources</string>
+    <string name="webtoon_side_padding_25">25%</string>
+    <string name="webtoon_side_padding_20">20%</string>
+    <string name="webtoon_side_padding_15">15%</string>
+    <string name="webtoon_side_padding_10">10%</string>
+    <string name="webtoon_side_padding_0">Aucun</string>
+    <string name="pref_category_reading">En cours</string>
+    <string name="vertical_plus_viewer">Vertical continue</string>
+    <string name="pref_skip_filtered_chapters">Passer les chapitres filtrés</string>
+    <string name="action_pin">Épingler</string>
+    <string name="action_select_inverse">Inverser la sélection</string>
+    <string name="add_tracking">Ajouter le suivi</string>
+    <string name="pref_webtoon_side_padding">Décalage latéral</string>
+    <string name="pinned_sources">Épinglé</string>
+    <string name="action_unpin">Désépingler</string>
+    <string name="in_library">Dans la bibliothèque</string>
+    <string name="add_to_library">Ajouter à la bibliothèque</string>
 </resources>

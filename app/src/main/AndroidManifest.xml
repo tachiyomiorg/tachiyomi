@@ -18,15 +18,15 @@
         android:name=".App"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_rules"
-        android:hasFragileUserData="true"
         android:hardwareAccelerated="true"
-        android:usesCleartextTraffic="true"
+        android:hasFragileUserData="true"
         android:icon="@mipmap/ic_launcher"
-        android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:theme="@style/Theme.Tachiyomi.Light">
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/Theme.Tachiyomi.Light"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.main.MainActivity"
             android:launchMode="singleTop"
@@ -36,7 +36,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <!--suppress AndroidDomInspection -->
-            <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity
             android:name=".ui.main.DeepLinkActivity"
@@ -44,17 +46,22 @@
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
-                <action android:name="com.google.android.gms.actions.SEARCH_ACTION"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.google.android.gms.actions.SEARCH_ACTION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
                 <action android:name="eu.kanade.tachiyomi.SEARCH" />
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".ui.reader.ReaderActivity" />
+            android:name=".ui.reader.ReaderActivity"
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.security.BiometricUnlockActivity"
             android:theme="@style/Theme.Splash" />
@@ -110,7 +117,14 @@
 
         <activity
             android:name=".extension.util.ExtensionInstallActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
+            android:theme="@style/Theme.MaterialComponents" />
+        <activity
+            android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
+            android:theme="@style/Theme.MaterialComponents" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -140,11 +154,11 @@
 
         <service
             android:name=".data.backup.BackupCreateService"
-            android:exported="false"/>
+            android:exported="false" />
 
         <service
             android:name=".data.backup.BackupRestoreService"
-            android:exported="false"/>
+            android:exported="false" />
 
     </application>
 

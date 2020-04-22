@@ -229,13 +229,13 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
     override fun onItemClick(view: View?, position: Int): Boolean {
         // If the action mode is created and the position is valid, toggle the selection.
         val item = adapter.getItem(position) ?: return false
-        if (adapter.mode == SelectableAdapter.Mode.MULTI) {
+        return if (adapter.mode == SelectableAdapter.Mode.MULTI) {
             lastClickPosition = position
             toggleSelection(position)
-            return true
+            true
         } else {
             openManga(item.manga)
-            return false
+            false
         }
     }
 

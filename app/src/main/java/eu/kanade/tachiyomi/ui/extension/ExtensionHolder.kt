@@ -30,7 +30,7 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
 
     init {
         ext_button.setOnClickListener {
-            adapter.buttonClickListener.onButtonClick(adapterPosition)
+            adapter.buttonClickListener.onButtonClick(bindingAdapterPosition)
         }
     }
 
@@ -42,7 +42,7 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
         ext_title.text = extension.name
         version.text = extension.versionName
         lang.text = if (extension !is Extension.Untrusted) {
-            LocaleHelper.getDisplayName(extension.lang, itemView.context)
+            LocaleHelper.getSourceDisplayName(extension.lang, itemView.context)
         } else {
             itemView.context.getString(R.string.ext_untrusted).toUpperCase()
         }

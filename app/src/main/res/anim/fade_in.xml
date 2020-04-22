@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android">
-    <alpha
-        android:duration="300"
-        android:fillAfter="true"
-        android:fromAlpha="0.0"
-        android:interpolator="@android:anim/accelerate_interpolator"
-        android:toAlpha="1.0" />
-</set>

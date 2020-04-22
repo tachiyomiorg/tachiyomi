@@ -90,7 +90,7 @@ open class ExtensionPresenter(
         }
         if (availableSorted.isNotEmpty()) {
             val availableGroupedByLang = availableSorted
-                    .groupBy { LocaleHelper.getDisplayName(it.lang, context) }
+                    .groupBy { LocaleHelper.getSourceDisplayName(it.lang, context) }
                     .toSortedMap()
 
             availableGroupedByLang

@@ -38,7 +38,6 @@
     <string name="action_next_chapter">Následující kapitola</string>
     <string name="action_remove">Odstranit</string>
     <string name="action_open_in_browser">Otevřít v prohlížeči</string>
-    <string name="action_add_to_home_screen">Přidat na plochu</string>
     <string name="action_display_grid">Mřížka</string>
     <string name="action_display_list">Seznam</string>
     <string name="action_cancel">Zrušit</string>
@@ -136,11 +135,8 @@
     <string name="manga_removed_library">Odstraněno z knihovny</string>
     <string name="manga_info_author_label">Autor</string>
     <string name="manga_info_chapters_label">Kapitoly</string>
-    <string name="manga_info_last_chapter_label">Poslední kapitola</string>
     <string name="manga_info_source_label">Zdroj</string>
     <string name="manga_info_genres_label">Žánry</string>
-    <string name="shortcut_created">Zástupce byl přidán na plochu.</string>
-    <string name="icon_creation_fail">Nepodařilo se vytvořit zástupce.</string>
     <string name="delete_downloads_for_manga">Smazat stažené kapitoly\?</string>
     <string name="source_not_installed">Zdroj není nainstalován: %1$s</string>
     <string name="manga_chapters_tab">Kapitoly</string>
@@ -213,7 +209,7 @@
     <string name="information_no_recent">Žádné nedávné kapitoly</string>
     <string name="information_no_recent_manga">Žádné nedávno čtené mangy</string>
     <string name="download_notifier_title_error">Chyba</string>
-    <string name="download_notifier_unkown_error">Došlo k neznámé chybě při stahování kapitoly</string>
+    <string name="download_notifier_unknown_error">Došlo k neznámé chybě při stahování kapitoly</string>
     <string name="download_notifier_page_error">V adresáři chybí stránka</string>
     <string name="download_notifier_page_ready_error">Stránka nebyla načtena</string>
     <string name="download_notifier_text_only_wifi">WiFi připojení není dostupné</string>
@@ -240,7 +236,6 @@
     <string name="action_display_mode">Režim zobrazení</string>
     <string name="action_display">Zobrazení</string>
     <string name="action_display_download_badge">Odznáček stažení</string>
-    <string name="action_set_filter">Nastavit filtr</string>
     <string name="action_sort">Seřadit</string>
     <string name="action_reset">Resetovat</string>
     <string name="action_open_log">Otevřít log</string>
@@ -326,7 +321,6 @@
     <string name="updating_category">Aktualizace kategorie</string>
     <string name="local_source_badge">Lokální</string>
     <string name="also_delete_chapters">Odstranit také stažené kapitoly</string>
-    <string name="source_search_options">Filtry vyhledávání</string>
     <string name="source_requires_login">Tento zdroj vyžaduje přihlášení</string>
     <string name="select_source">Vybrat zdroj</string>
     <string name="no_valid_sources">Povolte prosím aspoň jeden platný zdroj</string>
@@ -337,13 +331,7 @@
     <string name="unknown">Neznámý</string>
     <string name="licensed">Licencovaný</string>
     <string name="manga_info_artist_label">Kreslíř</string>
-    <string name="manga_info_latest_data_label">Aktualizováno</string>
     <string name="manga_info_status_label">Stav</string>
-    <string name="circular_icon">Kruhová ikona</string>
-    <string name="rounded_icon">Zaoblená ikona</string>
-    <string name="square_icon">Čtvercová ikona</string>
-    <string name="shortcut_title">Název zástupce</string>
-    <string name="icon_shape">Tvar ikony</string>
     <string name="copied_to_clipboard">%1$s zkopírováno do schránky</string>
     <string name="chapter_queued">Ve frontě</string>
     <string name="fetch_chapters_error">Chyba při načítání kapitol.</string>
@@ -443,4 +431,5 @@
     <string name="pref_category_library_categories">Kategorie</string>
     <string name="logout_title">Odhlásit z %1$s\?</string>
     <string name="logout_success">Byl jste odhlášen</string>
+    <string name="paused">Pozastaveno</string>
 </resources>

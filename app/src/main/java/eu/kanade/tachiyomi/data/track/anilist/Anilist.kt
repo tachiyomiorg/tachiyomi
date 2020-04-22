@@ -97,13 +97,13 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
             // 100 point
             POINT_100 -> index.toFloat()
             // 5 stars
-            POINT_5 -> when {
-                index == 0 -> 0f
+            POINT_5 -> when (index) {
+                0 -> 0f
                 else -> index * 20f - 10f
             }
             // Smiley
-            POINT_3 -> when {
-                index == 0 -> 0f
+            POINT_3 -> when (index) {
+                0 -> 0f
                 else -> index * 25f + 10f
             }
             // 10 point decimal
@@ -116,8 +116,8 @@ class Anilist(private val context: Context, id: Int) : TrackService(id) {
         val score = track.score
 
         return when (scorePreference.getOrDefault()) {
-            POINT_5 -> when {
-                score == 0f -> "0 ★"
+            POINT_5 -> when (score) {
+                0f -> "0 ★"
                 else -> "${((score + 10) / 20).toInt()} ★"
             }
             POINT_3 -> when {

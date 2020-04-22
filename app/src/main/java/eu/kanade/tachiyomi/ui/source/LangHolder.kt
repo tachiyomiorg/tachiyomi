@@ -10,6 +10,6 @@ class LangHolder(view: View, adapter: FlexibleAdapter<*>) :
         BaseFlexibleViewHolder(view, adapter) {
 
     fun bind(item: LangItem) {
-        title.text = LocaleHelper.getDisplayName(item.code, itemView.context)
+        title.text = LocaleHelper.getSourceDisplayName(item.code, itemView.context)
     }
 }

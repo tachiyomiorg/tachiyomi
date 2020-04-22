@@ -50,12 +50,10 @@
     <string name="action_remove">Gỡ bỏ</string>
     <string name="action_resume">Tiếp tục</string>
     <string name="action_open_in_browser">Mở trong trình duyệt</string>
-    <string name="action_add_to_home_screen">Thêm vào màn hình chính</string>
     <string name="action_display_mode">Chế độ hiển thị</string>
     <string name="action_display">Hiển thị</string>
     <string name="action_display_grid">Lưới</string>
     <string name="action_display_list">Danh sách</string>
-    <string name="action_set_filter">Đặt bộ lọc</string>
     <string name="action_cancel">Hủy</string>
     <string name="action_sort">Sắp xếp</string>
     <string name="action_install">Cài đặt</string>
@@ -211,12 +209,6 @@
     <string name="manga_info_status_label">Trạng thái</string>
     <string name="manga_info_source_label">Nguồn truyện</string>
     <string name="manga_info_genres_label">Thể loại</string>
-    <string name="circular_icon">Hình tròn</string>
-    <string name="rounded_icon">Làm tròn</string>
-    <string name="square_icon">Hình vuông</string>
-    <string name="shortcut_title">Tiêu đề của lối tắt</string>
-    <string name="icon_shape">Kiểu biểu tượng</string>
-    <string name="icon_creation_fail">Tạo lối tắt thất bại</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Danh sách chương</string>
     <string name="manga_chapter_no_title">Không có tiêu đề</string>
@@ -318,7 +310,7 @@
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Trình tải xuống</string>
     <string name="download_notifier_title_error">Lỗi</string>
-    <string name="download_notifier_unkown_error">Đã xảy ra lỗi khi tải xuống chương này</string>
+    <string name="download_notifier_unknown_error">Đã xảy ra lỗi khi tải xuống chương này</string>
     <string name="download_notifier_page_error">Một trang đã bị thiếu trong thư mục</string>
     <string name="download_notifier_page_ready_error">Trang chưa được tải</string>
     <string name="download_notifier_text_only_wifi">Không có kết nối Wi-fi</string>
@@ -407,7 +399,6 @@
     <string name="pref_refresh_library_tracking_summary">Cập nhật trạng thái, điểm số và chương cuối đã đọc từ dịch vụ theo dõi</string>
     <string name="local_source_badge">Địa phương</string>
     <string name="also_delete_chapters">Đồng thời xóa các chương đã tải</string>
-    <string name="source_search_options">Bộ lọc tìm kiếm</string>
     <string name="local_source">Truyện tranh địa phương</string>
     <string name="other_source">Khác</string>
     <string name="invalid_combination">Danh mục mặc định không thể chọn với các danh mục khác</string>
@@ -418,9 +409,6 @@
     <string name="manga_info_full_title_label">Tiêu đề</string>
     <string name="manga_added_library">Đã thêm vào thư viện</string>
     <string name="manga_removed_library">Đã xóa khỏi thư viện</string>
-    <string name="manga_info_last_chapter_label">Chương cuối cùng</string>
-    <string name="manga_info_latest_data_label">Đã cập nhật</string>
-    <string name="shortcut_created">Phím tắt đã được thêm vào màn hình chính.</string>
     <string name="delete_downloads_for_manga">Muốn xóa các chương đã tải\?</string>
     <string name="copied_to_clipboard">%1$s được sao chép từ bộ nhớ đệm</string>
     <string name="source_not_installed">Nguồn truyện không thể cài đặt: %1$s</string>

@@ -75,7 +75,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
 
         var challengeFound = false
         var cloudflareBypassed = false
-        var isWebviewOutdated = false
+        var isWebViewOutdated = false
 
         val origRequestUrl = request.url.toString()
         val headers = request.headers.toMultimap().mapValues { it.value.getOrNull(0) ?: "" }
@@ -139,7 +139,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
 
         handler.post {
             if (!cloudflareBypassed) {
-                isWebviewOutdated = webView?.isOutdated() == true
+                isWebViewOutdated = webView?.isOutdated() == true
             }
 
             webView?.stopLoading()
@@ -149,7 +149,7 @@ class CloudflareInterceptor(private val context: Context) : Interceptor {
         // Throw exception if we failed to bypass Cloudflare
         if (!cloudflareBypassed) {
             // Prompt user to update WebView if it seems too outdated
-            if (isWebviewOutdated) {
+            if (isWebViewOutdated) {
                 context.toast(R.string.information_webview_outdated, Toast.LENGTH_LONG)
             }
 

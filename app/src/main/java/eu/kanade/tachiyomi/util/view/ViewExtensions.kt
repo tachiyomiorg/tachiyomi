@@ -80,6 +80,10 @@ inline fun View.visibleIf(block: () -> Boolean) {
     visibility = if (block()) View.VISIBLE else View.GONE
 }
 
+inline fun View.toggle() {
+    visibleIf { visibility == View.GONE }
+}
+
 /**
  * Sets a round TextDrawable into an ImageView determined by input.
  *

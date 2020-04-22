@@ -122,7 +122,7 @@ class ReaderProgressBar @JvmOverloads constructor(
      */
     override fun setVisibility(visibility: Int) {
         super.setVisibility(visibility)
-        val isVisible = visibility == View.VISIBLE
+        val isVisible = visibility == VISIBLE
         if (isVisible) {
             startAnimation()
         } else {
@@ -134,7 +134,7 @@ class ReaderProgressBar @JvmOverloads constructor(
      * Starts the rotation animation if needed.
      */
     private fun startAnimation() {
-        if (visibility != View.VISIBLE || windowVisibility != View.VISIBLE || animation != null) {
+        if (visibility != VISIBLE || windowVisibility != VISIBLE || animation != null) {
             return
         }
 
@@ -153,7 +153,7 @@ class ReaderProgressBar @JvmOverloads constructor(
      * Hides this progress bar with an optional fade out if [animate] is true.
      */
     fun hide(animate: Boolean = false) {
-        if (visibility == View.GONE) return
+        if (visibility == GONE) return
 
         if (!animate) {
             gone()

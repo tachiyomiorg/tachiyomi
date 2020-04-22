@@ -28,6 +28,10 @@ interface Manga : SManga {
         return chapter_flags and SORT_MASK == SORT_DESC
     }
 
+    fun getGenres(): List<String>? {
+        return genre?.split(", ")?.map { it.trim() }
+    }
+
     // Used to display the chapter's title one way or another
     var displayMode: Int
         get() = chapter_flags and DISPLAY_MASK

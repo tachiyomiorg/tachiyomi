@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.listItems
 import com.f2prateek.rx.preferences.Preference
 import com.google.android.material.snackbar.Snackbar
-import com.jakewharton.rxbinding.support.v7.widget.queryTextChangeEvents
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
@@ -32,6 +32,7 @@ import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
+import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.system.connectivityManager
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.gone
@@ -41,10 +42,11 @@ import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import eu.kanade.tachiyomi.widget.EmptyView
-import java.util.concurrent.TimeUnit
-import rx.Observable
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.appcompat.QueryTextEvent
+import reactivecircus.flowbinding.appcompat.queryTextEvents
 import rx.Subscription
-import rx.android.schedulers.AndroidSchedulers
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 
@@ -52,7 +54,7 @@ import uy.kohesive.injekt.injectLazy
  * Controller to manage the catalogues available in the app.
  */
 open class BrowseSourceController(bundle: Bundle) :
-        NucleusController<BrowseSourcePresenter>(bundle),
+        NucleusController<SourceControllerBinding, BrowseSourcePresenter>(bundle),
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
         FlexibleAdapter.EndlessScrollListener,
@@ -85,11 +87,6 @@ open class BrowseSourceController(bundle: Bundle) :
     private var recycler: RecyclerView? = null
 
     /**
-     * Subscription for the search view.
-     */
-    private var searchViewSubscription: Subscription? = null
-
-    /**
      * Subscription for the number of manga per row.
      */
     private var numColumnsSubscription: Subscription? = null
@@ -98,8 +95,6 @@ open class BrowseSourceController(bundle: Bundle) :
      * Endless loading item.
      */
     private var progressItem: ProgressItem? = null
-
-    private lateinit var binding: SourceControllerBinding
 
     init {
         setHasOptionsMenu(true)
@@ -160,8 +155,6 @@ open class BrowseSourceController(bundle: Bundle) :
     override fun onDestroyView(view: View) {
         numColumnsSubscription?.unsubscribe()
         numColumnsSubscription = null
-        searchViewSubscription?.unsubscribe()
-        searchViewSubscription = null
         adapter = null
         snack = null
         recycler = null
@@ -209,9 +202,9 @@ open class BrowseSourceController(bundle: Bundle) :
         if (filterSheet != null) {
             // Add bottom padding if filter FAB is visible
             recycler.setPadding(
-                0,
-                0,
-                0,
+                recycler.paddingLeft,
+                recycler.paddingTop,
+                recycler.paddingRight,
                 view.resources.getDimensionPixelOffset(R.dimen.fab_list_padding)
             )
             recycler.clipToPadding = false
@@ -244,20 +237,11 @@ open class BrowseSourceController(bundle: Bundle) :
             searchView.clearFocus()
         }
 
-        val searchEventsObservable = searchView.queryTextChangeEvents()
-                .skip(1)
-                .filter { router.backstack.lastOrNull()?.controller() == this@BrowseSourceController }
-                .share()
-        val writingObservable = searchEventsObservable
-                .filter { !it.isSubmitted }
-                .debounce(1250, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-        val submitObservable = searchEventsObservable
-                .filter { it.isSubmitted }
-
-        searchViewSubscription?.unsubscribe()
-        searchViewSubscription = Observable.merge(writingObservable, submitObservable)
-                .map { it.queryText().toString() }
-                .subscribeUntilDestroy { searchWithQuery(it) }
+        searchView.queryTextEvents()
+            .filter { router.backstack.lastOrNull()?.controller() == this@BrowseSourceController }
+            .filter { it is QueryTextEvent.QuerySubmitted }
+            .onEach { searchWithQuery(it.queryText.toString()) }
+            .launchInUI()
 
         searchItem.fixExpand(
                 onExpand = { invalidateMenuOnExpand() },
@@ -462,7 +446,7 @@ open class BrowseSourceController(bundle: Bundle) :
         val adapter = adapter ?: return null
 
         adapter.allBoundViewHolders.forEach { holder ->
-            val item = adapter.getItem(holder.adapterPosition) as? SourceItem
+            val item = adapter.getItem(holder.bindingAdapterPosition) as? SourceItem
             if (item != null && item.manga.id!! == manga.id!!) {
                 return holder as SourceHolder
             }
@@ -515,9 +499,11 @@ open class BrowseSourceController(bundle: Bundle) :
         val manga = (adapter?.getItem(position) as? SourceItem?)?.manga ?: return
 
         if (manga.favorite) {
-            MaterialDialog.Builder(activity)
-                    .items(activity.getString(R.string.remove_from_library))
-                    .itemsCallback { _, _, which, _ ->
+            MaterialDialog(activity)
+                    .listItems(
+                        items = listOf(activity.getString(R.string.remove_from_library)),
+                        waitForPositiveButton = false
+                    ) { _, which, _ ->
                         when (which) {
                             0 -> {
                                 presenter.changeMangaFavorite(manga)
@@ -525,7 +511,8 @@ open class BrowseSourceController(bundle: Bundle) :
                                 activity.toast(activity.getString(R.string.manga_removed_library))
                             }
                         }
-                    }.show()
+                    }
+                    .show()
         } else {
             val categories = presenter.getCategories()
             val defaultCategoryId = preferences.defaultCategory()

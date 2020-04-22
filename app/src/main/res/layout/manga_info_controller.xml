@@ -7,77 +7,73 @@
     android:layout_height="match_parent"
     tools:context="eu.kanade.tachiyomi.ui.source.browse.BrowseSourceController">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <View
-            android:id="@+id/guideline"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/manga_cover" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.38" />
+            <View
+                android:id="@+id/guideline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/manga_cover_card" />
 
-        <ImageView
-            android:id="@+id/backdrop"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:alpha="0.2"
-            app:layout_constraintBottom_toTopOf="@+id/guideline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/material_grey_700" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.38" />
 
-        <ImageView
-            android:id="@+id/manga_cover"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="@string/description_cover"
-            app:layout_constraintDimensionRatio="h,2:3"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/material_grey_700" />
+            <ImageView
+                android:id="@+id/backdrop"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:alpha="0.2"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@color/material_grey_700" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_favorite"
-            style="@style/Theme.Widget.FAB"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guideline"
-            app:srcCompat="@drawable/ic_add_to_library_24dp" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/manga_cover_card"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:layout_constraintDimensionRatio="h,2:3"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/info_scrollview"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toTopOf="parent">
+                <ImageView
+                    android:id="@+id/manga_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/description_cover"
+                    tools:background="@color/material_grey_700" />
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/manga_full_title"
@@ -85,6 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
+                    android:paddingBottom="8dp"
                     android:text="@string/manga_info_full_title_label"
                     android:textIsSelectable="false"
                     app:autoSizeMaxTextSize="20sp"
@@ -101,7 +98,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/manga_info_author_label"
                     android:textIsSelectable="false"
-
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/manga_full_title" />
 
@@ -142,52 +138,6 @@
                     app:layout_constraintStart_toEndOf="@+id/manga_artist_label" />
 
                 <TextView
-                    android:id="@+id/manga_chapters_label"
-                    style="@style/TextAppearance.Medium.Body2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/manga_info_last_chapter_label"
-                    android:textIsSelectable="false"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/manga_artist_label" />
-
-                <TextView
-                    android:id="@+id/manga_chapters"
-                    style="@style/TextAppearance.Regular.Body1.Secondary"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:textIsSelectable="false"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/manga_chapters_label"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/manga_chapters_label" />
-
-                <TextView
-                    android:id="@+id/manga_last_update_label"
-                    style="@style/TextAppearance.Medium.Body2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/manga_info_latest_data_label"
-                    android:textIsSelectable="false"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/manga_chapters_label" />
-
-                <TextView
-                    android:id="@+id/manga_last_update"
-                    style="@style/TextAppearance.Regular.Body1.Secondary"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:textIsSelectable="false"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/manga_last_update_label"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/manga_last_update_label" />
-
-                <TextView
                     android:id="@+id/manga_status_label"
                     style="@style/TextAppearance.Medium.Body2"
                     android:layout_width="wrap_content"
@@ -195,7 +145,7 @@
                     android:text="@string/manga_info_status_label"
                     android:textIsSelectable="false"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/manga_last_update_label" />
+                    app:layout_constraintTop_toBottomOf="@+id/manga_artist_label" />
 
                 <TextView
                     android:id="@+id/manga_status"
@@ -235,33 +185,63 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.core.widget.NestedScrollView>
+            <LinearLayout
+                android:id="@+id/actions_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline">
 
-        <TextView
-            android:id="@+id/manga_summary_label"
-            style="@style/TextAppearance.Medium.Body2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/description"
-            android:textIsSelectable="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guideline" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_favorite"
+                    style="@style/Theme.Widget.Button.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_to_library"
+                    app:icon="@drawable/ic_add_to_library_24dp" />
 
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/description_scrollview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constrainedHeight="true"
-            app:layout_constraintBottom_toTopOf="@id/manga_genres_tags"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/manga_summary_label"
-            app:layout_constraintVertical_bias="0.0"
-            app:layout_constraintVertical_chainStyle="packed">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_share"
+                    style="@style/Theme.Widget.Button.Icon.Textless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/action_share"
+                    android:visibility="gone"
+                    app:icon="@drawable/ic_share_24dp"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_webview"
+                    style="@style/Theme.Widget.Button.Icon.Textless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/action_open_in_web_view"
+                    android:visibility="gone"
+                    app:icon="@drawable/ic_public_24dp"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/manga_summary_label"
+                style="@style/TextAppearance.Medium.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/manga_info_about_label"
+                android:textIsSelectable="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/actions_bar" />
 
             <TextView
                 android:id="@+id/manga_summary"
@@ -270,25 +250,48 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:textIsSelectable="false" />
+                android:clickable="true"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:maxLines="3"
+                android:textIsSelectable="false"
+                app:layout_constraintBottom_toTopOf="@id/manga_genres_tags"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/manga_summary_label" />
 
-        </androidx.core.widget.NestedScrollView>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/manga_genres_tags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone"
+                app:chipSpacingHorizontal="4dp"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/manga_summary" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/manga_genres_tags"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            app:chipSpacingHorizontal="4dp"
-            app:layout_constrainedHeight="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/description_scrollview" />
+            <Button
+                android:id="@+id/manga_info_toggle"
+                style="@style/Theme.Widget.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/manga_info_expand"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/manga_genres_tags" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout>

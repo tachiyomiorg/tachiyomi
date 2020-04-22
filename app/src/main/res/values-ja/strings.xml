@@ -52,7 +52,6 @@
     <string name="action_retry">リトライ</string>
     <string name="action_resume">履歴書</string>
     <string name="action_open_in_browser">ブラウザで開く</string>
-    <string name="action_add_to_home_screen">ホーム画面に追加</string>
     <string name="action_display_mode">表示モード</string>
     <string name="action_display">表示</string>
     <string name="action_display_download_badge">バッジをダウンロードする</string>
@@ -210,7 +209,6 @@
     <string name="action_mark_previous_as_read">前に読んだチャプターを既読にする</string>
     <string name="action_next_unread">次の未読</string>
     <string name="action_move">移動</string>
-    <string name="action_set_filter">フィルターを設定</string>
     <string name="action_open_in_web_view">ウェブビューで開く</string>
     <string name="short_recent_updates">アップデート</string>
     <string name="pref_category_reader">ビューア</string>
@@ -263,7 +261,6 @@
     <string name="local_source_badge">ローカル</string>
     <string name="confirm_delete_manga">選択したマンガを削除してもよろしいですか？</string>
     <string name="also_delete_chapters">ダウンロードしたチャプターも削除</string>
-    <string name="source_search_options">検索のフィルター</string>
     <string name="source_requires_login">このソースを使用するにはログインが必要です</string>
     <string name="select_source">ソースを選択</string>
     <string name="no_valid_sources">有効なソースを少なくとも一つONにしてください</string>
@@ -285,18 +282,9 @@
     <string name="manga_info_author_label">作者</string>
     <string name="manga_info_artist_label">アーティスト</string>
     <string name="manga_info_chapters_label">チャプター</string>
-    <string name="manga_info_last_chapter_label">最新チャプター</string>
-    <string name="manga_info_latest_data_label">更新日時</string>
     <string name="manga_info_status_label">ステータス</string>
     <string name="manga_info_source_label">ソース</string>
     <string name="manga_info_genres_label">ジャンル</string>
-    <string name="circular_icon">円形</string>
-    <string name="rounded_icon">丸い方形</string>
-    <string name="square_icon">方形</string>
-    <string name="shortcut_title">ショートカットタイトル</string>
-    <string name="shortcut_created">ショートカットをホーム画面に追加しました。</string>
-    <string name="icon_shape">アイコンの形状</string>
-    <string name="icon_creation_fail">ショートカットを作成できませんでした</string>
     <string name="delete_downloads_for_manga">ダウンロードしたチャプターを削除してもよろしいですか？</string>
     <string name="copied_to_clipboard">%1$sをクリップボードにコピーしました</string>
     <string name="manga_chapters_tab">チャプター</string>
@@ -395,7 +383,7 @@
     <string name="information_empty_category">カテゴリーがありません。「+」をタップしてカテゴリーを追加し、ライブラリを整理できます。</string>
     <string name="download_notifier_downloader_title">ダウンロード</string>
     <string name="download_notifier_title_error">エラー</string>
-    <string name="download_notifier_unkown_error">予期せぬエラーが発生したため、ダウンロードは失敗しました</string>
+    <string name="download_notifier_unknown_error">予期せぬエラーが発生したため、ダウンロードは失敗しました</string>
     <string name="download_notifier_page_error">ディレクトリに見つけないページがあります</string>
     <string name="download_notifier_page_ready_error">ページをロードできませんでした</string>
     <string name="download_notifier_text_only_wifi">Wi-Fi接続は利用できません</string>

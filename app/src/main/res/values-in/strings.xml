@@ -55,11 +55,9 @@
     <string name="action_resume">Lanjut</string>
     <string name="action_move">Pindah</string>
     <string name="action_open_in_browser">Buka di browser</string>
-    <string name="action_add_to_home_screen">Tambahkan ke layar utama</string>
     <string name="action_display_mode">Mode tampilan</string>
     <string name="action_display">Tampilan</string>
     <string name="action_display_list">Daftar</string>
-    <string name="action_set_filter">Tetapkan filter</string>
     <string name="action_cancel">Batal</string>
     <string name="action_sort">Sortir</string>
     <string name="action_install">Pasang</string>
@@ -244,16 +242,9 @@
     <string name="manga_info_author_label">Penulis</string>
     <string name="manga_info_artist_label">Artis</string>
     <string name="manga_info_chapters_label">Bab</string>
-    <string name="manga_info_last_chapter_label">Bab terakhir</string>
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Sumber</string>
     <string name="manga_info_genres_label">Genre</string>
-    <string name="circular_icon">Melingkar</string>
-    <string name="rounded_icon">Dibulatkan</string>
-    <string name="square_icon">Persegi</string>
-    <string name="shortcut_title">Judul pintasan</string>
-    <string name="icon_shape">Bentuk ikon</string>
-    <string name="icon_creation_fail">Gagal membuat pintasan</string>
     <string name="delete_downloads_for_manga">Hapus bab terunduh?</string>
     <string name="manga_chapters_tab">Bab</string>
     <string name="manga_chapter_no_title">Tanpa judul</string>
@@ -337,7 +328,7 @@
     <string name="information_empty_library">Perpustakaan Anda kosong, tambahkan seri ke perpustakaan Anda dari sumber.</string>
     <string name="download_notifier_downloader_title">Pengunduh</string>
     <string name="download_notifier_title_error">Gagal</string>
-    <string name="download_notifier_unkown_error">Terjadi kesalahan tak terduga saat mengunduh bab</string>
+    <string name="download_notifier_unknown_error">Terjadi kesalahan tak terduga saat mengunduh bab</string>
     <string name="download_notifier_page_error">Sebuah halaman tidak dapat ditemukan di folder</string>
     <string name="download_notifier_page_ready_error">Halaman belum termuat</string>
     <string name="download_notifier_text_only_wifi">Tidak terhubung dengan Wi-Fi</string>
@@ -352,7 +343,6 @@
     <string name="action_global_search_hint">Pencarian global…</string>
     <string name="latest">Terbaru</string>
     <string name="browse">Jelajahi</string>
-    <string name="shortcut_created">Pintasan telah ditambahkan ke layar utama.</string>
     <string name="channel_common">Umum</string>
     <string name="channel_library">Perpustakaan</string>
     <string name="channel_downloader">Pengunduh</string>
@@ -386,11 +376,9 @@
     <string name="double_tap_anim_speed_0">Tanpa animasi</string>
     <string name="double_tap_anim_speed_normal">Normal</string>
     <string name="double_tap_anim_speed_fast">Cepat</string>
-    <string name="source_search_options">Filter pencarian</string>
     <string name="manga_info_full_title_label">Judul</string>
     <string name="manga_added_library">Ditambahkan ke perpustakaan</string>
     <string name="manga_removed_library">Dihapus dari perpustakaan</string>
-    <string name="manga_info_latest_data_label">Terbarui</string>
     <string name="copied_to_clipboard">%1$s tersalin ke clipboard</string>
     <string name="custom_download">Unduh sejumlah tertentu</string>
     <string name="download_custom">Kustom</string>

@@ -70,7 +70,7 @@ import uy.kohesive.injekt.injectLazy
  * viewers, to which calls from the presenter or UI events are delegated.
  */
 @RequiresPresenter(ReaderPresenter::class)
-class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
+class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() {
 
     private val preferences by injectLazy<PreferencesHelper>()
 
@@ -101,8 +101,6 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
      */
     @Suppress("DEPRECATION")
     private var progressDialog: ProgressDialog? = null
-
-    private lateinit var binding: ReaderActivityBinding
 
     companion object {
         @Suppress("unused")
@@ -183,8 +181,17 @@ class ReaderActivity : BaseRxActivity<ReaderPresenter>() {
     }
 
     /**
+     * Set menu visibility again on activity resume to apply immersive mode again if needed.
+     * Helps with rotations.
+     */
+    override fun onResume() {
+        super.onResume()
+        setMenuVisibility(menuVisible, animate = false)
+    }
+
+    /**
      * Called when the window focus changes. It sets the menu visibility to the last known state
-     * to apply again System UI (for immersive mode).
+     * to apply immersive mode again if needed.
      */
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)

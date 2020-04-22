@@ -22,13 +22,13 @@ import eu.kanade.tachiyomi.util.system.toast
  * Uses [R.layout.history_controller].
  * UI related actions should be called from here.
  */
-class HistoryController : NucleusController<HistoryPresenter>(),
+class HistoryController : NucleusController<HistoryControllerBinding, HistoryPresenter>(),
         RootController,
         NoToolbarElevationController,
         FlexibleAdapter.OnUpdateListener,
         HistoryAdapter.OnRemoveClickListener,
         HistoryAdapter.OnResumeClickListener,
-        HistoryAdapter.OnCoverClickListener,
+        HistoryAdapter.OnItemClickListener,
         RemoveHistoryDialog.Listener {
 
     /**
@@ -36,8 +36,6 @@ class HistoryController : NucleusController<HistoryPresenter>(),
      */
     var adapter: HistoryAdapter? = null
         private set
-
-    private lateinit var binding: HistoryControllerBinding
 
     override fun getTitle(): String? {
         return resources?.getString(R.string.label_recent_manga)
@@ -107,7 +105,7 @@ class HistoryController : NucleusController<HistoryPresenter>(),
         RemoveHistoryDialog(this, manga, history).showDialog(router)
     }
 
-    override fun onCoverClick(position: Int) {
+    override fun onItemClick(position: Int) {
         val manga = adapter?.getItem(position)?.mch?.manga ?: return
         router.pushController(MangaController(manga).withFadeTransaction())
     }

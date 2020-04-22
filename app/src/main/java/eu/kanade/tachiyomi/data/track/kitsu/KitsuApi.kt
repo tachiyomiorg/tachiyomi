@@ -38,7 +38,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().serializeNulls().create()))
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build()
-            .create(KitsuApi.Rest::class.java)
+            .create(Rest::class.java)
 
     private val searchRest = Retrofit.Builder()
             .baseUrl(algoliaKeyUrl)
@@ -46,7 +46,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build()
-            .create(KitsuApi.SearchKeyRest::class.java)
+            .create(SearchKeyRest::class.java)
 
     private val algoliaRest = Retrofit.Builder()
             .baseUrl(algoliaUrl)
@@ -54,7 +54,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build()
-            .create(KitsuApi.AgoliaSearchRest::class.java)
+            .create(AgoliaSearchRest::class.java)
 
     fun addLibManga(track: Track, userId: String): Observable<Track> {
         return Observable.defer {
@@ -162,7 +162,7 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build()
-                .create(KitsuApi.LoginRest::class.java)
+                .create(LoginRest::class.java)
                 .requestAccessToken(username, password)
     }
 

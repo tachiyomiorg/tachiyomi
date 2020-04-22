@@ -1,10 +1,13 @@
 package eu.kanade.tachiyomi.ui.source.browse
 
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.glide.GlideApp
+import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import kotlinx.android.synthetic.main.source_list_item.thumbnail
 import kotlinx.android.synthetic.main.source_list_item.title
@@ -20,8 +23,8 @@ import kotlinx.android.synthetic.main.source_list_item.title
 class SourceListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
         SourceHolder(view, adapter) {
 
-    private val favoriteColor = view.context.getResourceColor(android.R.attr.textColorHint)
-    private val unfavoriteColor = view.context.getResourceColor(android.R.attr.textColorPrimary)
+    private val favoriteColor = ContextCompat.getColor(view.context, R.color.material_on_surface_disabled)
+    private val unfavoriteColor = view.context.getResourceColor(R.attr.colorOnSurface)
 
     /**
      * Method called from [CatalogueAdapter.onBindViewHolder]. It updates the data for this
@@ -40,7 +43,7 @@ class SourceListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
         GlideApp.with(view.context).clear(thumbnail)
         if (!manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(view.context)
-                    .load(manga)
+                    .load(manga.toMangaThumbnail())
                     .diskCacheStrategy(DiskCacheStrategy.DATA)
                     .centerCrop()
                     .circleCrop()

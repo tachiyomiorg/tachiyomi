@@ -19,8 +19,6 @@ import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.f2prateek.rx.preferences.Preference
 import com.google.android.material.tabs.TabLayout
-import com.jakewharton.rxbinding.support.v4.view.pageSelections
-import com.jakewharton.rxbinding.support.v7.widget.queryTextChanges
 import com.jakewharton.rxrelay.BehaviorRelay
 import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.R
@@ -36,10 +34,15 @@ import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import java.io.IOException
 import kotlinx.android.synthetic.main.main_activity.tabs
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.appcompat.queryTextChanges
+import reactivecircus.flowbinding.viewpager.pageSelections
 import rx.Subscription
 import timber.log.Timber
 import uy.kohesive.injekt.Injekt
@@ -48,7 +51,7 @@ import uy.kohesive.injekt.api.get
 class LibraryController(
     bundle: Bundle? = null,
     private val preferences: PreferencesHelper = Injekt.get()
-) : NucleusController<LibraryPresenter>(bundle),
+) : NucleusController<LibraryControllerBinding, LibraryPresenter>(bundle),
         RootController,
         TabbedController,
         ActionMode.Callback,
@@ -123,10 +126,6 @@ class LibraryController(
 
     private var tabsVisibilitySubscription: Subscription? = null
 
-    private var searchViewSubscription: Subscription? = null
-
-    private lateinit var binding: LibraryControllerBinding
-
     init {
         setHasOptionsMenu(true)
         retainViewMode = RetainViewMode.RETAIN_DETACH
@@ -150,10 +149,12 @@ class LibraryController(
 
         adapter = LibraryAdapter(this)
         binding.libraryPager.adapter = adapter
-        binding.libraryPager.pageSelections().skip(1).subscribeUntilDestroy {
-            preferences.lastUsedCategory().set(it)
-            activeCategory = it
-        }
+        binding.libraryPager.pageSelections()
+            .onEach {
+                preferences.lastUsedCategory().set(it)
+                activeCategory = it
+            }
+            .launchInUI()
 
         getColumnsPreferenceForCurrentOrientation().asObservable()
                 .doOnNext { mangaPerRow = it }
@@ -326,25 +327,28 @@ class LibraryController(
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
+        searchView.queryTextChanges()
+            // Ignore events if this controller isn't at the top
+            .filter { router.backstack.lastOrNull()?.controller() == this }
+            .onEach {
+                query = it.toString()
+                searchRelay.call(query)
+            }
+            .launchInUI()
+
         if (query.isNotEmpty()) {
             searchItem.expandActionView()
             searchView.setQuery(query, true)
             searchView.clearFocus()
+
+            // Manually trigger the search since the binding doesn't trigger for some reason
+            searchRelay.call(query)
         }
+
+        searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })
 
         // Mutate the filter icon because it needs to be tinted and the resource is shared.
         menu.findItem(R.id.action_filter).icon.mutate()
-
-        searchViewSubscription?.unsubscribe()
-        searchViewSubscription = searchView.queryTextChanges()
-                // Ignore events if this controller isn't at the top
-                .filter { router.backstack.lastOrNull()?.controller() == this }
-                .subscribeUntilDestroy {
-                    query = it.toString()
-                    searchRelay.call(query)
-                }
-
-        searchItem.fixExpand(onExpand = { invalidateMenuOnExpand() })
     }
 
     fun search(query: String) {

@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.os.Bundle
 import android.widget.NumberPicker
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
+import com.afollestad.materialdialogs.customview.getCustomView
 import com.bluelinelabs.conductor.Controller
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
@@ -34,37 +36,31 @@ class SetTrackChaptersDialog<T> : DialogController
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         val item = item
 
-        val dialog = MaterialDialog.Builder(activity!!)
+        val dialog = MaterialDialog(activity!!)
                 .title(R.string.chapters)
-                .customView(R.layout.track_chapters_dialog, false)
-                .positiveText(android.R.string.ok)
-                .negativeText(android.R.string.cancel)
-                .onPositive { dialog, _ ->
-                    val view = dialog.customView
-                    if (view != null) {
-                        // Remove focus to update selected number
-                        val np: NumberPicker = view.findViewById(R.id.chapters_picker)
-                        np.clearFocus()
+                .customView(R.layout.track_chapters_dialog, dialogWrapContent = false)
+                .positiveButton(android.R.string.ok) { dialog ->
+                    val view = dialog.getCustomView()
+                    // Remove focus to update selected number
+                    val np: NumberPicker = view.findViewById(R.id.chapters_picker)
+                    np.clearFocus()
 
-                        (targetController as? Listener)?.setChaptersRead(item, np.value)
-                    }
+                    (targetController as? Listener)?.setChaptersRead(item, np.value)
                 }
-                .build()
+                .negativeButton(android.R.string.cancel)
 
-        val view = dialog.customView
-        if (view != null) {
-            val np: NumberPicker = view.findViewById(R.id.chapters_picker)
-            // Set initial value
-            np.value = item.track?.last_chapter_read ?: 0
+        val view = dialog.getCustomView()
+        val np: NumberPicker = view.findViewById(R.id.chapters_picker)
+        // Set initial value
+        np.value = item.track?.last_chapter_read ?: 0
 
-            // Enforce maximum value if tracker has total number of chapters set
-            if (item.track != null && item.track.total_chapters > 0) {
-                np.maxValue = item.track.total_chapters
-            }
-
-            // Don't allow to go from 0 to 9999
-            np.wrapSelectorWheel = false
+        // Enforce maximum value if tracker has total number of chapters set
+        if (item.track != null && item.track.total_chapters > 0) {
+            np.maxValue = item.track.total_chapters
         }
+
+        // Don't allow to go from 0 to 9999
+        np.wrapSelectorWheel = false
 
         return dialog
     }

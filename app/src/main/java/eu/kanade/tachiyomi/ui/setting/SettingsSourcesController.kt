@@ -40,7 +40,7 @@ class SettingsSourcesController : SettingsController() {
             // Create a preference group and set initial state and change listener
             switchPreferenceCategory {
                 preferenceScreen.addPreference(this)
-                title = LocaleHelper.getDisplayName(lang, context)
+                title = LocaleHelper.getSourceDisplayName(lang, context)
                 isPersistent = false
                 if (lang in activeLangsCodes) {
                     setChecked(true)

@@ -1,63 +1,50 @@
 package eu.kanade.tachiyomi.ui.manga.info
 
-import android.app.Dialog
-import android.app.PendingIntent
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
-import android.os.Build
-import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.pm.ShortcutInfoCompat
-import androidx.core.content.pm.ShortcutManagerCompat
-import androidx.core.graphics.drawable.IconCompat
-import com.afollestad.materialdialogs.MaterialDialog
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.chip.Chip
-import com.jakewharton.rxbinding.support.v4.widget.refreshes
-import com.jakewharton.rxbinding.view.clicks
-import com.jakewharton.rxbinding.view.longClicks
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.glide.GlideApp
-import eu.kanade.tachiyomi.data.notification.NotificationReceiver
+import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.databinding.MangaInfoControllerBinding
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
-import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.library.LibraryController
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.ui.recent.history.HistoryController
+import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.ui.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
+import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.lang.truncateCenter
 import eu.kanade.tachiyomi.util.system.toast
+import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.snack
-import java.text.DateFormat
-import java.text.DecimalFormat
-import java.util.Date
-import jp.wasabeef.glide.transformations.CropSquareTransformation
+import eu.kanade.tachiyomi.util.view.toggle
+import eu.kanade.tachiyomi.util.view.visible
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.android.view.clicks
+import reactivecircus.flowbinding.android.view.longClicks
+import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
@@ -67,26 +54,19 @@ import uy.kohesive.injekt.injectLazy
  * Uses R.layout.manga_info_controller.
  * UI related actions should be called from here.
  */
-class MangaInfoController : NucleusController<MangaInfoPresenter>(),
-        ChangeMangaCategoriesDialog.Listener {
+class MangaInfoController(private val fromSource: Boolean = false) :
+    NucleusController<MangaInfoControllerBinding, MangaInfoPresenter>(),
+    ChangeMangaCategoriesDialog.Listener {
 
     private val preferences: PreferencesHelper by injectLazy()
 
-    private val dateFormat: DateFormat by lazy {
-        preferences.dateFormat().getOrDefault()
-    }
+    private var initialLoad: Boolean = true
 
-    private lateinit var binding: MangaInfoControllerBinding
-
-    init {
-        setHasOptionsMenu(true)
-        setOptionsMenuHidden(true)
-    }
+    private var thumbnailUrl: String? = null
 
     override fun createPresenter(): MangaInfoPresenter {
         val ctrl = parentController as MangaController
-        return MangaInfoPresenter(ctrl.manga!!, ctrl.source!!,
-                ctrl.chapterCountRelay, ctrl.lastUpdateRelay, ctrl.mangaFavoriteRelay)
+        return MangaInfoPresenter(ctrl.manga!!, ctrl.source!!, ctrl.mangaFavoriteRelay)
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
@@ -97,63 +77,80 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
 
-        // Set onclickListener to toggle favorite when FAB clicked.
-        binding.fabFavorite.clicks().subscribeUntilDestroy { onFabClick() }
+        // Set onclickListener to toggle favorite when favorite button clicked.
+        binding.btnFavorite.clicks()
+            .onEach { onFavoriteClick() }
+            .launchInUI()
 
-        // Set onLongClickListener to manage categories when FAB is clicked.
-        binding.fabFavorite.longClicks().subscribeUntilDestroy { onFabLongClick() }
+        // Set onLongClickListener to manage categories when favorite button is clicked.
+        binding.btnFavorite.longClicks()
+            .onEach { onFavoriteLongClick() }
+            .launchInUI()
+
+        if (presenter.source is HttpSource) {
+            binding.btnWebview.visible()
+            binding.btnShare.visible()
+
+            binding.btnWebview.clicks()
+                .onEach { openInWebView() }
+                .launchInUI()
+            binding.btnShare.clicks()
+                .onEach { shareManga() }
+                .launchInUI()
+        }
 
         // Set SwipeRefresh to refresh manga data.
-        binding.swipeRefresh.refreshes().subscribeUntilDestroy { fetchMangaFromSource() }
+        binding.swipeRefresh.refreshes()
+            .onEach { fetchMangaFromSource() }
+            .launchInUI()
 
-        binding.mangaFullTitle.longClicks().subscribeUntilDestroy {
-            copyToClipboard(view.context.getString(R.string.title), binding.mangaFullTitle.text.toString())
-        }
+        binding.mangaFullTitle.longClicks()
+            .onEach {
+                copyToClipboard(view.context.getString(R.string.title), binding.mangaFullTitle.text.toString())
+            }
+            .launchInUI()
 
-        binding.mangaFullTitle.clicks().subscribeUntilDestroy {
-            performGlobalSearch(binding.mangaFullTitle.text.toString())
-        }
+        binding.mangaFullTitle.clicks()
+            .onEach {
+                performGlobalSearch(binding.mangaFullTitle.text.toString())
+            }
+            .launchInUI()
 
-        binding.mangaArtist.longClicks().subscribeUntilDestroy {
-            copyToClipboard(binding.mangaArtistLabel.text.toString(), binding.mangaArtist.text.toString())
-        }
+        binding.mangaArtist.longClicks()
+            .onEach {
+                copyToClipboard(binding.mangaArtistLabel.text.toString(), binding.mangaArtist.text.toString())
+            }
+            .launchInUI()
 
-        binding.mangaArtist.clicks().subscribeUntilDestroy {
-            performGlobalSearch(binding.mangaArtist.text.toString())
-        }
+        binding.mangaArtist.clicks()
+            .onEach {
+                performGlobalSearch(binding.mangaArtist.text.toString())
+            }
+            .launchInUI()
 
-        binding.mangaAuthor.longClicks().subscribeUntilDestroy {
-            copyToClipboard(binding.mangaAuthor.text.toString(), binding.mangaAuthor.text.toString())
-        }
+        binding.mangaAuthor.longClicks()
+            .onEach {
+                copyToClipboard(binding.mangaAuthor.text.toString(), binding.mangaAuthor.text.toString())
+            }
+            .launchInUI()
 
-        binding.mangaAuthor.clicks().subscribeUntilDestroy {
-            performGlobalSearch(binding.mangaAuthor.text.toString())
-        }
+        binding.mangaAuthor.clicks()
+            .onEach {
+                performGlobalSearch(binding.mangaAuthor.text.toString())
+            }
+            .launchInUI()
 
-        binding.mangaSummary.longClicks().subscribeUntilDestroy {
-            copyToClipboard(view.context.getString(R.string.description), binding.mangaSummary.text.toString())
-        }
+        binding.mangaSummary.longClicks()
+            .onEach {
+                copyToClipboard(view.context.getString(R.string.description), binding.mangaSummary.text.toString())
+            }
+            .launchInUI()
 
-        binding.mangaCover.longClicks().subscribeUntilDestroy {
-            copyToClipboard(view.context.getString(R.string.title), presenter.manga.title)
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.manga_info, menu)
-
-        if (presenter.source !is HttpSource) {
-            menu.findItem(R.id.action_share).isVisible = false
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_open_in_web_view -> openInWebView()
-            R.id.action_share -> shareManga()
-            R.id.action_add_to_home_screen -> addToHomeScreen()
-        }
-        return super.onOptionsItemSelected(item)
+        binding.mangaCover.longClicks()
+            .onEach {
+                copyToClipboard(view.context.getString(R.string.title), presenter.manga.title)
+            }
+            .launchInUI()
     }
 
     /**
@@ -218,27 +215,6 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
             }
         }
 
-        // Update genres list
-        if (!manga.genre.isNullOrBlank()) {
-            binding.mangaGenresTags.removeAllViews()
-
-            manga.genre?.split(", ")?.forEach { genre ->
-                val chip = Chip(view.context).apply {
-                    text = genre
-                    setOnClickListener { performSearch(genre) }
-                }
-
-                binding.mangaGenresTags.addView(chip)
-            }
-        }
-
-        // Update description TextView.
-        binding.mangaSummary.text = if (manga.description.isNullOrBlank()) {
-            view.context.getString(R.string.unknown)
-        } else {
-            manga.description
-        }
-
         // Update status TextView.
         binding.mangaStatus.setText(when (manga.status) {
             SManga.ONGOING -> R.string.ongoing
@@ -248,45 +224,98 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         })
 
         // Set the favorite drawable to the correct one.
-        setFavoriteDrawable(manga.favorite)
+        setFavoriteButtonState(manga.favorite)
 
         // Set cover if it wasn't already.
-        if (binding.mangaCover.drawable == null && !manga.thumbnail_url.isNullOrEmpty()) {
+        if (binding.mangaCover.drawable == null || manga.thumbnail_url != thumbnailUrl) {
+            thumbnailUrl = manga.thumbnail_url
+            val mangaThumbnail = manga.toMangaThumbnail()
+
             GlideApp.with(view.context)
-                    .load(manga)
+                    .load(mangaThumbnail)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .centerCrop()
                     .into(binding.mangaCover)
 
-            if (binding.backdrop != null) {
-                GlideApp.with(view.context)
-                        .load(manga)
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .centerCrop()
-                        .into(binding.backdrop!!)
+            GlideApp.with(view.context)
+                    .load(mangaThumbnail)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .centerCrop()
+                    .into(binding.backdrop)
+        }
+
+        // Manga info section
+        if (manga.description.isNullOrBlank() && manga.genre.isNullOrBlank()) {
+            hideMangaInfo()
+        } else {
+            // Update description TextView.
+            binding.mangaSummary.text = if (manga.description.isNullOrBlank()) {
+                view.context.getString(R.string.unknown)
+            } else {
+                manga.description
+            }
+
+            // Update genres list
+            if (!manga.genre.isNullOrBlank()) {
+                binding.mangaGenresTags.removeAllViews()
+
+                manga.getGenres()?.forEach { genre ->
+                    val chip = Chip(view.context).apply {
+                        text = genre
+                        setOnClickListener { performSearch(genre) }
+                    }
+
+                    binding.mangaGenresTags.addView(chip)
+                }
+            }
+
+            // Handle showing more or less info
+            binding.mangaSummary.clicks()
+                .onEach { toggleMangaInfo(view.context) }
+                .launchInUI()
+            binding.mangaInfoToggle.clicks()
+                .onEach { toggleMangaInfo(view.context) }
+                .launchInUI()
+
+            // Expand manga info if navigated from source listing
+            if (initialLoad && fromSource) {
+                toggleMangaInfo(view.context)
+                initialLoad = false
             }
         }
     }
 
-    /**
-     * Update chapter count TextView.
-     *
-     * @param count number of chapters.
-     */
-    fun setChapterCount(count: Float) {
-        if (count > 0f) {
-            binding.mangaChapters.text = DecimalFormat("#.#").format(count)
-        } else {
-            binding.mangaChapters.text = resources?.getString(R.string.unknown)
-        }
+    private fun hideMangaInfo() {
+        binding.mangaSummaryLabel.gone()
+        binding.mangaSummary.gone()
+        binding.mangaGenresTags.gone()
+        binding.mangaInfoToggle.gone()
     }
 
-    fun setLastUpdateDate(date: Date) {
-        if (date.time != 0L) {
-            binding.mangaLastUpdate.text = dateFormat.format(date)
-        } else {
-            binding.mangaLastUpdate.text = resources?.getString(R.string.unknown)
+    private fun toggleMangaInfo(context: Context) {
+        val isExpanded = binding.mangaInfoToggle.text == context.getString(R.string.manga_info_collapse)
+
+        binding.mangaInfoToggle.text =
+            if (isExpanded)
+                context.getString(R.string.manga_info_expand)
+            else
+                context.getString(R.string.manga_info_collapse)
+
+        with(binding.mangaSummary) {
+            maxLines =
+                if (isExpanded)
+                    3
+                else
+                    Int.MAX_VALUE
+
+            ellipsize =
+                if (isExpanded)
+                    TextUtils.TruncateAt.END
+                else
+                    null
         }
+
+        binding.mangaGenresTags.toggle()
     }
 
     /**
@@ -339,17 +368,18 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
     }
 
     /**
-     * Update FAB with correct drawable.
+     * Update favorite button with correct drawable and text.
      *
      * @param isFavorite determines if manga is favorite or not.
      */
-    private fun setFavoriteDrawable(isFavorite: Boolean) {
+    private fun setFavoriteButtonState(isFavorite: Boolean) {
         // Set the Favorite drawable to the correct one.
         // Border drawable if false, filled drawable if true.
-        binding.fabFavorite.setImageResource(if (isFavorite)
-            R.drawable.ic_bookmark_24dp
-        else
-            R.drawable.ic_add_to_library_24dp)
+        binding.btnFavorite.apply {
+            icon = ContextCompat.getDrawable(context, if (isFavorite) R.drawable.ic_bookmark_24dp else R.drawable.ic_add_to_library_24dp)
+            text = context.getString(if (isFavorite) R.string.in_library else R.string.add_to_library)
+            isChecked = isFavorite
+        }
     }
 
     /**
@@ -385,7 +415,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         binding.swipeRefresh.isRefreshing = value
     }
 
-    private fun onFabClick() {
+    private fun onFavoriteClick() {
         val manga = presenter.manga
 
         if (manga.favorite) {
@@ -425,7 +455,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
         }
     }
 
-    private fun onFabLongClick() {
+    private fun onFavoriteLongClick() {
         val manga = presenter.manga
 
         if (manga.favorite && presenter.getCategories().isNotEmpty()) {
@@ -439,7 +469,7 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
             ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
                     .showDialog(router)
         } else {
-            onFabClick()
+            onFavoriteClick()
         }
     }
 
@@ -452,75 +482,6 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
 
         presenter.moveMangaToCategories(manga, categories)
         activity?.toast(activity?.getString(R.string.manga_added_library))
-    }
-
-    /**
-     * Add a shortcut of the manga to the home screen
-     */
-    private fun addToHomeScreen() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // TODO are transformations really unsupported or is it just the Pixel Launcher?
-            createShortcutForShape()
-        } else {
-            ChooseShapeDialog(this).showDialog(router)
-        }
-    }
-
-    /**
-     * Dialog to choose a shape for the icon.
-     */
-    private class ChooseShapeDialog(bundle: Bundle? = null) : DialogController(bundle) {
-
-        constructor(target: MangaInfoController) : this() {
-            targetController = target
-        }
-
-        override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            val modes = intArrayOf(R.string.circular_icon,
-                    R.string.rounded_icon,
-                    R.string.square_icon)
-
-            return MaterialDialog.Builder(activity!!)
-                    .title(R.string.icon_shape)
-                    .negativeText(android.R.string.cancel)
-                    .items(modes.map { activity?.getString(it) })
-                    .itemsCallback { _, _, i, _ ->
-                        (targetController as? MangaInfoController)?.createShortcutForShape(i)
-                    }
-                    .build()
-        }
-    }
-
-    /**
-     * Retrieves the bitmap of the shortcut with the requested shape and calls [createShortcut] when
-     * the resource is available.
-     *
-     * @param i The shape index to apply. Defaults to circle crop transformation.
-     */
-    private fun createShortcutForShape(i: Int = 0) {
-        if (activity == null) return
-        GlideApp.with(activity!!)
-                .asBitmap()
-                .load(presenter.manga)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .apply {
-                    when (i) {
-                        0 -> circleCrop()
-                        1 -> transform(RoundedCorners(5))
-                        2 -> transform(CropSquareTransformation())
-                    }
-                }
-                .into(object : CustomTarget<Bitmap>(96, 96) {
-                    override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                        createShortcut(resource)
-                    }
-
-                    override fun onLoadFailed(errorDrawable: Drawable?) {
-                        activity?.toast(R.string.icon_creation_fail)
-                    }
-
-                    override fun onLoadCleared(placeholder: Drawable?) {}
-                })
     }
 
     /**
@@ -564,59 +525,23 @@ class MangaInfoController : NucleusController<MangaInfoPresenter>(),
             return
         }
 
-        val previousController = router.backstack[router.backstackSize - 2].controller()
-        when (previousController) {
+        when (val previousController = router.backstack[router.backstackSize - 2].controller()) {
             is LibraryController -> {
                 router.handleBack()
                 previousController.search(query)
+            }
+            is UpdatesController,
+            is HistoryController -> {
+                // Manually navigate to LibraryController
+                router.handleBack()
+                (router.activity as MainActivity).setSelectedNavItem(R.id.nav_library)
+                val controller = router.getControllerWithTag(R.id.nav_library.toString()) as LibraryController
+                controller.search(query)
             }
             is BrowseSourceController -> {
                 router.handleBack()
                 previousController.searchWithQuery(query)
             }
-        }
-    }
-
-    /**
-     * Create shortcut using ShortcutManager.
-     *
-     * @param icon The image of the shortcut.
-     */
-    private fun createShortcut(icon: Bitmap) {
-        val activity = activity ?: return
-        val mangaControllerArgs = parentController?.args ?: return
-
-        // Create the shortcut intent.
-        val shortcutIntent = activity.intent
-                .setAction(MainActivity.SHORTCUT_MANGA)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                .putExtra(MangaController.MANGA_EXTRA,
-                        mangaControllerArgs.getLong(MangaController.MANGA_EXTRA))
-
-        // Check if shortcut placement is supported
-        if (ShortcutManagerCompat.isRequestPinShortcutSupported(activity)) {
-            val shortcutId = "manga-shortcut-${presenter.manga.title}-${presenter.source.name}"
-
-            // Create shortcut info
-            val shortcutInfo = ShortcutInfoCompat.Builder(activity, shortcutId)
-                    .setShortLabel(presenter.manga.title)
-                    .setIcon(IconCompat.createWithBitmap(icon))
-                    .setIntent(shortcutIntent)
-                    .build()
-
-            val successCallback = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                // Create the CallbackIntent.
-                val intent = ShortcutManagerCompat.createShortcutResultIntent(activity, shortcutInfo)
-
-                // Configure the intent so that the broadcast receiver gets the callback successfully.
-                PendingIntent.getBroadcast(activity, 0, intent, 0)
-            } else {
-                NotificationReceiver.shortcutCreatedBroadcast(activity)
-            }
-
-            // Request shortcut.
-            ShortcutManagerCompat.requestPinShortcut(activity, shortcutInfo,
-                    successCallback.intentSender)
         }
     }
 }

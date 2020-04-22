@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jakewharton.rxbinding.support.v4.widget.refreshes
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.databinding.TrackControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.system.toast
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 import timber.log.Timber
 
-class TrackController : NucleusController<TrackPresenter>(),
+class TrackController : NucleusController<TrackControllerBinding, TrackPresenter>(),
         TrackAdapter.OnClickListener,
         SetTrackStatusDialog.Listener,
         SetTrackChaptersDialog.Listener,
@@ -23,8 +25,6 @@ class TrackController : NucleusController<TrackPresenter>(),
         SetTrackReadingDatesDialog.Listener {
 
     private var adapter: TrackAdapter? = null
-
-    private lateinit var binding: TrackControllerBinding
 
     init {
         // There's no menu, but this avoids a bug when coming from the catalogue, where the menu
@@ -48,7 +48,9 @@ class TrackController : NucleusController<TrackPresenter>(),
         binding.trackRecycler.layoutManager = LinearLayoutManager(view.context)
         binding.trackRecycler.adapter = adapter
         binding.swipeRefresh.isEnabled = false
-        binding.swipeRefresh.refreshes().subscribeUntilDestroy { presenter.refresh() }
+        binding.swipeRefresh.refreshes()
+            .onEach { presenter.refresh() }
+            .launchInUI()
     }
 
     override fun onDestroyView(view: View) {
@@ -89,7 +91,7 @@ class TrackController : NucleusController<TrackPresenter>(),
     override fun onLogoClick(position: Int) {
         val track = adapter?.getItem(position)?.track ?: return
 
-        if (track.tracking_url.isNullOrBlank()) {
+        if (track.tracking_url.isBlank()) {
             activity?.toast(R.string.url_not_set)
         } else {
             activity?.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(track.tracking_url)))

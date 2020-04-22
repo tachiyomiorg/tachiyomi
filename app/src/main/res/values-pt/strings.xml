@@ -45,7 +45,6 @@
     <string name="action_resume">Resumir</string>
     <string name="action_open_in_browser">Abrir no navegador</string>
     <string name="action_display_mode">Modo de visualização</string>
-    <string name="action_set_filter">Definir filtro</string>
     <string name="action_cancel">Cancelar</string>
     <string name="action_sort">Ordenar</string>
     <string name="action_install">Instalar</string>
@@ -223,7 +222,7 @@
     <string name="chapter_subtitle">Capítulo %1$s</string>
     <string name="no_next_chapter">Capítulo seguinte não encontrado</string>
     <string name="no_previous_chapter">Capítulo anterior não encontrado</string>
-    <string name="decode_image_error">A imagem não pôde ser decodificada</string>
+    <string name="decode_image_error">Não foi possível carregar a imagem</string>
     <string name="viewer_for_this_series">Visualizador para esta série</string>
     <!-- Backup fragment -->
     <string name="backup">Cópia de segurança</string>
@@ -252,7 +251,7 @@
     <string name="update_check_notification_download_in_progress">Transferência em curso…</string>
     <string name="update_check_notification_download_complete">Transferência completa</string>
     <string name="update_check_notification_download_error">Erro na transferência</string>
-    <string name="update_check_notification_update_available">Atualização disponível</string>
+    <string name="update_check_notification_update_available">Nova versão disponível!</string>
     <!--Content Description-->
     <string name="description_backdrop">Imagem de capa da manga</string>
     <string name="description_cover">Imagem de capa da manga</string>
@@ -260,10 +259,10 @@
     <string name="information_no_downloads">Sem transferências</string>
     <string name="information_no_recent">Sem capítulos recentes</string>
     <string name="information_no_recent_manga">Sem manga lida recentemente</string>
-    <string name="information_empty_library">A sua biblioteca está vazia, você pode adicionar séries dos catálogos à sua biblioteca.</string>
+    <string name="information_empty_library">A sua biblioteca está vazia, você pode adicionar séries dos fontes à sua biblioteca.</string>
     <!-- Download Notification -->
     <string name="download_notifier_title_error">Erro</string>
-    <string name="download_notifier_unkown_error">Não foi possível transferir o capítulo devido a um erro inesperado</string>
+    <string name="download_notifier_unknown_error">Não foi possível transferir o capítulo devido a um erro inesperado</string>
     <string name="download_notifier_page_error">Página em falta na pasta</string>
     <string name="download_notifier_page_ready_error">A Página não foi carregada</string>
     <string name="download_notifier_text_only_wifi">Sem ligação de Wi-Fi disponível</string>
@@ -283,7 +282,6 @@
     <string name="action_add">Adicionar</string>
     <string name="action_close">Fechar</string>
     <string name="action_move">Mover</string>
-    <string name="action_add_to_home_screen">Adicionar ao ecrã inicial</string>
     <string name="action_display">Mostrar</string>
     <string name="action_display_grid">Grelha</string>
     <string name="action_display_list">Lista</string>
@@ -369,7 +367,7 @@
     <string name="download_custom">Personalizado</string>
     <string name="pref_read_with_long_tap">Diálogo de toque longo</string>
     <string name="pref_refresh_library_metadata_summary">Atualizar capas, géneros, descrição e informação sobre o estado de lançamento do mangá</string>
-    <string name="action_open_in_web_view">Abra em webview</string>
+    <string name="action_open_in_web_view">Abra em WebView</string>
     <string name="pref_true_color">32-bit color</string>
     <string name="pref_skip_read_chapters">Pular capítulos lidos</string>
     <string name="backup_restore_content">A restauração usa as fontes para obter dados, cobranças adicionais podem ser efetuadas por sua operadora.
@@ -379,7 +377,6 @@
     <string name="pref_refresh_library_tracking_summary">Atualiza informações como situação, avaliações e últimos capítulos lidos dos serviços de monitoramento</string>
     <string name="local_source_badge">Local</string>
     <string name="also_delete_chapters">Também excluir os capítulos disponíveis offline</string>
-    <string name="source_search_options">Filtros de busca</string>
     <string name="no_more_results">Não há mais resultados</string>
     <string name="local_source">Mangá local</string>
     <string name="other_source">Outras</string>
@@ -392,15 +389,6 @@
     <string name="manga_info_full_title_label">Título</string>
     <string name="manga_added_library">Adicionado à biblioteca</string>
     <string name="manga_removed_library">Removido da biblioteca</string>
-    <string name="manga_info_last_chapter_label">Capítulo mais recente</string>
-    <string name="manga_info_latest_data_label">Última atualização</string>
-    <string name="circular_icon">Ícone circular</string>
-    <string name="rounded_icon">Ícone redondo</string>
-    <string name="square_icon">Ícone quadrado</string>
-    <string name="shortcut_title">Título do atalho</string>
-    <string name="shortcut_created">O atalho foi adicionado à sua tela inicial.</string>
-    <string name="icon_shape">Formato do ícone</string>
-    <string name="icon_creation_fail">Não foi possível criar o atalho</string>
     <string name="delete_downloads_for_manga">Excluir os capítulos disponíveis offline\?</string>
     <string name="copied_to_clipboard">%1$s copiado para área de transferência</string>
     <string name="source_not_installed">Fonte não instalada: %1$s</string>
@@ -508,7 +496,7 @@
     <string name="notification_chapters_single_and_more">Capítulo %1$s e %2$d mais</string>
     <string name="notification_chapters_multiple">Capítulos %1$s</string>
     <plurals name="notification_chapters_multiple_and_more">
-        <item quantity="one">Capítulo %1$s e 1 mais</item>
+        <item quantity="one">Capítulos %1$s e 1 mais</item>
         <item quantity="other">Capítulos %1$s e %2$d mais</item>
     </plurals>
     <string name="action_hide">Ocultar</string>
@@ -539,4 +527,27 @@
         <item quantity="other">%1$d novos capítulos</item>
     </plurals>
     <string name="notification_chapters_single">Capítulo %1$s</string>
+    <string name="channel_ext_updates">Atualizações de extensão</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">Atualização de extensão disponível</item>
+        <item quantity="other">%d atualizações de extensão disponíveis</item>
+    </plurals>
+    <string name="updating_library">Atualizando biblioteca</string>
+    <string name="pinned_sources">Fixado</string>
+    <string name="http_error_hint">Verifique o site no WebView</string>
+    <string name="webtoon_side_padding_25">25%</string>
+    <string name="webtoon_side_padding_20">20%</string>
+    <string name="webtoon_side_padding_15">15%</string>
+    <string name="webtoon_side_padding_10">10%</string>
+    <string name="webtoon_side_padding_0">Nenhum</string>
+    <string name="pref_webtoon_side_padding">Preenchimento lateral</string>
+    <string name="pref_category_reading">Lendo</string>
+    <string name="vertical_plus_viewer">Vertical contínuo</string>
+    <string name="pref_skip_filtered_chapters">Pular capítulos filtrados</string>
+    <string name="pref_enable_automatic_extension_updates">Verifique se há atualizações de extensão</string>
+    <string name="action_unpin">Desafixar</string>
+    <string name="action_pin">Fixar</string>
+    <string name="action_select_inverse">Seleção inversa</string>
+    <string name="action_sort_last_checked">Verificado pela última vez</string>
+    <string name="label_sources">Fontes</string>
 </resources>

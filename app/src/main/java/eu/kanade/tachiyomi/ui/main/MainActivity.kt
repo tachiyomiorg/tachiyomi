@@ -4,6 +4,8 @@ import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -12,7 +14,6 @@ import com.bluelinelabs.conductor.RouterTransaction
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.databinding.MainActivityBinding
 import eu.kanade.tachiyomi.extension.api.ExtensionGithubApi
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
@@ -30,14 +31,20 @@ import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.ui.source.SourceController
 import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchController
+import eu.kanade.tachiyomi.util.lang.launchUI
+import eu.kanade.tachiyomi.util.system.WebViewUtil
+import eu.kanade.tachiyomi.util.system.toast
 import java.util.Date
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<MainActivityBinding>() {
 
     private lateinit var router: Router
 
@@ -52,14 +59,19 @@ class MainActivity : BaseActivity() {
     lateinit var tabAnimator: ViewHeightAnimator
     private lateinit var bottomNavAnimator: ViewHeightAnimator
 
+    private var isConfirmingExit: Boolean = false
     private var isHandlingShortcut: Boolean = false
-
-    private lateinit var binding: MainActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = MainActivityBinding.inflate(layoutInflater)
+
+        // Enforce WebView availability
+        if (!WebViewUtil.supportsWebView(this)) {
+            toast(R.string.information_webview_required, Toast.LENGTH_LONG)
+            finishAndRemoveTask()
+        }
 
         // Do not let the launcher create a new activity http://stackoverflow.com/questions/16283079
         if (!isTaskRoot) {
@@ -141,10 +153,11 @@ class MainActivity : BaseActivity() {
                 ChangelogDialogController().showDialog(router)
             }
         }
-        preferences.extensionUpdatesCount().asObservable().subscribe {
-            setExtensionsBadge()
-        }
+
         setExtensionsBadge()
+        preferences.extensionUpdatesCount().asFlow()
+            .onEach { setExtensionsBadge() }
+            .launchIn(lifecycleScope)
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -159,7 +172,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setExtensionsBadge() {
-        val updates = preferences.extensionUpdatesCount().getOrDefault()
+        val updates = preferences.extensionUpdatesCount().get()
         if (updates > 0) {
             binding.bottomNav.getOrCreateBadge(R.id.nav_more).number = updates
         } else {
@@ -170,7 +183,7 @@ class MainActivity : BaseActivity() {
     private fun getExtensionUpdates() {
         // Limit checks to once a day at most
         val now = Date().time
-        if (now < preferences.lastExtCheck().getOrDefault() + TimeUnit.DAYS.toMillis(1)) {
+        if (now < preferences.lastExtCheck().get() + TimeUnit.DAYS.toMillis(1)) {
             return
         }
 
@@ -261,13 +274,36 @@ class MainActivity : BaseActivity() {
     override fun onBackPressed() {
         val backstackSize = router.backstackSize
         if (backstackSize == 1 && router.getControllerWithTag("$startScreenId") == null) {
+            // Return to start screen
             setSelectedNavItem(startScreenId)
+        } else if (shouldHandleExitConfirmation()) {
+            // Exit confirmation (resets after 2 seconds)
+            launchUI { resetExitConfirmation() }
         } else if (backstackSize == 1 || !router.handleBack()) {
+            // Regular back
             super.onBackPressed()
         }
     }
 
-    private fun setSelectedNavItem(itemId: Int) {
+    private suspend fun resetExitConfirmation() {
+        isConfirmingExit = true
+        val toast = Toast.makeText(this, R.string.confirm_exit, Toast.LENGTH_LONG)
+        toast.show()
+
+        delay(2000)
+
+        toast.cancel()
+        isConfirmingExit = false
+    }
+
+    private fun shouldHandleExitConfirmation(): Boolean {
+        return router.backstackSize == 1 &&
+            router.getControllerWithTag("$startScreenId") != null &&
+            preferences.confirmExit() &&
+            !isConfirmingExit
+    }
+
+    fun setSelectedNavItem(itemId: Int) {
         if (!isFinishing) {
             binding.bottomNav.selectedItemId = itemId
         }

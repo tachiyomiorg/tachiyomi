@@ -10,11 +10,11 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.listItems
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
-import com.jakewharton.rxbinding.support.v7.widget.queryTextChangeEvents
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
@@ -31,6 +31,11 @@ import eu.kanade.tachiyomi.ui.setting.SettingsSourcesController
 import eu.kanade.tachiyomi.ui.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchController
 import eu.kanade.tachiyomi.ui.source.latest.LatestUpdatesController
+import eu.kanade.tachiyomi.util.lang.launchInUI
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.appcompat.QueryTextEvent
+import reactivecircus.flowbinding.appcompat.queryTextEvents
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -40,7 +45,7 @@ import uy.kohesive.injekt.api.get
  * [SourceAdapter.OnBrowseClickListener] call function data on browse item click.
  * [SourceAdapter.OnLatestClickListener] call function data on latest item click
  */
-class SourceController : NucleusController<SourcePresenter>(),
+class SourceController : NucleusController<SourceMainControllerBinding, SourcePresenter>(),
         RootController,
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener,
@@ -53,8 +58,6 @@ class SourceController : NucleusController<SourcePresenter>(),
      * Adapter containing sources.
      */
     private var adapter: SourceAdapter? = null
-
-    private lateinit var binding: SourceMainControllerBinding
 
     init {
         setHasOptionsMenu(true)
@@ -119,18 +122,22 @@ class SourceController : NucleusController<SourcePresenter>(),
 
         val isPinned = item.header?.code?.equals(SourcePresenter.PINNED_KEY) ?: false
 
-        MaterialDialog.Builder(activity)
-                .title(item.source.name)
-                .items(
-                    activity.getString(R.string.action_hide),
-                    activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin)
-                )
-                .itemsCallback { _, _, which, _ ->
+        MaterialDialog(activity)
+                .title(text = item.source.name)
+                .listItems(
+                    items = listOf(
+                        activity.getString(R.string.action_hide),
+                        activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin)
+                    ),
+                    waitForPositiveButton = false
+                ) { dialog, which, _ ->
                     when (which) {
                         0 -> hideCatalogue(item.source)
                         1 -> pinCatalogue(item.source, isPinned)
                     }
-                }.show()
+                    dialog.dismiss()
+                }
+                .show()
     }
 
     private fun hideCatalogue(source: Source) {
@@ -192,9 +199,10 @@ class SourceController : NucleusController<SourcePresenter>(),
         searchView.queryHint = applicationContext?.getString(R.string.action_global_search_hint)
 
         // Create query listener which opens the global search view.
-        searchView.queryTextChangeEvents()
-                .filter { it.isSubmitted }
-                .subscribeUntilDestroy { performGlobalSearch(it.queryText().toString()) }
+        searchView.queryTextEvents()
+            .filter { it is QueryTextEvent.QuerySubmitted }
+            .onEach { performGlobalSearch(it.queryText.toString()) }
+            .launchInUI()
     }
 
     fun performGlobalSearch(query: String) {

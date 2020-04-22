@@ -4,10 +4,12 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.backup.BackupRestoreService
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -51,13 +53,16 @@ class NotificationReceiver : BroadcastReceiver() {
             }
             // Clear the download queue
             ACTION_CLEAR_DOWNLOADS -> downloadManager.clearQueue(true)
-            // Show message notification created
-            ACTION_SHORTCUT_CREATED -> context.toast(R.string.shortcut_created)
             // Launch share activity and dismiss notification
             ACTION_SHARE_IMAGE -> shareImage(context, intent.getStringExtra(EXTRA_FILE_LOCATION),
                     intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
             // Delete image from path and dismiss notification
             ACTION_DELETE_IMAGE -> deleteImage(context, intent.getStringExtra(EXTRA_FILE_LOCATION),
+                    intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
+            // Share backup file
+            ACTION_SHARE_BACKUP -> shareBackup(context, intent.getParcelableExtra(EXTRA_URI),
+                    intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
+            ACTION_CANCEL_RESTORE -> cancelRestore(context,
                     intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
             // Cancel library update and dismiss notification
             ACTION_CANCEL_LIBRARY_UPDATE -> cancelLibraryUpdate(context, Notifications.ID_LIBRARY_PROGRESS)
@@ -102,13 +107,32 @@ class NotificationReceiver : BroadcastReceiver() {
         val intent = Intent(Intent.ACTION_SEND).apply {
             val uri = File(path).getUriCompat(context)
             putExtra(Intent.EXTRA_STREAM, uri)
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
             type = "image/*"
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
         }
         // Dismiss notification
         dismissNotification(context, notificationId)
         // Launch share activity
         context.startActivity(intent)
+    }
+
+    /**
+     * Called to start share intent to share backup file
+     *
+     * @param context context of application
+     * @param path path of file
+     * @param notificationId id of notification
+     */
+    private fun shareBackup(context: Context, uri: Uri, notificationId: Int) {
+        val sendIntent = Intent(Intent.ACTION_SEND).apply {
+            putExtra(Intent.EXTRA_STREAM, uri)
+            type = "application/json"
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
+        }
+        // Dismiss notification
+        dismissNotification(context, notificationId)
+        // Launch share activity
+        context.startActivity(sendIntent)
     }
 
     /**
@@ -147,6 +171,17 @@ class NotificationReceiver : BroadcastReceiver() {
         file.delete()
 
         DiskUtil.scanMedia(context, file)
+    }
+
+    /**
+     * Method called when user wants to stop a backup restore job.
+     *
+     * @param context context of application
+     * @param notificationId id of notification
+     */
+    private fun cancelRestore(context: Context, notificationId: Int) {
+        BackupRestoreService.stop(context)
+        Handler().post { dismissNotification(context, notificationId) }
     }
 
     /**
@@ -198,6 +233,12 @@ class NotificationReceiver : BroadcastReceiver() {
         // Called to delete image.
         private const val ACTION_DELETE_IMAGE = "$ID.$NAME.DELETE_IMAGE"
 
+        // Called to launch send intent.
+        private const val ACTION_SHARE_BACKUP = "$ID.$NAME.SEND_BACKUP"
+
+        // Called to cancel backup restore job.
+        private const val ACTION_CANCEL_RESTORE = "$ID.$NAME.CANCEL_RESTORE"
+
         // Called to cancel library update.
         private const val ACTION_CANCEL_LIBRARY_UPDATE = "$ID.$NAME.CANCEL_LIBRARY_UPDATE"
 
@@ -219,11 +260,11 @@ class NotificationReceiver : BroadcastReceiver() {
         // Called to clear downloads.
         private const val ACTION_CLEAR_DOWNLOADS = "$ID.$NAME.ACTION_CLEAR_DOWNLOADS"
 
-        // Called to notify user shortcut is created.
-        private const val ACTION_SHORTCUT_CREATED = "$ID.$NAME.ACTION_SHORTCUT_CREATED"
-
         // Called to dismiss notification.
         private const val ACTION_DISMISS_NOTIFICATION = "$ID.$NAME.ACTION_DISMISS_NOTIFICATION"
+
+        // Value containing uri.
+        private const val EXTRA_URI = "$ID.$NAME.URI"
 
         // Value containing notification id.
         private const val EXTRA_NOTIFICATION_ID = "$ID.$NAME.NOTIFICATION_ID"
@@ -275,13 +316,6 @@ class NotificationReceiver : BroadcastReceiver() {
         internal fun clearDownloadsPendingBroadcast(context: Context): PendingIntent {
             val intent = Intent(context, NotificationReceiver::class.java).apply {
                 action = ACTION_CLEAR_DOWNLOADS
-            }
-            return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-        }
-
-        internal fun shortcutCreatedBroadcast(context: Context): PendingIntent {
-            val intent = Intent(context, NotificationReceiver::class.java).apply {
-                action = ACTION_SHORTCUT_CREATED
             }
             return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }
@@ -448,6 +482,54 @@ class NotificationReceiver : BroadcastReceiver() {
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
             return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
+
+        /**
+         * Returns [PendingIntent] that starts a share activity for a backup file.
+         *
+         * @param context context of application
+         * @param uri uri of backup file
+         * @param notificationId id of notification
+         * @return [PendingIntent]
+         */
+        internal fun shareBackupPendingBroadcast(context: Context, uri: Uri, notificationId: Int): PendingIntent {
+            val intent = Intent(context, NotificationReceiver::class.java).apply {
+                action = ACTION_SHARE_BACKUP
+                putExtra(EXTRA_URI, uri)
+                putExtra(EXTRA_NOTIFICATION_ID, notificationId)
+            }
+            return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
+
+        /**
+         * Returns [PendingIntent] that opens the error log file in an external viewer
+         *
+         * @param context context of application
+         * @param uri uri of error log file
+         * @return [PendingIntent]
+         */
+        internal fun openErrorLogPendingActivity(context: Context, uri: Uri): PendingIntent {
+            val intent = Intent().apply {
+                action = Intent.ACTION_VIEW
+                setDataAndType(uri, "text/plain")
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
+            }
+            return PendingIntent.getActivity(context, 0, intent, 0)
+        }
+
+        /**
+         * Returns [PendingIntent] that cancels a backup restore job.
+         *
+         * @param context context of application
+         * @param notificationId id of notification
+         * @return [PendingIntent]
+         */
+        internal fun cancelRestorePendingBroadcast(context: Context, notificationId: Int): PendingIntent {
+            val intent = Intent(context, NotificationReceiver::class.java).apply {
+                action = ACTION_CANCEL_RESTORE
+                putExtra(EXTRA_NOTIFICATION_ID, notificationId)
+            }
+            return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }
     }
 }

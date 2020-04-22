@@ -57,12 +57,10 @@
     <string name="action_resume">Sambung</string>
     <string name="action_move">Pindah</string>
     <string name="action_open_in_browser">Buka di pelayar</string>
-    <string name="action_add_to_home_screen">Tambahkan ke skrin utama</string>
     <string name="action_display_mode">Mod paparan</string>
     <string name="action_display">Paparan</string>
     <string name="action_display_grid">Grid</string>
     <string name="action_display_list">Senarai</string>
-    <string name="action_set_filter">Tetapkan penapis</string>
     <string name="action_cancel">Batal</string>
     <string name="action_sort">Susun mengikut</string>
     <string name="action_install">Pasang</string>
@@ -252,17 +250,9 @@
     <string name="manga_info_author_label">Pengarang</string>
     <string name="manga_info_artist_label">Artis</string>
     <string name="manga_info_chapters_label">Bab</string>
-    <string name="manga_info_last_chapter_label">Bab terakhir</string>
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Sumber</string>
     <string name="manga_info_genres_label">Genre</string>
-    <string name="circular_icon">Melingkar</string>
-    <string name="rounded_icon">Berbulat</string>
-    <string name="square_icon">Bersegi</string>
-    <string name="shortcut_title">Tajuk pintasan</string>
-    <string name="shortcut_created">Pintasan telah ditambah kepada skrin utama.</string>
-    <string name="icon_shape">Bentuk ikon</string>
-    <string name="icon_creation_fail">Gagal untuk membuat pintasan</string>
     <string name="delete_downloads_for_manga">Padam bab-bab yang dimuat turun?</string>
     <string name="manga_chapters_tab">Bab</string>
     <string name="manga_chapter_no_title">Tiada tajuk</string>
@@ -314,7 +304,7 @@
     <string name="chapter_subtitle">Bab %1$s</string>
     <string name="no_next_chapter">Bab seterusnya tidak dijumpai</string>
     <string name="no_previous_chapter">Bab sebelumnya tidak dijumpai</string>
-    <string name="decode_image_error">Imej tidak dapat diyahkod</string>
+    <string name="decode_image_error">Imej tidak dapat dimuatkan</string>
     <string name="confirm_set_image_as_cover">Guna imej ini sebagai muka hadapan\?</string>
     <string name="viewer_for_this_series">Pemapar bagi siri ini</string>
     <string name="recent_manga_source">%1$s - Bab.%2$s</string>
@@ -338,7 +328,7 @@
     <string name="update_check_notification_download_in_progress">Memuat turun…</string>
     <string name="update_check_notification_download_complete">Muat turun selesai</string>
     <string name="update_check_notification_download_error">Ralat muat turun</string>
-    <string name="update_check_notification_update_available">Versi baharu boleh didapati</string>
+    <string name="update_check_notification_update_available">Versi baharu boleh didapati!</string>
     <string name="description_backdrop">Gambar latar belakang manga</string>
     <string name="description_cover">Muka hadapan manga</string>
     <string name="information_no_downloads">Tiada muat turun</string>
@@ -347,7 +337,7 @@
     <string name="information_empty_library">Pustaka kosong, tambah siri ke pustaka menggunakan katalog.</string>
     <string name="download_notifier_downloader_title">Pemuat turun</string>
     <string name="download_notifier_title_error">Ralat</string>
-    <string name="download_notifier_unkown_error">Ralat tidak diketahui ketika memuat turun bab</string>
+    <string name="download_notifier_unknown_error">Ralat tidak diketahui ketika memuat turun bab</string>
     <string name="download_notifier_page_error">Halaman hilang dalam direktori</string>
     <string name="download_notifier_page_ready_error">Halaman tidak dimuat</string>
     <string name="download_notifier_text_only_wifi">Tiada sambungan Wi-Fi yang tersedia</string>
@@ -390,11 +380,9 @@
     <string name="double_tap_anim_speed_0">Tiada animasi</string>
     <string name="double_tap_anim_speed_normal">Biasa</string>
     <string name="double_tap_anim_speed_fast">Laju</string>
-    <string name="source_search_options">Carian penapis</string>
     <string name="manga_info_full_title_label">Tajuk</string>
     <string name="manga_added_library">Ditambah ke pustaka</string>
     <string name="manga_removed_library">Dibuang dari pustaka</string>
-    <string name="manga_info_latest_data_label">Dikemaskini</string>
     <string name="copied_to_clipboard">%1$s disalin ke papan keratan</string>
     <string name="source_not_installed">Sumber tidak dipasang: %1$s</string>
     <string name="custom_download">Muat turun jumlah tersuai</string>
@@ -515,4 +503,10 @@
     </plurals>
     <string name="channel_ext_updates">Kemas kini sambungan</string>
     <string name="http_error_hint">Semak laman web dalam WebView</string>
+    <string name="updating_library">Mengemas kini pustaka</string>
+    <string name="pref_category_reading">Membaca</string>
+    <string name="vertical_plus_viewer">Menegak berterusan</string>
+    <string name="pref_skip_filtered_chapters">Lingkau bab yang ditapis</string>
+    <string name="action_select_inverse">Pilih songsang</string>
+    <string name="label_sources">Sumber</string>
 </resources>

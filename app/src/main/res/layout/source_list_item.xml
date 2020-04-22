@@ -43,7 +43,7 @@
 
     <TextView
         android:id="@+id/local_text"
-        style="@style/TextAppearance.Regular.Caption.Light"
+        style="@style/TextAppearance.Regular.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -57,6 +57,7 @@
         android:paddingEnd="3dp"
         android:paddingBottom="1dp"
         android:text="@string/local_source_badge"
+        android:textColor="@color/md_white_1000"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/unread_text"
@@ -65,7 +66,7 @@
 
     <TextView
         android:id="@+id/unread_text"
-        style="@style/TextAppearance.Regular.Caption.Light"
+        style="@style/TextAppearance.Regular.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -79,6 +80,7 @@
         android:paddingTop="1dp"
         android:paddingEnd="3dp"
         android:paddingBottom="1dp"
+        android:textColor="@color/md_white_1000"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +91,7 @@
 
     <TextView
         android:id="@+id/download_text"
-        style="@style/TextAppearance.Regular.Caption.Light"
+        style="@style/TextAppearance.Regular.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -103,6 +105,7 @@
         android:paddingTop="1dp"
         android:paddingEnd="3dp"
         android:paddingBottom="1dp"
+        android:textColor="@color/md_white_1000"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

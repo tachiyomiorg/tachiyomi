@@ -54,7 +54,7 @@ class TrackSearchAdapter(context: Context) :
             view.track_search_title.text = track.title
             view.track_search_summary.text = track.summary
             GlideApp.with(view.context).clear(view.track_search_cover)
-            if (!track.cover_url.isNullOrEmpty()) {
+            if (!track.cover_url.isEmpty()) {
                 GlideApp.with(view.context)
                         .load(track.cover_url)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
@@ -62,21 +62,21 @@ class TrackSearchAdapter(context: Context) :
                         .into(view.track_search_cover)
             }
 
-            if (track.publishing_status.isNullOrBlank()) {
+            if (track.publishing_status.isBlank()) {
                 view.track_search_status.gone()
                 view.track_search_status_result.gone()
             } else {
                 view.track_search_status_result.text = track.publishing_status.capitalize()
             }
 
-            if (track.publishing_type.isNullOrBlank()) {
+            if (track.publishing_type.isBlank()) {
                 view.track_search_type.gone()
                 view.track_search_type_result.gone()
             } else {
                 view.track_search_type_result.text = track.publishing_type.capitalize()
             }
 
-            if (track.start_date.isNullOrBlank()) {
+            if (track.start_date.isBlank()) {
                 view.track_search_start.gone()
                 view.track_search_start_result.gone()
             } else {

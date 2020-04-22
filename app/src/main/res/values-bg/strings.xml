@@ -50,12 +50,10 @@
     <string name="action_remove">Премахни</string>
     <string name="action_resume">Продължи</string>
     <string name="action_open_in_browser">Отвори в браузър</string>
-    <string name="action_add_to_home_screen">Добави към началния си екран</string>
     <string name="action_display_mode">Режим на показване</string>
     <string name="action_display">Показване</string>
     <string name="action_display_grid">Решетка</string>
     <string name="action_display_list">Списък</string>
-    <string name="action_set_filter">Сложи филтър</string>
     <string name="action_cancel">Отмени</string>
     <string name="action_sort">Сортирай</string>
     <string name="action_install">Инсталирай</string>
@@ -211,12 +209,6 @@
     <string name="manga_info_status_label">Статус</string>
     <string name="manga_info_source_label">Източник</string>
     <string name="manga_info_genres_label">Жанрове</string>
-    <string name="circular_icon">Кръгла</string>
-    <string name="rounded_icon">Заоблена</string>
-    <string name="square_icon">Квадратна</string>
-    <string name="shortcut_title">Име на пряк път</string>
-    <string name="icon_shape">Форма на икона</string>
-    <string name="icon_creation_fail">Пряк път не можа да бъде създаден</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Глави</string>
     <string name="manga_chapter_no_title">Неозаглавена</string>
@@ -317,7 +309,7 @@
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Изтегли</string>
     <string name="download_notifier_title_error">Грешка</string>
-    <string name="download_notifier_unkown_error">Получи се неочаквана грешка при изтеглянето на главата</string>
+    <string name="download_notifier_unknown_error">Получи се неочаквана грешка при изтеглянето на главата</string>
     <string name="download_notifier_page_error">Липсва страница в директорията</string>
     <string name="download_notifier_page_ready_error">Някоя страница не е заредена</string>
     <string name="download_notifier_text_only_wifi">Няма налична Wi-Fi връзка</string>
@@ -370,7 +362,6 @@
     <string name="local_source">Локална манга</string>
     <string name="invalid_combination">\"По подразбиране\" не може да се избира с други категории</string>
     <string name="added_to_library">Мангата беше добавена към библиотеката Ви</string>
-    <string name="manga_info_last_chapter_label">Последна глава</string>
     <string name="delete_downloads_for_manga">Да се изтрият ли изтеглените глави?</string>
     <string name="chapter_paused">На пауза</string>
     <string name="download_notifier_download_paused">Изтеглянето спряно</string>
@@ -384,7 +375,6 @@
     <string name="action_global_search_hint">Глобално търсене…</string>
     <string name="latest">Последни</string>
     <string name="browse">Търсене</string>
-    <string name="shortcut_created">Прекият път беше добавен към началния екран.</string>
     <string name="channel_common">Общи</string>
     <string name="channel_library">Библиотека</string>
     <string name="channel_downloader">Изтегляния</string>
@@ -420,11 +410,9 @@
     <string name="double_tap_anim_speed_0">Без анимация</string>
     <string name="double_tap_anim_speed_normal">Нормална</string>
     <string name="double_tap_anim_speed_fast">Бързо</string>
-    <string name="source_search_options">Филтри за търсене</string>
     <string name="manga_info_full_title_label">Заглавие</string>
     <string name="manga_added_library">Добавена към библиотеката</string>
     <string name="manga_removed_library">Премахната от библиотеката</string>
-    <string name="manga_info_latest_data_label">Обновена</string>
     <string name="copied_to_clipboard">%1$s копирано към клипборда</string>
     <string name="custom_download">Изтегли определен брой</string>
     <string name="download_custom">Определен брой</string>

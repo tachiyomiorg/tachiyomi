@@ -22,7 +22,6 @@ import androidx.preference.PreferenceScreen
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jakewharton.rxbinding.view.clicks
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.EmptyPreferenceDataStore
 import eu.kanade.tachiyomi.data.preference.SharedPreferencesDataStore
@@ -30,21 +29,22 @@ import eu.kanade.tachiyomi.databinding.ExtensionDetailControllerBinding
 import eu.kanade.tachiyomi.source.ConfigurableSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import eu.kanade.tachiyomi.util.view.visible
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.android.view.clicks
 
 @SuppressLint("RestrictedApi")
 class ExtensionDetailsController(bundle: Bundle? = null) :
-        NucleusController<ExtensionDetailsPresenter>(bundle),
+        NucleusController<ExtensionDetailControllerBinding, ExtensionDetailsPresenter>(bundle),
         PreferenceManager.OnDisplayPreferenceDialogListener,
         DialogPreference.TargetFragment {
 
     private var lastOpenPreferencePosition: Int? = null
 
     private var preferenceScreen: PreferenceScreen? = null
-
-    private lateinit var binding: ExtensionDetailControllerBinding
 
     constructor(pkgName: String) : this(Bundle().apply {
         putString(PKGNAME_KEY, pkgName)
@@ -73,12 +73,12 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
 
         binding.extensionTitle.text = extension.name
         binding.extensionVersion.text = context.getString(R.string.ext_version_info, extension.versionName)
-        binding.extensionLang.text = context.getString(R.string.ext_language_info, LocaleHelper.getDisplayName(extension.lang, context))
+        binding.extensionLang.text = context.getString(R.string.ext_language_info, LocaleHelper.getSourceDisplayName(extension.lang, context))
         binding.extensionPkg.text = extension.pkgName
         extension.getApplicationIcon(context)?.let { binding.extensionIcon.setImageDrawable(it) }
-        binding.extensionUninstallButton.clicks().subscribeUntilDestroy {
-            presenter.uninstallExtension()
-        }
+        binding.extensionUninstallButton.clicks()
+            .onEach { presenter.uninstallExtension() }
+            .launchInUI()
 
         if (extension.isObsolete) {
             binding.extensionObsolete.visible()
@@ -191,8 +191,11 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         f.showDialog(router)
     }
 
+    @Suppress("UNCHECKED_CAST")
     override fun <T : Preference> findPreference(key: CharSequence): T? {
-        return preferenceScreen!!.findPreference(key)
+        // We track [lastOpenPreferencePosition] when displaying the dialog
+        // [key] isn't useful since there may be duplicates
+        return preferenceScreen!!.getPreference(lastOpenPreferencePosition!!) as T
     }
 
     private companion object {

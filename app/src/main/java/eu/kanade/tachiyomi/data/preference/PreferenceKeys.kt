@@ -11,6 +11,8 @@ object PreferenceKeys {
 
     const val themeDark = "pref_theme_dark_key"
 
+    const val confirmExit = "pref_confirm_exit"
+
     const val rotation = "pref_rotation_type_key"
 
     const val enableTransitions = "pref_enable_transitions_key"
@@ -96,6 +98,8 @@ object PreferenceKeys {
     const val libraryUpdateCategories = "library_update_categories"
 
     const val libraryUpdatePrioritization = "library_update_prioritization"
+
+    const val downloadedOnly = "pref_downloaded_only"
 
     const val filterDownloaded = "pref_filter_downloaded_key"
 

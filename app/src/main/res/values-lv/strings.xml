@@ -56,12 +56,10 @@
     <string name="action_resume">Turpināt</string>
     <string name="action_move">Pārvietot</string>
     <string name="action_open_in_browser">Atvērt pārlūkā</string>
-    <string name="action_add_to_home_screen">Pievienot mājas ekrānam</string>
     <string name="action_display_mode">Mainīt radīšanas režīmu</string>
     <string name="action_display">Radīt</string>
     <string name="action_display_grid">Režģis</string>
     <string name="action_display_list">Saraksts</string>
-    <string name="action_set_filter">Filtrēt</string>
     <string name="action_cancel">Atcelt</string>
     <string name="action_sort">Kārtot</string>
     <string name="action_install">Instalēt</string>

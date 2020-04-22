@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
@@ -73,6 +74,15 @@ class AboutController : SettingsController() {
             }
         }
         preference {
+            titleRes = R.string.website
+            val url = "https://tachiyomi.org"
+            summary = url
+            onClick {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+            }
+        }
+        preference {
             title = "Discord"
             val url = "https://discord.gg/tachiyomi"
             summary = url
@@ -107,6 +117,13 @@ class AboutController : SettingsController() {
 
             onClick {
                 ChangelogDialogController().showDialog(router)
+            }
+        }
+        preference {
+            titleRes = R.string.licenses
+
+            onClick {
+                startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
             }
         }
     }
@@ -148,12 +165,10 @@ class AboutController : SettingsController() {
         })
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog.Builder(activity!!)
-                    .title(R.string.update_check_notification_update_available)
-                    .content(args.getString(BODY_KEY) ?: "")
-                    .positiveText(R.string.update_check_confirm)
-                    .negativeText(R.string.update_check_ignore)
-                    .onPositive { _, _ ->
+            return MaterialDialog(activity!!)
+                    .title(res = R.string.update_check_notification_update_available)
+                    .message(text = args.getString(BODY_KEY) ?: "")
+                    .positiveButton(R.string.update_check_confirm) {
                         val appContext = applicationContext
                         if (appContext != null) {
                             // Start download
@@ -161,7 +176,7 @@ class AboutController : SettingsController() {
                             UpdaterService.downloadUpdate(appContext, url)
                         }
                     }
-                    .build()
+                    .negativeButton(R.string.update_check_ignore)
         }
 
         private companion object {
@@ -171,7 +186,7 @@ class AboutController : SettingsController() {
     }
 
     private fun getFormattedBuildTime(): String {
-        try {
+        return try {
             val inputDf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'", Locale.US)
             inputDf.timeZone = TimeZone.getTimeZone("UTC")
             val buildTime = inputDf.parse(BuildConfig.BUILD_TIME)
@@ -180,9 +195,9 @@ class AboutController : SettingsController() {
                     DateFormat.MEDIUM, DateFormat.SHORT, Locale.getDefault())
             outputDf.timeZone = TimeZone.getDefault()
 
-            return buildTime.toDateTimestampString(dateFormat)
+            buildTime.toDateTimestampString(dateFormat)
         } catch (e: ParseException) {
-            return BuildConfig.BUILD_TIME
+            BuildConfig.BUILD_TIME
         }
     }
 }

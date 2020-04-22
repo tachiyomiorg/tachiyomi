@@ -4,24 +4,26 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
-import com.jakewharton.rxbinding.widget.itemClicks
-import com.jakewharton.rxbinding.widget.textChanges
+import com.afollestad.materialdialogs.customview.customView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import eu.kanade.tachiyomi.util.lang.plusAssign
+import eu.kanade.tachiyomi.util.lang.launchInUI
 import eu.kanade.tachiyomi.util.view.invisible
 import eu.kanade.tachiyomi.util.view.visible
 import java.util.concurrent.TimeUnit
 import kotlinx.android.synthetic.main.track_search_dialog.view.progress
 import kotlinx.android.synthetic.main.track_search_dialog.view.track_search
 import kotlinx.android.synthetic.main.track_search_dialog.view.track_search_list
-import rx.Subscription
-import rx.android.schedulers.AndroidSchedulers
-import rx.subscriptions.CompositeSubscription
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.android.widget.itemClicks
+import reactivecircus.flowbinding.android.widget.textChanges
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -34,10 +36,6 @@ class TrackSearchDialog : DialogController {
     private var selectedItem: Track? = null
 
     private val service: TrackService
-
-    private var subscriptions = CompositeSubscription()
-
-    private var searchTextSubscription: Subscription? = null
 
     private val trackController
         get() = targetController as TrackController
@@ -55,18 +53,11 @@ class TrackSearchDialog : DialogController {
     }
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        val dialog = MaterialDialog.Builder(activity!!)
-                .customView(R.layout.track_search_dialog, false)
-                .positiveText(android.R.string.ok)
-                .onPositive { _, _ -> onPositiveButtonClick() }
-                .negativeText(android.R.string.cancel)
-                .neutralText(R.string.action_remove)
-                .onNeutral { _, _ -> onRemoveButtonClick() }
-                .build()
-
-        if (subscriptions.isUnsubscribed) {
-            subscriptions = CompositeSubscription()
-        }
+        val dialog = MaterialDialog(activity!!)
+                .customView(R.layout.track_search_dialog)
+                .positiveButton(android.R.string.ok) { onPositiveButtonClick() }
+                .negativeButton(android.R.string.cancel)
+                .neutralButton(R.string.action_remove) { onRemoveButtonClick() }
 
         dialogView = dialog.view
         onViewCreated(dialog.view, savedViewState)
@@ -83,9 +74,11 @@ class TrackSearchDialog : DialogController {
         // Set listeners
         selectedItem = null
 
-        subscriptions += view.track_search_list.itemClicks().subscribe { position ->
-            selectedItem = adapter.getItem(position)
-        }
+        view.track_search_list.itemClicks()
+            .onEach { position ->
+                selectedItem = adapter.getItem(position)
+            }
+            .launchInUI()
 
         // Do an initial search based on the manga's title
         if (savedState == null) {
@@ -97,24 +90,18 @@ class TrackSearchDialog : DialogController {
 
     override fun onDestroyView(view: View) {
         super.onDestroyView(view)
-        subscriptions.unsubscribe()
         dialogView = null
         adapter = null
     }
 
     override fun onAttach(view: View) {
         super.onAttach(view)
-        searchTextSubscription = dialogView!!.track_search.textChanges()
-                .skip(1)
-                .debounce(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-                .map { it.toString() }
-                .filter(String::isNotBlank)
-                .subscribe { search(it) }
-    }
-
-    override fun onDetach(view: View) {
-        super.onDetach(view)
-        searchTextSubscription?.unsubscribe()
+        dialogView!!.track_search.textChanges()
+            .debounce(TimeUnit.SECONDS.toMillis(1))
+            .map { it.toString() }
+            .filter { it.isNotBlank() }
+            .onEach { search(it) }
+            .launchInUI()
     }
 
     private fun search(query: String) {

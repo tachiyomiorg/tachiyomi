@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.View
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
@@ -118,8 +119,8 @@ class SettingsLibraryController : SettingsController() {
                 entries = categories.map { it.name }.toTypedArray()
                 entryValues = categories.map { it.id.toString() }.toTypedArray()
                 preferences.libraryUpdateCategories().asObservable()
-                        .subscribeUntilDestroy {
-                            val selectedCategories = it
+                        .subscribeUntilDestroy { mutableSet ->
+                            val selectedCategories = mutableSet
                                     .mapNotNull { id -> categories.find { it.id == id.toInt() } }
                                     .sortedBy { it.order }
 
@@ -196,16 +197,14 @@ class SettingsLibraryController : SettingsController() {
         private var landscape = preferences.landscapeColumns().getOrDefault()
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            val dialog = MaterialDialog.Builder(activity!!)
+            val dialog = MaterialDialog(activity!!)
                     .title(R.string.pref_library_columns)
-                    .customView(R.layout.pref_library_columns, false)
-                    .positiveText(android.R.string.ok)
-                    .negativeText(android.R.string.cancel)
-                    .onPositive { _, _ ->
+                    .customView(R.layout.pref_library_columns)
+                    .positiveButton(android.R.string.ok) {
                         preferences.portraitColumns().set(portrait)
                         preferences.landscapeColumns().set(landscape)
                     }
-                    .build()
+                    .negativeButton(android.R.string.cancel)
 
             onViewCreated(dialog.view)
             return dialog

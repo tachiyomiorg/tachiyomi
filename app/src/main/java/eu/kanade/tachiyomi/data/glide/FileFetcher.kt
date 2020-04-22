@@ -10,6 +10,7 @@ import java.io.FileInputStream
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.InputStream
+import timber.log.Timber
 
 open class FileFetcher(private val file: File) : DataFetcher<InputStream> {
 
@@ -24,7 +25,7 @@ open class FileFetcher(private val file: File) : DataFetcher<InputStream> {
             data = FileInputStream(file)
         } catch (e: FileNotFoundException) {
             if (Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, "Failed to open file", e)
+                Timber.d(e, "Failed to open file")
             }
             callback.onLoadFailed(e)
             return
