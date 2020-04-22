@@ -56,6 +56,7 @@
         <item name="buttonStyle">@style/Theme.Widget.Button.Outlined.Accent</item>
         <item name="snackbarButtonStyle">@style/Theme.Widget.Button</item>
         <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
+        <item name="textInputStyle">@style/Theme.Widget.TextInputLayout.OutlinedBox</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
 
         <!-- Material Dialogs -->
@@ -137,6 +138,7 @@
         <item name="snackbarStyle">@style/Theme.Widget.Snackbar</item>
         <item name="snackbarButtonStyle">@style/Theme.Widget.Button</item>
         <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
+        <item name="textInputStyle">@style/Theme.Widget.TextInputLayout.OutlinedBox</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Widget.Menu</item>
 
         <!-- Material Dialogs -->
