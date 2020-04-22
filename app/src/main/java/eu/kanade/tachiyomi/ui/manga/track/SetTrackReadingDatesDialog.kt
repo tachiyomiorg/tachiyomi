@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.NumberPicker
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
+import com.afollestad.materialdialogs.customview.getCustomView
 import com.bluelinelabs.conductor.Controller
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
@@ -42,29 +44,25 @@ class SetTrackReadingDatesDialog<T> : DialogController
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         val item = item
 
-        val dialog = MaterialDialog.Builder(activity!!)
+        val dialog = MaterialDialog(activity!!)
                 .title(if (dateToUpdate == ReadingDate.Start) R.string.track_start_date else R.string.track_finish_date)
-                .customView(R.layout.track_date_dialog, false)
-                .positiveText(android.R.string.ok)
-                .negativeText(android.R.string.cancel)
-                .neutralText(R.string.action_remove)
-                .autoDismiss(false)
-                .onNegative { _, _ -> dismissDialog() }
-                .onNeutral { _, _ ->
+                .customView(R.layout.track_date_dialog, dialogWrapContent = false)
+                .positiveButton(android.R.string.ok) { dialog ->
+                    val view = dialog.getCustomView()
+                    onDialogConfirm(view)
+                }
+                .negativeButton(android.R.string.cancel) {
+                    dismissDialog()
+                }
+                .neutralButton(R.string.action_remove) {
                     val listener = (targetController as? Listener)
                     listener?.setReadingDate(item, dateToUpdate, 0L)
                     dismissDialog()
                 }
-                .onPositive { dialog, _ ->
-                    dialog.customView?.let {
-                        onDialogConfirm(it)
-                    }
-                }
-                .show()
+                .noAutoDismiss()
 
-        dialog.customView?.let {
-            onDialogCreated(it)
-        }
+        val view = dialog.getCustomView()
+        onDialogCreated(view)
 
         return dialog
     }
