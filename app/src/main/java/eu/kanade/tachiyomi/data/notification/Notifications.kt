@@ -50,6 +50,7 @@ object Notifications {
      */
     const val CHANNEL_BACKUP_RESTORE = "backup_restore_channel"
     const val ID_BACKUP = -501
+    const val ID_RESTORE = -502
 
     /**
      * Creates the notification channels introduced in Android Oreo.

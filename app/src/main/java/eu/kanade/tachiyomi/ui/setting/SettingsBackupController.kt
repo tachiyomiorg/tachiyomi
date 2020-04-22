@@ -35,13 +35,10 @@ import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.titleRes
-import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.system.getFilePicker
 import eu.kanade.tachiyomi.util.system.registerLocalReceiver
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.system.unregisterLocalReceiver
-import java.io.File
-import java.util.concurrent.TimeUnit
 
 class SettingsBackupController : SettingsController() {
 
@@ -199,7 +196,6 @@ class SettingsBackupController : SettingsController() {
     fun createBackup(flags: Int) {
         backupFlags = flags
 
-        // Setup custom file picker intent
         // Get dirs
         val currentDir = preferences.backupsDirectory().getOrDefault()
 
@@ -309,58 +305,6 @@ class SettingsBackupController : SettingsController() {
         }
     }
 
-    class RestoredBackupDialog(bundle: Bundle? = null) : DialogController(bundle) {
-        constructor(time: Long, errorCount: Int, path: String, file: String) : this(Bundle().apply {
-            putLong(KEY_TIME, time)
-            putInt(KEY_ERROR_COUNT, errorCount)
-            putString(KEY_PATH, path)
-            putString(KEY_FILE, file)
-        })
-
-        override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            val activity = activity!!
-            val time = args.getLong(KEY_TIME)
-            val errors = args.getInt(KEY_ERROR_COUNT)
-            val path = args.getString(KEY_PATH)
-            val file = args.getString(KEY_FILE)
-            val timeString = String.format("%02d min, %02d sec",
-                    TimeUnit.MILLISECONDS.toMinutes(time),
-                    TimeUnit.MILLISECONDS.toSeconds(time) - TimeUnit.MINUTES.toSeconds(
-                            TimeUnit.MILLISECONDS.toMinutes(time))
-            )
-
-            return MaterialDialog.Builder(activity)
-                    .title(R.string.restore_completed)
-                    .content(activity.getString(R.string.restore_completed_content, timeString,
-                            if (errors > 0) "$errors" else activity.getString(android.R.string.cancel)))
-                    .positiveText(R.string.action_close)
-                    .negativeText(R.string.action_open_log)
-                    .onNegative { _, _ ->
-                        val context = applicationContext ?: return@onNegative
-                        if (!path.isNullOrEmpty()) {
-                            val destFile = File(path, file)
-                            val uri = destFile.getUriCompat(context)
-                            val sendIntent = Intent(Intent.ACTION_VIEW).apply {
-                                setDataAndType(uri, "text/plain")
-                                flags = Intent.FLAG_ACTIVITY_NEW_TASK or
-                                        Intent.FLAG_GRANT_READ_URI_PERMISSION
-                            }
-                            startActivity(sendIntent)
-                        } else {
-                            context.toast(context.getString(R.string.error_opening_log))
-                        }
-                    }
-                    .build()
-        }
-
-        private companion object {
-            const val KEY_TIME = "RestoredBackupDialog.time"
-            const val KEY_ERROR_COUNT = "RestoredBackupDialog.errors"
-            const val KEY_PATH = "RestoredBackupDialog.path"
-            const val KEY_FILE = "RestoredBackupDialog.file"
-        }
-    }
-
     inner class BackupBroadcastReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.getStringExtra(BackupConst.ACTION)) {
@@ -382,16 +326,14 @@ class SettingsBackupController : SettingsController() {
                 BackupConst.ACTION_RESTORE_COMPLETED_DIALOG -> {
                     router.popControllerWithTag(TAG_RESTORING_BACKUP_DIALOG)
                     val time = intent.getLongExtra(BackupConst.EXTRA_TIME, 0)
-                    val errors = intent.getIntExtra(BackupConst.EXTRA_ERRORS, 0)
+                    val errorCount = intent.getIntExtra(BackupConst.EXTRA_ERRORS, 0)
                     val path = intent.getStringExtra(BackupConst.EXTRA_ERROR_FILE_PATH)
                     val file = intent.getStringExtra(BackupConst.EXTRA_ERROR_FILE)
-                    if (errors > 0) {
-                        RestoredBackupDialog(time, errors, path, file).showDialog(router)
-                    }
+                    notifier.showRestoreComplete(time, errorCount, path, file)
                 }
                 BackupConst.ACTION_ERROR_RESTORE_DIALOG -> {
                     router.popControllerWithTag(TAG_RESTORING_BACKUP_DIALOG)
-                    context.toast(intent.getStringExtra(BackupConst.EXTRA_ERROR_MESSAGE))
+                    notifier.showRestoreError(intent.getStringExtra(BackupConst.EXTRA_ERROR_MESSAGE))
                 }
             }
         }

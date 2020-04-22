@@ -483,5 +483,21 @@ class NotificationReceiver : BroadcastReceiver() {
             }
             return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }
+
+        /**
+         * Returns [PendingIntent] that opens the error log file in an external viewer
+         *
+         * @param context context of application
+         * @param uri uri of error log file
+         * @return [PendingIntent]
+         */
+        internal fun openErrorLog(context: Context, uri: Uri): PendingIntent {
+            val intent = Intent().apply {
+                action = Intent.ACTION_VIEW
+                setDataAndType(uri, "text/plain")
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
+            }
+            return PendingIntent.getActivity(context, 0, intent, 0)
+        }
     }
 }
