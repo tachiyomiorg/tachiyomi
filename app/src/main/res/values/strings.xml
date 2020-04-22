@@ -101,7 +101,6 @@
     <string name="action_save">Save</string>
     <string name="action_reset">Reset</string>
     <string name="action_undo">Undo</string>
-    <string name="action_export">Export</string>
     <string name="action_open_log">Open log</string>
     <string name="action_create">Create</string>
     <string name="action_restore">Restore</string>
@@ -328,6 +327,7 @@
     <string name="backup_choice">What do you want to backup?</string>
     <string name="restoring_backup">Restoring backup</string>
     <string name="creating_backup">Creating backup</string>
+    <string name="creating_backup_error">Backup failed</string>
 
       <!-- Advanced section -->
     <string name="pref_clear_chapter_cache">Clear chapter cache</string>

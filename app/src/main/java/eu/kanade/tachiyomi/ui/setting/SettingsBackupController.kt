@@ -182,7 +182,9 @@ class SettingsBackupController : SettingsController() {
 
                 val file = UniFile.fromUri(activity, uri)
 
-                notifier.showBackupNotification()
+                activity.toast(R.string.creating_backup)
+                notifier.showBackupProgress()
+
                 BackupCreateService.makeBackup(activity, file.uri, backupFlags)
             }
             CODE_BACKUP_RESTORE -> if (data != null && resultCode == Activity.RESULT_OK) {
@@ -244,35 +246,6 @@ class SettingsBackupController : SettingsController() {
                     .positiveText(R.string.action_create)
                     .negativeText(android.R.string.cancel)
                     .build()
-        }
-    }
-
-    class CreatedBackupDialog(bundle: Bundle? = null) : DialogController(bundle) {
-        constructor(uri: Uri) : this(Bundle().apply {
-            putParcelable(KEY_URI, uri)
-        })
-
-        override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            val activity = activity!!
-            val unifile = UniFile.fromUri(activity, args.getParcelable(KEY_URI))
-            return MaterialDialog.Builder(activity).apply {
-                title(R.string.backup_created)
-                if (unifile.filePath != null) {
-                    content(activity.getString(R.string.file_saved, unifile.filePath))
-                }
-                positiveText(R.string.action_close)
-                negativeText(R.string.action_export)
-                onNegative { _, _ ->
-                    val sendIntent = Intent(Intent.ACTION_SEND)
-                    sendIntent.type = "application/json"
-                    sendIntent.putExtra(Intent.EXTRA_STREAM, unifile.uri)
-                    startActivity(Intent.createChooser(sendIntent, ""))
-                }
-            }.build()
-        }
-
-        private companion object {
-            const val KEY_URI = "BackupCreatedDialog.uri"
         }
     }
 
@@ -392,9 +365,12 @@ class SettingsBackupController : SettingsController() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.getStringExtra(BackupConst.ACTION)) {
                 BackupConst.ACTION_BACKUP_COMPLETED_DIALOG -> {
-                    notifier.dismiss()
                     val uri = Uri.parse(intent.getStringExtra(BackupConst.EXTRA_URI))
-                    CreatedBackupDialog(uri).showDialog(router)
+                    val unifile = UniFile.fromUri(activity, uri)
+                    notifier.showBackupComplete(unifile)
+                }
+                BackupConst.ACTION_ERROR_BACKUP_DIALOG -> {
+                    notifier.showBackupError(intent.getStringExtra(BackupConst.EXTRA_ERROR_MESSAGE))
                 }
                 BackupConst.ACTION_SET_PROGRESS_DIALOG -> {
                     val progress = intent.getIntExtra(BackupConst.EXTRA_PROGRESS, 0)
@@ -412,10 +388,6 @@ class SettingsBackupController : SettingsController() {
                     if (errors > 0) {
                         RestoredBackupDialog(time, errors, path, file).showDialog(router)
                     }
-                }
-                BackupConst.ACTION_ERROR_BACKUP_DIALOG -> {
-                    notifier.dismiss()
-                    context.toast(intent.getStringExtra(BackupConst.EXTRA_ERROR_MESSAGE))
                 }
                 BackupConst.ACTION_ERROR_RESTORE_DIALOG -> {
                     router.popControllerWithTag(TAG_RESTORING_BACKUP_DIALOG)

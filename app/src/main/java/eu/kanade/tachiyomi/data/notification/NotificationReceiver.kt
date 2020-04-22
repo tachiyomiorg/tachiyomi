@@ -4,6 +4,7 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
@@ -57,6 +58,9 @@ class NotificationReceiver : BroadcastReceiver() {
             // Delete image from path and dismiss notification
             ACTION_DELETE_IMAGE -> deleteImage(context, intent.getStringExtra(EXTRA_FILE_LOCATION),
                     intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
+            // Share backup file
+            ACTION_SHARE_BACKUP -> shareBackup(context, intent.getParcelableExtra(EXTRA_URI),
+                    intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1))
             // Cancel library update and dismiss notification
             ACTION_CANCEL_LIBRARY_UPDATE -> cancelLibraryUpdate(context, Notifications.ID_LIBRARY_PROGRESS)
             // Open reader activity
@@ -100,13 +104,32 @@ class NotificationReceiver : BroadcastReceiver() {
         val intent = Intent(Intent.ACTION_SEND).apply {
             val uri = File(path).getUriCompat(context)
             putExtra(Intent.EXTRA_STREAM, uri)
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
             type = "image/*"
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
         }
         // Dismiss notification
         dismissNotification(context, notificationId)
         // Launch share activity
         context.startActivity(intent)
+    }
+
+    /**
+     * Called to start share intent to share backup file
+     *
+     * @param context context of application
+     * @param path path of file
+     * @param notificationId id of notification
+     */
+    private fun shareBackup(context: Context, uri: Uri, notificationId: Int) {
+        val sendIntent = Intent(Intent.ACTION_SEND).apply {
+            putExtra(Intent.EXTRA_STREAM, uri)
+            type = "application/json"
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
+        }
+        // Dismiss notification
+        dismissNotification(context, notificationId)
+        // Launch share activity
+        context.startActivity(sendIntent)
     }
 
     /**
@@ -196,6 +219,9 @@ class NotificationReceiver : BroadcastReceiver() {
         // Called to delete image.
         private const val ACTION_DELETE_IMAGE = "$ID.$NAME.DELETE_IMAGE"
 
+        // Called to launch send intent.
+        private const val ACTION_SHARE_BACKUP = "$ID.$NAME.SEND_BACKUP"
+
         // Called to cancel library update.
         private const val ACTION_CANCEL_LIBRARY_UPDATE = "$ID.$NAME.CANCEL_LIBRARY_UPDATE"
 
@@ -219,6 +245,9 @@ class NotificationReceiver : BroadcastReceiver() {
 
         // Called to dismiss notification.
         private const val ACTION_DISMISS_NOTIFICATION = "$ID.$NAME.ACTION_DISMISS_NOTIFICATION"
+
+        // Value containing uri.
+        private const val EXTRA_URI = "$ID.$NAME.URI"
 
         // Value containing notification id.
         private const val EXTRA_NOTIFICATION_ID = "$ID.$NAME.NOTIFICATION_ID"
@@ -436,6 +465,23 @@ class NotificationReceiver : BroadcastReceiver() {
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
             return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        }
+
+        /**
+         * Returns [PendingIntent] that starts a share activity for a backup file.
+         *
+         * @param context context of application
+         * @param uri uri of backup file
+         * @param notificationId id of notification
+         * @return [PendingIntent]
+         */
+        internal fun shareBackup(context: Context, uri: Uri, notificationId: Int): PendingIntent {
+            val intent = Intent(context, NotificationReceiver::class.java).apply {
+                action = ACTION_SHARE_BACKUP
+                putExtra(EXTRA_URI, uri)
+                putExtra(EXTRA_NOTIFICATION_ID, notificationId)
+            }
+            return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }
     }
 }
