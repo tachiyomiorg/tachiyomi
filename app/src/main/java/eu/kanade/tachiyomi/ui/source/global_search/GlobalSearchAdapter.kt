@@ -48,7 +48,7 @@ class GlobalSearchAdapter(val controller: GlobalSearchController) :
      * @param outState The bundle where the state is saved.
      */
     private fun saveHolderState(holder: RecyclerView.ViewHolder, outState: Bundle) {
-        val key = "holder_${holder.adapterPosition}"
+        val key = "holder_${holder.bindingAdapterPosition}"
         val holderState = SparseArray<Parcelable>()
         holder.itemView.saveHierarchyState(holderState)
         outState.putSparseParcelableArray(key, holderState)
@@ -60,7 +60,7 @@ class GlobalSearchAdapter(val controller: GlobalSearchController) :
      * @param holder The holder to restore.
      */
     private fun restoreHolderState(holder: RecyclerView.ViewHolder) {
-        val key = "holder_${holder.adapterPosition}"
+        val key = "holder_${holder.bindingAdapterPosition}"
         val holderState = bundle.getSparseParcelableArray<Parcelable>(key)
         if (holderState != null) {
             holder.itemView.restoreHierarchyState(holderState)

@@ -163,7 +163,7 @@ open class GlobalSearchController(
         val adapter = adapter ?: return null
 
         adapter.allBoundViewHolders.forEach { holder ->
-            val item = adapter.getItem(holder.adapterPosition)
+            val item = adapter.getItem(holder.bindingAdapterPosition)
             if (item != null && source.id == item.source.id) {
                 return holder as GlobalSearchHolder
             }

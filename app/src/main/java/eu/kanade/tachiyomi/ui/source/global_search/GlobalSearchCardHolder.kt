@@ -17,13 +17,13 @@ class GlobalSearchCardHolder(view: View, adapter: GlobalSearchCardAdapter) :
     init {
         // Call onMangaClickListener when item is pressed.
         itemView.setOnClickListener {
-            val item = adapter.getItem(adapterPosition)
+            val item = adapter.getItem(bindingAdapterPosition)
             if (item != null) {
                 adapter.mangaClickListener.onMangaClick(item.manga)
             }
         }
         itemView.setOnLongClickListener {
-            val item = adapter.getItem(adapterPosition)
+            val item = adapter.getItem(bindingAdapterPosition)
             if (item != null) {
                 adapter.mangaClickListener.onMangaLongClick(item.manga)
             }

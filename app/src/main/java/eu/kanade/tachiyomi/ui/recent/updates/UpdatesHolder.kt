@@ -37,7 +37,7 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
 
     init {
         manga_cover.setOnClickListener {
-            adapter.coverClickListener.onCoverClick(adapterPosition)
+            adapter.coverClickListener.onCoverClick(bindingAdapterPosition)
         }
     }
 

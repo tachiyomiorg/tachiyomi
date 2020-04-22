@@ -18,12 +18,12 @@ class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
     init {
         val listener = adapter.rowClickListener
 
-        logo_container.setOnClickListener { listener.onLogoClick(adapterPosition) }
-        track_set.setOnClickListener { listener.onSetClick(adapterPosition) }
-        track_title.setOnClickListener { listener.onSetClick(adapterPosition) }
-        track_status.setOnClickListener { listener.onStatusClick(adapterPosition) }
-        track_chapters.setOnClickListener { listener.onChaptersClick(adapterPosition) }
-        track_score.setOnClickListener { listener.onScoreClick(adapterPosition) }
+        logo_container.setOnClickListener { listener.onLogoClick(bindingAdapterPosition) }
+        track_set.setOnClickListener { listener.onSetClick(bindingAdapterPosition) }
+        track_title.setOnClickListener { listener.onSetClick(bindingAdapterPosition) }
+        track_status.setOnClickListener { listener.onStatusClick(bindingAdapterPosition) }
+        track_chapters.setOnClickListener { listener.onChaptersClick(bindingAdapterPosition) }
+        track_score.setOnClickListener { listener.onScoreClick(bindingAdapterPosition) }
     }
 
     @SuppressLint("SetTextI18n")

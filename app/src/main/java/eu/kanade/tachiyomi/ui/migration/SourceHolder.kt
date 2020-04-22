@@ -29,7 +29,7 @@ class SourceHolder(view: View, override val adapter: SourceAdapter) :
         source_latest.gone()
         source_browse.setText(R.string.select)
         source_browse.setOnClickListener {
-            adapter.selectClickListener?.onSelectClick(adapterPosition)
+            adapter.selectClickListener?.onSelectClick(bindingAdapterPosition)
         }
     }
 
