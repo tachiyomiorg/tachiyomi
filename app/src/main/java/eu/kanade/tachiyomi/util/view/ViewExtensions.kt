@@ -14,10 +14,10 @@ import android.widget.TextView
 import androidx.annotation.MenuRes
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
-import com.amulyakhare.textdrawable.TextDrawable
-import com.amulyakhare.textdrawable.util.ColorGenerator
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import com.kennyc.textdrawable.ColorGenerator
+import com.kennyc.textdrawable.TextDrawable
 import eu.kanade.tachiyomi.R
 import kotlin.math.min
 
@@ -93,11 +93,14 @@ fun ImageView.roundTextIcon(text: String) {
     val letter = text.take(1).toUpperCase()
     val size = min(this.width, this.height)
 
-    setImageDrawable(
-        TextDrawable.builder().beginConfig().width(size).height(size).textColor(Color.WHITE)
-            .useFont(Typeface.DEFAULT).endConfig().buildRound(
-                letter, ColorGenerator.MATERIAL.getColor(letter)
-            )
+    TextDrawable(
+            shape = TextDrawable.DRAWABLE_SHAPE_OVAL,
+            desiredWidth = size,
+            desiredHeight = size,
+            typeFace = Typeface.DEFAULT,
+            textColor = Color.WHITE,
+            text = letter,
+            color = ColorGenerator.MATERIAL.getColor(letter)
     )
 }
 
