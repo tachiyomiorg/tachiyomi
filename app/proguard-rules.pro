@@ -19,7 +19,9 @@
 
 -keep class com.hippo.image.** { *; }
 -keep interface com.hippo.image.** { *; }
--dontwarn nucleus.view.NucleusActionBarActivity
+-keepclassmembers class * extends nucleus.presenter.Presenter {
+    <init>();
+}
 
 # OkHttp
 -dontwarn okhttp3.**
