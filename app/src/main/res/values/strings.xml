@@ -395,6 +395,7 @@
     <string name="http_error_hint">Check website in WebView</string>
     <string name="local_source">Local source</string>
     <string name="other_source">Other</string>
+    <string name="last_used_source">Last used</string>
     <string name="pinned_sources">Pinned</string>
     <string name="invalid_combination">Default can\'t be selected with other categories</string>
     <string name="added_to_library">The manga has been added to your library</string>

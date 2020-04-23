@@ -240,6 +240,7 @@ class SourceController : NucleusController<SourceMainControllerBinding, SourcePr
         adapter?.removeAllScrollableHeaders()
         if (item != null) {
             adapter?.addScrollableHeader(item)
+            adapter?.addScrollableHeader(LangItem(SourcePresenter.LAST_USED_KEY))
         }
     }
 
