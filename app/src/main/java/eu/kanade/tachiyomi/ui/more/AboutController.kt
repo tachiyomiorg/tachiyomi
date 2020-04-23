@@ -103,9 +103,9 @@ class AboutController : SettingsController() {
         preference {
             titleRes = R.string.version
             summary = if (BuildConfig.DEBUG)
-                "r${BuildConfig.COMMIT_COUNT} (${BuildConfig.COMMIT_SHA})"
+                "Preview r${BuildConfig.COMMIT_COUNT} (${BuildConfig.COMMIT_SHA})"
             else
-                BuildConfig.VERSION_NAME
+                "Stable ${BuildConfig.VERSION_NAME}"
 
             if (isUpdaterEnabled) {
                 onClick { checkVersion() }
