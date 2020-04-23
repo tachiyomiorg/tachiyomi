@@ -93,7 +93,7 @@ fun ImageView.roundTextIcon(text: String) {
     val letter = text.take(1).toUpperCase()
     val size = min(this.width, this.height)
 
-    TextDrawable(
+    setImageDrawable(TextDrawable(
             shape = TextDrawable.DRAWABLE_SHAPE_OVAL,
             desiredWidth = size,
             desiredHeight = size,
@@ -101,7 +101,7 @@ fun ImageView.roundTextIcon(text: String) {
             textColor = Color.WHITE,
             text = letter,
             color = ColorGenerator.MATERIAL.getColor(letter)
-    )
+    ))
 }
 
 /**
