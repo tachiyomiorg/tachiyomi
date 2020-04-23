@@ -228,6 +228,7 @@ dependencies {
     final material_dialogs_version = '3.3.0'
     implementation "com.afollestad.material-dialogs:core:$material_dialogs_version"
     implementation "com.afollestad.material-dialogs:input:$material_dialogs_version"
+    implementation "com.afollestad.material-dialogs:datetime:$material_dialogs_version"
 
     // Conductor
     implementation 'com.bluelinelabs:conductor:2.1.5'

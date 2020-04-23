@@ -2,17 +2,13 @@ package eu.kanade.tachiyomi.ui.manga.track
 
 import android.app.Dialog
 import android.os.Bundle
-import android.widget.NumberPicker
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
-import com.afollestad.materialdialogs.customview.getCustomView
+import com.afollestad.materialdialogs.datetime.datePicker
 import com.bluelinelabs.conductor.Controller
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import eu.kanade.tachiyomi.util.system.toast
-import java.text.DateFormatSymbols
 import java.util.Calendar
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -41,74 +37,32 @@ class SetTrackReadingDatesDialog<T> : DialogController
     }
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-        val item = item
+        val listener = (targetController as? Listener)
 
-        val dialog = MaterialDialog(activity!!)
+        return MaterialDialog(activity!!)
                 .title(when (dateToUpdate) {
                     ReadingDate.Start -> R.string.track_started_reading_date
                     ReadingDate.Finish -> R.string.track_finished_reading_date
                 })
-                .customView(R.layout.track_date_dialog, dialogWrapContent = false)
-                .positiveButton(android.R.string.ok) { dialog ->
-                    onDialogConfirm(dialog)
+                .datePicker(currentDate = getCurrentDate()) { _, date ->
+                    listener?.setReadingDate(item, dateToUpdate, date.timeInMillis)
                 }
-                .negativeButton(android.R.string.cancel) { dialog ->
-                    dialog.dismiss()
-                }
-                .neutralButton(R.string.action_remove) { dialog ->
-                    val listener = (targetController as? Listener)
+                .neutralButton(R.string.action_remove) {
                     listener?.setReadingDate(item, dateToUpdate, 0L)
-                    dialog.dismiss()
                 }
-                .noAutoDismiss()
-
-        onDialogCreated(dialog)
-
-        return dialog
     }
 
-    private fun onDialogCreated(dialog: MaterialDialog) {
-        val view = dialog.getCustomView()
-
-        val dayPicker: NumberPicker = view.findViewById(R.id.day_picker)
-        val monthPicker: NumberPicker = view.findViewById(R.id.month_picker)
-        val yearPicker: NumberPicker = view.findViewById(R.id.year_picker)
-
-        val monthNames: Array<String> = DateFormatSymbols().months
-        monthPicker.displayedValues = monthNames
-
-        val calendar = Calendar.getInstance()
-        item.track?.let {
-            val date = when (dateToUpdate) {
-                ReadingDate.Start -> it.started_reading_date
-                ReadingDate.Finish -> it.finished_reading_date
+    private fun getCurrentDate(): Calendar {
+        // Today if no date is set, otherwise the already set date
+        return Calendar.getInstance().apply {
+            item.track?.let {
+                val date = when (dateToUpdate) {
+                    ReadingDate.Start -> it.started_reading_date
+                    ReadingDate.Finish -> it.finished_reading_date
+                }
+                if (date != 0L)
+                    timeInMillis = date
             }
-            if (date != 0L)
-                calendar.timeInMillis = date
-        }
-        dayPicker.value = calendar[Calendar.DAY_OF_MONTH]
-        monthPicker.value = calendar[Calendar.MONTH]
-        yearPicker.maxValue = calendar[Calendar.YEAR]
-        yearPicker.value = calendar[Calendar.YEAR]
-    }
-
-    private fun onDialogConfirm(dialog: MaterialDialog) {
-        val view = dialog.getCustomView()
-
-        val dayPicker: NumberPicker = view.findViewById(R.id.day_picker)
-        val monthPicker: NumberPicker = view.findViewById(R.id.month_picker)
-        val yearPicker: NumberPicker = view.findViewById(R.id.year_picker)
-
-        try {
-            val calendar = Calendar.getInstance().apply { isLenient = false }
-            calendar.set(yearPicker.value, monthPicker.value, dayPicker.value)
-            calendar.time = calendar.time // Throws if invalid
-
-            val listener = (targetController as? Listener)
-            listener?.setReadingDate(item, dateToUpdate, calendar.timeInMillis)
-            dialog.dismiss()
-        } catch (e: Exception) {
-            activity?.toast(R.string.error_invalid_date_supplied)
         }
     }
 
