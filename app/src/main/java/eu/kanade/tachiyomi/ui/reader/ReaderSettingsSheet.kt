@@ -85,10 +85,14 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         background_color.bindToPreference(preferences.readerTheme())
         show_page_number.bindToPreference(preferences.showPageNumber())
         fullscreen.bindToPreference(preferences.fullscreen())
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+
+        val hasDisplayCutout = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P &&
+            activity.window?.decorView?.rootWindowInsets?.displayCutout != null
+        if (hasDisplayCutout) {
             cutout_short.visible()
             cutout_short.bindToPreference(preferences.cutoutShort())
         }
+
         keepscreen.bindToPreference(preferences.keepScreenOn())
         long_tap.bindToPreference(preferences.readWithLongTap())
         always_show_chapter_transition.bindToPreference(preferences.alwaysShowChapterTransition())
