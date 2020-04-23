@@ -25,6 +25,7 @@ import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.onChange
 import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preference
+import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
@@ -74,33 +75,6 @@ class AboutController : SettingsController() {
             }
         }
         preference {
-            titleRes = R.string.website
-            val url = "https://tachiyomi.org"
-            summary = url
-            onClick {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                startActivity(intent)
-            }
-        }
-        preference {
-            title = "Discord"
-            val url = "https://discord.gg/tachiyomi"
-            summary = url
-            onClick {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                startActivity(intent)
-            }
-        }
-        preference {
-            title = "GitHub"
-            val url = "https://github.com/inorichi/tachiyomi"
-            summary = url
-            onClick {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                startActivity(intent)
-            }
-        }
-        preference {
             titleRes = R.string.version
             summary = if (BuildConfig.DEBUG)
                 "Preview r${BuildConfig.COMMIT_COUNT} (${BuildConfig.COMMIT_SHA})"
@@ -119,11 +93,41 @@ class AboutController : SettingsController() {
                 ChangelogDialogController().showDialog(router)
             }
         }
-        preference {
-            titleRes = R.string.licenses
 
-            onClick {
-                startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
+        preferenceCategory {
+            preference {
+                titleRes = R.string.website
+                val url = "https://tachiyomi.org"
+                summary = url
+                onClick {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    startActivity(intent)
+                }
+            }
+            preference {
+                title = "Discord"
+                val url = "https://discord.gg/tachiyomi"
+                summary = url
+                onClick {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    startActivity(intent)
+                }
+            }
+            preference {
+                title = "GitHub"
+                val url = "https://github.com/inorichi/tachiyomi"
+                summary = url
+                onClick {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    startActivity(intent)
+                }
+            }
+            preference {
+                titleRes = R.string.licenses
+
+                onClick {
+                    startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
+                }
             }
         }
     }
