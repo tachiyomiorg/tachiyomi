@@ -72,8 +72,8 @@ internal class BackupNotifier(private val context: Context) {
         notificationBuilder.show(Notifications.ID_BACKUP)
     }
 
-    fun showRestoreProgress(content: String = "", progress: Int = 0, maxAmount: Int = 100) {
-        with(notificationBuilder) {
+    fun showRestoreProgress(content: String = "", progress: Int = 0, maxAmount: Int = 100): NotificationCompat.Builder {
+        val builder = with(notificationBuilder) {
             setContentTitle(context.getString(R.string.restoring_backup))
             setContentText(content)
 
@@ -89,7 +89,9 @@ internal class BackupNotifier(private val context: Context) {
                 NotificationReceiver.cancelRestorePendingBroadcast(context, Notifications.ID_RESTORE))
         }
 
-        notificationBuilder.show(Notifications.ID_RESTORE)
+        builder.show(Notifications.ID_RESTORE)
+
+        return builder
     }
 
     fun showRestoreError(error: String?) {

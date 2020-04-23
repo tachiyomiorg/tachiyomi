@@ -269,7 +269,6 @@ class SettingsBackupController : SettingsController() {
                     .positiveButton(R.string.action_restore) {
                         val context = applicationContext
                         if (context != null) {
-                            (targetController as SettingsBackupController).notifier.showRestoreProgress()
                             BackupRestoreService.start(context, args.getParcelable(KEY_URI)!!)
                             isRestoreStarted = true
                         }
@@ -295,12 +294,6 @@ class SettingsBackupController : SettingsController() {
                     isBackupStarted = false
 
                     notifier.showBackupError(intent.getStringExtra(BackupConst.EXTRA_ERROR_MESSAGE))
-                }
-                BackupConst.ACTION_RESTORE_PROGRESS -> {
-                    val progress = intent.getIntExtra(BackupConst.EXTRA_PROGRESS, 0)
-                    val amount = intent.getIntExtra(BackupConst.EXTRA_AMOUNT, 0)
-                    val content = intent.getStringExtra(BackupConst.EXTRA_CONTENT)
-                    notifier.showRestoreProgress(content, progress, amount)
                 }
                 BackupConst.ACTION_RESTORE_COMPLETED -> {
                     isRestoreStarted = false

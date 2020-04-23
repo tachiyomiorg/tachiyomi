@@ -4,6 +4,7 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.IBinder
 import android.os.PowerManager
 import com.github.salomonbrys.kotson.fromJson
@@ -26,8 +27,10 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.models.MangaImpl
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.database.models.TrackImpl
+import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.Source
+import eu.kanade.tachiyomi.ui.setting.backup.BackupNotifier
 import eu.kanade.tachiyomi.util.lang.chop
 import eu.kanade.tachiyomi.util.system.isServiceRunning
 import eu.kanade.tachiyomi.util.system.sendLocalBroadcast
@@ -70,7 +73,11 @@ class BackupRestoreService : Service() {
                 val intent = Intent(context, BackupRestoreService::class.java).apply {
                     putExtra(BackupConst.EXTRA_URI, uri)
                 }
-                context.startService(intent)
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                    context.startService(intent)
+                } else {
+                    context.startForegroundService(intent)
+                }
             }
         }
 
@@ -115,20 +122,13 @@ class BackupRestoreService : Service() {
      */
     private val errors = mutableListOf<Pair<Date, String>>()
 
-    /**
-     * Backup manager
-     */
     private lateinit var backupManager: BackupManager
 
-    /**
-     * Database
-     */
     private val db: DatabaseHelper by injectLazy()
 
-    /**
-     * Tracking manager
-     */
-    internal val trackManager: TrackManager by injectLazy()
+    private val trackManager: TrackManager by injectLazy()
+
+    private lateinit var notifier: BackupNotifier
 
     private lateinit var executor: ExecutorService
 
@@ -137,10 +137,14 @@ class BackupRestoreService : Service() {
      */
     override fun onCreate() {
         super.onCreate()
+        notifier = BackupNotifier(this)
+        executor = Executors.newSingleThreadExecutor()
+
+        startForeground(Notifications.ID_RESTORE, notifier.showRestoreProgress().build())
+
         wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager).newWakeLock(
                 PowerManager.PARTIAL_WAKE_LOCK, "BackupRestoreService:WakeLock")
         wakeLock.acquire()
-        executor = Executors.newSingleThreadExecutor()
     }
 
     /**
@@ -218,7 +222,7 @@ class BackupRestoreService : Service() {
                     json.get(CATEGORIES)?.let {
                         backupManager.restoreCategories(it.asJsonArray)
                         restoreProgress += 1
-                        showRestoreProgress(restoreProgress, restoreAmount, "Categories added", errors.size)
+                        showRestoreProgress(restoreProgress, restoreAmount, "Categories added")
                     }
 
                     mangasJson
@@ -243,7 +247,7 @@ class BackupRestoreService : Service() {
                         errors.add(Date() to "${manga.title} - ${getString(R.string.source_not_found)}")
                         restoreProgress += 1
                         val content = getString(R.string.dialog_restoring_source_not_found, manga.title.chop(15))
-                        showRestoreProgress(restoreProgress, restoreAmount, manga.title, errors.size, content)
+                        showRestoreProgress(restoreProgress, restoreAmount, manga.title, content)
                         Observable.just(manga)
                     }
                 }
@@ -363,7 +367,7 @@ class BackupRestoreService : Service() {
                 }
                 .doOnCompleted {
                     restoreProgress += 1
-                    showRestoreProgress(restoreProgress, restoreAmount, manga.title, errors.size)
+                    showRestoreProgress(restoreProgress, restoreAmount, manga.title)
                 }
     }
 
@@ -395,7 +399,7 @@ class BackupRestoreService : Service() {
                 }
                 .doOnCompleted {
                     restoreProgress += 1
-                    showRestoreProgress(restoreProgress, restoreAmount, backupManga.title, errors.size)
+                    showRestoreProgress(restoreProgress, restoreAmount, backupManga.title)
                 }
     }
 
@@ -461,16 +465,8 @@ class BackupRestoreService : Service() {
         progress: Int,
         amount: Int,
         title: String,
-        errors: Int,
         content: String = title.chop(30)
     ) {
-        val intent = Intent(BackupConst.INTENT_FILTER).apply {
-            putExtra(BackupConst.EXTRA_PROGRESS, progress)
-            putExtra(BackupConst.EXTRA_AMOUNT, amount)
-            putExtra(BackupConst.EXTRA_CONTENT, content)
-            putExtra(BackupConst.EXTRA_ERRORS, errors)
-            putExtra(BackupConst.ACTION, BackupConst.ACTION_RESTORE_PROGRESS)
-        }
-        sendLocalBroadcast(intent)
+        notifier.showRestoreProgress(content, progress, amount)
     }
 }

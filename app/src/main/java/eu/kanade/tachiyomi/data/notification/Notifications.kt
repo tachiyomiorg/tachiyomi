@@ -76,7 +76,7 @@ object Notifications {
                 NotificationChannel(CHANNEL_UPDATES_TO_EXTS, context.getString(R.string.channel_ext_updates),
                         NotificationManager.IMPORTANCE_DEFAULT),
                 NotificationChannel(CHANNEL_BACKUP_RESTORE, context.getString(R.string.channel_backup_restore),
-                    NotificationManager.IMPORTANCE_LOW).apply {
+                    NotificationManager.IMPORTANCE_HIGH).apply {
                     setShowBadge(false)
                 }
         )
