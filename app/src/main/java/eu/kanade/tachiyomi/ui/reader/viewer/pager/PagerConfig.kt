@@ -1,32 +1,15 @@
 package eu.kanade.tachiyomi.ui.reader.viewer.pager
 
-import com.f2prateek.rx.preferences.Preference
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.viewer.ViewerConfig
-import eu.kanade.tachiyomi.util.lang.addTo
-import rx.subscriptions.CompositeSubscription
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 /**
  * Configuration used by pager viewers.
  */
-
-    private val subscriptions = CompositeSubscription()
 class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelper = Injekt.get()) :
-    ViewerConfig() {
-
-    var tappingEnabled = true
-        private set
-
-    var longTapEnabled = true
-        private set
-
-    var volumeKeysEnabled = false
-        private set
-
-    var volumeKeysInverted = false
-        private set
+    ViewerConfig(preferences) {
 
     var usePageTransitions = false
         private set
@@ -43,16 +26,7 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
     var doubleTapAnimDuration = 500
         private set
 
-    var alwaysShowChapterTransition = true
-        private set
-
     init {
-        preferences.readWithTapping()
-                .register({ tappingEnabled = it })
-
-        preferences.readWithLongTap()
-                .register({ longTapEnabled = it })
-
         preferences.pageTransitions()
                 .register({ usePageTransitions = it })
 
@@ -67,32 +41,6 @@ class PagerConfig(private val viewer: PagerViewer, preferences: PreferencesHelpe
 
         preferences.doubleTapAnimSpeed()
                 .register({ doubleTapAnimDuration = it })
-
-        preferences.readWithVolumeKeys()
-                .register({ volumeKeysEnabled = it })
-
-        preferences.readWithVolumeKeysInverted()
-                .register({ volumeKeysInverted = it })
-
-        preferences.alwaysShowChapterTransition()
-                .register({ alwaysShowChapterTransition = it })
-    }
-
-    fun unsubscribe() {
-        subscriptions.unsubscribe()
-    }
-
-    private fun <T> Preference<T>.register(
-        valueAssignment: (T) -> Unit,
-        onChanged: (T) -> Unit = {}
-    ) {
-        asObservable()
-                .doOnNext(valueAssignment)
-                .skip(1)
-                .distinctUntilChanged()
-                .doOnNext(onChanged)
-                .subscribe()
-                .addTo(subscriptions)
     }
 
     private fun zoomTypeFromPreference(value: Int) {
