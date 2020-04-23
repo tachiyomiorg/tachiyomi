@@ -20,7 +20,7 @@ class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
         /**
          * Version of the database.
          */
-        const val DATABASE_VERSION = 8
+        const val DATABASE_VERSION = 9
     }
 
     override fun onCreate(db: SupportSQLiteDatabase) = with(db) {
@@ -68,6 +68,10 @@ class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
             db.execSQL("DROP INDEX IF EXISTS mangas_favorite_index")
             db.execSQL(MangaTable.createLibraryIndexQuery)
             db.execSQL(ChapterTable.createUnreadChaptersIndexQuery)
+        }
+        if (oldVersion < 9) {
+            db.execSQL(TrackTable.addStartDate)
+            db.execSQL(TrackTable.addFinishDate)
         }
     }
 

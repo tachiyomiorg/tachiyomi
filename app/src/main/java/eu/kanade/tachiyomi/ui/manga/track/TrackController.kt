@@ -21,7 +21,8 @@ class TrackController : NucleusController<TrackControllerBinding, TrackPresenter
         TrackAdapter.OnClickListener,
         SetTrackStatusDialog.Listener,
         SetTrackChaptersDialog.Listener,
-        SetTrackScoreDialog.Listener {
+        SetTrackScoreDialog.Listener,
+        SetTrackReadingDatesDialog.Listener {
 
     private var adapter: TrackAdapter? = null
 
@@ -123,6 +124,20 @@ class TrackController : NucleusController<TrackControllerBinding, TrackPresenter
         SetTrackScoreDialog(this, item).showDialog(router)
     }
 
+    override fun onStartDateClick(position: Int) {
+        val item = adapter?.getItem(position) ?: return
+        if (item.track == null) return
+
+        SetTrackReadingDatesDialog(this, SetTrackReadingDatesDialog.ReadingDate.Start, item).showDialog(router)
+    }
+
+    override fun onFinishDateClick(position: Int) {
+        val item = adapter?.getItem(position) ?: return
+        if (item.track == null) return
+
+        SetTrackReadingDatesDialog(this, SetTrackReadingDatesDialog.ReadingDate.Finish, item).showDialog(router)
+    }
+
     override fun setStatus(item: TrackItem, selection: Int) {
         presenter.setStatus(item, selection)
         binding.swipeRefresh.isRefreshing = true
@@ -135,6 +150,14 @@ class TrackController : NucleusController<TrackControllerBinding, TrackPresenter
 
     override fun setChaptersRead(item: TrackItem, chaptersRead: Int) {
         presenter.setLastChapterRead(item, chaptersRead)
+        binding.swipeRefresh.isRefreshing = true
+    }
+
+    override fun setReadingDate(item: TrackItem, type: SetTrackReadingDatesDialog.ReadingDate, date: Long) {
+        when (type) {
+            SetTrackReadingDatesDialog.ReadingDate.Start -> presenter.setStartDate(item, date)
+            SetTrackReadingDatesDialog.ReadingDate.Finish -> presenter.setFinishDate(item, date)
+        }
         binding.swipeRefresh.isRefreshing = true
     }
 

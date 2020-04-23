@@ -11,12 +11,14 @@ import com.pushtorefresh.storio.sqlite.queries.InsertQuery
 import com.pushtorefresh.storio.sqlite.queries.UpdateQuery
 import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.database.models.TrackImpl
+import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_FINISH_DATE
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_ID
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_LAST_CHAPTER_READ
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_LIBRARY_ID
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_MANGA_ID
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_MEDIA_ID
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_SCORE
+import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_START_DATE
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_STATUS
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_SYNC_ID
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_TITLE
@@ -54,6 +56,8 @@ class TrackPutResolver : DefaultPutResolver<Track>() {
         put(COL_STATUS, obj.status)
         put(COL_TRACKING_URL, obj.tracking_url)
         put(COL_SCORE, obj.score)
+        put(COL_START_DATE, obj.started_reading_date)
+        put(COL_FINISH_DATE, obj.finished_reading_date)
     }
 }
 
@@ -71,6 +75,8 @@ class TrackGetResolver : DefaultGetResolver<Track>() {
         status = cursor.getInt(cursor.getColumnIndex(COL_STATUS))
         score = cursor.getFloat(cursor.getColumnIndex(COL_SCORE))
         tracking_url = cursor.getString(cursor.getColumnIndex(COL_TRACKING_URL))
+        started_reading_date = cursor.getLong(cursor.getColumnIndex(COL_START_DATE))
+        finished_reading_date = cursor.getLong(cursor.getColumnIndex(COL_FINISH_DATE))
     }
 }
 

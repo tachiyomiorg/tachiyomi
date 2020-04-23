@@ -135,4 +135,16 @@ class TrackPresenter(
         }
         updateRemote(track, item.service)
     }
+
+    fun setStartDate(item: TrackItem, date: Long) {
+        val track = item.track!!
+        track.started_reading_date = date
+        updateRemote(track, item.service)
+    }
+
+    fun setFinishDate(item: TrackItem, date: Long) {
+        val track = item.track!!
+        track.finished_reading_date = date
+        updateRemote(track, item.service)
+    }
 }

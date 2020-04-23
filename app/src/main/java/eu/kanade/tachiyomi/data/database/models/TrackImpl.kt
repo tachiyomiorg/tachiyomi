@@ -22,6 +22,10 @@ class TrackImpl : Track {
 
     override var status: Int = 0
 
+    override var started_reading_date: Long = 0
+
+    override var finished_reading_date: Long = 0
+
     override var tracking_url: String = ""
 
     override fun equals(other: Any?): Boolean {
