@@ -44,26 +44,12 @@ class SetTrackReadingDatesDialog<T> : DialogController
                     ReadingDate.Start -> R.string.track_started_reading_date
                     ReadingDate.Finish -> R.string.track_finished_reading_date
                 })
-                .datePicker(maxDate = getMaxDate(), currentDate = getCurrentDate()) { dialog, date ->
+                .datePicker(currentDate = getCurrentDate()) { _, date ->
                     listener?.setReadingDate(item, dateToUpdate, date.timeInMillis)
                 }
-                .neutralButton(R.string.action_remove) { dialog ->
+                .neutralButton(R.string.action_remove) {
                     listener?.setReadingDate(item, dateToUpdate, 0L)
                 }
-    }
-
-    private fun getMaxDate(): Calendar {
-        // Today if set date is in the past, otherwise the set date
-        return Calendar.getInstance().apply {
-            item.track?.let {
-                val currentlySet = when (dateToUpdate) {
-                    ReadingDate.Start -> it.started_reading_date
-                    ReadingDate.Finish -> it.finished_reading_date
-                }
-                if (timeInMillis < currentlySet)
-                    timeInMillis = currentlySet
-            }
-        }
     }
 
     private fun getCurrentDate(): Calendar {
