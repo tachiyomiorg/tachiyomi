@@ -380,7 +380,7 @@ class MangaInfoController(private val fromSource: Boolean = false) :
         // Set the Favorite drawable to the correct one.
         // Border drawable if false, filled drawable if true.
         binding.btnFavorite.apply {
-            icon = ContextCompat.getDrawable(context, if (isFavorite) R.drawable.ic_bookmark_24dp else R.drawable.ic_add_to_library_24dp)
+            icon = ContextCompat.getDrawable(context, if (isFavorite) R.drawable.ic_favorite_24dp else R.drawable.ic_favorite_border_24dp)
             text = context.getString(if (isFavorite) R.string.in_library else R.string.add_to_library)
             isChecked = isFavorite
         }
