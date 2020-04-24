@@ -197,9 +197,7 @@ class SettingsBackupController : SettingsController() {
             CODE_BACKUP_RESTORE -> if (data != null && resultCode == Activity.RESULT_OK) {
                 val uri = data.data
                 if (uri != null) {
-                    val ctrl = RestoreBackupDialog(uri)
-                    ctrl.targetController = this@SettingsBackupController
-                    ctrl.showDialog(router)
+                    RestoreBackupDialog(uri).showDialog(router)
                 }
             }
         }

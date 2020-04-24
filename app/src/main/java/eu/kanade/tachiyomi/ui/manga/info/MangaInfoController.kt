@@ -40,6 +40,7 @@ import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.util.view.toggle
 import eu.kanade.tachiyomi.util.view.visible
+import eu.kanade.tachiyomi.util.view.visibleIf
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
@@ -77,15 +78,16 @@ class MangaInfoController(private val fromSource: Boolean = false) :
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
 
-        // Set onclickListener to toggle favorite when favorite button clicked.
         binding.btnFavorite.clicks()
             .onEach { onFavoriteClick() }
             .launchIn(scope)
 
-        // Set onLongClickListener to manage categories when favorite button is clicked.
-        binding.btnFavorite.longClicks()
-            .onEach { onFavoriteLongClick() }
-            .launchIn(scope)
+        if (presenter.manga.favorite && presenter.getCategories().isNotEmpty()) {
+            binding.btnCategories.visible()
+            binding.btnCategories.clicks()
+                .onEach { onCategoriesClick() }
+                .launchIn(scope)
+        }
 
         if (presenter.source is HttpSource) {
             binding.btnWebview.visible()
@@ -332,6 +334,8 @@ class MangaInfoController(private val fromSource: Boolean = false) :
                 }
             }
         }
+
+        binding.btnCategories.visibleIf { isNowFavorite && presenter.getCategories().isNotEmpty() }
     }
 
     private fun openInWebView() {
@@ -455,22 +459,17 @@ class MangaInfoController(private val fromSource: Boolean = false) :
         }
     }
 
-    private fun onFavoriteLongClick() {
+    private fun onCategoriesClick() {
         val manga = presenter.manga
+        val categories = presenter.getCategories()
 
-        if (manga.favorite && presenter.getCategories().isNotEmpty()) {
-            val categories = presenter.getCategories()
+        val ids = presenter.getMangaCategoryIds(manga)
+        val preselected = ids.mapNotNull { id ->
+            categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
+        }.toTypedArray()
 
-            val ids = presenter.getMangaCategoryIds(manga)
-            val preselected = ids.mapNotNull { id ->
-                categories.indexOfFirst { it.id == id }.takeIf { it != -1 }
-            }.toTypedArray()
-
-            ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
-                    .showDialog(router)
-        } else {
-            onFavoriteClick()
-        }
+        ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
+                .showDialog(router)
     }
 
     override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>) {
@@ -478,10 +477,10 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
         if (!manga.favorite) {
             toggleFavorite()
+            activity?.toast(activity?.getString(R.string.manga_added_library))
         }
 
         presenter.moveMangaToCategories(manga, categories)
-        activity?.toast(activity?.getString(R.string.manga_added_library))
     }
 
     /**
