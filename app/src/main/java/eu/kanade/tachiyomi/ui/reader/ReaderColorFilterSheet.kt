@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.ui.reader
 import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SeekBar
 import androidx.annotation.ColorInt
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -12,7 +11,6 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.IgnoreFirstSpinnerListener
-import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import kotlin.math.abs
 import kotlinx.android.synthetic.main.reader_color_filter.brightness_seekbar
 import kotlinx.android.synthetic.main.reader_color_filter.color_filter_mode
@@ -29,15 +27,21 @@ import kotlinx.android.synthetic.main.reader_color_filter.txt_color_filter_green
 import kotlinx.android.synthetic.main.reader_color_filter.txt_color_filter_red_value
 import kotlinx.android.synthetic.main.reader_color_filter_sheet.brightness_overlay
 import kotlinx.android.synthetic.main.reader_color_filter_sheet.color_overlay
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.sample
+import reactivecircus.flowbinding.android.widget.progressChanges
 import uy.kohesive.injekt.injectLazy
 
 /**
  * Color filter sheet to toggle custom filter and brightness overlay.
  */
 class ReaderColorFilterSheet(private val activity: ReaderActivity) : BottomSheetDialog(activity) {
+
+    private val scope = CoroutineScope(Job() + Dispatchers.Main)
 
     private val preferences by injectLazy<PreferencesHelper>()
 
@@ -93,45 +97,25 @@ class ReaderColorFilterSheet(private val activity: ReaderActivity) : BottomSheet
         }
         color_filter_mode.setSelection(preferences.colorFilterMode().get(), false)
 
-        seekbar_color_filter_alpha.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    setColorValue(value, ALPHA_MASK, 24)
-                }
-            }
-        })
+        seekbar_color_filter_alpha.progressChanges()
+            .onEach { setColorValue(it, ALPHA_MASK, 24) }
+            .launchIn(scope)
 
-        seekbar_color_filter_red.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    setColorValue(value, RED_MASK, 16)
-                }
-            }
-        })
+        seekbar_color_filter_red.progressChanges()
+            .onEach { setColorValue(it, RED_MASK, 16) }
+            .launchIn(scope)
 
-        seekbar_color_filter_green.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    setColorValue(value, GREEN_MASK, 8)
-                }
-            }
-        })
+        seekbar_color_filter_green.progressChanges()
+            .onEach { setColorValue(it, GREEN_MASK, 8) }
+            .launchIn(scope)
 
-        seekbar_color_filter_blue.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    setColorValue(value, BLUE_MASK, 0)
-                }
-            }
-        })
+        seekbar_color_filter_blue.progressChanges()
+            .onEach { setColorValue(it, BLUE_MASK, 0) }
+            .launchIn(scope)
 
-        brightness_seekbar.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
-                if (fromUser) {
-                    preferences.customBrightnessValue().set(value)
-                }
-            }
-        })
+        brightness_seekbar.progressChanges()
+            .onEach { preferences.customBrightnessValue().set(it) }
+            .launchIn(scope)
     }
 
     override fun onStart() {

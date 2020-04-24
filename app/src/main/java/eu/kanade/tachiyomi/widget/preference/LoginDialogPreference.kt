@@ -13,7 +13,6 @@ import com.dd.processbutton.iml.ActionProcessButton
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
-import eu.kanade.tachiyomi.widget.SimpleTextWatcher
 import kotlinx.android.synthetic.main.pref_account_login.view.login
 import kotlinx.android.synthetic.main.pref_account_login.view.password
 import kotlinx.android.synthetic.main.pref_account_login.view.show_password
@@ -66,16 +65,6 @@ abstract class LoginDialogPreference(
             login.setOnClickListener { checkLogin() }
 
             setCredentialsOnView(this)
-
-            show_password.isEnabled = password.text.isNullOrEmpty()
-
-            password.addTextChangedListener(object : SimpleTextWatcher() {
-                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                    if (s.isEmpty()) {
-                        show_password.isEnabled = true
-                    }
-                }
-            })
         }
     }
 

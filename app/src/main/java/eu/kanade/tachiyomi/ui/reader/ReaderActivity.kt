@@ -19,7 +19,6 @@ import android.view.View
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.SeekBar
 import androidx.core.view.ViewCompat
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import eu.kanade.tachiyomi.R
@@ -52,7 +51,6 @@ import eu.kanade.tachiyomi.util.view.isDefaultBar
 import eu.kanade.tachiyomi.util.view.showBar
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.SimpleAnimationListener
-import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
 import java.io.File
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
@@ -61,6 +59,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.sample
 import nucleus.factory.RequiresPresenter
+import reactivecircus.flowbinding.android.widget.progressChanges
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.subscriptions.CompositeSubscription
@@ -284,13 +283,13 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         }
 
         // Init listeners on bottom menu
-        binding.pageSeekbar.setOnSeekBarChangeListener(object : SimpleSeekBarListener() {
-            override fun onProgressChanged(seekBar: SeekBar, value: Int, fromUser: Boolean) {
-                if (viewer != null && fromUser) {
-                    moveToPageIndex(value)
+        binding.pageSeekbar.progressChanges()
+            .onEach {
+                if (viewer != null) {
+                    moveToPageIndex(it)
                 }
             }
-        })
+            .launchIn(scope)
         binding.leftChapter.setOnClickListener {
             if (viewer != null) {
                 if (viewer is R2LPagerViewer)

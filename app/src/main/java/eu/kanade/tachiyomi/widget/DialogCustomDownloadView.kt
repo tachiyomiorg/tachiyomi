@@ -12,6 +12,12 @@ import kotlinx.android.synthetic.main.download_custom_amount.view.btn_decrease_1
 import kotlinx.android.synthetic.main.download_custom_amount.view.btn_increase
 import kotlinx.android.synthetic.main.download_custom_amount.view.btn_increase_10
 import kotlinx.android.synthetic.main.download_custom_amount.view.myNumber
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.android.widget.textChanges
 import timber.log.Timber
 
 /**
@@ -19,6 +25,8 @@ import timber.log.Timber
  */
 class DialogCustomDownloadView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
         LinearLayout(context, attrs) {
+
+    private val scope = CoroutineScope(Job() + Dispatchers.Main)
 
     /**
      * Current amount of custom download chooser.
@@ -73,16 +81,16 @@ class DialogCustomDownloadView @JvmOverloads constructor(context: Context, attrs
         }
 
         // When user inputs custom number set amount equal to input.
-        myNumber.addTextChangedListener(object : SimpleTextWatcher() {
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+        myNumber.textChanges()
+            .onEach {
                 try {
-                    amount = getAmount(Integer.parseInt(s.toString()))
+                    amount = getAmount(Integer.parseInt(it.toString()))
                 } catch (error: NumberFormatException) {
                     // Catch NumberFormatException to prevent parse exception when input is empty.
                     Timber.e(error)
                 }
             }
-        })
+            .launchIn(scope)
     }
 
     /**
