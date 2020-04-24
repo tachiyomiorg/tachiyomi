@@ -3,78 +3,73 @@ package eu.kanade.tachiyomi.ui.library
 import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
+import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.databinding.LibrarySettingsSheetBinding
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
+import eu.kanade.tachiyomi.widget.ViewPagerAdapter
 import uy.kohesive.injekt.injectLazy
 
 class LibrarySettingsSheet(
-    activity: Activity,
-    onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
+    private val activity: Activity,
+    private val onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
 ) : BottomSheetDialog(activity) {
 
-    private var navView: Settings
+    private val filterSettings = FilterSettings(activity)
+    private val tabItems = listOf(
+        Pair(R.string.action_filter, filterSettings),
+        Pair(R.string.action_sort, SortSettings(activity)),
+        Pair(R.string.action_display, DisplaySettings(activity))
+    )
 
     init {
-        navView = Settings(activity)
-        navView.onGroupClicked = onGroupClickListener
+        val binding: LibrarySettingsSheetBinding = LibrarySettingsSheetBinding.inflate(activity.layoutInflater)
 
-        setContentView(navView)
+        val adapter = LibrarySettingsSheetAdapter()
+        binding.librarySettingsPager.adapter = adapter
+        binding.librarySettingsTabs.setupWithViewPager(binding.librarySettingsPager)
+
+        setContentView(binding.root)
     }
 
     fun hasActiveFilters(): Boolean {
-        return navView.hasActiveFilters()
+        return filterSettings.hasActiveFilters()
     }
 
-    /**
-     * The navigation view shown in the sheet with the different options to show the library.
-     */
-    class Settings @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
-        ExtendedNavigationView(context, attrs) {
+    private inner class LibrarySettingsSheetAdapter : ViewPagerAdapter() {
 
-        private val preferences: PreferencesHelper by injectLazy()
+        override fun createView(container: ViewGroup, position: Int): View {
+            val view = tabItems[position].second
+            view.onGroupClicked = onGroupClickListener
+            return view
+        }
 
-        /**
-         * List of groups shown in the view.
-         */
-        private val groups = listOf(FilterGroup(), SortGroup(), DisplayGroup(), BadgeGroup())
+        override fun getCount(): Int {
+            return tabItems.size
+        }
 
-        /**
-         * Adapter instance.
-         */
-        private val adapter = Adapter(groups.map { it.createItems() }.flatten())
+        override fun getPageTitle(position: Int): CharSequence {
+            return activity.resources!!.getString(tabItems[position].first)
+        }
+    }
 
-        /**
-         * Click listener to notify the parent fragment when an item from a group is clicked.
-         */
-        var onGroupClicked: (Group) -> Unit = {}
+    inner class FilterSettings @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
+        Settings(context, attrs) {
+
+        private val filterGroup = FilterGroup()
 
         init {
-            recycler.adapter = adapter
-            addView(recycler)
-
-            groups.forEach { it.initModels() }
+            addGroups(listOf(filterGroup))
         }
 
         /**
          * Returns true if there's at least one filter from [FilterGroup] active.
          */
         fun hasActiveFilters(): Boolean {
-            return (groups[0] as FilterGroup).items.any { it.checked }
-        }
-
-        /**
-         * Adapter of the recycler view.
-         */
-        inner class Adapter(items: List<Item>) : ExtendedNavigationView.Adapter(items) {
-
-            override fun onItemClicked(item: Item) {
-                if (item is GroupedItem) {
-                    item.group.onItemClicked(item)
-                    onGroupClicked(item.group)
-                }
-            }
+            return filterGroup.items.any { it.checked }
         }
 
         /**
@@ -83,16 +78,12 @@ class LibrarySettingsSheet(
         inner class FilterGroup : Group {
 
             private val downloaded = Item.CheckboxGroup(R.string.action_filter_downloaded, this)
-
             private val unread = Item.CheckboxGroup(R.string.action_filter_unread, this)
-
             private val completed = Item.CheckboxGroup(R.string.completed, this)
 
+            override val header = null
             override val items = listOf(downloaded, unread, completed)
-
-            override val header = Item.Header(R.string.action_filter)
-
-            override val footer = Item.Separator()
+            override val footer = null
 
             override fun initModels() {
                 downloaded.checked = preferences.downloadedOnly().get() || preferences.filterDownloaded().get()
@@ -113,6 +104,14 @@ class LibrarySettingsSheet(
                 adapter.notifyItemChanged(item)
             }
         }
+    }
+
+    inner class SortSettings @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
+        Settings(context, attrs) {
+
+        init {
+            addGroups(listOf(SortGroup()))
+        }
 
         /**
          * Sorting group (alphabetically, by last read, ...) and ascending or descending.
@@ -120,23 +119,16 @@ class LibrarySettingsSheet(
         inner class SortGroup : Group {
 
             private val alphabetically = Item.MultiSort(R.string.action_sort_alpha, this)
-
             private val total = Item.MultiSort(R.string.action_sort_total, this)
-
             private val lastRead = Item.MultiSort(R.string.action_sort_last_read, this)
-
             private val lastChecked = Item.MultiSort(R.string.action_sort_last_checked, this)
-
             private val unread = Item.MultiSort(R.string.action_filter_unread, this)
-
             private val latestChapter = Item.MultiSort(R.string.action_sort_latest_chapter, this)
 
+            override val header = null
             override val items =
                 listOf(alphabetically, lastRead, lastChecked, unread, total, latestChapter)
-
-            override val header = Item.Header(R.string.action_sort)
-
-            override val footer = Item.Separator()
+            override val footer = null
 
             override fun initModels() {
                 val sorting = preferences.librarySortingMode().get()
@@ -187,23 +179,13 @@ class LibrarySettingsSheet(
                 item.group.items.forEach { adapter.notifyItemChanged(it) }
             }
         }
+    }
 
-        inner class BadgeGroup : Group {
-            private val downloadBadge =
-                Item.CheckboxGroup(R.string.action_display_download_badge, this)
-            override val header = null
-            override val footer = null
-            override val items = listOf(downloadBadge)
-            override fun initModels() {
-                downloadBadge.checked = preferences.downloadBadge().get()
-            }
+    inner class DisplaySettings @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
+        Settings(context, attrs) {
 
-            override fun onItemClicked(item: Item) {
-                item as Item.CheckboxGroup
-                item.checked = !item.checked
-                preferences.downloadBadge().set((item.checked))
-                adapter.notifyItemChanged(item)
-            }
+        init {
+            addGroups(listOf(DisplayGroup(), BadgeGroup()))
         }
 
         /**
@@ -212,13 +194,10 @@ class LibrarySettingsSheet(
         inner class DisplayGroup : Group {
 
             private val grid = Item.Radio(R.string.action_display_grid, this)
-
             private val list = Item.Radio(R.string.action_display_list, this)
 
+            override val header = null
             override val items = listOf(grid, list)
-
-            override val header = Item.Header(R.string.action_display)
-
             override val footer = null
 
             override fun initModels() {
@@ -237,6 +216,61 @@ class LibrarySettingsSheet(
                 preferences.libraryAsList().set(item == list)
 
                 item.group.items.forEach { adapter.notifyItemChanged(it) }
+            }
+        }
+
+        inner class BadgeGroup : Group {
+            private val downloadBadge = Item.CheckboxGroup(R.string.action_display_download_badge, this)
+
+            override val header = null
+            override val items = listOf(downloadBadge)
+            override val footer = null
+
+            override fun initModels() {
+                downloadBadge.checked = preferences.downloadBadge().get()
+            }
+
+            override fun onItemClicked(item: Item) {
+                item as Item.CheckboxGroup
+                item.checked = !item.checked
+                preferences.downloadBadge().set((item.checked))
+                adapter.notifyItemChanged(item)
+            }
+        }
+    }
+
+    open inner class Settings(context: Context, attrs: AttributeSet?) :
+        ExtendedNavigationView(context, attrs) {
+
+        val preferences: PreferencesHelper by injectLazy()
+        lateinit var adapter: Adapter
+
+        /**
+         * Click listener to notify the parent fragment when an item from a group is clicked.
+         */
+        var onGroupClicked: (Group) -> Unit = {}
+
+        init {
+            addView(recycler)
+        }
+
+        fun addGroups(groups: List<Group>) {
+            adapter = Adapter(groups.map { it.createItems() }.flatten())
+            recycler.adapter = adapter
+
+            groups.forEach { it.initModels() }
+        }
+
+        /**
+         * Adapter of the recycler view.
+         */
+        inner class Adapter(items: List<Item>) : ExtendedNavigationView.Adapter(items) {
+
+            override fun onItemClicked(item: Item) {
+                if (item is GroupedItem) {
+                    item.group.onItemClicked(item)
+                    onGroupClicked(item.group)
+                }
             }
         }
     }

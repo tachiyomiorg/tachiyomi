@@ -166,10 +166,10 @@ class LibraryController(
 
         settingsSheet = LibrarySettingsSheet(activity!!) { group ->
             when (group) {
-                is LibrarySettingsSheet.Settings.FilterGroup -> onFilterChanged()
-                is LibrarySettingsSheet.Settings.SortGroup -> onSortChanged()
-                is LibrarySettingsSheet.Settings.DisplayGroup -> reattachAdapter()
-                is LibrarySettingsSheet.Settings.BadgeGroup -> onDownloadBadgeChanged()
+                is LibrarySettingsSheet.FilterSettings.FilterGroup -> onFilterChanged()
+                is LibrarySettingsSheet.SortSettings.SortGroup -> onSortChanged()
+                is LibrarySettingsSheet.DisplaySettings.DisplayGroup -> reattachAdapter()
+                is LibrarySettingsSheet.DisplaySettings.BadgeGroup -> onDownloadBadgeChanged()
             }
         }
     }

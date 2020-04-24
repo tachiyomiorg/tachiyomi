@@ -19,9 +19,6 @@ class ReaderPageSheet(
     private val page: ReaderPage
 ) : BottomSheetDialog(activity) {
 
-    /**
-     * View used on this sheet.
-     */
     private val view = activity.layoutInflater.inflate(R.layout.reader_page_sheet, null)
 
     init {
