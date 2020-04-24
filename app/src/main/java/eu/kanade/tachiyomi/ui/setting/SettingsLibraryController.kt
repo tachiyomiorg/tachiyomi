@@ -14,7 +14,6 @@ import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.category.CategoryController
@@ -31,9 +30,9 @@ import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import kotlinx.android.synthetic.main.pref_library_columns.view.landscape_columns
 import kotlinx.android.synthetic.main.pref_library_columns.view.portrait_columns
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import rx.Observable
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -61,16 +60,15 @@ class SettingsLibraryController : SettingsController() {
                     }
                 }
 
-                Observable.combineLatest(
-                    preferences.portraitColumns().asObservable(),
-                    preferences.landscapeColumns().asObservable()
-                ) { portraitCols, landscapeCols -> Pair(portraitCols, landscapeCols) }
-                    .subscribeUntilDestroy { (portraitCols, landscapeCols) ->
+                preferences.portraitColumns().asFlow()
+                    .combine(preferences.landscapeColumns().asFlow()) { portraitCols, landscapeCols -> Pair(portraitCols, landscapeCols) }
+                    .onEach { (portraitCols, landscapeCols) ->
                         val portrait = getColumnValue(portraitCols)
                         val landscape = getColumnValue(landscapeCols)
                         summary = "${context.getString(R.string.portrait)}: $portrait, " +
                             "${context.getString(R.string.landscape)}: $landscape"
                     }
+                    .launchIn(scope)
             }
         }
 
@@ -201,8 +199,8 @@ class SettingsLibraryController : SettingsController() {
 
         private val preferences: PreferencesHelper = Injekt.get()
 
-        private var portrait = preferences.portraitColumns().getOrDefault()
-        private var landscape = preferences.landscapeColumns().getOrDefault()
+        private var portrait = preferences.portraitColumns().get()
+        private var landscape = preferences.landscapeColumns().get()
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
             val dialog = MaterialDialog(activity!!)
