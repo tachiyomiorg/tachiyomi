@@ -93,25 +93,26 @@ class EpubFile(file: File) : Closeable {
      * Returns all the images contained in every page from the epub.
      */
     private fun getImagesFromPages(pages: List<String>, packageHref: String): List<String> {
+        val result = ArrayList<String>()
         val basePath = getParentDirectory(packageHref)
-        return pages.map { page ->
+        pages.forEach { page ->
             val entryPath = resolveZipPath(basePath, page)
             val entry = zip.getEntry(entryPath)
             val document = zip.getInputStream(entry).use { Jsoup.parse(it, null, "") }
             val imageBasePath = getParentDirectory(entryPath)
 
             val imgs = document.getElementsByTag("img")
-            if(imgs.isNotEmpty()) {
-                imgs.mapNotNull {
-                    resolveZipPath(imageBasePath, it.attr("src"))
-                }
-            } else {
-                val images = document.getElementsByTag("image")
-                images.mapNotNull {
-                    resolveZipPath(imageBasePath, it.attr("xlink:href"))
-                }
+            imgs.forEach {
+                result.add(resolveZipPath(imageBasePath, it.attr("src")))
             }
-        }.flatten()
+
+            val images = document.getElementsByTag("image")
+            images.forEach {
+                result.add(resolveZipPath(imageBasePath, it.attr("xlink:href")))
+            }
+        }
+
+        return result
     }
 
     /**
@@ -130,7 +131,7 @@ class EpubFile(file: File) : Closeable {
      * Resolves a zip path from base and relative components and a path separator.
      */
     private fun resolveZipPath(basePath: String, relativePath: String): String {
-        if(relativePath.startsWith(pathSeparator)) {
+        if (relativePath.startsWith(pathSeparator)) {
             // Path is absolute, so return as-is.
             return relativePath
         }
@@ -150,7 +151,7 @@ class EpubFile(file: File) : Closeable {
      */
     private fun getParentDirectory(path: String): String {
         val separatorIndex = path.lastIndexOf(pathSeparator)
-        if(separatorIndex >= 0) {
+        if (separatorIndex >= 0) {
             return path.substring(0, separatorIndex)
         } else {
             return ""
