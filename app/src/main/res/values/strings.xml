@@ -355,8 +355,8 @@
     <string name="website">Website</string>
     <string name="version">Version</string>
     <string name="build_time">Build time</string>
-    <string name="notices">Notices</string>
     <string name="changelog">Changelog</string>
+    <string name="notices">Preview build notices</string>
     <string name="licenses">Open source licenses</string>
     <string name="pref_enable_automatic_updates">Check for updates</string>
     <string name="pref_enable_automatic_updates_summary">Automatically check for new app versions</string>

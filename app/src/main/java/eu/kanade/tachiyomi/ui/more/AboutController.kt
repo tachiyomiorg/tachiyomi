@@ -86,11 +86,24 @@ class AboutController : SettingsController() {
             }
         }
         preference {
-            titleRes = R.string.build_time
-            summary = getFormattedBuildTime()
+            titleRes = R.string.changelog
 
             onClick {
-                ChangelogDialogController().showDialog(router)
+                if (BuildConfig.DEBUG) {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/inorichi/tachiyomi/commits/master"))
+                    startActivity(intent)
+                } else {
+                    ChangelogDialogController().showDialog(router)
+                }
+            }
+        }
+        if (BuildConfig.DEBUG) {
+            preference {
+                titleRes = R.string.notices
+
+                onClick {
+                    ChangelogDialogController().showDialog(router)
+                }
             }
         }
 
