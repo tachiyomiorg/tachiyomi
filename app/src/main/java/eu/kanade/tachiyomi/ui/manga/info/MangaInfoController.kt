@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.google.android.material.chip.Chip
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -37,8 +36,8 @@ import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.lang.truncateCenter
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.gone
+import eu.kanade.tachiyomi.util.view.setChips
 import eu.kanade.tachiyomi.util.view.snack
-import eu.kanade.tachiyomi.util.view.toggle
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.util.view.visibleIf
 import kotlinx.coroutines.flow.launchIn
@@ -259,16 +258,10 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
             // Update genres list
             if (!manga.genre.isNullOrBlank()) {
-                binding.mangaGenresTags.removeAllViews()
-
-                manga.getGenres()?.forEach { genre ->
-                    val chip = Chip(view.context).apply {
-                        text = genre
-                        setOnClickListener { performSearch(genre) }
-                    }
-
-                    binding.mangaGenresTags.addView(chip)
-                }
+                binding.mangaGenresTagsCompactChips.setChips(manga.getGenres(), this::performSearch)
+                binding.mangaGenresTagsFullChips.setChips(manga.getGenres(), this::performSearch)
+            } else {
+                binding.mangaGenresTagsWrapper.gone()
             }
 
             // Handle showing more or less info
@@ -290,7 +283,7 @@ class MangaInfoController(private val fromSource: Boolean = false) :
     private fun hideMangaInfo() {
         binding.mangaSummaryLabel.gone()
         binding.mangaSummary.gone()
-        binding.mangaGenresTags.gone()
+        binding.mangaGenresTagsWrapper.gone()
         binding.mangaInfoToggle.gone()
     }
 
@@ -317,7 +310,8 @@ class MangaInfoController(private val fromSource: Boolean = false) :
                     null
         }
 
-        binding.mangaGenresTags.toggle()
+        binding.mangaGenresTagsCompact.visibleIf { isExpanded }
+        binding.mangaGenresTagsFullChips.visibleIf { !isExpanded }
     }
 
     /**

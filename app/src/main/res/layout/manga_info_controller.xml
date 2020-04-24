@@ -266,25 +266,48 @@
                 android:focusable="true"
                 android:maxLines="3"
                 android:textIsSelectable="false"
-                app:layout_constraintBottom_toTopOf="@id/manga_genres_tags"
+                app:layout_constraintBottom_toTopOf="@id/manga_genres_tags_wrapper"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/manga_summary_label" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/manga_genres_tags"
+            <FrameLayout
+                android:id="@+id/manga_genres_tags_wrapper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
-                android:visibility="gone"
-                app:chipSpacingHorizontal="4dp"
                 app:layout_constrainedHeight="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/manga_summary" />
+                app:layout_constraintTop_toBottomOf="@id/manga_summary">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/manga_genres_tags_full_chips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:visibility="gone"
+                    app:chipSpacingHorizontal="4dp" />
+
+                <HorizontalScrollView
+                    android:id="@+id/manga_genres_tags_compact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/manga_genres_tags_compact_chips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        app:chipSpacingHorizontal="4dp"
+                        app:singleLine="true" />
+
+                </HorizontalScrollView>
+
+            </FrameLayout>
 
             <Button
                 android:id="@+id/manga_info_toggle"
@@ -299,7 +322,7 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/manga_genres_tags" />
+                app:layout_constraintTop_toBottomOf="@id/manga_genres_tags_wrapper" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

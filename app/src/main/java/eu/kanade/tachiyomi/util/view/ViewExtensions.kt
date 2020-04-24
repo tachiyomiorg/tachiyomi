@@ -14,6 +14,8 @@ import android.widget.TextView
 import androidx.annotation.MenuRes
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.kennyc.textdrawable.ColorGenerator
@@ -118,4 +120,23 @@ fun ExtendedFloatingActionButton.shrinkOnScroll(recycler: RecyclerView) {
                 shrink()
         }
     })
+}
+
+/**
+ * Replaces chips in a ChipGroup.
+ *
+ * @param items List of strings that are shown as individual chips.
+ * @param onClick Optional on click listener for each chip.
+ */
+fun ChipGroup.setChips(items: List<String>?, onClick: (item: String) -> Unit = {}) {
+    removeAllViews()
+
+    items?.forEach { item ->
+        val chip = Chip(context).apply {
+            text = item
+            setOnClickListener { onClick(item) }
+        }
+
+        addView(chip)
+    }
 }
