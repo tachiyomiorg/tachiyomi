@@ -8,7 +8,6 @@ import androidx.work.WorkManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import java.util.concurrent.TimeUnit
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -19,7 +18,7 @@ class BackupCreatorJob(private val context: Context, workerParams: WorkerParamet
     override fun doWork(): Result {
         val preferences = Injekt.get<PreferencesHelper>()
         val backupManager = BackupManager(context)
-        val uri = Uri.parse(preferences.backupsDirectory().getOrDefault())
+        val uri = Uri.parse(preferences.backupsDirectory().get())
         val flags = BackupCreateService.BACKUP_ALL
         backupManager.createBackup(uri, flags, true)
         return Result.success()

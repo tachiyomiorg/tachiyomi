@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Color
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Track
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
@@ -145,7 +144,7 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
                 getCSRF().isNotEmpty() &&
                 checkCookies()
 
-    fun getCSRF(): String = preferences.trackToken(this).getOrDefault()
+    fun getCSRF(): String = preferences.trackToken(this).get()
 
     private fun saveCSRF(csrf: String) = preferences.trackToken(this).set(csrf)
 

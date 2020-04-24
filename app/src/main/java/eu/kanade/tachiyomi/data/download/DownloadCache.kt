@@ -6,9 +6,9 @@ import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.SourceManager
 import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.flow.onEach
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -47,19 +47,18 @@ class DownloadCache(
     private var rootDir = RootDirectory(getDirectoryFromPreference())
 
     init {
-        preferences.downloadsDirectory().asObservable()
-                .skip(1)
-                .subscribe {
-                    lastRenew = 0L // invalidate cache
-                    rootDir = RootDirectory(getDirectoryFromPreference())
-                }
+        preferences.downloadsDirectory().asFlow()
+            .onEach {
+                lastRenew = 0L // invalidate cache
+                rootDir = RootDirectory(getDirectoryFromPreference())
+            }
     }
 
     /**
      * Returns the downloads directory from the user's preferences.
      */
     private fun getDirectoryFromPreference(): UniFile {
-        val dir = preferences.downloadsDirectory().getOrDefault()
+        val dir = preferences.downloadsDirectory().get()
         return UniFile.fromUri(context, Uri.parse(dir))
     }
 

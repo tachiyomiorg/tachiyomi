@@ -7,9 +7,13 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.util.storage.DiskUtil
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -22,19 +26,21 @@ class DownloadProvider(private val context: Context) {
 
     private val preferences: PreferencesHelper by injectLazy()
 
+    private val scope = CoroutineScope(Job() + Dispatchers.Main)
+
     /**
      * The root directory for downloads.
      */
-    private var downloadsDir = preferences.downloadsDirectory().getOrDefault().let {
+    private var downloadsDir = preferences.downloadsDirectory().get().let {
         val dir = UniFile.fromUri(context, Uri.parse(it))
         DiskUtil.createNoMediaFile(dir, context)
         dir
     }
 
     init {
-        preferences.downloadsDirectory().asObservable()
-                .skip(1)
-                .subscribe { downloadsDir = UniFile.fromUri(context, Uri.parse(it)) }
+        preferences.downloadsDirectory().asFlow()
+            .onEach { downloadsDir = UniFile.fromUri(context, Uri.parse(it)) }
+            .launchIn(scope)
     }
 
     /**

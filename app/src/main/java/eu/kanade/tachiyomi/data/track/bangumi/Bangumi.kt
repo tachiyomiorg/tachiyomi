@@ -126,7 +126,7 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
 
     override fun logout() {
         super.logout()
-        preferences.trackToken(this).set(null)
+        preferences.trackToken(this).delete()
         interceptor.newAuth(null)
     }
 

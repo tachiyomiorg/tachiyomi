@@ -22,7 +22,6 @@ import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
 import eu.kanade.tachiyomi.data.backup.BackupRestoreService
 import eu.kanade.tachiyomi.data.backup.models.Backup
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
 import eu.kanade.tachiyomi.ui.setting.backup.BackupNotifier
@@ -125,7 +124,7 @@ class SettingsBackupController : SettingsController() {
                 titleRes = R.string.pref_backup_directory
 
                 onClick {
-                    val currentDir = preferences.backupsDirectory().getOrDefault()
+                    val currentDir = preferences.backupsDirectory().get()
                     try {
                         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
                         startActivityForResult(intent, CODE_BACKUP_DIR)
@@ -135,11 +134,12 @@ class SettingsBackupController : SettingsController() {
                     }
                 }
 
-                preferences.backupsDirectory().asObservable()
-                        .subscribeUntilDestroy { path ->
-                            val dir = UniFile.fromUri(context, Uri.parse(path))
-                            summary = dir.filePath + "/automatic"
-                        }
+                preferences.backupsDirectory().asFlow()
+                    .onEach { path ->
+                        val dir = UniFile.fromUri(context, Uri.parse(path))
+                        summary = dir.filePath + "/automatic"
+                    }
+                    .launchIn(scope)
             }
             val backupNumber = intListPreference {
                 key = Keys.numberOfBackups
@@ -210,7 +210,7 @@ class SettingsBackupController : SettingsController() {
         backupFlags = flags
 
         // Get dirs
-        val currentDir = preferences.backupsDirectory().getOrDefault()
+        val currentDir = preferences.backupsDirectory().get()
 
         try {
             // Use Android's built-in file creator

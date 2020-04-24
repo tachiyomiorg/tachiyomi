@@ -17,7 +17,6 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.entriesRes
@@ -52,11 +51,12 @@ class SettingsDownloadController : SettingsController() {
                 ctrl.showDialog(router)
             }
 
-            preferences.downloadsDirectory().asObservable()
-                    .subscribeUntilDestroy { path ->
-                        val dir = UniFile.fromUri(context, Uri.parse(path))
-                        summary = dir.filePath ?: path
-                    }
+            preferences.downloadsDirectory().asFlow()
+                .onEach { path ->
+                    val dir = UniFile.fromUri(context, Uri.parse(path))
+                    summary = dir.filePath ?: path
+                }
+                .launchIn(scope)
         }
         switchPreference {
             key = Keys.downloadOnlyOverWifi
@@ -159,7 +159,7 @@ class SettingsDownloadController : SettingsController() {
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
             val activity = activity!!
-            val currentDir = preferences.downloadsDirectory().getOrDefault()
+            val currentDir = preferences.downloadsDirectory().get()
             val externalDirs = (getExternalDirs() + File(activity.getString(R.string.custom_dir))).map(File::toString)
             val selectedIndex = externalDirs.indexOfFirst { it in currentDir }
 
