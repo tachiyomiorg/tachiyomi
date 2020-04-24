@@ -12,7 +12,6 @@
         android:paddingStart="@dimen/material_component_text_fields_padding_above_and_below_label"
         android:paddingTop="8dp"
         android:paddingEnd="@dimen/material_component_text_fields_padding_above_and_below_label"
-        android:paddingBottom="8dp"
         tools:text="Title" />
 
 </FrameLayout>
