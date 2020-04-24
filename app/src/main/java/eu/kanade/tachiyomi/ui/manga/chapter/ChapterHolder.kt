@@ -44,7 +44,7 @@ class ChapterHolder(
         }
         if (!chapter.read && chapter.last_page_read > 0) {
             val lastPageRead = SpannableString(itemView.context.getString(R.string.chapter_progress, chapter.last_page_read + 1)).apply {
-                setSpan(ForegroundColorSpan(adapter.bookmarkedColor), 0, length, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
+                setSpan(ForegroundColorSpan(adapter.readColor), 0, length, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
             descriptions.add(lastPageRead)
         }
