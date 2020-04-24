@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
 import uy.kohesive.injekt.injectLazy
 
@@ -96,10 +95,10 @@ class LibrarySettingsSheet(
             override val footer = Item.Separator()
 
             override fun initModels() {
-                downloaded.checked = preferences.downloadedOnly().get() || preferences.filterDownloaded().getOrDefault()
+                downloaded.checked = preferences.downloadedOnly().get() || preferences.filterDownloaded().get()
                 downloaded.enabled = !preferences.downloadedOnly().get()
-                unread.checked = preferences.filterUnread().getOrDefault()
-                completed.checked = preferences.filterCompleted().getOrDefault()
+                unread.checked = preferences.filterUnread().get()
+                completed.checked = preferences.filterCompleted().get()
             }
 
             override fun onItemClicked(item: Item) {
@@ -140,8 +139,8 @@ class LibrarySettingsSheet(
             override val footer = Item.Separator()
 
             override fun initModels() {
-                val sorting = preferences.librarySortingMode().getOrDefault()
-                val order = if (preferences.librarySortingAscending().getOrDefault())
+                val sorting = preferences.librarySortingMode().get()
+                val order = if (preferences.librarySortingAscending().get())
                     Item.MultiSort.SORT_ASC else Item.MultiSort.SORT_DESC
 
                 alphabetically.state =
@@ -196,7 +195,7 @@ class LibrarySettingsSheet(
             override val footer = null
             override val items = listOf(downloadBadge)
             override fun initModels() {
-                downloadBadge.checked = preferences.downloadBadge().getOrDefault()
+                downloadBadge.checked = preferences.downloadBadge().get()
             }
 
             override fun onItemClicked(item: Item) {
@@ -223,7 +222,7 @@ class LibrarySettingsSheet(
             override val footer = null
 
             override fun initModels() {
-                val asList = preferences.libraryAsList().getOrDefault()
+                val asList = preferences.libraryAsList().get()
                 grid.checked = !asList
                 list.checked = asList
             }

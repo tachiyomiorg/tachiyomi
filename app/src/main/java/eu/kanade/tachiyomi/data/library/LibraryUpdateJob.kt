@@ -9,7 +9,6 @@ import androidx.work.WorkManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import java.util.concurrent.TimeUnit
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -27,7 +26,7 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
 
         fun setupTask(context: Context, prefInterval: Int? = null) {
             val preferences = Injekt.get<PreferencesHelper>()
-            val interval = prefInterval ?: preferences.libraryUpdateInterval().getOrDefault()
+            val interval = prefInterval ?: preferences.libraryUpdateInterval().get()
             if (interval > 0) {
                 val restrictions = preferences.libraryUpdateRestriction()!!
                 val acRestriction = "ac" in restrictions

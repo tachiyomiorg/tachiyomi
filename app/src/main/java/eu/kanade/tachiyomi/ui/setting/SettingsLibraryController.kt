@@ -30,6 +30,8 @@ import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import kotlinx.android.synthetic.main.pref_library_columns.view.landscape_columns
 import kotlinx.android.synthetic.main.pref_library_columns.view.portrait_columns
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import rx.Observable
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -99,8 +101,9 @@ class SettingsLibraryController : SettingsController() {
                 entryValues = arrayOf("wifi", "ac")
                 summaryRes = R.string.pref_library_update_restriction_summary
 
-                preferences.libraryUpdateInterval().asObservable()
-                        .subscribeUntilDestroy { isVisible = it > 0 }
+                preferences.libraryUpdateInterval().asFlow()
+                    .onEach { isVisible = it > 0 }
+                    .launchIn(scope)
 
                 onChange {
                     // Post to event looper to allow the preference to be updated.
@@ -118,17 +121,18 @@ class SettingsLibraryController : SettingsController() {
                 titleRes = R.string.pref_library_update_categories
                 entries = categories.map { it.name }.toTypedArray()
                 entryValues = categories.map { it.id.toString() }.toTypedArray()
-                preferences.libraryUpdateCategories().asObservable()
-                        .subscribeUntilDestroy { mutableSet ->
-                            val selectedCategories = mutableSet
-                                    .mapNotNull { id -> categories.find { it.id == id.toInt() } }
-                                    .sortedBy { it.order }
+                preferences.libraryUpdateCategories().asFlow()
+                    .onEach { mutableSet ->
+                        val selectedCategories = mutableSet
+                                .mapNotNull { id -> categories.find { it.id == id.toInt() } }
+                                .sortedBy { it.order }
 
-                            summary = if (selectedCategories.isEmpty())
-                                context.getString(R.string.all)
-                            else
-                                selectedCategories.joinToString { it.name }
-                        }
+                        summary = if (selectedCategories.isEmpty())
+                            context.getString(R.string.all)
+                        else
+                            selectedCategories.joinToString { it.name }
+                    }
+                    .launchIn(scope)
             }
             intListPreference {
                 key = Keys.libraryUpdatePrioritization
@@ -146,7 +150,7 @@ class SettingsLibraryController : SettingsController() {
                 entryValues = priorities.map { it.first }.toTypedArray()
                 defaultValue = defaultPriority.first
 
-                val selectedPriority = priorities.find { it.first.toInt() == preferences.libraryUpdatePrioritization().getOrDefault() }
+                val selectedPriority = priorities.find { it.first.toInt() == preferences.libraryUpdatePrioritization().get() }
                 summaryRes = selectedPriority?.second ?: defaultPriority.second
                 onChange { newValue ->
                     summaryRes = priorities.find {

@@ -165,37 +165,37 @@ class PreferencesHelper(val context: Context) {
 
     fun downloadOnlyOverWifi() = prefs.getBoolean(Keys.downloadOnlyOverWifi, true)
 
-    fun numberOfBackups() = rxPrefs.getInteger(Keys.numberOfBackups, 1)
+    fun numberOfBackups() = flowPrefs.getInt(Keys.numberOfBackups, 1)
 
-    fun backupInterval() = rxPrefs.getInteger(Keys.backupInterval, 0)
+    fun backupInterval() = flowPrefs.getInt(Keys.backupInterval, 0)
 
     fun removeAfterReadSlots() = prefs.getInt(Keys.removeAfterReadSlots, -1)
 
     fun removeAfterMarkedAsRead() = prefs.getBoolean(Keys.removeAfterMarkedAsRead, false)
 
-    fun libraryUpdateInterval() = rxPrefs.getInteger(Keys.libraryUpdateInterval, 0)
+    fun libraryUpdateInterval() = flowPrefs.getInt(Keys.libraryUpdateInterval, 0)
 
     fun libraryUpdateRestriction() = prefs.getStringSet(Keys.libraryUpdateRestriction, emptySet())
 
-    fun libraryUpdateCategories() = rxPrefs.getStringSet(Keys.libraryUpdateCategories, emptySet())
+    fun libraryUpdateCategories() = flowPrefs.getStringSet(Keys.libraryUpdateCategories, emptySet())
 
-    fun libraryUpdatePrioritization() = rxPrefs.getInteger(Keys.libraryUpdatePrioritization, 0)
+    fun libraryUpdatePrioritization() = flowPrefs.getInt(Keys.libraryUpdatePrioritization, 0)
 
-    fun libraryAsList() = rxPrefs.getBoolean(Keys.libraryAsList, false)
+    fun libraryAsList() = flowPrefs.getBoolean(Keys.libraryAsList, false)
 
-    fun downloadBadge() = rxPrefs.getBoolean(Keys.downloadBadge, false)
+    fun downloadBadge() = flowPrefs.getBoolean(Keys.downloadBadge, false)
 
     fun downloadedOnly() = flowPrefs.getBoolean(Keys.downloadedOnly, false)
 
-    fun filterDownloaded() = rxPrefs.getBoolean(Keys.filterDownloaded, false)
+    fun filterDownloaded() = flowPrefs.getBoolean(Keys.filterDownloaded, false)
 
-    fun filterUnread() = rxPrefs.getBoolean(Keys.filterUnread, false)
+    fun filterUnread() = flowPrefs.getBoolean(Keys.filterUnread, false)
 
-    fun filterCompleted() = rxPrefs.getBoolean(Keys.filterCompleted, false)
+    fun filterCompleted() = flowPrefs.getBoolean(Keys.filterCompleted, false)
 
-    fun librarySortingMode() = rxPrefs.getInteger(Keys.librarySortingMode, 0)
+    fun librarySortingMode() = flowPrefs.getInt(Keys.librarySortingMode, 0)
 
-    fun librarySortingAscending() = rxPrefs.getBoolean("library_sorting_ascending", true)
+    fun librarySortingAscending() = flowPrefs.getBoolean("library_sorting_ascending", true)
 
     fun automaticUpdates() = prefs.getBoolean(Keys.automaticUpdates, true)
 
@@ -209,9 +209,9 @@ class PreferencesHelper(val context: Context) {
 
     fun pinnedCatalogues() = flowPrefs.getStringSet("pinned_catalogues", emptySet())
 
-    fun downloadNew() = rxPrefs.getBoolean(Keys.downloadNew, false)
+    fun downloadNew() = flowPrefs.getBoolean(Keys.downloadNew, false)
 
-    fun downloadNewCategories() = rxPrefs.getStringSet(Keys.downloadNewCategories, emptySet())
+    fun downloadNewCategories() = flowPrefs.getStringSet(Keys.downloadNewCategories, emptySet())
 
     fun lang() = prefs.getString(Keys.lang, "")
 

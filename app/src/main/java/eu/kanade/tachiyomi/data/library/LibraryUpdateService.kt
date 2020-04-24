@@ -28,7 +28,6 @@ import eu.kanade.tachiyomi.data.library.LibraryUpdateService.Companion.start
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SManga
@@ -227,7 +226,7 @@ class LibraryUpdateService(
         // Update favorite manga. Destroy service when completed or in case of an error.
         subscription = Observable
                 .defer {
-                    val selectedScheme = preferences.libraryUpdatePrioritization().getOrDefault()
+                    val selectedScheme = preferences.libraryUpdatePrioritization().get()
                     val mangaList = getMangaToUpdate(intent, target)
                             .sortedWith(rankingScheme[selectedScheme])
 
@@ -263,7 +262,7 @@ class LibraryUpdateService(
         var listToUpdate = if (categoryId != -1)
             db.getLibraryMangas().executeAsBlocking().filter { it.category == categoryId }
         else {
-            val categoriesToUpdate = preferences.libraryUpdateCategories().getOrDefault().map(String::toInt)
+            val categoriesToUpdate = preferences.libraryUpdateCategories().get().map(String::toInt)
             if (categoriesToUpdate.isNotEmpty())
                 db.getLibraryMangas().executeAsBlocking()
                         .filter { it.category in categoriesToUpdate }
@@ -295,9 +294,9 @@ class LibraryUpdateService(
         // List containing failed updates
         val failedUpdates = ArrayList<Manga>()
         // List containing categories that get included in downloads.
-        val categoriesToDownload = preferences.downloadNewCategories().getOrDefault().map(String::toInt)
+        val categoriesToDownload = preferences.downloadNewCategories().get().map(String::toInt)
         // Boolean to determine if user wants to automatically download new chapters.
-        val downloadNew = preferences.downloadNew().getOrDefault()
+        val downloadNew = preferences.downloadNew().get()
         // Boolean to determine if DownloadManager has downloads
         var hasDownloads = false
 

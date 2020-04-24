@@ -39,6 +39,8 @@ import eu.kanade.tachiyomi.util.system.getFilePicker
 import eu.kanade.tachiyomi.util.system.registerLocalReceiver
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.system.unregisterLocalReceiver
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class SettingsBackupController : SettingsController() {
 
@@ -148,11 +150,12 @@ class SettingsBackupController : SettingsController() {
                 summary = "%s"
             }
 
-            preferences.backupInterval().asObservable()
-                    .subscribeUntilDestroy {
-                        backupDir.isVisible = it > 0
-                        backupNumber.isVisible = it > 0
-                    }
+            preferences.backupInterval().asFlow()
+                .onEach {
+                    backupDir.isVisible = it > 0
+                    backupNumber.isVisible = it > 0
+                }
+                .launchIn(scope)
         }
     }
 

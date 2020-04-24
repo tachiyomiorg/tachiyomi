@@ -30,7 +30,7 @@ class BackupCreatorJob(private val context: Context, workerParams: WorkerParamet
 
         fun setupTask(context: Context, prefInterval: Int? = null) {
             val preferences = Injekt.get<PreferencesHelper>()
-            val interval = prefInterval ?: preferences.backupInterval().getOrDefault()
+            val interval = prefInterval ?: preferences.backupInterval().get()
             if (interval > 0) {
                 val request = PeriodicWorkRequestBuilder<BackupCreatorJob>(
                         interval.toLong(), TimeUnit.HOURS,

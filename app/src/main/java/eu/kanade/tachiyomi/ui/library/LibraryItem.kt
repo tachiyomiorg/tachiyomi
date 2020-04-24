@@ -5,14 +5,13 @@ import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.f2prateek.rx.preferences.Preference
+import com.tfcporciuncula.flow.Preference
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.davidea.flexibleadapter.items.IFilterable
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.LibraryManga
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import kotlinx.android.synthetic.main.source_grid_item.view.card
@@ -28,7 +27,7 @@ class LibraryItem(val manga: LibraryManga, private val libraryAsList: Preference
     var downloadCount = -1
 
     override fun getLayoutRes(): Int {
-        return if (libraryAsList.getOrDefault())
+        return if (libraryAsList.get())
             R.layout.source_list_item
         else
             R.layout.source_grid_item
