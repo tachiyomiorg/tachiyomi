@@ -33,13 +33,14 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:textAppearance="@style/TextAppearance.Medium.Title" />
+                    android:textAppearance="@style/TextAppearance.Medium" />
 
                 <TextView
                     android:id="@+id/manga_subtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/manga_title" />
+                    android:layout_below="@id/manga_title"
+                    android:layout_marginTop="4dp" />
 
             </RelativeLayout>
 
