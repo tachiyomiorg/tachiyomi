@@ -225,7 +225,8 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'com.github.carlosesco:DirectionalViewPager:a844dbca0a'
 
-    final material_dialogs_version = '3.3.0'
+    // 3.2.0+ introduces weird UI blinking or cut off issues on some devices
+    final material_dialogs_version = '3.1.1'
     implementation "com.afollestad.material-dialogs:core:$material_dialogs_version"
     implementation "com.afollestad.material-dialogs:input:$material_dialogs_version"
     implementation "com.afollestad.material-dialogs:datetime:$material_dialogs_version"
