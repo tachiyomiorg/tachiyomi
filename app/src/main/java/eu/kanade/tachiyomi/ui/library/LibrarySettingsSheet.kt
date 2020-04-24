@@ -18,11 +18,12 @@ class LibrarySettingsSheet(
     private val onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
 ) : BottomSheetDialog(activity) {
 
-    private val filterSettings = FilterSettings(activity)
+    val filters = Filter(activity)
+
     private val tabItems = listOf(
-        Pair(R.string.action_filter, filterSettings),
-        Pair(R.string.action_sort, SortSettings(activity)),
-        Pair(R.string.action_display, DisplaySettings(activity))
+        Pair(R.string.action_filter, filters),
+        Pair(R.string.action_sort, Sort(activity)),
+        Pair(R.string.action_display, Display(activity))
     )
 
     init {
@@ -33,10 +34,6 @@ class LibrarySettingsSheet(
         binding.librarySettingsTabs.setupWithViewPager(binding.librarySettingsPager)
 
         setContentView(binding.root)
-    }
-
-    fun hasActiveFilters(): Boolean {
-        return filterSettings.hasActiveFilters()
     }
 
     private inner class LibrarySettingsSheetAdapter : ViewPagerAdapter() {
@@ -56,7 +53,10 @@ class LibrarySettingsSheet(
         }
     }
 
-    inner class FilterSettings @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
+    /**
+     * Filters group (unread, downloaded, ...).
+     */
+    inner class Filter @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
         Settings(context, attrs) {
 
         private val filterGroup = FilterGroup()
@@ -72,9 +72,6 @@ class LibrarySettingsSheet(
             return filterGroup.items.any { it.checked }
         }
 
-        /**
-         * Filters group (unread, downloaded, ...).
-         */
         inner class FilterGroup : Group {
 
             private val downloaded = Item.CheckboxGroup(R.string.action_filter_downloaded, this)
@@ -106,16 +103,16 @@ class LibrarySettingsSheet(
         }
     }
 
-    inner class SortSettings @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
+    /**
+     * Sorting group (alphabetically, by last read, ...) and ascending or descending.
+     */
+    inner class Sort @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
         Settings(context, attrs) {
 
         init {
             addGroups(listOf(SortGroup()))
         }
 
-        /**
-         * Sorting group (alphabetically, by last read, ...) and ascending or descending.
-         */
         inner class SortGroup : Group {
 
             private val alphabetically = Item.MultiSort(R.string.action_sort_alpha, this)
@@ -181,16 +178,16 @@ class LibrarySettingsSheet(
         }
     }
 
-    inner class DisplaySettings @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
+    /**
+     * Display group, to show the library as a list or a grid.
+     */
+    inner class Display @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
         Settings(context, attrs) {
 
         init {
             addGroups(listOf(DisplayGroup(), BadgeGroup()))
         }
 
-        /**
-         * Display group, to show the library as a list or a grid.
-         */
         inner class DisplayGroup : Group {
 
             private val grid = Item.Radio(R.string.action_display_grid, this)

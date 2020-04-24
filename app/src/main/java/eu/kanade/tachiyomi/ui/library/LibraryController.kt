@@ -166,10 +166,10 @@ class LibraryController(
 
         settingsSheet = LibrarySettingsSheet(activity!!) { group ->
             when (group) {
-                is LibrarySettingsSheet.FilterSettings.FilterGroup -> onFilterChanged()
-                is LibrarySettingsSheet.SortSettings.SortGroup -> onSortChanged()
-                is LibrarySettingsSheet.DisplaySettings.DisplayGroup -> reattachAdapter()
-                is LibrarySettingsSheet.DisplaySettings.BadgeGroup -> onDownloadBadgeChanged()
+                is LibrarySettingsSheet.Filter.FilterGroup -> onFilterChanged()
+                is LibrarySettingsSheet.Sort.SortGroup -> onSortChanged()
+                is LibrarySettingsSheet.Display.DisplayGroup -> reattachAdapter()
+                is LibrarySettingsSheet.Display.BadgeGroup -> onDownloadBadgeChanged()
             }
         }
     }
@@ -359,7 +359,7 @@ class LibraryController(
         val filterItem = menu.findItem(R.id.action_filter)
 
         // Tint icon if there's a filter active
-        if (settingsSheet.hasActiveFilters()) {
+        if (settingsSheet.filters.hasActiveFilters()) {
             val filterColor = activity!!.getResourceColor(R.attr.colorFilterActive)
             DrawableCompat.setTint(filterItem.icon, filterColor)
         }
