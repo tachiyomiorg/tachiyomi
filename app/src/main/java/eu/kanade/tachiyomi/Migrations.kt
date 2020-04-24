@@ -18,13 +18,19 @@ object Migrations {
     fun upgrade(preferences: PreferencesHelper): Boolean {
         val context = preferences.context
         val oldVersion = preferences.lastVersionCode().get()
+
+        // Cancel app updater job for debug builds that don't include it
+        if (BuildConfig.DEBUG && !BuildConfig.INCLUDE_UPDATER) {
+            UpdaterJob.cancelTask(context)
+        }
+
         if (oldVersion < BuildConfig.VERSION_CODE) {
             preferences.lastVersionCode().set(BuildConfig.VERSION_CODE)
 
             // Fresh install
             if (oldVersion == 0) {
                 // Set up default app updater task
-                if (BuildConfig.INCLUDE_UPDATER && preferences.automaticUpdates()) {
+                if (BuildConfig.INCLUDE_UPDATER) {
                     UpdaterJob.setupTask(context)
                 }
                 if (preferences.automaticExtUpdates().get()) {
@@ -35,7 +41,7 @@ object Migrations {
 
             if (oldVersion < 14) {
                 // Restore jobs after upgrading to Evernote's job scheduler.
-                if (BuildConfig.INCLUDE_UPDATER && preferences.automaticUpdates()) {
+                if (BuildConfig.INCLUDE_UPDATER) {
                     UpdaterJob.setupTask(context)
                 }
                 LibraryUpdateJob.setupTask(context)
@@ -68,7 +74,7 @@ object Migrations {
             }
             if (oldVersion < 43) {
                 // Restore jobs after migrating from Evernote's job scheduler to WorkManager.
-                if (BuildConfig.INCLUDE_UPDATER && preferences.automaticUpdates()) {
+                if (BuildConfig.INCLUDE_UPDATER) {
                     UpdaterJob.setupTask(context)
                 }
                 LibraryUpdateJob.setupTask(context)

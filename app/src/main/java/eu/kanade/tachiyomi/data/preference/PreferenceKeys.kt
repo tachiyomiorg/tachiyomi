@@ -109,8 +109,6 @@ object PreferenceKeys {
 
     const val librarySortingMode = "library_sorting_mode"
 
-    const val automaticUpdates = "automatic_updates"
-
     const val automaticExtUpdates = "automatic_ext_updates"
 
     const val startScreen = "start_screen"

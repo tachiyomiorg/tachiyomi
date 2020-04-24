@@ -197,8 +197,6 @@ class PreferencesHelper(val context: Context) {
 
     fun librarySortingAscending() = flowPrefs.getBoolean("library_sorting_ascending", true)
 
-    fun automaticUpdates() = prefs.getBoolean(Keys.automaticUpdates, true)
-
     fun automaticExtUpdates() = flowPrefs.getBoolean(Keys.automaticExtUpdates, true)
 
     fun extensionUpdatesCount() = flowPrefs.getInt("ext_updates_count", 0)

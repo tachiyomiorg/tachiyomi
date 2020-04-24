@@ -9,25 +9,19 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.updater.UpdateChecker
 import eu.kanade.tachiyomi.data.updater.UpdateResult
-import eu.kanade.tachiyomi.data.updater.UpdaterJob
 import eu.kanade.tachiyomi.data.updater.UpdaterService
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.main.ChangelogDialogController
 import eu.kanade.tachiyomi.ui.setting.SettingsController
 import eu.kanade.tachiyomi.util.lang.launchNow
 import eu.kanade.tachiyomi.util.lang.toDateTimestampString
-import eu.kanade.tachiyomi.util.preference.defaultValue
-import eu.kanade.tachiyomi.util.preference.onChange
 import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
-import eu.kanade.tachiyomi.util.preference.summaryRes
-import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.toast
 import java.text.DateFormat
@@ -54,34 +48,21 @@ class AboutController : SettingsController() {
     override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
         titleRes = R.string.pref_category_about
 
-        switchPreference {
-            key = Keys.automaticUpdates
-            titleRes = R.string.pref_enable_automatic_updates
-            summaryRes = R.string.pref_enable_automatic_updates_summary
-            defaultValue = true
-
-            if (isUpdaterEnabled) {
-                onChange { newValue ->
-                    val checked = newValue as Boolean
-                    if (checked) {
-                        UpdaterJob.setupTask(context)
-                    } else {
-                        UpdaterJob.cancelTask(context)
-                    }
-                    true
-                }
-            } else {
-                isVisible = false
-            }
-        }
         preference {
             titleRes = R.string.version
             summary = if (BuildConfig.DEBUG)
                 "Preview r${BuildConfig.COMMIT_COUNT} (${BuildConfig.COMMIT_SHA})"
             else
                 "Stable ${BuildConfig.VERSION_NAME}"
+        }
+        preference {
+            titleRes = R.string.build_time
+            summary = getFormattedBuildTime()
+        }
+        if (isUpdaterEnabled) {
+            preference {
+                titleRes = R.string.check_for_updates
 
-            if (isUpdaterEnabled) {
                 onClick { checkVersion() }
             }
         }
