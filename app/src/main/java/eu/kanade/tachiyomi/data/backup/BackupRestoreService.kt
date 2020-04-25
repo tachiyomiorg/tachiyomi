@@ -9,6 +9,7 @@ import android.os.IBinder
 import android.os.PowerManager
 import com.github.salomonbrys.kotson.fromJson
 import com.google.gson.JsonArray
+import com.google.gson.JsonElement
 import com.google.gson.JsonParser
 import com.google.gson.stream.JsonReader
 import eu.kanade.tachiyomi.R
@@ -221,45 +222,13 @@ class BackupRestoreService : Service() {
                 errors.clear()
 
                 // Restore categories
-                json.get(CATEGORIES)?.let {
-                    backupManager.restoreCategories(it.asJsonArray)
-                    restoreProgress += 1
-                    showRestoreProgress(restoreProgress, restoreAmount, getString(R.string.categories))
-                }
+                restoreCategories(json.get(CATEGORIES))
 
                 mangasJson
             }
             .flatMap { Observable.from(it) }
             .concatMap {
-                val obj = it.asJsonObject
-                val manga = backupManager.parser.fromJson<MangaImpl>(obj.get(MANGA))
-                val chapters = backupManager.parser.fromJson<List<ChapterImpl>>(
-                    obj.get(CHAPTERS)
-                        ?: JsonArray()
-                )
-                val categories = backupManager.parser.fromJson<List<String>>(
-                    obj.get(CATEGORIES)
-                        ?: JsonArray()
-                )
-                val history = backupManager.parser.fromJson<List<DHistory>>(
-                    obj.get(HISTORY)
-                        ?: JsonArray()
-                )
-                val tracks = backupManager.parser.fromJson<List<TrackImpl>>(
-                    obj.get(TRACK)
-                        ?: JsonArray()
-                )
-
-                val observable = getMangaRestoreObservable(manga, chapters, categories, history, tracks)
-                if (observable != null) {
-                    observable
-                } else {
-                    errors.add(Date() to "${manga.title} - ${getString(R.string.source_not_found)}")
-                    restoreProgress += 1
-                    val content = getString(R.string.dialog_restoring_source_not_found, manga.title.chop(15))
-                    showRestoreProgress(restoreProgress, restoreAmount, manga.title, content)
-                    Observable.just(manga)
-                }
+                restoreManga(it)
             }
             .toList()
             .doOnNext {
@@ -285,6 +254,46 @@ class BackupRestoreService : Service() {
                 sendLocalBroadcast(errorIntent)
             }
             .onErrorReturn { emptyList() }
+    }
+
+    private fun restoreCategories(categoriesJson: JsonElement) {
+        backupManager.restoreCategories(categoriesJson.asJsonArray)
+        restoreProgress += 1
+        showRestoreProgress(restoreProgress, restoreAmount, getString(R.string.categories))
+    }
+
+    private fun restoreManga(mangaJson: JsonElement): Observable<out Manga>? {
+        val obj = mangaJson.asJsonObject
+
+        val manga = backupManager.parser.fromJson<MangaImpl>(obj.get(MANGA))
+        val chapters = backupManager.parser.fromJson<List<ChapterImpl>>(
+            obj.get(CHAPTERS)
+                ?: JsonArray()
+        )
+        val categories = backupManager.parser.fromJson<List<String>>(
+            obj.get(CATEGORIES)
+                ?: JsonArray()
+        )
+        val history = backupManager.parser.fromJson<List<DHistory>>(
+            obj.get(HISTORY)
+                ?: JsonArray()
+        )
+        val tracks = backupManager.parser.fromJson<List<TrackImpl>>(
+            obj.get(TRACK)
+                ?: JsonArray()
+        )
+
+        val observable = getMangaRestoreObservable(manga, chapters, categories, history, tracks)
+        return if (observable != null) {
+            observable
+        } else {
+            errors.add(Date() to "${manga.title} - ${getString(R.string.source_not_found)}")
+            restoreProgress += 1
+            val content =
+                getString(R.string.dialog_restoring_source_not_found, manga.title.chop(15))
+            showRestoreProgress(restoreProgress, restoreAmount, manga.title, content)
+            Observable.just(manga)
+        }
     }
 
     /**
