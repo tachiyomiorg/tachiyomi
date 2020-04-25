@@ -53,7 +53,7 @@
         <item name="dialogTheme">@style/Theme.AlertDialog.Light</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
         <item name="chipStyle">@style/Theme.Widget.Chip</item>
-        <item name="buttonStyle">@style/Theme.Widget.Button.Outlined.Accent</item>
+        <item name="buttonStyle">@style/Theme.Widget.Button.Outlined</item>
         <item name="snackbarButtonStyle">@style/Theme.Widget.Button</item>
         <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>
         <item name="textInputStyle">@style/Theme.Widget.TextInputLayout.OutlinedBox</item>
@@ -134,7 +134,7 @@
         <item name="dialogTheme">@style/Theme.AlertDialog.Dark</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog.Dark</item>
         <item name="chipStyle">@style/Theme.Widget.Chip</item>
-        <item name="buttonStyle">@style/Theme.Widget.Button.Outlined.Accent</item>
+        <item name="buttonStyle">@style/Theme.Widget.Button.Outlined</item>
         <item name="snackbarStyle">@style/Theme.Widget.Snackbar</item>
         <item name="snackbarButtonStyle">@style/Theme.Widget.Button</item>
         <item name="textAppearanceButton">@style/TextAppearance.Widget.Button</item>

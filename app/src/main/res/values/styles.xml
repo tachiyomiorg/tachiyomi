@@ -248,7 +248,7 @@
         <item name="rippleColor">?attr/colorAccent</item>
     </style>
 
-    <style name="Theme.Widget.Button.Outlined.Accent" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="Theme.Widget.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textColor">?attr/colorAccent</item>
         <item name="rippleColor">?attr/colorAccent</item>
     </style>
