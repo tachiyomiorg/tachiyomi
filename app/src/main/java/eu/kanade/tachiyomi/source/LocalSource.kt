@@ -112,12 +112,20 @@ class LocalSource(private val context: Context) : CatalogueSource {
                     }
                 }
 
-                // Copy the cover from the first chapter found.
-                if (thumbnail_url == null) {
-                    val chapters = fetchChapterList(this).toBlocking().first()
-                    if (chapters.isNotEmpty()) {
+                val chapters = fetchChapterList(this).toBlocking().first()
+                if (chapters.isNotEmpty()) {
+                    val chapter = chapters.last()
+                    val format = getFormat(chapter)
+                    if (format is Format.Epub) {
+                        EpubFile(format.file).use { epub ->
+                            epub.fillMangaMetadata(this)
+                        }
+                    }
+
+                    // Copy the cover from the first chapter found.
+                    if (thumbnail_url == null) {
                         try {
-                            val dest = updateCover(chapters.last(), this)
+                            val dest = updateCover(chapter, this)
                             thumbnail_url = dest?.absolutePath
                         } catch (e: Exception) {
                             Timber.e(e)
@@ -158,14 +166,22 @@ class LocalSource(private val context: Context) : CatalogueSource {
             .map { chapterFile ->
                 SChapter.create().apply {
                     url = "${manga.url}/${chapterFile.name}"
-                    val chapName = if (chapterFile.isDirectory) {
+                    name = if (chapterFile.isDirectory) {
                         chapterFile.name
                     } else {
                         chapterFile.nameWithoutExtension
                     }
-                    val chapNameCut = chapName.replace(manga.title, "", true).trim(' ', '-', '_')
-                    name = if (chapNameCut.isEmpty()) chapName else chapNameCut
                     date_upload = chapterFile.lastModified()
+
+                    val format = getFormat(this)
+                    if (format is Format.Epub) {
+                        EpubFile(format.file).use { epub ->
+                            epub.fillChapterMetadata(this)
+                        }
+                    }
+
+                    val chapNameCut = name.replace(manga.title, "", true).trim(' ', '-', '_', ',')
+                    if (!chapNameCut.isEmpty()) name = chapNameCut
                     ChapterRecognition.parseChapterNumber(this, manga)
                 }
             }
