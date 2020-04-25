@@ -20,8 +20,11 @@ class BackupCreatorJob(private val context: Context, workerParams: WorkerParamet
         val backupManager = BackupManager(context)
         val uri = Uri.parse(preferences.backupsDirectory().get())
         val flags = BackupCreateService.BACKUP_ALL
-        backupManager.createBackup(uri, flags, true)
-        return Result.success()
+        return if (backupManager.createBackup(uri, flags, true)) {
+            Result.success()
+        } else {
+            Result.failure()
+        }
     }
 
     companion object {

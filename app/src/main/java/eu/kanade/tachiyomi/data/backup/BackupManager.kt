@@ -102,7 +102,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
      * @param uri path of Uri
      * @param isJob backup called from job
      */
-    fun createBackup(uri: Uri, flags: Int, isJob: Boolean) {
+    fun createBackup(uri: Uri, flags: Int, isJob: Boolean): Boolean {
         // Create root object
         val root = JsonObject()
 
@@ -169,6 +169,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
                 }
                 context.sendLocalBroadcast(intent)
             }
+            return true
         } catch (e: Exception) {
             Timber.e(e)
             if (!isJob) {
@@ -179,6 +180,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
                 }
                 context.sendLocalBroadcast(intent)
             }
+            return false
         }
     }
 
