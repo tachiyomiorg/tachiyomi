@@ -46,5 +46,12 @@ open class DatabaseHelper(context: Context) :
 
     inline fun inTransaction(block: () -> Unit) = db.inTransaction(block)
 
-    fun lowLevel() = db.lowLevel()
+    fun executeTransaction(block: () -> Unit) {
+        db.lowLevel().beginTransaction()
+
+        block()
+
+        db.lowLevel().setTransactionSuccessful()
+        db.lowLevel().endTransaction()
+    }
 }

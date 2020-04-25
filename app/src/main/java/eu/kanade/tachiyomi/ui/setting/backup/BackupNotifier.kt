@@ -31,6 +31,7 @@ internal class BackupNotifier(private val context: Context) {
             setContentText(context.getString(R.string.creating_backup))
 
             setProgress(0, 0, true)
+            setOngoing(true)
         }
 
         notificationBuilder.show(Notifications.ID_BACKUP)
@@ -43,6 +44,7 @@ internal class BackupNotifier(private val context: Context) {
 
             // Remove progress bar
             setProgress(0, 0, false)
+            setOngoing(false)
         }
 
         notificationBuilder.show(Notifications.ID_BACKUP)
@@ -58,6 +60,7 @@ internal class BackupNotifier(private val context: Context) {
 
             // Remove progress bar
             setProgress(0, 0, false)
+            setOngoing(false)
 
             // Clear old actions if they exist
             if (mActions.isNotEmpty()) {
@@ -80,6 +83,7 @@ internal class BackupNotifier(private val context: Context) {
             setContentText(content)
 
             setProgress(maxAmount, progress, false)
+            setOngoing(true)
 
             // Clear old actions if they exist
             if (mActions.isNotEmpty()) {
@@ -105,6 +109,7 @@ internal class BackupNotifier(private val context: Context) {
 
             // Remove progress bar
             setProgress(0, 0, false)
+            setOngoing(false)
         }
 
         notificationBuilder.show(Notifications.ID_RESTORE)
@@ -128,6 +133,7 @@ internal class BackupNotifier(private val context: Context) {
 
             // Remove progress bar
             setProgress(0, 0, false)
+            setOngoing(false)
 
             // Clear old actions if they exist
             if (mActions.isNotEmpty()) {

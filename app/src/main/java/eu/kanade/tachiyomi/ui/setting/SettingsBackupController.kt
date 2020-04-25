@@ -88,7 +88,7 @@ class SettingsBackupController : SettingsController() {
             summaryRes = R.string.pref_restore_backup_summ
 
             onClick {
-                if (!isRestoreStarted) {
+                if (!BackupRestoreService.isRunning(context)) {
                     val intent = Intent(Intent.ACTION_GET_CONTENT)
                     intent.addCategory(Intent.CATEGORY_OPENABLE)
                     intent.type = "application/*"
@@ -277,7 +277,6 @@ class SettingsBackupController : SettingsController() {
                     val context = applicationContext
                     if (context != null) {
                         BackupRestoreService.start(context, args.getParcelable(KEY_URI)!!)
-                        isRestoreStarted = true
                     }
                 }
         }
@@ -303,8 +302,6 @@ class SettingsBackupController : SettingsController() {
                     notifier.showBackupError(intent.getStringExtra(BackupConst.EXTRA_ERROR_MESSAGE))
                 }
                 BackupConst.ACTION_RESTORE_COMPLETED -> {
-                    isRestoreStarted = false
-
                     val time = intent.getLongExtra(BackupConst.EXTRA_TIME, 0)
                     val errorCount = intent.getIntExtra(BackupConst.EXTRA_ERRORS, 0)
                     val path = intent.getStringExtra(BackupConst.EXTRA_ERROR_FILE_PATH)
@@ -312,8 +309,6 @@ class SettingsBackupController : SettingsController() {
                     notifier.showRestoreComplete(time, errorCount, path, file)
                 }
                 BackupConst.ACTION_RESTORE_ERROR -> {
-                    isRestoreStarted = false
-
                     notifier.showRestoreError(intent.getStringExtra(BackupConst.EXTRA_ERROR_MESSAGE))
                 }
             }
@@ -326,6 +321,5 @@ class SettingsBackupController : SettingsController() {
         const val CODE_BACKUP_DIR = 503
 
         var isBackupStarted = false
-        var isRestoreStarted = false
     }
 }

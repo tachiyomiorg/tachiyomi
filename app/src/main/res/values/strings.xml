@@ -316,7 +316,6 @@
     <string name="pref_backup_interval">Backup frequency</string>
     <string name="pref_backup_slots">Max automatic backups</string>
     <string name="source_not_found">Source not found</string>
-    <string name="dialog_restoring_source_not_found">Restoring backup\n%1$s source not found</string>
     <string name="backup_created">Backup created</string>
     <string name="restore_completed">Restore completed</string>
     <string name="restore_duration">%02d min, %02d sec</string>
