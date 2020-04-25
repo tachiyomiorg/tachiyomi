@@ -21,6 +21,10 @@ import eu.kanade.tachiyomi.util.system.openInBrowser
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.invisible
 import eu.kanade.tachiyomi.util.view.visible
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.appcompat.navigationClicks
+import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 import uy.kohesive.injekt.injectLazy
 
 class WebViewActivity : BaseActivity<WebviewActivityBinding>() {
@@ -38,14 +42,14 @@ class WebViewActivity : BaseActivity<WebviewActivityBinding>() {
         title = intent.extras?.getString(TITLE_KEY)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener {
-            super.onBackPressed()
-        }
+        binding.toolbar.navigationClicks()
+            .onEach { super.onBackPressed() }
+            .launchIn(scope)
 
         binding.swipeRefresh.isEnabled = false
-        binding.swipeRefresh.setOnRefreshListener {
-            refreshPage()
-        }
+        binding.swipeRefresh.refreshes()
+            .onEach { refreshPage() }
+            .launchIn(scope)
 
         if (bundle == null) {
             val url = intent.extras!!.getString(URL_KEY) ?: return

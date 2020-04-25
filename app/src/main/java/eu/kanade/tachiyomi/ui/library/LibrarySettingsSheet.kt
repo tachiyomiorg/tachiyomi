@@ -62,7 +62,7 @@ class LibrarySettingsSheet(
         private val filterGroup = FilterGroup()
 
         init {
-            addGroups(listOf(filterGroup))
+            setGroups(listOf(filterGroup))
         }
 
         /**
@@ -110,7 +110,7 @@ class LibrarySettingsSheet(
         Settings(context, attrs) {
 
         init {
-            addGroups(listOf(SortGroup()))
+            setGroups(listOf(SortGroup()))
         }
 
         inner class SortGroup : Group {
@@ -185,7 +185,7 @@ class LibrarySettingsSheet(
         Settings(context, attrs) {
 
         init {
-            addGroups(listOf(DisplayGroup(), BadgeGroup()))
+            setGroups(listOf(DisplayGroup(), BadgeGroup()))
         }
 
         inner class DisplayGroup : Group {
@@ -247,15 +247,12 @@ class LibrarySettingsSheet(
          */
         var onGroupClicked: (Group) -> Unit = {}
 
-        init {
-            addView(recycler)
-        }
-
-        fun addGroups(groups: List<Group>) {
+        fun setGroups(groups: List<Group>) {
             adapter = Adapter(groups.map { it.createItems() }.flatten())
             recycler.adapter = adapter
 
             groups.forEach { it.initModels() }
+            addView(recycler)
         }
 
         /**

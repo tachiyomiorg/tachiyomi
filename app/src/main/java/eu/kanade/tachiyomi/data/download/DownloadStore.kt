@@ -29,9 +29,6 @@ class DownloadStore(
      */
     private val gson: Gson by injectLazy()
 
-    /**
-     * Database helper.
-     */
     private val db: DatabaseHelper by injectLazy()
 
     /**

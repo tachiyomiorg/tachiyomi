@@ -19,6 +19,13 @@ import eu.kanade.tachiyomi.util.view.inflate
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import kotlinx.android.synthetic.main.library_category.view.fast_scroller
 import kotlinx.android.synthetic.main.library_category.view.swipe_refresh
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.recyclerview.scrollStateChanges
+import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 import rx.subscriptions.CompositeSubscription
 import uy.kohesive.injekt.injectLazy
 
@@ -30,9 +37,8 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
         FlexibleAdapter.OnItemClickListener,
         FlexibleAdapter.OnItemLongClickListener {
 
-    /**
-     * Preferences.
-     */
+    private val scope = CoroutineScope(Job() + Dispatchers.Main)
+
     private val preferences: PreferencesHelper by injectLazy()
 
     /**
@@ -83,25 +89,27 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
         swipe_refresh.addView(recycler)
         adapter.fastScroller = fast_scroller
 
-        recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recycler: RecyclerView, newState: Int) {
+        recycler.scrollStateChanges()
+            .onEach {
                 // Disable swipe refresh when view is not at the top
                 val firstPos = (recycler.layoutManager as LinearLayoutManager)
-                        .findFirstCompletelyVisibleItemPosition()
+                    .findFirstCompletelyVisibleItemPosition()
                 swipe_refresh.isEnabled = firstPos <= 0
             }
-        })
+            .launchIn(scope)
 
         // Double the distance required to trigger sync
         swipe_refresh.setDistanceToTriggerSync((2 * 64 * resources.displayMetrics.density).toInt())
-        swipe_refresh.setOnRefreshListener {
-            if (LibraryUpdateService.start(context, category)) {
-                context.toast(R.string.updating_category)
-            }
+        swipe_refresh.refreshes()
+            .onEach {
+                if (LibraryUpdateService.start(context, category)) {
+                    context.toast(R.string.updating_category)
+                }
 
-            // It can be a very long operation, so we disable swipe refresh and show a toast.
-            swipe_refresh.isRefreshing = false
-        }
+                // It can be a very long operation, so we disable swipe refresh and show a toast.
+                swipe_refresh.isRefreshing = false
+            }
+            .launchIn(scope)
     }
 
     fun onBind(category: Category) {
