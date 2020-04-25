@@ -111,8 +111,8 @@ internal class BackupNotifier(private val context: Context) {
     }
 
     fun showRestoreComplete(time: Long, errorCount: Int, path: String?, file: String?) {
-        val timeString = String.format(
-            "%02d min, %02d sec",
+        val timeString = context.getString(
+            R.string.restore_duration,
             TimeUnit.MILLISECONDS.toMinutes(time),
             TimeUnit.MILLISECONDS.toSeconds(time) - TimeUnit.MINUTES.toSeconds(
                 TimeUnit.MILLISECONDS.toMinutes(time)

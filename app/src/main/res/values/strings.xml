@@ -319,7 +319,8 @@
     <string name="dialog_restoring_source_not_found">Restoring backup\n%1$s source not found</string>
     <string name="backup_created">Backup created</string>
     <string name="restore_completed">Restore completed</string>
-    <string name="restore_completed_content">Restore took %1$s with %2$s errors</string>
+    <string name="restore_duration">%02d min, %02d sec</string>
+    <string name="restore_completed_content">Done in %1$s with %2$s errors</string>
     <string name="backup_restore_content">Restore uses sources to fetch data, carrier costs may apply.\n\nMake sure you have installed all necessary extensions and are logged in to sources and tracking services before restoring.</string>
     <string name="file_saved">File saved at %1$s</string>
     <string name="backup_in_progress">Backup is already in progress</string>

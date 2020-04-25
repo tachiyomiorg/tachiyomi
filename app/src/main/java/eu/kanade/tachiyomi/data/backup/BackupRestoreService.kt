@@ -224,7 +224,7 @@ class BackupRestoreService : Service() {
                 json.get(CATEGORIES)?.let {
                     backupManager.restoreCategories(it.asJsonArray)
                     restoreProgress += 1
-                    showRestoreProgress(restoreProgress, restoreAmount, "Categories added")
+                    showRestoreProgress(restoreProgress, restoreAmount, getString(R.string.categories))
                 }
 
                 mangasJson
