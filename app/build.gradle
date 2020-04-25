@@ -6,7 +6,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.zellius.shortcut-helper'
-apply plugin: "org.jmailen.kotlinter"
 
 shortcutHelper.filePath = './shortcuts.xml'
 
@@ -292,8 +291,7 @@ task copyResources(type: Copy) {
     include '**/*'
 }
 
-preBuild.dependsOn(lintKotlin, copyResources)
-lintKotlin.dependsOn(formatKotlin)
+preBuild.dependsOn(ktlintFormat, copyResources)
 
 if (getGradle().getStartParameter().getTaskRequests().toString().contains("Standard")) {
     apply plugin: 'com.google.gms.google-services'
