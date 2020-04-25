@@ -23,4 +23,11 @@
         app:iconTint="?attr/colorOnPrimary"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/action_local_source_help"
+        android:icon="@drawable/ic_help_24dp"
+        android:title="@string/local_source_help_guide"
+        app:iconTint="?attr/colorOnPrimary"
+        app:showAsAction="ifRoom" />
+
 </menu>

@@ -25,6 +25,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.SourceControllerBinding
 import eu.kanade.tachiyomi.source.CatalogueSource
+import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.model.FilterList
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
@@ -33,6 +34,7 @@ import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.system.connectivityManager
+import eu.kanade.tachiyomi.util.system.openInBrowser
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.inflate
@@ -266,6 +268,9 @@ open class BrowseSourceController(bundle: Bundle) :
 
         val isHttpSource = presenter.source is HttpSource
         menu.findItem(R.id.action_open_in_web_view).isVisible = isHttpSource
+
+        val isLocalSource = presenter.source is LocalSource
+        menu.findItem(R.id.action_local_source_help).isVisible = isLocalSource
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -273,6 +278,7 @@ open class BrowseSourceController(bundle: Bundle) :
             R.id.action_search -> expandActionViewFromInteraction = true
             R.id.action_display_mode -> swapDisplayMode()
             R.id.action_open_in_web_view -> openInWebView()
+            R.id.action_local_source_help -> openLocalSourceHelpGuide()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -283,6 +289,10 @@ open class BrowseSourceController(bundle: Bundle) :
         val activity = activity ?: return
         val intent = WebViewActivity.newIntent(activity, source.baseUrl, source.id, presenter.source.name)
         startActivity(intent)
+    }
+
+    private fun openLocalSourceHelpGuide() {
+        activity?.openInBrowser(LocalSource.HELP_URL)
     }
 
     /**
@@ -343,12 +353,16 @@ open class BrowseSourceController(bundle: Bundle) :
         }
 
         if (adapter.isEmpty) {
-            val actions = mutableListOf(EmptyView.Action(R.string.action_retry, retryAction))
+            val actions = emptyList<EmptyView.Action>().toMutableList()
+
+            if (presenter.source is LocalSource) {
+                actions += EmptyView.Action(R.string.local_source_help_guide, View.OnClickListener { openLocalSourceHelpGuide() })
+            } else {
+                actions += EmptyView.Action(R.string.action_retry, retryAction)
+            }
+
             if (presenter.source is HttpSource) {
-                val openInWebViewAction = View.OnClickListener {
-                    openInWebView()
-                }
-                actions += EmptyView.Action(R.string.action_open_in_web_view, openInWebViewAction)
+                actions += EmptyView.Action(R.string.action_open_in_web_view, View.OnClickListener { openInWebView() })
             }
 
             binding.emptyView.show(message, actions)

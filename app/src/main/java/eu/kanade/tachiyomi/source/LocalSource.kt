@@ -30,11 +30,13 @@ import timber.log.Timber
 
 class LocalSource(private val context: Context) : CatalogueSource {
     companion object {
-        private val COVER_NAME = "cover.jpg"
+        const val HELP_URL = "https://tachiyomi.org/help/guides/reading-local-manga/"
+
+        private const val COVER_NAME = "cover.jpg"
         private val POPULAR_FILTERS = FilterList(OrderBy())
         private val LATEST_FILTERS = FilterList(OrderBy().apply { state = Filter.Sort.Selection(1, false) })
         private val LATEST_THRESHOLD = TimeUnit.MILLISECONDS.convert(7, TimeUnit.DAYS)
-        val ID = 0L
+        const val ID = 0L
 
         fun updateCover(context: Context, manga: SManga, input: InputStream): File? {
             val dir = getBaseDirectories(context).firstOrNull()
