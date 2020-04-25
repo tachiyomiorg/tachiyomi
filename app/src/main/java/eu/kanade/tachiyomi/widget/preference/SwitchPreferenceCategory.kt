@@ -20,8 +20,9 @@ class SwitchPreferenceCategory @JvmOverloads constructor(
     PreferenceCategory(
         context,
         attrs,
-        R.attr.switchPreferenceCompatStyle),
-        CompoundButton.OnCheckedChangeListener {
+        R.attr.switchPreferenceCompatStyle
+    ),
+    CompoundButton.OnCheckedChangeListener {
 
     private var mChecked = false
 
@@ -114,9 +115,12 @@ class SwitchPreferenceCategory @JvmOverloads constructor(
     }
 
     override fun onSetInitialValue(restoreValue: Boolean, defaultValue: Any?) {
-        setChecked(if (restoreValue)
-            getPersistedBoolean(mChecked)
-        else
-            defaultValue as Boolean)
+        setChecked(
+            if (restoreValue) {
+                getPersistedBoolean(mChecked)
+            } else {
+                defaultValue as Boolean
+            }
+        )
     }
 }

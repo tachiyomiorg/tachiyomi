@@ -23,12 +23,12 @@ import uy.kohesive.injekt.injectLazy
 import uy.kohesive.injekt.registry.default.DefaultRegistrar
 
 @AcraCore(
-        buildConfigClass = BuildConfig::class,
-        excludeMatchingSharedPreferencesKeys = [".*username.*", ".*password.*", ".*token.*"]
+    buildConfigClass = BuildConfig::class,
+    excludeMatchingSharedPreferencesKeys = [".*username.*", ".*password.*", ".*token.*"]
 )
 @AcraHttpSender(
-        uri = "https://tachiyomi.kanade.eu/crash_report",
-        httpMethod = HttpSender.Method.PUT
+    uri = "https://tachiyomi.kanade.eu/crash_report",
+    httpMethod = HttpSender.Method.PUT
 )
 open class App : Application(), LifecycleObserver {
 

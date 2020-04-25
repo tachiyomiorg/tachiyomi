@@ -119,16 +119,16 @@ class ExtensionManager(
         val extensions = ExtensionLoader.loadExtensions(context)
 
         installedExtensions = extensions
-                .filterIsInstance<LoadResult.Success>()
-                .map { it.extension }
+            .filterIsInstance<LoadResult.Success>()
+            .map { it.extension }
         installedExtensions
-                .flatMap { it.sources }
-                // overwrite is needed until the bundled sources are removed
-                .forEach { sourceManager.registerSource(it, true) }
+            .flatMap { it.sources }
+            // overwrite is needed until the bundled sources are removed
+            .forEach { sourceManager.registerSource(it, true) }
 
         untrustedExtensions = extensions
-                .filterIsInstance<LoadResult.Untrusted>()
-                .map { it.extension }
+            .filterIsInstance<LoadResult.Untrusted>()
+            .map { it.extension }
     }
 
     /**
@@ -223,7 +223,7 @@ class ExtensionManager(
      */
     fun updateExtension(extension: Extension.Installed): Observable<InstallStep> {
         val availableExt = availableExtensions.find { it.pkgName == extension.pkgName }
-                ?: return Observable.empty()
+            ?: return Observable.empty()
         return installExtension(availableExt)
     }
 
@@ -266,15 +266,15 @@ class ExtensionManager(
         val ctx = context
         launchNow {
             nowTrustedExtensions
-                    .map { extension ->
-                        async { ExtensionLoader.loadExtensionFromPkgName(ctx, extension.pkgName) }
+                .map { extension ->
+                    async { ExtensionLoader.loadExtensionFromPkgName(ctx, extension.pkgName) }
+                }
+                .map { it.await() }
+                .forEach { result ->
+                    if (result is LoadResult.Success) {
+                        registerNewExtension(result.extension)
                     }
-                    .map { it.await() }
-                    .forEach { result ->
-                        if (result is LoadResult.Success) {
-                            registerNewExtension(result.extension)
-                        }
-                    }
+                }
         }
     }
 

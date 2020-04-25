@@ -69,13 +69,17 @@ internal class UpdaterNotifier(private val context: Context) {
             setProgress(0, 0, false)
             // Install action
             setContentIntent(NotificationHandler.installApkPendingActivity(context, uri))
-            addAction(R.drawable.ic_system_update_alt_white_24dp,
-                    context.getString(R.string.action_install),
-                    NotificationHandler.installApkPendingActivity(context, uri))
+            addAction(
+                R.drawable.ic_system_update_alt_white_24dp,
+                context.getString(R.string.action_install),
+                NotificationHandler.installApkPendingActivity(context, uri)
+            )
             // Cancel action
-            addAction(R.drawable.ic_close_24dp,
-                    context.getString(R.string.action_cancel),
-                    NotificationReceiver.dismissNotificationPendingBroadcast(context, Notifications.ID_UPDATER))
+            addAction(
+                R.drawable.ic_close_24dp,
+                context.getString(R.string.action_cancel),
+                NotificationReceiver.dismissNotificationPendingBroadcast(context, Notifications.ID_UPDATER)
+            )
         }
         notificationBuilder.show()
     }
@@ -92,13 +96,17 @@ internal class UpdaterNotifier(private val context: Context) {
             setOnlyAlertOnce(false)
             setProgress(0, 0, false)
             // Retry action
-            addAction(R.drawable.ic_refresh_24dp,
-                    context.getString(R.string.action_retry),
-                    UpdaterService.downloadApkPendingService(context, url))
+            addAction(
+                R.drawable.ic_refresh_24dp,
+                context.getString(R.string.action_retry),
+                UpdaterService.downloadApkPendingService(context, url)
+            )
             // Cancel action
-            addAction(R.drawable.ic_close_24dp,
-                    context.getString(R.string.action_cancel),
-                    NotificationReceiver.dismissNotificationPendingBroadcast(context, Notifications.ID_UPDATER))
+            addAction(
+                R.drawable.ic_close_24dp,
+                context.getString(R.string.action_cancel),
+                NotificationReceiver.dismissNotificationPendingBroadcast(context, Notifications.ID_UPDATER)
+            )
         }
         notificationBuilder.show(Notifications.ID_UPDATER)
     }

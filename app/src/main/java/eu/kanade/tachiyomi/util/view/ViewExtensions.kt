@@ -95,7 +95,8 @@ fun ImageView.roundTextIcon(text: String) {
     val letter = text.take(1).toUpperCase()
     val size = min(this.width, this.height)
 
-    setImageDrawable(TextDrawable(
+    setImageDrawable(
+        TextDrawable(
             shape = TextDrawable.DRAWABLE_SHAPE_OVAL,
             desiredWidth = size,
             desiredHeight = size,
@@ -103,7 +104,8 @@ fun ImageView.roundTextIcon(text: String) {
             textColor = Color.WHITE,
             text = letter,
             color = ColorGenerator.MATERIAL.getColor(letter)
-    ))
+        )
+    )
 }
 
 /**
@@ -114,10 +116,11 @@ fun ImageView.roundTextIcon(text: String) {
 fun ExtendedFloatingActionButton.shrinkOnScroll(recycler: RecyclerView) {
     recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            if (dy <= 0)
+            if (dy <= 0) {
                 extend()
-            else
+            } else {
                 shrink()
+            }
         }
     })
 }

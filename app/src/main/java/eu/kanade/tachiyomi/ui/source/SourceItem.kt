@@ -15,7 +15,7 @@ import eu.kanade.tachiyomi.source.CatalogueSource
  * @param header The header for this item.
  */
 data class SourceItem(val source: CatalogueSource, val header: LangItem? = null) :
-        AbstractSectionableItem<SourceHolder, LangItem>(header) {
+    AbstractSectionableItem<SourceHolder, LangItem>(header) {
 
     /**
      * Returns the layout resource of this item.

@@ -129,8 +129,11 @@ class LibrarySettingsSheet(
 
             override fun initModels() {
                 val sorting = preferences.librarySortingMode().get()
-                val order = if (preferences.librarySortingAscending().get())
-                    Item.MultiSort.SORT_ASC else Item.MultiSort.SORT_DESC
+                val order = if (preferences.librarySortingAscending().get()) {
+                    Item.MultiSort.SORT_ASC
+                } else {
+                    Item.MultiSort.SORT_DESC
+                }
 
                 alphabetically.state =
                     if (sorting == LibrarySort.ALPHA) order else Item.MultiSort.SORT_NONE

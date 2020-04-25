@@ -30,10 +30,10 @@ class KitsuInterceptor(val kitsu: Kitsu, val gson: Gson) : Interceptor {
 
         // Add the authorization header to the original request.
         val authRequest = originalRequest.newBuilder()
-                .addHeader("Authorization", "Bearer ${oauth!!.access_token}")
-                .header("Accept", "application/vnd.api+json")
-                .header("Content-Type", "application/vnd.api+json")
-                .build()
+            .addHeader("Authorization", "Bearer ${oauth!!.access_token}")
+            .header("Accept", "application/vnd.api+json")
+            .header("Content-Type", "application/vnd.api+json")
+            .build()
 
         return chain.proceed(authRequest)
     }

@@ -39,7 +39,8 @@ object MangaTable {
     const val COL_CATEGORY = "category"
 
     val createTableQuery: String
-        get() = """CREATE TABLE $TABLE(
+        get() =
+            """CREATE TABLE $TABLE(
             $COL_ID INTEGER NOT NULL PRIMARY KEY,
             $COL_SOURCE INTEGER NOT NULL,
             $COL_URL TEXT NOT NULL,
@@ -62,5 +63,5 @@ object MangaTable {
 
     val createLibraryIndexQuery: String
         get() = "CREATE INDEX library_${COL_FAVORITE}_index ON $TABLE($COL_FAVORITE) " +
-                "WHERE $COL_FAVORITE = 1"
+            "WHERE $COL_FAVORITE = 1"
 }

@@ -11,7 +11,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 
 class ChangeMangaCategoriesDialog<T>(bundle: Bundle? = null) :
-        DialogController(bundle) where T : Controller, T : ChangeMangaCategoriesDialog.Listener {
+    DialogController(bundle) where T : Controller, T : ChangeMangaCategoriesDialog.Listener {
 
     private var mangas = emptyList<Manga>()
 
@@ -33,17 +33,17 @@ class ChangeMangaCategoriesDialog<T>(bundle: Bundle? = null) :
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialDialog(activity!!)
-                .title(R.string.action_move_category)
-                .listItemsMultiChoice(
-                    items = categories.map { it.name },
-                    initialSelection = preselected.toIntArray(),
-                    allowEmptySelection = true
-                ) { _, selections, _ ->
-                    val newCategories = selections.map { categories[it] }
-                    (targetController as? Listener)?.updateCategoriesForMangas(mangas, newCategories)
-                }
-                .positiveButton(android.R.string.ok)
-                .negativeButton(android.R.string.cancel)
+            .title(R.string.action_move_category)
+            .listItemsMultiChoice(
+                items = categories.map { it.name },
+                initialSelection = preselected.toIntArray(),
+                allowEmptySelection = true
+            ) { _, selections, _ ->
+                val newCategories = selections.map { categories[it] }
+                (targetController as? Listener)?.updateCategoriesForMangas(mangas, newCategories)
+            }
+            .positiveButton(android.R.string.ok)
+            .negativeButton(android.R.string.cancel)
     }
 
     interface Listener {

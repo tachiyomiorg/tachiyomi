@@ -26,8 +26,11 @@ class ChaptersAdapter(
 
     val bookmarkedColor = context.getResourceColor(R.attr.colorAccent)
 
-    val decimalFormat = DecimalFormat("#.###", DecimalFormatSymbols()
-            .apply { decimalSeparator = '.' })
+    val decimalFormat = DecimalFormat(
+        "#.###",
+        DecimalFormatSymbols()
+            .apply { decimalSeparator = '.' }
+    )
 
     val dateFormat: DateFormat = preferences.dateFormat().getOrDefault()
 

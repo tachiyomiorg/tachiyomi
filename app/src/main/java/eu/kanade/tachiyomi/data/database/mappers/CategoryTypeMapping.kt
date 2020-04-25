@@ -18,22 +18,22 @@ import eu.kanade.tachiyomi.data.database.tables.CategoryTable.COL_ORDER
 import eu.kanade.tachiyomi.data.database.tables.CategoryTable.TABLE
 
 class CategoryTypeMapping : SQLiteTypeMapping<Category>(
-        CategoryPutResolver(),
-        CategoryGetResolver(),
-        CategoryDeleteResolver()
+    CategoryPutResolver(),
+    CategoryGetResolver(),
+    CategoryDeleteResolver()
 )
 
 class CategoryPutResolver : DefaultPutResolver<Category>() {
 
     override fun mapToInsertQuery(obj: Category) = InsertQuery.builder()
-            .table(TABLE)
-            .build()
+        .table(TABLE)
+        .build()
 
     override fun mapToUpdateQuery(obj: Category) = UpdateQuery.builder()
-            .table(TABLE)
-            .where("$COL_ID = ?")
-            .whereArgs(obj.id)
-            .build()
+        .table(TABLE)
+        .where("$COL_ID = ?")
+        .whereArgs(obj.id)
+        .build()
 
     override fun mapToContentValues(obj: Category) = ContentValues(4).apply {
         put(COL_ID, obj.id)
@@ -56,8 +56,8 @@ class CategoryGetResolver : DefaultGetResolver<Category>() {
 class CategoryDeleteResolver : DefaultDeleteResolver<Category>() {
 
     override fun mapToDeleteQuery(obj: Category) = DeleteQuery.builder()
-            .table(TABLE)
-            .where("$COL_ID = ?")
-            .whereArgs(obj.id)
-            .build()
+        .table(TABLE)
+        .where("$COL_ID = ?")
+        .whereArgs(obj.id)
+        .build()
 }

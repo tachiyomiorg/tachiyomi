@@ -31,7 +31,7 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.ui.source.browse.BrowseSourceController
-import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchController
+import eu.kanade.tachiyomi.ui.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.lang.truncateCenter
 import eu.kanade.tachiyomi.util.system.toast
@@ -217,12 +217,14 @@ class MangaInfoController(private val fromSource: Boolean = false) :
         }
 
         // Update status TextView.
-        binding.mangaStatus.setText(when (manga.status) {
-            SManga.ONGOING -> R.string.ongoing
-            SManga.COMPLETED -> R.string.completed
-            SManga.LICENSED -> R.string.licensed
-            else -> R.string.unknown
-        })
+        binding.mangaStatus.setText(
+            when (manga.status) {
+                SManga.ONGOING -> R.string.ongoing
+                SManga.COMPLETED -> R.string.completed
+                SManga.LICENSED -> R.string.licensed
+                else -> R.string.unknown
+            }
+        )
 
         // Set the favorite drawable to the correct one.
         setFavoriteButtonState(manga.favorite)
@@ -233,16 +235,16 @@ class MangaInfoController(private val fromSource: Boolean = false) :
             val mangaThumbnail = manga.toMangaThumbnail()
 
             GlideApp.with(view.context)
-                    .load(mangaThumbnail)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .centerCrop()
-                    .into(binding.mangaCover)
+                .load(mangaThumbnail)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .centerCrop()
+                .into(binding.mangaCover)
 
             GlideApp.with(view.context)
-                    .load(mangaThumbnail)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .centerCrop()
-                    .into(binding.backdrop)
+                .load(mangaThumbnail)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .centerCrop()
+                .into(binding.backdrop)
         }
 
         // Manga info section
@@ -291,23 +293,26 @@ class MangaInfoController(private val fromSource: Boolean = false) :
         val isExpanded = binding.mangaInfoToggle.text == context.getString(R.string.manga_info_collapse)
 
         binding.mangaInfoToggle.text =
-            if (isExpanded)
+            if (isExpanded) {
                 context.getString(R.string.manga_info_expand)
-            else
+            } else {
                 context.getString(R.string.manga_info_collapse)
+            }
 
         with(binding.mangaSummary) {
             maxLines =
-                if (isExpanded)
+                if (isExpanded) {
                     3
-                else
+                } else {
                     Int.MAX_VALUE
+                }
 
             ellipsize =
-                if (isExpanded)
+                if (isExpanded) {
                     TextUtils.TruncateAt.END
-                else
+                } else {
                     null
+                }
         }
 
         binding.mangaGenresTagsCompact.visibleIf { isExpanded }
@@ -447,7 +452,7 @@ class MangaInfoController(private val fromSource: Boolean = false) :
                     }.toTypedArray()
 
                     ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
-                            .showDialog(router)
+                        .showDialog(router)
                 }
             }
         }
@@ -463,7 +468,7 @@ class MangaInfoController(private val fromSource: Boolean = false) :
         }.toTypedArray()
 
         ChangeMangaCategoriesDialog(this, listOf(manga), categories, preselected)
-                .showDialog(router)
+            .showDialog(router)
     }
 
     override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>) {
@@ -492,8 +497,10 @@ class MangaInfoController(private val fromSource: Boolean = false) :
         val clipboard = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         clipboard.setPrimaryClip(ClipData.newPlainText(label, content))
 
-        activity.toast(view.context.getString(R.string.copied_to_clipboard, content.truncateCenter(20)),
-                Toast.LENGTH_SHORT)
+        activity.toast(
+            view.context.getString(R.string.copied_to_clipboard, content.truncateCenter(20)),
+            Toast.LENGTH_SHORT
+        )
     }
 
     /**

@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.runBlocking
 
 class UpdaterJob(private val context: Context, workerParams: WorkerParameters) :
-        Worker(context, workerParams) {
+    Worker(context, workerParams) {
 
     override fun doWork(): Result {
         return runBlocking {
@@ -37,9 +37,11 @@ class UpdaterJob(private val context: Context, workerParams: WorkerParameters) :
                         setContentText(context.getString(R.string.update_check_notification_update_available))
                         setSmallIcon(android.R.drawable.stat_sys_download_done)
                         // Download action
-                        addAction(android.R.drawable.stat_sys_download_done,
-                                context.getString(R.string.action_download),
-                                PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT))
+                        addAction(
+                            android.R.drawable.stat_sys_download_done,
+                            context.getString(R.string.action_download),
+                            PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+                        )
                     }
                 }
                 Result.success()
@@ -59,15 +61,16 @@ class UpdaterJob(private val context: Context, workerParams: WorkerParameters) :
 
         fun setupTask(context: Context) {
             val constraints = Constraints.Builder()
-                    .setRequiredNetworkType(NetworkType.CONNECTED)
-                    .build()
+                .setRequiredNetworkType(NetworkType.CONNECTED)
+                .build()
 
             val request = PeriodicWorkRequestBuilder<UpdaterJob>(
-                    3, TimeUnit.DAYS,
-                    3, TimeUnit.HOURS)
-                    .addTag(TAG)
-                    .setConstraints(constraints)
-                    .build()
+                3, TimeUnit.DAYS,
+                3, TimeUnit.HOURS
+            )
+                .addTag(TAG)
+                .setConstraints(constraints)
+                .build()
 
             WorkManager.getInstance(context).enqueueUniquePeriodicWork(TAG, ExistingPeriodicWorkPolicy.REPLACE, request)
         }

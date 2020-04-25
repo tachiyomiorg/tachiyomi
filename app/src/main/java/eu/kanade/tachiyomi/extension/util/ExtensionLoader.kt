@@ -35,9 +35,9 @@ internal object ExtensionLoader {
      * List of the trusted signatures.
      */
     var trustedSignatures = mutableSetOf<String>() +
-            Injekt.get<PreferencesHelper>().trustedSignatures().get() +
-            // inorichi's key
-            "7ce04da7773d41b489f4693a366c36bcd0a11fc39b547168553c285bd7348e23"
+        Injekt.get<PreferencesHelper>().trustedSignatures().get() +
+        // inorichi's key
+        "7ce04da7773d41b489f4693a366c36bcd0a11fc39b547168553c285bd7348e23"
 
     /**
      * Return a list of all the installed extensions initialized concurrently.
@@ -107,8 +107,10 @@ internal object ExtensionLoader {
         // Validate lib version
         val libVersion = versionName.substringBeforeLast('.').toDouble()
         if (libVersion < LIB_VERSION_MIN || libVersion > LIB_VERSION_MAX) {
-            val exception = Exception("Lib version is $libVersion, while only versions " +
-                    "$LIB_VERSION_MIN to $LIB_VERSION_MAX are allowed")
+            val exception = Exception(
+                "Lib version is $libVersion, while only versions " +
+                    "$LIB_VERSION_MIN to $LIB_VERSION_MAX are allowed"
+            )
             Timber.w(exception)
             return LoadResult.Error(exception)
         }
@@ -126,29 +128,30 @@ internal object ExtensionLoader {
         val classLoader = PathClassLoader(appInfo.sourceDir, null, context.classLoader)
 
         val sources = appInfo.metaData.getString(METADATA_SOURCE_CLASS)!!
-                .split(";")
-                .map {
-                    val sourceClass = it.trim()
-                    if (sourceClass.startsWith("."))
-                        pkgInfo.packageName + sourceClass
-                    else
-                        sourceClass
+            .split(";")
+            .map {
+                val sourceClass = it.trim()
+                if (sourceClass.startsWith(".")) {
+                    pkgInfo.packageName + sourceClass
+                } else {
+                    sourceClass
                 }
-                .flatMap {
-                    try {
-                        when (val obj = Class.forName(it, false, classLoader).newInstance()) {
-                            is Source -> listOf(obj)
-                            is SourceFactory -> obj.createSources()
-                            else -> throw Exception("Unknown source class type! ${obj.javaClass}")
-                        }
-                    } catch (e: Throwable) {
-                        Timber.e(e, "Extension load error: $extName.")
-                        return LoadResult.Error(e)
+            }
+            .flatMap {
+                try {
+                    when (val obj = Class.forName(it, false, classLoader).newInstance()) {
+                        is Source -> listOf(obj)
+                        is SourceFactory -> obj.createSources()
+                        else -> throw Exception("Unknown source class type! ${obj.javaClass}")
                     }
+                } catch (e: Throwable) {
+                    Timber.e(e, "Extension load error: $extName.")
+                    return LoadResult.Error(e)
                 }
+            }
         val langs = sources.filterIsInstance<CatalogueSource>()
-                .map { it.lang }
-                .toSet()
+            .map { it.lang }
+            .toSet()
 
         val lang = when (langs.size) {
             0 -> ""

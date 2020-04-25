@@ -26,13 +26,16 @@ class ShikimoriLoginActivity : AppCompatActivity() {
         val code = intent.data?.getQueryParameter("code")
         if (code != null) {
             trackManager.shikimori.login(code)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
                         returnToSettings()
-                    }, {
+                    },
+                    {
                         returnToSettings()
-                    })
+                    }
+                )
         } else {
             trackManager.shikimori.logout()
             returnToSettings()

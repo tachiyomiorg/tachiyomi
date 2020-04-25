@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.source.global_search
+package eu.kanade.tachiyomi.ui.source.globalsearch
 
 import android.view.View
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -43,12 +43,12 @@ class GlobalSearchCardHolder(view: View, adapter: GlobalSearchCardAdapter) :
         GlideApp.with(itemView.context).clear(itemImage)
         if (!manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(itemView.context)
-                    .load(manga.toMangaThumbnail())
-                    .diskCacheStrategy(DiskCacheStrategy.DATA)
-                    .centerCrop()
-                    .skipMemoryCache(true)
-                    .placeholder(android.R.color.transparent)
-                    .into(StateImageViewTarget(itemImage, progress))
+                .load(manga.toMangaThumbnail())
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
+                .centerCrop()
+                .skipMemoryCache(true)
+                .placeholder(android.R.color.transparent)
+                .into(StateImageViewTarget(itemImage, progress))
         }
     }
 }

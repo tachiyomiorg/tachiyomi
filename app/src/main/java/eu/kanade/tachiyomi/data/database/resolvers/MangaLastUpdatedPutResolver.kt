@@ -20,10 +20,10 @@ class MangaLastUpdatedPutResolver : PutResolver<Manga>() {
     }
 
     fun mapToUpdateQuery(manga: Manga) = UpdateQuery.builder()
-            .table(MangaTable.TABLE)
-            .where("${MangaTable.COL_ID} = ?")
-            .whereArgs(manga.id)
-            .build()
+        .table(MangaTable.TABLE)
+        .where("${MangaTable.COL_ID} = ?")
+        .whereArgs(manga.id)
+        .build()
 
     fun mapToContentValues(manga: Manga) = ContentValues(1).apply {
         put(MangaTable.COL_LAST_UPDATE, manga.last_update)

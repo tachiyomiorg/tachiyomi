@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.source_list_item.title
  * @constructor creates a new catalogue holder.
  */
 class SourceListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
-        SourceHolder(view, adapter) {
+    SourceHolder(view, adapter) {
 
     private val favoriteColor = ContextCompat.getColor(view.context, R.color.material_on_surface_disabled)
     private val unfavoriteColor = view.context.getResourceColor(R.attr.colorOnSurface)
@@ -43,13 +43,13 @@ class SourceListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
         GlideApp.with(view.context).clear(thumbnail)
         if (!manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(view.context)
-                    .load(manga.toMangaThumbnail())
-                    .diskCacheStrategy(DiskCacheStrategy.DATA)
-                    .centerCrop()
-                    .circleCrop()
-                    .dontAnimate()
-                    .placeholder(android.R.color.transparent)
-                    .into(thumbnail)
+                .load(manga.toMangaThumbnail())
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
+                .centerCrop()
+                .circleCrop()
+                .dontAnimate()
+                .placeholder(android.R.color.transparent)
+                .into(thumbnail)
         }
     }
 }

@@ -26,22 +26,22 @@ import eu.kanade.tachiyomi.data.database.tables.ChapterTable.COL_URL
 import eu.kanade.tachiyomi.data.database.tables.ChapterTable.TABLE
 
 class ChapterTypeMapping : SQLiteTypeMapping<Chapter>(
-        ChapterPutResolver(),
-        ChapterGetResolver(),
-        ChapterDeleteResolver()
+    ChapterPutResolver(),
+    ChapterGetResolver(),
+    ChapterDeleteResolver()
 )
 
 class ChapterPutResolver : DefaultPutResolver<Chapter>() {
 
     override fun mapToInsertQuery(obj: Chapter) = InsertQuery.builder()
-            .table(TABLE)
-            .build()
+        .table(TABLE)
+        .build()
 
     override fun mapToUpdateQuery(obj: Chapter) = UpdateQuery.builder()
-            .table(TABLE)
-            .where("$COL_ID = ?")
-            .whereArgs(obj.id)
-            .build()
+        .table(TABLE)
+        .where("$COL_ID = ?")
+        .whereArgs(obj.id)
+        .build()
 
     override fun mapToContentValues(obj: Chapter) = ContentValues(11).apply {
         put(COL_ID, obj.id)
@@ -80,8 +80,8 @@ class ChapterGetResolver : DefaultGetResolver<Chapter>() {
 class ChapterDeleteResolver : DefaultDeleteResolver<Chapter>() {
 
     override fun mapToDeleteQuery(obj: Chapter) = DeleteQuery.builder()
-            .table(TABLE)
-            .where("$COL_ID = ?")
-            .whereArgs(obj.id)
-            .build()
+        .table(TABLE)
+        .where("$COL_ID = ?")
+        .whereArgs(obj.id)
+        .build()
 }

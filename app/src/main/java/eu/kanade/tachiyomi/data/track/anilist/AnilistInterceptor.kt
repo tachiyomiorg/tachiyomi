@@ -38,8 +38,8 @@ class AnilistInterceptor(val anilist: Anilist, private var token: String?) : Int
 
         // Add the authorization header to the original request.
         val authRequest = originalRequest.newBuilder()
-                .addHeader("Authorization", "Bearer ${oauth!!.access_token}")
-                .build()
+            .addHeader("Authorization", "Bearer ${oauth!!.access_token}")
+            .build()
 
         return chain.proceed(authRequest)
     }

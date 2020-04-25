@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.source.global_search
+package eu.kanade.tachiyomi.ui.source.globalsearch
 
 import android.os.Bundle
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
@@ -73,11 +73,13 @@ open class GlobalSearchPresenter(
         super.onCreate(savedState)
 
         extensionFilter = savedState?.getString(GlobalSearchPresenter::extensionFilter.name)
-                ?: initialExtensionFilter
+            ?: initialExtensionFilter
 
         // Perform a search with previous or initial state
-        search(savedState?.getString(BrowseSourcePresenter::query.name)
-                ?: initialQuery.orEmpty())
+        search(
+            savedState?.getString(BrowseSourcePresenter::query.name)
+                ?: initialQuery.orEmpty()
+        )
     }
 
     override fun onDestroy() {
@@ -104,9 +106,9 @@ open class GlobalSearchPresenter(
         val pinnedCatalogues = preferences.pinnedCatalogues().get()
 
         return sourceManager.getCatalogueSources()
-                .filter { it.lang in languages }
-                .filterNot { it.id.toString() in hiddenCatalogues }
-                .sortedWith(compareBy({ it.id.toString() !in pinnedCatalogues }, { "(${it.lang}) ${it.name}" }))
+            .filter { it.lang in languages }
+            .filterNot { it.id.toString() in hiddenCatalogues }
+            .sortedWith(compareBy({ it.id.toString() !in pinnedCatalogues }, { "(${it.lang}) ${it.name}" }))
     }
 
     private fun getSourcesToQuery(): List<CatalogueSource> {
@@ -117,10 +119,10 @@ open class GlobalSearchPresenter(
         }
 
         val filterSources = extensionManager.installedExtensions
-                .filter { it.pkgName == filter }
-                .flatMap { it.sources }
-                .filter { it in enabledSources }
-                .filterIsInstance<CatalogueSource>()
+            .filter { it.pkgName == filter }
+            .flatMap { it.sources }
+            .filter { it in enabledSources }
+            .filterIsInstance<CatalogueSource>()
 
         if (filterSources.isEmpty()) {
             return enabledSources
@@ -157,29 +159,35 @@ open class GlobalSearchPresenter(
 
         fetchSourcesSubscription?.unsubscribe()
         fetchSourcesSubscription = Observable.from(sources)
-                .flatMap({ source ->
+            .flatMap(
+                { source ->
                     Observable.defer { source.fetchSearchManga(1, query, FilterList()) }
-                            .subscribeOn(Schedulers.io())
-                            .onErrorReturn { MangasPage(emptyList(), false) } // Ignore timeouts or other exceptions
-                            .map { it.mangas.take(10) } // Get at most 10 manga from search result.
-                            .map { list -> list.map { networkToLocalManga(it, source.id) } } // Convert to local manga.
-                            .doOnNext { fetchImage(it, source) } // Load manga covers.
-                            .map { list -> createCatalogueSearchItem(source, list.map { GlobalSearchCardItem(it) }) }
-                }, 5)
-                .observeOn(AndroidSchedulers.mainThread())
-                // Update matching source with the obtained results
-                .map { result ->
-                    items.map { item -> if (item.source == result.source) result else item }
-                }
-                // Update current state
-                .doOnNext { items = it }
-                // Deliver initial state
-                .startWith(initialItems)
-                .subscribeLatestCache({ view, manga ->
+                        .subscribeOn(Schedulers.io())
+                        .onErrorReturn { MangasPage(emptyList(), false) } // Ignore timeouts or other exceptions
+                        .map { it.mangas.take(10) } // Get at most 10 manga from search result.
+                        .map { list -> list.map { networkToLocalManga(it, source.id) } } // Convert to local manga.
+                        .doOnNext { fetchImage(it, source) } // Load manga covers.
+                        .map { list -> createCatalogueSearchItem(source, list.map { GlobalSearchCardItem(it) }) }
+                },
+                5
+            )
+            .observeOn(AndroidSchedulers.mainThread())
+            // Update matching source with the obtained results
+            .map { result ->
+                items.map { item -> if (item.source == result.source) result else item }
+            }
+            // Update current state
+            .doOnNext { items = it }
+            // Deliver initial state
+            .startWith(initialItems)
+            .subscribeLatestCache(
+                { view, manga ->
                     view.setItems(manga)
-                }, { _, error ->
+                },
+                { _, error ->
                     Timber.e(error)
-                })
+                }
+            )
     }
 
     /**
@@ -197,21 +205,24 @@ open class GlobalSearchPresenter(
     private fun initializeFetchImageSubscription() {
         fetchImageSubscription?.unsubscribe()
         fetchImageSubscription = fetchImageSubject.observeOn(Schedulers.io())
-                .flatMap { pair ->
-                    val source = pair.second
-                    Observable.from(pair.first).filter { it.thumbnail_url == null && !it.initialized }
-                            .map { Pair(it, source) }
-                            .concatMap { getMangaDetailsObservable(it.first, it.second) }
-                            .map { Pair(source as CatalogueSource, it) }
-                }
-                .onBackpressureBuffer()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ (source, manga) ->
+            .flatMap { pair ->
+                val source = pair.second
+                Observable.from(pair.first).filter { it.thumbnail_url == null && !it.initialized }
+                    .map { Pair(it, source) }
+                    .concatMap { getMangaDetailsObservable(it.first, it.second) }
+                    .map { Pair(source as CatalogueSource, it) }
+            }
+            .onBackpressureBuffer()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { (source, manga) ->
                     @Suppress("DEPRECATION")
                     view?.onMangaInitialized(source, manga)
-                }, { error ->
+                },
+                { error ->
                     Timber.e(error)
-                })
+                }
+            )
     }
 
     /**
@@ -222,13 +233,13 @@ open class GlobalSearchPresenter(
      */
     private fun getMangaDetailsObservable(manga: Manga, source: Source): Observable<Manga> {
         return source.fetchMangaDetails(manga)
-                .flatMap { networkManga ->
-                    manga.copyFrom(networkManga)
-                    manga.initialized = true
-                    db.insertManga(manga).executeAsBlocking()
-                    Observable.just(manga)
-                }
-                .onErrorResumeNext { Observable.just(manga) }
+            .flatMap { networkManga ->
+                manga.copyFrom(networkManga)
+                manga.initialized = true
+                db.insertManga(manga).executeAsBlocking()
+                Observable.just(manga)
+            }
+            .onErrorResumeNext { Observable.just(manga) }
     }
 
     /**

@@ -25,36 +25,39 @@ class LibraryMangaUrlFetcher(
 
     override fun loadData(priority: Priority, callback: DataFetcher.DataCallback<in InputStream>) {
         if (!file.exists()) {
-            networkFetcher.loadData(priority, object : DataFetcher.DataCallback<InputStream> {
-                override fun onDataReady(data: InputStream?) {
-                    if (data != null) {
-                        val tmpFile = File(file.path + ".tmp")
-                        try {
-                            // Retrieve destination stream, create parent folders if needed.
-                            val output = try {
-                                tmpFile.outputStream()
-                            } catch (e: FileNotFoundException) {
-                                tmpFile.parentFile.mkdirs()
-                                tmpFile.outputStream()
-                            }
+            networkFetcher.loadData(
+                priority,
+                object : DataFetcher.DataCallback<InputStream> {
+                    override fun onDataReady(data: InputStream?) {
+                        if (data != null) {
+                            val tmpFile = File(file.path + ".tmp")
+                            try {
+                                // Retrieve destination stream, create parent folders if needed.
+                                val output = try {
+                                    tmpFile.outputStream()
+                                } catch (e: FileNotFoundException) {
+                                    tmpFile.parentFile.mkdirs()
+                                    tmpFile.outputStream()
+                                }
 
-                            // Copy the file and rename to the original.
-                            data.use { output.use { data.copyTo(output) } }
-                            tmpFile.renameTo(file)
-                            loadFromFile(callback)
-                        } catch (e: Exception) {
-                            tmpFile.delete()
-                            callback.onLoadFailed(e)
+                                // Copy the file and rename to the original.
+                                data.use { output.use { data.copyTo(output) } }
+                                tmpFile.renameTo(file)
+                                loadFromFile(callback)
+                            } catch (e: Exception) {
+                                tmpFile.delete()
+                                callback.onLoadFailed(e)
+                            }
+                        } else {
+                            callback.onLoadFailed(Exception("Null data"))
                         }
-                    } else {
-                        callback.onLoadFailed(Exception("Null data"))
+                    }
+
+                    override fun onLoadFailed(e: Exception) {
+                        callback.onLoadFailed(e)
                     }
                 }
-
-                override fun onLoadFailed(e: Exception) {
-                    callback.onLoadFailed(e)
-                }
-            })
+            )
         } else {
             loadFromFile(callback)
         }

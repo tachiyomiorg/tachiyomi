@@ -15,8 +15,9 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.clearFindViewByIdCache
 import timber.log.Timber
 
-abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) : RestoreViewOnCreateController(bundle),
-        LayoutContainer {
+abstract class BaseController<VB : ViewBinding>(bundle: Bundle? = null) :
+    RestoreViewOnCreateController(bundle),
+    LayoutContainer {
 
     lateinit var binding: VB
 

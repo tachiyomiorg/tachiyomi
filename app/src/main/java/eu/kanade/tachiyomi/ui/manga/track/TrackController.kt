@@ -17,12 +17,13 @@ import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 import timber.log.Timber
 
-class TrackController : NucleusController<TrackControllerBinding, TrackPresenter>(),
-        TrackAdapter.OnClickListener,
-        SetTrackStatusDialog.Listener,
-        SetTrackChaptersDialog.Listener,
-        SetTrackScoreDialog.Listener,
-        SetTrackReadingDatesDialog.Listener {
+class TrackController :
+    NucleusController<TrackControllerBinding, TrackPresenter>(),
+    TrackAdapter.OnClickListener,
+    SetTrackStatusDialog.Listener,
+    SetTrackChaptersDialog.Listener,
+    SetTrackScoreDialog.Listener,
+    SetTrackReadingDatesDialog.Listener {
 
     private var adapter: TrackAdapter? = null
 

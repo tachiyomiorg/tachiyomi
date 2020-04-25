@@ -34,16 +34,16 @@ object DiskUtil {
     fun getExternalStorages(context: Context): Collection<File> {
         val directories = mutableSetOf<File>()
         directories += ContextCompat.getExternalFilesDirs(context, null)
-                .filterNotNull()
-                .mapNotNull {
-                    val file = File(it.absolutePath.substringBefore("/Android/"))
-                    val state = EnvironmentCompat.getStorageState(file)
-                    if (state == Environment.MEDIA_MOUNTED || state == Environment.MEDIA_MOUNTED_READ_ONLY) {
-                        file
-                    } else {
-                        null
-                    }
+            .filterNotNull()
+            .mapNotNull {
+                val file = File(it.absolutePath.substringBefore("/Android/"))
+                val state = EnvironmentCompat.getStorageState(file)
+                if (state == Environment.MEDIA_MOUNTED || state == Environment.MEDIA_MOUNTED_READ_ONLY) {
+                    file
+                } else {
+                    null
                 }
+            }
 
         return directories
     }

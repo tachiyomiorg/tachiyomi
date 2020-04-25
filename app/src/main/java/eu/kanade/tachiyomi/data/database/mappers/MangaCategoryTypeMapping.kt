@@ -16,22 +16,22 @@ import eu.kanade.tachiyomi.data.database.tables.MangaCategoryTable.COL_MANGA_ID
 import eu.kanade.tachiyomi.data.database.tables.MangaCategoryTable.TABLE
 
 class MangaCategoryTypeMapping : SQLiteTypeMapping<MangaCategory>(
-        MangaCategoryPutResolver(),
-        MangaCategoryGetResolver(),
-        MangaCategoryDeleteResolver()
+    MangaCategoryPutResolver(),
+    MangaCategoryGetResolver(),
+    MangaCategoryDeleteResolver()
 )
 
 class MangaCategoryPutResolver : DefaultPutResolver<MangaCategory>() {
 
     override fun mapToInsertQuery(obj: MangaCategory) = InsertQuery.builder()
-            .table(TABLE)
-            .build()
+        .table(TABLE)
+        .build()
 
     override fun mapToUpdateQuery(obj: MangaCategory) = UpdateQuery.builder()
-            .table(TABLE)
-            .where("$COL_ID = ?")
-            .whereArgs(obj.id)
-            .build()
+        .table(TABLE)
+        .where("$COL_ID = ?")
+        .whereArgs(obj.id)
+        .build()
 
     override fun mapToContentValues(obj: MangaCategory) = ContentValues(3).apply {
         put(COL_ID, obj.id)
@@ -52,8 +52,8 @@ class MangaCategoryGetResolver : DefaultGetResolver<MangaCategory>() {
 class MangaCategoryDeleteResolver : DefaultDeleteResolver<MangaCategory>() {
 
     override fun mapToDeleteQuery(obj: MangaCategory) = DeleteQuery.builder()
-            .table(TABLE)
-            .where("$COL_ID = ?")
-            .whereArgs(obj.id)
-            .build()
+        .table(TABLE)
+        .where("$COL_ID = ?")
+        .whereArgs(obj.id)
+        .build()
 }

@@ -8,7 +8,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.system.getResourceColor
 
 class ThemedSwipeRefreshLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
-        SwipeRefreshLayout(context, attrs) {
+    SwipeRefreshLayout(context, attrs) {
 
     init {
         setColors()
@@ -17,8 +17,9 @@ class ThemedSwipeRefreshLayout @JvmOverloads constructor(context: Context, attrs
     private fun setColors() {
         setProgressBackgroundColorSchemeColor(context.getResourceColor(R.attr.colorAccent))
         setColorSchemeColors(
-                ContextCompat.getColor(context, R.color.md_white_1000),
-                ContextCompat.getColor(context, R.color.md_white_1000),
-                ContextCompat.getColor(context, R.color.md_white_1000))
+            ContextCompat.getColor(context, R.color.md_white_1000),
+            ContextCompat.getColor(context, R.color.md_white_1000),
+            ContextCompat.getColor(context, R.color.md_white_1000)
+        )
     }
 }

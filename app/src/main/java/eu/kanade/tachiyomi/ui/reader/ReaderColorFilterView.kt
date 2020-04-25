@@ -17,14 +17,16 @@ class ReaderColorFilterView(
 
     fun setFilterColor(color: Int, filterMode: Int) {
         colorFilterPaint.color = color
-        colorFilterPaint.xfermode = PorterDuffXfermode(when (filterMode) {
-            1 -> PorterDuff.Mode.MULTIPLY
-            2 -> PorterDuff.Mode.SCREEN
-            3 -> PorterDuff.Mode.OVERLAY
-            4 -> PorterDuff.Mode.LIGHTEN
-            5 -> PorterDuff.Mode.DARKEN
-            else -> PorterDuff.Mode.SRC_OVER
-        })
+        colorFilterPaint.xfermode = PorterDuffXfermode(
+            when (filterMode) {
+                1 -> PorterDuff.Mode.MULTIPLY
+                2 -> PorterDuff.Mode.SCREEN
+                3 -> PorterDuff.Mode.OVERLAY
+                4 -> PorterDuff.Mode.LIGHTEN
+                5 -> PorterDuff.Mode.DARKEN
+                else -> PorterDuff.Mode.SRC_OVER
+            }
+        )
         invalidate()
     }
 

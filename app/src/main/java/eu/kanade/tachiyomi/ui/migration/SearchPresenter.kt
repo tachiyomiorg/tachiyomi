@@ -8,9 +8,9 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.model.SManga
-import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchCardItem
-import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchItem
-import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchPresenter
+import eu.kanade.tachiyomi.ui.source.globalsearch.GlobalSearchCardItem
+import eu.kanade.tachiyomi.ui.source.globalsearch.GlobalSearchItem
+import eu.kanade.tachiyomi.ui.source.globalsearch.GlobalSearchPresenter
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -32,7 +32,7 @@ class SearchPresenter(
     override fun getEnabledSources(): List<CatalogueSource> {
         // Put the source of the selected manga at the top
         return super.getEnabledSources()
-                .sortedByDescending { it.id == manga.source }
+            .sortedByDescending { it.id == manga.source }
     }
 
     override fun createCatalogueSearchItem(source: CatalogueSource, results: List<GlobalSearchCardItem>?): GlobalSearchItem {
@@ -53,13 +53,13 @@ class SearchPresenter(
         replacingMangaRelay.call(true)
 
         Observable.defer { source.fetchChapterList(manga) }
-                .onErrorReturn { emptyList() }
-                .doOnNext { migrateMangaInternal(source, it, prevManga, manga, replace) }
-                .onErrorReturn { emptyList() }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnUnsubscribe { replacingMangaRelay.call(false) }
-                .subscribe()
+            .onErrorReturn { emptyList() }
+            .doOnNext { migrateMangaInternal(source, it, prevManga, manga, replace) }
+            .onErrorReturn { emptyList() }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnUnsubscribe { replacingMangaRelay.call(false) }
+            .subscribe()
     }
 
     private fun migrateMangaInternal(

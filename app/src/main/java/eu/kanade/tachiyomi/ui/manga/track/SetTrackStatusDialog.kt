@@ -17,9 +17,11 @@ class SetTrackStatusDialog<T> : DialogController
 
     private val item: TrackItem
 
-    constructor(target: T, item: TrackItem) : super(Bundle().apply {
-        putSerializable(KEY_ITEM_TRACK, item.track)
-    }) {
+    constructor(target: T, item: TrackItem) : super(
+        Bundle().apply {
+            putSerializable(KEY_ITEM_TRACK, item.track)
+        }
+    ) {
         targetController = target
         this.item = item
     }
@@ -38,16 +40,16 @@ class SetTrackStatusDialog<T> : DialogController
         val selectedIndex = statusList.indexOf(item.track?.status)
 
         return MaterialDialog(activity!!)
-                .title(R.string.status)
-                .negativeButton(android.R.string.cancel)
-                .listItemsSingleChoice(
-                    items = statusString,
-                    initialSelection = selectedIndex,
-                    waitForPositiveButton = false
-                ) { dialog, position, _ ->
-                    (targetController as? Listener)?.setStatus(item, position)
-                    dialog.dismiss()
-                }
+            .title(R.string.status)
+            .negativeButton(android.R.string.cancel)
+            .listItemsSingleChoice(
+                items = statusString,
+                initialSelection = selectedIndex,
+                waitForPositiveButton = false
+            ) { dialog, position, _ ->
+                (targetController as? Listener)?.setStatus(item, position)
+                dialog.dismiss()
+            }
     }
 
     interface Listener {

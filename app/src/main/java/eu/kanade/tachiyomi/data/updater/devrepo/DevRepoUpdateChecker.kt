@@ -16,8 +16,8 @@ class DevRepoUpdateChecker : UpdateChecker() {
 
     private val client: OkHttpClient by lazy {
         Injekt.get<NetworkHelper>().client.newBuilder()
-                .followRedirects(false)
-                .build()
+            .followRedirects(false)
+            .build()
     }
 
     private val versionRegex: Regex by lazy {

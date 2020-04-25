@@ -52,7 +52,7 @@ fun Context.toast(text: String?, duration: Int = Toast.LENGTH_SHORT) {
  */
 fun Context.notificationBuilder(channelId: String, block: (NotificationCompat.Builder.() -> Unit)? = null): NotificationCompat.Builder {
     val builder = NotificationCompat.Builder(this, channelId)
-            .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
+        .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
     if (block != null) {
         builder.block()
     }
@@ -78,10 +78,10 @@ fun Context.notification(channelId: String, block: (NotificationCompat.Builder.(
  */
 fun Context.getFilePicker(currentDir: String): Intent {
     return Intent(this, CustomLayoutPickerActivity::class.java)
-            .putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
-            .putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
-            .putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
-            .putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
+        .putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)
+        .putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true)
+        .putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR)
+        .putExtra(FilePickerActivity.EXTRA_START_PATH, currentDir)
 }
 
 /**
@@ -178,7 +178,7 @@ fun Context.isServiceRunning(serviceClass: Class<*>): Boolean {
     val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
     @Suppress("DEPRECATION")
     return manager.getRunningServices(Integer.MAX_VALUE)
-            .any { className == it.service.className }
+        .any { className == it.service.className }
 }
 
 /**
@@ -188,8 +188,8 @@ fun Context.openInBrowser(url: String) {
     try {
         val parsedUrl = Uri.parse(url)
         val intent = CustomTabsIntent.Builder()
-                .setToolbarColor(getResourceColor(R.attr.colorPrimary))
-                .build()
+            .setToolbarColor(getResourceColor(R.attr.colorPrimary))
+            .build()
         intent.launchUrl(this, parsedUrl)
     } catch (e: Exception) {
         toast(e.message)

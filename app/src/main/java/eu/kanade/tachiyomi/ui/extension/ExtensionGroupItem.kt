@@ -38,7 +38,6 @@ data class ExtensionGroupItem(val name: String, val size: Int, val showSize: Boo
         position: Int,
         payloads: List<Any?>?
     ) {
-
         holder.bind(this)
     }
 

@@ -27,8 +27,10 @@ class ElevationAppBarLayout @JvmOverloads constructor(
             val objAnimator = ObjectAnimator.ofFloat(this, "elevation", 0f)
 
             // Enabled and collapsible, but not collapsed means not elevated
-            addState(intArrayOf(android.R.attr.enabled, R.attr.state_collapsible, -R.attr.state_collapsed),
-                    objAnimator)
+            addState(
+                intArrayOf(android.R.attr.enabled, R.attr.state_collapsible, -R.attr.state_collapsed),
+                objAnimator
+            )
 
             // Default enabled state
             addState(intArrayOf(android.R.attr.enabled), objAnimator)

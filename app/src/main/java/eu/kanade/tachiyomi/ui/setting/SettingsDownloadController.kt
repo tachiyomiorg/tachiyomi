@@ -74,9 +74,11 @@ class SettingsDownloadController : SettingsController() {
             intListPreference {
                 key = Keys.removeAfterReadSlots
                 titleRes = R.string.pref_remove_after_read
-                entriesRes = arrayOf(R.string.disabled, R.string.last_read_chapter,
-                        R.string.second_to_last, R.string.third_to_last, R.string.fourth_to_last,
-                        R.string.fifth_to_last)
+                entriesRes = arrayOf(
+                    R.string.disabled, R.string.last_read_chapter,
+                    R.string.second_to_last, R.string.third_to_last, R.string.fourth_to_last,
+                    R.string.fifth_to_last
+                )
                 entryValues = arrayOf("-1", "0", "1", "2", "3", "4")
                 defaultValue = "-1"
                 summary = "%s"
@@ -107,13 +109,14 @@ class SettingsDownloadController : SettingsController() {
                 preferences.downloadNewCategories().asFlow()
                     .onEach { mutableSet ->
                         val selectedCategories = mutableSet
-                                .mapNotNull { id -> categories.find { it.id == id.toInt() } }
-                                .sortedBy { it.order }
+                            .mapNotNull { id -> categories.find { it.id == id.toInt() } }
+                            .sortedBy { it.order }
 
-                        summary = if (selectedCategories.isEmpty())
+                        summary = if (selectedCategories.isEmpty()) {
                             resources?.getString(R.string.all)
-                        else
+                        } else {
                             selectedCategories.joinToString { it.name }
+                        }
                     }
                     .launchIn(scope)
             }
@@ -126,7 +129,7 @@ class SettingsDownloadController : SettingsController() {
                 val context = applicationContext ?: return
                 val uri = data.data
                 val flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or
-                        Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION
 
                 if (uri != null) {
                     @Suppress("NewApi")
@@ -164,26 +167,26 @@ class SettingsDownloadController : SettingsController() {
             val selectedIndex = externalDirs.indexOfFirst { it in currentDir }
 
             return MaterialDialog(activity)
-                    .listItemsSingleChoice(
-                        items = externalDirs,
-                        initialSelection = selectedIndex
-                    ) { _, position, text ->
-                        val target = targetController as? SettingsDownloadController
-                        if (position == externalDirs.lastIndex) {
-                            target?.customDirectorySelected(currentDir)
-                        } else {
-                            target?.predefinedDirectorySelected(text.toString())
-                        }
+                .listItemsSingleChoice(
+                    items = externalDirs,
+                    initialSelection = selectedIndex
+                ) { _, position, text ->
+                    val target = targetController as? SettingsDownloadController
+                    if (position == externalDirs.lastIndex) {
+                        target?.customDirectorySelected(currentDir)
+                    } else {
+                        target?.predefinedDirectorySelected(text.toString())
                     }
+                }
         }
 
         private fun getExternalDirs(): List<File> {
             val defaultDir = Environment.getExternalStorageDirectory().absolutePath +
-                    File.separator + resources?.getString(R.string.app_name) +
-                    File.separator + "downloads"
+                File.separator + resources?.getString(R.string.app_name) +
+                File.separator + "downloads"
 
             return mutableListOf(File(defaultDir)) +
-                    ContextCompat.getExternalFilesDirs(activity!!, "").filterNotNull()
+                ContextCompat.getExternalFilesDirs(activity!!, "").filterNotNull()
         }
     }
 

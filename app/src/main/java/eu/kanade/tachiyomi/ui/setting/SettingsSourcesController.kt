@@ -31,7 +31,7 @@ class SettingsSourcesController : SettingsController() {
 
         // Order first by active languages, then inactive ones
         val orderedLangs = sourcesByLang.keys.filter { it in activeLangsCodes } +
-                sourcesByLang.keys.filterNot { it in activeLangsCodes }
+            sourcesByLang.keys.filterNot { it in activeLangsCodes }
 
         orderedLangs.forEach { lang ->
             val sources = sourcesByLang[lang].orEmpty().sortedBy { it.name }
@@ -91,10 +91,13 @@ class SettingsSourcesController : SettingsController() {
                     val checked = newValue as Boolean
                     val current = preferences.hiddenCatalogues().get()
 
-                    preferences.hiddenCatalogues().set(if (checked)
-                        current - id
-                    else
-                        current + id)
+                    preferences.hiddenCatalogues().set(
+                        if (checked) {
+                            current - id
+                        } else {
+                            current + id
+                        }
+                    )
 
                     true
                 }

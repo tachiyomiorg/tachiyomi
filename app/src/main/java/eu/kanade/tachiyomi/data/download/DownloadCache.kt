@@ -100,8 +100,8 @@ class DownloadCache(
             val mangaDir = sourceDir.files[provider.getMangaDirName(manga)]
             if (mangaDir != null) {
                 return mangaDir.files
-                        .filter { !it.endsWith(Downloader.TMP_DIR_SUFFIX) }
-                        .size
+                    .filter { !it.endsWith(Downloader.TMP_DIR_SUFFIX) }
+                    .size
             }
         }
         return 0
@@ -125,26 +125,26 @@ class DownloadCache(
         val onlineSources = sourceManager.getOnlineSources()
 
         val sourceDirs = rootDir.dir.listFiles()
-                .orEmpty()
-                .associate { it.name to SourceDirectory(it) }
-                .mapNotNullKeys { entry ->
-                    onlineSources.find { provider.getSourceDirName(it) == entry.key }?.id
-                }
+            .orEmpty()
+            .associate { it.name to SourceDirectory(it) }
+            .mapNotNullKeys { entry ->
+                onlineSources.find { provider.getSourceDirName(it) == entry.key }?.id
+            }
 
         rootDir.files = sourceDirs
 
         sourceDirs.values.forEach { sourceDir ->
             val mangaDirs = sourceDir.dir.listFiles()
-                    .orEmpty()
-                    .associateNotNullKeys { it.name to MangaDirectory(it) }
+                .orEmpty()
+                .associateNotNullKeys { it.name to MangaDirectory(it) }
 
             sourceDir.files = mangaDirs
 
             mangaDirs.values.forEach { mangaDir ->
                 val chapterDirs = mangaDir.dir.listFiles()
-                        .orEmpty()
-                        .mapNotNull { it.name }
-                        .toHashSet()
+                    .orEmpty()
+                    .mapNotNull { it.name }
+                    .toHashSet()
 
                 mangaDir.files = chapterDirs
             }

@@ -27,22 +27,22 @@ import eu.kanade.tachiyomi.data.database.tables.TrackTable.COL_TRACKING_URL
 import eu.kanade.tachiyomi.data.database.tables.TrackTable.TABLE
 
 class TrackTypeMapping : SQLiteTypeMapping<Track>(
-        TrackPutResolver(),
-        TrackGetResolver(),
-        TrackDeleteResolver()
+    TrackPutResolver(),
+    TrackGetResolver(),
+    TrackDeleteResolver()
 )
 
 class TrackPutResolver : DefaultPutResolver<Track>() {
 
     override fun mapToInsertQuery(obj: Track) = InsertQuery.builder()
-            .table(TABLE)
-            .build()
+        .table(TABLE)
+        .build()
 
     override fun mapToUpdateQuery(obj: Track) = UpdateQuery.builder()
-            .table(TABLE)
-            .where("$COL_ID = ?")
-            .whereArgs(obj.id)
-            .build()
+        .table(TABLE)
+        .where("$COL_ID = ?")
+        .whereArgs(obj.id)
+        .build()
 
     override fun mapToContentValues(obj: Track) = ContentValues(10).apply {
         put(COL_ID, obj.id)
@@ -83,8 +83,8 @@ class TrackGetResolver : DefaultGetResolver<Track>() {
 class TrackDeleteResolver : DefaultDeleteResolver<Track>() {
 
     override fun mapToDeleteQuery(obj: Track) = DeleteQuery.builder()
-            .table(TABLE)
-            .where("$COL_ID = ?")
-            .whereArgs(obj.id)
-            .build()
+        .table(TABLE)
+        .where("$COL_ID = ?")
+        .whereArgs(obj.id)
+        .build()
 }

@@ -39,12 +39,13 @@ import reactivecircus.flowbinding.android.view.clicks
 import reactivecircus.flowbinding.swiperefreshlayout.refreshes
 import timber.log.Timber
 
-class ChaptersController : NucleusController<ChaptersControllerBinding, ChaptersPresenter>(),
-        ActionMode.Callback,
-        FlexibleAdapter.OnItemClickListener,
-        FlexibleAdapter.OnItemLongClickListener,
-        DownloadCustomChaptersDialog.Listener,
-        DeleteChaptersDialog.Listener {
+class ChaptersController :
+    NucleusController<ChaptersControllerBinding, ChaptersPresenter>(),
+    ActionMode.Callback,
+    FlexibleAdapter.OnItemClickListener,
+    FlexibleAdapter.OnItemLongClickListener,
+    DownloadCustomChaptersDialog.Listener,
+    DeleteChaptersDialog.Listener {
 
     /**
      * Adapter containing a list of chapters.
@@ -168,11 +169,13 @@ class ChaptersController : NucleusController<ChaptersControllerBinding, Chapters
         menuFilterEmpty.isVisible = filterSet
 
         // Disable unread filter option if read filter is enabled.
-        if (presenter.onlyRead())
+        if (presenter.onlyRead()) {
             menuFilterUnread.isEnabled = false
+        }
         // Disable read filter option if unread filter is enabled.
-        if (presenter.onlyUnread())
+        if (presenter.onlyUnread()) {
             menuFilterRead.isEnabled = false
+        }
 
         // Display mode submenu
         if (presenter.manga.displayMode == Manga.DISPLAY_NAME) {
@@ -320,10 +323,12 @@ class ChaptersController : NucleusController<ChaptersControllerBinding, Chapters
         createActionModeIfNeeded()
         when {
             lastClickPosition == -1 -> setSelection(position)
-            lastClickPosition > position -> for (i in position until lastClickPosition)
-                setSelection(i)
-            lastClickPosition < position -> for (i in lastClickPosition + 1..position)
-                setSelection(i)
+            lastClickPosition > position ->
+                for (i in position until lastClickPosition)
+                    setSelection(i)
+            lastClickPosition < position ->
+                for (i in lastClickPosition + 1..position)
+                    setSelection(i)
             else -> setSelection(position)
         }
         lastClickPosition = position
@@ -364,8 +369,8 @@ class ChaptersController : NucleusController<ChaptersControllerBinding, Chapters
         if (actionMode == null) {
             actionMode = (activity as? AppCompatActivity)?.startSupportActionMode(this)
             binding.actionToolbar.show(
-                    actionMode!!,
-                    R.menu.chapter_selection
+                actionMode!!,
+                R.menu.chapter_selection
             ) { onActionItemClicked(actionMode!!, it!!) }
         }
     }
@@ -526,9 +531,9 @@ class ChaptersController : NucleusController<ChaptersControllerBinding, Chapters
     }
 
     private fun getUnreadChaptersSorted() = presenter.chapters
-            .filter { !it.read && it.status == Download.NOT_DOWNLOADED }
-            .distinctBy { it.name }
-            .sortedByDescending { it.source_order }
+        .filter { !it.read && it.status == Download.NOT_DOWNLOADED }
+        .distinctBy { it.name }
+        .sortedByDescending { it.source_order }
 
     private fun downloadChapters(choice: Int) {
         val chaptersToDownload = when (choice) {

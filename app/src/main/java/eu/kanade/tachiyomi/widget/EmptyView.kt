@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.common_view_empty.view.text_face
 import kotlinx.android.synthetic.main.common_view_empty.view.text_label
 
 class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
-        RelativeLayout(context, attrs) {
+    RelativeLayout(context, attrs) {
 
     init {
         inflate(context, R.layout.common_view_empty, this)
@@ -46,7 +46,8 @@ class EmptyView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
                 val button = AppCompatButton(context).apply {
                     layoutParams = LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT)
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
 
                     setText(it.resId)
                     setOnClickListener(it.listener)

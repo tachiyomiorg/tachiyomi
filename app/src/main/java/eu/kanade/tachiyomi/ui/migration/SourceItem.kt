@@ -15,7 +15,7 @@ import eu.kanade.tachiyomi.source.Source
  * @param header The header for this item.
  */
 data class SourceItem(val source: Source, val header: SelectionHeader? = null) :
-        AbstractSectionableItem<SourceHolder, SelectionHeader>(header) {
+    AbstractSectionableItem<SourceHolder, SelectionHeader>(header) {
 
     /**
      * Returns the layout resource of this item.
@@ -40,7 +40,6 @@ data class SourceItem(val source: Source, val header: SelectionHeader? = null) :
         position: Int,
         payloads: List<Any?>?
     ) {
-
         holder.bind(this)
     }
 }

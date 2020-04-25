@@ -19,11 +19,11 @@ class ConfirmDeleteChaptersDialog<T>(bundle: Bundle? = null) : DialogController(
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialDialog(activity!!)
-                .message(R.string.confirm_delete_chapters)
-                .positiveButton(android.R.string.ok) {
-                    (targetController as? Listener)?.deleteChapters(chaptersToDelete)
-                }
-                .negativeButton(android.R.string.cancel)
+            .message(R.string.confirm_delete_chapters)
+            .positiveButton(android.R.string.ok) {
+                (targetController as? Listener)?.deleteChapters(chaptersToDelete)
+            }
+            .negativeButton(android.R.string.cancel)
     }
 
     interface Listener {

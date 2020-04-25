@@ -36,8 +36,8 @@ abstract class LoginDialogPreference(
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         var dialog = MaterialDialog(activity!!)
-                .customView(R.layout.pref_account_login)
-                .negativeButton(android.R.string.cancel)
+            .customView(R.layout.pref_account_login)
+            .negativeButton(android.R.string.cancel)
 
         if (titleRes != null) {
             dialog = dialog.title(text = activity!!.getString(titleRes, titleFormatArgs))
@@ -51,10 +51,11 @@ abstract class LoginDialogPreference(
     fun onViewCreated(view: View) {
         v = view.apply {
             show_password.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked)
+                if (isChecked) {
                     password.transformationMethod = null
-                else
+                } else {
                     password.transformationMethod = PasswordTransformationMethod()
+                }
             }
 
             if (usernameLabelRes != null) {

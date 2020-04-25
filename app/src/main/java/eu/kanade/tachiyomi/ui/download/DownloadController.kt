@@ -23,7 +23,8 @@ import rx.android.schedulers.AndroidSchedulers
  * Controller that shows the currently active downloads.
  * Uses R.layout.fragment_download_queue.
  */
-class DownloadController : NucleusController<DownloadControllerBinding, DownloadPresenter>(),
+class DownloadController :
+    NucleusController<DownloadControllerBinding, DownloadPresenter>(),
     DownloadAdapter.DownloadItemListener {
 
     /**
@@ -75,16 +76,16 @@ class DownloadController : NucleusController<DownloadControllerBinding, Download
 
         // Subscribe to changes
         DownloadService.runningRelay
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeUntilDestroy { onQueueStatusChange(it) }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeUntilDestroy { onQueueStatusChange(it) }
 
         presenter.getDownloadStatusObservable()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeUntilDestroy { onStatusChange(it) }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeUntilDestroy { onStatusChange(it) }
 
         presenter.getDownloadProgressObservable()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeUntilDestroy { onUpdateDownloadedPages(it) }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeUntilDestroy { onUpdateDownloadedPages(it) }
     }
 
     override fun onDestroyView(view: View) {
@@ -123,8 +124,9 @@ class DownloadController : NucleusController<DownloadControllerBinding, Download
                 val adapter = adapter ?: return false
                 val items = adapter.currentItems.sortedBy { it.download.chapter.date_upload }
                     .toMutableList()
-                if (item.itemId == R.id.newest)
+                if (item.itemId == R.id.newest) {
                     items.reverse()
+                }
                 adapter.updateDataSet(items)
                 val downloads = items.mapNotNull { it.download }
                 presenter.reorder(downloads)
@@ -161,22 +163,22 @@ class DownloadController : NucleusController<DownloadControllerBinding, Download
      */
     private fun observeProgress(download: Download) {
         val subscription = Observable.interval(50, TimeUnit.MILLISECONDS)
-                // Get the sum of percentages for all the pages.
-                .flatMap {
-                    Observable.from(download.pages)
-                            .map(Page::progress)
-                            .reduce { x, y -> x + y }
+            // Get the sum of percentages for all the pages.
+            .flatMap {
+                Observable.from(download.pages)
+                    .map(Page::progress)
+                    .reduce { x, y -> x + y }
+            }
+            // Keep only the latest emission to avoid backpressure.
+            .onBackpressureLatest()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { progress ->
+                // Update the view only if the progress has changed.
+                if (download.totalProgress != progress) {
+                    download.totalProgress = progress
+                    onUpdateProgress(download)
                 }
-                // Keep only the latest emission to avoid backpressure.
-                .onBackpressureLatest()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { progress ->
-                    // Update the view only if the progress has changed.
-                    if (download.totalProgress != progress) {
-                        download.totalProgress = progress
-                        onUpdateProgress(download)
-                    }
-                }
+            }
 
         // Avoid leaking subscriptions
         progressSubscriptions.remove(download)?.unsubscribe()
@@ -279,10 +281,11 @@ class DownloadController : NucleusController<DownloadControllerBinding, Download
                 val items = adapter?.currentItems?.toMutableList() ?: return
                 val item = items[position]
                 items.remove(item)
-                if (menuItem.itemId == R.id.move_to_top)
+                if (menuItem.itemId == R.id.move_to_top) {
                     items.add(0, item)
-                else
+                } else {
                     items.add(item)
+                }
 
                 val adapter = adapter ?: return
                 adapter.updateDataSet(items)

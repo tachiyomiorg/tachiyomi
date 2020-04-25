@@ -10,10 +10,10 @@ class UserAgentInterceptor : Interceptor {
 
         return if (originalRequest.header("User-Agent").isNullOrEmpty()) {
             val newRequest = originalRequest
-                    .newBuilder()
-                    .removeHeader("User-Agent")
-                    .addHeader("User-Agent", HttpSource.DEFAULT_USERAGENT)
-                    .build()
+                .newBuilder()
+                .removeHeader("User-Agent")
+                .addHeader("User-Agent", HttpSource.DEFAULT_USERAGENT)
+                .build()
             chain.proceed(newRequest)
         } else {
             chain.proceed(originalRequest)

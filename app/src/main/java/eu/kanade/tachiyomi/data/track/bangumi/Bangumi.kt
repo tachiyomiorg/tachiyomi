@@ -39,23 +39,23 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
 
     override fun bind(track: Track): Observable<Track> {
         return api.statusLibManga(track)
-                .flatMap {
-                    api.findLibManga(track).flatMap { remoteTrack ->
-                        if (remoteTrack != null && it != null) {
-                            track.copyPersonalFrom(remoteTrack)
-                            track.library_id = remoteTrack.library_id
-                            track.status = remoteTrack.status
-                            track.last_chapter_read = remoteTrack.last_chapter_read
-                            refresh(track)
-                        } else {
-                            // Set default fields if it's not found in the list
-                            track.score = DEFAULT_SCORE.toFloat()
-                            track.status = DEFAULT_STATUS
-                            add(track)
-                            update(track)
-                        }
+            .flatMap {
+                api.findLibManga(track).flatMap { remoteTrack ->
+                    if (remoteTrack != null && it != null) {
+                        track.copyPersonalFrom(remoteTrack)
+                        track.library_id = remoteTrack.library_id
+                        track.status = remoteTrack.status
+                        track.last_chapter_read = remoteTrack.last_chapter_read
+                        refresh(track)
+                    } else {
+                        // Set default fields if it's not found in the list
+                        track.score = DEFAULT_SCORE.toFloat()
+                        track.status = DEFAULT_STATUS
+                        add(track)
+                        update(track)
                     }
                 }
+            }
     }
 
     override fun search(query: String): Observable<List<TrackSearch>> {
@@ -64,17 +64,17 @@ class Bangumi(private val context: Context, id: Int) : TrackService(id) {
 
     override fun refresh(track: Track): Observable<Track> {
         return api.statusLibManga(track)
-                .flatMap {
-                    track.copyPersonalFrom(it!!)
-                    api.findLibManga(track)
-                            .map { remoteTrack ->
-                                if (remoteTrack != null) {
-                                    track.total_chapters = remoteTrack.total_chapters
-                                    track.status = remoteTrack.status
-                                }
-                                track
-                            }
-                }
+            .flatMap {
+                track.copyPersonalFrom(it!!)
+                api.findLibManga(track)
+                    .map { remoteTrack ->
+                        if (remoteTrack != null) {
+                            track.total_chapters = remoteTrack.total_chapters
+                            track.status = remoteTrack.status
+                        }
+                        track
+                    }
+            }
     }
 
     override fun getLogo() = R.drawable.ic_tracker_bangumi

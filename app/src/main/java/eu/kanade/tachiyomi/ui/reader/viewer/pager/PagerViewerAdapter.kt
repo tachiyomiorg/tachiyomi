@@ -57,12 +57,13 @@ class PagerViewerAdapter(private val viewer: PagerViewer) : ViewPagerAdapter() {
 
         // Add next chapter transition and pages.
         nextTransition = ChapterTransition.Next(chapters.currChapter, chapters.nextChapter)
-                .also {
-                    if (forceTransition ||
-                            chapters.nextChapter?.state !is ReaderChapter.State.Loaded) {
-                        newItems.add(it)
-                    }
+            .also {
+                if (forceTransition ||
+                    chapters.nextChapter?.state !is ReaderChapter.State.Loaded
+                ) {
+                    newItems.add(it)
                 }
+            }
 
         if (chapters.nextChapter != null) {
             // Add at most two pages, because this chapter will be selected before the user can

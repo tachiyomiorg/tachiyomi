@@ -43,52 +43,60 @@ class TrackPresenter(
     fun fetchTrackings() {
         trackSubscription?.let { remove(it) }
         trackSubscription = db.getTracks(manga)
-                .asRxObservable()
-                .map { tracks ->
-                    loggedServices.map { service ->
-                        TrackItem(tracks.find { it.sync_id == service.id }, service)
-                    }
+            .asRxObservable()
+            .map { tracks ->
+                loggedServices.map { service ->
+                    TrackItem(tracks.find { it.sync_id == service.id }, service)
                 }
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { trackList = it }
-                .subscribeLatestCache(TrackController::onNextTrackings)
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext { trackList = it }
+            .subscribeLatestCache(TrackController::onNextTrackings)
     }
 
     fun refresh() {
         refreshSubscription?.let { remove(it) }
         refreshSubscription = Observable.from(trackList)
-                .filter { it.track != null }
-                .concatMap { item ->
-                    item.service.refresh(item.track!!)
-                            .flatMap { db.insertTrack(it).asRxObservable() }
-                            .map { item }
-                            .onErrorReturn { item }
-                }
-                .toList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeFirst({ view, _ -> view.onRefreshDone() },
-                        TrackController::onRefreshError)
+            .filter { it.track != null }
+            .concatMap { item ->
+                item.service.refresh(item.track!!)
+                    .flatMap { db.insertTrack(it).asRxObservable() }
+                    .map { item }
+                    .onErrorReturn { item }
+            }
+            .toList()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeFirst(
+                { view, _ -> view.onRefreshDone() },
+                TrackController::onRefreshError
+            )
     }
 
     fun search(query: String, service: TrackService) {
         searchSubscription?.let { remove(it) }
         searchSubscription = service.search(query)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeLatestCache(TrackController::onSearchResults,
-                        TrackController::onSearchResultsError)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeLatestCache(
+                TrackController::onSearchResults,
+                TrackController::onSearchResultsError
+            )
     }
 
     fun registerTracking(item: Track?, service: TrackService) {
         if (item != null) {
             item.manga_id = manga.id!!
-            add(service.bind(item)
+            add(
+                service.bind(item)
                     .flatMap { db.insertTrack(item).asRxObservable() }
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ },
-                            { error -> context.toast(error.message) }))
+                    .subscribe(
+                        { },
+                        { error -> context.toast(error.message) }
+                    )
+            )
         } else {
             unregisterTracking(service)
         }
@@ -100,16 +108,18 @@ class TrackPresenter(
 
     private fun updateRemote(track: Track, service: TrackService) {
         service.update(track)
-                .flatMap { db.insertTrack(track).asRxObservable() }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeFirst({ view, _ -> view.onRefreshDone() },
-                        { view, error ->
-                            view.onRefreshError(error)
+            .flatMap { db.insertTrack(track).asRxObservable() }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeFirst(
+                { view, _ -> view.onRefreshDone() },
+                { view, error ->
+                    view.onRefreshError(error)
 
-                            // Restart on error to set old values
-                            fetchTrackings()
-                        })
+                    // Restart on error to set old values
+                    fetchTrackings()
+                }
+            )
     }
 
     fun setStatus(item: TrackItem, index: Int) {

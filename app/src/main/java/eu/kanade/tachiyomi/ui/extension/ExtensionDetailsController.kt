@@ -38,17 +38,19 @@ import reactivecircus.flowbinding.android.view.clicks
 
 @SuppressLint("RestrictedApi")
 class ExtensionDetailsController(bundle: Bundle? = null) :
-        NucleusController<ExtensionDetailControllerBinding, ExtensionDetailsPresenter>(bundle),
-        PreferenceManager.OnDisplayPreferenceDialogListener,
-        DialogPreference.TargetFragment {
+    NucleusController<ExtensionDetailControllerBinding, ExtensionDetailsPresenter>(bundle),
+    PreferenceManager.OnDisplayPreferenceDialogListener,
+    DialogPreference.TargetFragment {
 
     private var lastOpenPreferencePosition: Int? = null
 
     private var preferenceScreen: PreferenceScreen? = null
 
-    constructor(pkgName: String) : this(Bundle().apply {
-        putString(PKGNAME_KEY, pkgName)
-    })
+    constructor(pkgName: String) : this(
+        Bundle().apply {
+            putString(PKGNAME_KEY, pkgName)
+        }
+    )
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
         val themedInflater = inflater.cloneInContext(getPreferenceThemeContext())
@@ -136,8 +138,9 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         val dataStore = SharedPreferencesDataStore(/*if (source is HttpSource) {
             source.preferences
         } else {*/
-                context.getSharedPreferences("source_${source.id}", Context.MODE_PRIVATE)
-                /*}*/)
+            context.getSharedPreferences("source_${source.id}", Context.MODE_PRIVATE)
+            /*}*/
+        )
 
         if (source is ConfigurableSource) {
             if (multiSource) {
@@ -178,14 +181,19 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         }
 
         val f = when (preference) {
-            is EditTextPreference -> EditTextPreferenceDialogController
+            is EditTextPreference ->
+                EditTextPreferenceDialogController
                     .newInstance(preference.getKey())
-            is ListPreference -> ListPreferenceDialogController
+            is ListPreference ->
+                ListPreferenceDialogController
                     .newInstance(preference.getKey())
-            is MultiSelectListPreference -> MultiSelectListPreferenceDialogController
+            is MultiSelectListPreference ->
+                MultiSelectListPreferenceDialogController
                     .newInstance(preference.getKey())
-            else -> throw IllegalArgumentException("Tried to display dialog for unknown " +
-                    "preference type. Did you forget to override onDisplayPreferenceDialog()?")
+            else -> throw IllegalArgumentException(
+                "Tried to display dialog for unknown " +
+                    "preference type. Did you forget to override onDisplayPreferenceDialog()?"
+            )
         }
         f.targetController = this
         f.showDialog(router)

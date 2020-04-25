@@ -10,7 +10,7 @@ import eu.kanade.tachiyomi.util.view.invisible
 import eu.kanade.tachiyomi.util.view.visible
 
 class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
-        View(context, attrs) {
+    View(context, attrs) {
 
     /**
      * Hides the animation view with a animation
@@ -25,7 +25,8 @@ class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: Att
 
         // Create the animation (the final radius is zero).
         val anim = ViewAnimationUtils.createCircularReveal(
-                this, centerX, centerY, initialRadius.toFloat(), 0f)
+            this, centerX, centerY, initialRadius.toFloat(), 0f
+        )
 
         // Set duration of animation.
         anim.duration = 500
@@ -57,7 +58,8 @@ class RevealAnimationView @JvmOverloads constructor(context: Context, attrs: Att
 
         // Create animation
         val anim = ViewAnimationUtils.createCircularReveal(
-                this, centerX, centerY, 0f, height.toFloat())
+            this, centerX, centerY, 0f, height.toFloat()
+        )
 
         // Set duration of animation
         anim.duration = 350

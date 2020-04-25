@@ -11,7 +11,7 @@ import eu.kanade.tachiyomi.util.system.getResourceColor
  * @param controller instance of [ExtensionController].
  */
 class ExtensionAdapter(val controller: ExtensionController) :
-        FlexibleAdapter<IFlexible<*>>(null, controller, true) {
+    FlexibleAdapter<IFlexible<*>>(null, controller, true) {
 
     val cardBackground = controller.activity!!.getResourceColor(R.attr.colorSurface)
 

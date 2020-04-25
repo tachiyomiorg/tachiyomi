@@ -26,7 +26,8 @@ class ChapterLoadByNumber {
                 // If there is only one chapter for this number, use it
                 chaptersForNumber.size == 1 -> chaptersForNumber.first()
                 // Prefer a chapter of the same scanlator as the selected
-                else -> chaptersForNumber.find { it.scanlator == selectedChapter.scanlator }
+                else ->
+                    chaptersForNumber.find { it.scanlator == selectedChapter.scanlator }
                         ?: chaptersForNumber.first()
             }
             chapters.add(preferredChapter)

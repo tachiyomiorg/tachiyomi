@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.common_action_toolbar.view.common_action_t
  * A toolbar holding only menu items.
  */
 class ActionToolbar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
-        FrameLayout(context, attrs) {
+    FrameLayout(context, attrs) {
 
     init {
         inflate(context, R.layout.common_action_toolbar, this)

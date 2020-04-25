@@ -123,14 +123,17 @@ class DownloadService : Service() {
      */
     private fun listenNetworkChanges() {
         subscriptions += ReactiveNetwork.observeNetworkConnectivity(applicationContext)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ state ->
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { state ->
                     onNetworkStateChanged(state)
-                }, {
+                },
+                {
                     toast(R.string.download_queue_error)
                     stopSelf()
-                })
+                }
+            )
     }
 
     /**
@@ -162,10 +165,11 @@ class DownloadService : Service() {
      */
     private fun listenDownloaderState() {
         subscriptions += downloadManager.runningRelay.subscribe { running ->
-            if (running)
+            if (running) {
                 wakeLock.acquireIfNeeded()
-            else
+            } else {
                 wakeLock.releaseIfNeeded()
+            }
         }
     }
 

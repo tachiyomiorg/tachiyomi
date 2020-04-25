@@ -47,8 +47,8 @@ class PageIndicatorTextView(
 
         // A span object with text outlining properties
         val spanOutline = OutlineSpan(
-                strokeColor = strokeColor,
-                strokeWidth = 4f
+            strokeColor = strokeColor,
+            strokeWidth = 4f
         )
     }
 }

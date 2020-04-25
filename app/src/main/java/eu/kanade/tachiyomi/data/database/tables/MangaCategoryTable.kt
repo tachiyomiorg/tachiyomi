@@ -11,7 +11,8 @@ object MangaCategoryTable {
     const val COL_CATEGORY_ID = "category_id"
 
     val createTableQuery: String
-        get() = """CREATE TABLE $TABLE(
+        get() =
+            """CREATE TABLE $TABLE(
             $COL_ID INTEGER NOT NULL PRIMARY KEY,
             $COL_MANGA_ID INTEGER NOT NULL,
             $COL_CATEGORY_ID INTEGER NOT NULL,

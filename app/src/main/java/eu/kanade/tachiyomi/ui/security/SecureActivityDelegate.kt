@@ -42,8 +42,10 @@ class SecureActivityDelegate(private val activity: FragmentActivity) {
 
     private fun isAppLocked(): Boolean {
         return locked &&
-                (preferences.lockAppAfter().get() <= 0 ||
-                        Date().time >= preferences.lastAppUnlock().get() + 60 * 1000 * preferences.lockAppAfter().get())
+            (
+                preferences.lockAppAfter().get() <= 0 ||
+                    Date().time >= preferences.lastAppUnlock().get() + 60 * 1000 * preferences.lockAppAfter().get()
+                )
     }
 
     companion object {

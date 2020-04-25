@@ -17,10 +17,10 @@ fun GET(
     cache: CacheControl = DEFAULT_CACHE_CONTROL
 ): Request {
     return Request.Builder()
-            .url(url)
-            .headers(headers)
-            .cacheControl(cache)
-            .build()
+        .url(url)
+        .headers(headers)
+        .cacheControl(cache)
+        .build()
 }
 
 fun POST(
@@ -30,9 +30,9 @@ fun POST(
     cache: CacheControl = DEFAULT_CACHE_CONTROL
 ): Request {
     return Request.Builder()
-            .url(url)
-            .post(body)
-            .headers(headers)
-            .cacheControl(cache)
-            .build()
+        .url(url)
+        .post(body)
+        .headers(headers)
+        .cacheControl(cache)
+        .build()
 }

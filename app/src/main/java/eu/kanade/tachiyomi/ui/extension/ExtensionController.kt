@@ -32,11 +32,12 @@ import uy.kohesive.injekt.api.get
 /**
  * Controller to manage the catalogues available in the app.
  */
-open class ExtensionController : NucleusController<ExtensionControllerBinding, ExtensionPresenter>(),
-        ExtensionAdapter.OnButtonClickListener,
-        FlexibleAdapter.OnItemClickListener,
-        FlexibleAdapter.OnItemLongClickListener,
-        ExtensionTrustDialog.Listener {
+open class ExtensionController :
+    NucleusController<ExtensionControllerBinding, ExtensionPresenter>(),
+    ExtensionAdapter.OnButtonClickListener,
+    FlexibleAdapter.OnItemClickListener,
+    FlexibleAdapter.OnItemLongClickListener,
+    ExtensionTrustDialog.Listener {
 
     private val preferences: PreferencesHelper = Injekt.get()
 
@@ -92,9 +93,11 @@ open class ExtensionController : NucleusController<ExtensionControllerBinding, E
         when (item.itemId) {
             R.id.action_search -> expandActionViewFromInteraction = true
             R.id.action_settings -> {
-                router.pushController((RouterTransaction.with(ExtensionFilterController()))
+                router.pushController(
+                    (RouterTransaction.with(ExtensionFilterController()))
                         .popChangeHandler(SettingsExtensionsFadeChangeHandler())
-                        .pushChangeHandler(FadeChangeHandler()))
+                        .pushChangeHandler(FadeChangeHandler())
+                )
             }
             R.id.action_auto_check -> {
                 item.isChecked = !item.isChecked
@@ -184,7 +187,7 @@ open class ExtensionController : NucleusController<ExtensionControllerBinding, E
 
     private fun openTrustDialog(extension: Extension.Untrusted) {
         ExtensionTrustDialog(this, extension.signatureHash, extension.pkgName)
-                .showDialog(router)
+            .showDialog(router)
     }
 
     fun setExtensions(extensions: List<ExtensionItem>) {
@@ -196,9 +199,10 @@ open class ExtensionController : NucleusController<ExtensionControllerBinding, E
     fun drawExtensions() {
         if (!query.isBlank()) {
             adapter?.updateDataSet(
-                    extensions.filter {
-                        it.extension.name.contains(query, ignoreCase = true)
-                    })
+                extensions.filter {
+                    it.extension.name.contains(query, ignoreCase = true)
+                }
+            )
         } else {
             adapter?.updateDataSet(extensions)
         }

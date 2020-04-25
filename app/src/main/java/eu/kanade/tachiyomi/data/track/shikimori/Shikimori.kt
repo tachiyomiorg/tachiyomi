@@ -51,18 +51,18 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
 
     override fun bind(track: Track): Observable<Track> {
         return api.findLibManga(track, getUsername())
-                .flatMap { remoteTrack ->
-                    if (remoteTrack != null) {
-                        track.copyPersonalFrom(remoteTrack)
-                        track.library_id = remoteTrack.library_id
-                        update(track)
-                    } else {
-                        // Set default fields if it's not found in the list
-                        track.score = DEFAULT_SCORE.toFloat()
-                        track.status = DEFAULT_STATUS
-                        add(track)
-                    }
+            .flatMap { remoteTrack ->
+                if (remoteTrack != null) {
+                    track.copyPersonalFrom(remoteTrack)
+                    track.library_id = remoteTrack.library_id
+                    update(track)
+                } else {
+                    // Set default fields if it's not found in the list
+                    track.score = DEFAULT_SCORE.toFloat()
+                    track.status = DEFAULT_STATUS
+                    add(track)
                 }
+            }
     }
 
     override fun search(query: String): Observable<List<TrackSearch>> {
@@ -71,13 +71,13 @@ class Shikimori(private val context: Context, id: Int) : TrackService(id) {
 
     override fun refresh(track: Track): Observable<Track> {
         return api.findLibManga(track, getUsername())
-                .map { remoteTrack ->
-                    if (remoteTrack != null) {
-                        track.copyPersonalFrom(remoteTrack)
-                        track.total_chapters = remoteTrack.total_chapters
-                    }
-                    track
+            .map { remoteTrack ->
+                if (remoteTrack != null) {
+                    track.copyPersonalFrom(remoteTrack)
+                    track.total_chapters = remoteTrack.total_chapters
                 }
+                track
+            }
     }
 
     override fun getLogo() = R.drawable.ic_tracker_shikimori

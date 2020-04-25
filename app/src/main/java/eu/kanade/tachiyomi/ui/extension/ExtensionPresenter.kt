@@ -17,7 +17,7 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 private typealias ExtensionTuple =
-        Triple<List<Extension.Installed>, List<Extension.Untrusted>, List<Extension.Available>>
+    Triple<List<Extension.Installed>, List<Extension.Untrusted>, List<Extension.Available>>
 
 /**
  * Presenter of [ExtensionController].
@@ -42,13 +42,13 @@ open class ExtensionPresenter(
         val installedObservable = extensionManager.getInstalledExtensionsObservable()
         val untrustedObservable = extensionManager.getUntrustedExtensionsObservable()
         val availableObservable = extensionManager.getAvailableExtensionsObservable()
-                .startWith(emptyList<Extension.Available>())
+            .startWith(emptyList<Extension.Available>())
 
         return Observable.combineLatest(installedObservable, untrustedObservable, availableObservable) { installed, untrusted, available -> Triple(installed, untrusted, available) }
-                .debounce(100, TimeUnit.MILLISECONDS)
-                .map(::toItems)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeLatestCache({ view, _ -> view.setExtensions(extensions) })
+            .debounce(100, TimeUnit.MILLISECONDS)
+            .map(::toItems)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeLatestCache({ view, _ -> view.setExtensions(extensions) })
     }
 
     @Synchronized
@@ -64,13 +64,13 @@ open class ExtensionPresenter(
         val installedSorted = installed.filter { !it.hasUpdate }.sortedWith(compareBy({ !it.isObsolete }, { it.pkgName }))
         val untrustedSorted = untrusted.sortedBy { it.pkgName }
         val availableSorted = available
-                // Filter out already installed extensions and disabled languages
-                .filter { avail ->
-                    installed.none { it.pkgName == avail.pkgName } &&
-                            untrusted.none { it.pkgName == avail.pkgName } &&
-                            (avail.lang in activeLangs || avail.lang == "all")
-                }
-                .sortedBy { it.pkgName }
+            // Filter out already installed extensions and disabled languages
+            .filter { avail ->
+                installed.none { it.pkgName == avail.pkgName } &&
+                    untrusted.none { it.pkgName == avail.pkgName } &&
+                    (avail.lang in activeLangs || avail.lang == "all")
+            }
+            .sortedBy { it.pkgName }
 
         if (updatesSorted.isNotEmpty()) {
             val header = ExtensionGroupItem(context.getString(R.string.ext_updates_pending), updatesSorted.size, true)
@@ -89,16 +89,16 @@ open class ExtensionPresenter(
         }
         if (availableSorted.isNotEmpty()) {
             val availableGroupedByLang = availableSorted
-                    .groupBy { LocaleHelper.getSourceDisplayName(it.lang, context) }
-                    .toSortedMap()
+                .groupBy { LocaleHelper.getSourceDisplayName(it.lang, context) }
+                .toSortedMap()
 
             availableGroupedByLang
-                    .forEach {
-                        val header = ExtensionGroupItem(it.key, it.value.size)
-                        items += it.value.map { extension ->
-                            ExtensionItem(extension, header, currentDownloads[extension.pkgName])
-                        }
+                .forEach {
+                    val header = ExtensionGroupItem(it.key, it.value.size)
+                    items += it.value.map { extension ->
+                        ExtensionItem(extension, header, currentDownloads[extension.pkgName])
                     }
+                }
         }
 
         this.extensions = items
@@ -131,13 +131,13 @@ open class ExtensionPresenter(
 
     private fun Observable<InstallStep>.subscribeToInstallUpdate(extension: Extension) {
         this.doOnNext { currentDownloads[extension.pkgName] = it }
-                .doOnUnsubscribe { currentDownloads.remove(extension.pkgName) }
-                .map { state -> updateInstallStep(extension, state) }
-                .subscribeWithView({ view, item ->
-                    if (item != null) {
-                        view.downloadUpdate(item)
-                    }
-                })
+            .doOnUnsubscribe { currentDownloads.remove(extension.pkgName) }
+            .map { state -> updateInstallStep(extension, state) }
+            .subscribeWithView({ view, item ->
+                if (item != null) {
+                    view.downloadUpdate(item)
+                }
+            })
     }
 
     fun uninstallExtension(pkgName: String) {

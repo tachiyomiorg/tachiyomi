@@ -33,59 +33,59 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
     private val authClient = client.newBuilder().addInterceptor(interceptor).build()
 
     private val rest = Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(authClient)
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().serializeNulls().create()))
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-            .build()
-            .create(Rest::class.java)
+        .baseUrl(baseUrl)
+        .client(authClient)
+        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().serializeNulls().create()))
+        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+        .build()
+        .create(Rest::class.java)
 
     private val searchRest = Retrofit.Builder()
-            .baseUrl(algoliaKeyUrl)
-            .client(authClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-            .build()
-            .create(SearchKeyRest::class.java)
+        .baseUrl(algoliaKeyUrl)
+        .client(authClient)
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+        .build()
+        .create(SearchKeyRest::class.java)
 
     private val algoliaRest = Retrofit.Builder()
-            .baseUrl(algoliaUrl)
-            .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-            .build()
-            .create(AgoliaSearchRest::class.java)
+        .baseUrl(algoliaUrl)
+        .client(client)
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+        .build()
+        .create(AgoliaSearchRest::class.java)
 
     fun addLibManga(track: Track, userId: String): Observable<Track> {
         return Observable.defer {
             // @formatter:off
             val data = jsonObject(
-                    "type" to "libraryEntries",
-                    "attributes" to jsonObject(
-                            "status" to track.toKitsuStatus(),
-                            "progress" to track.last_chapter_read
+                "type" to "libraryEntries",
+                "attributes" to jsonObject(
+                    "status" to track.toKitsuStatus(),
+                    "progress" to track.last_chapter_read
+                ),
+                "relationships" to jsonObject(
+                    "user" to jsonObject(
+                        "data" to jsonObject(
+                            "id" to userId,
+                            "type" to "users"
+                        )
                     ),
-                    "relationships" to jsonObject(
-                            "user" to jsonObject(
-                                    "data" to jsonObject(
-                                            "id" to userId,
-                                            "type" to "users"
-                                    )
-                            ),
-                            "media" to jsonObject(
-                                    "data" to jsonObject(
-                                            "id" to track.media_id,
-                                            "type" to "manga"
-                                    )
-                            )
+                    "media" to jsonObject(
+                        "data" to jsonObject(
+                            "id" to track.media_id,
+                            "type" to "manga"
+                        )
                     )
+                )
             )
 
             rest.addLibManga(jsonObject("data" to data))
-                    .map { json ->
-                        track.media_id = json["data"]["id"].int
-                        track
-                    }
+                .map { json ->
+                    track.media_id = json["data"]["id"].int
+                    track
+                }
         }
     }
 
@@ -93,77 +93,77 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
         return Observable.defer {
             // @formatter:off
             val data = jsonObject(
-                    "type" to "libraryEntries",
-                    "id" to track.media_id,
-                    "attributes" to jsonObject(
-                            "status" to track.toKitsuStatus(),
-                            "progress" to track.last_chapter_read,
-                            "ratingTwenty" to track.toKitsuScore()
-                    )
+                "type" to "libraryEntries",
+                "id" to track.media_id,
+                "attributes" to jsonObject(
+                    "status" to track.toKitsuStatus(),
+                    "progress" to track.last_chapter_read,
+                    "ratingTwenty" to track.toKitsuScore()
+                )
             )
             // @formatter:on
 
             rest.updateLibManga(track.media_id, jsonObject("data" to data))
-                    .map { track }
+                .map { track }
         }
     }
 
     fun search(query: String): Observable<List<TrackSearch>> {
         return searchRest
-                .getKey().map { json ->
-                    json["media"].asJsonObject["key"].string
-                }.flatMap { key ->
-                    algoliaSearch(key, query)
-                }
+            .getKey().map { json ->
+                json["media"].asJsonObject["key"].string
+            }.flatMap { key ->
+                algoliaSearch(key, query)
+            }
     }
 
     private fun algoliaSearch(key: String, query: String): Observable<List<TrackSearch>> {
         val jsonObject = jsonObject("params" to "query=$query$algoliaFilter")
         return algoliaRest
-                .getSearchQuery(algoliaAppId, key, jsonObject)
-                .map { json ->
-                    val data = json["hits"].array
-                    data.map { KitsuSearchManga(it.obj) }
-                            .filter { it.subType != "novel" }
-                            .map { it.toTrack() }
-                }
+            .getSearchQuery(algoliaAppId, key, jsonObject)
+            .map { json ->
+                val data = json["hits"].array
+                data.map { KitsuSearchManga(it.obj) }
+                    .filter { it.subType != "novel" }
+                    .map { it.toTrack() }
+            }
     }
 
     fun findLibManga(track: Track, userId: String): Observable<Track?> {
         return rest.findLibManga(track.media_id, userId)
-                .map { json ->
-                    val data = json["data"].array
-                    if (data.size() > 0) {
-                        val manga = json["included"].array[0].obj
-                        KitsuLibManga(data[0].obj, manga).toTrack()
-                    } else {
-                        null
-                    }
+            .map { json ->
+                val data = json["data"].array
+                if (data.size() > 0) {
+                    val manga = json["included"].array[0].obj
+                    KitsuLibManga(data[0].obj, manga).toTrack()
+                } else {
+                    null
                 }
+            }
     }
 
     fun getLibManga(track: Track): Observable<Track> {
         return rest.getLibManga(track.media_id)
-                .map { json ->
-                    val data = json["data"].array
-                    if (data.size() > 0) {
-                        val manga = json["included"].array[0].obj
-                        KitsuLibManga(data[0].obj, manga).toTrack()
-                    } else {
-                        throw Exception("Could not find manga")
-                    }
+            .map { json ->
+                val data = json["data"].array
+                if (data.size() > 0) {
+                    val manga = json["included"].array[0].obj
+                    KitsuLibManga(data[0].obj, manga).toTrack()
+                } else {
+                    throw Exception("Could not find manga")
                 }
+            }
     }
 
     fun login(username: String, password: String): Observable<OAuth> {
         return Retrofit.Builder()
-                .baseUrl(loginUrl)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build()
-                .create(LoginRest::class.java)
-                .requestAccessToken(username, password)
+            .baseUrl(loginUrl)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .build()
+            .create(LoginRest::class.java)
+            .requestAccessToken(username, password)
     }
 
     fun getCurrentUser(): Observable<String> {
@@ -242,12 +242,14 @@ class KitsuApi(private val client: OkHttpClient, interceptor: KitsuInterceptor) 
             return baseMangaUrl + remoteId
         }
 
-        fun refreshTokenRequest(token: String) = POST("${loginUrl}oauth/token",
-                body = FormBody.Builder()
-                        .add("grant_type", "refresh_token")
-                        .add("client_id", clientId)
-                        .add("client_secret", clientSecret)
-                        .add("refresh_token", token)
-                        .build())
+        fun refreshTokenRequest(token: String) = POST(
+            "${loginUrl}oauth/token",
+            body = FormBody.Builder()
+                .add("grant_type", "refresh_token")
+                .add("client_id", clientId)
+                .add("client_secret", clientSecret)
+                .add("refresh_token", token)
+                .build()
+        )
     }
 }

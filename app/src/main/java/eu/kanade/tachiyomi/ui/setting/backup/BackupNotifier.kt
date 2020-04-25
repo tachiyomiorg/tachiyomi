@@ -64,9 +64,11 @@ internal class BackupNotifier(private val context: Context) {
                 mActions.clear()
             }
 
-            addAction(R.drawable.ic_share_24dp,
+            addAction(
+                R.drawable.ic_share_24dp,
                 context.getString(R.string.action_share),
-                NotificationReceiver.shareBackupPendingBroadcast(context, unifile.uri, Notifications.ID_BACKUP))
+                NotificationReceiver.shareBackupPendingBroadcast(context, unifile.uri, Notifications.ID_BACKUP)
+            )
         }
 
         notificationBuilder.show(Notifications.ID_BACKUP)
@@ -84,9 +86,11 @@ internal class BackupNotifier(private val context: Context) {
                 mActions.clear()
             }
 
-            addAction(R.drawable.ic_close_24dp,
+            addAction(
+                R.drawable.ic_close_24dp,
                 context.getString(R.string.action_stop),
-                NotificationReceiver.cancelRestorePendingBroadcast(context, Notifications.ID_RESTORE))
+                NotificationReceiver.cancelRestorePendingBroadcast(context, Notifications.ID_RESTORE)
+            )
         }
 
         builder.show(Notifications.ID_RESTORE)
@@ -107,10 +111,12 @@ internal class BackupNotifier(private val context: Context) {
     }
 
     fun showRestoreComplete(time: Long, errorCount: Int, path: String?, file: String?) {
-        val timeString = String.format("%02d min, %02d sec",
+        val timeString = String.format(
+            "%02d min, %02d sec",
             TimeUnit.MILLISECONDS.toMinutes(time),
             TimeUnit.MILLISECONDS.toSeconds(time) - TimeUnit.MINUTES.toSeconds(
-                TimeUnit.MILLISECONDS.toMinutes(time))
+                TimeUnit.MILLISECONDS.toMinutes(time)
+            )
         )
 
         with(notificationBuilder) {
@@ -132,9 +138,11 @@ internal class BackupNotifier(private val context: Context) {
                 val destFile = File(path, file)
                 val uri = destFile.getUriCompat(context)
 
-                addAction(R.drawable.nnf_ic_file_folder,
+                addAction(
+                    R.drawable.nnf_ic_file_folder,
                     context.getString(R.string.action_open_log),
-                    NotificationReceiver.openErrorLogPendingActivity(context, uri))
+                    NotificationReceiver.openErrorLogPendingActivity(context, uri)
+                )
             }
         }
 

@@ -30,10 +30,10 @@ class CategoryPresenter(
         super.onCreate(savedState)
 
         db.getCategories().asRxObservable()
-                .doOnNext { categories = it }
-                .map { it.map(::CategoryItem) }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeLatestCache(CategoryController::setCategories)
+            .doOnNext { categories = it }
+            .map { it.map(::CategoryItem) }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeLatestCache(CategoryController::setCategories)
     }
 
     /**

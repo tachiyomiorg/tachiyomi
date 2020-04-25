@@ -20,9 +20,11 @@ class SetTrackReadingDatesDialog<T> : DialogController
 
     private val dateToUpdate: ReadingDate
 
-    constructor(target: T, dateToUpdate: ReadingDate, item: TrackItem) : super(Bundle().apply {
-        putSerializable(SetTrackReadingDatesDialog.KEY_ITEM_TRACK, item.track)
-    }) {
+    constructor(target: T, dateToUpdate: ReadingDate, item: TrackItem) : super(
+        Bundle().apply {
+            putSerializable(SetTrackReadingDatesDialog.KEY_ITEM_TRACK, item.track)
+        }
+    ) {
         targetController = target
         this.item = item
         this.dateToUpdate = dateToUpdate
@@ -40,16 +42,18 @@ class SetTrackReadingDatesDialog<T> : DialogController
         val listener = (targetController as? Listener)
 
         return MaterialDialog(activity!!)
-                .title(when (dateToUpdate) {
+            .title(
+                when (dateToUpdate) {
                     ReadingDate.Start -> R.string.track_started_reading_date
                     ReadingDate.Finish -> R.string.track_finished_reading_date
-                })
-                .datePicker(currentDate = getCurrentDate()) { _, date ->
-                    listener?.setReadingDate(item, dateToUpdate, date.timeInMillis)
                 }
-                .neutralButton(R.string.action_remove) {
-                    listener?.setReadingDate(item, dateToUpdate, 0L)
-                }
+            )
+            .datePicker(currentDate = getCurrentDate()) { _, date ->
+                listener?.setReadingDate(item, dateToUpdate, date.timeInMillis)
+            }
+            .neutralButton(R.string.action_remove) {
+                listener?.setReadingDate(item, dateToUpdate, 0L)
+            }
     }
 
     private fun getCurrentDate(): Calendar {
@@ -60,8 +64,9 @@ class SetTrackReadingDatesDialog<T> : DialogController
                     ReadingDate.Start -> it.started_reading_date
                     ReadingDate.Finish -> it.finished_reading_date
                 }
-                if (date != 0L)
+                if (date != 0L) {
                     timeInMillis = date
+                }
             }
         }
     }

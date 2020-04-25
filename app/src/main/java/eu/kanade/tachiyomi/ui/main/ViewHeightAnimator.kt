@@ -30,23 +30,23 @@ class ViewHeightAnimator(val view: View) {
 
     init {
         view.viewTreeObserver.addOnGlobalLayoutListener(
-                object : ViewTreeObserver.OnGlobalLayoutListener {
-                    override fun onGlobalLayout() {
-                        if (view.height > 0) {
-                            view.viewTreeObserver.removeOnGlobalLayoutListener(this)
+            object : ViewTreeObserver.OnGlobalLayoutListener {
+                override fun onGlobalLayout() {
+                    if (view.height > 0) {
+                        view.viewTreeObserver.removeOnGlobalLayoutListener(this)
 
-                            // Save the tabs default height.
-                            height = view.height
+                        // Save the tabs default height.
+                        height = view.height
 
-                            // Now that we know the height, set the initial height.
-                            if (isLastStateShown) {
-                                setHeight(height)
-                            } else {
-                                setHeight(0)
-                            }
+                        // Now that we know the height, set the initial height.
+                        if (isLastStateShown) {
+                            setHeight(height)
+                        } else {
+                            setHeight(0)
                         }
                     }
                 }
+            }
         )
     }
 

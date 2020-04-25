@@ -12,7 +12,7 @@ import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
  * @param adapter the adapter handling this holder.
  */
 abstract class SourceHolder(view: View, adapter: FlexibleAdapter<*>) :
-        BaseFlexibleViewHolder(view, adapter) {
+    BaseFlexibleViewHolder(view, adapter) {
 
     /**
      * Method called from [CatalogueAdapter.onBindViewHolder]. It updates the data for this

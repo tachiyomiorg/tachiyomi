@@ -37,15 +37,16 @@ import timber.log.Timber
  * Uses [R.layout.updates_controller].
  * UI related actions should be called from here.
  */
-class UpdatesController : NucleusController<UpdatesControllerBinding, UpdatesPresenter>(),
-        RootController,
-        NoToolbarElevationController,
-        ActionMode.Callback,
-        FlexibleAdapter.OnItemClickListener,
-        FlexibleAdapter.OnItemLongClickListener,
-        FlexibleAdapter.OnUpdateListener,
-        ConfirmDeleteChaptersDialog.Listener,
-        UpdatesAdapter.OnCoverClickListener {
+class UpdatesController :
+    NucleusController<UpdatesControllerBinding, UpdatesPresenter>(),
+    RootController,
+    NoToolbarElevationController,
+    ActionMode.Callback,
+    FlexibleAdapter.OnItemClickListener,
+    FlexibleAdapter.OnItemLongClickListener,
+    FlexibleAdapter.OnUpdateListener,
+    ConfirmDeleteChaptersDialog.Listener,
+    UpdatesAdapter.OnCoverClickListener {
 
     /**
      * Action mode for multiple selection.
@@ -172,8 +173,8 @@ class UpdatesController : NucleusController<UpdatesControllerBinding, UpdatesPre
         if (actionMode == null) {
             actionMode = (activity as AppCompatActivity).startSupportActionMode(this)
             binding.actionToolbar.show(
-                    actionMode!!,
-                    R.menu.updates_chapter_selection
+                actionMode!!,
+                R.menu.updates_chapter_selection
             ) { onActionItemClicked(actionMode!!, it!!) }
         }
 
@@ -334,7 +335,8 @@ class UpdatesController : NucleusController<UpdatesControllerBinding, UpdatesPre
             R.id.action_select_all -> selectAll()
             R.id.action_select_inverse -> selectInverse()
             R.id.action_download -> downloadChapters(getSelectedChapters())
-            R.id.action_delete -> ConfirmDeleteChaptersDialog(this, getSelectedChapters())
+            R.id.action_delete ->
+                ConfirmDeleteChaptersDialog(this, getSelectedChapters())
                     .showDialog(router)
             R.id.action_mark_as_read -> markAsRead(getSelectedChapters())
             R.id.action_mark_as_unread -> markAsUnread(getSelectedChapters())

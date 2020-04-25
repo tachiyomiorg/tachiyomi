@@ -28,7 +28,7 @@ import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.setting.SettingsSourcesController
 import eu.kanade.tachiyomi.ui.source.browse.BrowseSourceController
-import eu.kanade.tachiyomi.ui.source.global_search.GlobalSearchController
+import eu.kanade.tachiyomi.ui.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.source.latest.LatestUpdatesController
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
@@ -44,12 +44,13 @@ import uy.kohesive.injekt.api.get
  * [SourceAdapter.OnBrowseClickListener] call function data on browse item click.
  * [SourceAdapter.OnLatestClickListener] call function data on latest item click
  */
-class SourceController : NucleusController<SourceMainControllerBinding, SourcePresenter>(),
-        RootController,
-        FlexibleAdapter.OnItemClickListener,
-        FlexibleAdapter.OnItemLongClickListener,
-        SourceAdapter.OnBrowseClickListener,
-        SourceAdapter.OnLatestClickListener {
+class SourceController :
+    NucleusController<SourceMainControllerBinding, SourcePresenter>(),
+    RootController,
+    FlexibleAdapter.OnItemClickListener,
+    FlexibleAdapter.OnItemLongClickListener,
+    SourceAdapter.OnBrowseClickListener,
+    SourceAdapter.OnLatestClickListener {
 
     private val preferences: PreferencesHelper = Injekt.get()
 
@@ -122,21 +123,21 @@ class SourceController : NucleusController<SourceMainControllerBinding, SourcePr
         val isPinned = item.header?.code?.equals(SourcePresenter.PINNED_KEY) ?: false
 
         MaterialDialog(activity)
-                .title(text = item.source.name)
-                .listItems(
-                    items = listOf(
-                        activity.getString(R.string.action_hide),
-                        activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin)
-                    ),
-                    waitForPositiveButton = false
-                ) { dialog, which, _ ->
-                    when (which) {
-                        0 -> hideCatalogue(item.source)
-                        1 -> pinCatalogue(item.source, isPinned)
-                    }
-                    dialog.dismiss()
+            .title(text = item.source.name)
+            .listItems(
+                items = listOf(
+                    activity.getString(R.string.action_hide),
+                    activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin)
+                ),
+                waitForPositiveButton = false
+            ) { dialog, which, _ ->
+                when (which) {
+                    0 -> hideCatalogue(item.source)
+                    1 -> pinCatalogue(item.source, isPinned)
                 }
-                .show()
+                dialog.dismiss()
+            }
+            .show()
     }
 
     private fun hideCatalogue(source: Source) {
@@ -218,9 +219,11 @@ class SourceController : NucleusController<SourceMainControllerBinding, SourcePr
         when (item.itemId) {
             // Initialize option to open catalogue settings.
             R.id.action_settings -> {
-                router.pushController((RouterTransaction.with(SettingsSourcesController()))
+                router.pushController(
+                    (RouterTransaction.with(SettingsSourcesController()))
                         .popChangeHandler(SettingsSourcesFadeChangeHandler())
-                        .pushChangeHandler(FadeChangeHandler()))
+                        .pushChangeHandler(FadeChangeHandler())
+                )
             }
         }
         return super.onOptionsItemSelected(item)

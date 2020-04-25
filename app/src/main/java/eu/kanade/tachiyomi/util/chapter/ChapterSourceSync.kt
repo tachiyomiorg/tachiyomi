@@ -24,7 +24,6 @@ fun syncChaptersWithSource(
     manga: Manga,
     source: Source
 ): Pair<List<Chapter>, List<Chapter>> {
-
     if (rawSourceChapters.isEmpty()) {
         throw Exception("No chapters found")
     }
@@ -142,6 +141,6 @@ fun syncChaptersWithSource(
 // checks if the chapter in db needs updated
 private fun shouldUpdateDbChapter(dbChapter: Chapter, sourceChapter: SChapter): Boolean {
     return dbChapter.scanlator != sourceChapter.scanlator || dbChapter.name != sourceChapter.name ||
-            dbChapter.date_upload != sourceChapter.date_upload ||
-            dbChapter.chapter_number != sourceChapter.chapter_number
+        dbChapter.date_upload != sourceChapter.date_upload ||
+        dbChapter.chapter_number != sourceChapter.chapter_number
 }

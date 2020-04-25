@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.source.global_search
+package eu.kanade.tachiyomi.ui.source.globalsearch
 
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -9,7 +9,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
  * @param controller instance of [GlobalSearchController].
  */
 class GlobalSearchCardAdapter(controller: GlobalSearchController) :
-        FlexibleAdapter<GlobalSearchCardItem>(null, controller, true) {
+    FlexibleAdapter<GlobalSearchCardItem>(null, controller, true) {
 
     /**
      * Listen for browse item clicks.

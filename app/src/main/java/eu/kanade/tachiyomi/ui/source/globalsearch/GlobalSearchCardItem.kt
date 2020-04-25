@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.source.global_search
+package eu.kanade.tachiyomi.ui.source.globalsearch
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

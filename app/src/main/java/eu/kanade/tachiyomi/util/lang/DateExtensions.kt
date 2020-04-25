@@ -36,8 +36,9 @@ fun Long.toDateKey(): Date {
  * @return Calendar instance at supplied epoch time. Null if epoch was 0.
  */
 fun Long.toCalendar(): Calendar? {
-    if (this == 0L)
+    if (this == 0L) {
         return null
+    }
     val cal = Calendar.getInstance()
     cal.timeInMillis = this
     return cal

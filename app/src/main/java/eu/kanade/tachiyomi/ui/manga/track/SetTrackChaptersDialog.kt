@@ -19,9 +19,11 @@ class SetTrackChaptersDialog<T> : DialogController
 
     private val item: TrackItem
 
-    constructor(target: T, item: TrackItem) : super(Bundle().apply {
-        putSerializable(KEY_ITEM_TRACK, item.track)
-    }) {
+    constructor(target: T, item: TrackItem) : super(
+        Bundle().apply {
+            putSerializable(KEY_ITEM_TRACK, item.track)
+        }
+    ) {
         targetController = target
         this.item = item
     }
@@ -37,17 +39,17 @@ class SetTrackChaptersDialog<T> : DialogController
         val item = item
 
         val dialog = MaterialDialog(activity!!)
-                .title(R.string.chapters)
-                .customView(R.layout.track_chapters_dialog, dialogWrapContent = false)
-                .positiveButton(android.R.string.ok) { dialog ->
-                    val view = dialog.getCustomView()
-                    // Remove focus to update selected number
-                    val np: NumberPicker = view.findViewById(R.id.chapters_picker)
-                    np.clearFocus()
+            .title(R.string.chapters)
+            .customView(R.layout.track_chapters_dialog, dialogWrapContent = false)
+            .positiveButton(android.R.string.ok) { dialog ->
+                val view = dialog.getCustomView()
+                // Remove focus to update selected number
+                val np: NumberPicker = view.findViewById(R.id.chapters_picker)
+                np.clearFocus()
 
-                    (targetController as? Listener)?.setChaptersRead(item, np.value)
-                }
-                .negativeButton(android.R.string.cancel)
+                (targetController as? Listener)?.setChaptersRead(item, np.value)
+            }
+            .negativeButton(android.R.string.cancel)
 
         val view = dialog.getCustomView()
         val np: NumberPicker = view.findViewById(R.id.chapters_picker)

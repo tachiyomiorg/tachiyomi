@@ -31,15 +31,15 @@ class DownloadPageLoader(
      */
     override fun getPages(): Observable<List<ReaderPage>> {
         return downloadManager.buildPageList(source, manga, chapter.chapter)
-                .map { pages ->
-                    pages.map { page ->
-                        ReaderPage(page.index, page.url, page.imageUrl) {
-                            context.contentResolver.openInputStream(page.uri ?: Uri.EMPTY)!!
-                        }.apply {
-                            status = Page.READY
-                        }
+            .map { pages ->
+                pages.map { page ->
+                    ReaderPage(page.index, page.url, page.imageUrl) {
+                        context.contentResolver.openInputStream(page.uri ?: Uri.EMPTY)!!
+                    }.apply {
+                        status = Page.READY
                     }
                 }
+            }
     }
 
     override fun getPage(page: ReaderPage): Observable<Int> {

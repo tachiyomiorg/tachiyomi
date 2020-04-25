@@ -40,7 +40,8 @@ class ExtensionUpdateJob(private val context: Context, workerParams: WorkerParam
 
     private fun createUpdateNotification(names: List<String>) {
         NotificationManagerCompat.from(context).apply {
-            notify(Notifications.ID_UPDATES_TO_EXTS,
+            notify(
+                Notifications.ID_UPDATES_TO_EXTS,
                 context.notification(Notifications.CHANNEL_UPDATES_TO_EXTS) {
                     setContentTitle(
                         context.resources.getQuantityString(
@@ -55,7 +56,8 @@ class ExtensionUpdateJob(private val context: Context, workerParams: WorkerParam
                     setSmallIcon(R.drawable.ic_extension_24dp)
                     setContentIntent(NotificationReceiver.openExtensionsPendingActivity(context))
                     setAutoCancel(true)
-                })
+                }
+            )
         }
     }
 
@@ -72,7 +74,8 @@ class ExtensionUpdateJob(private val context: Context, workerParams: WorkerParam
 
                 val request = PeriodicWorkRequestBuilder<ExtensionUpdateJob>(
                     12, TimeUnit.HOURS,
-                    1, TimeUnit.HOURS)
+                    1, TimeUnit.HOURS
+                )
                     .addTag(TAG)
                     .setConstraints(constraints)
                     .build()

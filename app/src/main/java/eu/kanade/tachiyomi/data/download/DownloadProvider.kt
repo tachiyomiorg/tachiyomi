@@ -52,8 +52,8 @@ class DownloadProvider(private val context: Context) {
     internal fun getMangaDir(manga: Manga, source: Source): UniFile {
         try {
             return downloadsDir
-                    .createDirectory(getSourceDirName(source))
-                    .createDirectory(getMangaDirName(manga))
+                .createDirectory(getSourceDirName(source))
+                .createDirectory(getMangaDirName(manga))
         } catch (e: NullPointerException) {
             throw Exception(context.getString(R.string.invalid_download_dir))
         }

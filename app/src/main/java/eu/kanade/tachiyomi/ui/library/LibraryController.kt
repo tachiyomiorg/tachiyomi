@@ -51,11 +51,11 @@ class LibraryController(
     bundle: Bundle? = null,
     private val preferences: PreferencesHelper = Injekt.get()
 ) : NucleusController<LibraryControllerBinding, LibraryPresenter>(bundle),
-        RootController,
-        TabbedController,
-        ActionMode.Callback,
-        ChangeMangaCategoriesDialog.Listener,
-        DeleteLibraryMangasDialog.Listener {
+    RootController,
+    TabbedController,
+    ActionMode.Callback,
+    ChangeMangaCategoriesDialog.Listener,
+    DeleteLibraryMangasDialog.Listener {
 
     /**
      * Position of the active category.
@@ -155,10 +155,10 @@ class LibraryController(
             .launchIn(scope)
 
         getColumnsPreferenceForCurrentOrientation().asObservable()
-                .doOnNext { mangaPerRow = it }
-                .skip(1)
-                // Set again the adapter to recalculate the covers height
-                .subscribeUntilDestroy { reattachAdapter() }
+            .doOnNext { mangaPerRow = it }
+            .skip(1)
+            // Set again the adapter to recalculate the covers height
+            .subscribeUntilDestroy { reattachAdapter() }
 
         if (selectedMangas.isNotEmpty()) {
             createActionModeIfNeeded()
@@ -230,10 +230,11 @@ class LibraryController(
         }
 
         // Get the current active category.
-        val activeCat = if (adapter.categories.isNotEmpty())
+        val activeCat = if (adapter.categories.isNotEmpty()) {
             binding.libraryPager.currentItem
-        else
+        } else {
             activeCategory
+        }
 
         // Set the categories
         adapter.categories = categories
@@ -260,10 +261,11 @@ class LibraryController(
      * @return the preference.
      */
     private fun getColumnsPreferenceForCurrentOrientation(): Preference<Int> {
-        return if (resources?.configuration?.orientation == Configuration.ORIENTATION_PORTRAIT)
+        return if (resources?.configuration?.orientation == Configuration.ORIENTATION_PORTRAIT) {
             preferences.portraitColumns()
-        else
+        } else {
             preferences.landscapeColumns()
+        }
     }
 
     /**
@@ -306,8 +308,8 @@ class LibraryController(
         if (actionMode == null) {
             actionMode = (activity as AppCompatActivity).startSupportActionMode(this)
             binding.actionToolbar.show(
-                    actionMode!!,
-                    R.menu.library_selection
+                actionMode!!,
+                R.menu.library_selection
             ) { onActionItemClicked(actionMode!!, it!!) }
         }
     }
@@ -479,11 +481,11 @@ class LibraryController(
 
         // Get indexes of the common categories to preselect.
         val commonCategoriesIndexes = presenter.getCommonCategories(mangas)
-                .map { categories.indexOf(it) }
-                .toTypedArray()
+            .map { categories.indexOf(it) }
+            .toTypedArray()
 
         ChangeMangaCategoriesDialog(this, mangas, categories, commonCategoriesIndexes)
-                .showDialog(router)
+            .showDialog(router)
     }
 
     private fun showDeleteMangaDialog() {
@@ -510,8 +512,13 @@ class LibraryController(
         if (manga.favorite) {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
-            startActivityForResult(Intent.createChooser(intent,
-                    resources?.getString(R.string.file_select_cover)), REQUEST_IMAGE_OPEN)
+            startActivityForResult(
+                Intent.createChooser(
+                    intent,
+                    resources?.getString(R.string.file_select_cover)
+                ),
+                REQUEST_IMAGE_OPEN
+            )
         } else {
             activity?.toast(R.string.notification_first_add_to_library)
         }

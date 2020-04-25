@@ -59,17 +59,19 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(when (preferences.themeMode().get()) {
-            Values.THEME_MODE_SYSTEM -> {
-                if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
-                    darkTheme
-                } else {
-                    lightTheme
+        setTheme(
+            when (preferences.themeMode().get()) {
+                Values.THEME_MODE_SYSTEM -> {
+                    if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
+                        darkTheme
+                    } else {
+                        lightTheme
+                    }
                 }
+                Values.THEME_MODE_DARK -> darkTheme
+                else -> lightTheme
             }
-            Values.THEME_MODE_DARK -> darkTheme
-            else -> lightTheme
-        })
+        )
 
         super.onCreate(savedInstanceState)
 

@@ -20,24 +20,27 @@ class BiometricUnlockActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val biometricPrompt = BiometricPrompt(this, executor, object : BiometricPrompt.AuthenticationCallback() {
-            override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-                super.onAuthenticationError(errorCode, errString)
-                finishAffinity()
-            }
+        val biometricPrompt = BiometricPrompt(
+            this, executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                    finishAffinity()
+                }
 
-            override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                super.onAuthenticationSucceeded(result)
-                SecureActivityDelegate.locked = false
-                preferences.lastAppUnlock().set(Date().time)
-                finish()
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    SecureActivityDelegate.locked = false
+                    preferences.lastAppUnlock().set(Date().time)
+                    finish()
+                }
             }
-        })
+        )
 
         val promptInfo = BiometricPrompt.PromptInfo.Builder()
-                .setTitle(getString(R.string.unlock_app))
-                .setDeviceCredentialAllowed(true)
-                .build()
+            .setTitle(getString(R.string.unlock_app))
+            .setDeviceCredentialAllowed(true)
+            .build()
 
         biometricPrompt.authenticate(promptInfo)
     }

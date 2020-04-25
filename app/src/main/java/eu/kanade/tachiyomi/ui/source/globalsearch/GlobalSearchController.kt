@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.source.global_search
+package eu.kanade.tachiyomi.ui.source.globalsearch
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,7 +31,7 @@ open class GlobalSearchController(
     protected val initialQuery: String? = null,
     protected val extensionFilter: String? = null
 ) : NucleusController<GlobalSearchControllerBinding, GlobalSearchPresenter>(),
-        GlobalSearchCardAdapter.OnMangaClickListener {
+    GlobalSearchCardAdapter.OnMangaClickListener {
 
     /**
      * Adapter containing search results grouped by lang.

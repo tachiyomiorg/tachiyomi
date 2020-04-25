@@ -127,10 +127,12 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
      * Called when the activity is created. Initializes the presenter and configuration.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(when (preferences.readerTheme().get()) {
-            0 -> R.style.Theme_Reader_Light
-            else -> R.style.Theme_Reader
-        })
+        setTheme(
+            when (preferences.readerTheme().get()) {
+                0 -> R.style.Theme_Reader_Light
+                else -> R.style.Theme_Reader
+            }
+        )
         super.onCreate(savedInstanceState)
 
         binding = ReaderActivityBinding.inflate(layoutInflater)
@@ -275,10 +277,11 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         ViewCompat.setOnApplyWindowInsetsListener(binding.readerMenu) { _, insets ->
             if (!window.isDefaultBar()) {
                 binding.readerMenu.setPadding(
-                        insets.systemWindowInsetLeft,
-                        insets.systemWindowInsetTop,
-                        insets.systemWindowInsetRight,
-                        insets.systemWindowInsetBottom)
+                    insets.systemWindowInsetLeft,
+                    insets.systemWindowInsetTop,
+                    insets.systemWindowInsetRight,
+                    insets.systemWindowInsetBottom
+                )
             }
             insets
         }
@@ -293,18 +296,20 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         })
         binding.leftChapter.setOnClickListener {
             if (viewer != null) {
-                if (viewer is R2LPagerViewer)
+                if (viewer is R2LPagerViewer) {
                     loadNextChapter()
-                else
+                } else {
                     loadPreviousChapter()
+                }
             }
         }
         binding.rightChapter.setOnClickListener {
             if (viewer != null) {
-                if (viewer is R2LPagerViewer)
+                if (viewer is R2LPagerViewer) {
                     loadPreviousChapter()
-                else
+                } else {
                     loadNextChapter()
+                }
             }
         }
 
@@ -590,11 +595,13 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
      * depending on the [result].
      */
     fun onSetAsCoverResult(result: ReaderPresenter.SetAsCoverResult) {
-        toast(when (result) {
-            Success -> R.string.cover_updated
-            AddToLibraryFirst -> R.string.notification_first_add_to_library
-            Error -> R.string.notification_cover_update_failed
-        })
+        toast(
+            when (result) {
+                Success -> R.string.cover_updated
+                AddToLibraryFirst -> R.string.notification_first_add_to_library
+                Error -> R.string.notification_cover_update_failed
+            }
+        )
     }
 
     /**
@@ -614,10 +621,10 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
             val sharedRotation = preferences.rotation().asObservable().share()
             val initialRotation = sharedRotation.take(1)
             val rotationUpdates = sharedRotation.skip(1)
-                    .delay(250, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+                .delay(250, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
 
             subscriptions += Observable.merge(initialRotation, rotationUpdates)
-                    .subscribe { setOrientation(it) }
+                .subscribe { setOrientation(it) }
 
             preferences.readerTheme().asFlow()
                 .drop(1) // We only care about updates
@@ -700,10 +707,11 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
          * Sets the 32-bit color mode according to [enabled].
          */
         private fun setTrueColor(enabled: Boolean) {
-            if (enabled)
+            if (enabled) {
                 SubsamplingScaleImageView.setPreferredBitmapConfig(Bitmap.Config.ARGB_8888)
-            else
+            } else {
                 SubsamplingScaleImageView.setPreferredBitmapConfig(Bitmap.Config.RGB_565)
+            }
         }
 
         @TargetApi(Build.VERSION_CODES.P)

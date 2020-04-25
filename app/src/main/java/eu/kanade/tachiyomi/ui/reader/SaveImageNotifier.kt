@@ -37,12 +37,12 @@ class SaveImageNotifier(private val context: Context) {
      */
     fun onComplete(file: File) {
         val bitmap = GlideApp.with(context)
-                .asBitmap()
-                .load(file)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
-                .submit(720, 1280)
-                .get()
+            .asBitmap()
+            .load(file)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
+            .submit(720, 1280)
+            .get()
 
         if (bitmap != null) {
             showCompleteNotification(file, bitmap)
@@ -66,13 +66,17 @@ class SaveImageNotifier(private val context: Context) {
 
             setContentIntent(NotificationHandler.openImagePendingActivity(context, file))
             // Share action
-            addAction(R.drawable.ic_share_24dp,
-                    context.getString(R.string.action_share),
-                    NotificationReceiver.shareImagePendingBroadcast(context, file.absolutePath, notificationId))
+            addAction(
+                R.drawable.ic_share_24dp,
+                context.getString(R.string.action_share),
+                NotificationReceiver.shareImagePendingBroadcast(context, file.absolutePath, notificationId)
+            )
             // Delete action
-            addAction(R.drawable.ic_delete_24dp,
-                    context.getString(R.string.action_delete),
-                    NotificationReceiver.deleteImagePendingBroadcast(context, file.absolutePath, notificationId))
+            addAction(
+                R.drawable.ic_delete_24dp,
+                context.getString(R.string.action_delete),
+                NotificationReceiver.deleteImagePendingBroadcast(context, file.absolutePath, notificationId)
+            )
 
             updateNotification()
         }

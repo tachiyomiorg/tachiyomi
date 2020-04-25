@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.source.global_search
+package eu.kanade.tachiyomi.ui.source.globalsearch
 
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.global_search_controller_card.title
  * @param adapter instance of [GlobalSearchAdapter]
  */
 class GlobalSearchHolder(view: View, val adapter: GlobalSearchAdapter) :
-        BaseFlexibleViewHolder(view, adapter) {
+    BaseFlexibleViewHolder(view, adapter) {
 
     /**
      * Adapter containing manga from search results.

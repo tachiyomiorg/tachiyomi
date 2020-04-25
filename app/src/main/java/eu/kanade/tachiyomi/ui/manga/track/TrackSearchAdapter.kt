@@ -56,10 +56,10 @@ class TrackSearchAdapter(context: Context) :
             GlideApp.with(view.context).clear(view.track_search_cover)
             if (!track.cover_url.isEmpty()) {
                 GlideApp.with(view.context)
-                        .load(track.cover_url)
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .centerCrop()
-                        .into(view.track_search_cover)
+                    .load(track.cover_url)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .centerCrop()
+                    .into(view.track_search_cover)
             }
 
             if (track.publishing_status.isBlank()) {

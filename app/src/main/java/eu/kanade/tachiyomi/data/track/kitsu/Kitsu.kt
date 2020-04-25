@@ -78,17 +78,17 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
 
     override fun bind(track: Track): Observable<Track> {
         return api.findLibManga(track, getUserId())
-                .flatMap { remoteTrack ->
-                    if (remoteTrack != null) {
-                        track.copyPersonalFrom(remoteTrack)
-                        track.media_id = remoteTrack.media_id
-                        update(track)
-                    } else {
-                        track.score = DEFAULT_SCORE
-                        track.status = DEFAULT_STATUS
-                        add(track)
-                    }
+            .flatMap { remoteTrack ->
+                if (remoteTrack != null) {
+                    track.copyPersonalFrom(remoteTrack)
+                    track.media_id = remoteTrack.media_id
+                    update(track)
+                } else {
+                    track.score = DEFAULT_SCORE
+                    track.status = DEFAULT_STATUS
+                    add(track)
                 }
+            }
     }
 
     override fun search(query: String): Observable<List<TrackSearch>> {
@@ -97,20 +97,20 @@ class Kitsu(private val context: Context, id: Int) : TrackService(id) {
 
     override fun refresh(track: Track): Observable<Track> {
         return api.getLibManga(track)
-                .map { remoteTrack ->
-                    track.copyPersonalFrom(remoteTrack)
-                    track.total_chapters = remoteTrack.total_chapters
-                    track
-                }
+            .map { remoteTrack ->
+                track.copyPersonalFrom(remoteTrack)
+                track.total_chapters = remoteTrack.total_chapters
+                track
+            }
     }
 
     override fun login(username: String, password: String): Completable {
         return api.login(username, password)
-                .doOnNext { interceptor.newAuth(it) }
-                .flatMap { api.getCurrentUser() }
-                .doOnNext { userId -> saveCredentials(username, userId) }
-                .doOnError { logout() }
-                .toCompletable()
+            .doOnNext { interceptor.newAuth(it) }
+            .flatMap { api.getCurrentUser() }
+            .doOnNext { userId -> saveCredentials(username, userId) }
+            .doOnError { logout() }
+            .toCompletable()
     }
 
     override fun logout() {

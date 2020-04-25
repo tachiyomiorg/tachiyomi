@@ -53,7 +53,7 @@ class MyAnimeListInterceptor(private val myanimelist: MyAnimeList) : Interceptor
     private fun updateJsonBody(requestBody: RequestBody): RequestBody {
         val jsonString = bodyToString(requestBody)
         val newBody = JSONObject(jsonString)
-                .put(MyAnimeListApi.CSRF, myanimelist.getCSRF())
+            .put(MyAnimeListApi.CSRF, myanimelist.getCSRF())
 
         return newBody.toString().toRequestBody(requestBody.contentType())
     }

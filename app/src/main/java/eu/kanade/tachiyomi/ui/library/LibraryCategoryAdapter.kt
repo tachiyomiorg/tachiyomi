@@ -9,7 +9,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
  * @param view the fragment containing this adapter.
  */
 class LibraryCategoryAdapter(view: LibraryCategoryView) :
-        FlexibleAdapter<LibraryItem>(null, view, true) {
+    FlexibleAdapter<LibraryItem>(null, view, true) {
 
     /**
      * The list of manga in this category.

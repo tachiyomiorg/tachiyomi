@@ -117,39 +117,39 @@ class SettingsAdvancedController : SettingsController() {
         var deletedFiles = 0
 
         Observable.defer { Observable.from(files) }
-                .doOnNext { file ->
-                    if (chapterCache.removeFileFromCache(file.name)) {
-                        deletedFiles++
-                    }
+            .doOnNext { file ->
+                if (chapterCache.removeFileFromCache(file.name)) {
+                    deletedFiles++
                 }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnError {
-                    activity?.toast(R.string.cache_delete_error)
-                }
-                .doOnCompleted {
-                    activity?.toast(resources?.getString(R.string.cache_deleted, deletedFiles))
-                    findPreference(CLEAR_CACHE_KEY)?.summary =
-                        resources?.getString(R.string.used_cache, chapterCache.readableSize)
-                }
-                .subscribe()
+            }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnError {
+                activity?.toast(R.string.cache_delete_error)
+            }
+            .doOnCompleted {
+                activity?.toast(resources?.getString(R.string.cache_deleted, deletedFiles))
+                findPreference(CLEAR_CACHE_KEY)?.summary =
+                    resources?.getString(R.string.used_cache, chapterCache.readableSize)
+            }
+            .subscribe()
     }
 
     class ClearDatabaseDialogController : DialogController() {
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
             return MaterialDialog(activity!!)
-                    .message(R.string.clear_database_confirmation)
-                    .positiveButton(android.R.string.ok) {
-                        (targetController as? SettingsAdvancedController)?.clearDatabase()
-                    }
-                    .negativeButton(android.R.string.cancel)
+                .message(R.string.clear_database_confirmation)
+                .positiveButton(android.R.string.ok) {
+                    (targetController as? SettingsAdvancedController)?.clearDatabase()
+                }
+                .negativeButton(android.R.string.cancel)
         }
     }
 
     private fun clearDatabase() {
         // Avoid weird behavior by going back to the library.
         val newBackstack = listOf(RouterTransaction.with(LibraryController())) +
-                router.backstack.drop(1)
+            router.backstack.drop(1)
 
         router.setBackstack(newBackstack, FadeChangeHandler())
 

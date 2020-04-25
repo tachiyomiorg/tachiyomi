@@ -17,13 +17,14 @@ import kotlinx.android.synthetic.main.source_grid_item.view.card
 import kotlinx.android.synthetic.main.source_grid_item.view.gradient
 
 class SourceItem(val manga: Manga, private val catalogueAsList: Preference<Boolean>) :
-        AbstractFlexibleItem<SourceHolder>() {
+    AbstractFlexibleItem<SourceHolder>() {
 
     override fun getLayoutRes(): Int {
-        return if (catalogueAsList.getOrDefault())
+        return if (catalogueAsList.getOrDefault()) {
             R.layout.source_list_item
-        else
+        } else {
             R.layout.source_grid_item
+        }
     }
 
     override fun createViewHolder(
@@ -34,9 +35,11 @@ class SourceItem(val manga: Manga, private val catalogueAsList: Preference<Boole
         return if (parent is AutofitRecyclerView) {
             view.apply {
                 card.layoutParams = FrameLayout.LayoutParams(
-                        MATCH_PARENT, parent.itemWidth / 3 * 4)
+                    MATCH_PARENT, parent.itemWidth / 3 * 4
+                )
                 gradient.layoutParams = FrameLayout.LayoutParams(
-                        MATCH_PARENT, parent.itemWidth / 3 * 4 / 2, Gravity.BOTTOM)
+                    MATCH_PARENT, parent.itemWidth / 3 * 4 / 2, Gravity.BOTTOM
+                )
             }
             SourceGridHolder(view, adapter)
         } else {

@@ -19,13 +19,13 @@ class ExtensionFilterController : SettingsController() {
         val activeLangs = preferences.enabledLanguages().get()
 
         val availableLangs =
-                Injekt.get<ExtensionManager>().availableExtensions.groupBy {
-                    it.lang
-                }.keys.minus("all").partition {
-                    it in activeLangs
-                }.let {
-                    it.first + it.second
-                }
+            Injekt.get<ExtensionManager>().availableExtensions.groupBy {
+                it.lang
+            }.keys.minus("all").partition {
+                it in activeLangs
+            }.let {
+                it.first + it.second
+            }
 
         availableLangs.forEach {
             switchPreference {

@@ -21,7 +21,7 @@ class CoverCache(private val context: Context) {
      * Cache directory used for cache management.
      */
     private val cacheDir = context.getExternalFilesDir("covers")
-            ?: File(context.filesDir, "covers").also { it.mkdirs() }
+        ?: File(context.filesDir, "covers").also { it.mkdirs() }
 
     /**
      * Returns the cover from cache.
@@ -56,8 +56,9 @@ class CoverCache(private val context: Context) {
      */
     fun deleteFromCache(thumbnailUrl: String?): Boolean {
         // Check if url is empty.
-        if (thumbnailUrl.isNullOrEmpty())
+        if (thumbnailUrl.isNullOrEmpty()) {
             return false
+        }
 
         // Remove file.
         val file = getCoverFile(thumbnailUrl)

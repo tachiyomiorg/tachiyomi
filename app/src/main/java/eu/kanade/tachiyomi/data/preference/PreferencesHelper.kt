@@ -45,12 +45,20 @@ class PreferencesHelper(val context: Context) {
     private val flowPrefs = FlowSharedPreferences(prefs)
 
     private val defaultDownloadsDir = Uri.fromFile(
-            File(Environment.getExternalStorageDirectory().absolutePath + File.separator +
-                    context.getString(R.string.app_name), "downloads"))
+        File(
+            Environment.getExternalStorageDirectory().absolutePath + File.separator +
+                context.getString(R.string.app_name),
+            "downloads"
+        )
+    )
 
     private val defaultBackupDir = Uri.fromFile(
-            File(Environment.getExternalStorageDirectory().absolutePath + File.separator +
-                    context.getString(R.string.app_name), "backup"))
+        File(
+            Environment.getExternalStorageDirectory().absolutePath + File.separator +
+                context.getString(R.string.app_name),
+            "backup"
+        )
+    )
 
     fun startScreen() = prefs.getInt(Keys.startScreen, 1)
 
@@ -148,9 +156,9 @@ class PreferencesHelper(val context: Context) {
 
     fun setTrackCredentials(sync: TrackService, username: String, password: String) {
         prefs.edit()
-                .putString(Keys.trackUsername(sync.id), username)
-                .putString(Keys.trackPassword(sync.id), password)
-                .apply()
+            .putString(Keys.trackUsername(sync.id), username)
+            .putString(Keys.trackPassword(sync.id), password)
+            .apply()
     }
 
     fun trackToken(sync: TrackService) = flowPrefs.getString(Keys.trackToken(sync.id), "")

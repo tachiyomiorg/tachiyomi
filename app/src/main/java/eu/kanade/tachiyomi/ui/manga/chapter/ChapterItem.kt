@@ -10,8 +10,9 @@ import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
 
-class ChapterItem(val chapter: Chapter, val manga: Manga) : AbstractFlexibleItem<ChapterHolder>(),
-        Chapter by chapter {
+class ChapterItem(val chapter: Chapter, val manga: Manga) :
+    AbstractFlexibleItem<ChapterHolder>(),
+    Chapter by chapter {
 
     private var _status: Int = 0
 

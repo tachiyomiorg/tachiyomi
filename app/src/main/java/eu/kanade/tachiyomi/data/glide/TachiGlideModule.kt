@@ -27,8 +27,10 @@ class TachiGlideModule : AppGlideModule() {
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         builder.setDiskCache(InternalCacheDiskCacheFactory(context, 50 * 1024 * 1024))
         builder.setDefaultRequestOptions(RequestOptions().format(DecodeFormat.PREFER_RGB_565))
-        builder.setDefaultTransitionOptions(Drawable::class.java,
-                DrawableTransitionOptions.withCrossFade())
+        builder.setDefaultTransitionOptions(
+            Drawable::class.java,
+            DrawableTransitionOptions.withCrossFade()
+        )
     }
 
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
@@ -36,7 +38,10 @@ class TachiGlideModule : AppGlideModule() {
 
         registry.replace(GlideUrl::class.java, InputStream::class.java, networkFactory)
         registry.append(MangaThumbnail::class.java, InputStream::class.java, MangaThumbnailModelLoader.Factory())
-        registry.append(InputStream::class.java, InputStream::class.java, PassthroughModelLoader
-                .Factory())
+        registry.append(
+            InputStream::class.java, InputStream::class.java,
+            PassthroughModelLoader
+                .Factory()
+        )
     }
 }

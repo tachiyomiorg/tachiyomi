@@ -31,17 +31,17 @@ class CategoryCreateDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
      */
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialDialog(activity!!)
-                .title(R.string.action_add_category)
-                .negativeButton(android.R.string.cancel)
-                .input(
-                    hint = resources?.getString(R.string.name),
-                    prefill = currentName
-                ) { _, input ->
-                    currentName = input.toString()
-                }
-                .positiveButton(android.R.string.ok) {
-                    (targetController as? Listener)?.createCategory(currentName)
-                }
+            .title(R.string.action_add_category)
+            .negativeButton(android.R.string.cancel)
+            .input(
+                hint = resources?.getString(R.string.name),
+                prefill = currentName
+            ) { _, input ->
+                currentName = input.toString()
+            }
+            .positiveButton(android.R.string.ok) {
+                (targetController as? Listener)?.createCategory(currentName)
+            }
     }
 
     interface Listener {

@@ -27,11 +27,11 @@ class MangaHolder(
         // Update the cover.
         GlideApp.with(itemView.context).clear(thumbnail)
         GlideApp.with(itemView.context)
-                .load(item.manga.toMangaThumbnail())
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .centerCrop()
-                .circleCrop()
-                .dontAnimate()
-                .into(thumbnail)
+            .load(item.manga.toMangaThumbnail())
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .centerCrop()
+            .circleCrop()
+            .dontAnimate()
+            .into(thumbnail)
     }
 }

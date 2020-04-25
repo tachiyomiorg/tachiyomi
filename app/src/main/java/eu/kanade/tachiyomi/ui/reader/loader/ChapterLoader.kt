@@ -31,34 +31,34 @@ class ChapterLoader(
         }
 
         return Observable.just(chapter)
-                .doOnNext { chapter.state = ReaderChapter.State.Loading }
-                .observeOn(Schedulers.io())
-                .flatMap { readerChapter ->
-                    Timber.d("Loading pages for ${chapter.chapter.name}")
+            .doOnNext { chapter.state = ReaderChapter.State.Loading }
+            .observeOn(Schedulers.io())
+            .flatMap { readerChapter ->
+                Timber.d("Loading pages for ${chapter.chapter.name}")
 
-                    val loader = getPageLoader(readerChapter)
-                    chapter.pageLoader = loader
+                val loader = getPageLoader(readerChapter)
+                chapter.pageLoader = loader
 
-                    loader.getPages().take(1).doOnNext { pages ->
-                        pages.forEach { it.chapter = chapter }
-                    }
+                loader.getPages().take(1).doOnNext { pages ->
+                    pages.forEach { it.chapter = chapter }
                 }
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { pages ->
-                    if (pages.isEmpty()) {
-                        throw Exception("Page list is empty")
-                    }
-
-                    chapter.state = ReaderChapter.State.Loaded(pages)
-
-                    // If the chapter is partially read, set the starting page to the last the user read
-                    // otherwise use the requested page.
-                    if (!chapter.chapter.read) {
-                        chapter.requestedPage = chapter.chapter.last_page_read
-                    }
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext { pages ->
+                if (pages.isEmpty()) {
+                    throw Exception("Page list is empty")
                 }
-                .toCompletable()
-                .doOnError { chapter.state = ReaderChapter.State.Error(it) }
+
+                chapter.state = ReaderChapter.State.Loaded(pages)
+
+                // If the chapter is partially read, set the starting page to the last the user read
+                // otherwise use the requested page.
+                if (!chapter.chapter.read) {
+                    chapter.requestedPage = chapter.chapter.last_page_read
+                }
+            }
+            .toCompletable()
+            .doOnError { chapter.state = ReaderChapter.State.Error(it) }
     }
 
     /**

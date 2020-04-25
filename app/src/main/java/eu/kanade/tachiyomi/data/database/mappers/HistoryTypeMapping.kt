@@ -18,22 +18,22 @@ import eu.kanade.tachiyomi.data.database.tables.HistoryTable.COL_TIME_READ
 import eu.kanade.tachiyomi.data.database.tables.HistoryTable.TABLE
 
 class HistoryTypeMapping : SQLiteTypeMapping<History>(
-        HistoryPutResolver(),
-        HistoryGetResolver(),
-        HistoryDeleteResolver()
+    HistoryPutResolver(),
+    HistoryGetResolver(),
+    HistoryDeleteResolver()
 )
 
 open class HistoryPutResolver : DefaultPutResolver<History>() {
 
     override fun mapToInsertQuery(obj: History) = InsertQuery.builder()
-            .table(TABLE)
-            .build()
+        .table(TABLE)
+        .build()
 
     override fun mapToUpdateQuery(obj: History) = UpdateQuery.builder()
-            .table(TABLE)
-            .where("$COL_ID = ?")
-            .whereArgs(obj.id)
-            .build()
+        .table(TABLE)
+        .where("$COL_ID = ?")
+        .whereArgs(obj.id)
+        .build()
 
     override fun mapToContentValues(obj: History) = ContentValues(4).apply {
         put(COL_ID, obj.id)
@@ -56,8 +56,8 @@ class HistoryGetResolver : DefaultGetResolver<History>() {
 class HistoryDeleteResolver : DefaultDeleteResolver<History>() {
 
     override fun mapToDeleteQuery(obj: History) = DeleteQuery.builder()
-            .table(TABLE)
-            .where("$COL_ID = ?")
-            .whereArgs(obj.id)
-            .build()
+        .table(TABLE)
+        .where("$COL_ID = ?")
+        .whereArgs(obj.id)
+        .build()
 }

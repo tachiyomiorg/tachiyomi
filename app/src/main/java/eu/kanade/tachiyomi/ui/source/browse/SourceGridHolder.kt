@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.source_grid_item.title
  * @constructor creates a new catalogue holder.
  */
 class SourceGridHolder(private val view: View, private val adapter: FlexibleAdapter<*>) :
-        SourceHolder(view, adapter) {
+    SourceHolder(view, adapter) {
 
     /**
      * Method called from [CatalogueAdapter.onBindViewHolder]. It updates the data for this
@@ -42,11 +42,11 @@ class SourceGridHolder(private val view: View, private val adapter: FlexibleAdap
         GlideApp.with(view.context).clear(thumbnail)
         if (!manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(view.context)
-                    .load(manga.toMangaThumbnail())
-                    .diskCacheStrategy(DiskCacheStrategy.DATA)
-                    .centerCrop()
-                    .placeholder(android.R.color.transparent)
-                    .into(StateImageViewTarget(thumbnail, progress))
+                .load(manga.toMangaThumbnail())
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
+                .centerCrop()
+                .placeholder(android.R.color.transparent)
+                .into(StateImageViewTarget(thumbnail, progress))
         }
     }
 }

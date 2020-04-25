@@ -25,14 +25,15 @@ import reactivecircus.flowbinding.android.view.clicks
 /**
  * Controller to manage the categories for the users' library.
  */
-class CategoryController : NucleusController<CategoriesControllerBinding, CategoryPresenter>(),
-        ActionMode.Callback,
-        FlexibleAdapter.OnItemClickListener,
-        FlexibleAdapter.OnItemLongClickListener,
-        CategoryAdapter.OnItemReleaseListener,
-        CategoryCreateDialog.Listener,
-        CategoryRenameDialog.Listener,
-        UndoHelper.OnActionListener {
+class CategoryController :
+    NucleusController<CategoriesControllerBinding, CategoryPresenter>(),
+    ActionMode.Callback,
+    FlexibleAdapter.OnItemClickListener,
+    FlexibleAdapter.OnItemLongClickListener,
+    CategoryAdapter.OnItemReleaseListener,
+    CategoryCreateDialog.Listener,
+    CategoryRenameDialog.Listener,
+    UndoHelper.OnActionListener {
 
     /**
      * Object used to show ActionMode toolbar.
@@ -176,8 +177,10 @@ class CategoryController : NucleusController<CategoriesControllerBinding, Catego
         when (item.itemId) {
             R.id.action_delete -> {
                 undoHelper = UndoHelper(adapter, this)
-                undoHelper?.start(adapter.selectedPositions, view!!,
-                        R.string.snack_categories_deleted, R.string.action_undo, 3000)
+                undoHelper?.start(
+                    adapter.selectedPositions, view!!,
+                    R.string.snack_categories_deleted, R.string.action_undo, 3000
+                )
 
                 mode.finish()
             }

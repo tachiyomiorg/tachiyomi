@@ -33,9 +33,9 @@ import uy.kohesive.injekt.injectLazy
  * Fragment containing the library manga for a certain category.
  */
 class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
-        FrameLayout(context, attrs),
-        FlexibleAdapter.OnItemClickListener,
-        FlexibleAdapter.OnItemLongClickListener {
+    FrameLayout(context, attrs),
+    FlexibleAdapter.OnItemClickListener,
+    FlexibleAdapter.OnItemLongClickListener {
 
     private val scope = CoroutineScope(Job() + Dispatchers.Main)
 
@@ -122,24 +122,24 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
         }
 
         subscriptions += controller.searchRelay
-                .doOnNext { adapter.setFilter(it) }
-                .skip(1)
-                .subscribe { adapter.performFilter() }
+            .doOnNext { adapter.setFilter(it) }
+            .skip(1)
+            .subscribe { adapter.performFilter() }
 
         subscriptions += controller.libraryMangaRelay
-                .subscribe { onNextLibraryManga(it) }
+            .subscribe { onNextLibraryManga(it) }
 
         subscriptions += controller.selectionRelay
-                .subscribe { onSelectionChanged(it) }
+            .subscribe { onSelectionChanged(it) }
 
         subscriptions += controller.selectAllRelay
-                .filter { it == category.id }
-                .subscribe {
-                    adapter.currentItems.forEach { item ->
-                        controller.setSelection(item.manga, true)
-                    }
-                    controller.invalidateActionMode()
+            .filter { it == category.id }
+            .subscribe {
+                adapter.currentItems.forEach { item ->
+                    controller.setSelection(item.manga, true)
                 }
+                controller.invalidateActionMode()
+            }
 
         subscriptions += controller.selectInverseRelay
             .filter { it == category.id }
@@ -255,10 +255,12 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
         controller.createActionModeIfNeeded()
         when {
             lastClickPosition == -1 -> setSelection(position)
-            lastClickPosition > position -> for (i in position until lastClickPosition)
-                setSelection(i)
-            lastClickPosition < position -> for (i in lastClickPosition + 1..position)
-                setSelection(i)
+            lastClickPosition > position ->
+                for (i in position until lastClickPosition)
+                    setSelection(i)
+            lastClickPosition < position ->
+                for (i in lastClickPosition + 1..position)
+                    setSelection(i)
             else -> setSelection(position)
         }
         lastClickPosition = position

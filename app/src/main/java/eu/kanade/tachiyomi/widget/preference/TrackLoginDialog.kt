@@ -27,7 +27,7 @@ class TrackLoginDialog(
     constructor(service: TrackService) : this(service, null)
 
     constructor(service: TrackService, @StringRes usernameLabelRes: Int?) :
-            this(R.string.login_title, service.name, usernameLabelRes, Bundle().apply { putInt("key", service.id) })
+        this(R.string.login_title, service.name, usernameLabelRes, Bundle().apply { putInt("key", service.id) })
 
     override fun setCredentialsOnView(view: View) = with(view) {
         username.setText(service.getUsername())
@@ -38,24 +38,28 @@ class TrackLoginDialog(
         requestSubscription?.unsubscribe()
 
         v?.apply {
-            if (username.text.isNullOrEmpty() || password.text.isNullOrEmpty())
+            if (username.text.isNullOrEmpty() || password.text.isNullOrEmpty()) {
                 return
+            }
 
             login.progress = 1
             val user = username.text.toString()
             val pass = password.text.toString()
 
             requestSubscription = service.login(user, pass)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
                         dialog?.dismiss()
                         context.toast(R.string.login_success)
-                    }, { error ->
+                    },
+                    { error ->
                         login.progress = -1
                         login.setText(R.string.unknown_error)
                         error.message?.let { context.toast(it) }
-                    })
+                    }
+                )
         }
     }
 

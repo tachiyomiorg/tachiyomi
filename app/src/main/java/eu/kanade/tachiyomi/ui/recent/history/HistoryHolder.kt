@@ -59,16 +59,16 @@ class HistoryHolder(
         // Set chapter number + timestamp
         val formattedNumber = adapter.decimalFormat.format(chapter.chapter_number.toDouble())
         manga_subtitle.text = itemView.context.getString(R.string.recent_manga_time)
-                .format(formattedNumber, Date(history.last_read).toTimestampString())
+            .format(formattedNumber, Date(history.last_read).toTimestampString())
 
         // Set cover
         GlideApp.with(itemView.context).clear(cover)
         if (!manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(itemView.context)
-                    .load(manga.toMangaThumbnail())
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .centerCrop()
-                    .into(cover)
+                .load(manga.toMangaThumbnail())
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .centerCrop()
+                .into(cover)
         }
     }
 }

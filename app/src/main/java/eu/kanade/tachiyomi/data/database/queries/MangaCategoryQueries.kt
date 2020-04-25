@@ -15,12 +15,14 @@ interface MangaCategoryQueries : DbProvider {
     fun insertMangasCategories(mangasCategories: List<MangaCategory>) = db.put().objects(mangasCategories).prepare()
 
     fun deleteOldMangasCategories(mangas: List<Manga>) = db.delete()
-            .byQuery(DeleteQuery.builder()
-                    .table(MangaCategoryTable.TABLE)
-                    .where("${MangaCategoryTable.COL_MANGA_ID} IN (${Queries.placeholders(mangas.size)})")
-                    .whereArgs(*mangas.map { it.id }.toTypedArray())
-                    .build())
-            .prepare()
+        .byQuery(
+            DeleteQuery.builder()
+                .table(MangaCategoryTable.TABLE)
+                .where("${MangaCategoryTable.COL_MANGA_ID} IN (${Queries.placeholders(mangas.size)})")
+                .whereArgs(*mangas.map { it.id }.toTypedArray())
+                .build()
+        )
+        .prepare()
 
     fun setMangaCategories(mangasCategories: List<MangaCategory>, mangas: List<Manga>) {
         db.inTransaction {

@@ -143,18 +143,18 @@ class WebtoonTransitionHolder(
         unsubscribeStatus()
 
         statusSubscription = chapter.stateObserver
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { state ->
-                    pagesContainer.removeAllViews()
-                    when (state) {
-                        is ReaderChapter.State.Wait -> {
-                        }
-                        is ReaderChapter.State.Loading -> setLoading()
-                        is ReaderChapter.State.Error -> setError(state.error, transition)
-                        is ReaderChapter.State.Loaded -> setLoaded()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { state ->
+                pagesContainer.removeAllViews()
+                when (state) {
+                    is ReaderChapter.State.Wait -> {
                     }
-                    pagesContainer.visibleIf { pagesContainer.childCount > 0 }
+                    is ReaderChapter.State.Loading -> setLoading()
+                    is ReaderChapter.State.Error -> setError(state.error, transition)
+                    is ReaderChapter.State.Loaded -> setLoaded()
                 }
+                pagesContainer.visibleIf { pagesContainer.childCount > 0 }
+            }
 
         addSubscription(statusSubscription)
     }

@@ -31,7 +31,8 @@ object HistoryTable {
      * query to create history table
      */
     val createTableQuery: String
-        get() = """CREATE TABLE $TABLE(
+        get() =
+            """CREATE TABLE $TABLE(
             $COL_ID INTEGER NOT NULL PRIMARY KEY,
             $COL_CHAPTER_ID INTEGER NOT NULL UNIQUE,
             $COL_LAST_READ LONG,

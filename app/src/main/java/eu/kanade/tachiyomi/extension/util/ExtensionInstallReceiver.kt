@@ -19,7 +19,7 @@ import kotlinx.coroutines.async
  * @param listener The listener that should be notified of extension installation events.
  */
 internal class ExtensionInstallReceiver(private val listener: Listener) :
-        BroadcastReceiver() {
+    BroadcastReceiver() {
 
     /**
      * Registers this broadcast receiver
@@ -93,7 +93,7 @@ internal class ExtensionInstallReceiver(private val listener: Listener) :
      */
     private suspend fun getExtensionFromIntent(context: Context, intent: Intent?): LoadResult {
         val pkgName = getPackageNameFromIntent(intent)
-                ?: return LoadResult.Error("Package name not found")
+            ?: return LoadResult.Error("Package name not found")
         return GlobalScope.async(Dispatchers.Default, CoroutineStart.DEFAULT) { ExtensionLoader.loadExtensionFromPkgName(context, pkgName) }.await()
     }
 

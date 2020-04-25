@@ -87,13 +87,15 @@ internal class DownloadNotifier(private val context: Context) {
                 setContentIntent(NotificationHandler.openDownloadManagerPendingActivity(context))
                 isDownloading = true
                 // Pause action
-                addAction(R.drawable.ic_pause_24dp,
-                        context.getString(R.string.action_pause),
-                        NotificationReceiver.pauseDownloadsPendingBroadcast(context))
+                addAction(
+                    R.drawable.ic_pause_24dp,
+                    context.getString(R.string.action_pause),
+                    NotificationReceiver.pauseDownloadsPendingBroadcast(context)
+                )
             }
 
             val downloadingProgressText = context.getString(R.string.chapter_downloading_progress)
-                    .format(download.downloadedImages, download.pages!!.size)
+                .format(download.downloadedImages, download.pages!!.size)
 
             if (preferences.hideNotificationContent()) {
                 setContentTitle(downloadingProgressText)
@@ -126,13 +128,17 @@ internal class DownloadNotifier(private val context: Context) {
             // Open download manager when clicked
             setContentIntent(NotificationHandler.openDownloadManagerPendingActivity(context))
             // Resume action
-            addAction(R.drawable.ic_play_arrow_24dp,
-                    context.getString(R.string.action_resume),
-                    NotificationReceiver.resumeDownloadsPendingBroadcast(context))
+            addAction(
+                R.drawable.ic_play_arrow_24dp,
+                context.getString(R.string.action_resume),
+                NotificationReceiver.resumeDownloadsPendingBroadcast(context)
+            )
             // Clear action
-            addAction(R.drawable.ic_close_24dp,
-                    context.getString(R.string.action_cancel_all),
-                    NotificationReceiver.clearDownloadsPendingBroadcast(context))
+            addAction(
+                R.drawable.ic_close_24dp,
+                context.getString(R.string.action_cancel_all),
+                NotificationReceiver.clearDownloadsPendingBroadcast(context)
+            )
         }
 
         // Show notification.
@@ -173,8 +179,10 @@ internal class DownloadNotifier(private val context: Context) {
     fun onError(error: String? = null, chapter: String? = null) {
         // Create notification
         with(notificationBuilder) {
-            setContentTitle(chapter
-                    ?: context.getString(R.string.download_notifier_downloader_title))
+            setContentTitle(
+                chapter
+                    ?: context.getString(R.string.download_notifier_downloader_title)
+            )
             setContentText(error ?: context.getString(R.string.download_notifier_unknown_error))
             setSmallIcon(android.R.drawable.stat_sys_warning)
             clearActions()

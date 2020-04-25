@@ -36,13 +36,13 @@ class UpdatesPresenter(
         super.onCreate(savedState)
 
         getUpdatesObservable()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeLatestCache(UpdatesController::onNextRecentChapters)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeLatestCache(UpdatesController::onNextRecentChapters)
 
         getChapterStatusObservable()
-                .subscribeLatestCache(UpdatesController::onChapterStatusChange) { _, error ->
-                    Timber.e(error)
-                }
+            .subscribeLatestCache(UpdatesController::onChapterStatusChange) { _, error ->
+                Timber.e(error)
+            }
     }
 
     /**
@@ -58,32 +58,32 @@ class UpdatesPresenter(
         }
 
         return db.getRecentChapters(cal.time).asRxObservable()
-                // Convert to a list of recent chapters.
-                .map { mangaChapters ->
-                    val map = TreeMap<Date, MutableList<MangaChapter>> { d1, d2 -> d2.compareTo(d1) }
-                    val byDay = mangaChapters
-                            .groupByTo(map, { it.chapter.date_fetch.toDateKey() })
-                    byDay.flatMap { entry ->
-                        val dateItem = DateSectionItem(entry.key)
-                        entry.value
-                                .sortedWith(compareBy({ it.chapter.date_fetch }, { it.chapter.chapter_number })).asReversed()
-                                .map { UpdatesItem(it.chapter, it.manga, dateItem) }
-                    }
+            // Convert to a list of recent chapters.
+            .map { mangaChapters ->
+                val map = TreeMap<Date, MutableList<MangaChapter>> { d1, d2 -> d2.compareTo(d1) }
+                val byDay = mangaChapters
+                    .groupByTo(map, { it.chapter.date_fetch.toDateKey() })
+                byDay.flatMap { entry ->
+                    val dateItem = DateSectionItem(entry.key)
+                    entry.value
+                        .sortedWith(compareBy({ it.chapter.date_fetch }, { it.chapter.chapter_number })).asReversed()
+                        .map { UpdatesItem(it.chapter, it.manga, dateItem) }
                 }
-                .doOnNext { list ->
-                    list.forEach { item ->
-                        // Find an active download for this chapter.
-                        val download = downloadManager.queue.find { it.chapter.id == item.chapter.id }
+            }
+            .doOnNext { list ->
+                list.forEach { item ->
+                    // Find an active download for this chapter.
+                    val download = downloadManager.queue.find { it.chapter.id == item.chapter.id }
 
-                        // If there's an active download, assign it, otherwise ask the manager if
-                        // the chapter is downloaded and assign it to the status.
-                        if (download != null) {
-                            item.download = download
-                        }
+                    // If there's an active download, assign it, otherwise ask the manager if
+                    // the chapter is downloaded and assign it to the status.
+                    if (download != null) {
+                        item.download = download
                     }
-                    setDownloadedChapters(list)
-                    chapters = list
                 }
+                setDownloadedChapters(list)
+                chapters = list
+            }
     }
 
     /**
@@ -93,8 +93,8 @@ class UpdatesPresenter(
      */
     private fun getChapterStatusObservable(): Observable<Download> {
         return downloadManager.queue.getStatusObservable()
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { download -> onDownloadStatusChange(download) }
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext { download -> onDownloadStatusChange(download) }
     }
 
     /**
@@ -144,8 +144,8 @@ class UpdatesPresenter(
         }
 
         Observable.fromCallable { db.updateChaptersProgress(chapters).executeAsBlocking() }
-                .subscribeOn(Schedulers.io())
-                .subscribe()
+            .subscribeOn(Schedulers.io())
+            .subscribe()
     }
 
     /**
@@ -155,12 +155,15 @@ class UpdatesPresenter(
      */
     fun deleteChapters(chapters: List<UpdatesItem>) {
         Observable.just(chapters)
-                .doOnNext { deleteChaptersInternal(it) }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeFirst({ view, _ ->
+            .doOnNext { deleteChaptersInternal(it) }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeFirst(
+                { view, _ ->
                     view.onChaptersDeleted()
-                }, UpdatesController::onChaptersDeletedError)
+                },
+                UpdatesController::onChaptersDeletedError
+            )
     }
 
     /**

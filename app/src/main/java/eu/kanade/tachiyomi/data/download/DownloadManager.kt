@@ -148,16 +148,16 @@ class DownloadManager(private val context: Context) {
     private fun buildPageList(chapterDir: UniFile?): Observable<List<Page>> {
         return Observable.fromCallable {
             val files = chapterDir?.listFiles().orEmpty()
-                    .filter { "image" in it.type.orEmpty() }
+                .filter { "image" in it.type.orEmpty() }
 
             if (files.isEmpty()) {
                 throw Exception("Page list is empty")
             }
 
             files.sortedBy { it.name }
-                    .mapIndexed { i, file ->
-                        Page(i, uri = file.uri).apply { status = Page.READY }
-                    }
+                .mapIndexed { i, file ->
+                    Page(i, uri = file.uri).apply { status = Page.READY }
+                }
         }
     }
 

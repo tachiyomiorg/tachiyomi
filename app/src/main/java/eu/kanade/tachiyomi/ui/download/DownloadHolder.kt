@@ -80,13 +80,17 @@ class DownloadHolder(private val view: View, val adapter: DownloadAdapter) :
     }
 
     private fun showPopupMenu(view: View) {
-        view.popupMenu(R.menu.download_single, {
-            findItem(R.id.move_to_top).isVisible = bindingAdapterPosition != 0
-            findItem(R.id.move_to_bottom).isVisible =
-                bindingAdapterPosition != adapter.itemCount - 1
-        }, {
-            adapter.downloadItemListener.onMenuItemClick(bindingAdapterPosition, this)
-            true
-        })
+        view.popupMenu(
+            R.menu.download_single,
+            {
+                findItem(R.id.move_to_top).isVisible = bindingAdapterPosition != 0
+                findItem(R.id.move_to_bottom).isVisible =
+                    bindingAdapterPosition != adapter.itemCount - 1
+            },
+            {
+                adapter.downloadItemListener.onMenuItemClick(bindingAdapterPosition, this)
+                true
+            }
+        )
     }
 }

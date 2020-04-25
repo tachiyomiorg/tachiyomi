@@ -18,8 +18,8 @@ import kotlinx.android.synthetic.main.extension_card_item.lang
 import kotlinx.android.synthetic.main.extension_card_item.version
 
 class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
-        BaseFlexibleViewHolder(view, adapter),
-        SlicedHolder {
+    BaseFlexibleViewHolder(view, adapter),
+    SlicedHolder {
 
     override val slice = Slice(card).apply {
         setColor(adapter.cardBackground)
@@ -50,8 +50,8 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
         GlideApp.with(itemView.context).clear(image)
         if (extension is Extension.Available) {
             GlideApp.with(itemView.context)
-                    .load(extension.iconUrl)
-                    .into(image)
+                .load(extension.iconUrl)
+                .into(image)
         } else {
             extension.getApplicationIcon(itemView.context)?.let { image.setImageDrawable(it) }
         }
@@ -69,13 +69,15 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
 
         val installStep = item.installStep
         if (installStep != null) {
-            setText(when (installStep) {
-                InstallStep.Pending -> R.string.ext_pending
-                InstallStep.Downloading -> R.string.ext_downloading
-                InstallStep.Installing -> R.string.ext_installing
-                InstallStep.Installed -> R.string.ext_installed
-                InstallStep.Error -> R.string.action_retry
-            })
+            setText(
+                when (installStep) {
+                    InstallStep.Pending -> R.string.ext_pending
+                    InstallStep.Downloading -> R.string.ext_downloading
+                    InstallStep.Installing -> R.string.ext_installing
+                    InstallStep.Installed -> R.string.ext_installed
+                    InstallStep.Error -> R.string.action_retry
+                }
+            )
             if (installStep != InstallStep.Error) {
                 isEnabled = false
                 isClickable = false

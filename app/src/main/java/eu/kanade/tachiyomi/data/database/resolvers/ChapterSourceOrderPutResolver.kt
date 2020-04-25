@@ -20,10 +20,10 @@ class ChapterSourceOrderPutResolver : PutResolver<Chapter>() {
     }
 
     fun mapToUpdateQuery(chapter: Chapter) = UpdateQuery.builder()
-            .table(ChapterTable.TABLE)
-            .where("${ChapterTable.COL_URL} = ? AND ${ChapterTable.COL_MANGA_ID} = ?")
-            .whereArgs(chapter.url, chapter.manga_id)
-            .build()
+        .table(ChapterTable.TABLE)
+        .where("${ChapterTable.COL_URL} = ? AND ${ChapterTable.COL_MANGA_ID} = ?")
+        .whereArgs(chapter.url, chapter.manga_id)
+        .build()
 
     fun mapToContentValues(chapter: Chapter) = ContentValues(1).apply {
         put(ChapterTable.COL_SOURCE_ORDER, chapter.source_order)

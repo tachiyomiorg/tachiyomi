@@ -31,18 +31,19 @@ class MigrationPresenter(
         super.onCreate(savedState)
 
         db.getFavoriteMangas()
-                .asRxObservable()
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { state = state.copy(sourcesWithManga = findSourcesWithManga(it)) }
-                .combineLatest(stateRelay.map { it.selectedSource }
-                        .distinctUntilChanged()
-                ) { library, source -> library to source }
-                .filter { (_, source) -> source != null }
-                .observeOn(Schedulers.io())
-                .map { (library, source) -> libraryToMigrationItem(library, source!!.id) }
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { state = state.copy(mangaForSource = it) }
-                .subscribe()
+            .asRxObservable()
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext { state = state.copy(sourcesWithManga = findSourcesWithManga(it)) }
+            .combineLatest(
+                stateRelay.map { it.selectedSource }
+                    .distinctUntilChanged()
+            ) { library, source -> library to source }
+            .filter { (_, source) -> source != null }
+            .observeOn(Schedulers.io())
+            .map { (library, source) -> libraryToMigrationItem(library, source!!.id) }
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext { state = state.copy(mangaForSource = it) }
+            .subscribe()
 
         // Render the view when any field changes
         stateRelay.subscribeLatestCache(MigrationController::render)
@@ -59,8 +60,8 @@ class MigrationPresenter(
     private fun findSourcesWithManga(library: List<Manga>): List<SourceItem> {
         val header = SelectionHeader()
         return library.map { it.source }.toSet()
-                .mapNotNull { if (it != LocalSource.ID) sourceManager.getOrStub(it) else null }
-                .map { SourceItem(it, header) }
+            .mapNotNull { if (it != LocalSource.ID) sourceManager.getOrStub(it) else null }
+            .map { SourceItem(it, header) }
     }
 
     private fun libraryToMigrationItem(library: List<Manga>, sourceId: Long): List<MangaItem> {

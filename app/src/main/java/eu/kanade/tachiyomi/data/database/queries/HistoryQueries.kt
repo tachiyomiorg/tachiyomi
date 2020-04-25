@@ -23,32 +23,38 @@ interface HistoryQueries : DbProvider {
      * @param date recent date range
      */
     fun getRecentManga(date: Date) = db.get()
-            .listOfObjects(MangaChapterHistory::class.java)
-            .withQuery(RawQuery.builder()
-                    .query(getRecentMangasQuery())
-                    .args(date.time)
-                    .observesTables(HistoryTable.TABLE)
-                    .build())
-            .withGetResolver(MangaChapterHistoryGetResolver.INSTANCE)
-            .prepare()
+        .listOfObjects(MangaChapterHistory::class.java)
+        .withQuery(
+            RawQuery.builder()
+                .query(getRecentMangasQuery())
+                .args(date.time)
+                .observesTables(HistoryTable.TABLE)
+                .build()
+        )
+        .withGetResolver(MangaChapterHistoryGetResolver.INSTANCE)
+        .prepare()
 
     fun getHistoryByMangaId(mangaId: Long) = db.get()
-            .listOfObjects(History::class.java)
-            .withQuery(RawQuery.builder()
-                    .query(getHistoryByMangaId())
-                    .args(mangaId)
-                    .observesTables(HistoryTable.TABLE)
-                    .build())
-            .prepare()
+        .listOfObjects(History::class.java)
+        .withQuery(
+            RawQuery.builder()
+                .query(getHistoryByMangaId())
+                .args(mangaId)
+                .observesTables(HistoryTable.TABLE)
+                .build()
+        )
+        .prepare()
 
     fun getHistoryByChapterUrl(chapterUrl: String) = db.get()
-            .`object`(History::class.java)
-            .withQuery(RawQuery.builder()
-                    .query(getHistoryByChapterUrl())
-                    .args(chapterUrl)
-                    .observesTables(HistoryTable.TABLE)
-                    .build())
-            .prepare()
+        .`object`(History::class.java)
+        .withQuery(
+            RawQuery.builder()
+                .query(getHistoryByChapterUrl())
+                .args(chapterUrl)
+                .observesTables(HistoryTable.TABLE)
+                .build()
+        )
+        .prepare()
 
     /**
      * Updates the history last read.
@@ -56,9 +62,9 @@ interface HistoryQueries : DbProvider {
      * @param history history object
      */
     fun updateHistoryLastRead(history: History) = db.put()
-            .`object`(history)
-            .withPutResolver(HistoryLastReadPutResolver())
-            .prepare()
+        .`object`(history)
+        .withPutResolver(HistoryLastReadPutResolver())
+        .prepare()
 
     /**
      * Updates the history last read.
@@ -66,21 +72,25 @@ interface HistoryQueries : DbProvider {
      * @param historyList history object list
      */
     fun updateHistoryLastRead(historyList: List<History>) = db.put()
-            .objects(historyList)
-            .withPutResolver(HistoryLastReadPutResolver())
-            .prepare()
+        .objects(historyList)
+        .withPutResolver(HistoryLastReadPutResolver())
+        .prepare()
 
     fun deleteHistory() = db.delete()
-            .byQuery(DeleteQuery.builder()
-                    .table(HistoryTable.TABLE)
-                    .build())
-            .prepare()
+        .byQuery(
+            DeleteQuery.builder()
+                .table(HistoryTable.TABLE)
+                .build()
+        )
+        .prepare()
 
     fun deleteHistoryNoLastRead() = db.delete()
-            .byQuery(DeleteQuery.builder()
-                    .table(HistoryTable.TABLE)
-                    .where("${HistoryTable.COL_LAST_READ} = ?")
-                    .whereArgs(0)
-                    .build())
-            .prepare()
+        .byQuery(
+            DeleteQuery.builder()
+                .table(HistoryTable.TABLE)
+                .where("${HistoryTable.COL_LAST_READ} = ?")
+                .whereArgs(0)
+                .build()
+        )
+        .prepare()
 }

@@ -27,21 +27,21 @@ class DownloadPresenter : BasePresenter<DownloadController>() {
         super.onCreate(savedState)
 
         downloadQueue.getUpdatedObservable()
-                .observeOn(AndroidSchedulers.mainThread())
-                .map { it.map(::DownloadItem) }
-                .subscribeLatestCache(DownloadController::onNextDownloads) { _, error ->
-                    Timber.e(error)
-                }
+            .observeOn(AndroidSchedulers.mainThread())
+            .map { it.map(::DownloadItem) }
+            .subscribeLatestCache(DownloadController::onNextDownloads) { _, error ->
+                Timber.e(error)
+            }
     }
 
     fun getDownloadStatusObservable(): Observable<Download> {
         return downloadQueue.getStatusObservable()
-                .startWith(downloadQueue.getActiveDownloads())
+            .startWith(downloadQueue.getActiveDownloads())
     }
 
     fun getDownloadProgressObservable(): Observable<Download> {
         return downloadQueue.getProgressObservable()
-                .onBackpressureBuffer()
+            .onBackpressureBuffer()
     }
 
     /**

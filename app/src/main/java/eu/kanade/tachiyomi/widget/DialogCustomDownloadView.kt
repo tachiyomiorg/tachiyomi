@@ -24,7 +24,7 @@ import timber.log.Timber
  * Custom dialog to select how many chapters to download.
  */
 class DialogCustomDownloadView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
-        LinearLayout(context, attrs) {
+    LinearLayout(context, attrs) {
 
     private val scope = CoroutineScope(Job() + Dispatchers.Main)
 

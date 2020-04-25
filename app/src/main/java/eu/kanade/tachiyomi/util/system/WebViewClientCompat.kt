@@ -60,8 +60,10 @@ abstract class WebViewClientCompat : WebViewClient() {
         request: WebResourceRequest,
         error: WebResourceError
     ) {
-        onReceivedErrorCompat(view, error.errorCode, error.description?.toString(),
-                request.url.toString(), request.isForMainFrame)
+        onReceivedErrorCompat(
+            view, error.errorCode, error.description?.toString(),
+            request.url.toString(), request.isForMainFrame
+        )
     }
 
     final override fun onReceivedError(
@@ -79,7 +81,11 @@ abstract class WebViewClientCompat : WebViewClient() {
         request: WebResourceRequest,
         error: WebResourceResponse
     ) {
-        onReceivedErrorCompat(view, error.statusCode, error.reasonPhrase, request.url
-            .toString(), request.isForMainFrame)
+        onReceivedErrorCompat(
+            view, error.statusCode, error.reasonPhrase,
+            request.url
+                .toString(),
+            request.isForMainFrame
+        )
     }
 }

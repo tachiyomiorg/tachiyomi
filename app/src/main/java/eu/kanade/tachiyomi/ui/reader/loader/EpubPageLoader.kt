@@ -30,24 +30,26 @@ class EpubPageLoader(file: File) : PageLoader() {
      */
     override fun getPages(): Observable<List<ReaderPage>> {
         return epub.getImagesFromPages()
-                .mapIndexed { i, path ->
-                    val streamFn = { epub.getInputStream(epub.getEntry(path)!!) }
-                    ReaderPage(i).apply {
-                        stream = streamFn
-                        status = Page.READY
-                    }
+            .mapIndexed { i, path ->
+                val streamFn = { epub.getInputStream(epub.getEntry(path)!!) }
+                ReaderPage(i).apply {
+                    stream = streamFn
+                    status = Page.READY
                 }
-                .let { Observable.just(it) }
+            }
+            .let { Observable.just(it) }
     }
 
     /**
      * Returns an observable that emits a ready state unless the loader was recycled.
      */
     override fun getPage(page: ReaderPage): Observable<Int> {
-        return Observable.just(if (isRecycled) {
-            Page.ERROR
-        } else {
-            Page.READY
-        })
+        return Observable.just(
+            if (isRecycled) {
+                Page.ERROR
+            } else {
+                Page.READY
+            }
+        )
     }
 }

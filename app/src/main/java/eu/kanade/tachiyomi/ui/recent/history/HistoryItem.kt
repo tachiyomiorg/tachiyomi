@@ -10,7 +10,7 @@ import eu.kanade.tachiyomi.data.database.models.MangaChapterHistory
 import eu.kanade.tachiyomi.ui.recent.DateSectionItem
 
 class HistoryItem(val mch: MangaChapterHistory, header: DateSectionItem) :
-        AbstractSectionableItem<HistoryHolder, DateSectionItem>(header) {
+    AbstractSectionableItem<HistoryHolder, DateSectionItem>(header) {
 
     override fun getLayoutRes(): Int {
         return R.layout.history_item

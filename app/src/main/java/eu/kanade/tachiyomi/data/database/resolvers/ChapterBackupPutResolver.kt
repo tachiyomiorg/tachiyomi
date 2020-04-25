@@ -20,10 +20,10 @@ class ChapterBackupPutResolver : PutResolver<Chapter>() {
     }
 
     fun mapToUpdateQuery(chapter: Chapter) = UpdateQuery.builder()
-            .table(ChapterTable.TABLE)
-            .where("${ChapterTable.COL_URL} = ?")
-            .whereArgs(chapter.url)
-            .build()
+        .table(ChapterTable.TABLE)
+        .where("${ChapterTable.COL_URL} = ?")
+        .whereArgs(chapter.url)
+        .build()
 
     fun mapToContentValues(chapter: Chapter) = ContentValues(3).apply {
         put(ChapterTable.COL_READ, chapter.read)

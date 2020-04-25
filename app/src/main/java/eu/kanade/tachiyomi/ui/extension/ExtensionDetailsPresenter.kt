@@ -22,14 +22,14 @@ class ExtensionDetailsPresenter(
 
     private fun bindToUninstalledExtension() {
         extensionManager.getInstalledExtensionsObservable()
-                .skip(1)
-                .filter { extensions -> extensions.none { it.pkgName == pkgName } }
-                .map { Unit }
-                .take(1)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeFirst({ view, _ ->
-                    view.onExtensionUninstalled()
-                })
+            .skip(1)
+            .filter { extensions -> extensions.none { it.pkgName == pkgName } }
+            .map { Unit }
+            .take(1)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeFirst({ view, _ ->
+                view.onExtensionUninstalled()
+            })
     }
 
     fun uninstallExtension() {

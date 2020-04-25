@@ -4,7 +4,7 @@ import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 
 class MangaAdapter(controller: MigrationController) :
-        FlexibleAdapter<IFlexible<*>>(null, controller) {
+    FlexibleAdapter<IFlexible<*>>(null, controller) {
 
     private var items: List<IFlexible<*>>? = null
 

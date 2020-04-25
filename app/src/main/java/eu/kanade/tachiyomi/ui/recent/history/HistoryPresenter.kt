@@ -34,7 +34,7 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
 
         // Used to get a list of recently read manga
         getRecentMangaObservable()
-                .subscribeLatestCache(HistoryController::onNextManga)
+            .subscribeLatestCache(HistoryController::onNextManga)
     }
 
     /**
@@ -49,16 +49,16 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
         }
 
         return db.getRecentManga(cal.time).asRxObservable()
-                .map { recents ->
-                    val map = TreeMap<Date, MutableList<MangaChapterHistory>> { d1, d2 -> d2.compareTo(d1) }
-                    val byDay = recents
-                            .groupByTo(map, { it.history.last_read.toDateKey() })
-                    byDay.flatMap { entry ->
-                        val dateItem = DateSectionItem(entry.key)
-                        entry.value.map { HistoryItem(it, dateItem) }
-                    }
+            .map { recents ->
+                val map = TreeMap<Date, MutableList<MangaChapterHistory>> { d1, d2 -> d2.compareTo(d1) }
+                val byDay = recents
+                    .groupByTo(map, { it.history.last_read.toDateKey() })
+                byDay.flatMap { entry ->
+                    val dateItem = DateSectionItem(entry.key)
+                    entry.value.map { HistoryItem(it, dateItem) }
                 }
-                .observeOn(AndroidSchedulers.mainThread())
+            }
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     /**
@@ -68,7 +68,7 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
     fun removeFromHistory(history: History) {
         history.last_read = 0L
         db.updateHistoryLastRead(history).asRxObservable()
-                .subscribe()
+            .subscribe()
     }
 
     /**
@@ -77,11 +77,11 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
      */
     fun removeAllFromHistory(mangaId: Long) {
         db.getHistoryByMangaId(mangaId).asRxSingle()
-                .map { list ->
-                    list.forEach { it.last_read = 0L }
-                    db.updateHistoryLastRead(list).executeAsBlocking()
-                }
-                .subscribe()
+            .map { list ->
+                list.forEach { it.last_read = 0L }
+                db.updateHistoryLastRead(list).executeAsBlocking()
+            }
+            .subscribe()
     }
 
     /**
@@ -102,7 +102,7 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
         }
 
         val chapters = db.getChapters(manga).executeAsBlocking()
-                .sortedWith(Comparator { c1, c2 -> sortFunction(c1, c2) })
+            .sortedWith(Comparator { c1, c2 -> sortFunction(c1, c2) })
 
         val currChapterIndex = chapters.indexOfFirst { chapter.id == it.id }
         return when (manga.sorting) {
@@ -111,11 +111,11 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
                 val chapterNumber = chapter.chapter_number
 
                 ((currChapterIndex + 1) until chapters.size)
-                        .map { chapters[it] }
-                        .firstOrNull {
-                            it.chapter_number > chapterNumber &&
-                                    it.chapter_number <= chapterNumber + 1
-                        }
+                    .map { chapters[it] }
+                    .firstOrNull {
+                        it.chapter_number > chapterNumber &&
+                            it.chapter_number <= chapterNumber + 1
+                    }
             }
             else -> throw NotImplementedError("Unknown sorting method")
         }

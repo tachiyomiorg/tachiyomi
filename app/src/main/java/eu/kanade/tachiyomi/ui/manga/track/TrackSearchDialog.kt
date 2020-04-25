@@ -40,9 +40,11 @@ class TrackSearchDialog : DialogController {
     private val trackController
         get() = targetController as TrackController
 
-    constructor(target: TrackController, service: TrackService) : super(Bundle().apply {
-        putInt(KEY_SERVICE, service.id)
-    }) {
+    constructor(target: TrackController, service: TrackService) : super(
+        Bundle().apply {
+            putInt(KEY_SERVICE, service.id)
+        }
+    ) {
         targetController = target
         this.service = service
     }
@@ -54,10 +56,10 @@ class TrackSearchDialog : DialogController {
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         val dialog = MaterialDialog(activity!!)
-                .customView(R.layout.track_search_dialog)
-                .positiveButton(android.R.string.ok) { onPositiveButtonClick() }
-                .negativeButton(android.R.string.cancel)
-                .neutralButton(R.string.action_remove) { onRemoveButtonClick() }
+            .customView(R.layout.track_search_dialog)
+            .positiveButton(android.R.string.ok) { onPositiveButtonClick() }
+            .negativeButton(android.R.string.cancel)
+            .neutralButton(R.string.action_remove) { onRemoveButtonClick() }
 
         dialogView = dialog.view
         onViewCreated(dialog.view, savedViewState)

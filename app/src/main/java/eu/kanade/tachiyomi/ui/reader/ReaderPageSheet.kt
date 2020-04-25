@@ -44,13 +44,13 @@ class ReaderPageSheet(
         if (page.status != Page.READY) return
 
         MaterialDialog(activity)
-                .message(R.string.confirm_set_image_as_cover)
-                .positiveButton(android.R.string.ok) {
-                    activity.setAsCover(page)
-                    dismiss()
-                }
-                .negativeButton(android.R.string.cancel)
-                .show()
+            .message(R.string.confirm_set_image_as_cover)
+            .positiveButton(android.R.string.ok) {
+                activity.setAsCover(page)
+                dismiss()
+            }
+            .negativeButton(android.R.string.cancel)
+            .show()
     }
 
     /**

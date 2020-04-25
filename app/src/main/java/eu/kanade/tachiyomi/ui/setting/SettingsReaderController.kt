@@ -22,8 +22,10 @@ class SettingsReaderController : SettingsController() {
             intListPreference {
                 key = Keys.defaultViewer
                 titleRes = R.string.pref_viewer_type
-                entriesRes = arrayOf(R.string.left_to_right_viewer, R.string.right_to_left_viewer,
-                        R.string.vertical_viewer, R.string.webtoon_viewer, R.string.vertical_plus_viewer)
+                entriesRes = arrayOf(
+                    R.string.left_to_right_viewer, R.string.right_to_left_viewer,
+                    R.string.vertical_viewer, R.string.webtoon_viewer, R.string.vertical_plus_viewer
+                )
                 entryValues = arrayOf("1", "2", "3", "4", "5")
                 defaultValue = "1"
                 summary = "%s"
@@ -31,9 +33,11 @@ class SettingsReaderController : SettingsController() {
             intListPreference {
                 key = Keys.imageScaleType
                 titleRes = R.string.pref_image_scale_type
-                entriesRes = arrayOf(R.string.scale_type_fit_screen, R.string.scale_type_stretch,
-                        R.string.scale_type_fit_width, R.string.scale_type_fit_height,
-                        R.string.scale_type_original_size, R.string.scale_type_smart_fit)
+                entriesRes = arrayOf(
+                    R.string.scale_type_fit_screen, R.string.scale_type_stretch,
+                    R.string.scale_type_fit_width, R.string.scale_type_fit_height,
+                    R.string.scale_type_original_size, R.string.scale_type_smart_fit
+                )
                 entryValues = arrayOf("1", "2", "3", "4", "5", "6")
                 defaultValue = "1"
                 summary = "%s"
@@ -41,8 +45,10 @@ class SettingsReaderController : SettingsController() {
             intListPreference {
                 key = Keys.zoomStart
                 titleRes = R.string.pref_zoom_start
-                entriesRes = arrayOf(R.string.zoom_start_automatic, R.string.zoom_start_left,
-                        R.string.zoom_start_right, R.string.zoom_start_center)
+                entriesRes = arrayOf(
+                    R.string.zoom_start_automatic, R.string.zoom_start_left,
+                    R.string.zoom_start_right, R.string.zoom_start_center
+                )
                 entryValues = arrayOf("1", "2", "3", "4")
                 defaultValue = "1"
                 summary = "%s"
@@ -50,8 +56,10 @@ class SettingsReaderController : SettingsController() {
             intListPreference {
                 key = Keys.rotation
                 titleRes = R.string.pref_rotation_type
-                entriesRes = arrayOf(R.string.rotation_free, R.string.rotation_lock,
-                        R.string.rotation_force_portrait, R.string.rotation_force_landscape)
+                entriesRes = arrayOf(
+                    R.string.rotation_free, R.string.rotation_lock,
+                    R.string.rotation_force_portrait, R.string.rotation_force_landscape
+                )
                 entryValues = arrayOf("1", "2", "3", "4")
                 defaultValue = "1"
                 summary = "%s"
@@ -159,7 +167,8 @@ class SettingsReaderController : SettingsController() {
                     R.string.webtoon_side_padding_10,
                     R.string.webtoon_side_padding_15,
                     R.string.webtoon_side_padding_20,
-                    R.string.webtoon_side_padding_25)
+                    R.string.webtoon_side_padding_25
+                )
                 entryValues = arrayOf("0", "10", "15", "20", "25")
                 defaultValue = "0"
                 summary = "%s"

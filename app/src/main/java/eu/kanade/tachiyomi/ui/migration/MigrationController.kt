@@ -11,9 +11,10 @@ import eu.kanade.tachiyomi.databinding.MigrationControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 
-class MigrationController : NucleusController<MigrationControllerBinding, MigrationPresenter>(),
-        FlexibleAdapter.OnItemClickListener,
-        SourceAdapter.OnSelectClickListener {
+class MigrationController :
+    NucleusController<MigrationControllerBinding, MigrationPresenter>(),
+    FlexibleAdapter.OnItemClickListener,
+    SourceAdapter.OnSelectClickListener {
 
     private var adapter: FlexibleAdapter<IFlexible<*>>? = null
 

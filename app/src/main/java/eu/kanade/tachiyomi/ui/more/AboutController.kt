@@ -50,10 +50,11 @@ class AboutController : SettingsController() {
 
         preference {
             titleRes = R.string.version
-            summary = if (BuildConfig.DEBUG)
+            summary = if (BuildConfig.DEBUG) {
                 "Preview r${BuildConfig.COMMIT_COUNT} (${BuildConfig.COMMIT_SHA})"
-            else
+            } else {
                 "Stable ${BuildConfig.VERSION_NAME}"
+            }
         }
         preference {
             titleRes = R.string.build_time
@@ -157,24 +158,26 @@ class AboutController : SettingsController() {
 
     class NewUpdateDialogController(bundle: Bundle? = null) : DialogController(bundle) {
 
-        constructor(body: String, url: String) : this(Bundle().apply {
-            putString(BODY_KEY, body)
-            putString(URL_KEY, url)
-        })
+        constructor(body: String, url: String) : this(
+            Bundle().apply {
+                putString(BODY_KEY, body)
+                putString(URL_KEY, url)
+            }
+        )
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
             return MaterialDialog(activity!!)
-                    .title(res = R.string.update_check_notification_update_available)
-                    .message(text = args.getString(BODY_KEY) ?: "")
-                    .positiveButton(R.string.update_check_confirm) {
-                        val appContext = applicationContext
-                        if (appContext != null) {
-                            // Start download
-                            val url = args.getString(URL_KEY) ?: ""
-                            UpdaterService.downloadUpdate(appContext, url)
-                        }
+                .title(res = R.string.update_check_notification_update_available)
+                .message(text = args.getString(BODY_KEY) ?: "")
+                .positiveButton(R.string.update_check_confirm) {
+                    val appContext = applicationContext
+                    if (appContext != null) {
+                        // Start download
+                        val url = args.getString(URL_KEY) ?: ""
+                        UpdaterService.downloadUpdate(appContext, url)
                     }
-                    .negativeButton(R.string.update_check_ignore)
+                }
+                .negativeButton(R.string.update_check_ignore)
         }
 
         private companion object {
@@ -190,7 +193,8 @@ class AboutController : SettingsController() {
             val buildTime = inputDf.parse(BuildConfig.BUILD_TIME)
 
             val outputDf = DateFormat.getDateTimeInstance(
-                    DateFormat.MEDIUM, DateFormat.SHORT, Locale.getDefault())
+                DateFormat.MEDIUM, DateFormat.SHORT, Locale.getDefault()
+            )
             outputDf.timeZone = TimeZone.getDefault()
 
             buildTime.toDateTimestampString(dateFormat)

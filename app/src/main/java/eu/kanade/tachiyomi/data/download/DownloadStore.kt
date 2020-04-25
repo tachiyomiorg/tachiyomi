@@ -77,9 +77,9 @@ class DownloadStore(
      */
     fun restore(): List<Download> {
         val objs = preferences.all
-                .mapNotNull { it.value as? String }
-                .mapNotNull { deserialize(it) }
-                .sortedBy { it.order }
+            .mapNotNull { it.value as? String }
+            .mapNotNull { deserialize(it) }
+            .sortedBy { it.order }
 
         val downloads = mutableListOf<Download>()
         if (objs.isNotEmpty()) {

@@ -14,8 +14,8 @@ class LatestUpdatesPager(val source: CatalogueSource) : Pager() {
 
     override fun requestNext(): Observable<MangasPage> {
         return source.fetchLatestUpdates(currentPage)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext { onPageReceived(it) }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext { onPageReceived(it) }
     }
 }

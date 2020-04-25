@@ -36,16 +36,23 @@ open class SimpleNavigationView @JvmOverloads constructor(
 
     init {
         // Custom attributes
-        val a = TintTypedArray.obtainStyledAttributes(context, attrs,
-                R.styleable.NavigationView, defStyleAttr,
-                R.style.Widget_Design_NavigationView)
+        val a = TintTypedArray.obtainStyledAttributes(
+            context, attrs,
+            R.styleable.NavigationView, defStyleAttr,
+            R.style.Widget_Design_NavigationView
+        )
 
         ViewCompat.setBackground(
-                this, a.getDrawable(R.styleable.NavigationView_android_background))
+            this, a.getDrawable(R.styleable.NavigationView_android_background)
+        )
 
         if (a.hasValue(R.styleable.NavigationView_elevation)) {
-            ViewCompat.setElevation(this, a.getDimensionPixelSize(
-                    R.styleable.NavigationView_elevation, 0).toFloat())
+            ViewCompat.setElevation(
+                this,
+                a.getDimensionPixelSize(
+                    R.styleable.NavigationView_elevation, 0
+                ).toFloat()
+            )
         }
 
         a.recycle()

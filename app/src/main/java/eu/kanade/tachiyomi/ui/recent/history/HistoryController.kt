@@ -22,14 +22,15 @@ import eu.kanade.tachiyomi.util.system.toast
  * Uses [R.layout.history_controller].
  * UI related actions should be called from here.
  */
-class HistoryController : NucleusController<HistoryControllerBinding, HistoryPresenter>(),
-        RootController,
-        NoToolbarElevationController,
-        FlexibleAdapter.OnUpdateListener,
-        HistoryAdapter.OnRemoveClickListener,
-        HistoryAdapter.OnResumeClickListener,
-        HistoryAdapter.OnItemClickListener,
-        RemoveHistoryDialog.Listener {
+class HistoryController :
+    NucleusController<HistoryControllerBinding, HistoryPresenter>(),
+    RootController,
+    NoToolbarElevationController,
+    FlexibleAdapter.OnUpdateListener,
+    HistoryAdapter.OnRemoveClickListener,
+    HistoryAdapter.OnResumeClickListener,
+    HistoryAdapter.OnItemClickListener,
+    RemoveHistoryDialog.Listener {
 
     /**
      * Adapter containing the recent manga.

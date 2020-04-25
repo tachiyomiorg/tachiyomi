@@ -53,22 +53,23 @@ class SettingsLibraryController : SettingsController() {
                 }
 
                 fun getColumnValue(value: Int): String {
-                    return if (value == 0)
+                    return if (value == 0) {
                         context.getString(R.string.default_columns)
-                    else
+                    } else {
                         value.toString()
+                    }
                 }
 
                 Observable.combineLatest(
-                        preferences.portraitColumns().asObservable(),
-                        preferences.landscapeColumns().asObservable()
+                    preferences.portraitColumns().asObservable(),
+                    preferences.landscapeColumns().asObservable()
                 ) { portraitCols, landscapeCols -> Pair(portraitCols, landscapeCols) }
-                        .subscribeUntilDestroy { (portraitCols, landscapeCols) ->
-                            val portrait = getColumnValue(portraitCols)
-                            val landscape = getColumnValue(landscapeCols)
-                            summary = "${context.getString(R.string.portrait)}: $portrait, " +
-                                    "${context.getString(R.string.landscape)}: $landscape"
-                        }
+                    .subscribeUntilDestroy { (portraitCols, landscapeCols) ->
+                        val portrait = getColumnValue(portraitCols)
+                        val landscape = getColumnValue(landscapeCols)
+                        summary = "${context.getString(R.string.portrait)}: $portrait, " +
+                            "${context.getString(R.string.landscape)}: $landscape"
+                    }
             }
         }
 
@@ -81,9 +82,11 @@ class SettingsLibraryController : SettingsController() {
             intListPreference {
                 key = Keys.libraryUpdateInterval
                 titleRes = R.string.pref_library_update_interval
-                entriesRes = arrayOf(R.string.update_never, R.string.update_1hour,
-                        R.string.update_2hour, R.string.update_3hour, R.string.update_6hour,
-                        R.string.update_12hour, R.string.update_24hour, R.string.update_48hour)
+                entriesRes = arrayOf(
+                    R.string.update_never, R.string.update_1hour,
+                    R.string.update_2hour, R.string.update_3hour, R.string.update_6hour,
+                    R.string.update_12hour, R.string.update_24hour, R.string.update_48hour
+                )
                 entryValues = arrayOf("0", "1", "2", "3", "6", "12", "24", "48")
                 defaultValue = "0"
                 summary = "%s"
@@ -124,13 +127,14 @@ class SettingsLibraryController : SettingsController() {
                 preferences.libraryUpdateCategories().asFlow()
                     .onEach { mutableSet ->
                         val selectedCategories = mutableSet
-                                .mapNotNull { id -> categories.find { it.id == id.toInt() } }
-                                .sortedBy { it.order }
+                            .mapNotNull { id -> categories.find { it.id == id.toInt() } }
+                            .sortedBy { it.order }
 
-                        summary = if (selectedCategories.isEmpty())
+                        summary = if (selectedCategories.isEmpty()) {
                             context.getString(R.string.all)
-                        else
+                        } else {
                             selectedCategories.joinToString { it.name }
+                        }
                     }
                     .launchIn(scope)
             }
@@ -141,8 +145,8 @@ class SettingsLibraryController : SettingsController() {
                 // The following array lines up with the list rankingScheme in:
                 // ../../data/library/LibraryUpdateRanker.kt
                 val priorities = arrayOf(
-                        Pair("0", R.string.action_sort_alpha),
-                        Pair("1", R.string.action_sort_last_checked)
+                    Pair("0", R.string.action_sort_alpha),
+                    Pair("1", R.string.action_sort_last_checked)
                 )
                 val defaultPriority = priorities[0]
 
@@ -176,13 +180,13 @@ class SettingsLibraryController : SettingsController() {
                 titleRes = R.string.default_category
 
                 entries = arrayOf(context.getString(R.string.default_category_summary)) +
-                        categories.map { it.name }.toTypedArray()
+                    categories.map { it.name }.toTypedArray()
                 entryValues = arrayOf("-1") + categories.map { it.id.toString() }.toTypedArray()
                 defaultValue = "-1"
 
                 val selectedCategory = categories.find { it.id == preferences.defaultCategory() }
                 summary = selectedCategory?.name
-                        ?: context.getString(R.string.default_category_summary)
+                    ?: context.getString(R.string.default_category_summary)
                 onChange { newValue ->
                     summary = categories.find {
                         it.id == (newValue as String).toInt()
@@ -202,13 +206,13 @@ class SettingsLibraryController : SettingsController() {
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
             val dialog = MaterialDialog(activity!!)
-                    .title(R.string.pref_library_columns)
-                    .customView(R.layout.pref_library_columns)
-                    .positiveButton(android.R.string.ok) {
-                        preferences.portraitColumns().set(portrait)
-                        preferences.landscapeColumns().set(landscape)
-                    }
-                    .negativeButton(android.R.string.cancel)
+                .title(R.string.pref_library_columns)
+                .customView(R.layout.pref_library_columns)
+                .positiveButton(android.R.string.ok) {
+                    preferences.portraitColumns().set(portrait)
+                    preferences.landscapeColumns().set(landscape)
+                }
+                .negativeButton(android.R.string.cancel)
 
             onViewCreated(dialog.view)
             return dialog
@@ -217,7 +221,7 @@ class SettingsLibraryController : SettingsController() {
         fun onViewCreated(view: View) {
             with(view.portrait_columns) {
                 displayedValues = arrayOf(context.getString(R.string.default_columns)) +
-                        IntRange(1, 10).map(Int::toString)
+                    IntRange(1, 10).map(Int::toString)
                 value = portrait
 
                 setOnValueChangedListener { _, _, newValue ->
@@ -226,7 +230,7 @@ class SettingsLibraryController : SettingsController() {
             }
             with(view.landscape_columns) {
                 displayedValues = arrayOf(context.getString(R.string.default_columns)) +
-                        IntRange(1, 10).map(Int::toString)
+                    IntRange(1, 10).map(Int::toString)
                 value = landscape
 
                 setOnValueChangedListener { _, _, newValue ->

@@ -56,15 +56,15 @@ class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
         if (track != null) {
             track_title.text = track.title
             track_chapters.text = "${track.last_chapter_read}/" +
-                    if (track.total_chapters > 0) track.total_chapters else "-"
+                if (track.total_chapters > 0) track.total_chapters else "-"
             track_status.text = item.service.getStatus(track.status)
             track_score.text = if (track.score == 0f) "-" else item.service.displayScore(track)
 
             if (item.service.supportsReadingDates) {
                 track_start_date.text =
-                        if (track.started_reading_date != 0L) dateFormat.format(track.started_reading_date) else "-"
+                    if (track.started_reading_date != 0L) dateFormat.format(track.started_reading_date) else "-"
                 track_finish_date.text =
-                        if (track.finished_reading_date != 0L) dateFormat.format(track.finished_reading_date) else "-"
+                    if (track.finished_reading_date != 0L) dateFormat.format(track.finished_reading_date) else "-"
             } else {
                 bottom_divider.gone()
                 vert_divider_3.gone()

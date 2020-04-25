@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.updates_item.manga_title
  * @constructor creates a new recent chapter holder.
  */
 class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter) :
-        BaseFlexibleViewHolder(view, adapter) {
+    BaseFlexibleViewHolder(view, adapter) {
 
     private var readColor = ContextCompat.getColor(view.context, R.color.material_on_surface_disabled)
     private var unreadColor = view.context.getResourceColor(R.attr.colorOnSurface)
@@ -59,10 +59,10 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
         GlideApp.with(itemView.context).clear(manga_cover)
         if (!item.manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(itemView.context)
-                    .load(item.manga.toMangaThumbnail())
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .circleCrop()
-                    .into(manga_cover)
+                .load(item.manga.toMangaThumbnail())
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .circleCrop()
+                .into(manga_cover)
         }
 
         // Check if chapter is read and set correct color

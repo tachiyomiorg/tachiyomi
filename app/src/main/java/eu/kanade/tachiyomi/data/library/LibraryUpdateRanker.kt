@@ -8,8 +8,9 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 object LibraryUpdateRanker {
 
     val rankingScheme = listOf(
-            (this::lexicographicRanking)(),
-            (this::latestFirstRanking)())
+        (this::lexicographicRanking)(),
+        (this::latestFirstRanking)()
+    )
 
     /**
      * Provides a total ordering over all the Mangas.
@@ -22,7 +23,7 @@ object LibraryUpdateRanker {
      */
     fun latestFirstRanking(): Comparator<Manga> {
         return Comparator { mangaFirst: Manga,
-                            mangaSecond: Manga ->
+            mangaSecond: Manga ->
             compareValues(mangaSecond.last_update, mangaFirst.last_update)
         }
     }
@@ -35,7 +36,7 @@ object LibraryUpdateRanker {
      */
     fun lexicographicRanking(): Comparator<Manga> {
         return Comparator { mangaFirst: Manga,
-                            mangaSecond: Manga ->
+            mangaSecond: Manga ->
             compareValues(mangaFirst.title, mangaSecond.title)
         }
     }

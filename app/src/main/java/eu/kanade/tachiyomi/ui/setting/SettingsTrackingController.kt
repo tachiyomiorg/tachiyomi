@@ -23,9 +23,10 @@ import eu.kanade.tachiyomi.widget.preference.TrackLoginDialog
 import eu.kanade.tachiyomi.widget.preference.TrackLogoutDialog
 import uy.kohesive.injekt.injectLazy
 
-class SettingsTrackingController : SettingsController(),
-        TrackLoginDialog.Listener,
-        TrackLogoutDialog.Listener {
+class SettingsTrackingController :
+    SettingsController(),
+    TrackLoginDialog.Listener,
+    TrackLogoutDialog.Listener {
 
     private val trackManager: TrackManager by injectLazy()
 
@@ -47,8 +48,8 @@ class SettingsTrackingController : SettingsController(),
             }
             trackPreference(trackManager.aniList) {
                 val tabsIntent = CustomTabsIntent.Builder()
-                        .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
-                        .build()
+                    .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
+                    .build()
                 tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 tabsIntent.launchUrl(activity!!, AnilistApi.authUrl())
             }
@@ -59,15 +60,15 @@ class SettingsTrackingController : SettingsController(),
             }
             trackPreference(trackManager.shikimori) {
                 val tabsIntent = CustomTabsIntent.Builder()
-                        .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
-                        .build()
+                    .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
+                    .build()
                 tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 tabsIntent.launchUrl(activity!!, ShikimoriApi.authUrl())
             }
             trackPreference(trackManager.bangumi) {
                 val tabsIntent = CustomTabsIntent.Builder()
-                        .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
-                        .build()
+                    .setToolbarColor(context.getResourceColor(R.attr.colorPrimary))
+                    .build()
                 tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 tabsIntent.launchUrl(activity!!, BangumiApi.authUrl())
             }
@@ -78,20 +79,23 @@ class SettingsTrackingController : SettingsController(),
         service: TrackService,
         crossinline login: () -> Unit
     ): LoginPreference {
-        return initThenAdd(LoginPreference(context).apply {
-            key = Keys.trackUsername(service.id)
-            title = service.name
-        }, {
-            onClick {
-                if (service.isLogged) {
-                    val dialog = TrackLogoutDialog(service)
-                    dialog.targetController = this@SettingsTrackingController
-                    dialog.showDialog(router)
-                } else {
-                    login()
+        return initThenAdd(
+            LoginPreference(context).apply {
+                key = Keys.trackUsername(service.id)
+                title = service.name
+            },
+            {
+                onClick {
+                    if (service.isLogged) {
+                        val dialog = TrackLogoutDialog(service)
+                        dialog.targetController = this@SettingsTrackingController
+                        dialog.showDialog(router)
+                    } else {
+                        login()
+                    }
                 }
             }
-        })
+        )
     }
 
     override fun onActivityResumed(activity: Activity) {

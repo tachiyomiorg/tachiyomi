@@ -34,10 +34,10 @@ class RemoveHistoryDialog<T>(bundle: Bundle? = null) : DialogController(bundle)
         }
 
         return MaterialDialog(activity)
-                .title(R.string.action_remove)
-                .customView(view = dialogCheckboxView, horizontalPadding = true)
-                .positiveButton(R.string.action_remove) { onPositive(dialogCheckboxView.isChecked()) }
-                .negativeButton(android.R.string.cancel)
+            .title(R.string.action_remove)
+            .customView(view = dialogCheckboxView, horizontalPadding = true)
+            .positiveButton(R.string.action_remove) { onPositive(dialogCheckboxView.isChecked()) }
+            .negativeButton(android.R.string.cancel)
     }
 
     private fun onPositive(checked: Boolean) {

@@ -12,9 +12,11 @@ import eu.kanade.tachiyomi.ui.source.browse.BrowseSourcePresenter
  */
 class LatestUpdatesController(bundle: Bundle) : BrowseSourceController(bundle) {
 
-    constructor(source: CatalogueSource) : this(Bundle().apply {
-        putLong(SOURCE_ID_KEY, source.id)
-    })
+    constructor(source: CatalogueSource) : this(
+        Bundle().apply {
+            putLong(SOURCE_ID_KEY, source.id)
+        }
+    )
 
     override fun createPresenter(): BrowseSourcePresenter {
         return LatestUpdatesPresenter(args.getLong(SOURCE_ID_KEY))

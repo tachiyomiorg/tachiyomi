@@ -59,7 +59,7 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
         super.onScrolled(dx, dy)
         val layoutManager = layoutManager
         lastVisibleItemPosition =
-                (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+            (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
         firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
     }
 
@@ -146,13 +146,13 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
         }
 
         animate()
-                .apply {
-                    newX?.let { x(it) }
-                    newY?.let { y(it) }
-                }
-                .setInterpolator(DecelerateInterpolator())
-                .setDuration(400)
-                .start()
+            .apply {
+                newX?.let { x(it) }
+                newY?.let { y(it) }
+            }
+            .setInterpolator(DecelerateInterpolator())
+            .setDuration(400)
+            .start()
 
         return true
     }
@@ -174,8 +174,9 @@ open class WebtoonRecyclerView @JvmOverloads constructor(
     fun onScale(scaleFactor: Float) {
         currentScale *= scaleFactor
         currentScale = currentScale.coerceIn(
-                MIN_RATE,
-                MAX_SCALE_RATE)
+            MIN_RATE,
+            MAX_SCALE_RATE
+        )
 
         setScaleRate(currentScale)
 

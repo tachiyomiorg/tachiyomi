@@ -27,13 +27,16 @@ class AnilistLoginActivity : AppCompatActivity() {
         val matchResult = regex.find(intent.data?.fragment.toString())
         if (matchResult?.groups?.get(1) != null) {
             trackManager.aniList.login(matchResult.groups[1]!!.value)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
                         returnToSettings()
-                    }, {
+                    },
+                    {
                         returnToSettings()
-                    })
+                    }
+                )
         } else {
             trackManager.aniList.logout()
             returnToSettings()

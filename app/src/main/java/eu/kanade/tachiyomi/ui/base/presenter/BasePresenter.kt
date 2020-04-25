@@ -59,11 +59,11 @@ open class BasePresenter<V> : RxPresenter<V>() {
 
         override fun call(observable: Observable<T>): Observable<Delivery<View, T>> {
             return observable
-                    .materialize()
-                    .filter { notification -> !notification.isOnCompleted }
-                    .flatMap { notification ->
-                        view.take(1).filter { it != null }.map { Delivery(it, notification) }
-                    }
+                .materialize()
+                .filter { notification -> !notification.isOnCompleted }
+                .flatMap { notification ->
+                    view.take(1).filter { it != null }.map { Delivery(it, notification) }
+                }
         }
     }
 }

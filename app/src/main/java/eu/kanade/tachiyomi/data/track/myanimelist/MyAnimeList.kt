@@ -74,17 +74,17 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
 
     override fun bind(track: Track): Observable<Track> {
         return api.findLibManga(track)
-                .flatMap { remoteTrack ->
-                    if (remoteTrack != null) {
-                        track.copyPersonalFrom(remoteTrack)
-                        update(track)
-                    } else {
-                        // Set default fields if it's not found in the list
-                        track.score = DEFAULT_SCORE.toFloat()
-                        track.status = DEFAULT_STATUS
-                        add(track)
-                    }
+            .flatMap { remoteTrack ->
+                if (remoteTrack != null) {
+                    track.copyPersonalFrom(remoteTrack)
+                    update(track)
+                } else {
+                    // Set default fields if it's not found in the list
+                    track.score = DEFAULT_SCORE.toFloat()
+                    track.status = DEFAULT_STATUS
+                    add(track)
                 }
+            }
     }
 
     override fun search(query: String): Observable<List<TrackSearch>> {
@@ -93,21 +93,21 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
 
     override fun refresh(track: Track): Observable<Track> {
         return api.getLibManga(track)
-                .map { remoteTrack ->
-                    track.copyPersonalFrom(remoteTrack)
-                    track.total_chapters = remoteTrack.total_chapters
-                    track
-                }
+            .map { remoteTrack ->
+                track.copyPersonalFrom(remoteTrack)
+                track.total_chapters = remoteTrack.total_chapters
+                track
+            }
     }
 
     override fun login(username: String, password: String): Completable {
         logout()
 
         return Observable.fromCallable { api.login(username, password) }
-                .doOnNext { csrf -> saveCSRF(csrf) }
-                .doOnNext { saveCredentials(username, password) }
-                .doOnError { logout() }
-                .toCompletable()
+            .doOnNext { csrf -> saveCSRF(csrf) }
+            .doOnNext { saveCredentials(username, password) }
+            .doOnError { logout() }
+            .toCompletable()
     }
 
     fun refreshLogin() {
@@ -141,8 +141,8 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
 
     val isAuthorized: Boolean
         get() = super.isLogged &&
-                getCSRF().isNotEmpty() &&
-                checkCookies()
+            getCSRF().isNotEmpty() &&
+            checkCookies()
 
     fun getCSRF(): String = preferences.trackToken(this).get()
 
@@ -152,8 +152,9 @@ class MyAnimeList(private val context: Context, id: Int) : TrackService(id) {
         var ckCount = 0
         val url = BASE_URL.toHttpUrlOrNull()!!
         for (ck in networkService.cookieManager.get(url)) {
-            if (ck.name == USER_SESSION_COOKIE || ck.name == LOGGED_IN_COOKIE)
+            if (ck.name == USER_SESSION_COOKIE || ck.name == LOGGED_IN_COOKIE) {
                 ckCount++
+            }
         }
 
         return ckCount == 2

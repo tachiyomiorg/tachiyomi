@@ -214,8 +214,9 @@ class ReaderColorFilterSheet(private val activity: ReaderActivity) : BottomSheet
             brightness_overlay.gone()
         }
 
-        if (!isDisabled)
+        if (!isDisabled) {
             txt_brightness_seekbar_value.text = value.toString()
+        }
     }
 
     /**

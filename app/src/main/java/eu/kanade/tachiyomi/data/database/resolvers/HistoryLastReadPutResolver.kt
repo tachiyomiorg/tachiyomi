@@ -19,11 +19,13 @@ class HistoryLastReadPutResolver : HistoryPutResolver() {
     override fun performPut(@NonNull db: StorIOSQLite, @NonNull history: History): PutResult = db.inTransactionReturn {
         val updateQuery = mapToUpdateQuery(history)
 
-        val cursor = db.lowLevel().query(Query.builder()
+        val cursor = db.lowLevel().query(
+            Query.builder()
                 .table(updateQuery.table())
                 .where(updateQuery.where())
                 .whereArgs(updateQuery.whereArgs())
-                .build())
+                .build()
+        )
 
         val putResult: PutResult
 
@@ -46,10 +48,10 @@ class HistoryLastReadPutResolver : HistoryPutResolver() {
      * @param obj history object
      */
     override fun mapToUpdateQuery(obj: History) = UpdateQuery.builder()
-            .table(HistoryTable.TABLE)
-            .where("${HistoryTable.COL_CHAPTER_ID} = ?")
-            .whereArgs(obj.chapter_id)
-            .build()
+        .table(HistoryTable.TABLE)
+        .where("${HistoryTable.COL_CHAPTER_ID} = ?")
+        .whereArgs(obj.chapter_id)
+        .build()
 
     /**
      * Create content query

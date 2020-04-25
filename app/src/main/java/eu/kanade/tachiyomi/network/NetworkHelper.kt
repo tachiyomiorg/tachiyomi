@@ -14,12 +14,12 @@ class NetworkHelper(context: Context) {
     val cookieManager = AndroidCookieJar()
 
     val client = OkHttpClient.Builder()
-            .cookieJar(cookieManager)
-            .cache(Cache(cacheDir, cacheSize))
-            .build()
+        .cookieJar(cookieManager)
+        .cache(Cache(cacheDir, cacheSize))
+        .build()
 
     val cloudflareClient = client.newBuilder()
-            .addInterceptor(UserAgentInterceptor())
-            .addInterceptor(CloudflareInterceptor(context))
-            .build()
+        .addInterceptor(UserAgentInterceptor())
+        .addInterceptor(CloudflareInterceptor(context))
+        .build()
 }

@@ -33,26 +33,28 @@ class ZipPageLoader(file: File) : PageLoader() {
      */
     override fun getPages(): Observable<List<ReaderPage>> {
         return zip.entries().toList()
-                .filter { !it.isDirectory && ImageUtil.isImage(it.name) { zip.getInputStream(it) } }
-                .sortedWith(Comparator<ZipEntry> { f1, f2 -> f1.name.compareToCaseInsensitiveNaturalOrder(f2.name) })
-                .mapIndexed { i, entry ->
-                    val streamFn = { zip.getInputStream(entry) }
-                    ReaderPage(i).apply {
-                        stream = streamFn
-                        status = Page.READY
-                    }
+            .filter { !it.isDirectory && ImageUtil.isImage(it.name) { zip.getInputStream(it) } }
+            .sortedWith(Comparator<ZipEntry> { f1, f2 -> f1.name.compareToCaseInsensitiveNaturalOrder(f2.name) })
+            .mapIndexed { i, entry ->
+                val streamFn = { zip.getInputStream(entry) }
+                ReaderPage(i).apply {
+                    stream = streamFn
+                    status = Page.READY
                 }
-                .let { Observable.just(it) }
+            }
+            .let { Observable.just(it) }
     }
 
     /**
      * Returns an observable that emits a ready state unless the loader was recycled.
      */
     override fun getPage(page: ReaderPage): Observable<Int> {
-        return Observable.just(if (isRecycled) {
-            Page.ERROR
-        } else {
-            Page.READY
-        })
+        return Observable.just(
+            if (isRecycled) {
+                Page.ERROR
+            } else {
+                Page.READY
+            }
+        )
     }
 }

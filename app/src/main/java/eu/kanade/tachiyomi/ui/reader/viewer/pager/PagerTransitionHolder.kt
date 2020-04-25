@@ -140,17 +140,17 @@ class PagerTransitionHolder(
     private fun observeStatus(chapter: ReaderChapter) {
         statusSubscription?.unsubscribe()
         statusSubscription = chapter.stateObserver
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { state ->
-                    pagesContainer.removeAllViews()
-                    when (state) {
-                        is ReaderChapter.State.Wait -> {
-                        }
-                        is ReaderChapter.State.Loading -> setLoading()
-                        is ReaderChapter.State.Error -> setError(state.error)
-                        is ReaderChapter.State.Loaded -> setLoaded()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { state ->
+                pagesContainer.removeAllViews()
+                when (state) {
+                    is ReaderChapter.State.Wait -> {
                     }
+                    is ReaderChapter.State.Loading -> setLoading()
+                    is ReaderChapter.State.Error -> setError(state.error)
+                    is ReaderChapter.State.Loaded -> setLoaded()
                 }
+            }
     }
 
     /**

@@ -15,10 +15,10 @@ interface GithubService {
     companion object {
         fun create(): GithubService {
             val restAdapter = Retrofit.Builder()
-                    .baseUrl("https://api.github.com")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(Injekt.get<NetworkHelper>().client)
-                    .build()
+                .baseUrl("https://api.github.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(Injekt.get<NetworkHelper>().client)
+                .build()
 
             return restAdapter.create(GithubService::class.java)
         }

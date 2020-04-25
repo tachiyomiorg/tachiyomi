@@ -20,17 +20,18 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 class LibraryItem(val manga: LibraryManga, private val libraryAsList: Preference<Boolean>) :
-        AbstractFlexibleItem<LibraryHolder>(), IFilterable<String> {
+    AbstractFlexibleItem<LibraryHolder>(), IFilterable<String> {
 
     private val sourceManager: SourceManager = Injekt.get()
 
     var downloadCount = -1
 
     override fun getLayoutRes(): Int {
-        return if (libraryAsList.get())
+        return if (libraryAsList.get()) {
             R.layout.source_list_item
-        else
+        } else {
             R.layout.source_grid_item
+        }
     }
 
     override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): LibraryHolder {
@@ -40,7 +41,8 @@ class LibraryItem(val manga: LibraryManga, private val libraryAsList: Preference
                 val coverHeight = parent.itemWidth / 3 * 4
                 card.layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, coverHeight)
                 gradient.layoutParams = FrameLayout.LayoutParams(
-                        MATCH_PARENT, coverHeight / 2, Gravity.BOTTOM)
+                    MATCH_PARENT, coverHeight / 2, Gravity.BOTTOM
+                )
             }
             LibraryGridHolder(view, adapter)
         } else {
@@ -65,25 +67,26 @@ class LibraryItem(val manga: LibraryManga, private val libraryAsList: Preference
      */
     override fun filter(constraint: String): Boolean {
         return manga.title.contains(constraint, true) ||
-                (manga.author?.contains(constraint, true) ?: false) ||
-                (manga.artist?.contains(constraint, true) ?: false) ||
-                sourceManager.getOrStub(manga.source).name.contains(constraint, true) ||
-                if (constraint.contains(",")) {
-                    constraint.split(",").all { containsGenre(it.trim(), manga.getGenres()) }
-                } else {
-                    containsGenre(constraint, manga.getGenres())
-                }
+            (manga.author?.contains(constraint, true) ?: false) ||
+            (manga.artist?.contains(constraint, true) ?: false) ||
+            sourceManager.getOrStub(manga.source).name.contains(constraint, true) ||
+            if (constraint.contains(",")) {
+                constraint.split(",").all { containsGenre(it.trim(), manga.getGenres()) }
+            } else {
+                containsGenre(constraint, manga.getGenres())
+            }
     }
 
     private fun containsGenre(tag: String, genres: List<String>?): Boolean {
-        return if (tag.startsWith("-"))
+        return if (tag.startsWith("-")) {
             genres?.find {
                 it.trim().toLowerCase() == tag.substringAfter("-").toLowerCase()
             } == null
-        else
+        } else {
             genres?.find {
                 it.trim().toLowerCase() == tag.toLowerCase()
             } != null
+        }
     }
 
     override fun equals(other: Any?): Boolean {
