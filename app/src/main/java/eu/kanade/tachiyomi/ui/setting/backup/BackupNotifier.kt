@@ -34,10 +34,12 @@ internal class BackupNotifier(private val context: Context) {
             setOngoing(true)
         }
 
-        notificationBuilder.show(Notifications.ID_BACKUP)
+        notificationBuilder.show(Notifications.ID_BACKUP_PROGRESS)
     }
 
     fun showBackupError(error: String?) {
+        context.notificationManager.cancel(Notifications.ID_BACKUP_PROGRESS)
+
         with(notificationBuilder) {
             setContentTitle(context.getString(R.string.creating_backup_error))
             setContentText(error)
@@ -47,10 +49,12 @@ internal class BackupNotifier(private val context: Context) {
             setOngoing(false)
         }
 
-        notificationBuilder.show(Notifications.ID_BACKUP)
+        notificationBuilder.show(Notifications.ID_BACKUP_COMPLETE)
     }
 
     fun showBackupComplete(unifile: UniFile) {
+        context.notificationManager.cancel(Notifications.ID_BACKUP_PROGRESS)
+
         with(notificationBuilder) {
             setContentTitle(context.getString(R.string.backup_created))
 
@@ -70,11 +74,11 @@ internal class BackupNotifier(private val context: Context) {
             addAction(
                 R.drawable.ic_share_24dp,
                 context.getString(R.string.action_share),
-                NotificationReceiver.shareBackupPendingBroadcast(context, unifile.uri, Notifications.ID_BACKUP)
+                NotificationReceiver.shareBackupPendingBroadcast(context, unifile.uri, Notifications.ID_BACKUP_COMPLETE)
             )
         }
 
-        notificationBuilder.show(Notifications.ID_BACKUP)
+        notificationBuilder.show(Notifications.ID_BACKUP_COMPLETE)
     }
 
     fun showRestoreProgress(content: String = "", progress: Int = 0, maxAmount: Int = 100): NotificationCompat.Builder {
@@ -93,16 +97,18 @@ internal class BackupNotifier(private val context: Context) {
             addAction(
                 R.drawable.ic_close_24dp,
                 context.getString(R.string.action_stop),
-                NotificationReceiver.cancelRestorePendingBroadcast(context, Notifications.ID_RESTORE)
+                NotificationReceiver.cancelRestorePendingBroadcast(context, Notifications.ID_RESTORE_PROGRESS)
             )
         }
 
-        builder.show(Notifications.ID_RESTORE)
+        builder.show(Notifications.ID_RESTORE_PROGRESS)
 
         return builder
     }
 
     fun showRestoreError(error: String?) {
+        context.notificationManager.cancel(Notifications.ID_RESTORE_PROGRESS)
+
         with(notificationBuilder) {
             setContentTitle(context.getString(R.string.restoring_backup_error))
             setContentText(error)
@@ -112,10 +118,12 @@ internal class BackupNotifier(private val context: Context) {
             setOngoing(false)
         }
 
-        notificationBuilder.show(Notifications.ID_RESTORE)
+        notificationBuilder.show(Notifications.ID_RESTORE_COMPLETE)
     }
 
     fun showRestoreComplete(time: Long, errorCount: Int, path: String?, file: String?) {
+        context.notificationManager.cancel(Notifications.ID_RESTORE_PROGRESS)
+
         val timeString = context.getString(
             R.string.restore_duration,
             TimeUnit.MILLISECONDS.toMinutes(time),
@@ -152,6 +160,6 @@ internal class BackupNotifier(private val context: Context) {
             }
         }
 
-        notificationBuilder.show(Notifications.ID_RESTORE)
+        notificationBuilder.show(Notifications.ID_RESTORE_COMPLETE)
     }
 }

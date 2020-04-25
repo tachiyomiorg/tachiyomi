@@ -34,7 +34,6 @@ import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.setting.backup.BackupNotifier
 import eu.kanade.tachiyomi.util.system.isServiceRunning
-import eu.kanade.tachiyomi.util.system.sendLocalBroadcast
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -90,11 +89,7 @@ class BackupRestoreService : Service() {
         fun stop(context: Context) {
             context.stopService(Intent(context, BackupRestoreService::class.java))
 
-            val errorIntent = Intent(BackupConst.INTENT_FILTER).apply {
-                putExtra(BackupConst.ACTION, BackupConst.ACTION_RESTORE_ERROR)
-                putExtra(BackupConst.EXTRA_ERROR_MESSAGE, context.getString(R.string.restoring_backup_canceled))
-            }
-            context.sendLocalBroadcast(errorIntent)
+            BackupNotifier(context).showRestoreError(context.getString(R.string.restoring_backup_canceled))
         }
     }
 
@@ -135,7 +130,7 @@ class BackupRestoreService : Service() {
         super.onCreate()
         notifier = BackupNotifier(this)
 
-        startForeground(Notifications.ID_RESTORE, notifier.showRestoreProgress().build())
+        startForeground(Notifications.ID_RESTORE_PROGRESS, notifier.showRestoreProgress().build())
 
         wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager).newWakeLock(
             PowerManager.PARTIAL_WAKE_LOCK, "BackupRestoreService:WakeLock"
@@ -182,11 +177,7 @@ class BackupRestoreService : Service() {
             Timber.e(exception)
             writeErrorLog()
 
-            val errorIntent = Intent(BackupConst.INTENT_FILTER).apply {
-                putExtra(BackupConst.ACTION, BackupConst.ACTION_RESTORE_ERROR)
-                putExtra(BackupConst.EXTRA_ERROR_MESSAGE, exception.message)
-            }
-            sendLocalBroadcast(errorIntent)
+            notifier.showRestoreError(exception.message)
 
             stopSelf(startId)
         }
@@ -235,14 +226,8 @@ class BackupRestoreService : Service() {
         val time = endTime - startTime
 
         val logFile = writeErrorLog()
-        val completeIntent = Intent(BackupConst.INTENT_FILTER).apply {
-            putExtra(BackupConst.EXTRA_TIME, time)
-            putExtra(BackupConst.EXTRA_ERRORS, errors.size)
-            putExtra(BackupConst.EXTRA_ERROR_FILE_PATH, logFile.parent)
-            putExtra(BackupConst.EXTRA_ERROR_FILE, logFile.name)
-            putExtra(BackupConst.ACTION, BackupConst.ACTION_RESTORE_COMPLETED)
-        }
-        sendLocalBroadcast(completeIntent)
+
+        notifier.showRestoreComplete(time, errors.size, logFile.parent, logFile.name)
     }
 
     private fun restoreCategories(categoriesJson: JsonElement) {

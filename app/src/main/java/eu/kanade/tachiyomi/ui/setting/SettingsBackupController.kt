@@ -301,16 +301,6 @@ class SettingsBackupController : SettingsController() {
 
                     notifier.showBackupError(intent.getStringExtra(BackupConst.EXTRA_ERROR_MESSAGE))
                 }
-                BackupConst.ACTION_RESTORE_COMPLETED -> {
-                    val time = intent.getLongExtra(BackupConst.EXTRA_TIME, 0)
-                    val errorCount = intent.getIntExtra(BackupConst.EXTRA_ERRORS, 0)
-                    val path = intent.getStringExtra(BackupConst.EXTRA_ERROR_FILE_PATH)
-                    val file = intent.getStringExtra(BackupConst.EXTRA_ERROR_FILE)
-                    notifier.showRestoreComplete(time, errorCount, path, file)
-                }
-                BackupConst.ACTION_RESTORE_ERROR -> {
-                    notifier.showRestoreError(intent.getStringExtra(BackupConst.EXTRA_ERROR_MESSAGE))
-                }
             }
         }
     }

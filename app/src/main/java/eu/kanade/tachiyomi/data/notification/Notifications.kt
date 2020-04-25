@@ -49,8 +49,10 @@ object Notifications {
      * Notification channel and ids used by the backup/restore system.
      */
     const val CHANNEL_BACKUP_RESTORE = "backup_restore_channel"
-    const val ID_BACKUP = -501
-    const val ID_RESTORE = -502
+    const val ID_BACKUP_PROGRESS = -501
+    const val ID_BACKUP_COMPLETE = -502
+    const val ID_RESTORE_PROGRESS = -503
+    const val ID_RESTORE_COMPLETE = -504
 
     /**
      * Creates the notification channels introduced in Android Oreo.
