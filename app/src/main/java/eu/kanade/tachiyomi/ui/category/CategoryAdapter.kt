@@ -24,13 +24,6 @@ class CategoryAdapter(controller: CategoryController) :
     }
 
     /**
-     * Clears the active selections from the model.
-     */
-    fun clearModelSelection() {
-        selectedPositions.forEach { getItem(it)?.isSelected = false }
-    }
-
-    /**
      * Toggles the selection of the given position.
      *
      * @param position The position to toggle.

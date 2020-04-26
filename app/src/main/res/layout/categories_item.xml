@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,33 +7,33 @@
     android:background="@drawable/list_item_selector">
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/reorder"
         android:layout_width="@dimen/material_component_lists_single_line_with_avatar_height"
         android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
-        android:clickable="true"
-        android:paddingStart="@dimen/material_component_lists_icon_left_padding"
-        android:paddingEnd="0dp"
-        tools:src="@mipmap/ic_launcher_round" />
+        android:scaleType="center"
+        app:srcCompat="@drawable/ic_reorder_grey_24dp"
+        app:tint="?android:attr/textColorPrimary"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        app:srcCompat="@drawable/ic_label_24dp"
+        app:tint="?android:attr/textColorPrimary"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="@dimen/material_component_lists_text_left_padding"
-        android:layout_marginEnd="@dimen/material_component_lists_single_line_with_avatar_height"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Regular.SubHeading"
         tools:text="Title" />
 
-    <ImageView
-        android:id="@+id/reorder"
-        android:layout_width="@dimen/material_component_lists_single_line_with_avatar_height"
-        android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
-        android:layout_gravity="end"
-        android:scaleType="center"
-        app:srcCompat="@drawable/ic_reorder_grey_24dp"
-        app:tint="?android:attr/textColorPrimary" />
-
-</FrameLayout>
+</LinearLayout>

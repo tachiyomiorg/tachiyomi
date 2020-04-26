@@ -4,12 +4,10 @@ package eu.kanade.tachiyomi.util.view
 
 import android.graphics.Color
 import android.graphics.Point
-import android.graphics.Typeface
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.MenuRes
 import androidx.appcompat.widget.PopupMenu
@@ -18,10 +16,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import com.kennyc.textdrawable.ColorGenerator
-import com.kennyc.textdrawable.TextDrawable
 import eu.kanade.tachiyomi.R
-import kotlin.math.min
 
 /**
  * Returns coordinates of view.
@@ -84,28 +79,6 @@ inline fun View.visibleIf(block: () -> Boolean) {
 
 inline fun View.toggle() {
     visibleIf { visibility == View.GONE }
-}
-
-/**
- * Sets a round TextDrawable into an ImageView determined by input.
- *
- * @param text text of [TextDrawable]
- */
-fun ImageView.roundTextIcon(text: String) {
-    val letter = text.take(1).toUpperCase()
-    val size = min(this.width, this.height)
-
-    setImageDrawable(
-        TextDrawable(
-            shape = TextDrawable.DRAWABLE_SHAPE_OVAL,
-            desiredWidth = size,
-            desiredHeight = size,
-            typeFace = Typeface.DEFAULT,
-            textColor = Color.WHITE,
-            text = letter,
-            color = ColorGenerator.MATERIAL.getColor(letter)
-        )
-    )
 }
 
 /**

@@ -7,7 +7,6 @@ import eu.kanade.tachiyomi.source.icon
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.holder.SlicedHolder
 import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.roundTextIcon
 import eu.kanade.tachiyomi.util.view.visible
 import io.github.mthli.slice.Slice
 import kotlinx.android.synthetic.main.source_main_controller_card_item.card
@@ -50,7 +49,6 @@ class SourceHolder(view: View, override val adapter: SourceAdapter) :
             when {
                 icon != null -> image.setImageDrawable(icon)
                 item.source.id == LocalSource.ID -> image.setImageResource(R.mipmap.ic_local_source)
-                else -> image.roundTextIcon(source.name)
             }
         }
 

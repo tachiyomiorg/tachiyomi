@@ -6,7 +6,6 @@ import eu.kanade.tachiyomi.source.icon
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.holder.SlicedHolder
 import eu.kanade.tachiyomi.util.view.gone
-import eu.kanade.tachiyomi.util.view.roundTextIcon
 import io.github.mthli.slice.Slice
 import kotlinx.android.synthetic.main.source_main_controller_card_item.card
 import kotlinx.android.synthetic.main.source_main_controller_card_item.image
@@ -43,8 +42,9 @@ class SourceHolder(view: View, override val adapter: SourceAdapter) :
         // Set circle letter image.
         itemView.post {
             val icon = source.icon()
-            if (icon != null) image.setImageDrawable(icon)
-            else image.roundTextIcon(source.name)
+            if (icon != null) {
+                image.setImageDrawable(icon)
+            }
         }
     }
 }
