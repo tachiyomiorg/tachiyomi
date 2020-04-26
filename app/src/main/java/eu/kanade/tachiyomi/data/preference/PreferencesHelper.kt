@@ -8,18 +8,30 @@ import androidx.preference.PreferenceManager
 import com.f2prateek.rx.preferences.Preference as RxPreference
 import com.f2prateek.rx.preferences.RxSharedPreferences
 import com.tfcporciuncula.flow.FlowSharedPreferences
+import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.Anilist
+import eu.kanade.tachiyomi.util.lang.startWithCurrentValue
 import java.io.File
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Locale
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.onEach
 
 fun <T> RxPreference<T>.getOrDefault(): T = get() ?: defaultValue()!!
+
+@OptIn(ExperimentalCoroutinesApi::class)
+fun <T> Preference<T>.asImmediateFlow(block: (value: T) -> Unit): Flow<T> {
+    block(get())
+    return asFlow()
+        .startWithCurrentValue { get() }
+        .onEach { block(it) }
+}
 
 private class DateFormatConverter : RxPreference.Adapter<DateFormat> {
     override fun get(key: String, preferences: SharedPreferences): DateFormat {

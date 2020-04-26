@@ -17,6 +17,7 @@ import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.entriesRes
@@ -102,8 +103,7 @@ class SettingsDownloadController : SettingsController() {
                 entries = categories.map { it.name }.toTypedArray()
                 entryValues = categories.map { it.id.toString() }.toTypedArray()
 
-                preferences.downloadNew().asFlow()
-                    .onEach { isVisible = it }
+                preferences.downloadNew().asImmediateFlow { isVisible = it }
                     .launchIn(scope)
 
                 preferences.downloadNewCategories().asFlow()

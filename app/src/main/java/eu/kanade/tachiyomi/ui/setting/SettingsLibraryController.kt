@@ -13,6 +13,7 @@ import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
@@ -104,8 +105,7 @@ class SettingsLibraryController : SettingsController() {
                 entryValues = arrayOf("wifi", "ac")
                 summaryRes = R.string.pref_library_update_restriction_summary
 
-                preferences.libraryUpdateInterval().asFlow()
-                    .onEach { isVisible = it > 0 }
+                preferences.libraryUpdateInterval().asImmediateFlow { isVisible = it > 0 }
                     .launchIn(scope)
 
                 onChange {
