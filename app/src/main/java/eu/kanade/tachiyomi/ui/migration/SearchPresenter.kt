@@ -105,12 +105,14 @@ class SearchPresenter(
                     db.insertChapters(dbChapters).executeAsBlocking()
                 }
             }
+
             // Update categories
             if (migrateCategories) {
                 val categories = db.getCategoriesForManga(prevManga).executeAsBlocking()
                 val mangaCategories = categories.map { MangaCategory.create(manga, it) }
                 db.setMangaCategories(mangaCategories, listOf(manga))
             }
+
             // Update track
             if (migrateTracks) {
                 val tracks = db.getTracks(prevManga).executeAsBlocking()
@@ -120,6 +122,7 @@ class SearchPresenter(
                 }
                 db.insertTracks(tracks).executeAsBlocking()
             }
+
             // Update favorite status
             if (replace) {
                 prevManga.favorite = false
@@ -127,6 +130,12 @@ class SearchPresenter(
             }
             manga.favorite = true
             db.updateMangaFavorite(manga).executeAsBlocking()
+
+            // Update reading preferences
+            manga.chapter_flags = prevManga.chapter_flags
+            db.updateFlags(manga).executeAsBlocking()
+            manga.viewer = prevManga.viewer
+            db.updateMangaViewer(manga).executeAsBlocking()
 
             // SearchPresenter#networkToLocalManga may have updated the manga title, so ensure db gets updated title
             db.updateMangaTitle(manga).executeAsBlocking()
