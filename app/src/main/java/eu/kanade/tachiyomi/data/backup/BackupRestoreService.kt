@@ -226,7 +226,7 @@ class BackupRestoreService : Service() {
     }
 
     private fun restoreCategories(categoriesJson: JsonElement) {
-        db.executeTransaction {
+        db.inTransaction {
             backupManager.restoreCategories(categoriesJson.asJsonArray)
 
             restoreProgress += 1
@@ -235,7 +235,7 @@ class BackupRestoreService : Service() {
     }
 
     private fun restoreManga(mangaJson: JsonObject) {
-        db.executeTransaction {
+        db.inTransaction {
             val manga = backupManager.parser.fromJson<MangaImpl>(mangaJson.get(MANGA))
             val chapters = backupManager.parser.fromJson<List<ChapterImpl>>(
                 mangaJson.get(CHAPTERS)
