@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.ui.manga.chapter
 
 import android.content.Context
-import androidx.core.content.ContextCompat
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -21,7 +20,7 @@ class ChaptersAdapter(
 
     var items: List<ChapterItem> = emptyList()
 
-    val readColor = ContextCompat.getColor(context, R.color.material_on_surface_disabled)
+    val readColor = context.getResourceColor(R.attr.colorOnSurface, 0.38f)
     val unreadColor = context.getResourceColor(R.attr.colorOnSurface)
 
     val bookmarkedColor = context.getResourceColor(R.attr.colorAccent)

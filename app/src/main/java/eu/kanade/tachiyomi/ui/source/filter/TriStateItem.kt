@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.ui.source.filter
 
 import android.view.View
 import android.widget.CheckedTextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.google.android.material.R
@@ -46,7 +45,7 @@ open class TriStateItem(val filter: Filter.TriState) : AbstractFlexibleItem<TriS
             val color = if (filter.state == Filter.TriState.STATE_INCLUDE) {
                 view.context.getResourceColor(R.attr.colorAccent)
             } else {
-                ContextCompat.getColor(view.context, R.color.material_on_background_disabled)
+                view.context.getResourceColor(R.attr.colorOnBackground, 0.38f)
             }
 
             setTint(color)

@@ -4,11 +4,11 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.ImageView.ScaleType
-import androidx.core.content.ContextCompat
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.bumptech.glide.request.target.ImageViewTarget
 import com.bumptech.glide.request.transition.Transition
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.visible
 
@@ -46,7 +46,7 @@ class StateImageViewTarget(
         view.scaleType = errorScaleType
 
         val vector = VectorDrawableCompat.create(view.context.resources, errorDrawableRes, null)
-        vector?.setTint(ContextCompat.getColor(view.context, com.google.android.material.R.color.material_on_background_disabled))
+        vector?.setTint(view.context.getResourceColor(R.attr.colorOnBackground, 0.38f))
         view.setImageDrawable(vector)
     }
 

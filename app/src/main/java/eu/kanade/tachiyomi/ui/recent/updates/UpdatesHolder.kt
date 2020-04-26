@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.ui.recent.updates
 
 import android.view.View
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.model.Download
@@ -27,7 +26,7 @@ import kotlinx.android.synthetic.main.updates_item.manga_title
 class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter) :
     BaseFlexibleViewHolder(view, adapter) {
 
-    private var readColor = ContextCompat.getColor(view.context, R.color.material_on_surface_disabled)
+    private var readColor = view.context.getResourceColor(R.attr.colorOnSurface, 0.38f)
     private var unreadColor = view.context.getResourceColor(R.attr.colorOnSurface)
 
     /**

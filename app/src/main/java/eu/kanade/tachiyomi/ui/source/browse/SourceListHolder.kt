@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.ui.source.browse
 
 import android.view.View
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
@@ -23,7 +22,7 @@ import kotlinx.android.synthetic.main.source_list_item.title
 class SourceListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
     SourceHolder(view, adapter) {
 
-    private val favoriteColor = ContextCompat.getColor(view.context, R.color.material_on_surface_disabled)
+    private val favoriteColor = view.context.getResourceColor(R.attr.colorOnSurface, 0.38f)
     private val unfavoriteColor = view.context.getResourceColor(R.attr.colorOnSurface)
 
     /**
