@@ -19,6 +19,11 @@ class EpubFile(file: File) : Closeable {
     private val zip = ZipFile(file)
 
     /**
+     * Path separator used by this epub.
+     */
+    private val pathSeparator = getPathSeparator()
+
+    /**
      * Closes the underlying zip file.
      */
     override fun close() {
@@ -43,19 +48,17 @@ class EpubFile(file: File) : Closeable {
      * Returns the path of all the images found in the epub file.
      */
     fun getImagesFromPages(): List<String> {
-        val allEntries = zip.entries().toList()
         val ref = getPackageHref()
         val doc = getPackageDocument(ref)
         val pages = getPagesFromDocument(doc)
-        val hrefs = getHrefMap(ref, allEntries.map { it.name })
-        return getImagesFromPages(pages, hrefs)
+        return getImagesFromPages(pages, ref)
     }
 
     /**
      * Returns the path to the package document.
      */
     private fun getPackageHref(): String {
-        val meta = zip.getEntry("META-INF/container.xml")
+        val meta = zip.getEntry(resolveZipPath("META-INF", "container.xml"))
         if (meta != null) {
             val metaDoc = zip.getInputStream(meta).use { Jsoup.parse(it, null, "") }
             val path = metaDoc.getElementsByTag("rootfile").first()?.attr("full-path")
@@ -63,7 +66,7 @@ class EpubFile(file: File) : Closeable {
                 return path
             }
         }
-        return "OEBPS/content.opf"
+        return resolveZipPath("OEBPS", "content.opf")
     }
 
     /**
@@ -89,28 +92,67 @@ class EpubFile(file: File) : Closeable {
     /**
      * Returns all the images contained in every page from the epub.
      */
-    private fun getImagesFromPages(pages: List<String>, hrefs: Map<String, String>): List<String> {
-        return pages.map { page ->
-            val entry = zip.getEntry(hrefs[page])
+    private fun getImagesFromPages(pages: List<String>, packageHref: String): List<String> {
+        val result = ArrayList<String>()
+        val basePath = getParentDirectory(packageHref)
+        pages.forEach { page ->
+            val entryPath = resolveZipPath(basePath, page)
+            val entry = zip.getEntry(entryPath)
             val document = zip.getInputStream(entry).use { Jsoup.parse(it, null, "") }
-            document.getElementsByTag("img").mapNotNull { hrefs[it.attr("src")] }
-        }.flatten()
+            val imageBasePath = getParentDirectory(entryPath)
+
+            document.allElements.forEach {
+                if (it.tagName() == "img") {
+                    result.add(resolveZipPath(imageBasePath, it.attr("src")))
+                } else if (it.tagName() == "image") {
+                    result.add(resolveZipPath(imageBasePath, it.attr("xlink:href")))
+                }
+            }
+        }
+
+        return result
     }
 
     /**
-     * Returns a map with a relative url as key and abolute url as path.
+     * Returns the path separator used by the epub file.
      */
-    private fun getHrefMap(packageHref: String, entries: List<String>): Map<String, String> {
-        val lastSlashPos = packageHref.lastIndexOf('/')
-        if (lastSlashPos < 0) {
-            return entries.associateBy { it }
+    private fun getPathSeparator(): String {
+        val meta = zip.getEntry("META-INF\\container.xml")
+        if (meta != null) {
+            return "\\"
+        } else {
+            return "/"
         }
-        return entries.associateBy { entry ->
-            if (entry.isNotBlank() && entry.length > lastSlashPos) {
-                entry.substring(lastSlashPos + 1)
-            } else {
-                entry
-            }
+    }
+
+    /**
+     * Resolves a zip path from base and relative components and a path separator.
+     */
+    private fun resolveZipPath(basePath: String, relativePath: String): String {
+        if (relativePath.startsWith(pathSeparator)) {
+            // Path is absolute, so return as-is.
+            return relativePath
+        }
+
+        var fixedBasePath = basePath.replace(pathSeparator, File.separator)
+        if (!fixedBasePath.startsWith(File.separator)) {
+            fixedBasePath = "${File.separator}$fixedBasePath"
+        }
+
+        val fixedRelativePath = relativePath.replace(pathSeparator, File.separator)
+        val resolvedPath = File(fixedBasePath, fixedRelativePath).canonicalPath
+        return resolvedPath.replace(File.separator, pathSeparator).substring(1)
+    }
+
+    /**
+     * Gets the parent directory of a path.
+     */
+    private fun getParentDirectory(path: String): String {
+        val separatorIndex = path.lastIndexOf(pathSeparator)
+        if (separatorIndex >= 0) {
+            return path.substring(0, separatorIndex)
+        } else {
+            return ""
         }
     }
 }
