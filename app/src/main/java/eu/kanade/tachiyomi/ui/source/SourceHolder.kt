@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.source
 
 import android.view.View
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.icon
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.holder.SlicedHolder
@@ -46,8 +47,11 @@ class SourceHolder(view: View, override val adapter: SourceAdapter) :
         // Set circle letter image.
         itemView.post {
             val icon = source.icon()
-            if (icon != null) image.setImageDrawable(icon)
-            else image.roundTextIcon(source.name)
+            when {
+                icon != null -> image.setImageDrawable(icon)
+                item.source.id == LocalSource.ID -> image.setImageResource(R.mipmap.ic_local_source)
+                else -> image.roundTextIcon(source.name)
+            }
         }
 
         source_browse.setText(R.string.browse)
