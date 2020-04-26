@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="bottom"
-            android:background="?attr/colorSurface"
+            android:background="?attr/colorPrimary"
             android:theme="?attr/actionBarTheme"
             app:contentInsetEnd="8dp"
             app:contentInsetStart="8dp">
