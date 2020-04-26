@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.setting.backup
+package eu.kanade.tachiyomi.data.backup
 
 import android.content.Context
 import android.graphics.BitmapFactory
@@ -25,16 +25,17 @@ internal class BackupNotifier(private val context: Context) {
         context.notificationManager.notify(id, build())
     }
 
-    fun showBackupProgress() {
-        with(notificationBuilder) {
-            setContentTitle(context.getString(R.string.backup))
-            setContentText(context.getString(R.string.creating_backup))
+    fun showBackupProgress(): NotificationCompat.Builder {
+        val builder = with(notificationBuilder) {
+            setContentTitle(context.getString(R.string.creating_backup))
 
             setProgress(0, 0, true)
             setOngoing(true)
         }
 
-        notificationBuilder.show(Notifications.ID_BACKUP_PROGRESS)
+        builder.show(Notifications.ID_BACKUP_PROGRESS)
+
+        return builder
     }
 
     fun showBackupError(error: String?) {
@@ -59,7 +60,7 @@ internal class BackupNotifier(private val context: Context) {
             setContentTitle(context.getString(R.string.backup_created))
 
             if (unifile.filePath != null) {
-                setContentText(context.getString(R.string.file_saved, unifile.filePath))
+                setContentText(unifile.filePath)
             }
 
             // Remove progress bar

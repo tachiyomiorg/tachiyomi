@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.data.backup
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import com.github.salomonbrys.kotson.fromJson
 import com.github.salomonbrys.kotson.registerTypeAdapter
@@ -49,7 +48,6 @@ import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
-import eu.kanade.tachiyomi.util.system.sendLocalBroadcast
 import kotlin.math.max
 import rx.Observable
 import timber.log.Timber
@@ -102,7 +100,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
      * @param uri path of Uri
      * @param isJob backup called from job
      */
-    fun createBackup(uri: Uri, flags: Int, isJob: Boolean): Boolean {
+    fun createBackup(uri: Uri, flags: Int, isJob: Boolean): String? {
         // Create root object
         val root = JsonObject()
 
@@ -155,6 +153,8 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
                 newFile.openOutputStream().bufferedWriter().use {
                     parser.toJson(root, it)
                 }
+
+                return newFile.uri.toString()
             } else {
                 val file = UniFile.fromUri(context, uri)
                     ?: throw Exception("Couldn't create backup file")
@@ -162,25 +162,11 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
                     parser.toJson(root, it)
                 }
 
-                // Show completed dialog
-                val intent = Intent(BackupConst.INTENT_FILTER).apply {
-                    putExtra(BackupConst.ACTION, BackupConst.ACTION_BACKUP_COMPLETED)
-                    putExtra(BackupConst.EXTRA_URI, file.uri.toString())
-                }
-                context.sendLocalBroadcast(intent)
+                return file.uri.toString()
             }
-            return true
         } catch (e: Exception) {
             Timber.e(e)
-            if (!isJob) {
-                // Show error dialog
-                val intent = Intent(BackupConst.INTENT_FILTER).apply {
-                    putExtra(BackupConst.ACTION, BackupConst.ACTION_BACKUP_ERROR)
-                    putExtra(BackupConst.EXTRA_ERROR_MESSAGE, e.message)
-                }
-                context.sendLocalBroadcast(intent)
-            }
-            return false
+            throw e
         }
     }
 

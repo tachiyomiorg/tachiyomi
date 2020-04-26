@@ -1,25 +1,22 @@
 package eu.kanade.tachiyomi.data.backup
 
-import android.app.IntentService
+import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import com.google.gson.JsonArray
-import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
-import eu.kanade.tachiyomi.data.database.models.Manga
+import android.os.Build
+import android.os.IBinder
+import android.os.PowerManager
+import com.hippo.unifile.UniFile
+import eu.kanade.tachiyomi.data.notification.Notifications
+import eu.kanade.tachiyomi.util.system.isServiceRunning
 
 /**
- * [IntentService] used to backup [Manga] information to [JsonArray]
+ * Service for backing up library information to a JSON file.
  */
-class BackupCreateService : IntentService(NAME) {
+class BackupCreateService : Service() {
 
     companion object {
-        // Name of class
-        private const val NAME = "BackupCreateService"
-
-        // Options for backup
-        private const val EXTRA_FLAGS = "$ID.$NAME.EXTRA_FLAGS"
-
         // Filter options
         internal const val BACKUP_CATEGORY = 0x1
         internal const val BACKUP_CATEGORY_MASK = 0x1
@@ -32,30 +29,93 @@ class BackupCreateService : IntentService(NAME) {
         internal const val BACKUP_ALL = 0xF
 
         /**
+         * Returns the status of the service.
+         *
+         * @param context the application context.
+         * @return true if the service is running, false otherwise.
+         */
+        fun isRunning(context: Context): Boolean =
+            context.isServiceRunning(BackupCreateService::class.java)
+
+        /**
          * Make a backup from library
          *
          * @param context context of application
          * @param uri path of Uri
          * @param flags determines what to backup
          */
-        fun makeBackup(context: Context, uri: Uri, flags: Int) {
-            val intent = Intent(context, BackupCreateService::class.java).apply {
-                putExtra(BackupConst.EXTRA_URI, uri)
-                putExtra(EXTRA_FLAGS, flags)
+        fun start(context: Context, uri: Uri, flags: Int) {
+            if (!isRunning(context)) {
+                val intent = Intent(context, BackupCreateService::class.java).apply {
+                    putExtra(BackupConst.EXTRA_URI, uri)
+                    putExtra(BackupConst.EXTRA_FLAGS, flags)
+                }
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                    context.startService(intent)
+                } else {
+                    context.startForegroundService(intent)
+                }
             }
-            context.startService(intent)
         }
     }
 
-    private val backupManager by lazy { BackupManager(this) }
+    /**
+     * Wake lock that will be held until the service is destroyed.
+     */
+    private lateinit var wakeLock: PowerManager.WakeLock
 
-    override fun onHandleIntent(intent: Intent?) {
-        if (intent == null) return
+    private lateinit var backupManager: BackupManager
+    private lateinit var notifier: BackupNotifier
 
-        // Get values
-        val uri = intent.getParcelableExtra<Uri>(BackupConst.EXTRA_URI)
-        val flags = intent.getIntExtra(EXTRA_FLAGS, 0)
-        // Create backup
-        backupManager.createBackup(uri, flags, false)
+    override fun onCreate() {
+        super.onCreate()
+        notifier = BackupNotifier(this)
+
+        startForeground(Notifications.ID_BACKUP_PROGRESS, notifier.showBackupProgress().build())
+
+        wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager).newWakeLock(
+            PowerManager.PARTIAL_WAKE_LOCK, "${javaClass.name}:WakeLock"
+        )
+        wakeLock.acquire()
+    }
+
+    override fun stopService(name: Intent?): Boolean {
+        destroyJob()
+        return super.stopService(name)
+    }
+
+    override fun onDestroy() {
+        destroyJob()
+        super.onDestroy()
+    }
+
+    private fun destroyJob() {
+        if (wakeLock.isHeld) {
+            wakeLock.release()
+        }
+    }
+
+    /**
+     * This method needs to be implemented, but it's not used/needed.
+     */
+    override fun onBind(intent: Intent): IBinder? = null
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        if (intent == null) return START_NOT_STICKY
+
+        try {
+            val uri = intent.getParcelableExtra<Uri>(BackupConst.EXTRA_URI)
+            val backupFlags = intent.getIntExtra(BackupConst.EXTRA_FLAGS, 0)
+            backupManager = BackupManager(this)
+
+            val backupFileUri = Uri.parse(backupManager.createBackup(uri, backupFlags, false))
+            val unifile = UniFile.fromUri(this, backupFileUri)
+            notifier.showBackupComplete(unifile)
+        } catch (e: Exception) {
+            notifier.showBackupError(e.message)
+        }
+
+        stopSelf(startId)
+        return START_NOT_STICKY
     }
 }

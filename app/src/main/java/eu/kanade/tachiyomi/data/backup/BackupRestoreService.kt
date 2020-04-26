@@ -32,7 +32,6 @@ import eu.kanade.tachiyomi.data.database.models.TrackImpl
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.Source
-import eu.kanade.tachiyomi.ui.setting.backup.BackupNotifier
 import eu.kanade.tachiyomi.util.system.isServiceRunning
 import java.io.File
 import java.text.SimpleDateFormat
@@ -47,7 +46,7 @@ import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 
 /**
- * Restores backup from json file
+ * Restores backup from a JSON file.
  */
 class BackupRestoreService : Service() {
 
@@ -116,16 +115,12 @@ class BackupRestoreService : Service() {
     private val errors = mutableListOf<Pair<Date, String>>()
 
     private lateinit var backupManager: BackupManager
+    private lateinit var notifier: BackupNotifier
 
     private val db: DatabaseHelper by injectLazy()
 
     private val trackManager: TrackManager by injectLazy()
 
-    private lateinit var notifier: BackupNotifier
-
-    /**
-     * Method called when the service is created. It injects dependencies and acquire the wake lock.
-     */
     override fun onCreate() {
         super.onCreate()
         notifier = BackupNotifier(this)
@@ -133,7 +128,7 @@ class BackupRestoreService : Service() {
         startForeground(Notifications.ID_RESTORE_PROGRESS, notifier.showRestoreProgress().build())
 
         wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager).newWakeLock(
-            PowerManager.PARTIAL_WAKE_LOCK, "BackupRestoreService:WakeLock"
+            PowerManager.PARTIAL_WAKE_LOCK, "${javaClass.name}:WakeLock"
         )
         wakeLock.acquire()
     }

@@ -4,10 +4,7 @@ import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.Activity
 import android.app.Dialog
 import android.content.ActivityNotFoundException
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -16,7 +13,6 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.backup.BackupConst
 import eu.kanade.tachiyomi.data.backup.BackupCreateService
 import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
 import eu.kanade.tachiyomi.data.backup.BackupRestoreService
@@ -24,7 +20,6 @@ import eu.kanade.tachiyomi.data.backup.models.Backup
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
-import eu.kanade.tachiyomi.ui.setting.backup.BackupNotifier
 import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.entriesRes
 import eu.kanade.tachiyomi.util.preference.intListPreference
@@ -35,9 +30,7 @@ import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.getFilePicker
-import eu.kanade.tachiyomi.util.system.registerLocalReceiver
 import eu.kanade.tachiyomi.util.system.toast
-import eu.kanade.tachiyomi.util.system.unregisterLocalReceiver
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -48,22 +41,9 @@ class SettingsBackupController : SettingsController() {
      */
     private var backupFlags = 0
 
-    private val notifier by lazy { BackupNotifier(preferences.context) }
-
-    private val receiver = BackupBroadcastReceiver()
-
-    init {
-        preferences.context.registerLocalReceiver(receiver, IntentFilter(BackupConst.INTENT_FILTER))
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requestPermissionsSafe(arrayOf(WRITE_EXTERNAL_STORAGE), 500)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        preferences.context.unregisterLocalReceiver(receiver)
     }
 
     override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
@@ -74,7 +54,7 @@ class SettingsBackupController : SettingsController() {
             summaryRes = R.string.pref_create_backup_summ
 
             onClick {
-                if (!isBackupStarted) {
+                if (!BackupCreateService.isRunning(context)) {
                     val ctrl = CreateBackupDialog()
                     ctrl.targetController = this@SettingsBackupController
                     ctrl.showDialog(router)
@@ -193,11 +173,8 @@ class SettingsBackupController : SettingsController() {
                 val file = UniFile.fromUri(activity, uri)
 
                 activity.toast(R.string.creating_backup)
-                notifier.showBackupProgress()
 
-                BackupCreateService.makeBackup(activity, file.uri, backupFlags)
-
-                isBackupStarted = true
+                BackupCreateService.start(activity, file.uri, backupFlags)
             }
             CODE_BACKUP_RESTORE -> if (data != null && resultCode == Activity.RESULT_OK) {
                 val uri = data.data
@@ -286,30 +263,9 @@ class SettingsBackupController : SettingsController() {
         }
     }
 
-    inner class BackupBroadcastReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            when (intent.getStringExtra(BackupConst.ACTION)) {
-                BackupConst.ACTION_BACKUP_COMPLETED -> {
-                    isBackupStarted = false
-
-                    val uri = Uri.parse(intent.getStringExtra(BackupConst.EXTRA_URI))
-                    val unifile = UniFile.fromUri(activity, uri)
-                    notifier.showBackupComplete(unifile)
-                }
-                BackupConst.ACTION_BACKUP_ERROR -> {
-                    isBackupStarted = false
-
-                    notifier.showBackupError(intent.getStringExtra(BackupConst.EXTRA_ERROR_MESSAGE))
-                }
-            }
-        }
-    }
-
     private companion object {
         const val CODE_BACKUP_CREATE = 501
         const val CODE_BACKUP_RESTORE = 502
         const val CODE_BACKUP_DIR = 503
-
-        var isBackupStarted = false
     }
 }
