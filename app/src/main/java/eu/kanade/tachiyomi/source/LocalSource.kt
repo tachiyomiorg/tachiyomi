@@ -180,8 +180,8 @@ class LocalSource(private val context: Context) : CatalogueSource {
                         }
                     }
 
-                    val chapNameCut = name.replace(manga.title, "", true).trim(' ', '-', '_', ',')
-                    if (!chapNameCut.isEmpty()) name = chapNameCut
+                    val chapNameCut = stripMangaTitle(name, manga.title)
+                    if (chapNameCut.isNotEmpty()) name = chapNameCut
                     ChapterRecognition.parseChapterNumber(this, manga)
                 }
             }
@@ -194,6 +194,40 @@ class LocalSource(private val context: Context) : CatalogueSource {
             .toList()
 
         return Observable.just(chapters)
+    }
+
+    /**
+     * Strips the manga title from a chapter name, matching only based on alphanumeric and whitespace
+     * characters.
+     */
+    private fun stripMangaTitle(chapterName: String, mangaTitle: String): String {
+        var chapterNameIndex = 0
+        var mangaTitleIndex = 0
+        while (chapterNameIndex < chapterName.length && mangaTitleIndex < mangaTitle.length) {
+            val chapterChar = chapterName.get(chapterNameIndex)
+            val mangaChar = mangaTitle.get(mangaTitleIndex)
+            if (!chapterChar.equals(mangaChar, true)) {
+                val invalidChapterChar = !chapterChar.isLetterOrDigit() && !chapterChar.isWhitespace()
+                val invalidMangaChar = !mangaChar.isLetterOrDigit() && !mangaChar.isWhitespace()
+
+                if (!invalidChapterChar && !invalidMangaChar) {
+                    return chapterName
+                }
+
+                if (invalidChapterChar) {
+                    chapterNameIndex++
+                }
+
+                if (invalidMangaChar) {
+                    mangaTitleIndex++
+                }
+            } else {
+                chapterNameIndex++
+                mangaTitleIndex++
+            }
+        }
+
+        return chapterName.substring(chapterNameIndex).trimStart(' ', '-', '_', ',', ':')
     }
 
     override fun fetchPageList(chapter: SChapter): Observable<List<Page>> {
