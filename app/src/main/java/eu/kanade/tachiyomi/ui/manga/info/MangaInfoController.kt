@@ -83,10 +83,10 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
         if (presenter.manga.favorite && presenter.getCategories().isNotEmpty()) {
             binding.btnCategories.visible()
-            binding.btnCategories.clicks()
-                .onEach { onCategoriesClick() }
-                .launchIn(scope)
         }
+        binding.btnCategories.clicks()
+            .onEach { onCategoriesClick() }
+            .launchIn(scope)
 
         if (presenter.source is HttpSource) {
             binding.btnWebview.visible()
