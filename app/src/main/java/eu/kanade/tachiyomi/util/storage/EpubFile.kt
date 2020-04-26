@@ -1,12 +1,13 @@
 package eu.kanade.tachiyomi.util.storage
 
-import com.google.gson.internal.bind.util.ISO8601Utils
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.model.SManga
 import java.io.Closeable
 import java.io.File
 import java.io.InputStream
-import java.text.ParsePosition
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Locale
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 import org.jsoup.Jsoup
@@ -72,7 +73,10 @@ class EpubFile(file: File) : Closeable {
         val title = doc.getElementsByTag("dc:title").first()
         val publisher = doc.getElementsByTag("dc:publisher").first()
         val creator = doc.getElementsByTag("dc:creator").first()
-        val date = doc.getElementsByTag("dc:date").first()
+        var date = doc.getElementsByTag("dc:date").first()
+        if (date == null) {
+            date = doc.select("meta[property=dcterms:modified]").first()
+        }
 
         if (title != null) {
             chapter.name = title.text()
@@ -85,8 +89,15 @@ class EpubFile(file: File) : Closeable {
         }
 
         if (date != null) {
-            val parsedDate = ISO8601Utils.parse(date.text(), ParsePosition(0))
-            chapter.date_upload = parsedDate.time
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+            try {
+                val parsedDate = dateFormat.parse(date.text())
+                if (parsedDate != null) {
+                    chapter.date_upload = parsedDate.time
+                }
+            } catch (e: ParseException) {
+                // Empty
+            }
         }
     }
 
