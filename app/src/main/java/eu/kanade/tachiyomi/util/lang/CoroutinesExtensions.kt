@@ -6,8 +6,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 fun launchUI(block: suspend CoroutineScope.() -> Unit): Job =
@@ -19,10 +17,3 @@ fun launchIO(block: suspend CoroutineScope.() -> Unit): Job =
 @OptIn(ExperimentalCoroutinesApi::class)
 fun launchNow(block: suspend CoroutineScope.() -> Unit): Job =
     GlobalScope.launch(Dispatchers.Main, CoroutineStart.UNDISPATCHED, block)
-
-@OptIn(ExperimentalCoroutinesApi::class)
-fun <T> Flow<T>.startWithCurrentValue(block: () -> T?): Flow<T> {
-    return onStart {
-        block()?.let { emit(it) }
-    }
-}

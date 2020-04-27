@@ -48,6 +48,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -190,12 +191,12 @@ open class BrowseSourceController(bundle: Bundle) :
         } else {
             (binding.catalogueView.inflate(R.layout.source_recycler_autofit) as AutofitRecyclerView).apply {
                 numColumnsScope = CoroutineScope(Job() + Dispatchers.Main)
-                getColumnsPreferenceForCurrentOrientation().asImmediateFlow {
-                    spanCount = it
-
-                    // Set the adapter again to recalculate the covers height
-                    adapter = this@BrowseSourceController.adapter
-                }
+                getColumnsPreferenceForCurrentOrientation().asImmediateFlow { spanCount = it }
+                    .drop(1)
+                    .onEach {
+                        // Set the adapter again to recalculate the covers height
+                        adapter = this@BrowseSourceController.adapter
+                    }
                     .launchIn(numColumnsScope!!)
 
                 (layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -452,7 +453,7 @@ open class BrowseSourceController(bundle: Bundle) :
      *
      * @return the preference.
      */
-    fun getColumnsPreferenceForCurrentOrientation(): Preference<Int> {
+    private fun getColumnsPreferenceForCurrentOrientation(): Preference<Int> {
         return if (resources?.configuration?.orientation == Configuration.ORIENTATION_PORTRAIT) {
             preferences.portraitColumns()
         } else {

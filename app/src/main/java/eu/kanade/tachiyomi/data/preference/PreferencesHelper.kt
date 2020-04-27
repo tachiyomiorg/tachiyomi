@@ -14,7 +14,6 @@ import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.PreferenceValues as Values
 import eu.kanade.tachiyomi.data.track.TrackService
 import eu.kanade.tachiyomi.data.track.anilist.Anilist
-import eu.kanade.tachiyomi.util.lang.startWithCurrentValue
 import java.io.File
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -29,7 +28,6 @@ fun <T> RxPreference<T>.getOrDefault(): T = get() ?: defaultValue()!!
 fun <T> Preference<T>.asImmediateFlow(block: (value: T) -> Unit): Flow<T> {
     block(get())
     return asFlow()
-        .startWithCurrentValue { get() }
         .onEach { block(it) }
 }
 
