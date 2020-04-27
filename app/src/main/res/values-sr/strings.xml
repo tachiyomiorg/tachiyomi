@@ -43,7 +43,7 @@
     <string name="action_add_category">Dodaj kategoriju</string>
     <string name="action_edit_categories">Uredi kategorije</string>
     <string name="action_rename_category">Preimenuj kategoriju</string>
-    <string name="action_move_category">Premesti u kategoriju</string>
+    <string name="action_move_category">Izaberi kategorije</string>
     <string name="action_edit_cover">Promeni naslovnu sliku</string>
     <string name="action_sort_up">Sortiraj odozgo</string>
     <string name="action_sort_down">Sortiraj odozdo</string>
@@ -72,13 +72,11 @@
     <string name="action_save">Sačuvaj</string>
     <string name="action_reset">Resetuj</string>
     <string name="action_undo">Vrati nazad</string>
-    <string name="action_export">Eksportuj</string>
     <string name="action_open_log">Otvori zapisnik</string>
     <string name="action_create">Napravi</string>
     <string name="action_restore">Povrati</string>
     <string name="action_open">Otvori</string>
     <string name="action_login">Prijavi se</string>
-    <string name="deleting">Brisanje…</string>
     <string name="loading">Učitavanje…</string>
     <string name="app_not_available">Aplikacija nije dostupna</string>
     <string name="short_recent_updates">Ažuriranja</string>
@@ -113,7 +111,7 @@
     <string name="pref_auto_update_manga_sync">Sinhronizuj poglavlja nakon čitanja</string>
     <string name="pref_start_screen">Početni ekran</string>
     <string name="pref_language">Jezik</string>
-    <string name="system_default">Podrazumevani jezik sistema</string>
+    <string name="system_default">Podrazumevani</string>
     <string name="default_category">Podrazumevana kategorija</string>
     <string name="default_category_summary">Uvijek pitaj</string>
     <string name="all_lang">Sve</string>
@@ -209,19 +207,13 @@
     <string name="pref_backup_service_category">Servis</string>
     <string name="pref_backup_interval">Učestalost pravljenja rezernih kopija</string>
     <string name="pref_backup_slots">Maksimalano automatskih rezernih kopija</string>
-    <string name="dialog_restoring_backup">Vraćanje rezerne kopije
-\n%1$s dodat u biblioteku</string>
     <string name="source_not_found">Izvor nije pronađen</string>
-    <string name="dialog_restoring_source_not_found">Vraćanje rezerne kopije
-\n%1$s izvor nije pronađen</string>
     <string name="backup_created">Rezerna kopija napravljena</string>
     <string name="restore_completed">Vraćanje završeno</string>
-    <string name="error_opening_log">Ne mogu otvoriti zapisnik</string>
     <string name="restore_completed_content">Vraćanju trebalo %1$s.
 \n%2$s grešaka pronađeno.</string>
     <string name="backup_restore_content">Vraćanja koriste izvore da dobiju podatke, troškovi prenošenja se mogu primeniti. 
 \nBudite sigurni da se tačno prijavljeni na izvorima koji je to potrebno pre vraćanja.</string>
-    <string name="file_saved">Fajl sačuvan na %1$s</string>
     <string name="backup_choice">\?Šta želite da stavite u rezernu kopiju\?</string>
     <string name="restoring_backup">Vraćanje rezerne kopije</string>
     <string name="creating_backup">Pravljenje rezerne kopije</string>
@@ -242,8 +234,6 @@
     <string name="pref_refresh_library_tracking_summary">Ažuriraj status, ocenu i poslednje poglavlje pročitano na izvorima praćenja</string>
     <string name="version">Verzija</string>
     <string name="build_time">Vrijema pravljenja</string>
-    <string name="pref_enable_automatic_updates">Promjeri za nova ažuriranja</string>
-    <string name="pref_enable_automatic_updates_summary">Automatski proveri za nove verzije aplikacije</string>
     <string name="pref_enable_acra">Pošalji izveštaje grešaka</string>
     <string name="pref_acra_summary">Pomozi u popravljanju bugova. Nijedan sensitivan podatak neće biti poslat</string>
     <string name="login_title">Prijavi se do %1$s</string>
@@ -314,7 +304,7 @@
     <string name="download_all">Sve</string>
     <string name="download_unread">Nepročitano</string>
     <string name="confirm_delete_chapters">Da li ste sigurni da želite da obrišete sledeća poglavlja\?</string>
-    <string name="action_open_in_web_view">Otvori u web view</string>
+    <string name="action_open_in_web_view">Otvori u Web pregledu</string>
     <string name="pref_true_color">32-bitna boja</string>
     <string name="pref_skip_read_chapters">Preskoči poglavlja označena kao pročitana</string>
     <string name="filter_mode_default">Normalno</string>
@@ -364,4 +354,31 @@
     <string name="pref_disable_battery_optimization">Isključi optimizaciju korišćenja baterije</string>
     <string name="battery_optimization_disabled">Optimizacija potročnje baterije je već isključena</string>
     <string name="email">Imejl adresa</string>
+    <string name="information_empty_library">Tvoja biblioteka je prazna, dodaj neku serijal iz izvora.</string>
+    <string name="information_no_recent_manga">Nema nedavno čitane mange</string>
+    <string name="information_no_recent">Nema nedavnih poglavlja</string>
+    <string name="information_no_downloads">Nema preuzimanja</string>
+    <string name="label_sources">Izvori</string>
+    <string name="pref_enable_automatic_extension_updates">Provjeri da li ima ažuriranja dodataka</string>
+    <string name="ext_obsolete">Zastarjelo</string>
+    <string name="pref_library_update_prioritization">Red ažuriranja biblioteke</string>
+    <string name="secure_screen_summary">Sakrij prikaz aplikacije kada mijenjate aplikaciju i blokiraj screenshot-ove</string>
+    <string name="lock_with_biometrics">Biometrijski zaključaj</string>
+    <string name="pref_confirm_exit">Potvrdi izlaz</string>
+    <string name="theme_light_blue">Svetlo plava</string>
+    <string name="theme_light_default">Podrazumevano</string>
+    <string name="pref_theme_light">Varijanta svetle teme</string>
+    <string name="action_move_to_bottom">Premesti na dno</string>
+    <string name="action_move_to_top">Premesti na vrh</string>
+    <string name="action_oldest">Najstarije</string>
+    <string name="action_newest">Najnovije</string>
+    <string name="action_reorganize_by">Presloži</string>
+    <string name="action_unpin">Ukolni oznaku</string>
+    <string name="action_pin">Označi</string>
+    <string name="action_select_inverse">Izaberi obrnuto</string>
+    <string name="action_sort_last_checked">Zadnje pregledano</string>
+    <string name="action_menu">Meni</string>
+    <string name="confirm_exit">Pritisnite nazad ponovo da bi izašli</string>
+    <string name="label_downloaded_only">Samo preuzeto</string>
+    <string name="information_empty_category">Nemate kategorija. Pritisnite dugme plus da bi ste napravili novu kategoriju radi organizacije biblioteke.</string>
 </resources>

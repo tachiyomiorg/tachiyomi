@@ -66,11 +66,9 @@
     <string name="action_save">저장</string>
     <string name="action_reset">리셋</string>
     <string name="action_undo">되돌리기</string>
-    <string name="action_export">내보내기</string>
     <string name="action_open_log">로그 열기</string>
     <string name="action_create">만들기</string>
     <string name="action_restore">복구하기</string>
-    <string name="deleting">삭제 중…</string>
     <string name="loading">로딩 중.…</string>
     <string name="app_not_available">어플리케이션 이용 불가</string>
     <string name="short_recent_updates">업데이트</string>
@@ -179,11 +177,7 @@
     <string name="pref_backup_service_category">서비스</string>
     <string name="pref_backup_interval">백업 주기</string>
     <string name="pref_backup_slots">최대 자동 백업</string>
-    <string name="dialog_restoring_backup">백업 복원중...
-\n %1$s 서재에 추가됨</string>
     <string name="source_not_found">소스를 찾을 수 없음</string>
-    <string name="dialog_restoring_source_not_found">백업 복원중
-\n%1$s 소스를 찾을 수 없음</string>
     <string name="backup_created">백업 생성됨</string>
     <string name="restore_completed">복원 완료</string>
     <string name="restoring_backup">백업 복원중</string>
@@ -203,8 +197,6 @@
     <string name="pref_refresh_library_tracking_summary">상태 및 평점, 마지막으로 읽은 챕터를 동기화 서비스에서 업데이트합니다</string>
     <string name="version">버전</string>
     <string name="build_time">빌드 시간</string>
-    <string name="pref_enable_automatic_updates">업데이트 확인</string>
-    <string name="pref_enable_automatic_updates_summary">어플리케이션 업데이트를 자동으로 확인</string>
     <string name="pref_enable_acra">충돌 보고서 전송</string>
     <string name="pref_acra_summary">버그들을 수정하는데 도움이 됩니다. 민감한 정보는 전송되지 않습니다</string>
     <string name="login_title">%1$s 으로 로그인</string>
@@ -290,7 +282,6 @@
     <string name="transition_no_previous">이전 챕터가 없습니다</string>
     <string name="transition_pages_loading">페이지 로딩중…</string>
     <string name="transition_pages_error">페이지 로딩 실패: %1$s</string>
-    <string name="recent_manga_source">%1$s - %2$s화</string>
     <string name="select">선택</string>
     <string name="notification_update_progress">업데이트 진행중: %1$d/%2$d</string>
     <string name="notification_new_chapters">새로운 챕터 발견</string>
@@ -351,12 +342,10 @@
     <string name="fourth_to_last">네번째 챕터에서 끝까지</string>
     <string name="fifth_to_last">다섯번째 챕터에서 끝까지</string>
     <string name="pref_download_new_categories">다운로드에 포함할 카테고리</string>
-    <string name="error_opening_log">로그를 열 수 없습니다</string>
     <string name="restore_completed_content">복원에 %1$s 소요됨.
 \n%2$s 오류 발견됨.</string>
     <string name="backup_restore_content">복원시 소스에서 데이터를 가져오며, 통신 비용이 청구 될 수 있습니다.
 \n또한 복원 전에 필요한 소스에 제대로 로그인이 되어있는지 확인하십시오.</string>
-    <string name="file_saved">%1$s에 파일 저장됨</string>
     <string name="backup_choice">어떤 항목들을 백업하겠습니까\?</string>
     <string name="choices_reset">대화상자 선택 초기화</string>
     <string name="clear_database_completed">항목 삭제됨</string>
@@ -392,7 +381,6 @@
     <string name="migration_dialog_what_to_include">선택하여 데이터 포함</string>
     <string name="migrate">이동</string>
     <string name="copy">복사</string>
-    <string name="migrating">이동중…</string>
     <string name="download_queue_error">챕터 다운로드 도중 오류가 발생했습니다. 다운로드 섹션에서 다시시도 할 수 있습니다</string>
     <string name="notification_first_add_to_library">이 행동을 하기 전 서재에 만화를 추가해주세요</string>
     <string name="description_backdrop">만화의 배경 이미지</string>

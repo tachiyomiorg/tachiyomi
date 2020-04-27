@@ -83,7 +83,6 @@
     <string name="decode_image_error">Не удалось загрузить изображение</string>
     <string name="default_columns">По умолчанию</string>
     <string name="default_viewer">По умолчанию</string>
-    <string name="deleting">Удаление…</string>
     <string name="description">Описание</string>
     <string name="description_backdrop">Фоновое изображение манги</string>
     <string name="description_cover">Обложка манги</string>
@@ -185,8 +184,6 @@
     <string name="pref_download_new">Загружать новые главы</string>
     <string name="pref_download_only_over_wifi">Загружать только через Wi-Fi</string>
     <string name="pref_enable_acra">Отсылать отчеты о падениях</string>
-    <string name="pref_enable_automatic_updates">Проверять обновления</string>
-    <string name="pref_enable_automatic_updates_summary">Автоматически проверять новые версии</string>
     <string name="pref_page_transitions">Включить переходы</string>
     <string name="pref_fullscreen">Полноэкранный режим</string>
     <string name="pref_image_decoder">Декодер изображений</string>
@@ -214,7 +211,6 @@
     <string name="pref_viewer_type">Направление чтения</string>
     <string name="pref_zoom_start">Стартовая позиция увеличения</string>
     <string name="reading">Читаю</string>
-    <string name="recent_manga_source">%1$s - Гл.%2$s</string>
     <string name="remove_from_library">Удалить из библиотеки</string>
     <string name="right_to_left_viewer">Справа налево</string>
     <string name="rotation_force_landscape">Горизонтальная</string>
@@ -242,7 +238,7 @@
     <string name="sorting_mode">Метод сортировки</string>
     <string name="source_requires_login">Этот источник требует входа</string>
     <string name="status">Статус</string>
-    <string name="system_default">Системный</string>
+    <string name="system_default">По умолчанию</string>
     <string name="third_to_last">Третья от прочитанной главы</string>
     <string name="title">Заголовок</string>
     <string name="unknown">Неизвестно</string>
@@ -279,7 +275,6 @@
     <string name="zoom_start_right">Справа</string>
     <string name="action_close">Закрыть</string>
     <string name="action_create">Создать</string>
-    <string name="action_export">Экспортировать</string>
     <string name="action_move">Переместить</string>
     <string name="action_restore">Восстановить</string>
     <string name="action_undo">Отменить</string>
@@ -296,16 +291,10 @@
     <string name="default_category">Категория по умолчанию</string>
     <string name="default_category_summary">Всегда спрашивать</string>
     <string name="delete_downloads_for_manga">Удалить загруженные главы\?</string>
-    <string name="dialog_restoring_backup">Восстановление бэкапа 
-\n%1$s добавлено в библиотеку</string>
-    <string name="dialog_restoring_source_not_found">Восстановление бэкапа 
-\n%1$s, источик не найден</string>
     <string name="download_notifier_download_paused">Загрузка приостановлена</string>
-    <string name="error_opening_log">Ошибка открытия лога</string>
-    <string name="file_saved">Файл сохранен в %1$s</string>
     <string name="history">История</string>
     <string name="invalid_combination">Категория по умолчанию не может быть выбрана вместе с другими категориями</string>
-    <string name="local_source">Локальная манга</string>
+    <string name="local_source">Локальный источник</string>
     <string name="manga">Манга</string>
     <string name="no_more_results">Больше нет результатов</string>
     <string name="pref_backup_directory">Каталог бэкапа</string>
@@ -386,7 +375,6 @@
     <string name="select">Выбрать</string>
     <string name="migrate">Мигрировать</string>
     <string name="copy">Копировать</string>
-    <string name="migrating">Мигрирую…</string>
     <string name="ext_trust">Надёжное</string>
     <string name="pager_viewer">Пейджер</string>
     <string name="source_not_installed">Источник не установлен: %1$s</string>
@@ -529,4 +517,15 @@
     <string name="action_unpin">Открепить</string>
     <string name="action_pin">Закрепить</string>
     <string name="add_tracking">Добавить отслеживание</string>
+    <string name="confirm_exit">Нажмите назад, ещё раз чтобы выйти</string>
+    <string name="label_downloaded_only">Только загруженное</string>
+    <string name="information_webview_required">WebView требуется для Tachiyomi</string>
+    <string name="manga_info_collapse">Показать меньше информации</string>
+    <string name="manga_info_expand">Показать больше информации</string>
+    <string name="manga_info_about_label">Об</string>
+    <string name="in_library">В библиотеке</string>
+    <string name="add_to_library">Добавить в библиотеку</string>
+    <string name="licenses">Лицензии с исходным кодом</string>
+    <string name="website">Вебсайт</string>
+    <string name="pref_confirm_exit">Подтвердить выход</string>
 </resources>

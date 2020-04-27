@@ -65,13 +65,11 @@
     <string name="action_save">Simpan</string>
     <string name="action_reset">Atur ulang</string>
     <string name="action_undo">Kembalikan</string>
-    <string name="action_export">Ekspor</string>
     <string name="action_open_log">Buka log</string>
     <string name="action_create">Buat</string>
     <string name="name">Nama</string>
     <string name="action_display_grid">Jaring</string>
     <string name="action_restore">Pulihkan</string>
-    <string name="deleting">Menghapus…</string>
     <string name="loading">Memuat…</string>
     <string name="app_not_available">App tidak tersedia</string>
     <string name="short_recent_updates">Pembaruan</string>
@@ -106,7 +104,7 @@
     <string name="pref_auto_update_manga_sync">Sinkronkan bab setelah membaca</string>
     <string name="pref_start_screen">Layar mulai</string>
     <string name="pref_language">Bahasa</string>
-    <string name="system_default">Bawaan sistem</string>
+    <string name="system_default">Bawaan</string>
     <string name="default_category">Bawaan kategori</string>
     <string name="default_category_summary">Selalu tanya</string>
     <string name="pref_fullscreen">Layar penuh</string>
@@ -175,20 +173,13 @@
     <string name="pref_backup_service_category">Layanan</string>
     <string name="pref_backup_interval">Frekuensi cadangan dibuat</string>
     <string name="pref_backup_slots">Jumlah maksimum cadangan otomatis</string>
-    <string name="dialog_restoring_backup">Mengembalikan cadangan
-\n%1$s ditambahkan pada perpustakaan</string>
     <string name="source_not_found">Sumber tidak ditemukan</string>
-    <string name="dialog_restoring_source_not_found">Mengembalikan cadangan
-\n%1$s sumber tidak diketemukan</string>
     <string name="backup_created">Cadangan dibuat</string>
     <string name="restore_completed">Pemulihan telah selesai</string>
-    <string name="error_opening_log">Log tidak dapat dibuka</string>
-    <string name="restore_completed_content">Pemulihan membutuhkan waktu %1$s. 
-\nTerdapat %2$s eror ditemukan.</string>
+    <string name="restore_completed_content">Pemulihan membutuhkan waktu %1$s dengan %2$s masalah.</string>
     <string name="backup_restore_content">Proses pemulihan menggunakan koneksi internet untuk mengambil data, biaya operator mungkin berlaku.
 \n
 \nPastikan Anda telah memasang ekstensi yg dibutuhkan dan sudah login ke sumber sebelum proses pemulihan.</string>
-    <string name="file_saved">File disimpan pada %1$s</string>
     <string name="backup_choice">Apa saja yang ingin anda simpan\?</string>
     <string name="restoring_backup">Memulihkan cadangan</string>
     <string name="creating_backup">Membuat cadangan</string>
@@ -209,8 +200,6 @@
     <string name="pref_refresh_library_tracking_summary">Perbarui status, nilai dan bab terakhir yang dibaca dari layanan pelacakan</string>
     <string name="version">Versi</string>
     <string name="build_time">Waktu pembuatan</string>
-    <string name="pref_enable_automatic_updates">Cek versi yang terbaru</string>
-    <string name="pref_enable_automatic_updates_summary">Secara otomatis mengecek versi app terbaru</string>
     <string name="pref_enable_acra">Kirim laporan kerusakan</string>
     <string name="pref_acra_summary">Bantu memperbaiki bug. Tidak ada data sensitif yang akan dikirim</string>
     <string name="login_title">Masuk ke %1$s</string>
@@ -229,7 +218,7 @@
     <string name="select_source">Pilih sumber</string>
     <string name="no_valid_sources">Mohon aktifkan setidaknya satu sumber yang valid</string>
     <string name="no_more_results">Tidak ada hasil lainnya</string>
-    <string name="local_source">Manga lokal</string>
+    <string name="local_source">Sumber lokal</string>
     <string name="invalid_combination">Bawaan tidak dapat dipilih dengan kategori lain</string>
     <string name="added_to_library">Manga ini telah ditambahkan ke perpustakaan anda</string>
     <string name="manga_not_in_db">Manga ini telah dihapus dari database.</string>
@@ -295,10 +284,9 @@
     <string name="chapter_subtitle">Bab %1$s</string>
     <string name="no_next_chapter">Bab berikutnya tidak ditemukan</string>
     <string name="no_previous_chapter">Bab sebelumnya tidak ditemukan</string>
-    <string name="decode_image_error">Gambar tidak bisa dibuka</string>
+    <string name="decode_image_error">Gambar tidak bisa dimuat</string>
     <string name="confirm_set_image_as_cover">Gunakan gambar ini sebagai sampul\?</string>
     <string name="viewer_for_this_series">Jumlah pembaca untuk seri ini</string>
-    <string name="recent_manga_source">%1$s - Ch.%2$s</string>
     <string name="download_queue_error">Tidak dapat mengunduh bab. Anda bisa mencoba lagi di halaman unduhan</string>
     <string name="notification_update_progress">Proses pembaruan sedang berlangsung: %1$d/%2$d</string>
     <string name="notification_new_chapters">Bab baru ditemukan</string>
@@ -328,7 +316,7 @@
     <string name="information_empty_library">Perpustakaan Anda kosong, tambahkan seri ke perpustakaan Anda dari sumber.</string>
     <string name="download_notifier_downloader_title">Pengunduh</string>
     <string name="download_notifier_title_error">Gagal</string>
-    <string name="download_notifier_unknown_error">Terjadi kesalahan tak terduga saat mengunduh bab</string>
+    <string name="download_notifier_unknown_error">Terjadi kesalahan saat mengunduh bab</string>
     <string name="download_notifier_page_error">Sebuah halaman tidak dapat ditemukan di folder</string>
     <string name="download_notifier_page_ready_error">Halaman belum termuat</string>
     <string name="download_notifier_text_only_wifi">Tidak terhubung dengan Wi-Fi</string>
@@ -387,7 +375,6 @@
     <string name="select">Pilih</string>
     <string name="migrate">Pindah</string>
     <string name="copy">Salin</string>
-    <string name="migrating">Memindah…</string>
     <string name="pager_viewer">Halaman</string>
     <string name="source_not_installed">Sumber tidak terpasang: %1$s</string>
     <string name="repeating">Baca ulang</string>
@@ -404,7 +391,7 @@
     <string name="transition_no_previous">Tidak ada chapter sebelumnya</string>
     <string name="transition_pages_loading">Memuat halaman…</string>
     <string name="transition_pages_error">Gagal memuat halaman: %1$s</string>
-    <string name="action_open_in_web_view">Buka di sini</string>
+    <string name="action_open_in_web_view">Buka dalam mode Website</string>
     <string name="pref_true_color">Warna 32-bit</string>
     <string name="pref_skip_read_chapters">Lewati bab yang sudah dibaca</string>
     <string name="pref_read_with_long_tap">Dialog ketuk dan tahan</string>
@@ -501,4 +488,37 @@
     <string name="pref_enable_automatic_extension_updates">Periksa untuk pembaruan extension</string>
     <string name="pref_category_reading">Membaca</string>
     <string name="action_sort_last_checked">Terakhir diperiksa</string>
+    <string name="channel_backup_restore">Membuat cadangan data dan mengembalikan cadangan data.</string>
+    <string name="information_webview_required">Tampilan web dibutuhkan untuk Tachiyomi</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="other">Terdapat perbaharuan ekstensi</item>
+    </plurals>
+    <string name="recent_manga_time">Bab. %1$s - %2$s</string>
+    <string name="updating_library">Memperbaharui koleksi perpustakaan</string>
+    <string name="add_tracking">Tambahkan pelacak</string>
+    <string name="manga_info_collapse">Tampilkan sedikit informasi</string>
+    <string name="manga_info_expand">Liat informasi lebih lanjut</string>
+    <string name="manga_info_about_label">Tentang</string>
+    <string name="in_library">Dalam koleksi</string>
+    <string name="add_to_library">Tambahkan ke koleksi</string>
+    <string name="http_error_hint">Cek halaman web dalam tampilan web</string>
+    <string name="licenses">Lisensi terbuka</string>
+    <string name="restoring_backup_error">Gagal memulihkan data dari cadangan</string>
+    <string name="creating_backup_error">Gagal membuat cadangan data.</string>
+    <string name="webtoon_side_padding_10">10%</string>
+    <string name="webtoon_side_padding_0">Tidak ada</string>
+    <string name="pref_webtoon_side_padding">Pinggiran samping</string>
+    <string name="pref_skip_filtered_chapters">Lewati bab yang tersaring</string>
+    <string name="pref_confirm_exit">Konfirmasi keluar</string>
+    <string name="action_unpin">Hilangkan tanda</string>
+    <string name="action_pin">Tandai</string>
+    <string name="action_select_inverse">Pilih kebalikan</string>
+    <string name="confirm_exit">Tekan kembali untuk keluar</string>
+    <string name="label_downloaded_only">Hanya yang sudah diunduh</string>
+    <string name="pinned_sources">Tersemat</string>
+    <string name="website">Situs web</string>
+    <string name="webtoon_side_padding_25">25%</string>
+    <string name="webtoon_side_padding_20">20%</string>
+    <string name="webtoon_side_padding_15">15%</string>
+    <string name="vertical_plus_viewer">Vertikal berkelanjutan</string>
 </resources>

@@ -62,11 +62,9 @@
     <string name="action_save">Opslaan</string>
     <string name="action_reset">Reset</string>
     <string name="action_undo">Ongedaan maken</string>
-    <string name="action_export">Exporteren</string>
     <string name="action_open_log">Open log</string>
     <string name="action_create">Maken</string>
     <string name="action_restore">Terugzetten</string>
-    <string name="deleting">Verwijderen…</string>
     <string name="loading">Laden…</string>
     <string name="pref_category_general">Algemeen</string>
     <string name="pref_category_reader">Lezer</string>
@@ -142,17 +140,11 @@
     <string name="pref_backup_service_category">Service</string>
     <string name="pref_backup_interval">Back-up frequentie</string>
     <string name="pref_backup_slots">Max aantal automatische back-ups</string>
-    <string name="dialog_restoring_backup">Back-up terugzetten
-%1$s toegevoegd aan bibliotheek</string>
     <string name="source_not_found">Bron niet gevonden</string>
-    <string name="dialog_restoring_source_not_found">Backup terugzetten
-%1$s bron niet gevonden</string>
     <string name="backup_created">Back-up gemaakt</string>
     <string name="restore_completed">Terugzetten voltooid</string>
-    <string name="error_opening_log">Kon log niet openen</string>
     <string name="restore_completed_content">Terugzetten nam %1$s in beslag.
 %2$s errors gevonden.</string>
-    <string name="file_saved">Bestand opgeslagen op %1$s</string>
     <string name="backup_choice">Wat wil je back-uppen?</string>
     <string name="restoring_backup">Backup aan het terugzetten</string>
     <string name="creating_backup">Back-up aan het maken</string>
@@ -161,8 +153,6 @@
     <string name="cookies_cleared">Cookies verwijdered</string>
     <string name="pref_refresh_library_tracking_summary">Update status, score en laatst gelezen hoofdstuk van de tracking services</string>
     <string name="version">Versie</string>
-    <string name="pref_enable_automatic_updates">Op updates controleren</string>
-    <string name="pref_enable_automatic_updates_summary">Automatisch op app updates controleren</string>
     <string name="login_title">Login voor %1$s</string>
     <string name="username">Gebruikersnaam</string>
     <string name="password">Wachtwoord</string>
@@ -232,7 +222,6 @@
     <string name="no_previous_chapter">Vorig hoofdstuk niet gevonden</string>
     <string name="confirm_set_image_as_cover">Deze afbeelding als omslagfoto gebruiken\?</string>
     <string name="viewer_for_this_series">Lezer voor deze serie</string>
-    <string name="recent_manga_source">%1$s - Hfdst.%2$s</string>
     <string name="notification_update_progress">Updatevoortgang: %1$d/%2$d</string>
     <string name="notification_new_chapters">Nieuwe hoofdstukken gevonden</string>
     <string name="notification_first_add_to_library">Gelieve eerst de manga aan je bibliotheek toe te voegen</string>
@@ -404,7 +393,6 @@
     <string name="select">Selecteer</string>
     <string name="migrate">Migreer</string>
     <string name="copy">Kopiëren</string>
-    <string name="migrating">Aan het migreren…</string>
     <string name="filter_mode_default">Standaard</string>
     <string name="action_open_in_web_view">Openen in webview</string>
     <string name="pref_true_color">32-bit kleuren</string>

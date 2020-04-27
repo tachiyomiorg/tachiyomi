@@ -67,11 +67,9 @@
     <string name="action_save">Saglabāt</string>
     <string name="action_reset">Sākt no jauna</string>
     <string name="action_undo">atraisīt</string>
-    <string name="action_export">Eksportēt</string>
     <string name="action_open_log">Atvērt žurnālfailu</string>
     <string name="action_create">Izveidot</string>
     <string name="action_restore">Atjaunot</string>
-    <string name="deleting">Dzēsu…</string>
     <string name="loading">Ieladēšana…</string>
     <string name="app_not_available">Programma nav pieejama</string>
     <string name="short_recent_updates">Atjauninājumi</string>

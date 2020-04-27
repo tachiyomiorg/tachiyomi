@@ -69,13 +69,11 @@
     <string name="action_save">Lagre</string>
     <string name="action_reset">Tilbakestill</string>
     <string name="action_undo">Angre</string>
-    <string name="action_export">Eksporter</string>
     <string name="action_open_log">Åpne logg</string>
     <string name="action_create">Opprett</string>
     <string name="action_restore">Gjenopprett</string>
     <string name="action_open">Åpne</string>
     <string name="action_login">Logg inn</string>
-    <string name="deleting">Sletter…</string>
     <string name="loading">Laster…</string>
     <string name="app_not_available">Program ikke tilgjengelig</string>
     <string name="short_recent_updates">Oppdateringer</string>
@@ -203,17 +201,11 @@
     <string name="pref_backup_service_category">Tjeneste</string>
     <string name="pref_backup_interval">Sikkerhetskopieringsfrekvens</string>
     <string name="pref_backup_slots">Maks antall automatiske sikkerhetskopier</string>
-    <string name="dialog_restoring_backup">Gjenoppretter sikkerhetskopi
-\n%1$s lagt til i bibliotek</string>
     <string name="source_not_found">Fant ikke kilden</string>
-    <string name="dialog_restoring_source_not_found">Gjenoppretter sikkerhetskopi
-\n%1$s kilde ikke funnet</string>
     <string name="backup_created">Sikkerhetskopi opprettet</string>
     <string name="restore_completed">Gjenoppretting fullført</string>
-    <string name="error_opening_log">Kunne ikke åpne logg</string>
     <string name="restore_completed_content">Gjenoppretting tok %1$s.
 \n%2$s feil funnet.</string>
-    <string name="file_saved">Fil lagret i %1$s</string>
     <string name="backup_choice">Hva ønsker du å sikkerhetskopiere\?</string>
     <string name="restoring_backup">Gjenoppretter sikkerhetskopi</string>
     <string name="creating_backup">Oppretter sikkerhetskopi</string>
@@ -234,8 +226,6 @@
     <string name="pref_refresh_library_tracking_summary">Oppdaterer status, poengsum og sist leste kapittel fra sporingstjenestene</string>
     <string name="version">Versjon</string>
     <string name="build_time">Byggtid</string>
-    <string name="pref_enable_automatic_updates">Se etter nye versjoner</string>
-    <string name="pref_enable_automatic_updates_summary">Se etter nye programversjoner automatisk</string>
     <string name="pref_enable_acra">Send kræsjrapporter</string>
     <string name="pref_acra_summary">Hjelper til med fiksing av feil. Ingen sensitiv data vil bli sendt.</string>
     <string name="login_title">Innlogging for %1$s</string>
@@ -347,12 +337,10 @@
     <string name="transition_no_previous">Det er ikke noe tidligere kapittel</string>
     <string name="transition_pages_loading">Laster inn sider…</string>
     <string name="transition_pages_error">Klarte ikke å laste inn sider: %1$s</string>
-    <string name="recent_manga_source">%1$s - Kap.%2$s</string>
     <string name="migration_dialog_what_to_include">Velg data å inkludere</string>
     <string name="select">Velg</string>
     <string name="migrate">Migrer</string>
     <string name="copy">Kopier</string>
-    <string name="migrating">Migrerer…</string>
     <string name="channel_library">Bibliotek</string>
     <string name="channel_downloader">Nedlaster</string>
     <string name="notification_new_chapters">Nye kapitler funnet</string>
@@ -482,4 +470,27 @@
     <string name="action_sort_last_checked">Sist sjekket</string>
     <string name="action_menu">Meny</string>
     <string name="label_sources">Kilder</string>
+    <string name="channel_backup_restore">Sikkerhetskopier og gjenopprett</string>
+    <string name="channel_ext_updates">Utvidelsesoppdateringer</string>
+    <string name="information_webview_required">Tachiyomi krever WebView</string>
+    <string name="add_tracking">Legg til sporing</string>
+    <string name="manga_info_collapse">Vis mindre info</string>
+    <string name="manga_info_expand">Vis mer info</string>
+    <string name="manga_info_about_label">Om</string>
+    <string name="pinned_sources">Festet</string>
+    <string name="notices">Merknader</string>
+    <string name="website">Nettside</string>
+    <string name="creating_backup_error">Sikkerhetskopiering mislyktes</string>
+    <string name="webtoon_side_padding_0">Ingen</string>
+    <string name="pref_category_reading">Leser</string>
+    <string name="pref_always_show_chapter_transition">Alltid vis kapittelovergang</string>
+    <string name="vertical_plus_viewer">Kontinuerlig loddrett</string>
+    <string name="pref_skip_filtered_chapters">Hopp over filtrerte kapittel</string>
+    <string name="pref_enable_automatic_extension_updates">Se etter utvidelsesoppdateringer</string>
+    <string name="hide_notification_content">Skjul merknadsinnhold</string>
+    <string name="secure_screen_summary">Skjul programinnhold ved bytting av programmer og blokker skjermavbildninger</string>
+    <string name="pref_confirm_exit">Bekreft avslutning</string>
+    <string name="action_reorganize_by">Sorter etter</string>
+    <string name="confirm_exit">Trykk \"Tilbake\" igjen for å avslutte</string>
+    <string name="label_downloaded_only">Kun nedlastet</string>
 </resources>

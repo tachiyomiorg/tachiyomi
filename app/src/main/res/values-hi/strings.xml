@@ -40,7 +40,7 @@
     <string name="action_add_category">श्रेणियाँ जोड़े</string>
     <string name="action_edit_categories">श्रेणियाँ संपादित करें</string>
     <string name="action_rename_category">श्रेणियाँ का पुन:नामकरण</string>
-    <string name="action_move_category">श्रेणियाँ का स्थान-परिवर्तन</string>
+    <string name="action_move_category">श्रेणियां निर्धारित करें</string>
     <string name="action_edit_cover">आवरण चित्र को संपादित करें</string>
     <string name="action_sort_up">ऊपर छांटे</string>
     <string name="action_sort_down">नीचे छांटे</string>
@@ -69,13 +69,11 @@
     <string name="action_save">संरक्षित करे</string>
     <string name="action_reset">फिर से स्थापित करे</string>
     <string name="action_undo">पूर्ववत् करें</string>
-    <string name="action_export">निर्यात करे</string>
     <string name="action_open_log">लॉग खोले</string>
     <string name="action_create">सर्जन करना</string>
     <string name="action_restore">पुनःस्थापन करे</string>
     <string name="action_open">खुला हुआ</string>
     <string name="action_login">लोगिन</string>
-    <string name="deleting">हटाया जा रहा है…</string>
     <string name="loading">लोड हो रहा है…</string>
     <string name="app_not_available">ऐप उपलब्ध नहीं</string>
     <string name="short_recent_updates">अद्यतन</string>
@@ -110,7 +108,7 @@
     <string name="pref_auto_update_manga_sync">अध्याय पढ़ने के बाद समकालीन करे</string>
     <string name="pref_start_screen">प्रथम प्रदर्शनी</string>
     <string name="pref_language">भाषा</string>
-    <string name="system_default">डिफ़ॉल्ट प्रणाली</string>
+    <string name="system_default">डिफ़ॉल्ट</string>
     <string name="default_category">डिफ़ॉल्ट श्रेणी</string>
     <string name="default_category_summary">हमेशा पूछे</string>
     <string name="pref_fullscreen">पूर्ण स्क्रीन</string>
@@ -179,20 +177,13 @@
     <string name="pref_backup_service_category">सेवा</string>
     <string name="pref_backup_interval">बैकअप फ़्रीक्वेंसी</string>
     <string name="pref_backup_slots">अधिकतम स्वचालित बैकअप</string>
-    <string name="dialog_restoring_backup">बैकअप को पुनर्स्थापित करना
-\n%1$s को लाइब्रेरी में जोड़ा गया</string>
     <string name="source_not_found">स्रोत नहीं मिला</string>
-    <string name="dialog_restoring_source_not_found">बैकअप को पुनर्स्थापित करना
-\n%1$s स्रोत नहीं मिला</string>
     <string name="backup_created">बैकअप बनाया</string>
     <string name="restore_completed">पुनर्स्थापना पूर्ण हुआ</string>
-    <string name="error_opening_log">लॉग खोल नहीं सके</string>
-    <string name="restore_completed_content">पुनर्स्थापित किया गया %1$s.
-\n%2$s त्रुटियां मिलीं.</string>
+    <string name="restore_completed_content">%1$s में %2$s त्रुटियों के साथ किया गया</string>
     <string name="backup_restore_content">डेटा लाने के लिए स्रोतों का उपयोग करें, वाहक लागत लागू हो सकती है।
 \n
 \nसुनिश्चित करें कि आपने सभी आवश्यक एक्सटेंशन स्थापित किए हैं और बहाल करने से पहले स्रोतों और ट्रैकिंग सेवाओं में लॉग इन किया है।</string>
-    <string name="file_saved">फ़ाइल को %1$s पर सहेजा गया</string>
     <string name="backup_choice">आप बैकअप के लिए क्या चाहते हैं?</string>
     <string name="restoring_backup">बैकअप को पुनर्स्थापित करना</string>
     <string name="creating_backup">बैकअप बनाना</string>
@@ -213,8 +204,6 @@
     <string name="pref_refresh_library_tracking_summary">अपडेट की स्थिति, स्कोर और अंतिम अध्याय ट्रैकिंग सेवाओं से पढ़ें</string>
     <string name="version">संस्करण</string>
     <string name="build_time">निर्माण समय</string>
-    <string name="pref_enable_automatic_updates">अद्यतन के लिए जाँच</string>
-    <string name="pref_enable_automatic_updates_summary">नए ऐप संस्करणों की स्वचालित रूप से जांच करें</string>
     <string name="pref_enable_acra">क्रैश रिपोर्ट भेजें</string>
     <string name="pref_acra_summary">किसी भी बग को ठीक करने में मदद करता है कोई संवेदनशील डेटा नहीं भेजा जाएगा</string>
     <string name="login_title">%1$s के लिए लॉगिन</string>
@@ -307,7 +296,6 @@
     <string name="decode_image_error">छवि को लोड नहीं किया जा सका</string>
     <string name="confirm_set_image_as_cover">कवर कला के रूप में इस छवि का उपयोग करें\?</string>
     <string name="viewer_for_this_series">इस श्रृंखला के लिए दर्शक</string>
-    <string name="recent_manga_source">%1$s - Ch.%2$s</string>
     <string name="download_queue_error">चैप्टर डाउनलोड नहीं कर सके। आप डाउनलोड अनुभाग में फिर से आज़मा सकते हैं</string>
     <string name="notification_update_progress">अपडेट प्रगति: %1$d/%2$d</string>
     <string name="notification_new_chapters">नए अध्याय पाए गए</string>
@@ -385,7 +373,6 @@
     <string name="select">चयन</string>
     <string name="migrate">प्रवास</string>
     <string name="copy">नकल</string>
-    <string name="migrating">प्रवास हो रहा है…</string>
     <string name="pager_viewer">पृष्ठक</string>
     <string name="source_not_installed">स्रोत स्थापित नहीं है : %1$s</string>
     <string name="repeating">फिर से पढाना</string>
@@ -487,7 +474,7 @@
         <item quantity="one">1 शीर्षक के लिए</item>
         <item quantity="other">%d शीर्षक के लिए</item>
     </plurals>
-    <string name="notices">नोटिस</string>
+    <string name="notices">पूर्वावलोकन बनाएँ नोटिस</string>
     <string name="changelog">बदलाव लॉग</string>
     <string name="pref_theme_light">लाइट थीम वैरिएंट</string>
     <string name="theme_light_default">डिफ़ॉल्ट</string>
@@ -527,4 +514,24 @@
     <string name="manga_info_collapse">कम जानकारी दिखाएं</string>
     <string name="manga_info_expand">अधिक जानकारी दिखाएं</string>
     <string name="manga_info_about_label">के बारे में</string>
+    <string name="information_webview_required">WebView के लिए आवश्यक है Tachiyomi</string>
+    <string name="licenses">ओपन सोर्स लाइसेंस</string>
+    <string name="website">वेबसाइट</string>
+    <string name="pref_confirm_exit">बाहर निकलने की पुष्टि करें</string>
+    <string name="confirm_exit">बाहर निकलने के लिए फिर से वापस दबाएं</string>
+    <string name="label_downloaded_only">केवल डाउनलोड किए गए</string>
+    <string name="channel_backup_restore">बैकअप और पुनर्स्थापना</string>
+    <string name="recent_manga_time">अध्याय %1 $ s - %2 $ s</string>
+    <string name="restoring_backup_error">बैकअप बहाल करने में विफल रहा</string>
+    <string name="creating_backup_error">बैकअप फेल</string>
+    <string name="restoring_backup_canceled">पुनर्स्थापना रद्द की गई</string>
+    <string name="restore_in_progress">पुनर्स्थापना पहले से ही प्रगति पर है</string>
+    <string name="backup_in_progress">बैकअप पहले से ही प्रगति पर है</string>
+    <string name="error_invalid_date_supplied">अमान्य दिनांक को आपूर्ति की गई</string>
+    <string name="track_finished_reading_date">पढ़ना समाप्त की तिथि</string>
+    <string name="track_started_reading_date">पढ़ना शुरू करने की तारीख</string>
+    <string name="last_used_source">आखरी इस्त्तमाल किया गया</string>
+    <string name="check_for_updates">अद्यतन के लिए जाँच</string>
+    <string name="local_source_help_guide">स्थानीय स्रोत गाइड</string>
+    <string name="restore_duration">%02d मिनट,%02d सेकंड</string>
 </resources>

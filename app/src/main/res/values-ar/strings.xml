@@ -67,11 +67,9 @@
     <string name="action_save">حفظ</string>
     <string name="action_reset">إعادة تعيين</string>
     <string name="action_undo">تراجع</string>
-    <string name="action_export">تصدير</string>
     <string name="action_open_log">فتح السجل</string>
     <string name="action_create">إنشاء</string>
     <string name="action_restore">استعادة</string>
-    <string name="deleting">جار الحذف…</string>
     <string name="loading">جار التحميل…</string>
     <string name="app_not_available">التطبيق غير متوفر</string>
     <string name="short_recent_updates">التحديثات</string>
@@ -171,19 +169,13 @@
     <string name="pref_backup_service_category">الخدمة</string>
     <string name="pref_backup_interval">معدل النسخ الاحتياطي</string>
     <string name="pref_backup_slots">أقصي عدد للنسخ الاحتياطية التلقائية</string>
-    <string name="dialog_restoring_backup">جار استعادة النسخة الاحتياطية
-\n%1$s تم الاضافة للمكتبة</string>
     <string name="source_not_found">لم يتم إيجاد المصدر</string>
-    <string name="dialog_restoring_source_not_found">استعادة النسخة الاحتياطية
-\n%1$s لم يتم إيجاد المصدر</string>
     <string name="backup_created">تم إنشاء النسخة الاحتياطية</string>
     <string name="restore_completed">اكتملت الاستعادة</string>
-    <string name="error_opening_log">لا يمكن فتح السجل</string>
     <string name="restore_completed_content">استغرقت الاستعادة %1$s.
 \n%2$s خطأ وجد.</string>
     <string name="backup_restore_content">عملية الاستعادة تستخدم المصادر لجلب البيانات، قد يتم تطبيق تكاليف مزود الخدمة. 
 \nتأكد من تثبيت كافة اﻹضافات الضرورية وتسجيل الدخول لخدمات التتبع المطلوبة قبل عملية الاستعادة.</string>
-    <string name="file_saved">تم حفظ الملف خلال %1$s</string>
     <string name="backup_choice">ما الذي تريد نسخه احتياطيا؟</string>
     <string name="restoring_backup">جار استعادة النسخة الاحتياطية</string>
     <string name="creating_backup">جار إنشاء النسخة الاحتياطية</string>
@@ -211,8 +203,6 @@
     <string name="pref_refresh_library_tracking_summary">تحديث الحالة، والتقييم وآخر فصل عن طريق خدمات التتبع</string>
     <string name="version">اﻹصدار</string>
     <string name="build_time">تاريخ ووقت البناء</string>
-    <string name="pref_enable_automatic_updates">تحقق من التحديثات</string>
-    <string name="pref_enable_automatic_updates_summary">التحقق تلقائيا من اﻹصدارات الجديدة للتطبيق</string>
     <string name="pref_enable_acra">إرسال تقارير الأعطال</string>
     <string name="pref_acra_summary">هذا يساعد فى حل أى مشاكل، لن يتم إرسال أية بيانات حساسة</string>
     <string name="login_title">تسجيل الدخول إلى %1$s</string>
@@ -304,7 +294,6 @@
     <string name="decode_image_error">لا يمكن فكّ تشفير هذه الصورةِ</string>
     <string name="confirm_set_image_as_cover">هل تريد استخدام هذه الصورة كغلاف؟</string>
     <string name="viewer_for_this_series">العارض لهذه السلسلة</string>
-    <string name="recent_manga_source">%1$s - الفصل %2$s</string>
     <string name="download_queue_error">فشل تحميل الفصول. يمكنك إعادة المحاولة في قسم التحميلات</string>
     <string name="notification_update_progress">تقدم التحديث: %1$d/%2$d</string>
     <string name="notification_new_chapters">تم إيجاد فصول جديدة</string>
@@ -393,7 +382,6 @@
     <string name="select">تحديد</string>
     <string name="migrate">ترحيل</string>
     <string name="copy">نسخ</string>
-    <string name="migrating">الترحيل…</string>
     <string name="information_empty_category">لا توجد لديك أي فئات. اضغط زر اﻹضافة لإنشاء واحد لتنظيم المكتبة الخاصة بك.</string>
     <string name="transition_finished">تمَّ الانتهاء من:</string>
     <string name="transition_current">الحالي:</string>

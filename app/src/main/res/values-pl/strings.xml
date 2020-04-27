@@ -63,10 +63,8 @@
     <string name="action_share">Udostępnij</string>
     <string name="action_save">Zapisz</string>
     <string name="action_undo">Cofnij</string>
-    <string name="action_export">Eksportuj</string>
     <string name="action_create">Utwórz</string>
     <string name="action_restore">Przywróć</string>
-    <string name="deleting">Usuwanie…</string>
     <string name="loading">Wczytywanie…</string>
     <string name="app_not_available">Aplikacja niedostępna</string>
     <string name="short_recent_updates">Aktualizacje</string>
@@ -112,7 +110,6 @@
     <string name="chapter_subtitle">Rozdział %1$s</string>
     <string name="no_next_chapter">Nie znaleziono następnego rozdziału</string>
     <string name="no_previous_chapter">Nie znaleziono poprzedniego rozdziału</string>
-    <string name="recent_manga_source">%1$s - Rozdz. %2$s</string>
     <string name="notification_new_chapters">Znaleziono nowe rozdziały</string>
     <string name="notification_not_connected_to_ac_title">Synchronizacja anulowana</string>
     <string name="notification_not_connected_to_ac_body">Nie podłączono do ładowarki</string>
@@ -137,8 +134,6 @@
     <string name="action_reset">Reset</string>
     <string name="services">Usługi śledzenia</string>
     <string name="version">Wersja</string>
-    <string name="pref_enable_automatic_updates">Sprawdź aktualizacje</string>
-    <string name="pref_enable_automatic_updates_summary">Automatycznie sprawdzaj aktualizacje aplikacji</string>
     <string name="login_title">Logowanie do %1$s</string>
     <string name="username">Nazwa użytkownika</string>
     <string name="password">Hasło</string>
@@ -256,11 +251,7 @@
     <string name="pref_backup_interval">Częstotliwość tworzenia kopii</string>
     <string name="pref_backup_slots">Maks. ilosć kopii automatycznych</string>
     <string name="pref_backup_service_category">Cykliczna kopia zapasowa</string>
-    <string name="dialog_restoring_backup">Przywracanie kopii zapasowej
-\n%1$s dodano do biblioteki</string>
     <string name="source_not_found">Nie znaleziono źródła</string>
-    <string name="dialog_restoring_source_not_found">Przywracanie kopii zapasowej
-Nie znaleziono źródła %1$s</string>
     <string name="restore_completed_content">Przywracanie trwało %1$s.
 \nNapotkane błędy: %2$s.</string>
     <string name="backup_choice">Co zawrzeć w kopii zapasowej?</string>
@@ -278,10 +269,8 @@ Nie znaleziono źródła %1$s</string>
     <string name="pref_acra_summary">Pomaga naprawiać błędy. Żadne wrażliwe dane nie będą wysyłane</string>
     <string name="backup_created">Kopia zapasowa utworzona</string>
     <string name="restore_completed">Przywracanie ukończone</string>
-    <string name="error_opening_log">Nie udało się otworzyć logu</string>
     <string name="backup_restore_content">Przywracanie używa źródeł do pobierania danych, operator może naliczać dodatkowe opłaty. 
 \nPrzed przywróceniem upewnij się, że zainstalowane są odpowiednie rozszerzenia i że zalogowano się do źródeł i usług śledzenia.</string>
-    <string name="file_saved">Plik zapisano do %1$s</string>
     <string name="choices_reset">Resetuj wybory okien dialogowych</string>
     <string name="clear_database_confirmation">Na pewno? Przeczytane rozdziały i postęp w mangach spoza biblioteki zostaną utracone</string>
     <string name="clear_database_completed">Pozycje usunięte</string>
@@ -386,7 +375,6 @@ Nie znaleziono źródła %1$s</string>
     <string name="migration_dialog_what_to_include">Zaznacz dane do zawarcia</string>
     <string name="select">Zaznacz</string>
     <string name="migrate">Migruj</string>
-    <string name="migrating">Migrowanie…</string>
     <string name="pager_viewer">Widok stron</string>
     <string name="source_not_installed">Nie zainstalowano źródła %1$s</string>
     <string name="repeating">Czytane ponownie</string>

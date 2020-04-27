@@ -66,7 +66,6 @@
     <string name="action_save">保存</string>
     <string name="action_reset">重置</string>
     <string name="action_undo">撤销</string>
-    <string name="action_export">导出</string>
     <string name="track">同步</string>
     <string name="label_migration">来源迁移</string>
     <string name="action_mark_previous_as_read">标记之前章节为已读</string>
@@ -76,7 +75,6 @@
     <string name="action_restore">恢复</string>
     <string name="action_open">打开</string>
     <string name="action_login">登录</string>
-    <string name="deleting">正在删除…</string>
     <string name="loading">正在加载…</string>
     <string name="action_sort_down">降序</string>
     <string name="action_display_download_badge">已下载标记</string>
@@ -113,7 +111,7 @@
     <string name="pref_auto_update_manga_sync">阅读后同步章节</string>
     <string name="pref_start_screen">开始页面</string>
     <string name="pref_language">语言</string>
-    <string name="system_default">系统默认</string>
+    <string name="system_default">默认</string>
     <string name="default_category">默认分类</string>
     <string name="default_category_summary">总是询问</string>
     <string name="all_lang">全部</string>
@@ -209,20 +207,14 @@
     <string name="pref_backup_service_category">自动备份</string>
     <string name="pref_backup_interval">备份频率</string>
     <string name="pref_backup_slots">最大自动备份数</string>
-    <string name="dialog_restoring_backup">正在还原备份
-\n「%1$s」已添加至书架</string>
     <string name="source_not_found">未找到图源</string>
-    <string name="dialog_restoring_source_not_found">正在还原备份
-\n「%1$s」未找到图源</string>
     <string name="backup_created">已创建备份</string>
     <string name="restore_completed">还原完成</string>
-    <string name="error_opening_log">打开日志失败</string>
     <string name="restore_completed_content">已还原 %1$s。 
 \n%2$s 出现错误。</string>
     <string name="backup_restore_content">还原备份将会抓取图源数据，需联网。
 \n
 \n请确认你已安装了所有必需的扩展插件，若图源需要登录，请先登录再还原备份。</string>
-    <string name="file_saved">文件已保存至 %1$s</string>
     <string name="backup_choice">需要备份什么？</string>
     <string name="restoring_backup">正在还原备份</string>
     <string name="creating_backup">正在创建备份</string>
@@ -243,8 +235,6 @@
     <string name="pref_refresh_library_tracking_summary">更新同步服务的状态，评分以及已读章节</string>
     <string name="version">版本</string>
     <string name="build_time">构建时间</string>
-    <string name="pref_enable_automatic_updates">检查更新</string>
-    <string name="pref_enable_automatic_updates_summary">自动检查应用更新</string>
     <string name="pref_enable_acra">发送错误报告</string>
     <string name="pref_acra_summary">协助我们修复错误。发送的错误报告不包含个人敏感信息</string>
     <string name="login_title">登录 %1$s</string>
@@ -264,7 +254,7 @@
     <string name="select_source">选择图源</string>
     <string name="no_valid_sources">请至少启用一个有效图源</string>
     <string name="no_more_results">未找到更多结果</string>
-    <string name="local_source">本地漫画</string>
+    <string name="local_source">本地图源</string>
     <string name="other_source">其它</string>
     <string name="invalid_combination">默认分类不能与其它分类一起选择</string>
     <string name="added_to_library">已将此漫画添加至书架</string>
@@ -358,13 +348,11 @@
     <string name="transition_no_previous">前面没有啦</string>
     <string name="transition_pages_loading">正在加载页面…</string>
     <string name="transition_pages_error">第 %1$s 页加载失败</string>
-    <string name="recent_manga_source">%1$s - 第 %2$s 章</string>
     <string name="migration_info">选择需要迁移的图源</string>
     <string name="migration_dialog_what_to_include">选择需要迁移的数据</string>
     <string name="select">选择</string>
     <string name="migrate">迁移</string>
     <string name="copy">共存</string>
-    <string name="migrating">正在迁移…</string>
     <string name="download_queue_error">下载章节失败，请重试</string>
     <string name="notification_update_progress">更新中：%1$d/%2$d</string>
     <string name="notification_new_chapters">发现新章节</string>
@@ -519,4 +507,21 @@
     <string name="vertical_plus_viewer">从上到下（连续）</string>
     <string name="action_select_inverse">反选</string>
     <string name="add_tracking">添加同步</string>
+    <string name="information_webview_required">Tachiyomi 需要 WebView</string>
+    <string name="manga_info_collapse">隐藏更多信息</string>
+    <string name="manga_info_expand">显示更多信息</string>
+    <string name="manga_info_about_label">关于</string>
+    <string name="licenses">开源许可证</string>
+    <string name="website">官网</string>
+    <string name="confirm_exit">再按一次退出</string>
+    <string name="pref_confirm_exit">确认退出</string>
+    <string name="add_to_library">添加至书架</string>
+    <string name="in_library">在书架中</string>
+    <string name="label_downloaded_only">仅已下载</string>
+    <string name="creating_backup_error">备份失败</string>
+    <string name="restoring_backup_canceled">取消还原</string>
+    <string name="restoring_backup_error">还原备份失败</string>
+    <string name="restore_in_progress">还原已在进行</string>
+    <string name="backup_in_progress">备份已在进行</string>
+    <string name="channel_backup_restore">备份与还原</string>
 </resources>

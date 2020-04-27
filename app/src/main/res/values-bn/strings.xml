@@ -69,13 +69,11 @@
     <string name="action_save">সংরক্ষণ</string>
     <string name="action_reset">রিসেট</string>
     <string name="action_undo">পিছে যান</string>
-    <string name="action_export">রপ্তানি</string>
     <string name="action_open_log">লগ খুলুন</string>
     <string name="action_create">তৈরি</string>
     <string name="action_restore">পুনরূদ্ধার</string>
     <string name="action_open">খুলুন</string>
     <string name="action_login">লগ ইন</string>
-    <string name="deleting">মুছে ফেলা হচ্ছে…</string>
     <string name="loading">লোড হচ্ছে…</string>
     <string name="app_not_available">এপ্সটি অনুপস্থিত</string>
     <string name="short_recent_updates">আপডেটস</string>
@@ -179,18 +177,12 @@
     <string name="pref_backup_service_category">সেবা</string>
     <string name="pref_backup_interval">ব্যাকআপ ফ্রিকোয়েন্সি</string>
     <string name="pref_backup_slots">স্বয়ংক্রিয় ব্যাকআপের উচ্চমাত্রা</string>
-    <string name="dialog_restoring_backup">"ব্যাকআপ পুনরুদ্ধার হচ্ছে
-\n%1$s মাংগাশালায়  যোগ হয়েছে"</string>
     <string name="source_not_found">উৎস খুঁজে পাওয়া যায়নি</string>
-    <string name="dialog_restoring_source_not_found">ব্যাকআপ পুনরুদ্ধার হচ্ছে...
-\n%1$s উৎস খুঁজে পাওয়া যায়নি</string>
     <string name="backup_created">পুনরুদ্ধার তৈরী হয়েছে</string>
     <string name="restore_completed">পুনরুদ্ধার হয়েছে</string>
-    <string name="error_opening_log">লগ খোলা সম্ভব হয়নি</string>
     <string name="restore_completed_content">পুনরুদ্ধার হচ্ছে %1$s.
 \n%2$s ত্রুটি দেখা দিয়েছে।</string>
     <string name="backup_restore_content">পুনরুদ্ধারের সন্ধান করার জন্য উৎস ব্যবহার করা হয়, ক্যারিয়ারের খরচগুলি প্রযোজ্য হতে পারে। এছাড়াও নিশ্চিত করুন যে আপনি পুনরুদ্ধারের আগে উৎসগুলোতে যথাযথভাবে লগ-ইন করা আছেন যেখানে প্রোয়জন হয়।</string>
-    <string name="file_saved">ফাইল সংরক্ষিত হয়েছে %1$s</string>
     <string name="backup_choice">আপনি কি ব্যাকআপ করতে ইচ্ছুক?</string>
     <string name="restoring_backup">ব্যাকআপ পুনরুদ্ধার হচ্ছে</string>
     <string name="creating_backup">ব্যাকআপ তৈরী হচ্ছে</string>
@@ -211,8 +203,6 @@
     <string name="pref_refresh_library_tracking_summary">আপডেটস স্ট্যাটাস, স্কোর এবং শেষ পড়া অধ্যায় অনুসরণ থেকে</string>
     <string name="version">সংস্করণ</string>
     <string name="build_time">তৈরি সময়</string>
-    <string name="pref_enable_automatic_updates">আপডেটগুলো দেখে নিন</string>
-    <string name="pref_enable_automatic_updates_summary">নতুন অ্যাপ্লিকেশন সংস্করণগুলির জন্য স্বয়ংক্রিয়ভাবে পরীক্ষা করুন</string>
     <string name="pref_enable_acra">ক্র‍্যাশের জন্য অভিযোগ পাঠান</string>
     <string name="pref_acra_summary">বাগ ঠিক করার জন্য সাহায্য করুন। কোন দরকারি তথ্য পাঠানো হবে না</string>
     <string name="login_title">লগিন করা হয়েছে %1$s</string>
@@ -305,7 +295,6 @@
     <string name="decode_image_error">ছবি decoded করা যাবে না</string>
     <string name="confirm_set_image_as_cover">আপনি কি এই ছবিটিকে কভার হিসেবে সেট করতে চান?</string>
     <string name="viewer_for_this_series">এই সিরিজের দর্শক</string>
-    <string name="recent_manga_source">%1$s - অধ্যায়.%2$s</string>
     <string name="download_queue_error">অধ্যায়গুলি ডাউনলোড করা যায়নি। ডাউনলোড বিভাগে আপনি আবার চেষ্টা করতে পারেন</string>
     <string name="notification_update_progress">আপডেট হচ্ছে: %1$d/%2$d</string>
     <string name="notification_new_chapters">নতুন অধ্যায় পাওয়া গিয়েছে</string>
@@ -385,7 +374,6 @@
     <string name="select">নির্বাচন</string>
     <string name="migrate">সরিয়ে ফেলুন</string>
     <string name="copy">কপি</string>
-    <string name="migrating">সরানো হচ্ছে…</string>
     <string name="pager_viewer">পেজার</string>
     <string name="source_not_installed">উৎস ইন্সটল করা নেই: %1$s</string>
     <string name="repeating">পুনরায় পড়া</string>
