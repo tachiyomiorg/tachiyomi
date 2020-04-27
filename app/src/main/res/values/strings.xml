@@ -428,7 +428,7 @@
     <string name="manga_info_expand">Show more info</string>
     <string name="manga_info_collapse">Show less info</string>
     <string name="delete_downloads_for_manga">Delete downloaded chapters?</string>
-    <string name="copied_to_clipboard">%1$s copied to clipboard</string>
+    <string name="copied_to_clipboard">Copied to clipboard:\n%1$s</string>
     <string name="source_not_installed">Source not installed: %1$s</string>
     <string name="snack_add_to_library">Add manga to library?</string>
 

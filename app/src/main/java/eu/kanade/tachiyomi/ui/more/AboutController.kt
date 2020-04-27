@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.more
 import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
@@ -23,6 +24,7 @@ import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.titleRes
+import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.util.system.toast
 import java.text.DateFormat
 import java.text.ParseException
@@ -55,6 +57,8 @@ class AboutController : SettingsController() {
             } else {
                 "Stable ${BuildConfig.VERSION_NAME}"
             }
+
+            onClick { copyDebugInfo() }
         }
         preference {
             titleRes = R.string.build_time
@@ -184,6 +188,22 @@ class AboutController : SettingsController() {
             const val BODY_KEY = "NewUpdateDialogController.body"
             const val URL_KEY = "NewUpdateDialogController.key"
         }
+    }
+
+    private fun copyDebugInfo() {
+        val deviceInfo =
+            """
+            App version: ${BuildConfig.VERSION_NAME} (${BuildConfig.FLAVOR}, ${BuildConfig.COMMIT_SHA}, ${BuildConfig.VERSION_CODE})
+            Android version: ${Build.VERSION.RELEASE} (SDK ${Build.VERSION.SDK_INT})
+            Android build ID: ${Build.DISPLAY}
+            Device brand: ${Build.BRAND}
+            Device manufacturer: ${Build.MANUFACTURER}
+            Device name: ${Build.DEVICE}
+            Device model: ${Build.MODEL}
+            Device product name: ${Build.PRODUCT}
+            """.trimIndent()
+
+        activity?.copyToClipboard("Debug information", deviceInfo)
     }
 
     private fun getFormattedBuildTime(): String {

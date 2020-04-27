@@ -1,14 +1,11 @@
 package eu.kanade.tachiyomi.ui.manga.info
 
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.kanade.tachiyomi.R
@@ -33,7 +30,7 @@ import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.ui.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
-import eu.kanade.tachiyomi.util.lang.truncateCenter
+import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.setChips
@@ -107,7 +104,7 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
         binding.mangaFullTitle.longClicks()
             .onEach {
-                copyToClipboard(view.context.getString(R.string.title), binding.mangaFullTitle.text.toString())
+                activity?.copyToClipboard(view.context.getString(R.string.title), binding.mangaFullTitle.text.toString())
             }
             .launchIn(scope)
 
@@ -119,7 +116,7 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
         binding.mangaArtist.longClicks()
             .onEach {
-                copyToClipboard(binding.mangaArtistLabel.text.toString(), binding.mangaArtist.text.toString())
+                activity?.copyToClipboard(binding.mangaArtistLabel.text.toString(), binding.mangaArtist.text.toString())
             }
             .launchIn(scope)
 
@@ -131,7 +128,7 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
         binding.mangaAuthor.longClicks()
             .onEach {
-                copyToClipboard(binding.mangaAuthor.text.toString(), binding.mangaAuthor.text.toString())
+                activity?.copyToClipboard(binding.mangaAuthor.text.toString(), binding.mangaAuthor.text.toString())
             }
             .launchIn(scope)
 
@@ -143,13 +140,13 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
         binding.mangaSummary.longClicks()
             .onEach {
-                copyToClipboard(view.context.getString(R.string.description), binding.mangaSummary.text.toString())
+                activity?.copyToClipboard(view.context.getString(R.string.description), binding.mangaSummary.text.toString())
             }
             .launchIn(scope)
 
         binding.mangaCover.longClicks()
             .onEach {
-                copyToClipboard(view.context.getString(R.string.title), presenter.manga.title)
+                activity?.copyToClipboard(view.context.getString(R.string.title), presenter.manga.title)
             }
             .launchIn(scope)
     }
@@ -480,27 +477,6 @@ class MangaInfoController(private val fromSource: Boolean = false) :
         }
 
         presenter.moveMangaToCategories(manga, categories)
-    }
-
-    /**
-     * Copies a string to clipboard
-     *
-     * @param label Label to show to the user describing the content
-     * @param content the actual text to copy to the board
-     */
-    private fun copyToClipboard(label: String, content: String) {
-        if (content.isBlank()) return
-
-        val activity = activity ?: return
-        val view = view ?: return
-
-        val clipboard = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        clipboard.setPrimaryClip(ClipData.newPlainText(label, content))
-
-        activity.toast(
-            view.context.getString(R.string.copied_to_clipboard, content.truncateCenter(20)),
-            Toast.LENGTH_SHORT
-        )
     }
 
     /**
