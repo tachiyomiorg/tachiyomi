@@ -89,7 +89,7 @@ class EpubFile(file: File) : Closeable {
         }
 
         if (date != null) {
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault())
             try {
                 val parsedDate = dateFormat.parse(date.text())
                 if (parsedDate != null) {
