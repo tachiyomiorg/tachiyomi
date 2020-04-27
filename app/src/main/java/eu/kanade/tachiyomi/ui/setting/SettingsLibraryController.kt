@@ -205,7 +205,7 @@ class SettingsLibraryController : SettingsController() {
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
             val dialog = MaterialDialog(activity!!)
                 .title(R.string.pref_library_columns)
-                .customView(R.layout.pref_library_columns)
+                .customView(R.layout.pref_library_columns, horizontalPadding = true)
                 .positiveButton(android.R.string.ok) {
                     preferences.portraitColumns().set(portrait)
                     preferences.landscapeColumns().set(landscape)

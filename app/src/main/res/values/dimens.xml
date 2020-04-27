@@ -15,9 +15,6 @@
 
     <dimen name="action_toolbar_list_padding">72dp</dimen>
 
-    <dimen name="dialog_content_padding">24dp</dimen>
-    <dimen name="dialog_margin_top_content">20dp</dimen>
-
     <dimen name="text_headline">24sp</dimen>
     <dimen name="text_large_title">22sp</dimen>
     <dimen name="text_title">20sp</dimen>
