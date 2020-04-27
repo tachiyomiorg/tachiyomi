@@ -339,7 +339,7 @@ class MyAnimeListApi(private val client: OkHttpClient, interceptor: MyAnimeListI
                 .add("add_manga[priority]", track.priority)
                 .add("add_manga[storage_type]", track.storage_type)
                 .add("add_manga[num_retail_volumes]", track.num_retail_volumes)
-                .add("add_manga[num_read_times]", track.num_read_chapters)
+                .add("add_manga[num_read_times]", track.num_read_times)
                 .add("add_manga[reread_value]", track.reread_value)
                 .add("add_manga[comments]", track.comments)
                 .add("add_manga[is_asked_to_discuss]", track.is_asked_to_discuss)
