@@ -24,9 +24,7 @@
     <string name="action_save">Mentés</string>
     <string name="action_reset">Visszaállítás</string>
     <string name="action_undo">Visszavonás</string>
-    <string name="action_export">Exportálás</string>
     <string name="action_login">Bejelentkezés</string>
-    <string name="deleting">Törlés…</string>
     <string name="loading">Betöltés…</string>
     <string name="pref_category_general">Általános</string>
     <string name="pref_category_reader">Olvasó</string>
@@ -171,4 +169,6 @@
     <string name="action_open_in_web_view">Webnézet</string>
     <string name="label_help">Segítség</string>
     <string name="pref_library_update_prioritization">Könyvtár frissítési sorrend</string>
+    <string name="label_downloaded_only">Csak letöltött</string>
+    <string name="label_more">Több</string>
 </resources>

@@ -43,7 +43,7 @@
     <string name="action_add_category">Adaugă categorie</string>
     <string name="action_edit_categories">Modifică categoriile</string>
     <string name="action_rename_category">Redenumește categoria</string>
-    <string name="action_move_category">Mută în categorii</string>
+    <string name="action_move_category">Setați categoriile</string>
     <string name="action_edit_cover">Modifică coperta</string>
     <string name="action_show_downloaded">Descărcate</string>
     <string name="action_next_unread">Următorul necitit</string>
@@ -69,13 +69,11 @@
     <string name="action_save">Salvează</string>
     <string name="action_reset">Resetează</string>
     <string name="action_undo">Anulează</string>
-    <string name="action_export">Exportează</string>
     <string name="action_open_log">Deschide jurnal</string>
     <string name="action_create">Creează</string>
     <string name="action_restore">Restaurează</string>
     <string name="action_open">Deschide</string>
     <string name="action_login">Loghează-te</string>
-    <string name="deleting">Se șterge…</string>
     <string name="loading">Se încarcă…</string>
     <string name="app_not_available">Aplicația nu este accesibilă</string>
     <string name="short_recent_updates">Actualizări</string>
@@ -109,7 +107,7 @@
     <string name="pref_auto_update_manga_sync">Sincronizează capitolele după citire</string>
     <string name="pref_start_screen">Ecran principal</string>
     <string name="pref_language">Limbă</string>
-    <string name="system_default">Prestabilită de sistem</string>
+    <string name="system_default">Implicit</string>
     <string name="default_category">Categorie implicită</string>
     <string name="default_category_summary">Întreabă mereu</string>
     <string name="all_lang">Toate</string>
@@ -209,20 +207,13 @@
     <string name="pref_backup_service_category">Serviciu</string>
     <string name="pref_backup_interval">Frecventă a copiilor de rezervă</string>
     <string name="pref_backup_slots">Maximum copii de rezervă automate</string>
-    <string name="dialog_restoring_backup">Restaurarea copiei de rezervă
-\n%1$s adăugat la bibliotecă</string>
     <string name="source_not_found">Sursa nu a fost găsită</string>
-    <string name="dialog_restoring_source_not_found">Restaurarea copiei de rezervă
-\n%1$s sursa nu a fost găsită</string>
     <string name="backup_created">Copie de rezervă creată</string>
     <string name="restore_completed">Restaurare completă</string>
-    <string name="error_opening_log">Nu s-a putut deschide jurnalul</string>
-    <string name="restore_completed_content">Restaurarea a durat %1$s.
-\n%2$s erori găsite.</string>
+    <string name="restore_completed_content">Gata în %1$s cu %2$s erori</string>
     <string name="backup_restore_content">Restabilirea utilizează surse pentru a prelua date, se pot aplica costuri de operator.
 \n
 \nAsigurați-vă că ați instalat toate extensiile necesare și că sunteți conectat la surse și servicii de urmărire înainte de restaurare.</string>
-    <string name="file_saved">Fișier salvat in %1$s</string>
     <string name="backup_choice">Doriți să creați copie de rezervă\?</string>
     <string name="restoring_backup">Restaurând copia de rezervă</string>
     <string name="creating_backup">Creând copia de rezervă</string>
@@ -243,8 +234,6 @@
     <string name="pref_refresh_library_tracking_summary">Actualizează statusul, scorul și ultimul capitol citit de la serviciile de urmărire</string>
     <string name="version">Versiune</string>
     <string name="build_time">Data versiunii</string>
-    <string name="pref_enable_automatic_updates">Verifică pentru actualizări</string>
-    <string name="pref_enable_automatic_updates_summary">Verifică automat pentru actualizări</string>
     <string name="pref_enable_acra">Trimite rapoarte pt. eșuări</string>
     <string name="pref_acra_summary">Ajută la rezolvarea bug-urilor. Informații sensibile nu vor fi trimise</string>
     <string name="login_title">Conectați-vă la %1$s</string>
@@ -288,7 +277,8 @@
     <string name="manga_info_source_label">Sursă</string>
     <string name="manga_info_genres_label">Genuri</string>
     <string name="delete_downloads_for_manga">Ștergeți capitolele descărcate\?</string>
-    <string name="copied_to_clipboard">%1$s copiat in clipboard</string>
+    <string name="copied_to_clipboard">Copiat în clipboard:
+\n%1$s</string>
     <string name="source_not_installed">Sursa nu este instalată:%1$s</string>
     <string name="manga_chapters_tab">Capitole</string>
     <string name="manga_chapter_no_title">Fără titlu</string>
@@ -358,13 +348,11 @@
     <string name="transition_no_previous">Nu există capitolul precedent</string>
     <string name="transition_pages_loading">Încărcând paginile…</string>
     <string name="transition_pages_error">Încărcarea paginilor a eșuat: %1$s</string>
-    <string name="recent_manga_source">%1$s - Cap.%2$s</string>
     <string name="migration_info">Apăsați pentru a selecta sursa de unde să migrați</string>
     <string name="migration_dialog_what_to_include">Selectați ce date să fie incluse</string>
     <string name="select">Selectează</string>
     <string name="migrate">Migrează</string>
     <string name="copy">Copiază</string>
-    <string name="migrating">Migrând…</string>
     <string name="download_queue_error">Nu s-au putut descărca capitolele. Puteți încerca din nou în secțiunea descărcări</string>
     <string name="notification_update_progress">Progresul actualizării: %1$d/%2$d</string>
     <string name="notification_new_chapters">Capitole noi găsite</string>
@@ -493,7 +481,7 @@
         <item quantity="few">Pentru %d titluri</item>
         <item quantity="other">Pentru %d titluri</item>
     </plurals>
-    <string name="notices">Anunţuri</string>
+    <string name="notices">Anunţurile construcției de previzualizare</string>
     <string name="changelog">Jurnal de modificări</string>
     <string name="pref_theme_light">Varianta de temă deschisă</string>
     <string name="theme_light_default">Implicit</string>
@@ -531,4 +519,27 @@
     <string name="add_tracking">Adăugați urmărirea</string>
     <string name="in_library">În bibliotecă</string>
     <string name="add_to_library">Adaugă în bibliotecă</string>
+    <string name="channel_backup_restore">Creează copie de rezervă și restaurează</string>
+    <string name="information_webview_required">WebView este necesar pentru Tachiyomi</string>
+    <string name="recent_manga_time">Ch. %1$s - %2$s</string>
+    <string name="manga_info_collapse">Afișați mai puține informații</string>
+    <string name="manga_info_expand">Afișați mai multe informații</string>
+    <string name="manga_info_about_label">Despre</string>
+    <string name="licenses">Licențe open source</string>
+    <string name="website">Pagină web</string>
+    <string name="restoring_backup_error">Restaurarea copiei de rezervă a eșuat</string>
+    <string name="creating_backup_error">Copierea de rezervă a eșuat</string>
+    <string name="pref_confirm_exit">Confirmare ieșire</string>
+    <string name="confirm_exit">Apăsați din nou pentru a ieși</string>
+    <string name="label_downloaded_only">Doar descărcate</string>
+    <string name="error_invalid_date_supplied">Data nevalidă furnizată</string>
+    <string name="track_finished_reading_date">Data de citire terminată</string>
+    <string name="track_started_reading_date">Data începerii lecturii</string>
+    <string name="restoring_backup_canceled">Restaurare anulată</string>
+    <string name="restore_in_progress">Restaurarea este deja în curs de desfășurare</string>
+    <string name="backup_in_progress">Crearea Copiei de rezervă este deja în curs de desfășurare</string>
+    <string name="local_source_help_guide">Ghid sursă locală</string>
+    <string name="last_used_source">Folosit ultima data</string>
+    <string name="check_for_updates">Verifică pentru actualizări</string>
+    <string name="restore_duration">%02d minute, %02d secunde</string>
 </resources>

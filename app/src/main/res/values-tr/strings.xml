@@ -72,13 +72,11 @@
     <string name="action_save">Kaydet</string>
     <string name="action_reset">Sıfırla</string>
     <string name="action_undo">Geri al</string>
-    <string name="action_export">Dışa aktar</string>
     <string name="action_open_log">Günlüğü aç</string>
     <string name="action_create">Oluştur</string>
     <string name="action_restore">Geri yükle</string>
     <string name="action_open">Aç</string>
     <string name="action_login">Giriş</string>
-    <string name="deleting">Siliniyor…</string>
     <string name="loading">Yükleniyor…</string>
     <string name="app_not_available">Uygulama yok</string>
     <string name="short_recent_updates">Güncellemeler</string>
@@ -209,20 +207,13 @@
     <string name="pref_backup_service_category">Hizmet</string>
     <string name="pref_backup_interval">Yedekleme sıklığı</string>
     <string name="pref_backup_slots">Kendiliğinden yedek sınırı</string>
-    <string name="dialog_restoring_backup">Yedek geri yükleniyor 
-\n%1$s kitaplığa eklendi</string>
     <string name="source_not_found">"Kaynak bulunamadı "</string>
-    <string name="dialog_restoring_source_not_found">Yedek geri yükleniyor 
-\n%1$s kaynak bulunamadı</string>
     <string name="backup_created">Yedek oluşturuldu</string>
     <string name="restore_completed">Geri yükleme tamamlandı</string>
-    <string name="error_opening_log">Günlük açılamadı</string>
-    <string name="restore_completed_content">Geri yükleme %1$s aldı. 
-\n%2$s hata bulundu.</string>
+    <string name="restore_completed_content">%1$s içinde %2$s hatayla tamamlandı</string>
     <string name="backup_restore_content">Geri yükleme veriyi almak için kaynakları kullanır, taşıyıcı ücreti uygulanabilir. 
 \n 
 \nGeri yüklemeden önce, giriş gerektiren kaynaklara ve izleme hizmetlerine giriş yaptığınızdan, ve gerekli tüm uzantıları kurduğunuzdan emin olun.</string>
-    <string name="file_saved">Dosya %1$s konumuna kaydedildi</string>
     <string name="backup_choice">Neyi yedeklemek istiyorsunuz?</string>
     <string name="restoring_backup">Yedek geri yükleniyor</string>
     <string name="creating_backup">Yedek oluşturuluyor</string>
@@ -243,8 +234,6 @@
     <string name="pref_refresh_library_tracking_summary">İzleme servisinden durumu, puanı ve son okunan bölümü günceller</string>
     <string name="version">Sürüm</string>
     <string name="build_time">İnşa tarihi</string>
-    <string name="pref_enable_automatic_updates">Güncellemeleri denetle</string>
-    <string name="pref_enable_automatic_updates_summary">Yeni uygulama sürümlerini kendiliğinden denetle</string>
     <string name="pref_enable_acra">Çökme bildirimi gönder</string>
     <string name="pref_acra_summary">Hataların düzeltilmesine yardımcı olur. Hiçbir hassas veri gönderilmez</string>
     <string name="login_title">%1$s \'e giriş yap</string>
@@ -288,7 +277,8 @@
     <string name="manga_info_source_label">Kaynak</string>
     <string name="manga_info_genres_label">Türler</string>
     <string name="delete_downloads_for_manga">İndirilen bölümler silinsin mi?</string>
-    <string name="copied_to_clipboard">"%1$s panoya kopyalandı "</string>
+    <string name="copied_to_clipboard">Panoya kopyalandı:
+\n%1$s</string>
     <string name="source_not_installed">Kaynak kurulmadı: %1$s</string>
     <string name="manga_chapters_tab">Bölümler</string>
     <string name="manga_chapter_no_title">Başlıksız</string>
@@ -350,13 +340,11 @@
     <string name="decode_image_error">Görsel yüklenemedi</string>
     <string name="confirm_set_image_as_cover">Bu görsel kapak resmi olarak kullanılsın mı\?</string>
     <string name="viewer_for_this_series">Bu dizi için görüntüleyici</string>
-    <string name="recent_manga_source">%1$s - Böl.%2$s</string>
     <string name="migration_info">Taşınılacak kaynağı seçmek için dokunun</string>
     <string name="migration_dialog_what_to_include">Eklenecek veriyi seç</string>
     <string name="select">Seç</string>
     <string name="migrate">Taşın</string>
     <string name="copy">Kopyala</string>
-    <string name="migrating">Taşınılıyor…</string>
     <string name="download_queue_error">Bölümler indirilemedi. İndirmeler bölümünden yeniden deneyebilirsiniz</string>
     <string name="notification_update_progress">Güncelleme ilerlemesi: %1$d/%2$d</string>
     <string name="notification_new_chapters">Yeni bölümler bulundu</string>
@@ -405,7 +393,7 @@
     <string name="transition_pages_loading">Sayfalar yükleniyor…</string>
     <string name="transition_pages_error">Sayfalar yüklenemedi: %1$s</string>
     <string name="pref_read_with_long_tap">Uzun dokunma iletişim kutusu</string>
-    <string name="action_open_in_web_view">Web görünümünde aç</string>
+    <string name="action_open_in_web_view">WebView\'de aç</string>
     <string name="pref_true_color">32-bit renk</string>
     <string name="pref_skip_read_chapters">Okunmuş olarak işaretli bölümleri atla</string>
     <string name="pref_color_filter_mode">Renk filtresi karışım kipi</string>
@@ -461,7 +449,7 @@
     <string name="ext_updates_pending">Bekleyen güncellemeler</string>
     <string name="pref_cutout_short">İçeriği kesme alanında göster</string>
     <string name="information_cloudflare_bypass_failure">Cloudflare bypass edilemedi</string>
-    <string name="information_webview_outdated">Daha iyi uyumluluk için lütfen WebView uygulamasını güncelleyin</string>
+    <string name="information_webview_outdated">Daha iyi uyumluluk için lütfen WebView\'i güncelleyin</string>
     <string name="channel_new_chapters">Bölüm güncellemeleri</string>
     <string name="unlock_app">Tachiyomi\'yi Aç</string>
     <string name="secure_screen_summary">İçeriği uygulamaları değiştirirken gizle ve ekran görüntülerini engelle</string>
@@ -489,7 +477,7 @@
         <item quantity="one">1 başlık için</item>
         <item quantity="other">%d başlık için</item>
     </plurals>
-    <string name="notices">Bildirimler</string>
+    <string name="notices">Derleme notlarını göster</string>
     <string name="changelog">Değişiklikler</string>
     <string name="pref_theme_light">Aydınlık tema çeşidi</string>
     <string name="theme_light_default">Öntanımlı</string>
@@ -506,7 +494,7 @@
         <item quantity="one">Uzantı güncellemesi var</item>
         <item quantity="other">%d uzantı güncellemesi var</item>
     </plurals>
-    <string name="http_error_hint">Web sitesini WebWiew ile görüntüle</string>
+    <string name="http_error_hint">Web sitesini WebView\'de görüntüle</string>
     <string name="channel_ext_updates">Uzantı güncellemeleri</string>
     <string name="updating_library">Kitaplık güncelleniyor</string>
     <string name="pref_category_reading">Okunan</string>
@@ -529,4 +517,24 @@
     <string name="manga_info_collapse">Daha az bilgi göster</string>
     <string name="manga_info_expand">Daha çok bilgi göster</string>
     <string name="manga_info_about_label">Hakkında</string>
+    <string name="website">Web sitesi</string>
+    <string name="information_webview_required">WebView, Tachiyomi için gereklidir</string>
+    <string name="licenses">Açık kaynak lisansları</string>
+    <string name="pref_confirm_exit">Çıkışı doğrula</string>
+    <string name="confirm_exit">Çıkmak için tekrar geriye basın</string>
+    <string name="label_downloaded_only">Yalnızca indirilen</string>
+    <string name="channel_backup_restore">Yedekle ve geri yükle</string>
+    <string name="recent_manga_time">Böl. %1$s - %2$s</string>
+    <string name="restoring_backup_error">Yedek geri yüklenemedi</string>
+    <string name="creating_backup_error">Yedekleme başarısız</string>
+    <string name="error_invalid_date_supplied">Geçersiz tarih belirtildi</string>
+    <string name="track_finished_reading_date">Okuma tarihi tamamlandı</string>
+    <string name="track_started_reading_date">Okuma tarihi başladı</string>
+    <string name="restoring_backup_canceled">Geri yükleme iptal edildi</string>
+    <string name="restore_in_progress">Geri yükleme zaten devam ediyor</string>
+    <string name="backup_in_progress">Yedekleme zaten devam ediyor</string>
+    <string name="check_for_updates">Güncellemeleri denetle</string>
+    <string name="last_used_source">Son kullanılan</string>
+    <string name="local_source_help_guide">Yerel kaynak kılavuzu</string>
+    <string name="restore_duration">%02d dk, %02d sn</string>
 </resources>

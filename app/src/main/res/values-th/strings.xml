@@ -53,7 +53,6 @@
     <string name="action_create">สร้าง</string>
     <string name="action_open">เปิด</string>
     <string name="action_login">เข้าสู่ระบบ</string>
-    <string name="deleting">กำลังลบ…</string>
     <string name="loading">กำลังดำเนินการ…</string>
     <string name="short_recent_updates">อัพเดท</string>
     <string name="pref_category_general">ทั่วไป</string>
@@ -111,7 +110,6 @@
     <string name="action_sort">การจัดเรียง</string>
     <string name="action_share">แชร์</string>
     <string name="action_undo">ย้อนกลับ</string>
-    <string name="action_export">นำออก</string>
     <string name="action_open_log">ประวัติ</string>
     <string name="action_restore">ย้อนค่ากลับ</string>
     <string name="app_not_available">โปรแกรมไม่พร้อม</string>
@@ -211,17 +209,11 @@
     <string name="pref_backup_service_category">บริการ</string>
     <string name="pref_backup_interval">ความถี่ในการสำรองข้อมูล</string>
     <string name="pref_backup_slots">จำนวนการสำรองข้อมูลอัตโนมัติสูงสุด</string>
-    <string name="dialog_restoring_backup">กำลังกู้คืนข้อมูลสำรอง
-\nเพิ่ม %1$s ไปยังห้องสมุดแล้ว</string>
     <string name="source_not_found">ไม่พบแหล่งที่มา</string>
-    <string name="dialog_restoring_source_not_found">การคืนค่าการสำรองข้อมูล
-\nไม่พบแหล่งที่มาของ %1$s</string>
     <string name="backup_created">การสำรองข้อมูลที่สร้างขึ้น</string>
     <string name="restore_completed">การคืนค่าเสร็จสมบูรณ์</string>
-    <string name="error_opening_log">ไม่สามารถเปิดแฟ้มบันทึก</string>
     <string name="restore_completed_content">การคืนค่าเอา %1$s
 \nพบข้อผิดพลาด %2$s</string>
-    <string name="file_saved">แฟ้มที่บันทึกไว้ที่ %1$s</string>
     <string name="backup_choice">คุณต้องการสำรองข้อมูลอะไร\?</string>
     <string name="restoring_backup">กำลังคืนค่าการสำรองข้อมูล</string>
     <string name="creating_backup">กำลังสร้างการสำรองข้อมูล</string>
@@ -242,8 +234,6 @@
     <string name="pref_refresh_library_tracking_summary">อัพเดตสถานะคะแนนและบทสุดท้ายที่อ่านจากบริการติดตาม</string>
     <string name="version">เวอร์ชัน</string>
     <string name="build_time">สร้างเวลา</string>
-    <string name="pref_enable_automatic_updates">ตรวจหาโปรแกรมปรับปรุง</string>
-    <string name="pref_enable_automatic_updates_summary">ตรวจหาการปรับปรุงโปรแกรมประยุกต์โดยอัตโนมัติ</string>
     <string name="pref_enable_acra">ส่งรายงานความผิดพลาด</string>
     <string name="pref_acra_summary">ช่วยแก้ไขข้อบกพร่องใดๆ ไม่มีข้อมูลที่สำคัญจะถูกส่ง</string>
     <string name="login_title">เข้าสู่ระบบสำหรับ %1$s</string>
@@ -369,13 +359,11 @@
     <string name="transition_no_previous">ไม่มีบทก่อนหน้านี้</string>
     <string name="transition_pages_loading">กำลังโหลดหน้า …</string>
     <string name="transition_pages_error">ไม่สามารถโหลดหน้าได้: %1$s</string>
-    <string name="recent_manga_source">%1$s - Ch.%2$s</string>
     <string name="migration_info">เลือกแหล่งที่มา</string>
     <string name="migration_dialog_what_to_include">เลือกข้อมูลที่จะรวม</string>
     <string name="select">เลือก</string>
     <string name="migrate">โยกย้าย</string>
     <string name="copy">คัดลอก</string>
-    <string name="migrating">การโอนย้าย …</string>
     <string name="download_queue_error">เกิดข้อผิดพลาดขณะดาวน์โหลดบท คุณสามารถลองอีกครั้งในส่วนการดาวน์โหลด</string>
     <string name="notification_update_progress">ความคืบหน้าในการอัพเดต: %1$d/%2$d</string>
     <string name="notification_new_chapters">พบบทใหม่</string>

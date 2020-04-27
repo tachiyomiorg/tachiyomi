@@ -73,13 +73,11 @@
     <string name="action_save">I-save</string>
     <string name="action_reset">I-reset</string>
     <string name="action_undo">I-undo</string>
-    <string name="action_export">I-export</string>
     <string name="action_open_log">Buksan ang log</string>
     <string name="action_create">Gumawa</string>
     <string name="action_restore">I-restore</string>
     <string name="action_open">Buksan</string>
     <string name="action_login">Mag-log in</string>
-    <string name="deleting">Binubura…</string>
     <string name="loading">Nagkakarga…</string>
     <string name="app_not_available">Hindi available ang app</string>
     <string name="short_recent_updates">Mga Update</string>
@@ -213,14 +211,9 @@
     <string name="pref_backup_service_category">Serbisyo</string>
     <string name="pref_backup_interval">Dalas ng pag-backup</string>
     <string name="pref_backup_slots">Hangganan ng mga awtomatikong backup</string>
-    <string name="dialog_restoring_backup">Nire-restore ang backup
-\nNailagay sa aklatan ang %1$s</string>
     <string name="source_not_found">Hindi nakita ang source</string>
-    <string name="dialog_restoring_source_not_found">Nire-restore ang backup
-\nHindi nakita ang source ng %1$s</string>
     <string name="backup_created">Nagawa na ang backup</string>
     <string name="restore_completed">Nakumpleto na ang pagre-restore</string>
-    <string name="error_opening_log">Hindi mabuksan ang log</string>
     <string name="restore_completed_content">Tumagal nang %1$s ang pagre-restore
 \nNakita ang %2$s na (mga) error.</string>
     <string name="backup_restore_content">Ginagamit ng pagre-restore ang source para makakuha ng data, maaring magamit ang inyong data.
@@ -234,7 +227,6 @@
     <string name="filter_mode_darken">Sunog / Dilim (Burn / Darken)</string>
     <string name="label_help">Tulong</string>
     <string name="pref_library_update_prioritization">Ayos ng pag-update ng Aklatan</string>
-    <string name="file_saved">Na-save ang file sa %1$s</string>
     <string name="backup_choice">Ano ang gusto mong i-backup\?</string>
     <string name="restoring_backup">Nire-restore ang backup</string>
     <string name="creating_backup">Ginagawa ang backup</string>
@@ -255,8 +247,6 @@
     <string name="pref_refresh_library_tracking_summary">Ini-a-update ang estado, iskor, at huling nabasang kabanata mula sa mga tracking service</string>
     <string name="version">Bersyon</string>
     <string name="build_time">Oras ng build</string>
-    <string name="pref_enable_automatic_updates">Tumingin ng update</string>
-    <string name="pref_enable_automatic_updates_summary">Awtomatikong tumingin ng mga bagong version ng app</string>
     <string name="pref_enable_acra">Ipadala ang mga ulat ng pagka-crash</string>
     <string name="pref_acra_summary">Nakakatulong sa pagsasaayos ng mga bugs. Walang sensitibong data ang ipapadala</string>
     <string name="login_title">Mag-login para kay %1$s</string>
@@ -370,13 +360,11 @@
     <string name="transition_no_previous">Walang nakaraang kabanata</string>
     <string name="transition_pages_loading">Kinakarga ang mga pahina…</string>
     <string name="transition_pages_error">Pumalya sa pagkarga ng mga pahina: %1$s</string>
-    <string name="recent_manga_source">%1$s - Kab. %2$s</string>
     <string name="migration_info">Pindutin para mapili ang source na paglilipat</string>
     <string name="migration_dialog_what_to_include">Piliin ang mga isasamang data</string>
     <string name="select">Pumili</string>
     <string name="migrate">Lumipat</string>
     <string name="copy">Kopyahin</string>
-    <string name="migrating">Lumilipat…</string>
     <string name="download_queue_error">Nagkaproblema habang nagda-download ng mga kabanata. Maaring mong ulitin ito sa Downloads section.</string>
     <string name="notification_update_progress">Progreso ng update: %1$d/%2$d</string>
     <string name="notification_new_chapters">May nakitang bagong (mga) kabanata</string>

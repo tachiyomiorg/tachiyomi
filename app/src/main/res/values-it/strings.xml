@@ -59,7 +59,6 @@
     <string name="action_share">Condividi</string>
     <string name="action_save">Salva</string>
     <!-- Operations -->
-    <string name="deleting">Cancellazione…</string>
     <string name="loading">Caricamento…</string>
     <!-- Preferences -->
     <!-- Subsections -->
@@ -92,7 +91,7 @@
     <string name="pref_auto_update_manga_sync">Sincronizza capitoli dopo la lettura</string>
     <string name="pref_start_screen">Schermata iniziale</string>
     <string name="pref_language">Lingua</string>
-    <string name="system_default">Predefinita di sistema</string>
+    <string name="system_default">Predefinita</string>
     <!-- Reader section -->
     <string name="pref_fullscreen">Schermo Intero</string>
     <string name="pref_lock_orientation">Blocca orientamento</string>
@@ -166,8 +165,6 @@
     <!-- About section -->
     <string name="version">Versione</string>
     <string name="build_time">Data della build</string>
-    <string name="pref_enable_automatic_updates">Controllo aggiornamenti automatico</string>
-    <string name="pref_enable_automatic_updates_summary">Controlla automaticamente nuove versioni dell\'app</string>
     <!-- ACRA -->
     <string name="pref_enable_acra">Invia segnalazioni</string>
     <string name="pref_acra_summary">Aiuta a correggere eventuali bug. Non verranno inviati dati sensibili</string>
@@ -261,7 +258,6 @@
     <!-- Backup fragment -->
     <string name="backup">Backup</string>
     <!-- Recent manga fragment -->
-    <string name="recent_manga_source">%1$s - Cap.%2$s</string>
     <!-- Downloads activity and service -->
     <string name="download_queue_error">Impossibile scaricare i capitoli. Puoi provare di nuovo nella sezione download</string>
     <!-- Library update service notifications -->
@@ -312,7 +308,6 @@
     <string name="action_close">Chiudi</string>
     <string name="action_move">Sposta</string>
     <string name="action_undo">Annulla</string>
-    <string name="action_export">Esporta</string>
     <string name="action_open_log">Apri log</string>
     <string name="action_create">Crea</string>
     <string name="action_restore">Ripristina</string>
@@ -336,19 +331,12 @@
     <string name="pref_backup_slots">Backup automatici massimi</string>
     <string name="backup_created">Backup creato</string>
     <string name="restore_completed">Ripristino completato</string>
-    <string name="error_opening_log">Impossibile aprire log</string>
     <string name="pref_backup_service_category">Servizio</string>
-    <string name="dialog_restoring_backup">Ripristino backup 
-\n%1$s aggiunto alla libreria</string>
     <string name="source_not_found">Sorgente non trovata</string>
-    <string name="dialog_restoring_source_not_found">Ripristino backup 
-\n%1$s sorgente non trovata</string>
-    <string name="restore_completed_content">Il ripristino ha impiegato %1$s. 
-\nriscontrando %2$s errori.</string>
+    <string name="restore_completed_content">Il ripristino ha impiegato %1$s con %2$s errori.</string>
     <string name="backup_restore_content">Il ripristino utilizza delle fonti per recuperare i dati, potrebbero essere applicati costi del gestore telefonico.
 \n
 \nAssicurati di aver installato tutte le estensioni necessarie e di aver effettuato l\'accesso a fonti e servizi di tracciamento prima di ripristinare.</string>
-    <string name="file_saved">File salvato su %1$s</string>
     <string name="backup_choice">Cosa vuoi salvare?</string>
     <string name="restoring_backup">Ripristino backup</string>
     <string name="creating_backup">Creazione backup</string>
@@ -356,7 +344,7 @@
     <string name="pref_refresh_library_tracking_summary">Aggiorna stato, voto e ultimo capitolo letto dalla funzione segna progresso</string>
     <string name="also_delete_chapters">Elimina anche i capitoli scaricati</string>
     <string name="no_more_results">Non ci sono altri risultati</string>
-    <string name="local_source">Manga locale</string>
+    <string name="local_source">Fonti locali</string>
     <string name="added_to_library">Il manga è stato aggiunto alla tua libreria</string>
     <string name="delete_downloads_for_manga">Eliminare i capitoli scaricati?</string>
     <string name="chapter_paused">In pausa</string>
@@ -424,7 +412,6 @@
     <string name="select">Seleziona</string>
     <string name="migrate">Migrare</string>
     <string name="copy">Copia</string>
-    <string name="migrating">Migrazione…</string>
     <string name="information_empty_category">Non hai categorie. Aggiungine una per creare e organizzare la tua libreria.</string>
     <string name="channel_common">Comune</string>
     <string name="channel_library">Libreria</string>
@@ -559,4 +546,22 @@
     <string name="vertical_plus_viewer">Verticale continuo</string>
     <string name="action_unpin">Rimuovi</string>
     <string name="action_select_inverse">Seleziona inverso</string>
+    <string name="channel_backup_restore">Backup e ripristino</string>
+    <string name="recent_manga_time">Cap. %1$s - %2$s</string>
+    <string name="error_invalid_date_supplied">Data inesistente selezionata</string>
+    <string name="track_finished_reading_date">Data fine lettura</string>
+    <string name="track_started_reading_date">Data inizio lettura</string>
+    <string name="manga_info_collapse">Mostra meno informazioni</string>
+    <string name="manga_info_expand">Mostra più informazioni</string>
+    <string name="manga_info_about_label">Informazioni</string>
+    <string name="licenses">Licenze open source</string>
+    <string name="website">Sito web</string>
+    <string name="restoring_backup_canceled">Ripristino cancellato</string>
+    <string name="restoring_backup_error">Ripristino backup fallito</string>
+    <string name="restore_in_progress">Ripristino già in corso</string>
+    <string name="creating_backup_error">Errore backup</string>
+    <string name="backup_in_progress">Un backup è già in corso</string>
+    <string name="pref_confirm_exit">Conferma uscita</string>
+    <string name="confirm_exit">Premi indietro nuovamente per uscire</string>
+    <string name="label_downloaded_only">Solo scaricati</string>
 </resources>

@@ -39,7 +39,7 @@
     <string name="action_add_category">Adicionar categoria</string>
     <string name="action_edit_categories">Editar categorias</string>
     <string name="action_rename_category">Renomear categoria</string>
-    <string name="action_move_category">Mover para categorias</string>
+    <string name="action_move_category">Definir categorias</string>
     <string name="action_edit_cover">Editar a imagem de capa</string>
     <string name="action_sort_up">Ordem crescente</string>
     <string name="action_sort_down">Ordem decrescente</string>
@@ -67,11 +67,9 @@
     <string name="action_save">Salvar</string>
     <string name="action_reset">Redefinir</string>
     <string name="action_undo">Desfazer</string>
-    <string name="action_export">Exportar</string>
     <string name="action_open_log">Abrir registro de eventos</string>
     <string name="action_create">Criar</string>
     <string name="action_restore">Restaurar</string>
-    <string name="deleting">Excluindo…</string>
     <string name="loading">Carregando…</string>
     <string name="app_not_available">Aplicativo indisponível</string>
     <string name="short_recent_updates">Atualizações</string>
@@ -106,7 +104,7 @@
     <string name="pref_auto_update_manga_sync">Sincronizar capítulos após leitura</string>
     <string name="pref_start_screen">Tela inicial</string>
     <string name="pref_language">Idioma</string>
-    <string name="system_default">Padrão do sistema</string>
+    <string name="system_default">Padrão</string>
     <string name="default_category">Categoria padrão</string>
     <string name="default_category_summary">Sempre perguntar</string>
     <string name="pref_fullscreen">Tela cheia</string>
@@ -175,20 +173,13 @@
     <string name="pref_backup_service_category">Serviço</string>
     <string name="pref_backup_interval">Frequência de backup</string>
     <string name="pref_backup_slots">Máximo de backups automáticos</string>
-    <string name="dialog_restoring_backup">Restaurando backup 
-\n%1$s adicionado à biblioteca</string>
     <string name="source_not_found">Fonte não encontrada</string>
-    <string name="dialog_restoring_source_not_found">Restaurando backup
-\nFonte %1$s não encontrada</string>
     <string name="backup_created">Backup criado</string>
     <string name="restore_completed">Restauração concluída</string>
-    <string name="error_opening_log">Não foi possível abrir o registro de eventos</string>
-    <string name="restore_completed_content">A restauração levou %1$s.
-\n%2$s erros encontrados.</string>
-    <string name="backup_restore_content">Restaurar usa as fontes para obter dados, cobranças podem ser efetuadas. 
+    <string name="restore_completed_content">Finalizado em %1$s com %2$s erros</string>
+    <string name="backup_restore_content">A restauração usa as fontes para obter dados, cobranças podem ser efetuadas pela sua operadora. 
 \n 
-\nVerifique se instalou as extensões e se realizou o login nas fontes e nos serviços de monitoramento antes de restaurar.</string>
-    <string name="file_saved">Arquivo salvo em %1$s</string>
+\nVerifique se instalou todas as extensões necessárias e se realizou o login nas fontes e serviços de monitoramento antes de restaurar.</string>
     <string name="backup_choice">Do que você deseja fazer backup\?</string>
     <string name="restoring_backup">Restaurando backup</string>
     <string name="creating_backup">Criando backup</string>
@@ -209,8 +200,6 @@
     <string name="pref_refresh_library_tracking_summary">Atualiza informações como situação, avaliações e últimos capítulos lidos dos serviços de monitoramento</string>
     <string name="version">Versão</string>
     <string name="build_time">Data de compilação</string>
-    <string name="pref_enable_automatic_updates">Procurar por atualizações</string>
-    <string name="pref_enable_automatic_updates_summary">Procurar por novas versões do aplicativo automaticamente</string>
     <string name="pref_enable_acra">Enviar relatórios de erro</string>
     <string name="pref_acra_summary">Ajuda a corrigir eventuais erros. Não serão enviados dados sensíveis</string>
     <string name="login_title">Fazer login em %1$s</string>
@@ -297,7 +286,6 @@
     <string name="decode_image_error">A imagem não pôde ser carregada</string>
     <string name="confirm_set_image_as_cover">Usar esta imagem como capa\?</string>
     <string name="viewer_for_this_series">Leitura para esta série</string>
-    <string name="recent_manga_source">%1$s - Cap.%2$s</string>
     <string name="download_queue_error">Não foi possível realizar o download dos capítulos. Você pode tentar novamente na seção de downloads</string>
     <string name="notification_update_progress">Progresso da atualização: %1$d/%2$d</string>
     <string name="notification_new_chapters">Novos capítulos encontrados</string>
@@ -327,7 +315,7 @@
     <string name="information_empty_library">A sua biblioteca está vazia. Você pode adicionar séries a partir das fontes.</string>
     <string name="download_notifier_downloader_title">Gerenciador de downloads</string>
     <string name="download_notifier_title_error">Erro</string>
-    <string name="download_notifier_unknown_error">Não foi possível realizar o download do capítulo por um erro inesperado</string>
+    <string name="download_notifier_unknown_error">Não foi possível realizar o download do capítulo devido a um erro inesperado</string>
     <string name="download_notifier_page_error">Uma página está faltando na pasta</string>
     <string name="download_notifier_page_ready_error">A página não foi carregada</string>
     <string name="download_notifier_text_only_wifi">Conexão Wi-Fi indisponível</string>
@@ -347,7 +335,7 @@
     <string name="action_display_download_badge">Ícones de download</string>
     <string name="local_source_badge">Local</string>
     <string name="information_empty_category">Você ainda não tem nenhuma categoria. Pressione o botão (+) para criar uma e organizar a sua biblioteca.</string>
-    <string name="label_migration">Migrar fonte</string>
+    <string name="label_migration">Migração de fonte</string>
     <string name="label_extensions">Extensões</string>
     <string name="label_extension_info">Informações da extensão</string>
     <string name="all_lang">Todas</string>
@@ -379,7 +367,8 @@
     <string name="manga_info_full_title_label">Título</string>
     <string name="manga_added_library">Adicionado à biblioteca</string>
     <string name="manga_removed_library">Removido da biblioteca</string>
-    <string name="copied_to_clipboard">%1$s copiado para área de transferência</string>
+    <string name="copied_to_clipboard">Copiado para a área de transferência:
+\n%1$s</string>
     <string name="custom_download">Fazer download de uma quantidade personalizada</string>
     <string name="download_custom">Personalizado</string>
     <string name="migration_info">Toque para selecionar a fonte da qual migrar</string>
@@ -387,7 +376,6 @@
     <string name="select">Selecionar</string>
     <string name="migrate">Migrar</string>
     <string name="copy">Copiar</string>
-    <string name="migrating">Migrando…</string>
     <string name="source_not_installed">Fonte não instalada: %1$s</string>
     <string name="repeating">Relendo</string>
     <string name="pager_viewer">Leitor</string>
@@ -489,7 +477,7 @@
         <item quantity="one">Para 1 título</item>
         <item quantity="other">Para %d títulos</item>
     </plurals>
-    <string name="notices">Avisos</string>
+    <string name="notices">Avisos da compilação de preview</string>
     <string name="changelog">Registro de alterações</string>
     <string name="pref_theme_light">Variante do tema claro</string>
     <string name="theme_light_default">Padrão</string>
@@ -531,4 +519,22 @@
     <string name="manga_info_about_label">Sobre</string>
     <string name="pref_confirm_exit">Confirmar saída</string>
     <string name="confirm_exit">Pressione novamente para sair</string>
+    <string name="information_webview_required">O WebView é necessário para o Tachiyomi</string>
+    <string name="licenses">Licenças de código aberto</string>
+    <string name="website">Site</string>
+    <string name="label_downloaded_only">Somente disponíveis offline</string>
+    <string name="creating_backup_error">Falha no backup</string>
+    <string name="backup_in_progress">O backup já está em andamento</string>
+    <string name="restore_in_progress">A restauração já está em andamento</string>
+    <string name="channel_backup_restore">Backup e restauração</string>
+    <string name="recent_manga_time">Cap. %1$s - %2$s</string>
+    <string name="restoring_backup_canceled">Restauração cancelada</string>
+    <string name="restoring_backup_error">Falha na restauração do backup</string>
+    <string name="track_finished_reading_date">Data de término da leitura</string>
+    <string name="track_started_reading_date">Data de início da leitura</string>
+    <string name="error_invalid_date_supplied">Data inválida fornecida</string>
+    <string name="last_used_source">Última utilizada</string>
+    <string name="check_for_updates">Procurar por atualizações</string>
+    <string name="local_source_help_guide">Guia para a fonte local</string>
+    <string name="restore_duration">%02d min e %02d seg</string>
 </resources>

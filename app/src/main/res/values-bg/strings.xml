@@ -62,7 +62,6 @@
     <string name="action_reset">Изчисти</string>
     <string name="action_undo">Върни</string>
     <!-- Operations -->
-    <string name="deleting">Изтриване…</string>
     <string name="loading">Зареждане…</string>
     <!-- Preferences -->
     <!-- Subsections -->
@@ -171,8 +170,6 @@
     <!-- About section -->
     <string name="version">Версия</string>
     <string name="build_time">Време на създаване</string>
-    <string name="pref_enable_automatic_updates">Провери за актуализации</string>
-    <string name="pref_enable_automatic_updates_summary">Автоматично проверявай за нови версии</string>
     <!-- ACRA -->
     <string name="pref_enable_acra">Изпращай данни за грешки</string>
     <string name="pref_acra_summary">Помага за оправянето на бъгове. Няма да се изпращат лични данни</string>
@@ -271,7 +268,6 @@
     <!-- Backup fragment -->
     <string name="backup">Резервно копие</string>
     <!-- Recent manga fragment -->
-    <string name="recent_manga_source">%1$s - Глава %2$s</string>
     <!-- Downloads activity and service -->
     <string name="download_queue_error">Не можахме да изтеглим главите. Може да опитате пак в секцията на изтеглянията</string>
     <!-- Library update service notifications -->
@@ -321,7 +317,6 @@
     <string name="action_sort_total">Общ брой глави</string>
     <string name="action_close">Затвори</string>
     <string name="action_move">Премести</string>
-    <string name="action_export">Експортирай</string>
     <string name="action_open_log">Отвори лога</string>
     <string name="action_create">Създай</string>
     <string name="action_restore">Възстанови</string>
@@ -342,17 +337,11 @@
     <string name="pref_backup_service_category">Обслужване</string>
     <string name="pref_backup_interval">Честота на запазване</string>
     <string name="pref_backup_slots">Максимален брой автоматични запазвания</string>
-    <string name="dialog_restoring_backup">Възстановяване от копие 
-\n%1$s добавено към библиотеката</string>
     <string name="source_not_found">Не беше намерен източник</string>
-    <string name="dialog_restoring_source_not_found">Възстановяване от копие
-\nЗа %1$s не беше намерен източник</string>
     <string name="backup_created">Резервно копие създадено</string>
     <string name="restore_completed">Възстановяването завършено</string>
-    <string name="error_opening_log">Грешка при отварянето на историята</string>
     <string name="restore_completed_content">Възстановяването отне %1$s.
 \nБяха намерени %2$s грешки.</string>
-    <string name="file_saved">Файлът запазен на %1$s</string>
     <string name="backup_choice">Какво искате да запазите?</string>
     <string name="restoring_backup">Възстановяване на копие</string>
     <string name="creating_backup">Създаване на резервно копие</string>
@@ -421,7 +410,6 @@
     <string name="select">Избери</string>
     <string name="migrate">Мигрирай</string>
     <string name="copy">Копирай</string>
-    <string name="migrating">Мигриране…</string>
     <string name="pager_viewer">Страница</string>
     <string name="source_not_installed">Източникът не е инсталиран: %1$s</string>
     <string name="repeating">Препрочитане</string>

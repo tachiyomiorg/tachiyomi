@@ -61,7 +61,6 @@
     <string name="action_save">Sauvegarder</string>
     <string name="action_reset">Réinitialiser</string>
     <!-- Operations -->
-    <string name="deleting">Suppression…</string>
     <string name="loading">Chargement…</string>
     <!-- Preferences -->
     <!-- Subsections -->
@@ -163,8 +162,6 @@
     <!-- About section -->
     <string name="version">Version</string>
     <string name="build_time">Date de compilation</string>
-    <string name="pref_enable_automatic_updates">Vérifier les mises à jour</string>
-    <string name="pref_enable_automatic_updates_summary">Automatiquement vérifier les nouvelles versions de l\'application</string>
     <!-- ACRA -->
     <string name="pref_enable_acra">Envoyer les rapports de plantage</string>
     <string name="pref_acra_summary">Aide à corriger les bugs. Aucune donnée sensible ne sera envoyée</string>
@@ -230,7 +227,7 @@
     <!-- Category activity -->
     <string name="error_category_exists">Une catégorie avec ce nom existe déjà !</string>
     <!-- Dialog option with checkbox view -->
-    <string name="dialog_with_checkbox_remove_description">Cela enlèvera la date de lecture de ce chapitre. Êtes-vous sûr ?</string>
+    <string name="dialog_with_checkbox_remove_description">Ceci enlèvera la date de lecture de ce chapitre. Êtes-vous sûr(e) \?</string>
     <string name="dialog_with_checkbox_reset">Réinitialiser tous les chapitres de ce manga</string>
     <!-- SnackBar -->
     <string name="snack_add_to_library">Ajouter ce manga à la bibliothèque ?</string>
@@ -245,7 +242,7 @@
     <string name="page_downloaded">Page copiée vers %1$s</string>
     <string name="downloading">En cours de téléchargement…</string>
     <string name="download_progress">%1$d%% téléchargé</string>
-    <string name="chapter_progress">Page: %1$d</string>
+    <string name="chapter_progress">Page : %1$d</string>
     <string name="chapter_subtitle">Chapitre %1$s</string>
     <string name="no_next_chapter">Chapitre suivant non trouvé</string>
     <string name="no_previous_chapter">Chapitre précédent non trouvé</string>
@@ -255,7 +252,6 @@
     <!-- Backup fragment -->
     <string name="backup">Sauvegarder</string>
     <!-- Recent manga fragment -->
-    <string name="recent_manga_source">%1$s - Ch.%2$s</string>
     <!-- Downloads activity and service -->
     <string name="download_queue_error">Une erreur est survenue lors du téléchargement des chapitres. Vous pouvez réessayer dans la section téléchargements</string>
     <!-- Library update service notifications -->
@@ -301,7 +297,7 @@
     <string name="confirm_delete_chapters">Supprimer les chapitres sélectionnés \?</string>
     <string name="custom_dir">Répertoire personnalisé</string>
     <string name="download_10">10 prochains chapitres</string>
-    <string name="download_notifier_unknown_error">Une erreur inattendue s\'est produite lors du téléchargement du chapitre</string>
+    <string name="download_notifier_unknown_error">Impossible de télécharger le chapitre en raison d\'une erreur inattendue</string>
     <string name="fifth_to_last">Du cinquième au dernier chapitre</string>
     <string name="login_success">Connecté</string>
     <string name="manga_chapter_no_title">Pas de titre</string>
@@ -309,7 +305,7 @@
     <string name="pref_clear_chapter_cache">Effacer le cache des chapitres</string>
     <string name="pref_remove_after_marked_as_read">Supprimer quand marqué comme lu</string>
     <string name="sort_by_source">Par source</string>
-    <string name="system_default">Par défaut système</string>
+    <string name="system_default">Par défaut</string>
     <string name="updating_category">Mise à jour de la catégorie</string>
     <string name="no_more_results">Pas d\'autres résultats</string>
     <string name="snack_categories_deleted">Catégories supprimées</string>
@@ -319,14 +315,13 @@
     <string name="history">Historique</string>
     <string name="action_close">Fermer</string>
     <string name="action_move">Déplacer</string>
-    <string name="action_export">Exporter</string>
     <string name="action_create">Créer</string>
     <string name="app_not_available">Application indisponible</string>
     <string name="update_weekly">Chaque semaine</string>
     <string name="update_monthly">Chaque mois</string>
     <string name="default_category">Catégorie par défaut</string>
     <string name="download_notifier_download_paused">Téléchargement en pause</string>
-    <string name="local_source">Manga locaux</string>
+    <string name="local_source">Source locale</string>
     <string name="added_to_library">Ce manga a été ajouté à votre bibliothèque</string>
     <string name="chapter_paused">En pause</string>
     <string name="action_open_log">Ouvrir le fichier journal</string>
@@ -335,8 +330,6 @@
     <string name="pref_backup_service_category">Service</string>
     <string name="source_not_found">Source introuvable</string>
     <string name="restore_completed">Restauration terminée</string>
-    <string name="error_opening_log">Impossible d\'ouvrir le fichier journal</string>
-    <string name="file_saved">Fichier enregistré dans %1$s</string>
     <string name="backup_choice">Que voulez-vous sauvegarder ?</string>
     <string name="invalid_combination">Le défaut ne peut pas être selectionné avec des autres catégories</string>
     <string name="delete_downloads_for_manga">Supprimer les chapitres téléchargés ?</string>
@@ -350,13 +343,8 @@
     <string name="pref_restore_backup_summ">Restaurer la bibliothèque à partir d\'un fichier de sauvegarde</string>
     <string name="pref_backup_interval">Fréquence de sauvegarde</string>
     <string name="pref_backup_slots">Nombre maximal de sauvegardes automatiques</string>
-    <string name="dialog_restoring_backup">Restauration de la sauvegarde en cours 
-\n%1$s ajoutés à la bibliothèque</string>
-    <string name="dialog_restoring_source_not_found">Restauration de sauvegarde en cours
-%1$s source introuvable</string>
     <string name="backup_created">Sauvegarde créée</string>
-    <string name="restore_completed_content">La restauration a pris %1$s.
-%2$s erreurs trouvées.</string>
+    <string name="restore_completed_content">Effectuée en %1$s avec %2$s erreurs</string>
     <string name="restoring_backup">Restauration de sauvegarde en cours</string>
     <string name="creating_backup">Création de sauvegarde en cours</string>
     <string name="pref_refresh_library_tracking">Actualiser les métadonnées de suivi</string>
@@ -426,7 +414,7 @@
     <string name="ext_untrusted">Non fiable</string>
     <string name="pager_viewer">Pager</string>
     <string name="repeating">Relecture</string>
-    <string name="transition_finished">A jour :</string>
+    <string name="transition_finished">À jour :</string>
     <string name="transition_current">En cours :</string>
     <string name="transition_next">Suivant :</string>
     <string name="transition_previous">Précédent :</string>
@@ -435,9 +423,8 @@
     <string name="transition_pages_loading">Chargement des pages…</string>
     <string name="transition_pages_error">Échec du chargement des pages : %1$s</string>
     <string name="migration_info">Appuyer pour sélectionner la source à déplacer</string>
-    <string name="migrate">Déplacement</string>
+    <string name="migrate">Déplacer</string>
     <string name="copy">Copier</string>
-    <string name="migrating">En cours de déplacement…</string>
     <string name="pref_read_with_long_tap">Menu contextuel (appui prolongé)</string>
     <string name="action_open_in_web_view">Ouvrir dans le navigateur intégré</string>
     <string name="pref_true_color">Couleurs à 32 bits</string>
@@ -530,7 +517,7 @@
     <string name="action_reorganize_by">Réorganiser</string>
     <string name="action_newest">Plus récent</string>
     <string name="action_oldest">Plus ancien</string>
-    <string name="notices">Avis</string>
+    <string name="notices">Notes de version</string>
     <string name="pref_theme_light">Variante du thème clair</string>
     <string name="action_move_to_top">Déplacer au début</string>
     <string name="action_move_to_bottom">Déplacer à la fin</string>
@@ -560,4 +547,27 @@
     <string name="action_unpin">Désépingler</string>
     <string name="in_library">Dans la bibliothèque</string>
     <string name="add_to_library">Ajouter à la bibliothèque</string>
+    <string name="restoring_backup_canceled">Restauration de sauvegarde annulée</string>
+    <string name="restoring_backup_error">Échec de la restauration de sauvegarde</string>
+    <string name="restore_in_progress">Restauration déjà en cours</string>
+    <string name="label_downloaded_only">Téléchargés seulement</string>
+    <string name="creating_backup_error">Échec de la sauvegarde</string>
+    <string name="backup_in_progress">Sauvegarde déjà en cours</string>
+    <string name="manga_info_collapse">Afficher moins d\'informations</string>
+    <string name="manga_info_expand">Afficher plus d\'informations</string>
+    <string name="manga_info_about_label">À propos</string>
+    <string name="website">Site web</string>
+    <string name="pref_confirm_exit">Confirmer la sortie</string>
+    <string name="recent_manga_time">Ch. %1$s – %2$s</string>
+    <string name="error_invalid_date_supplied">Date fournie invalide</string>
+    <string name="licenses">Licences open source</string>
+    <string name="confirm_exit">Appuyer à nouveau pour quitter</string>
+    <string name="track_finished_reading_date">Date de fin de lecture</string>
+    <string name="track_started_reading_date">Date de début de lecture</string>
+    <string name="last_used_source">Dernière utilisée</string>
+    <string name="check_for_updates">Rechercher des mises à jour</string>
+    <string name="restore_duration">%02d min, %02d s</string>
+    <string name="information_webview_required">WebView est requis par Tachiyomi</string>
+    <string name="local_source_help_guide">Guide des sources locales</string>
+    <string name="channel_backup_restore">Sauvegarde et restauration</string>
 </resources>

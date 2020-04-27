@@ -37,7 +37,7 @@
     <string name="action_add_category">Kategorie hinzufügen</string>
     <string name="action_edit_categories">Kategorien bearbeiten</string>
     <string name="action_rename_category">Kategorie umbenennen</string>
-    <string name="action_move_category">Zu Kategorien hinzufügen</string>
+    <string name="action_move_category">Kategorien festlegen</string>
     <string name="action_edit_cover">Vorschaubild bearbeiten</string>
     <string name="action_sort_up">Aufsteigend sortieren</string>
     <string name="action_sort_down">Absteigend sortieren</string>
@@ -65,11 +65,9 @@
     <string name="action_save">Speichern</string>
     <string name="action_reset">Zurücksetzen</string>
     <string name="action_undo">Rückgängig machen</string>
-    <string name="action_export">Exportieren</string>
     <string name="action_open_log">Log öffnen</string>
     <string name="action_create">Erstellen</string>
     <string name="action_restore">Wiederherstellen</string>
-    <string name="deleting">Wird gelöscht…</string>
     <string name="loading">Wird geladen…</string>
     <string name="app_not_available">App nicht verfügbar</string>
     <string name="short_recent_updates">Neu</string>
@@ -104,7 +102,7 @@
     <string name="pref_auto_update_manga_sync">Kapitel nach dem Lesen synchronisieren</string>
     <string name="pref_start_screen">Startbildschirm</string>
     <string name="pref_language">Sprache</string>
-    <string name="system_default">Systemstandard</string>
+    <string name="system_default">Standard</string>
     <string name="default_category">Standardkategorie</string>
     <string name="default_category_summary">Immer fragen</string>
     <string name="pref_fullscreen">Vollbild</string>
@@ -173,20 +171,13 @@
     <string name="pref_backup_service_category">Service</string>
     <string name="pref_backup_interval">Backuphäufigkeit</string>
     <string name="pref_backup_slots">Maximale Anzahl automatischer Backups</string>
-    <string name="dialog_restoring_backup">Backup wird wiederhergestellt 
-\n%1$s zur Bibliothek hinzugefügt</string>
     <string name="source_not_found">Quelle nicht gefunden</string>
-    <string name="dialog_restoring_source_not_found">Backup wird wiederhergestellt %1$s
-\nQuelle nicht gefunden</string>
     <string name="backup_created">Backup erstellt</string>
     <string name="restore_completed">Wiederherstellen abgeschlossen</string>
-    <string name="error_opening_log">Log konnte nicht geöffnet werden</string>
-    <string name="restore_completed_content">Das Wiederherstellen hat %1$s gedauert.
-\n%2$s Fehler gefunden.</string>
+    <string name="restore_completed_content">Erledigt in %1$s mit %2$s Fehlern</string>
     <string name="backup_restore_content">Beim Wiederherstellen eines Backups werden Daten von den Quellen abgerufen, wodurch Mobilfunkkosten enstehen können. 
 \n 
 \nVergewissern Sie sich zudem, dass Sie alle benötigen Seitenlogins bereitgestellt haben, bevor Sie mit dem Wiederherstellen beginnen.</string>
-    <string name="file_saved">Datei in %1$s gespeichert</string>
     <string name="backup_choice">Was möchtest du sichern\?</string>
     <string name="restoring_backup">Backup wird wiederhergestellt</string>
     <string name="creating_backup">Erstelle Backup</string>
@@ -207,8 +198,6 @@
     <string name="pref_refresh_library_tracking_summary">Synchronisiert den Lesestatus, die Bewertung und das zuletzt gelesene Kapitel mit den angemeldeten Synchronisationsanbietern</string>
     <string name="version">Version</string>
     <string name="build_time">Erstellt am</string>
-    <string name="pref_enable_automatic_updates">Nach Updates suchen</string>
-    <string name="pref_enable_automatic_updates_summary">Automatisch nach neuen App-Versionen suchen</string>
     <string name="pref_enable_acra">Fehlerberichte senden</string>
     <string name="pref_acra_summary">Hilft bei der Behebung von Fehlern. Keine sensiblen Daten werden gesendet</string>
     <string name="login_title">Bei %1$s anmelden</string>
@@ -296,7 +285,6 @@
     <string name="decode_image_error">Das Bild konnte nicht geladen werden</string>
     <string name="confirm_set_image_as_cover">Dieses Bild als Vorschaubild setzen\?</string>
     <string name="viewer_for_this_series">Leser für diese Serie</string>
-    <string name="recent_manga_source">%1$s - Kap.%2$s</string>
     <string name="download_queue_error">Fehler beim Herunterladen der Kapitel. Du kannst es in der Downloadsektion erneut versuchen</string>
     <string name="notification_update_progress">Aktualisierungsfortschritt: %1$d/%2$d</string>
     <string name="notification_new_chapters">Neue Kapitel gefunden</string>
@@ -375,11 +363,10 @@
     <string name="manga_info_full_title_label">Titel</string>
     <string name="manga_added_library">Zur Bibliothek hinzugefügt</string>
     <string name="manga_removed_library">Aus der Bibliothek entfernt</string>
-    <string name="copied_to_clipboard">%1$s in Zwischenablage gespeichert</string>
+    <string name="copied_to_clipboard">In die Zwischenablage kopiert: %1$s</string>
     <string name="select">Auswählen</string>
     <string name="migrate">Migrieren</string>
     <string name="copy">Kopieren</string>
-    <string name="migrating">Migriere…</string>
     <string name="ext_trust">Vertrauen</string>
     <string name="ext_untrusted">Nicht vertrauenswürdig</string>
     <string name="untrusted_extension">Nicht vertrauenswürdige Erweiterung</string>
@@ -489,7 +476,7 @@
         <item quantity="one">Für 1 Titel</item>
         <item quantity="other">Für %d Titel</item>
     </plurals>
-    <string name="notices">Änderungen</string>
+    <string name="notices">Preview-Build-Notizen</string>
     <string name="changelog">Changelog</string>
     <string name="pref_theme_light">Helldesign</string>
     <string name="theme_light_default">Standard</string>
@@ -529,4 +516,24 @@
     <string name="manga_info_about_label">Inhalt</string>
     <string name="in_library">In der Bibliothek</string>
     <string name="add_to_library">Zur Bibliothek hinzufügen</string>
+    <string name="confirm_exit">Zum Beenden nochmal die Zurück-Taste drücken</string>
+    <string name="information_webview_required">Webansicht ist für Tachiyomi erforderlich</string>
+    <string name="licenses">Open-Source Lizenzen</string>
+    <string name="website">Website</string>
+    <string name="pref_confirm_exit">Beenden bestätigen</string>
+    <string name="label_downloaded_only">Nur Heruntergeladenes</string>
+    <string name="channel_backup_restore">Backup und Wiederherstellen</string>
+    <string name="recent_manga_time">Kap. %1$s - %2$s</string>
+    <string name="restoring_backup_error">Backup-Wiederherstellung fehlgeschlagen</string>
+    <string name="creating_backup_error">Backup fehlgeschlagen</string>
+    <string name="restoring_backup_canceled">Wiederherstellung abgebrochen</string>
+    <string name="restore_in_progress">Wiederherstellung wird bereits durchgeführt</string>
+    <string name="backup_in_progress">Backup wird bereits durchgeführt</string>
+    <string name="error_invalid_date_supplied">Ungültiges Datum angegeben</string>
+    <string name="track_finished_reading_date">Datum des Leseendes</string>
+    <string name="track_started_reading_date">Datum des Lesebeginns</string>
+    <string name="check_for_updates">Auf Updates überprüfen</string>
+    <string name="last_used_source">Zuletzt genutzt</string>
+    <string name="local_source_help_guide">Lokale-Quellen-Guide</string>
+    <string name="restore_duration">%02d min, %02d s</string>
 </resources>

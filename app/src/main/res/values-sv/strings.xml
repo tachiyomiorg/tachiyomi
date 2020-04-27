@@ -43,7 +43,7 @@
     <string name="action_add_category">Lägg till kategori</string>
     <string name="action_edit_categories">Redigera kategorier</string>
     <string name="action_rename_category">Byt namn på kategori</string>
-    <string name="action_move_category">Flytta till kategorier</string>
+    <string name="action_move_category">Välj kategorier</string>
     <string name="action_edit_cover">Redigera omslagsbilden</string>
     <string name="action_sort_up">Sortera upp</string>
     <string name="action_sort_down">Sortera ner</string>
@@ -72,13 +72,11 @@
     <string name="action_save">Spara</string>
     <string name="action_reset">Återställ</string>
     <string name="action_undo">Ånga</string>
-    <string name="action_export">Exportera</string>
     <string name="action_open_log">Öppna logg</string>
     <string name="action_create">Skapa</string>
     <string name="action_restore">Återställ</string>
     <string name="action_open">Öppna</string>
     <string name="action_login">Logga in</string>
-    <string name="deleting">Tar bort…</string>
     <string name="loading">Laddar…</string>
     <string name="app_not_available">Applikationen är inte tillgänglig</string>
     <string name="short_recent_updates">Nytt</string>
@@ -113,7 +111,7 @@
     <string name="pref_auto_update_manga_sync">Synkronisera kapitel efter läsning</string>
     <string name="pref_start_screen">Startskärm</string>
     <string name="pref_language">Språk</string>
-    <string name="system_default">System standard</string>
+    <string name="system_default">Standard</string>
     <string name="default_category">Standardkategori</string>
     <string name="default_category_summary">Fråga alltid</string>
     <string name="all_lang">Alla</string>
@@ -209,20 +207,13 @@
     <string name="pref_backup_service_category">Tjänst</string>
     <string name="pref_backup_interval">Säkerhetskopieringsfrekvens</string>
     <string name="pref_backup_slots">Max automatiska säkerhetskopior</string>
-    <string name="dialog_restoring_backup">Återställer säkerhetskopia
-\n%1$s laddes till i biblioteket</string>
     <string name="source_not_found">Källan hittades inte</string>
-    <string name="dialog_restoring_source_not_found">Återställer säkerhetskopia
-\n%1$s källa hittades inte</string>
     <string name="backup_created">Säkerhetskopia skapad</string>
     <string name="restore_completed">Återställning slutförd</string>
-    <string name="error_opening_log">Kunde inte öppna loggen</string>
-    <string name="restore_completed_content">Återställning tog %1$s.
-\n%2$s fel hittade.</string>
+    <string name="restore_completed_content">Återställning tog %1$s med %2$s fel hittade</string>
     <string name="backup_restore_content">Återställning använder källor för att hämta data, data kostnader kan tillkomma. 
 \n
 \nSe till att du har installerat de nödvändiga tilläggen och är inloggad på de källor och spårningstjänsterna som kräver detta innan du återställer.</string>
-    <string name="file_saved">Fil sparad vid %1$s</string>
     <string name="backup_choice">Vad vill du säkerhetskopiera\?</string>
     <string name="restoring_backup">Återställer säkerhetskopia</string>
     <string name="creating_backup">Skapar säkerhetskopia</string>
@@ -243,8 +234,6 @@
     <string name="pref_refresh_library_tracking_summary">Uppdaterar status, betyg och senaste kapitel läst från spårningstjänsterna</string>
     <string name="version">Version</string>
     <string name="build_time">Byggtid</string>
-    <string name="pref_enable_automatic_updates">Sök efter uppdateringar</string>
-    <string name="pref_enable_automatic_updates_summary">Kontrollera automatiskt om det finns nya programuppdateringar</string>
     <string name="pref_enable_acra">Skicka kraschrapporter</string>
     <string name="pref_acra_summary">Hjälper till att fixa eventuella buggar. Inga känsliga uppgifter skickas</string>
     <string name="login_title">Logga in för %1$s</string>
@@ -358,13 +347,11 @@
     <string name="transition_no_previous">Det finns inget tidigare kapitel</string>
     <string name="transition_pages_loading">Laddar sidor…</string>
     <string name="transition_pages_error">Misslyckades att ladda sidor: %1$s</string>
-    <string name="recent_manga_source">%1$s - Kap.%2$s</string>
     <string name="migration_info">Tryck för att välja källa att migrera från</string>
     <string name="migration_dialog_what_to_include">Välj data som ska inkluderas</string>
     <string name="select">Välj</string>
     <string name="migrate">Migrera</string>
     <string name="copy">Kopiera</string>
-    <string name="migrating">Migrerar…</string>
     <string name="download_queue_error">Kunde inte ladda ned kapitlen. Du kan försöka igen i nedladdningssektionen</string>
     <string name="notification_update_progress">Uppdateringsframsteg: %1$d/%2$d</string>
     <string name="notification_new_chapters">Nya kapitel hittades</string>
@@ -489,7 +476,7 @@
         <item quantity="one">För 1 titel</item>
         <item quantity="other">För %d titlar</item>
     </plurals>
-    <string name="notices">Nyheter</string>
+    <string name="notices">Byggmeddelanden</string>
     <string name="changelog">Ändringslogg</string>
     <string name="pref_theme_light">Ljus temavariant</string>
     <string name="theme_light_default">Standard</string>
@@ -531,4 +518,22 @@
     <string name="manga_info_about_label">Info</string>
     <string name="pref_confirm_exit">Bekräfta utgång</string>
     <string name="confirm_exit">Tryck tillbaka igen för att gå ur</string>
+    <string name="channel_backup_restore">Säkerhetskopiering och återställning</string>
+    <string name="information_webview_required">WebView krävs för Tachiyomi</string>
+    <string name="recent_manga_time">Kapitel %1$s - %2$s</string>
+    <string name="error_invalid_date_supplied">Ogiltigt datum har angetts</string>
+    <string name="track_finished_reading_date">Avslutat läsdatum</string>
+    <string name="track_started_reading_date">Påbörjat läsdatum</string>
+    <string name="local_source_help_guide">Lokal källa guide</string>
+    <string name="last_used_source">Senast använd</string>
+    <string name="check_for_updates">Sök efter uppdateringar</string>
+    <string name="licenses">Open source-licenser</string>
+    <string name="website">Hemsida</string>
+    <string name="restoring_backup_canceled">Avbruten återställning</string>
+    <string name="restoring_backup_error">Återställning av säkerhetskopiering misslyckades</string>
+    <string name="restore_in_progress">Återställningen pågår redan</string>
+    <string name="creating_backup_error">Säkerhetskopiering misslyckades</string>
+    <string name="backup_in_progress">Säkerhetskopiering pågår redan</string>
+    <string name="restore_duration">%02d minuter, %02d sekunder</string>
+    <string name="label_downloaded_only">Endast nedladdat</string>
 </resources>

@@ -40,7 +40,7 @@
     <string name="action_add_category">Tambah kategori</string>
     <string name="action_edit_categories">Edit kategori</string>
     <string name="action_rename_category">Ubah nama kategori</string>
-    <string name="action_move_category">Pindahkan ke kategori</string>
+    <string name="action_move_category">Tetapkan kategori</string>
     <string name="action_edit_cover">Ubah muka hadapan</string>
     <string name="action_sort_up">Susunan menaik</string>
     <string name="action_sort_down">Susunan menurun</string>
@@ -68,13 +68,11 @@
     <string name="action_save">Simpan</string>
     <string name="action_reset">Set semula</string>
     <string name="action_undo">Batal</string>
-    <string name="action_export">Eksport</string>
     <string name="action_open_log">Buka log</string>
     <string name="action_create">Buat</string>
     <string name="action_restore">Kembalikan ke asal</string>
     <string name="action_open">Buka</string>
     <string name="action_login">Log masuk</string>
-    <string name="deleting">Hapus…</string>
     <string name="loading">Muat…</string>
     <string name="app_not_available">Aplikasi tidak tersedia</string>
     <string name="short_recent_updates">Perubahan</string>
@@ -109,7 +107,7 @@
     <string name="pref_auto_update_manga_sync">Sinkronkan bab setelah dibaca</string>
     <string name="pref_start_screen">Skrin permulaan</string>
     <string name="pref_language">Bahasa</string>
-    <string name="system_default">Lalai sistem</string>
+    <string name="system_default">Lalai</string>
     <string name="default_category">Kategori lalai</string>
     <string name="default_category_summary">Sentiasa tanya</string>
     <string name="pref_fullscreen">Skrin penuh</string>
@@ -178,20 +176,13 @@
     <string name="pref_backup_service_category">Perkhidmatan</string>
     <string name="pref_backup_interval">Kekerapan sandaran</string>
     <string name="pref_backup_slots">Sandaran automatik maksimum</string>
-    <string name="dialog_restoring_backup">Dalam proses memulihkan sandaran 
-\n%1$s ditambah kepada pustaka</string>
     <string name="source_not_found">Sumber tidak ditemui</string>
-    <string name="dialog_restoring_source_not_found">Dalam proses memulihkan sandaran
-\n%1$s sumber tidak ditemui</string>
     <string name="backup_created">Sandaran dibuat</string>
     <string name="restore_completed">Pemulihan selesai</string>
-    <string name="error_opening_log">Tidak dapat membuka log</string>
-    <string name="restore_completed_content">Pemulihan mengambil masa %1$s.
-\n%2$s ralat ditemui.</string>
+    <string name="restore_completed_content">Pemulihan mengambil masa %1$s dengan %2$s ralat</string>
     <string name="backup_restore_content">Pemulihan menggunakan Sambungan untuk memperolehi data, caj telco mungkin dikenakan.
 \n
 \nPastikan anda telah memasang semua Sambungan yang perlu dan telah log masuk ke dalam sumber dan Penjejakan sebelum memulakan pemulihan.</string>
-    <string name="file_saved">Fail disimpan pada %1$s</string>
     <string name="backup_choice">Apakah yang ingin anda sandarkan?</string>
     <string name="restoring_backup">Dalam proses memulihkan sandaran</string>
     <string name="creating_backup">Dalam proses membuat sandaran</string>
@@ -212,8 +203,6 @@
     <string name="pref_refresh_library_tracking_summary">Kemas kini status, skor dan bab terakhir dibaca dari perkhidmatan penjejakan</string>
     <string name="version">Versi</string>
     <string name="build_time">Masa binaan aplikasi</string>
-    <string name="pref_enable_automatic_updates">Semak sama ada wujud versi baharu</string>
-    <string name="pref_enable_automatic_updates_summary">Semak sama ada wujud versi baharu secara automatik</string>
     <string name="pref_enable_acra">Hantar laporan ranap</string>
     <string name="pref_acra_summary">Bantu membaiki aplikasi. Tiada data sensitif dihantar</string>
     <string name="login_title">Log masuk ke %1$s</string>
@@ -233,7 +222,7 @@
     <string name="select_source">Pilih sumber</string>
     <string name="no_valid_sources">Sila aktifkan sekurang-kurangnya satu sumber yang sah</string>
     <string name="no_more_results">Tiada lagi hasil</string>
-    <string name="local_source">Manga setempat</string>
+    <string name="local_source">Sumber setempat</string>
     <string name="other_source">Lain</string>
     <string name="invalid_combination">Lalai tidak boleh dipilih bersama kategori lain</string>
     <string name="added_to_library">Manga ini telah ditambahkan ke pustaka anda</string>
@@ -307,7 +296,6 @@
     <string name="decode_image_error">Imej tidak dapat dimuatkan</string>
     <string name="confirm_set_image_as_cover">Guna imej ini sebagai muka hadapan\?</string>
     <string name="viewer_for_this_series">Pemapar bagi siri ini</string>
-    <string name="recent_manga_source">%1$s - Bab.%2$s</string>
     <string name="download_queue_error">Memuat turun bab tidak berjaya. Anda boleh mencuba lagi di bahagian muat turun</string>
     <string name="notification_update_progress">Progres kemas kini: %1$d/%2$d</string>
     <string name="notification_new_chapters">Bab baharu dijumpai</string>
@@ -406,7 +394,6 @@
     <string name="select">Pilih</string>
     <string name="migrate">Beralih</string>
     <string name="copy">Salin</string>
-    <string name="migrating">Menukar…</string>
     <string name="information_empty_category">Tiada kategori dijumpai. Tekan butang tambah untuk membuat satu bagi menyusun pustaka.</string>
     <string name="pref_color_filter_mode">"Mod  turas warna campuran"</string>
     <string name="label_help">Bantuan</string>
@@ -485,7 +472,7 @@
     <plurals name="notification_new_chapters_summary">
         <item quantity="other">Untuk %d tajuk</item>
     </plurals>
-    <string name="notices">Notis</string>
+    <string name="notices">Notis binaan Preview</string>
     <string name="changelog">Log perubahan</string>
     <string name="pref_theme_light">Varian tema terang</string>
     <string name="theme_light_default">Lalai</string>
@@ -509,4 +496,37 @@
     <string name="pref_skip_filtered_chapters">Lingkau bab yang ditapis</string>
     <string name="action_select_inverse">Pilih songsang</string>
     <string name="label_sources">Sumber</string>
+    <string name="pref_webtoon_side_padding">Tambahan sisi</string>
+    <string name="webtoon_side_padding_10">10%</string>
+    <string name="channel_backup_restore">Sandaran dan memulih</string>
+    <string name="information_webview_required">WebView diperlukan untuk Tachiyomi</string>
+    <string name="recent_manga_time">Bab %1$s - %2$s</string>
+    <string name="error_invalid_date_supplied">Tarikh dimasukkan tidak sah</string>
+    <string name="track_finished_reading_date">Tarikh selesai membaca</string>
+    <string name="track_started_reading_date">Tarikh mula membaca</string>
+    <string name="add_tracking">Tambah penjejakan</string>
+    <string name="manga_info_collapse">Sembunyi info lanjut</string>
+    <string name="manga_info_expand">Tunjuk info lanjut</string>
+    <string name="manga_info_about_label">Tentang</string>
+    <string name="in_library">Dalam pustaka</string>
+    <string name="add_to_library">Tambah ke pustaka</string>
+    <string name="pinned_sources">Disematkan</string>
+    <string name="licenses">Lesen perisian sumber terbuka</string>
+    <string name="website">Laman web</string>
+    <string name="restoring_backup_canceled">Pemulih dibatalkan</string>
+    <string name="restoring_backup_error">Memulihkan sandaran gagal</string>
+    <string name="restore_in_progress">Pemulihan sedang dijalankan</string>
+    <string name="creating_backup_error">Sandaran gagal</string>
+    <string name="backup_in_progress">Sandaran sedang dijalankan</string>
+    <string name="webtoon_side_padding_25">25%</string>
+    <string name="webtoon_side_padding_20">20%</string>
+    <string name="webtoon_side_padding_15">15%</string>
+    <string name="webtoon_side_padding_0">Tiada</string>
+    <string name="pref_confirm_exit">Sahkan keluar</string>
+    <string name="action_unpin">Buang sematkan</string>
+    <string name="action_pin">Sematkan</string>
+    <string name="confirm_exit">Tekan kembali sekali lagi untuk keluar</string>
+    <string name="label_downloaded_only">Dimuat turun sahaja</string>
+    <string name="last_used_source">Terakhir digunakan</string>
+    <string name="check_for_updates">Semak untuk pengemaskinian</string>
 </resources>

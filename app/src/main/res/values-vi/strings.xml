@@ -62,7 +62,6 @@
     <string name="action_reset">Cài lại</string>
     <string name="action_undo">Quay lại</string>
     <!-- Operations -->
-    <string name="deleting">Đang xóa…</string>
     <string name="loading">Đang tải…</string>
     <!-- Preferences -->
     <!-- Subsections -->
@@ -171,8 +170,6 @@
     <!-- About section -->
     <string name="version">Phiên bản</string>
     <string name="build_time">Thời gian tạo</string>
-    <string name="pref_enable_automatic_updates">Kiểm tra cập nhật</string>
-    <string name="pref_enable_automatic_updates_summary">Tự động kiểm tra cập nhật ứng dụng</string>
     <!-- ACRA -->
     <string name="pref_enable_acra">Gửi báo cáo lỗi</string>
     <string name="pref_acra_summary">Giúp đỡ sửa lỗi. Sẽ không có thông tin nhạy cảm nào được gửi đi</string>
@@ -272,7 +269,6 @@
     <!-- Backup fragment -->
     <string name="backup">Sao lưu</string>
     <!-- Recent manga fragment -->
-    <string name="recent_manga_source">%1$s - Ch.%2$s</string>
     <!-- Downloads activity and service -->
     <string name="download_queue_error">Có lỗi đã xảy ra khi đang tải các chương. Bạn có thể thử lại trong phần Tải xuống</string>
     <!-- Library update service notifications -->
@@ -328,7 +324,6 @@
     <string name="action_close">Đóng</string>
     <string name="action_move">Di chuyển</string>
     <string name="action_display_download_badge">Tải phù hiệu</string>
-    <string name="action_export">Xuất</string>
     <string name="action_open_log">Nhật ký mở</string>
     <string name="action_create">Tạo</string>
     <string name="action_restore">Khôi phục</string>
@@ -378,20 +373,14 @@
     <string name="pref_backup_service_category">Dịch vụ</string>
     <string name="pref_backup_interval">Lịch sao lưu</string>
     <string name="pref_backup_slots">Sao lưu tự động tối đa</string>
-    <string name="dialog_restoring_backup">Khôi phục sao lưu
-\n%1$s đã thêm vào thư viện</string>
     <string name="source_not_found">Không tìm thấy nguồn</string>
-    <string name="dialog_restoring_source_not_found">Khôi phục sao lưu
-\n%1$s không tìm thấy nguồn</string>
     <string name="backup_created">Sao lưu đã được tạo</string>
     <string name="restore_completed">Khôi phục hoàn tất</string>
-    <string name="error_opening_log">Không thể mở nhật ký</string>
     <string name="restore_completed_content">Khôi phục được %1$s.
 \n%2$s lỗi đã được tìm thấy.</string>
     <string name="backup_restore_content">Khôi phục yêu cầu sử dụng mạng để truy cập các nguồn truyện và nguồn theo dõi để lấy dữ liệu.
 \n
 \nHãy đảm bảo rằng bạn đã cài đặt và đăng nhập vào các nguồn truyện và nguồn theo dõi trước khi khôi phục.</string>
-    <string name="file_saved">Tập tin được lưu được %1$s</string>
     <string name="backup_choice">Bạn có muốn sao lưu không\?</string>
     <string name="restoring_backup">Khôi phục sao lưu</string>
     <string name="creating_backup">Đang tạo bản sao lưu</string>
@@ -433,7 +422,6 @@
     <string name="select">Chọn</string>
     <string name="migrate">Di chuyển</string>
     <string name="copy">Sao chép</string>
-    <string name="migrating">Đang di chuyển…</string>
     <string name="information_empty_category">Không có danh mục. Nhấn vào dấu cộng để tạo một nhóm từ thư viện.</string>
     <string name="channel_common">Thường gặp</string>
     <string name="channel_library">Thư viện</string>

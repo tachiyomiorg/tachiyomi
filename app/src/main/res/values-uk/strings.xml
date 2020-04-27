@@ -72,13 +72,11 @@
     <string name="action_save">Зберегти</string>
     <string name="action_reset">Скинути</string>
     <string name="action_undo">Скасувати</string>
-    <string name="action_export">Експорт</string>
     <string name="action_open_log">Відкрити лог</string>
     <string name="action_create">Створити</string>
     <string name="action_restore">Відновити</string>
     <string name="action_open">Відкрити</string>
     <string name="action_login">Логін</string>
-    <string name="deleting">Видалення…</string>
     <string name="loading">Завантаження…</string>
     <string name="app_not_available">Програма не відповідає</string>
     <string name="short_recent_updates">Оновлення</string>
@@ -113,7 +111,7 @@
     <string name="pref_auto_update_manga_sync">Синхронізувати глави після прочитання</string>
     <string name="pref_start_screen">Стартовий екран</string>
     <string name="pref_language">Мова</string>
-    <string name="system_default">Системний</string>
+    <string name="system_default">За замовчуванням</string>
     <string name="default_category">Категорія за замовчуванням</string>
     <string name="default_category_summary">Завжди запитувати</string>
     <string name="all_lang">Всі</string>
@@ -209,20 +207,14 @@
     <string name="pref_backup_service_category">Служба</string>
     <string name="pref_backup_interval">Частота створення резервної копії</string>
     <string name="pref_backup_slots">Максимальна кількість резервних копій</string>
-    <string name="dialog_restoring_backup">Відновлення з резервної копії
-\n%1$s додано в бібліотеку</string>
     <string name="source_not_found">Джерело не знайдено</string>
-    <string name="dialog_restoring_source_not_found">Відновлення з резервної копії
-\n%1$s директорії не знайдено</string>
     <string name="backup_created">Резервна копія створена</string>
     <string name="restore_completed">Відновлення завершено</string>
-    <string name="error_opening_log">Помилка відкриття лог файла</string>
     <string name="restore_completed_content">Відновлення зайняло %1$s.
 \n%2$s знайдено помилок.</string>
     <string name="backup_restore_content">Відновлення використовує джерела для отримання даних, можуть застосовуватися витрати оператора.
 \n
 \nПереконайтеся, що ви встановили всі необхідні розширення та ввійшли до джерел та служб відстеження перед відновленням.</string>
-    <string name="file_saved">Файл збережено в %1$s</string>
     <string name="backup_choice">Що ви хочете зберегти до резервної копії\?</string>
     <string name="restoring_backup">Відновлення резервної копії</string>
     <string name="creating_backup">Створення резервної копії</string>
@@ -243,8 +235,6 @@
     <string name="pref_refresh_library_tracking_summary">Оновити стан, рахунок і останню главу з каталогів що відстежуються</string>
     <string name="version">Версія</string>
     <string name="build_time">Дата збирання</string>
-    <string name="pref_enable_automatic_updates">Перевіряти оновлення</string>
-    <string name="pref_enable_automatic_updates_summary">Автоматично перевіряти нові версії</string>
     <string name="pref_enable_acra">Надсилати звіти про падіння</string>
     <string name="pref_acra_summary">Допомагає виправляти будь-які баги. Особисті дані не передаються</string>
     <string name="login_title">Авторизація до %1$s</string>
@@ -358,13 +348,11 @@
     <string name="transition_no_previous">Попередньої частини немає</string>
     <string name="transition_pages_loading">Завантаження сторінок…</string>
     <string name="transition_pages_error">Не вдалось завантажити сторінки %1$s</string>
-    <string name="recent_manga_source">%1$s - Гл.%2$s</string>
     <string name="migration_info">Натисни аби вибрати джерело для міграції</string>
     <string name="migration_dialog_what_to_include">Виберіть включені дані</string>
     <string name="select">Вибрати</string>
     <string name="migrate">Мігрувати</string>
     <string name="copy">Копіювати</string>
-    <string name="migrating">Мігрую…</string>
     <string name="download_queue_error">Сталась помилка при завантаженні глав. Спробуйте ще раз у розділі завантаження</string>
     <string name="notification_update_progress">Стан оновлення: %1$d/%2$d</string>
     <string name="notification_new_chapters">Знайдено нові глави</string>
@@ -385,13 +373,13 @@
     <string name="update_check_notification_download_in_progress">Завантаження в процесі…</string>
     <string name="update_check_notification_download_complete">Завантаження завершено</string>
     <string name="update_check_notification_download_error">Помилка завантаження</string>
-    <string name="update_check_notification_update_available">Доступне оновлення!</string>
+    <string name="update_check_notification_update_available">Доступна нова версія!</string>
     <string name="description_backdrop">Фонове зображення манги</string>
     <string name="description_cover">Обкладинка манги</string>
     <string name="information_no_downloads">Немає завантажень</string>
     <string name="information_no_recent">Немає нових глав</string>
     <string name="information_no_recent_manga">Немає нещодавно прочитаних глав</string>
-    <string name="information_empty_library">Ваша бібліотека порожня, ви можете додати тайтли з джерел.</string>
+    <string name="information_empty_library">Ваша бібліотека порожня, ви можете додати твори з джерел.</string>
     <string name="information_empty_category">У вас немає категорій. Натисніть кнопку + для початку облаштування вашої бібліотеки.</string>
     <string name="download_notifier_downloader_title">Завантажувач</string>
     <string name="download_notifier_title_error">Помилка</string>
@@ -516,22 +504,28 @@
     <string name="pref_category_reading">Читання</string>
     <string name="label_sources">Джерела</string>
     <string name="updating_library">Оновлення бібліотеки</string>
-    <string name="pref_skip_filtered_chapters">Пропускати фільтровані глави</string>
+    <string name="pref_skip_filtered_chapters">Пропускати відфільтровані глави</string>
     <string name="webtoon_side_padding_25">25%</string>
     <string name="webtoon_side_padding_20">20%</string>
     <string name="webtoon_side_padding_15">15%</string>
     <string name="webtoon_side_padding_10">10%</string>
     <string name="webtoon_side_padding_0">Без меж</string>
     <string name="pref_webtoon_side_padding">Бічний відступ</string>
-    <string name="vertical_plus_viewer">Безперервно-вертикально</string>
+    <string name="vertical_plus_viewer">Безперервний вертикальний</string>
     <string name="action_select_inverse">Інвертувати вибір</string>
     <string name="add_tracking">Додати відслідковування</string>
     <string name="pinned_sources">Прикріплено</string>
     <string name="action_unpin">Відкріпити</string>
-    <string name="action_pin">Прикріпити</string>
+    <string name="action_pin">Закріпити</string>
     <string name="in_library">В бібліотеці</string>
     <string name="add_to_library">Додати в бібліотеку</string>
-    <string name="manga_info_collapse">Показати менше інфо</string>
-    <string name="manga_info_expand">Показати більше інфо</string>
+    <string name="manga_info_collapse">Показати менше інформації</string>
+    <string name="manga_info_expand">Показати більше інформації</string>
     <string name="manga_info_about_label">Про мангу</string>
+    <string name="information_webview_required">WebView необхідний для Tachiyomi</string>
+    <string name="licenses">Ліцензії з відкритим кодом</string>
+    <string name="website">Сторінка</string>
+    <string name="pref_confirm_exit">Підтвердити вихід</string>
+    <string name="confirm_exit">Натисніть ще раз, щоб вийти</string>
+    <string name="label_downloaded_only">Тільки завантажені</string>
 </resources>

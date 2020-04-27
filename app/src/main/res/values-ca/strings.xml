@@ -43,7 +43,7 @@
     <string name="action_add_category">Afegeix una categoria</string>
     <string name="action_edit_categories">Edita les categories</string>
     <string name="action_rename_category">Canvia el nom de la categoria</string>
-    <string name="action_move_category">Mou a categories</string>
+    <string name="action_move_category">Defineix les categories</string>
     <string name="action_edit_cover">Edita la imatge de portada</string>
     <string name="action_sort_up">Ordena en ordre ascendent</string>
     <string name="action_sort_down">Ordena en ordre descendent</string>
@@ -72,13 +72,11 @@
     <string name="action_save">Desa</string>
     <string name="action_reset">Reinicia</string>
     <string name="action_undo">Desfés</string>
-    <string name="action_export">Exporta</string>
     <string name="action_open_log">Obre el registre</string>
     <string name="action_create">Crea</string>
     <string name="action_restore">Restaura</string>
     <string name="action_open">Obre</string>
     <string name="action_login">Inicia la sessió</string>
-    <string name="deleting">S\'està suprimint…</string>
     <string name="loading">S\'està carregant…</string>
     <string name="app_not_available">Aplicació no disponible</string>
     <string name="short_recent_updates">Novetats</string>
@@ -113,7 +111,7 @@
     <string name="pref_auto_update_manga_sync">Sincronitza capítols després de llegir-los</string>
     <string name="pref_start_screen">Pantalla d\'inici</string>
     <string name="pref_language">Llengua</string>
-    <string name="system_default">Per defecte del sistema</string>
+    <string name="system_default">Per defecte</string>
     <string name="default_category">Categoria per defecte</string>
     <string name="default_category_summary">Demana-ho sempre</string>
     <string name="all_lang">Tot</string>
@@ -209,20 +207,13 @@
     <string name="pref_backup_service_category">Servei</string>
     <string name="pref_backup_interval">Freqüència de la còpia de seguretat</string>
     <string name="pref_backup_slots">Màxim de còpies de seguretat automàtiques</string>
-    <string name="dialog_restoring_backup">S\'està restaurant la còpia de seguretat
-\nS\'ha afegit %1$s a la biblioteca</string>
     <string name="source_not_found">No s\'ha trobat la font</string>
-    <string name="dialog_restoring_source_not_found">S\'està restaurant la còpia de seguretat
-\nNo s\'ha trobat la font %1$s</string>
     <string name="backup_created">S\'ha creat la còpia de seguretat</string>
     <string name="restore_completed">S\'ha completat la restauració</string>
-    <string name="error_opening_log">No s\'ha pogut obrir el registre</string>
-    <string name="restore_completed_content">La restauració ha tardat %1$s.
-\nS\'han produït $2$s errors.</string>
+    <string name="restore_completed_content">Finalitzada en %1$s amb %2$s errors</string>
     <string name="backup_restore_content">La restauració obté dades de les fonts, poden haver-hi despeses de l\'operador. 
 \n
 \nAssegureu-vos que heu instal·lat totes les extensions necessàries i que heu iniciat la sessió a les fonts i serveis de seguiment abans de restaurar.</string>
-    <string name="file_saved">S\'ha desat el fitxer a %1$s</string>
     <string name="backup_choice">De què voleu fer una còpia de seguretat\?</string>
     <string name="restoring_backup">S\'està restaurant la còpia de seguretat</string>
     <string name="creating_backup">S\'està creant la còpia de seguretat</string>
@@ -243,8 +234,6 @@
     <string name="pref_refresh_library_tracking_summary">Actualitza l\'estat, la puntuació i el darrer capítol llegit dels serveis de seguiment</string>
     <string name="version">Versió</string>
     <string name="build_time">Hora de compilació</string>
-    <string name="pref_enable_automatic_updates">Comprova si hi ha actualitzacions</string>
-    <string name="pref_enable_automatic_updates_summary">Comprova automàticament si hi ha versions noves de l\'aplicació</string>
     <string name="pref_enable_acra">Envia informes d\'errors</string>
     <string name="pref_acra_summary">Ajuda a solucionar errades. No s\'enviaran dades sensibles</string>
     <string name="login_title">Inicia la sessió a %1$s</string>
@@ -358,13 +347,11 @@
     <string name="transition_no_previous">No hi ha capítol anterior</string>
     <string name="transition_pages_loading">S\'estan carregant les pàgines…</string>
     <string name="transition_pages_error">No s\'han pogut carregar les pàgines: %1$s</string>
-    <string name="recent_manga_source">%1$s - Cap. %2$s</string>
     <string name="migration_info">Premeu per a seleccionar la font de la qual voleu migrar</string>
     <string name="migration_dialog_what_to_include">Seleccioneu les dades a incloure</string>
     <string name="select">Selecciona</string>
     <string name="migrate">Migra</string>
     <string name="copy">Copia</string>
-    <string name="migrating">S\'està migrant…</string>
     <string name="download_queue_error">No s\'han pogut baixar capítols. Podeu tornar-ho a provar a la secció de baixades</string>
     <string name="notification_update_progress">Progrés de l\'actualització: %1$d/%2$d</string>
     <string name="notification_new_chapters">S\'han trobat nous capítols</string>
@@ -489,7 +476,7 @@
         <item quantity="one">Per a 1 títol</item>
         <item quantity="other">Per a %d títols</item>
     </plurals>
-    <string name="notices">Avisos</string>
+    <string name="notices">Avisos de compilacions de previsualització</string>
     <string name="changelog">Registre de canvis</string>
     <string name="pref_theme_light">Variant del tema clar</string>
     <string name="theme_light_default">Per defecte</string>
@@ -526,4 +513,27 @@
     <string name="action_unpin">Desfixa</string>
     <string name="in_library">A la biblioteca</string>
     <string name="add_to_library">Afegeix a la biblioteca</string>
+    <string name="information_webview_required">El Tachiyomi requereix el WebView</string>
+    <string name="manga_info_collapse">Mostra\'n menys informació</string>
+    <string name="manga_info_expand">Mostra\'n més informació</string>
+    <string name="manga_info_about_label">Quant a</string>
+    <string name="licenses">Llicències de codi obert</string>
+    <string name="website">Lloc web</string>
+    <string name="pref_confirm_exit">Confirma la sortida</string>
+    <string name="confirm_exit">Torneu a prémer Endarrere per a sortir</string>
+    <string name="label_downloaded_only">Només els baixats</string>
+    <string name="channel_backup_restore">Còpia de seguretat i restauració</string>
+    <string name="recent_manga_time">Cap. %1$s - %2$s</string>
+    <string name="restoring_backup_error">Ha fallat la restauració de la còpia de seguretat</string>
+    <string name="creating_backup_error">Ha fallat la còpia de seguretat</string>
+    <string name="restoring_backup_canceled">S\'ha cancel·lat la restauració</string>
+    <string name="restore_in_progress">Ja s\'està fent una restauració</string>
+    <string name="backup_in_progress">Ja s\'està fent una còpia de seguretat</string>
+    <string name="error_invalid_date_supplied">S\'ha indicat una data invàlida</string>
+    <string name="track_finished_reading_date">Data en què el vau acabar a llegir</string>
+    <string name="track_started_reading_date">Data en què el vau començar a llegir</string>
+    <string name="local_source_help_guide">Guia de fonts locals</string>
+    <string name="last_used_source">Utilitzada per darrer cop</string>
+    <string name="check_for_updates">Comprova si hi ha actualitzacions</string>
+    <string name="restore_duration">%02d min i %02d s</string>
 </resources>

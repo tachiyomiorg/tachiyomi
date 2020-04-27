@@ -74,13 +74,11 @@
     <string name="action_save">Uložiť</string>
     <string name="action_reset">Reset</string>
     <string name="action_undo">Krok späť</string>
-    <string name="action_export">Exportovať</string>
     <string name="action_open_log">Otvoriť log</string>
     <string name="action_create">Vytvoriť</string>
     <string name="action_restore">Obnoviť</string>
     <string name="action_open">Otvoriť</string>
     <string name="action_login">Prihlásiť sa</string>
-    <string name="deleting">Maže sa…</string>
     <string name="loading">Načítava sa…</string>
     <string name="app_not_available">Aplikácia nedostupná</string>
     <string name="short_recent_updates">Updaty</string>
@@ -222,20 +220,14 @@
     <string name="pref_backup_service_category">Služby</string>
     <string name="pref_backup_interval">Frekvencia zálohovania</string>
     <string name="pref_backup_slots">Max. počet automatických záloh</string>
-    <string name="dialog_restoring_backup">Obnovujem zálohu
-\n%1$s pridaná do knižnice</string>
     <string name="source_not_found">Zdroj sa nenašiel</string>
-    <string name="dialog_restoring_source_not_found">Obnovujem zálohu
-\n%1$s zdroj sa nenašiel</string>
     <string name="backup_created">Záloha bola vytvorená</string>
     <string name="restore_completed">Obnovenie dokončené</string>
-    <string name="error_opening_log">Log sa nedá otvoriť</string>
     <string name="restore_completed_content">Obnova trvala %1$s.
 \n%2$s nájdených chýb.</string>
     <string name="backup_restore_content">Obnovenie využíva zdroje na načítanie údajov, môžu sa účtovať poplatky operátora.
 \n
 \nPred obnovením skontrolujte, či máte nainštalované všetky potrebné rozšírenia a či ste prihlásení do zdrojov a služieb sledovania.</string>
-    <string name="file_saved">Súbor uložený v %1$s</string>
     <string name="backup_choice">Čo chcete zálohovať\?</string>
     <string name="restoring_backup">Obnovuje sa záloha</string>
     <string name="creating_backup">Vytvára sa záloha</string>
@@ -262,8 +254,6 @@
     <string name="pref_refresh_library_tracking_summary">Aktualizuje stav, skóre a poslednú čítanú kapitolu zo sledovacích služieb</string>
     <string name="version">Verzia</string>
     <string name="build_time">Čas sestavenia</string>
-    <string name="pref_enable_automatic_updates">Skontrolovať aktualizácie</string>
-    <string name="pref_enable_automatic_updates_summary">Automaticky kontroľovať nové verzie aplikácií</string>
     <string name="pref_enable_acra">Odosielať správy o zlyhaní</string>
     <string name="pref_acra_summary">Pomáha opraviť akékoľvek chyby. Nebudú odoslané žiadne citlivé údaje</string>
     <string name="login_title">Prihlásení pre %1$s</string>
@@ -377,13 +367,11 @@
     <string name="transition_no_previous">Žiadna predchádzajúca kapitola</string>
     <string name="transition_pages_loading">Načítání stránok…</string>
     <string name="transition_pages_error">Chyba pri načítání stránok: %1$s</string>
-    <string name="recent_manga_source">%1$s - K.%2$s</string>
     <string name="migration_info">Klepnutím vyberte zdroj, z ktorého chcete migrovať</string>
     <string name="migration_dialog_what_to_include">Vyberte data, ktoré chcete zahrnúť</string>
     <string name="select">Vybrať</string>
     <string name="migrate">Migrovať</string>
     <string name="copy">Kopírovať</string>
-    <string name="migrating">Migrovanie…</string>
     <string name="download_queue_error">Kapitoly sa nepodarilo stiahnuť. Môžete to skúsiť znova v sekcii sťahovania</string>
     <string name="notification_update_progress">Priebeh aktualizácie: %1$d/%2$d</string>
     <string name="notification_new_chapters">Boli nájdené nové kapitoly</string>

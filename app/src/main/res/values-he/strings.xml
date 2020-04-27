@@ -72,7 +72,6 @@
     <string name="migration_selection_prompt">בחר מקור שברצונך להגר ממנו</string>
     <string name="migration_dialog_what_to_include">בחר נתונים כדי לכלול</string>
     <string name="migration_info">הקש כדי לבחור את המקור שתרצה לעבור ממנו</string>
-    <string name="recent_manga_source">%1$s - פרק %2$s</string>
     <string name="updating_library">מעדכן ספרייה</string>
     <string name="transition_pages_error">טעינת העמודים נכשלה: %1$s</string>
     <string name="transition_pages_loading">טוען דפים…</string>
@@ -187,8 +186,6 @@
     <string name="login_title">התחבר אל %1$s</string>
     <string name="pref_acra_summary">עוזר בתיקון באגים. לא יישלחו נתונים רגישים</string>
     <string name="pref_enable_acra">שלח דוחות קריסה</string>
-    <string name="pref_enable_automatic_updates_summary">בדוק אוטומטית עבור גרסאות אפליקציה חדשות</string>
-    <string name="pref_enable_automatic_updates">בדוק עבור עדכונים</string>
     <string name="untrusted_extension_message">תוסף זה נחתם עם אישור לא מהימן ולא הופעל.
 \n
 \nתוסף זדוני יכול לקרוא את אישורי ההתחברות המאוחסנים ב-Tachiyomi או להריץ קוד שרירותי.
@@ -263,7 +260,6 @@
     <string name="short_recent_updates">עדכונים</string>
     <string name="app_not_available">האפליקציה אינה זמינה</string>
     <string name="loading">טוען…</string>
-    <string name="deleting">מוחק…</string>
     <string name="action_webview_refresh">רענון</string>
     <string name="action_webview_forward">קדימה</string>
     <string name="action_webview_back">חזרה</string>
@@ -271,7 +267,6 @@
     <string name="action_open">פתח</string>
     <string name="action_restore">שיחזור</string>
     <string name="action_create">צור</string>
-    <string name="action_export">ייצא</string>
     <string name="action_undo">בטל פעולה אחרונה</string>
     <string name="action_reset">איפוס</string>
     <string name="action_save">שמור</string>
@@ -339,7 +334,6 @@
     <string name="creating_backup">מייצר גיבוי</string>
     <string name="restoring_backup">משחזר גיבוי</string>
     <string name="backup_choice">מה אתה רוצה לגבות\?</string>
-    <string name="file_saved">הקובץ נשמר ב-%1$s</string>
     <string name="backup_restore_content">פעולת שחזור משתמשת במקורות בכדי להשיג נתונים, עלויות הספק עשויות לחול.
 \n
 \nוודא שהתקנת את כל התוספים הנחוצים והתחרת למקורות ושירותי המעקב לפני השחזור.</string>
@@ -347,11 +341,7 @@
 \nנמצאו %2$s שגיאות.</string>
     <string name="restore_completed">השחזור הושלם</string>
     <string name="backup_created">גיבוי נוצר</string>
-    <string name="dialog_restoring_source_not_found">שחזור הגיבוי
-\nהמקור %1$s לא נמצא</string>
     <string name="source_not_found">המקור לא נמצא</string>
-    <string name="dialog_restoring_backup">משחזר גיבוי
-\n%1$s נוסף לספריה</string>
     <string name="pref_backup_slots">מספר גיבויים אוטומטיים מקסימליים</string>
     <string name="pref_backup_interval">תדירות גיבוי</string>
     <string name="pref_backup_service_category">שירות</string>
