@@ -164,7 +164,6 @@
     </style>
 
     <style name="Theme.Widget.GridView.Source">
-        <item name="android:padding">5dp</item>
         <item name="android:gravity">top|left</item>
         <item name="android:smoothScrollbar">true</item>
         <item name="android:cacheColorHint">?android:attr/textColorHint</item>

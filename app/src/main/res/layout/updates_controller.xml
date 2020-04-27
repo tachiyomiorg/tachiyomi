@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:descendantFocusability="blocksDescendants"
-            android:paddingBottom="?attr/actionBarSize"
+            android:paddingBottom="@dimen/action_toolbar_list_padding"
             tools:listitem="@layout/updates_item" />
 
         <eu.kanade.tachiyomi.widget.ActionToolbar
