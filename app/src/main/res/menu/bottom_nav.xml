@@ -13,9 +13,9 @@
         android:icon="@drawable/ic_history_24dp"
         android:title="@string/label_recent_manga" />
     <item
-        android:id="@+id/nav_sources"
+        android:id="@+id/nav_browse"
         android:icon="@drawable/ic_explore_state"
-        android:title="@string/label_sources" />
+        android:title="@string/browse" />
     <item
         android:id="@+id/nav_more"
         android:icon="@drawable/ic_more_horiz_24dp"

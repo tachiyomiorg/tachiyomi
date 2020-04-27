@@ -3,15 +3,12 @@ package eu.kanade.tachiyomi.ui.more
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.download.DownloadController
-import eu.kanade.tachiyomi.ui.extension.ExtensionController
 import eu.kanade.tachiyomi.ui.migration.MigrationController
 import eu.kanade.tachiyomi.ui.setting.SettingsController
 import eu.kanade.tachiyomi.ui.setting.SettingsMainController
-import eu.kanade.tachiyomi.util.preference.badgePreference
 import eu.kanade.tachiyomi.util.preference.iconRes
 import eu.kanade.tachiyomi.util.preference.iconTint
 import eu.kanade.tachiyomi.util.preference.onClick
@@ -21,7 +18,6 @@ import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.openInBrowser
-import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 class MoreController : SettingsController(), RootController {
@@ -39,15 +35,6 @@ class MoreController : SettingsController(), RootController {
         }
 
         preferenceCategory {
-            badgePreference {
-                titleRes = R.string.label_extensions
-                iconRes = R.drawable.ic_extension_24dp
-                iconTint = tintColor
-                setBadge(Injekt.get<PreferencesHelper>().extensionUpdatesCount().get())
-                onClick {
-                    router.pushController(ExtensionController().withFadeTransaction())
-                }
-            }
             preference {
                 titleRes = R.string.label_download_queue
                 iconRes = R.drawable.ic_file_download_black_24dp

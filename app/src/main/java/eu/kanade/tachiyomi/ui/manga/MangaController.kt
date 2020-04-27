@@ -18,7 +18,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.track.TrackManager
-import eu.kanade.tachiyomi.databinding.MangaControllerBinding
+import eu.kanade.tachiyomi.databinding.PagerControllerBinding
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.controller.RxController
@@ -33,7 +33,7 @@ import rx.Subscription
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
-class MangaController : RxController<MangaControllerBinding>, TabbedController {
+class MangaController : RxController<PagerControllerBinding>, TabbedController {
 
     constructor(manga: Manga?, fromSource: Boolean = false) : super(
         Bundle().apply {
@@ -75,7 +75,7 @@ class MangaController : RxController<MangaControllerBinding>, TabbedController {
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        binding = MangaControllerBinding.inflate(inflater)
+        binding = PagerControllerBinding.inflate(inflater)
         return binding.root
     }
 
@@ -87,11 +87,11 @@ class MangaController : RxController<MangaControllerBinding>, TabbedController {
         requestPermissionsSafe(arrayOf(WRITE_EXTERNAL_STORAGE), 301)
 
         adapter = MangaDetailAdapter()
-        binding.mangaPager.offscreenPageLimit = 3
-        binding.mangaPager.adapter = adapter
+        binding.pager.offscreenPageLimit = 3
+        binding.pager.adapter = adapter
 
         if (!fromSource) {
-            binding.mangaPager.currentItem = CHAPTERS_CONTROLLER
+            binding.pager.currentItem = CHAPTERS_CONTROLLER
         }
     }
 
@@ -103,7 +103,7 @@ class MangaController : RxController<MangaControllerBinding>, TabbedController {
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         super.onChangeStarted(handler, type)
         if (type.isEnter) {
-            activity?.tabs?.setupWithViewPager(binding.mangaPager)
+            activity?.tabs?.setupWithViewPager(binding.pager)
             trackingIconSubscription = trackingIconRelay.subscribe { setTrackingIconInternal(it) }
         }
     }

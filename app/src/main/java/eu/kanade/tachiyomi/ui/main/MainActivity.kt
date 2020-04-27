@@ -21,15 +21,14 @@ import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.browse.BrowseController
+import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.download.DownloadController
-import eu.kanade.tachiyomi.ui.extension.ExtensionController
 import eu.kanade.tachiyomi.ui.library.LibraryController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.more.MoreController
 import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
-import eu.kanade.tachiyomi.ui.source.SourceController
-import eu.kanade.tachiyomi.ui.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.util.lang.launchUI
 import eu.kanade.tachiyomi.util.system.WebViewUtil
 import eu.kanade.tachiyomi.util.system.toast
@@ -95,7 +94,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
                     R.id.nav_library -> setRoot(LibraryController(), id)
                     R.id.nav_updates -> setRoot(UpdatesController(), id)
                     R.id.nav_history -> setRoot(HistoryController(), id)
-                    R.id.nav_sources -> setRoot(SourceController(), id)
+                    R.id.nav_browse -> setRoot(BrowseController(), id)
                     R.id.nav_more -> setRoot(MoreController(), id)
                 }
             } else if (!isHandlingShortcut) {
@@ -173,9 +172,9 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
     private fun setExtensionsBadge() {
         val updates = preferences.extensionUpdatesCount().get()
         if (updates > 0) {
-            binding.bottomNav.getOrCreateBadge(R.id.nav_more).number = updates
+            binding.bottomNav.getOrCreateBadge(R.id.nav_browse).number = updates
         } else {
-            binding.bottomNav.removeBadge(R.id.nav_more)
+            binding.bottomNav.removeBadge(R.id.nav_browse)
         }
     }
 
@@ -208,13 +207,13 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
             SHORTCUT_LIBRARY -> setSelectedNavItem(R.id.nav_library)
             SHORTCUT_RECENTLY_UPDATED -> setSelectedNavItem(R.id.nav_updates)
             SHORTCUT_RECENTLY_READ -> setSelectedNavItem(R.id.nav_history)
-            SHORTCUT_CATALOGUES -> setSelectedNavItem(R.id.nav_sources)
+            SHORTCUT_CATALOGUES -> setSelectedNavItem(R.id.nav_browse)
             SHORTCUT_EXTENSIONS -> {
                 if (router.backstackSize > 1) {
                     router.popToRoot()
                 }
-                setSelectedNavItem(R.id.nav_more)
-                router.pushController(ExtensionController().withFadeTransaction())
+                router.pushController(BrowseController(true).withFadeTransaction())
+                setSelectedNavItem(R.id.nav_browse)
             }
             SHORTCUT_MANGA -> {
                 val extras = intent.extras ?: return false

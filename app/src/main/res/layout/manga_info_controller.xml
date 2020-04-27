@@ -5,7 +5,7 @@
     android:id="@id/swipe_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="eu.kanade.tachiyomi.ui.source.browse.BrowseSourceController">
+    tools:context=".ui.browse.source.browse.BrowseSourceController">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

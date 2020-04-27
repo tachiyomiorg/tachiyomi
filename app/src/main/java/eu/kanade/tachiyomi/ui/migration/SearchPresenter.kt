@@ -8,9 +8,9 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.model.SManga
-import eu.kanade.tachiyomi.ui.source.globalsearch.GlobalSearchCardItem
-import eu.kanade.tachiyomi.ui.source.globalsearch.GlobalSearchItem
-import eu.kanade.tachiyomi.ui.source.globalsearch.GlobalSearchPresenter
+import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchCardItem
+import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchItem
+import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchPresenter
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
