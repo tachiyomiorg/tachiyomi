@@ -483,6 +483,7 @@ open class BrowseSourceController(bundle: Bundle) :
      * Shows the progress bar.
      */
     private fun showProgressBar() {
+        binding.emptyView.hide()
         binding.progress.visible()
         snack?.dismiss()
         snack = null
