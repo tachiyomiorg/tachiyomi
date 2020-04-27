@@ -179,7 +179,6 @@
     <string name="source_not_found">Sumber tidak ditemui</string>
     <string name="backup_created">Sandaran dibuat</string>
     <string name="restore_completed">Pemulihan selesai</string>
-    <string name="restore_completed_content">Pemulihan mengambil masa %1$s dengan %2$s ralat</string>
     <string name="backup_restore_content">Pemulihan menggunakan Sambungan untuk memperolehi data, caj telco mungkin dikenakan.
 \n
 \nPastikan anda telah memasang semua Sambungan yang perlu dan telah log masuk ke dalam sumber dan Penjejakan sebelum memulakan pemulihan.</string>
@@ -371,7 +370,7 @@
     <string name="manga_info_full_title_label">Tajuk</string>
     <string name="manga_added_library">Ditambah ke pustaka</string>
     <string name="manga_removed_library">Dibuang dari pustaka</string>
-    <string name="copied_to_clipboard">%1$s disalin ke papan keratan</string>
+    <string name="copied_to_clipboard">%1$s disalin ke papan keratan:%1$s</string>
     <string name="source_not_installed">Sumber tidak dipasang: %1$s</string>
     <string name="custom_download">Muat turun jumlah tersuai</string>
     <string name="download_custom">Tersuai</string>
@@ -529,4 +528,6 @@
     <string name="label_downloaded_only">Dimuat turun sahaja</string>
     <string name="last_used_source">Terakhir digunakan</string>
     <string name="check_for_updates">Semak untuk pengemaskinian</string>
+    <string name="restore_duration">%02d minit, %02d saat</string>
+    <string name="local_source_help_guide">Sumber panduan tempatan</string>
 </resources>
