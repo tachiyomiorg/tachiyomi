@@ -14,6 +14,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.databinding.MangaInfoControllerBinding
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
@@ -37,6 +38,9 @@ import eu.kanade.tachiyomi.util.view.setChips
 import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.util.view.visibleIf
+import java.text.DateFormat
+import java.text.DecimalFormat
+import java.util.Date
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
@@ -57,13 +61,20 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
     private val preferences: PreferencesHelper by injectLazy()
 
+    private val dateFormat: DateFormat by lazy {
+        preferences.dateFormat().getOrDefault()
+    }
+
     private var initialLoad: Boolean = true
 
     private var thumbnailUrl: String? = null
 
     override fun createPresenter(): MangaInfoPresenter {
         val ctrl = parentController as MangaController
-        return MangaInfoPresenter(ctrl.manga!!, ctrl.source!!, ctrl.mangaFavoriteRelay)
+        return MangaInfoPresenter(
+            ctrl.manga!!, ctrl.source!!,
+            ctrl.chapterCountRelay, ctrl.lastUpdateRelay, ctrl.mangaFavoriteRelay
+        )
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
@@ -314,6 +325,27 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
         binding.mangaGenresTagsCompact.visibleIf { isExpanded }
         binding.mangaGenresTagsFullChips.visibleIf { !isExpanded }
+    }
+
+    /**
+     * Update chapter count TextView.
+     *
+     * @param count number of chapters.
+     */
+    fun setChapterCount(count: Float) {
+        if (count > 0f) {
+            binding.mangaChapters.text = DecimalFormat("#.#").format(count)
+        } else {
+            binding.mangaChapters.text = resources?.getString(R.string.unknown)
+        }
+    }
+
+    fun setLastUpdateDate(date: Date) {
+        if (date.time != 0L) {
+            binding.mangaLastUpdate.text = dateFormat.format(date)
+        } else {
+            binding.mangaLastUpdate.text = resources?.getString(R.string.unknown)
+        }
     }
 
     /**

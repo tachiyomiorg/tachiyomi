@@ -71,7 +71,10 @@ class ChaptersController :
 
     override fun createPresenter(): ChaptersPresenter {
         val ctrl = parentController as MangaController
-        return ChaptersPresenter(ctrl.manga!!, ctrl.source!!, ctrl.mangaFavoriteRelay)
+        return ChaptersPresenter(
+            ctrl.manga!!, ctrl.source!!,
+            ctrl.chapterCountRelay, ctrl.lastUpdateRelay, ctrl.mangaFavoriteRelay
+        )
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {

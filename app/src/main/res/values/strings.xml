@@ -421,6 +421,8 @@
     <string name="manga_info_author_label">Author</string>
     <string name="manga_info_artist_label">Artist</string>
     <string name="manga_info_chapters_label">Chapters</string>
+    <string name="manga_info_last_chapter_label">Last chapter</string>
+    <string name="manga_info_latest_data_label">Updated</string>
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Source</string>
     <string name="manga_info_genres_label">Genres</string>

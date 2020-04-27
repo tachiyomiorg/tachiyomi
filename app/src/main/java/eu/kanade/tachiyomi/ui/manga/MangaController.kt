@@ -28,6 +28,7 @@ import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersController
 import eu.kanade.tachiyomi.ui.manga.info.MangaInfoController
 import eu.kanade.tachiyomi.ui.manga.track.TrackController
 import eu.kanade.tachiyomi.util.system.toast
+import java.util.Date
 import kotlinx.android.synthetic.main.main_activity.tabs
 import rx.Subscription
 import uy.kohesive.injekt.Injekt
@@ -63,6 +64,10 @@ class MangaController : RxController<PagerControllerBinding>, TabbedController {
     private var adapter: MangaDetailAdapter? = null
 
     val fromSource = args.getBoolean(FROM_SOURCE_EXTRA, false)
+
+    val lastUpdateRelay: BehaviorRelay<Date> = BehaviorRelay.create()
+
+    val chapterCountRelay: BehaviorRelay<Float> = BehaviorRelay.create()
 
     val mangaFavoriteRelay: PublishRelay<Boolean> = PublishRelay.create()
 
