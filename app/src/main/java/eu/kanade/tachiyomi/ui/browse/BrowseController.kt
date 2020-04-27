@@ -100,10 +100,10 @@ class BrowseController :
         activity?.tabs?.apply {
             val updates = preferences.extensionUpdatesCount().get()
             if (updates > 0) {
-                val badge: BadgeDrawable = getTabAt(1)!!.orCreateBadge
-                badge.isVisible = true
+                val badge: BadgeDrawable? = getTabAt(1)?.orCreateBadge
+                badge?.isVisible = true
             } else {
-                getTabAt(EXTENSIONS_CONTROLLER)!!.removeBadge()
+                getTabAt(EXTENSIONS_CONTROLLER)?.removeBadge()
             }
         }
     }
