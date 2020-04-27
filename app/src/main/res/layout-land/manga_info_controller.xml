@@ -305,7 +305,8 @@
                     <HorizontalScrollView
                         android:id="@+id/manga_genres_tags_compact"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:requiresFadingEdge="horizontal">
 
                         <com.google.android.material.chip.ChipGroup
                             android:id="@+id/manga_genres_tags_compact_chips"
