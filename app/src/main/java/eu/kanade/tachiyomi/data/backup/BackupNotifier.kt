@@ -7,13 +7,17 @@ import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
 import eu.kanade.tachiyomi.data.notification.Notifications
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.system.notificationBuilder
 import eu.kanade.tachiyomi.util.system.notificationManager
 import java.io.File
 import java.util.concurrent.TimeUnit
+import uy.kohesive.injekt.injectLazy
 
 internal class BackupNotifier(private val context: Context) {
+
+    private val preferences: PreferencesHelper by injectLazy()
 
     private val notificationBuilder = context.notificationBuilder(Notifications.CHANNEL_BACKUP_RESTORE) {
         setLargeIcon(BitmapFactory.decodeResource(context.resources, R.mipmap.ic_launcher))
@@ -85,7 +89,10 @@ internal class BackupNotifier(private val context: Context) {
     fun showRestoreProgress(content: String = "", progress: Int = 0, maxAmount: Int = 100): NotificationCompat.Builder {
         val builder = with(notificationBuilder) {
             setContentTitle(context.getString(R.string.restoring_backup))
-            setContentText(content)
+
+            if (!preferences.hideNotificationContent()) {
+                setContentText(content)
+            }
 
             setProgress(maxAmount, progress, false)
             setOngoing(true)
