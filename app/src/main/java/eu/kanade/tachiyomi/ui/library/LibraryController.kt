@@ -17,16 +17,15 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.graphics.drawable.DrawableCompat
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
+import com.f2prateek.rx.preferences.Preference
 import com.google.android.material.tabs.TabLayout
 import com.jakewharton.rxrelay.BehaviorRelay
 import com.jakewharton.rxrelay.PublishRelay
-import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.databinding.LibraryControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
@@ -155,13 +154,11 @@ class LibraryController(
             }
             .launchIn(scope)
 
-        getColumnsPreferenceForCurrentOrientation().asImmediateFlow {
-            mangaPerRow = it
-
-            // Set the adapter again to recalculate the covers height
-            reattachAdapter()
-        }
-            .launchIn(scope)
+        getColumnsPreferenceForCurrentOrientation().asObservable()
+            .doOnNext { mangaPerRow = it }
+            .skip(1)
+            // Set again the adapter to recalculate the covers height
+            .subscribeUntilDestroy { reattachAdapter() }
 
         if (selectedMangas.isNotEmpty()) {
             createActionModeIfNeeded()
