@@ -112,12 +112,20 @@ class LocalSource(private val context: Context) : CatalogueSource {
                     }
                 }
 
-                // Copy the cover from the first chapter found.
-                if (thumbnail_url == null) {
-                    val chapters = fetchChapterList(this).toBlocking().first()
-                    if (chapters.isNotEmpty()) {
+                val chapters = fetchChapterList(this).toBlocking().first()
+                if (chapters.isNotEmpty()) {
+                    val chapter = chapters.last()
+                    val format = getFormat(chapter)
+                    if (format is Format.Epub) {
+                        EpubFile(format.file).use { epub ->
+                            epub.fillMangaMetadata(this)
+                        }
+                    }
+
+                    // Copy the cover from the first chapter found.
+                    if (thumbnail_url == null) {
                         try {
-                            val dest = updateCover(chapters.last(), this)
+                            val dest = updateCover(chapter, this)
                             thumbnail_url = dest?.absolutePath
                         } catch (e: Exception) {
                             Timber.e(e)
@@ -158,14 +166,22 @@ class LocalSource(private val context: Context) : CatalogueSource {
             .map { chapterFile ->
                 SChapter.create().apply {
                     url = "${manga.url}/${chapterFile.name}"
-                    val chapName = if (chapterFile.isDirectory) {
+                    name = if (chapterFile.isDirectory) {
                         chapterFile.name
                     } else {
                         chapterFile.nameWithoutExtension
                     }
-                    val chapNameCut = chapName.replace(manga.title, "", true).trim(' ', '-', '_')
-                    name = if (chapNameCut.isEmpty()) chapName else chapNameCut
                     date_upload = chapterFile.lastModified()
+
+                    val format = getFormat(this)
+                    if (format is Format.Epub) {
+                        EpubFile(format.file).use { epub ->
+                            epub.fillChapterMetadata(this)
+                        }
+                    }
+
+                    val chapNameCut = stripMangaTitle(name, manga.title)
+                    if (chapNameCut.isNotEmpty()) name = chapNameCut
                     ChapterRecognition.parseChapterNumber(this, manga)
                 }
             }
@@ -178,6 +194,40 @@ class LocalSource(private val context: Context) : CatalogueSource {
             .toList()
 
         return Observable.just(chapters)
+    }
+
+    /**
+     * Strips the manga title from a chapter name, matching only based on alphanumeric and whitespace
+     * characters.
+     */
+    private fun stripMangaTitle(chapterName: String, mangaTitle: String): String {
+        var chapterNameIndex = 0
+        var mangaTitleIndex = 0
+        while (chapterNameIndex < chapterName.length && mangaTitleIndex < mangaTitle.length) {
+            val chapterChar = chapterName.get(chapterNameIndex)
+            val mangaChar = mangaTitle.get(mangaTitleIndex)
+            if (!chapterChar.equals(mangaChar, true)) {
+                val invalidChapterChar = !chapterChar.isLetterOrDigit() && !chapterChar.isWhitespace()
+                val invalidMangaChar = !mangaChar.isLetterOrDigit() && !mangaChar.isWhitespace()
+
+                if (!invalidChapterChar && !invalidMangaChar) {
+                    return chapterName
+                }
+
+                if (invalidChapterChar) {
+                    chapterNameIndex++
+                }
+
+                if (invalidMangaChar) {
+                    mangaTitleIndex++
+                }
+            } else {
+                chapterNameIndex++
+                mangaTitleIndex++
+            }
+        }
+
+        return chapterName.substring(chapterNameIndex).trimStart(' ', '-', '_', ',', ':')
     }
 
     override fun fetchPageList(chapter: SChapter): Observable<List<Page>> {
