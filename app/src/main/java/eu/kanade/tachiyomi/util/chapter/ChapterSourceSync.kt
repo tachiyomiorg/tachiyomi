@@ -120,7 +120,10 @@ fun syncChaptersWithSource(
                     readded.add(c)
                 }
             }
-            db.insertChapters(toAdd).executeAsBlocking()
+            val chapters = db.insertChapters(toAdd).executeAsBlocking()
+            toAdd.forEach { chapter ->
+                chapter.id = chapters.results().getValue(chapter).insertedId()
+            }
         }
 
         if (toChange.isNotEmpty()) {
@@ -131,7 +134,15 @@ fun syncChaptersWithSource(
         db.fixChaptersSourceOrder(sourceChapters).executeAsBlocking()
 
         // Set this manga as updated since chapters were changed
-        manga.last_update = Date().time
+        val newestChapter = db.getChapters(manga).executeAsBlocking().maxBy { it.date_upload }
+        val dateFetch = newestChapter?.date_upload ?: manga.last_update
+        if (dateFetch == 0L) {
+            if (toAdd.isNotEmpty()) {
+                manga.last_update = Date().time
+            }
+        } else {
+            manga.last_update = dateFetch
+        }
         db.updateLastUpdated(manga).executeAsBlocking()
     }
 

@@ -116,8 +116,6 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
             return Intent(context, ReaderActivity::class.java).apply {
                 putExtra("manga", manga.id)
                 putExtra("chapter", chapter.id)
-                // chapters just added from library updates don't have an id yet
-                putExtra("chapterUrl", chapter.url)
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             }
         }
@@ -141,14 +139,12 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         if (presenter.needsInit()) {
             val manga = intent.extras!!.getLong("manga", -1)
             val chapter = intent.extras!!.getLong("chapter", -1)
-            val chapterUrl = intent.extras!!.getString("chapterUrl", "")
-            if (manga == -1L || chapterUrl == "" && chapter == -1L) {
+            if (manga == -1L || chapter == -1L) {
                 finish()
                 return
             }
             NotificationReceiver.dismissNotification(this, manga.hashCode(), Notifications.ID_NEW_CHAPTERS)
-            if (chapter > -1) presenter.init(manga, chapter)
-            else presenter.init(manga, chapterUrl)
+            presenter.init(manga, chapter)
         }
 
         if (savedInstanceState != null) {
