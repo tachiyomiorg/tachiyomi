@@ -10,6 +10,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.databinding.MigrationControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.browse.source.SourceDividerItemDecoration
 
 class MigrationController :
     NucleusController<MigrationControllerBinding, MigrationPresenter>(),
@@ -39,6 +40,7 @@ class MigrationController :
         adapter = FlexibleAdapter(null, this)
         binding.migrationRecycler.layoutManager = LinearLayoutManager(view.context)
         binding.migrationRecycler.adapter = adapter
+        binding.migrationRecycler.addItemDecoration(SourceDividerItemDecoration(view.context))
     }
 
     override fun onDestroyView(view: View) {
