@@ -366,6 +366,10 @@
     <!-- More -->
     <string name="label_downloaded_only">Downloaded only</string>
     <string name="downloaded_only_summary">Filters all manga in your library</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">1 remaining</item>
+        <item quantity="other">%1$s remaining</item>
+    </plurals>
 
 
     <!-- Login dialog -->

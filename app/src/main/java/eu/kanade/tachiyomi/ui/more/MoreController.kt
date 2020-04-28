@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import androidx.preference.Preference
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
@@ -25,11 +26,14 @@ import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.openInBrowser
 import uy.kohesive.injekt.api.get
+import uy.kohesive.injekt.injectLazy
 
 class MoreController :
     SettingsController(),
     RootController,
     NoToolbarElevationController {
+
+    private val downloadManager: DownloadManager by injectLazy()
 
     override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
         titleRes = R.string.label_more
@@ -49,6 +53,19 @@ class MoreController :
         preferenceCategory {
             preference {
                 titleRes = R.string.label_download_queue
+
+                if (downloadManager.queue.isNotEmpty()) {
+                    downloadManager.queue.getUpdatedObservable()
+                        .doOnNext {
+                            summary = if (it.isNullOrEmpty()) {
+                                null
+                            } else {
+                                resources?.getQuantityString(R.plurals.download_queue_summary, it.size, it.size)
+                            }
+                        }
+                        .subscribe()
+                }
+
                 iconRes = R.drawable.ic_file_download_black_24dp
                 iconTint = tintColor
                 onClick {
