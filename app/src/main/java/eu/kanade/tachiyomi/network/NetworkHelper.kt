@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.network
 
 import android.content.Context
 import java.io.File
+import java.util.concurrent.TimeUnit
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 
@@ -16,6 +17,8 @@ class NetworkHelper(context: Context) {
     val client = OkHttpClient.Builder()
         .cookieJar(cookieManager)
         .cache(Cache(cacheDir, cacheSize))
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .readTimeout(30, TimeUnit.SECONDS)
         .build()
 
     val cloudflareClient = client.newBuilder()
