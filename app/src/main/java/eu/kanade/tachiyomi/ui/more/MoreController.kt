@@ -14,6 +14,7 @@ import eu.kanade.tachiyomi.util.preference.iconTint
 import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
+import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.getResourceColor
@@ -30,6 +31,7 @@ class MoreController : SettingsController(), RootController {
         switchPreference {
             key = Keys.downloadedOnly
             titleRes = R.string.label_downloaded_only
+            summaryRes = R.string.downloaded_only_summary
             iconRes = R.drawable.ic_cloud_off_24dp
             iconTint = tintColor
         }

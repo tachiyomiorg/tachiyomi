@@ -397,7 +397,7 @@ class ChaptersPresenter(
      * Whether downloaded only mode is enabled.
      */
     fun forceDownloaded(): Boolean {
-        return preferences.downloadedOnly().get()
+        return manga.favorite && preferences.downloadedOnly().get()
     }
 
     /**

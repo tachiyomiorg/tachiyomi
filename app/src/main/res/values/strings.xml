@@ -12,7 +12,6 @@
 
     <!-- Activities and fragments labels (toolbar title) -->
     <string name="label_more">More</string>
-    <string name="label_downloaded_only">Downloaded only</string>
     <string name="label_settings">Settings</string>
     <string name="label_download_queue">Download queue</string>
     <string name="label_library">Library</string>
@@ -305,7 +304,7 @@
     <string name="pref_auto_update_manga_sync">Sync chapters after reading</string>
     <string name="services">Services</string>
 
-    <!-- Backup section -->
+      <!-- Backup section -->
     <string name="backup">Backup</string>
     <string name="pref_create_backup">Create backup</string>
     <string name="pref_create_backup_summ">Can be used to restore current library</string>
@@ -362,6 +361,11 @@
     <!-- ACRA -->
     <string name="pref_enable_acra">Send crash reports</string>
     <string name="pref_acra_summary">Helps fix any bugs. No sensitive data will be sent</string>
+
+
+    <!-- More -->
+    <string name="label_downloaded_only">Downloaded only</string>
+    <string name="downloaded_only_summary">Filters all manga in your library</string>
 
 
     <!-- Login dialog -->
