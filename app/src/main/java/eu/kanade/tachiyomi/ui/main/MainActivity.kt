@@ -212,8 +212,8 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
                 if (router.backstackSize > 1) {
                     router.popToRoot()
                 }
-                router.pushController(BrowseController(true).withFadeTransaction())
                 setSelectedNavItem(R.id.nav_browse)
+                router.pushController(BrowseController(true).withFadeTransaction())
             }
             SHORTCUT_MANGA -> {
                 val extras = intent.extras ?: return false
