@@ -10,6 +10,7 @@ import eu.kanade.tachiyomi.util.preference.intListPreference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
+import eu.kanade.tachiyomi.util.system.hasDisplayCutout
 
 class SettingsReaderController : SettingsController() {
 
@@ -86,9 +87,7 @@ class SettingsReaderController : SettingsController() {
                 defaultValue = true
             }
 
-            val hasDisplayCutout = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P &&
-                activity?.window?.decorView?.rootWindowInsets?.displayCutout != null
-            if (hasDisplayCutout) {
+            if (activity?.hasDisplayCutout() == true) {
                 switchPreference {
                     key = Keys.cutoutShort
                     titleRes = R.string.pref_cutout_short

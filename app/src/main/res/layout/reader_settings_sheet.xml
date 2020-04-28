@@ -132,7 +132,6 @@
         android:layout_height="wrap_content"
         android:text="@string/pref_cutout_short"
         android:textColor="?android:attr/textColorSecondary"
-        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/fullscreen" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
