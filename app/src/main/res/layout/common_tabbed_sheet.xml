@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/library_settings_tabs"
+        android:id="@+id/tabs"
         style="@style/Theme.Widget.Tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
         app:tabMode="fixed" />
 
     <eu.kanade.tachiyomi.widget.MaxHeightViewPager
-        android:id="@+id/library_settings_pager"
+        android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

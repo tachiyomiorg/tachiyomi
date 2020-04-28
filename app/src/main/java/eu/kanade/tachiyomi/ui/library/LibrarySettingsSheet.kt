@@ -4,54 +4,43 @@ import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import android.view.ViewGroup
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.databinding.LibrarySettingsSheetBinding
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
-import eu.kanade.tachiyomi.widget.ViewPagerAdapter
+import eu.kanade.tachiyomi.widget.TabbedBottomSheetDialog
 import uy.kohesive.injekt.injectLazy
 
 class LibrarySettingsSheet(
     private val activity: Activity,
-    private val onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
-) : BottomSheetDialog(activity) {
+    onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
+) : TabbedBottomSheetDialog(activity) {
 
-    val filters = Filter(activity)
-
-    private val tabItems = listOf(
-        Pair(R.string.action_filter, filters),
-        Pair(R.string.action_sort, Sort(activity)),
-        Pair(R.string.action_display, Display(activity))
-    )
+    val filters: Filter
+    private val sort: Sort
+    private val display: Display
 
     init {
-        val binding: LibrarySettingsSheetBinding = LibrarySettingsSheetBinding.inflate(activity.layoutInflater)
+        filters = Filter(activity)
+        filters.onGroupClicked = onGroupClickListener
 
-        val adapter = LibrarySettingsSheetAdapter()
-        binding.librarySettingsPager.adapter = adapter
-        binding.librarySettingsTabs.setupWithViewPager(binding.librarySettingsPager)
+        sort = Sort(activity)
+        sort.onGroupClicked = onGroupClickListener
 
-        setContentView(binding.root)
+        display = Display(activity)
+        display.onGroupClicked = onGroupClickListener
     }
 
-    private inner class LibrarySettingsSheetAdapter : ViewPagerAdapter() {
+    override fun getTabViews(): List<View> = listOf(
+        filters,
+        sort,
+        display
+    )
 
-        override fun createView(container: ViewGroup, position: Int): View {
-            val view = tabItems[position].second
-            view.onGroupClicked = onGroupClickListener
-            return view
-        }
-
-        override fun getCount(): Int {
-            return tabItems.size
-        }
-
-        override fun getPageTitle(position: Int): CharSequence {
-            return activity.resources!!.getString(tabItems[position].first)
-        }
-    }
+    override fun getTabTitles(): List<Int> = listOf(
+        R.string.action_filter,
+        R.string.action_sort,
+        R.string.action_display
+    )
 
     /**
      * Filters group (unread, downloaded, ...).
