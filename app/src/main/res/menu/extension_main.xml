@@ -16,10 +16,4 @@
         app:iconTint="?attr/colorOnPrimary"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/action_auto_check"
-        android:checkable="true"
-        android:title="@string/pref_enable_automatic_extension_updates"
-        app:showAsAction="never" />
-
 </menu>

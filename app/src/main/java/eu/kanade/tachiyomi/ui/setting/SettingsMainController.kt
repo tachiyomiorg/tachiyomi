@@ -48,6 +48,12 @@ class SettingsMainController : SettingsController() {
             onClick { navigateTo(SettingsTrackingController()) }
         }
         preference {
+            iconRes = R.drawable.ic_explore_24dp
+            iconTint = tintColor
+            titleRes = R.string.browse
+            onClick { navigateTo(SettingsBrowseController()) }
+        }
+        preference {
             iconRes = R.drawable.ic_backup_24dp
             iconTint = tintColor
             titleRes = R.string.backup
