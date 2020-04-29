@@ -218,6 +218,9 @@ open class ExtendedNavigationView @JvmOverloads constructor(
                     val item = items[position] as Item.CheckboxGroup
                     holder.check.setText(item.resTitle)
                     holder.check.isChecked = item.checked
+
+                    // Allow disabling the holder
+                    holder.itemView.isClickable = item.enabled
                     holder.check.isEnabled = item.enabled
                 }
                 is MultiStateHolder -> {
