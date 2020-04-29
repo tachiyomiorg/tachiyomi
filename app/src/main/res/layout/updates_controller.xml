@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
@@ -22,7 +23,8 @@
             android:id="@+id/action_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom" />
+            android:layout_gravity="bottom"
+            app:layout_dodgeInsetEdges="bottom" />
 
         <eu.kanade.tachiyomi.widget.EmptyView
             android:id="@+id/empty_view"
