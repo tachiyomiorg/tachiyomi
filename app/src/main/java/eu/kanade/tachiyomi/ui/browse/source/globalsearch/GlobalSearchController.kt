@@ -100,6 +100,7 @@ open class GlobalSearchController(
         // Initialize search menu
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
+        searchView.maxWidth = Int.MAX_VALUE
 
         searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {

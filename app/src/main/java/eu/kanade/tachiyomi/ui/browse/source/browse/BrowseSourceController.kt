@@ -233,6 +233,7 @@ open class BrowseSourceController(bundle: Bundle) :
         // Initialize search menu
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
+        searchView.maxWidth = Int.MAX_VALUE
 
         val query = presenter.query
         if (!query.isBlank()) {

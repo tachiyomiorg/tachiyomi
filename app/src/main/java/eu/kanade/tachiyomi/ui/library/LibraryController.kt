@@ -326,6 +326,7 @@ class LibraryController(
 
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
+        searchView.maxWidth = Int.MAX_VALUE
 
         searchView.queryTextChanges()
             // Ignore events if this controller isn't at the top
