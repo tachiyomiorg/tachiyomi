@@ -5,11 +5,11 @@
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
     android:elevation="2dp"
-    android:padding="48dp">
+    android:padding="32dp">
 
     <ImageView
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_gravity="center"
         app:srcCompat="@drawable/ic_tachi"
         app:tint="?attr/colorOnPrimary" />
