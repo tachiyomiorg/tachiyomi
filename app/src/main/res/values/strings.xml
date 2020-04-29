@@ -160,7 +160,7 @@
 
       <!-- Library section -->
     <string name="pref_category_display">Display</string>
-    <string name="pref_library_columns">Library manga per row</string>
+    <string name="pref_library_columns">Items per row</string>
     <string name="portrait">Portrait</string>
     <string name="landscape">Landscape</string>
     <string name="default_columns">Default</string>
@@ -305,7 +305,7 @@
 
       <!-- Browse section -->
     <string name="pref_enable_automatic_extension_updates">Check for extension updates</string>
-    <string name="pref_search_pinned_sources_only">Only include pinned sources in global search</string>
+    <string name="pref_search_pinned_sources_only">Only include pinned sources</string>
 
       <!-- Backup section -->
     <string name="backup">Backup</string>
