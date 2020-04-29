@@ -79,6 +79,11 @@ object Migrations {
                 }
                 LibraryUpdateJob.setupTask(context)
                 BackupCreatorJob.setupTask(context)
+
+                // New extension update check job
+                if (preferences.automaticExtUpdates().get()) {
+                    ExtensionUpdateJob.setupTask(context)
+                }
             }
             return true
         }
