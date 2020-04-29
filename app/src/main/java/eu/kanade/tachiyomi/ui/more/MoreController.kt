@@ -6,6 +6,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.download.DownloadManager
+import eu.kanade.tachiyomi.data.download.DownloadService
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
@@ -25,7 +26,7 @@ import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.openInBrowser
-import uy.kohesive.injekt.api.get
+import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.injectLazy
 
 class MoreController :
@@ -34,6 +35,8 @@ class MoreController :
     NoToolbarElevationController {
 
     private val downloadManager: DownloadManager by injectLazy()
+    private var isDownloading: Boolean = false
+    private var downloadQueueSize: Int = 0
 
     override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
         titleRes = R.string.label_more
@@ -55,15 +58,7 @@ class MoreController :
                 titleRes = R.string.label_download_queue
 
                 if (downloadManager.queue.isNotEmpty()) {
-                    downloadManager.queue.getUpdatedObservable()
-                        .doOnNext {
-                            summary = if (it.isNullOrEmpty()) {
-                                null
-                            } else {
-                                resources?.getQuantityString(R.plurals.download_queue_summary, it.size, it.size)
-                            }
-                        }
-                        .subscribe()
+                    initDownloadQueueSummary(this)
                 }
 
                 iconRes = R.drawable.ic_file_download_black_24dp
@@ -107,6 +102,32 @@ class MoreController :
                     activity?.openInBrowser(URL_HELP)
                 }
             }
+        }
+    }
+
+    private fun initDownloadQueueSummary(preference: Preference) {
+        // Handle running/paused status change
+        DownloadService.runningRelay
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeUntilDestroy { isRunning ->
+                isDownloading = isRunning
+                updateDownloadQueueSummary(preference)
+            }
+
+        // Handle queue progress updating
+        downloadManager.queue.getUpdatedObservable()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeUntilDestroy {
+                downloadQueueSize = it.size
+                updateDownloadQueueSummary(preference)
+            }
+    }
+
+    private fun updateDownloadQueueSummary(preference: Preference) {
+        preference.summary = when {
+            downloadQueueSize == 0 -> null
+            !isDownloading -> resources?.getString(R.string.paused)
+            else -> resources?.getQuantityString(R.plurals.download_queue_summary, downloadQueueSize, downloadQueueSize)
         }
     }
 
