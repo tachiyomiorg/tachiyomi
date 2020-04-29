@@ -114,21 +114,25 @@ open class GlobalSearchPresenter(
     private fun getSourcesToQuery(): List<CatalogueSource> {
         val filter = extensionFilter
         val enabledSources = getEnabledSources()
-        if (filter.isNullOrEmpty()) {
-            return enabledSources
+        var filteredSources: List<CatalogueSource>? = null
+
+        if (!filter.isNullOrEmpty()) {
+            filteredSources = extensionManager.installedExtensions
+                .filter { it.pkgName == filter }
+                .flatMap { it.sources }
+                .filter { it in enabledSources }
+                .filterIsInstance<CatalogueSource>()
         }
 
-        val filterSources = extensionManager.installedExtensions
-            .filter { it.pkgName == filter }
-            .flatMap { it.sources }
-            .filter { it in enabledSources }
-            .filterIsInstance<CatalogueSource>()
-
-        if (filterSources.isEmpty()) {
-            return enabledSources
+        if (filteredSources != null && filteredSources.isNotEmpty()) {
+            return filteredSources
         }
 
-        return filterSources
+        val onlyPinnedSources = preferences.searchPinnedSourcesOnly()
+        val pinnedCatalogues = preferences.pinnedCatalogues().get()
+
+        return enabledSources
+            .filter { if (onlyPinnedSources) it.id.toString() in pinnedCatalogues else true }
     }
 
     /**

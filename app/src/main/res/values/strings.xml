@@ -212,7 +212,6 @@
     <string name="ext_version_info">Version: %1$s</string>
     <string name="ext_language_info">Language: %1$s</string>
     <string name="ext_empty_preferences">No preferences to edit for this extension</string>
-    <string name="pref_enable_automatic_extension_updates">Check for extension updates</string>
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>
@@ -300,9 +299,13 @@
     <string name="pref_download_new">Download new chapters</string>
     <string name="pref_download_new_categories">Categories to include in download</string>
 
-      <!-- Sync section -->
+      <!-- Tracking section -->
     <string name="pref_auto_update_manga_sync">Sync chapters after reading</string>
     <string name="services">Services</string>
+
+      <!-- Browse section -->
+    <string name="pref_enable_automatic_extension_updates">Check for extension updates</string>
+    <string name="pref_search_pinned_sources_only">Only include pinned sources in global search</string>
 
       <!-- Backup section -->
     <string name="backup">Backup</string>

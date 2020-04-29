@@ -25,5 +25,10 @@ class SettingsBrowseController : SettingsController() {
                 true
             }
         }
+        switchPreference {
+            key = Keys.searchPinnedSourcesOnly
+            titleRes = R.string.pref_search_pinned_sources_only
+            defaultValue = false
+        }
     }
 }

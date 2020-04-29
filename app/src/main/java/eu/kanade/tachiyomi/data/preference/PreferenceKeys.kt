@@ -143,6 +143,8 @@ object PreferenceKeys {
 
     const val alwaysShowChapterTransition = "always_show_chapter_transition"
 
+    const val searchPinnedSourcesOnly = "search_pinned_sources_only"
+
     fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 
     fun trackPassword(syncId: Int) = "pref_mangasync_password_$syncId"
