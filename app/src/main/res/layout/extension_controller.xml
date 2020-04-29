@@ -14,7 +14,7 @@
             android:id="@+id/ext_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/extension_card_header" />
+            tools:listitem="@layout/source_main_controller_card_header" />
 
     </eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout>
 

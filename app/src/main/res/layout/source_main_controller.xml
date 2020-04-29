@@ -9,7 +9,7 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/source_main_controller_card" />
+        tools:listitem="@layout/source_main_controller_card_header" />
 
     <eu.davidea.fastscroller.FastScroller
         android:id="@+id/fast_scroller"
