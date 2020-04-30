@@ -35,6 +35,7 @@ import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
+import eu.kanade.tachiyomi.util.view.visible
 import java.io.IOException
 import kotlinx.android.synthetic.main.main_activity.tabs
 import kotlinx.coroutines.flow.filter
@@ -171,6 +172,10 @@ class LibraryController(
                 is LibrarySettingsSheet.Display.DisplayGroup -> reattachAdapter()
                 is LibrarySettingsSheet.Display.BadgeGroup -> onDownloadBadgeChanged()
             }
+        }
+
+        if (preferences.downloadedOnly().get()) {
+            binding.downloadedOnly.visible()
         }
     }
 
