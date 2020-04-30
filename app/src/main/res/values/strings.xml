@@ -630,5 +630,7 @@
     <string name="channel_new_chapters">Chapter updates</string>
     <string name="channel_ext_updates">Extension updates</string>
     <string name="channel_backup_restore">Backup and restore</string>
+    <string name="channel_backup_restore_progress">Progress</string>
+    <string name="channel_backup_restore_complete">Complete</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.notification
 
 import android.app.NotificationChannel
+import android.app.NotificationChannelGroup
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
@@ -48,10 +49,12 @@ object Notifications {
     /**
      * Notification channel and ids used by the backup/restore system.
      */
-    const val CHANNEL_BACKUP_RESTORE = "backup_restore_channel"
+    private const val GROUP_BACK_RESTORE = "group_backup_restore"
+    const val CHANNEL_BACKUP_RESTORE_PROGRESS = "backup_restore_progress_channel"
     const val ID_BACKUP_PROGRESS = -501
-    const val ID_BACKUP_COMPLETE = -502
     const val ID_RESTORE_PROGRESS = -503
+    const val CHANNEL_BACKUP_RESTORE_COMPLETE = "backup_restore_complete_channel"
+    const val ID_BACKUP_COMPLETE = -502
     const val ID_RESTORE_COMPLETE = -504
 
     /**
@@ -61,6 +64,9 @@ object Notifications {
      */
     fun createChannels(context: Context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
+
+        val backupRestoreGroup = NotificationChannelGroup(GROUP_BACK_RESTORE, context.getString(R.string.channel_backup_restore))
+        context.notificationManager.createNotificationChannelGroup(backupRestoreGroup)
 
         val channels = listOf(
             NotificationChannel(
@@ -88,9 +94,17 @@ object Notifications {
                 NotificationManager.IMPORTANCE_DEFAULT
             ),
             NotificationChannel(
-                CHANNEL_BACKUP_RESTORE, context.getString(R.string.channel_backup_restore),
+                CHANNEL_BACKUP_RESTORE_PROGRESS, context.getString(R.string.channel_backup_restore_progress),
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                group = GROUP_BACK_RESTORE
+                setShowBadge(false)
+            },
+            NotificationChannel(
+                CHANNEL_BACKUP_RESTORE_COMPLETE, context.getString(R.string.channel_backup_restore_complete),
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
+                group = GROUP_BACK_RESTORE
                 setShowBadge(false)
             }
         )

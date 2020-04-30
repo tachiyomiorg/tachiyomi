@@ -19,7 +19,14 @@ internal class BackupNotifier(private val context: Context) {
 
     private val preferences: PreferencesHelper by injectLazy()
 
-    private val notificationBuilder = context.notificationBuilder(Notifications.CHANNEL_BACKUP_RESTORE) {
+    private val progressNotificationBuilder = context.notificationBuilder(Notifications.CHANNEL_BACKUP_RESTORE_PROGRESS) {
+        setLargeIcon(BitmapFactory.decodeResource(context.resources, R.mipmap.ic_launcher))
+        setSmallIcon(R.drawable.ic_tachi)
+        setAutoCancel(false)
+        setOngoing(true)
+    }
+
+    private val completeNotificationBuilder = context.notificationBuilder(Notifications.CHANNEL_BACKUP_RESTORE_COMPLETE) {
         setLargeIcon(BitmapFactory.decodeResource(context.resources, R.mipmap.ic_launcher))
         setSmallIcon(R.drawable.ic_tachi)
         setAutoCancel(false)
@@ -30,11 +37,10 @@ internal class BackupNotifier(private val context: Context) {
     }
 
     fun showBackupProgress(): NotificationCompat.Builder {
-        val builder = with(notificationBuilder) {
+        val builder = with(progressNotificationBuilder) {
             setContentTitle(context.getString(R.string.creating_backup))
 
             setProgress(0, 0, true)
-            setOngoing(true)
         }
 
         builder.show(Notifications.ID_BACKUP_PROGRESS)
@@ -45,31 +51,23 @@ internal class BackupNotifier(private val context: Context) {
     fun showBackupError(error: String?) {
         context.notificationManager.cancel(Notifications.ID_BACKUP_PROGRESS)
 
-        with(notificationBuilder) {
+        with(completeNotificationBuilder) {
             setContentTitle(context.getString(R.string.creating_backup_error))
             setContentText(error)
 
-            // Remove progress bar
-            setProgress(0, 0, false)
-            setOngoing(false)
+            show(Notifications.ID_BACKUP_COMPLETE)
         }
-
-        notificationBuilder.show(Notifications.ID_BACKUP_COMPLETE)
     }
 
     fun showBackupComplete(unifile: UniFile) {
         context.notificationManager.cancel(Notifications.ID_BACKUP_PROGRESS)
 
-        with(notificationBuilder) {
+        with(completeNotificationBuilder) {
             setContentTitle(context.getString(R.string.backup_created))
 
             if (unifile.filePath != null) {
                 setContentText(unifile.filePath)
             }
-
-            // Remove progress bar
-            setProgress(0, 0, false)
-            setOngoing(false)
 
             // Clear old actions if they exist
             if (mActions.isNotEmpty()) {
@@ -81,13 +79,13 @@ internal class BackupNotifier(private val context: Context) {
                 context.getString(R.string.action_share),
                 NotificationReceiver.shareBackupPendingBroadcast(context, unifile.uri, Notifications.ID_BACKUP_COMPLETE)
             )
-        }
 
-        notificationBuilder.show(Notifications.ID_BACKUP_COMPLETE)
+            show(Notifications.ID_BACKUP_COMPLETE)
+        }
     }
 
     fun showRestoreProgress(content: String = "", progress: Int = 0, maxAmount: Int = 100): NotificationCompat.Builder {
-        val builder = with(notificationBuilder) {
+        val builder = with(progressNotificationBuilder) {
             setContentTitle(context.getString(R.string.restoring_backup))
 
             if (!preferences.hideNotificationContent()) {
@@ -95,7 +93,6 @@ internal class BackupNotifier(private val context: Context) {
             }
 
             setProgress(maxAmount, progress, false)
-            setOngoing(true)
 
             // Clear old actions if they exist
             if (mActions.isNotEmpty()) {
@@ -117,16 +114,12 @@ internal class BackupNotifier(private val context: Context) {
     fun showRestoreError(error: String?) {
         context.notificationManager.cancel(Notifications.ID_RESTORE_PROGRESS)
 
-        with(notificationBuilder) {
+        with(completeNotificationBuilder) {
             setContentTitle(context.getString(R.string.restoring_backup_error))
             setContentText(error)
 
-            // Remove progress bar
-            setProgress(0, 0, false)
-            setOngoing(false)
+            show(Notifications.ID_RESTORE_COMPLETE)
         }
-
-        notificationBuilder.show(Notifications.ID_RESTORE_COMPLETE)
     }
 
     fun showRestoreComplete(time: Long, errorCount: Int, path: String?, file: String?) {
@@ -140,16 +133,9 @@ internal class BackupNotifier(private val context: Context) {
             )
         )
 
-        with(notificationBuilder) {
-            setSmallIcon(R.drawable.ic_tachi)
-            setAutoCancel(false)
-
+        with(completeNotificationBuilder) {
             setContentTitle(context.getString(R.string.restore_completed))
             setContentText(context.getString(R.string.restore_completed_content, timeString, errorCount))
-
-            // Remove progress bar
-            setProgress(0, 0, false)
-            setOngoing(false)
 
             // Clear old actions if they exist
             if (mActions.isNotEmpty()) {
@@ -166,8 +152,8 @@ internal class BackupNotifier(private val context: Context) {
                     NotificationReceiver.openErrorLogPendingActivity(context, uri)
                 )
             }
-        }
 
-        notificationBuilder.show(Notifications.ID_RESTORE_COMPLETE)
+            show(Notifications.ID_RESTORE_COMPLETE)
+        }
     }
 }
