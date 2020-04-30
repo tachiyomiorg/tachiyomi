@@ -2,11 +2,15 @@
 /local.properties
 /.idea/workspace.xml
 .DS_Store
-/build
 .idea/
 *iml
 *.iml
+
+# Built files
 */build
+/build
+*.apk
+app/**/output.json
 
 # Hebrew assets are copied on build
 app/src/main/res/values-iw/
