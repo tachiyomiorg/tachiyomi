@@ -95,7 +95,7 @@ object Notifications {
             ),
             NotificationChannel(
                 CHANNEL_BACKUP_RESTORE_PROGRESS, context.getString(R.string.channel_backup_restore_progress),
-                NotificationManager.IMPORTANCE_DEFAULT
+                NotificationManager.IMPORTANCE_LOW
             ).apply {
                 group = GROUP_BACK_RESTORE
                 setShowBadge(false)
