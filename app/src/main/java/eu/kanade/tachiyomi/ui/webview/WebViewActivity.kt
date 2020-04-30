@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.ui.webview
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.Menu
@@ -10,6 +11,7 @@ import android.view.MenuItem
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import androidx.core.graphics.ColorUtils
+import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.databinding.WebviewActivityBinding
 import eu.kanade.tachiyomi.source.SourceManager
@@ -62,6 +64,12 @@ class WebViewActivity : BaseActivity<WebviewActivityBinding>() {
             }
 
             supportActionBar?.subtitle = url
+
+            // Debug mode (chrome://inspect/#devices)
+            if (BuildConfig.DEBUG && 0 != applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) {
+                WebView.setWebContentsDebuggingEnabled(true)
+            }
+
             binding.webview.settings.javaScriptEnabled = true
 
             binding.webview.webChromeClient = object : WebChromeClient() {
