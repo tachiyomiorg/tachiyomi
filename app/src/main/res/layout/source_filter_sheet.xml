@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/colorSurface"
         android:elevation="2dp"
         android:gravity="center"
         android:paddingStart="?attr/listPreferredItemPaddingStart"
@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="?attr/colorOnBackground" />
+            app:tint="?attr/colorOnSurface" />
 
         <Button
             android:id="@+id/reset_btn"
