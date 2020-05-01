@@ -10,8 +10,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
-import com.bluelinelabs.conductor.RouterTransaction
-import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
@@ -90,9 +88,7 @@ open class ExtensionController :
             R.id.action_search -> expandActionViewFromInteraction = true
             R.id.action_settings -> {
                 (parentController as BrowseController).pushController(
-                    (RouterTransaction.with(ExtensionFilterController()))
-                        .popChangeHandler(SettingsExtensionsFadeChangeHandler())
-                        .pushChangeHandler(FadeChangeHandler())
+                    ExtensionFilterController().withFadeTransaction()
                 )
             }
             else -> return super.onOptionsItemSelected(item)
@@ -102,7 +98,7 @@ open class ExtensionController :
 
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         super.onChangeStarted(handler, type)
-        if (!type.isPush && handler is SettingsExtensionsFadeChangeHandler) {
+        if (type.isPush) {
             presenter.findAvailableExtensions()
         }
     }
@@ -211,6 +207,4 @@ open class ExtensionController :
     override fun uninstallExtension(pkgName: String) {
         presenter.uninstallExtension(pkgName)
     }
-
-    class SettingsExtensionsFadeChangeHandler : FadeChangeHandler()
 }
