@@ -53,9 +53,13 @@ object Notifications {
     const val CHANNEL_BACKUP_RESTORE_PROGRESS = "backup_restore_progress_channel"
     const val ID_BACKUP_PROGRESS = -501
     const val ID_RESTORE_PROGRESS = -503
-    const val CHANNEL_BACKUP_RESTORE_COMPLETE = "backup_restore_complete_channel"
+    const val CHANNEL_BACKUP_RESTORE_COMPLETE = "backup_restore_complete_channel_v2"
     const val ID_BACKUP_COMPLETE = -502
     const val ID_RESTORE_COMPLETE = -504
+
+    private val deprecatedChannels = listOf(
+        "backup_restore_complete_channel"
+    )
 
     /**
      * Creates the notification channels introduced in Android Oreo.
@@ -106,8 +110,14 @@ object Notifications {
             ).apply {
                 group = GROUP_BACK_RESTORE
                 setShowBadge(false)
+                setSound(null, null)
             }
         )
         context.notificationManager.createNotificationChannels(channels)
+
+        // Delete old notification channels
+        deprecatedChannels.forEach {
+            context.notificationManager.deleteNotificationChannel(it)
+        }
     }
 }
