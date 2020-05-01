@@ -1,10 +1,10 @@
-1. **Before reporting a new issue, take a look at the [FAQ](https://github.com/inorichi/tachiyomi/wiki/FAQ), the [changelog](https://github.com/inorichi/tachiyomi/releases) and the already opened [issues](https://github.com/inorichi/tachiyomi/issues).**
+1. **Before reporting a new issue, take a look at the [FAQ](https://tachiyomi.org/help/faq/), the [changelog](https://github.com/inorichi/tachiyomi/releases) and the already opened [issues](https://github.com/inorichi/tachiyomi/issues).**
 2. If you are unsure, ask here: [![Discord](https://img.shields.io/discord/349436576037732353.svg)](https://discord.gg/tachiyomi)
 3. What is your type of issue?
     * [Catalogue request](#catalogue-requests)
     * [Bugs](#bugs)
     * [Feature requests](#feature-requests)
-    * [Translations](https://github.com/inorichi/tachiyomi/wiki/Translation)
+    * [Translations](https://tachiyomi.org/help/contribution/#translation)
 4. After following 1. and 3. you can [open your issue](https://github.com/inorichi/tachiyomi/issues/new)
 
 ***
@@ -29,5 +29,5 @@ DON'T: https://github.com/inorichi/tachiyomi/issues/75
 
 # Feature requests
 
-* Write a detailed issue, explaning what it should do or how. Avoid writing just "like X app does"
+* Write a detailed issue, explaining what it should do or how. Avoid writing just "like X app does"
 * Include screenshot (if needed)
