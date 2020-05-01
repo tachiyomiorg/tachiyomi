@@ -58,7 +58,7 @@
     <string name="pref_category_advanced">Avançado</string>
     <string name="pref_category_about">Sobre</string>
     <!-- General section -->
-    <string name="pref_library_columns">Número de manga por fila</string>
+    <string name="pref_library_columns">Itens por fila</string>
     <string name="portrait">Retrato</string>
     <string name="landscape">Paisagem</string>
     <string name="default_columns">Por defeito</string>
@@ -253,9 +253,9 @@
     <string name="description_cover">Imagem de capa da manga</string>
     <!-- Information Text -->
     <string name="information_no_downloads">Sem transferências</string>
-    <string name="information_no_recent">Sem capítulos recentes</string>
-    <string name="information_no_recent_manga">Sem mangá lida recentemente</string>
-    <string name="information_empty_library">A sua biblioteca está vazia, você pode adicionar séries dos fontes à sua biblioteca.</string>
+    <string name="information_no_recent">Sem atualizações recentes</string>
+    <string name="information_no_recent_manga">Nada lido recentemente</string>
+    <string name="information_empty_library">A sua biblioteca está vazia, adicione séries em Navegar.</string>
     <!-- Download Notification -->
     <string name="download_notifier_title_error">Erro</string>
     <string name="download_notifier_unknown_error">Não foi possível transferir o capítulo devido a um erro inesperado</string>
@@ -347,7 +347,7 @@
     <string name="pref_backup_directory">Localização dos Backups</string>
     <string name="backup_created">Backup criado</string>
     <string name="restore_completed">Restauro completo</string>
-    <string name="restore_completed_content">Restauro levou %1$s com %2$s erros encontrados</string>
+    <string name="restore_completed_content">Finalizado em %1$s com %2$s erros</string>
     <string name="backup_choice">O que pretende fazer backup\?</string>
     <string name="pref_refresh_library_metadata">Refrescar metadata da biblioteca</string>
     <string name="pref_backup_slots">Máximo de backups automáticos</string>
@@ -381,7 +381,8 @@
     <string name="manga_added_library">Adicionado à biblioteca</string>
     <string name="manga_removed_library">Removido da biblioteca</string>
     <string name="delete_downloads_for_manga">Excluir os capítulos disponíveis offline\?</string>
-    <string name="copied_to_clipboard">%1$s copiado para área de transferência</string>
+    <string name="copied_to_clipboard">Copiado para área de transferência:
+\n%1$s</string>
     <string name="source_not_installed">Fonte não instalada: %1$s</string>
     <string name="chapter_paused">Pausado</string>
     <string name="custom_download">Fazer download de uma quantidade personalizada</string>
@@ -565,4 +566,8 @@
     <string name="last_used_source">Último usado</string>
     <string name="check_for_updates">Verificar por atualizações</string>
     <string name="licenses">Licenças open source</string>
+    <string name="manga_info_latest_data_label">Atualizada</string>
+    <string name="manga_info_last_chapter_label">Último capítulo</string>
+    <string name="downloaded_only_summary">Filtrar todas as mangás em sua biblioteca</string>
+    <string name="restore_duration">%02d min, %02d seg</string>
 </resources>

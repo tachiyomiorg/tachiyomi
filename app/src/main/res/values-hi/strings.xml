@@ -83,7 +83,7 @@
     <string name="pref_category_tracking">पदचिह्न</string>
     <string name="pref_category_advanced">विकसित</string>
     <string name="pref_category_about">संबंध में</string>
-    <string name="pref_library_columns">मंगा पुस्तक संग्रह पंक्ति के हिसाब से</string>
+    <string name="pref_library_columns">मद प्रति पंक्ति</string>
     <string name="portrait">चित्र</string>
     <string name="landscape">लैंडस्केप</string>
     <string name="default_columns">डिफ़ॉल्ट</string>
@@ -320,9 +320,9 @@
     <string name="description_backdrop">मैंगा की पृष्ठभूमि छवि</string>
     <string name="description_cover">मंगा का आवरण</string>
     <string name="information_no_downloads">कोई डाउनलोड नहीं है</string>
-    <string name="information_no_recent">हाल के कोई अध्याय नहीं है</string>
-    <string name="information_no_recent_manga">हाल ही में मंगा पढ़ा नहीं है</string>
-    <string name="information_empty_library">आपकी लाइब्रेरी खाली है, स्रोतों से अपनी लाइब्रेरी में श्रृंखला जोड़ें।</string>
+    <string name="information_no_recent">कोई हालिया अपडेट नहीं</string>
+    <string name="information_no_recent_manga">हाल ही में कुछ भी नहीं पढ़ा</string>
+    <string name="information_empty_library">आपका पुस्तकालय खाली है, स्रोतों से अपने पुस्तकालय में श्रृंखला जोड़ें।</string>
     <string name="information_empty_category">आपके पास कोई श्रेणियां नहीं हैं अपने पुस्तकालय के आयोजन के लिए एक बनाने के लिए प्लस बटन को दबाएं।</string>
     <string name="download_notifier_downloader_title">डाउनलोडर</string>
     <string name="download_notifier_title_error">त्रुटि</string>
@@ -365,7 +365,8 @@
     <string name="manga_info_full_title_label">शीर्षक</string>
     <string name="manga_added_library">पुस्तकालय में जोड़ा गया</string>
     <string name="manga_removed_library">लाइब्रेरी से निकाला गया</string>
-    <string name="copied_to_clipboard">%1$s क्लिपबोर्ड पर नकल</string>
+    <string name="copied_to_clipboard">क्लिपबोर्ड पर नकल:
+\n%1$s</string>
     <string name="custom_download">कस्टम राशि डाउनलोड करें</string>
     <string name="download_custom">कस्टम</string>
     <string name="migration_info">से माइग्रेट करने के लिए स्रोत का चयन करने के लिए टैप करें</string>
@@ -534,4 +535,14 @@
     <string name="check_for_updates">अद्यतन के लिए जाँच</string>
     <string name="local_source_help_guide">स्थानीय स्रोत गाइड</string>
     <string name="restore_duration">%02d मिनट,%02d सेकंड</string>
+    <string name="manga_info_latest_data_label">अद्यतन</string>
+    <string name="manga_info_last_chapter_label">पिछले अध्याय</string>
+    <string name="downloaded_only_summary">अपने पुस्तकालय में सभी मंगा फ़िल्टर करे</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">1 शेष</item>
+        <item quantity="other">%1$s शेष</item>
+    </plurals>
+    <string name="pref_search_pinned_sources_only">केवल पिन किए गए स्रोत शामिल हैं</string>
+    <string name="channel_backup_restore_complete">पूर्ण</string>
+    <string name="channel_backup_restore_progress">प्रगती</string>
 </resources>

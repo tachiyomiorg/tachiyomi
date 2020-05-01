@@ -86,7 +86,7 @@
     <string name="pref_category_tracking">Spårning</string>
     <string name="pref_category_advanced">Avancerat</string>
     <string name="pref_category_about">Om appen</string>
-    <string name="pref_library_columns">Manga per rad</string>
+    <string name="pref_library_columns">Artiklar per rad</string>
     <string name="portrait">Stående</string>
     <string name="landscape">Liggande</string>
     <string name="default_columns">Standard</string>
@@ -277,7 +277,8 @@
     <string name="manga_info_source_label">Källa</string>
     <string name="manga_info_genres_label">Genrer</string>
     <string name="delete_downloads_for_manga">Ta bort nedladdade kapitel\?</string>
-    <string name="copied_to_clipboard">%1$s kopierat till urklipp</string>
+    <string name="copied_to_clipboard">Kopierat till urklipp:
+\n%1$s</string>
     <string name="source_not_installed">Källa inte installerad: %1$s</string>
     <string name="manga_chapters_tab">Kapitel</string>
     <string name="manga_chapter_no_title">Ingen titel</string>
@@ -376,9 +377,9 @@
     <string name="description_backdrop">Bakgrundsbild av mangan</string>
     <string name="description_cover">Omslag av mangan</string>
     <string name="information_no_downloads">Inga nedladdningar</string>
-    <string name="information_no_recent">Inga nya kapitel</string>
-    <string name="information_no_recent_manga">Ingen nyligen läst manga</string>
-    <string name="information_empty_library">Biblioteket är tomt, lägg till serier i ditt bibliotek ifrån källorna.</string>
+    <string name="information_no_recent">Inga nya uppdateringar</string>
+    <string name="information_no_recent_manga">Inget nyligen läst</string>
+    <string name="information_empty_library">Biblioteket är tomt, lägg till serier i ditt bibliotek från \"Bläddra\".</string>
     <string name="information_empty_category">Du har inga kategorier. Tryck på plus-knappen för att skapa en för att organisera ditt bibliotek.</string>
     <string name="download_notifier_downloader_title">Nedladdare</string>
     <string name="download_notifier_title_error">Fel</string>
@@ -536,4 +537,14 @@
     <string name="backup_in_progress">Säkerhetskopiering pågår redan</string>
     <string name="restore_duration">%02d minuter, %02d sekunder</string>
     <string name="label_downloaded_only">Endast nedladdat</string>
+    <string name="manga_info_latest_data_label">Uppdaterad</string>
+    <string name="manga_info_last_chapter_label">Sista kapitlet</string>
+    <string name="downloaded_only_summary">Filtrerar all manga i ditt bibliotek</string>
+    <string name="channel_backup_restore_complete">Färdig</string>
+    <string name="channel_backup_restore_progress">Förlopp</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">1 återstående</item>
+        <item quantity="other">%1$s återstående</item>
+    </plurals>
+    <string name="pref_search_pinned_sources_only">Inkludera endast fästa källor</string>
 </resources>

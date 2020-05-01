@@ -86,7 +86,7 @@
     <string name="pref_category_tracking">En seguiment</string>
     <string name="pref_category_advanced">Avançat</string>
     <string name="pref_category_about">Quant a</string>
-    <string name="pref_library_columns">Manga per fila</string>
+    <string name="pref_library_columns">Elements per fila</string>
     <string name="portrait">Vertical</string>
     <string name="landscape">Horitzontal</string>
     <string name="default_columns">Per defecte</string>
@@ -277,7 +277,8 @@
     <string name="manga_info_source_label">Font</string>
     <string name="manga_info_genres_label">Gèneres</string>
     <string name="delete_downloads_for_manga">Voleu suprimir els capítols baixats\?</string>
-    <string name="copied_to_clipboard">S\'ha copiat %1$s al porta-retalls</string>
+    <string name="copied_to_clipboard">S\'ha copiat al porta-retalls:
+\n%1$s</string>
     <string name="source_not_installed">Font no instal·lada: %1$s</string>
     <string name="manga_chapters_tab">Capítols</string>
     <string name="manga_chapter_no_title">Sense títol</string>
@@ -376,9 +377,9 @@
     <string name="description_backdrop">Imatge de fons del manga</string>
     <string name="description_cover">Portada del manga</string>
     <string name="information_no_downloads">No hi ha baixades</string>
-    <string name="information_no_recent">No hi ha capítols recents</string>
-    <string name="information_no_recent_manga">No hi ha manga llegit recentment</string>
-    <string name="information_empty_library">La vostra biblioteca és buida, afegiu-hi sèries de les fonts.</string>
+    <string name="information_no_recent">No hi ha actualitzacions recents</string>
+    <string name="information_no_recent_manga">No heu llegit res recentment</string>
+    <string name="information_empty_library">La vostra biblioteca és buida, afegiu-hi sèries a Explora.</string>
     <string name="information_empty_category">No teniu categories. Premeu el botó més per a crear-ne una i organitzar la vostra biblioteca.</string>
     <string name="download_notifier_downloader_title">Baixades</string>
     <string name="download_notifier_title_error">Error</string>
@@ -536,4 +537,14 @@
     <string name="last_used_source">Utilitzada per darrer cop</string>
     <string name="check_for_updates">Comprova si hi ha actualitzacions</string>
     <string name="restore_duration">%02d min i %02d s</string>
+    <string name="manga_info_latest_data_label">Actualitzat</string>
+    <string name="manga_info_last_chapter_label">Darrer capítol</string>
+    <string name="downloaded_only_summary">Filtra tot el manga de la vostra biblioteca</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">En resta 1</item>
+        <item quantity="other">En resten %1$s</item>
+    </plurals>
+    <string name="pref_search_pinned_sources_only">Inclou només les fonts fixades</string>
+    <string name="channel_backup_restore_complete">Completada</string>
+    <string name="channel_backup_restore_progress">Progrés</string>
 </resources>

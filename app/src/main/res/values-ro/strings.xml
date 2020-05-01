@@ -83,7 +83,7 @@
     <string name="pref_category_tracking">Urmărind</string>
     <string name="pref_category_advanced">Avansat</string>
     <string name="pref_category_about">Despre</string>
-    <string name="pref_library_columns">Număr manga pe rând</string>
+    <string name="pref_library_columns">Elemente pe rând</string>
     <string name="portrait">Portret</string>
     <string name="default_columns">Prestabilit</string>
     <string name="pref_library_update_interval">Frecvența actualizării bibliotecii</string>
@@ -377,9 +377,9 @@
     <string name="description_backdrop">Imagine de fundal la manga</string>
     <string name="description_cover">Copertă la manga</string>
     <string name="information_no_downloads">Fără descărcări</string>
-    <string name="information_no_recent">Nu există capitole recente</string>
-    <string name="information_no_recent_manga">Nici un manga citit recent</string>
-    <string name="information_empty_library">Biblioteca este goală, adaugă serii bibliotecii tale de la surse.</string>
+    <string name="information_no_recent">Nu există actualizări recente</string>
+    <string name="information_no_recent_manga">Nimic citit recent</string>
+    <string name="information_empty_library">Biblioteca este goală, adaugă serii bibliotecii tale din Caută.</string>
     <string name="information_empty_category">Nu aveți categorii. Apăsați butonul plus pentru a crea una pentru a vă organiza biblioteca.</string>
     <string name="download_notifier_downloader_title">Client de descărcare</string>
     <string name="download_notifier_title_error">Eroare</string>
@@ -542,4 +542,15 @@
     <string name="last_used_source">Folosit ultima data</string>
     <string name="check_for_updates">Verifică pentru actualizări</string>
     <string name="restore_duration">%02d minute, %02d secunde</string>
+    <string name="manga_info_latest_data_label">Actualizată</string>
+    <string name="manga_info_last_chapter_label">Ultimul capitol</string>
+    <string name="downloaded_only_summary">Filtrează toate manga-urile din bibliotecă</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">Una rămasă</item>
+        <item quantity="few">%1$s rămase</item>
+        <item quantity="other">%1$s rămase</item>
+    </plurals>
+    <string name="pref_search_pinned_sources_only">Includeți numai surse fixate</string>
+    <string name="channel_backup_restore_complete">Terminat</string>
+    <string name="channel_backup_restore_progress">Progresul</string>
 </resources>

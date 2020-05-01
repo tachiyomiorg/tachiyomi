@@ -82,7 +82,7 @@
     <string name="pref_category_tracking">Penjejakan</string>
     <string name="pref_category_advanced">Lanjutan</string>
     <string name="pref_category_about">Tentang</string>
-    <string name="pref_library_columns">Manga per baris pustaka</string>
+    <string name="pref_library_columns">Benda setiap rak</string>
     <string name="portrait">Potret</string>
     <string name="landscape">Landskap</string>
     <string name="default_columns">Lalai</string>
@@ -320,9 +320,9 @@
     <string name="description_backdrop">Gambar latar belakang manga</string>
     <string name="description_cover">Muka hadapan manga</string>
     <string name="information_no_downloads">Tiada muat turun</string>
-    <string name="information_no_recent">Tiada bab baru dibaca</string>
-    <string name="information_no_recent_manga">Tiada manga baru dibaca</string>
-    <string name="information_empty_library">Pustaka kosong, tambah siri ke pustaka menggunakan katalog.</string>
+    <string name="information_no_recent">Tiada kemaskini terkini</string>
+    <string name="information_no_recent_manga">Tiada bacaan setakat ini</string>
+    <string name="information_empty_library">Pustaka kosong, tambah siri ke pustaka menggunakan Semak imbas.</string>
     <string name="download_notifier_downloader_title">Pemuat turun</string>
     <string name="download_notifier_title_error">Ralat</string>
     <string name="download_notifier_unknown_error">Ralat tidak diketahui ketika memuat turun bab</string>
@@ -371,7 +371,8 @@
     <string name="manga_info_full_title_label">Tajuk</string>
     <string name="manga_added_library">Ditambah ke pustaka</string>
     <string name="manga_removed_library">Dibuang dari pustaka</string>
-    <string name="copied_to_clipboard">%1$s disalin ke papan keratan</string>
+    <string name="copied_to_clipboard">Disalin ke papan keratan: 
+\n%1$s</string>
     <string name="source_not_installed">Sumber tidak dipasang: %1$s</string>
     <string name="custom_download">Muat turun jumlah tersuai</string>
     <string name="download_custom">Tersuai</string>
@@ -529,4 +530,15 @@
     <string name="label_downloaded_only">Dimuat turun sahaja</string>
     <string name="last_used_source">Terakhir digunakan</string>
     <string name="check_for_updates">Semak untuk pengemaskinian</string>
+    <string name="local_source_help_guide">Sumber panduan tempatan</string>
+    <string name="restore_duration">%02d minit, %02d saat</string>
+    <string name="manga_info_latest_data_label">Dikemaskini</string>
+    <string name="manga_info_last_chapter_label">Bab terakhir</string>
+    <string name="downloaded_only_summary">Tapis semua manga di dalam pustaka anda</string>
+    <plurals name="download_queue_summary">
+        <item quantity="other">%1$ baki</item>
+    </plurals>
+    <string name="pref_search_pinned_sources_only">Hanya termasuk sumber yg di sematkan</string>
+    <string name="channel_backup_restore_complete">Selesai</string>
+    <string name="channel_backup_restore_progress">Kemajuan</string>
 </resources>

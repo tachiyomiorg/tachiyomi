@@ -34,7 +34,7 @@
     <string name="action_add_category">Categorie toevoegen</string>
     <string name="action_edit_categories">Categorieën bewerken</string>
     <string name="action_rename_category">Categorie hernoemen</string>
-    <string name="action_move_category">Verplaatsen naar categorieën</string>
+    <string name="action_move_category">Zet categorieën</string>
     <string name="action_edit_cover">Omslag wijzigen</string>
     <string name="action_show_downloaded">Gedownload</string>
     <string name="action_next_unread">Volgende ongelezen</string>
@@ -64,7 +64,7 @@
     <string name="action_undo">Ongedaan maken</string>
     <string name="action_open_log">Open log</string>
     <string name="action_create">Maken</string>
-    <string name="action_restore">Terugzetten</string>
+    <string name="action_restore">Herstellen</string>
     <string name="loading">Laden…</string>
     <string name="pref_category_general">Algemeen</string>
     <string name="pref_category_reader">Lezer</string>
@@ -87,7 +87,7 @@
     <string name="all">Alles</string>
     <string name="pref_start_screen">Beginscherm</string>
     <string name="pref_language">Taal</string>
-    <string name="system_default">Systeemstandaard</string>
+    <string name="system_default">Standaard</string>
     <string name="default_category">Standaard categorie</string>
     <string name="default_category_summary">Altijd vragen</string>
     <string name="pref_fullscreen">Volledig scherm</string>
@@ -133,27 +133,26 @@
     <string name="services">Services</string>
     <string name="backup">Back-up</string>
     <string name="pref_create_backup">Back-up maken</string>
-    <string name="pref_create_backup_summ">Kan worden gebruikt om huidige bibliotheek terug te zetten</string>
-    <string name="pref_restore_backup">Back-up terugzetten</string>
-    <string name="pref_restore_backup_summ">Back-up terugzetten van bestand</string>
+    <string name="pref_create_backup_summ">Kan worden gebruikt om huidige bibliotheek te herstellen</string>
+    <string name="pref_restore_backup">Back-up herstellen</string>
+    <string name="pref_restore_backup_summ">Herstellen van back-up bestand</string>
     <string name="pref_backup_directory">Back-uplocatie</string>
     <string name="pref_backup_service_category">Service</string>
     <string name="pref_backup_interval">Back-up frequentie</string>
     <string name="pref_backup_slots">Max aantal automatische back-ups</string>
     <string name="source_not_found">Bron niet gevonden</string>
     <string name="backup_created">Back-up gemaakt</string>
-    <string name="restore_completed">Terugzetten voltooid</string>
-    <string name="restore_completed_content">Terugzetten nam %1$s in beslag.
-%2$s errors gevonden.</string>
+    <string name="restore_completed">Herstelling voltooid</string>
+    <string name="restore_completed_content">Gereed in %1$s met %2$s errors.</string>
     <string name="backup_choice">Wat wil je back-uppen?</string>
-    <string name="restoring_backup">Backup aan het terugzetten</string>
+    <string name="restoring_backup">Backup aan het herstellen</string>
     <string name="creating_backup">Back-up aan het maken</string>
     <string name="used_cache">Gebruikt: %1$s</string>
     <string name="pref_clear_cookies">Verwijder cookies</string>
     <string name="cookies_cleared">Cookies verwijdered</string>
     <string name="pref_refresh_library_tracking_summary">Update status, score en laatst gelezen hoofdstuk van de tracking services</string>
     <string name="version">Versie</string>
-    <string name="login_title">Login voor %1$s</string>
+    <string name="login_title">Log in op %1$s</string>
     <string name="username">Gebruikersnaam</string>
     <string name="password">Wachtwoord</string>
     <string name="show_password">Toon wachtwoord</string>
@@ -166,7 +165,7 @@
     <string name="select_source">Selecteer een bron</string>
     <string name="no_valid_sources">Gelieve zeker één geldige bron te kiezen</string>
     <string name="no_more_results">Geen verdere resultaten</string>
-    <string name="local_source">Lokale manga</string>
+    <string name="local_source">Lokale bron</string>
     <string name="invalid_combination">Standaard kan niet geselecteerd worden met andere categorieën</string>
     <string name="added_to_library">De manga is toegevoegd aan je bibliotheek</string>
     <string name="manga_not_in_db">Deze manga is verwijderd uit de databank.</string>
@@ -231,11 +230,11 @@
     <string name="update_check_ignore">Negeren</string>
     <string name="update_check_no_new_updates">Geen nieuwe updates beschikbaar</string>
     <string name="update_check_notification_download_complete">Download voltooid</string>
-    <string name="update_check_notification_update_available">Update beschikbaar</string>
+    <string name="update_check_notification_update_available">Nieuwe versie beschikbaar</string>
     <string name="description_cover">Omslag van de manga</string>
     <string name="information_no_downloads">Geen downloads</string>
     <string name="information_no_recent">Geen recente hoofdstukken</string>
-    <string name="information_empty_library">De bibliotheek is leeg, voeg manga toe aan je bibliotheek vanuit de catalogi.</string>
+    <string name="information_empty_library">De bibliotheek is leeg, voeg manga toe aan je bibliotheek vanuit de bronnen.</string>
     <string name="information_empty_category">Er zijn nog geen categorieën, druk op de plus knop om een categorie aan te maken.</string>
     <string name="download_notifier_downloader_title">Downloader</string>
     <string name="download_notifier_title_error">Error</string>
@@ -280,7 +279,7 @@
     <string name="pref_enable_acra">Rapporteer bugs</string>
     <string name="pref_acra_summary">Helpt bij het bestrijden van bugs. Geen gevoelige data wordt verzonden</string>
     <string name="information_no_recent_manga">Geen recentelijk gelezen manga</string>
-    <string name="download_notifier_unknown_error">Het is niet mogelijk om dit hoofdstuk te downloaden door eenonverwachte fout</string>
+    <string name="download_notifier_unknown_error">Het is niet mogelijk om dit hoofdstuk te downloaden door een onverwachte fout</string>
     <string name="download_notifier_page_error">Er ontbreekt een pagina</string>
     <string name="pref_library_update_restriction">Bibliotheek updatebeperkingen</string>
     <string name="pref_library_update_categories">Categorieën om op te nemen in globale update</string>
@@ -302,7 +301,7 @@
     <string name="dropped">Laten vallen</string>
     <string name="on_hold">In de wacht</string>
     <string name="dialog_with_checkbox_remove_description">Dit verwijdert de datum waarop het hoofdstuk is gelezen. Ben je zeker?</string>
-    <string name="decode_image_error">Afbeelding kon niet worden gedecodeerd.</string>
+    <string name="decode_image_error">Afbeelding kon niet worden geladen.</string>
     <string name="download_queue_error">Het downloaden van hoofdstukken is niet gelukt. Je kan het opnieuw proberen in de downloadwachtrij</string>
     <string name="notification_cover_update_failed">Updaten van omslag mislukt</string>
     <string name="notification_not_connected_to_ac_title">Synchronisatie geannuleerd</string>
@@ -316,11 +315,11 @@
     <string name="update_check_notification_download_error">Fout bij het downloaden</string>
     <string name="description_backdrop">Achtergrondafbeelding van manga</string>
     <string name="action_filter_bookmarked">Met bladwijzer</string>
-    <string name="backup_restore_content">Terugzetten gebruikt bron om data op te halen, mogelijk zijn extra kosten van toepassing. 
-\n
-\nZorg ook dat je ingelogd bent voor bronnen die dit vereisen alvorens je het terugzetten start.</string>
+    <string name="backup_restore_content">Herstellen gebruikt bronnen om data op te halen, mogelijk zijn extra kosten van toepassing. 
+\n 
+\nZorg ook dat je ingelogd bent voor bronnen die dit vereisen voordat je het herstellen start.</string>
     <string name="choices_reset">Keuzes gereset</string>
-    <string name="login_success">Log-in geslaagd</string>
+    <string name="login_success">Ingelogd</string>
     <string name="invalid_login">Kon niet inloggen</string>
     <string name="licensed">Gelicenseerd</string>
     <string name="plan_to_read">Van plan te lezen</string>
@@ -370,7 +369,8 @@
     <string name="manga_info_full_title_label">Titel</string>
     <string name="manga_added_library">Toegevoegd aan bibliotheek</string>
     <string name="manga_removed_library">Verwijderd uit bibliotheek</string>
-    <string name="copied_to_clipboard">%1$s gekopieerd naar het klembord</string>
+    <string name="copied_to_clipboard">Gekopieerd naar het klembord:
+\n%1$s</string>
     <string name="source_not_installed">Bron niet geïnstalleerd: %1$s</string>
     <string name="custom_download">Download aangepaste hoeveelheid</string>
     <string name="download_custom">Aangepast</string>
@@ -394,7 +394,7 @@
     <string name="migrate">Migreer</string>
     <string name="copy">Kopiëren</string>
     <string name="filter_mode_default">Standaard</string>
-    <string name="action_open_in_web_view">Openen in webview</string>
+    <string name="action_open_in_web_view">Openen in WebView</string>
     <string name="pref_true_color">32-bit kleuren</string>
     <string name="pref_skip_read_chapters">Hoofdstukken die gemarkeerd zijn als gelezen overslaan</string>
     <string name="filter_mode_overlay">Overlapping</string>
@@ -417,8 +417,8 @@
     <string name="pref_date_format">Datumformaat</string>
     <string name="pref_category_library_update">Updates</string>
     <string name="pref_category_library_categories">Categorieën</string>
-    <string name="logout_title">Afmelden van %1$s\?</string>
-    <string name="logout">Afmelden</string>
+    <string name="logout_title">Uitloggen bij %1$s\?</string>
+    <string name="logout">Uitloggen</string>
     <string name="logout_success">U bent nu afgemeld</string>
     <string name="currently_reading">Aan het lezen</string>
     <string name="paused">Gepauzeerd</string>
@@ -431,7 +431,7 @@
     <string name="theme_light">Licht</string>
     <string name="theme_dark">Donker</string>
     <string name="theme_system">Volgsysteem</string>
-    <string name="pref_theme_dark">Variant donker thema</string>
+    <string name="pref_theme_dark">Donker thema variant</string>
     <string name="theme_dark_default">Standaard</string>
     <string name="theme_dark_blue">Donkerblauw</string>
     <string name="theme_dark_amoled">AMOLED-zwart</string>
@@ -460,4 +460,87 @@
     <string name="action_hide">Verbergen</string>
     <string name="action_sort_last_checked">Laatst gecheckt</string>
     <string name="action_menu">Menu</string>
+    <string name="action_pin">Vastspelden</string>
+    <string name="label_sources">Bronnen</string>
+    <string name="action_select_inverse">Selecteer inversie</string>
+    <string name="confirm_exit">Druk nogmaals op terug om te verlaten</string>
+    <string name="restoring_backup_canceled">Herstelling geannuleerd</string>
+    <string name="restoring_backup_error">Herstelling mislukt</string>
+    <string name="restore_in_progress">Er wordt al een herstelling gemaakt</string>
+    <string name="channel_backup_restore">Backup en herstellen</string>
+    <string name="channel_ext_updates">Extensie updates</string>
+    <string name="information_webview_required">WebView is vereist voor Tachiyomi</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">Extensie update beschikbaar</item>
+        <item quantity="other">%d extensie updates beschikbaar</item>
+    </plurals>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Hoofdstukken %1$s en 1 meer</item>
+        <item quantity="other">Hoofdstukken %1$s en %2$d meer</item>
+    </plurals>
+    <string name="notification_chapters_multiple">Hoofdstukken %1$s</string>
+    <string name="notification_chapters_single_and_more">Hoofdstuk %1$s en %2$d meer</string>
+    <string name="notification_chapters_single">Hoofdstuk %1$s</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">1 nieuw hoofdstuk</item>
+        <item quantity="other">%1$d nieuwe hoofdstukken</item>
+    </plurals>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">Voor 1 titel</item>
+        <item quantity="other">Voor %d titels</item>
+    </plurals>
+    <string name="notification_check_updates">Controleren op nieuwe hoofdstukken</string>
+    <string name="recent_manga_time">Hfst. %1$s - %2$s</string>
+    <string name="updating_library">Bibliotheek bijwerken</string>
+    <string name="error_invalid_date_supplied">Ongeldige datum opgegeven</string>
+    <string name="track_finished_reading_date">Eind leesdatum</string>
+    <string name="track_started_reading_date">Begin leesdatum</string>
+    <string name="add_tracking">Tracking toevoegen</string>
+    <string name="manga_info_collapse">Minder informatie weergeven</string>
+    <string name="manga_info_expand">Toon meer info</string>
+    <string name="manga_info_about_label">Over</string>
+    <string name="manga_info_latest_data_label">Bijgewerkt</string>
+    <string name="manga_info_last_chapter_label">Laatste hoofdstuk</string>
+    <string name="in_library">In bibliotheek</string>
+    <string name="add_to_library">Toevoegen aan bibliotheek</string>
+    <string name="local_source_help_guide">Lokale brongids</string>
+    <string name="pinned_sources">Vastgespeld</string>
+    <string name="last_used_source">Laatst gebruikt</string>
+    <string name="http_error_hint">Bekijk de website in WebView</string>
+    <string name="email">E-mailadres</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">1 resterend</item>
+        <item quantity="other">%1$s resterend</item>
+    </plurals>
+    <string name="downloaded_only_summary">Filtert alle manga in uw bibliotheek</string>
+    <string name="label_downloaded_only">Alleen gedownload</string>
+    <string name="check_for_updates">Controleer op updates</string>
+    <string name="licenses">Open source licenties</string>
+    <string name="notices">Voorbeeld build bericht</string>
+    <string name="changelog">Wijzigingslog</string>
+    <string name="website">Website</string>
+    <string name="battery_optimization_disabled">Batterijoptimalisatie is al uitgeschakeld</string>
+    <string name="pref_disable_battery_optimization_summary">Helpt bij achtergrondbibliotheekupdates en back-ups</string>
+    <string name="pref_disable_battery_optimization">Batterij optimizatie uitzetten</string>
+    <string name="creating_backup_error">Mistlukt om een back-up te maken</string>
+    <string name="backup_in_progress">Er wordt al een back-up gemaakt</string>
+    <string name="restore_duration">%02d min, %02d sec</string>
+    <string name="webtoon_side_padding_25">25%</string>
+    <string name="webtoon_side_padding_20">20%</string>
+    <string name="webtoon_side_padding_15">15%</string>
+    <string name="webtoon_side_padding_10">10%</string>
+    <string name="webtoon_side_padding_0">Geen</string>
+    <string name="pref_category_reading">Lezen</string>
+    <string name="pref_always_show_chapter_transition">Hoofdstuk overgangen altijd weergeven</string>
+    <string name="vertical_plus_viewer">Doorlopend verticaal</string>
+    <string name="pref_skip_filtered_chapters">Hoofdstukken die gefilterd zijn overslaan</string>
+    <string name="pref_cutout_short">Toon content in uitgeknipt gebied</string>
+    <string name="pref_enable_automatic_extension_updates">Zoek voor extensie updates</string>
+    <string name="hide_notification_content">Verstop notificatie inhoud</string>
+    <string name="pref_confirm_exit">Bevestig exit</string>
+    <string name="theme_light_blue">Licht blauw</string>
+    <string name="theme_light_default">Standaard</string>
+    <string name="pref_theme_light">Licht thema variant</string>
+    <string name="action_move_to_top">Verplaats naar top</string>
+    <string name="action_unpin">Losspelden</string>
 </resources>

@@ -412,4 +412,18 @@
     <string name="action_view_chapters">Mga kabanata</string>
     <string name="action_cancel_all">Ikansela lahat</string>
     <string name="action_hide">Itago</string>
+    <string name="notification_chapters_single">Kabanata %1$s</string>
+    <string name="track_finished_reading_date">Petsa na natapos basahin</string>
+    <string name="track_started_reading_date">Petsa nagsimulang basahin</string>
+    <string name="want_to_read">Gustong basahin</string>
+    <string name="manga_info_about_label">Tungkol</string>
+    <string name="pref_category_reading">Binabasa</string>
+    <string name="pref_category_security">Seguridad</string>
+    <string name="action_move_to_bottom">Ilagay Sa baba</string>
+    <string name="action_move_to_top">Ilagay sa Taas</string>
+    <string name="action_oldest">Pinakaluma</string>
+    <string name="action_newest">Pinakabago</string>
+    <string name="label_sources">Mga Sources</string>
+    <string name="action_sort_last_checked">Huling nakita</string>
+    <string name="unlock_app">I-unlock ang Tachiyomi</string>
 </resources>

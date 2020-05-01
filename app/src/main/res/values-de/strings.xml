@@ -77,7 +77,7 @@
     <string name="pref_category_tracking">Synchronisation</string>
     <string name="pref_category_advanced">Erweitert</string>
     <string name="pref_category_about">Über</string>
-    <string name="pref_library_columns">Manga pro Zeile in der Bibliothek</string>
+    <string name="pref_library_columns">Elemente pro Zeile</string>
     <string name="portrait">Hochformat</string>
     <string name="landscape">Querformat</string>
     <string name="default_columns">Standard</string>
@@ -309,9 +309,9 @@
     <string name="description_backdrop">Hintergrundbild vom Manga</string>
     <string name="description_cover">Manga-Cover</string>
     <string name="information_no_downloads">Keine Downloads</string>
-    <string name="information_no_recent">Keine neuen Kapitel</string>
-    <string name="information_no_recent_manga">Keine kürzlich gelesene Manga</string>
-    <string name="information_empty_library">Ihre Bibliothek ist leer. Füge neue Serien aus den Quellen hinzu.</string>
+    <string name="information_no_recent">Keine neuen Aktualisierungen</string>
+    <string name="information_no_recent_manga">Nichts kürzlich gelesen</string>
+    <string name="information_empty_library">Deine Bibliothek ist leer. Füge neue Serien über \"Stöbern\" hinzu.</string>
     <string name="download_notifier_downloader_title">Downloader</string>
     <string name="download_notifier_title_error">Fehler</string>
     <string name="download_notifier_unknown_error">Kapitel konnte aufgrund eines unerwarteten Fehlers nicht heruntergeladen werden</string>
@@ -328,7 +328,7 @@
     <string name="other_source">Andere</string>
     <string name="action_global_search_hint">Globale Suche…</string>
     <string name="latest">Letzte</string>
-    <string name="browse">Umsehen</string>
+    <string name="browse">Stöbern</string>
     <string name="channel_library">Bibliothek</string>
     <string name="channel_common">Allgemein</string>
     <string name="channel_downloader">Downloader</string>
@@ -363,7 +363,8 @@
     <string name="manga_info_full_title_label">Titel</string>
     <string name="manga_added_library">Zur Bibliothek hinzugefügt</string>
     <string name="manga_removed_library">Aus der Bibliothek entfernt</string>
-    <string name="copied_to_clipboard">In die Zwischenablage kopiert: %1$s</string>
+    <string name="copied_to_clipboard">In die Zwischenablage kopiert:
+\n%1$s</string>
     <string name="select">Auswählen</string>
     <string name="migrate">Migrieren</string>
     <string name="copy">Kopieren</string>
@@ -536,4 +537,14 @@
     <string name="last_used_source">Zuletzt genutzt</string>
     <string name="local_source_help_guide">Lokale-Quellen-Guide</string>
     <string name="restore_duration">%02d min, %02d s</string>
+    <string name="manga_info_latest_data_label">Aktualisiert</string>
+    <string name="manga_info_last_chapter_label">Letztes Kapitel</string>
+    <string name="downloaded_only_summary">Filtert alle Manga in deiner Bibliothek</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">1 verbleibend</item>
+        <item quantity="other">%1$s verbleibend</item>
+    </plurals>
+    <string name="pref_search_pinned_sources_only">Nur angeheftete Quellen einbeziehen</string>
+    <string name="channel_backup_restore_complete">Abgeschlossen</string>
+    <string name="channel_backup_restore_progress">Fortschritt</string>
 </resources>
