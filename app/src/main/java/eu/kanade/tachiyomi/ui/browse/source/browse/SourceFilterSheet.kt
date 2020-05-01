@@ -10,12 +10,12 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.util.view.inflate
 import eu.kanade.tachiyomi.widget.SimpleNavigationView
+import kotlinx.android.synthetic.main.source_filter_sheet.view.filter_btn
 import kotlinx.android.synthetic.main.source_filter_sheet.view.reset_btn
-import kotlinx.android.synthetic.main.source_filter_sheet.view.search_btn
 
 class SourceFilterSheet(
     activity: Activity,
-    onSearchClicked: () -> Unit,
+    onFilterClicked: () -> Unit,
     onResetClicked: () -> Unit
 ) : BottomSheetDialog(activity) {
 
@@ -23,8 +23,8 @@ class SourceFilterSheet(
 
     init {
         filterNavView = FilterNavigationView(activity)
-        filterNavView.onSearchClicked = {
-            onSearchClicked()
+        filterNavView.onFilterClicked = {
+            onFilterClicked()
             this.dismiss()
         }
         filterNavView.onResetClicked = onResetClicked
@@ -39,7 +39,7 @@ class SourceFilterSheet(
     class FilterNavigationView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
         SimpleNavigationView(context, attrs) {
 
-        var onSearchClicked = {}
+        var onFilterClicked = {}
         var onResetClicked = {}
 
         val adapter: FlexibleAdapter<IFlexible<*>> = FlexibleAdapter<IFlexible<*>>(null)
@@ -52,7 +52,7 @@ class SourceFilterSheet(
             val view = inflate(R.layout.source_filter_sheet)
             ((view as ViewGroup).getChildAt(1) as ViewGroup).addView(recycler)
             addView(view)
-            search_btn.setOnClickListener { onSearchClicked() }
+            filter_btn.setOnClickListener { onFilterClicked() }
             reset_btn.setOnClickListener { onResetClicked() }
         }
     }

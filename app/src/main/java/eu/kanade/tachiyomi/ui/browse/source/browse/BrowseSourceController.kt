@@ -137,7 +137,7 @@ open class BrowseSourceController(bundle: Bundle) :
 
         filterSheet = SourceFilterSheet(
             activity!!,
-            onSearchClicked = {
+            onFilterClicked = {
                 val allDefault = presenter.sourceFilters == presenter.source.getFilterList()
                 showProgressBar()
                 adapter?.clear()
