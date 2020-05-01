@@ -265,9 +265,6 @@ class UpdatesController :
         presenter.deleteChapters(chaptersToDelete)
     }
 
-    /**
-     * Destory [ActionMode] if it's shown
-     */
     private fun destroyActionModeIfNeeded() {
         actionMode?.finish()
     }

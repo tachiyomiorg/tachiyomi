@@ -139,6 +139,7 @@ class ChaptersController :
             val coordinates = binding.fab.getCoordinates()
             binding.revealView.hideRevealEffect(coordinates.x, coordinates.y, 1920)
         }
+
         super.onActivityResumed(activity)
     }
 
@@ -457,9 +458,13 @@ class ChaptersController :
 
     private fun selectInverse() {
         val adapter = adapter ?: return
+
+        selectedItems.clear()
         for (i in 0..adapter.itemCount) {
             adapter.toggleSelection(i)
         }
+        selectedItems.addAll(adapter.selectedPositions.mapNotNull { adapter.getItem(it) })
+
         actionMode?.invalidate()
         adapter.notifyDataSetChanged()
     }
