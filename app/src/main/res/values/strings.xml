@@ -456,7 +456,7 @@
     <string name="chapter_error">Error</string>
     <string name="chapter_paused">Paused</string>
     <string name="fetch_chapters_error">Could not fetch chapters</string>
-    <string name="show_title">Title</string>
+    <string name="show_title">Source title</string>
     <string name="show_chapter_number">Chapter number</string>
     <string name="sorting_mode">Sorting mode</string>
     <string name="sort_by_source">By source</string>
