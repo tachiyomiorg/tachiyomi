@@ -14,7 +14,7 @@ Features include:
 * Online reading from sources such as MangaDex, MangaSee, Mangakakalot, [and more](https://github.com/inorichi/tachiyomi-extensions)
 * Local reading of downloaded manga
 * A configurable reader with multiple viewers, reading directions and other settings.
-* [MyAnimeList](https://myanimelist.net/), [AniList](https://anilist.co/), [Kitsu](https://kitsu.io/), [Shikimori](https://shikimori.one), and [Bangumi](https://bangumi.org) support
+* [MyAnimeList](https://myanimelist.net/), [AniList](https://anilist.co/), [Kitsu](https://kitsu.io/), [Shikimori](https://shikimori.one), and [Bangumi](https://bgm.tv/) support
 * Categories to organize your library
 * Light and dark themes
 * Schedule updating your library for new chapters
