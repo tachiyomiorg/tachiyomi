@@ -15,6 +15,9 @@ import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import java.util.HashMap
 import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import reactivecircus.flowbinding.android.view.clicks
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -74,6 +77,21 @@ class DownloadController :
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
         binding.recycler.setHasFixedSize(true)
 
+        binding.fab.clicks()
+            .onEach {
+                val context = applicationContext ?: return@onEach
+
+                if (isRunning) {
+                    DownloadService.stop(context)
+                    presenter.pauseDownloads()
+                } else {
+                    DownloadService.start(context)
+                }
+
+                setInformationView()
+            }
+            .launchIn(scope)
+
         // Subscribe to changes
         DownloadService.runningRelay
             .observeOn(AndroidSchedulers.mainThread())
@@ -102,8 +120,6 @@ class DownloadController :
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.start_queue).isVisible = !isRunning && !presenter.downloadQueue.isEmpty()
-        menu.findItem(R.id.pause_queue).isVisible = isRunning
         menu.findItem(R.id.clear_queue).isVisible = !presenter.downloadQueue.isEmpty()
         menu.findItem(R.id.reorder).isVisible = !presenter.downloadQueue.isEmpty()
     }
@@ -111,11 +127,6 @@ class DownloadController :
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val context = applicationContext ?: return false
         when (item.itemId) {
-            R.id.start_queue -> DownloadService.start(context)
-            R.id.pause_queue -> {
-                DownloadService.stop(context)
-                presenter.pauseDownloads()
-            }
             R.id.clear_queue -> {
                 DownloadService.stop(context)
                 presenter.clearQueue()
@@ -253,8 +264,18 @@ class DownloadController :
     private fun setInformationView() {
         if (presenter.downloadQueue.isEmpty()) {
             binding.emptyView.show(R.string.information_no_downloads)
+            binding.fab.hide()
         } else {
             binding.emptyView.hide()
+            binding.fab.show()
+
+            binding.fab.setImageResource(
+                if (isRunning) {
+                    R.drawable.ic_pause_24dp
+                } else {
+                    R.drawable.ic_play_arrow_24dp
+                }
+            )
         }
     }
 

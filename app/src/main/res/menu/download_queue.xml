@@ -3,20 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/start_queue"
-        android:icon="@drawable/ic_play_arrow_24dp"
-        android:title="@string/action_start"
-        app:iconTint="?attr/colorOnPrimary"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/pause_queue"
-        android:icon="@drawable/ic_pause_24dp"
-        android:title="@string/action_pause"
-        app:iconTint="?attr/colorOnPrimary"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/reorder"
         android:title="@string/action_reorganize_by"
         app:showAsAction="never">
