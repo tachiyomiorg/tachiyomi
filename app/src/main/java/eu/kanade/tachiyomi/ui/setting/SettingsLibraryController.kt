@@ -89,7 +89,7 @@ class SettingsLibraryController : SettingsController() {
                     R.string.update_12hour, R.string.update_24hour, R.string.update_48hour
                 )
                 entryValues = arrayOf("0", "1", "2", "3", "6", "12", "24", "48")
-                defaultValue = "0"
+                defaultValue = "24"
                 summary = "%s"
 
                 onChange { newValue ->
@@ -104,6 +104,7 @@ class SettingsLibraryController : SettingsController() {
                 entriesRes = arrayOf(R.string.wifi, R.string.charging)
                 entryValues = arrayOf("wifi", "ac")
                 summaryRes = R.string.pref_library_update_restriction_summary
+                defaultValue = setOf("wifi")
 
                 preferences.libraryUpdateInterval().asImmediateFlow { isVisible = it > 0 }
                     .launchIn(scope)

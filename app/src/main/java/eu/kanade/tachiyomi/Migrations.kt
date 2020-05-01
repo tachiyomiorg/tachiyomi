@@ -29,11 +29,12 @@ object Migrations {
 
             // Fresh install
             if (oldVersion == 0) {
-                // Set up default app updater task
+                // Set up default background tasks
                 if (BuildConfig.INCLUDE_UPDATER) {
                     UpdaterJob.setupTask(context)
                 }
                 ExtensionUpdateJob.setupTask(context)
+                LibraryUpdateJob.setupTask(context)
                 return false
             }
 
