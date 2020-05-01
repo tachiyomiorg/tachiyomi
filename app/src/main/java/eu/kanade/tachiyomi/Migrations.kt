@@ -5,6 +5,7 @@ import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.updater.UpdaterJob
 import eu.kanade.tachiyomi.extension.ExtensionUpdateJob
+import eu.kanade.tachiyomi.ui.library.LibrarySort
 import java.io.File
 
 object Migrations {
@@ -81,6 +82,12 @@ object Migrations {
 
                 // New extension update check job
                 ExtensionUpdateJob.setupTask(context)
+            }
+            if (oldVersion < 44) {
+                // Reset sorting preference if using removed sort by source
+                if (preferences.librarySortingMode().get() == LibrarySort.SOURCE) {
+                    preferences.librarySortingMode().set(LibrarySort.ALPHA)
+                }
             }
             return true
         }
