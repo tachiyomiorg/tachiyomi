@@ -377,7 +377,7 @@
     <string name="description_backdrop">Фонове зображення манги</string>
     <string name="description_cover">Обкладинка манги</string>
     <string name="information_no_downloads">Немає завантажень</string>
-    <string name="information_no_recent">Немає нових глав</string>
+    <string name="information_no_recent">Без оновлень</string>
     <string name="information_no_recent_manga">Немає нещодавно прочитаних глав</string>
     <string name="information_empty_library">Ваша бібліотека порожня, ви можете додати твори з джерел.</string>
     <string name="information_empty_category">У вас немає категорій. Натисніть кнопку + для початку облаштування вашої бібліотеки.</string>

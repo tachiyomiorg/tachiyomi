@@ -8,7 +8,7 @@
     <string name="history">Ιστορία</string>
     <string name="label_settings">Ρυθμίσεις</string>
     <string name="label_download_queue">Ουρά λήψεων</string>
-    <string name="label_library">Η βιβλιοθήκη μου</string>
+    <string name="label_library">Βιβλιοθήκη</string>
     <string name="label_recent_manga">Ιστορικό</string>
     <string name="label_recent_updates">Ενημερώσεις</string>
     <string name="label_categories">Κατηγορίες</string>
@@ -86,7 +86,7 @@
     <string name="pref_category_tracking">Παρακολούθηση</string>
     <string name="pref_category_advanced">Προχωρημένες ρυθμίσεις</string>
     <string name="pref_category_about">Περί</string>
-    <string name="pref_library_columns">Manga βιβλιοθήκης ανά σειρά</string>
+    <string name="pref_library_columns">Στοιχεία ανά σειρά</string>
     <string name="portrait">Κατακόρυφα</string>
     <string name="landscape">Οριζόντια</string>
     <string name="default_columns">Προεπιλογή</string>
@@ -259,7 +259,7 @@
     <string name="added_to_library">Το manga έχει προστεθεί στη βιβλιοθήκη σας</string>
     <string name="action_global_search_hint">Καθολική αναζήτηση…</string>
     <string name="latest">Νεότερα</string>
-    <string name="browse">Ξεφύλλισμα</string>
+    <string name="browse">Αναζήτηση</string>
     <string name="manga_not_in_db">Αυτό το manga έχει αφαιρεθεί από τη βάση δεδομένων.</string>
     <string name="manga_detail_tab">Πληροφορίες</string>
     <string name="description">Περιγραφή</string>
@@ -377,9 +377,9 @@
     <string name="description_backdrop">Εικόνα παρασκηνίου του manga</string>
     <string name="description_cover">Εξώφυλλο manga</string>
     <string name="information_no_downloads">Δεν υπάρχουν λήψεις</string>
-    <string name="information_no_recent">Δεν υπάρχουν πρόσφατα κεφάλαια</string>
-    <string name="information_no_recent_manga">Δεν υπάρχουν πρόσφατα αναγνωσμένα manga</string>
-    <string name="information_empty_library">Η βιβλιοθήκη σας είναι κενή, προσθέστε σειρές στη βιβλιοθήκη σας από τις πηγές.</string>
+    <string name="information_no_recent">Δεν υπάρχουν πρόσφατες ενημερώσεις</string>
+    <string name="information_no_recent_manga">Τίποτα δεν διαβάστηκε πρόσφατα</string>
+    <string name="information_empty_library">Η βιβλιοθήκη σας είναι κενή, προσθέστε σειρές στη βιβλιοθήκη σας από την Αναζήτηση.</string>
     <string name="information_empty_category">Δεν έχετε κατηγορίες. Πατήστε το κουμπί συν για να δημιουργήσετε μία για την οργάνωση της βιβλιοθήκης σας.</string>
     <string name="download_notifier_downloader_title">Πρόγραμμα λήψης</string>
     <string name="download_notifier_title_error">Σφάλμα</string>
@@ -537,4 +537,14 @@
         <item quantity="one">Κεφάλαια %1$s και 1 ακόμη</item>
         <item quantity="other">Κεφάλαια %1$s και %2$d ακόμη</item>
     </plurals>
+    <string name="manga_info_latest_data_label">Ενημερώθηκε</string>
+    <string name="manga_info_last_chapter_label">Τελευταίο κεφάλαιο</string>
+    <string name="downloaded_only_summary">Φιλτράρει όλα τα manga στη βιβλιοθήκη σας</string>
+    <string name="pref_search_pinned_sources_only">Να περιέχονται μόνο καρφιτσωμένες πηγές</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">1 που απομένει</item>
+        <item quantity="other">%1$s που απομένουν</item>
+    </plurals>
+    <string name="channel_backup_restore_complete">Ολοκληρώθηκε</string>
+    <string name="channel_backup_restore_progress">Πρόοδος</string>
 </resources>

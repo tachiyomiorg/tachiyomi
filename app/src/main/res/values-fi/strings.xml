@@ -79,9 +79,9 @@
     <string name="description_backdrop">Sarjan taustakuva</string>
     <string name="description_cover">Sarjan kansikuva</string>
     <string name="information_no_downloads">Ei latauksia</string>
-    <string name="information_no_recent">Ei viimeisimpiä lukuja</string>
-    <string name="information_no_recent_manga">Ei viimeksi luettuja sarjoja</string>
-    <string name="information_empty_library">Kirjasto on tyhjä, lisää sarjoja kirjastoon lähteistä.</string>
+    <string name="information_no_recent">Ei viimeisimpiä päivityksiä</string>
+    <string name="information_no_recent_manga">Ei mitään luettu viime aikoina</string>
+    <string name="information_empty_library">Kirjasto on tyhjä, lisää sarjoja kirjastoon selaa-kohdasta.</string>
     <string name="information_empty_category">Sinulla ei ole kategorioita. Paina plus-nappia luodaksesi uuden kategorian kirjastosi järjestelemiseksi.</string>
     <string name="download_notifier_downloader_title">Lataaja</string>
     <string name="download_notifier_title_error">Virhe</string>
@@ -154,7 +154,7 @@
     <string name="pref_category_downloads">Lataukset</string>
     <string name="pref_category_advanced">Kehittyneet</string>
     <string name="pref_category_about">Tietoja</string>
-    <string name="pref_library_columns">Kirjaston sarjoja per rivi</string>
+    <string name="pref_library_columns">Kohteita per rivi</string>
     <string name="portrait">Pystysuunnassa</string>
     <string name="landscape">Vaakatasossa</string>
     <string name="default_columns">Oletus</string>
@@ -537,4 +537,14 @@
     <string name="last_used_source">Viimeksi käytetty</string>
     <string name="local_source_help_guide">Paikallinen lähdeopas</string>
     <string name="restore_duration">%02d min, %02d sek</string>
+    <string name="manga_info_latest_data_label">Päivitetty</string>
+    <string name="manga_info_last_chapter_label">Viimeisin luku</string>
+    <string name="downloaded_only_summary">Suodattaa kaikki sarjat kirjastossasi</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">1 jäljellä</item>
+        <item quantity="other">%1$s jäljellä</item>
+    </plurals>
+    <string name="pref_search_pinned_sources_only">Sisällytä vain kiinnitetyt lähteet</string>
+    <string name="channel_backup_restore_complete">Valmis</string>
+    <string name="channel_backup_restore_progress">Edistyminen</string>
 </resources>

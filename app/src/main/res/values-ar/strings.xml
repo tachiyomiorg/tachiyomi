@@ -39,7 +39,7 @@
     <string name="action_add_category">إضافة فئة</string>
     <string name="action_edit_categories">تعديل الفئات</string>
     <string name="action_rename_category">إعادة تسمية الفئة</string>
-    <string name="action_move_category">النقل إلى فئة</string>
+    <string name="action_move_category">حدد الفئات</string>
     <string name="action_edit_cover">تعديل صورة الغلاف</string>
     <string name="action_sort_down">الترتيب لأسفل</string>
     <string name="action_sort_up">الترتيب لأعلى</string>
@@ -104,7 +104,7 @@
     <string name="pref_auto_update_manga_sync">مزامنة الفصول بعد القراءة</string>
     <string name="pref_start_screen">شاشة البداية</string>
     <string name="pref_language">اللغة</string>
-    <string name="system_default">لغة النظام الافتراضية</string>
+    <string name="system_default">الافتراضي</string>
     <string name="default_category">الفئة الافتراضية</string>
     <string name="default_category_summary">السؤال دائما</string>
     <string name="pref_fullscreen">وضع الشاشة الكاملة</string>
@@ -172,8 +172,7 @@
     <string name="source_not_found">لم يتم إيجاد المصدر</string>
     <string name="backup_created">تم إنشاء النسخة الاحتياطية</string>
     <string name="restore_completed">اكتملت الاستعادة</string>
-    <string name="restore_completed_content">استغرقت الاستعادة %1$s.
-\n%2$s خطأ وجد.</string>
+    <string name="restore_completed_content">تم في %1$s و وجد %2$s خطأ</string>
     <string name="backup_restore_content">عملية الاستعادة تستخدم المصادر لجلب البيانات، قد يتم تطبيق تكاليف مزود الخدمة. 
 \nتأكد من تثبيت كافة اﻹضافات الضرورية وتسجيل الدخول لخدمات التتبع المطلوبة قبل عملية الاستعادة.</string>
     <string name="backup_choice">ما الذي تريد نسخه احتياطيا؟</string>
@@ -210,7 +209,7 @@
     <string name="password">كلمة المرور</string>
     <string name="show_password">عرض كلمة المرور</string>
     <string name="login">تسجيل الدخول</string>
-    <string name="login_success">تم تسجيل الدخول بنجاح</string>
+    <string name="login_success">تم تسجيل الدخول</string>
     <string name="invalid_login">فشل تسجيل الدخول</string>
     <string name="unknown_error">خطأ غير معروف</string>
     <string name="library_search_hint">العنوان أو المؤلف…</string>
@@ -221,7 +220,7 @@
     <string name="select_source">اختر مصدر</string>
     <string name="no_valid_sources">من فضلك قم بتفعيل مصدر صالح واحد على الأقل</string>
     <string name="no_more_results">لا يوجد نتائج أخرى</string>
-    <string name="local_source">المانجا المحلية</string>
+    <string name="local_source">مصدر محلي</string>
     <string name="other_source">أخرى</string>
     <string name="invalid_combination">لا يمكن تحديد الإعداد الافتراضي مع الفئات الأخرى</string>
     <string name="added_to_library">تم إضافة المانجا إلى مكتبتك</string>
@@ -252,8 +251,8 @@
     <string name="chapter_error">خطأ</string>
     <string name="chapter_paused">المتوقفة</string>
     <string name="fetch_chapters_error">فشل جلب الفصول</string>
-    <string name="show_title">عرض العنوان</string>
-    <string name="show_chapter_number">عرض رقم الفصل</string>
+    <string name="show_title">العنوان</string>
+    <string name="show_chapter_number">رقم الفصل</string>
     <string name="sorting_mode">كيفية الفرز</string>
     <string name="sort_by_source">حسب المصدر</string>
     <string name="sort_by_number">حسب رقم الفصل</string>
@@ -291,7 +290,7 @@
     <string name="chapter_subtitle">الفصل %1$s</string>
     <string name="no_next_chapter">لم يتم العثور على الفصل التالي</string>
     <string name="no_previous_chapter">لم يتم العثور على الفصل السابق</string>
-    <string name="decode_image_error">لا يمكن فكّ تشفير هذه الصورةِ</string>
+    <string name="decode_image_error">لم يمكن تحميل الصورة</string>
     <string name="confirm_set_image_as_cover">هل تريد استخدام هذه الصورة كغلاف؟</string>
     <string name="viewer_for_this_series">العارض لهذه السلسلة</string>
     <string name="download_queue_error">فشل تحميل الفصول. يمكنك إعادة المحاولة في قسم التحميلات</string>
@@ -320,7 +319,7 @@
     <string name="information_no_downloads">لا توجد تحميلات</string>
     <string name="information_no_recent">لا توجد فصول حديثة</string>
     <string name="information_no_recent_manga">لا توجد مانجا مقروءة مؤخرا</string>
-    <string name="information_empty_library">المكتبة فارغة، أضف سلسلة إلى المكتبة الخاصة بك من الكتالوج.</string>
+    <string name="information_empty_library">مكتبتك فارغة، أضف سلسلة إلى مكتبتك من المصادر.</string>
     <string name="download_notifier_downloader_title">مدير التحميل</string>
     <string name="download_notifier_title_error">خطأ</string>
     <string name="download_notifier_unknown_error">فشل تحميل الفصل بسبب حدوث خطأ غير متوقع</string>
@@ -367,7 +366,8 @@
     <string name="manga_info_full_title_label">العنوان</string>
     <string name="manga_added_library">تم الإضافة إلى المكتبة</string>
     <string name="manga_removed_library">تم الإزالة من المكتبة</string>
-    <string name="copied_to_clipboard">%1$s نُسخ إلى الحافظة</string>
+    <string name="copied_to_clipboard">نُسخ إلى الحافظة:
+\n%1$s</string>
     <string name="source_not_installed">المصدر غير مثبت: %1$s</string>
     <string name="custom_download">تحميل مقدار مخصص</string>
     <string name="download_custom">مخصص</string>
@@ -410,7 +410,7 @@
     <string name="action_webview_forward">تقدم</string>
     <string name="action_webview_refresh">تحديث</string>
     <string name="pref_category_library">المكتبة</string>
-    <string name="invalid_download_dir">مجلد تحميل غير صالح</string>
+    <string name="invalid_download_dir">موقع تحميل غير صالح</string>
     <string name="label_more">مزيد</string>
     <string name="unlock_app">افتح تاتشييومي</string>
     <string name="action_move_to_top">إنتقل إلى الأعلى</string>
@@ -461,4 +461,24 @@
     <string name="hide_notification_content">اخفاء محتوى الإشعارات</string>
     <string name="secure_screen_summary">إخفاء محتوى الشاشة عند تغير التطبيقات و منع لقط الشاشة</string>
     <string name="secure_screen">الشاشة الآمنة</string>
+    <string name="label_downloaded_only">المُحمل فقط</string>
+    <string name="check_for_updates">البحث عن تحديثات</string>
+    <string name="licenses">الرخصات مفتوحة المصدر</string>
+    <string name="website">الموقع</string>
+    <string name="restoring_backup_canceled">تم الغاء الاستعادة</string>
+    <string name="restoring_backup_error">فشل استعادة النسخ الاحتياطي</string>
+    <string name="restore_in_progress">الاستعادة قيد التقدم بالفعل</string>
+    <string name="creating_backup_error">فشل النسخ الاحتياطي</string>
+    <string name="backup_in_progress">النسخ الاحتياطي قيد التقدم بالفعل</string>
+    <string name="restore_duration">%02d دقيقة و %02d ثانية</string>
+    <string name="webtoon_side_padding_25">25%</string>
+    <string name="webtoon_side_padding_20">20%</string>
+    <string name="webtoon_side_padding_15">15%</string>
+    <string name="webtoon_side_padding_10">10%</string>
+    <string name="webtoon_side_padding_0">بلا</string>
+    <string name="pref_confirm_exit">تأكيد الخروج</string>
+    <string name="action_unpin">إلغاء التثبيت</string>
+    <string name="action_pin">تثبيت</string>
+    <string name="action_select_inverse">عكس التحديد</string>
+    <string name="confirm_exit">اضغط رجوع مرة أخرى للخروج</string>
 </resources>

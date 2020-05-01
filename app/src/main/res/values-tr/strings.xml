@@ -43,7 +43,7 @@
     <string name="action_add_category">Kategori ekle</string>
     <string name="action_edit_categories">Kategorileri düzenle</string>
     <string name="action_rename_category">Kategoriyi yeniden adlandır</string>
-    <string name="action_move_category">Kategorilere taşı</string>
+    <string name="action_move_category">Kategorileri ayarla</string>
     <string name="action_edit_cover">Kapak resmini düzenle</string>
     <string name="action_sort_up">Yukarı sırala</string>
     <string name="action_sort_down">Aşağı sırala</string>
@@ -86,7 +86,7 @@
     <string name="pref_category_tracking">İzleme</string>
     <string name="pref_category_advanced">Gelişmiş</string>
     <string name="pref_category_about">Hakkında</string>
-    <string name="pref_library_columns">Kitaplık satır başına manga</string>
+    <string name="pref_library_columns">Satır başına öge</string>
     <string name="portrait">Dikey</string>
     <string name="landscape">Yatay</string>
     <string name="default_columns">Öntanımlı</string>
@@ -369,9 +369,9 @@
     <string name="description_backdrop">Manganın art alan görseli</string>
     <string name="description_cover">Manganın kapağı</string>
     <string name="information_no_downloads">İndirme yok</string>
-    <string name="information_no_recent">Yeni bölüm yok</string>
-    <string name="information_no_recent_manga">Yakında okunan manga yok</string>
-    <string name="information_empty_library">Kitaplığınız boş, serileri kaynaklardan kitaplığınıza ekleyin.</string>
+    <string name="information_no_recent">Yeni güncelleme yok</string>
+    <string name="information_no_recent_manga">Yakında okunan yok</string>
+    <string name="information_empty_library">Kitaplığınız boş, serileri Göz At\'dan kitaplığınıza ekleyin.</string>
     <string name="information_empty_category">Kategoriniz yok. Kitaplığınızı düzenlemek için bir tane oluşturmak için artı düğmesine basın.</string>
     <string name="download_notifier_downloader_title">İndirici</string>
     <string name="download_notifier_title_error">Hata</string>
@@ -537,4 +537,14 @@
     <string name="last_used_source">Son kullanılan</string>
     <string name="local_source_help_guide">Yerel kaynak kılavuzu</string>
     <string name="restore_duration">%02d dk, %02d sn</string>
+    <string name="manga_info_last_chapter_label">Son bölüm</string>
+    <string name="downloaded_only_summary">Kitaplığınızdaki tüm mangaları filtreler</string>
+    <string name="manga_info_latest_data_label">Güncellendi</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">1 kaldı</item>
+        <item quantity="other">%1$s kaldı</item>
+    </plurals>
+    <string name="pref_search_pinned_sources_only">Yalnızca sabitlenmiş kaynakları içer</string>
+    <string name="channel_backup_restore_complete">Tamamlandı</string>
+    <string name="channel_backup_restore_progress">İlerleme</string>
 </resources>

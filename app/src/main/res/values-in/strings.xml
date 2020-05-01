@@ -79,7 +79,7 @@
     <string name="pref_category_tracking">Sinkronisasi</string>
     <string name="pref_category_advanced">Lanjutan</string>
     <string name="pref_category_about">Tentang</string>
-    <string name="pref_library_columns">Manga yang ditampilkan per baris</string>
+    <string name="pref_library_columns">Item yang ditampilkan per baris</string>
     <string name="portrait">Tegak</string>
     <string name="landscape">Menyamping</string>
     <string name="default_columns">Asali</string>
@@ -176,7 +176,7 @@
     <string name="source_not_found">Sumber tidak ditemukan</string>
     <string name="backup_created">Cadangan dibuat</string>
     <string name="restore_completed">Pemulihan telah selesai</string>
-    <string name="restore_completed_content">Pemulihan membutuhkan waktu %1$s dengan %2$s masalah.</string>
+    <string name="restore_completed_content">Selesai dalam %1$s dengan %2$s masalah</string>
     <string name="backup_restore_content">Proses pemulihan menggunakan koneksi internet untuk mengambil data, biaya operator mungkin berlaku.
 \n
 \nPastikan Anda telah memasang ekstensi yg dibutuhkan dan sudah login ke sumber sebelum proses pemulihan.</string>
@@ -311,9 +311,9 @@
     <string name="description_backdrop">Gambar latar belakang manga</string>
     <string name="description_cover">Sampul manga</string>
     <string name="information_no_downloads">Tidak ada unduhan</string>
-    <string name="information_no_recent">Tidak ada bab terbaru</string>
-    <string name="information_no_recent_manga">Tidak ada manga yang baru saja dibaca</string>
-    <string name="information_empty_library">Perpustakaan Anda kosong, tambahkan seri ke perpustakaan Anda dari sumber.</string>
+    <string name="information_no_recent">Tidak ada pembaruan</string>
+    <string name="information_no_recent_manga">Tidak ada yang dibaca baru-baru ini</string>
+    <string name="information_empty_library">Perpustakaan Anda kosong, tambahkan seri ke perpustakaan Anda.</string>
     <string name="download_notifier_downloader_title">Pengunduh</string>
     <string name="download_notifier_title_error">Gagal</string>
     <string name="download_notifier_unknown_error">Terjadi kesalahan saat mengunduh bab</string>
@@ -367,7 +367,8 @@
     <string name="manga_info_full_title_label">Judul</string>
     <string name="manga_added_library">Ditambahkan ke perpustakaan</string>
     <string name="manga_removed_library">Dihapus dari perpustakaan</string>
-    <string name="copied_to_clipboard">%1$s tersalin ke clipboard</string>
+    <string name="copied_to_clipboard">Tersalin ke papan klip:
+\n%1$s</string>
     <string name="custom_download">Unduh sejumlah tertentu</string>
     <string name="download_custom">Kustom</string>
     <string name="migration_info">Ketuk untuk memilih sumber awal</string>
@@ -488,7 +489,7 @@
     <string name="pref_enable_automatic_extension_updates">Periksa untuk pembaruan extension</string>
     <string name="pref_category_reading">Membaca</string>
     <string name="action_sort_last_checked">Terakhir diperiksa</string>
-    <string name="channel_backup_restore">Membuat cadangan data dan mengembalikan cadangan data.</string>
+    <string name="channel_backup_restore">Pencadangan dan pemulihan</string>
     <string name="information_webview_required">Tampilan web dibutuhkan untuk Tachiyomi</string>
     <plurals name="update_check_notification_ext_updates">
         <item quantity="other">Terdapat perbaharuan ekstensi</item>
@@ -513,7 +514,7 @@
     <string name="action_unpin">Hilangkan tanda</string>
     <string name="action_pin">Tandai</string>
     <string name="action_select_inverse">Pilih kebalikan</string>
-    <string name="confirm_exit">Tekan kembali untuk keluar</string>
+    <string name="confirm_exit">Tekan lagi untuk keluar</string>
     <string name="label_downloaded_only">Hanya yang sudah diunduh</string>
     <string name="pinned_sources">Tersemat</string>
     <string name="website">Situs web</string>
@@ -521,4 +522,21 @@
     <string name="webtoon_side_padding_20">20%</string>
     <string name="webtoon_side_padding_15">15%</string>
     <string name="vertical_plus_viewer">Vertikal berkelanjutan</string>
+    <string name="error_invalid_date_supplied">Tanggal yang salah telah dimasukkan</string>
+    <string name="track_finished_reading_date">Tanggal selesai dibaca</string>
+    <string name="track_started_reading_date">Tanggal mulai dibaca</string>
+    <string name="manga_info_latest_data_label">Telah diperbarui</string>
+    <string name="manga_info_last_chapter_label">Bab terakhir</string>
+    <string name="local_source_help_guide">Petunjuk sumber lokal</string>
+    <string name="last_used_source">Terakhir digunakan</string>
+    <plurals name="download_queue_summary">
+        <item quantity="other">%1$s lagi</item>
+    </plurals>
+    <string name="downloaded_only_summary">Filter semua manga di Perpustakaan</string>
+    <string name="check_for_updates">Cek pembaruan</string>
+    <string name="restoring_backup_canceled">Pemulihan dibatalkan</string>
+    <string name="restore_in_progress">Pemulihan masih dalam proses</string>
+    <string name="backup_in_progress">Pencadangan masih dalam proses</string>
+    <string name="restore_duration">%02d menit, %02d detik</string>
+    <string name="pref_search_pinned_sources_only">Hanya sertakan sumber yang ditandai</string>
 </resources>
