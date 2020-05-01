@@ -132,16 +132,16 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
 
     private fun checkAllowPreload(page: ReaderPage?): Boolean {
         // Page is transition page - preload allowed
-        page == null ?: return true
+        page ?: return true
 
         // Initial opening - preload allowed
-        currentPage == null ?: return true
+        currentPage ?: return true
 
         // Allow preload for
         // 1. Going to next chapter from chapter transition
         // 2. Going between pages of same chapter
         // 3. Next chapter page
-        return when (page!!.chapter) {
+        return when (page.chapter) {
             (currentPage as? ChapterTransition.Next)?.to -> true
             (currentPage as? ReaderPage)?.chapter -> true
             adapter.nextTransition?.to -> true
