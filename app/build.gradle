@@ -62,11 +62,11 @@ android {
             versionNameSuffix "-${getCommitCount()}"
             applicationIdSuffix ".debug"
         }
-        release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+//        release {
+//            minifyEnabled true
+//            shrinkResources true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
     }
 
     flavorDimensions "default"
