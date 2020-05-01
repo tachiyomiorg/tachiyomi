@@ -13,8 +13,6 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
-import com.bluelinelabs.conductor.RouterTransaction
-import com.bluelinelabs.conductor.changehandler.FadeChangeHandler
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
@@ -103,7 +101,7 @@ class SourceController :
 
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
         super.onChangeStarted(handler, type)
-        if (!type.isPush && handler is SettingsSourcesFadeChangeHandler) {
+        if (type.isPush) {
             presenter.updateSources()
         }
     }
@@ -205,8 +203,10 @@ class SourceController :
             .launchIn(scope)
     }
 
-    fun performGlobalSearch(query: String) {
-        (parentController as BrowseController).pushController(GlobalSearchController(query).withFadeTransaction())
+    private fun performGlobalSearch(query: String) {
+        (parentController as BrowseController).pushController(
+            GlobalSearchController(query).withFadeTransaction()
+        )
     }
 
     /**
@@ -220,9 +220,7 @@ class SourceController :
             // Initialize option to open catalogue settings.
             R.id.action_settings -> {
                 (parentController as BrowseController).pushController(
-                    (RouterTransaction.with(SettingsSourcesController()))
-                        .popChangeHandler(SettingsSourcesFadeChangeHandler())
-                        .pushChangeHandler(FadeChangeHandler())
+                    SettingsSourcesController().withFadeTransaction()
                 )
             }
         }
@@ -246,6 +244,4 @@ class SourceController :
             adapter?.addScrollableHeader(LangItem(SourcePresenter.LAST_USED_KEY))
         }
     }
-
-    class SettingsSourcesFadeChangeHandler : FadeChangeHandler()
 }

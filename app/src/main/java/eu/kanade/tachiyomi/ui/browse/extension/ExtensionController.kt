@@ -188,7 +188,7 @@ open class ExtensionController :
         (parentController as BrowseController).setExtensionUpdateBadge()
     }
 
-    fun drawExtensions() {
+    private fun drawExtensions() {
         if (!query.isBlank()) {
             adapter?.updateDataSet(
                 extensions.filter {
