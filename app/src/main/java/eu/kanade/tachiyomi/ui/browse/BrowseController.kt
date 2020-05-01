@@ -12,6 +12,7 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.support.RouterPagerAdapter
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.tabs.TabLayout
+import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.PagerControllerBinding
@@ -40,6 +41,8 @@ class BrowseController :
     private val preferences: PreferencesHelper by injectLazy()
 
     private val toExtensions = args.getBoolean(TO_EXTENSIONS_EXTRA, false)
+
+    val extensionListUpdateRelay: PublishRelay<Boolean> = PublishRelay.create()
 
     private var adapter: BrowseAdapter? = null
 

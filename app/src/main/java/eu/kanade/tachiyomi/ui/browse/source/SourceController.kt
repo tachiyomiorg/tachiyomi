@@ -92,6 +92,12 @@ class SourceController :
         adapter?.fastScroller = binding.fastScroller
 
         requestPermissionsSafe(arrayOf(WRITE_EXTERNAL_STORAGE), 301)
+
+        // Update list on extension changes (e.g. new installation)
+        (parentController as BrowseController).extensionListUpdateRelay
+            .subscribeUntilDestroy {
+                presenter.updateSources()
+            }
     }
 
     override fun onDestroyView(view: View) {

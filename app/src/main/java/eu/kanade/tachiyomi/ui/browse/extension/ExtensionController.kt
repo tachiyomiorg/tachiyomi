@@ -181,7 +181,9 @@ open class ExtensionController :
         drawExtensions()
 
         // Update badge on parent controller tab
-        (parentController as BrowseController).setExtensionUpdateBadge()
+        val ctrl = parentController as BrowseController
+        ctrl.setExtensionUpdateBadge()
+        ctrl.extensionListUpdateRelay.call(true)
     }
 
     private fun drawExtensions() {
