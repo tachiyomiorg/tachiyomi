@@ -131,7 +131,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
                 mangaEntries.add(backupMangaObject(manga, flags))
 
                 // Maintain set of extensions/sources used (excludes local source)
-                if (manga.source != 0L) {
+                if (manga.source != 0L && sourceManager.get(manga.source) != null) {
                     extensions.add("${manga.source}:${sourceManager.get(manga.source)!!.name}")
                 }
             }
