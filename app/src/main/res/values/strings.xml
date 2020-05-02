@@ -186,6 +186,10 @@
     <string name="pref_category_library_categories">Categories</string>
     <string name="default_category">Default category</string>
     <string name="default_category_summary">Always ask</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d category</item>
+        <item quantity="other">%d categories</item>
+    </plurals>
     <string name="pref_library_update_categories">Categories to include in global update</string>
     <string name="all">All</string>
 
