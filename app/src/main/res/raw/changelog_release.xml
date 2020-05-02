@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="true">
+    <changelogversion versionName="v0.9.1" changeDate="">
+        <changelogtext>Please see [a href="https://github.com/inorichi/tachiyomi/releases/tag/v0.9.1"]the changelog on GitHub[/a].</changelogtext>
+    </changelogversion>
+
     <changelogversion versionName="v0.9.0" changeDate="">
         <changelogtext>This is a huge release! Please see [a href="https://github.com/inorichi/tachiyomi/releases/tag/v0.9.0"]the changelog on GitHub[/a].</changelogtext>
     </changelogversion>
