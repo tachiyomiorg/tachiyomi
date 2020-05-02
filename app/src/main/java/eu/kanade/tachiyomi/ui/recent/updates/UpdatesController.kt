@@ -271,7 +271,6 @@ class UpdatesController :
     }
 
     private fun destroyActionModeIfNeeded() {
-        (activity as? MainActivity)?.showBottomNav(visible = true, collapse = true)
         actionMode?.finish()
     }
 
@@ -353,9 +352,12 @@ class UpdatesController :
      * @param mode the ActionMode object
      */
     override fun onDestroyActionMode(mode: ActionMode?) {
-        binding.actionToolbar.hide()
         adapter?.mode = SelectableAdapter.Mode.IDLE
         adapter?.clearSelection()
+
+        binding.actionToolbar.hide()
+        (activity as? MainActivity)?.showBottomNav(visible = true, collapse = true)
+
         actionMode = null
     }
 

@@ -327,7 +327,6 @@ class LibraryController(
      * Destroys the action mode.
      */
     private fun destroyActionModeIfNeeded() {
-        (activity as? MainActivity)?.showBottomNav(visible = true, collapse = true)
         actionMode?.finish()
     }
 
@@ -435,10 +434,13 @@ class LibraryController(
     }
 
     override fun onDestroyActionMode(mode: ActionMode?) {
-        binding.actionToolbar.hide()
         // Clear all the manga selections and notify child views.
         selectedMangas.clear()
         selectionRelay.call(LibrarySelectionEvent.Cleared())
+
+        binding.actionToolbar.hide()
+        (activity as? MainActivity)?.showBottomNav(visible = true, collapse = true)
+
         actionMode = null
     }
 
