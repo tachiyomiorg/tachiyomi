@@ -122,6 +122,15 @@ class AboutController : SettingsController() {
                 }
             }
             preference {
+                titleRes = R.string.label_extensions
+                val url = "https://github.com/inorichi/tachiyomi-extensions"
+                summary = url
+                onClick {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    startActivity(intent)
+                }
+            }
+            preference {
                 titleRes = R.string.licenses
 
                 onClick {
