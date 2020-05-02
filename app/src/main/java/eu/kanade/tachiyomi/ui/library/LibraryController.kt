@@ -32,6 +32,7 @@ import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.main.MainActivity
+import eu.kanade.tachiyomi.ui.main.offsetFabAppbarHeight
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
@@ -177,6 +178,8 @@ class LibraryController(
         if (preferences.downloadedOnly().get()) {
             binding.downloadedOnly.visible()
         }
+
+        binding.actionToolbar.offsetFabAppbarHeight(activity!!)
     }
 
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
@@ -316,6 +319,7 @@ class LibraryController(
                 actionMode!!,
                 R.menu.library_selection
             ) { onActionItemClicked(actionMode!!, it!!) }
+            (activity as? MainActivity)?.showBottomNav(visible = false, collapse = true)
         }
     }
 
@@ -323,6 +327,7 @@ class LibraryController(
      * Destroys the action mode.
      */
     private fun destroyActionModeIfNeeded() {
+        (activity as? MainActivity)?.showBottomNav(visible = true, collapse = true)
         actionMode?.finish()
     }
 

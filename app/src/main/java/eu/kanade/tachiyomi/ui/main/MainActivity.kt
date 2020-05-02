@@ -328,17 +328,11 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         binding.appbar.setExpanded(true)
 
         if ((from == null || from is RootController) && to !is RootController) {
-            bottomNavAnimator.collapse()
+            showBottomNav(visible = false, collapse = true)
         }
         if (to is RootController) {
-            if (from !is RootController) {
-                bottomNavAnimator.expand()
-            }
-
             // Always show bottom nav again when returning to a RootController
-            val layoutParams = binding.bottomNav.layoutParams as CoordinatorLayout.LayoutParams
-            val bottomViewNavigationBehavior = layoutParams.behavior as HideBottomViewOnScrollBehavior
-            bottomViewNavigationBehavior.slideUp(binding.bottomNav)
+            showBottomNav(visible = true, collapse = from !is RootController)
         }
 
         if (from is TabbedController) {
@@ -356,6 +350,24 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
             binding.appbar.disableElevation()
         } else {
             binding.appbar.enableElevation()
+        }
+    }
+
+    fun showBottomNav(visible: Boolean, collapse: Boolean = false) {
+        val layoutParams = binding.bottomNav.layoutParams as CoordinatorLayout.LayoutParams
+        val bottomViewNavigationBehavior = layoutParams.behavior as HideBottomViewOnScrollBehavior
+        if (visible) {
+            if (collapse) {
+                bottomNavAnimator.expand()
+            }
+
+            bottomViewNavigationBehavior.slideUp(binding.bottomNav)
+        } else {
+            if (collapse) {
+                bottomNavAnimator.collapse()
+            }
+
+            bottomViewNavigationBehavior.slideDown(binding.bottomNav)
         }
     }
 

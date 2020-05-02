@@ -121,8 +121,10 @@ class ChaptersController :
             }
             .launchIn(scope)
 
-        binding.fab.offsetFabAppbarHeight(activity!!)
         binding.fab.shrinkOnScroll(binding.recycler)
+
+        binding.actionToolbar.offsetFabAppbarHeight(activity!!)
+        binding.fab.offsetFabAppbarHeight(activity!!)
     }
 
     override fun onDestroyView(view: View) {
