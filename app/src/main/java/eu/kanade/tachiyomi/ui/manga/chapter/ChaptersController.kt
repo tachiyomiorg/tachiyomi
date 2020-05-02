@@ -24,6 +24,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.databinding.ChaptersControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
+import eu.kanade.tachiyomi.ui.main.offsetFabAppbarHeight
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.system.getResourceColor
@@ -120,6 +121,7 @@ class ChaptersController :
             }
             .launchIn(scope)
 
+        binding.fab.offsetFabAppbarHeight(activity!!)
         binding.fab.shrinkOnScroll(binding.recycler)
     }
 

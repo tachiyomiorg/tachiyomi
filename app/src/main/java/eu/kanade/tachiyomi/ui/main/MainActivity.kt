@@ -1,15 +1,21 @@
 package eu.kanade.tachiyomi.ui.main
 
+import android.app.Activity
 import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
+import com.google.android.material.tabs.TabLayout
 import eu.kanade.tachiyomi.Migrations
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.notification.NotificationReceiver
@@ -318,11 +324,21 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(router.backstackSize != 1)
 
+        // Always show appbar again when changing controllers
+        binding.appbar.setExpanded(true)
+
         if ((from == null || from is RootController) && to !is RootController) {
             bottomNavAnimator.collapse()
         }
-        if (to is RootController && from !is RootController) {
-            bottomNavAnimator.expand()
+        if (to is RootController) {
+            if (from !is RootController) {
+                bottomNavAnimator.expand()
+            }
+
+            // Always show bottom nav again when returning to a RootController
+            val layoutParams = binding.bottomNav.layoutParams as CoordinatorLayout.LayoutParams
+            val bottomViewNavigationBehavior = layoutParams.behavior as HideBottomViewOnScrollBehavior
+            bottomViewNavigationBehavior.slideUp(binding.bottomNav)
         }
 
         if (from is TabbedController) {
@@ -357,4 +373,19 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         const val INTENT_SEARCH_QUERY = "query"
         const val INTENT_SEARCH_FILTER = "filter"
     }
+}
+
+/**
+ * Used to manually offset a FAB within child views that might be cut off due to the collapsing
+ * AppBarLayout.
+ */
+fun View.offsetFabAppbarHeight(activity: Activity) {
+    val appbar: AppBarLayout = activity.findViewById(R.id.appbar)
+    val tabs: TabLayout = activity.findViewById(R.id.tabs)
+    appbar.addOnOffsetChangedListener(
+        AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val maxAbsOffset = appBarLayout.measuredHeight - tabs.measuredHeight
+            translationY = -maxAbsOffset - verticalOffset.toFloat()
+        }
+    )
 }
