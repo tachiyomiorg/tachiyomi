@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <changelog bulletedList="true">
+    <changelogversion versionName="v0.9.2" changeDate="">
+        <changelogtext>Mostly minor fixes on top of v0.9.0 / v0.9.1.</changelogtext>
+        <changelogtext>Fix: backup failing when a source isn't installed</changelogtext>
+        <changelogtext>Fix: local manga page sorting</changelogtext>
+        <changelogtext>Fix: 32-bit color setting not showing up in reader settings (Android 8+)</changelogtext>
+        <changelogtext>Enhancement: collapse top and bottom toolbars on scroll</changelogtext>
+    </changelogversion>
+
     <changelogversion versionName="v0.9.1" changeDate="">
-        <changelogtext>Please see [a href="https://github.com/inorichi/tachiyomi/releases/tag/v0.9.1"]the changelog on GitHub[/a].</changelogtext>
+        <changelogtext>Mostly minor fixes on top of v0.9.0.</changelogtext>
+        <changelogtext>Fix: sources tab not updating after installing an extension</changelogtext>
+        <changelogtext>Fix: disabled Proguard, which was causing issues with some extensions (e.g. Komga)</changelogtext>
+        <changelogtext>Fix: inverted selection in chapters list re-inverting after performing an action</changelogtext>
+        <changelogtext>Fix: manga info being cut off on smaller screens</changelogtext>
+        <changelogtext>Enhancement: removed notification sound when backup or restore is complete</changelogtext>
+        <changelogtext>Enhancement: move start/pause button in download queue to a Floating Action Button</changelogtext>
+        <changelogtext>Enhancement: remove extra confirmation step for passive biometric unlock (e.g. iris scan or face unlock)</changelogtext>
+        <changelogtext>New: Gray reader background</changelogtext>
     </changelogversion>
 
     <changelogversion versionName="v0.9.0" changeDate="">
