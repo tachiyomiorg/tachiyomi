@@ -40,7 +40,6 @@
     <string name="action_sort_down">Ordine decrescente</string>
     <string name="action_show_downloaded">Scaricati</string>
     <string name="action_next_unread">Prossimo non letto</string>
-    <string name="action_start">Avvia</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Pausa</string>
     <string name="action_previous_chapter">Capitolo precedente</string>
@@ -254,7 +253,6 @@
     <string name="no_previous_chapter">Capitolo precedente non trovato</string>
     <string name="decode_image_error">Impossibile caricare l\'immagine</string>
     <string name="confirm_set_image_as_cover">Usare questa immagine come copertina\?</string>
-    <string name="viewer_for_this_series">Visualizzatore per questa serie</string>
     <!-- Backup fragment -->
     <string name="backup">Backup</string>
     <!-- Recent manga fragment -->

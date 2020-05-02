@@ -116,7 +116,6 @@
     <string name="action_sort_up">Rendezés növekvő sorrendben</string>
     <string name="action_sort_down">Rendezés csökkenő sorrendben</string>
     <string name="action_next_unread">Következő olvasatlan</string>
-    <string name="action_start">Kezdés</string>
     <string name="action_stop">Megállítás</string>
     <string name="action_pause">Szüneteltetés</string>
     <string name="action_previous_chapter">Előző fejezet</string>

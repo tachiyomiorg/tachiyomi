@@ -45,7 +45,6 @@
     <string name="action_sort_up">الترتيب لأعلى</string>
     <string name="action_show_downloaded">مكتملة التحميل</string>
     <string name="action_next_unread">الغير مقروءة التالية</string>
-    <string name="action_start">بدء</string>
     <string name="action_stop">إيقاف</string>
     <string name="action_pause">إيقاف موقت</string>
     <string name="action_close">إغلاق</string>
@@ -292,7 +291,6 @@
     <string name="no_previous_chapter">لم يتم العثور على الفصل السابق</string>
     <string name="decode_image_error">لم يمكن تحميل الصورة</string>
     <string name="confirm_set_image_as_cover">هل تريد استخدام هذه الصورة كغلاف؟</string>
-    <string name="viewer_for_this_series">العارض لهذه السلسلة</string>
     <string name="download_queue_error">فشل تحميل الفصول. يمكنك إعادة المحاولة في قسم التحميلات</string>
     <string name="notification_update_progress">تقدم التحديث: %1$d/%2$d</string>
     <string name="notification_new_chapters">تم إيجاد فصول جديدة</string>

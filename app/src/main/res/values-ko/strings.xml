@@ -56,7 +56,6 @@
     <string name="action_sort_up">위로 정렬</string>
     <string name="action_sort_down">아래로 정렬</string>
     <string name="action_next_unread">다음 안 읽은 챕터로</string>
-    <string name="action_start">읽기 시작</string>
     <string name="action_close">닫기</string>
     <string name="action_previous_chapter">이전 챕터</string>
     <string name="action_next_chapter">다음 챕터</string>
@@ -273,7 +272,6 @@
     <string name="no_previous_chapter">이전 챕터가 없습니다</string>
     <string name="decode_image_error">이미지를 디코드 할 수 없습니다</string>
     <string name="confirm_set_image_as_cover">이 이미지를 표지로 설정하시겠습니까\?</string>
-    <string name="viewer_for_this_series">이 시리즈에 대한 뷰어</string>
     <string name="transition_finished">완료:</string>
     <string name="transition_current">현재:</string>
     <string name="transition_next">다음:</string>

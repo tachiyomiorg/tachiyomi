@@ -99,7 +99,6 @@
     <string name="action_sort_up">เรียงขึ้น</string>
     <string name="action_sort_down">เรียงลง</string>
     <string name="action_next_unread">อ่านเรื่องที่ยังไม่ได้อ่าน</string>
-    <string name="action_start">เริ่มต้น</string>
     <string name="action_stop">จุดจบ</string>
     <string name="action_pause">หยุดพัก</string>
     <string name="action_remove">ลบออก</string>
@@ -350,7 +349,6 @@
     <string name="no_previous_chapter">ไม่พบบทก่อนหน้านี้</string>
     <string name="decode_image_error">ไม่สามารถถอดรหัสรูปภาพได้</string>
     <string name="confirm_set_image_as_cover">คุณต้องการที่จะตั้งค่าภาพเป็นภาพที่ปกใช่มั้ย\?</string>
-    <string name="viewer_for_this_series">ตัวแสดงสำหรับชุดนี้</string>
     <string name="transition_finished">เสร็จแล้ว:</string>
     <string name="transition_current">ปัจจุบัน:</string>
     <string name="transition_next">ต่อไป:</string>

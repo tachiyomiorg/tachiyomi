@@ -45,7 +45,6 @@
     <string name="action_sort_down">Kārtot lejup</string>
     <string name="action_show_downloaded">Lejupieladēti</string>
     <string name="action_next_unread">Nākamais neizlasīts</string>
-    <string name="action_start">Sākt</string>
     <string name="action_stop">Beigt</string>
     <string name="action_pause">Pārtraukt</string>
     <string name="action_close">Aizvērt</string>

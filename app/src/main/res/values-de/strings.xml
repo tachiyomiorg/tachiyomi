@@ -43,7 +43,6 @@
     <string name="action_sort_down">Absteigend sortieren</string>
     <string name="action_show_downloaded">Heruntergeladen</string>
     <string name="action_next_unread">Nächstes Ungelesenes</string>
-    <string name="action_start">Start</string>
     <string name="action_stop">Stopp</string>
     <string name="action_pause">Pause</string>
     <string name="action_close">Schließen</string>
@@ -107,7 +106,7 @@
     <string name="default_category_summary">Immer fragen</string>
     <string name="pref_fullscreen">Vollbild</string>
     <string name="pref_lock_orientation">Bildschirm nicht drehen</string>
-    <string name="pref_page_transitions">Seitenübergänge</string>
+    <string name="pref_page_transitions">Animierte Seitenübergänge</string>
     <string name="pref_show_page_number">Seitennummer zeigen</string>
     <string name="pref_crop_borders">Rand abschneiden</string>
     <string name="pref_custom_brightness">Eigene Helligkeit festlegen</string>
@@ -243,7 +242,7 @@
     <string name="chapter_error">Fehler</string>
     <string name="chapter_paused">Pausiert</string>
     <string name="fetch_chapters_error">Abrufen der Kapitel fehlgeschlagen</string>
-    <string name="show_title">Titel</string>
+    <string name="show_title">Quellentitel</string>
     <string name="show_chapter_number">Kapitelnummer</string>
     <string name="sorting_mode">Sortiere nach</string>
     <string name="sort_by_source">Quelle</string>
@@ -284,7 +283,6 @@
     <string name="no_previous_chapter">Vorheriges Kapitel nicht gefunden</string>
     <string name="decode_image_error">Das Bild konnte nicht geladen werden</string>
     <string name="confirm_set_image_as_cover">Dieses Bild als Vorschaubild setzen\?</string>
-    <string name="viewer_for_this_series">Leser für diese Serie</string>
     <string name="download_queue_error">Fehler beim Herunterladen der Kapitel. Du kannst es in der Downloadsektion erneut versuchen</string>
     <string name="notification_update_progress">Aktualisierungsfortschritt: %1$d/%2$d</string>
     <string name="notification_new_chapters">Neue Kapitel gefunden</string>
@@ -392,7 +390,7 @@
     <string name="transition_no_previous">Es gibt kein vorheriges Kapitel</string>
     <string name="transition_pages_loading">Lade Seiten…</string>
     <string name="transition_pages_error">Seiten konnten nicht geladen werden: %1$s</string>
-    <string name="action_open_in_web_view">In Webansicht öffnen</string>
+    <string name="action_open_in_web_view">In WebView öffnen</string>
     <string name="pref_true_color">32-Bit Farben</string>
     <string name="pref_skip_read_chapters">Überspringe gelesene Kapitel</string>
     <string name="pref_read_with_long_tap">Langes Tippen für Kontextmenü</string>
@@ -495,7 +493,7 @@
         <item quantity="other">%d Erweiterungsupdates verfügbar</item>
     </plurals>
     <string name="channel_ext_updates">Erweiterungsupdates</string>
-    <string name="http_error_hint">Website in Webansicht prüfen</string>
+    <string name="http_error_hint">Website in WebView prüfen</string>
     <string name="updating_library">Bibliothek wird aktualisiert</string>
     <string name="pref_skip_filtered_chapters">Überspringe gefilterte Kapitel</string>
     <string name="pref_category_reading">Beim Lesen</string>
@@ -518,7 +516,7 @@
     <string name="in_library">In der Bibliothek</string>
     <string name="add_to_library">Zur Bibliothek hinzufügen</string>
     <string name="confirm_exit">Zum Beenden nochmal die Zurück-Taste drücken</string>
-    <string name="information_webview_required">Webansicht ist für Tachiyomi erforderlich</string>
+    <string name="information_webview_required">WebView ist für Tachiyomi erforderlich</string>
     <string name="licenses">Open-Source Lizenzen</string>
     <string name="website">Website</string>
     <string name="pref_confirm_exit">Beenden bestätigen</string>
@@ -547,4 +545,12 @@
     <string name="pref_search_pinned_sources_only">Nur angeheftete Quellen einbeziehen</string>
     <string name="channel_backup_restore_complete">Abgeschlossen</string>
     <string name="channel_backup_restore_progress">Fortschritt</string>
+    <string name="gray_background">Grau</string>
+    <string name="viewer">Viewer</string>
+    <string name="pref_category_for_this_series">Für diese Serie</string>
+    <string name="pref_true_color_summary">Reduziert Streifenbildung, aber beeinflusst die Performance</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d Kategorie</item>
+        <item quantity="other">%d Kategorien</item>
+    </plurals>
 </resources>

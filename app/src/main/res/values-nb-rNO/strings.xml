@@ -47,7 +47,6 @@
     <string name="action_sort_down">Sorter nedover</string>
     <string name="action_show_downloaded">Nedlastet</string>
     <string name="action_next_unread">Neste uleste</string>
-    <string name="action_start">Start</string>
     <string name="action_stop">Stopp</string>
     <string name="action_pause">Pause</string>
     <string name="action_close">Lukk</string>
@@ -365,7 +364,6 @@
 \n
 \nForsikre deg om at du har installert alle nødvendige utvidelser og er logget inn i kilder og sporingstjenester før du gjenoppretter.</string>
     <string name="confirm_set_image_as_cover">Bruk dette bildet som omslag\?</string>
-    <string name="viewer_for_this_series">Leser for denne serien</string>
     <string name="migration_info">Trykk for å velge kilde å migrere fra</string>
     <string name="download_queue_error">Kunne ikke laste ned kapitler. Du kan prøve igjen i nedlastingsdelen.</string>
     <string name="notification_update_progress">Oppdateringsfremdrift: %1$d/%2$d</string>

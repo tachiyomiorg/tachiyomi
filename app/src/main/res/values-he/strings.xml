@@ -81,7 +81,6 @@
     <string name="transition_next">הבא:</string>
     <string name="transition_current">נוכחי:</string>
     <string name="transition_finished">סיים:</string>
-    <string name="viewer_for_this_series">צופים לסדרה זו</string>
     <string name="confirm_set_image_as_cover">האם להשתמש בתמונה זו כציור כריכה\?</string>
     <string name="decode_image_error">לא ניתן היה לפענח את התמונה</string>
     <string name="no_previous_chapter">הפרק הקודם לא נמצא</string>
@@ -301,7 +300,6 @@
     <string name="action_close">סגור</string>
     <string name="action_pause">הפסק</string>
     <string name="action_stop">עצור</string>
-    <string name="action_start">התחל</string>
     <string name="action_view_chapters">הצג פרקים</string>
     <string name="action_next_unread">הבא שלא נקרא</string>
     <string name="action_show_downloaded">הורד</string>

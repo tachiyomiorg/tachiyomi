@@ -50,7 +50,6 @@
     <string name="action_sort_down">Zatriediť dole</string>
     <string name="action_show_downloaded">Stiahnuté</string>
     <string name="action_next_unread">Nasledujúce nečítané</string>
-    <string name="action_start">Začať</string>
     <string name="action_stop">Zastaviť</string>
     <string name="action_pause">Pauza</string>
     <string name="action_close">Zatvoriť</string>
@@ -358,7 +357,6 @@
     <string name="no_previous_chapter">Predchádzajúca kapitola nebola nájdená</string>
     <string name="decode_image_error">Obrázok sa nepodarilo dekódovať</string>
     <string name="confirm_set_image_as_cover">Chcete použiť tento obrázok ako obal\?</string>
-    <string name="viewer_for_this_series">Prehliadač tejto série</string>
     <string name="transition_finished">Dokončená:</string>
     <string name="transition_current">Aktuálna:</string>
     <string name="transition_next">Ďalšia:</string>

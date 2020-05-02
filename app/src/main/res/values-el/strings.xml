@@ -49,7 +49,6 @@
     <string name="action_sort_down">Ταξινόμηση κατά φθίνουσα σειρά</string>
     <string name="action_show_downloaded">Ληφθέντα</string>
     <string name="action_next_unread">Επόμενο μη αναγνωσμένο</string>
-    <string name="action_start">Εκκίνηση</string>
     <string name="action_stop">Σταμάτημα</string>
     <string name="action_pause">Παύση</string>
     <string name="action_close">Κλείσιμο</string>
@@ -290,7 +289,7 @@
     <string name="chapter_error">Σφάλμα</string>
     <string name="chapter_paused">Παύση</string>
     <string name="fetch_chapters_error">Δεν ήταν δυνατή η ανάκτηση κεφαλαίων</string>
-    <string name="show_title">Τίτλος</string>
+    <string name="show_title">Τίτλος πηγής</string>
     <string name="show_chapter_number">Αριθμός κεφαλαίου</string>
     <string name="sorting_mode">Λειτουργία ταξινόμησης</string>
     <string name="sort_by_source">Με βάση την πηγή</string>
@@ -339,7 +338,6 @@
     <string name="no_previous_chapter">Το προηγούμενο κεφάλαιο δεν βρέθηκε</string>
     <string name="decode_image_error">Δεν ήταν δυνατή η φόρτωση της εικόνας</string>
     <string name="confirm_set_image_as_cover">Χρησιμοποιήστε αυτήν την εικόνα ως εξώφυλλο;</string>
-    <string name="viewer_for_this_series">Πρόγραμμα προβολής για αυτήν τη σειρά</string>
     <string name="transition_finished">Διαβασμένο:</string>
     <string name="transition_current">Τρέχον:</string>
     <string name="transition_next">Επόμενο:</string>
@@ -547,4 +545,5 @@
     </plurals>
     <string name="channel_backup_restore_complete">Ολοκληρώθηκε</string>
     <string name="channel_backup_restore_progress">Πρόοδος</string>
+    <string name="gray_background">Γκρι</string>
 </resources>

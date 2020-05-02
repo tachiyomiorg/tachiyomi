@@ -47,7 +47,6 @@
     <string name="action_edit_cover">Modifică coperta</string>
     <string name="action_show_downloaded">Descărcate</string>
     <string name="action_next_unread">Următorul necitit</string>
-    <string name="action_start">Start</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Pauză</string>
     <string name="action_close">Închide</string>
@@ -339,7 +338,6 @@
     <string name="no_previous_chapter">Capitolul precedent nu a fost găsit</string>
     <string name="decode_image_error">Imaginea nu a putut să fie încărcată</string>
     <string name="confirm_set_image_as_cover">Folosiți această imagine ca și copertă\?</string>
-    <string name="viewer_for_this_series">Cititor pentru această serie</string>
     <string name="transition_finished">Terminat:</string>
     <string name="transition_current">Actual:</string>
     <string name="transition_next">Următorul:</string>

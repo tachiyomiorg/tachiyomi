@@ -46,7 +46,6 @@
     <string name="action_sort_down">По убыванию</string>
     <string name="action_sort_last_read">Последняя прочитанная</string>
     <string name="action_sort_up">По возрастанию</string>
-    <string name="action_start">Старт</string>
     <string name="action_stop">Стоп</string>
     <string name="action_update">Обновить</string>
     <string name="action_update_library">Обновить библиотеку</string>
@@ -265,7 +264,6 @@
     <string name="username">Имя пользователя</string>
     <string name="version">Версия</string>
     <string name="vertical_viewer">Вертикально</string>
-    <string name="viewer_for_this_series">Отображение для этой серии</string>
     <string name="webtoon_viewer">Вебкомикс</string>
     <string name="white_background">Белый</string>
     <string name="wifi">Wi-Fi</string>
@@ -490,7 +488,7 @@
     <string name="pref_always_show_chapter_transition">Всегда показывать главу перехода</string>
     <string name="pref_enable_automatic_extension_updates">Проверять обновления для расширений</string>
     <string name="hide_notification_content">Скрыть содержимое уведомления</string>
-    <string name="secure_screen_summary">Скрыть содержимое приложения, при переключении на другие приложения, и заблокированных скриншотов</string>
+    <string name="secure_screen_summary">Скрыть содержимое приложения, при переключении на другие приложения, и блокировании скриншотов</string>
     <string name="theme_light_blue">Бело-синяя</string>
     <string name="pref_theme_light">Белый вариант</string>
     <string name="action_oldest">Старейший</string>
@@ -546,7 +544,7 @@
     <string name="creating_backup_error">Ошибка бэкапа</string>
     <string name="backup_in_progress">Бэкап уже выполняется</string>
     <string name="restore_duration">%02d мин, %02d сек</string>
-    <string name="pref_search_pinned_sources_only">Только включать закрепленные источники</string>
+    <string name="pref_search_pinned_sources_only">Включать только закрепленные источники</string>
     <plurals name="download_queue_summary">
         <item quantity="one">Осталось 1</item>
         <item quantity="few">Осталось %1$s</item>

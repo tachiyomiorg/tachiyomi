@@ -42,7 +42,6 @@
     <string name="action_sort_down">Sortuj malejąco</string>
     <string name="action_show_downloaded">Pobrane</string>
     <string name="action_next_unread">Następne nieprzeczytane</string>
-    <string name="action_start">Start</string>
     <string name="action_stop">Zatrzymaj</string>
     <string name="action_pause">Wstrzymaj</string>
     <string name="action_close">Zamknij</string>
@@ -305,7 +304,6 @@
     <string name="page_downloaded">Strona skopiowana do %1$s</string>
     <string name="decode_image_error">Nie udało się wczytać obrazka</string>
     <string name="confirm_set_image_as_cover">Ustawić ten obrazek jako okładkę\?</string>
-    <string name="viewer_for_this_series">Widok dla tej serii</string>
     <string name="download_queue_error">Nie udało się pobrać rozdziałów. Możesz spróbować ponownie w sekcji pobierania</string>
     <string name="notification_update_progress">Stan aktualizacji: %1$d/%2$d</string>
     <string name="notification_cover_update_failed">Nie udało się zaktualizować okładki</string>
