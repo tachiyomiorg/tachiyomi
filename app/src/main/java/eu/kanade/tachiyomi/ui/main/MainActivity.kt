@@ -36,7 +36,6 @@ import eu.kanade.tachiyomi.ui.more.MoreController
 import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.util.lang.launchUI
-import eu.kanade.tachiyomi.util.system.WebViewUtil
 import eu.kanade.tachiyomi.util.system.toast
 import java.util.Date
 import java.util.concurrent.TimeUnit
@@ -70,12 +69,6 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         super.onCreate(savedInstanceState)
 
         binding = MainActivityBinding.inflate(layoutInflater)
-
-        // Enforce WebView availability
-        if (!WebViewUtil.supportsWebView(this)) {
-            toast(R.string.information_webview_required, Toast.LENGTH_LONG)
-            finishAndRemoveTask()
-        }
 
         // Do not let the launcher create a new activity http://stackoverflow.com/questions/16283079
         if (!isTaskRoot) {
