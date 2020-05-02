@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.util.lang
 
 import kotlin.math.floor
+import net.greypanther.natsort.CaseInsensitiveSimpleNaturalComparator
 
 /**
  * Replaces the given string to have at most [count] characters using [replacement] at its end.
@@ -32,9 +33,8 @@ fun String.truncateCenter(count: Int, replacement: String = "..."): String {
  * Case-insensitive natural comparator for strings.
  */
 fun String.compareToCaseInsensitiveNaturalOrder(other: String): Int {
-    return compareBy<String> { it.length }
-        .then(String.CASE_INSENSITIVE_ORDER)
-        .then(naturalOrder()).compare(this, other)
+    val comparator = CaseInsensitiveSimpleNaturalComparator.getInstance<String>()
+    return comparator.compare(this, other)
 }
 
 /**

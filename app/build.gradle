@@ -210,6 +210,9 @@ dependencies {
     final acra_version = '5.5.0'
     implementation "ch.acra:acra-http:$acra_version"
 
+    // Sort
+    implementation 'com.github.gpanther:java-nat-sort:natural-comparator-1.1'
+
     // UI
     implementation 'com.dmitrymalkovich.android:material-design-dimens:1.4'
     implementation 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
