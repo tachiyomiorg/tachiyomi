@@ -49,7 +49,6 @@
     <string name="action_sort_down">Sortiraj odozdo</string>
     <string name="action_show_downloaded">Preuzeto</string>
     <string name="action_next_unread">Sledeće nepročitano</string>
-    <string name="action_start">Počni</string>
     <string name="action_stop">Zaustavi</string>
     <string name="action_pause">Pauziraj</string>
     <string name="action_close">Zatvori</string>
@@ -415,7 +414,6 @@
     <string name="transition_next">Sledeće:</string>
     <string name="transition_current">Trenutno:</string>
     <string name="transition_finished">Gotovo:</string>
-    <string name="viewer_for_this_series">Pregledač za ovu seriju</string>
     <string name="confirm_set_image_as_cover">Koristite ovu sliku kao naslovnu\?</string>
     <string name="decode_image_error">Slika se ne može učitati</string>
     <string name="no_previous_chapter">Prethodno poglavlje nije pronađeno</string>

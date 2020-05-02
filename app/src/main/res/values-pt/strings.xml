@@ -35,7 +35,6 @@
     <string name="action_sort_down">Ordem descendente</string>
     <string name="action_show_downloaded">Transferido</string>
     <string name="action_next_unread">Próximo não lido</string>
-    <string name="action_start">Começar</string>
     <string name="action_stop">Parar</string>
     <string name="action_pause">Pausa</string>
     <string name="action_previous_chapter">Capítulo anterior</string>
@@ -187,7 +186,7 @@
     <string name="chapter_downloading_progress">A Transferir (%1$d/%2$d)</string>
     <string name="chapter_error">Erro</string>
     <string name="fetch_chapters_error">Não foi possível obter capítulos</string>
-    <string name="show_title">Título</string>
+    <string name="show_title">Título da fonte</string>
     <string name="show_chapter_number">Número do capítulo</string>
     <string name="sorting_mode">Modo de organização</string>
     <string name="sort_by_source">Por fonte</string>
@@ -220,7 +219,6 @@
     <string name="no_next_chapter">Capítulo seguinte não encontrado</string>
     <string name="no_previous_chapter">Capítulo anterior não encontrado</string>
     <string name="decode_image_error">Não foi possível carregar a imagem</string>
-    <string name="viewer_for_this_series">Visualizador para esta série</string>
     <!-- Backup fragment -->
     <string name="backup">Cópia de segurança</string>
     <!-- Recent manga fragment -->
@@ -570,4 +568,12 @@
     <string name="manga_info_last_chapter_label">Último capítulo</string>
     <string name="downloaded_only_summary">Filtrar todas as mangás em sua biblioteca</string>
     <string name="restore_duration">%02d min, %02d seg</string>
+    <string name="pref_search_pinned_sources_only">Apenas incluir fontes fixadas</string>
+    <string name="channel_backup_restore_progress">Progresso</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">1 restante</item>
+        <item quantity="other">%1$s restantes</item>
+    </plurals>
+    <string name="gray_background">Cinzento</string>
+    <string name="channel_backup_restore_complete">Completo</string>
 </resources>

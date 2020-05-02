@@ -49,7 +49,6 @@
     <string name="action_sort_down">Ordena en ordre descendent</string>
     <string name="action_show_downloaded">Baixats</string>
     <string name="action_next_unread">Següent sense llegir</string>
-    <string name="action_start">Inicia</string>
     <string name="action_stop">Atura</string>
     <string name="action_pause">Pausa</string>
     <string name="action_close">Tanca</string>
@@ -290,7 +289,7 @@
     <string name="chapter_error">Error</string>
     <string name="chapter_paused">Pausat</string>
     <string name="fetch_chapters_error">No s\'han pogut obtenir els capítols</string>
-    <string name="show_title">Títol</string>
+    <string name="show_title">Títol de la font</string>
     <string name="show_chapter_number">Número de capítol</string>
     <string name="sorting_mode">Mode d\'ordenació</string>
     <string name="sort_by_source">Per font</string>
@@ -339,7 +338,6 @@
     <string name="no_previous_chapter">No s\'ha trobat el capítol anterior</string>
     <string name="decode_image_error">No s\'ha pogut carregar la imatge</string>
     <string name="confirm_set_image_as_cover">Voleu fer servir aquesta imatge com a portada\?</string>
-    <string name="viewer_for_this_series">Lector per a aquesta sèrie</string>
     <string name="transition_finished">Finalitzat:</string>
     <string name="transition_current">Actual:</string>
     <string name="transition_next">Següent:</string>
@@ -547,4 +545,5 @@
     <string name="pref_search_pinned_sources_only">Inclou només les fonts fixades</string>
     <string name="channel_backup_restore_complete">Completada</string>
     <string name="channel_backup_restore_progress">Progrés</string>
+    <string name="gray_background">Gris</string>
 </resources>

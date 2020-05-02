@@ -46,7 +46,6 @@
     <string name="action_sort_down">नीचे छांटे</string>
     <string name="action_show_downloaded">डाउनलोड किया हुआ</string>
     <string name="action_next_unread">अगला अपठित</string>
-    <string name="action_start">प्रारंभ</string>
     <string name="action_stop">रोके</string>
     <string name="action_pause">ठहराव</string>
     <string name="action_close">बंद करे</string>
@@ -113,7 +112,7 @@
     <string name="default_category_summary">हमेशा पूछे</string>
     <string name="pref_fullscreen">पूर्ण स्क्रीन</string>
     <string name="pref_lock_orientation">उन्मुखीकरण बंद करे</string>
-    <string name="pref_page_transitions">पृष्ठ संक्रमण</string>
+    <string name="pref_page_transitions">चेतन पृष्ठ संक्रमण</string>
     <string name="pref_show_page_number">पृष्ठ संख्या दिखाएं</string>
     <string name="pref_crop_borders">किनारा कांटे</string>
     <string name="pref_custom_brightness">इच्छा अनुसार द्य्रुति</string>
@@ -254,7 +253,7 @@
     <string name="chapter_error">त्रुटि</string>
     <string name="chapter_paused">रोके गए</string>
     <string name="fetch_chapters_error">अध्याय नहीं ला सके</string>
-    <string name="show_title">शीर्षक</string>
+    <string name="show_title">स्रोत शीर्षक</string>
     <string name="show_chapter_number">अध्याय संख्या</string>
     <string name="sorting_mode">छंटनी मोड</string>
     <string name="sort_by_source">स्रोत से</string>
@@ -295,7 +294,6 @@
     <string name="no_previous_chapter">पिछला अध्याय नहीं मिला</string>
     <string name="decode_image_error">छवि को लोड नहीं किया जा सका</string>
     <string name="confirm_set_image_as_cover">कवर कला के रूप में इस छवि का उपयोग करें\?</string>
-    <string name="viewer_for_this_series">इस श्रृंखला के लिए दर्शक</string>
     <string name="download_queue_error">चैप्टर डाउनलोड नहीं कर सके। आप डाउनलोड अनुभाग में फिर से आज़मा सकते हैं</string>
     <string name="notification_update_progress">अपडेट प्रगति: %1$d/%2$d</string>
     <string name="notification_new_chapters">नए अध्याय पाए गए</string>
@@ -545,4 +543,8 @@
     <string name="pref_search_pinned_sources_only">केवल पिन किए गए स्रोत शामिल हैं</string>
     <string name="channel_backup_restore_complete">पूर्ण</string>
     <string name="channel_backup_restore_progress">प्रगती</string>
+    <string name="viewer">व्यूअर</string>
+    <string name="pref_category_for_this_series">इस श्रृंखला के लिए</string>
+    <string name="gray_background">ग्रे</string>
+    <string name="pref_true_color_summary">बैंडिंग को कम करता है, लेकिन प्रदर्शन को प्रभावित करता है</string>
 </resources>

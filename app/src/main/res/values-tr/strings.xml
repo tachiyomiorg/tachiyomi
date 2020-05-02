@@ -49,7 +49,6 @@
     <string name="action_sort_down">Aşağı sırala</string>
     <string name="action_show_downloaded">İndirilen</string>
     <string name="action_next_unread">Sonraki okunmamış</string>
-    <string name="action_start">Başlat</string>
     <string name="action_stop">Durdur</string>
     <string name="action_pause">Duraklat</string>
     <string name="action_close">Kapat</string>
@@ -290,7 +289,7 @@
     <string name="chapter_error">Hata</string>
     <string name="chapter_paused">Duraklatıldı</string>
     <string name="fetch_chapters_error">Bölümler alınamadı</string>
-    <string name="show_title">Başlık</string>
+    <string name="show_title">Kaynak başlığı</string>
     <string name="show_chapter_number">Bölüm numarası</string>
     <string name="sorting_mode">Sıralama kipi</string>
     <string name="sort_by_source">Kaynağa göre</string>
@@ -339,7 +338,6 @@
     <string name="no_previous_chapter">Önceki bölüm bulunamadı</string>
     <string name="decode_image_error">Görsel yüklenemedi</string>
     <string name="confirm_set_image_as_cover">Bu görsel kapak resmi olarak kullanılsın mı\?</string>
-    <string name="viewer_for_this_series">Bu dizi için görüntüleyici</string>
     <string name="migration_info">Taşınılacak kaynağı seçmek için dokunun</string>
     <string name="migration_dialog_what_to_include">Eklenecek veriyi seç</string>
     <string name="select">Seç</string>
@@ -547,4 +545,5 @@
     <string name="pref_search_pinned_sources_only">Yalnızca sabitlenmiş kaynakları içer</string>
     <string name="channel_backup_restore_complete">Tamamlandı</string>
     <string name="channel_backup_restore_progress">İlerleme</string>
+    <string name="gray_background">Gri</string>
 </resources>

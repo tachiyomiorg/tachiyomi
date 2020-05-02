@@ -44,7 +44,6 @@
     <string name="action_add_category">カテゴリを追加</string>
     <string name="action_edit_categories">カテゴリを編集</string>
     <string name="action_edit_cover">表紙画像を編集</string>
-    <string name="action_start">開始</string>
     <string name="action_pause">一時停止</string>
     <string name="action_close">クリア</string>
     <string name="action_previous_chapter">前の章</string>
@@ -335,7 +334,6 @@
     <string name="no_previous_chapter">前のチャプターが見つかりません</string>
     <string name="decode_image_error">画像を読み取れませんでした</string>
     <string name="confirm_set_image_as_cover">カバーとして設定しますか？</string>
-    <string name="viewer_for_this_series">このシリーズのビューア</string>
     <string name="migration_info">タップして移行元のソースを選択</string>
     <string name="migration_dialog_what_to_include">移行するデータを選択</string>
     <string name="select">選択</string>
@@ -444,4 +442,6 @@
         <item quantity="other">%1$d新しい章</item>
     </plurals>
     <string name="notification_chapters_single">%1$s章</string>
+    <string name="action_hide">隠す</string>
+    <string name="action_newest">最新</string>
 </resources>

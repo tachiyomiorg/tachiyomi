@@ -41,7 +41,6 @@
     <string name="no_previous_chapter">Aiempaa lukua ei löydy</string>
     <string name="decode_image_error">Kuvaa ei voitu ladata</string>
     <string name="confirm_set_image_as_cover">Käytetäänkö tätä kuvaa kansikuvana\?</string>
-    <string name="viewer_for_this_series">Katselin tälle sarjalle</string>
     <string name="transition_finished">Valmistunut:</string>
     <string name="transition_current">Nykyinen:</string>
     <string name="transition_next">Seuraava:</string>
@@ -118,7 +117,6 @@
     <string name="action_show_downloaded">Ladatut</string>
     <string name="action_retry">Yritä uudelleen</string>
     <string name="action_next_unread">Seuraava lukematon</string>
-    <string name="action_start">Aloita</string>
     <string name="action_stop">Lopeta</string>
     <string name="action_pause">Pysäytä</string>
     <string name="action_close">Sulje</string>
@@ -547,4 +545,5 @@
     <string name="pref_search_pinned_sources_only">Sisällytä vain kiinnitetyt lähteet</string>
     <string name="channel_backup_restore_complete">Valmis</string>
     <string name="channel_backup_restore_progress">Edistyminen</string>
+    <string name="gray_background">Harmaa</string>
 </resources>

@@ -44,7 +44,6 @@
     <string name="action_edit_cover">编辑封面</string>
     <string name="action_sort_up">升序</string>
     <string name="action_show_downloaded">已下载</string>
-    <string name="action_start">开始</string>
     <string name="action_stop">停止</string>
     <string name="action_pause">暂停</string>
     <string name="action_close">关闭</string>
@@ -339,7 +338,6 @@
     <string name="no_previous_chapter">前面没有啦</string>
     <string name="decode_image_error">图片加载失败</string>
     <string name="confirm_set_image_as_cover">要将此页设为封面吗？</string>
-    <string name="viewer_for_this_series">阅读模式</string>
     <string name="transition_finished">已读完：</string>
     <string name="transition_current">当前章节：</string>
     <string name="transition_next">下一章：</string>
@@ -440,7 +438,7 @@
     <string name="lock_always">总是</string>
     <string name="lock_never">从不</string>
     <plurals name="lock_after_mins">
-        <item quantity="one"></item>
+        <item quantity="one">1分钟后</item>
         <item quantity="other">%1$s 分钟后</item>
     </plurals>
     <string name="secure_screen">安全屏幕</string>
@@ -457,14 +455,14 @@
     <string name="lock_with_biometrics">启用生物识别锁定</string>
     <string name="pref_cutout_short">在刘海屏区域显示内容</string>
     <plurals name="notification_chapters_generic">
-        <item quantity="one"></item>
+        <item quantity="one">1个新章节</item>
         <item quantity="other">%1$d 个新章节</item>
     </plurals>
     <string name="notification_chapters_single">第 %1$s 章</string>
     <string name="notification_chapters_single_and_more">第 %1$s 章及另外 %2$d 章</string>
     <string name="notification_chapters_multiple">第 %1$s 章</string>
     <plurals name="notification_chapters_multiple_and_more">
-        <item quantity="one"></item>
+        <item quantity="one">第 %1$s 章及另外1章</item>
         <item quantity="other">第 %1$s 章及另外 %2$d 章</item>
     </plurals>
     <string name="notification_check_updates">正在检查新章节</string>
@@ -474,7 +472,7 @@
     <string name="email">邮箱地址</string>
     <string name="pref_always_show_chapter_transition">总是显示章节之间的过渡界面</string>
     <plurals name="notification_new_chapters_summary">
-        <item quantity="one"></item>
+        <item quantity="one">共 1 个标题</item>
         <item quantity="other">共 %d 个标题</item>
     </plurals>
     <string name="pref_theme_light">默认浅色主题</string>
@@ -491,7 +489,7 @@
     <string name="action_sort_last_checked">最近检查</string>
     <string name="pref_enable_automatic_extension_updates">检查扩展插件更新</string>
     <plurals name="update_check_notification_ext_updates">
-        <item quantity="one"></item>
+        <item quantity="one">1个扩展插件可更新</item>
         <item quantity="other">%d 个扩展插件可更新</item>
     </plurals>
     <string name="channel_ext_updates">扩展插件更新</string>
@@ -537,11 +535,15 @@
     <string name="local_source_help_guide">本地图源指南</string>
     <string name="last_used_source">上次浏览</string>
     <plurals name="download_queue_summary">
-        <item quantity="one"></item>
+        <item quantity="one">剩余1个</item>
         <item quantity="other">剩余 %1$s 个</item>
     </plurals>
     <string name="downloaded_only_summary">筛选书架的全部漫画</string>
     <string name="check_for_updates">检查更新</string>
     <string name="restore_duration">%02d 分，%02d 秒</string>
     <string name="pref_search_pinned_sources_only">仅在已置顶的图源中搜索</string>
+    <string name="error_invalid_date_supplied">无效的日期</string>
+    <string name="track_finished_reading_date">完成阅读时间</string>
+    <string name="track_started_reading_date">开始阅读时间</string>
+    <string name="gray_background">灰色</string>
 </resources>

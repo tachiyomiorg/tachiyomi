@@ -49,7 +49,6 @@
     <string name="action_sort_down">Ayusin pababa</string>
     <string name="action_show_downloaded">Mga na-download</string>
     <string name="action_next_unread">Susunod na hindi pa nababasa</string>
-    <string name="action_start">Mag-umpisa</string>
     <string name="action_stop">Itigil</string>
     <string name="action_pause">Ihinto</string>
     <string name="action_close">Isara</string>
@@ -351,7 +350,6 @@
     <string name="no_previous_chapter">Hindi nakita ang nakaraang kabanata</string>
     <string name="decode_image_error">Hindi ma-decode ang larawan</string>
     <string name="confirm_set_image_as_cover">Gusto mo bang i-set ang larawang ito bilang pabalat\?</string>
-    <string name="viewer_for_this_series">Viewer para sa seryeng ito</string>
     <string name="transition_finished">Natapos:</string>
     <string name="transition_current">Kasalukuyan:</string>
     <string name="transition_next">Susunod:</string>

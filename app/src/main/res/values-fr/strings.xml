@@ -6,7 +6,7 @@
     <string name="label_download_queue">File de téléchargement</string>
     <string name="label_library">Bibliothèque</string>
     <string name="label_recent_manga">Historique</string>
-    <string name="label_recent_updates">Mises à jour</string>
+    <string name="label_recent_updates">Nouveautés</string>
     <string name="label_categories">Catégories</string>
     <string name="label_backup">Sauvegarde</string>
     <!-- Actions -->
@@ -41,7 +41,6 @@
     <string name="action_sort_down">Trier par ordre descendant</string>
     <string name="action_show_downloaded">Téléchargé</string>
     <string name="action_next_unread">Prochain non lu</string>
-    <string name="action_start">Commencer</string>
     <string name="action_stop">Arrêter</string>
     <string name="action_pause">Pause</string>
     <string name="action_previous_chapter">Chapitre précédent</string>
@@ -58,7 +57,7 @@
     <string name="action_sort">Trier</string>
     <string name="action_install">Installer</string>
     <string name="action_share">Partager</string>
-    <string name="action_save">Sauvegarder</string>
+    <string name="action_save">Télécharger la page</string>
     <string name="action_reset">Réinitialiser</string>
     <!-- Operations -->
     <string name="loading">Chargement…</string>
@@ -71,7 +70,7 @@
     <string name="pref_category_advanced">Avancé</string>
     <string name="pref_category_about">À propos</string>
     <!-- General section -->
-    <string name="pref_library_columns">Manga dans la bibliothèque par colonne</string>
+    <string name="pref_library_columns">Affichage par liste</string>
     <string name="portrait">Portrait</string>
     <string name="landscape">Paysage</string>
     <string name="default_columns">Par défaut</string>
@@ -248,7 +247,6 @@
     <string name="no_previous_chapter">Chapitre précédent non trouvé</string>
     <string name="decode_image_error">L\'image n\'a pas pu être chargée</string>
     <string name="confirm_set_image_as_cover">Voulez-vous mettre cette image comme couverture ?</string>
-    <string name="viewer_for_this_series">Lecteur pour cette série</string>
     <!-- Backup fragment -->
     <string name="backup">Sauvegarder</string>
     <!-- Recent manga fragment -->
@@ -283,8 +281,8 @@
     <!-- Information Text -->
     <string name="information_no_downloads">Aucun téléchargement</string>
     <string name="information_no_recent">Aucun chapitre récent</string>
-    <string name="information_no_recent_manga">Aucun manga lu récemment</string>
-    <string name="information_empty_library">Bibliothèque vide, ajouter des séries à votre bibliothèque depuis le Catalogue.</string>
+    <string name="information_no_recent_manga">Aucune série lu récemment</string>
+    <string name="information_empty_library">Bibliothèque vide, ajoutez des séries à votre bibliothèque depuis le Catalogue.</string>
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Téléchargement</string>
     <string name="download_notifier_title_error">Erreur</string>
@@ -396,7 +394,8 @@
     <string name="manga_info_full_title_label">Titre</string>
     <string name="manga_added_library">Ajouté à la bibliothèque</string>
     <string name="manga_removed_library">Supprimé de la bibliothèque</string>
-    <string name="copied_to_clipboard">%1$s a été copié dans le presse papier</string>
+    <string name="copied_to_clipboard">%1$s
+\na été copié dans le presse papier</string>
     <string name="source_not_installed">Sources non installées: %1$s</string>
     <string name="custom_download">Télécharger une quantité personnalisée</string>
     <string name="download_custom">Personnalisé</string>
@@ -439,7 +438,7 @@
     <string name="filter_mode_lighten">Éclaircir</string>
     <string name="filter_mode_darken">Obscurcir</string>
     <string name="no_results_found">Aucun résultats trouvés</string>
-    <string name="migration_selection_prompt">Sélectionner une source depuis laquelle migrer</string>
+    <string name="migration_selection_prompt">Sélectionnez une source depuis laquelle migrer</string>
     <string name="pref_category_library">Bibliothèque</string>
     <string name="obsolete_extension_message">Cette extension n’est plus disponible.</string>
     <string name="pref_date_format">Format de date</string>
@@ -550,7 +549,7 @@
     <string name="restoring_backup_canceled">Restauration de sauvegarde annulée</string>
     <string name="restoring_backup_error">Échec de la restauration de sauvegarde</string>
     <string name="restore_in_progress">Restauration déjà en cours</string>
-    <string name="label_downloaded_only">Téléchargés seulement</string>
+    <string name="label_downloaded_only">Téléchargés uniquement</string>
     <string name="creating_backup_error">Échec de la sauvegarde</string>
     <string name="backup_in_progress">Sauvegarde déjà en cours</string>
     <string name="manga_info_collapse">Afficher moins d\'informations</string>
@@ -570,4 +569,21 @@
     <string name="information_webview_required">WebView est requis par Tachiyomi</string>
     <string name="local_source_help_guide">Guide des sources locales</string>
     <string name="channel_backup_restore">Sauvegarde et restauration</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">1 restant</item>
+        <item quantity="other">%1$s restants</item>
+    </plurals>
+    <string name="manga_info_last_chapter_label">Dernier chapitre</string>
+    <string name="manga_info_latest_data_label">Mis à jour le</string>
+    <string name="channel_backup_restore_complete">Terminé</string>
+    <string name="channel_backup_restore_progress">Progression</string>
+    <string name="downloaded_only_summary">Afficher uniquement les séries téléchargés</string>
+    <string name="pref_search_pinned_sources_only">Inclure uniquement les sources épinglés</string>
+    <string name="gray_background">Gris</string>
+    <string name="pref_category_for_this_series">Pour cette série</string>
+    <string name="pref_true_color_summary">Réduit les bandes passantes mais affecte les performances</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d catégorie</item>
+        <item quantity="other">%d catégories</item>
+    </plurals>
 </resources>

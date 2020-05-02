@@ -226,7 +226,6 @@
     <string name="action_update_library">Aktualizovat knihovnu</string>
     <string name="action_rename_category">Přejmenovat kategorii</string>
     <string name="action_move_category">Přesunout do kategorií</string>
-    <string name="action_start">Start</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Pauza</string>
     <string name="action_retry">Opakovat</string>
@@ -375,7 +374,6 @@
     <string name="error_category_exists">Kategorie s tímto jménem již existuje!</string>
     <string name="dialog_with_checkbox_remove_description">Toto odstraní datum přečtení této kapitoly. Jste si jistý\?</string>
     <string name="confirm_set_image_as_cover">Chcete tento obrázek nastavit jako obal\?</string>
-    <string name="viewer_for_this_series">Prohlížeč této série</string>
     <string name="transition_pages_error">Chyba při načítání stránek: %1$s</string>
     <string name="migration_info">Klepnutím vyberte zdroj, ze kterého chcete migrovat</string>
     <string name="migration_dialog_what_to_include">Vyberte data, která chcete zahrnout</string>

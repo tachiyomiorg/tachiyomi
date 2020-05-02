@@ -49,7 +49,6 @@
     <string name="action_sort_down">Sortera ner</string>
     <string name="action_show_downloaded">Nedladdat</string>
     <string name="action_next_unread">Nästa olästa</string>
-    <string name="action_start">Start</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Paus</string>
     <string name="action_close">Stäng</string>
@@ -339,7 +338,6 @@
     <string name="no_previous_chapter">Föregående kapitel kunde inte hittas</string>
     <string name="decode_image_error">Bilden kunde inte laddas</string>
     <string name="confirm_set_image_as_cover">Ställ in denna bilden som omslaget\?</string>
-    <string name="viewer_for_this_series">Visare för denna serie</string>
     <string name="transition_finished">Färdig:</string>
     <string name="transition_current">Nuvarande:</string>
     <string name="transition_next">Nästa:</string>

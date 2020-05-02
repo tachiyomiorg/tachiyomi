@@ -38,7 +38,6 @@
     <string name="action_edit_cover">Omslag wijzigen</string>
     <string name="action_show_downloaded">Gedownload</string>
     <string name="action_next_unread">Volgende ongelezen</string>
-    <string name="action_start">Start</string>
     <string name="action_stop">Stop</string>
     <string name="action_pause">Pauzeer</string>
     <string name="action_close">Sluiten</string>
@@ -220,7 +219,6 @@
     <string name="no_next_chapter">Volgend hoofdstuk niet gevonden</string>
     <string name="no_previous_chapter">Vorig hoofdstuk niet gevonden</string>
     <string name="confirm_set_image_as_cover">Deze afbeelding als omslagfoto gebruiken\?</string>
-    <string name="viewer_for_this_series">Lezer voor deze serie</string>
     <string name="notification_update_progress">Updatevoortgang: %1$d/%2$d</string>
     <string name="notification_new_chapters">Nieuwe hoofdstukken gevonden</string>
     <string name="notification_first_add_to_library">Gelieve eerst de manga aan je bibliotheek toe te voegen</string>

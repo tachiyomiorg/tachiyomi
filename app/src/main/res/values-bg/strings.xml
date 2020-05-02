@@ -41,7 +41,6 @@
     <string name="action_sort_down">Сортирай по низходящ ред</string>
     <string name="action_show_downloaded">Изтеглени</string>
     <string name="action_next_unread">Следваща непрочетена</string>
-    <string name="action_start">Започни</string>
     <string name="action_stop">Спри</string>
     <string name="action_pause">Паузирай</string>
     <string name="action_previous_chapter">Предишна глава</string>
@@ -264,7 +263,6 @@
     <string name="no_previous_chapter">Не беше намерена предишна глава</string>
     <string name="decode_image_error">Изображението не беше заредено</string>
     <string name="confirm_set_image_as_cover">Желаете ли да използвате това изображение за корица?</string>
-    <string name="viewer_for_this_series">Начин на четене за тази поредица</string>
     <!-- Backup fragment -->
     <string name="backup">Резервно копие</string>
     <!-- Recent manga fragment -->

@@ -49,7 +49,6 @@
     <string name="action_sort_down">Òrdina in manera chi achirret</string>
     <string name="action_show_downloaded">Iscarrigados</string>
     <string name="action_next_unread">Non lèghidu imbeniente</string>
-    <string name="action_start">Incumintza</string>
     <string name="action_stop">Firma</string>
     <string name="action_pause">Pone in pàusa</string>
     <string name="action_close">Serra</string>
@@ -340,7 +339,6 @@
     <string name="no_previous_chapter">Capìtulu antepostu no agatadu</string>
     <string name="decode_image_error">No est istadu possìbile carrigare s\'immàgine</string>
     <string name="confirm_set_image_as_cover">Cheres impostare custa immàgine comente cobertedda\?</string>
-    <string name="viewer_for_this_series">Visualizadore pro custa sèrie</string>
     <string name="transition_finished">Acabadu:</string>
     <string name="transition_current">Atuale:</string>
     <string name="transition_next">Imbeniente:</string>

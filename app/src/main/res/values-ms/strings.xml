@@ -46,7 +46,6 @@
     <string name="action_sort_down">Susunan menurun</string>
     <string name="action_show_downloaded">Telah dimuat turun</string>
     <string name="action_next_unread">Belum dibaca seterusnya</string>
-    <string name="action_start">Mula</string>
     <string name="action_stop">Henti</string>
     <string name="action_pause">Henti sebentar</string>
     <string name="action_close">Tutup</string>
@@ -112,7 +111,7 @@
     <string name="default_category_summary">Sentiasa tanya</string>
     <string name="pref_fullscreen">Skrin penuh</string>
     <string name="pref_lock_orientation">Kunci orientasi</string>
-    <string name="pref_page_transitions">Kesan peralihan halaman</string>
+    <string name="pref_page_transitions">Menggerakkan peralihan muka surat</string>
     <string name="pref_show_page_number">Tunjuk nombor muka surat</string>
     <string name="pref_crop_borders">Potong pinggiran</string>
     <string name="pref_custom_brightness">Guna kecerahan tersuai</string>
@@ -253,7 +252,7 @@
     <string name="chapter_error">Ralat</string>
     <string name="chapter_paused">Dihenti sebentar</string>
     <string name="fetch_chapters_error">Tidak berhasil mendapatkan bab</string>
-    <string name="show_title">Tajuk</string>
+    <string name="show_title">Tajuk sumber</string>
     <string name="show_chapter_number">Nombor bab</string>
     <string name="sorting_mode">Mod susunan</string>
     <string name="sort_by_source">Mengikut sumber</string>
@@ -295,7 +294,6 @@
     <string name="no_previous_chapter">Bab sebelumnya tidak dijumpai</string>
     <string name="decode_image_error">Imej tidak dapat dimuatkan</string>
     <string name="confirm_set_image_as_cover">Guna imej ini sebagai muka hadapan\?</string>
-    <string name="viewer_for_this_series">Pemapar bagi siri ini</string>
     <string name="download_queue_error">Memuat turun bab tidak berjaya. Anda boleh mencuba lagi di bahagian muat turun</string>
     <string name="notification_update_progress">Progres kemas kini: %1$d/%2$d</string>
     <string name="notification_new_chapters">Bab baharu dijumpai</string>
@@ -541,4 +539,11 @@
     <string name="pref_search_pinned_sources_only">Hanya termasuk sumber yg di sematkan</string>
     <string name="channel_backup_restore_complete">Selesai</string>
     <string name="channel_backup_restore_progress">Kemajuan</string>
+    <string name="gray_background">Kelabu</string>
+    <string name="viewer">Penonton</string>
+    <string name="pref_category_for_this_series">Untuk siri ini</string>
+    <string name="pref_true_color_summary">Kurangkan jalinan, tapi memberi kesan kepada prestasi</string>
+    <plurals name="num_categories">
+        <item quantity="other">%d kategori</item>
+    </plurals>
 </resources>

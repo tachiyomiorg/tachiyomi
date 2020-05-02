@@ -41,7 +41,6 @@
     <string name="action_sort_down">Sắp theo thứ tự giảm dần</string>
     <string name="action_show_downloaded">Đã tải xuống</string>
     <string name="action_next_unread">Truyện chưa đọc kế tiếp</string>
-    <string name="action_start">Bắt đầu</string>
     <string name="action_stop">Dừng lại</string>
     <string name="action_pause">Tạm dừng</string>
     <string name="action_previous_chapter">Chương trước</string>
@@ -265,7 +264,6 @@
     <string name="no_previous_chapter">Không tìm thấy chương trước</string>
     <string name="decode_image_error">Không thể giải mã hình ảnh</string>
     <string name="confirm_set_image_as_cover">Bạn có chắc muốn đặt ảnh này làm ảnh bìa?</string>
-    <string name="viewer_for_this_series">Kiểu đọc cho series này</string>
     <!-- Backup fragment -->
     <string name="backup">Sao lưu</string>
     <!-- Recent manga fragment -->

@@ -49,7 +49,6 @@
     <string name="action_sort_down">За спаданням</string>
     <string name="action_show_downloaded">Завантажені</string>
     <string name="action_next_unread">Наступна непрочитана</string>
-    <string name="action_start">Старт</string>
     <string name="action_stop">Стоп</string>
     <string name="action_pause">Пауза</string>
     <string name="action_close">Закрити</string>
@@ -339,7 +338,6 @@
     <string name="no_previous_chapter">Попередню главу не знайдено</string>
     <string name="decode_image_error">Зображення не може бути завантаженим</string>
     <string name="confirm_set_image_as_cover">Ви бажаєте встановити цю картинку як обкладинку\?</string>
-    <string name="viewer_for_this_series">Відображення для цієї серії</string>
     <string name="transition_finished">Завершено:</string>
     <string name="transition_current">Поточна:</string>
     <string name="transition_next">Наступна:</string>
