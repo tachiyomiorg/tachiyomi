@@ -14,6 +14,7 @@ object Backup {
     const val TRACK = "track"
     const val CHAPTERS = "chapters"
     const val CATEGORIES = "categories"
+    const val EXTENSIONS = "extensions"
     const val HISTORY = "history"
     const val VERSION = "version"
 
