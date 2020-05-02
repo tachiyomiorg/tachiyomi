@@ -81,7 +81,7 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
         viewer.setSelection(activity.presenter.manga?.viewer ?: 0, false)
 
         rotation_mode.bindToPreference(preferences.rotation(), 1)
-        background_color.bindToPreference(preferences.readerTheme())
+        background_color.bindToIntPreference(preferences.readerTheme(), R.array.reader_themes_values)
         show_page_number.bindToPreference(preferences.showPageNumber())
         fullscreen.bindToPreference(preferences.fullscreen())
         cutout_short.bindToPreference(preferences.cutoutShort())

@@ -217,13 +217,13 @@
         <item name="switchStyle">@style/Theme.Widget.BasicSwitch</item>
     </style>
 
-    <style name="Theme.Reader" parent="Theme.Base.Reader.Dark">
-        <!-- Attributes specific for SDK 16 to SDK 20 -->
+    <style name="Theme.Reader.Dark" parent="Theme.Base.Reader.Dark" />
+
+    <style name="Theme.Reader.Dark.Grey" parent="Theme.Base.Reader.Dark">
+        <item name="android:colorBackground">@color/backgroundDark</item>
     </style>
 
-    <style name="Theme.Reader.Light" parent="Theme.Base.Reader.Light">
-        <!-- Attributes specific for SDK 16 to SDK 20 -->
-    </style>
+    <style name="Theme.Reader.Light" parent="Theme.Base.Reader.Light" />
 
 
     <!--===============-->

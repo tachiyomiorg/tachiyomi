@@ -240,6 +240,7 @@
     <string name="pref_read_with_long_tap">Long tap dialog</string>
     <string name="pref_reader_theme">Background color</string>
     <string name="white_background">White</string>
+    <string name="gray_background">Gray</string>
     <string name="black_background">Black</string>
     <string name="pref_viewer_type">Default viewer</string>
     <string name="default_viewer">Default</string>

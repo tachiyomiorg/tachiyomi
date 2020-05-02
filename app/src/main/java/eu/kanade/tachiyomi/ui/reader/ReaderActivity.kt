@@ -128,7 +128,8 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         setTheme(
             when (preferences.readerTheme().get()) {
                 0 -> R.style.Theme_Reader_Light
-                else -> R.style.Theme_Reader
+                2 -> R.style.Theme_Reader_Dark_Grey
+                else -> R.style.Theme_Reader_Dark
             }
         )
         super.onCreate(savedInstanceState)
