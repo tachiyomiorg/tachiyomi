@@ -8,6 +8,7 @@ import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.entriesRes
 import eu.kanade.tachiyomi.util.preference.intListPreference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
+import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.hasDisplayCutout
@@ -28,29 +29,6 @@ class SettingsReaderController : SettingsController() {
                     R.string.vertical_viewer, R.string.webtoon_viewer, R.string.vertical_plus_viewer
                 )
                 entryValues = arrayOf("1", "2", "3", "4", "5")
-                defaultValue = "1"
-                summary = "%s"
-            }
-            intListPreference {
-                key = Keys.imageScaleType
-                titleRes = R.string.pref_image_scale_type
-                entriesRes = arrayOf(
-                    R.string.scale_type_fit_screen, R.string.scale_type_stretch,
-                    R.string.scale_type_fit_width, R.string.scale_type_fit_height,
-                    R.string.scale_type_original_size, R.string.scale_type_smart_fit
-                )
-                entryValues = arrayOf("1", "2", "3", "4", "5", "6")
-                defaultValue = "1"
-                summary = "%s"
-            }
-            intListPreference {
-                key = Keys.zoomStart
-                titleRes = R.string.pref_zoom_start
-                entriesRes = arrayOf(
-                    R.string.zoom_start_automatic, R.string.zoom_start_left,
-                    R.string.zoom_start_right, R.string.zoom_start_center
-                )
-                entryValues = arrayOf("1", "2", "3", "4")
                 defaultValue = "1"
                 summary = "%s"
             }
@@ -109,6 +87,7 @@ class SettingsReaderController : SettingsController() {
                 switchPreference {
                     key = Keys.trueColor
                     titleRes = R.string.pref_true_color
+                    summaryRes = R.string.pref_true_color_summary
                     defaultValue = false
                 }
             }
@@ -137,6 +116,29 @@ class SettingsReaderController : SettingsController() {
         preferenceCategory {
             titleRes = R.string.pager_viewer
 
+            intListPreference {
+                key = Keys.imageScaleType
+                titleRes = R.string.pref_image_scale_type
+                entriesRes = arrayOf(
+                    R.string.scale_type_fit_screen, R.string.scale_type_stretch,
+                    R.string.scale_type_fit_width, R.string.scale_type_fit_height,
+                    R.string.scale_type_original_size, R.string.scale_type_smart_fit
+                )
+                entryValues = arrayOf("1", "2", "3", "4", "5", "6")
+                defaultValue = "1"
+                summary = "%s"
+            }
+            intListPreference {
+                key = Keys.zoomStart
+                titleRes = R.string.pref_zoom_start
+                entriesRes = arrayOf(
+                    R.string.zoom_start_automatic, R.string.zoom_start_left,
+                    R.string.zoom_start_right, R.string.zoom_start_center
+                )
+                entryValues = arrayOf("1", "2", "3", "4")
+                defaultValue = "1"
+                summary = "%s"
+            }
             switchPreference {
                 key = Keys.enableTransitions
                 titleRes = R.string.pref_page_transitions
