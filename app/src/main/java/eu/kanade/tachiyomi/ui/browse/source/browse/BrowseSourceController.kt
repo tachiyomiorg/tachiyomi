@@ -152,6 +152,10 @@ open class BrowseSourceController(bundle: Bundle) :
         )
         filterSheet?.setFilters(presenter.filterItems)
 
+        // TODO: [ExtendedFloatingActionButton] hide/show methods don't work properly
+        filterSheet?.setOnShowListener { binding.fabFilter.gone() }
+        filterSheet?.setOnDismissListener { binding.fabFilter.visible() }
+
         binding.fabFilter.setOnClickListener { filterSheet?.show() }
         binding.fabFilter.visible()
     }
