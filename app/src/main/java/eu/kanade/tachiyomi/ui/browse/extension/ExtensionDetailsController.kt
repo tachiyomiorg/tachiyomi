@@ -35,6 +35,7 @@ import eu.kanade.tachiyomi.util.view.visible
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
+import timber.log.Timber
 
 @SuppressLint("RestrictedApi")
 class ExtensionDetailsController(bundle: Bundle? = null) :
@@ -97,7 +98,11 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
 
         for (source in extension.sources) {
             if (source is ConfigurableSource) {
-                addPreferencesForSource(screen, source, multiSource)
+                try {
+                    addPreferencesForSource(screen, source, multiSource)
+                } catch (e: AbstractMethodError) {
+                    Timber.e("Source did not implement [addPreferencesForSource]: ${source.name}")
+                }
             }
         }
 

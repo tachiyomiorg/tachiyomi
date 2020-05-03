@@ -356,6 +356,7 @@
     <string name="pref_disable_battery_optimization">Disable battery optimization</string>
     <string name="pref_disable_battery_optimization_summary">Helps with background library updates and backups</string>
     <string name="battery_optimization_disabled">Battery optimization is already disabled</string>
+    <string name="battery_optimization_setting_activity_not_found">Couldn\'t open device settings</string>
 
       <!-- About section -->
     <string name="website">Website</string>

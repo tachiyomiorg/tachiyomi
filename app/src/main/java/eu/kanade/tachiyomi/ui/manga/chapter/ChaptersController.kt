@@ -86,6 +86,9 @@ class ChaptersController :
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
 
+        val ctrl = parentController as MangaController
+        if (ctrl.manga == null || ctrl.source == null) return
+
         // Init RecyclerView and adapter
         adapter = ChaptersAdapter(this, view.context)
 
@@ -379,7 +382,7 @@ class ChaptersController :
             binding.actionToolbar.show(
                 actionMode!!,
                 R.menu.chapter_selection
-            ) { onActionItemClicked(actionMode!!, it!!) }
+            ) { onActionItemClicked(it!!) }
         }
     }
 
@@ -418,6 +421,10 @@ class ChaptersController :
     }
 
     override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
+        return onActionItemClicked(item)
+    }
+
+    private fun onActionItemClicked(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_select_all -> selectAll()
             R.id.action_select_inverse -> selectInverse()

@@ -302,13 +302,13 @@ class DownloadController :
     override fun onMenuItemClick(position: Int, menuItem: MenuItem) {
         when (menuItem.itemId) {
             R.id.move_to_top, R.id.move_to_bottom -> {
+                val download = adapter?.getItem(position) ?: return
                 val items = adapter?.currentItems?.toMutableList() ?: return
-                val item = items[position]
-                items.remove(item)
+                items.remove(download)
                 if (menuItem.itemId == R.id.move_to_top) {
-                    items.add(0, item)
+                    items.add(0, download)
                 } else {
-                    items.add(item)
+                    items.add(download)
                 }
 
                 val adapter = adapter ?: return

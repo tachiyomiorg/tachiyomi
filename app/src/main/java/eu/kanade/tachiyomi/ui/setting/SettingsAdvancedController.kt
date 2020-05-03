@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.ui.setting
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Context.POWER_SERVICE
 import android.content.Intent
 import android.net.Uri
@@ -97,11 +98,15 @@ class SettingsAdvancedController : SettingsController() {
                     val packageName: String = context.packageName
                     val pm = context.getSystemService(POWER_SERVICE) as PowerManager?
                     if (!pm!!.isIgnoringBatteryOptimizations(packageName)) {
-                        val intent = Intent().apply {
-                            action = Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
-                            data = Uri.parse("package:$packageName")
+                        try {
+                            val intent = Intent().apply {
+                                action = Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+                                data = Uri.parse("package:$packageName")
+                            }
+                            startActivity(intent)
+                        } catch (e: ActivityNotFoundException) {
+                            context.toast(R.string.battery_optimization_setting_activity_not_found)
                         }
-                        startActivity(intent)
                     } else {
                         context.toast(R.string.battery_optimization_disabled)
                     }

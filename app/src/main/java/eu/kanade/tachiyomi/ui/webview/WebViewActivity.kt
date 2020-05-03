@@ -17,6 +17,7 @@ import eu.kanade.tachiyomi.databinding.WebviewActivityBinding
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.activity.BaseActivity
+import eu.kanade.tachiyomi.ui.main.ForceCloseActivity
 import eu.kanade.tachiyomi.util.system.WebViewClientCompat
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.openInBrowser
@@ -38,8 +39,14 @@ class WebViewActivity : BaseActivity<WebviewActivityBinding>() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = WebviewActivityBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
+        try {
+            binding = WebviewActivityBinding.inflate(layoutInflater)
+            setContentView(binding.root)
+        } catch (e: Exception) {
+            // Potentially throws errors like "Error inflating class android.webkit.WebView"
+            ForceCloseActivity.closeApp(this)
+        }
 
         title = intent.extras?.getString(TITLE_KEY)
         setSupportActionBar(binding.toolbar)

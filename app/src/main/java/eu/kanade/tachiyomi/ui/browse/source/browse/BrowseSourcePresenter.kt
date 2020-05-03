@@ -41,8 +41,8 @@ import uy.kohesive.injekt.api.get
  * Presenter of [BrowseSourceController].
  */
 open class BrowseSourcePresenter(
-    sourceId: Long,
-    sourceManager: SourceManager = Injekt.get(),
+    private val sourceId: Long,
+    private val sourceManager: SourceManager = Injekt.get(),
     private val db: DatabaseHelper = Injekt.get(),
     private val prefs: PreferencesHelper = Injekt.get(),
     private val coverCache: CoverCache = Injekt.get()
@@ -51,7 +51,7 @@ open class BrowseSourcePresenter(
     /**
      * Selected source.
      */
-    val source = sourceManager.get(sourceId) as CatalogueSource
+    lateinit var source: CatalogueSource
 
     /**
      * Query from the view.
@@ -108,6 +108,8 @@ open class BrowseSourcePresenter(
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
+
+        source = sourceManager.get(sourceId) as? CatalogueSource ?: return
 
         sourceFilters = source.getFilterList()
 
