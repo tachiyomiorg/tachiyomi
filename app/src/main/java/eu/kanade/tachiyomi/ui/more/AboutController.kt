@@ -76,7 +76,7 @@ class AboutController : SettingsController() {
 
             onClick {
                 if (BuildConfig.DEBUG) {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/inorichi/tachiyomi/commits/master"))
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/inorichi/tachiyomi/commits/dev"))
                     startActivity(intent)
                 } else {
                     ChangelogDialogController().showDialog(router)
