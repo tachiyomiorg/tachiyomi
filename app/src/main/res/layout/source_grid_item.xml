@@ -7,18 +7,17 @@
     android:background="@drawable/library_item_selector"
     android:padding="4dp">
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
         android:id="@+id/card"
         android:layout_width="wrap_content"
         android:layout_height="220dp"
-        app:cardCornerRadius="@dimen/card_radius">
+        android:background="@drawable/rounded_rectangle">
 
         <ImageView
             android:id="@+id/thumbnail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?attr/colorSurface"
-            tools:background="?attr/colorSurface"
             tools:ignore="ContentDescription"
             tools:src="@mipmap/ic_launcher" />
 
@@ -120,6 +119,6 @@
             android:layout_gravity="center"
             android:visibility="gone" />
 
-    </androidx.cardview.widget.CardView>
+    </FrameLayout>
 
 </FrameLayout>

@@ -11,45 +11,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/manga_cover_card"
+        <ImageView
+            android:id="@+id/manga_cover"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="@dimen/card_radius"
+            android:layout_margin="16dp"
+            android:background="@drawable/rounded_rectangle"
+            android:contentDescription="@string/description_cover"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="h,3:2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
-
-            <ImageView
-                android:id="@+id/manga_cover"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/description_cover"
-                tools:background="@color/material_grey_700" />
-
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintVertical_bias="0.0" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/info_scrollview"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/manga_cover_card"
+            app:layout_constraintStart_toEndOf="@+id/manga_cover"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="16dp">
 
                 <TextView
                     android:id="@+id/manga_full_title"
