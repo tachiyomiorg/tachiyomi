@@ -41,6 +41,7 @@ internal class BackupNotifier(private val context: Context) {
             setContentTitle(context.getString(R.string.creating_backup))
 
             setProgress(0, 0, true)
+            setOnlyAlertOnce(true)
         }
 
         builder.show(Notifications.ID_BACKUP_PROGRESS)
@@ -93,6 +94,7 @@ internal class BackupNotifier(private val context: Context) {
             }
 
             setProgress(maxAmount, progress, false)
+            setOnlyAlertOnce(true)
 
             // Clear old actions if they exist
             if (mActions.isNotEmpty()) {
