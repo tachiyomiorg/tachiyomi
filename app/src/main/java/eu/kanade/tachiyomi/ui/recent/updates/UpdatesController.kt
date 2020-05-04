@@ -275,6 +275,8 @@ class UpdatesController :
     }
 
     override fun onCoverClick(position: Int) {
+        destroyActionModeIfNeeded()
+
         val chapterClicked = adapter?.getItem(position) as? UpdatesItem ?: return
         openManga(chapterClicked)
     }
