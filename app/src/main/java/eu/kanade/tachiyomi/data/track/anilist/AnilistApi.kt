@@ -271,7 +271,7 @@ class AnilistApi(val client: OkHttpClient, interceptor: AnilistInterceptor) {
 
         return ALManga(
             struct["id"].asInt, struct["title"]["romaji"].asString, struct["coverImage"]["large"].asString,
-            struct["description"].nullString.orEmpty(), struct["type"].asString, struct["status"].asString,
+            struct["description"].nullString.orEmpty(), struct["type"].asString, struct["status"].nullString.orEmpty(),
             date, struct["chapters"].nullInt ?: 0
         )
     }
