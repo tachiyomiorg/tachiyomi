@@ -137,7 +137,7 @@
     <string name="ext_empty_preferences">Δεν υπάρχουν προτιμήσεις για επεξεργασία για αυτήν την επέκταση</string>
     <string name="pref_fullscreen">Πλήρης οθόνη</string>
     <string name="pref_lock_orientation">Κλείδωμα περιστροφής</string>
-    <string name="pref_page_transitions">Μεταβάσεις σελίδας</string>
+    <string name="pref_page_transitions">Ζωντανή μετάβαση σελίδας</string>
     <string name="pref_double_tap_anim_speed">Ταχύτητα κίνησης διπλού αγγίγματος</string>
     <string name="pref_show_page_number">Εμφάνιση αριθμού σελίδας</string>
     <string name="pref_crop_borders">Περικοπή άκρων</string>
@@ -546,4 +546,11 @@
     <string name="channel_backup_restore_complete">Ολοκληρώθηκε</string>
     <string name="channel_backup_restore_progress">Πρόοδος</string>
     <string name="gray_background">Γκρι</string>
+    <string name="pref_true_color_summary">Μειώνει το banding, αλλά επηρεάζει την απόδοση</string>
+    <string name="viewer">Τρόπος προβολής</string>
+    <string name="pref_category_for_this_series">Για αυτήν τη σειρά</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d κατηγορία</item>
+        <item quantity="other">%d κατηγορίες</item>
+    </plurals>
 </resources>

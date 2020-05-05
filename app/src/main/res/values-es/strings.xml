@@ -79,7 +79,7 @@
     <!-- Reader section -->
     <string name="pref_fullscreen">Pantalla completa</string>
     <string name="pref_lock_orientation">Bloquear orientación</string>
-    <string name="pref_page_transitions">Habilitar transiciones</string>
+    <string name="pref_page_transitions">Animar las transiciones de página</string>
     <string name="pref_show_page_number">Mostrar el número de página</string>
     <string name="pref_custom_brightness">Utilizar brillo personalizado</string>
     <string name="pref_keep_screen_on">Mantener la pantalla encendida</string>
@@ -178,7 +178,7 @@
     <string name="chapter_downloading_progress">Descargando (%1$d/%2$d)</string>
     <string name="chapter_error">Error</string>
     <string name="fetch_chapters_error">No se pudieron obtener los capítulos</string>
-    <string name="show_title">Título</string>
+    <string name="show_title">Título de la fuente</string>
     <string name="show_chapter_number">Número de capítulo</string>
     <string name="sorting_mode">Ordenado de capítulos</string>
     <string name="sort_by_source">Por fuente</string>
@@ -574,4 +574,12 @@
     </plurals>
     <string name="downloaded_only_summary">Filtra toda manga en tu libreria</string>
     <string name="pref_search_pinned_sources_only">Solamente incluir fuentes fijados</string>
+    <string name="viewer">Visor</string>
+    <string name="pref_category_for_this_series">Para esta serie</string>
+    <string name="gray_background">Gris</string>
+    <string name="pref_true_color_summary">Reduce el anillado, pero afecta al rendimiento</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d categoría</item>
+        <item quantity="other">%d categorías</item>
+    </plurals>
 </resources>

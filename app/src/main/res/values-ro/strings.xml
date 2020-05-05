@@ -133,7 +133,7 @@
     <string name="ext_empty_preferences">Nu există preferințe de editat pentru această extensie</string>
     <string name="pref_fullscreen">Ecran complet</string>
     <string name="pref_lock_orientation">Orientare blocată</string>
-    <string name="pref_page_transitions">Tranziții între pagini</string>
+    <string name="pref_page_transitions">Animați tranzițiile de pagini</string>
     <string name="action_sort_up">Sortare de sus</string>
     <string name="action_sort_down">Sortare de jos</string>
     <string name="action_display_download_badge">Insigne pentru descărcări</string>
@@ -289,7 +289,7 @@
     <string name="chapter_error">Eroare</string>
     <string name="chapter_paused">Întrerupt</string>
     <string name="fetch_chapters_error">Imposibil de adus capitole</string>
-    <string name="show_title">Titlul</string>
+    <string name="show_title">Titlul sursei</string>
     <string name="show_chapter_number">Numărul capitolului</string>
     <string name="sorting_mode">Mod de sortare</string>
     <string name="sort_by_source">După sursă</string>
@@ -551,4 +551,13 @@
     <string name="pref_search_pinned_sources_only">Includeți numai surse fixate</string>
     <string name="channel_backup_restore_complete">Terminat</string>
     <string name="channel_backup_restore_progress">Progresul</string>
+    <string name="viewer">Cititor</string>
+    <string name="pref_category_for_this_series">Pentru această serie</string>
+    <string name="gray_background">Gri</string>
+    <string name="pref_true_color_summary">Reduce bandajul, dar afectează performanța</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d categorie</item>
+        <item quantity="few">%d categorii</item>
+        <item quantity="other">%d categorii</item>
+    </plurals>
 </resources>

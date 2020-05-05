@@ -81,7 +81,7 @@
     <!-- Reader section -->
     <string name="pref_fullscreen">Ocultar barra de estado</string>
     <string name="pref_lock_orientation">Bloquear orientação</string>
-    <string name="pref_page_transitions">Permitir transições</string>
+    <string name="pref_page_transitions">Animar transições de página</string>
     <string name="pref_show_page_number">Mostrar número de página</string>
     <string name="pref_custom_brightness">Usar brilho personalizado</string>
     <string name="pref_keep_screen_on">Manter ecrã ligado</string>
@@ -576,4 +576,11 @@
     </plurals>
     <string name="gray_background">Cinzento</string>
     <string name="channel_backup_restore_complete">Completo</string>
+    <string name="viewer">Visualizador</string>
+    <string name="pref_category_for_this_series">Para esta série</string>
+    <string name="pref_true_color_summary">Reduz a banda, mas impacta a performance</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d categoria</item>
+        <item quantity="other">%d categorias</item>
+    </plurals>
 </resources>

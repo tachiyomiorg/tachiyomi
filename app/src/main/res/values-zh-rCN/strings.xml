@@ -546,4 +546,10 @@
     <string name="track_finished_reading_date">完成阅读时间</string>
     <string name="track_started_reading_date">开始阅读时间</string>
     <string name="gray_background">灰色</string>
+    <string name="pref_category_for_this_series">对于此系列</string>
+    <string name="viewer">阅读模式</string>
+    <plurals name="num_categories">
+        <item quantity="one"></item>
+        <item quantity="other">%d 个分类</item>
+    </plurals>
 </resources>

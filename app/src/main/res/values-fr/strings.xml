@@ -413,7 +413,7 @@
     <string name="ext_untrusted">Non fiable</string>
     <string name="pager_viewer">Pager</string>
     <string name="repeating">Relecture</string>
-    <string name="transition_finished">À jour :</string>
+    <string name="transition_finished">Terminé :</string>
     <string name="transition_current">En cours :</string>
     <string name="transition_next">Suivant :</string>
     <string name="transition_previous">Précédent :</string>
@@ -578,7 +578,7 @@
     <string name="channel_backup_restore_complete">Terminé</string>
     <string name="channel_backup_restore_progress">Progression</string>
     <string name="downloaded_only_summary">Afficher uniquement les séries téléchargés</string>
-    <string name="pref_search_pinned_sources_only">Inclure uniquement les sources épinglés</string>
+    <string name="pref_search_pinned_sources_only">N\'inclure que les sources épinglés</string>
     <string name="gray_background">Gris</string>
     <string name="pref_category_for_this_series">Pour cette série</string>
     <string name="pref_true_color_summary">Réduit les bandes passantes mais affecte les performances</string>
@@ -586,4 +586,5 @@
         <item quantity="one">%d catégorie</item>
         <item quantity="other">%d catégories</item>
     </plurals>
+    <string name="viewer">Mode de lecture</string>
 </resources>

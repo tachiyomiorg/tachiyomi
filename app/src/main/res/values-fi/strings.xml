@@ -204,7 +204,7 @@
     <string name="ext_empty_preferences">Laajennuksella ei ole muokattavia asetuksia</string>
     <string name="pref_fullscreen">Koko näyttö</string>
     <string name="pref_lock_orientation">Lukitse näkymän suunta</string>
-    <string name="pref_page_transitions">Sivun siirtymiset</string>
+    <string name="pref_page_transitions">Animoi sivusiirtymät</string>
     <string name="pref_double_tap_anim_speed">Tuplanäpäytyksen animaation nopeus</string>
     <string name="pref_show_page_number">Näytä sivunumero</string>
     <string name="pref_true_color">32-bittinen väri</string>
@@ -546,4 +546,9 @@
     <string name="channel_backup_restore_complete">Valmis</string>
     <string name="channel_backup_restore_progress">Edistyminen</string>
     <string name="gray_background">Harmaa</string>
+    <string name="pref_category_for_this_series">Tälle sarjalle</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d kategoria</item>
+        <item quantity="other">%d kategoriaa</item>
+    </plurals>
 </resources>
