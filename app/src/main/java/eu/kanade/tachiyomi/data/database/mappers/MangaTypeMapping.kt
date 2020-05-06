@@ -20,6 +20,7 @@ import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_GENRE
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_ID
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_INITIALIZED
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_LAST_UPDATE
+import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_METADATA_DATE
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_SOURCE
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_STATUS
 import eu.kanade.tachiyomi.data.database.tables.MangaTable.COL_THUMBNAIL_URL
@@ -62,6 +63,7 @@ class MangaPutResolver : DefaultPutResolver<Manga>() {
         put(COL_INITIALIZED, obj.initialized)
         put(COL_VIEWER, obj.viewer)
         put(COL_CHAPTER_FLAGS, obj.chapter_flags)
+        put(COL_METADATA_DATE, obj.metadata_date)
     }
 }
 
@@ -82,6 +84,7 @@ interface BaseMangaGetResolver {
         initialized = cursor.getInt(cursor.getColumnIndex(COL_INITIALIZED)) == 1
         viewer = cursor.getInt(cursor.getColumnIndex(COL_VIEWER))
         chapter_flags = cursor.getInt(cursor.getColumnIndex(COL_CHAPTER_FLAGS))
+        metadata_date = cursor.getLong(cursor.getColumnIndex(COL_METADATA_DATE))
     }
 }
 

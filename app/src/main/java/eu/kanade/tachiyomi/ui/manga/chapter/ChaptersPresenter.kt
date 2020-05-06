@@ -9,10 +9,10 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
+import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
 import java.util.Date
 import rx.Observable
@@ -189,7 +189,7 @@ class ChaptersPresenter(
             observable = observable.filter { it.read }
         }
         if (onlyDownloaded()) {
-            observable = observable.filter { it.isDownloaded || it.manga.source == LocalSource.ID }
+            observable = observable.filter { it.isDownloaded || it.manga.isLocal() }
         }
         if (onlyBookmarked()) {
             observable = observable.filter { it.bookmark }

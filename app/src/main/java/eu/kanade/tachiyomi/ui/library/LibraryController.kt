@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.ui.library
 import android.app.Activity
 import android.content.Intent
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -37,7 +36,6 @@ import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.visible
-import java.io.IOException
 import kotlinx.android.synthetic.main.main_activity.tabs
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
@@ -555,26 +553,23 @@ class LibraryController(
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_OPEN) {
-            if (data == null || resultCode != Activity.RESULT_OK) return
+            val dataUri = data?.data
+            if (dataUri == null || resultCode != Activity.RESULT_OK) return
             val activity = activity ?: return
             val manga = selectedCoverManga ?: return
 
-            try {
-                // Get the file's input stream from the incoming Intent
-                activity.contentResolver.openInputStream(data.data ?: Uri.EMPTY).use {
-                    // Update cover to selected file, show error if something went wrong
-                    if (it != null && presenter.editCoverWithStream(it, manga)) {
-                        // TODO refresh cover
-                    } else {
-                        activity.toast(R.string.notification_cover_update_failed)
-                    }
-                }
-            } catch (error: IOException) {
-                activity.toast(R.string.notification_cover_update_failed)
-                Timber.e(error)
-            }
             selectedCoverManga = null
+            presenter.editCover(manga, activity, dataUri)
         }
+    }
+
+    fun onSetCoverSuccess() {
+        activity?.toast(R.string.cover_updated)
+    }
+
+    fun onSetCoverError(error: Throwable) {
+        activity?.toast(R.string.notification_cover_update_failed)
+        Timber.e(error)
     }
 
     private companion object {

@@ -64,12 +64,10 @@ class HistoryHolder(
 
         // Set cover
         GlideApp.with(itemView.context).clear(cover)
-        if (!manga.thumbnail_url.isNullOrEmpty()) {
-            GlideApp.with(itemView.context)
-                .load(manga.toMangaThumbnail())
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .centerCrop()
-                .into(cover)
-        }
+        GlideApp.with(itemView.context)
+            .load(manga.toMangaThumbnail())
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .centerCrop()
+            .into(cover)
     }
 }

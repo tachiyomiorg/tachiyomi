@@ -12,7 +12,7 @@ import java.io.IOException
 import java.io.InputStream
 import timber.log.Timber
 
-open class FileFetcher(private val file: File) : DataFetcher<InputStream> {
+open class FileFetcher(private val filePath: String = "") : DataFetcher<InputStream> {
 
     private var data: InputStream? = null
 
@@ -20,7 +20,11 @@ open class FileFetcher(private val file: File) : DataFetcher<InputStream> {
         loadFromFile(callback)
     }
 
-    protected fun loadFromFile(callback: DataFetcher.DataCallback<in InputStream>) {
+    private fun loadFromFile(callback: DataFetcher.DataCallback<in InputStream>) {
+        loadFromFile(File(filePath), callback)
+    }
+
+    protected fun loadFromFile(file: File, callback: DataFetcher.DataCallback<in InputStream>) {
         try {
             data = FileInputStream(file)
         } catch (e: FileNotFoundException) {

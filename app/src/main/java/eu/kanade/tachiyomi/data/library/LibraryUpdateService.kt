@@ -15,6 +15,7 @@ import androidx.core.app.NotificationCompat.GROUP_ALERT_SUMMARY
 import androidx.core.app.NotificationManagerCompat
 import com.bumptech.glide.Glide
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -35,6 +36,7 @@ import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.lang.chop
+import eu.kanade.tachiyomi.util.prepUpdateCover
 import eu.kanade.tachiyomi.util.system.acquireWakeLock
 import eu.kanade.tachiyomi.util.system.isServiceRunning
 import eu.kanade.tachiyomi.util.system.notification
@@ -64,7 +66,8 @@ class LibraryUpdateService(
     val sourceManager: SourceManager = Injekt.get(),
     val preferences: PreferencesHelper = Injekt.get(),
     val downloadManager: DownloadManager = Injekt.get(),
-    val trackManager: TrackManager = Injekt.get()
+    val trackManager: TrackManager = Injekt.get(),
+    val coverCache: CoverCache = Injekt.get()
 ) : Service() {
 
     /**
@@ -392,6 +395,7 @@ class LibraryUpdateService(
         // Update manga details metadata in the background
         source.fetchMangaDetails(manga)
             .map { networkManga ->
+                manga.prepUpdateCover(coverCache)
                 manga.copyFrom(networkManga)
                 db.insertManga(manga).executeAsBlocking()
                 manga

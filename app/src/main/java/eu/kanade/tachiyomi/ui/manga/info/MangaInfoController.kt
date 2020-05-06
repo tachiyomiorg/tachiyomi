@@ -67,8 +67,6 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
     private var initialLoad: Boolean = true
 
-    private var thumbnailUrl: String? = null
-
     override fun createPresenter(): MangaInfoPresenter {
         val ctrl = parentController as MangaController
         return MangaInfoPresenter(
@@ -113,7 +111,7 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
         // Set SwipeRefresh to refresh manga data.
         binding.swipeRefresh.refreshes()
-            .onEach { fetchMangaFromSource() }
+            .onEach { fetchMangaFromSource(true) }
             .launchIn(scope)
 
         binding.mangaFullTitle.longClicks()
@@ -241,23 +239,20 @@ class MangaInfoController(private val fromSource: Boolean = false) :
         setFavoriteButtonState(manga.favorite)
 
         // Set cover if it wasn't already.
-        if (binding.mangaCover.drawable == null || manga.thumbnail_url != thumbnailUrl) {
-            thumbnailUrl = manga.thumbnail_url
-            val mangaThumbnail = manga.toMangaThumbnail()
+        val mangaThumbnail = manga.toMangaThumbnail()
 
+        GlideApp.with(view.context)
+            .load(mangaThumbnail)
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .centerCrop()
+            .into(binding.mangaCover)
+
+        binding.backdrop?.let {
             GlideApp.with(view.context)
                 .load(mangaThumbnail)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .centerCrop()
-                .into(binding.mangaCover)
-
-            if (binding.backdrop != null) {
-                GlideApp.with(view.context)
-                    .load(mangaThumbnail)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    .centerCrop()
-                    .into(binding.backdrop!!)
-            }
+                .into(it)
         }
 
         // Manga info section
@@ -422,10 +417,10 @@ class MangaInfoController(private val fromSource: Boolean = false) :
     /**
      * Start fetching manga information from source.
      */
-    private fun fetchMangaFromSource() {
+    private fun fetchMangaFromSource(manualFetch: Boolean = false) {
         setRefreshing(true)
         // Call presenter and start fetching manga information
-        presenter.fetchMangaFromSource()
+        presenter.fetchMangaFromSource(manualFetch)
     }
 
     /**
