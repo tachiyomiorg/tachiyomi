@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/section_text"
         style="@style/TextAppearance.Regular.SubHeading"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:maxLines="1"
