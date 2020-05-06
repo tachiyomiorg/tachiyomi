@@ -21,6 +21,7 @@ import com.google.android.material.tabs.TabLayout
 import com.jakewharton.rxrelay.BehaviorRelay
 import com.jakewharton.rxrelay.PublishRelay
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
@@ -49,11 +50,13 @@ import uy.kohesive.injekt.api.get
 
 class LibraryController(
     bundle: Bundle? = null,
-    private val preferences: PreferencesHelper = Injekt.get()
+    private val preferences: PreferencesHelper = Injekt.get(),
+    private val coverCache: CoverCache = Injekt.get()
 ) : NucleusController<LibraryControllerBinding, LibraryPresenter>(bundle),
     RootController,
     TabbedController,
     ActionMode.Callback,
+    ChangeMangaCoverDialog.Listener,
     ChangeMangaCategoriesDialog.Listener,
     DeleteLibraryMangasDialog.Listener {
 
@@ -422,10 +425,7 @@ class LibraryController(
 
     private fun onActionItemClicked(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_edit_cover -> {
-                changeSelectedCover()
-                destroyActionModeIfNeeded()
-            }
+            R.id.action_edit_cover -> handleChangeCover()
             R.id.action_move_to_category -> showChangeMangaCategoriesDialog()
             R.id.action_delete -> showDeleteMangaDialog()
             R.id.action_select_all -> selectAllCategoryManga()
@@ -484,6 +484,23 @@ class LibraryController(
         }
     }
 
+    private fun handleChangeCover() {
+        val manga = selectedMangas.firstOrNull() ?: return
+
+        if (coverCache.getCustomCoverFile(manga).exists()) {
+            showEditCoverDialog(manga)
+        } else {
+            openMangaCoverPicker(manga)
+        }
+    }
+
+    /**
+     * Edit custom cover for selected manga.
+     */
+    private fun showEditCoverDialog(manga: Manga) {
+        ChangeMangaCoverDialog(this, manga).showDialog(router)
+    }
+
     /**
      * Move the selected manga to a list of categories.
      */
@@ -507,6 +524,31 @@ class LibraryController(
         DeleteLibraryMangasDialog(this, selectedMangas.toList()).showDialog(router)
     }
 
+    override fun openMangaCoverPicker(manga: Manga) {
+        selectedCoverManga = manga
+
+        if (manga.favorite) {
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "image/*"
+            startActivityForResult(
+                    Intent.createChooser(
+                            intent,
+                            resources?.getString(R.string.file_select_cover)
+                    ),
+                    REQUEST_IMAGE_OPEN
+            )
+        } else {
+            activity?.toast(R.string.notification_first_add_to_library)
+        }
+
+        destroyActionModeIfNeeded()
+    }
+
+    override fun deleteMangaCover(manga: Manga) {
+        presenter.deleteCustomCover(manga)
+        destroyActionModeIfNeeded()
+    }
+
     override fun updateCategoriesForMangas(mangas: List<Manga>, categories: List<Category>) {
         presenter.moveMangasToCategories(categories, mangas)
         destroyActionModeIfNeeded()
@@ -515,28 +557,6 @@ class LibraryController(
     override fun deleteMangasFromLibrary(mangas: List<Manga>, deleteChapters: Boolean) {
         presenter.removeMangaFromLibrary(mangas, deleteChapters)
         destroyActionModeIfNeeded()
-    }
-
-    /**
-     * Changes the cover for the selected manga.
-     */
-    private fun changeSelectedCover() {
-        val manga = selectedMangas.firstOrNull() ?: return
-        selectedCoverManga = manga
-
-        if (manga.favorite) {
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.type = "image/*"
-            startActivityForResult(
-                Intent.createChooser(
-                    intent,
-                    resources?.getString(R.string.file_select_cover)
-                ),
-                REQUEST_IMAGE_OPEN
-            )
-        } else {
-            activity?.toast(R.string.notification_first_add_to_library)
-        }
     }
 
     private fun selectAllCategoryManga() {

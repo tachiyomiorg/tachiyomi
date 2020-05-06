@@ -33,7 +33,7 @@ class CoverCache(private val context: Context) {
     /**
      * Returns the cover from cache.
      *
-     * @param manga the string used to identify the file.
+     * @param manga the manga.
      * @return cover image.
      */
     fun getCoverFile(manga: Manga): File? {
@@ -42,6 +42,12 @@ class CoverCache(private val context: Context) {
         }
     }
 
+    /**
+     * Returns the custom cover from cache.
+     *
+     * @param manga the manga.
+     * @return cover image.
+     */
     fun getCustomCoverFile(manga: Manga): File {
         return File(customCoverCacheDir, DiskUtil.hashKeyForDisk(manga.id.toString()))
     }
@@ -63,7 +69,7 @@ class CoverCache(private val context: Context) {
     /**
      * Delete the cover files of the manga from the cache.
      *
-     * @param manga the string used to identify the file.
+     * @param manga the manga.
      * @param deleteCustomCover whether the custom cover should be deleted.
      * @return number of files that were deleted.
      */
@@ -75,12 +81,22 @@ class CoverCache(private val context: Context) {
         }
 
         if (deleteCustomCover) {
-            getCustomCoverFile(manga).let {
-                if (it.exists() && it.delete()) ++deleted
-            }
+            if (deleteCustomCover(manga)) ++ deleted
         }
 
         return deleted
+    }
+
+    /**
+     * Delete custom cover of the manga from the cache
+     *
+     * @param manga the manga.
+     * @return whether the cover was deleted.
+     */
+    fun deleteCustomCover(manga: Manga): Boolean {
+        return getCustomCoverFile(manga).let {
+            it.exists() && it.delete()
+        }
     }
 
     private fun getCacheDir(dir: String): File {

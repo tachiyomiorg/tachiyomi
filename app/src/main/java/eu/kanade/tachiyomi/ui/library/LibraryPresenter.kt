@@ -389,4 +389,18 @@ class LibraryPresenter(
                 { view, e -> view.onSetCoverError(e) }
             )
     }
+
+    fun deleteCustomCover(manga: Manga) {
+        Observable
+            .fromCallable {
+                coverCache.deleteCustomCover(manga)
+                manga.updateMetadataDate(db)
+            }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeFirst(
+                { view, _ -> view.onSetCoverSuccess() },
+                { view, e -> view.onSetCoverError(e) }
+            )
+    }
 }
