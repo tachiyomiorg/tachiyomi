@@ -14,6 +14,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.online.HttpSource
+import eu.kanade.tachiyomi.util.isLocal
 import java.io.InputStream
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -85,7 +86,11 @@ class MangaThumbnailModelLoader : ModelLoader<MangaThumbnail, InputStream> {
         val url = manga.thumbnail_url
 
         if (url.isNullOrEmpty()) {
-            return ModelLoader.LoadData(mangaThumbnail, LibraryMangaCustomCoverFetcher(manga, coverCache))
+            return if (!manga.favorite || manga.isLocal()) {
+                null
+            } else {
+                ModelLoader.LoadData(mangaThumbnail, LibraryMangaCustomCoverFetcher(manga, coverCache))
+            }
         }
 
         if (url.startsWith("http", true)) {

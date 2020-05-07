@@ -531,11 +531,11 @@ class LibraryController(
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
             startActivityForResult(
-                    Intent.createChooser(
-                            intent,
-                            resources?.getString(R.string.file_select_cover)
-                    ),
-                    REQUEST_IMAGE_OPEN
+                Intent.createChooser(
+                    intent,
+                    resources?.getString(R.string.file_select_cover)
+                ),
+                REQUEST_IMAGE_OPEN
             )
         } else {
             activity?.toast(R.string.notification_first_add_to_library)
