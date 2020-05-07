@@ -76,9 +76,6 @@ android {
             buildConfigField "boolean", "INCLUDE_UPDATER", "true"
             dimension "default"
         }
-        fdroid {
-            dimension "default"
-        }
         dev {
             resConfigs "en", "xxhdpi"
             dimension "default"
