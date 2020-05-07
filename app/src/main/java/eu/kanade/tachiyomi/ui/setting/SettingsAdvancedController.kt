@@ -3,12 +3,10 @@ package eu.kanade.tachiyomi.ui.setting
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.ActivityNotFoundException
-import android.content.Context.POWER_SERVICE
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.PowerManager
 import android.provider.Settings
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
@@ -28,6 +26,7 @@ import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
+import eu.kanade.tachiyomi.util.system.powerManager
 import eu.kanade.tachiyomi.util.system.toast
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -96,8 +95,7 @@ class SettingsAdvancedController : SettingsController() {
 
                 onClick {
                     val packageName: String = context.packageName
-                    val pm = context.getSystemService(POWER_SERVICE) as PowerManager?
-                    if (!pm!!.isIgnoringBatteryOptimizations(packageName)) {
+                    if (!context.powerManager.isIgnoringBatteryOptimizations(packageName)) {
                         try {
                             val intent = Intent().apply {
                                 action = Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS

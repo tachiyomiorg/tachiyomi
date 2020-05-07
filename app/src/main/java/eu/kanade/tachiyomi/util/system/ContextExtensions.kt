@@ -148,6 +148,15 @@ val Context.powerManager: PowerManager
     get() = getSystemService(Context.POWER_SERVICE) as PowerManager
 
 /**
+ * Convenience method to acquire a partial wake lock.
+ */
+fun Context.acquireWakeLock(tag: String): PowerManager.WakeLock {
+    val wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "$tag:WakeLock")
+    wakeLock.acquire()
+    return wakeLock
+}
+
+/**
  * Function used to send a local broadcast asynchronous
  *
  * @param intent intent that contains broadcast information

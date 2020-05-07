@@ -9,6 +9,7 @@ import android.os.IBinder
 import android.os.PowerManager
 import com.hippo.unifile.UniFile
 import eu.kanade.tachiyomi.data.notification.Notifications
+import eu.kanade.tachiyomi.util.system.acquireWakeLock
 import eu.kanade.tachiyomi.util.system.isServiceRunning
 
 /**
@@ -73,10 +74,7 @@ class BackupCreateService : Service() {
 
         startForeground(Notifications.ID_BACKUP_PROGRESS, notifier.showBackupProgress().build())
 
-        wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager).newWakeLock(
-            PowerManager.PARTIAL_WAKE_LOCK, "${javaClass.name}:WakeLock"
-        )
-        wakeLock.acquire()
+        wakeLock = acquireWakeLock(javaClass.name)
     }
 
     override fun stopService(name: Intent?): Boolean {

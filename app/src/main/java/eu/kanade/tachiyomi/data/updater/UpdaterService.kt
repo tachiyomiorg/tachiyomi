@@ -18,6 +18,7 @@ import eu.kanade.tachiyomi.network.newCallWithProgress
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.storage.saveTo
+import eu.kanade.tachiyomi.util.system.acquireWakeLock
 import eu.kanade.tachiyomi.util.system.isServiceRunning
 import java.io.File
 import timber.log.Timber
@@ -40,10 +41,7 @@ class UpdaterService : Service() {
 
         startForeground(Notifications.ID_UPDATER, notifier.onDownloadStarted().build())
 
-        wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager).newWakeLock(
-            PowerManager.PARTIAL_WAKE_LOCK, "${javaClass.name}:WakeLock"
-        )
-        wakeLock.acquire()
+        wakeLock = acquireWakeLock(javaClass.name)
     }
 
     /**
@@ -143,11 +141,10 @@ class UpdaterService : Service() {
             context.isServiceRunning(UpdaterService::class.java)
 
         /**
-         * Make a backup from library
+         * Downloads a new update and let the user install the new version from a notification.
          *
-         * @param context context of application
-         * @param uri path of Uri
-         * @param flags determines what to backup
+         * @param context the application context.
+         * @param url the url to the new update.
          */
         fun start(context: Context, url: String, title: String = context.getString(R.string.app_name)) {
             if (!isRunning(context)) {

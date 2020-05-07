@@ -46,6 +46,7 @@ import eu.kanade.tachiyomi.data.database.models.Track
 import eu.kanade.tachiyomi.data.database.models.TrackImpl
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
+import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
@@ -131,8 +132,10 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
                 mangaEntries.add(backupMangaObject(manga, flags))
 
                 // Maintain set of extensions/sources used (excludes local source)
-                if (manga.source != 0L && sourceManager.get(manga.source) != null) {
-                    extensions.add("${manga.source}:${sourceManager.get(manga.source)!!.name}")
+                if (manga.source != LocalSource.ID) {
+                    sourceManager.get(manga.source)?.let {
+                        extensions.add("${manga.source}:${it.name}")
+                    }
                 }
             }
 

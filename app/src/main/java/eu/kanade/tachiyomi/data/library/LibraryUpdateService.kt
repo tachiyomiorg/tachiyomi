@@ -35,6 +35,7 @@ import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.lang.chop
+import eu.kanade.tachiyomi.util.system.acquireWakeLock
 import eu.kanade.tachiyomi.util.system.isServiceRunning
 import eu.kanade.tachiyomi.util.system.notification
 import eu.kanade.tachiyomi.util.system.notificationBuilder
@@ -182,11 +183,10 @@ class LibraryUpdateService(
      */
     override fun onCreate() {
         super.onCreate()
+
         startForeground(Notifications.ID_LIBRARY_PROGRESS, progressNotificationBuilder.build())
-        wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager).newWakeLock(
-            PowerManager.PARTIAL_WAKE_LOCK, "LibraryUpdateService:WakeLock"
-        )
-        wakeLock.acquire()
+
+        wakeLock = acquireWakeLock(javaClass.name)
     }
 
     /**

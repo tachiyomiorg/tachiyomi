@@ -32,6 +32,7 @@ import eu.kanade.tachiyomi.data.database.models.TrackImpl
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.Source
+import eu.kanade.tachiyomi.util.system.acquireWakeLock
 import eu.kanade.tachiyomi.util.system.isServiceRunning
 import java.io.File
 import java.text.SimpleDateFormat
@@ -127,10 +128,7 @@ class BackupRestoreService : Service() {
 
         startForeground(Notifications.ID_RESTORE_PROGRESS, notifier.showRestoreProgress().build())
 
-        wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager).newWakeLock(
-            PowerManager.PARTIAL_WAKE_LOCK, "${javaClass.name}:WakeLock"
-        )
-        wakeLock.acquire()
+        wakeLock = acquireWakeLock(javaClass.name)
     }
 
     override fun stopService(name: Intent?): Boolean {
