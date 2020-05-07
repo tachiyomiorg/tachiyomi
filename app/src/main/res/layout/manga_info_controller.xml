@@ -277,11 +277,12 @@
 
             <TextView
                 android:id="@+id/manga_summary_label"
-                style="@style/TextAppearance.Medium.Body2"
+                style="@style/TextAppearance.Regular.SubHeading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="@string/manga_info_about_label"
                 android:textIsSelectable="false" />
 
