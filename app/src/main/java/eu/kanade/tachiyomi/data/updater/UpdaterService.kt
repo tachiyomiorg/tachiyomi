@@ -1,36 +1,84 @@
 package eu.kanade.tachiyomi.data.updater
 
-import android.app.IntentService
 import android.app.PendingIntent
+import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.os.Build
+import android.os.IBinder
+import android.os.PowerManager
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.network.ProgressListener
+import eu.kanade.tachiyomi.network.await
 import eu.kanade.tachiyomi.network.newCallWithProgress
+import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.storage.saveTo
+import eu.kanade.tachiyomi.util.system.isServiceRunning
 import java.io.File
 import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 
-class UpdaterService : IntentService(UpdaterService::class.java.name) {
+class UpdaterService : Service() {
 
     private val network: NetworkHelper by injectLazy()
 
     /**
-     * Notifier for the updater state and progress.
+     * Wake lock that will be held until the service is destroyed.
      */
-    private val notifier by lazy { UpdaterNotifier(this) }
+    private lateinit var wakeLock: PowerManager.WakeLock
 
-    override fun onHandleIntent(intent: Intent?) {
-        if (intent == null) return
+    private lateinit var notifier: UpdaterNotifier
 
+    override fun onCreate() {
+        super.onCreate()
+        notifier = UpdaterNotifier(this)
+
+        startForeground(Notifications.ID_UPDATER, notifier.onDownloadStarted().build())
+
+        wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager).newWakeLock(
+            PowerManager.PARTIAL_WAKE_LOCK, "${javaClass.name}:WakeLock"
+        )
+        wakeLock.acquire()
+    }
+
+    /**
+     * This method needs to be implemented, but it's not used/needed.
+     */
+    override fun onBind(intent: Intent): IBinder? = null
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        if (intent == null) return START_NOT_STICKY
+
+        val url = intent.getStringExtra(EXTRA_DOWNLOAD_URL) ?: return START_NOT_STICKY
         val title = intent.getStringExtra(EXTRA_DOWNLOAD_TITLE) ?: getString(R.string.app_name)
-        val url = intent.getStringExtra(EXTRA_DOWNLOAD_URL) ?: return
-        downloadApk(title, url)
+
+        launchIO {
+            downloadApk(title, url)
+        }
+
+        stopSelf(startId)
+        return START_NOT_STICKY
+    }
+
+    override fun stopService(name: Intent?): Boolean {
+        destroyJob()
+        return super.stopService(name)
+    }
+
+    override fun onDestroy() {
+        destroyJob()
+        super.onDestroy()
+    }
+
+    private fun destroyJob() {
+        if (wakeLock.isHeld) {
+            wakeLock.release()
+        }
     }
 
     /**
@@ -38,12 +86,11 @@ class UpdaterService : IntentService(UpdaterService::class.java.name) {
      *
      * @param url url location of file
      */
-    private fun downloadApk(title: String, url: String) {
+    private suspend fun downloadApk(title: String, url: String) {
         // Show notification download starting.
         notifier.onDownloadStarted(title)
 
         val progressListener = object : ProgressListener {
-
             // Progress of the download
             var savedProgress = 0
 
@@ -63,7 +110,7 @@ class UpdaterService : IntentService(UpdaterService::class.java.name) {
 
         try {
             // Download the new update.
-            val response = network.client.newCallWithProgress(GET(url), progressListener).execute()
+            val response = network.client.newCallWithProgress(GET(url), progressListener).await()
 
             // File where the apk will be saved.
             val apkFile = File(externalCacheDir, "update.apk")
@@ -82,27 +129,38 @@ class UpdaterService : IntentService(UpdaterService::class.java.name) {
     }
 
     companion object {
-        /**
-         * Download url.
-         */
-        internal const val EXTRA_DOWNLOAD_URL = "${BuildConfig.APPLICATION_ID}.UpdaterService.DOWNLOAD_URL"
 
-        /**
-         * Download title
-         */
+        internal const val EXTRA_DOWNLOAD_URL = "${BuildConfig.APPLICATION_ID}.UpdaterService.DOWNLOAD_URL"
         internal const val EXTRA_DOWNLOAD_TITLE = "${BuildConfig.APPLICATION_ID}.UpdaterService.DOWNLOAD_TITLE"
 
         /**
-         * Downloads a new update and let the user install the new version from a notification.
+         * Returns the status of the service.
+         *
          * @param context the application context.
-         * @param url the url to the new update.
+         * @return true if the service is running, false otherwise.
          */
-        fun downloadUpdate(context: Context, url: String, title: String = context.getString(R.string.app_name)) {
-            val intent = Intent(context, UpdaterService::class.java).apply {
-                putExtra(EXTRA_DOWNLOAD_TITLE, title)
-                putExtra(EXTRA_DOWNLOAD_URL, url)
+        private fun isRunning(context: Context): Boolean =
+            context.isServiceRunning(UpdaterService::class.java)
+
+        /**
+         * Make a backup from library
+         *
+         * @param context context of application
+         * @param uri path of Uri
+         * @param flags determines what to backup
+         */
+        fun start(context: Context, url: String, title: String = context.getString(R.string.app_name)) {
+            if (!isRunning(context)) {
+                val intent = Intent(context, UpdaterService::class.java).apply {
+                    putExtra(EXTRA_DOWNLOAD_TITLE, title)
+                    putExtra(EXTRA_DOWNLOAD_URL, url)
+                }
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                    context.startService(intent)
+                } else {
+                    context.startForegroundService(intent)
+                }
             }
-            context.startService(intent)
         }
 
         /**

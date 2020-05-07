@@ -33,14 +33,15 @@ internal class UpdaterNotifier(private val context: Context) {
      *
      * @param title tile of notification.
      */
-    fun onDownloadStarted(title: String) {
+    fun onDownloadStarted(title: String? = null): NotificationCompat.Builder {
         with(notificationBuilder) {
-            setContentTitle(title)
+            title?.let { setContentTitle(title) }
             setContentText(context.getString(R.string.update_check_notification_download_in_progress))
             setSmallIcon(android.R.drawable.stat_sys_download)
             setOngoing(true)
         }
         notificationBuilder.show()
+        return notificationBuilder
     }
 
     /**
