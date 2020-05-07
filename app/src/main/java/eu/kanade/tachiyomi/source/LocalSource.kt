@@ -1,8 +1,7 @@
 package eu.kanade.tachiyomi.source
 
 import android.content.Context
-import com.google.gson.Gson
-import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.model.Filter
 import eu.kanade.tachiyomi.source.model.FilterList
@@ -19,7 +18,6 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
 import java.util.Locale
-import java.util.Scanner
 import java.util.concurrent.TimeUnit
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
@@ -145,7 +143,9 @@ class LocalSource(private val context: Context) : CatalogueSource {
             .flatten()
             .firstOrNull { it.extension == "json" }
             ?.apply {
-                val json = Gson().fromJson(Scanner(this).useDelimiter("\\Z").next(), JsonObject::class.java)
+                val reader = this.inputStream().bufferedReader()
+                val json = JsonParser.parseReader(reader).asJsonObject
+
                 manga.title = json["title"]?.asString ?: manga.title
                 manga.author = json["author"]?.asString ?: manga.author
                 manga.artist = json["artist"]?.asString ?: manga.artist
