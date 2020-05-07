@@ -22,6 +22,7 @@ import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
 import eu.kanade.tachiyomi.util.lang.byteSize
+import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.takeBytes
 import eu.kanade.tachiyomi.util.storage.DiskUtil
 import eu.kanade.tachiyomi.util.system.ImageUtil
@@ -651,20 +652,16 @@ class ReaderPresenter(
         val removeAfterReadSlots = preferences.removeAfterReadSlots()
         if (removeAfterReadSlots == -1) return
 
-        Completable
-            .fromCallable {
-                // Position of the read chapter
-                val position = chapterList.indexOf(chapter)
+        launchIO {
+            // Position of the read chapter
+            val position = chapterList.indexOf(chapter)
 
-                // Retrieve chapter to delete according to preference
-                val chapterToDelete = chapterList.getOrNull(position - removeAfterReadSlots)
-                if (chapterToDelete != null) {
-                    downloadManager.enqueueDeleteChapters(listOf(chapterToDelete.chapter), manga)
-                }
+            // Retrieve chapter to delete according to preference
+            val chapterToDelete = chapterList.getOrNull(position - removeAfterReadSlots)
+            if (chapterToDelete != null) {
+                downloadManager.enqueueDeleteChapters(listOf(chapterToDelete.chapter), manga)
             }
-            .onErrorComplete()
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+        }
     }
 
     /**
@@ -672,10 +669,9 @@ class ReaderPresenter(
      * are ignored.
      */
     private fun deletePendingChapters() {
-        Completable.fromCallable { downloadManager.deletePendingChapters() }
-            .onErrorComplete()
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+        launchIO {
+            downloadManager.deletePendingChapters()
+        }
     }
 
     companion object {
