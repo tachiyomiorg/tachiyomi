@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/fast_scroller_bar"
+        android:layout_width="7dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@android:color/transparent" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end">
+
+        <!-- No margin, use padding at the handle -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/fast_scroller_bubble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_toStartOf="@+id/fast_scroller_handle"
+            android:background="@drawable/material_bubble_drawable"
+            android:elevation="10dp"
+            android:gravity="center"
+            android:paddingStart="12dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="8dp"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="15sp"
+            android:visibility="gone"
+            tools:text="A"
+            tools:visibility="visible" />
+
+        <!-- Padding is here to have better grab -->
+        <ImageView
+            android:id="@+id/fast_scroller_handle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@null"
+            android:paddingStart="6dp"
+            android:paddingEnd="4dp"
+            android:src="@drawable/material_thumb_drawable" />
+
+    </RelativeLayout>
+
+</merge>

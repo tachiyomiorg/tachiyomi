@@ -34,7 +34,7 @@
 
     </eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout>
 
-    <eu.davidea.fastscroller.FastScroller
+    <eu.kanade.tachiyomi.ui.library.MaterialFastScroll
         android:id="@+id/fast_scroller"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
