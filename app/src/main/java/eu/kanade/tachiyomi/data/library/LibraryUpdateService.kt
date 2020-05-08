@@ -390,7 +390,7 @@ class LibraryUpdateService(
      * @return a pair of the inserted and removed chapters.
      */
     fun updateManga(manga: Manga): Observable<Pair<List<Chapter>, List<Chapter>>> {
-        val source = sourceManager.get(manga.source) as? HttpSource ?: return Observable.empty()
+        val source = sourceManager.get(manga.source) ?: return Observable.empty()
 
         // Update manga details metadata in the background
         source.fetchMangaDetails(manga)
