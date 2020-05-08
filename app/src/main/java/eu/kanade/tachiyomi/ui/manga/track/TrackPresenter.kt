@@ -58,7 +58,7 @@ class TrackPresenter(
         refreshSubscription?.let { remove(it) }
         refreshSubscription = Observable.from(trackList)
             .filter { it.track != null }
-            .concatMap { item ->
+            .flatMap { item ->
                 item.service.refresh(item.track!!)
                     .flatMap { db.insertTrack(it).asRxObservable() }
                     .map { item }

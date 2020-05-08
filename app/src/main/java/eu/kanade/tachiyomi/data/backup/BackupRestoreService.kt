@@ -394,7 +394,7 @@ class BackupRestoreService : Service() {
      */
     private fun trackingFetchObservable(manga: Manga, tracks: List<Track>): Observable<Track> {
         return Observable.from(tracks)
-            .concatMap { track ->
+            .flatMap { track ->
                 val service = trackManager.getService(track.sync_id)
                 if (service != null && service.isLogged) {
                     service.refresh(track)
