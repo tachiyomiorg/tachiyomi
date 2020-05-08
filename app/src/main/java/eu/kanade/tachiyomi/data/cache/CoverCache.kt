@@ -81,7 +81,7 @@ class CoverCache(private val context: Context) {
         }
 
         if (deleteCustomCover) {
-            if (deleteCustomCover(manga)) ++ deleted
+            if (deleteCustomCover(manga)) ++deleted
         }
 
         return deleted

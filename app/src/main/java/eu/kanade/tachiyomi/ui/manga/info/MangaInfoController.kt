@@ -111,7 +111,7 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
         // Set SwipeRefresh to refresh manga data.
         binding.swipeRefresh.refreshes()
-            .onEach { fetchMangaFromSource(true) }
+            .onEach { fetchMangaFromSource(manualFetch = true) }
             .launchIn(scope)
 
         binding.mangaFullTitle.longClicks()
