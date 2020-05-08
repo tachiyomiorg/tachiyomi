@@ -137,7 +137,7 @@
     <string name="ext_empty_preferences">Non bi sunt preferèntzias de modificare pro custa estensione</string>
     <string name="pref_fullscreen">Ischermu intreu</string>
     <string name="pref_lock_orientation">Bloca s\'orientamentu</string>
-    <string name="pref_page_transitions">Transitziones de sas pàginas</string>
+    <string name="pref_page_transitions">Ànima sas transitziones de sas pàginas</string>
     <string name="pref_double_tap_anim_speed">Lestresa de s\'animatzione de su tocu dòpiu</string>
     <string name="pref_show_page_number">Ammustra su nùmeru de sa pàgina</string>
     <string name="pref_crop_borders">Sega sos oros</string>
@@ -290,7 +290,7 @@
     <string name="chapter_error">Errore</string>
     <string name="chapter_paused">In pàusa</string>
     <string name="fetch_chapters_error">Recùperu de sos capìtulos fallidu</string>
-    <string name="show_title">Tìtulu</string>
+    <string name="show_title">Tìtulu de sa fonte</string>
     <string name="show_chapter_number">Nùmeru de capìtulu</string>
     <string name="sorting_mode">Modalidade de ordinamentu</string>
     <string name="sort_by_source">Pro mitza</string>
@@ -545,4 +545,12 @@
     </plurals>
     <string name="channel_backup_restore_progress">Progressu</string>
     <string name="channel_backup_restore_complete">Acabadu</string>
+    <string name="pref_category_for_this_series">Pro custa sèrie</string>
+    <string name="gray_background">Murru</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d categoria</item>
+        <item quantity="other">%d categorias</item>
+    </plurals>
+    <string name="pref_true_color_summary">Mìnimat sa creatzione de bandas, ma impatat sas prestatziones</string>
+    <string name="viewer">Visualizadore</string>
 </resources>

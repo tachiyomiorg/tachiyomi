@@ -94,7 +94,7 @@
     <string name="pref_library_update_categories">Kategorien für das globale Update</string>
     <string name="all">Alle</string>
     <string name="pref_library_update_restriction">Bibliotheksaktualisierung einschränken</string>
-    <string name="pref_library_update_restriction_summary">Nur aktualisieren, wenn diese Bedingungen eintreffen</string>
+    <string name="pref_library_update_restriction_summary">Nur aktualisieren, wenn diese Bedingungen zutreffen</string>
     <string name="wifi">WLAN</string>
     <string name="charging">Am Laden</string>
     <string name="pref_update_only_non_completed">Nur fortlaufende Manga aktualisieren</string>
@@ -325,7 +325,7 @@
     <string name="action_login">Einloggen</string>
     <string name="other_source">Andere</string>
     <string name="action_global_search_hint">Globale Suche…</string>
-    <string name="latest">Letzte</string>
+    <string name="latest">Neueste</string>
     <string name="browse">Stöbern</string>
     <string name="channel_library">Bibliothek</string>
     <string name="channel_common">Allgemein</string>
@@ -536,7 +536,7 @@
     <string name="local_source_help_guide">Lokale-Quellen-Guide</string>
     <string name="restore_duration">%02d min, %02d s</string>
     <string name="manga_info_latest_data_label">Aktualisiert</string>
-    <string name="manga_info_last_chapter_label">Letztes Kapitel</string>
+    <string name="manga_info_last_chapter_label">Neuestes Kapitel</string>
     <string name="downloaded_only_summary">Filtert alle Manga in deiner Bibliothek</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 verbleibend</item>

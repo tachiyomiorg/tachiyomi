@@ -108,7 +108,7 @@
     <string name="default_category_summary">Sempre perguntar</string>
     <string name="pref_fullscreen">Tela cheia</string>
     <string name="pref_lock_orientation">Bloquear orientação</string>
-    <string name="pref_page_transitions">Transição de página</string>
+    <string name="pref_page_transitions">Animar as transições de página</string>
     <string name="pref_show_page_number">Mostrar número da página</string>
     <string name="pref_crop_borders">Aparar bordas</string>
     <string name="pref_custom_brightness">Usar brilho personalizado</string>
@@ -315,7 +315,7 @@
     <string name="download_notifier_title_error">Erro</string>
     <string name="download_notifier_unknown_error">Não foi possível realizar o download do capítulo devido a um erro inesperado</string>
     <string name="download_notifier_page_error">Uma página está faltando na pasta</string>
-    <string name="download_notifier_page_ready_error">A página não foi carregada</string>
+    <string name="download_notifier_page_ready_error">Uma página não foi carregada</string>
     <string name="download_notifier_text_only_wifi">Conexão Wi-Fi indisponível</string>
     <string name="download_notifier_no_network">Conexão à rede indisponível</string>
     <string name="download_notifier_download_paused">Download pausado</string>
@@ -457,7 +457,7 @@
         <item quantity="other">%1$d novos capítulos</item>
     </plurals>
     <string name="notification_chapters_single">Capítulo %1$s</string>
-    <string name="notification_chapters_single_and_more">Capítulo %1$s e %2$d mais</string>
+    <string name="notification_chapters_single_and_more">Capítulo %1$s e mais %2$d</string>
     <string name="notification_chapters_multiple">Capítulos %1$s</string>
     <plurals name="notification_chapters_multiple_and_more">
         <item quantity="one">Capítulos %1$s e mais 1</item>
@@ -546,4 +546,11 @@
     <string name="channel_backup_restore_complete">Concluído</string>
     <string name="channel_backup_restore_progress">Progresso</string>
     <string name="gray_background">Cinza</string>
+    <string name="viewer">Sentido de leitura</string>
+    <string name="pref_category_for_this_series">Para esta série</string>
+    <string name="pref_true_color_summary">Reduz as faixas, mas afeta o desempenho</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d categoria</item>
+        <item quantity="other">%d categorias</item>
+    </plurals>
 </resources>

@@ -137,7 +137,7 @@
     <string name="ext_empty_preferences">Det finns inga inställningar för detta tillägg</string>
     <string name="pref_fullscreen">Fullskärm</string>
     <string name="pref_lock_orientation">Lås orientering</string>
-    <string name="pref_page_transitions">Sidövergångar</string>
+    <string name="pref_page_transitions">Animera sidövergångar</string>
     <string name="pref_double_tap_anim_speed">Animationshastighet för dubbelklick</string>
     <string name="pref_show_page_number">Visa sidnummer</string>
     <string name="pref_crop_borders">Beskär kanter</string>
@@ -289,7 +289,7 @@
     <string name="chapter_error">Fel</string>
     <string name="chapter_paused">Pausad</string>
     <string name="fetch_chapters_error">Det gick inte att hämta kapitel</string>
-    <string name="show_title">Titel</string>
+    <string name="show_title">Källtitel</string>
     <string name="show_chapter_number">Kapitelnummer</string>
     <string name="sorting_mode">Sorteringsläge</string>
     <string name="sort_by_source">Efter källa</string>
@@ -545,4 +545,12 @@
         <item quantity="other">%1$s återstående</item>
     </plurals>
     <string name="pref_search_pinned_sources_only">Inkludera endast fästa källor</string>
+    <string name="viewer">Visare</string>
+    <string name="pref_category_for_this_series">För den här serien</string>
+    <string name="gray_background">Grå</string>
+    <string name="pref_true_color_summary">Minskar banding, men påverkar prestandan</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d kategori</item>
+        <item quantity="other">%d kategorier</item>
+    </plurals>
 </resources>

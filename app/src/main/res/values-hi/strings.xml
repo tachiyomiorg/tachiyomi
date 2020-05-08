@@ -547,4 +547,8 @@
     <string name="pref_category_for_this_series">इस श्रृंखला के लिए</string>
     <string name="gray_background">ग्रे</string>
     <string name="pref_true_color_summary">बैंडिंग को कम करता है, लेकिन प्रदर्शन को प्रभावित करता है</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d श्रेणी</item>
+        <item quantity="other">%d श्रेणियाँ</item>
+    </plurals>
 </resources>

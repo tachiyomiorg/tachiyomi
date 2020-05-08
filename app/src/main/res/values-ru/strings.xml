@@ -183,7 +183,7 @@
     <string name="pref_download_new">Загружать новые главы</string>
     <string name="pref_download_only_over_wifi">Загружать только через Wi-Fi</string>
     <string name="pref_enable_acra">Отсылать отчеты о падениях</string>
-    <string name="pref_page_transitions">Включить переходы</string>
+    <string name="pref_page_transitions">Анимированные переходы страниц</string>
     <string name="pref_fullscreen">Полноэкранный режим</string>
     <string name="pref_image_decoder">Декодер изображений</string>
     <string name="pref_image_scale_type">Масштабирование</string>
@@ -230,7 +230,7 @@
     <string name="set_as_cover">Установить как обложку</string>
     <string name="show_chapter_number">Номер главы</string>
     <string name="show_password">Показывать пароль</string>
-    <string name="show_title">Название</string>
+    <string name="show_title">Название источника</string>
     <string name="snack_add_to_library">Добавить мангу в библиотеку?</string>
     <string name="sort_by_number">По номеру главы</string>
     <string name="sort_by_source">По источнику</string>
@@ -553,4 +553,14 @@
     </plurals>
     <string name="channel_backup_restore_complete">Завершено</string>
     <string name="channel_backup_restore_progress">Прогресс</string>
+    <string name="viewer">Чтение</string>
+    <string name="pref_category_for_this_series">Для этой серии</string>
+    <string name="gray_background">Серый</string>
+    <string name="pref_true_color_summary">Уменьшает полосатость, но влияет на производительность</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d категория</item>
+        <item quantity="few">%d категории</item>
+        <item quantity="many">%d категорий</item>
+        <item quantity="other">%d категорий</item>
+    </plurals>
 </resources>

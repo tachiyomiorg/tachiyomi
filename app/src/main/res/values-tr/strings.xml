@@ -137,7 +137,7 @@
     <string name="ext_empty_preferences">Bu uzantı için düzenlenebilecek tercih yok</string>
     <string name="pref_fullscreen">Tam Ekran</string>
     <string name="pref_lock_orientation">Yönlendirmeyi sabitle</string>
-    <string name="pref_page_transitions">Sayfa geçişleri</string>
+    <string name="pref_page_transitions">Sayfa geçişlerini canladır</string>
     <string name="pref_double_tap_anim_speed">Çift dokunma animasyon hızı</string>
     <string name="pref_show_page_number">Sayfa numarası göster</string>
     <string name="pref_crop_borders">Kenarları kırp</string>
@@ -546,4 +546,11 @@
     <string name="channel_backup_restore_complete">Tamamlandı</string>
     <string name="channel_backup_restore_progress">İlerleme</string>
     <string name="gray_background">Gri</string>
+    <string name="pref_true_color_summary">Renk şeritlerini azaltır, ancak performansı etkiler</string>
+    <string name="viewer">Görüntüleyici</string>
+    <string name="pref_category_for_this_series">Bu seri için</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d kategori</item>
+        <item quantity="other">%d kategori</item>
+    </plurals>
 </resources>
