@@ -8,6 +8,21 @@
     android:paddingStart="16dp"
     android:paddingEnd="16dp">
 
+    <ImageView
+        android:id="@+id/bookmark_icon"
+        android:layout_width="16dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="4dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/chapter_title"
+        app:layout_constraintEnd_toStartOf="@id/chapter_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_bookmark_24dp"
+        app:tint="?attr/colorAccent"
+        tools:visibility="visible" />
+
     <TextView
         android:id="@+id/chapter_title"
         style="@style/TextAppearance.Regular.Body1"
@@ -17,7 +32,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bookmark_icon"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Title" />
 

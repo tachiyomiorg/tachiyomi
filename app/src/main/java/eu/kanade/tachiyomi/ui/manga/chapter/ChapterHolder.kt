@@ -8,7 +8,9 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
+import eu.kanade.tachiyomi.util.view.visibleIf
 import java.util.Date
+import kotlinx.android.synthetic.main.chapters_item.bookmark_icon
 import kotlinx.android.synthetic.main.chapters_item.chapter_description
 import kotlinx.android.synthetic.main.chapters_item.chapter_title
 import kotlinx.android.synthetic.main.chapters_item.download_text
@@ -30,12 +32,15 @@ class ChapterHolder(
         }
 
         // Set correct text color
-        val chapterColor = if (chapter.read) adapter.readColor else adapter.unreadColor
+        val chapterColor = when {
+            chapter.read -> adapter.readColor
+            chapter.bookmark -> adapter.bookmarkedColor
+            else -> adapter.unreadColor
+        }
         chapter_title.setTextColor(chapterColor)
         chapter_description.setTextColor(chapterColor)
-        if (chapter.bookmark) {
-            chapter_title.setTextColor(adapter.bookmarkedColor)
-        }
+
+        bookmark_icon.visibleIf { chapter.bookmark }
 
         val descriptions = mutableListOf<CharSequence>()
 
