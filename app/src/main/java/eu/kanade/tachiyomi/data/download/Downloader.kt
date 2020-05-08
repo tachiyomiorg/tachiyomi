@@ -181,7 +181,16 @@ class Downloader(
         subscriptions.clear()
 
         subscriptions += downloadsRelay.concatMapIterable { it }
-            .concatMap { downloadChapter(it).subscribeOn(Schedulers.io()) }
+            // Concurrently download from 5 different sources
+            .groupBy { it.source }
+            .flatMap(
+                { bySource ->
+                    bySource.concatMap { download ->
+                        downloadChapter(download).subscribeOn(Schedulers.io())
+                    }
+                },
+                5
+            )
             .onBackpressureBuffer()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
