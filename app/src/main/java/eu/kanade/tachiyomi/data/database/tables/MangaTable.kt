@@ -38,7 +38,7 @@ object MangaTable {
 
     const val COL_CATEGORY = "category"
 
-    const val COL_METADATA_DATE = "metadata_date"
+    const val COL_COVER_LAST_MODIFIED = "cover_last_modified"
 
     val createTableQuery: String
         get() =
@@ -58,7 +58,7 @@ object MangaTable {
             $COL_INITIALIZED BOOLEAN NOT NULL,
             $COL_VIEWER INTEGER NOT NULL,
             $COL_CHAPTER_FLAGS INTEGER NOT NULL,
-            $COL_METADATA_DATE LONG NOT NULL
+            $COL_COVER_LAST_MODIFIED LONG NOT NULL
             )"""
 
     val createUrlIndexQuery: String
@@ -68,6 +68,6 @@ object MangaTable {
         get() = "CREATE INDEX library_${COL_FAVORITE}_index ON $TABLE($COL_FAVORITE) " +
             "WHERE $COL_FAVORITE = 1"
 
-    val addMetadataDate: String
-        get() = "ALTER TABLE $TABLE ADD COLUMN $COL_METADATA_DATE LONG NOT NULL DEFAULT 0"
+    val addCoverLastModified: String
+        get() = "ALTER TABLE $TABLE ADD COLUMN $COL_COVER_LAST_MODIFIED LONG NOT NULL DEFAULT 0"
 }

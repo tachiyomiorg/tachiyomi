@@ -9,7 +9,7 @@ import eu.kanade.tachiyomi.data.database.inTransactionReturn
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.database.tables.MangaTable
 
-class MangaMetadataDatePutResolver : PutResolver<Manga>() {
+class MangaCoverLastModifiedPutResolver : PutResolver<Manga>() {
 
     override fun performPut(db: StorIOSQLite, manga: Manga) = db.inTransactionReturn {
         val updateQuery = mapToUpdateQuery(manga)
@@ -26,6 +26,6 @@ class MangaMetadataDatePutResolver : PutResolver<Manga>() {
         .build()
 
     fun mapToContentValues(manga: Manga) = ContentValues(1).apply {
-        put(MangaTable.COL_METADATA_DATE, manga.metadata_date)
+        put(MangaTable.COL_COVER_LAST_MODIFIED, manga.cover_last_modified)
     }
 }

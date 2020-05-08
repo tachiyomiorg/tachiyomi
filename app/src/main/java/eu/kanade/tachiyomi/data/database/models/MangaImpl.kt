@@ -32,7 +32,7 @@ open class MangaImpl : Manga {
 
     override var chapter_flags: Int = 0
 
-    override var metadata_date: Long = 0
+    override var cover_last_modified: Long = 0
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

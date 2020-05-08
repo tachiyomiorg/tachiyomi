@@ -21,7 +21,7 @@ import eu.kanade.tachiyomi.util.lang.combineLatest
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.removeCovers
-import eu.kanade.tachiyomi.util.updateMetadataDate
+import eu.kanade.tachiyomi.util.updateCoverLastModified
 import java.util.ArrayList
 import java.util.Collections
 import java.util.Comparator
@@ -375,10 +375,10 @@ class LibraryPresenter(
                 context.contentResolver.openInputStream(data)?.use {
                     if (manga.isLocal()) {
                         LocalSource.updateCover(context, manga, it)
-                        manga.updateMetadataDate(db)
+                        manga.updateCoverLastModified(db)
                     } else if (manga.favorite) {
                         coverCache.setCustomCoverToCache(manga, it)
-                        manga.updateMetadataDate(db)
+                        manga.updateCoverLastModified(db)
                     }
                 }
             }
@@ -394,7 +394,7 @@ class LibraryPresenter(
         Observable
             .fromCallable {
                 coverCache.deleteCustomCover(manga)
-                manga.updateMetadataDate(db)
+                manga.updateCoverLastModified(db)
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

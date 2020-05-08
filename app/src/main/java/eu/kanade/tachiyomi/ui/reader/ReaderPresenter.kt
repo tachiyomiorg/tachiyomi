@@ -27,7 +27,7 @@ import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.takeBytes
 import eu.kanade.tachiyomi.util.storage.DiskUtil
 import eu.kanade.tachiyomi.util.system.ImageUtil
-import eu.kanade.tachiyomi.util.updateMetadataDate
+import eu.kanade.tachiyomi.util.updateCoverLastModified
 import java.io.File
 import java.util.Date
 import java.util.concurrent.TimeUnit
@@ -570,13 +570,13 @@ class ReaderPresenter(
                 if (manga.isLocal()) {
                     val context = Injekt.get<Application>()
                     LocalSource.updateCover(context, manga, stream())
-                    manga.updateMetadataDate(db)
+                    manga.updateCoverLastModified(db)
                     R.string.cover_updated
                     SetAsCoverResult.Success
                 } else {
                     if (manga.favorite) {
                         coverCache.setCustomCoverToCache(manga, stream())
-                        manga.updateMetadataDate(db)
+                        manga.updateCoverLastModified(db)
                         SetAsCoverResult.Success
                     } else {
                         SetAsCoverResult.AddToLibraryFirst

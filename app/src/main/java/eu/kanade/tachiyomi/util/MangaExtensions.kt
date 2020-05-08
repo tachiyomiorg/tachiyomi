@@ -12,7 +12,7 @@ fun Manga.isLocal() = source == LocalSource.ID
  * Call before updating [Manga.thumbnail_url] to ensure old cover can be cleared from cache
  */
 fun Manga.prepUpdateCover(coverCache: CoverCache) {
-    metadata_date = Date().time
+    cover_last_modified = Date().time
 
     if (!isLocal()) {
         coverCache.deleteFromCache(this, false)
@@ -22,11 +22,11 @@ fun Manga.prepUpdateCover(coverCache: CoverCache) {
 fun Manga.removeCovers(coverCache: CoverCache) {
     if (isLocal()) return
 
-    metadata_date = Date().time
+    cover_last_modified = Date().time
     coverCache.deleteFromCache(this, true)
 }
 
-fun Manga.updateMetadataDate(db: DatabaseHelper) {
-    metadata_date = Date().time
-    db.updateMangaMetadataDate(this).executeAsBlocking()
+fun Manga.updateCoverLastModified(db: DatabaseHelper) {
+    cover_last_modified = Date().time
+    db.updateMangaCoverLastModified(this).executeAsBlocking()
 }

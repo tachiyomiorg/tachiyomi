@@ -76,7 +76,7 @@ class DbOpenCallback : SupportSQLiteOpenHelper.Callback(DATABASE_VERSION) {
             db.execSQL(TrackTable.addFinishDate)
         }
         if (oldVersion < 10) {
-            db.execSQL(MangaTable.addMetadataDate)
+            db.execSQL(MangaTable.addCoverLastModified)
         }
     }
 
