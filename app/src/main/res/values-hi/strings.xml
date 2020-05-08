@@ -413,7 +413,7 @@
     <string name="pref_date_format">दिनांक स्वरूप</string>
     <string name="pref_category_library_update">अद्यतन</string>
     <string name="pref_category_library_categories">श्रेणियाँ</string>
-    <string name="logout_title">% 1 $ s से लॉगआउट करें\?</string>
+    <string name="logout_title">%1$s से लॉगआउट करें\?</string>
     <string name="logout">लॉग आउट</string>
     <string name="logout_success">अब आप लॉग आउट है</string>
     <string name="currently_reading">इस समय पढ़ा जा रहा है</string>
@@ -454,12 +454,12 @@
         <item quantity="one">1 नया अध्याय</item>
         <item quantity="other">%1$d नए अध्याय</item>
     </plurals>
-    <string name="notification_chapters_single">अध्याय %1 $ s</string>
-    <string name="notification_chapters_single_and_more">अध्याय% 1 $ s और% 2 $ d अधिक</string>
+    <string name="notification_chapters_single">अध्याय %1$s</string>
+    <string name="notification_chapters_single_and_more">अध्याय%1$s और%2$d अधिक</string>
     <string name="notification_chapters_multiple">अध्याय %1$s</string>
     <plurals name="notification_chapters_multiple_and_more">
-        <item quantity="one">अध्याय %1 $ s और 1 अधिक</item>
-        <item quantity="other">अध्याय %1 $ s और % 2$ s अधिक</item>
+        <item quantity="one">अध्याय %1$s और 1 अधिक</item>
+        <item quantity="other">अध्याय %1$s और %2$s अधिक</item>
     </plurals>
     <string name="action_hide">छिपाएं</string>
     <string name="hide_notification_content">अधिसूचना सामग्री छुपाएं</string>
@@ -520,7 +520,7 @@
     <string name="confirm_exit">बाहर निकलने के लिए फिर से वापस दबाएं</string>
     <string name="label_downloaded_only">केवल डाउनलोड किए गए</string>
     <string name="channel_backup_restore">बैकअप और पुनर्स्थापना</string>
-    <string name="recent_manga_time">अध्याय %1 $ s - %2 $ s</string>
+    <string name="recent_manga_time">अध्याय %1$s - %2$s</string>
     <string name="restoring_backup_error">बैकअप बहाल करने में विफल रहा</string>
     <string name="creating_backup_error">बैकअप फेल</string>
     <string name="restoring_backup_canceled">पुनर्स्थापना रद्द की गई</string>

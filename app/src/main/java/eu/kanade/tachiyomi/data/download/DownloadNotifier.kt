@@ -94,8 +94,9 @@ internal class DownloadNotifier(private val context: Context) {
                 )
             }
 
-            val downloadingProgressText = context.getString(R.string.chapter_downloading_progress)
-                .format(download.downloadedImages, download.pages!!.size)
+            val downloadingProgressText = context.getString(
+                R.string.chapter_downloading_progress, download.downloadedImages, download.pages!!.size
+            )
 
             if (preferences.hideNotificationContent()) {
                 setContentTitle(downloadingProgressText)
