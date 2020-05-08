@@ -13,6 +13,7 @@ import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.PowerManager
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
@@ -128,6 +129,18 @@ val Int.pxToDp: Int
  */
 val Int.dpToPx: Int
     get() = (this * Resources.getSystem().displayMetrics.density).toInt()
+
+/**
+ * Converts to px and takes into account LTR/RTL layout.
+ */
+val Float.dpToPxEnd: Float
+    get() = (
+        this * Resources.getSystem().displayMetrics.density *
+            if (Resources.getSystem().isLTR) 1 else -1
+        )
+
+val Resources.isLTR
+    get() = configuration.layoutDirection == View.LAYOUT_DIRECTION_LTR
 
 /**
  * Property to get the notification manager from the context.

@@ -9,7 +9,7 @@
         android:layout_width="7dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:background="@android:color/transparent" />
+        android:background="@null" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -19,19 +19,10 @@
         <!-- No margin, use padding at the handle -->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/fast_scroller_bubble"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/FloatingTextView"
             android:layout_gravity="end|center_vertical"
             android:layout_toStartOf="@+id/fast_scroller_handle"
-            android:background="@drawable/material_bubble_drawable"
-            android:elevation="10dp"
             android:gravity="center"
-            android:paddingStart="12dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="12dp"
-            android:paddingBottom="8dp"
-            android:textColor="?attr/colorOnPrimary"
-            android:textSize="15sp"
             android:visibility="gone"
             tools:text="A"
             tools:visibility="visible" />
