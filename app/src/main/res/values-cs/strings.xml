@@ -418,4 +418,5 @@
     <string name="logout_title">Odhlásit z %1$s\?</string>
     <string name="logout_success">Byl jste odhlášen</string>
     <string name="paused">Pozastaveno</string>
+    <string name="label_more">Více</string>
 </resources>

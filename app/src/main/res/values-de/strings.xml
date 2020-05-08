@@ -188,7 +188,7 @@
     <string name="cookies_cleared">Cookies gelöscht</string>
     <string name="choices_reset">Standardantworten zurücksetzen</string>
     <string name="pref_clear_database">Datenbank leeren</string>
-    <string name="pref_clear_database_summary">Alle Manga und Kapitel löschen, die nicht in der Bibliothek sind</string>
+    <string name="pref_clear_database_summary">Manga und Kapitel löschen, die nicht in der Bibliothek sind</string>
     <string name="clear_database_confirmation">Bist du sicher\? Gelesene Kapitel und der Fortschritt von Manga, die nicht in der Bibliothek sind gehen verloren</string>
     <string name="clear_database_completed">Einträge gelöscht</string>
     <string name="pref_refresh_library_metadata">Bibliotheksmetadaten erneuern</string>
@@ -548,9 +548,10 @@
     <string name="gray_background">Grau</string>
     <string name="viewer">Viewer</string>
     <string name="pref_category_for_this_series">Für diese Serie</string>
-    <string name="pref_true_color_summary">Reduziert Streifenbildung, aber beeinflusst die Performance</string>
+    <string name="pref_true_color_summary">Reduziert Streifenbildung, beeinflusst aber die Performance</string>
     <plurals name="num_categories">
         <item quantity="one">%d Kategorie</item>
         <item quantity="other">%d Kategorien</item>
     </plurals>
+    <string name="battery_optimization_setting_activity_not_found">Geräteeinstellungen konnten nicht geöffnet werden</string>
 </resources>

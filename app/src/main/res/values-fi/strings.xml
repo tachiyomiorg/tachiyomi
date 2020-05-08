@@ -332,7 +332,7 @@
     <string name="chapter_error">Virhe</string>
     <string name="chapter_paused">Pysäytetty</string>
     <string name="fetch_chapters_error">Lukujen hakeminen epäonnistui</string>
-    <string name="show_title">Nimike</string>
+    <string name="show_title">Lähdenimike</string>
     <string name="show_chapter_number">Luvun numero</string>
     <string name="sorting_mode">Lajittelutila</string>
     <string name="sort_by_source">Lähteen mukaan</string>
@@ -546,4 +546,11 @@
     <string name="channel_backup_restore_complete">Valmis</string>
     <string name="channel_backup_restore_progress">Edistyminen</string>
     <string name="gray_background">Harmaa</string>
+    <string name="viewer">Lukija</string>
+    <string name="pref_category_for_this_series">Tälle sarjalle</string>
+    <string name="battery_optimization_setting_activity_not_found">Laiteasetuksia ei voitu avata</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d kategoria</item>
+        <item quantity="other">%d kategoriaa</item>
+    </plurals>
 </resources>

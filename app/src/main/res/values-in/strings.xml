@@ -108,7 +108,7 @@
     <string name="default_category_summary">Selalu tanya</string>
     <string name="pref_fullscreen">Layar penuh</string>
     <string name="pref_lock_orientation">Kunci orientasi</string>
-    <string name="pref_page_transitions">Transisi halaman</string>
+    <string name="pref_page_transitions">Animasi transisi halaman</string>
     <string name="pref_show_page_number">Tampilkan nomor halaman</string>
     <string name="pref_crop_borders">Potong pinggiran</string>
     <string name="pref_custom_brightness">Atur kecerahan layar</string>
@@ -244,7 +244,7 @@
     <string name="chapter_error">Kesalahan</string>
     <string name="chapter_paused">Berhenti</string>
     <string name="fetch_chapters_error">Eror saat mengambil bab</string>
-    <string name="show_title">Judul</string>
+    <string name="show_title">Judul sumber</string>
     <string name="show_chapter_number">Nomor bab</string>
     <string name="sorting_mode">Urutkan menurut</string>
     <string name="sort_by_source">Sumber</string>
@@ -537,4 +537,14 @@
     <string name="backup_in_progress">Pencadangan masih dalam proses</string>
     <string name="restore_duration">%02d menit, %02d detik</string>
     <string name="pref_search_pinned_sources_only">Hanya sertakan sumber yang ditandai</string>
+    <string name="channel_backup_restore_complete">Selesai</string>
+    <string name="viewer">Pembaca</string>
+    <string name="pref_category_for_this_series">Untuk seri ini</string>
+    <string name="pref_true_color_summary">Memperbaiki warna yang tidak akurat, tetapi mempengaruhi performa</string>
+    <plurals name="num_categories">
+        <item quantity="other">%d kategori</item>
+    </plurals>
+    <string name="gray_background">Abu-abu</string>
+    <string name="channel_backup_restore_progress">Proses</string>
+    <string name="battery_optimization_setting_activity_not_found">Tidak bisa membuka pengaturan perangkat</string>
 </resources>

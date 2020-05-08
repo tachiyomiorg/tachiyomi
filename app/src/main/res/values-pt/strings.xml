@@ -576,4 +576,11 @@
     </plurals>
     <string name="gray_background">Cinzento</string>
     <string name="channel_backup_restore_complete">Completo</string>
+    <string name="viewer">Telespectador</string>
+    <string name="battery_optimization_setting_activity_not_found">Não foi possível abrir as definições do dispositivo</string>
+    <string name="pref_category_for_this_series">Para esta série</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d categoria</item>
+        <item quantity="other">%d categorias</item>
+    </plurals>
 </resources>

@@ -546,4 +546,12 @@
     <string name="channel_backup_restore_complete">Concluído</string>
     <string name="channel_backup_restore_progress">Progresso</string>
     <string name="gray_background">Cinza</string>
+    <string name="viewer">Sentido de leitura</string>
+    <string name="pref_category_for_this_series">Para esta série</string>
+    <string name="battery_optimization_setting_activity_not_found">Não foi possível abrir as configurações do dispositivo</string>
+    <string name="pref_true_color_summary">Reduz as faixas, mas afeta o desempenho</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d categoria</item>
+        <item quantity="other">%d categorias</item>
+    </plurals>
 </resources>

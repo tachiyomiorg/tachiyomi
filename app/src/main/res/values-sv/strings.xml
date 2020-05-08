@@ -545,4 +545,13 @@
         <item quantity="other">%1$s återstående</item>
     </plurals>
     <string name="pref_search_pinned_sources_only">Inkludera endast fästa källor</string>
+    <string name="viewer">Visare</string>
+    <string name="pref_category_for_this_series">För den här serien</string>
+    <string name="battery_optimization_setting_activity_not_found">Det gick inte att öppna enhetsinställningarna</string>
+    <string name="gray_background">Grå</string>
+    <string name="pref_true_color_summary">Minskar banding, men påverkar prestandan</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d kategori</item>
+        <item quantity="other">%d kategorier</item>
+    </plurals>
 </resources>

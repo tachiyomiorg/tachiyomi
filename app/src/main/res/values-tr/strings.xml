@@ -546,4 +546,12 @@
     <string name="channel_backup_restore_complete">Tamamlandı</string>
     <string name="channel_backup_restore_progress">İlerleme</string>
     <string name="gray_background">Gri</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d kategori</item>
+        <item quantity="other">%d kategori</item>
+    </plurals>
+    <string name="viewer">Görüntüleyici</string>
+    <string name="pref_category_for_this_series">Bu seri için</string>
+    <string name="battery_optimization_setting_activity_not_found">Aygıt ayarları açılamadı</string>
+    <string name="pref_true_color_summary">Renk şeritlerini azaltır, ancak performansı etkiler</string>
 </resources>

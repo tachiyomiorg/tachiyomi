@@ -546,4 +546,5 @@
     <plurals name="num_categories">
         <item quantity="other">%d kategori</item>
     </plurals>
+    <string name="battery_optimization_setting_activity_not_found">Tetapan peranti tidak dapat dibuka</string>
 </resources>

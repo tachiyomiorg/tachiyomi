@@ -586,4 +586,6 @@
         <item quantity="one">%d catégorie</item>
         <item quantity="other">%d catégories</item>
     </plurals>
+    <string name="battery_optimization_setting_activity_not_found">Impossible d\'ouvrir les paramètres de l\'appareil</string>
+    <string name="viewer">Mode de lecture</string>
 </resources>

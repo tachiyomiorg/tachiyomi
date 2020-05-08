@@ -546,4 +546,12 @@
     <string name="channel_backup_restore_complete">Ολοκληρώθηκε</string>
     <string name="channel_backup_restore_progress">Πρόοδος</string>
     <string name="gray_background">Γκρι</string>
+    <string name="viewer">Τρόπος προβολής</string>
+    <string name="pref_true_color_summary">Μειώνει την εμφάνιση ζωνών, αλλά επηρεάζει την απόδοση</string>
+    <string name="pref_category_for_this_series">Για αυτήν τη σειρά</string>
+    <string name="battery_optimization_setting_activity_not_found">Δεν ήταν δυνατό το άνοιγμα των ρυθμίσεων της συσκευής</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d κατηγορία</item>
+        <item quantity="other">%d κατηγορίες</item>
+    </plurals>
 </resources>
