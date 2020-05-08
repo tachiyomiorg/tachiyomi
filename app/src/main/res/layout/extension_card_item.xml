@@ -66,7 +66,7 @@
 
         <Button
             android:id="@+id/ext_button"
-            style="@style/Theme.Widget.Button.Outlined"
+            style="@style/Theme.Widget.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
