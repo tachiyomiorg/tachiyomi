@@ -137,7 +137,7 @@ internal class BackupNotifier(private val context: Context) {
 
         with(completeNotificationBuilder) {
             setContentTitle(context.getString(R.string.restore_completed))
-            setContentText(context.getString(R.string.restore_completed_content, timeString, errorCount))
+            setContentText(context.resources.getQuantityString(R.plurals.restore_completed_message, errorCount, timeString, errorCount))
 
             // Clear old actions if they exist
             if (mActions.isNotEmpty()) {
