@@ -19,7 +19,7 @@ class TrackLogoutDialog(bundle: Bundle? = null) : DialogController(bundle) {
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialDialog(activity!!)
-            .title(R.string.logout_title, service.name)
+            .title(text = activity!!.getString(R.string.logout_title, service.name))
             .positiveButton(R.string.logout) {
                 service.logout()
                 (targetController as? Listener)?.trackLogoutDialogClosed(service)
