@@ -212,6 +212,10 @@ class BackupRestoreService : Service() {
 
         // Restore individual manga
         mangasJson.forEach {
+            if (job?.isActive != true) {
+                throw Exception(getString(R.string.restoring_backup_canceled))
+            }
+
             restoreManga(it.asJsonObject)
         }
 
@@ -251,10 +255,6 @@ class BackupRestoreService : Service() {
                 mangaJson.get(TRACK)
                     ?: JsonArray()
             )
-
-            if (job?.isActive != true) {
-                throw Exception(getString(R.string.restoring_backup_canceled))
-            }
 
             try {
                 restoreMangaData(manga, chapters, categories, history, tracks)

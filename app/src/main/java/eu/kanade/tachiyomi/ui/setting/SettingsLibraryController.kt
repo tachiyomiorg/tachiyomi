@@ -172,7 +172,7 @@ class SettingsLibraryController : SettingsController() {
             preference {
                 titleRes = R.string.action_edit_categories
 
-                val catCount = db.getCategories().executeAsBlocking().size
+                val catCount = dbCategories.size
                 summary = context.resources.getQuantityString(R.plurals.num_categories, catCount, catCount)
 
                 onClick {
