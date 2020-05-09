@@ -141,6 +141,8 @@ object PreferenceKeys {
 
     const val downloadBadge = "display_download_badge"
 
+    const val unreadBadge = "display_unread_badge"
+
     const val alwaysShowChapterTransition = "always_show_chapter_transition"
 
     const val searchPinnedSourcesOnly = "search_pinned_sources_only"

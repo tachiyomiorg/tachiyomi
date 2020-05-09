@@ -83,6 +83,7 @@
     <string name="action_display_grid">Grid</string>
     <string name="action_display_list">List</string>
     <string name="action_display_download_badge">Download badges</string>
+    <string name="action_display_unread_badge">Unread badges</string>
     <string name="action_hide">Hide</string>
     <string name="action_pin">Pin</string>
     <string name="action_unpin">Unpin</string>

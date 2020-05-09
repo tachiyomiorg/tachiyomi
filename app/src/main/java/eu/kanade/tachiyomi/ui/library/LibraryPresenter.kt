@@ -66,7 +66,7 @@ class LibraryPresenter(
     /**
      * Relay used to apply the UI update to the last emission of the library.
      */
-    private val downloadTriggerRelay = BehaviorRelay.create(Unit)
+    private val badgeTriggerRelay = BehaviorRelay.create(Unit)
 
     /**
      * Relay used to apply the selected sorting method to the last emission of the library.
@@ -89,8 +89,8 @@ class LibraryPresenter(
     fun subscribeLibrary() {
         if (librarySubscription.isNullOrUnsubscribed()) {
             librarySubscription = getLibraryObservable()
-                .combineLatest(downloadTriggerRelay.observeOn(Schedulers.io())) { lib, _ ->
-                    lib.apply { setDownloadCount(mangaMap) }
+                .combineLatest(badgeTriggerRelay.observeOn(Schedulers.io())) { lib, _ ->
+                    lib.apply { setBadges(mangaMap) }
                 }
                 .combineLatest(filterTriggerRelay.observeOn(Schedulers.io())) { lib, _ ->
                     lib.copy(mangaMap = applyFilters(lib.mangaMap))
@@ -149,20 +149,25 @@ class LibraryPresenter(
      *
      * @param map the map of manga.
      */
-    private fun setDownloadCount(map: LibraryMap) {
-        if (!preferences.downloadBadge().get()) {
-            // Unset download count if the preference is not enabled.
-            for ((_, itemList) in map) {
-                for (item in itemList) {
-                    item.downloadCount = -1
-                }
-            }
-            return
-        }
+    private fun setBadges(map: LibraryMap) {
+        val showDownloadBadges = preferences.downloadBadge().get()
+        val showUnreadBadges = preferences.unreadBadge().get()
 
         for ((_, itemList) in map) {
             for (item in itemList) {
-                item.downloadCount = downloadManager.getDownloadCount(item.manga)
+                item.downloadCount = if (showDownloadBadges) {
+                    downloadManager.getDownloadCount(item.manga)
+                } else {
+                    // Unset download count if not enabled
+                    -1
+                }
+
+                item.unreadCount = if (showUnreadBadges) {
+                    item.manga.unread
+                } else {
+                    // Unset unread count if not enabled
+                    -1
+                }
             }
         }
     }
@@ -275,8 +280,8 @@ class LibraryPresenter(
     /**
      * Requests the library to have download badges added.
      */
-    fun requestDownloadBadgesUpdate() {
-        downloadTriggerRelay.call(Unit)
+    fun requestBadgesUpdate() {
+        badgeTriggerRelay.call(Unit)
     }
 
     /**

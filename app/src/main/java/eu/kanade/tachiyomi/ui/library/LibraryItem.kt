@@ -25,6 +25,7 @@ class LibraryItem(val manga: LibraryManga, private val libraryAsList: Preference
     private val sourceManager: SourceManager = Injekt.get()
 
     var downloadCount = -1
+    var unreadCount = -1
 
     override fun getLayoutRes(): Int {
         return if (libraryAsList.get()) {

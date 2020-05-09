@@ -39,8 +39,8 @@ class LibraryGridHolder(
 
         // Update the unread count and its visibility.
         with(unread_text) {
-            visibleIf { item.manga.unread > 0 }
-            text = item.manga.unread.toString()
+            visibleIf { item.unreadCount > 0 }
+            text = item.unreadCount.toString()
         }
         // Update the download count and its visibility.
         with(download_text) {
