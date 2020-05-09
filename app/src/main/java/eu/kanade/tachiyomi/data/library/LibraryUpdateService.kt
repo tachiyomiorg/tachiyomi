@@ -110,7 +110,6 @@ class LibraryUpdateService(
      */
     enum class Target {
         CHAPTERS, // Manga chapters
-        DETAILS, // Manga metadata
         TRACKING // Tracking metadata
     }
 
@@ -234,7 +233,6 @@ class LibraryUpdateService(
                 // Update either chapter list or manga details.
                 when (target) {
                     Target.CHAPTERS -> updateChapterList(mangaList)
-                    Target.DETAILS -> updateDetails(mangaList)
                     Target.TRACKING -> updateTrackings(mangaList)
                 }
             }
@@ -390,48 +388,20 @@ class LibraryUpdateService(
      */
     fun updateManga(manga: Manga): Observable<Pair<List<Chapter>, List<Chapter>>> {
         val source = sourceManager.get(manga.source) as? HttpSource ?: return Observable.empty()
+
+        // Update manga details metadata in the background
+        source.fetchMangaDetails(manga)
+            .map { networkManga ->
+                manga.copyFrom(networkManga)
+                db.insertManga(manga).executeAsBlocking()
+                manga
+            }
+            .onErrorResumeNext { Observable.just(manga) }
+            .subscribeOn(Schedulers.io())
+            .subscribe()
+
         return source.fetchChapterList(manga)
             .map { syncChaptersWithSource(db, it, manga, source) }
-    }
-
-    /**
-     * Method that updates the details of the given list of manga. It's called in a background
-     * thread, so it's safe to do heavy operations or network calls here.
-     *
-     * @param mangaToUpdate the list to update
-     * @return an observable delivering the progress of each update.
-     */
-    fun updateDetails(mangaToUpdate: List<LibraryManga>): Observable<LibraryManga> {
-        // Initialize the variables holding the progress of the updates.
-        val count = AtomicInteger(0)
-
-        // Emit each manga and update it sequentially.
-        return Observable.from(mangaToUpdate)
-            // Update the details of the manga concurrently from 5 different sources
-            .groupBy { it.source }
-            .flatMap(
-                { bySource ->
-                    bySource
-                        // Notify manga that will update.
-                        .doOnNext { showProgressNotification(it, count.andIncrement, mangaToUpdate.size) }
-                        .concatMap { manga ->
-                            val source = sourceManager.get(manga.source) as? HttpSource
-                                ?: return@concatMap Observable.empty<LibraryManga>()
-
-                            source.fetchMangaDetails(manga)
-                                .map { networkManga ->
-                                    manga.copyFrom(networkManga)
-                                    db.insertManga(manga).executeAsBlocking()
-                                    manga
-                                }
-                                .onErrorReturn { manga }
-                        }
-                },
-                5
-            )
-            .doOnCompleted {
-                cancelProgressNotification()
-            }
     }
 
     /**
