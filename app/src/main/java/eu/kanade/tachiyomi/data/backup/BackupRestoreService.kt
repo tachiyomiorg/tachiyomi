@@ -230,41 +230,39 @@ class BackupRestoreService : Service() {
     private fun restoreCategories(categoriesJson: JsonElement) {
         db.inTransaction {
             backupManager.restoreCategories(categoriesJson.asJsonArray)
-
-            restoreProgress += 1
-            showRestoreProgress(restoreProgress, restoreAmount, getString(R.string.categories))
         }
+
+        restoreProgress += 1
+        showRestoreProgress(restoreProgress, restoreAmount, getString(R.string.categories))
     }
 
     private fun restoreManga(mangaJson: JsonObject) {
-        db.inTransaction {
-            val manga = backupManager.parser.fromJson<MangaImpl>(mangaJson.get(MANGA))
-            val chapters = backupManager.parser.fromJson<List<ChapterImpl>>(
-                mangaJson.get(CHAPTERS)
-                    ?: JsonArray()
-            )
-            val categories = backupManager.parser.fromJson<List<String>>(
-                mangaJson.get(CATEGORIES)
-                    ?: JsonArray()
-            )
-            val history = backupManager.parser.fromJson<List<DHistory>>(
-                mangaJson.get(HISTORY)
-                    ?: JsonArray()
-            )
-            val tracks = backupManager.parser.fromJson<List<TrackImpl>>(
-                mangaJson.get(TRACK)
-                    ?: JsonArray()
-            )
+        val manga = backupManager.parser.fromJson<MangaImpl>(mangaJson.get(MANGA))
+        val chapters = backupManager.parser.fromJson<List<ChapterImpl>>(
+            mangaJson.get(CHAPTERS)
+                ?: JsonArray()
+        )
+        val categories = backupManager.parser.fromJson<List<String>>(
+            mangaJson.get(CATEGORIES)
+                ?: JsonArray()
+        )
+        val history = backupManager.parser.fromJson<List<DHistory>>(
+            mangaJson.get(HISTORY)
+                ?: JsonArray()
+        )
+        val tracks = backupManager.parser.fromJson<List<TrackImpl>>(
+            mangaJson.get(TRACK)
+                ?: JsonArray()
+        )
 
-            try {
-                restoreMangaData(manga, chapters, categories, history, tracks)
-            } catch (e: Exception) {
-                errors.add(Date() to "${manga.title} - ${getString(R.string.source_not_found)}")
-            }
-
-            restoreProgress += 1
-            showRestoreProgress(restoreProgress, restoreAmount, manga.title)
+        try {
+            restoreMangaData(manga, chapters, categories, history, tracks)
+        } catch (e: Exception) {
+            errors.add(Date() to "${manga.title} - ${getString(R.string.source_not_found)}")
         }
+
+        restoreProgress += 1
+        showRestoreProgress(restoreProgress, restoreAmount, manga.title)
     }
 
     /**
@@ -287,14 +285,16 @@ class BackupRestoreService : Service() {
         val source = backupManager.sourceManager.getOrStub(manga.source)
         val dbManga = backupManager.getMangaFromDatabase(manga)
 
-        if (dbManga == null) {
-            // Manga not in database
-            restoreMangaFetch(source, manga, chapters, categories, history, tracks)
-        } else { // Manga in database
-            // Copy information from manga already in database
-            backupManager.restoreMangaNoFetch(manga, dbManga)
-            // Fetch rest of manga information
-            restoreMangaNoFetch(source, manga, chapters, categories, history, tracks)
+        db.inTransaction {
+            if (dbManga == null) {
+                // Manga not in database
+                restoreMangaFetch(source, manga, chapters, categories, history, tracks)
+            } else { // Manga in database
+                // Copy information from manga already in database
+                backupManager.restoreMangaNoFetch(manga, dbManga)
+                // Fetch rest of manga information
+                restoreMangaNoFetch(source, manga, chapters, categories, history, tracks)
+            }
         }
     }
 
