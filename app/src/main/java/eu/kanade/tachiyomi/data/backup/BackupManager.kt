@@ -299,7 +299,16 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
      */
     fun restoreChapterFetchObservable(source: Source, manga: Manga, chapters: List<Chapter>): Observable<Pair<List<Chapter>, List<Chapter>>> {
         return source.fetchChapterList(manga)
-            .map { syncChaptersWithSource(databaseHelper, it, manga, source) }
+            .map {
+                if (it.last().chapter_number == -99F) {
+                    chapters.forEach { chapter ->
+                        chapter.name = "Chapter ${chapter.chapter_number} restored by dummy source"
+                    }
+                    syncChaptersWithSource(databaseHelper, chapters, manga, source)
+                } else {
+                    syncChaptersWithSource(databaseHelper, it, manga, source)
+                }
+            }
             .doOnNext { pair ->
                 if (pair.first.isNotEmpty()) {
                     chapters.forEach { it.manga_id = manga.id }
