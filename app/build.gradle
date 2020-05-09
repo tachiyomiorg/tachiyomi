@@ -187,7 +187,7 @@ dependencies {
     implementation 'com.github.tfcporciuncula:flow-preferences:1.1.1'
 
     // Model View Presenter
-    final nucleus_version = '6.0.0'
+    final nucleus_version = '3.0.0'
     implementation "info.android15.nucleus:nucleus:$nucleus_version"
     implementation "info.android15.nucleus:nucleus-support-v7:$nucleus_version"
 
