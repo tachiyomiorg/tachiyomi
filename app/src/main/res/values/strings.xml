@@ -306,8 +306,9 @@
     <string name="pref_download_new_categories">Categories to include in download</string>
 
       <!-- Tracking section -->
-    <string name="pref_auto_update_manga_sync">Sync chapters after reading</string>
+    <string name="pref_auto_update_manga_sync">Update chapter progress after reading</string>
     <string name="services">Services</string>
+    <string name="tracking_info">One-way sync to update chapter tracking services. Set up tracking for individual manga entries from their tracking tabs.</string>
 
       <!-- Browse section -->
     <string name="pref_enable_automatic_extension_updates">Check for extension updates</string>

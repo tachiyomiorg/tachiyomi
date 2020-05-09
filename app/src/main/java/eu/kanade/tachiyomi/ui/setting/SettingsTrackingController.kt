@@ -12,6 +12,7 @@ import eu.kanade.tachiyomi.data.track.anilist.AnilistApi
 import eu.kanade.tachiyomi.data.track.bangumi.BangumiApi
 import eu.kanade.tachiyomi.data.track.shikimori.ShikimoriApi
 import eu.kanade.tachiyomi.util.preference.defaultValue
+import eu.kanade.tachiyomi.util.preference.infoPreference
 import eu.kanade.tachiyomi.util.preference.initThenAdd
 import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
@@ -72,6 +73,9 @@ class SettingsTrackingController :
                 tabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 tabsIntent.launchUrl(activity!!, BangumiApi.authUrl())
             }
+        }
+        preferenceCategory {
+            infoPreference(R.string.tracking_info)
         }
     }
 

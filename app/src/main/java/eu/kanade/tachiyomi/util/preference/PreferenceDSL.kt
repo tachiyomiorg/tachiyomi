@@ -1,5 +1,6 @@
 package eu.kanade.tachiyomi.util.preference
 
+import androidx.annotation.StringRes
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.preference.CheckBoxPreference
 import androidx.preference.DialogPreference
@@ -13,6 +14,8 @@ import androidx.preference.PreferenceManager
 import androidx.preference.PreferenceScreen
 import androidx.preference.SwitchPreferenceCompat
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.widget.preference.IntListPreference
 import eu.kanade.tachiyomi.widget.preference.SwitchPreferenceCategory
 
@@ -26,6 +29,18 @@ inline fun PreferenceManager.newScreen(block: (@DSL PreferenceScreen).() -> Unit
 
 inline fun PreferenceGroup.preference(block: (@DSL Preference).() -> Unit): Preference {
     return initThenAdd(Preference(context), block)
+}
+
+inline fun PreferenceGroup.infoPreference(@StringRes infoRes: Int): Preference {
+    return initThenAdd(
+        Preference(context),
+        {
+            iconRes = R.drawable.ic_info_24dp
+            iconTint = context.getResourceColor(android.R.attr.textColorHint)
+            summaryRes = infoRes
+            isSelectable = false
+        }
+    )
 }
 
 inline fun PreferenceGroup.switchPreference(block: (@DSL SwitchPreferenceCompat).() -> Unit): SwitchPreferenceCompat {
