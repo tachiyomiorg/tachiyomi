@@ -339,6 +339,8 @@
     <string name="restoring_backup">Restoring backup</string>
     <string name="restoring_backup_error">Restoring backup failed</string>
     <string name="restoring_backup_canceled">Canceled restore</string>
+    <string name="restore_broken_sources_manga">Restore broken sources manga</string>
+    <string name="restore_options">Restore Options</string>
 
       <!-- Advanced section -->
     <string name="pref_clear_chapter_cache">Clear chapter cache</string>

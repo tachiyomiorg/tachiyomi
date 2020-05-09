@@ -280,14 +280,19 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
      * @return [Observable] that contains manga
      */
     fun restoreMangaFetchObservable(source: Source, manga: Manga): Observable<Manga> {
-        return source.fetchMangaDetails(manga)
-            .map { networkManga ->
-                manga.copyFrom(networkManga)
-                manga.favorite = true
-                manga.initialized = true
-                manga.id = insertManga(manga)
-                manga
+        return (
+            if (sourceManager.isStubSource(source) && preferences.restoreEvenMissingSources()) {
+                Observable.just(manga)
+            } else {
+                source.fetchMangaDetails(manga)
             }
+            ).map { networkManga ->
+            manga.copyFrom(networkManga)
+            manga.favorite = true
+            manga.initialized = true
+            manga.id = insertManga(manga)
+            manga
+        }
     }
 
     /**
@@ -298,17 +303,16 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
      * @return [Observable] that contains manga
      */
     fun restoreChapterFetchObservable(source: Source, manga: Manga, chapters: List<Chapter>): Observable<Pair<List<Chapter>, List<Chapter>>> {
-        return source.fetchChapterList(manga)
-            .map {
-                if (it.last().chapter_number == -99F) {
-                    chapters.forEach { chapter ->
-                        chapter.name = "Chapter ${chapter.chapter_number} restored by dummy source"
-                    }
-                    syncChaptersWithSource(databaseHelper, chapters, manga, source)
-                } else {
-                    syncChaptersWithSource(databaseHelper, it, manga, source)
+        return if (sourceManager.isStubSource(source) && preferences.restoreEvenMissingSources()) {
+                chapters.forEach { chapter ->
+                    chapter.name =
+                        "Chapter ${chapter.chapter_number} restored with missing source"
                 }
+                Observable.just(chapters)
+            } else {
+                source.fetchChapterList(manga)
             }
+            .map { syncChaptersWithSource(databaseHelper, it, manga, source) }
             .doOnNext { pair ->
                 if (pair.first.isNotEmpty()) {
                     chapters.forEach { it.manga_id = manga.id }

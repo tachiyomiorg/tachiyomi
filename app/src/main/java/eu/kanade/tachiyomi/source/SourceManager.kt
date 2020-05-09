@@ -22,6 +22,8 @@ open class SourceManager(private val context: Context) {
         return sourcesMap[sourceKey]
     }
 
+    fun isStubSource(source: Source): Boolean = source is StubSource
+
     fun getOrStub(sourceKey: Long): Source {
         return sourcesMap[sourceKey] ?: stubSourcesMap.getOrPut(sourceKey) {
             StubSource(sourceKey)

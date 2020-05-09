@@ -29,6 +29,7 @@ import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.summaryRes
+import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.getFilePicker
 import eu.kanade.tachiyomi.util.system.toast
@@ -137,6 +138,15 @@ class SettingsBackupController : SettingsController() {
 
                 preferences.backupInterval().asImmediateFlow { isVisible = it > 0 }
                     .launchIn(scope)
+            }
+        }
+        preferenceCategory {
+            titleRes = R.string.restore_options
+
+            switchPreference {
+                key = Keys.restoreEvenWithMissingSources
+                titleRes = R.string.restore_broken_sources_manga
+                defaultValue = false
             }
         }
     }

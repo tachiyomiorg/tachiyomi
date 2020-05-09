@@ -14,6 +14,7 @@ object ChapterTypeAdapter {
     private const val READ = "r"
     private const val BOOKMARK = "b"
     private const val LAST_READ = "l"
+    private const val NUMBER = "n"
 
     fun build(): TypeAdapter<ChapterImpl> {
         return typeAdapter {
@@ -22,6 +23,8 @@ object ChapterTypeAdapter {
                     beginObject()
                     name(URL)
                     value(it.url)
+                    name(NUMBER)
+                    value(it.chapter_number.toDouble())
                     if (it.read) {
                         name(READ)
                         value(1)
@@ -48,6 +51,7 @@ object ChapterTypeAdapter {
                             READ -> chapter.read = nextInt() == 1
                             BOOKMARK -> chapter.bookmark = nextInt() == 1
                             LAST_READ -> chapter.last_page_read = nextInt()
+                            NUMBER -> chapter.chapter_number = nextDouble().toFloat()
                         }
                     }
                 }
