@@ -52,6 +52,7 @@ object ChapterTypeAdapter {
                             BOOKMARK -> chapter.bookmark = nextInt() == 1
                             LAST_READ -> chapter.last_page_read = nextInt()
                             NUMBER -> chapter.chapter_number = nextDouble().toFloat()
+                            else -> Unit
                         }
                     }
                 }
