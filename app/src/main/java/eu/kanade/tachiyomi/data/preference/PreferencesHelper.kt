@@ -148,6 +148,8 @@ class PreferencesHelper(val context: Context) {
 
     fun updateOnlyNonCompleted() = prefs.getBoolean(Keys.updateOnlyNonCompleted, false)
 
+    fun updateCovers() = prefs.getBoolean(Keys.updateCovers, false)
+
     fun autoUpdateTrack() = prefs.getBoolean(Keys.autoUpdateTrack, true)
 
     fun lastUsedCatalogueSource() = rxPrefs.getLong(Keys.lastUsedCatalogueSource, -1)

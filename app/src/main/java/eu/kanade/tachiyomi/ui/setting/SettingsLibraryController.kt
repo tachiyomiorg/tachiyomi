@@ -120,6 +120,11 @@ class SettingsLibraryController : SettingsController() {
                 titleRes = R.string.pref_update_only_non_completed
                 defaultValue = false
             }
+            switchPreference {
+                key = Keys.updateCovers
+                titleRes = R.string.pref_update_covers
+                defaultValue = false
+            }
             multiSelectListPreference {
                 key = Keys.libraryUpdateCategories
                 titleRes = R.string.pref_library_update_categories

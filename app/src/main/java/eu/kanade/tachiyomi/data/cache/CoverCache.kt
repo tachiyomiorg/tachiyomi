@@ -20,7 +20,7 @@ class CoverCache(private val context: Context) {
 
     companion object {
         private const val COVERS_DIR = "covers"
-        private const val CUSTOM_COVERS_DIR = "custom covers"
+        private const val CUSTOM_COVERS_DIR = "covers/custom"
     }
 
     /**

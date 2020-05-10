@@ -67,6 +67,8 @@ object PreferenceKeys {
 
     const val updateOnlyNonCompleted = "pref_update_only_non_completed_key"
 
+    const val updateCovers = "pref_update_covers"
+
     const val autoUpdateTrack = "pref_auto_update_manga_sync_key"
 
     const val lastUsedCatalogueSource = "last_catalogue_source"

@@ -183,6 +183,7 @@
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Charging</string>
     <string name="pref_update_only_non_completed">Only update ongoing manga</string>
+    <string name="pref_update_covers">Update covers</string>
 
     <string name="pref_category_library_categories">Categories</string>
     <string name="default_category">Default category</string>

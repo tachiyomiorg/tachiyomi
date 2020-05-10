@@ -32,7 +32,6 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SManga
-import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.lang.chop
@@ -395,7 +394,9 @@ class LibraryUpdateService(
         // Update manga details metadata in the background
         source.fetchMangaDetails(manga)
             .map { networkManga ->
-                manga.prepUpdateCover(coverCache)
+                if (preferences.updateCovers() || manga.thumbnail_url != networkManga.thumbnail_url) {
+                    manga.prepUpdateCover(coverCache)
+                }
                 manga.copyFrom(networkManga)
                 db.insertManga(manga).executeAsBlocking()
                 manga

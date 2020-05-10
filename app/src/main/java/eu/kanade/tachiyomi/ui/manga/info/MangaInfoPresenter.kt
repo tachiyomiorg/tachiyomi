@@ -75,7 +75,7 @@ class MangaInfoPresenter(
         if (!fetchMangaSubscription.isNullOrUnsubscribed()) return
         fetchMangaSubscription = Observable.defer { source.fetchMangaDetails(manga) }
             .map { networkManga ->
-                if (manualFetch) {
+                if (manualFetch || manga.thumbnail_url != networkManga.thumbnail_url) {
                     manga.prepUpdateCover(coverCache)
                 }
                 manga.copyFrom(networkManga)
