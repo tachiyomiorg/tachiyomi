@@ -17,7 +17,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.databinding.CategoriesControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.ui.main.offsetFabAppbarHeight
+import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -95,7 +95,7 @@ class CategoryController :
             }
             .launchIn(scope)
 
-        binding.fab.offsetFabAppbarHeight(activity!!)
+        binding.fab.offsetAppbarHeight(activity!!)
     }
 
     /**

@@ -321,9 +321,9 @@
     <string name="pref_restore_backup">Restore backup</string>
     <string name="pref_restore_backup_summ">Restore library from backup file</string>
     <string name="pref_backup_directory">Backup location</string>
-    <string name="pref_backup_service_category">Service</string>
+    <string name="pref_backup_service_category">Automatic backups</string>
     <string name="pref_backup_interval">Backup frequency</string>
-    <string name="pref_backup_slots">Max automatic backups</string>
+    <string name="pref_backup_slots">Maximum backups</string>
     <string name="source_not_found">Source not found</string>
     <string name="backup_created">Backup created</string>
     <string name="restore_completed">Restore completed</string>

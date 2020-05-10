@@ -383,10 +383,10 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
 }
 
 /**
- * Used to manually offset a FAB within child views that might be cut off due to the collapsing
- * AppBarLayout.
+ * Used to manually offset a view within the activity's child views that might be cut off due to the
+ * collapsing AppBarLayout.
  */
-fun View.offsetFabAppbarHeight(activity: Activity) {
+fun View.offsetAppbarHeight(activity: Activity) {
     val appbar: AppBarLayout = activity.findViewById(R.id.appbar)
     val tabs: TabLayout = activity.findViewById(R.id.tabs)
     appbar.addOnOffsetChangedListener(

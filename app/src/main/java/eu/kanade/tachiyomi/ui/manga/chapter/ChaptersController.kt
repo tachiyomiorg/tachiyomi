@@ -24,7 +24,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.databinding.ChaptersControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.ui.main.offsetFabAppbarHeight
+import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.util.system.getResourceColor
@@ -126,8 +126,8 @@ class ChaptersController :
 
         binding.fab.shrinkOnScroll(binding.recycler)
 
-        binding.actionToolbar.offsetFabAppbarHeight(activity!!)
-        binding.fab.offsetFabAppbarHeight(activity!!)
+        binding.actionToolbar.offsetAppbarHeight(activity!!)
+        binding.fab.offsetAppbarHeight(activity!!)
     }
 
     override fun onDestroyView(view: View) {

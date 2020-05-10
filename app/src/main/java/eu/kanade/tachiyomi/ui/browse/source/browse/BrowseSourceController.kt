@@ -31,7 +31,7 @@ import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
-import eu.kanade.tachiyomi.ui.main.offsetFabAppbarHeight
+import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
 import eu.kanade.tachiyomi.util.system.connectivityManager
@@ -159,7 +159,7 @@ open class BrowseSourceController(bundle: Bundle) :
 
         binding.fabFilter.setOnClickListener { filterSheet?.show() }
 
-        binding.fabFilter.offsetFabAppbarHeight(activity!!)
+        binding.fabFilter.offsetAppbarHeight(activity!!)
         binding.fabFilter.visible()
     }
 

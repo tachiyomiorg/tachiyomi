@@ -13,7 +13,7 @@ import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.databinding.DownloadControllerBinding
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.ui.main.offsetFabAppbarHeight
+import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
 import java.util.HashMap
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.flow.launchIn
@@ -93,7 +93,7 @@ class DownloadController :
             }
             .launchIn(scope)
 
-        binding.fab.offsetFabAppbarHeight(activity!!)
+        binding.fab.offsetAppbarHeight(activity!!)
 
         // Subscribe to changes
         DownloadService.runningRelay
