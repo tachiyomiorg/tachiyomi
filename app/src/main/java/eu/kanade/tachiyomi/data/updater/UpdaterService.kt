@@ -96,7 +96,7 @@ class UpdaterService : Service() {
             var lastTick = 0L
 
             override fun update(bytesRead: Long, contentLength: Long, done: Boolean) {
-                val progress = (100 * bytesRead / contentLength).toInt()
+                val progress = (100 * (bytesRead.toFloat() / contentLength)).toInt()
                 val currentTime = System.currentTimeMillis()
                 if (progress > savedProgress && currentTime - 200 > lastTick) {
                     savedProgress = progress
