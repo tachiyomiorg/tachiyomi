@@ -1,5 +1,7 @@
 package eu.kanade.tachiyomi.ui.library
 
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import com.jakewharton.rxrelay.BehaviorRelay
 import eu.kanade.tachiyomi.data.cache.CoverCache
@@ -14,11 +16,12 @@ import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
+import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.lang.combineLatest
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
 import eu.kanade.tachiyomi.util.lang.launchIO
-import java.io.IOException
-import java.io.InputStream
+import eu.kanade.tachiyomi.util.removeCovers
+import eu.kanade.tachiyomi.util.updateCoverLastModified
 import java.util.ArrayList
 import java.util.Collections
 import java.util.Comparator
@@ -128,7 +131,7 @@ class LibraryPresenter(
             // Filter when there are no downloads.
             if (filterDownloaded) {
                 // Local manga are always downloaded
-                if (item.manga.source == LocalSource.ID) {
+                if (item.manga.isLocal()) {
                     return@f true
                 }
                 // Don't bother with directory checking if download count has been set.
@@ -318,16 +321,17 @@ class LibraryPresenter(
      * @param deleteChapters whether to also delete downloaded chapters.
      */
     fun removeMangaFromLibrary(mangas: List<Manga>, deleteChapters: Boolean) {
-        // Create a set of the list
-        val mangaToDelete = mangas.distinctBy { it.id }
-        mangaToDelete.forEach { it.favorite = false }
-
         launchIO {
+            val mangaToDelete = mangas.distinctBy { it.id }
+
+            mangaToDelete.forEach {
+                it.favorite = false
+                it.removeCovers(coverCache)
+            }
             db.insertMangas(mangaToDelete).executeAsBlocking()
 
-            mangaToDelete.forEach { manga ->
-                coverCache.deleteFromCache(manga.thumbnail_url)
-                if (deleteChapters) {
+            if (deleteChapters) {
+                mangaToDelete.forEach { manga ->
                     val source = sourceManager.get(manga.source) as? HttpSource
                     if (source != null) {
                         downloadManager.deleteManga(manga, source)
@@ -358,21 +362,42 @@ class LibraryPresenter(
     /**
      * Update cover with local file.
      *
-     * @param inputStream the new cover.
      * @param manga the manga edited.
-     * @return true if the cover is updated, false otherwise
+     * @param context Context.
+     * @param data uri of the cover resource.
      */
-    @Throws(IOException::class)
-    fun editCoverWithStream(inputStream: InputStream, manga: Manga): Boolean {
-        if (manga.source == LocalSource.ID) {
-            LocalSource.updateCover(context, manga, inputStream)
-            return true
-        }
+    fun editCover(manga: Manga, context: Context, data: Uri) {
+        Observable
+            .fromCallable {
+                context.contentResolver.openInputStream(data)?.use {
+                    if (manga.isLocal()) {
+                        LocalSource.updateCover(context, manga, it)
+                        manga.updateCoverLastModified(db)
+                    } else if (manga.favorite) {
+                        coverCache.setCustomCoverToCache(manga, it)
+                        manga.updateCoverLastModified(db)
+                    }
+                }
+            }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeFirst(
+                { view, _ -> view.onSetCoverSuccess() },
+                { view, e -> view.onSetCoverError(e) }
+            )
+    }
 
-        if (manga.thumbnail_url != null && manga.favorite) {
-            coverCache.copyToCache(manga.thumbnail_url!!, inputStream)
-            return true
-        }
-        return false
+    fun deleteCustomCover(manga: Manga) {
+        Observable
+            .fromCallable {
+                coverCache.deleteCustomCover(manga)
+                manga.updateCoverLastModified(db)
+            }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeFirst(
+                { view, _ -> view.onSetCoverSuccess() },
+                { view, e -> view.onSetCoverError(e) }
+            )
     }
 }

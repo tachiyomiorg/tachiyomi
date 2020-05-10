@@ -21,11 +21,13 @@ import eu.kanade.tachiyomi.ui.reader.loader.DownloadPageLoader
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import eu.kanade.tachiyomi.ui.reader.model.ViewerChapters
+import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.lang.byteSize
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.lang.takeBytes
 import eu.kanade.tachiyomi.util.storage.DiskUtil
 import eu.kanade.tachiyomi.util.system.ImageUtil
+import eu.kanade.tachiyomi.util.updateCoverLastModified
 import java.io.File
 import java.util.Date
 import java.util.concurrent.TimeUnit
@@ -565,15 +567,16 @@ class ReaderPresenter(
 
         Observable
             .fromCallable {
-                if (manga.source == LocalSource.ID) {
+                if (manga.isLocal()) {
                     val context = Injekt.get<Application>()
                     LocalSource.updateCover(context, manga, stream())
+                    manga.updateCoverLastModified(db)
                     R.string.cover_updated
                     SetAsCoverResult.Success
                 } else {
-                    val thumbUrl = manga.thumbnail_url ?: throw Exception("Image url not found")
                     if (manga.favorite) {
-                        coverCache.copyToCache(thumbUrl, stream())
+                        coverCache.setCustomCoverToCache(manga, stream())
+                        manga.updateCoverLastModified(db)
                         SetAsCoverResult.Success
                     } else {
                         SetAsCoverResult.AddToLibraryFirst

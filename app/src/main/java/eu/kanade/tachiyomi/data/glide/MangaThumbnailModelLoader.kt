@@ -14,7 +14,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.online.HttpSource
-import java.io.File
+import eu.kanade.tachiyomi.util.isLocal
 import java.io.InputStream
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -49,12 +49,6 @@ class MangaThumbnailModelLoader : ModelLoader<MangaThumbnail, InputStream> {
     private val defaultClient = Injekt.get<NetworkHelper>().client
 
     /**
-     * LRU cache whose key is the thumbnail url of the manga, and the value contains the request url
-     * and the file where it should be stored in case the manga is a favorite.
-     */
-    private val lruCache = LruCache<GlideUrl, File>(100)
-
-    /**
      * Map where request headers are stored for a source.
      */
     private val cachedHeaders = hashMapOf<Long, LazyHeaders>()
@@ -78,7 +72,7 @@ class MangaThumbnailModelLoader : ModelLoader<MangaThumbnail, InputStream> {
     /**
      * Returns a fetcher for the given manga or null if the url is empty.
      *
-     * @param manga the model.
+     * @param mangaThumbnail the model.
      * @param width the width of the view where the resource will be loaded.
      * @param height the height of the view where the resource will be loaded.
      */
@@ -88,13 +82,16 @@ class MangaThumbnailModelLoader : ModelLoader<MangaThumbnail, InputStream> {
         height: Int,
         options: Options
     ): ModelLoader.LoadData<InputStream>? {
-        // Check thumbnail is not null or empty
-        val url = mangaThumbnail.url
-        if (url == null || url.isEmpty()) {
-            return null
-        }
-
         val manga = mangaThumbnail.manga
+        val url = manga.thumbnail_url
+
+        if (url.isNullOrEmpty()) {
+            return if (!manga.favorite || manga.isLocal()) {
+                null
+            } else {
+                ModelLoader.LoadData(mangaThumbnail, LibraryMangaCustomCoverFetcher(manga, coverCache))
+            }
+        }
 
         if (url.startsWith("http", true)) {
             val source = sourceManager.get(manga.source) as? HttpSource
@@ -107,19 +104,13 @@ class MangaThumbnailModelLoader : ModelLoader<MangaThumbnail, InputStream> {
                 return ModelLoader.LoadData(glideUrl, networkFetcher)
             }
 
-            // Obtain the file for this url from the LRU cache, or retrieve and add it to the cache.
-            val file = lruCache.getOrPut(glideUrl) { coverCache.getCoverFile(url) }
-
-            val libraryFetcher = LibraryMangaUrlFetcher(networkFetcher, manga, file)
+            val libraryFetcher = LibraryMangaUrlFetcher(networkFetcher, manga, coverCache)
 
             // Return an instance of the fetcher providing the needed elements.
-            return ModelLoader.LoadData(MangaSignature(manga, file), libraryFetcher)
+            return ModelLoader.LoadData(mangaThumbnail, libraryFetcher)
         } else {
-            // Get the file from the url, removing the scheme if present.
-            val file = File(url.substringAfter("file://"))
-
             // Return an instance of the fetcher providing the needed elements.
-            return ModelLoader.LoadData(MangaSignature(manga, file), FileFetcher(file))
+            return ModelLoader.LoadData(mangaThumbnail, FileFetcher(url.removePrefix("file://")))
         }
     }
 

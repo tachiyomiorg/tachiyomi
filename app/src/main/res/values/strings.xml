@@ -354,6 +354,7 @@
     <string name="pref_clear_database_summary">Delete manga and chapters that are not in your library</string>
     <string name="clear_database_confirmation">Are you sure? Read chapters and progress of non-library manga will be lost</string>
     <string name="clear_database_completed">Entries deleted</string>
+    <string name="pref_refresh_library_covers">Refresh library manga covers</string>
     <string name="pref_refresh_library_tracking">Refresh tracking</string>
     <string name="pref_refresh_library_tracking_summary">Updates status, score and last chapter read from the tracking services</string>
     <string name="pref_disable_battery_optimization">Disable battery optimization</string>

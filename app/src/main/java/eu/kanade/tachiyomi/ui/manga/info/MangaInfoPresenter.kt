@@ -12,6 +12,8 @@ import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
+import eu.kanade.tachiyomi.util.prepUpdateCover
+import eu.kanade.tachiyomi.util.removeCovers
 import java.util.Date
 import rx.Observable
 import rx.Subscription
@@ -37,18 +39,15 @@ class MangaInfoPresenter(
 ) : BasePresenter<MangaInfoController>() {
 
     /**
-     * Subscription to send the manga to the view.
-     */
-    private var viewMangaSubscription: Subscription? = null
-
-    /**
      * Subscription to update the manga from the source.
      */
     private var fetchMangaSubscription: Subscription? = null
 
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
-        sendMangaToView()
+
+        getMangaObservable()
+            .subscribeLatestCache({ view, manga -> view.onNextManga(manga, source) })
 
         // Update chapter count
         chapterCountRelay.observeOn(AndroidSchedulers.mainThread())
@@ -64,22 +63,21 @@ class MangaInfoPresenter(
             .subscribeLatestCache(MangaInfoController::setLastUpdateDate)
     }
 
-    /**
-     * Sends the active manga to the view.
-     */
-    fun sendMangaToView() {
-        viewMangaSubscription?.let { remove(it) }
-        viewMangaSubscription = Observable.just(manga)
-            .subscribeLatestCache({ view, manga -> view.onNextManga(manga, source) })
+    private fun getMangaObservable(): Observable<Manga> {
+        return db.getManga(manga.url, manga.source).asRxObservable()
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     /**
      * Fetch manga information from source.
      */
-    fun fetchMangaFromSource() {
+    fun fetchMangaFromSource(manualFetch: Boolean = false) {
         if (!fetchMangaSubscription.isNullOrUnsubscribed()) return
         fetchMangaSubscription = Observable.defer { source.fetchMangaDetails(manga) }
             .map { networkManga ->
+                if (manualFetch || manga.thumbnail_url != networkManga.thumbnail_url) {
+                    manga.prepUpdateCover(coverCache)
+                }
                 manga.copyFrom(networkManga)
                 manga.initialized = true
                 db.insertManga(manga).executeAsBlocking()
@@ -87,7 +85,6 @@ class MangaInfoPresenter(
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext { sendMangaToView() }
             .subscribeFirst(
                 { view, _ ->
                     view.onFetchMangaDone()
@@ -104,10 +101,9 @@ class MangaInfoPresenter(
     fun toggleFavorite(): Boolean {
         manga.favorite = !manga.favorite
         if (!manga.favorite) {
-            coverCache.deleteFromCache(manga.thumbnail_url)
+            manga.removeCovers(coverCache)
         }
         db.insertManga(manga).executeAsBlocking()
-        sendMangaToView()
         return manga.favorite
     }
 

@@ -15,6 +15,7 @@ import androidx.core.app.NotificationCompat.GROUP_ALERT_SUMMARY
 import androidx.core.app.NotificationManagerCompat
 import com.bumptech.glide.Glide
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Chapter
@@ -31,10 +32,10 @@ import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.track.TrackManager
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SManga
-import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.lang.chop
+import eu.kanade.tachiyomi.util.prepUpdateCover
 import eu.kanade.tachiyomi.util.system.acquireWakeLock
 import eu.kanade.tachiyomi.util.system.isServiceRunning
 import eu.kanade.tachiyomi.util.system.notification
@@ -64,7 +65,8 @@ class LibraryUpdateService(
     val sourceManager: SourceManager = Injekt.get(),
     val preferences: PreferencesHelper = Injekt.get(),
     val downloadManager: DownloadManager = Injekt.get(),
-    val trackManager: TrackManager = Injekt.get()
+    val trackManager: TrackManager = Injekt.get(),
+    val coverCache: CoverCache = Injekt.get()
 ) : Service() {
 
     /**
@@ -110,6 +112,7 @@ class LibraryUpdateService(
      */
     enum class Target {
         CHAPTERS, // Manga chapters
+        COVERS, // Manga covers
         TRACKING // Tracking metadata
     }
 
@@ -233,6 +236,7 @@ class LibraryUpdateService(
                 // Update either chapter list or manga details.
                 when (target) {
                     Target.CHAPTERS -> updateChapterList(mangaList)
+                    Target.COVERS -> updateCovers(mangaList)
                     Target.TRACKING -> updateTrackings(mangaList)
                 }
             }
@@ -387,11 +391,14 @@ class LibraryUpdateService(
      * @return a pair of the inserted and removed chapters.
      */
     fun updateManga(manga: Manga): Observable<Pair<List<Chapter>, List<Chapter>>> {
-        val source = sourceManager.get(manga.source) as? HttpSource ?: return Observable.empty()
+        val source = sourceManager.get(manga.source) ?: return Observable.empty()
 
         // Update manga details metadata in the background
         source.fetchMangaDetails(manga)
             .map { networkManga ->
+                if (manga.thumbnail_url != networkManga.thumbnail_url) {
+                    manga.prepUpdateCover(coverCache)
+                }
                 manga.copyFrom(networkManga)
                 db.insertManga(manga).executeAsBlocking()
                 manga
@@ -402,6 +409,21 @@ class LibraryUpdateService(
 
         return source.fetchChapterList(manga)
             .map { syncChaptersWithSource(db, it, manga, source) }
+    }
+
+    private fun updateCovers(mangaToUpdate: List<LibraryManga>): Observable<LibraryManga> {
+        var count = 0
+
+        return Observable.from(mangaToUpdate)
+            .doOnNext { showProgressNotification(it, count++, mangaToUpdate.size) }
+            .map { manga ->
+                manga.prepUpdateCover(coverCache)
+                db.insertManga(manga).executeAsBlocking()
+                manga
+            }
+            .doOnCompleted {
+                cancelProgressNotification()
+            }
     }
 
     /**

@@ -1,6 +1,7 @@
 package eu.kanade.tachiyomi.data.cache
 
 import android.content.Context
+import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.util.storage.DiskUtil
 import java.io.File
 import java.io.IOException
@@ -17,51 +18,89 @@ import java.io.InputStream
  */
 class CoverCache(private val context: Context) {
 
+    companion object {
+        private const val COVERS_DIR = "covers"
+        private const val CUSTOM_COVERS_DIR = "covers/custom"
+    }
+
     /**
      * Cache directory used for cache management.
      */
-    private val cacheDir = context.getExternalFilesDir("covers")
-        ?: File(context.filesDir, "covers").also { it.mkdirs() }
+    private val cacheDir = getCacheDir(COVERS_DIR)
+
+    private val customCoverCacheDir = getCacheDir(CUSTOM_COVERS_DIR)
 
     /**
      * Returns the cover from cache.
      *
-     * @param thumbnailUrl the thumbnail url.
+     * @param manga the manga.
      * @return cover image.
      */
-    fun getCoverFile(thumbnailUrl: String): File {
-        return File(cacheDir, DiskUtil.hashKeyForDisk(thumbnailUrl))
+    fun getCoverFile(manga: Manga): File? {
+        return manga.thumbnail_url?.let {
+            File(cacheDir, DiskUtil.hashKeyForDisk(it))
+        }
     }
 
     /**
-     * Copy the given stream to this cache.
+     * Returns the custom cover from cache.
      *
-     * @param thumbnailUrl url of the thumbnail.
+     * @param manga the manga.
+     * @return cover image.
+     */
+    fun getCustomCoverFile(manga: Manga): File {
+        return File(customCoverCacheDir, DiskUtil.hashKeyForDisk(manga.id.toString()))
+    }
+
+    /**
+     * Saves the given stream as the manga's custom cover to cache.
+     *
+     * @param manga the manga.
      * @param inputStream the stream to copy.
      * @throws IOException if there's any error.
      */
     @Throws(IOException::class)
-    fun copyToCache(thumbnailUrl: String, inputStream: InputStream) {
-        // Get destination file.
-        val destFile = getCoverFile(thumbnailUrl)
-
-        destFile.outputStream().use { inputStream.copyTo(it) }
+    fun setCustomCoverToCache(manga: Manga, inputStream: InputStream) {
+        getCustomCoverFile(manga).outputStream().use {
+            inputStream.copyTo(it)
+        }
     }
 
     /**
-     * Delete the cover file from the cache.
+     * Delete the cover files of the manga from the cache.
      *
-     * @param thumbnailUrl the thumbnail url.
-     * @return status of deletion.
+     * @param manga the manga.
+     * @param deleteCustomCover whether the custom cover should be deleted.
+     * @return number of files that were deleted.
      */
-    fun deleteFromCache(thumbnailUrl: String?): Boolean {
-        // Check if url is empty.
-        if (thumbnailUrl.isNullOrEmpty()) {
-            return false
+    fun deleteFromCache(manga: Manga, deleteCustomCover: Boolean = false): Int {
+        var deleted = 0
+
+        getCoverFile(manga)?.let {
+            if (it.exists() && it.delete()) ++deleted
         }
 
-        // Remove file.
-        val file = getCoverFile(thumbnailUrl)
-        return file.exists() && file.delete()
+        if (deleteCustomCover) {
+            if (deleteCustomCover(manga)) ++deleted
+        }
+
+        return deleted
+    }
+
+    /**
+     * Delete custom cover of the manga from the cache
+     *
+     * @param manga the manga.
+     * @return whether the cover was deleted.
+     */
+    fun deleteCustomCover(manga: Manga): Boolean {
+        return getCustomCoverFile(manga).let {
+            it.exists() && it.delete()
+        }
+    }
+
+    private fun getCacheDir(dir: String): File {
+        return context.getExternalFilesDir(dir)
+            ?: File(context.filesDir, dir).also { it.mkdirs() }
     }
 }

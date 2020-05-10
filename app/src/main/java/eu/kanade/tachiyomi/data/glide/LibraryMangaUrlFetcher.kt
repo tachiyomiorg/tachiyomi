@@ -2,6 +2,7 @@ package eu.kanade.tachiyomi.data.glide
 
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.data.DataFetcher
+import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.models.Manga
 import java.io.File
 import java.io.FileNotFoundException
@@ -19,31 +20,41 @@ import java.io.InputStream
 class LibraryMangaUrlFetcher(
     private val networkFetcher: DataFetcher<InputStream>,
     private val manga: Manga,
-    private val file: File
-) :
-    FileFetcher(file) {
+    private val coverCache: CoverCache
+) : LibraryMangaCustomCoverFetcher(manga, coverCache) {
 
     override fun loadData(priority: Priority, callback: DataFetcher.DataCallback<in InputStream>) {
-        if (!file.exists()) {
+        getCustomCoverFile()?.let {
+            loadFromFile(it, callback)
+            return
+        }
+
+        val cover = coverCache.getCoverFile(manga)
+        if (cover == null) {
+            callback.onLoadFailed(Exception("Null thumbnail url"))
+            return
+        }
+
+        if (!cover.exists()) {
             networkFetcher.loadData(
                 priority,
                 object : DataFetcher.DataCallback<InputStream> {
                     override fun onDataReady(data: InputStream?) {
                         if (data != null) {
-                            val tmpFile = File(file.path + ".tmp")
+                            val tmpFile = File(cover.path + ".tmp")
                             try {
                                 // Retrieve destination stream, create parent folders if needed.
                                 val output = try {
                                     tmpFile.outputStream()
                                 } catch (e: FileNotFoundException) {
-                                    tmpFile.parentFile.mkdirs()
+                                    tmpFile.parentFile!!.mkdirs()
                                     tmpFile.outputStream()
                                 }
 
                                 // Copy the file and rename to the original.
                                 data.use { output.use { data.copyTo(output) } }
-                                tmpFile.renameTo(file)
-                                loadFromFile(callback)
+                                tmpFile.renameTo(cover)
+                                loadFromFile(cover, callback)
                             } catch (e: Exception) {
                                 tmpFile.delete()
                                 callback.onLoadFailed(e)
@@ -59,7 +70,7 @@ class LibraryMangaUrlFetcher(
                 }
             )
         } else {
-            loadFromFile(callback)
+            loadFromFile(cover, callback)
         }
     }
 

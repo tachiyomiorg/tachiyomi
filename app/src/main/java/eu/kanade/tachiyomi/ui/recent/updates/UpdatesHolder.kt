@@ -56,13 +56,11 @@ class UpdatesHolder(private val view: View, private val adapter: UpdatesAdapter)
 
         // Set cover
         GlideApp.with(itemView.context).clear(manga_cover)
-        if (!item.manga.thumbnail_url.isNullOrEmpty()) {
-            GlideApp.with(itemView.context)
-                .load(item.manga.toMangaThumbnail())
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .circleCrop()
-                .into(manga_cover)
-        }
+        GlideApp.with(itemView.context)
+            .load(item.manga.toMangaThumbnail())
+            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .circleCrop()
+            .into(manga_cover)
 
         // Check if chapter is read and set correct color
         if (item.chapter.read) {
