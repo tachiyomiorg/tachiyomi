@@ -22,7 +22,10 @@ fun Manga.prepUpdateCover(coverCache: CoverCache, remoteManga: SManga, refreshSa
         isLocal() -> {
             cover_last_modified = Date().time
         }
-        !hasCustomCover(coverCache) -> {
+        hasCustomCover(coverCache) -> {
+            coverCache.deleteFromCache(this, false)
+        }
+        else -> {
             cover_last_modified = Date().time
             coverCache.deleteFromCache(this, false)
         }
