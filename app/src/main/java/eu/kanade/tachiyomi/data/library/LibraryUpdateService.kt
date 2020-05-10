@@ -112,6 +112,7 @@ class LibraryUpdateService(
      */
     enum class Target {
         CHAPTERS, // Manga chapters
+        COVERS, // Manga covers
         TRACKING // Tracking metadata
     }
 
@@ -235,6 +236,7 @@ class LibraryUpdateService(
                 // Update either chapter list or manga details.
                 when (target) {
                     Target.CHAPTERS -> updateChapterList(mangaList)
+                    Target.COVERS -> updateCovers(mangaList)
                     Target.TRACKING -> updateTrackings(mangaList)
                 }
             }
@@ -394,7 +396,7 @@ class LibraryUpdateService(
         // Update manga details metadata in the background
         source.fetchMangaDetails(manga)
             .map { networkManga ->
-                if (preferences.updateCovers() || manga.thumbnail_url != networkManga.thumbnail_url) {
+                if (manga.thumbnail_url != networkManga.thumbnail_url) {
                     manga.prepUpdateCover(coverCache)
                 }
                 manga.copyFrom(networkManga)
@@ -407,6 +409,21 @@ class LibraryUpdateService(
 
         return source.fetchChapterList(manga)
             .map { syncChaptersWithSource(db, it, manga, source) }
+    }
+
+    private fun updateCovers(mangaToUpdate: List<LibraryManga>): Observable<LibraryManga> {
+        var count = 0
+
+        return Observable.from(mangaToUpdate)
+            .doOnNext { showProgressNotification(it, count++, mangaToUpdate.size) }
+            .map { manga ->
+                manga.prepUpdateCover(coverCache)
+                db.insertManga(manga).executeAsBlocking()
+                manga
+            }
+            .doOnCompleted {
+                cancelProgressNotification()
+            }
     }
 
     /**
