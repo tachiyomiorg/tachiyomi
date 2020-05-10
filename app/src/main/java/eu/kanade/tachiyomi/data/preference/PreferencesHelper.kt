@@ -92,7 +92,7 @@ class PreferencesHelper(val context: Context) {
 
     fun themeDark() = flowPrefs.getString(Keys.themeDark, Values.THEME_DARK_DEFAULT)
 
-    fun rotation() = rxPrefs.getInteger(Keys.rotation, 1)
+    fun rotation() = flowPrefs.getInt(Keys.rotation, 1)
 
     fun pageTransitions() = flowPrefs.getBoolean(Keys.enableTransitions, true)
 
