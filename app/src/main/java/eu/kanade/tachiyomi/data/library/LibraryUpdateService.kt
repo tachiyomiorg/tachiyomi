@@ -132,6 +132,8 @@ class LibraryUpdateService(
         private const val NOTIF_TITLE_MAX_LEN = 45
         private const val NOTIF_ICON_SIZE = 192
 
+        private const val MAX_CONCURRENT = 5
+
         /**
          * Returns the status of the service.
          *
@@ -348,7 +350,7 @@ class LibraryUpdateService(
                                 }
                         }
                 },
-                5
+                MAX_CONCURRENT
             )
             // Add manga with new chapters to the list.
             .doOnNext { manga ->
@@ -396,9 +398,7 @@ class LibraryUpdateService(
         // Update manga details metadata in the background
         source.fetchMangaDetails(manga)
             .map { networkManga ->
-                if (manga.thumbnail_url != networkManga.thumbnail_url) {
-                    manga.prepUpdateCover(coverCache)
-                }
+                manga.prepUpdateCover(coverCache, networkManga, false)
                 manga.copyFrom(networkManga)
                 db.insertManga(manga).executeAsBlocking()
                 manga
@@ -412,15 +412,34 @@ class LibraryUpdateService(
     }
 
     private fun updateCovers(mangaToUpdate: List<LibraryManga>): Observable<LibraryManga> {
-        var count = 0
+        val count = AtomicInteger(0)
 
         return Observable.from(mangaToUpdate)
-            .doOnNext { showProgressNotification(it, count++, mangaToUpdate.size) }
-            .map { manga ->
-                manga.prepUpdateCover(coverCache)
-                db.insertManga(manga).executeAsBlocking()
-                manga
-            }
+            .groupBy { it.source }
+            .flatMap(
+                { bySource ->
+                    bySource
+                        .doOnNext {
+                            showProgressNotification(it, count.andIncrement, mangaToUpdate.size)
+                        }
+                        .concatMap { manga ->
+                            val source = sourceManager.get(manga.source)
+                                ?: return@concatMap Observable.empty<LibraryManga>()
+
+                            source.fetchMangaDetails(manga)
+                                .map { networkManga ->
+                                    manga.prepUpdateCover(coverCache, networkManga, true)
+                                    networkManga.thumbnail_url?.let {
+                                        manga.thumbnail_url = it
+                                        db.insertManga(manga).executeAsBlocking()
+                                    }
+                                    manga
+                                }
+                                .onErrorReturn { manga }
+                        }
+                },
+                MAX_CONCURRENT
+            )
             .doOnCompleted {
                 cancelProgressNotification()
             }
