@@ -3,6 +3,8 @@ package eu.kanade.tachiyomi.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MenuItem
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import androidx.annotation.IdRes
 import androidx.annotation.MenuRes
@@ -49,12 +51,20 @@ class ActionToolbar @JvmOverloads constructor(context: Context, attrs: Attribute
         }
 
         common_action_toolbar.visible()
+        val bottomAnimation = AnimationUtils.loadAnimation(context, R.anim.enter_from_bottom)
+        common_action_toolbar.startAnimation(bottomAnimation)
     }
 
     /**
      * Hide the menu toolbar.
      */
     fun hide() {
-        common_action_toolbar.gone()
+        val bottomAnimation = AnimationUtils.loadAnimation(context, R.anim.exit_to_bottom)
+        bottomAnimation.setAnimationListener(object : SimpleAnimationListener() {
+            override fun onAnimationEnd(animation: Animation) {
+                common_action_toolbar.gone()
+            }
+        })
+        common_action_toolbar.startAnimation(bottomAnimation)
     }
 }
