@@ -205,7 +205,7 @@ class PreferencesHelper(val context: Context) {
 
     fun downloadedOnly() = flowPrefs.getBoolean(Keys.downloadedOnly, false)
 
-    fun unreadBadge() = flowPrefs.getBoolean(Keys.unreadBadge, false)
+    fun unreadBadge() = flowPrefs.getBoolean(Keys.unreadBadge, true)
 
     fun filterDownloaded() = flowPrefs.getBoolean(Keys.filterDownloaded, false)
 
