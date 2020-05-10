@@ -10,8 +10,6 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.data.updater.UpdateChecker
 import eu.kanade.tachiyomi.data.updater.UpdateResult
 import eu.kanade.tachiyomi.data.updater.UpdaterService
@@ -32,7 +30,6 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 import timber.log.Timber
-import uy.kohesive.injekt.injectLazy
 
 class AboutController : SettingsController() {
 
@@ -41,9 +38,7 @@ class AboutController : SettingsController() {
      */
     private val updateChecker by lazy { UpdateChecker.getUpdateChecker() }
 
-    private val userPreferences: PreferencesHelper by injectLazy()
-
-    private val dateFormat: DateFormat = userPreferences.dateFormat().getOrDefault()
+    private val dateFormat: DateFormat = preferences.dateFormat()
 
     private val isUpdaterEnabled = BuildConfig.INCLUDE_UPDATER
 

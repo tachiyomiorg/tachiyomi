@@ -3,7 +3,6 @@ package eu.kanade.tachiyomi.ui.manga.track
 import android.annotation.SuppressLint
 import android.view.View
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.base.holder.BaseViewHolder
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.visibleIf
@@ -27,7 +26,7 @@ class TrackHolder(view: View, adapter: TrackAdapter) : BaseViewHolder(view) {
     private val preferences: PreferencesHelper by injectLazy()
 
     private val dateFormat: DateFormat by lazy {
-        preferences.dateFormat().getOrDefault()
+        preferences.dateFormat()
     }
 
     init {

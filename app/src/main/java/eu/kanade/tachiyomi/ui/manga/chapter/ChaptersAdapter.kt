@@ -4,7 +4,6 @@ import android.content.Context
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.util.system.getResourceColor
 import java.text.DateFormat
 import java.text.DecimalFormat
@@ -31,7 +30,7 @@ class ChaptersAdapter(
             .apply { decimalSeparator = '.' }
     )
 
-    val dateFormat: DateFormat = preferences.dateFormat().getOrDefault()
+    val dateFormat: DateFormat = preferences.dateFormat()
 
     override fun updateDataSet(items: List<ChapterItem>?) {
         this.items = items ?: emptyList()

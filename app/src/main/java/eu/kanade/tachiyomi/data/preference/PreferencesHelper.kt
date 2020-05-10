@@ -1,7 +1,6 @@
 package eu.kanade.tachiyomi.data.preference
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Environment
 import androidx.preference.PreferenceManager
@@ -29,22 +28,6 @@ fun <T> Preference<T>.asImmediateFlow(block: (value: T) -> Unit): Flow<T> {
     block(get())
     return asFlow()
         .onEach { block(it) }
-}
-
-private class DateFormatConverter : RxPreference.Adapter<DateFormat> {
-    override fun get(key: String, preferences: SharedPreferences): DateFormat {
-        val dateFormat = preferences.getString(Keys.dateFormat, "")!!
-
-        if (dateFormat != "") {
-            return SimpleDateFormat(dateFormat, Locale.getDefault())
-        }
-
-        return DateFormat.getDateInstance(DateFormat.SHORT)
-    }
-
-    override fun set(key: String, value: DateFormat, editor: SharedPreferences.Editor) {
-        // No-op
-    }
 }
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -177,7 +160,10 @@ class PreferencesHelper(val context: Context) {
 
     fun backupsDirectory() = flowPrefs.getString(Keys.backupDirectory, defaultBackupDir.toString())
 
-    fun dateFormat() = rxPrefs.getObject(Keys.dateFormat, DateFormat.getDateInstance(DateFormat.SHORT), DateFormatConverter())
+    fun dateFormat(format: String = flowPrefs.getString(Keys.dateFormat, "").get()): DateFormat = when (format) {
+        "" -> DateFormat.getDateInstance(DateFormat.SHORT)
+        else -> SimpleDateFormat(format, Locale.getDefault())
+    }
 
     fun downloadsDirectory() = flowPrefs.getString(Keys.downloadsDirectory, defaultDownloadsDir.toString())
 

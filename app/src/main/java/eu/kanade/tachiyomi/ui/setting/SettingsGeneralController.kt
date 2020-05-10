@@ -19,6 +19,7 @@ import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.LocaleHelper
+import java.util.Calendar
 import kotlinx.coroutines.flow.launchIn
 
 class SettingsGeneralController : SettingsController() {
@@ -92,13 +93,17 @@ class SettingsGeneralController : SettingsController() {
                 key = Keys.dateFormat
                 titleRes = R.string.pref_date_format
                 entryValues = arrayOf("", "MM/dd/yy", "dd/MM/yy", "yyyy-MM-dd")
+
+                val currentDate = Calendar.getInstance().time
                 entries = entryValues.map { value ->
+                    val formattedDate = preferences.dateFormat(value.toString()).format(currentDate)
                     if (value == "") {
-                        context.getString(R.string.system_default)
+                        "${context.getString(R.string.system_default)} ($formattedDate)"
                     } else {
-                        value
+                        "$value ($formattedDate)"
                     }
                 }.toTypedArray()
+
                 defaultValue = ""
                 summary = "%s"
             }

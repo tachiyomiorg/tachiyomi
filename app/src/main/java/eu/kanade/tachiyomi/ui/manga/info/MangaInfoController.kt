@@ -14,7 +14,6 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.databinding.MangaInfoControllerBinding
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
@@ -62,7 +61,7 @@ class MangaInfoController(private val fromSource: Boolean = false) :
     private val preferences: PreferencesHelper by injectLazy()
 
     private val dateFormat: DateFormat by lazy {
-        preferences.dateFormat().getOrDefault()
+        preferences.dateFormat()
     }
 
     private var initialLoad: Boolean = true
