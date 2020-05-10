@@ -37,11 +37,11 @@ class UpdaterService : Service() {
 
     override fun onCreate() {
         super.onCreate()
+
         notifier = UpdaterNotifier(this)
+        wakeLock = acquireWakeLock(javaClass.name)
 
         startForeground(Notifications.ID_UPDATER, notifier.onDownloadStarted().build())
-
-        wakeLock = acquireWakeLock(javaClass.name)
     }
 
     /**

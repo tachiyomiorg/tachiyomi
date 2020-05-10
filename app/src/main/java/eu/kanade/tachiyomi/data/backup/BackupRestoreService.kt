@@ -124,11 +124,11 @@ class BackupRestoreService : Service() {
 
     override fun onCreate() {
         super.onCreate()
+
         notifier = BackupNotifier(this)
+        wakeLock = acquireWakeLock(javaClass.name)
 
         startForeground(Notifications.ID_RESTORE_PROGRESS, notifier.showRestoreProgress().build())
-
-        wakeLock = acquireWakeLock(javaClass.name)
     }
 
     override fun stopService(name: Intent?): Boolean {
