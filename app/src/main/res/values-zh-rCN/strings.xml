@@ -107,7 +107,7 @@
     <string name="wifi">已连接 Wi-Fi</string>
     <string name="charging">正在充电</string>
     <string name="pref_update_only_non_completed">仅更新连载中的漫画</string>
-    <string name="pref_auto_update_manga_sync">阅读后同步章节</string>
+    <string name="pref_auto_update_manga_sync">阅读后更新章节进度</string>
     <string name="pref_start_screen">开始页面</string>
     <string name="pref_language">语言</string>
     <string name="system_default">默认</string>
@@ -209,7 +209,6 @@
     <string name="source_not_found">未找到图源</string>
     <string name="backup_created">已创建备份</string>
     <string name="restore_completed">还原完成</string>
-    <string name="restore_completed_content">%1$s 已完成，出现 %2$s 错误</string>
     <string name="backup_restore_content">还原备份将会抓取图源数据，需联网。 
 \n 
 \n请确认你已安装了全部必需的扩展插件，若图源需要登录，请先登录再还原备份。</string>
@@ -227,9 +226,7 @@
     <string name="pref_clear_database_summary">删除未在书架的漫画与章节</string>
     <string name="clear_database_confirmation">你确定吗？这将会删除未在书架的漫画章节与阅读进度的数据</string>
     <string name="clear_database_completed">已删除条目</string>
-    <string name="pref_refresh_library_metadata">更新书架数据</string>
-    <string name="pref_refresh_library_metadata_summary">更新封面，类型，描述与漫画状态信息</string>
-    <string name="pref_refresh_library_tracking">更新同步数据</string>
+    <string name="pref_refresh_library_tracking">刷新同步</string>
     <string name="pref_refresh_library_tracking_summary">更新同步服务的状态，评分以及已读章节</string>
     <string name="version">版本</string>
     <string name="build_time">构建时间</string>
@@ -438,7 +435,6 @@
     <string name="lock_always">总是</string>
     <string name="lock_never">从不</string>
     <plurals name="lock_after_mins">
-        <item quantity="one">1分钟后</item>
         <item quantity="other">%1$s 分钟后</item>
     </plurals>
     <string name="secure_screen">安全屏幕</string>
@@ -455,14 +451,12 @@
     <string name="lock_with_biometrics">启用生物识别锁定</string>
     <string name="pref_cutout_short">在刘海屏区域显示内容</string>
     <plurals name="notification_chapters_generic">
-        <item quantity="one">1个新章节</item>
         <item quantity="other">%1$d 个新章节</item>
     </plurals>
     <string name="notification_chapters_single">第 %1$s 章</string>
     <string name="notification_chapters_single_and_more">第 %1$s 章及另外 %2$d 章</string>
     <string name="notification_chapters_multiple">第 %1$s 章</string>
     <plurals name="notification_chapters_multiple_and_more">
-        <item quantity="one">第 %1$s 章及另外1章</item>
         <item quantity="other">第 %1$s 章及另外 %2$d 章</item>
     </plurals>
     <string name="notification_check_updates">正在检查新章节</string>
@@ -472,7 +466,6 @@
     <string name="email">邮箱地址</string>
     <string name="pref_always_show_chapter_transition">总是显示章节之间的过渡界面</string>
     <plurals name="notification_new_chapters_summary">
-        <item quantity="one">共 1 个标题</item>
         <item quantity="other">共 %d 个标题</item>
     </plurals>
     <string name="pref_theme_light">默认浅色主题</string>
@@ -489,7 +482,6 @@
     <string name="action_sort_last_checked">最近检查</string>
     <string name="pref_enable_automatic_extension_updates">检查扩展插件更新</string>
     <plurals name="update_check_notification_ext_updates">
-        <item quantity="one">1个扩展插件可更新</item>
         <item quantity="other">%d 个扩展插件可更新</item>
     </plurals>
     <string name="channel_ext_updates">扩展插件更新</string>
@@ -535,7 +527,6 @@
     <string name="local_source_help_guide">本地图源指南</string>
     <string name="last_used_source">上次浏览</string>
     <plurals name="download_queue_summary">
-        <item quantity="one">剩余1个</item>
         <item quantity="other">剩余 %1$s 个</item>
     </plurals>
     <string name="downloaded_only_summary">筛选书架的全部漫画</string>
@@ -549,7 +540,12 @@
     <string name="pref_category_for_this_series">对于此系列</string>
     <string name="viewer">阅读模式</string>
     <plurals name="num_categories">
-        <item quantity="one"></item>
         <item quantity="other">%d 个分类</item>
     </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="other">耗时 %1$s，出现 %2$s 个错误</item>
+    </plurals>
+    <string name="battery_optimization_setting_activity_not_found">无法打开设备设置</string>
+    <string name="pref_true_color_summary">减少色彩带，但会影响性能</string>
+    <string name="action_display_unread_badge">未读标记</string>
 </resources>
