@@ -48,7 +48,7 @@
     </style>
 
     <style name="TextAppearance.Regular">
-        <item name="android:fontFamily">sans-serif-regular</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 
     <style name="TextAppearance.Regular.Body1">
