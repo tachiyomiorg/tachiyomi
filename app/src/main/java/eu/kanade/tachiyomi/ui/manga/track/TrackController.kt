@@ -11,6 +11,7 @@ import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.databinding.TrackControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.util.system.copyToClipboard
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -102,6 +103,12 @@ class TrackController :
     override fun onSetClick(position: Int) {
         val item = adapter?.getItem(position) ?: return
         TrackSearchDialog(this, item.service).showDialog(router, TAG_SEARCH_CONTROLLER)
+    }
+
+    override fun onTitleLongClick(position: Int) {
+        adapter?.getItem(position)?.track?.title?.let {
+            activity?.copyToClipboard(it, it)
+        }
     }
 
     override fun onStatusClick(position: Int) {
