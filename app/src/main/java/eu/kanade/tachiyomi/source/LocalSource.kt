@@ -45,7 +45,7 @@ class LocalSource(private val context: Context) : CatalogueSource {
             val cover = File("${dir.absolutePath}/${manga.url}", COVER_NAME)
 
             // It might not exist if using the external SD card
-            cover.parentFile.mkdirs()
+            cover.parentFile?.mkdirs()
             input.use {
                 cover.outputStream().use {
                     input.copyTo(it)
