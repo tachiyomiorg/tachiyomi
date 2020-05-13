@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.data.glide
 
-import android.util.LruCache
 import com.bumptech.glide.integration.okhttp3.OkHttpStreamFetcher
 import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.model.GlideUrl
@@ -130,17 +129,6 @@ class MangaThumbnailModelLoader : ModelLoader<MangaThumbnail, InputStream> {
                     addHeader(key, value[0])
                 }
             }.build()
-        }
-    }
-
-    private inline fun <K, V> LruCache<K, V>.getOrPut(key: K, defaultValue: () -> V): V {
-        val value = get(key)
-        return if (value == null) {
-            val answer = defaultValue()
-            put(key, answer)
-            answer
-        } else {
-            value
         }
     }
 }
