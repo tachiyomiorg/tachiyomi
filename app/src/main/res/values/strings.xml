@@ -255,7 +255,7 @@
     <string name="vertical_viewer">Vertical</string>
     <string name="webtoon_viewer">Webtoon</string>
     <string name="vertical_plus_viewer">Continuous vertical</string>
-    <string name="pager_viewer">Pager</string>
+    <string name="pager_viewer">Paged</string>
     <string name="pref_image_decoder">Image decoder</string>
     <string name="pref_image_scale_type">Scale type</string>
     <string name="scale_type_fit_screen">Fit screen</string>
