@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.bumptech.glide.Glide
@@ -76,6 +77,39 @@ class LibraryUpdateNotifier(private val context: Context) {
             progressNotificationBuilder
                 .setContentTitle(title)
                 .setProgress(total, current, false)
+                .build()
+        )
+    }
+
+    /**
+     * Shows notification containing update entries that failed with action to open full log.
+     *
+     * @param errors List of entry titles that failed to update.
+     * @param uri Uri for error log file containing all titles that failed.
+     */
+    fun showUpdateErrorNotification(errors: List<String>, uri: Uri) {
+        if (errors.isEmpty()) {
+            return
+        }
+
+        context.notificationManager.notify(
+            Notifications.ID_LIBRARY_ERROR,
+            context.notificationBuilder(Notifications.CHANNEL_LIBRARY) {
+                setContentTitle(context.resources.getQuantityString(R.plurals.notification_update_error, errors.size, errors.size))
+                setStyle(
+                    NotificationCompat.BigTextStyle().bigText(
+                        errors.joinToString("\n") {
+                            it.chop(NOTIF_TITLE_MAX_LEN)
+                        }
+                    )
+                )
+                setSmallIcon(R.drawable.ic_tachi)
+                addAction(
+                    R.drawable.nnf_ic_file_folder,
+                    context.getString(R.string.action_open_log),
+                    NotificationReceiver.openErrorLogPendingActivity(context, uri)
+                )
+            }
                 .build()
         )
     }

@@ -579,6 +579,10 @@
         <item quantity="one">Chapters %1$s and 1 more</item>
         <item quantity="other">Chapters %1$s and %2$d more</item>
     </plurals>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 update failed</item>
+        <item quantity="other">%1$d updates failed</item>
+    </plurals>
     <string name="notification_cover_update_failed">Failed to update cover</string>
     <string name="notification_first_add_to_library">Please add the manga to your library before doing this</string>
     <string name="notification_not_connected_to_ac_title">Sync canceled</string>
