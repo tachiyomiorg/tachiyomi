@@ -107,7 +107,7 @@
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Φορτίζει</string>
     <string name="pref_update_only_non_completed">Ενημέρωση μόνο manga σε εξέλιξη</string>
-    <string name="pref_auto_update_manga_sync">Συγχρονισμός κεφαλαίων μετά τη ανάγνωση</string>
+    <string name="pref_auto_update_manga_sync">Ενημέρωση προόδου κεφαλαίου μετά την ανάγνωση</string>
     <string name="pref_start_screen">Οθόνη εκκίνησης</string>
     <string name="pref_language">Γλώσσα</string>
     <string name="system_default">Προεπιλογή</string>
@@ -151,7 +151,7 @@
     <string name="pref_reader_theme">Χρώμα φόντου</string>
     <string name="white_background">Άσπρο</string>
     <string name="black_background">Μαύρο</string>
-    <string name="pref_viewer_type">Προεπιλεγμένο πρόγραμμα προβολής</string>
+    <string name="pref_viewer_type">Προεπιλεγμένη λειτουργία ανάγνωσης</string>
     <string name="default_viewer">Προεπιλογή</string>
     <string name="left_to_right_viewer">Αριστερά προς τα δεξιά</string>
     <string name="right_to_left_viewer">Δεξιά προς τα αριστερά</string>
@@ -203,13 +203,12 @@
     <string name="pref_restore_backup">Επαναφορά αντιγράφου ασφαλείας</string>
     <string name="pref_restore_backup_summ">Επαναφορά βιβλιοθήκης από αρχείο αντιγράφου ασφαλείας</string>
     <string name="pref_backup_directory">Τοποθεσία αντιγράφων ασφαλείας</string>
-    <string name="pref_backup_service_category">Συντήρηση</string>
+    <string name="pref_backup_service_category">Αυτόματα αντίγραφα ασφαλείας</string>
     <string name="pref_backup_interval">Συχνότητα αντίγραφου ασφάλειας</string>
-    <string name="pref_backup_slots">Μέγιστα αυτόματα αντίγραφα ασφαλείας</string>
+    <string name="pref_backup_slots">Μέγιστα αντίγραφα ασφαλείας</string>
     <string name="source_not_found">"Δεν βρέθηκε πηγή "</string>
     <string name="backup_created">Δημιουργήθηκε αντίγραφο ασφαλείας</string>
     <string name="restore_completed">Η επαναφορά ολοκληρώθηκε</string>
-    <string name="restore_completed_content">Έγινε σε %1$s με %2$s σφάλματα</string>
     <string name="backup_restore_content">Η επαναφορά χρησιμοποιεί τις πηγές για τη λήψη δεδομένων, ενδέχεται να ισχύουν χρεώσεις φορέα.
 \n
 \nΒεβαιωθείτε ότι έχετε εγκαταστήσει όλες τις απαραίτητες επεκτάσεις και είστε συνδεδεμένοι σε πηγές και σε υπηρεσίες παρακολούθησης πριν κάνετε επαναφορά.</string>
@@ -227,9 +226,7 @@
     <string name="pref_clear_database_summary">Διαγραφή manga και κεφαλαίων που δεν περιλαμβάνονται στη βιβλιοθήκη σας</string>
     <string name="clear_database_confirmation">Είστε σίγουροι; Τα διαβασμένα κεφάλαια και η πρόοδος των manga εκτός βιβλιοθήκης θα χαθεί</string>
     <string name="clear_database_completed">Οι καταχωρίσεις διαγράφηκαν</string>
-    <string name="pref_refresh_library_metadata">Ανανέωση μεταδεδομένων βιβλιοθήκης</string>
-    <string name="pref_refresh_library_metadata_summary">Ενημερώνει εξώφυλλα, είδη, περιγραφή και πληροφορίες κατάστασης των manga</string>
-    <string name="pref_refresh_library_tracking">Ανανέωση μεταδεδομένων παρακολούθησης</string>
+    <string name="pref_refresh_library_tracking">Ανανέωση παρακολούθησης</string>
     <string name="pref_refresh_library_tracking_summary">Ενημερώνει κατάσταση, βαθμολογία και τελευταίο αναγνωσμένο κεφάλαιο από τις υπηρεσίες παρακολούθησης</string>
     <string name="version">Έκδοση</string>
     <string name="build_time">Χρόνος κατασκευής</string>
@@ -547,10 +544,24 @@
     <string name="channel_backup_restore_progress">Πρόοδος</string>
     <string name="gray_background">Γκρι</string>
     <string name="pref_true_color_summary">Μειώνει το banding, αλλά επηρεάζει την απόδοση</string>
-    <string name="viewer">Τρόπος προβολής</string>
+    <string name="viewer">Λειτουργία ανάγνωσης</string>
     <string name="pref_category_for_this_series">Για αυτήν τη σειρά</string>
     <plurals name="num_categories">
         <item quantity="one">%d κατηγορία</item>
         <item quantity="other">%d κατηγορίες</item>
     </plurals>
+    <string name="battery_optimization_setting_activity_not_found">Δεν ήταν δυνατό το άνοιγμα των ρυθμίσεων της συσκευής</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Έγινε σε %1$s με %2$s σφάλμα</item>
+        <item quantity="other">Έγινε σε %1$s με %2$s σφάλματα</item>
+    </plurals>
+    <string name="action_display_unread_badge">Μη αναγνωσμένα σήματα</string>
+    <string name="tracking_info">Μονόδρομος συγχρονισμός για ενημέρωση των υπηρεσιών παρακολούθησης προόδου κεφαλαίων. Ρυθμίστε την παρακολούθηση για μεμονωμένες καταχωρήσεις manga από τις καρτέλες παρακολούθησης.</string>
+    <string name="pref_refresh_library_covers">Ανανέωση εξώφυλλων manga της βιβλιοθήκης</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 ενημέρωση απέτυχε</item>
+        <item quantity="other">%1$d ενημερώσεις απέτυχαν</item>
+    </plurals>
+    <string name="unofficial_extension_message">Αυτή η επέκταση δεν προέρχεται από την επίσημη λίστα επεκτάσεων Tachiyomi.</string>
+    <string name="ext_unofficial">Ανεπίσημη</string>
 </resources>

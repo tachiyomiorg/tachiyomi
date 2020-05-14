@@ -103,7 +103,7 @@
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Ketika mengecas</string>
     <string name="pref_update_only_non_completed">Hanya kemas kini manga yang masih berterusan</string>
-    <string name="pref_auto_update_manga_sync">Sinkronkan bab setelah dibaca</string>
+    <string name="pref_auto_update_manga_sync">Kemas kini bab selepas di baca</string>
     <string name="pref_start_screen">Skrin permulaan</string>
     <string name="pref_language">Bahasa</string>
     <string name="system_default">Lalai</string>
@@ -124,7 +124,7 @@
     <string name="pref_reader_theme">Warna latar</string>
     <string name="white_background">Putih</string>
     <string name="black_background">Hitam</string>
-    <string name="pref_viewer_type">Pemapar lalai</string>
+    <string name="pref_viewer_type">Mod membaca lalai</string>
     <string name="default_viewer">Lalai</string>
     <string name="left_to_right_viewer">Kiri ke kanan</string>
     <string name="right_to_left_viewer">Kanan ke kiri</string>
@@ -172,13 +172,12 @@
     <string name="pref_restore_backup">Pulihkan sandaran</string>
     <string name="pref_restore_backup_summ">Pulihkan pustaka daripada fail sandaran</string>
     <string name="pref_backup_directory">Lokasi sandaran</string>
-    <string name="pref_backup_service_category">Perkhidmatan</string>
+    <string name="pref_backup_service_category">Sandaran automatik</string>
     <string name="pref_backup_interval">Kekerapan sandaran</string>
-    <string name="pref_backup_slots">Sandaran automatik maksimum</string>
+    <string name="pref_backup_slots">Sandaran maksimum</string>
     <string name="source_not_found">Sumber tidak ditemui</string>
     <string name="backup_created">Sandaran dibuat</string>
     <string name="restore_completed">Pemulihan selesai</string>
-    <string name="restore_completed_content">Pemulihan mengambil masa %1$s dengan %2$s ralat</string>
     <string name="backup_restore_content">Pemulihan menggunakan Sambungan untuk memperolehi data, caj telco mungkin dikenakan.
 \n
 \nPastikan anda telah memasang semua Sambungan yang perlu dan telah log masuk ke dalam sumber dan Penjejakan sebelum memulakan pemulihan.</string>
@@ -196,9 +195,7 @@
     <string name="pref_clear_database_summary">Hapus manga dan bab yang tidak ada di dalam pustaka</string>
     <string name="clear_database_confirmation">Adakah anda pasti\? Status bab dibaca dan progres bacaan manga yang tidak ada di dalam pustaka akan hilang</string>
     <string name="clear_database_completed">Pangkalan data dihapuskan</string>
-    <string name="pref_refresh_library_metadata">Muat semula metadata pustaka</string>
-    <string name="pref_refresh_library_metadata_summary">Kemas kini muka hadapan, genre, keterangan dan maklumat status manga</string>
-    <string name="pref_refresh_library_tracking">Muat semula metadata penjejakan</string>
+    <string name="pref_refresh_library_tracking">Muat semula penjejakan</string>
     <string name="pref_refresh_library_tracking_summary">Kemas kini status, skor dan bab terakhir dibaca dari perkhidmatan penjejakan</string>
     <string name="version">Versi</string>
     <string name="build_time">Masa binaan aplikasi</string>
@@ -362,7 +359,7 @@
     <string name="pref_true_color">32-bit warna</string>
     <string name="pref_skip_read_chapters">Langkau bab yang sudah dibaca</string>
     <string name="pref_read_with_long_tap">Menahan ketik buka dialog</string>
-    <string name="pager_viewer">Halaman muka surat</string>
+    <string name="pager_viewer">Muka surat</string>
     <string name="double_tap_anim_speed_0">Tiada animasi</string>
     <string name="double_tap_anim_speed_normal">Biasa</string>
     <string name="double_tap_anim_speed_fast">Laju</string>
@@ -540,10 +537,17 @@
     <string name="channel_backup_restore_complete">Selesai</string>
     <string name="channel_backup_restore_progress">Kemajuan</string>
     <string name="gray_background">Kelabu</string>
-    <string name="viewer">Penonton</string>
+    <string name="viewer">Mod membaca</string>
     <string name="pref_category_for_this_series">Untuk siri ini</string>
     <string name="pref_true_color_summary">Kurangkan jalinan, tapi memberi kesan kepada prestasi</string>
     <plurals name="num_categories">
         <item quantity="other">%d kategori</item>
     </plurals>
+    <string name="battery_optimization_setting_activity_not_found">Tetapan peranti tidak dapat di buka</string>
+    <plurals name="restore_completed_message">
+        <item quantity="other">Selesai dalam %1$ dengan %2$s masalah</item>
+    </plurals>
+    <string name="action_display_unread_badge">Lencana yang tidak di baca</string>
+    <string name="tracking_info">Sinkron satu hala untuk kemas kini bab kemajuan dalam sistem penjejakan. Sediakan penjejakan untuk penyertaan manga persendirian dari tab penjejakan mereka.</string>
+    <string name="pref_refresh_library_covers">Kemas kini halaman manga pustaka</string>
 </resources>

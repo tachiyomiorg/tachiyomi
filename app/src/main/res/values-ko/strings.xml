@@ -190,8 +190,6 @@
     <string name="pref_clear_database">데이터베이스 삭제</string>
     <string name="pref_clear_database_summary">서재에 추가되지 않은 만화와 챕터들을 삭제합니다</string>
     <string name="clear_database_confirmation">확실합니까\? 서재에 없는 만화의 읽은 챕터와 진행사항이 삭제됩니다</string>
-    <string name="pref_refresh_library_metadata">서재 메타데이터 갱신</string>
-    <string name="pref_refresh_library_metadata_summary">표지와 장르, 설명, 만화 상태 정보들을 업데이트합니다</string>
     <string name="pref_refresh_library_tracking">동기화 메타데이터 새로 고침</string>
     <string name="pref_refresh_library_tracking_summary">상태 및 평점, 마지막으로 읽은 챕터를 동기화 서비스에서 업데이트합니다</string>
     <string name="version">버전</string>
@@ -340,8 +338,6 @@
     <string name="fourth_to_last">네번째 챕터에서 끝까지</string>
     <string name="fifth_to_last">다섯번째 챕터에서 끝까지</string>
     <string name="pref_download_new_categories">다운로드에 포함할 카테고리</string>
-    <string name="restore_completed_content">복원에 %1$s 소요됨.
-\n%2$s 오류 발견됨.</string>
     <string name="backup_restore_content">복원시 소스에서 데이터를 가져오며, 통신 비용이 청구 될 수 있습니다.
 \n또한 복원 전에 필요한 소스에 제대로 로그인이 되어있는지 확인하십시오.</string>
     <string name="backup_choice">어떤 항목들을 백업하겠습니까\?</string>

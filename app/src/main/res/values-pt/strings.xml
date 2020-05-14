@@ -30,7 +30,7 @@
     <string name="action_edit_categories">Editar categorias</string>
     <string name="action_rename_category">Renomear categoria</string>
     <string name="action_move_category">Definir categorias</string>
-    <string name="action_edit_cover">Alterar imagem de capa</string>
+    <string name="action_edit_cover">Alterar capa</string>
     <string name="action_sort_up">Ordem ascendente</string>
     <string name="action_sort_down">Ordem descendente</string>
     <string name="action_show_downloaded">Transferido</string>
@@ -77,7 +77,7 @@
     <string name="wifi">Wi-Fi</string>
     <string name="charging">A carregar</string>
     <string name="pref_update_only_non_completed">Atualizar apenas mangás a decorrer</string>
-    <string name="pref_auto_update_manga_sync">Sincronizar capítulos após leitura</string>
+    <string name="pref_auto_update_manga_sync">Atualizar progresso do capítulo após leitura</string>
     <!-- Reader section -->
     <string name="pref_fullscreen">Ocultar barra de estado</string>
     <string name="pref_lock_orientation">Bloquear orientação</string>
@@ -91,7 +91,7 @@
     <string name="pref_reader_theme">Cor de fundo</string>
     <string name="white_background">Branco</string>
     <string name="black_background">Preto</string>
-    <string name="pref_viewer_type">Visualizador por defeito</string>
+    <string name="pref_viewer_type">Modo de leitura por defeito</string>
     <string name="default_viewer">Por defeito</string>
     <string name="left_to_right_viewer">Esquerda para Direita</string>
     <string name="right_to_left_viewer">Direita para Esquerda</string>
@@ -328,7 +328,7 @@
     <string name="pref_create_backup_summ">Pode ser usado para restaurar a biblioteca atual</string>
     <string name="pref_restore_backup">Restaurar backup</string>
     <string name="pref_restore_backup_summ">Restaurar biblioteca a partir de um ficheiro de backup</string>
-    <string name="pref_backup_service_category">Serviço</string>
+    <string name="pref_backup_service_category">Backups automáticos</string>
     <string name="pref_backup_interval">Frequência de backup</string>
     <string name="source_not_found">Fonte não encontrada</string>
     <string name="restoring_backup">Restaurando backup</string>
@@ -339,30 +339,27 @@
     <string name="pref_category_tracking">Listas</string>
     <string name="all_lang">Tudo</string>
     <string name="pref_double_tap_anim_speed">Velocidade animação dois toques</string>
-    <string name="pager_viewer">Paginas</string>
+    <string name="pager_viewer">Paginado</string>
     <string name="color_filter_r_value">R</string>
     <string name="pref_download_new_categories">Categorias para incluir na transferência</string>
     <string name="pref_backup_directory">Localização dos Backups</string>
     <string name="backup_created">Backup criado</string>
     <string name="restore_completed">Restauro completo</string>
-    <string name="restore_completed_content">Finalizado em %1$s com %2$s erros</string>
     <string name="backup_choice">O que pretende fazer backup\?</string>
-    <string name="pref_refresh_library_metadata">Refrescar metadata da biblioteca</string>
-    <string name="pref_backup_slots">Máximo de backups automáticos</string>
+    <string name="pref_backup_slots">Máximo de backups</string>
     <string name="choices_reset">Restaurar escolhas de diálogo</string>
-    <string name="action_display_download_badge">Transferir emblemas</string>
+    <string name="action_display_download_badge">Distintivos de transferência</string>
     <string name="ext_trust">Confiar</string>
     <string name="ext_untrusted">Não confiar</string>
     <string name="download_custom">Personalizado</string>
     <string name="pref_read_with_long_tap">Diálogo de toque longo</string>
-    <string name="pref_refresh_library_metadata_summary">Atualizar capas, géneros, descrição e informação sobre o estado de lançamento do mangá</string>
     <string name="action_open_in_web_view">Abra em WebView</string>
     <string name="pref_true_color">32-bit color</string>
     <string name="pref_skip_read_chapters">Pular capítulos lidos</string>
     <string name="backup_restore_content">A restauração usa as fontes para obter dados, cobranças adicionais podem ser efetuadas pelo operador. 
 \n 
 \nVerifique se instalou todas as extensões necessárias e tem sessão iniciada nas fontes e serviços de monitorização antes de restaurar.</string>
-    <string name="pref_refresh_library_tracking">Atualizar metadados de monitorização</string>
+    <string name="pref_refresh_library_tracking">Atualizar monitorização</string>
     <string name="pref_refresh_library_tracking_summary">Atualiza estado, avaliações e últimos capítulos lidos dos serviços de monitorização</string>
     <string name="local_source_badge">Local</string>
     <string name="also_delete_chapters">Também excluir os capítulos disponíveis offline</string>
@@ -576,11 +573,19 @@
     </plurals>
     <string name="gray_background">Cinzento</string>
     <string name="channel_backup_restore_complete">Completo</string>
-    <string name="viewer">Visualizador</string>
+    <string name="viewer">Modo de leitura</string>
     <string name="pref_category_for_this_series">Para esta série</string>
     <string name="pref_true_color_summary">Reduz a banda, mas impacta a performance</string>
     <plurals name="num_categories">
         <item quantity="one">%d categoria</item>
         <item quantity="other">%d categorias</item>
     </plurals>
+    <string name="action_display_unread_badge">Distintivos de não lido</string>
+    <string name="battery_optimization_setting_activity_not_found">Não foi possível abrir as definições do dispositivo</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Concluído em %1$s com %2$s erro</item>
+        <item quantity="other">Concluído em %1$s com %2$s erros</item>
+    </plurals>
+    <string name="pref_refresh_library_covers">Atualizar capas das mangás da biblioteca</string>
+    <string name="tracking_info">Sincronização unidirecional para atualizar o progresso dos capítulos nos serviços de monitorização. Defina a monitorização para entradas individuais das mangás em suas abas de monitorização.</string>
 </resources>

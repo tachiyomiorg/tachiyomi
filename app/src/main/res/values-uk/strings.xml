@@ -209,8 +209,6 @@
     <string name="source_not_found">Джерело не знайдено</string>
     <string name="backup_created">Резервна копія створена</string>
     <string name="restore_completed">Відновлення завершено</string>
-    <string name="restore_completed_content">Відновлення зайняло %1$s.
-\n%2$s знайдено помилок.</string>
     <string name="backup_restore_content">Відновлення використовує джерела для отримання даних, можуть застосовуватися витрати оператора.
 \n
 \nПереконайтеся, що ви встановили всі необхідні розширення та ввійшли до джерел та служб відстеження перед відновленням.</string>
@@ -228,8 +226,6 @@
     <string name="pref_clear_database_summary">Видаляти мангу і глави котрі не знаходяться у бібліотеці</string>
     <string name="clear_database_confirmation">Ви впевнені\? Прочитані глави і прогрес не бібліотечної манги будуть втрачені</string>
     <string name="clear_database_completed">Дані видалено</string>
-    <string name="pref_refresh_library_metadata">Оновлювати бібліотечні метадані</string>
-    <string name="pref_refresh_library_metadata_summary">Оновити обкладинки, жанри, описи та інформацію про манги</string>
     <string name="pref_refresh_library_tracking">Оновити метадату що відстежується</string>
     <string name="pref_refresh_library_tracking_summary">Оновити стан, рахунок і останню главу з каталогів що відстежуються</string>
     <string name="version">Версія</string>

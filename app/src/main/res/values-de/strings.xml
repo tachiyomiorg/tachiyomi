@@ -38,7 +38,7 @@
     <string name="action_edit_categories">Kategorien bearbeiten</string>
     <string name="action_rename_category">Kategorie umbenennen</string>
     <string name="action_move_category">Kategorien festlegen</string>
-    <string name="action_edit_cover">Vorschaubild bearbeiten</string>
+    <string name="action_edit_cover">Cover bearbeiten</string>
     <string name="action_sort_up">Aufsteigend sortieren</string>
     <string name="action_sort_down">Absteigend sortieren</string>
     <string name="action_show_downloaded">Heruntergeladen</string>
@@ -73,7 +73,7 @@
     <string name="pref_category_general">Allgemein</string>
     <string name="pref_category_reader">Lese-Einstellungen</string>
     <string name="pref_category_downloads">Downloads</string>
-    <string name="pref_category_tracking">Synchronisation</string>
+    <string name="pref_category_tracking">Tracking</string>
     <string name="pref_category_advanced">Erweitert</string>
     <string name="pref_category_about">Über</string>
     <string name="pref_library_columns">Elemente pro Zeile</string>
@@ -98,7 +98,7 @@
     <string name="wifi">WLAN</string>
     <string name="charging">Am Laden</string>
     <string name="pref_update_only_non_completed">Nur fortlaufende Manga aktualisieren</string>
-    <string name="pref_auto_update_manga_sync">Kapitel nach dem Lesen synchronisieren</string>
+    <string name="pref_auto_update_manga_sync">Kapitelfortschritt nach dem Lesen aktualisieren</string>
     <string name="pref_start_screen">Startbildschirm</string>
     <string name="pref_language">Sprache</string>
     <string name="system_default">Standard</string>
@@ -119,7 +119,7 @@
     <string name="pref_reader_theme">Hintergrundfarbe</string>
     <string name="white_background">Weiß</string>
     <string name="black_background">Schwarz</string>
-    <string name="pref_viewer_type">Standard-Leserichtung</string>
+    <string name="pref_viewer_type">Standard-Lesemodus</string>
     <string name="default_viewer">Standard</string>
     <string name="left_to_right_viewer">Links nach rechts</string>
     <string name="right_to_left_viewer">Rechts nach links</string>
@@ -159,7 +159,7 @@
     <string name="fourth_to_last">Viertletzt gelesenes Kapitel</string>
     <string name="fifth_to_last">Fünftletzt gelesenes Kapitel</string>
     <string name="pref_download_new">Neue Kapitel herunterladen</string>
-    <string name="pref_download_new_categories">Kategorien die Heruntergeladen werden sollen</string>
+    <string name="pref_download_new_categories">Kategorien, die heruntergeladen werden sollen</string>
     <string name="services">Anbieter</string>
     <string name="backup">Backup</string>
     <string name="pref_create_backup">Backup erstellen</string>
@@ -167,13 +167,12 @@
     <string name="pref_restore_backup">Backup wiederherstellen</string>
     <string name="pref_restore_backup_summ">Bibliothek mit Hilfe eines Backups wiederherstellen</string>
     <string name="pref_backup_directory">Backup-Speicherort</string>
-    <string name="pref_backup_service_category">Service</string>
+    <string name="pref_backup_service_category">Automatische Backups</string>
     <string name="pref_backup_interval">Backuphäufigkeit</string>
-    <string name="pref_backup_slots">Maximale Anzahl automatischer Backups</string>
+    <string name="pref_backup_slots">Maximale Backups</string>
     <string name="source_not_found">Quelle nicht gefunden</string>
     <string name="backup_created">Backup erstellt</string>
     <string name="restore_completed">Wiederherstellen abgeschlossen</string>
-    <string name="restore_completed_content">Erledigt in %1$s mit %2$s Fehlern</string>
     <string name="backup_restore_content">Beim Wiederherstellen eines Backups werden Daten von den Quellen abgerufen, wodurch Mobilfunkkosten enstehen können. 
 \n 
 \nVergewissern Sie sich zudem, dass Sie alle benötigen Seitenlogins bereitgestellt haben, bevor Sie mit dem Wiederherstellen beginnen.</string>
@@ -188,13 +187,11 @@
     <string name="cookies_cleared">Cookies gelöscht</string>
     <string name="choices_reset">Standardantworten zurücksetzen</string>
     <string name="pref_clear_database">Datenbank leeren</string>
-    <string name="pref_clear_database_summary">Alle Manga und Kapitel löschen, die nicht in der Bibliothek sind</string>
+    <string name="pref_clear_database_summary">Manga und Kapitel löschen, die nicht in der Bibliothek sind</string>
     <string name="clear_database_confirmation">Bist du sicher\? Gelesene Kapitel und der Fortschritt von Manga, die nicht in der Bibliothek sind gehen verloren</string>
     <string name="clear_database_completed">Einträge gelöscht</string>
-    <string name="pref_refresh_library_metadata">Bibliotheksmetadaten erneuern</string>
-    <string name="pref_refresh_library_metadata_summary">Aktualisiert Vorschaubilder, Genres, Beschreibungen und andere Manga-Informationen</string>
-    <string name="pref_refresh_library_tracking">Synchronisationsmetadaten erneuern</string>
-    <string name="pref_refresh_library_tracking_summary">Synchronisiert den Lesestatus, die Bewertung und das zuletzt gelesene Kapitel mit den angemeldeten Synchronisationsanbietern</string>
+    <string name="pref_refresh_library_tracking">Tracking aktualisieren</string>
+    <string name="pref_refresh_library_tracking_summary">Synchronisiert den Lesestatus, die Bewertung und das zuletzt gelesene Kapitel mit den angemeldeten Trackinganbietern</string>
     <string name="version">Version</string>
     <string name="build_time">Erstellt am</string>
     <string name="pref_enable_acra">Fehlerberichte senden</string>
@@ -254,7 +251,7 @@
     <string name="download_all">Alle</string>
     <string name="download_unread">Ungelesene Kapitel</string>
     <string name="confirm_delete_chapters">Bist du sicher, dass du die ausgewählten Kapitel löschen willst\?</string>
-    <string name="manga_tracking_tab">Sync</string>
+    <string name="manga_tracking_tab">Tracking</string>
     <string name="reading">Am Lesen</string>
     <string name="completed">Abgeschlossen</string>
     <string name="dropped">Abgebrochen</string>
@@ -318,7 +315,7 @@
     <string name="download_notifier_text_only_wifi">Keine WLAN-Verbindung verfügbar</string>
     <string name="download_notifier_no_network">Kein Netzwerk verfügbar</string>
     <string name="download_notifier_download_paused">Download pausiert</string>
-    <string name="track">Synchronisation</string>
+    <string name="track">Tracking</string>
     <string name="label_recent_updates">Neu</string>
     <string name="action_global_search">Globale Suche</string>
     <string name="action_open">Öffnen</string>
@@ -373,7 +370,7 @@
     <string name="custom_download">Benutzerdefinierte Anzahl herunterladen</string>
     <string name="migration_info">Wähle die Quelle, aus welcher migriert werden soll</string>
     <string name="migration_dialog_what_to_include">Wähle zu beinhaltende Daten</string>
-    <string name="pager_viewer">Traditionelle Seiten</string>
+    <string name="pager_viewer">Seiten</string>
     <string name="source_not_installed">Quelle nicht installiert: %1$s</string>
     <string name="download_custom">Benutzerdefiniert</string>
     <string name="repeating">Am Wiederlesen</string>
@@ -509,7 +506,7 @@
     <string name="pinned_sources">Angeheftet</string>
     <string name="action_unpin">Loslösen</string>
     <string name="action_pin">Anheften</string>
-    <string name="add_tracking">Synchronisation hinzufügen</string>
+    <string name="add_tracking">Tracking hinzufügen</string>
     <string name="manga_info_collapse">Weniger Infos anzeigen</string>
     <string name="manga_info_expand">Mehr Infos anzeigen</string>
     <string name="manga_info_about_label">Inhalt</string>
@@ -546,11 +543,25 @@
     <string name="channel_backup_restore_complete">Abgeschlossen</string>
     <string name="channel_backup_restore_progress">Fortschritt</string>
     <string name="gray_background">Grau</string>
-    <string name="viewer">Viewer</string>
+    <string name="viewer">Lesemodus</string>
     <string name="pref_category_for_this_series">Für diese Serie</string>
-    <string name="pref_true_color_summary">Reduziert Streifenbildung, aber beeinflusst die Performance</string>
+    <string name="pref_true_color_summary">Reduziert Streifenbildung, beeinflusst aber die Performance</string>
     <plurals name="num_categories">
         <item quantity="one">%d Kategorie</item>
         <item quantity="other">%d Kategorien</item>
     </plurals>
+    <string name="battery_optimization_setting_activity_not_found">Geräteeinstellungen konnten nicht geöffnet werden</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Erledigt in %1$s mit %2$s Fehler</item>
+        <item quantity="other">Erledigt in %1$s mit %2$s Fehlern</item>
+    </plurals>
+    <string name="action_display_unread_badge">Ungelesenzähler</string>
+    <string name="tracking_info">Einweg-Synchronisation zum aktualisieren vom Kapitelfortschritt in Trackingdiensten. Richte Tracking für einzelne Manga über ihren Tracking-Tab ein.</string>
+    <string name="pref_refresh_library_covers">Bibliotheksmangacover aktualisieren</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 Update fehlgeschlagen</item>
+        <item quantity="other">%1$d Updates fehlgeschlagen</item>
+    </plurals>
+    <string name="unofficial_extension_message">Diese Erweiterung stammt nicht von der offiziellen Tachiyomi-Erweiterungsliste.</string>
+    <string name="ext_unofficial">Inoffiziell</string>
 </resources>

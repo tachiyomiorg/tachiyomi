@@ -25,7 +25,7 @@
     <string name="action_bookmark">Kirjanmerkki</string>
     <string name="action_remove_bookmark">Poista kirjanmerkki</string>
     <string name="action_move_category">Aseta kategoriat</string>
-    <string name="action_edit_cover">Muokkaa kansikuvaa</string>
+    <string name="action_edit_cover">Muokkaa kantta</string>
     <string name="action_sort_up">Nouseva</string>
     <string name="action_sort_down">Laskeva</string>
     <string name="options">Asetukset</string>
@@ -174,7 +174,7 @@
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Latauksessa</string>
     <string name="pref_update_only_non_completed">Päivitä vain jatkuvat sarjat</string>
-    <string name="pref_auto_update_manga_sync">Synkronoi luvut lukemisen jälkeen</string>
+    <string name="pref_auto_update_manga_sync">Päivitä luvun edistyminen lukemisen jälkeen</string>
     <string name="pref_start_screen">Aloitusnäyttö</string>
     <string name="pref_language">Kieli</string>
     <string name="system_default">Oletus</string>
@@ -221,13 +221,13 @@
     <string name="pref_reader_theme">Taustan väri</string>
     <string name="white_background">Valkoinen</string>
     <string name="black_background">Musta</string>
-    <string name="pref_viewer_type">Oletuskatselin</string>
+    <string name="pref_viewer_type">Oletuslukutila</string>
     <string name="default_viewer">Oletus</string>
     <string name="left_to_right_viewer">Vasemmalta oikealle</string>
     <string name="right_to_left_viewer">Oikealta vasemmalle</string>
     <string name="vertical_viewer">Pystysuora</string>
     <string name="webtoon_viewer">Webtoon-tyylinen</string>
-    <string name="pager_viewer">Sivut</string>
+    <string name="pager_viewer">Sivutettu</string>
     <string name="pref_image_decoder">Kuvien dekooderi</string>
     <string name="pref_image_scale_type">Skaalauksen tyyppi</string>
     <string name="scale_type_fit_screen">Sovita näyttöön</string>
@@ -269,13 +269,12 @@
     <string name="services">Palvelut</string>
     <string name="pref_create_backup_summ">Voidaan käyttää nykyisen kirjaston palauttamiseen</string>
     <string name="pref_restore_backup_summ">Palauta kirjasto varmuuskopiointi-tiedostosta</string>
-    <string name="pref_backup_service_category">Palvelu</string>
+    <string name="pref_backup_service_category">Automaattiset varmuuskopiot</string>
     <string name="pref_backup_interval">Varmuuskopioinnin tiheys</string>
-    <string name="pref_backup_slots">Maksimimäärä automaattisia varmuuskopioita</string>
+    <string name="pref_backup_slots">Varmuuskopioiden enimmäismäärä</string>
     <string name="source_not_found">Lähdettä ei löydy</string>
     <string name="backup_created">Varmuuskopio luotu</string>
     <string name="restore_completed">Palautus valmis</string>
-    <string name="restore_completed_content">Valmistui %1$s virheitä löytyi %2$s</string>
     <string name="backup_restore_content">Palautus käyttää lähdettä noutaakseen tietoja, tämä voi aiheuttaa kustannuksia. 
 \n
 \nVarmista myös että sinulla on kaikki tarvittavat laajennukset ja olet kirjautunut lähteisiin ja seuranta palveluihin ennen palauttamista.</string>
@@ -293,9 +292,7 @@
     <string name="pref_clear_database_summary">Poista sarjat ja luvut jotka eivät ole kirjastossa</string>
     <string name="clear_database_confirmation">Oletko varma\? Luetut luvut ja eteneminen poistetaan muista kun kirjastossa olevista sarjoista</string>
     <string name="clear_database_completed">Tiedot poistettu</string>
-    <string name="pref_refresh_library_metadata">Päivitä kirjaston metatiedot</string>
-    <string name="pref_refresh_library_metadata_summary">Päivitä kansikuvat, lajityypit, kuvaukset ja sarjojen tilannetiedot</string>
-    <string name="pref_refresh_library_tracking">Päivitä seurannan metatiedot</string>
+    <string name="pref_refresh_library_tracking">Päivitä seuranta</string>
     <string name="pref_refresh_library_tracking_summary">Päivittää tilan, arvosanan ja viimeksi luetun luvun seurantapalveluista</string>
     <string name="version">Versio</string>
     <string name="build_time">Kasausaika</string>
@@ -551,4 +548,20 @@
         <item quantity="one">%d kategoria</item>
         <item quantity="other">%d kategoriaa</item>
     </plurals>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Valmistui %1$s virheitä löytyi %2$s</item>
+        <item quantity="other">Valmistui %1$s virheitä löytyi %2$s</item>
+    </plurals>
+    <string name="pref_true_color_summary">Vähentää juovia, mutta vaikuttaa suorituskykyyn</string>
+    <string name="action_display_unread_badge">Näytä lukemattomien määrä</string>
+    <string name="viewer">Lukutila</string>
+    <string name="battery_optimization_setting_activity_not_found">Laiteasetuksia ei voitu avata</string>
+    <string name="tracking_info">Yksisuuntainen synkronointi lukujen seurantapalveluiden päivittämiseksi. Määritä yksittäisten mangamerkintöjen seuranta seurantavälilehdistä.</string>
+    <string name="pref_refresh_library_covers">Päivitä kirjaston manga-kannet</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 päivitys epäonnistui</item>
+        <item quantity="other">%1$d päivitystä epäonnistui</item>
+    </plurals>
+    <string name="unofficial_extension_message">Tämä laajennus ei ole virallisesta Tachiyomi-laajennusluettelosta.</string>
+    <string name="ext_unofficial">Epävirallinen</string>
 </resources>

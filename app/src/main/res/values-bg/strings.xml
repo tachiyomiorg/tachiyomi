@@ -36,7 +36,7 @@
     <string name="action_edit_categories">Редактирай категории</string>
     <string name="action_rename_category">Преименувай категория</string>
     <string name="action_move_category">Запиши в категории</string>
-    <string name="action_edit_cover">Смени корицата</string>
+    <string name="action_edit_cover">Промени корица</string>
     <string name="action_sort_up">Сортирай по възходящ ред</string>
     <string name="action_sort_down">Сортирай по низходящ ред</string>
     <string name="action_show_downloaded">Изтеглени</string>
@@ -91,14 +91,14 @@
     <string name="wifi">Wi-Fi</string>
     <string name="charging">На зарядно устройство</string>
     <string name="pref_update_only_non_completed">Обновявай само излизаща манга</string>
-    <string name="pref_auto_update_manga_sync">Синхронизирай глави след прочитане</string>
+    <string name="pref_auto_update_manga_sync">Обнови прогреса по заглавието след прочитане</string>
     <string name="pref_start_screen">Начален екран</string>
     <string name="pref_language">Език</string>
     <string name="system_default">По подразбиране</string>
     <!-- Reader section -->
     <string name="pref_fullscreen">Цял екран</string>
     <string name="pref_lock_orientation">Заключи ориентацията</string>
-    <string name="pref_page_transitions">Преходи</string>
+    <string name="pref_page_transitions">Анимирани преходи</string>
     <string name="pref_show_page_number">Номер на страница</string>
     <string name="pref_custom_brightness">Персонализирана яркост</string>
     <string name="pref_custom_color_filter">Персонализиран цветен филтър</string>
@@ -109,7 +109,7 @@
     <string name="pref_reader_theme">Цвят на фона</string>
     <string name="white_background">Бял</string>
     <string name="black_background">Черен</string>
-    <string name="pref_viewer_type">Посока на четене</string>
+    <string name="pref_viewer_type">Режим на четене по подразбиране</string>
     <string name="default_viewer">По подразбиране</string>
     <string name="left_to_right_viewer">От ляво надясно</string>
     <string name="right_to_left_viewer">От дясно наляво</string>
@@ -164,8 +164,6 @@
     <string name="pref_clear_database_summary">Изтрий манга и глави, които не са в библиотеката ми</string>
     <string name="clear_database_confirmation">Сигурни ли сте\? Прочетените глави и напредъкът на манги, които не са в библиотеката Ви, ще бъдат изгубени</string>
     <string name="clear_database_completed">Базата данни изчистена</string>
-    <string name="pref_refresh_library_metadata">Обнови метаданните на библиотеката</string>
-    <string name="pref_refresh_library_metadata_summary">Обновява кориците, жанровете, описанието и статуса на мангите</string>
     <!-- About section -->
     <string name="version">Версия</string>
     <string name="build_time">Време на създаване</string>
@@ -215,7 +213,7 @@
     <string name="chapter_downloading_progress">Изтегляне (%1$d/%2$d)</string>
     <string name="chapter_error">Грешка</string>
     <string name="fetch_chapters_error">Възникна грешка при показването на главите</string>
-    <string name="show_title">Заглавие</string>
+    <string name="show_title">Оригинално заглавие</string>
     <string name="show_chapter_number">Номер на главата</string>
     <string name="sorting_mode">Сортиране</string>
     <string name="sort_by_source">По източник</string>
@@ -332,17 +330,16 @@
     <string name="pref_restore_backup">Възстанови резервно копие</string>
     <string name="pref_restore_backup_summ">Възстанови библиотеката от резервно копие</string>
     <string name="pref_backup_directory">Директория за резервното копие</string>
-    <string name="pref_backup_service_category">Обслужване</string>
+    <string name="pref_backup_service_category">Автоматично запазване</string>
     <string name="pref_backup_interval">Честота на запазване</string>
-    <string name="pref_backup_slots">Максимален брой автоматични запазвания</string>
+    <string name="pref_backup_slots">Максимален брой копия</string>
     <string name="source_not_found">Не беше намерен източник</string>
     <string name="backup_created">Резервно копие създадено</string>
     <string name="restore_completed">Възстановяването завършено</string>
-    <string name="restore_completed_content">Възстановяването отне %1$s с %2$s грешки</string>
     <string name="backup_choice">Какво искате да запазите?</string>
     <string name="restoring_backup">Възстановяване на копие</string>
     <string name="creating_backup">Създаване на резервно копие</string>
-    <string name="pref_refresh_library_tracking">Обнови метаданните на проследяването</string>
+    <string name="pref_refresh_library_tracking">Обнови проследяването</string>
     <string name="pref_refresh_library_tracking_summary">Обновява статус, оценка и последно прочетена глава от услугите за проследяване</string>
     <string name="also_delete_chapters">Също изтрий изтеглените глави</string>
     <string name="local_source">Локални</string>
@@ -579,4 +576,20 @@
     <string name="unlock_app">Отключете Тачийоми</string>
     <string name="label_sources">Източници</string>
     <string name="label_more">Още</string>
+    <string name="viewer">Режим на четене</string>
+    <string name="pref_category_for_this_series">За тази поредица</string>
+    <string name="battery_optimization_setting_activity_not_found">Системните настройки не бяха отворени</string>
+    <string name="pref_refresh_library_covers">Обнови кориците</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Направено за %1$s с %2$s грешка</item>
+        <item quantity="other">Направено за %1$s с %2$s грешки</item>
+    </plurals>
+    <string name="tracking_info">Еднопосочна синхронизация на прочетените глави. Установи проследяване за отделни манги от индивидуалния раздел за проследяване.</string>
+    <string name="gray_background">Сиво</string>
+    <string name="pref_true_color_summary">Намалява бандинга, но се отразява на производителността</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d категория</item>
+        <item quantity="other">%d категории</item>
+    </plurals>
+    <string name="action_display_unread_badge">Покажи непрочетени</string>
 </resources>

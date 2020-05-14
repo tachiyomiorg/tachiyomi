@@ -203,8 +203,6 @@
     <string name="source_not_found">Fant ikke kilden</string>
     <string name="backup_created">Sikkerhetskopi opprettet</string>
     <string name="restore_completed">Gjenoppretting fullført</string>
-    <string name="restore_completed_content">Gjenoppretting tok %1$s.
-\n%2$s feil funnet.</string>
     <string name="backup_choice">Hva ønsker du å sikkerhetskopiere\?</string>
     <string name="restoring_backup">Gjenoppretter sikkerhetskopi</string>
     <string name="creating_backup">Oppretter sikkerhetskopi</string>
@@ -219,8 +217,6 @@
     <string name="pref_clear_database_summary">Slett manga og kapittel som ikke finnes i biblioteket ditt</string>
     <string name="clear_database_confirmation">Er du sikker\? Leste kapittel og framdrift for manga som ikke er i biblioteket vil gå tapt.</string>
     <string name="clear_database_completed">Oppføringer slettet</string>
-    <string name="pref_refresh_library_metadata">Gjenoppfrisk biblioteksmetadata</string>
-    <string name="pref_refresh_library_metadata_summary">Oppdater omslag, sjangere, beskrivelse og statusinfo for manga</string>
     <string name="pref_refresh_library_tracking">Gjenopprett sporingsmetadata</string>
     <string name="pref_refresh_library_tracking_summary">Oppdaterer status, poengsum og sist leste kapittel fra sporingstjenestene</string>
     <string name="version">Versjon</string>

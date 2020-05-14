@@ -7,7 +7,7 @@
     <string name="track">Nyilvántartás</string>
     <string name="history">Előzmények</string>
     <string name="label_settings">Beállítások</string>
-    <string name="label_recent_manga">Legutóbb olvasott</string>
+    <string name="label_recent_manga">Előzmények</string>
     <string name="label_categories">Kategóriák</string>
     <string name="label_backup">Biztonsági mentés</string>
     <string name="action_settings">Beállítások</string>
@@ -56,7 +56,7 @@
     <string name="pref_update_only_non_completed">Csak a folyamatban lévő mangákat frissítse</string>
     <string name="pref_start_screen">Kezdőképernyő</string>
     <string name="pref_language">Nyelv</string>
-    <string name="system_default">Rendszer alapértelmezése</string>
+    <string name="system_default">Alapértelmezett</string>
     <string name="default_category">Alapértelmezett kategória</string>
     <string name="default_category_summary">Mindig kérdezze</string>
     <string name="pref_fullscreen">Teljes képernyő</string>
@@ -86,7 +86,7 @@
     <string name="download_notifier_no_network">A hálózat nem érhető el</string>
     <string name="label_download_queue">Letöltési sor</string>
     <string name="label_library">Könyvtár</string>
-    <string name="label_recent_updates">Könyvtár frissítések</string>
+    <string name="label_recent_updates">Frissítések</string>
     <string name="action_filter">Szűrők</string>
     <string name="action_filter_downloaded">Letöltve</string>
     <string name="action_filter_bookmarked">Könyvjelzőzve</string>
@@ -111,8 +111,8 @@
     <string name="action_add_category">Kategória hozzáadása</string>
     <string name="action_edit_categories">Kategóriák szerkesztése</string>
     <string name="action_rename_category">Kategória átnevezése</string>
-    <string name="action_move_category">Áthelyezés kategóriákba</string>
-    <string name="action_edit_cover">Borítókép szerkesztése</string>
+    <string name="action_move_category">Kategóriák beállítása</string>
+    <string name="action_edit_cover">Borító szerkesztése</string>
     <string name="action_sort_up">Rendezés növekvő sorrendben</string>
     <string name="action_sort_down">Rendezés csökkenő sorrendben</string>
     <string name="action_next_unread">Következő olvasatlan</string>
@@ -122,7 +122,7 @@
     <string name="action_next_chapter">Következő fejezet</string>
     <string name="action_retry">Újra</string>
     <string name="action_resume">Folytatás</string>
-    <string name="action_display_mode">Megjelenítési mód módosítása</string>
+    <string name="action_display_mode">Megjelenítési mód</string>
     <string name="action_display">Megjelenés</string>
     <string name="action_sort">Rendezés</string>
     <string name="chapter_downloading">Letöltődik</string>
@@ -133,7 +133,7 @@
     <string name="action_create">Létrehozás</string>
     <string name="action_restore">Visszaállítás</string>
     <string name="action_open">Megnyitás</string>
-    <string name="app_not_available">Az alkalmazás nem érhető el</string>
+    <string name="app_not_available">Az app nem elérhető</string>
     <string name="short_recent_updates">Frissítések</string>
     <string name="pref_auto_update_manga_sync">Olvasás után a fejezetek szinkronizálása</string>
     <string name="pref_lock_orientation">Elforgatás zárolása</string>
@@ -170,4 +170,19 @@
     <string name="pref_library_update_prioritization">Könyvtár frissítési sorrend</string>
     <string name="label_downloaded_only">Csak letöltött</string>
     <string name="label_more">Több</string>
+    <string name="label_sources">Források</string>
+    <string name="pref_date_format">Dátum formátum</string>
+    <string name="theme_dark_amoled">AMOLED fekete</string>
+    <string name="theme_dark_blue">Sötét kék</string>
+    <string name="theme_light_blue">Világos kék</string>
+    <string name="theme_dark">Sötét</string>
+    <string name="theme_light">Világos</string>
+    <string name="pref_category_library">Könyvtár</string>
+    <string name="action_webview_refresh">Frissít</string>
+    <string name="action_webview_forward">Előre</string>
+    <string name="action_webview_back">Vissza</string>
+    <string name="action_oldest">Legrégebbi</string>
+    <string name="action_newest">Legújabb</string>
+    <string name="action_hide">Elrejt</string>
+    <string name="action_sort_latest_chapter">Legújabb fejezet</string>
 </resources>

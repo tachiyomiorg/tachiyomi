@@ -89,14 +89,14 @@
     <string name="pref_library_update_restriction_summary">Mettre à jour uniquement lorsque les conditions sont remplies</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">En charge</string>
-    <string name="pref_update_only_non_completed">Ne mettre à jour que les mangas en cours</string>
+    <string name="pref_update_only_non_completed">Mettre à jour que les séries en cours</string>
     <string name="pref_auto_update_manga_sync">Synchroniser les chapitres après les avoir lus</string>
     <string name="pref_start_screen">Page d\'accueil</string>
     <!-- Reader section -->
     <string name="pref_fullscreen">Plein écran</string>
     <string name="pref_lock_orientation">Verrouiller l\'orientation</string>
     <string name="pref_page_transitions">Activer les transitions</string>
-    <string name="pref_show_page_number">Afficher le numéro de page</string>
+    <string name="pref_show_page_number">Afficher le numéro des pages</string>
     <string name="pref_custom_brightness">Utiliser une luminosité personnalisée</string>
     <string name="pref_custom_color_filter">Utiliser un filtre de couleur personnalisé</string>
     <string name="pref_keep_screen_on">Garder l\'écran allumé</string>
@@ -106,7 +106,7 @@
     <string name="pref_reader_theme">Couleur de fond</string>
     <string name="white_background">Blanc</string>
     <string name="black_background">Noir</string>
-    <string name="pref_viewer_type">Lecteur par défaut</string>
+    <string name="pref_viewer_type">Mode de lecture par défaut</string>
     <string name="default_viewer">Par défaut</string>
     <string name="left_to_right_viewer">Gauche à droite</string>
     <string name="right_to_left_viewer">Droite à gauche</string>
@@ -156,8 +156,6 @@
     <string name="pref_clear_database">Effacer base de données</string>
     <string name="pref_clear_database_summary">Supprimer les mangas et chapitres non présents dans la bibliothèque</string>
     <string name="clear_database_completed">Entrées supprimées</string>
-    <string name="pref_refresh_library_metadata">Actualiser les méta-données de la bibliothèque</string>
-    <string name="pref_refresh_library_metadata_summary">Mettre à jour les couvertures, genres, description et statut des mangas</string>
     <!-- About section -->
     <string name="version">Version</string>
     <string name="build_time">Date de compilation</string>
@@ -325,7 +323,7 @@
     <string name="action_open_log">Ouvrir le fichier journal</string>
     <string name="action_restore">Restaurer</string>
     <string name="pref_backup_directory">Dossier de sauvegarde</string>
-    <string name="pref_backup_service_category">Service</string>
+    <string name="pref_backup_service_category">Sauvegardes automatiques</string>
     <string name="source_not_found">Source introuvable</string>
     <string name="restore_completed">Restauration terminée</string>
     <string name="backup_choice">Que voulez-vous sauvegarder ?</string>
@@ -340,9 +338,8 @@
     <string name="pref_restore_backup">Restaurer une sauvegarde</string>
     <string name="pref_restore_backup_summ">Restaurer la bibliothèque à partir d\'un fichier de sauvegarde</string>
     <string name="pref_backup_interval">Fréquence de sauvegarde</string>
-    <string name="pref_backup_slots">Nombre maximal de sauvegardes automatiques</string>
+    <string name="pref_backup_slots">Nombre maximal de sauvegardes</string>
     <string name="backup_created">Sauvegarde créée</string>
-    <string name="restore_completed_content">Effectuée en %1$s avec %2$s erreurs</string>
     <string name="restoring_backup">Restauration de sauvegarde en cours</string>
     <string name="creating_backup">Création de sauvegarde en cours</string>
     <string name="pref_refresh_library_tracking">Actualiser les métadonnées de suivi</string>
@@ -411,7 +408,7 @@
     <string name="all_lang">Toutes</string>
     <string name="ext_trust">Fiable</string>
     <string name="ext_untrusted">Non fiable</string>
-    <string name="pager_viewer">Pager</string>
+    <string name="pager_viewer">Pages</string>
     <string name="repeating">Relecture</string>
     <string name="transition_finished">Terminé :</string>
     <string name="transition_current">En cours :</string>
@@ -581,10 +578,24 @@
     <string name="pref_search_pinned_sources_only">N\'inclure que les sources épinglés</string>
     <string name="gray_background">Gris</string>
     <string name="pref_category_for_this_series">Pour cette série</string>
-    <string name="pref_true_color_summary">Réduit les bandes passantes mais affecte les performances</string>
+    <string name="pref_true_color_summary">Réduit les bandes de couleur mais affecte les performances</string>
     <plurals name="num_categories">
         <item quantity="one">%d catégorie</item>
         <item quantity="other">%d catégories</item>
     </plurals>
     <string name="viewer">Mode de lecture</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Effectuée en %1$s avec %2$s erreur</item>
+        <item quantity="other">Effectuée en %1$s avec %2$s erreurs</item>
+    </plurals>
+    <string name="battery_optimization_setting_activity_not_found">Impossible d\'ouvrir les paramètres de l\'appareil</string>
+    <string name="action_display_unread_badge">Badges des non lus</string>
+    <string name="pref_refresh_library_covers">Actualiser les couvertures des séries de la bibliothèque</string>
+    <string name="tracking_info">Permet de synchroniser automatiquement les chapitres lus avec les services externes proposé. Allez dans l\'onglet \"Suivi\" d\'une série pour activer son suivi.</string>
+    <string name="unofficial_extension_message">Cette extension ne fait pas partie de la liste des extensions officielles de Tachiyomi.</string>
+    <string name="ext_unofficial">Non officiel</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 mise à jour a échoué</item>
+        <item quantity="other">%1$d mises à jour ont échoués</item>
+    </plurals>
 </resources>

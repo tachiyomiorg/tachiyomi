@@ -223,8 +223,6 @@
     <string name="fifth_to_last">最後に読んだチャプターの5番目</string>
     <string name="services">サービス</string>
     <string name="restore_completed">復元が完了しました</string>
-    <string name="restore_completed_content">復元に%1$sがかかりました。
-\n%2$s件のエラーが見つかりました。</string>
     <string name="backup_restore_content">復元するにはソースを用いてデータをダウンロードします。追加の通信料が発生する場合はあります。
 \n
 \n復元する前に、必要な拡張をインストールし、追跡サービスとソースにログインするようにしてください。</string>
@@ -238,8 +236,6 @@
     <string name="choices_reset">ダイヤログの選択をリセット</string>
     <string name="clear_database_confirmation">データベースをクリアしてもよろしいですか？ライブラリにないマンガの読んだチャプターと読書進捗はすべて失われます</string>
     <string name="clear_database_completed">エントリーを削除しました</string>
-    <string name="pref_refresh_library_metadata">ライブラリメタデータを再ロード</string>
-    <string name="pref_refresh_library_metadata_summary">カバー、ジャンル、説明とマンガのステータスを更新</string>
     <string name="pref_refresh_library_tracking">同期メタデータを再ロード</string>
     <string name="pref_refresh_library_tracking_summary">同期サービスでステータス、評価と最後に読んだチャプターを更新</string>
     <string name="pref_acra_summary">バグの修正などに役立ちます。個人情報を送信しません</string>
@@ -444,4 +440,5 @@
     <string name="notification_chapters_single">%1$s章</string>
     <string name="action_hide">隠す</string>
     <string name="action_newest">最新</string>
+    <string name="label_sources">ソース</string>
 </resources>

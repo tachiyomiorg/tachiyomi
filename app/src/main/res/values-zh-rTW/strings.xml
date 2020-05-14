@@ -245,7 +245,6 @@
     <string name="cache_deleted">已清除快取，%1$d 個檔案已被刪除</string>
     <string name="cache_delete_error">清除快取時發生錯誤</string>
     <string name="cookies_cleared">已清除 Cookies</string>
-    <string name="pref_refresh_library_metadata">重新整理書櫃資料</string>
     <string name="build_time">組建時間</string>
     <string name="pref_acra_summary">協助我們修復錯誤，傳送的資料將不包含個人敏感訊息</string>
     <string name="login_title">登入 %1$s</string>
@@ -325,7 +324,6 @@
     <string name="confirm_set_image_as_cover">您欲將該圖片設為書封嗎？</string>
     <string name="transition_pages_loading">正在載入頁面…</string>
     <string name="information_empty_library">尚未收藏任何作品，請至書目檢索挖掘您的愛書。</string>
-    <string name="pref_refresh_library_metadata_summary">更新書封、類型、描述和連載狀態等漫畫簡介</string>
     <string name="dialog_with_checkbox_reset">重設此漫畫所有章節</string>
     <string name="custom_filter">濾鏡</string>
     <string name="download_progress">已下載 %1$d% %</string>
@@ -369,8 +367,6 @@
 \n信任這個憑證，即代表你願意承擔上述的風險。</string>
     <string name="last_read_chapter">最後閱讀的章節</string>
     <string name="pref_backup_slots">最大自動備份數</string>
-    <string name="restore_completed_content">已恢復 %1$s。
-\n%2$s 出現錯誤。</string>
     <string name="clear_database_confirmation">你確定嗎？將刪除未在書櫃的漫畫章節與閱讀進度的數據</string>
     <string name="pref_refresh_library_tracking">更新同步數據</string>
     <string name="pref_refresh_library_tracking_summary">更新同步服務的狀態、評分以及已讀章節</string>

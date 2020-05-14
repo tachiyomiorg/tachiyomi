@@ -44,7 +44,7 @@
     <string name="action_edit_categories">Modìfica sas categorias</string>
     <string name="action_rename_category">Cambia su nùmene de sa categoria</string>
     <string name="action_move_category">Imposta sas categorias</string>
-    <string name="action_edit_cover">Muda s\'immàgine de cobertedda</string>
+    <string name="action_edit_cover">Muda sa cobertedda</string>
     <string name="action_sort_up">Òrdina in manera chi artziet</string>
     <string name="action_sort_down">Òrdina in manera chi achirret</string>
     <string name="action_show_downloaded">Iscarrigados</string>
@@ -107,7 +107,7 @@
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Carrighende</string>
     <string name="pref_update_only_non_completed">Agiorna sos manga in cursu ebbia</string>
-    <string name="pref_auto_update_manga_sync">Sincroniza sos capìtulos a pustis de sa leghidura</string>
+    <string name="pref_auto_update_manga_sync">Agiorna su progressu de sos capìtulos a pustis de sa leghidura</string>
     <string name="pref_start_screen">Ischermada de incumintzu</string>
     <string name="pref_language">Limba</string>
     <string name="system_default">Predefinida</string>
@@ -152,13 +152,13 @@
     <string name="pref_reader_theme">Colore de isfundu</string>
     <string name="white_background">Arbu/biancu</string>
     <string name="black_background">Nieddu</string>
-    <string name="pref_viewer_type">Òrdine de leghidura</string>
+    <string name="pref_viewer_type">Modalidade de leghidura predefinida</string>
     <string name="default_viewer">Predefinidu</string>
     <string name="left_to_right_viewer">Dae manca a destra</string>
     <string name="right_to_left_viewer">Dae destra a manca</string>
     <string name="vertical_viewer">Verticale</string>
     <string name="webtoon_viewer">Webtoon</string>
-    <string name="pager_viewer">Impaginadore</string>
+    <string name="pager_viewer">Impaginadu</string>
     <string name="pref_image_decoder">Decodificadore de immàgines</string>
     <string name="pref_image_scale_type">Casta de iscala</string>
     <string name="scale_type_fit_screen">Adata a s\'ischermu</string>
@@ -204,13 +204,12 @@
     <string name="pref_restore_backup">Riprìstina una còpia de seguresa</string>
     <string name="pref_restore_backup_summ">Riprìstina sa biblioteca dae una còpia de seguresa</string>
     <string name="pref_backup_directory">Cartella de sa còpia de seguresa</string>
-    <string name="pref_backup_service_category">Servìtziu</string>
+    <string name="pref_backup_service_category">Còpias de seguresa automàticas</string>
     <string name="pref_backup_interval">Frecuèntzia de sarvatàgiu de sas còpias de seguresa</string>
-    <string name="pref_backup_slots">Nùmeru màssimu de còpias automàticas</string>
+    <string name="pref_backup_slots">Màssimu de còpias de seguresa</string>
     <string name="source_not_found">Mitza no agatada</string>
     <string name="backup_created">Còpia de seguresa creada</string>
     <string name="restore_completed">Riprìstinu acabadu</string>
-    <string name="restore_completed_content">Acabadu in %1$s cun %2$s errores</string>
     <string name="backup_restore_content">Su riprìstinu impreat sas mitzas pro otènnere sos datos, bi diant pòdere èssere costos de s\'operadore. 
 \n
 \nAssegura·ti de àere installadu totu sas estensiones netzessàrias e de àere fatu s\'atzessu a sas mitzas e a sos servìtzios de arrastamentu in antis de ripristinare.</string>
@@ -228,9 +227,7 @@
     <string name="pref_clear_database_summary">Iscantzella sos manga e sos capìtulos chi non sunt in sa biblioteca tua</string>
     <string name="clear_database_confirmation">Seguru ses\? Sos capìtulos lèghidos e su progressu de sos mangas chi non sunt in sa biblioteca s\'ant a pèrdere</string>
     <string name="clear_database_completed">Boghes iscantzelladas</string>
-    <string name="pref_refresh_library_metadata">Agiorna sos metadatos de sa biblioteca</string>
-    <string name="pref_refresh_library_metadata_summary">Agiornat sas coberteddas, sos gèneres, sa descritzione e sas informatziones de istadu de sos manga</string>
-    <string name="pref_refresh_library_tracking">Agiorna sos metadatos de arrastamentu</string>
+    <string name="pref_refresh_library_tracking">Annoa s\'arrastamentu</string>
     <string name="pref_refresh_library_tracking_summary">Agiornat s\'istadu, su votu e s\'ùrtimu capìtulu lèghidu dae sos servìtzios de arrastamentu</string>
     <string name="version">Versione</string>
     <string name="build_time">Data de compilatzione</string>
@@ -552,5 +549,19 @@
         <item quantity="other">%d categorias</item>
     </plurals>
     <string name="pref_true_color_summary">Mìnimat sa creatzione de bandas, ma impatat sas prestatziones</string>
-    <string name="viewer">Visualizadore</string>
+    <string name="viewer">Modalidade de leghidura</string>
+    <string name="battery_optimization_setting_activity_not_found">Abertura de sas impostatziones de sistema fallida</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Fatu in %1$s cun %2$s errore</item>
+        <item quantity="other">Fatu in %1$s cun %2$s errores</item>
+    </plurals>
+    <string name="tracking_info">Sincronizatzione a una diretzione ebbia pro agiornare su progressu in sos capìtulos in su servìtziu de arrastamentu. Imposta s\'arrastamentu pro sos elementos de sos manga dae s\'ischeda de arrastamentu issoro.</string>
+    <string name="action_display_unread_badge">Iconas de sos non lèghidos</string>
+    <string name="pref_refresh_library_covers">Annoa sas coberteddas de sos manga de sa biblioteca</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 agiornamentu fallidu</item>
+        <item quantity="other">%1$d agiornamentos fallidos</item>
+    </plurals>
+    <string name="unofficial_extension_message">Custa estensione non benit dae sa lista de estensiones ufitziales de Tachiyomi.</string>
+    <string name="ext_unofficial">No ufitziale</string>
 </resources>
