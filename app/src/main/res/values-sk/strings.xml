@@ -222,8 +222,6 @@
     <string name="source_not_found">Zdroj sa nenašiel</string>
     <string name="backup_created">Záloha bola vytvorená</string>
     <string name="restore_completed">Obnovenie dokončené</string>
-    <string name="restore_completed_content">Obnova trvala %1$s.
-\n%2$s nájdených chýb.</string>
     <string name="backup_restore_content">Obnovenie využíva zdroje na načítanie údajov, môžu sa účtovať poplatky operátora.
 \n
 \nPred obnovením skontrolujte, či máte nainštalované všetky potrebné rozšírenia a či ste prihlásení do zdrojov a služieb sledovania.</string>
@@ -247,8 +245,6 @@
     <string name="ext_obsolete">Zastaraný</string>
     <string name="obsolete_extension_message">Toto rozšírenie už nie je k dispozícii.</string>
     <string name="clear_database_completed">Záznamy boli odstránené</string>
-    <string name="pref_refresh_library_metadata">Obnoviť metadáta knižnice</string>
-    <string name="pref_refresh_library_metadata_summary">Aktualizuje obaly, žánre, popis a informácie o stave mang</string>
     <string name="pref_refresh_library_tracking">Obnoviť metadáta sledovania</string>
     <string name="pref_refresh_library_tracking_summary">Aktualizuje stav, skóre a poslednú čítanú kapitolu zo sledovacích služieb</string>
     <string name="version">Verzia</string>

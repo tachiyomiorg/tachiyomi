@@ -41,7 +41,7 @@
     <string name="action_edit_categories">श्रेणियाँ संपादित करें</string>
     <string name="action_rename_category">श्रेणियाँ का पुन:नामकरण</string>
     <string name="action_move_category">श्रेणियां निर्धारित करें</string>
-    <string name="action_edit_cover">आवरण चित्र को संपादित करें</string>
+    <string name="action_edit_cover">कवर संपादित करें</string>
     <string name="action_sort_up">ऊपर छांटे</string>
     <string name="action_sort_down">नीचे छांटे</string>
     <string name="action_show_downloaded">डाउनलोड किया हुआ</string>
@@ -104,7 +104,7 @@
     <string name="wifi">वाई - फाई</string>
     <string name="charging">चार्ज होते समय</string>
     <string name="pref_update_only_non_completed">केवल चालू मंगा का अद्यतन करे</string>
-    <string name="pref_auto_update_manga_sync">अध्याय पढ़ने के बाद समकालीन करे</string>
+    <string name="pref_auto_update_manga_sync">पढ़ने के बाद अध्याय प्रगति को अपडेट करें</string>
     <string name="pref_start_screen">प्रथम प्रदर्शनी</string>
     <string name="pref_language">भाषा</string>
     <string name="system_default">डिफ़ॉल्ट</string>
@@ -125,7 +125,7 @@
     <string name="pref_reader_theme">पीछे का रंग</string>
     <string name="white_background">सफेद</string>
     <string name="black_background">काला</string>
-    <string name="pref_viewer_type">डिफ़ॉल्ट दर्शक</string>
+    <string name="pref_viewer_type">डिफ़ॉल्ट रीडिंग मोड</string>
     <string name="default_viewer">डिफ़ॉल्ट</string>
     <string name="left_to_right_viewer">बाएं से दाएं</string>
     <string name="right_to_left_viewer">दाएं से बाएं</string>
@@ -173,13 +173,12 @@
     <string name="pref_restore_backup">बैकअप पुनर्स्थापित करे</string>
     <string name="pref_restore_backup_summ">बैकअप फ़ाइल से लाइब्रेरी पुनर्स्थापित करें</string>
     <string name="pref_backup_directory">बैकअप निर्देशिका</string>
-    <string name="pref_backup_service_category">सेवा</string>
+    <string name="pref_backup_service_category">स्वचालित बैकअप</string>
     <string name="pref_backup_interval">बैकअप फ़्रीक्वेंसी</string>
-    <string name="pref_backup_slots">अधिकतम स्वचालित बैकअप</string>
+    <string name="pref_backup_slots">अधिकतम बैकअप</string>
     <string name="source_not_found">स्रोत नहीं मिला</string>
     <string name="backup_created">बैकअप बनाया</string>
     <string name="restore_completed">पुनर्स्थापना पूर्ण हुआ</string>
-    <string name="restore_completed_content">%1$s में %2$s त्रुटियों के साथ किया गया</string>
     <string name="backup_restore_content">डेटा लाने के लिए स्रोतों का उपयोग करें, वाहक लागत लागू हो सकती है।
 \n
 \nसुनिश्चित करें कि आपने सभी आवश्यक एक्सटेंशन स्थापित किए हैं और बहाल करने से पहले स्रोतों और ट्रैकिंग सेवाओं में लॉग इन किया है।</string>
@@ -197,9 +196,7 @@
     <string name="pref_clear_database_summary">मैंगा और अध्याय जो आपकी लाइब्रेरी में नहीं हैं हटाएं</string>
     <string name="clear_database_confirmation">क्या आपको यकीन है? अध्यायों और गैर-पुस्तकालय मंगा की प्रगति को खो दिया जाएगा</string>
     <string name="clear_database_completed">प्रविष्टियां हटाई गईं</string>
-    <string name="pref_refresh_library_metadata">रीफ़्रेश लाइब्रेरी मेटाडेटा</string>
-    <string name="pref_refresh_library_metadata_summary">अपडेट कवर, शैलियों, विवरण और मंगा स्थिति की जानकारी</string>
-    <string name="pref_refresh_library_tracking">ट्रैकिंग मेटाडेटा रीफ़्रेश करें</string>
+    <string name="pref_refresh_library_tracking">रिफ्रेश ट्रैकिंग</string>
     <string name="pref_refresh_library_tracking_summary">अपडेट की स्थिति, स्कोर और अंतिम अध्याय ट्रैकिंग सेवाओं से पढ़ें</string>
     <string name="version">संस्करण</string>
     <string name="build_time">निर्माण समय</string>
@@ -372,7 +369,7 @@
     <string name="select">चयन</string>
     <string name="migrate">प्रवास</string>
     <string name="copy">नकल</string>
-    <string name="pager_viewer">पृष्ठक</string>
+    <string name="pager_viewer">पृष्ठांकित</string>
     <string name="source_not_installed">स्रोत स्थापित नहीं है : %1$s</string>
     <string name="repeating">फिर से पढाना</string>
     <string name="track_status">स्थिति</string>
@@ -543,7 +540,7 @@
     <string name="pref_search_pinned_sources_only">केवल पिन किए गए स्रोत शामिल हैं</string>
     <string name="channel_backup_restore_complete">पूर्ण</string>
     <string name="channel_backup_restore_progress">प्रगती</string>
-    <string name="viewer">व्यूअर</string>
+    <string name="viewer">पढ़न मोड</string>
     <string name="pref_category_for_this_series">इस श्रृंखला के लिए</string>
     <string name="gray_background">ग्रे</string>
     <string name="pref_true_color_summary">बैंडिंग को कम करता है, लेकिन प्रदर्शन को प्रभावित करता है</string>
@@ -551,4 +548,18 @@
         <item quantity="one">%d श्रेणी</item>
         <item quantity="other">%d श्रेणियाँ</item>
     </plurals>
+    <string name="battery_optimization_setting_activity_not_found">डिवाइस सेटिंग नहीं खोल सका</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">%1$s में %2$s त्रुटि के साथ किया गया</item>
+        <item quantity="other">%1$s में %2$s त्रुटियों के साथ किया गया</item>
+    </plurals>
+    <string name="action_display_unread_badge">अपठित बैज</string>
+    <string name="tracking_info">अध्याय ट्रैकिंग सेवाओं को अपडेट करने के लिए वन-वे सिंक। उनके ट्रैकिंग टैब से व्यक्तिगत मंगा प्रविष्टियों के लिए ट्रैकिंग स्थापित करें।</string>
+    <string name="pref_refresh_library_covers">रिफ्रेश पुस्तकालय मंगा कवर</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 अद्यतन विफल हुआ</item>
+        <item quantity="other">%1$d अपडेट विफल रहे</item>
+    </plurals>
+    <string name="unofficial_extension_message">यह एक्सटेंशन आधिकारिक तचियोमी एक्सटेंशन सूची से नहीं है।</string>
+    <string name="ext_unofficial">अनौपचारिक</string>
 </resources>

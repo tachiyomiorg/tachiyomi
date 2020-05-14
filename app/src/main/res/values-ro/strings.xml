@@ -102,8 +102,8 @@
     <string name="pref_library_update_restriction_summary">Actualizează doar când condițiile sunt împlinite</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Se încarcă</string>
-    <string name="pref_update_only_non_completed">Actualizează doar manga în curs de desfășurare</string>
-    <string name="pref_auto_update_manga_sync">Sincronizează capitolele după citire</string>
+    <string name="pref_update_only_non_completed">Actualizați doar manga în desfășurare</string>
+    <string name="pref_auto_update_manga_sync">Actualizați progresul capitolului după citire</string>
     <string name="pref_start_screen">Ecran principal</string>
     <string name="pref_language">Limbă</string>
     <string name="system_default">Implicit</string>
@@ -151,7 +151,7 @@
     <string name="pref_reader_theme">Culoare de fundal</string>
     <string name="white_background">Alb</string>
     <string name="black_background">Negru</string>
-    <string name="pref_viewer_type">Mod citire</string>
+    <string name="pref_viewer_type">Mod de citire implicit</string>
     <string name="default_viewer">Implicit</string>
     <string name="left_to_right_viewer">De la stânga la dreapta</string>
     <string name="right_to_left_viewer">De la dreapta la stânga</string>
@@ -203,13 +203,12 @@
     <string name="pref_restore_backup">Restaurează copia de rezervă</string>
     <string name="pref_restore_backup_summ">Restaurează biblioteca din fișierul copiei de rezervă</string>
     <string name="pref_backup_directory">Locația copiei de rezervă</string>
-    <string name="pref_backup_service_category">Serviciu</string>
+    <string name="pref_backup_service_category">Copii de rezervă automate</string>
     <string name="pref_backup_interval">Frecventă a copiilor de rezervă</string>
-    <string name="pref_backup_slots">Maximum copii de rezervă automate</string>
+    <string name="pref_backup_slots">Copii de rezervă maxime</string>
     <string name="source_not_found">Sursa nu a fost găsită</string>
     <string name="backup_created">Copie de rezervă creată</string>
     <string name="restore_completed">Restaurare completă</string>
-    <string name="restore_completed_content">Gata în %1$s cu %2$s erori</string>
     <string name="backup_restore_content">Restabilirea utilizează surse pentru a prelua date, se pot aplica costuri de operator.
 \n
 \nAsigurați-vă că ați instalat toate extensiile necesare și că sunteți conectat la surse și servicii de urmărire înainte de restaurare.</string>
@@ -227,9 +226,7 @@
     <string name="pref_clear_database_summary">Șterge manga și capitolele care nu sunt în bibliotecă</string>
     <string name="clear_database_confirmation">Ești sigur\? Capitolele citite și progresul oricărei manga ce nu este în bibliotecă vor fi pierdute</string>
     <string name="clear_database_completed">Înregistrări șterse</string>
-    <string name="pref_refresh_library_metadata">Reîncărca metadatele bibliotecii</string>
-    <string name="pref_refresh_library_metadata_summary">Actualizează coperți, genuri, descrieri și informații despre starea bibliotecii de manga</string>
-    <string name="pref_refresh_library_tracking">Reîncărca metadatele urmăririi</string>
+    <string name="pref_refresh_library_tracking">Reîncărca urmărirea</string>
     <string name="pref_refresh_library_tracking_summary">Actualizează statusul, scorul și ultimul capitol citit de la serviciile de urmărire</string>
     <string name="version">Versiune</string>
     <string name="build_time">Data versiunii</string>
@@ -551,7 +548,7 @@
     <string name="pref_search_pinned_sources_only">Includeți numai surse fixate</string>
     <string name="channel_backup_restore_complete">Terminat</string>
     <string name="channel_backup_restore_progress">Progresul</string>
-    <string name="viewer">Cititor</string>
+    <string name="viewer">Mod de citire</string>
     <string name="pref_category_for_this_series">Pentru această serie</string>
     <string name="gray_background">Gri</string>
     <string name="pref_true_color_summary">Reduce bandajul, dar afectează performanța</string>
@@ -560,4 +557,13 @@
         <item quantity="few">%d categorii</item>
         <item quantity="other">%d categorii</item>
     </plurals>
+    <string name="battery_optimization_setting_activity_not_found">Imposibil de deschis setările dispozitivului</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Gata în %1$s cu %2$s eroare</item>
+        <item quantity="few">Gata în %1$s cu %2$s erori</item>
+        <item quantity="other">Gata în %1$s cu %2$s erori</item>
+    </plurals>
+    <string name="action_display_unread_badge">Insigne pentru necitite</string>
+    <string name="tracking_info">Sincronizare a unui singur sens pentru a actualiza progresul capitolului în serviciile de urmărire. Configurați urmărirea pentru intrările manga individuale din filele lor de urmărire.</string>
+    <string name="pref_refresh_library_covers">Actualizare coperților manga din bibliotecă</string>
 </resources>

@@ -164,8 +164,6 @@
     <string name="pref_clear_database_summary">"Xóa truyện và các chương không nằm trong thư viện "</string>
     <string name="clear_database_confirmation">Bạn có chắc không? Các chương đã đọc và tiến độ đọc các truyện không nằm trong thư viện sẽ bị mất</string>
     <string name="clear_database_completed">Các mục đã bị xóa</string>
-    <string name="pref_refresh_library_metadata">Làm mới siêu dữ liệu của thư viện</string>
-    <string name="pref_refresh_library_metadata_summary">Cập nhật ảnh bìa, thể loại, thông tin trạng thái của các bộ truyện</string>
     <!-- About section -->
     <string name="version">Phiên bản</string>
     <string name="build_time">Thời gian tạo</string>
@@ -374,8 +372,6 @@
     <string name="source_not_found">Không tìm thấy nguồn</string>
     <string name="backup_created">Sao lưu đã được tạo</string>
     <string name="restore_completed">Khôi phục hoàn tất</string>
-    <string name="restore_completed_content">Khôi phục được %1$s.
-\n%2$s lỗi đã được tìm thấy.</string>
     <string name="backup_restore_content">Khôi phục yêu cầu sử dụng mạng để truy cập các nguồn truyện và nguồn theo dõi để lấy dữ liệu.
 \n
 \nHãy đảm bảo rằng bạn đã cài đặt và đăng nhập vào các nguồn truyện và nguồn theo dõi trước khi khôi phục.</string>

@@ -171,7 +171,6 @@
     <string name="source_not_found">لم يتم إيجاد المصدر</string>
     <string name="backup_created">تم إنشاء النسخة الاحتياطية</string>
     <string name="restore_completed">اكتملت الاستعادة</string>
-    <string name="restore_completed_content">تم في %1$s و وجد %2$s خطأ</string>
     <string name="backup_restore_content">عملية الاستعادة تستخدم المصادر لجلب البيانات، قد يتم تطبيق تكاليف مزود الخدمة. 
 \nتأكد من تثبيت كافة اﻹضافات الضرورية وتسجيل الدخول لخدمات التتبع المطلوبة قبل عملية الاستعادة.</string>
     <string name="backup_choice">ما الذي تريد نسخه احتياطيا؟</string>
@@ -195,8 +194,6 @@
     <string name="pref_clear_database_summary">مسح المانجا والفصول التى ليست فى مكتبتك</string>
     <string name="clear_database_confirmation">هل أنت متأكد؟ الفصول المقروءة ومستوي التقدم للمانجا الغير موجودة فى مكتبتك سيتم فقده</string>
     <string name="clear_database_completed">تم حذف المدخلات</string>
-    <string name="pref_refresh_library_metadata">تحديث البيانات الوصفية للمكتبة</string>
-    <string name="pref_refresh_library_metadata_summary">تحديث اﻷغلفة، التصنيفات، الوصف ومعلومات حالة المانجا</string>
     <string name="pref_refresh_library_tracking">تحديث البيانات الوصفية للتتبع</string>
     <string name="pref_refresh_library_tracking_summary">تحديث الحالة، والتقييم وآخر فصل عن طريق خدمات التتبع</string>
     <string name="version">اﻹصدار</string>

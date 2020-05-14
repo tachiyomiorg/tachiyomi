@@ -44,7 +44,7 @@
     <string name="action_edit_categories">Kategorileri düzenle</string>
     <string name="action_rename_category">Kategoriyi yeniden adlandır</string>
     <string name="action_move_category">Kategorileri ayarla</string>
-    <string name="action_edit_cover">Kapak resmini düzenle</string>
+    <string name="action_edit_cover">Kapağı düzenle</string>
     <string name="action_sort_up">Yukarı sırala</string>
     <string name="action_sort_down">Aşağı sırala</string>
     <string name="action_show_downloaded">İndirilen</string>
@@ -107,7 +107,7 @@
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Şarj oluyor</string>
     <string name="pref_update_only_non_completed">Yalnızca devam eden mangaları güncelleme</string>
-    <string name="pref_auto_update_manga_sync">Okudukdan sonra bölümleri eşitle</string>
+    <string name="pref_auto_update_manga_sync">Okuyunca bölüm ilerlemesini güncelle</string>
     <string name="pref_start_screen">Başlangıç ekranı</string>
     <string name="pref_language">Dil</string>
     <string name="system_default">Sistem öntanımlı</string>
@@ -151,13 +151,13 @@
     <string name="pref_reader_theme">Art alan rengi</string>
     <string name="white_background">Beyaz</string>
     <string name="black_background">Siyah</string>
-    <string name="pref_viewer_type">Öntanımlı görüntüleyici</string>
+    <string name="pref_viewer_type">Öntanımlı okuma kipi</string>
     <string name="default_viewer">Öntanımlı</string>
     <string name="left_to_right_viewer">Soldan sağa</string>
     <string name="right_to_left_viewer">Sağdan sola</string>
     <string name="vertical_viewer">Dikey</string>
     <string name="webtoon_viewer">Webtoon</string>
-    <string name="pager_viewer">Sayfalama</string>
+    <string name="pager_viewer">Sayfalı</string>
     <string name="pref_image_decoder">Görsel çözücü</string>
     <string name="pref_image_scale_type">Boyutlandırma türü</string>
     <string name="scale_type_fit_screen">Ekrana sığdır</string>
@@ -203,13 +203,12 @@
     <string name="pref_restore_backup">Yedeği geri yükle</string>
     <string name="pref_restore_backup_summ">Kitaplığı yedek dosyasından geri yükle</string>
     <string name="pref_backup_directory">Yedekleme konumu</string>
-    <string name="pref_backup_service_category">Hizmet</string>
+    <string name="pref_backup_service_category">Kendiliğinden yedekleme</string>
     <string name="pref_backup_interval">Yedekleme sıklığı</string>
-    <string name="pref_backup_slots">Kendiliğinden yedek sınırı</string>
+    <string name="pref_backup_slots">Maksimum yedek</string>
     <string name="source_not_found">"Kaynak bulunamadı "</string>
     <string name="backup_created">Yedek oluşturuldu</string>
     <string name="restore_completed">Geri yükleme tamamlandı</string>
-    <string name="restore_completed_content">%1$s içinde %2$s hatayla tamamlandı</string>
     <string name="backup_restore_content">Geri yükleme veriyi almak için kaynakları kullanır, taşıyıcı ücreti uygulanabilir. 
 \n 
 \nGeri yüklemeden önce, giriş gerektiren kaynaklara ve izleme hizmetlerine giriş yaptığınızdan, ve gerekli tüm uzantıları kurduğunuzdan emin olun.</string>
@@ -227,9 +226,7 @@
     <string name="pref_clear_database_summary">Kitaplığınızda olmayan manga ve bölümleri silin</string>
     <string name="clear_database_confirmation">Emin misiniz? Kitaplıkta olmayan mangaların okunmuş bölümleri ve ilerlemesi kaybolacak</string>
     <string name="clear_database_completed">Girdileri silindi</string>
-    <string name="pref_refresh_library_metadata">Kitaplık üst verilerini yenile</string>
-    <string name="pref_refresh_library_metadata_summary">Kapakları, türleri, açıklamayı ve manga durum bilgisini günceller</string>
-    <string name="pref_refresh_library_tracking">İzleme üst verisini yenile</string>
+    <string name="pref_refresh_library_tracking">İzlemeyi yenile</string>
     <string name="pref_refresh_library_tracking_summary">İzleme servisinden durumu, puanı ve son okunan bölümü günceller</string>
     <string name="version">Sürüm</string>
     <string name="build_time">İnşa tarihi</string>
@@ -547,10 +544,24 @@
     <string name="channel_backup_restore_progress">İlerleme</string>
     <string name="gray_background">Gri</string>
     <string name="pref_true_color_summary">Renk şeritlerini azaltır, ancak performansı etkiler</string>
-    <string name="viewer">Görüntüleyici</string>
+    <string name="viewer">Okuma kipi</string>
     <string name="pref_category_for_this_series">Bu seri için</string>
     <plurals name="num_categories">
         <item quantity="one">%d kategori</item>
         <item quantity="other">%d kategori</item>
     </plurals>
+    <string name="battery_optimization_setting_activity_not_found">Aygıt ayarları açılamadı</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">%1$s içinde %2$s hatayla tamamlandı</item>
+        <item quantity="other">%1$s içinde %2$s hatayla tamamlandı</item>
+    </plurals>
+    <string name="action_display_unread_badge">Okunmamış rozetler</string>
+    <string name="tracking_info">Bölüm ilerlemesini, izleme hizmetlerinde güncellemek için tek yönlü eşitleme. Her manga girdisinin izleme sekmesinden, izlemeyi ayarlayın.</string>
+    <string name="pref_refresh_library_covers">Kitaplık manga kapaklarını yenile</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 güncelleme başarısız</item>
+        <item quantity="other">%1$d güncelleme başarısız</item>
+    </plurals>
+    <string name="unofficial_extension_message">Bu uzantı resmi Tachiyomi uzantıları listesinden değil.</string>
+    <string name="ext_unofficial">Resmi olmayan</string>
 </resources>

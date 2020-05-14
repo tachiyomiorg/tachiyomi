@@ -301,7 +301,6 @@
     <string name="pref_clear_database_summary">Smaže mangy a kapitoly, které nejsou ve vaší knihovně</string>
     <string name="clear_database_confirmation">Jste si jistý\? Přečtené kapitoly a postup v mangách mimo knihovnu budou ztraceny</string>
     <string name="clear_database_completed">Položky byly smazány</string>
-    <string name="pref_refresh_library_metadata">Obnovit metadata knihovny</string>
     <string name="pref_refresh_library_tracking">Obnovit metadata sledování</string>
     <string name="pref_refresh_library_tracking_summary">Aktualizuje status, skóre a poslední přečtenou kapitolu ze sledovacích služeb</string>
     <string name="version">Verze</string>
@@ -359,12 +358,9 @@
     <string name="pref_create_backup_summ">Lze použít k obnovení aktuální knihovny</string>
     <string name="pref_restore_backup_summ">Obnovit knihovnu ze záložního souboru</string>
     <string name="pref_backup_slots">Maximální automatické zálohování</string>
-    <string name="restore_completed_content">Obnovení trvalo %1$s.
-\nNalezené chyby: %2$s.</string>
     <string name="backup_restore_content">Obnovení používá zdroje pro načítání dat, mohou být účtovány poplatky od operátora (v případě použití datového připojení).
 \nTaké se před obnovením ujistěte, že jste správně přihlášeni do zdrojů, které to vyžadují.</string>
     <string name="choices_reset">Volby dialogu se vynulují</string>
-    <string name="pref_refresh_library_metadata_summary">Aktualizuje obaly, žánry, popisy a informace o stavu mangy</string>
     <string name="login_title">Přihlásit se do %1$s</string>
     <string name="library_search_hint">Název nebo autor…</string>
     <string name="invalid_combination">Výchozí nemůže být vybrána s ostatními kategoriemi</string>

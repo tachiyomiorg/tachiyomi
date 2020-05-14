@@ -179,8 +179,6 @@
     <string name="source_not_found">উৎস খুঁজে পাওয়া যায়নি</string>
     <string name="backup_created">পুনরুদ্ধার তৈরী হয়েছে</string>
     <string name="restore_completed">পুনরুদ্ধার হয়েছে</string>
-    <string name="restore_completed_content">পুনরুদ্ধার হচ্ছে %1$s.
-\n%2$s ত্রুটি দেখা দিয়েছে।</string>
     <string name="backup_restore_content">পুনরুদ্ধারের সন্ধান করার জন্য উৎস ব্যবহার করা হয়, ক্যারিয়ারের খরচগুলি প্রযোজ্য হতে পারে। এছাড়াও নিশ্চিত করুন যে আপনি পুনরুদ্ধারের আগে উৎসগুলোতে যথাযথভাবে লগ-ইন করা আছেন যেখানে প্রোয়জন হয়।</string>
     <string name="backup_choice">আপনি কি ব্যাকআপ করতে ইচ্ছুক?</string>
     <string name="restoring_backup">ব্যাকআপ পুনরুদ্ধার হচ্ছে</string>
@@ -196,8 +194,6 @@
     <string name="pref_clear_database_summary">আপনার মাংগাশালায় যেসব মাংগা এবং অধ্যায়গুলো নেই সেগুলো মুছে ফেলুন</string>
     <string name="clear_database_confirmation">আপনি কি নিশ্চিত? পড়া অধ্যায় এবং মাংগাশালায় অনুপস্থিত পঠিত মাংগা হারিয়ে যেতে পারে</string>
     <string name="clear_database_completed">এন্ট্রি মুছে ফেলা হয়েছে</string>
-    <string name="pref_refresh_library_metadata">মাংগাশালার মেটাডাটা রিফ্রেশ করা হয়েছে</string>
-    <string name="pref_refresh_library_metadata_summary">আপডেটস কভারগুলো, প্রকার, বিবৃতি এবং মাংগার স্ট্যাটাস তথ্য</string>
     <string name="pref_refresh_library_tracking">অনুসরণকৃত মেটাডাটা রিফ্রেশ করুন</string>
     <string name="pref_refresh_library_tracking_summary">আপডেটস স্ট্যাটাস, স্কোর এবং শেষ পড়া অধ্যায় অনুসরণ থেকে</string>
     <string name="version">সংস্করণ</string>
@@ -313,7 +309,7 @@
     <string name="update_check_notification_download_in_progress">ডাউনলোড হচ্ছে</string>
     <string name="update_check_notification_download_complete">ডাউনলোড হয়ে গেছে</string>
     <string name="update_check_notification_download_error">ডাউনলোড ত্রুটি দেখা গিয়েছে</string>
-    <string name="update_check_notification_update_available">আপডেট এসেছে</string>
+    <string name="update_check_notification_update_available">আপডেট এসেছে!</string>
     <string name="description_backdrop">মাংগার ব্যাকড্রপ ছবি</string>
     <string name="description_cover">মাংগার কভার</string>
     <string name="information_no_downloads">ডাউনলোড নেই</string>

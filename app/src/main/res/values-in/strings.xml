@@ -100,7 +100,7 @@
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Sedang mengisi daya</string>
     <string name="pref_update_only_non_completed">Perbarui manga yang masih belum tamat saja</string>
-    <string name="pref_auto_update_manga_sync">Sinkronkan bab setelah membaca</string>
+    <string name="pref_auto_update_manga_sync">Perbaharui perkembangan bab setelah membaca</string>
     <string name="pref_start_screen">Layar mulai</string>
     <string name="pref_language">Bahasa</string>
     <string name="system_default">Bawaan</string>
@@ -117,11 +117,11 @@
     <string name="pref_reader_navigation">Navigasi</string>
     <string name="pref_read_with_volume_keys">Tombol volume</string>
     <string name="pref_read_with_volume_keys_inverted">Balikkan tombol volume</string>
-    <string name="pref_read_with_tapping">Tap layar</string>
+    <string name="pref_read_with_tapping">Ketukan</string>
     <string name="pref_reader_theme">Warna latar</string>
     <string name="white_background">Putih</string>
     <string name="black_background">Hitam</string>
-    <string name="pref_viewer_type">Arah membaca</string>
+    <string name="pref_viewer_type">Mode pembacaan standar</string>
     <string name="default_viewer">Bawaan</string>
     <string name="left_to_right_viewer">Kiri ke kanan</string>
     <string name="right_to_left_viewer">Kanan ke kiri</string>
@@ -169,13 +169,12 @@
     <string name="pref_restore_backup">Pulihkan cadangan</string>
     <string name="pref_restore_backup_summ">Pulihkan isi perpustakaan dari file cadangan</string>
     <string name="pref_backup_directory">Tempat pencadangan</string>
-    <string name="pref_backup_service_category">Layanan</string>
+    <string name="pref_backup_service_category">Pencadangan otomatis</string>
     <string name="pref_backup_interval">Frekuensi cadangan dibuat</string>
-    <string name="pref_backup_slots">Jumlah maksimum cadangan otomatis</string>
+    <string name="pref_backup_slots">Jumlah maksimum cadangan</string>
     <string name="source_not_found">Sumber tidak ditemukan</string>
     <string name="backup_created">Cadangan dibuat</string>
     <string name="restore_completed">Pemulihan telah selesai</string>
-    <string name="restore_completed_content">Selesai dalam %1$s dengan %2$s masalah</string>
     <string name="backup_restore_content">Proses pemulihan menggunakan koneksi internet untuk mengambil data, biaya operator mungkin berlaku.
 \n
 \nPastikan Anda telah memasang ekstensi yg dibutuhkan dan sudah login ke sumber sebelum proses pemulihan.</string>
@@ -193,9 +192,7 @@
     <string name="pref_clear_database_summary">Hapus manga dan bab yang tidak disimpan dalam perpustakaan Anda</string>
     <string name="clear_database_confirmation">Apakah Anda yakin\? Bab bacaan dan progres manga yang tidak disimpan dalam perpustakaan akan hilang</string>
     <string name="clear_database_completed">Entri dihapus</string>
-    <string name="pref_refresh_library_metadata">Perbarui metadata perpustakaan</string>
-    <string name="pref_refresh_library_metadata_summary">Mengunduh ulang sampul, genre, deskripsi dan informasi status manga</string>
-    <string name="pref_refresh_library_tracking">Perbarui metadata pelacakan</string>
+    <string name="pref_refresh_library_tracking">Segarkan pelacakan metadata</string>
     <string name="pref_refresh_library_tracking_summary">Perbarui status, nilai dan bab terakhir yang dibaca dari layanan pelacakan</string>
     <string name="version">Versi</string>
     <string name="build_time">Waktu pembuatan</string>
@@ -519,7 +516,7 @@
     <string name="webtoon_side_padding_25">25%</string>
     <string name="webtoon_side_padding_20">20%</string>
     <string name="webtoon_side_padding_15">15%</string>
-    <string name="vertical_plus_viewer">Vertikal berkelanjutan</string>
+    <string name="vertical_plus_viewer">Vertikal terus-menerus</string>
     <string name="error_invalid_date_supplied">Tanggal yang salah telah dimasukkan</string>
     <string name="track_finished_reading_date">Tanggal selesai dibaca</string>
     <string name="track_started_reading_date">Tanggal mulai dibaca</string>
@@ -537,4 +534,25 @@
     <string name="backup_in_progress">Pencadangan masih dalam proses</string>
     <string name="restore_duration">%02d menit, %02d detik</string>
     <string name="pref_search_pinned_sources_only">Hanya sertakan sumber yang ditandai</string>
+    <string name="viewer">Mode membaca</string>
+    <string name="pref_true_color_summary">Mengurangi kualitas, namun mempengaruhi performa</string>
+    <plurals name="num_categories">
+        <item quantity="other">Kategori</item>
+    </plurals>
+    <string name="action_display_unread_badge">Belum Dibaca</string>
+    <string name="gray_background">Abu-abu</string>
+    <string name="channel_backup_restore_complete">Lengkap</string>
+    <string name="channel_backup_restore_progress">Kemajuan</string>
+    <string name="pref_category_for_this_series">Untuk seri ini</string>
+    <string name="battery_optimization_setting_activity_not_found">Tidak dapat membuka pengaturan perangkat</string>
+    <string name="pref_refresh_library_covers">Segarkan perpustakaan sampul manga</string>
+    <plurals name="restore_completed_message">
+        <item quantity="other">Selesai dalam %1$s dengan %2$s kesalahan</item>
+    </plurals>
+    <string name="tracking_info">Sinkronisasi satu arah untuk memperbarui perkembangan bab dalam layanan pelacakan. Siapkan pelacakan untuk entri manga individual dari tab pelacakan mereka.</string>
+    <plurals name="notification_update_error">
+        <item quantity="other">%1$d pembaruan gagal</item>
+    </plurals>
+    <string name="unofficial_extension_message">Ekstensi ini bukan dari daftar resmi Tachiyomi.</string>
+    <string name="ext_unofficial">Tidak resmi</string>
 </resources>

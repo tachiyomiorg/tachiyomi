@@ -211,8 +211,6 @@
     <string name="source_not_found">ไม่พบแหล่งที่มา</string>
     <string name="backup_created">การสำรองข้อมูลที่สร้างขึ้น</string>
     <string name="restore_completed">การคืนค่าเสร็จสมบูรณ์</string>
-    <string name="restore_completed_content">การคืนค่าเอา %1$s
-\nพบข้อผิดพลาด %2$s</string>
     <string name="backup_choice">คุณต้องการสำรองข้อมูลอะไร\?</string>
     <string name="restoring_backup">กำลังคืนค่าการสำรองข้อมูล</string>
     <string name="creating_backup">กำลังสร้างการสำรองข้อมูล</string>
@@ -227,8 +225,6 @@
     <string name="pref_clear_database_summary">ลบมังงะและบทที่ไม่ได้อยู่ในห้องสมุดของคุณ</string>
     <string name="clear_database_confirmation">คุณแน่ใจไหม\? อ่านบทและความคืบหน้าของมังงะที่ไม่ใช่ห้องสมุดจะหายไป</string>
     <string name="clear_database_completed">รายการที่ลบแล้ว</string>
-    <string name="pref_refresh_library_metadata">รีเฟรชข้อมูลเมตาของไลบรารี</string>
-    <string name="pref_refresh_library_metadata_summary">การปรับปรุงครอบคลุมประเภทคำอธิบายและข้อมูลสถานะมังงะ</string>
     <string name="pref_refresh_library_tracking">รีเฟรชข้อมูลเมตาของการติดตาม</string>
     <string name="pref_refresh_library_tracking_summary">อัพเดตสถานะคะแนนและบทสุดท้ายที่อ่านจากบริการติดตาม</string>
     <string name="version">เวอร์ชัน</string>

@@ -70,7 +70,7 @@
     <string name="pref_category_downloads">Downloads</string>
     <string name="pref_category_tracking">Tracking</string>
     <string name="pref_category_advanced">Geavanceerd</string>
-    <string name="pref_library_columns">Manga per rij in de bibliotheek</string>
+    <string name="pref_library_columns">Items per rij</string>
     <string name="default_columns">Standaard</string>
     <string name="pref_library_update_interval">Bibliotheek update frequentie</string>
     <string name="update_never">Manueel</string>
@@ -90,7 +90,7 @@
     <string name="default_category">Standaard categorie</string>
     <string name="default_category_summary">Altijd vragen</string>
     <string name="pref_fullscreen">Volledig scherm</string>
-    <string name="pref_page_transitions">Paginaovergangen</string>
+    <string name="pref_page_transitions">Animeer pagina overgangen</string>
     <string name="pref_show_page_number">Toon paginanummer</string>
     <string name="pref_crop_borders">Randen bijsnijden</string>
     <string name="pref_custom_brightness">Gebruik aangepaste helderheid</string>
@@ -100,7 +100,7 @@
     <string name="pref_reader_theme">Achtergrondkleur</string>
     <string name="white_background">Wit</string>
     <string name="black_background">Zwart</string>
-    <string name="pref_viewer_type">Standaardlezer</string>
+    <string name="pref_viewer_type">Standaard leesmodus</string>
     <string name="default_viewer">Standaard</string>
     <string name="left_to_right_viewer">Links naar rechts</string>
     <string name="right_to_left_viewer">Rechts naar links</string>
@@ -136,13 +136,12 @@
     <string name="pref_restore_backup">Back-up herstellen</string>
     <string name="pref_restore_backup_summ">Herstellen van back-up bestand</string>
     <string name="pref_backup_directory">Back-uplocatie</string>
-    <string name="pref_backup_service_category">Service</string>
+    <string name="pref_backup_service_category">Automatische backups</string>
     <string name="pref_backup_interval">Back-up frequentie</string>
-    <string name="pref_backup_slots">Max aantal automatische back-ups</string>
+    <string name="pref_backup_slots">Max aantal back-ups</string>
     <string name="source_not_found">Bron niet gevonden</string>
     <string name="backup_created">Back-up gemaakt</string>
     <string name="restore_completed">Herstelling voltooid</string>
-    <string name="restore_completed_content">Gereed in %1$s met %2$s errors.</string>
     <string name="backup_choice">Wat wil je back-uppen?</string>
     <string name="restoring_backup">Backup aan het herstellen</string>
     <string name="creating_backup">Back-up aan het maken</string>
@@ -184,7 +183,7 @@
     <string name="chapter_downloading_progress">Aan het downloaden (%1$d/%2$d)</string>
     <string name="chapter_error">Error</string>
     <string name="chapter_paused">Gepauzeerd</string>
-    <string name="show_title">Titel</string>
+    <string name="show_title">Bron titel</string>
     <string name="show_chapter_number">Hoofdstuknummer</string>
     <string name="sorting_mode">Sorteermodus</string>
     <string name="sort_by_source">Op bron</string>
@@ -196,7 +195,7 @@
     <string name="download_all">Alles</string>
     <string name="download_unread">Ongelezen</string>
     <string name="confirm_delete_chapters">Ben je zeker dat je de geselecteerde hoofdstukken wilt verwijderen?</string>
-    <string name="manga_tracking_tab">Tracking</string>
+    <string name="manga_tracking_tab">Tracking Scherm</string>
     <string name="completed">Voltooid</string>
     <string name="score">Score</string>
     <string name="title">Titel</string>
@@ -228,11 +227,11 @@
     <string name="update_check_ignore">Negeren</string>
     <string name="update_check_no_new_updates">Geen nieuwe updates beschikbaar</string>
     <string name="update_check_notification_download_complete">Download voltooid</string>
-    <string name="update_check_notification_update_available">Nieuwe versie beschikbaar</string>
+    <string name="update_check_notification_update_available">Nieuwe versie beschikbaar!</string>
     <string name="description_cover">Omslag van de manga</string>
     <string name="information_no_downloads">Geen downloads</string>
-    <string name="information_no_recent">Geen recente hoofdstukken</string>
-    <string name="information_empty_library">De bibliotheek is leeg, voeg manga toe aan je bibliotheek vanuit de bronnen.</string>
+    <string name="information_no_recent">Geen recente updates</string>
+    <string name="information_empty_library">Je bibliotheek is leeg, voeg manga toe aan je bibliotheek via Bladeren.</string>
     <string name="information_empty_category">Er zijn nog geen categorieën, druk op de plus knop om een categorie aan te maken.</string>
     <string name="download_notifier_downloader_title">Downloader</string>
     <string name="download_notifier_title_error">Error</string>
@@ -270,13 +269,11 @@
     <string name="cache_delete_error">Er is een fout opgetreden bij het legen van de cache</string>
     <string name="pref_clear_database">Database legen</string>
     <string name="pref_clear_database_summary">Verwijder manga en hoofdstukken die niet in je bibliotheek staan</string>
-    <string name="pref_refresh_library_metadata">Bijwerken van bibliotheek metadata</string>
-    <string name="pref_refresh_library_metadata_summary">Update omslagen, genres, beschrijvingen en status van manga</string>
-    <string name="pref_refresh_library_tracking">Bijwerken van tracking metadata</string>
+    <string name="pref_refresh_library_tracking">Tracking verversen</string>
     <string name="build_time">Compilatietijd</string>
     <string name="pref_enable_acra">Rapporteer bugs</string>
     <string name="pref_acra_summary">Helpt bij het bestrijden van bugs. Geen gevoelige data wordt verzonden</string>
-    <string name="information_no_recent_manga">Geen recentelijk gelezen manga</string>
+    <string name="information_no_recent_manga">Niks recent gelezen</string>
     <string name="download_notifier_unknown_error">Het is niet mogelijk om dit hoofdstuk te downloaden door een onverwachte fout</string>
     <string name="download_notifier_page_error">Er ontbreekt een pagina</string>
     <string name="pref_library_update_restriction">Bibliotheek updatebeperkingen</string>
@@ -299,7 +296,7 @@
     <string name="dropped">Laten vallen</string>
     <string name="on_hold">In de wacht</string>
     <string name="dialog_with_checkbox_remove_description">Dit verwijdert de datum waarop het hoofdstuk is gelezen. Ben je zeker?</string>
-    <string name="decode_image_error">Afbeelding kon niet worden geladen.</string>
+    <string name="decode_image_error">Afbeelding kon niet worden geladen</string>
     <string name="download_queue_error">Het downloaden van hoofdstukken is niet gelukt. Je kan het opnieuw proberen in de downloadwachtrij</string>
     <string name="notification_cover_update_failed">Updaten van omslag mislukt</string>
     <string name="notification_not_connected_to_ac_title">Synchronisatie geannuleerd</string>
@@ -351,16 +348,16 @@
     <string name="ext_available">Beschikbaar</string>
     <string name="untrusted_extension">Niet vertrouwde extensie</string>
     <string name="untrusted_extension_message">Deze extensie is door een niet vertrouwd certificaat ondertekend en is niet geactiveerd.
-\n 
-\nEen kwaadaardige extensie zou alle log-ingegevens kunnen uitlezen in Tachiyomi of arbitraire code uitvoeren. 
-\n 
-\nBij het vertrouwen van dit certificaat accepteer je deze risico\'s</string>
+\n
+\nEen kwaadaardige extensie zou alle log-in gegevens kunnen uitlezen in Tachiyomi of arbitraire code uit kunnen voeren.
+\n
+\nBij het vertrouwen van dit certificaat accepteer je deze risico\'s.</string>
     <string name="ext_version_info">Versie: %1$s</string>
     <string name="ext_language_info">Taal: %1$s</string>
     <string name="ext_empty_preferences">Geen aan te passen voorkeuren voor deze extensie</string>
     <string name="pref_double_tap_anim_speed">Dubbel tik animatiesnelheid</string>
     <string name="pref_read_with_long_tap">Lange tik dialoog</string>
-    <string name="pager_viewer">Paginas</string>
+    <string name="pager_viewer">Paged</string>
     <string name="double_tap_anim_speed_0">Geen animatie</string>
     <string name="double_tap_anim_speed_normal">Normaal</string>
     <string name="double_tap_anim_speed_fast">Snel</string>
@@ -511,7 +508,7 @@
         <item quantity="other">%1$s resterend</item>
     </plurals>
     <string name="downloaded_only_summary">Filtert alle manga in uw bibliotheek</string>
-    <string name="label_downloaded_only">Alleen gedownload</string>
+    <string name="label_downloaded_only">Alleen gedownloade</string>
     <string name="check_for_updates">Controleer op updates</string>
     <string name="licenses">Open source licenties</string>
     <string name="notices">Voorbeeld build bericht</string>
@@ -541,4 +538,30 @@
     <string name="pref_theme_light">Licht thema variant</string>
     <string name="action_move_to_top">Verplaats naar top</string>
     <string name="action_unpin">Losspelden</string>
+    <string name="channel_backup_restore_complete">Voltooid</string>
+    <string name="channel_backup_restore_progress">Voortgang</string>
+    <string name="viewer">Leesmodus</string>
+    <string name="pref_category_for_this_series">Voor deze serie</string>
+    <string name="battery_optimization_setting_activity_not_found">Kon de apparaatinstelleningen niet openen</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Voltooid in %1$s met %2$s error</item>
+        <item quantity="other">Voltooid in %1$s met %2$s errors</item>
+    </plurals>
+    <string name="pref_search_pinned_sources_only">Neem alleen vastgespelde bronnen mee</string>
+    <string name="pref_webtoon_side_padding">Zijkant padding</string>
+    <string name="gray_background">Grijs</string>
+    <string name="pref_true_color_summary">Vermindert \"banding\", maar heeft een impact of performance</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d categorie</item>
+        <item quantity="other">%d categorieën</item>
+    </plurals>
+    <string name="action_display_unread_badge">Ongelezen badges</string>
+    <string name="pref_refresh_library_covers">Manga hoesjes in bibliotheek vervsersen</string>
+    <string name="tracking_info">Eenzijdige synchronisatie om voortang van hoofdstukken bij te werken bij trackingservices. Stel tracking in bij individuele manga in het Tracking tab.</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 update mislukt</item>
+        <item quantity="other">%1$d updates mislukt</item>
+    </plurals>
+    <string name="unofficial_extension_message">Deze extensie behoort niet tot de officiële Tachiyomi extensie lijst.</string>
+    <string name="ext_unofficial">Onofficieël</string>
 </resources>

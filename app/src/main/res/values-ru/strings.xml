@@ -166,7 +166,7 @@
     <string name="plan_to_read">Планирую прочитать</string>
     <string name="portrait">Вертикальная</string>
     <string name="pref_acra_summary">Помогает исправлять любые баги. Личные данные не передаются</string>
-    <string name="pref_auto_update_manga_sync">Синхронизировать главы после прочтения</string>
+    <string name="pref_auto_update_manga_sync">Обновлять прогресс глав после прочтения</string>
     <string name="pref_category_about">Информация</string>
     <string name="pref_category_advanced">Дополнительно</string>
     <string name="pref_category_downloads">Загрузки</string>
@@ -199,15 +199,13 @@
     <string name="pref_read_with_volume_keys">Клавиши громкости</string>
     <string name="pref_reader_navigation">Навигация</string>
     <string name="pref_reader_theme">Цвет фона</string>
-    <string name="pref_refresh_library_metadata">Обновить библиотечную метадату</string>
-    <string name="pref_refresh_library_metadata_summary">Обновить обложки, жанры, описания и информацию о мангах</string>
     <string name="pref_remove_after_marked_as_read">Удалить когда отмечена как прочитанная</string>
     <string name="pref_remove_after_read">Удалять после прочтения</string>
     <string name="pref_rotation_type">Ориентация</string>
     <string name="pref_show_page_number">Показывать номер страницы</string>
     <string name="pref_start_screen">Стартовый экран</string>
     <string name="pref_update_only_non_completed">Обновлять только незавершенную мангу</string>
-    <string name="pref_viewer_type">Направление чтения</string>
+    <string name="pref_viewer_type">Режим чтения по умолчанию</string>
     <string name="pref_zoom_start">Стартовая позиция увеличения</string>
     <string name="reading">Читаю</string>
     <string name="remove_from_library">Удалить из библиотеки</string>
@@ -297,18 +295,17 @@
     <string name="no_more_results">Больше нет результатов</string>
     <string name="pref_backup_directory">Каталог бэкапа</string>
     <string name="pref_backup_interval">Частота бэкапа</string>
-    <string name="pref_backup_service_category">Сервис</string>
-    <string name="pref_backup_slots">Максимальное количество бэкапов</string>
+    <string name="pref_backup_service_category">Автоматические бэкапы</string>
+    <string name="pref_backup_slots">Максимально бэкапов</string>
     <string name="pref_create_backup">Создать бэкап</string>
     <string name="pref_create_backup_summ">Можно использовать для восстановления текущей библиотеки</string>
     <string name="pref_crop_borders">Границы обрезки</string>
     <string name="pref_download_new_categories">Категории для включения в загружаемые</string>
-    <string name="pref_refresh_library_tracking">Обновить отслеживаемую метадату</string>
+    <string name="pref_refresh_library_tracking">Обновить отслеживание</string>
     <string name="pref_refresh_library_tracking_summary">Обновить статус, счет и последнюю главу от отслеживаемых сервисов</string>
     <string name="pref_restore_backup">Восстановить бэкап</string>
     <string name="pref_restore_backup_summ">Восстановить библиотеку из бэкапа</string>
     <string name="restore_completed">Восстановление закончено</string>
-    <string name="restore_completed_content">Выполнено %1$s с %2$s ошибк(ой/ами)</string>
     <string name="restoring_backup">Восстановление бэкапа</string>
     <string name="short_recent_updates">Обновления</string>
     <string name="snack_categories_deleted">Категории удалены</string>
@@ -374,7 +371,7 @@
     <string name="migrate">Мигрировать</string>
     <string name="copy">Копировать</string>
     <string name="ext_trust">Надёжное</string>
-    <string name="pager_viewer">Пейджер</string>
+    <string name="pager_viewer">Постранично</string>
     <string name="source_not_installed">Источник не установлен: %1$s</string>
     <string name="repeating">Перечитываю</string>
     <string name="track_status">Статус</string>
@@ -553,7 +550,7 @@
     </plurals>
     <string name="channel_backup_restore_complete">Завершено</string>
     <string name="channel_backup_restore_progress">Прогресс</string>
-    <string name="viewer">Чтение</string>
+    <string name="viewer">Режим чтения</string>
     <string name="pref_category_for_this_series">Для этой серии</string>
     <string name="gray_background">Серый</string>
     <string name="pref_true_color_summary">Уменьшает полосатость, но влияет на производительность</string>
@@ -563,4 +560,22 @@
         <item quantity="many">%d категорий</item>
         <item quantity="other">%d категорий</item>
     </plurals>
+    <string name="battery_optimization_setting_activity_not_found">Не удалось открыть настройки устройства</string>
+    <string name="pref_refresh_library_covers">Обновить обложки библиотечной манги</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Сделано %1$s с %2$s ошибкой</item>
+        <item quantity="few">Сделано %1$s с %2$s ошибками</item>
+        <item quantity="many">Сделано %1$s с %2$s ошибками</item>
+        <item quantity="other">Сделано %1$s с %2$s ошибками</item>
+    </plurals>
+    <string name="tracking_info">Односторонняя синхронизация для обновления прогресса главы в отслеживаемых сервисов. Настройте отслеживание для отдельных записей манги с их вкладками отслеживания.</string>
+    <string name="action_display_unread_badge">Значок непрочитанных</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 ошибка обновления</item>
+        <item quantity="few">%1$d ошибки обновления</item>
+        <item quantity="many">%1$d ошибок обновления</item>
+        <item quantity="other">%1$d ошибок обновления</item>
+    </plurals>
+    <string name="unofficial_extension_message">Это расширение не входит в официальный список расширений Tachiyomi.</string>
+    <string name="ext_unofficial">Неофициальное</string>
 </resources>

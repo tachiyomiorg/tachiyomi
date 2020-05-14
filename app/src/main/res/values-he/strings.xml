@@ -318,7 +318,6 @@
     <string name="pref_disable_battery_optimization_summary">עוזר בעדכוני ספריות רקע וגיבויים</string>
     <string name="pref_disable_battery_optimization">השבת אופטימיזציה של סוללה</string>
     <string name="pref_refresh_library_tracking_summary">עדכן סטטוס, ציון ופרק אחרון שנקרא משירותי המעקב</string>
-    <string name="pref_refresh_library_metadata_summary">עדכן עטיפות, ז\'אנרים, תיאור ומידע על מצב מאנגה</string>
     <string name="clear_database_completed">הרשומות נמחקו</string>
     <string name="clear_database_confirmation">האם אתה בטוח\? פרקים שנקראו וההתקדמות של מאנגה שאינה מספרייה תאבד</string>
     <string name="pref_clear_database_summary">מחק מנגה ופרקים שאינם בספריה שלך</string>
@@ -335,8 +334,6 @@
     <string name="backup_restore_content">פעולת שחזור משתמשת במקורות בכדי להשיג נתונים, עלויות הספק עשויות לחול.
 \n
 \nוודא שהתקנת את כל התוספים הנחוצים והתחרת למקורות ושירותי המעקב לפני השחזור.</string>
-    <string name="restore_completed_content">השחזור לקח %1$s.
-\nנמצאו %2$s שגיאות.</string>
     <string name="restore_completed">השחזור הושלם</string>
     <string name="backup_created">גיבוי נוצר</string>
     <string name="source_not_found">המקור לא נמצא</string>

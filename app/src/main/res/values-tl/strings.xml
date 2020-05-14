@@ -213,8 +213,6 @@
     <string name="source_not_found">Hindi nakita ang source</string>
     <string name="backup_created">Nagawa na ang backup</string>
     <string name="restore_completed">Nakumpleto na ang pagre-restore</string>
-    <string name="restore_completed_content">Tumagal nang %1$s ang pagre-restore
-\nNakita ang %2$s na (mga) error.</string>
     <string name="backup_restore_content">Ginagamit ng pagre-restore ang source para makakuha ng data, maaring magamit ang inyong data.
 \nSiguraduhin din na ikaw ay maayos na naka-login sa mga source that nangangailangan nito bago mag-restore.</string>
     <string name="pref_color_filter_mode">Blend mode ng color filter</string>
@@ -240,8 +238,6 @@
     <string name="pref_clear_database_summary">Burahin ang mga manga at kabanatang wala sa iyong aklatan</string>
     <string name="clear_database_confirmation">Sigurado ka ba\? Mawawala ang mga nabasang kabanata at ang daloy ng mga manga na wala sa aklatan</string>
     <string name="clear_database_completed">Binura ang mga tala</string>
-    <string name="pref_refresh_library_metadata">I-refresh ang metadata ng aklatan</string>
-    <string name="pref_refresh_library_metadata_summary">Ini-a-update ang mga pabalat, dyanra, paglalarawan, at status information ng manga</string>
     <string name="pref_refresh_library_tracking">I-refresh ang metadata ng mga sinusubaybayan</string>
     <string name="pref_refresh_library_tracking_summary">Ini-a-update ang estado, iskor, at huling nabasang kabanata mula sa mga tracking service</string>
     <string name="version">Bersyon</string>

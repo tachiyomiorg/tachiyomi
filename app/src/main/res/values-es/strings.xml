@@ -29,7 +29,7 @@
     <string name="action_edit_categories">Editar categorías</string>
     <string name="action_rename_category">Cambiar nombre de categoría</string>
     <string name="action_move_category">Poner las categorías</string>
-    <string name="action_edit_cover">Editar imagen de cubierta</string>
+    <string name="action_edit_cover">Editar la portada</string>
     <string name="action_sort_up">Ordenar ascendentemente</string>
     <string name="action_sort_down">Ordenar descendentemente</string>
     <string name="action_show_downloaded">Descargado</string>
@@ -75,7 +75,7 @@
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Cargando</string>
     <string name="pref_update_only_non_completed">Solo actualizar manga no finalizada</string>
-    <string name="pref_auto_update_manga_sync">Sincronizar capítulos después de leerlos</string>
+    <string name="pref_auto_update_manga_sync">Actualizar el progreso del capítulo después de la lectura</string>
     <!-- Reader section -->
     <string name="pref_fullscreen">Pantalla completa</string>
     <string name="pref_lock_orientation">Bloquear orientación</string>
@@ -89,7 +89,7 @@
     <string name="pref_reader_theme">Color de fondo</string>
     <string name="white_background">Blanco</string>
     <string name="black_background">Negro</string>
-    <string name="pref_viewer_type">Lectura predefinida</string>
+    <string name="pref_viewer_type">Modo de lectura por defecto</string>
     <string name="default_viewer">Predefinido</string>
     <string name="left_to_right_viewer">Izquierda a derecha</string>
     <string name="right_to_left_viewer">Derecha a izquierda</string>
@@ -310,13 +310,12 @@
     <string name="pref_restore_backup">Restaurar copia de seguridad</string>
     <string name="pref_restore_backup_summ">Restaurar la biblioteca del archivo de copia de seguridad</string>
     <string name="pref_backup_directory">Directorio de copia de seguridad</string>
-    <string name="pref_backup_service_category">Servicio</string>
+    <string name="pref_backup_service_category">Copias de seguridad automáticas</string>
     <string name="pref_backup_interval">Frecuencia de respaldo</string>
-    <string name="pref_backup_slots">Máximos respaldos automáticos</string>
+    <string name="pref_backup_slots">Máximas copias de seguridad</string>
     <string name="source_not_found">Fuente no encontrada</string>
     <string name="backup_created">Copia de seguridad creada</string>
     <string name="restore_completed">Restauración completada</string>
-    <string name="restore_completed_content">Hecho %1$s con %2$s errores</string>
     <string name="backup_restore_content">Restaurar utiliza la fuente para obtener datos, es posible que se apliquen los costos de la operadora. 
 \n
 \nAsegúrese de haber instalado todas las extensiones necesarias y de haber iniciado sesión en las fuentes y los servicios de seguimiento antes de la restauración.</string>
@@ -324,9 +323,7 @@
     <string name="restoring_backup">Restaurando copia de seguridad</string>
     <string name="creating_backup">Creando copia de seguridad</string>
     <string name="choices_reset">Reiniciar opciones de diálogo</string>
-    <string name="pref_refresh_library_metadata">Actualizar metadatos de biblioteca</string>
-    <string name="pref_refresh_library_metadata_summary">Actualiza cubiertas, géneros, descripción y estado del manga</string>
-    <string name="pref_refresh_library_tracking">Actualizar metadatos de seguimiento</string>
+    <string name="pref_refresh_library_tracking">Refrescar el seguimiento</string>
     <string name="pref_refresh_library_tracking_summary">Actualización de estado, puntuación y último capítulo leído en los servicios de seguimiento</string>
     <string name="also_delete_chapters">También eliminar capítulos descargados</string>
     <string name="no_valid_sources">Por favor habilita al menos una fuente válida</string>
@@ -574,7 +571,7 @@
     </plurals>
     <string name="downloaded_only_summary">Filtra toda manga en tu libreria</string>
     <string name="pref_search_pinned_sources_only">Solamente incluir fuentes fijados</string>
-    <string name="viewer">Visor</string>
+    <string name="viewer">Modo de lectura</string>
     <string name="pref_category_for_this_series">Para esta serie</string>
     <string name="gray_background">Gris</string>
     <string name="pref_true_color_summary">Reduce el anillado, pero afecta al rendimiento</string>
@@ -582,4 +579,18 @@
         <item quantity="one">%d categoría</item>
         <item quantity="other">%d categorías</item>
     </plurals>
+    <string name="battery_optimization_setting_activity_not_found">No pudo abrir la configuración del dispositivo</string>
+    <string name="pref_refresh_library_covers">Actualizar portadas de manga de la biblioteca</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Hecho %1$s con %2$s error</item>
+        <item quantity="other">Hecho %1$s con %2$s errores</item>
+    </plurals>
+    <string name="tracking_info">Sincronización unidireccional para actualizar el progreso del capítulo en los servicios de rastreo. Configurar el seguimiento de las entradas de manga individuales desde sus pestañas de seguimiento.</string>
+    <string name="action_display_unread_badge">Icono de no leídas</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 actualización fallida</item>
+        <item quantity="other">%1$d actualizacónes fallidas</item>
+    </plurals>
+    <string name="unofficial_extension_message">Esta extensión no es de la lista oficial de extensiónes de Tachiyomi.</string>
+    <string name="ext_unofficial">No oficial</string>
 </resources>

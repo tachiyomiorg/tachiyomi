@@ -6,7 +6,7 @@
     <string name="history">Historia</string>
     <string name="label_settings">Ustawienia</string>
     <string name="label_download_queue">Kolejka pobierania</string>
-    <string name="label_recent_manga">Ostatnio czytane</string>
+    <string name="label_recent_manga">Ostatnie</string>
     <string name="action_settings">Ustawienia</string>
     <string name="action_filter">Filtrowanie</string>
     <string name="action_filter_downloaded">Pobrane</string>
@@ -72,8 +72,7 @@
     <string name="pref_category_downloads">Pobieranie</string>
     <string name="pref_category_advanced">Zaawansowane</string>
     <string name="pref_category_about">O aplikacji</string>
-    <string name="pref_library_columns">Ilość rzędów biblioteki</string>
-    <string name="pref_refresh_library_metadata_summary">Aktualizuje okładki, gatunki, opisy i informacje o statusie mang</string>
+    <string name="pref_library_columns">Ilość okładek w rzędzie</string>
     <string name="remove_from_library">Usuń z biblioteki</string>
     <string name="manga_info_author_label">Autor</string>
     <string name="manga_info_artist_label">Rysownik</string>
@@ -180,7 +179,7 @@
     <string name="pref_auto_update_manga_sync">Aktualizuj postęp po przeczytaniu rozdziału</string>
     <string name="pref_start_screen">Ekran startowy</string>
     <string name="pref_language">Język</string>
-    <string name="system_default">Systemowy</string>
+    <string name="system_default">Domyślnie</string>
     <string name="default_category">Domyślna kategoria</string>
     <string name="default_category_summary">Zawsze pytaj</string>
     <string name="pref_fullscreen">Pełny ekran</string>
@@ -248,11 +247,9 @@
     <string name="pref_restore_backup_summ">Przywraca bibliotekę z pliku kopii zapasowej</string>
     <string name="pref_backup_directory">Lokalizacja kopii zapasowych</string>
     <string name="pref_backup_interval">Częstotliwość tworzenia kopii</string>
-    <string name="pref_backup_slots">Maks. ilosć kopii automatycznych</string>
-    <string name="pref_backup_service_category">Cykliczna kopia zapasowa</string>
+    <string name="pref_backup_slots">Maks. ilość kopii automatycznych</string>
+    <string name="pref_backup_service_category">Automatyczna kopia zapasowa</string>
     <string name="source_not_found">Nie znaleziono źródła</string>
-    <string name="restore_completed_content">Przywracanie trwało %1$s.
-\nNapotkane błędy: %2$s.</string>
     <string name="backup_choice">Co zawrzeć w kopii zapasowej?</string>
     <string name="restoring_backup">Przywracanie kopii zapasowej</string>
     <string name="creating_backup">Tworzenie kopii zapasowej</string>
@@ -273,12 +270,11 @@
     <string name="choices_reset">Resetuj wybory okien dialogowych</string>
     <string name="clear_database_confirmation">Na pewno? Przeczytane rozdziały i postęp w mangach spoza biblioteki zostaną utracone</string>
     <string name="clear_database_completed">Pozycje usunięte</string>
-    <string name="pref_refresh_library_metadata">Odśwież metadane biblioteki</string>
-    <string name="pref_refresh_library_tracking">Odśwież metadane śledzenia</string>
+    <string name="pref_refresh_library_tracking">Odśwież dane śledzenia</string>
     <string name="pref_refresh_library_tracking_summary">Aktualizuje status, ocenę i ostatnio czytany rozdział na podstawie usług śledzenia</string>
-    <string name="build_time">Build utworzony</string>
+    <string name="build_time">Data utworzenia kompilacji</string>
     <string name="login_success">Zalogowano</string>
-    <string name="local_source">Lokalne mangi</string>
+    <string name="local_source">Lokalne żródło</string>
     <string name="ongoing">Nieukończone</string>
     <string name="unknown">Nieznane</string>
     <string name="licensed">Licencjonowane</string>
@@ -296,7 +292,7 @@
     <string name="sort_by_number">Według numeru rozdziału</string>
     <string name="manga_tracking_tab">Śledzenie</string>
     <string name="status">Status</string>
-    <string name="snack_categories_deleted">Kategorie usunięte</string>
+    <string name="snack_categories_deleted">Usunięte kategorie</string>
     <string name="dialog_with_checkbox_remove_description">To usunie datę przeczytania tego rozdziału. Na pewno?</string>
     <string name="dialog_with_checkbox_reset">Resetuj wszystkie rozdziały tej mangi</string>
     <string name="snack_add_to_library">Dodać mangę do biblioteki?</string>
@@ -312,7 +308,7 @@
     <string name="file_select_icon">Wybierz ikonę skrótu</string>
     <string name="description_backdrop">Obrazek tła mangi</string>
     <string name="description_cover">Okładka mangi</string>
-    <string name="information_no_downloads">Brak pobieranych plików</string>
+    <string name="information_no_downloads">Brak pobieranych rozdziałów</string>
     <string name="information_no_recent">Brak ostatnio zaktualizowanych</string>
     <string name="information_no_recent_manga">Nic ostatnio nie czytano</string>
     <string name="download_notifier_downloader_title">Pobieranie</string>
@@ -352,7 +348,8 @@
     <string name="manga_added_library">Dodano do biblioteki</string>
     <string name="manga_removed_library">Usunięto z biblioteki</string>
     <string name="label_migration">Migracja źródła</string>
-    <string name="copied_to_clipboard">Skopiowano do schowka: %1$s</string>
+    <string name="copied_to_clipboard">Skopiowano do schowka:
+\n %1$s</string>
     <string name="copy">Kopiuj</string>
     <string name="label_extension_info">Szczegóły rozszerzenia</string>
     <string name="ext_update">Aktualizuj</string>
@@ -514,4 +511,73 @@
     <string name="in_library">W bibliotece</string>
     <string name="pinned_sources">Przypięte</string>
     <string name="last_used_source">Ostatnio używane</string>
+    <string name="tracking_info">Jednorazowa synchronizacja postępu czytania. Aby ustawić automatyczne śledzenie, odwiedź zakładkę \"Śledzenie\" w wybranych mangach.</string>
+    <string name="channel_backup_restore_complete">Ukończono</string>
+    <string name="channel_backup_restore_progress">Postęp</string>
+    <string name="channel_backup_restore">Kopia zapasowa i przywracanie</string>
+    <string name="channel_ext_updates">Aktualizacje rozszerzeń</string>
+    <string name="information_webview_required">Widok w przeglądarce jest wymagany dla Tachiyomi</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">Dostępna aktualizacja rozszerzenia</item>
+        <item quantity="few">Dostępne %d aktualizacji rozszerzeń</item>
+        <item quantity="many">Dostępne %d aktualizacji rozszerzeń</item>
+        <item quantity="other">Dostępne %d aktualizacji rozszerzeń</item>
+    </plurals>
+    <plurals name="notification_chapters_multiple_and_more">
+        <item quantity="one">Rozdziały %1$s i jeden więcej</item>
+        <item quantity="few">Rozdziały %1$s i %2$d</item>
+        <item quantity="many">Rozdziały %1$s i %2$d</item>
+        <item quantity="other">Rozdziały %1$s i %2$d</item>
+    </plurals>
+    <string name="notification_chapters_multiple">Rozdziały %1$s</string>
+    <string name="notification_chapters_single_and_more">%1$s i %2$d więcej rozdziałów</string>
+    <plurals name="notification_chapters_generic">
+        <item quantity="one">%1$d nowy rozdział</item>
+        <item quantity="few">%1$d nowych rozdziałów</item>
+        <item quantity="many">%1$d nowych rozdziałów</item>
+        <item quantity="other">%1$d nowych rozdziałów</item>
+    </plurals>
+    <plurals name="notification_new_chapters_summary">
+        <item quantity="one">Dla %d tytułu</item>
+        <item quantity="few">Dla %d tytułów</item>
+        <item quantity="many">Dla %d tytułów</item>
+        <item quantity="other">Dla %d tytułów</item>
+    </plurals>
+    <string name="notification_check_updates">Poszukiwanie nowych rozdziałów</string>
+    <string name="viewer">Tryb czytania</string>
+    <string name="track_finished_reading_date">Data zakończenia czytania</string>
+    <string name="track_started_reading_date">Data rozpoczęcia czytania</string>
+    <string name="manga_info_about_label">Opis</string>
+    <string name="manga_info_latest_data_label">Zaktualizowano</string>
+    <string name="local_source_help_guide">Przeglądarka lokalnych źródeł</string>
+    <plurals name="download_queue_summary">
+        <item quantity="one">Pozostał %1$s</item>
+        <item quantity="few">Pozostało %1$s</item>
+        <item quantity="many">Pozostało %1$s</item>
+        <item quantity="other">Pozostało %1$s</item>
+    </plurals>
+    <string name="pref_cutout_short">Pokazuj zawartość w strefie odcięcia</string>
+    <string name="action_display_unread_badge">Plakietki nieprzeczytanych rozdziałów</string>
+    <string name="action_view_chapters">Przeglądaj rozdziały</string>
+    <string name="add_tracking">Dodaj śledzenie</string>
+    <string name="notices">Uwagi dotyczące kompilacji podglądowej</string>
+    <string name="battery_optimization_setting_activity_not_found">Niepowodzenie otwarcia ustawień urządzenia</string>
+    <string name="pref_refresh_library_covers">Odśwież okładki</string>
+    <string name="restoring_backup_error">Przywracanie kopii zapasowej zakończone niepowodzeniem</string>
+    <string name="creating_backup_error">Tworzenie kopii zapasowej zakończone niepowodzeniem</string>
+    <plurals name="restore_completed_message">
+        <item quantity="one">Wykonano w %1$s z %2$s błędem</item>
+        <item quantity="few">Wykonano w %1$s z %2$s błędami</item>
+        <item quantity="many">Wykonano w %1$s z %2$s błędami</item>
+        <item quantity="other">Wykonano w %1$s z %2$s błędami</item>
+    </plurals>
+    <string name="pref_category_reading">Czytane</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 aktualizacja zakończona niepowodzeniem</item>
+        <item quantity="few">%1$d aktualizacji zakończonych niepowodzeniem</item>
+        <item quantity="many">%1$d aktualizacji zakończonych niepowodzeniem</item>
+        <item quantity="other">%1$d aktualizacji zakończonych niepowodzeniem</item>
+    </plurals>
+    <string name="unofficial_extension_message">Te rozszerzenie nie jest na liście oficjalnych rozszerzeń Tachiyomi.</string>
+    <string name="ext_unofficial">Nieoficjalne</string>
 </resources>
