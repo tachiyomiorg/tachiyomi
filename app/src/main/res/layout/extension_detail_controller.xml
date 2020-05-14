@@ -5,6 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/extension_warning_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@color/red_error"
+        android:gravity="center"
+        android:padding="16dp"
+        android:textColor="@android:color/white"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
     <ImageView
         android:id="@+id/extension_icon"
         android:layout_width="56dp"
@@ -13,7 +28,7 @@
         android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toBottomOf="@id/extension_pkg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/extension_title" />
+        app:layout_constraintTop_toBottomOf="@id/extension_warning_banner" />
 
     <TextView
         android:id="@+id/extension_title"
@@ -23,7 +38,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toEndOf="@id/extension_icon"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/extension_warning_banner"
         tools:text="Tachiyomi: Extension" />
 
     <TextView
@@ -60,60 +75,32 @@
         app:layout_constraintTop_toBottomOf="@id/extension_lang"
         tools:text="eu.kanade.tachiyomi.extension.en.myext" />
 
-    <TextView
-        android:id="@+id/extension_warning_banner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/red_error"
-        android:gravity="center"
-        android:padding="16dp"
-        android:textColor="@android:color/white"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/extension_pkg" />
-
     <Button
         android:id="@+id/extension_uninstall_button"
         style="@style/Theme.Widget.Button.FilledAccent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
         android:text="@string/ext_uninstall"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/extension_warning_banner" />
+        app:layout_constraintTop_toBottomOf="@id/extension_lang" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/extension_prefs_recycler"
+    <TextView
+        android:id="@+id/extension_prefs"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/material_component_lists_two_line_height"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/extension_uninstall_button" />
-
-    <eu.kanade.tachiyomi.widget.EmptyView
-        android:id="@+id/extension_prefs_empty_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:gravity="center"
+        android:background="@drawable/list_item_selector"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="@string/ext_preferences"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/extension_uninstall_button" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintTop_toBottomOf="@id/extension_uninstall_button"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
