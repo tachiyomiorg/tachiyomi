@@ -204,7 +204,6 @@
     <string name="history">Povijest</string>
     <string name="track">Praćenje</string>
     <string name="manga">Manga</string>
-    <string name="restore_completed_content">Dovršeno u %1$s sa %2$s pogrešaka</string>
     <string name="restore_duration">%02d min, %02d sek</string>
     <string name="restore_completed">Uspješno vraćanje sigurnosne kopije</string>
     <string name="backup_created">Stvorena je sigurnosna kopija</string>
@@ -507,8 +506,6 @@
     <string name="pref_disable_battery_optimization">Isključiti optimizaciju baterije</string>
     <string name="pref_refresh_library_tracking_summary">Ažurirati će se status, ocjene i posljednja poglavlja svih usluga za praćenje</string>
     <string name="pref_refresh_library_tracking">Osvježavanje metapodataka praćenja</string>
-    <string name="pref_refresh_library_metadata_summary">Ažurirati će se sve naslovnice, žanrovi, opisi i informacije o statusu manga</string>
-    <string name="pref_refresh_library_metadata">Osvježavanje metapodataka biblioteke</string>
     <string name="clear_database_completed">Unosi su izbrisani</string>
     <string name="clear_database_confirmation">Jeste li sigurni\? Pročitana poglavlja i napredak manga u biblioteci će biti izgubljen</string>
     <string name="pref_clear_database_summary">Brisanje manga i poglavlja koja se ne nalaze u biblioteci</string>
