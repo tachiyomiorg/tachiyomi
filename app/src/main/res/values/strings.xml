@@ -206,6 +206,7 @@
     <string name="ext_installing">Installing</string>
     <string name="ext_installed">Installed</string>
     <string name="ext_trust">Trust</string>
+    <string name="ext_unofficial">Unofficial</string>
     <string name="ext_untrusted">Untrusted</string>
     <string name="ext_uninstall">Uninstall</string>
     <string name="ext_preferences">Preferences</string>
@@ -213,6 +214,7 @@
     <string name="untrusted_extension">Untrusted extension</string>
     <string name="untrusted_extension_message">This extension was signed with an untrusted certificate and wasn\'t activated.\n\nA malicious extension could read any login credentials stored in Tachiyomi or execute arbitrary code.\n\nBy trusting this certificate you accept these risks.</string>
     <string name="obsolete_extension_message">This extension is no longer available.</string>
+    <string name="unofficial_extension_message">This extension is not from the official Tachiyomi extensions list.</string>
     <string name="ext_version_info">Version: %1$s</string>
     <string name="ext_language_info">Language: %1$s</string>
     <string name="ext_empty_preferences">No preferences to edit for this extension</string>

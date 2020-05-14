@@ -31,13 +31,13 @@ internal object ExtensionLoader {
 
     private const val PACKAGE_FLAGS = PackageManager.GET_CONFIGURATIONS or PackageManager.GET_SIGNATURES
 
+    // inorichi's key
+    val officialSignature = "7ce04da7773d41b489f4693a366c36bcd0a11fc39b547168553c285bd7348e23"
     /**
      * List of the trusted signatures.
      */
     var trustedSignatures = mutableSetOf<String>() +
-        Injekt.get<PreferencesHelper>().trustedSignatures().get() +
-        // inorichi's key
-        "7ce04da7773d41b489f4693a366c36bcd0a11fc39b547168553c285bd7348e23"
+        Injekt.get<PreferencesHelper>().trustedSignatures().get() + officialSignature
 
     /**
      * Return a list of all the installed extensions initialized concurrently.
@@ -159,7 +159,10 @@ internal object ExtensionLoader {
             else -> "all"
         }
 
-        val extension = Extension.Installed(extName, pkgName, versionName, versionCode, sources, lang)
+        val extension = Extension.Installed(
+            extName, pkgName, versionName, versionCode, sources, lang,
+            isUnofficial = signatureHash != officialSignature
+        )
         return LoadResult.Success(extension)
     }
 

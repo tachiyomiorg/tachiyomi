@@ -84,7 +84,13 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
             .launchIn(scope)
 
         if (extension.isObsolete) {
-            binding.extensionObsolete.visible()
+            binding.extensionWarningBanner.visible()
+            binding.extensionWarningBanner.setText(R.string.obsolete_extension_message)
+        }
+
+        if (extension.isUnofficial) {
+            binding.extensionWarningBanner.visible()
+            binding.extensionWarningBanner.setText(R.string.unofficial_extension_message)
         }
 
         val themedContext by lazy { getPreferenceThemeContext() }

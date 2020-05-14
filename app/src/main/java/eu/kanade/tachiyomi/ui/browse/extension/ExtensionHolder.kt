@@ -91,6 +91,10 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
                     setTextColor(context.getResourceColor(R.attr.colorError))
                     setText(R.string.ext_obsolete)
                 }
+                extension.isUnofficial -> {
+                    setTextColor(context.getResourceColor(R.attr.colorError))
+                    setText(R.string.ext_unofficial)
+                }
                 else -> {
                     setText(R.string.ext_details)
                 }

@@ -61,7 +61,7 @@
         tools:text="eu.kanade.tachiyomi.extension.en.myext" />
 
     <TextView
-        android:id="@+id/extension_obsolete"
+        android:id="@+id/extension_warning_banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -69,7 +69,6 @@
         android:background="@color/red_error"
         android:gravity="center"
         android:padding="16dp"
-        android:text="@string/obsolete_extension_message"
         android:textColor="@android:color/white"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +86,7 @@
         android:text="@string/ext_uninstall"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/extension_obsolete" />
+        app:layout_constraintTop_toBottomOf="@id/extension_warning_banner" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/extension_prefs_recycler"
