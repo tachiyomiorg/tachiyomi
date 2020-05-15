@@ -129,6 +129,7 @@ class ReaderPresenter(
         when (manga.sorting) {
             Manga.SORTING_SOURCE -> ChapterLoadBySource().get(chaptersForReader)
             Manga.SORTING_NUMBER -> ChapterLoadByNumber().get(chaptersForReader, selectedChapter)
+            Manga.SORTING_UPLOAD_DATE -> ChapterLoadByUploadDate().get(chaptersForReader)
             else -> error("Unknown sorting method")
         }.map(::ReaderChapter)
     }

@@ -35,3 +35,12 @@ class ChapterLoadByNumber {
         return chapters.sortedBy { it.chapter_number }
     }
 }
+
+/**
+ * Load strategy using the chapter upload date. This ordering ignores scanlators
+ */
+class ChapterLoadByUploadDate() {
+    fun get(allChapters: List<Chapter>): List<Chapter> {
+        return allChapters.sortedBy { it.date_upload }
+    }
+}
