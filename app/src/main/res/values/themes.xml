@@ -162,10 +162,7 @@
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
     </style>
 
-    <!--==============-->
-    <!-- Amoled Theme -->
-    <!--==============-->
-    <style name="Theme.Base.Amoled" parent="Theme.Base.Dark">
+    <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Dark">
         <item name="colorPrimary">@color/colorAmoledPrimary</item>
         <item name="colorPrimaryVariant">@color/colorAmoledPrimary</item>
         <item name="colorSurface">@color/colorAmoledPrimary</item>
@@ -178,10 +175,6 @@
         <!-- Custom Attributes-->
         <item name="colorLibrarySelection">@color/selectorColorDark</item>
         <item name="colorLibrarySelectionActive">@color/selectorColorDark</item>
-    </style>
-
-    <style name="Theme.Tachiyomi.Amoled" parent="Theme.Base.Amoled">
-        <!-- Attributes specific for SDK 16 to SDK 20 -->
     </style>
 
     <!--==============-->
