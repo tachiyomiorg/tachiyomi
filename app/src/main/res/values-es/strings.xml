@@ -183,6 +183,7 @@
     <string name="sorting_mode">Ordenado de capítulos</string>
     <string name="sort_by_source">Por fuente</string>
     <string name="sort_by_number">Por número de capítulo</string>
+    <string name="sort_by_upload_date">Por fecha de carga</string>
     <string name="manga_download">Descargar</string>
     <string name="download_1">Siguiente capítulo</string>
     <string name="download_5">Siguientes 5 capítulos</string>

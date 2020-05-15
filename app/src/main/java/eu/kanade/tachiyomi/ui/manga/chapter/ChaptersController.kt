@@ -196,11 +196,13 @@ class ChaptersController :
         }
 
         // Sorting mode submenu
-        if (presenter.manga.sorting == Manga.SORTING_SOURCE) {
-            menu.findItem(R.id.sort_by_source).isChecked = true
-        } else {
-            menu.findItem(R.id.sort_by_number).isChecked = true
+        val sortingItem = when (presenter.manga.sorting) {
+            Manga.SORTING_SOURCE -> R.id.sort_by_source
+            Manga.SORTING_NUMBER -> R.id.sort_by_number
+            Manga.SORTING_UPLOAD_DATE -> R.id.sort_by_upload_date
+            else -> throw NotImplementedError("Unimplemented sorting method")
         }
+        menu.findItem(sortingItem).isChecked = true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -221,6 +223,10 @@ class ChaptersController :
             R.id.sort_by_number -> {
                 item.isChecked = true
                 presenter.setSorting(Manga.SORTING_NUMBER)
+            }
+            R.id.sort_by_upload_date -> {
+                item.isChecked = true
+                presenter.setSorting(Manga.SORTING_UPLOAD_DATE)
             }
 
             R.id.download_next, R.id.download_next_5, R.id.download_next_10,

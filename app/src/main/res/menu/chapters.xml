@@ -64,6 +64,9 @@
                 <item
                     android:id="@+id/sort_by_number"
                     android:title="@string/sort_by_number" />
+                <item
+                    android:id="@+id/sort_by_upload_date"
+                    android:title="@string/sort_by_upload_date" />
             </group>
         </menu>
     </item>

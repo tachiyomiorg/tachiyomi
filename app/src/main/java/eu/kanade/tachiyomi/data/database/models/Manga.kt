@@ -78,7 +78,8 @@ interface Manga : SManga {
 
         const val SORTING_SOURCE = 0x00000000
         const val SORTING_NUMBER = 0x00000100
-        const val SORTING_MASK = 0x00000100
+        const val SORTING_UPLOAD_DATE = 0x00000200
+        const val SORTING_MASK = 0x00000300
 
         const val DISPLAY_NAME = 0x00000000
         const val DISPLAY_NUMBER = 0x00100000

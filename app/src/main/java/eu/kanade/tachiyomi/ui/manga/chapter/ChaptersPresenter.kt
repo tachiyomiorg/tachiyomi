@@ -203,6 +203,10 @@ class ChaptersPresenter(
                 true -> { c1, c2 -> c2.chapter_number.compareTo(c1.chapter_number) }
                 false -> { c1, c2 -> c1.chapter_number.compareTo(c2.chapter_number) }
             }
+            Manga.SORTING_UPLOAD_DATE -> when (sortDescending()) {
+                true -> { c1, c2 -> c2.date_upload.compareTo(c1.date_upload) }
+                false -> { c1, c2 -> c1.date_upload.compareTo(c2.date_upload) }
+            }
             else -> throw NotImplementedError("Unimplemented sorting method")
         }
         return observable.toSortedList(sortFunction)

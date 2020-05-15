@@ -473,6 +473,7 @@
     <string name="sorting_mode">Sorting mode</string>
     <string name="sort_by_source">By source</string>
     <string name="sort_by_number">By chapter number</string>
+    <string name="sort_by_upload_date">By chapter upload date</string>
     <string name="manga_download">Download</string>
     <string name="custom_download">Download custom amount</string>
     <string name="download_1">Next chapter</string>
