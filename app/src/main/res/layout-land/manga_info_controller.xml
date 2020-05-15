@@ -312,8 +312,6 @@
                     style="@style/Theme.Widget.Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
                     android:text="@string/manga_info_expand"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
