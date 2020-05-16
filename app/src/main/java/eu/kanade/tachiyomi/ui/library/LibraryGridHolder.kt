@@ -60,6 +60,7 @@ class LibraryGridHolder(
             .load(item.manga.toMangaThumbnail())
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .centerCrop()
+            .dontAnimate()
             .into(thumbnail)
     }
 }
