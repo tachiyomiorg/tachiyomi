@@ -327,6 +327,7 @@
     <string name="pref_backup_slots">Maximum backups</string>
     <string name="source_not_found">Source not found</string>
     <string name="source_not_found_name">Source not found: %1$s</string>
+    <string name="tracker_not_logged_in">Not logged in: %1$s</string>
     <string name="backup_created">Backup created</string>
     <string name="invalid_backup_file">Invalid backup file</string>
     <string name="invalid_backup_file_missing_data">File is missing data.</string>

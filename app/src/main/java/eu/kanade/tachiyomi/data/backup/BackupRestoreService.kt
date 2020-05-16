@@ -426,7 +426,7 @@ class BackupRestoreService : Service() {
                             track
                         }
                 } else {
-                    errors.add(Date() to "${manga.title} - ${service?.name} not logged in")
+                    errors.add(Date() to "${manga.title} - ${getString(R.string.tracker_not_logged_in, service?.name)}")
                     Observable.empty()
                 }
             }
