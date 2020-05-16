@@ -38,9 +38,9 @@ class MigrationController :
         super.onViewCreated(view)
 
         adapter = FlexibleAdapter(null, this)
-        binding.migrationRecycler.layoutManager = LinearLayoutManager(view.context)
-        binding.migrationRecycler.adapter = adapter
-        binding.migrationRecycler.addItemDecoration(SourceDividerItemDecoration(view.context))
+        binding.recycler.layoutManager = LinearLayoutManager(view.context)
+        binding.recycler.adapter = adapter
+        binding.recycler.addItemDecoration(SourceDividerItemDecoration(view.context))
     }
 
     override fun onDestroyView(view: View) {
@@ -66,14 +66,16 @@ class MigrationController :
             title = resources?.getString(R.string.label_migration)
             if (adapter !is SourceAdapter) {
                 adapter = SourceAdapter(this)
-                binding.migrationRecycler.adapter = adapter
+                binding.recycler.adapter = adapter
+                adapter?.fastScroller = binding.fastScroller
             }
             adapter?.updateDataSet(state.sourcesWithManga)
         } else {
             title = state.selectedSource.toString()
             if (adapter !is MangaAdapter) {
                 adapter = MangaAdapter(this)
-                binding.migrationRecycler.adapter = adapter
+                binding.recycler.adapter = adapter
+                adapter?.fastScroller = binding.fastScroller
             }
             adapter?.updateDataSet(state.mangaForSource)
         }
