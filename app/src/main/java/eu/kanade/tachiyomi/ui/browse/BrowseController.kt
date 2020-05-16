@@ -95,10 +95,6 @@ class BrowseController :
         tabs.getTabAt(EXTENSIONS_CONTROLLER)?.removeBadge()
     }
 
-    fun pushController(transaction: RouterTransaction) {
-        router.pushController(transaction)
-    }
-
     fun setExtensionUpdateBadge() {
         activity?.tabs?.apply {
             val updates = preferences.extensionUpdatesCount().get()

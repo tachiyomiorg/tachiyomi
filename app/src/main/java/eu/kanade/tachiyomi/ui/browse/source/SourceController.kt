@@ -185,7 +185,7 @@ class SourceController :
      */
     private fun openCatalogue(source: CatalogueSource, controller: BrowseSourceController) {
         preferences.lastUsedCatalogueSource().set(source.id)
-        (parentController as BrowseController).pushController(controller.withFadeTransaction())
+        parentController!!.router.pushController(controller.withFadeTransaction())
     }
 
     /**
@@ -214,7 +214,7 @@ class SourceController :
     }
 
     private fun performGlobalSearch(query: String) {
-        (parentController as BrowseController).pushController(
+        parentController!!.router.pushController(
             GlobalSearchController(query).withFadeTransaction()
         )
     }
@@ -229,7 +229,7 @@ class SourceController :
         when (item.itemId) {
             // Initialize option to open catalogue settings.
             R.id.action_settings -> {
-                (parentController as BrowseController).pushController(
+                parentController!!.router.pushController(
                     SettingsSourcesController().withFadeTransaction()
                 )
             }

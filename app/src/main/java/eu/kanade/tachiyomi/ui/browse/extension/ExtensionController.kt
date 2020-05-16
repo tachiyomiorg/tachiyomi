@@ -87,7 +87,7 @@ open class ExtensionController :
         when (item.itemId) {
             R.id.action_search -> expandActionViewFromInteraction = true
             R.id.action_settings -> {
-                (parentController as BrowseController).pushController(
+                parentController!!.router.pushController(
                     ExtensionFilterController().withFadeTransaction()
                 )
             }
@@ -167,7 +167,7 @@ open class ExtensionController :
 
     private fun openDetails(extension: Extension.Installed) {
         val controller = ExtensionDetailsController(extension.pkgName)
-        (parentController as BrowseController).pushController(controller.withFadeTransaction())
+        parentController!!.router.pushController(controller.withFadeTransaction())
     }
 
     private fun openTrustDialog(extension: Extension.Untrusted) {
