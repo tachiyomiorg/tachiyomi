@@ -36,12 +36,20 @@ class TachiGlideModule : AppGlideModule() {
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
         val networkFactory = OkHttpUrlLoader.Factory(Injekt.get<NetworkHelper>().client)
 
-        registry.replace(GlideUrl::class.java, InputStream::class.java, networkFactory)
-        registry.append(MangaThumbnail::class.java, InputStream::class.java, MangaThumbnailModelLoader.Factory())
+        registry.replace(
+            GlideUrl::class.java,
+            InputStream::class.java,
+            networkFactory
+        )
         registry.append(
-            InputStream::class.java, InputStream::class.java,
-            PassthroughModelLoader
-                .Factory()
+            MangaThumbnail::class.java,
+            InputStream::class.java,
+            MangaThumbnailModelLoader.Factory()
+        )
+        registry.append(
+            InputStream::class.java,
+            InputStream::class.java,
+            PassthroughModelLoader.Factory()
         )
     }
 }

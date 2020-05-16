@@ -3,7 +3,7 @@ package eu.kanade.tachiyomi.data.library
 import eu.kanade.tachiyomi.data.database.models.Manga
 
 /**
- * This class will provide various functions to Rank mangas to efficiently schedule mangas to update.
+ * This class will provide various functions to rank manga to efficiently schedule manga to update.
  */
 object LibraryUpdateRanker {
 
@@ -13,7 +13,7 @@ object LibraryUpdateRanker {
     )
 
     /**
-     * Provides a total ordering over all the Mangas.
+     * Provides a total ordering over all the [Manga]s.
      *
      * Assumption: An active [Manga] mActive is expected to have been last updated after an
      * inactive [Manga] mInactive.
@@ -21,23 +21,19 @@ object LibraryUpdateRanker {
      * Using this insight, function returns a Comparator for which mActive appears before mInactive.
      * @return a Comparator that ranks manga based on relevance.
      */
-    fun latestFirstRanking(): Comparator<Manga> {
-        return Comparator { mangaFirst: Manga,
-            mangaSecond: Manga ->
-            compareValues(mangaSecond.last_update, mangaFirst.last_update)
+    private fun latestFirstRanking(): Comparator<Manga> =
+        Comparator { first: Manga, second: Manga ->
+            compareValues(second.last_update, first.last_update)
         }
-    }
 
     /**
-     * Provides a total ordering over all the Mangas.
+     * Provides a total ordering over all the [Manga]s.
      *
      * Order the manga lexicographically.
      * @return a Comparator that ranks manga lexicographically based on the title.
      */
-    fun lexicographicRanking(): Comparator<Manga> {
-        return Comparator { mangaFirst: Manga,
-            mangaSecond: Manga ->
-            compareValues(mangaFirst.title, mangaSecond.title)
+    private fun lexicographicRanking(): Comparator<Manga> =
+        Comparator { first: Manga, second: Manga ->
+            compareValues(first.title, second.title)
         }
-    }
 }
