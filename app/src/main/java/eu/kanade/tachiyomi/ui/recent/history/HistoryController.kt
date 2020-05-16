@@ -64,6 +64,7 @@ class HistoryController :
         adapter = HistoryAdapter(this@HistoryController)
         binding.recycler.setHasFixedSize(true)
         binding.recycler.adapter = adapter
+        adapter?.fastScroller = binding.fastScroller
     }
 
     override fun onDestroyView(view: View) {

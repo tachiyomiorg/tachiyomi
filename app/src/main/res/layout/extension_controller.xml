@@ -6,12 +6,12 @@
     android:layout_height="match_parent">
 
     <eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout
-        android:id="@+id/ext_swipe_refresh"
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ext_recycler"
+            android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/source_main_controller_card_header" />

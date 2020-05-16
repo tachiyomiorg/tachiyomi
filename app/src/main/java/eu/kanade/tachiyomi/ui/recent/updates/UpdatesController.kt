@@ -93,6 +93,7 @@ class UpdatesController :
         binding.recycler.setHasFixedSize(true)
         adapter = UpdatesAdapter(this@UpdatesController)
         binding.recycler.adapter = adapter
+        adapter?.fastScroller = binding.fastScroller
 
         binding.recycler.scrollStateChanges()
             .onEach {

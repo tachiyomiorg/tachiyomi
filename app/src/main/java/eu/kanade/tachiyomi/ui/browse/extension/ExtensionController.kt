@@ -64,17 +64,17 @@ open class ExtensionController :
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
 
-        binding.extSwipeRefresh.isRefreshing = true
-        binding.extSwipeRefresh.refreshes()
+        binding.swipeRefresh.isRefreshing = true
+        binding.swipeRefresh.refreshes()
             .onEach { presenter.findAvailableExtensions() }
             .launchIn(scope)
 
         // Initialize adapter, scroll listener and recycler views
         adapter = ExtensionAdapter(this)
         // Create recycler and set adapter.
-        binding.extRecycler.layoutManager = LinearLayoutManager(view.context)
-        binding.extRecycler.adapter = adapter
-        binding.extRecycler.addItemDecoration(ExtensionDividerItemDecoration(view.context))
+        binding.recycler.layoutManager = LinearLayoutManager(view.context)
+        binding.recycler.adapter = adapter
+        binding.recycler.addItemDecoration(ExtensionDividerItemDecoration(view.context))
         adapter?.fastScroller = binding.fastScroller
     }
 
@@ -176,7 +176,7 @@ open class ExtensionController :
     }
 
     fun setExtensions(extensions: List<ExtensionItem>) {
-        binding.extSwipeRefresh.isRefreshing = false
+        binding.swipeRefresh.isRefreshing = false
         this.extensions = extensions
         drawExtensions()
 
