@@ -78,6 +78,7 @@
     <string name="action_move">Move</string>
     <string name="action_open_in_browser">Open in browser</string>
     <string name="action_open_in_web_view">Open in WebView</string>
+    <string name="action_migrate">Migrate</string>
     <string name="action_display_mode">Display mode</string>
     <string name="action_display">Display</string>
     <string name="action_display_grid">Grid</string>

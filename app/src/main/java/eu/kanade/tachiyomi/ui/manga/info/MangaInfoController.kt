@@ -4,6 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -27,6 +30,7 @@ import eu.kanade.tachiyomi.ui.library.ChangeMangaCategoriesDialog
 import eu.kanade.tachiyomi.ui.library.LibraryController
 import eu.kanade.tachiyomi.ui.main.MainActivity
 import eu.kanade.tachiyomi.ui.manga.MangaController
+import eu.kanade.tachiyomi.ui.migration.SearchController
 import eu.kanade.tachiyomi.ui.recent.history.HistoryController
 import eu.kanade.tachiyomi.ui.recent.updates.UpdatesController
 import eu.kanade.tachiyomi.ui.webview.WebViewActivity
@@ -65,6 +69,11 @@ class MangaInfoController(private val fromSource: Boolean = false) :
     }
 
     private var initialLoad: Boolean = true
+
+    init {
+        setHasOptionsMenu(true)
+        setOptionsMenuHidden(true)
+    }
 
     override fun createPresenter(): MangaInfoPresenter {
         val ctrl = parentController as MangaController
@@ -115,7 +124,10 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
         binding.mangaFullTitle.longClicks()
             .onEach {
-                activity?.copyToClipboard(view.context.getString(R.string.title), binding.mangaFullTitle.text.toString())
+                activity?.copyToClipboard(
+                    view.context.getString(R.string.title),
+                    binding.mangaFullTitle.text.toString()
+                )
             }
             .launchIn(scope)
 
@@ -127,7 +139,10 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
         binding.mangaArtist.longClicks()
             .onEach {
-                activity?.copyToClipboard(binding.mangaArtistLabel.text.toString(), binding.mangaArtist.text.toString())
+                activity?.copyToClipboard(
+                    binding.mangaArtistLabel.text.toString(),
+                    binding.mangaArtist.text.toString()
+                )
             }
             .launchIn(scope)
 
@@ -139,7 +154,10 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
         binding.mangaAuthor.longClicks()
             .onEach {
-                activity?.copyToClipboard(binding.mangaAuthor.text.toString(), binding.mangaAuthor.text.toString())
+                activity?.copyToClipboard(
+                    binding.mangaAuthor.text.toString(),
+                    binding.mangaAuthor.text.toString()
+                )
             }
             .launchIn(scope)
 
@@ -151,15 +169,32 @@ class MangaInfoController(private val fromSource: Boolean = false) :
 
         binding.mangaSummary.longClicks()
             .onEach {
-                activity?.copyToClipboard(view.context.getString(R.string.description), binding.mangaSummary.text.toString())
+                activity?.copyToClipboard(
+                    view.context.getString(R.string.description),
+                    binding.mangaSummary.text.toString()
+                )
             }
             .launchIn(scope)
 
         binding.mangaCover.longClicks()
             .onEach {
-                activity?.copyToClipboard(view.context.getString(R.string.title), presenter.manga.title)
+                activity?.copyToClipboard(
+                    view.context.getString(R.string.title),
+                    presenter.manga.title
+                )
             }
             .launchIn(scope)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.manga_info, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_migrate -> migrateManga()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     /**
@@ -297,7 +332,8 @@ class MangaInfoController(private val fromSource: Boolean = false) :
     }
 
     private fun toggleMangaInfo(context: Context) {
-        val isExpanded = binding.mangaInfoToggle.text == context.getString(R.string.manga_info_collapse)
+        val isExpanded =
+            binding.mangaInfoToggle.text == context.getString(R.string.manga_info_collapse)
 
         binding.mangaInfoToggle.text =
             if (isExpanded) {
@@ -407,8 +443,12 @@ class MangaInfoController(private val fromSource: Boolean = false) :
         // Set the Favorite drawable to the correct one.
         // Border drawable if false, filled drawable if true.
         binding.btnFavorite.apply {
-            icon = ContextCompat.getDrawable(context, if (isFavorite) R.drawable.ic_favorite_24dp else R.drawable.ic_favorite_border_24dp)
-            text = context.getString(if (isFavorite) R.string.in_library else R.string.add_to_library)
+            icon = ContextCompat.getDrawable(
+                context,
+                if (isFavorite) R.drawable.ic_favorite_24dp else R.drawable.ic_favorite_border_24dp
+            )
+            text =
+                context.getString(if (isFavorite) R.string.in_library else R.string.add_to_library)
             isChecked = isFavorite
         }
     }
@@ -508,6 +548,15 @@ class MangaInfoController(private val fromSource: Boolean = false) :
         }
 
         presenter.moveMangaToCategories(manga, categories)
+    }
+
+    /**
+     * Initiates source migration for the specific manga.
+     */
+    private fun migrateManga() {
+        val controller = SearchController(presenter.manga)
+        controller.targetController = this
+        parentController!!.router.pushController(controller.withFadeTransaction())
     }
 
     /**
