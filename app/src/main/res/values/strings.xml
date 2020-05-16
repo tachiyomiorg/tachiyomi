@@ -209,7 +209,6 @@
     <string name="ext_unofficial">Unofficial</string>
     <string name="ext_untrusted">Untrusted</string>
     <string name="ext_uninstall">Uninstall</string>
-    <string name="ext_preferences">Preferences</string>
     <string name="ext_available">Available</string>
     <string name="untrusted_extension">Untrusted extension</string>
     <string name="untrusted_extension_message">This extension was signed with an untrusted certificate and wasn\'t activated.\n\nA malicious extension could read any login credentials stored in Tachiyomi or execute arbitrary code.\n\nBy trusting this certificate you accept these risks.</string>
@@ -327,14 +326,19 @@
     <string name="pref_backup_interval">Backup frequency</string>
     <string name="pref_backup_slots">Maximum backups</string>
     <string name="source_not_found">Source not found</string>
+    <string name="source_not_found_name">Source not found: %1$s</string>
     <string name="backup_created">Backup created</string>
+    <string name="invalid_backup_file">Invalid backup file</string>
+    <string name="invalid_backup_file_missing_data">File is missing data.</string>
+    <string name="invalid_backup_file_missing_manga">Backup does not contain any manga.</string>
+    <string name="backup_restore_missing_sources">Missing sources:</string>
+    <string name="backup_restore_content">Restore uses sources to fetch data, carrier costs may apply.\n\nMake sure you have installed all necessary extensions and are logged in to sources and tracking services before restoring.</string>
     <string name="restore_completed">Restore completed</string>
     <string name="restore_duration">%02d min, %02d sec</string>
     <plurals name="restore_completed_message">
         <item quantity="one">Done in %1$s with %2$s error</item>
         <item quantity="other">Done in %1$s with %2$s errors</item>
     </plurals>
-    <string name="backup_restore_content">Restore uses sources to fetch data, carrier costs may apply.\n\nMake sure you have installed all necessary extensions and are logged in to sources and tracking services before restoring.</string>
     <string name="backup_in_progress">Backup is already in progress</string>
     <string name="backup_choice">What do you want to backup?</string>
     <string name="creating_backup">Creating backup</string>

@@ -96,7 +96,7 @@
         android:background="@drawable/list_item_selector"
         android:gravity="center_vertical"
         android:padding="16dp"
-        android:text="@string/ext_preferences"
+        android:text="@string/label_settings"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -16,9 +16,11 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.backup.BackupCreateService
 import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
 import eu.kanade.tachiyomi.data.backup.BackupRestoreService
+import eu.kanade.tachiyomi.data.backup.BackupRestoreValidator
 import eu.kanade.tachiyomi.data.backup.models.Backup
 import eu.kanade.tachiyomi.data.preference.PreferenceKeys as Keys
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
+import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
 import eu.kanade.tachiyomi.util.preference.defaultValue
@@ -34,6 +36,8 @@ import eu.kanade.tachiyomi.util.system.getFilePicker
 import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 class SettingsBackupController : SettingsController() {
 
@@ -247,15 +251,36 @@ class SettingsBackupController : SettingsController() {
         )
 
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
-            return MaterialDialog(activity!!)
-                .title(R.string.pref_restore_backup)
-                .message(R.string.backup_restore_content)
-                .positiveButton(R.string.action_restore) {
-                    val context = applicationContext
-                    if (context != null) {
-                        BackupRestoreService.start(context, args.getParcelable(KEY_URI)!!)
+            val activity = activity!!
+            val uri: Uri = args.getParcelable(KEY_URI)!!
+
+            return try {
+                var message = activity.getString(R.string.backup_restore_content)
+
+                val sources = BackupRestoreValidator.validate(activity, uri)
+                if (sources.isNotEmpty()) {
+                    val sourceManager = Injekt.get<SourceManager>()
+                    val missingSources = sources
+                        .filter { sourceManager.get(it.key) == null }
+                        .values
+                        .sorted()
+                    if (missingSources.isNotEmpty()) {
+                        message += "\n\n${activity.getString(R.string.backup_restore_missing_sources)}\n${missingSources.joinToString("\n") { "- $it" }}"
                     }
                 }
+
+                MaterialDialog(activity)
+                    .title(R.string.pref_restore_backup)
+                    .message(text = message)
+                    .positiveButton(R.string.action_restore) {
+                        BackupRestoreService.start(activity, uri)
+                    }
+            } catch (e: Exception) {
+                MaterialDialog(activity)
+                    .title(R.string.invalid_backup_file)
+                    .message(text = e.message)
+                    .positiveButton(android.R.string.cancel)
+            }
         }
 
         private companion object {

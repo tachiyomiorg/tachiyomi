@@ -111,6 +111,11 @@ class BackupRestoreService : Service() {
     private var restoreAmount = 0
 
     /**
+     * Mapping of source ID to source name from backup data
+     */
+    private var sourceMapping: Map<Long, String> = emptyMap()
+
+    /**
      * List containing errors
      */
     private val errors = mutableListOf<Pair<Date, String>>()
@@ -212,6 +217,9 @@ class BackupRestoreService : Service() {
         // Restore categories
         restoreCategories(json.get(CATEGORIES))
 
+        // Store source mapping for error messages
+        sourceMapping = BackupRestoreValidator.getSourceMapping(json)
+
         // Restore individual manga
         mangasJson.forEach {
             if (job?.isActive != true) {
@@ -259,9 +267,20 @@ class BackupRestoreService : Service() {
         )
 
         try {
-            restoreMangaData(manga, chapters, categories, history, tracks)
+            val source = backupManager.sourceManager.get(manga.source)
+            if (source != null) {
+                restoreMangaData(manga, source, chapters, categories, history, tracks)
+            } else {
+                val message = if (manga.source in sourceMapping) {
+                    getString(R.string.source_not_found_name, sourceMapping[manga.source])
+                } else {
+                    getString(R.string.source_not_found)
+                }
+
+                errors.add(Date() to "${manga.title} - $message")
+            }
         } catch (e: Exception) {
-            errors.add(Date() to "${manga.title} - ${getString(R.string.source_not_found)}")
+            errors.add(Date() to "${manga.title} - ${e.message}")
         }
 
         restoreProgress += 1
@@ -272,6 +291,7 @@ class BackupRestoreService : Service() {
      * Returns a manga restore observable
      *
      * @param manga manga data from json
+     * @param source source to get manga data from
      * @param chapters chapters data from json
      * @param categories categories data from json
      * @param history history data from json
@@ -279,13 +299,12 @@ class BackupRestoreService : Service() {
      */
     private fun restoreMangaData(
         manga: Manga,
+        source: Source,
         chapters: List<Chapter>,
         categories: List<String>,
         history: List<DHistory>,
         tracks: List<Track>
     ) {
-        // Get source
-        val source = backupManager.sourceManager.getOrStub(manga.source)
         val dbManga = backupManager.getMangaFromDatabase(manga)
 
         db.inTransaction {
