@@ -17,8 +17,11 @@ class LibraryUpdateJob(private val context: Context, workerParams: WorkerParamet
     Worker(context, workerParams) {
 
     override fun doWork(): Result {
-        LibraryUpdateService.start(context)
-        return Result.success()
+        return if (LibraryUpdateService.start(context)) {
+            Result.success()
+        } else {
+            Result.failure()
+        }
     }
 
     companion object {
