@@ -119,10 +119,8 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
                     }
             }
             Manga.SORTING_UPLOAD_DATE -> {
-                val dateUpload = chapter.date_upload
-                ((currChapterIndex + 1) until chapters.size)
-                    .map { chapters[it] }
-                    .firstOrNull { it.date_upload > dateUpload }
+                chapters.drop(currChapterIndex + 1)
+                        .firstOrNull { it.date_upload >= chapter.date_upload}
             }
             else -> throw NotImplementedError("Unknown sorting method")
         }
