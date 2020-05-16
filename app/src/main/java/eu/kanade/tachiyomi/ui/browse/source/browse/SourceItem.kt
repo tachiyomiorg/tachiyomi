@@ -34,9 +34,6 @@ class SourceItem(val manga: Manga, private val catalogueAsList: Preference<Boole
         val parent = adapter.recyclerView
         return if (parent is AutofitRecyclerView) {
             view.apply {
-                // Setting this via XML doesn't work
-                card.clipToOutline = true
-
                 card.layoutParams = FrameLayout.LayoutParams(
                     MATCH_PARENT, parent.itemWidth / 3 * 4
                 )

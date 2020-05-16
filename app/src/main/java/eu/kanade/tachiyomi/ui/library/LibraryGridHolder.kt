@@ -7,6 +7,7 @@ import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.view.visibleIf
+import kotlinx.android.synthetic.main.source_grid_item.card
 import kotlinx.android.synthetic.main.source_grid_item.download_text
 import kotlinx.android.synthetic.main.source_grid_item.local_text
 import kotlinx.android.synthetic.main.source_grid_item.thumbnail
@@ -49,6 +50,9 @@ class LibraryGridHolder(
         }
         // set local visibility if its local manga
         local_text.visibleIf { item.manga.isLocal() }
+
+        // Setting this via XML doesn't work
+        card.clipToOutline = true
 
         // Update the cover.
         GlideApp.with(view.context).clear(thumbnail)

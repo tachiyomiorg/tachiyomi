@@ -7,6 +7,7 @@ import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.widget.StateImageViewTarget
+import kotlinx.android.synthetic.main.source_grid_item.card
 import kotlinx.android.synthetic.main.source_grid_item.progress
 import kotlinx.android.synthetic.main.source_grid_item.thumbnail
 import kotlinx.android.synthetic.main.source_grid_item.title
@@ -39,6 +40,9 @@ class SourceGridHolder(private val view: View, private val adapter: FlexibleAdap
     }
 
     override fun setImage(manga: Manga) {
+        // Setting this via XML doesn't work
+        card.clipToOutline = true
+
         GlideApp.with(view.context).clear(thumbnail)
         if (!manga.thumbnail_url.isNullOrEmpty()) {
             GlideApp.with(view.context)

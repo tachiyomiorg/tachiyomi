@@ -39,9 +39,6 @@ class LibraryItem(val manga: LibraryManga, private val libraryAsList: Preference
         val parent = adapter.recyclerView
         return if (parent is AutofitRecyclerView) {
             view.apply {
-                // Setting this via XML doesn't work
-                card.clipToOutline = true
-
                 val coverHeight = parent.itemWidth / 3 * 4
                 card.layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, coverHeight)
                 gradient.layoutParams = FrameLayout.LayoutParams(
