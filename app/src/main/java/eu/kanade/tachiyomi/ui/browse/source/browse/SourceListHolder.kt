@@ -38,6 +38,9 @@ class SourceListHolder(private val view: View, adapter: FlexibleAdapter<*>) :
         title.text = manga.title
         title.setTextColor(if (manga.favorite) favoriteColor else unfavoriteColor)
 
+        // Set alpha of thumbnail.
+        thumbnail.alpha = if (manga.favorite) 0.3f else 1.0f
+
         setImage(manga)
     }
 
