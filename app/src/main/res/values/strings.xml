@@ -12,6 +12,7 @@
 
     <!-- Activities and fragments labels (toolbar title) -->
     <string name="label_more">More</string>
+    <string name="label_stats">Stats</string>
     <string name="label_settings">Settings</string>
     <string name="label_download_queue">Download queue</string>
     <string name="label_library">Library</string>
@@ -649,5 +650,12 @@
     <string name="channel_backup_restore">Backup and restore</string>
     <string name="channel_backup_restore_progress">Progress</string>
     <string name="channel_backup_restore_complete">Complete</string>
+
+    <!-- Stats -->
+    <string name="stats_total">Total</string>
+    <string name="stats_status_totals">Total Manga By Status</string>
+    <string name="stats_source_status_totals">Status Breakdown By Source</string>
+    <string name="stats_sources_with_faves">Number of sources with bookmarked manga</string>
+
 
 </resources>

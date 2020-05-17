@@ -79,6 +79,14 @@ class MoreController :
 
         preferenceCategory {
             preference {
+                titleRes = R.string.label_stats
+                iconRes = R.drawable.ic_format_list_bulleted_black_24dp
+                iconTint = tintColor
+                onClick {
+                    router.pushController(StatsMainController().withFadeTransaction())
+                }
+            }
+            preference {
                 titleRes = R.string.label_settings
                 iconRes = R.drawable.ic_settings_24dp
                 iconTint = tintColor
