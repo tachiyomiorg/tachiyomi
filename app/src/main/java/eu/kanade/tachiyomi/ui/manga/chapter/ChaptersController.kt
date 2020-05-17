@@ -257,7 +257,11 @@ class ChaptersController :
     }
 
     fun onNextChapters(chapters: List<ChapterItem>) {
-        initialFetchChapters()
+        // If the list is empty and it hasn't requested previously, fetch chapters from source
+        // We use presenter chapters instead because they are always unfiltered
+        if (!presenter.hasRequested && presenter.chapters.isEmpty()) {
+            fetchChaptersFromSource()
+        }
 
         val adapter = adapter ?: return
         adapter.updateDataSet(chapters)
@@ -272,14 +276,6 @@ class ChaptersController :
                 }
             }
             actionMode?.invalidate()
-        }
-    }
-
-    private fun initialFetchChapters() {
-        // If the list is empty and it hasn't requested previously, fetch chapters from source
-        // We use presenter chapters instead because they are always unfiltered
-        if (!presenter.hasRequested && presenter.chapters.isEmpty()) {
-            fetchChaptersFromSource()
         }
     }
 
