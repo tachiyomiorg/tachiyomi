@@ -23,6 +23,7 @@ import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SManga
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.prepUpdateCover
+import eu.kanade.tachiyomi.util.shouldDownloadNewChapters
 import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.system.acquireWakeLock
 import eu.kanade.tachiyomi.util.system.isServiceRunning
@@ -256,10 +257,6 @@ class LibraryUpdateService(
         val newUpdates = ArrayList<Pair<LibraryManga, Array<Chapter>>>()
         // List containing failed updates
         val failedUpdates = ArrayList<Pair<Manga, String?>>()
-        // List containing categories that get included in downloads.
-        val categoriesToDownload = preferences.downloadNewCategories().get().map(String::toInt)
-        // Boolean to determine if user wants to automatically download new chapters.
-        val downloadNew = preferences.downloadNew().get()
         // Boolean to determine if DownloadManager has downloads
         var hasDownloads = false
 
@@ -278,11 +275,7 @@ class LibraryUpdateService(
                     // Filter out mangas without new chapters (or failed).
                     .filter { pair -> pair.first.isNotEmpty() }
                     .doOnNext {
-                        if (downloadNew && (
-                            categoriesToDownload.isEmpty() ||
-                                manga.category in categoriesToDownload
-                            )
-                        ) {
+                        if (manga.shouldDownloadNewChapters(db, preferences)) {
                             downloadChapters(manga, it.first)
                             hasDownloads = true
                         }
@@ -309,7 +302,7 @@ class LibraryUpdateService(
 
                 if (newUpdates.isNotEmpty()) {
                     notifier.showUpdateNotifications(newUpdates)
-                    if (downloadNew && hasDownloads) {
+                    if (hasDownloads) {
                         DownloadService.start(this)
                     }
                 }
@@ -326,14 +319,9 @@ class LibraryUpdateService(
     }
 
     private fun downloadChapters(manga: Manga, chapters: List<Chapter>) {
-        // we need to get the chapters from the db so we have chapter ids
-        val mangaChapters = db.getChapters(manga).executeAsBlocking()
-        val dbChapters = chapters.map {
-            mangaChapters.find { mangaChapter -> mangaChapter.url == it.url }!!
-        }
         // We don't want to start downloading while the library is updating, because websites
         // may don't like it and they could ban the user.
-        downloadManager.downloadChapters(manga, dbChapters, false)
+        downloadManager.downloadChapters(manga, chapters, false)
     }
 
     /**

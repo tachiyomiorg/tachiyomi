@@ -14,6 +14,7 @@ import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
+import eu.kanade.tachiyomi.util.shouldDownloadNewChapters
 import java.util.Date
 import rx.Observable
 import rx.Subscription
@@ -153,13 +154,18 @@ class ChaptersPresenter(
     /**
      * Requests an updated list of chapters from the source.
      */
-    fun fetchChaptersFromSource() {
+    fun fetchChaptersFromSource(manualFetch: Boolean = false) {
         hasRequested = true
 
         if (!fetchChaptersSubscription.isNullOrUnsubscribed()) return
         fetchChaptersSubscription = Observable.defer { source.fetchChapterList(manga) }
             .subscribeOn(Schedulers.io())
             .map { syncChaptersWithSource(db, it, manga, source) }
+            .doOnNext {
+                if (manualFetch) {
+                    downloadNewChapters(it.first)
+                }
+            }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeFirst(
                 { view, _ ->
@@ -262,7 +268,7 @@ class ChaptersPresenter(
      * Downloads the given list of chapters with the manager.
      * @param chapters the list of chapters to download.
      */
-    fun downloadChapters(chapters: List<ChapterItem>) {
+    fun downloadChapters(chapters: List<Chapter>) {
         downloadManager.downloadChapters(manga, chapters)
     }
 
@@ -297,6 +303,12 @@ class ChaptersPresenter(
                 },
                 ChaptersController::onChaptersDeletedError
             )
+    }
+
+    private fun downloadNewChapters(chapters: List<Chapter>) {
+        if (chapters.isEmpty() || !manga.shouldDownloadNewChapters(db, preferences)) return
+
+        downloadChapters(chapters)
     }
 
     /**
