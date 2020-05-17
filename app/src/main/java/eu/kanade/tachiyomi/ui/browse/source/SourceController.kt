@@ -28,7 +28,7 @@ import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.browse.source.latest.LatestUpdatesController
 import eu.kanade.tachiyomi.ui.setting.SettingsSourcesController
-import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.appcompat.QueryTextEvent
@@ -208,7 +208,7 @@ class SourceController :
 
         // Create query listener which opens the global search view.
         searchView.queryTextEvents()
-            .filter { it is QueryTextEvent.QuerySubmitted }
+            .filterIsInstance<QueryTextEvent.QuerySubmitted>()
             .onEach { performGlobalSearch(it.queryText.toString()) }
             .launchIn(scope)
     }
