@@ -3,6 +3,7 @@ package eu.kanade.tachiyomi.util
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.model.SManga
 import java.util.Date
@@ -46,4 +47,18 @@ fun Manga.removeCovers(coverCache: CoverCache) {
 fun Manga.updateCoverLastModified(db: DatabaseHelper) {
     cover_last_modified = Date().time
     db.updateMangaCoverLastModified(this).executeAsBlocking()
+}
+
+fun Manga.shouldDownloadNewChapters(db: DatabaseHelper, prefs: PreferencesHelper): Boolean {
+    // Boolean to determine if user wants to automatically download new chapters.
+    val downloadNew = prefs.downloadNew().get()
+
+    val categoriesToDownload = prefs.downloadNewCategories().get().map(String::toInt)
+
+    val categoriesForManga by lazy {
+        db.getCategoriesForManga(this).executeAsBlocking().mapNotNull { it.id }
+    }
+
+    return downloadNew &&
+        (categoriesToDownload.isEmpty() || categoriesForManga.intersect(categoriesToDownload).isNotEmpty())
 }
