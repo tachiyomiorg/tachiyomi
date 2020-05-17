@@ -42,7 +42,7 @@ object Migrations {
                 LibraryUpdateJob.setupTask(context)
                 val availableLangs = Injekt.get<ExtensionManager>().availableExtensions.groupBy {
                     it.lang
-                }.keys.minus("all")
+                }.keys.minus("all").minus("en")
                 if (Locale.getDefault().language in availableLangs) {
                     preferences.enabledLanguages().set(preferences.enabledLanguages().get() + Locale.getDefault().language)
                 }
