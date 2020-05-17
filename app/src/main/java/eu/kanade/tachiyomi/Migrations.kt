@@ -4,9 +4,13 @@ import eu.kanade.tachiyomi.data.backup.BackupCreatorJob
 import eu.kanade.tachiyomi.data.library.LibraryUpdateJob
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.updater.UpdaterJob
+import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.extension.ExtensionUpdateJob
 import eu.kanade.tachiyomi.ui.library.LibrarySort
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 import java.io.File
+import java.util.Locale
 
 object Migrations {
 
@@ -36,6 +40,12 @@ object Migrations {
                 }
                 ExtensionUpdateJob.setupTask(context)
                 LibraryUpdateJob.setupTask(context)
+                val availableLangs = Injekt.get<ExtensionManager>().availableExtensions.groupBy {
+                    it.lang
+                }.keys.minus("all")
+                if (Locale.getDefault().language in availableLangs) {
+                    preferences.enabledLanguages().set(preferences.enabledLanguages().get() + Locale.getDefault().language)
+                }
                 return false
             }
 
