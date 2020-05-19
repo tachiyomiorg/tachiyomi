@@ -655,7 +655,7 @@
     <string name="stats_total">Total</string>
     <string name="stats_status_totals">Total Manga By Status</string>
     <string name="stats_source_status_totals">Status Breakdown By Source</string>
-    <string name="stats_sources_with_faves">Number of sources with bookmarked manga</string>
+    <string name="stats_sources_with_faves">Number of sources with favorited manga</string>
 
 
 </resources>

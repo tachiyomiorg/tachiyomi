@@ -13,13 +13,15 @@ import uy.kohesive.injekt.api.get
 import uy.kohesive.injekt.injectLazy
 
 class StatsMainController : SettingsController() {
+
     private val db: DatabaseHelper = Injekt.get()
+
     // Needed to get names for source IDs
     internal val sourceManager: SourceManager by injectLazy()
+
     // Favorited manga
     private val faves = db.getFavoriteMangas().executeAsBlocking()
 
-    private data class StatusCounts(var ongoing: Int = 0, var completed: Int = 0, var unknown: Int = 0, var licensed: Int = 0, var total: Int = 0)
     @Suppress("MapGetWithNotNullAssertionOperator")
     private val sourceStatusMap by lazy {
         val ssMap = mutableMapOf<Long, StatusCounts>()
@@ -33,38 +35,38 @@ class StatsMainController : SettingsController() {
             }
             ssMap[manga.source]!!.total++
         }
-        val idNameMap = ssMap.keys
-            .map { Pair(it, sourceManager.get(it)?.name ?: it.toString()) }
-            .toMap()
-        ssMap.keys
-            .map { Pair(it, ssMap[it]!!.total) } // id, total manga
-            .sortedByDescending { it.second } // sort by totals
-            .map { it.first } // sorted keys
-            .map { Pair(idNameMap[it]!!, ssMap[it]!!) } // build a sorted collection with source names
-            .toMap()
+        val idNameMap = ssMap.mapValues { sourceManager.get(it.key)?.name ?: it.key.toString() }
+        ssMap.entries
+            .sortedByDescending { it.value.total }
+            .associateBy({ idNameMap[it.key]!! }, { it.value })
     }
 
     @Suppress("MapGetWithNotNullAssertionOperator")
     private fun totalManga(): StatusCounts {
         val totals = StatusCounts()
-        sourceStatusMap.keys.forEach { key -> totals.ongoing += sourceStatusMap[key]!!.ongoing }
-        sourceStatusMap.keys.forEach { key -> totals.completed += sourceStatusMap[key]!!.completed }
-        sourceStatusMap.keys.forEach { key -> totals.unknown += sourceStatusMap[key]!!.unknown }
-        sourceStatusMap.keys.forEach { key -> totals.licensed += sourceStatusMap[key]!!.licensed }
-        sourceStatusMap.keys.forEach { key -> totals.total += sourceStatusMap[key]!!.total }
+        sourceStatusMap.keys.forEach { key ->
+            totals.ongoing += sourceStatusMap[key]!!.ongoing
+            totals.completed += sourceStatusMap[key]!!.completed
+            totals.unknown += sourceStatusMap[key]!!.unknown
+            totals.licensed += sourceStatusMap[key]!!.licensed
+            totals.total += sourceStatusMap[key]!!.total
+        }
         return totals
     }
 
     override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
         titleRes = R.string.label_stats
 
+        fun statusSummary(totals: StatusCounts): String {
+            return "${totals.total} ${context.getString(R.string.stats_total)} | ${totals.ongoing} ${context.getString(R.string.ongoing)}" +
+                " | ${totals.unknown} ${context.getString(R.string.unknown)} | ${totals.completed} ${context.getString(R.string.completed)}" +
+                " | ${totals.licensed} ${context.getString(R.string.licensed)}"
+        }
+
         preference {
             titleRes = R.string.stats_status_totals
 
-            val totals = totalManga()
-            summary = "${totals.total} ${context.getString(R.string.stats_total)} | ${totals.ongoing} ${context.getString(R.string.ongoing)}" +
-                " | ${totals.unknown} ${context.getString(R.string.unknown)} | ${totals.completed} ${context.getString(R.string.completed)}" +
-                " | ${totals.licensed} ${context.getString(R.string.licensed)}"
+            summary = statusSummary(totalManga())
         }
 
         preferenceCategory {
@@ -75,12 +77,11 @@ class StatsMainController : SettingsController() {
                 preference {
                     title = mapEntry.key
 
-                    val totals = mapEntry.value
-                    summary = "${totals.total} ${context.getString(R.string.stats_total)} | ${totals.ongoing} ${context.getString(R.string.ongoing)}" +
-                        " | ${totals.unknown} ${context.getString(R.string.unknown)} | ${totals.completed} ${context.getString(R.string.completed)}" +
-                        " | ${totals.licensed} ${context.getString(R.string.licensed)}"
+                    summary = statusSummary(mapEntry.value)
                 }
             }
         }
     }
 }
+
+private data class StatusCounts(var ongoing: Int = 0, var completed: Int = 0, var unknown: Int = 0, var licensed: Int = 0, var total: Int = 0)
