@@ -164,6 +164,11 @@ class SettingsLibraryController : SettingsController() {
                     true
                 }
             }
+            switchPreference {
+                key = Keys.showLibraryUpdateErrors
+                titleRes = R.string.pref_library_update_error_notification
+                defaultValue = false
+            }
         }
 
         preferenceCategory {

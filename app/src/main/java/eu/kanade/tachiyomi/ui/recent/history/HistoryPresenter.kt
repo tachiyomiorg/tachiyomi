@@ -120,7 +120,7 @@ class HistoryPresenter : BasePresenter<HistoryController>() {
             }
             Manga.SORTING_UPLOAD_DATE -> {
                 chapters.drop(currChapterIndex + 1)
-                        .firstOrNull { it.date_upload >= chapter.date_upload}
+                    .firstOrNull { it.date_upload >= chapter.date_upload }
             }
             else -> throw NotImplementedError("Unknown sorting method")
         }

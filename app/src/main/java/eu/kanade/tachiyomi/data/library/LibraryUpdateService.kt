@@ -307,7 +307,7 @@ class LibraryUpdateService(
                     }
                 }
 
-                if (failedUpdates.isNotEmpty()) {
+                if (preferences.showLibraryUpdateErrors() && failedUpdates.isNotEmpty()) {
                     val errorFile = writeErrorFile(failedUpdates)
                     notifier.showUpdateErrorNotification(
                         failedUpdates.map { it.first.title },
