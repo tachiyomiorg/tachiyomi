@@ -14,6 +14,8 @@
             android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/action_toolbar_list_padding"
             tools:listitem="@layout/source_main_controller_card_header" />
 
     </eu.kanade.tachiyomi.widget.ThemedSwipeRefreshLayout>
