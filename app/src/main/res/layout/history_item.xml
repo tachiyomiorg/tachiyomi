@@ -26,11 +26,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:textAppearance="@style/TextAppearance.Medium"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/resume"
             app:layout_constraintStart_toEndOf="@+id/cover"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,10 +40,22 @@
             android:layout_below="@id/manga_title"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/resume"
             app:layout_constraintStart_toEndOf="@+id/cover"
             app:layout_constraintTop_toBottomOf="@+id/manga_title" />
+
+        <ImageButton
+            android:id="@+id/resume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@string/action_resume"
+            android:padding="@dimen/material_layout_keylines_screen_edge_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_play_arrow_24dp"
+            app:tint="?attr/colorOnPrimary" />
 
         <Button
             android:id="@+id/remove"
@@ -54,16 +65,6 @@
             android:text="@string/action_remove"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cover" />
-
-        <Button
-            android:id="@+id/resume"
-            style="@style/Theme.Widget.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/remove"
-            android:text="@string/action_resume"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/remove" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
