@@ -11,6 +11,7 @@ import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.Page
 import rx.Observable
+import timber.log.Timber
 import uy.kohesive.injekt.injectLazy
 
 /**
@@ -237,6 +238,28 @@ class DownloadManager(private val context: Context) {
         for ((manga, chapters) in pendingChapters) {
             val source = sourceManager.get(manga.source) ?: continue
             deleteChapters(chapters, manga, source)
+        }
+    }
+
+    /**
+     * Renames an already downloaded chapter
+     *
+     * @param source the source of the manga.
+     * @param manga the manga of the chapter.
+     * @param oldChapter the existing chapter with the old name.
+     * @param newChapter the target chapter with the new name.
+     */
+    fun renameChapter(source: Source, manga: Manga, oldChapter: Chapter, newChapter: Chapter) {
+        val oldName = provider.getChapterDirName(oldChapter)
+        val newName = provider.getChapterDirName(newChapter)
+        val mangaDir = provider.getMangaDir(manga, source)
+
+        val oldFolder = mangaDir.findFile(oldName)
+        if (oldFolder?.renameTo(newName) == true) {
+            cache.removeChapter(oldChapter, manga)
+            cache.addChapter(newName, mangaDir, manga)
+        } else {
+            Timber.e("Could not rename downloaded chapter: %s.", oldName)
         }
     }
 }
