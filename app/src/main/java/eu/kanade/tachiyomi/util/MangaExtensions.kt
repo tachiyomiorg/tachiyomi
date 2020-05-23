@@ -17,6 +17,9 @@ fun Manga.prepUpdateCover(coverCache: CoverCache, remoteManga: SManga, refreshSa
     // Never refresh covers if the new url is null, as the current url has possibly become invalid
     val newUrl = remoteManga.thumbnail_url ?: return
 
+    // Never refresh covers if the url is empty to avoid "losing" existing covers
+    if (newUrl.isEmpty()) return
+
     if (!refreshSameUrl && thumbnail_url == newUrl) return
 
     when {

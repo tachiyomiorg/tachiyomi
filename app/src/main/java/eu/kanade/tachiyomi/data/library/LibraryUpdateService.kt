@@ -337,8 +337,8 @@ class LibraryUpdateService(
         if (preferences.autoUpdateMetadata()) {
             source.fetchMangaDetails(manga)
                 .map { updatedManga ->
-                    // Avoid "losing" covers
-                    if (updatedManga.thumbnail_url != null) {
+                    // Avoid "losing" existing cover
+                    if (!updatedManga.thumbnail_url.isNullOrEmpty()) {
                         manga.prepUpdateCover(coverCache, updatedManga, false)
                     } else {
                         updatedManga.thumbnail_url = manga.thumbnail_url
