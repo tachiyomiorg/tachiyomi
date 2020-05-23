@@ -336,9 +336,15 @@ class LibraryUpdateService(
         // Update manga details metadata in the background
         if (preferences.autoUpdateMetadata()) {
             source.fetchMangaDetails(manga)
-                .map { networkManga ->
-                    manga.prepUpdateCover(coverCache, networkManga, false)
-                    manga.copyFrom(networkManga)
+                .map { updatedManga ->
+                    // Avoid "losing" covers
+                    if (updatedManga.thumbnail_url != null) {
+                        manga.prepUpdateCover(coverCache, updatedManga, false)
+                    } else {
+                        updatedManga.thumbnail_url = manga.thumbnail_url
+                    }
+
+                    manga.copyFrom(updatedManga)
                     db.insertManga(manga).executeAsBlocking()
                     manga
                 }
