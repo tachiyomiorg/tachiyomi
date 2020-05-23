@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/action_download"
-        android:icon="@drawable/ic_file_download_black_24dp"
+        android:icon="@drawable/ic_get_app_24dp"
         android:title="@string/action_download"
         app:iconTint="?attr/colorOnPrimary"
         app:showAsAction="always" />

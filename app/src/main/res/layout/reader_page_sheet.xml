@@ -71,7 +71,7 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            app:srcCompat="@drawable/ic_file_download_black_24dp"
+            app:srcCompat="@drawable/ic_get_app_24dp"
             app:tint="?attr/colorOnBackground" />
 
         <TextView
