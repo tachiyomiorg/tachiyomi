@@ -20,7 +20,7 @@
     <string name="label_sources">Sources</string>
     <string name="label_categories">Categories</string>
     <string name="label_backup">Backup</string>
-    <string name="label_migration">Source migration</string>
+    <string name="label_migration">Migration</string>
     <string name="label_extensions">Extensions</string>
     <string name="label_extension_info">Extension info</string>
     <string name="label_help">Help</string>

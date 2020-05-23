@@ -88,7 +88,7 @@ class MigrationController :
             val controller = SearchController(item.manga)
             controller.targetController = this
 
-            router.pushController(controller.withFadeTransaction())
+            parentController!!.router.pushController(controller.withFadeTransaction())
         } else if (item is SourceItem) {
             presenter.setSelectedSource(item.source)
         }

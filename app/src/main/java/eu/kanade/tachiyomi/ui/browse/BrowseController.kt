@@ -20,6 +20,7 @@ import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.RxController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.browse.extension.ExtensionController
+import eu.kanade.tachiyomi.ui.browse.migration.MigrationController
 import eu.kanade.tachiyomi.ui.browse.source.SourceController
 import kotlinx.android.synthetic.main.main_activity.tabs
 import uy.kohesive.injekt.injectLazy
@@ -111,7 +112,8 @@ class BrowseController :
 
         private val tabTitles = listOf(
             R.string.label_sources,
-            R.string.label_extensions
+            R.string.label_extensions,
+            R.string.label_migration
         )
             .map { resources!!.getString(it) }
 
@@ -124,6 +126,7 @@ class BrowseController :
                 val controller: Controller = when (position) {
                     SOURCES_CONTROLLER -> SourceController()
                     EXTENSIONS_CONTROLLER -> ExtensionController()
+                    MIGRATION_CONTROLLER -> MigrationController()
                     else -> error("Wrong position $position")
                 }
                 router.setRoot(RouterTransaction.with(controller))
@@ -140,5 +143,6 @@ class BrowseController :
 
         const val SOURCES_CONTROLLER = 0
         const val EXTENSIONS_CONTROLLER = 1
+        const val MIGRATION_CONTROLLER = 2
     }
 }
