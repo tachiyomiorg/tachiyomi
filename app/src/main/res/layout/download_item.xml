@@ -16,8 +16,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_reorder_grey_24dp"
-        app:tint="?android:attr/textColorPrimary" />
+        app:srcCompat="@drawable/ic_drag_handle_24dp"
+        app:tint="?android:attr/textColorHint" />
 
     <TextView
         android:id="@+id/manga_full_title"

@@ -11,8 +11,8 @@
         android:layout_width="@dimen/material_component_lists_single_line_with_avatar_height"
         android:layout_height="@dimen/material_component_lists_single_line_with_avatar_height"
         android:scaleType="center"
-        app:srcCompat="@drawable/ic_reorder_grey_24dp"
-        app:tint="?android:attr/textColorPrimary"
+        app:srcCompat="@drawable/ic_drag_handle_24dp"
+        app:tint="?android:attr/textColorHint"
         tools:ignore="ContentDescription" />
 
     <ImageView
