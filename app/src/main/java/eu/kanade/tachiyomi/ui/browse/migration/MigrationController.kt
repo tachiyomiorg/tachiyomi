@@ -14,8 +14,7 @@ import eu.kanade.tachiyomi.ui.browse.source.SourceDividerItemDecoration
 
 class MigrationController :
     NucleusController<MigrationControllerBinding, MigrationPresenter>(),
-    FlexibleAdapter.OnItemClickListener,
-    SourceAdapter.OnSelectClickListener {
+    FlexibleAdapter.OnItemClickListener {
 
     private var adapter: FlexibleAdapter<IFlexible<*>>? = null
 
@@ -93,9 +92,5 @@ class MigrationController :
             presenter.setSelectedSource(item.source)
         }
         return false
-    }
-
-    override fun onSelectClick(position: Int) {
-        onItemClick(view!!, position)
     }
 }

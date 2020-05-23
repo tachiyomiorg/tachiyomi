@@ -20,7 +20,7 @@
     <string name="label_sources">Sources</string>
     <string name="label_categories">Categories</string>
     <string name="label_backup">Backup</string>
-    <string name="label_migration">Migration</string>
+    <string name="label_migration">Migrate</string>
     <string name="label_extensions">Extensions</string>
     <string name="label_extension_info">Extension info</string>
     <string name="label_help">Help</string>
@@ -566,7 +566,6 @@
     <string name="migration_info">Tap to select the source to migrate from</string>
     <string name="migration_dialog_what_to_include">Select data to include</string>
     <string name="migration_selection_prompt">Select a source to migrate from</string>
-    <string name="select">Select</string>
     <string name="migrate">Migrate</string>
     <string name="copy">Copy</string>
 

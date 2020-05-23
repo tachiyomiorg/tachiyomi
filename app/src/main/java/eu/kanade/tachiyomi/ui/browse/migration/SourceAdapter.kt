@@ -21,18 +21,6 @@ class SourceAdapter(val controller: MigrationController) :
         setDisplayHeadersAtStartUp(true)
     }
 
-    /**
-     * Listener for browse item clicks.
-     */
-    val selectClickListener: OnSelectClickListener? = controller
-
-    /**
-     * Listener which should be called when user clicks select.
-     */
-    interface OnSelectClickListener {
-        fun onSelectClick(position: Int)
-    }
-
     override fun updateDataSet(items: MutableList<IFlexible<*>>?) {
         if (this.items !== items) {
             this.items = items
