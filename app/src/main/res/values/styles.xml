@@ -236,11 +236,6 @@
         <item name="rippleColor">?attr/colorAccent</item>
     </style>
 
-    <style name="Theme.Widget.Button.Error" parent="Theme.Widget.Button">
-        <item name="android:textColor">?attr/colorError</item>
-        <item name="rippleColor">?attr/colorError</item>
-    </style>
-
     <style name="Theme.Widget.Button.FilledAccent" parent="Widget.MaterialComponents.Button">
         <item name="android:textColor">?attr/colorOnSecondary</item>
         <item name="backgroundTint">?attr/colorAccent</item>

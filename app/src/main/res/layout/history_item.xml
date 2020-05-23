@@ -7,64 +7,73 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="128dp"
+        android:layout_height="80dp"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/cover"
-            android:layout_width="85dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:contentDescription="@string/description_cover"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="h,3:2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/manga_title"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textAppearance="@style/TextAppearance.Medium"
-            app:layout_constraintEnd_toStartOf="@+id/resume"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/remove"
             app:layout_constraintStart_toEndOf="@+id/cover"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/manga_subtitle"
-            android:layout_width="0dp"
+            <TextView
+                android:id="@+id/manga_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textAppearance="@style/TextAppearance.Medium" />
+
+            <TextView
+                android:id="@+id/manga_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/remove"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/manga_title"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@string/action_resume"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/resume"
-            app:layout_constraintStart_toEndOf="@+id/cover"
-            app:layout_constraintTop_toBottomOf="@+id/manga_title" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_delete_24dp"
+            app:tint="?attr/colorOnPrimary" />
 
         <ImageButton
             android:id="@+id/resume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:background="?selectableItemBackgroundBorderless"
             android:contentDescription="@string/action_resume"
-            android:padding="@dimen/material_layout_keylines_screen_edge_margin"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_play_arrow_24dp"
             app:tint="?attr/colorOnPrimary" />
-
-        <Button
-            android:id="@+id/remove"
-            style="@style/Theme.Widget.Button.Error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/action_remove"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cover" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
