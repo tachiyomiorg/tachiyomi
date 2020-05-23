@@ -10,6 +10,11 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.databinding.MigrationControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.browse.migration.manga.MangaAdapter
+import eu.kanade.tachiyomi.ui.browse.migration.manga.MangaItem
+import eu.kanade.tachiyomi.ui.browse.migration.search.SearchController
+import eu.kanade.tachiyomi.ui.browse.migration.sources.SourceAdapter
+import eu.kanade.tachiyomi.ui.browse.migration.sources.SourceItem
 import eu.kanade.tachiyomi.ui.browse.source.SourceDividerItemDecoration
 
 class MigrationController :
@@ -64,7 +69,10 @@ class MigrationController :
         if (state.selectedSource == null) {
             title = resources?.getString(R.string.label_migration)
             if (adapter !is SourceAdapter) {
-                adapter = SourceAdapter(this)
+                adapter =
+                    SourceAdapter(
+                        this
+                    )
                 binding.recycler.adapter = adapter
                 adapter?.fastScroller = binding.fastScroller
             }
@@ -72,7 +80,10 @@ class MigrationController :
         } else {
             title = state.selectedSource.toString()
             if (adapter !is MangaAdapter) {
-                adapter = MangaAdapter(this)
+                adapter =
+                    MangaAdapter(
+                        this
+                    )
                 binding.recycler.adapter = adapter
                 adapter?.fastScroller = binding.fastScroller
             }
@@ -84,7 +95,10 @@ class MigrationController :
         val item = adapter?.getItem(position) ?: return false
 
         if (item is MangaItem) {
-            val controller = SearchController(item.manga)
+            val controller =
+                SearchController(
+                    item.manga
+                )
             controller.targetController = this
 
             parentController!!.router.pushController(controller.withFadeTransaction())

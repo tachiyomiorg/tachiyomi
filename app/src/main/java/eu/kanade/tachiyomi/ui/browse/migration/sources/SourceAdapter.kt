@@ -1,8 +1,9 @@
-package eu.kanade.tachiyomi.ui.browse.migration
+package eu.kanade.tachiyomi.ui.browse.migration.sources
 
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.ui.browse.migration.MigrationController
 import eu.kanade.tachiyomi.util.system.getResourceColor
 
 /**

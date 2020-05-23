@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.browse.migration
+package eu.kanade.tachiyomi.ui.browse.migration.search
 
 import android.app.Dialog
 import android.os.Bundle
@@ -8,6 +8,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
+import eu.kanade.tachiyomi.ui.browse.migration.MigrationFlags
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchController
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchPresenter
 import eu.kanade.tachiyomi.util.view.gone
@@ -21,7 +22,10 @@ class SearchController(
     private var newManga: Manga? = null
 
     override fun createPresenter(): GlobalSearchPresenter {
-        return SearchPresenter(initialQuery, manga!!)
+        return SearchPresenter(
+            initialQuery,
+            manga!!
+        )
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -52,7 +56,8 @@ class SearchController(
 
     override fun onMangaClick(manga: Manga) {
         newManga = manga
-        val dialog = MigrationDialog()
+        val dialog =
+            MigrationDialog()
         dialog.targetController = this
         dialog.showDialog(router)
     }
@@ -78,7 +83,10 @@ class SearchController(
         override fun onCreateDialog(savedViewState: Bundle?): Dialog {
             val prefValue = preferences.migrateFlags().get()
 
-            val preselected = MigrationFlags.getEnabledFlagsPositions(prefValue)
+            val preselected =
+                MigrationFlags.getEnabledFlagsPositions(
+                    prefValue
+                )
 
             return MaterialDialog(activity!!)
                 .message(R.string.migration_dialog_what_to_include)
@@ -87,7 +95,10 @@ class SearchController(
                     initialSelection = preselected.toIntArray()
                 ) { _, positions, _ ->
                     // Save current settings for the next time
-                    val newValue = MigrationFlags.getFlagsFromPositions(positions.toTypedArray())
+                    val newValue =
+                        MigrationFlags.getFlagsFromPositions(
+                            positions.toTypedArray()
+                        )
                     preferences.migrateFlags().set(newValue)
                 }
                 .positiveButton(R.string.migrate) {

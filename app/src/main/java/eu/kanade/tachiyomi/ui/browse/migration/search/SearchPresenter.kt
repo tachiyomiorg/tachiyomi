@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.browse.migration
+package eu.kanade.tachiyomi.ui.browse.migration.search
 
 import android.os.Bundle
 import com.jakewharton.rxrelay.BehaviorRelay
@@ -8,6 +8,7 @@ import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.model.SManga
+import eu.kanade.tachiyomi.ui.browse.migration.MigrationFlags
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchCardItem
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchItem
 import eu.kanade.tachiyomi.ui.browse.source.globalsearch.GlobalSearchPresenter
@@ -70,9 +71,18 @@ class SearchPresenter(
         replace: Boolean
     ) {
         val flags = preferences.migrateFlags().get()
-        val migrateChapters = MigrationFlags.hasChapters(flags)
-        val migrateCategories = MigrationFlags.hasCategories(flags)
-        val migrateTracks = MigrationFlags.hasTracks(flags)
+        val migrateChapters =
+            MigrationFlags.hasChapters(
+                flags
+            )
+        val migrateCategories =
+            MigrationFlags.hasCategories(
+                flags
+            )
+        val migrateTracks =
+            MigrationFlags.hasTracks(
+                flags
+            )
 
         db.inTransaction {
             // Update chapters read

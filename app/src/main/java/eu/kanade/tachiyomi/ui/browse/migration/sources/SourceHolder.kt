@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.browse.migration
+package eu.kanade.tachiyomi.ui.browse.migration.sources
 
 import android.view.View
 import eu.kanade.tachiyomi.source.icon

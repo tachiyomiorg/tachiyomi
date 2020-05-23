@@ -8,6 +8,9 @@ import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
+import eu.kanade.tachiyomi.ui.browse.migration.manga.MangaItem
+import eu.kanade.tachiyomi.ui.browse.migration.sources.SelectionHeader
+import eu.kanade.tachiyomi.ui.browse.migration.sources.SourceItem
 import eu.kanade.tachiyomi.util.lang.combineLatest
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -58,11 +61,17 @@ class MigrationPresenter(
     }
 
     private fun findSourcesWithManga(library: List<Manga>): List<SourceItem> {
-        val header = SelectionHeader()
+        val header =
+            SelectionHeader()
         return library.map { it.source }.toSet()
             .mapNotNull { if (it != LocalSource.ID) sourceManager.getOrStub(it) else null }
             .sortedBy { it.name }
-            .map { SourceItem(it, header) }
+            .map {
+                SourceItem(
+                    it,
+                    header
+                )
+            }
     }
 
     private fun libraryToMigrationItem(library: List<Manga>, sourceId: Long): List<MangaItem> {

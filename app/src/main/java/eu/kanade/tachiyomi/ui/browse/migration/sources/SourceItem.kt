@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.browse.migration
+package eu.kanade.tachiyomi.ui.browse.migration.sources
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -28,7 +28,10 @@ data class SourceItem(val source: Source, val header: SelectionHeader? = null) :
      * Creates a new view holder for this item.
      */
     override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): SourceHolder {
-        return SourceHolder(view, adapter as SourceAdapter)
+        return SourceHolder(
+            view,
+            adapter as SourceAdapter
+        )
     }
 
     /**

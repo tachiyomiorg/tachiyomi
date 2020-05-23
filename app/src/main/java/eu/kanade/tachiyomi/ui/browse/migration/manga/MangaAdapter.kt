@@ -1,7 +1,8 @@
-package eu.kanade.tachiyomi.ui.browse.migration
+package eu.kanade.tachiyomi.ui.browse.migration.manga
 
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
+import eu.kanade.tachiyomi.ui.browse.migration.MigrationController
 
 class MangaAdapter(controller: MigrationController) :
     FlexibleAdapter<IFlexible<*>>(null, controller) {

@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.browse.migration
+package eu.kanade.tachiyomi.ui.browse.migration.manga
 
 import android.view.View
 import com.bumptech.glide.load.engine.DiskCacheStrategy
