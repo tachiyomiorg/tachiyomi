@@ -1,10 +1,14 @@
 package eu.kanade.tachiyomi.ui.more
 
+import android.content.Context
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.source.SourceManager
+import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.setting.SettingsController
+import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.titleRes
@@ -16,72 +20,155 @@ class StatsMainController : SettingsController() {
 
     private val db: DatabaseHelper = Injekt.get()
 
-    // Needed to get names for source IDs
-    internal val sourceManager: SourceManager by injectLazy()
+    // Needed to get names from sources' longs
+    private val sourceManager: SourceManager by injectLazy()
 
     // Favorited manga
-    private val faves = db.getFavoriteMangas().executeAsBlocking()
+    private var faves: List<Manga>
 
-    @Suppress("MapGetWithNotNullAssertionOperator")
-    private val sourceStatusMap by lazy {
-        val ssMap = mutableMapOf<Long, StatusCounts>()
+    // Map of sources' longs to their actual name 
+    private var longNameMap: Map<Long, String>
+
+    // Map of sources to their StatusCounts
+    private val sourceStatusMap = mutableMapOf<String, StatusCounts>()
+
+    // Map of categories and the mangas they contain
+    private val categoryMangasMap: MutableMap<String?, MutableSet<Manga>>
+
+    // Map of categories and the genres they contain
+    private val categoryGenresMap: MutableMap<String?, MutableMap<String, Int>>
+
+    // Map of genres with appearance count, using a separate map in case manga appear in multiple categories
+    private val overallGenresMap = mutableMapOf<String, Int>()
+
+    init {
+        val categories = db.getCategories().executeAsBlocking()
+        categoryMangasMap = categories.associate { Pair(it.name, mutableSetOf<Manga>()) }.toMutableMap()
+        categoryGenresMap = categories.associate { Pair(it.name, mutableMapOf<String, Int>()) }.toMutableMap()
+        faves = db.getFavoriteMangas().executeAsBlocking()
+        longNameMap = faves.map { Pair(it.source, sourceManager.get(it.source)?.name ?: it.source.toString()) }.toMap()
+
         faves.forEach { manga ->
-            if (manga.source !in ssMap.keys) ssMap[manga.source] = StatusCounts()
-            when (manga.status) {
-                1 -> ssMap[manga.source]!!.ongoing++
-                2 -> ssMap[manga.source]!!.completed++
-                3 -> ssMap[manga.source]!!.licensed++
-                else -> ssMap[manga.source]!!.unknown++
-            }
-            ssMap[manga.source]!!.total++
+            buildSourceStatusMap(manga, sourceStatusMap, longNameMap)
+            buildCategoryMaps(manga)
         }
-        val idNameMap = ssMap.mapValues { sourceManager.get(it.key)?.name ?: it.key.toString() }
-        ssMap.entries
-            .sortedByDescending { it.value.total }
-            .associateBy({ idNameMap[it.key]!! }, { it.value })
     }
 
     @Suppress("MapGetWithNotNullAssertionOperator")
-    private fun totalManga(): StatusCounts {
-        val totals = StatusCounts()
-        sourceStatusMap.keys.forEach { key ->
-            totals.ongoing += sourceStatusMap[key]!!.ongoing
-            totals.completed += sourceStatusMap[key]!!.completed
-            totals.unknown += sourceStatusMap[key]!!.unknown
-            totals.licensed += sourceStatusMap[key]!!.licensed
-            totals.total += sourceStatusMap[key]!!.total
+    private fun buildCategoryMaps(manga: Manga) {
+        fun MutableMap<String, Int>.addGenres(genreList: List<String>?) {
+            genreList?.let { genres ->
+                genres.forEach { genre ->
+                    if (genre !in this.keys) this[genre] = 1 else this.plusAssign(Pair(genre, this[genre]!! + 1))
+                }
+            }
         }
-        return totals
+
+        db.getCategoriesForManga(manga).executeAsBlocking().let { catList ->
+            catList.forEach { cat ->
+                categoryMangasMap[cat.name]!! += manga
+                categoryGenresMap[cat.name]!!.addGenres(manga.getGenres())
+                overallGenresMap.addGenres(manga.getGenres())
+            }
+            if (catList.isEmpty()) {
+                // add default category as a null key
+                if (categoryMangasMap[null].isNullOrEmpty()) {
+                    categoryMangasMap[null] = mutableSetOf()
+                    categoryGenresMap[null] = mutableMapOf()
+                }
+                categoryMangasMap[null]!! += manga
+                categoryGenresMap[null]!!.addGenres(manga.getGenres())
+            }
+        }
     }
 
     override fun setupPreferenceScreen(screen: PreferenceScreen) = with(screen) {
         titleRes = R.string.label_stats
 
-        fun statusSummary(totals: StatusCounts): String {
-            return "${totals.total} ${context.getString(R.string.stats_total)} | ${totals.ongoing} ${context.getString(R.string.ongoing)}" +
-                " | ${totals.unknown} ${context.getString(R.string.unknown)} | ${totals.completed} ${context.getString(R.string.completed)}" +
-                " | ${totals.licensed} ${context.getString(R.string.licensed)}"
-        }
-
         preference {
             titleRes = R.string.stats_status_totals
 
-            summary = statusSummary(totalManga())
+            summary = sourceStatusSummary(totalManga(sourceStatusMap), context)
+        }
+
+        preferenceCategory {
+            val totalCats = categoryMangasMap.count()
+
+            title = context.resources.getQuantityString(R.plurals.num_categories, totalCats, totalCats)
+
+            preference {
+                titleRes = R.string.stats_manga_per_category
+
+                summary = categoryMangasMap.entries.joinToString { "${it.key ?: context.getString(R.string.default_category)} : ${it.value.count()}" }
+                onClick {
+                    router.pushController(StatsCategoryController(categoryMangasMap, longNameMap, categoryGenresMap, overallGenresMap).withFadeTransaction())
+                }
+            }
+
+            preference {
+                titleRes = R.string.stats_genres_overview
+
+                summary = overallGenresMap.topGenres(5)
+
+                onClick {
+                    router.pushController(StatsCategoryController(categoryMangasMap, longNameMap, categoryGenresMap, overallGenresMap).withFadeTransaction())
+                }
+            }
         }
 
         preferenceCategory {
             titleRes = R.string.stats_source_status_totals
             summary = "${context.getString(R.string.stats_sources_with_faves)}: ${sourceStatusMap.count()}"
 
-            sourceStatusMap.forEach { mapEntry ->
-                preference {
-                    title = mapEntry.key
+            sourceStatusMap.entries
+                .sortedByDescending { it.value.total }
+                .forEach { mapEntry ->
+                    preference {
+                        title = mapEntry.key
 
-                    summary = statusSummary(mapEntry.value)
+                        summary = sourceStatusSummary(mapEntry.value, context)
+                    }
                 }
-            }
         }
     }
-}
 
-private data class StatusCounts(var ongoing: Int = 0, var completed: Int = 0, var unknown: Int = 0, var licensed: Int = 0, var total: Int = 0)
+    companion object {
+        @Suppress("MapGetWithNotNullAssertionOperator")
+        fun buildSourceStatusMap(manga: Manga, sourceStatusMap: MutableMap<String, StatusCounts>, longNameMap: Map<Long, String>) {
+            val name = longNameMap[manga.source]!!
+            if (name !in sourceStatusMap.keys) sourceStatusMap[name] = StatusCounts()
+            when (manga.status) {
+                1 -> sourceStatusMap[name]!!.ongoing++
+                2 -> sourceStatusMap[name]!!.completed++
+                3 -> sourceStatusMap[name]!!.licensed++
+                else -> sourceStatusMap[name]!!.unknown++
+            }
+            sourceStatusMap[name]!!.total++
+        }
+
+        @Suppress("MapGetWithNotNullAssertionOperator")
+        fun totalManga(sourceStatusMap: Map<String, StatusCounts>): StatusCounts {
+            val totals = StatusCounts()
+            sourceStatusMap.keys.forEach { key ->
+                totals.ongoing += sourceStatusMap[key]!!.ongoing
+                totals.completed += sourceStatusMap[key]!!.completed
+                totals.unknown += sourceStatusMap[key]!!.unknown
+                totals.licensed += sourceStatusMap[key]!!.licensed
+                totals.total += sourceStatusMap[key]!!.total
+            }
+            return totals
+        }
+
+        fun sourceStatusSummary(totals: StatusCounts, context: Context): String {
+            return "${totals.total} ${context.getString(R.string.stats_total)} | ${totals.ongoing} ${context.getString(R.string.ongoing)}" +
+                " | ${totals.unknown} ${context.getString(R.string.unknown)} | ${totals.completed} ${context.getString(R.string.completed)}" +
+                " | ${totals.licensed} ${context.getString(R.string.licensed)}"
+        }
+
+        fun MutableMap<String, Int>.topGenres(take: Int): String {
+            return this.entries.sortedByDescending { it.value }.take(take).joinToString { "${it.key} : ${it.value}" }
+        }
+
+        data class StatusCounts(var ongoing: Int = 0, var completed: Int = 0, var unknown: Int = 0, var licensed: Int = 0, var total: Int = 0)
+    }
+}

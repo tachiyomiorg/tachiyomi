@@ -12,7 +12,7 @@
 
     <!-- Activities and fragments labels (toolbar title) -->
     <string name="label_more">More</string>
-    <string name="label_stats">Stats</string>
+    <string name="label_stats">Statistics</string>
     <string name="label_settings">Settings</string>
     <string name="label_download_queue">Download queue</string>
     <string name="label_library">Library</string>
@@ -653,9 +653,13 @@
 
     <!-- Stats -->
     <string name="stats_total">Total</string>
-    <string name="stats_status_totals">Total Manga By Status</string>
-    <string name="stats_source_status_totals">Status Breakdown By Source</string>
+    <string name="stats_status_totals">Total manga by status</string>
+    <string name="stats_source_status_totals">Status breakdown by source</string>
     <string name="stats_sources_with_faves">Number of sources with favorited manga</string>
+    <string name="stats_category_breakdown">Category breakdown</string>
+    <string name="stats_manga_per_category">Manga per category</string>
+    <string name="stats_genres_overview">Top genres</string>
+    <string name="stats_overall_top_genres">Overall top genres</string>
 
 
 </resources>
