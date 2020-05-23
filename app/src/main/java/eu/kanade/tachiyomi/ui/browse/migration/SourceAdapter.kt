@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.migration
+package eu.kanade.tachiyomi.ui.browse.migration
 
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible

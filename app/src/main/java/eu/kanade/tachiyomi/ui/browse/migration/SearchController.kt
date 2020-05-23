@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.migration
+package eu.kanade.tachiyomi.ui.browse.migration
 
 import android.app.Dialog
 import android.os.Bundle
