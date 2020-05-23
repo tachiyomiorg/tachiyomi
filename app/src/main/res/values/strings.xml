@@ -354,6 +354,7 @@
     <string name="restoring_backup_canceled">Canceled restore</string>
 
       <!-- Advanced section -->
+    <string name="label_data">Data</string>
     <string name="pref_clear_chapter_cache">Clear chapter cache</string>
     <string name="used_cache">Used: %1$s</string>
     <string name="cache_deleted">Cache cleared. %1$d files have been deleted</string>
@@ -362,7 +363,7 @@
     <string name="cookies_cleared">Cookies cleared</string>
     <string name="choices_reset">Dialog choices reset</string>
     <string name="pref_clear_database">Clear database</string>
-    <string name="pref_clear_database_summary">Delete manga and chapters that are not in your library</string>
+    <string name="pref_clear_database_summary">Delete history for manga that are not in saved your library</string>
     <string name="clear_database_confirmation">Are you sure? Read chapters and progress of non-library manga will be lost</string>
     <string name="clear_database_completed">Entries deleted</string>
     <string name="pref_refresh_library_covers">Refresh library manga covers</string>

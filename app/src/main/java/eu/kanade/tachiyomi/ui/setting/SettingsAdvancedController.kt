@@ -23,6 +23,7 @@ import eu.kanade.tachiyomi.ui.library.LibraryController
 import eu.kanade.tachiyomi.util.preference.defaultValue
 import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preference
+import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.summaryRes
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.titleRes
@@ -51,42 +52,7 @@ class SettingsAdvancedController : SettingsController() {
             summaryRes = R.string.pref_acra_summary
             defaultValue = true
         }
-        preference {
-            key = CLEAR_CACHE_KEY
-            titleRes = R.string.pref_clear_chapter_cache
-            summary = context.getString(R.string.used_cache, chapterCache.readableSize)
 
-            onClick { clearChapterCache() }
-        }
-        preference {
-            titleRes = R.string.pref_clear_cookies
-
-            onClick {
-                network.cookieManager.removeAll()
-                activity?.toast(R.string.cookies_cleared)
-            }
-        }
-        preference {
-            titleRes = R.string.pref_clear_database
-            summaryRes = R.string.pref_clear_database_summary
-
-            onClick {
-                val ctrl = ClearDatabaseDialogController()
-                ctrl.targetController = this@SettingsAdvancedController
-                ctrl.showDialog(router)
-            }
-        }
-        preference {
-            titleRes = R.string.pref_refresh_library_covers
-
-            onClick { LibraryUpdateService.start(context, target = Target.COVERS) }
-        }
-        preference {
-            titleRes = R.string.pref_refresh_library_tracking
-            summaryRes = R.string.pref_refresh_library_tracking_summary
-
-            onClick { LibraryUpdateService.start(context, target = Target.TRACKING) }
-        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             preference {
                 titleRes = R.string.pref_disable_battery_optimization
@@ -108,6 +74,52 @@ class SettingsAdvancedController : SettingsController() {
                         context.toast(R.string.battery_optimization_disabled)
                     }
                 }
+            }
+        }
+
+        preferenceCategory {
+            titleRes = R.string.label_data
+
+            preference {
+                key = CLEAR_CACHE_KEY
+                titleRes = R.string.pref_clear_chapter_cache
+                summary = context.getString(R.string.used_cache, chapterCache.readableSize)
+
+                onClick { clearChapterCache() }
+            }
+            preference {
+                titleRes = R.string.pref_clear_cookies
+
+                onClick {
+                    network.cookieManager.removeAll()
+                    activity?.toast(R.string.cookies_cleared)
+                }
+            }
+            preference {
+                titleRes = R.string.pref_clear_database
+                summaryRes = R.string.pref_clear_database_summary
+
+                onClick {
+                    val ctrl = ClearDatabaseDialogController()
+                    ctrl.targetController = this@SettingsAdvancedController
+                    ctrl.showDialog(router)
+                }
+            }
+        }
+
+        preferenceCategory {
+            titleRes = R.string.label_library
+
+            preference {
+                titleRes = R.string.pref_refresh_library_covers
+
+                onClick { LibraryUpdateService.start(context, target = Target.COVERS) }
+            }
+            preference {
+                titleRes = R.string.pref_refresh_library_tracking
+                summaryRes = R.string.pref_refresh_library_tracking_summary
+
+                onClick { LibraryUpdateService.start(context, target = Target.TRACKING) }
             }
         }
     }
