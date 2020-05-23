@@ -123,6 +123,8 @@ object PreferenceKeys {
 
     const val hideNotificationContent = "hide_notification_content"
 
+    const val autoUpdateMetadata = "auto_update_metadata"
+
     const val showLibraryUpdateErrors = "show_library_update_errors"
 
     const val downloadNew = "download_new"

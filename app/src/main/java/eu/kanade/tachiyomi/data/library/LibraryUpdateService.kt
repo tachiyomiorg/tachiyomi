@@ -334,16 +334,18 @@ class LibraryUpdateService(
         val source = sourceManager.get(manga.source) ?: return Observable.empty()
 
         // Update manga details metadata in the background
-        source.fetchMangaDetails(manga)
-            .map { networkManga ->
-                manga.prepUpdateCover(coverCache, networkManga, false)
-                manga.copyFrom(networkManga)
-                db.insertManga(manga).executeAsBlocking()
-                manga
-            }
-            .onErrorResumeNext { Observable.just(manga) }
-            .subscribeOn(Schedulers.io())
-            .subscribe()
+        if (preferences.autoUpdateMetadata()) {
+            source.fetchMangaDetails(manga)
+                .map { networkManga ->
+                    manga.prepUpdateCover(coverCache, networkManga, false)
+                    manga.copyFrom(networkManga)
+                    db.insertManga(manga).executeAsBlocking()
+                    manga
+                }
+                .onErrorResumeNext { Observable.just(manga) }
+                .subscribeOn(Schedulers.io())
+                .subscribe()
+        }
 
         return source.fetchChapterList(manga)
             .map { syncChaptersWithSource(db, it, manga, source) }
