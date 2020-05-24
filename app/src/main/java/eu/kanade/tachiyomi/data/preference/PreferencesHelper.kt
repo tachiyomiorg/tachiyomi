@@ -129,9 +129,9 @@ class PreferencesHelper(val context: Context) {
 
     fun readWithVolumeKeysInverted() = flowPrefs.getBoolean(Keys.readWithVolumeKeysInverted, false)
 
-    fun portraitColumns() = rxPrefs.getInteger(Keys.portraitColumns, 0)
+    fun portraitColumns() = flowPrefs.getInt(Keys.portraitColumns, 0)
 
-    fun landscapeColumns() = rxPrefs.getInteger(Keys.landscapeColumns, 0)
+    fun landscapeColumns() = flowPrefs.getInt(Keys.landscapeColumns, 0)
 
     fun updateOnlyNonCompleted() = prefs.getBoolean(Keys.updateOnlyNonCompleted, false)
 

@@ -16,16 +16,17 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.graphics.drawable.DrawableCompat
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
-import com.f2prateek.rx.preferences.Preference
 import com.google.android.material.tabs.TabLayout
 import com.jakewharton.rxrelay.BehaviorRelay
 import com.jakewharton.rxrelay.PublishRelay
+import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
+import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.databinding.LibraryControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.RootController
@@ -39,6 +40,7 @@ import eu.kanade.tachiyomi.util.system.getResourceColor
 import eu.kanade.tachiyomi.util.system.toast
 import eu.kanade.tachiyomi.util.view.visible
 import kotlinx.android.synthetic.main.main_activity.tabs
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -158,11 +160,11 @@ class LibraryController(
             }
             .launchIn(scope)
 
-        getColumnsPreferenceForCurrentOrientation().asObservable()
-            .doOnNext { mangaPerRow = it }
-            .skip(1)
+        getColumnsPreferenceForCurrentOrientation().asImmediateFlow { mangaPerRow = it }
+            .drop(1)
             // Set again the adapter to recalculate the covers height
-            .subscribeUntilDestroy { reattachAdapter() }
+            .onEach { reattachAdapter() }
+            .launchIn(scope)
 
         if (selectedMangas.isNotEmpty()) {
             createActionModeIfNeeded()
