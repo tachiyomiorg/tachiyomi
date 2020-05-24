@@ -7,10 +7,18 @@ import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import java.util.TreeMap
-import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
 import rx.Observable
 import rx.Subscription
-import rx.android.schedulers.AndroidSchedulers
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -25,6 +33,8 @@ class SourcePresenter(
     val sourceManager: SourceManager = Injekt.get(),
     private val preferences: PreferencesHelper = Injekt.get()
 ) : BasePresenter<SourceController>() {
+
+    private val scope = CoroutineScope(Job() + Dispatchers.Main)
 
     var sources = getEnabledSources()
 
@@ -79,16 +89,21 @@ class SourcePresenter(
     }
 
     private fun loadLastUsedSource() {
-        val sharedObs = preferences.lastUsedCatalogueSource().asObservable().share()
+        // Immediate initial load
+        preferences.lastUsedCatalogueSource().get().let { updateLastUsedSource(it) }
 
-        // Emit the first item immediately but delay subsequent emissions by 500ms.
-        Observable.merge(
-            sharedObs.take(1),
-            sharedObs.skip(1).delay(500, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-        )
+        // Subsequent updates
+        preferences.lastUsedCatalogueSource().asFlow()
+            .drop(1)
+            .onStart { delay(500) }
             .distinctUntilChanged()
-            .map { item -> (sourceManager.get(item) as? CatalogueSource)?.let { SourceItem(it) } }
-            .subscribeLatestCache(SourceController::setLastUsedSource)
+            .onEach { updateLastUsedSource(it) }
+            .launchIn(scope)
+    }
+
+    private fun updateLastUsedSource(sourceId: Long) {
+        val source = (sourceManager.get(sourceId) as? CatalogueSource)?.let { SourceItem(it) }
+        source?.let { view?.setLastUsedSource(it) }
     }
 
     fun updateSources() {
