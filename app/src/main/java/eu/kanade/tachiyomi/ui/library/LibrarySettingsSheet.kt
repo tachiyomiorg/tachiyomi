@@ -183,16 +183,18 @@ class LibrarySettingsSheet(
         inner class DisplayGroup : Group {
 
             private val grid = Item.Radio(R.string.action_display_grid, this)
+            private val comfortableGrid = Item.Radio(R.string.action_display_comfortable_grid, this)
             private val list = Item.Radio(R.string.action_display_list, this)
 
             override val header = null
-            override val items = listOf(grid, list)
+            override val items = listOf(grid, comfortableGrid, list)
             override val footer = null
 
             override fun initModels() {
-                val asList = preferences.libraryAsList().get()
-                grid.checked = !asList
-                list.checked = asList
+                val mode = preferences.libraryViewSetting().get()
+                grid.checked = mode == 0
+                list.checked = mode == 1
+                comfortableGrid.checked = mode == 2
             }
 
             override fun onItemClicked(item: Item) {
@@ -202,7 +204,13 @@ class LibrarySettingsSheet(
                 item.group.items.forEach { (it as Item.Radio).checked = false }
                 item.checked = true
 
-                preferences.libraryAsList().set(item == list)
+                preferences.libraryViewSetting().set(
+                    when (item) {
+                        grid -> 0
+                        list -> 1
+                        else -> 2
+                    }
+                )
 
                 item.group.items.forEach { adapter.notifyItemChanged(it) }
             }
