@@ -5,6 +5,7 @@ import eu.kanade.tachiyomi.extension.ExtensionManager
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.model.SManga
+import java.io.Serializable
 import rx.Observable
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
@@ -12,7 +13,7 @@ import uy.kohesive.injekt.api.get
 /**
  * A basic interface for creating a source. It could be an online source, a local source, etc...
  */
-interface Source {
+interface Source : Serializable {
 
     /**
      * Id for the source. Must be unique.

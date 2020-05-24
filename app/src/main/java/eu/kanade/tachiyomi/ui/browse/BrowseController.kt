@@ -20,7 +20,7 @@ import eu.kanade.tachiyomi.ui.base.controller.RootController
 import eu.kanade.tachiyomi.ui.base.controller.RxController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.browse.extension.ExtensionController
-import eu.kanade.tachiyomi.ui.browse.migration.MigrationController
+import eu.kanade.tachiyomi.ui.browse.migration.sources.MigrationSourcesController
 import eu.kanade.tachiyomi.ui.browse.source.SourceController
 import kotlinx.android.synthetic.main.main_activity.tabs
 import uy.kohesive.injekt.injectLazy
@@ -126,7 +126,7 @@ class BrowseController :
                 val controller: Controller = when (position) {
                     SOURCES_CONTROLLER -> SourceController()
                     EXTENSIONS_CONTROLLER -> ExtensionController()
-                    MIGRATION_CONTROLLER -> MigrationController()
+                    MIGRATION_CONTROLLER -> MigrationSourcesController()
                     else -> error("Wrong position $position")
                 }
                 router.setRoot(RouterTransaction.with(controller))
