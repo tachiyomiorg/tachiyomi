@@ -29,6 +29,7 @@ import eu.kanade.tachiyomi.ui.browse.source.filter.TextSectionItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TriStateItem
 import eu.kanade.tachiyomi.ui.browse.source.filter.TriStateSectionItem
 import eu.kanade.tachiyomi.util.removeCovers
+import kotlinx.coroutines.flow.subscribe
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -118,11 +119,7 @@ open class BrowseSourcePresenter(
             query = savedState.getString(::query.name, "")
         }
 
-        add(
-            prefs.catalogueAsList().asObservable()
-                .subscribe { setDisplayMode(it) }
-        )
-
+        isListMode = prefs.catalogueAsList().get()
         restartPager()
     }
 
@@ -192,16 +189,6 @@ open class BrowseSourcePresenter(
      */
     fun hasNextPage(): Boolean {
         return pager.hasNextPage
-    }
-
-    /**
-     * Sets the display mode.
-     *
-     * @param asList whether the current mode is in list or not.
-     */
-    private fun setDisplayMode(asList: Boolean) {
-        isListMode = asList
-        subscribeToMangaInitializer()
     }
 
     /**
@@ -289,7 +276,10 @@ open class BrowseSourcePresenter(
      * Changes the active display mode.
      */
     fun swapDisplayMode() {
-        prefs.catalogueAsList().set(!isListMode)
+        val mode = !isListMode
+        prefs.catalogueAsList().set(mode)
+        isListMode = mode
+        subscribeToMangaInitializer()
     }
 
     /**

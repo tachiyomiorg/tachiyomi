@@ -185,7 +185,6 @@ dependencies {
     implementation 'io.requery:sqlite-android:3.31.0'
 
     // Preferences
-    implementation 'com.f2prateek.rx.preferences:rx-preferences:1.0.2'
     implementation 'com.github.tfcporciuncula:flow-preferences:1.1.1'
 
     // Model View Presenter

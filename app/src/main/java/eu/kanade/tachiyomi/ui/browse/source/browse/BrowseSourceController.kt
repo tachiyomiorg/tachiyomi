@@ -435,7 +435,7 @@ open class BrowseSourceController(bundle: Bundle) :
     /**
      * Swaps the current display mode.
      */
-    fun swapDisplayMode() {
+    private fun swapDisplayMode() {
         val view = view ?: return
         val adapter = adapter ?: return
 

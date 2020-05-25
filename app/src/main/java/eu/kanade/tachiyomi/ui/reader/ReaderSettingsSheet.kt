@@ -6,12 +6,10 @@ import android.widget.CompoundButton
 import android.widget.Spinner
 import androidx.annotation.ArrayRes
 import androidx.core.widget.NestedScrollView
-import com.f2prateek.rx.preferences.Preference as RxPreference
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.getOrDefault
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.PagerViewer
 import eu.kanade.tachiyomi.ui.reader.viewer.webtoon.WebtoonViewer
 import eu.kanade.tachiyomi.util.view.invisible
@@ -127,16 +125,6 @@ class ReaderSettingsSheet(private val activity: ReaderActivity) : BottomSheetDia
     private fun CompoundButton.bindToPreference(pref: Preference<Boolean>) {
         isChecked = pref.get()
         setOnCheckedChangeListener { _, isChecked -> pref.set(isChecked) }
-    }
-
-    /**
-     * Binds a spinner to an int preference with an optional offset for the value.
-     */
-    private fun Spinner.bindToPreference(pref: RxPreference<Int>, offset: Int = 0) {
-        onItemSelectedListener = IgnoreFirstSpinnerListener { position ->
-            pref.set(position + offset)
-        }
-        setSelection(pref.getOrDefault() - offset, false)
     }
 
     /**
