@@ -139,7 +139,7 @@ class PreferencesHelper(val context: Context) {
 
     fun lastVersionCode() = flowPrefs.getInt("last_version_code", 0)
 
-    fun catalogueDisplayMode() = flowPrefs.getInt(Keys.catalogueDisplayMode, DisplayMode.COMPACT_GRID.value)
+    fun catalogueDisplayMode() = flowPrefs.getEnum(Keys.catalogueDisplayMode, DisplayMode.COMPACT_GRID)
 
     fun enabledLanguages() = flowPrefs.getStringSet(Keys.enabledLanguages, setOf("en", Locale.getDefault().language))
 
@@ -185,7 +185,7 @@ class PreferencesHelper(val context: Context) {
 
     fun libraryUpdatePrioritization() = flowPrefs.getInt(Keys.libraryUpdatePrioritization, 0)
 
-    fun libraryDisplayMode() = flowPrefs.getInt(Keys.libraryDisplayMode, DisplayMode.COMPACT_GRID.value)
+    fun libraryDisplayMode() = flowPrefs.getEnum(Keys.libraryDisplayMode, DisplayMode.COMPACT_GRID)
 
     fun downloadBadge() = flowPrefs.getBoolean(Keys.downloadBadge, false)
 

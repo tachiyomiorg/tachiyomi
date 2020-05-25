@@ -73,7 +73,7 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
     fun onCreate(controller: LibraryController) {
         this.controller = controller
 
-        recycler = if (preferences.libraryDisplayMode().get() == DisplayMode.LIST.value) {
+        recycler = if (preferences.libraryDisplayMode().get() == DisplayMode.LIST) {
             (swipe_refresh.inflate(R.layout.library_list_recycler) as RecyclerView).apply {
                 layoutManager = LinearLayoutManager(context)
             }

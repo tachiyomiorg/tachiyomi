@@ -17,15 +17,14 @@ import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import kotlinx.android.synthetic.main.source_compact_grid_item.view.card
 import kotlinx.android.synthetic.main.source_compact_grid_item.view.gradient
 
-class SourceItem(val manga: Manga, private val catalogueDisplayMode: Preference<Int>) :
+class SourceItem(val manga: Manga, private val catalogueDisplayMode: Preference<DisplayMode>) :
     AbstractFlexibleItem<SourceHolder>() {
 
     override fun getLayoutRes(): Int {
         return when (catalogueDisplayMode.get()) {
-            DisplayMode.COMPACT_GRID.value -> R.layout.source_compact_grid_item
-            DisplayMode.COMFORTABLE_GRID.value -> R.layout.source_comfortable_grid_item
-            DisplayMode.LIST.value -> R.layout.source_list_item
-            else -> throw NotImplementedError("Unknown display mode")
+            DisplayMode.COMPACT_GRID -> R.layout.source_compact_grid_item
+            DisplayMode.COMFORTABLE_GRID -> R.layout.source_comfortable_grid_item
+            DisplayMode.LIST -> R.layout.source_list_item
         }
     }
 
@@ -34,7 +33,7 @@ class SourceItem(val manga: Manga, private val catalogueDisplayMode: Preference<
         adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>
     ): SourceHolder {
         return when (catalogueDisplayMode.get()) {
-            DisplayMode.COMPACT_GRID.value -> {
+            DisplayMode.COMPACT_GRID -> {
                 val parent = adapter.recyclerView as AutofitRecyclerView
                 val coverHeight = parent.itemWidth / 3 * 4
                 view.apply {
@@ -47,7 +46,7 @@ class SourceItem(val manga: Manga, private val catalogueDisplayMode: Preference<
                 }
                 SourceGridHolder(view, adapter)
             }
-            DisplayMode.COMFORTABLE_GRID.value -> {
+            DisplayMode.COMFORTABLE_GRID -> {
                 val parent = adapter.recyclerView as AutofitRecyclerView
                 val coverHeight = parent.itemWidth / 3 * 4
                 view.apply {
@@ -57,10 +56,9 @@ class SourceItem(val manga: Manga, private val catalogueDisplayMode: Preference<
                 }
                 SourceComfortableGridHolder(view, adapter)
             }
-            DisplayMode.LIST.value -> {
+            DisplayMode.LIST -> {
                 SourceListHolder(view, adapter)
             }
-            else -> throw NotImplementedError("Unknown display mode")
         }
     }
 

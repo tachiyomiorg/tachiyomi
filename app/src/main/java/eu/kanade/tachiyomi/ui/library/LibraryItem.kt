@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.source_compact_grid_item.view.gradient
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
-class LibraryItem(val manga: LibraryManga, private val libraryDisplayMode: Preference<Int>) :
+class LibraryItem(val manga: LibraryManga, private val libraryDisplayMode: Preference<DisplayMode>) :
     AbstractFlexibleItem<LibraryHolder>(), IFilterable<String> {
 
     private val sourceManager: SourceManager = Injekt.get()
@@ -31,16 +31,15 @@ class LibraryItem(val manga: LibraryManga, private val libraryDisplayMode: Prefe
 
     override fun getLayoutRes(): Int {
         return when (libraryDisplayMode.get()) {
-            DisplayMode.COMPACT_GRID.value -> R.layout.source_compact_grid_item
-            DisplayMode.COMFORTABLE_GRID.value -> R.layout.source_comfortable_grid_item
-            DisplayMode.LIST.value -> R.layout.source_list_item
-            else -> throw NotImplementedError("Unknown display mode")
+            DisplayMode.COMPACT_GRID -> R.layout.source_compact_grid_item
+            DisplayMode.COMFORTABLE_GRID -> R.layout.source_comfortable_grid_item
+            DisplayMode.LIST -> R.layout.source_list_item
         }
     }
 
     override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): LibraryHolder {
         return when (libraryDisplayMode.get()) {
-            DisplayMode.COMPACT_GRID.value -> {
+            DisplayMode.COMPACT_GRID -> {
                 val parent = adapter.recyclerView as AutofitRecyclerView
                 val coverHeight = parent.itemWidth / 3 * 4
                 view.apply {
@@ -51,7 +50,7 @@ class LibraryItem(val manga: LibraryManga, private val libraryDisplayMode: Prefe
                 }
                 LibraryGridHolder(view, adapter)
             }
-            DisplayMode.COMFORTABLE_GRID.value -> {
+            DisplayMode.COMFORTABLE_GRID -> {
                 val parent = adapter.recyclerView as AutofitRecyclerView
                 val coverHeight = parent.itemWidth / 3 * 4
                 view.apply {
@@ -61,10 +60,9 @@ class LibraryItem(val manga: LibraryManga, private val libraryDisplayMode: Prefe
                 }
                 LibraryComfortableGridHolder(view, adapter)
             }
-            DisplayMode.LIST.value -> {
+            DisplayMode.LIST -> {
                 LibraryListHolder(view, adapter)
             }
-            else -> throw NotImplementedError("Unknown display mode")
         }
     }
 

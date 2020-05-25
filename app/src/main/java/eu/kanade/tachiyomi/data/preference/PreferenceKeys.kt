@@ -73,7 +73,7 @@ object PreferenceKeys {
 
     const val lastUsedCategory = "last_used_category"
 
-    const val catalogueDisplayMode = "pref_catalogue_display_mode"
+    const val catalogueDisplayMode = "pref_display_mode_catalogue"
 
     const val enabledLanguages = "source_languages"
 
@@ -131,7 +131,7 @@ object PreferenceKeys {
 
     const val downloadNewCategories = "download_new_categories"
 
-    const val libraryDisplayMode = "pref_library_display_mode"
+    const val libraryDisplayMode = "pref_display_mode_library"
 
     const val lang = "app_language"
 
