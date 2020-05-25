@@ -118,21 +118,21 @@ class SettingsGeneralController : SettingsController() {
                         R.string.theme_dark
                     )
                     entryValues = arrayOf(
-                        Values.THEME_MODE_SYSTEM,
-                        Values.THEME_MODE_LIGHT,
-                        Values.THEME_MODE_DARK
+                        Values.ThemeMode.SYSTEM.value,
+                        Values.ThemeMode.LIGHT.value,
+                        Values.ThemeMode.DARK.value
                     )
-                    defaultValue = Values.THEME_MODE_SYSTEM
+                    defaultValue = Values.ThemeMode.SYSTEM.value
                 } else {
                     entriesRes = arrayOf(
                         R.string.theme_light,
                         R.string.theme_dark
                     )
                     entryValues = arrayOf(
-                        Values.THEME_MODE_LIGHT,
-                        Values.THEME_MODE_DARK
+                        Values.ThemeMode.LIGHT.value,
+                        Values.ThemeMode.DARK.value
                     )
-                    defaultValue = Values.THEME_MODE_LIGHT
+                    defaultValue = Values.ThemeMode.LIGHT.value
                 }
 
                 summary = "%s"
@@ -150,17 +150,17 @@ class SettingsGeneralController : SettingsController() {
                     R.string.theme_light_blue
                 )
                 entryValues = arrayOf(
-                    Values.THEME_LIGHT_DEFAULT,
-                    Values.THEME_LIGHT_BLUE
+                    Values.LightThemeVariant.DEFAULT.value,
+                    Values.LightThemeVariant.BLUE.value
                 )
-                defaultValue = Values.THEME_LIGHT_DEFAULT
+                defaultValue = Values.LightThemeVariant.DEFAULT.value
                 summary = "%s"
 
-                preferences.themeMode().asImmediateFlow { isVisible = it != Values.THEME_MODE_DARK }
+                preferences.themeMode().asImmediateFlow { isVisible = it != Values.ThemeMode.DARK.value }
                     .launchIn(scope)
 
                 onChange {
-                    if (preferences.themeMode().get() != Values.THEME_MODE_DARK) {
+                    if (preferences.themeMode().get() != Values.ThemeMode.DARK.value) {
                         activity?.recreate()
                     }
                     true
@@ -175,18 +175,18 @@ class SettingsGeneralController : SettingsController() {
                     R.string.theme_dark_amoled
                 )
                 entryValues = arrayOf(
-                    Values.THEME_DARK_DEFAULT,
-                    Values.THEME_DARK_BLUE,
-                    Values.THEME_DARK_AMOLED
+                    Values.DarkThemeVariant.DEFAULT.value,
+                    Values.DarkThemeVariant.BLUE.value,
+                    Values.DarkThemeVariant.AMOLED.value
                 )
-                defaultValue = Values.THEME_DARK_DEFAULT
+                defaultValue = Values.DarkThemeVariant.DEFAULT.value
                 summary = "%s"
 
-                preferences.themeMode().asImmediateFlow { isVisible = it != Values.THEME_MODE_LIGHT }
+                preferences.themeMode().asImmediateFlow { isVisible = it != Values.ThemeMode.LIGHT.value }
                     .launchIn(scope)
 
                 onChange {
-                    if (preferences.themeMode().get() != Values.THEME_MODE_LIGHT) {
+                    if (preferences.themeMode().get() != Values.ThemeMode.LIGHT.value) {
                         activity?.recreate()
                     }
                     true
