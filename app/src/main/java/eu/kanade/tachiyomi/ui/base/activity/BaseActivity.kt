@@ -25,7 +25,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     private val lightTheme: Int by lazy {
         when (preferences.themeLight().get()) {
-            Values.LightThemeVariant.BLUE.value -> R.style.Theme_Tachiyomi_LightBlue
+            Values.LightThemeVariant.blue -> R.style.Theme_Tachiyomi_LightBlue
             else -> {
                 when {
                     // Light status + navigation bar
@@ -47,8 +47,8 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     private val darkTheme: Int by lazy {
         when (preferences.themeDark().get()) {
-            Values.DarkThemeVariant.BLUE.value -> R.style.Theme_Tachiyomi_DarkBlue
-            Values.DarkThemeVariant.AMOLED.value -> R.style.Theme_Tachiyomi_Amoled
+            Values.DarkThemeVariant.blue -> R.style.Theme_Tachiyomi_DarkBlue
+            Values.DarkThemeVariant.amoled -> R.style.Theme_Tachiyomi_Amoled
             else -> R.style.Theme_Tachiyomi_Dark
         }
     }
@@ -61,14 +61,14 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(
             when (preferences.themeMode().get()) {
-                Values.ThemeMode.SYSTEM.value -> {
+                Values.ThemeMode.system -> {
                     if (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
                         darkTheme
                     } else {
                         lightTheme
                     }
                 }
-                Values.ThemeMode.DARK.value -> darkTheme
+                Values.ThemeMode.dark -> darkTheme
                 else -> lightTheme
             }
         )

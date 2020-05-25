@@ -69,11 +69,11 @@ class PreferencesHelper(val context: Context) {
 
     fun clear() = prefs.edit().clear().apply()
 
-    fun themeMode() = flowPrefs.getString(Keys.themeMode, Values.ThemeMode.SYSTEM.value)
+    fun themeMode() = flowPrefs.getEnum(Keys.themeMode, Values.ThemeMode.system)
 
-    fun themeLight() = flowPrefs.getString(Keys.themeLight, Values.LightThemeVariant.DEFAULT.value)
+    fun themeLight() = flowPrefs.getEnum(Keys.themeLight, Values.LightThemeVariant.default)
 
-    fun themeDark() = flowPrefs.getString(Keys.themeDark, Values.DarkThemeVariant.DEFAULT.value)
+    fun themeDark() = flowPrefs.getEnum(Keys.themeDark, Values.DarkThemeVariant.default)
 
     fun rotation() = flowPrefs.getInt(Keys.rotation, 1)
 

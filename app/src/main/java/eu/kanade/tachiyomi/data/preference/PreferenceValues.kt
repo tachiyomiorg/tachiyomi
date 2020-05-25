@@ -5,21 +5,24 @@ package eu.kanade.tachiyomi.data.preference
  */
 object PreferenceValues {
 
-    enum class ThemeMode(val value: String) {
-        LIGHT("light"),
-        DARK("dark"),
-        SYSTEM("system"),
+    // Keys are lowercase to match legacy string values
+    enum class ThemeMode {
+        light,
+        dark,
+        system,
     }
 
-    enum class LightThemeVariant(val value: String) {
-        DEFAULT("default"),
-        BLUE("blue"),
+    // Keys are lowercase to match legacy string values
+    enum class LightThemeVariant {
+        default,
+        blue,
     }
 
-    enum class DarkThemeVariant(val value: String) {
-        DEFAULT("default"),
-        BLUE("blue"),
-        AMOLED("amoled"),
+    // Keys are lowercase to match legacy string values
+    enum class DarkThemeVariant {
+        default,
+        blue,
+        amoled,
     }
 
     enum class DisplayMode {
