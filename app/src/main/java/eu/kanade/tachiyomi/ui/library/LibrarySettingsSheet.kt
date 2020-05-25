@@ -5,9 +5,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_COMFORTABLE_GRID
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_COMPACT_GRID
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_LIST
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
 import eu.kanade.tachiyomi.widget.TabbedBottomSheetDialog
@@ -185,19 +183,19 @@ class LibrarySettingsSheet(
 
         inner class DisplayGroup : Group {
 
-            private val grid = Item.Radio(R.string.action_display_grid, this)
+            private val compactGrid = Item.Radio(R.string.action_display_grid, this)
             private val comfortableGrid = Item.Radio(R.string.action_display_comfortable_grid, this)
             private val list = Item.Radio(R.string.action_display_list, this)
 
             override val header = null
-            override val items = listOf(grid, comfortableGrid, list)
+            override val items = listOf(compactGrid, comfortableGrid, list)
             override val footer = null
 
             override fun initModels() {
                 val mode = preferences.libraryDisplayMode().get()
-                grid.checked = mode == DISPLAY_COMPACT_GRID
-                list.checked = mode == DISPLAY_LIST
-                comfortableGrid.checked = mode == DISPLAY_COMFORTABLE_GRID
+                compactGrid.checked = mode == DisplayMode.COMPACT_GRID.value
+                comfortableGrid.checked = mode == DisplayMode.COMFORTABLE_GRID.value
+                list.checked = mode == DisplayMode.LIST.value
             }
 
             override fun onItemClicked(item: Item) {
@@ -209,9 +207,10 @@ class LibrarySettingsSheet(
 
                 preferences.libraryDisplayMode().set(
                     when (item) {
-                        grid -> DISPLAY_COMPACT_GRID
-                        list -> DISPLAY_LIST
-                        else -> DISPLAY_COMFORTABLE_GRID
+                        compactGrid -> DisplayMode.COMPACT_GRID.value
+                        comfortableGrid -> DisplayMode.COMFORTABLE_GRID.value
+                        list -> DisplayMode.LIST.value
+                        else -> throw NotImplementedError("Unknown display mode")
                     }
                 )
 

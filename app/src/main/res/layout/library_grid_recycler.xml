@@ -11,4 +11,4 @@
     android:paddingTop="5dp"
     android:paddingEnd="5dp"
     android:paddingBottom="@dimen/action_toolbar_list_padding"
-    tools:listitem="@layout/source_grid_item" />
+    tools:listitem="@layout/source_compact_grid_item" />

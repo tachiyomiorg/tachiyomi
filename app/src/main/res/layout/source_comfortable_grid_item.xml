@@ -8,13 +8,12 @@
     android:padding="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_rectangle">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <FrameLayout
             android:id="@+id/card"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="220dp"
             android:background="@drawable/rounded_rectangle"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,13 +27,6 @@
                 android:background="?attr/colorSurface"
                 tools:ignore="ContentDescription"
                 tools:src="@mipmap/ic_launcher" />
-
-            <View
-                android:id="@+id/gradient"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@drawable/gradient_shape" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
@@ -116,15 +108,16 @@
             style="@style/TextAppearance.Regular.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|start|end"
             android:ellipsize="end"
             android:fontFamily="@font/ptsans_narrow_bold"
             android:lineSpacingExtra="-4dp"
             android:maxLines="2"
-            android:padding="8dp"
+            android:padding="4dp"
             android:shadowColor="@color/textColorPrimaryLight"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/card"
             tools:text="Sample name" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

@@ -22,9 +22,7 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_COMFORTABLE_GRID
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_COMPACT_GRID
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_LIST
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.databinding.SourceControllerBinding
@@ -190,7 +188,7 @@ open class BrowseSourceController(bundle: Bundle) :
             binding.catalogueView.removeView(oldRecycler)
         }
 
-        val recycler = if (preferences.catalogueDisplayMode().get() == DISPLAY_LIST) {
+        val recycler = if (preferences.catalogueDisplayMode().get() == DisplayMode.LIST.value) {
             RecyclerView(view.context).apply {
                 id = R.id.recycler
                 layoutManager = LinearLayoutManager(context)
@@ -208,7 +206,7 @@ open class BrowseSourceController(bundle: Bundle) :
                 (layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
                         return when (adapter?.getItemViewType(position)) {
-                            R.layout.source_grid_item, R.layout.source_comfortable_grid_item, null -> 1
+                            R.layout.source_compact_grid_item, R.layout.source_comfortable_grid_item, null -> 1
                             else -> spanCount
                         }
                     }
@@ -270,10 +268,10 @@ open class BrowseSourceController(bundle: Bundle) :
         )
 
         val displayItem = when (preferences.catalogueDisplayMode().get()) {
-            DISPLAY_COMPACT_GRID -> R.id.action_compact_grid
-            DISPLAY_LIST -> R.id.action_list
-            DISPLAY_COMFORTABLE_GRID -> R.id.action_comfortable_grid
-            else -> throw NotImplementedError("Unimplemented display")
+            DisplayMode.COMPACT_GRID.value -> R.id.action_compact_grid
+            DisplayMode.COMFORTABLE_GRID.value -> R.id.action_comfortable_grid
+            DisplayMode.LIST.value -> R.id.action_list
+            else -> throw NotImplementedError("Unknown display mode")
         }
         menu.findItem(displayItem).isChecked = true
     }
@@ -291,9 +289,9 @@ open class BrowseSourceController(bundle: Bundle) :
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_search -> expandActionViewFromInteraction = true
-            R.id.action_compact_grid -> setDisplayMode(DISPLAY_COMPACT_GRID)
-            R.id.action_list -> setDisplayMode(DISPLAY_LIST)
-            R.id.action_comfortable_grid -> setDisplayMode(DISPLAY_COMFORTABLE_GRID)
+            R.id.action_compact_grid -> setDisplayMode(DisplayMode.COMPACT_GRID)
+            R.id.action_comfortable_grid -> setDisplayMode(DisplayMode.COMFORTABLE_GRID)
+            R.id.action_list -> setDisplayMode(DisplayMode.LIST)
             R.id.action_open_in_web_view -> openInWebView()
             R.id.action_local_source_help -> openLocalSourceHelpGuide()
         }
@@ -440,15 +438,15 @@ open class BrowseSourceController(bundle: Bundle) :
      *
      * @param mode the mode to change to
      */
-    private fun setDisplayMode(mode: Int) {
+    private fun setDisplayMode(mode: DisplayMode) {
         val view = view ?: return
         val adapter = adapter ?: return
 
-        preferences.catalogueDisplayMode().set(mode)
+        preferences.catalogueDisplayMode().set(mode.value)
         presenter.refreshDisplayMode()
         activity?.invalidateOptionsMenu()
         setupRecycler(view)
-        if (mode == DISPLAY_LIST || !view.context.connectivityManager.isActiveNetworkMetered) {
+        if (mode == DisplayMode.LIST || !view.context.connectivityManager.isActiveNetworkMetered) {
             // Initialize mangas if going to grid view or if over wifi when going to list view
             val mangas = (0 until adapter.itemCount).mapNotNull {
                 (adapter.getItem(it) as? SourceItem)?.manga

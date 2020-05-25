@@ -13,12 +13,11 @@ import eu.davidea.flexibleadapter.items.IFilterable
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.LibraryManga
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_COMPACT_GRID
-import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_LIST
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
-import kotlinx.android.synthetic.main.source_grid_item.view.card
-import kotlinx.android.synthetic.main.source_grid_item.view.gradient
+import kotlinx.android.synthetic.main.source_compact_grid_item.view.card
+import kotlinx.android.synthetic.main.source_compact_grid_item.view.gradient
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -32,17 +31,18 @@ class LibraryItem(val manga: LibraryManga, private val libraryDisplayMode: Prefe
 
     override fun getLayoutRes(): Int {
         return when (libraryDisplayMode.get()) {
-            DISPLAY_COMPACT_GRID -> R.layout.source_grid_item
-            DISPLAY_LIST -> R.layout.source_list_item
-            else -> R.layout.source_comfortable_grid_item
+            DisplayMode.COMPACT_GRID.value -> R.layout.source_compact_grid_item
+            DisplayMode.COMFORTABLE_GRID.value -> R.layout.source_comfortable_grid_item
+            DisplayMode.LIST.value -> R.layout.source_list_item
+            else -> throw NotImplementedError("Unknown display mode")
         }
     }
 
     override fun createViewHolder(view: View, adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>): LibraryHolder {
-        val parent = adapter.recyclerView
-        return if (parent is AutofitRecyclerView) {
-            val coverHeight = parent.itemWidth / 3 * 4
-            if (libraryDisplayMode.get() == DISPLAY_COMPACT_GRID) {
+        return when (libraryDisplayMode.get()) {
+            DisplayMode.COMPACT_GRID.value -> {
+                val parent = adapter.recyclerView as AutofitRecyclerView
+                val coverHeight = parent.itemWidth / 3 * 4
                 view.apply {
                     card.layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, coverHeight)
                     gradient.layoutParams = FrameLayout.LayoutParams(
@@ -50,19 +50,21 @@ class LibraryItem(val manga: LibraryManga, private val libraryDisplayMode: Prefe
                     )
                 }
                 LibraryGridHolder(view, adapter)
-            } else {
+            }
+            DisplayMode.COMFORTABLE_GRID.value -> {
+                val parent = adapter.recyclerView as AutofitRecyclerView
+                val coverHeight = parent.itemWidth / 3 * 4
                 view.apply {
                     card.layoutParams = ConstraintLayout.LayoutParams(
                         MATCH_PARENT, coverHeight
                     )
-                    gradient.layoutParams = FrameLayout.LayoutParams(
-                        MATCH_PARENT, coverHeight / 2, Gravity.BOTTOM
-                    )
                 }
                 LibraryComfortableGridHolder(view, adapter)
             }
-        } else {
-            LibraryListHolder(view, adapter)
+            DisplayMode.LIST.value -> {
+                LibraryListHolder(view, adapter)
+            }
+            else -> throw NotImplementedError("Unknown display mode")
         }
     }
 

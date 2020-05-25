@@ -8,4 +8,4 @@
     android:clipToPadding="false"
     android:columnWidth="140dp"
     android:padding="5dp"
-    tools:listitem="@layout/source_grid_item" />
+    tools:listitem="@layout/source_compact_grid_item" />
