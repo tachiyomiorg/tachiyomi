@@ -215,7 +215,7 @@ class BackupRestoreService : Service() {
         errors.clear()
 
         // Restore categories
-        restoreCategories(json.get(CATEGORIES))
+        json.get(CATEGORIES)?.let { restoreCategories(it) }
 
         // Store source mapping for error messages
         sourceMapping = BackupRestoreValidator.getSourceMapping(json)
