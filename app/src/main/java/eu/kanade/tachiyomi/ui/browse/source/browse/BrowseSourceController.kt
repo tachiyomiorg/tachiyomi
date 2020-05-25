@@ -22,6 +22,9 @@ import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_COMFORTABLE_GRID
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_COMPACT_GRID
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_LIST
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.data.preference.asImmediateFlow
 import eu.kanade.tachiyomi.databinding.SourceControllerBinding
@@ -187,7 +190,7 @@ open class BrowseSourceController(bundle: Bundle) :
             binding.catalogueView.removeView(oldRecycler)
         }
 
-        val recycler = if (presenter.mode == 1) {
+        val recycler = if (preferences.catalogueDisplayMode().get() == DISPLAY_LIST) {
             RecyclerView(view.context).apply {
                 id = R.id.recycler
                 layoutManager = LinearLayoutManager(context)
@@ -266,15 +269,13 @@ open class BrowseSourceController(bundle: Bundle) :
             }
         )
 
-        // Show next display mode
-        menu.findItem(R.id.action_display_mode).apply {
-            val icon = if (presenter.mode == 0) {
-                R.drawable.ic_view_list_24dp
-            } else {
-                R.drawable.ic_view_module_24dp
-            }
-            setIcon(icon)
+        val displayItem = when (preferences.catalogueDisplayMode().get()) {
+            DISPLAY_COMPACT_GRID -> R.id.action_compact_grid
+            DISPLAY_LIST -> R.id.action_list
+            DISPLAY_COMFORTABLE_GRID -> R.id.action_comfortable_grid
+            else -> throw NotImplementedError("Unimplemented display")
         }
+        menu.findItem(displayItem).isChecked = true
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
@@ -290,7 +291,9 @@ open class BrowseSourceController(bundle: Bundle) :
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_search -> expandActionViewFromInteraction = true
-            R.id.action_display_mode -> swapDisplayMode()
+            R.id.action_compact_grid -> setDisplayMode(DISPLAY_COMPACT_GRID)
+            R.id.action_list -> setDisplayMode(DISPLAY_LIST)
+            R.id.action_comfortable_grid -> setDisplayMode(DISPLAY_COMFORTABLE_GRID)
             R.id.action_open_in_web_view -> openInWebView()
             R.id.action_local_source_help -> openLocalSourceHelpGuide()
         }
@@ -433,17 +436,19 @@ open class BrowseSourceController(bundle: Bundle) :
     }
 
     /**
-     * Swaps the current display mode.
+     * Sets the current display mode.
+     *
+     * @param mode the mode to change to
      */
-    private fun swapDisplayMode() {
+    private fun setDisplayMode(mode: Int) {
         val view = view ?: return
         val adapter = adapter ?: return
 
-        presenter.swapDisplayMode()
-        val isListMode = presenter.mode == 1
+        preferences.catalogueDisplayMode().set(mode)
+        presenter.refreshDisplayMode()
         activity?.invalidateOptionsMenu()
         setupRecycler(view)
-        if (!isListMode || !view.context.connectivityManager.isActiveNetworkMetered) {
+        if (mode == DISPLAY_LIST || !view.context.connectivityManager.isActiveNetworkMetered) {
             // Initialize mangas if going to grid view or if over wifi when going to list view
             val mangas = (0 until adapter.itemCount).mapNotNull {
                 (adapter.getItem(it) as? SourceItem)?.manga

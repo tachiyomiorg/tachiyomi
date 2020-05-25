@@ -8,7 +8,6 @@
     android:padding="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/outside"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_rectangle">

@@ -12,17 +12,19 @@ import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_COMPACT_GRID
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_LIST
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import kotlinx.android.synthetic.main.source_grid_item.view.card
 import kotlinx.android.synthetic.main.source_grid_item.view.gradient
 
-class SourceItem(val manga: Manga, private val catalogueViewSetting: Preference<Int>) :
+class SourceItem(val manga: Manga, private val catalogueDisplayMode: Preference<Int>) :
     AbstractFlexibleItem<SourceHolder>() {
 
     override fun getLayoutRes(): Int {
-        return when (catalogueViewSetting.get()) {
-            0 -> R.layout.source_grid_item
-            1 -> R.layout.source_list_item
+        return when (catalogueDisplayMode.get()) {
+            DISPLAY_COMPACT_GRID -> R.layout.source_grid_item
+            DISPLAY_LIST -> R.layout.source_list_item
             else -> R.layout.source_comfortable_grid_item
         }
     }
@@ -34,7 +36,7 @@ class SourceItem(val manga: Manga, private val catalogueViewSetting: Preference<
         val parent = adapter.recyclerView
         return if (parent is AutofitRecyclerView) {
             val coverHeight = parent.itemWidth / 3 * 4
-            if (catalogueViewSetting.get() == 0) {
+            if (catalogueDisplayMode.get() == DISPLAY_COMPACT_GRID) {
                 view.apply {
                     card.layoutParams = FrameLayout.LayoutParams(
                         MATCH_PARENT, coverHeight

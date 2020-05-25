@@ -88,12 +88,6 @@ open class BrowseSourcePresenter(
     private val mangaDetailSubject = PublishSubject.create<List<Manga>>()
 
     /**
-     * Whether the view is in list mode or not.
-     */
-    var mode: Int = 0
-        private set
-
-    /**
      * Subscription for the pager.
      */
     private var pagerSubscription: Subscription? = null
@@ -119,7 +113,6 @@ open class BrowseSourcePresenter(
             query = savedState.getString(::query.name, "")
         }
 
-        mode = prefs.catalogueDisplaySetting().get()
         restartPager()
     }
 
@@ -145,7 +138,7 @@ open class BrowseSourcePresenter(
 
         val sourceId = source.id
 
-        val catalogueViewSetting = prefs.catalogueViewSetting()
+        val catalogueDisplayMode = prefs.catalogueDisplayMode()
 
         // Prepare the pager.
         pagerSubscription?.let { remove(it) }
@@ -153,7 +146,7 @@ open class BrowseSourcePresenter(
             .observeOn(Schedulers.io())
             .map { pair -> pair.first to pair.second.map { networkToLocalManga(it, sourceId) } }
             .doOnNext { initializeMangas(it.second) }
-            .map { pair -> pair.first to pair.second.map { SourceItem(it, catalogueViewSetting) } }
+            .map { pair -> pair.first to pair.second.map { SourceItem(it, catalogueDisplayMode) } }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeReplay(
                 { view, (page, mangas) ->
@@ -273,12 +266,9 @@ open class BrowseSourcePresenter(
     }
 
     /**
-     * Changes the active display mode.
+     * Refreshes the active display mode.
      */
-    fun swapDisplayMode() {
-        val mode = !isListMode
-        prefs.catalogueDisplayMode().set(mode)
-        isListMode = mode
+    fun refreshDisplayMode() {
         subscribeToMangaInitializer()
     }
 

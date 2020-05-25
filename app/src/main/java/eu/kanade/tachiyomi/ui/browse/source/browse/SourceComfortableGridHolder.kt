@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.source_comfortable_grid_item.title
  * @constructor creates a new catalogue holder.
  */
 class SourceComfortableGridHolder(private val view: View, private val adapter: FlexibleAdapter<*>) :
-    SourceHolder(view, adapter) {
+    SourceGridHolder(view, adapter) {
 
     /**
      * Method called from [CatalogueAdapter.onBindViewHolder]. It updates the data for this

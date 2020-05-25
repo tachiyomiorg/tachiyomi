@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.source_grid_item.title
  * @param adapter the adapter handling this holder.
  * @constructor creates a new catalogue holder.
  */
-class SourceGridHolder(private val view: View, private val adapter: FlexibleAdapter<*>) :
+open class SourceGridHolder(private val view: View, private val adapter: FlexibleAdapter<*>) :
     SourceHolder(view, adapter) {
 
     /**

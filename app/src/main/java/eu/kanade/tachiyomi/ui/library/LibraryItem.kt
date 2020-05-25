@@ -13,6 +13,8 @@ import eu.davidea.flexibleadapter.items.IFilterable
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.LibraryManga
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_COMPACT_GRID
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_LIST
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.widget.AutofitRecyclerView
 import kotlinx.android.synthetic.main.source_grid_item.view.card
@@ -20,7 +22,7 @@ import kotlinx.android.synthetic.main.source_grid_item.view.gradient
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
-class LibraryItem(val manga: LibraryManga, private val libraryViewSetting: Preference<Int>) :
+class LibraryItem(val manga: LibraryManga, private val libraryDisplayMode: Preference<Int>) :
     AbstractFlexibleItem<LibraryHolder>(), IFilterable<String> {
 
     private val sourceManager: SourceManager = Injekt.get()
@@ -29,9 +31,9 @@ class LibraryItem(val manga: LibraryManga, private val libraryViewSetting: Prefe
     var unreadCount = -1
 
     override fun getLayoutRes(): Int {
-        return when (libraryViewSetting.get()) {
-            0 -> R.layout.source_grid_item
-            1 -> R.layout.source_list_item
+        return when (libraryDisplayMode.get()) {
+            DISPLAY_COMPACT_GRID -> R.layout.source_grid_item
+            DISPLAY_LIST -> R.layout.source_list_item
             else -> R.layout.source_comfortable_grid_item
         }
     }
@@ -40,7 +42,7 @@ class LibraryItem(val manga: LibraryManga, private val libraryViewSetting: Prefe
         val parent = adapter.recyclerView
         return if (parent is AutofitRecyclerView) {
             val coverHeight = parent.itemWidth / 3 * 4
-            if (libraryViewSetting.get() == 0) {
+            if (libraryDisplayMode.get() == DISPLAY_COMPACT_GRID) {
                 view.apply {
                     card.layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, coverHeight)
                     gradient.layoutParams = FrameLayout.LayoutParams(

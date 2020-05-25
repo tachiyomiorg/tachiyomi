@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.source_comfortable_grid_item.unread_text
 class LibraryComfortableGridHolder(
     private val view: View,
     adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>
-) : LibraryHolder(view, adapter) {
+) : LibraryGridHolder(view, adapter) {
 
     /**
      * Method called from [LibraryCategoryAdapter.onBindViewHolder]. It updates the data for this

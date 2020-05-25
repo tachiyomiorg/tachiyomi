@@ -266,10 +266,10 @@ class LibraryPresenter(
      * value.
      */
     private fun getLibraryMangasObservable(): Observable<LibraryMap> {
-        val libraryViewSetting = preferences.libraryViewSetting()
+        val libraryDisplayMode = preferences.libraryDisplayMode()
         return db.getLibraryMangas().asRxObservable()
             .map { list ->
-                list.map { LibraryItem(it, libraryViewSetting) }.groupBy { it.manga.category }
+                list.map { LibraryItem(it, libraryDisplayMode) }.groupBy { it.manga.category }
             }
     }
 
