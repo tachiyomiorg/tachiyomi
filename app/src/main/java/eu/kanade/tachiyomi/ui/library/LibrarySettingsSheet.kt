@@ -5,6 +5,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_COMFORTABLE_GRID
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_COMPACT_GRID
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_LIST
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.widget.ExtendedNavigationView
 import eu.kanade.tachiyomi.widget.TabbedBottomSheetDialog
@@ -183,16 +186,18 @@ class LibrarySettingsSheet(
         inner class DisplayGroup : Group {
 
             private val grid = Item.Radio(R.string.action_display_grid, this)
+            private val comfortableGrid = Item.Radio(R.string.action_display_comfortable_grid, this)
             private val list = Item.Radio(R.string.action_display_list, this)
 
             override val header = null
-            override val items = listOf(grid, list)
+            override val items = listOf(grid, comfortableGrid, list)
             override val footer = null
 
             override fun initModels() {
-                val asList = preferences.libraryAsList().get()
-                grid.checked = !asList
-                list.checked = asList
+                val mode = preferences.libraryDisplayMode().get()
+                grid.checked = mode == DISPLAY_COMPACT_GRID
+                list.checked = mode == DISPLAY_LIST
+                comfortableGrid.checked = mode == DISPLAY_COMFORTABLE_GRID
             }
 
             override fun onItemClicked(item: Item) {
@@ -202,7 +207,13 @@ class LibrarySettingsSheet(
                 item.group.items.forEach { (it as Item.Radio).checked = false }
                 item.checked = true
 
-                preferences.libraryAsList().set(item == list)
+                preferences.libraryDisplayMode().set(
+                    when (item) {
+                        grid -> DISPLAY_COMPACT_GRID
+                        list -> DISPLAY_LIST
+                        else -> DISPLAY_COMFORTABLE_GRID
+                    }
+                )
 
                 item.group.items.forEach { adapter.notifyItemChanged(it) }
             }

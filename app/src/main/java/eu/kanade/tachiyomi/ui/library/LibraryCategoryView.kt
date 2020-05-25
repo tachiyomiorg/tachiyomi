@@ -12,6 +12,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.library.LibraryUpdateService
+import eu.kanade.tachiyomi.data.preference.PreferenceValues.DISPLAY_LIST
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.util.lang.plusAssign
 import eu.kanade.tachiyomi.util.system.toast
@@ -72,7 +73,7 @@ class LibraryCategoryView @JvmOverloads constructor(context: Context, attrs: Att
     fun onCreate(controller: LibraryController) {
         this.controller = controller
 
-        recycler = if (preferences.libraryAsList().get()) {
+        recycler = if (preferences.libraryDisplayMode().get() == DISPLAY_LIST) {
             (swipe_refresh.inflate(R.layout.library_list_recycler) as RecyclerView).apply {
                 layoutManager = LinearLayoutManager(context)
             }

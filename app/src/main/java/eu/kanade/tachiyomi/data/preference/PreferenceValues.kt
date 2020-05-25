@@ -15,4 +15,8 @@ object PreferenceValues {
     const val THEME_DARK_DEFAULT = "default"
     const val THEME_DARK_BLUE = "blue"
     const val THEME_DARK_AMOLED = "amoled"
+
+    const val DISPLAY_COMPACT_GRID = 0
+    const val DISPLAY_LIST = 1
+    const val DISPLAY_COMFORTABLE_GRID = 2
 }

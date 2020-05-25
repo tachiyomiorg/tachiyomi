@@ -1,18 +1,20 @@
 package eu.kanade.tachiyomi.ui.library
 
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import eu.davidea.flexibleadapter.FlexibleAdapter
+import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
 import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.view.visibleIf
-import kotlinx.android.synthetic.main.source_grid_item.card
-import kotlinx.android.synthetic.main.source_grid_item.download_text
-import kotlinx.android.synthetic.main.source_grid_item.local_text
-import kotlinx.android.synthetic.main.source_grid_item.thumbnail
-import kotlinx.android.synthetic.main.source_grid_item.title
-import kotlinx.android.synthetic.main.source_grid_item.unread_text
+import kotlinx.android.synthetic.main.source_comfortable_grid_item.card
+import kotlinx.android.synthetic.main.source_comfortable_grid_item.download_text
+import kotlinx.android.synthetic.main.source_comfortable_grid_item.local_text
+import kotlinx.android.synthetic.main.source_comfortable_grid_item.thumbnail
+import kotlinx.android.synthetic.main.source_comfortable_grid_item.title
+import kotlinx.android.synthetic.main.source_comfortable_grid_item.unread_text
 
 /**
  * Class used to hold the displayed data of a manga in the library, like the cover or the title.
@@ -23,10 +25,10 @@ import kotlinx.android.synthetic.main.source_grid_item.unread_text
  * @param listener a listener to react to single tap and long tap events.
  * @constructor creates a new library holder.
  */
-open class LibraryGridHolder(
+class LibraryComfortableGridHolder(
     private val view: View,
-    private val adapter: FlexibleAdapter<*>
-) : LibraryHolder(view, adapter) {
+    adapter: FlexibleAdapter<IFlexible<RecyclerView.ViewHolder>>
+) : LibraryGridHolder(view, adapter) {
 
     /**
      * Method called from [LibraryCategoryAdapter.onBindViewHolder]. It updates the data for this
