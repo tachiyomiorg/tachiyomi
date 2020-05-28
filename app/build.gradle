@@ -55,8 +55,8 @@ android {
         }
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding = true
     }
 
     buildTypes {
@@ -90,6 +90,10 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE'
+    }
+
+    dependenciesInfo {
+        includeInApk = false
     }
 
     lintOptions {
