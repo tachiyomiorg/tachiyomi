@@ -12,7 +12,7 @@ import eu.kanade.tachiyomi.widget.TabbedBottomSheetDialog
 import uy.kohesive.injekt.injectLazy
 
 class LibrarySettingsSheet(
-    private val activity: Activity,
+    activity: Activity,
     onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
 ) : TabbedBottomSheetDialog(activity) {
 
@@ -178,7 +178,7 @@ class LibrarySettingsSheet(
         Settings(context, attrs) {
 
         init {
-            setGroups(listOf(DisplayGroup(), BadgeGroup()))
+            setGroups(listOf(DisplayGroup(), BadgeGroup(), TabsGroup()))
         }
 
         inner class DisplayGroup : Group {
@@ -187,7 +187,7 @@ class LibrarySettingsSheet(
             private val comfortableGrid = Item.Radio(R.string.action_display_comfortable_grid, this)
             private val list = Item.Radio(R.string.action_display_list, this)
 
-            override val header = null
+            override val header = Item.Header(R.string.action_display_mode)
             override val items = listOf(compactGrid, comfortableGrid, list)
             override val footer = null
 
@@ -222,7 +222,7 @@ class LibrarySettingsSheet(
             private val downloadBadge = Item.CheckboxGroup(R.string.action_display_download_badge, this)
             private val unreadBadge = Item.CheckboxGroup(R.string.action_display_unread_badge, this)
 
-            override val header = null
+            override val header = Item.Header(R.string.badges_header)
             override val items = listOf(downloadBadge, unreadBadge)
             override val footer = null
 
@@ -237,6 +237,27 @@ class LibrarySettingsSheet(
                 when (item) {
                     downloadBadge -> preferences.downloadBadge().set((item.checked))
                     unreadBadge -> preferences.unreadBadge().set((item.checked))
+                }
+                adapter.notifyItemChanged(item)
+            }
+        }
+
+        inner class TabsGroup : Group {
+            private val showTabs = Item.CheckboxGroup(R.string.action_display_show_tabs, this)
+
+            override val header = Item.Header(R.string.tabs_header)
+            override val items = listOf(showTabs)
+            override val footer = null
+
+            override fun initModels() {
+                showTabs.checked = preferences.categoryTabs().get()
+            }
+
+            override fun onItemClicked(item: Item) {
+                item as Item.CheckboxGroup
+                item.checked = !item.checked
+                when (item) {
+                    showTabs -> preferences.categoryTabs().set((item.checked))
                 }
                 adapter.notifyItemChanged(item)
             }

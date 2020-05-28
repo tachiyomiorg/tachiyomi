@@ -86,6 +86,7 @@
     <string name="action_display_comfortable_grid">Comfortable grid</string>
     <string name="action_display_download_badge">Download badges</string>
     <string name="action_display_unread_badge">Unread badges</string>
+    <string name="action_display_show_tabs">Show category tabs</string>
     <string name="action_hide">Hide</string>
     <string name="action_pin">Pin</string>
     <string name="action_unpin">Unpin</string>
@@ -418,6 +419,8 @@
     <string name="local_source_badge">Local</string>
     <string name="confirm_delete_manga">Are you sure you want to remove selected manga?</string>
     <string name="also_delete_chapters">Also delete downloaded chapters</string>
+    <string name="badges_header">Badges</string>
+    <string name="tabs_header">Tabs</string>
 
     <!-- Catalogue fragment -->
     <string name="source_requires_login">This source requires you to log in</string>

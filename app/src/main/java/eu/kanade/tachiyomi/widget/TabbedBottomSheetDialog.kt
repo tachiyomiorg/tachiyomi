@@ -12,6 +12,7 @@ abstract class TabbedBottomSheetDialog(private val activity: Activity) : BottomS
         val binding: CommonTabbedSheetBinding = CommonTabbedSheetBinding.inflate(activity.layoutInflater)
 
         val adapter = LibrarySettingsSheetAdapter()
+        binding.pager.offscreenPageLimit = 2
         binding.pager.adapter = adapter
         binding.tabs.setupWithViewPager(binding.pager)
 
