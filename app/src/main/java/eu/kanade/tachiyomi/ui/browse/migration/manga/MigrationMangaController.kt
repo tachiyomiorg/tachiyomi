@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
-import eu.kanade.tachiyomi.databinding.MigrationControllerBinding
+import eu.kanade.tachiyomi.databinding.MigrationMangaControllerBinding
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
@@ -15,7 +15,7 @@ import eu.kanade.tachiyomi.ui.browse.migration.search.SearchController
 import eu.kanade.tachiyomi.ui.browse.source.SourceDividerItemDecoration
 
 class MigrationMangaController :
-    NucleusController<MigrationControllerBinding, MigrationMangaPresenter>,
+    NucleusController<MigrationMangaControllerBinding, MigrationMangaPresenter>,
     FlexibleAdapter.OnItemClickListener {
 
     private var adapter: FlexibleAdapter<IFlexible<*>>? = null
@@ -40,7 +40,7 @@ class MigrationMangaController :
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        binding = MigrationControllerBinding.inflate(inflater)
+        binding = MigrationMangaControllerBinding.inflate(inflater)
         return binding.root
     }
 

@@ -5,14 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.davidea.flexibleadapter.FlexibleAdapter
-import eu.kanade.tachiyomi.databinding.MigrationControllerBinding
+import eu.kanade.tachiyomi.databinding.MigrationSourcesControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.migration.manga.MigrationMangaController
 import eu.kanade.tachiyomi.ui.browse.source.SourceDividerItemDecoration
 
 class MigrationSourcesController :
-    NucleusController<MigrationControllerBinding, MigrationSourcesPresenter>(),
+    NucleusController<MigrationSourcesControllerBinding, MigrationSourcesPresenter>(),
     FlexibleAdapter.OnItemClickListener {
 
     private var adapter: SourceAdapter? = null
@@ -22,7 +22,7 @@ class MigrationSourcesController :
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
-        binding = MigrationControllerBinding.inflate(inflater)
+        binding = MigrationSourcesControllerBinding.inflate(inflater)
         return binding.root
     }
 
