@@ -53,6 +53,8 @@ fun Manga.updateCoverLastModified(db: DatabaseHelper) {
 }
 
 fun Manga.shouldDownloadNewChapters(db: DatabaseHelper, prefs: PreferencesHelper): Boolean {
+    if (!favorite) return false
+
     // Boolean to determine if user wants to automatically download new chapters.
     val downloadNew = prefs.downloadNew().get()
     if (!downloadNew) return false
@@ -60,7 +62,11 @@ fun Manga.shouldDownloadNewChapters(db: DatabaseHelper, prefs: PreferencesHelper
     val categoriesToDownload = prefs.downloadNewCategories().get().map(String::toInt)
     if (categoriesToDownload.isEmpty()) return true
 
-    val categoriesForManga = db.getCategoriesForManga(this).executeAsBlocking().mapNotNull { it.id }
+    // Get all categories, else default category (0)
+    val categoriesForManga =
+        db.getCategoriesForManga(this).executeAsBlocking()
+            .mapNotNull { it.id }
+            .takeUnless { it.isEmpty() } ?: listOf(0)
 
     return categoriesForManga.intersect(categoriesToDownload).isNotEmpty()
 }
