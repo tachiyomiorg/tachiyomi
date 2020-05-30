@@ -191,7 +191,7 @@ class Downloader(
                 },
                 5
             )
-            .onBackpressureBuffer()
+            .onBackpressureLatest()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
@@ -300,6 +300,7 @@ class Downloader(
             // Start downloading images, consider we can have downloaded images already
             // Concurrently do 5 pages at a time
             .flatMap({ page -> getOrDownloadImage(page, download, tmpDir) }, 5)
+            .onBackpressureLatest()
             // Do when page is downloaded.
             .doOnNext { notifier.onProgressChange(download) }
             .toList()
