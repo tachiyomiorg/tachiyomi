@@ -140,7 +140,7 @@ dependencies {
     // UI library
     implementation 'com.google.android.material:material:1.1.0'
 
-    standardImplementation 'com.google.firebase:firebase-core:17.4.1'
+    standardImplementation 'com.google.firebase:firebase-core:17.4.2'
 
     // ReactiveX
     implementation 'io.reactivex:rxandroid:1.2.1'
