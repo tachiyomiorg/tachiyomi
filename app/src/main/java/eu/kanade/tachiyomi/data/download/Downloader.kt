@@ -5,6 +5,7 @@ import android.webkit.MimeTypeMap
 import com.hippo.unifile.UniFile
 import com.jakewharton.rxrelay.BehaviorRelay
 import com.jakewharton.rxrelay.PublishRelay
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.cache.ChapterCache
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -276,7 +277,7 @@ class Downloader(
             download.source.fetchPageList(download.chapter)
                 .doOnNext { pages ->
                     if (pages.isEmpty()) {
-                        throw Exception("Page list is empty")
+                        throw Exception(context.getString(R.string.page_list_empty_error))
                     }
                     download.pages = pages
                 }

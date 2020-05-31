@@ -1,5 +1,7 @@
 package eu.kanade.tachiyomi.ui.reader.loader
 
+import android.content.Context
+import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.source.LocalSource
@@ -16,6 +18,7 @@ import timber.log.Timber
  * Loader used to retrieve the [PageLoader] for a given chapter.
  */
 class ChapterLoader(
+    private val context: Context,
     private val downloadManager: DownloadManager,
     private val manga: Manga,
     private val source: Source
@@ -46,7 +49,7 @@ class ChapterLoader(
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { pages ->
                 if (pages.isEmpty()) {
-                    throw Exception("Page list is empty")
+                    throw Exception(context.getString(R.string.page_list_empty_error))
                 }
 
                 chapter.state = ReaderChapter.State.Loaded(pages)

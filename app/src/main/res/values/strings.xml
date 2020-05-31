@@ -559,6 +559,7 @@
     <string name="transition_no_previous">There\'s no previous chapter</string>
     <string name="transition_pages_loading">Loading pages…</string>
     <string name="transition_pages_error">Failed to load pages: %1$s</string>
+    <string name="page_list_empty_error">No pages found</string>
 
     <!-- Updates fragment -->
     <string name="updating_library">Updating library</string>
