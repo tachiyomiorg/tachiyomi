@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.IFlexible
 import eu.kanade.tachiyomi.databinding.MigrationMangaControllerBinding
-import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.ui.browse.migration.search.SearchController
@@ -20,23 +19,28 @@ class MigrationMangaController :
 
     private var adapter: FlexibleAdapter<IFlexible<*>>? = null
 
-    constructor(source: Source) : super(
+    constructor(sourceId: Long, sourceName: String?) : super(
         Bundle().apply {
-            putSerializable(SOURCE_EXTRA, source)
+            putLong(SOURCE_ID_EXTRA, sourceId)
+            putString(SOURCE_NAME_EXTRA, sourceName)
         }
     )
 
     @Suppress("unused")
-    constructor(bundle: Bundle) : this(bundle.getSerializable(SOURCE_EXTRA) as Source)
+    constructor(bundle: Bundle) : this(
+        bundle.getLong(SOURCE_ID_EXTRA),
+        bundle.getString(SOURCE_NAME_EXTRA)
+    )
 
-    private val source: Source = args.getSerializable(SOURCE_EXTRA) as Source
+    private val sourceId: Long = args.getLong(SOURCE_ID_EXTRA)
+    private val sourceName: String? = args.getString(SOURCE_NAME_EXTRA)
 
     override fun getTitle(): String? {
-        return source.name
+        return sourceName
     }
 
     override fun createPresenter(): MigrationMangaPresenter {
-        return MigrationMangaPresenter(source.id)
+        return MigrationMangaPresenter(sourceId)
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
@@ -71,6 +75,7 @@ class MigrationMangaController :
     }
 
     companion object {
-        const val SOURCE_EXTRA = "source_id_extra"
+        const val SOURCE_ID_EXTRA = "source_id_extra"
+        const val SOURCE_NAME_EXTRA = "source_name_extra"
     }
 }
