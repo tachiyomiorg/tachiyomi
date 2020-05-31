@@ -21,11 +21,9 @@ class ExtensionFilterController : SettingsController() {
         val availableLangs =
             Injekt.get<ExtensionManager>().availableExtensions.groupBy {
                 it.lang
-            }.keys.minus("all").partition {
-                it in activeLangs
-            }.let {
-                it.first + it.second
-            }
+            }.keys
+                .minus("all")
+                .sortedWith(compareBy({ it !in activeLangs }, { LocaleHelper.getSourceDisplayName(it, context) }))
 
         availableLangs.forEach {
             switchPreference {
@@ -38,11 +36,11 @@ class ExtensionFilterController : SettingsController() {
                     val checked = newValue as Boolean
                     val currentActiveLangs = preferences.enabledLanguages().get()
 
-                    if (checked) {
-                        preferences.enabledLanguages().set(currentActiveLangs + it)
+                    preferences.enabledLanguages().set(if (checked) {
+                        currentActiveLangs + it
                     } else {
-                        preferences.enabledLanguages().set(currentActiveLangs - it)
-                    }
+                        currentActiveLangs - it
+                    })
                     true
                 }
             }

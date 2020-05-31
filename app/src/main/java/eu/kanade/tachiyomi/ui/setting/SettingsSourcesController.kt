@@ -30,8 +30,7 @@ class SettingsSourcesController : SettingsController() {
         val sourcesByLang = onlineSources.groupByTo(TreeMap(), { it.lang })
 
         // Order first by active languages, then inactive ones
-        val orderedLangs = sourcesByLang.keys.filter { it in activeLangsCodes } +
-            sourcesByLang.keys.filterNot { it in activeLangsCodes }
+        val orderedLangs = sourcesByLang.keys.sortedWith(compareBy({ it !in activeLangsCodes }, { LocaleHelper.getSourceDisplayName(it, context) }))
 
         orderedLangs.forEach { lang ->
             val sources = sourcesByLang[lang].orEmpty().sortedBy { it.name }
