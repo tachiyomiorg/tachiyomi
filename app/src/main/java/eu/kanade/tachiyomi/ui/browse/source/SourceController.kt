@@ -19,6 +19,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.SourceMainControllerBinding
 import eu.kanade.tachiyomi.source.CatalogueSource
+import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
@@ -129,19 +130,23 @@ class SourceController :
 
         val isPinned = item.header?.code?.equals(SourcePresenter.PINNED_KEY) ?: false
 
+        val items = mutableListOf(
+            Pair(
+                activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin),
+                { pinCatalogue(item.source, isPinned) }
+            )
+        )
+        if (item.source !is LocalSource) {
+            items.add(Pair(activity.getString(R.string.action_hide), { hideCatalogue(item.source) }))
+        }
+
         MaterialDialog(activity)
             .title(text = item.source.name)
             .listItems(
-                items = listOf(
-                    activity.getString(R.string.action_hide),
-                    activity.getString(if (isPinned) R.string.action_unpin else R.string.action_pin)
-                ),
+                items = items.map { it.first },
                 waitForPositiveButton = false
             ) { dialog, which, _ ->
-                when (which) {
-                    0 -> hideCatalogue(item.source)
-                    1 -> pinCatalogue(item.source, isPinned)
-                }
+                items[which].second()
                 dialog.dismiss()
             }
             .show()
