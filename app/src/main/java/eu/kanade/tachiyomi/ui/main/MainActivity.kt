@@ -53,6 +53,7 @@ class MainActivity : BaseActivity<MainActivityBinding>() {
         when (preferences.startScreen()) {
             2 -> R.id.nav_history
             3 -> R.id.nav_updates
+            4 -> R.id.nav_browse
             else -> R.id.nav_library
         }
     }

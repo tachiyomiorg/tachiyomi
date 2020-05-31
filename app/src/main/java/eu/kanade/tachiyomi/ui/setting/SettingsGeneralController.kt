@@ -33,9 +33,10 @@ class SettingsGeneralController : SettingsController() {
             entriesRes = arrayOf(
                 R.string.label_library,
                 R.string.label_recent_updates,
-                R.string.label_recent_manga
+                R.string.label_recent_manga,
+                R.string.browse
             )
-            entryValues = arrayOf("1", "3", "2")
+            entryValues = arrayOf("1", "3", "2", "4")
             defaultValue = "1"
             summary = "%s"
         }
