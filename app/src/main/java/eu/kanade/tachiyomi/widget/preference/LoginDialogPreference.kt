@@ -2,7 +2,6 @@ package eu.kanade.tachiyomi.widget.preference
 
 import android.app.Dialog
 import android.os.Bundle
-import android.text.method.PasswordTransformationMethod
 import android.view.View
 import androidx.annotation.StringRes
 import com.afollestad.materialdialogs.MaterialDialog
@@ -14,8 +13,6 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.base.controller.DialogController
 import kotlinx.android.synthetic.main.pref_account_login.view.login
-import kotlinx.android.synthetic.main.pref_account_login.view.password
-import kotlinx.android.synthetic.main.pref_account_login.view.show_password
 import kotlinx.android.synthetic.main.pref_account_login.view.username_label
 import rx.Subscription
 import uy.kohesive.injekt.injectLazy
@@ -50,14 +47,6 @@ abstract class LoginDialogPreference(
 
     fun onViewCreated(view: View) {
         v = view.apply {
-            show_password.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked) {
-                    password.transformationMethod = null
-                } else {
-                    password.transformationMethod = PasswordTransformationMethod()
-                }
-            }
-
             if (usernameLabelRes != null) {
                 username_label.hint = context.getString(usernameLabelRes)
             }
