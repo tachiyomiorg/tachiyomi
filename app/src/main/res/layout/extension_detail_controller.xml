@@ -20,11 +20,22 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/colorPrimary"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/extension_prefs_recycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/extension_warning_banner" />
+
     <ImageView
         android:id="@+id/extension_icon"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
+        android:elevation="3dp"
         android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toBottomOf="@id/extension_pkg"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +47,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:elevation="3dp"
         app:layout_constraintStart_toEndOf="@id/extension_icon"
         app:layout_constraintTop_toBottomOf="@id/extension_warning_banner"
         tools:text="Tachiyomi: Extension" />
@@ -47,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
+        android:elevation="3dp"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="@id/extension_title"
         app:layout_constraintTop_toBottomOf="@id/extension_title"
@@ -58,6 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
+        android:elevation="3dp"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="@id/extension_title"
         app:layout_constraintTop_toBottomOf="@id/extension_version"
@@ -68,6 +82,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:elevation="3dp"
         android:ellipsize="middle"
         android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +107,7 @@
         android:id="@+id/extension_prefs_recycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
