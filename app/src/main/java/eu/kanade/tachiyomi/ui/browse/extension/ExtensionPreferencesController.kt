@@ -78,15 +78,15 @@ class ExtensionPreferencesController(bundle: Bundle? = null) :
 
         val multiSource = extension.sources.size > 1
 
-        for (source in extension.sources) {
-            if (source is ConfigurableSource) {
+        extension.sources
+            .filterIsInstance<ConfigurableSource>()
+            .forEach { source ->
                 try {
                     addPreferencesForSource(screen, source, multiSource)
                 } catch (e: AbstractMethodError) {
                     Timber.e("Source did not implement [addPreferencesForSource]: ${source.name}")
                 }
             }
-        }
 
         manager.setPreferences(screen)
 

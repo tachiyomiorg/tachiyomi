@@ -10,7 +10,6 @@ import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.track.model.TrackSearch
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.inflate
-import java.util.ArrayList
 import kotlinx.android.synthetic.main.track_search_item.view.track_search_cover
 import kotlinx.android.synthetic.main.track_search_item.view.track_search_start
 import kotlinx.android.synthetic.main.track_search_item.view.track_search_start_result
@@ -22,7 +21,7 @@ import kotlinx.android.synthetic.main.track_search_item.view.track_search_type
 import kotlinx.android.synthetic.main.track_search_item.view.track_search_type_result
 
 class TrackSearchAdapter(context: Context) :
-    ArrayAdapter<TrackSearch>(context, R.layout.track_search_item, ArrayList<TrackSearch>()) {
+    ArrayAdapter<TrackSearch>(context, R.layout.track_search_item, mutableListOf<TrackSearch>()) {
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
         var v = view

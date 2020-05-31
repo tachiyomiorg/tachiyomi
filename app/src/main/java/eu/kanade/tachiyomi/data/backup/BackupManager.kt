@@ -350,7 +350,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
      */
     internal fun restoreCategoriesForManga(manga: Manga, categories: List<String>) {
         val dbCategories = databaseHelper.getCategories().executeAsBlocking()
-        val mangaCategoriesToUpdate = ArrayList<MangaCategory>()
+        val mangaCategoriesToUpdate = mutableListOf<MangaCategory>()
         for (backupCategoryStr in categories) {
             for (dbCategory in dbCategories) {
                 if (backupCategoryStr.toLowerCase() == dbCategory.nameLower) {
@@ -362,9 +362,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
 
         // Update database
         if (mangaCategoriesToUpdate.isNotEmpty()) {
-            val mangaAsList = ArrayList<Manga>()
-            mangaAsList.add(manga)
-            databaseHelper.deleteOldMangasCategories(mangaAsList).executeAsBlocking()
+            databaseHelper.deleteOldMangasCategories(listOf(manga)).executeAsBlocking()
             databaseHelper.insertMangasCategories(mangaCategoriesToUpdate).executeAsBlocking()
         }
     }
@@ -376,7 +374,7 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
      */
     internal fun restoreHistoryForManga(history: List<DHistory>) {
         // List containing history to be updated
-        val historyToBeUpdated = ArrayList<History>()
+        val historyToBeUpdated = mutableListOf<History>()
         for ((url, lastRead) in history) {
             val dbHistory = databaseHelper.getHistoryByChapterUrl(url).executeAsBlocking()
             // Check if history already in database and update
@@ -410,9 +408,9 @@ class BackupManager(val context: Context, version: Int = CURRENT_VERSION) {
 
         // Get tracks from database
         val dbTracks = databaseHelper.getTracks(manga).executeAsBlocking()
-        val trackToUpdate = ArrayList<Track>()
+        val trackToUpdate = mutableListOf<Track>()
 
-        for (track in tracks) {
+        tracks.forEach { track ->
             val service = trackManager.getService(track.sync_id)
             if (service != null && service.isLogged) {
                 var isInDatabase = false

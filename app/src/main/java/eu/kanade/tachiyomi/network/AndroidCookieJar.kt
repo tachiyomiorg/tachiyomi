@@ -12,9 +12,7 @@ class AndroidCookieJar : CookieJar {
     override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
         val urlString = url.toString()
 
-        for (cookie in cookies) {
-            manager.setCookie(urlString, cookie.toString())
-        }
+        cookies.forEach { manager.setCookie(urlString, it.toString()) }
     }
 
     override fun loadForRequest(url: HttpUrl): List<Cookie> {

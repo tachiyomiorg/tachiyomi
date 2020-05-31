@@ -150,7 +150,7 @@ class EpubFile(file: File) : Closeable {
      * Returns all the images contained in every page from the epub.
      */
     private fun getImagesFromPages(pages: List<String>, packageHref: String): List<String> {
-        val result = ArrayList<String>()
+        val result = mutableListOf<String>()
         val basePath = getParentDirectory(packageHref)
         pages.forEach { page ->
             val entryPath = resolveZipPath(basePath, page)

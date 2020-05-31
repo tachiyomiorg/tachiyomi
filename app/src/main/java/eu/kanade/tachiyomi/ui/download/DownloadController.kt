@@ -14,7 +14,6 @@ import eu.kanade.tachiyomi.databinding.DownloadControllerBinding
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
-import java.util.HashMap
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -39,7 +38,7 @@ class DownloadController :
     /**
      * Map of subscriptions for active downloads.
      */
-    private val progressSubscriptions by lazy { HashMap<Download, Subscription>() }
+    private val progressSubscriptions by lazy { mutableMapOf<Download, Subscription>() }
 
     /**
      * Whether the download queue is running or not.

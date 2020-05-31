@@ -22,7 +22,6 @@ import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
 import eu.kanade.tachiyomi.util.lang.launchIO
 import eu.kanade.tachiyomi.util.removeCovers
 import eu.kanade.tachiyomi.util.updateCoverLastModified
-import java.util.ArrayList
 import java.util.Collections
 import java.util.Comparator
 import rx.Observable
@@ -348,7 +347,7 @@ class LibraryPresenter(
      * @param mangas the list of manga to move.
      */
     fun moveMangasToCategories(categories: List<Category>, mangas: List<Manga>) {
-        val mc = ArrayList<MangaCategory>()
+        val mc = mutableListOf<MangaCategory>()
 
         for (manga in mangas) {
             for (cat in categories) {

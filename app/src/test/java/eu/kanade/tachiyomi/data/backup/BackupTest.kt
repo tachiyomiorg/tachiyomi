@@ -236,7 +236,7 @@ class BackupTest {
         manga.id = backupManager.databaseHelper.insertManga(manga).executeAsBlocking().insertedId()
 
         // Create restore list
-        val chapters = ArrayList<Chapter>()
+        val chapters = mutableListOf<Chapter>()
         for (i in 1..8) {
             val chapter = getSingleChapter("Chapter $i")
             chapter.read = true
@@ -249,7 +249,7 @@ class BackupTest {
 
         // Fetch chapters from upstream
         // Create list
-        val chaptersRemote = ArrayList<Chapter>()
+        val chaptersRemote = mutableListOf<Chapter>()
         (1..10).mapTo(chaptersRemote) { getSingleChapter("Chapter $it") }
         `when`(source.fetchChapterList(manga)).thenReturn(Observable.just(chaptersRemote))
 
@@ -284,7 +284,7 @@ class BackupTest {
 
         val historyJson = getSingleHistory(chapter)
 
-        val historyList = ArrayList<DHistory>()
+        val historyList = mutableListOf<DHistory>()
         historyList.add(historyJson)
 
         // Check parser

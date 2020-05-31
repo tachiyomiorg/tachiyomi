@@ -11,7 +11,6 @@ import eu.kanade.tachiyomi.data.database.models.LibraryManga
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SChapter
 import eu.kanade.tachiyomi.source.online.HttpSource
-import java.util.ArrayList
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
@@ -107,7 +106,7 @@ class LibraryUpdateServiceTest {
     }
 
     private fun createChapters(vararg urls: String): List<Chapter> {
-        val list = ArrayList<Chapter>()
+        val list = mutableListOf<Chapter>()
         for (url in urls) {
             val c = Chapter.create()
             c.url = url
@@ -118,7 +117,7 @@ class LibraryUpdateServiceTest {
     }
 
     private fun createManga(vararg urls: String): List<LibraryManga> {
-        val list = ArrayList<LibraryManga>()
+        val list = mutableListOf<LibraryManga>()
         for (url in urls) {
             val m = LibraryManga()
             m.url = url
