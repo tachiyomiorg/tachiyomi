@@ -101,7 +101,7 @@ class PreferencesHelper(val context: Context) {
 
     fun colorFilterMode() = flowPrefs.getInt(Keys.colorFilterMode, 0)
 
-    fun defaultViewer() = prefs.getInt(Keys.defaultViewer, 1)
+    fun defaultViewer() = prefs.getInt(Keys.defaultViewer, 2)
 
     fun imageScaleType() = flowPrefs.getInt(Keys.imageScaleType, 1)
 

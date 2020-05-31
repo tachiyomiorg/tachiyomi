@@ -29,7 +29,7 @@ class SettingsReaderController : SettingsController() {
                     R.string.vertical_viewer, R.string.webtoon_viewer, R.string.vertical_plus_viewer
                 )
                 entryValues = arrayOf("1", "2", "3", "4", "5")
-                defaultValue = "1"
+                defaultValue = "2"
                 summary = "%s"
             }
             intListPreference {
