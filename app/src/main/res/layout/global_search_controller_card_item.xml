@@ -14,15 +14,13 @@
     <ProgressBar
         android:id="@+id/progress"
         style="?android:attr/progressBarStyleSmall"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="wrap"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="wrap" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/itemImage"
@@ -40,13 +38,12 @@
         android:id="@+id/tvTitle"
         style="@style/TextAppearance.Regular.Caption"
         android:layout_width="104dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="wrap"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemImage"
         tools:text="Sample title" />
