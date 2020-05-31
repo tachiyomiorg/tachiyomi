@@ -130,14 +130,14 @@
     <string name="pref_category_about">About</string>
 
       <!-- General section -->
-    <string name="pref_theme_mode">App theme</string>
-    <string name="theme_light">Light</string>
-    <string name="theme_dark">Dark</string>
+    <string name="pref_theme_mode">Dark mode</string>
     <string name="theme_system">Follow system</string>
-    <string name="pref_theme_light">Light theme variant</string>
+    <string name="theme_light">Off</string>
+    <string name="theme_dark">On</string>
+    <string name="pref_theme_light">Light theme</string>
     <string name="theme_light_default">Default</string>
     <string name="theme_light_blue">Light blue</string>
-    <string name="pref_theme_dark">Dark theme variant</string>
+    <string name="pref_theme_dark">Dark theme</string>
     <string name="theme_dark_default">Default</string>
     <string name="theme_dark_blue">Dark blue</string>
     <string name="theme_dark_amoled">AMOLED black</string>
