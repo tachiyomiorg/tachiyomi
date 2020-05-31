@@ -32,6 +32,7 @@ internal class DownloadNotifier(private val context: Context) {
     /**
      * Status of download. Used for correct notification icon.
      */
+    @Volatile
     private var isDownloading = false
 
     /**
