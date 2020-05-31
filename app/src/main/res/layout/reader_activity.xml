@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:padding="4dp"
+            android:textDirection="ltr"
             android:textStyle="bold" />
 
     </FrameLayout>
@@ -62,6 +63,7 @@
             android:background="?attr/colorPrimary"
             android:descendantFocusability="blocksDescendants"
             android:gravity="center"
+            android:layoutDirection="ltr"
             android:orientation="horizontal">
 
             <ImageButton
