@@ -36,11 +36,13 @@ class ExtensionFilterController : SettingsController() {
                     val checked = newValue as Boolean
                     val currentActiveLangs = preferences.enabledLanguages().get()
 
-                    preferences.enabledLanguages().set(if (checked) {
-                        currentActiveLangs + it
-                    } else {
-                        currentActiveLangs - it
-                    })
+                    preferences.enabledLanguages().set(
+                        if (checked) {
+                            currentActiveLangs + it
+                        } else {
+                            currentActiveLangs - it
+                        }
+                    )
                     true
                 }
             }

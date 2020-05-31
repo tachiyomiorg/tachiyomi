@@ -55,6 +55,8 @@
     <string name="action_delete">Delete</string>
     <string name="action_update">Update</string>
     <string name="action_update_library">Update library</string>
+    <string name="action_enable_all">Enable all</string>
+    <string name="action_disable_all">Disable all</string>
     <string name="action_edit">Edit</string>
     <string name="action_add">Add</string>
     <string name="action_add_category">Add category</string>
@@ -222,7 +224,6 @@
     <string name="unofficial_extension_message">This extension is not from the official Tachiyomi extensions list.</string>
     <string name="ext_version_info">Version: %1$s</string>
     <string name="ext_language_info">Language: %1$s</string>
-    <string name="ext_empty_preferences">No preferences to edit for this extension</string>
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>

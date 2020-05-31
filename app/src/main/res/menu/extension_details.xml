@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_enable_all"
+        android:title="@string/action_enable_all"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_disable_all"
+        android:title="@string/action_disable_all"
+        app:showAsAction="never" />
+
+</menu>

@@ -88,19 +88,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/extension_lang" />
 
-    <TextView
-        android:id="@+id/extension_prefs"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/extension_prefs_recycler"
         android:layout_width="0dp"
-        android:layout_height="@dimen/material_component_lists_two_line_height"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/list_item_selector"
-        android:gravity="center_vertical"
-        android:padding="16dp"
-        android:text="@string/label_settings"
-        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/extension_uninstall_button"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@id/extension_uninstall_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
