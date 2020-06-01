@@ -72,6 +72,7 @@ class DownloadController :
         adapter = DownloadAdapter(this@DownloadController)
         binding.recycler.adapter = adapter
         adapter?.isHandleDragEnabled = true
+        adapter?.fastScroller = binding.fastScroller
 
         // Set the layout manager for the recycler and fixed size.
         binding.recycler.layoutManager = LinearLayoutManager(view.context)
