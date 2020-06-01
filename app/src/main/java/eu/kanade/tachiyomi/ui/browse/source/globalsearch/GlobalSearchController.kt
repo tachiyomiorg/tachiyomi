@@ -15,6 +15,7 @@ import eu.kanade.tachiyomi.databinding.GlobalSearchControllerBinding
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.browse.source.browse.BrowseSourceController
 import eu.kanade.tachiyomi.ui.manga.MangaController
 import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.launchIn
@@ -31,7 +32,8 @@ open class GlobalSearchController(
     protected val initialQuery: String? = null,
     protected val extensionFilter: String? = null
 ) : NucleusController<GlobalSearchControllerBinding, GlobalSearchPresenter>(),
-    GlobalSearchCardAdapter.OnMangaClickListener {
+    GlobalSearchCardAdapter.OnMangaClickListener,
+    GlobalSearchAdapter.OnTitleClickListener {
 
     /**
      * Adapter containing search results grouped by lang.
@@ -189,5 +191,17 @@ open class GlobalSearchController(
      */
     fun onMangaInitialized(source: CatalogueSource, manga: Manga) {
         getHolder(source)?.setImage(manga)
+    }
+
+    override fun onTitleClick(source: CatalogueSource) {
+        openCatalogue(source, BrowseSourceController(source, presenter.query))
+    }
+
+    /**
+     * Opens a catalogue with the given controller.
+     */
+    private fun openCatalogue(source: CatalogueSource, controller: BrowseSourceController) {
+        presenter.preferences.lastUsedCatalogueSource().set(source.id)
+        router.pushController(controller.withFadeTransaction())
     }
 }
