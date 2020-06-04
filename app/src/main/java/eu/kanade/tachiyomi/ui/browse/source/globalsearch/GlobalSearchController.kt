@@ -193,15 +193,11 @@ open class GlobalSearchController(
         getHolder(source)?.setImage(manga)
     }
 
-    override fun onTitleClick(source: CatalogueSource) {
-        openCatalogue(source, BrowseSourceController(source, presenter.query))
-    }
-
     /**
-     * Opens a catalogue with the given controller.
+     * Opens a catalogue with the given search.
      */
-    private fun openCatalogue(source: CatalogueSource, controller: BrowseSourceController) {
+    override fun onTitleClick(source: CatalogueSource) {
         presenter.preferences.lastUsedCatalogueSource().set(source.id)
-        router.pushController(controller.withFadeTransaction())
+        router.pushController(BrowseSourceController(source, presenter.query).withFadeTransaction())
     }
 }
