@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.global_search_controller_card.progress
 import kotlinx.android.synthetic.main.global_search_controller_card.recycler
 import kotlinx.android.synthetic.main.global_search_controller_card.source_card
 import kotlinx.android.synthetic.main.global_search_controller_card.title
+import kotlinx.android.synthetic.main.global_search_controller_card.title_wrapper
 
 /**
  * Holder that binds the [GlobalSearchItem] containing catalogue cards.
@@ -32,7 +33,7 @@ class GlobalSearchHolder(view: View, val adapter: GlobalSearchAdapter) :
         recycler.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
         recycler.adapter = mangaAdapter
 
-        title.setOnClickListener {
+        title_wrapper.setOnClickListener {
             adapter.getItem(bindingAdapterPosition)?.let {
                 adapter.titleClickListener.onTitleClick(it.source)
             }
@@ -48,7 +49,7 @@ class GlobalSearchHolder(view: View, val adapter: GlobalSearchAdapter) :
         val source = item.source
         val results = item.results
 
-        val titlePrefix = if (item.highlighted) "▶" else ""
+        val titlePrefix = if (item.highlighted) "▶ " else ""
         val langSuffix = if (source.lang.isNotEmpty()) " (${source.lang})" else ""
 
         // Set Title with country code if available.
@@ -101,12 +102,12 @@ class GlobalSearchHolder(view: View, val adapter: GlobalSearchAdapter) :
     }
 
     private fun showHolder() {
-        title.visible()
+        title_wrapper.visible()
         source_card.visible()
     }
 
     private fun hideHolder() {
-        title.gone()
+        title_wrapper.gone()
         source_card.gone()
     }
 }
