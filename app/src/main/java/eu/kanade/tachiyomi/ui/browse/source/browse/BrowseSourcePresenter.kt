@@ -44,6 +44,7 @@ import uy.kohesive.injekt.api.get
  */
 open class BrowseSourcePresenter(
     private val sourceId: Long,
+    private val searchQuery: String? = null,
     private val sourceManager: SourceManager = Injekt.get(),
     private val db: DatabaseHelper = Injekt.get(),
     private val prefs: PreferencesHelper = Injekt.get(),
@@ -58,7 +59,7 @@ open class BrowseSourcePresenter(
     /**
      * Query from the view.
      */
-    var query = ""
+    var query = searchQuery ?: ""
         private set
 
     /**

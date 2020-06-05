@@ -31,6 +31,12 @@ class GlobalSearchHolder(view: View, val adapter: GlobalSearchAdapter) :
         // Set layout horizontal.
         recycler.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
         recycler.adapter = mangaAdapter
+
+        title.setOnClickListener {
+            adapter.getItem(bindingAdapterPosition)?.let {
+                adapter.titleClickListener.onTitleClick(it.source)
+            }
+        }
     }
 
     /**
