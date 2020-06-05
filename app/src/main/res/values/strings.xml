@@ -224,6 +224,7 @@
     <string name="unofficial_extension_message">This extension is not from the official Tachiyomi extensions list.</string>
     <string name="ext_version_info">Version: %1$s</string>
     <string name="ext_language_info">Language: %1$s</string>
+    <string name="enabled">Enabled</string>
 
       <!-- Reader section -->
     <string name="pref_fullscreen">Fullscreen</string>

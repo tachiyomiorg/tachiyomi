@@ -11,13 +11,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.view.ContextThemeWrapper
-import androidx.preference.DialogPreference
-import androidx.preference.EditTextPreference
-import androidx.preference.EditTextPreferenceDialogController
-import androidx.preference.ListPreference
-import androidx.preference.ListPreferenceDialogController
-import androidx.preference.MultiSelectListPreference
-import androidx.preference.MultiSelectListPreferenceDialogController
 import androidx.preference.Preference
 import androidx.preference.PreferenceGroupAdapter
 import androidx.preference.PreferenceManager
@@ -28,7 +21,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.EmptyPreferenceDataStore
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
-import eu.kanade.tachiyomi.data.preference.SharedPreferencesDataStore
 import eu.kanade.tachiyomi.databinding.ExtensionDetailControllerBinding
 import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.source.CatalogueSource
@@ -36,10 +28,13 @@ import eu.kanade.tachiyomi.source.ConfigurableSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
-import eu.kanade.tachiyomi.util.preference.checkBoxPreference
+import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
 import eu.kanade.tachiyomi.util.preference.onChange
+import eu.kanade.tachiyomi.util.preference.onClick
 import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
+import eu.kanade.tachiyomi.util.preference.switchPreference
+import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import eu.kanade.tachiyomi.util.view.visible
 import kotlinx.coroutines.flow.launchIn
@@ -50,14 +45,11 @@ import uy.kohesive.injekt.injectLazy
 @SuppressLint("RestrictedApi")
 class ExtensionDetailsController(bundle: Bundle? = null) :
     NucleusController<ExtensionDetailControllerBinding, ExtensionDetailsPresenter>(bundle),
-    NoToolbarElevationController,
-    PreferenceManager.OnDisplayPreferenceDialogListener,
-    DialogPreference.TargetFragment {
+    NoToolbarElevationController {
 
     private val preferences: PreferencesHelper by injectLazy()
 
     private var preferenceScreen: PreferenceScreen? = null
-    private var lastOpenPreferencePosition: Int? = null
 
     constructor(pkgName: String) : this(
         Bundle().apply {
@@ -114,12 +106,13 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
     }
 
     private fun initPreferences(context: Context, extension: Extension.Installed) {
-        val themedContext by lazy { getPreferenceThemeContext() }
+        val themedContext = getPreferenceThemeContext()
         val manager = PreferenceManager(themedContext)
         manager.preferenceDataStore = EmptyPreferenceDataStore()
-        manager.onDisplayPreferenceDialogListener = this
         val screen = manager.createPreferenceScreen(themedContext)
         preferenceScreen = screen
+
+        val isMultiSource = extension.sources.size > 1
 
         with(screen) {
             extension.sources
@@ -127,16 +120,23 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                 .toSortedMap(compareBy { LocaleHelper.getSourceDisplayName(it, context) })
                 .forEach {
                     preferenceCategory {
-                        title = LocaleHelper.getSourceDisplayName(it.key, context)
+                        if (isMultiSource) {
+                            title = LocaleHelper.getSourceDisplayName(it.key, context)
+                        }
+
                         it.value
                             .sortedWith(compareBy({ !it.isEnabled() }, { it.name }))
                             .forEach { source ->
                                 val sourcePrefs = mutableListOf<Preference>()
 
                                 // Source enable/disable
-                                checkBoxPreference {
+                                switchPreference {
                                     key = getSourceKey(source.id)
-                                    title = source.toString()
+                                    title = if (isMultiSource) {
+                                        source.toString()
+                                    } else {
+                                        context.getString(R.string.enabled)
+                                    }
                                     isPersistent = false
                                     isChecked = source.isEnabled()
 
@@ -158,28 +158,11 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
 
                                 // Source preferences
                                 if (source is ConfigurableSource) {
-                                    // TODO
-                                    val dataStore = SharedPreferencesDataStore(/*if (source is HttpSource) {
-                                        source.preferences
-                                    } else {*/
-                                        context.getSharedPreferences(getSourceKey(source.id), Context.MODE_PRIVATE)
-                                        /*}*/
-                                    )
-
-                                    val newScreen = screen.preferenceManager.createPreferenceScreen(context)
-                                    source.setupPreferenceScreen(newScreen)
-
-                                    // Reparent the preferences
-                                    while (newScreen.preferenceCount != 0) {
-                                        val pref = newScreen.getPreference(0)
-                                        sourcePrefs.add(pref)
-
-                                        pref.preferenceDataStore = dataStore
-                                        pref.order = Int.MAX_VALUE // reset to default order
-                                        pref.isVisible = source.isEnabled()
-
-                                        newScreen.removePreference(pref)
-                                        screen.addPreference(pref)
+                                    preference {
+                                        titleRes = R.string.label_settings
+                                        onClick {
+                                            router.pushController(SourcePreferencesController(source.id).withFadeTransaction())
+                                        }
                                     }
                                 }
                             }
@@ -190,16 +173,6 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         binding.extensionPrefsRecycler.layoutManager = LinearLayoutManager(context)
         binding.extensionPrefsRecycler.adapter = PreferenceGroupAdapter(screen)
         binding.extensionPrefsRecycler.addItemDecoration(DividerItemDecoration(context, VERTICAL))
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        lastOpenPreferencePosition?.let { outState.putInt(LASTOPENPREFERENCE_KEY, it) }
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        lastOpenPreferencePosition = savedInstanceState.get(LASTOPENPREFERENCE_KEY) as? Int
     }
 
     override fun onDestroyView(view: View) {
@@ -253,43 +226,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         return ContextThemeWrapper(activity, tv.resourceId)
     }
 
-    override fun onDisplayPreferenceDialog(preference: Preference) {
-        if (!isAttached) return
-
-        val screen = preference.parent!!
-
-        lastOpenPreferencePosition = (0 until screen.preferenceCount).indexOfFirst {
-            screen.getPreference(it) === preference
-        }
-
-        val f = when (preference) {
-            is EditTextPreference ->
-                EditTextPreferenceDialogController
-                    .newInstance(preference.getKey())
-            is ListPreference ->
-                ListPreferenceDialogController
-                    .newInstance(preference.getKey())
-            is MultiSelectListPreference ->
-                MultiSelectListPreferenceDialogController
-                    .newInstance(preference.getKey())
-            else -> throw IllegalArgumentException(
-                "Tried to display dialog for unknown " +
-                    "preference type. Did you forget to override onDisplayPreferenceDialog()?"
-            )
-        }
-        f.targetController = this
-        f.showDialog(router)
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : Preference> findPreference(key: CharSequence): T? {
-        // We track [lastOpenPreferencePosition] when displaying the dialog
-        // [key] isn't useful since there may be duplicates
-        return preferenceScreen!!.getPreference(lastOpenPreferencePosition!!) as T
-    }
-
     private companion object {
         const val PKGNAME_KEY = "pkg_name"
-        const val LASTOPENPREFERENCE_KEY = "last_open_preference"
     }
 }
