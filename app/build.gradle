@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile
 import java.text.SimpleDateFormat
 
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+apply plugin: 'com.jaredsburrows.license'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -29,6 +29,13 @@ ext {
         df.setTimeZone(TimeZone.getTimeZone("UTC"))
         return df.format(new Date())
     }
+}
+
+licenseReport {
+    generateHtmlReport = true
+    generateJsonReport = false
+
+    copyHtmlReportToAssets = true
 }
 
 android {
@@ -76,6 +83,9 @@ android {
     productFlavors {
         standard {
             buildConfigField "boolean", "INCLUDE_UPDATER", "true"
+            dimension "default"
+        }
+        fdroid {
             dimension "default"
         }
         dev {
@@ -295,7 +305,22 @@ task copyResources(type: Copy) {
     include '**/*'
 }
 
-preBuild.dependsOn(ktlintFormat, copyResources)
+// See https://github.com/jaredsburrows/gradle-license-plugin/issues/113
+task licenseReportPreBuild(type: Exec) {
+    switch (getGradle().getStartParameter().getTaskRequests().toString()) {
+        case ~/.*Standard.*/:
+            commandLine '../gradlew', 'licenseStandardReleaseReport'
+            break
+        case ~/.*Fdroid.*/:
+            commandLine '../gradlew', 'licenseFdroidReleaseReport'
+            break
+        case ~/.*Dev.*/:
+            commandLine '../gradlew', 'licenseDevReleaseReport'
+            break
+    }
+}
+
+preBuild.dependsOn(ktlintFormat, copyResources, licenseReportPreBuild)
 
 if (getGradle().getStartParameter().getTaskRequests().toString().contains("Standard")) {
     apply plugin: 'com.google.gms.google-services'

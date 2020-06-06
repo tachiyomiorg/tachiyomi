@@ -5,9 +5,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.webkit.WebView
 import androidx.preference.PreferenceScreen
 import com.afollestad.materialdialogs.MaterialDialog
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import com.afollestad.materialdialogs.customview.customView
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.updater.UpdateChecker
@@ -129,7 +130,7 @@ class AboutController : SettingsController() {
                 titleRes = R.string.licenses
 
                 onClick {
-                    startActivity(Intent(activity, OssLicensesMenuActivity::class.java))
+                    LicensesDialogController().showDialog(router)
                 }
             }
         }
@@ -161,6 +162,19 @@ class AboutController : SettingsController() {
                 activity?.toast(error.message)
                 Timber.e(error)
             }
+        }
+    }
+
+    class LicensesDialogController(bundle: Bundle? = null) : DialogController(bundle) {
+
+        override fun onCreateDialog(savedViewState: Bundle?): Dialog {
+            val webView = WebView(activity!!)
+            webView.loadUrl("file:///android_asset/open_source_licenses.html")
+
+            return MaterialDialog(activity!!)
+                .title(res = R.string.licenses)
+                .customView(view = webView)
+                .positiveButton(res = android.R.string.ok)
         }
     }
 
