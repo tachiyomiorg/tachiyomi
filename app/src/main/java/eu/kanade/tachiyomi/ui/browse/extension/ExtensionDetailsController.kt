@@ -15,6 +15,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceGroupAdapter
 import androidx.preference.PreferenceManager
 import androidx.preference.PreferenceScreen
+import androidx.preference.SwitchPreferenceCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,12 +30,11 @@ import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.util.preference.DSL
 import eu.kanade.tachiyomi.util.preference.onChange
-import eu.kanade.tachiyomi.util.preference.onClick
-import eu.kanade.tachiyomi.util.preference.preference
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.switchPreference
-import eu.kanade.tachiyomi.util.preference.titleRes
+import eu.kanade.tachiyomi.util.preference.switchSettingsPreference
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import eu.kanade.tachiyomi.util.view.visible
 import kotlinx.coroutines.flow.launchIn
@@ -129,8 +129,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                             .forEach { source ->
                                 val sourcePrefs = mutableListOf<Preference>()
 
-                                // Source enable/disable
-                                switchPreference {
+                                val block: (@DSL SwitchPreferenceCompat).() -> Unit = {
                                     key = getSourceKey(source.id)
                                     title = if (isMultiSource) {
                                         source.toString()
@@ -156,14 +155,16 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                                         .launchIn(scope)
                                 }
 
-                                // Source preferences
+                                // Source enable/disable
                                 if (source is ConfigurableSource) {
-                                    preference {
-                                        titleRes = R.string.label_settings
-                                        onClick {
+                                    switchSettingsPreference {
+                                        block()
+                                        onSettingsClick = View.OnClickListener {
                                             router.pushController(SourcePreferencesController(source.id).withFadeTransaction())
                                         }
                                     }
+                                } else {
+                                    switchPreference(block)
                                 }
                             }
                     }
