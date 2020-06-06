@@ -150,7 +150,7 @@ dependencies {
     // UI library
     implementation 'com.google.android.material:material:1.1.0'
 
-    standardImplementation 'com.google.firebase:firebase-core:17.4.2'
+    standardImplementation 'com.google.firebase:firebase-core:17.4.3'
 
     // ReactiveX
     implementation 'io.reactivex:rxandroid:1.2.1'
@@ -247,7 +247,7 @@ dependencies {
     implementation("com.bluelinelabs:conductor-support:2.1.5") {
         exclude group: "com.android.support"
     }
-    implementation 'com.github.inorichi:conductor-support-preference:a32c357'
+    implementation 'com.github.tachiyomiorg:conductor-support-preference:1.1.1'
 
     // FlowBinding
     final flowbinding_version = '0.11.1'
