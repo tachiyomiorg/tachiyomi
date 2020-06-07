@@ -21,6 +21,8 @@ object PreferenceKeys {
 
     const val showPageNumber = "pref_show_page_number_key"
 
+    const val showReadingMode = "pref_show_reading_mode"
+
     const val trueColor = "pref_true_color_key"
 
     const val fullscreen = "fullscreen"

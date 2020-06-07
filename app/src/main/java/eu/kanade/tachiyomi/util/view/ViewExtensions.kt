@@ -33,7 +33,7 @@ fun View.getCoordinates() = Point((left + right) / 2, (top + bottom) / 2)
  * @param length the duration of the snack.
  * @param f a function to execute in the snack, allowing for example to define a custom action.
  */
-inline fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit): Snackbar {
+inline fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit = {}): Snackbar {
     val snack = Snackbar.make(this, message, length)
     val textView: TextView = snack.view.findViewById(com.google.android.material.R.id.snackbar_text)
     textView.setTextColor(Color.WHITE)

@@ -83,6 +83,12 @@ class SettingsReaderController : SettingsController() {
                 titleRes = R.string.pref_show_page_number
                 defaultValue = true
             }
+            switchPreference {
+                key = Keys.showReadingMode
+                titleRes = R.string.pref_show_reading_mode
+                summaryRes = R.string.pref_show_reading_mode_summary
+                defaultValue = true
+            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 switchPreference {
                     key = Keys.trueColor

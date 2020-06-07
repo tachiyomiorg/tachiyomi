@@ -22,6 +22,7 @@ import android.view.animation.AnimationUtils
 import android.widget.SeekBar
 import androidx.core.view.ViewCompat
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+import com.google.android.material.snackbar.Snackbar
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
@@ -42,7 +43,6 @@ import eu.kanade.tachiyomi.ui.reader.viewer.pager.L2RPagerViewer
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.R2LPagerViewer
 import eu.kanade.tachiyomi.ui.reader.viewer.pager.VerticalPagerViewer
 import eu.kanade.tachiyomi.ui.reader.viewer.webtoon.WebtoonViewer
-import eu.kanade.tachiyomi.util.lang.plusAssign
 import eu.kanade.tachiyomi.util.storage.getUriCompat
 import eu.kanade.tachiyomi.util.system.GLUtil
 import eu.kanade.tachiyomi.util.system.toast
@@ -51,6 +51,7 @@ import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.hideBar
 import eu.kanade.tachiyomi.util.view.isDefaultBar
 import eu.kanade.tachiyomi.util.view.showBar
+import eu.kanade.tachiyomi.util.view.snack
 import eu.kanade.tachiyomi.util.view.visible
 import eu.kanade.tachiyomi.widget.SimpleAnimationListener
 import eu.kanade.tachiyomi.widget.SimpleSeekBarListener
@@ -403,12 +404,21 @@ class ReaderActivity : BaseRxActivity<ReaderActivityBinding, ReaderPresenter>() 
         viewer = newViewer
         binding.viewerContainer.addView(newViewer.getView())
 
+        if (preferences.showReadingMode()) {
+            showReadingModeSnackbar(presenter.getMangaViewer())
+        }
+
         binding.toolbar.title = manga.title
 
         binding.pageSeekbar.isRTL = newViewer is R2LPagerViewer
 
         binding.pleaseWait.visible()
         binding.pleaseWait.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in_long))
+    }
+
+    private fun showReadingModeSnackbar(mode: Int) {
+        val strings = resources.getStringArray(R.array.viewers_selector)
+        binding.root.snack(strings[mode], Snackbar.LENGTH_SHORT)
     }
 
     /**
