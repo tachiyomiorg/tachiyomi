@@ -29,6 +29,14 @@ ext {
         df.setTimeZone(TimeZone.getTimeZone("UTC"))
         return df.format(new Date())
     }
+
+    getGradleWrapper = {
+        if (System.properties['os.name'].toLowerCase().contains('windows')) {
+            return '../gradlew.bat'
+        } else {
+            return '../gradlew'
+        }
+    }
 }
 
 licenseReport {
@@ -312,13 +320,13 @@ task copyResources(type: Copy) {
 task licenseReportPreBuild(type: Exec) {
     switch (getGradle().getStartParameter().getTaskRequests().toString()) {
         case ~/.*Standard.*/:
-            commandLine '../gradlew', 'licenseStandardReleaseReport'
+            commandLine getGradleWrapper(), 'licenseStandardReleaseReport'
             break
         case ~/.*Fdroid.*/:
-            commandLine '../gradlew', 'licenseFdroidReleaseReport'
+            commandLine getGradleWrapper(), 'licenseFdroidReleaseReport'
             break
         case ~/.*Dev.*/:
-            commandLine '../gradlew', 'licenseDevReleaseReport'
+            commandLine getGradleWrapper(), 'licenseDevReleaseReport'
             break
     }
 }
