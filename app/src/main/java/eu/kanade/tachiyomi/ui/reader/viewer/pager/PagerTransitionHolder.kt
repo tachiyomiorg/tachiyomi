@@ -15,6 +15,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.ui.reader.loader.DownloadPageLoader
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.util.system.dpToPx
@@ -88,6 +89,13 @@ class PagerTransitionHolder(
      */
     private fun bindNextChapterTransition() {
         val nextChapter = transition.to
+        var isChapterDownloaded = false
+
+        when (nextChapter?.pageLoader) {
+            is DownloadPageLoader -> {
+                isChapterDownloaded = (nextChapter.pageLoader as DownloadPageLoader).isChapterDownloaded(nextChapter.chapter)
+            }
+        }
 
         textView.text = if (nextChapter != null) {
             SpannableStringBuilder().apply {
@@ -95,7 +103,8 @@ class PagerTransitionHolder(
                 setSpan(StyleSpan(Typeface.BOLD), 0, length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
                 append("\n${transition.from.chapter.name}\n\n")
                 val currSize = length
-                append(context.getString(R.string.transition_next))
+                if (isChapterDownloaded) append(context.getString(R.string.transition_next_downloaded))
+                else append(context.getString(R.string.transition_next))
                 setSpan(StyleSpan(Typeface.BOLD), currSize, length, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
                 append("\n${nextChapter.chapter.name}\n\n")
             }

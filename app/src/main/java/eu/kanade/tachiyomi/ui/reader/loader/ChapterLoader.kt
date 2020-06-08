@@ -4,6 +4,7 @@ import android.content.Context
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.download.DownloadManager
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.online.HttpSource
@@ -13,6 +14,8 @@ import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import timber.log.Timber
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 /**
  * Loader used to retrieve the [PageLoader] for a given chapter.
@@ -23,12 +26,13 @@ class ChapterLoader(
     private val manga: Manga,
     private val source: Source
 ) {
+    val preferences: PreferencesHelper = Injekt.get()
 
     /**
      * Returns a completable that assigns the page loader and loads the its pages. It just
      * completes if the chapter is already loaded.
      */
-    fun loadChapter(chapter: ReaderChapter): Completable {
+    fun loadChapter(chapter: ReaderChapter, goingToNextChapter: Boolean = false): Completable {
         if (chapterIsReady(chapter)) {
             return Completable.complete()
         }
@@ -39,7 +43,7 @@ class ChapterLoader(
             .flatMap { readerChapter ->
                 Timber.d("Loading pages for ${chapter.chapter.name}")
 
-                val loader = getPageLoader(readerChapter)
+                val loader = getPageLoader(readerChapter, goingToNextChapter)
                 chapter.pageLoader = loader
 
                 loader.getPages().take(1).doOnNext { pages ->
@@ -74,10 +78,19 @@ class ChapterLoader(
     /**
      * Returns the page loader to use for this [chapter].
      */
-    private fun getPageLoader(chapter: ReaderChapter): PageLoader {
+    private fun getPageLoader(chapter: ReaderChapter, goingToNextChapter: Boolean = false): PageLoader {
         val isDownloaded = downloadManager.isChapterDownloaded(chapter.chapter, manga, true)
+        val shouldDownload = preferences.steadyChapterDownload()
+
         return when {
             isDownloaded -> DownloadPageLoader(chapter, manga, source, downloadManager)
+
+            (shouldDownload && !isDownloaded && goingToNextChapter) -> {
+                downloadManager.downloadChapters(manga, listOf(chapter.chapter))
+                Timber.d("Downloading chapter -> ${chapter.chapter.name}")
+                DownloadPageLoader(chapter, manga, source, downloadManager)
+            }
+
             source is HttpSource -> HttpPageLoader(chapter, source)
             source is LocalSource -> source.getFormat(chapter.chapter).let { format ->
                 when (format) {

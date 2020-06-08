@@ -259,7 +259,13 @@ class ReaderPresenter(
         loader: ChapterLoader,
         chapter: ReaderChapter
     ): Observable<ViewerChapters> {
-        return loader.loadChapter(chapter)
+        var goingToNextChapter = false
+
+        viewerChaptersRelay.value?.currChapter?.let { curr ->
+            goingToNextChapter = chapter.chapter.chapter_number > curr.chapter.chapter_number
+        }
+
+        return loader.loadChapter(chapter, goingToNextChapter)
             .andThen(
                 Observable.fromCallable {
                     val chapterPos = chapterList.indexOf(chapter)
@@ -329,15 +335,20 @@ class ReaderPresenter(
      * that the user doesn't have to wait too long to continue reading.
      */
     private fun preload(chapter: ReaderChapter) {
+        var goingToNextChapter = false
         if (chapter.state != ReaderChapter.State.Wait && chapter.state !is ReaderChapter.State.Error) {
             return
+        }
+
+        viewerChaptersRelay.value?.currChapter?.let { curr ->
+            goingToNextChapter = chapter.chapter.chapter_number > curr.chapter.chapter_number
         }
 
         Timber.d("Preloading ${chapter.chapter.url}")
 
         val loader = loader ?: return
 
-        loader.loadChapter(chapter)
+        loader.loadChapter(chapter, goingToNextChapter)
             .observeOn(AndroidSchedulers.mainThread())
             // Update current chapters whenever a chapter is preloaded
             .doOnCompleted { viewerChaptersRelay.value?.let(viewerChaptersRelay::call) }

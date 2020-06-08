@@ -155,6 +155,8 @@ object PreferenceKeys {
 
     const val searchPinnedSourcesOnly = "search_pinned_sources_only"
 
+    const val steadyChapterDownload = "steady_chapter_download"
+
     fun trackUsername(syncId: Int) = "pref_mangasync_username_$syncId"
 
     fun trackPassword(syncId: Int) = "pref_mangasync_password_$syncId"

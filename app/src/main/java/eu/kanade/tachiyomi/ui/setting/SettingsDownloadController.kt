@@ -121,6 +121,16 @@ class SettingsDownloadController : SettingsController() {
                     .launchIn(scope)
             }
         }
+        preferenceCategory {
+            titleRes = R.string.pref_download_steady_chapters
+
+            switchPreference {
+                isSingleLineTitle = false
+                key = Keys.steadyChapterDownload
+                titleRes = R.string.pref_download_steady_chapters_description
+                defaultValue = false
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

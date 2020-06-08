@@ -315,6 +315,8 @@
     <string name="fifth_to_last">Fifth to last chapter</string>
     <string name="pref_download_new">Download new chapters</string>
     <string name="pref_download_new_categories">Categories to include in download</string>
+    <string name="pref_download_steady_chapters">Steady Downloads</string>
+    <string name="pref_download_steady_chapters_description">Always have the next chapter downloaded while reading</string>
 
       <!-- Tracking section -->
     <string name="pref_auto_update_manga_sync">Update chapter progress after reading</string>
@@ -558,6 +560,7 @@
     <string name="transition_finished">Finished:</string>
     <string name="transition_current">Current:</string>
     <string name="transition_next">Next:</string>
+    <string name="transition_next_downloaded">Next (Downloaded):</string>
     <string name="transition_previous">Previous:</string>
     <string name="transition_no_next">There\'s no next chapter</string>
     <string name="transition_no_previous">There\'s no previous chapter</string>
@@ -656,6 +659,7 @@
     <string name="download_notifier_page_error">A page is missing in directory</string>
     <string name="download_notifier_page_ready_error">A page has not been loaded</string>
     <string name="download_notifier_text_only_wifi">No Wi-Fi connection available</string>
+    <string name="download_notifier_text_only_wifi_steady_downloads">No Wi-Fi connection available, could not download next the chapter</string>
     <string name="download_notifier_no_network">No network connection available</string>
     <string name="download_notifier_download_paused">Download paused</string>
 
