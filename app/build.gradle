@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile
 import java.text.SimpleDateFormat
 
 apply plugin: 'com.android.application'
-apply plugin: 'com.jaredsburrows.license'
+apply plugin: 'com.mikepenz.aboutlibraries.plugin'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -29,21 +29,6 @@ ext {
         df.setTimeZone(TimeZone.getTimeZone("UTC"))
         return df.format(new Date())
     }
-
-    getGradleWrapper = {
-        if (System.properties['os.name'].toLowerCase().contains('windows')) {
-            return '../gradlew.bat'
-        } else {
-            return '../gradlew'
-        }
-    }
-}
-
-licenseReport {
-    generateHtmlReport = true
-    generateJsonReport = false
-
-    copyHtmlReportToAssets = true
 }
 
 android {
@@ -268,6 +253,11 @@ dependencies {
     implementation "io.github.reactivecircus.flowbinding:flowbinding-swiperefreshlayout:$flowbinding_version"
     implementation "io.github.reactivecircus.flowbinding:flowbinding-viewpager:$flowbinding_version"
 
+    // Licenses
+    final aboutlibraries_version = '8.2.0'
+    implementation "com.mikepenz:aboutlibraries-core:$aboutlibraries_version"
+    implementation "com.mikepenz:aboutlibraries:$aboutlibraries_version"
+
     // Tests
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.assertj:assertj-core:3.12.2'
@@ -316,22 +306,7 @@ task copyResources(type: Copy) {
     include '**/*'
 }
 
-// See https://github.com/jaredsburrows/gradle-license-plugin/issues/113
-task licenseReportPreBuild(type: Exec) {
-    switch (getGradle().getStartParameter().getTaskRequests().toString()) {
-        case ~/.*Standard.*/:
-            commandLine getGradleWrapper(), 'licenseStandardReleaseReport'
-            break
-        case ~/.*Fdroid.*/:
-            commandLine getGradleWrapper(), 'licenseFdroidReleaseReport'
-            break
-        case ~/.*Dev.*/:
-            commandLine getGradleWrapper(), 'licenseDevReleaseReport'
-            break
-    }
-}
-
-preBuild.dependsOn(ktlintFormat, copyResources, licenseReportPreBuild)
+preBuild.dependsOn(ktlintFormat, copyResources)
 
 if (getGradle().getStartParameter().getTaskRequests().toString().contains("Standard")) {
     apply plugin: 'com.google.gms.google-services'

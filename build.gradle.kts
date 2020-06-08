@@ -39,7 +39,7 @@ buildscript {
     dependencies {
         classpath("com.github.zellius:android-shortcut-gradle-plugin:0.1.2")
         classpath("com.google.gms:google-services:4.3.3")
-        classpath("com.jaredsburrows:gradle-license-plugin:0.8.80")
+        classpath("com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin:8.2.0")
     }
     repositories {
         google()
