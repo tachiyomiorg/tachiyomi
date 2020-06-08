@@ -89,7 +89,7 @@
     <string name="pref_library_update_restriction_summary">Mettre à jour uniquement lorsque les conditions sont remplies</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">En charge</string>
-    <string name="pref_update_only_non_completed">Mettre à jour que les séries en cours</string>
+    <string name="pref_update_only_non_completed">Mettre à jour uniquement les séries en cours</string>
     <string name="pref_auto_update_manga_sync">Synchroniser les chapitres après les avoir lus</string>
     <string name="pref_start_screen">Page d\'accueil</string>
     <!-- Reader section -->
@@ -135,7 +135,7 @@
     <string name="color_filter_b_value">B</string>
     <string name="color_filter_a_value">O</string>
     <!-- Downloads section -->
-    <string name="pref_download_directory">Répertoire de téléchargements</string>
+    <string name="pref_download_directory">Répertoire de téléchargement</string>
     <string name="pref_download_only_over_wifi">Télécharger uniquement via Wi-Fi</string>
     <string name="pref_remove_after_read">Supprimer après avoir lu</string>
     <string name="disabled">Désactivé</string>
@@ -184,7 +184,7 @@
     <string name="description">Description</string>
     <string name="ongoing">En cours</string>
     <string name="unknown">Inconnu</string>
-    <string name="licensed">Licencié</string>
+    <string name="licensed">Sous licence</string>
     <string name="remove_from_library">Enlever de la bilbiothèque</string>
     <string name="manga_info_author_label">Auteur</string>
     <string name="manga_info_artist_label">Artiste</string>
@@ -279,7 +279,7 @@
     <!-- Information Text -->
     <string name="information_no_downloads">Aucun téléchargement</string>
     <string name="information_no_recent">Aucun chapitre récent</string>
-    <string name="information_no_recent_manga">Aucune série lu récemment</string>
+    <string name="information_no_recent_manga">Aucune série lue récemment</string>
     <string name="information_empty_library">Bibliothèque vide, ajoutez des séries à votre bibliothèque depuis le Catalogue.</string>
     <!-- Download Notification -->
     <string name="download_notifier_downloader_title">Téléchargement</string>
@@ -434,7 +434,7 @@
     <string name="pref_library_update_prioritization">Ordre de mise à jour de la bibliothèque</string>
     <string name="filter_mode_lighten">Éclaircir</string>
     <string name="filter_mode_darken">Obscurcir</string>
-    <string name="no_results_found">Aucun résultats trouvés</string>
+    <string name="no_results_found">Aucun résultat trouvé</string>
     <string name="migration_selection_prompt">Sélectionnez une source depuis laquelle migrer</string>
     <string name="pref_category_library">Bibliothèque</string>
     <string name="obsolete_extension_message">Cette extension n’est plus disponible.</string>
@@ -450,7 +450,7 @@
     <string name="logout">Se déconnecter</string>
     <string name="logout_success">Vous êtes maintenant déconnecté</string>
     <string name="currently_reading">En cours de lecture</string>
-    <string name="paused">En suspend</string>
+    <string name="paused">En suspens</string>
     <string name="want_to_read">À lire plus tard</string>
     <string name="label_more">Plus</string>
     <string name="action_sort_latest_chapter">Dernier chapitre</string>
@@ -517,13 +517,13 @@
     <string name="pref_theme_light">Variante du thème clair</string>
     <string name="action_move_to_top">Déplacer au début</string>
     <string name="action_move_to_bottom">Déplacer à la fin</string>
-    <string name="channel_ext_updates">Mises à jour d\'extension</string>
+    <string name="channel_ext_updates">Mises à jour d\'extensions</string>
     <plurals name="update_check_notification_ext_updates">
         <item quantity="one">Mise à jour d\'extension disponible</item>
-        <item quantity="other">%d mises à jour d\'extension disponibles</item>
+        <item quantity="other">%d mises à jour d\'extensions disponibles</item>
     </plurals>
     <string name="http_error_hint">Consultez le site Web de WebView</string>
-    <string name="pref_enable_automatic_extension_updates">Vérifier les mises à jour d’extension</string>
+    <string name="pref_enable_automatic_extension_updates">Vérifier les mises à jour d’extensions</string>
     <string name="action_sort_last_checked">Dernière vérification</string>
     <string name="updating_library">Mise à jour de la bibliothèque</string>
     <string name="label_sources">Sources</string>
@@ -533,7 +533,7 @@
     <string name="webtoon_side_padding_10">10%</string>
     <string name="webtoon_side_padding_0">Aucun</string>
     <string name="pref_category_reading">En cours</string>
-    <string name="vertical_plus_viewer">Vertical continue</string>
+    <string name="vertical_plus_viewer">Vertical continu</string>
     <string name="pref_skip_filtered_chapters">Passer les chapitres filtrés</string>
     <string name="action_pin">Épingler</string>
     <string name="action_select_inverse">Inverser la sélection</string>
@@ -574,7 +574,7 @@
     <string name="manga_info_latest_data_label">Mis à jour le</string>
     <string name="channel_backup_restore_complete">Terminé</string>
     <string name="channel_backup_restore_progress">Progression</string>
-    <string name="downloaded_only_summary">Afficher uniquement les séries téléchargés</string>
+    <string name="downloaded_only_summary">Afficher uniquement les séries téléchargées</string>
     <string name="pref_search_pinned_sources_only">N\'inclure que les sources épinglés</string>
     <string name="gray_background">Gris</string>
     <string name="pref_category_for_this_series">Pour cette série</string>
@@ -591,11 +591,11 @@
     <string name="battery_optimization_setting_activity_not_found">Impossible d\'ouvrir les paramètres de l\'appareil</string>
     <string name="action_display_unread_badge">Badges des non lus</string>
     <string name="pref_refresh_library_covers">Actualiser les couvertures des séries de la bibliothèque</string>
-    <string name="tracking_info">Permet de synchroniser automatiquement les chapitres lus avec les services externes proposé. Allez dans l\'onglet \"Suivi\" d\'une série pour activer son suivi.</string>
+    <string name="tracking_info">Permet de synchroniser automatiquement les chapitres lus avec les services externes proposés. Allez dans l\'onglet \"Suivi\" d\'une série pour activer son suivi.</string>
     <string name="unofficial_extension_message">Cette extension ne fait pas partie de la liste des extensions officielles de Tachiyomi.</string>
     <string name="ext_unofficial">Non officiel</string>
     <plurals name="notification_update_error">
         <item quantity="one">1 mise à jour a échoué</item>
-        <item quantity="other">%1$d mises à jour ont échoués</item>
+        <item quantity="other">%1$d mises à jour ont échoué</item>
     </plurals>
 </resources>
