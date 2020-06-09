@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup.LayoutParams
 import androidx.viewpager.widget.ViewPager
 import eu.kanade.tachiyomi.R
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.ui.reader.ReaderActivity
 import eu.kanade.tachiyomi.ui.reader.model.ChapterTransition
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
@@ -15,6 +16,8 @@ import eu.kanade.tachiyomi.ui.reader.viewer.BaseViewer
 import eu.kanade.tachiyomi.util.view.gone
 import eu.kanade.tachiyomi.util.view.visible
 import timber.log.Timber
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 /**
  * Implementation of a [BaseViewer] to display pages with a [ViewPager].
@@ -63,6 +66,8 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
                 }
             }
         }
+
+    private val preferences: PreferencesHelper = Injekt.get()
 
     init {
         pager.gone() // Don't layout the pager yet
@@ -160,8 +165,11 @@ abstract class PagerViewer(val activity: ReaderActivity) : BaseViewer {
 
         // Preload next chapter once we're within the last 5 pages of the current chapter
         val inPreloadRange = pages.size - page.number < 5
-        if (inPreloadRange && allowPreload && page.chapter == adapter.currentChapter) {
-            Timber.d("Request preload next chapter because we're at page ${page.number} of ${pages.size}")
+        // if true, preload will be requested ASAP
+        val steadyChapterDownload = preferences.steadyChapterDownload()
+
+        if ((inPreloadRange || steadyChapterDownload) && allowPreload && page.chapter == adapter.currentChapter) {
+            Timber.d("Request preload next chapter because we're at page ${page.number} of ${pages.size} | steadyDownloads: $steadyChapterDownload")
             adapter.nextTransition?.to?.let {
                 activity.requestPreloadChapter(it)
             }
