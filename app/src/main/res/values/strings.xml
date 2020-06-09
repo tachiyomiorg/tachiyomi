@@ -659,7 +659,6 @@
     <string name="download_notifier_page_error">A page is missing in directory</string>
     <string name="download_notifier_page_ready_error">A page has not been loaded</string>
     <string name="download_notifier_text_only_wifi">No Wi-Fi connection available</string>
-    <string name="download_notifier_text_only_wifi_steady_downloads">No Wi-Fi connection available, could not download next the chapter</string>
     <string name="download_notifier_no_network">No network connection available</string>
     <string name="download_notifier_download_paused">Download paused</string>
 

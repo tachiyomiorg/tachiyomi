@@ -144,11 +144,7 @@ class DownloadService : Service() {
         when (connectivity.state) {
             CONNECTED -> {
                 if (preferences.downloadOnlyOverWifi() && connectivityManager.isActiveNetworkMetered) {
-                    if (preferences.steadyChapterDownload()) {
-                        downloadManager.stopDownloads(getString(R.string.download_notifier_text_only_wifi_steady_downloads))
-                    } else {
-                        downloadManager.stopDownloads(getString(R.string.download_notifier_text_only_wifi))
-                    }
+                    downloadManager.stopDownloads(getString(R.string.download_notifier_text_only_wifi))
                 } else {
                     val started = downloadManager.startDownloads()
                     if (!started) stopSelf()

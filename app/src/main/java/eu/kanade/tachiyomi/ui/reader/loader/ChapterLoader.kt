@@ -9,6 +9,7 @@ import eu.kanade.tachiyomi.source.LocalSource
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
+import eu.kanade.tachiyomi.util.system.connectivityManager
 import rx.Completable
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -80,7 +81,7 @@ class ChapterLoader(
      */
     private fun getPageLoader(chapter: ReaderChapter, goingToNextChapter: Boolean = false): PageLoader {
         val isDownloaded = downloadManager.isChapterDownloaded(chapter.chapter, manga, true)
-        val shouldDownload = preferences.steadyChapterDownload()
+        val shouldDownload = preferences.steadyChapterDownload() && !context.connectivityManager.isActiveNetworkMetered
 
         return when {
             isDownloaded -> DownloadPageLoader(chapter, manga, source, downloadManager)
