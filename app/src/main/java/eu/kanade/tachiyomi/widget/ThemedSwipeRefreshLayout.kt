@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import eu.kanade.tachiyomi.R
-import eu.kanade.tachiyomi.util.system.getResourceColor
 
 class ThemedSwipeRefreshLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
     SwipeRefreshLayout(context, attrs) {
@@ -15,7 +14,9 @@ class ThemedSwipeRefreshLayout @JvmOverloads constructor(context: Context, attrs
     }
 
     private fun setColors() {
-        setProgressBackgroundColorSchemeColor(context.getResourceColor(R.attr.colorAccent))
+        // Background is controlled with "swipeRefreshLayoutProgressSpinnerBackgroundColor" in XML
+
+        // This updates the progress arrow color
         setColorSchemeColors(
             ContextCompat.getColor(context, R.color.md_white_1000),
             ContextCompat.getColor(context, R.color.md_white_1000),
