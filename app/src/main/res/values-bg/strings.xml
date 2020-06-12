@@ -364,7 +364,7 @@
     <string name="action_display_download_badge">Изтегляне на значки</string>
     <string name="local_source_badge">Локална</string>
     <string name="information_empty_category">Нямате категории. Натиснете плюса, за да създадете такава и да организирате библиотеката си.</string>
-    <string name="label_migration">Смяна на източник</string>
+    <string name="label_migration">Мигриране</string>
     <string name="label_extensions">Разширения</string>
     <string name="label_extension_info">Информация</string>
     <string name="all_lang">Всички</string>
@@ -378,7 +378,6 @@
     <string name="ext_trust">Потвърдени</string>
     <string name="ext_untrusted">Непотвърдени</string>
     <string name="ext_uninstall">Деинсталирай</string>
-    <string name="ext_preferences">Предпочитания</string>
     <string name="ext_available">Достъпни</string>
     <string name="untrusted_extension">Непотвърдено разширение</string>
     <string name="untrusted_extension_message">Следното разширение имаше непотвърден сертификат и не беше активирано.
@@ -388,7 +387,6 @@
 \nПотвърждавайки този сертификат, вие приемате тези рискове.</string>
     <string name="ext_version_info">Версия: %1$s</string>
     <string name="ext_language_info">Език: %1$s</string>
-    <string name="ext_empty_preferences">Няма предпочитания за това разширение</string>
     <string name="pref_double_tap_anim_speed">Скорост на анимацията</string>
     <string name="double_tap_anim_speed_0">Без анимация</string>
     <string name="double_tap_anim_speed_normal">Нормална</string>
@@ -402,7 +400,6 @@
     <string name="download_custom">Определен брой</string>
     <string name="migration_info">Натисни, за да избереш от кой източник да мигрираш</string>
     <string name="migration_dialog_what_to_include">Изберете кои данни ще мигрирате</string>
-    <string name="select">Избери</string>
     <string name="migrate">Мигрирай</string>
     <string name="copy">Копирай</string>
     <string name="pager_viewer">Страница</string>
@@ -592,4 +589,5 @@
         <item quantity="other">%d категории</item>
     </plurals>
     <string name="action_display_unread_badge">Покажи непрочетени</string>
+    <string name="action_migrate">Мигрирай</string>
 </resources>

@@ -344,7 +344,6 @@
     <string name="ext_trust">Vertouw</string>
     <string name="ext_untrusted">Niet vertrouwd</string>
     <string name="ext_uninstall">Verwijderen</string>
-    <string name="ext_preferences">Voorkeuren</string>
     <string name="ext_available">Beschikbaar</string>
     <string name="untrusted_extension">Niet vertrouwde extensie</string>
     <string name="untrusted_extension_message">Deze extensie is door een niet vertrouwd certificaat ondertekend en is niet geactiveerd.
@@ -354,7 +353,6 @@
 \nBij het vertrouwen van dit certificaat accepteer je deze risico\'s.</string>
     <string name="ext_version_info">Versie: %1$s</string>
     <string name="ext_language_info">Taal: %1$s</string>
-    <string name="ext_empty_preferences">Geen aan te passen voorkeuren voor deze extensie</string>
     <string name="pref_double_tap_anim_speed">Dubbel tik animatiesnelheid</string>
     <string name="pref_read_with_long_tap">Lange tik dialoog</string>
     <string name="pager_viewer">Paged</string>
@@ -385,7 +383,6 @@
     <string name="transition_pages_error">Fout bij het laden van pagina\'s : %1$s</string>
     <string name="migration_info">Tik om een bron te selecteren om naar toe te migreren</string>
     <string name="migration_dialog_what_to_include">Selecteer data om mee te tellen</string>
-    <string name="select">Selecteer</string>
     <string name="migrate">Migreer</string>
     <string name="copy">Kopiëren</string>
     <string name="filter_mode_default">Standaard</string>

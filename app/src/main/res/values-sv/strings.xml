@@ -13,7 +13,7 @@
     <string name="label_recent_updates">Nytt</string>
     <string name="label_categories">Kategorier</string>
     <string name="label_backup">Säkerhetskopiering</string>
-    <string name="label_migration">Källmigrering</string>
+    <string name="label_migration">Migrera</string>
     <string name="label_extensions">Tillägg</string>
     <string name="label_extension_info">Tilläggsinformation</string>
     <string name="action_settings">Inställningar</string>
@@ -61,7 +61,7 @@
     <string name="action_open_in_browser">Öppna i webbläsaren</string>
     <string name="action_display_mode">Visningsläge</string>
     <string name="action_display">Visa</string>
-    <string name="action_display_grid">Rutnät</string>
+    <string name="action_display_grid">Kompakt rutnät</string>
     <string name="action_display_list">Lista</string>
     <string name="action_display_download_badge">Nedladdningsmärken</string>
     <string name="action_cancel">Avbryt</string>
@@ -124,7 +124,6 @@
     <string name="ext_trust">Förtroende</string>
     <string name="ext_untrusted">Opålitlig</string>
     <string name="ext_uninstall">Avinstallera</string>
-    <string name="ext_preferences">Inställningar</string>
     <string name="ext_available">Tillgänglig</string>
     <string name="untrusted_extension">Opålitlig extension</string>
     <string name="untrusted_extension_message">Detta tillägg tecknades med ett otillförlitligt certifikat och var inte aktiverat.
@@ -134,7 +133,6 @@
 \nGenom att lita på detta certifikat accepterar du dessa risker.</string>
     <string name="ext_version_info">Version: %1$s</string>
     <string name="ext_language_info">Språk: %1$s</string>
-    <string name="ext_empty_preferences">Det finns inga inställningar för detta tillägg</string>
     <string name="pref_fullscreen">Fullskärm</string>
     <string name="pref_lock_orientation">Lås orientering</string>
     <string name="pref_page_transitions">Animera sidbyten</string>
@@ -223,7 +221,7 @@
     <string name="cookies_cleared">Cookies rensade</string>
     <string name="choices_reset">Dialogval återställning</string>
     <string name="pref_clear_database">Rensa databas</string>
-    <string name="pref_clear_database_summary">Radera manga och kapitel som inte finns i ditt bibliotek</string>
+    <string name="pref_clear_database_summary">Ta bort historik för manga som inte finns i ditt bibliotek</string>
     <string name="clear_database_confirmation">Är du säker\? Lästa kapitel och framsteg av icke-bibliotek manga kommer att gå förlorade</string>
     <string name="clear_database_completed">Inlägg raderade</string>
     <string name="pref_refresh_library_tracking">Uppdatera spårning</string>
@@ -345,7 +343,6 @@
     <string name="transition_pages_error">Misslyckades att ladda sidor: %1$s</string>
     <string name="migration_info">Tryck för att välja källa att migrera från</string>
     <string name="migration_dialog_what_to_include">Välj data som ska inkluderas</string>
-    <string name="select">Välj</string>
     <string name="migrate">Migrera</string>
     <string name="copy">Kopiera</string>
     <string name="download_queue_error">Kunde inte ladda ned kapitlen. Du kan försöka igen i nedladdningssektionen</string>
@@ -422,11 +419,11 @@
     <string name="action_sort_latest_chapter">Senaste kapitel</string>
     <string name="action_view_chapters">Visa kapitel</string>
     <string name="action_cancel_all">Avbryt alla</string>
-    <string name="pref_theme_mode">Applikationstema</string>
-    <string name="theme_light">Ljus</string>
-    <string name="theme_dark">Mörk</string>
+    <string name="pref_theme_mode">Mörkt läge</string>
+    <string name="theme_light">Av</string>
+    <string name="theme_dark">På</string>
     <string name="theme_system">Följ systemet</string>
-    <string name="pref_theme_dark">Mörk temavariant</string>
+    <string name="pref_theme_dark">Mörkt tema</string>
     <string name="theme_dark_default">Standard</string>
     <string name="theme_dark_blue">Mörkblå</string>
     <string name="theme_dark_amoled">AMOLED svart</string>
@@ -474,7 +471,7 @@
     </plurals>
     <string name="notices">Byggmeddelanden</string>
     <string name="changelog">Ändringslogg</string>
-    <string name="pref_theme_light">Ljus temavariant</string>
+    <string name="pref_theme_light">Ljust tema</string>
     <string name="theme_light_default">Standard</string>
     <string name="theme_light_blue">Ljusblå</string>
     <string name="action_menu">Meny</string>
@@ -558,4 +555,32 @@
     <string name="action_display_unread_badge">Olästa märken</string>
     <string name="pref_refresh_library_covers">Uppdatera bibliotekets manga omslag</string>
     <string name="tracking_info">Envägssynkronisering för att uppdatera kapitelförloppet i spårningstjänster. Ställ in spårning för enskilda manga från deras spårningsflikar.</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 uppdatering misslyckades</item>
+        <item quantity="other">%1$d uppdateringar misslyckades</item>
+    </plurals>
+    <string name="sort_by_upload_date">Efter uppladdningsdatum</string>
+    <string name="label_data">Data</string>
+    <string name="backup_restore_missing_sources">Saknade källor:</string>
+    <string name="invalid_backup_file_missing_manga">Säkerhetskopian innehåller ingen manga.</string>
+    <string name="invalid_backup_file_missing_data">Filen saknar data.</string>
+    <string name="invalid_backup_file">Ogiltig säkerhetskopia</string>
+    <string name="tracker_not_logged_in">Inte inloggad: %1$s</string>
+    <string name="source_not_found_name">Källan hittades inte: %1$s</string>
+    <string name="unofficial_extension_message">Detta tillägg kommer inte från den officiella Tachiyomi-tilläggslistan.</string>
+    <string name="ext_unofficial">Inofficiell</string>
+    <string name="pref_library_update_error_notification">Visa aviseringar om uppdateringsfel</string>
+    <string name="pref_library_update_refresh_metadata_summary">Sök efter nytt omslag och detaljer när du uppdaterar biblioteket</string>
+    <string name="pref_library_update_refresh_metadata">Uppdatera metadata automatiskt</string>
+    <string name="action_migrate">Migrera</string>
+    <string name="action_disable_all">Inaktivera alla</string>
+    <string name="page_list_empty_error">Inga sidor hittades</string>
+    <string name="tabs_header">Flikar</string>
+    <string name="badges_header">Märken</string>
+    <string name="pref_show_reading_mode_summary">Visa nuvarande läge när läsaren öppnas</string>
+    <string name="pref_show_reading_mode">Visa läsläge</string>
+    <string name="enabled">Aktiverad</string>
+    <string name="action_display_show_tabs">Visa kategoriflikar</string>
+    <string name="action_display_comfortable_grid">Bekvämt rutnät</string>
+    <string name="action_enable_all">Aktivera alla</string>
 </resources>

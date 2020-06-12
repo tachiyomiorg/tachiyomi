@@ -56,7 +56,7 @@
     <string name="action_open_in_browser">在浏览器中打开</string>
     <string name="action_display_mode">显示模式</string>
     <string name="action_display">显示</string>
-    <string name="action_display_grid">网格</string>
+    <string name="action_display_grid">紧凑网格</string>
     <string name="action_display_list">列表</string>
     <string name="action_cancel">取消</string>
     <string name="action_sort">排序</string>
@@ -66,7 +66,7 @@
     <string name="action_reset">重置</string>
     <string name="action_undo">撤销</string>
     <string name="track">同步</string>
-    <string name="label_migration">来源迁移</string>
+    <string name="label_migration">迁移</string>
     <string name="action_mark_previous_as_read">标记之前章节为已读</string>
     <string name="action_next_unread">跳转到下个未读</string>
     <string name="action_open_log">打开日志</string>
@@ -124,7 +124,6 @@
     <string name="ext_trust">信任</string>
     <string name="ext_untrusted">不可信</string>
     <string name="ext_uninstall">卸载</string>
-    <string name="ext_preferences">偏好设定</string>
     <string name="ext_available">可安装的扩展插件</string>
     <string name="untrusted_extension">不可信的扩展插件</string>
     <string name="untrusted_extension_message">此扩展插件的证书并不可信，且尚未被启用。
@@ -134,7 +133,6 @@
 \n信任这个证书，即代表你愿意承担上述风险。</string>
     <string name="ext_version_info">版本：%1$s</string>
     <string name="ext_language_info">语言：%1$s</string>
-    <string name="ext_empty_preferences">此扩展插件未提供可用的偏好设置</string>
     <string name="pref_fullscreen">全屏</string>
     <string name="pref_lock_orientation">锁定方向</string>
     <string name="pref_page_transitions">页面过渡动画</string>
@@ -223,7 +221,7 @@
     <string name="cookies_cleared">已清除 Cookies</string>
     <string name="choices_reset">重置对话选择</string>
     <string name="pref_clear_database">清除数据库</string>
-    <string name="pref_clear_database_summary">删除未在书架的漫画与章节</string>
+    <string name="pref_clear_database_summary">删除未保存在书架中的漫画的历史</string>
     <string name="clear_database_confirmation">你确定吗？这将会删除未在书架的漫画章节与阅读进度的数据</string>
     <string name="clear_database_completed">已删除条目</string>
     <string name="pref_refresh_library_tracking">刷新同步</string>
@@ -345,7 +343,6 @@
     <string name="transition_pages_error">第 %1$s 页加载失败</string>
     <string name="migration_info">选择需要迁移的图源</string>
     <string name="migration_dialog_what_to_include">选择需要迁移的数据</string>
-    <string name="select">选择</string>
     <string name="migrate">迁移</string>
     <string name="copy">共存</string>
     <string name="download_queue_error">下载章节失败，请重试</string>
@@ -422,9 +419,9 @@
     <string name="action_sort_latest_chapter">最新章节</string>
     <string name="action_view_chapters">查看章节</string>
     <string name="action_cancel_all">全部取消</string>
-    <string name="pref_theme_mode">应用主题</string>
-    <string name="theme_light">浅色</string>
-    <string name="theme_dark">深色</string>
+    <string name="pref_theme_mode">深色模式</string>
+    <string name="theme_light">关闭</string>
+    <string name="theme_dark">开启</string>
     <string name="theme_system">跟随系统</string>
     <string name="theme_dark_default">默认</string>
     <string name="theme_dark_blue">深蓝色</string>
@@ -444,7 +441,7 @@
     <string name="unlock_app">解锁 Tachiyomi</string>
     <string name="secure_screen_summary">切换应用时隐藏应用内容并限制屏幕截图</string>
     <string name="pref_category_display">显示</string>
-    <string name="pref_theme_dark">默认深色主题</string>
+    <string name="pref_theme_dark">深色主题</string>
     <string name="channel_new_chapters">章节更新</string>
     <string name="action_hide">隐藏</string>
     <string name="hide_notification_content">隐藏通知内容</string>
@@ -468,7 +465,7 @@
     <plurals name="notification_new_chapters_summary">
         <item quantity="other">共 %d 个标题</item>
     </plurals>
-    <string name="pref_theme_light">默认浅色主题</string>
+    <string name="pref_theme_light">浅色主题</string>
     <string name="theme_light_default">默认</string>
     <string name="theme_light_blue">浅蓝色</string>
     <string name="notices">预览构建通知</string>
@@ -548,11 +545,33 @@
     <string name="battery_optimization_setting_activity_not_found">无法打开设备设置</string>
     <string name="pref_true_color_summary">减少色彩带，但会影响性能</string>
     <string name="action_display_unread_badge">未读标记</string>
-    <string name="pref_refresh_library_covers">刷新库中漫画的封面</string>
-    <string name="tracking_info">单向同步以更新章节跟踪服务中的进度。 从“跟踪”选项卡中为单个漫画条目设置跟踪。</string>
+    <string name="pref_refresh_library_covers">刷新书架漫画封面</string>
+    <string name="tracking_info">单向同步以更新同步服务中的章节进度。在「同步」选项卡中为单个漫画设置同步。</string>
     <plurals name="notification_update_error">
         <item quantity="other">%1$d 升级失败</item>
     </plurals>
     <string name="unofficial_extension_message">这个扩展不是来自官方的Tachiyomi扩展列表。</string>
     <string name="ext_unofficial">非官方</string>
+    <string name="sort_by_upload_date">按照上传日期</string>
+    <string name="label_data">数据</string>
+    <string name="backup_restore_missing_sources">缺少图源：</string>
+    <string name="invalid_backup_file_missing_manga">备份不包含任何漫画.</string>
+    <string name="invalid_backup_file_missing_data">文件丢失数据.</string>
+    <string name="invalid_backup_file">无效的备份文件</string>
+    <string name="tracker_not_logged_in">未登录：%1$s</string>
+    <string name="source_not_found_name">未找到图源：%1$s</string>
+    <string name="pref_library_update_error_notification">显示更新错误通知</string>
+    <string name="pref_library_update_refresh_metadata_summary">更新库时检查新封面和详细信息</string>
+    <string name="pref_library_update_refresh_metadata">自动刷新元数据</string>
+    <string name="action_migrate">迁移</string>
+    <string name="action_display_comfortable_grid">舒适网格</string>
+    <string name="tabs_header">标签</string>
+    <string name="badges_header">标记</string>
+    <string name="action_display_show_tabs">显示类别标签</string>
+    <string name="page_list_empty_error">没有找到页面</string>
+    <string name="action_disable_all">禁用全部</string>
+    <string name="action_enable_all">启用全部</string>
+    <string name="enabled">已启用</string>
+    <string name="pref_show_reading_mode_summary">当阅读器打开时，短暂显示当前模式</string>
+    <string name="pref_show_reading_mode">显示阅读模式</string>
 </resources>

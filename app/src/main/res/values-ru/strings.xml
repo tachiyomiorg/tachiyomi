@@ -6,7 +6,7 @@
     <string name="action_cancel">Отмена</string>
     <string name="action_delete">Удалить</string>
     <string name="action_display">Отобразить</string>
-    <string name="action_display_grid">Сетка</string>
+    <string name="action_display_grid">Компактная сетка</string>
     <string name="action_display_list">Список</string>
     <string name="action_display_mode">Изменить отображение</string>
     <string name="action_download">Загрузить</string>
@@ -49,7 +49,7 @@
     <string name="action_stop">Стоп</string>
     <string name="action_update">Обновить</string>
     <string name="action_update_library">Обновить библиотеку</string>
-    <string name="all">Все</string>
+    <string name="all">Всё</string>
     <string name="backup">Резервная копия</string>
     <string name="black_background">Черный</string>
     <string name="build_time">Дата сборки</string>
@@ -92,7 +92,7 @@
     <string name="download_1">Следующая глава</string>
     <string name="download_10">Следующие 10 глав</string>
     <string name="download_5">Следующие 5 глав</string>
-    <string name="download_all">Все</string>
+    <string name="download_all">Всё</string>
     <string name="download_notifier_downloader_title">Загрузчик</string>
     <string name="download_notifier_no_network">Нет сетевого соединения</string>
     <string name="download_notifier_page_error">Страница отсутствует в каталоге</string>
@@ -176,7 +176,7 @@
     <string name="pref_clear_chapter_cache">Очистить кэш глав</string>
     <string name="pref_clear_cookies">Очистить куки</string>
     <string name="pref_clear_database">Очистить базу данных</string>
-    <string name="pref_clear_database_summary">Удалять мангу и главы, которые больше не находятся в библиотеке</string>
+    <string name="pref_clear_database_summary">Удалить историю для манги, которая не находится в вашей библиотеке</string>
     <string name="pref_custom_brightness">Использовать пользовательскую яркость</string>
     <string name="pref_custom_color_filter">Использовать пользовательский цветовой фильтр</string>
     <string name="pref_download_directory">Каталог загрузок</string>
@@ -302,7 +302,7 @@
     <string name="pref_crop_borders">Границы обрезки</string>
     <string name="pref_download_new_categories">Категории для включения в загружаемые</string>
     <string name="pref_refresh_library_tracking">Обновить отслеживание</string>
-    <string name="pref_refresh_library_tracking_summary">Обновить статус, счет и последнюю главу от отслеживаемых сервисов</string>
+    <string name="pref_refresh_library_tracking_summary">Обновить статус, счет и последнюю прочитанную главу от отслеживаемых сервисов</string>
     <string name="pref_restore_backup">Восстановить бэкап</string>
     <string name="pref_restore_backup_summ">Восстановить библиотеку из бэкапа</string>
     <string name="restore_completed">Восстановление закончено</string>
@@ -330,7 +330,7 @@
     <string name="channel_library">Библиотека</string>
     <string name="channel_downloader">Загрузчик</string>
     <string name="information_empty_category">У вас нет категорий. Нажмите кнопку + чтобы создать категорию для организации вашей библиотеки.</string>
-    <string name="label_migration">Перемещение источника</string>
+    <string name="label_migration">Мигрировать</string>
     <string name="label_extensions">Дополнения</string>
     <string name="label_extension_info">Информация о дополнении</string>
     <string name="all_lang">Все</string>
@@ -343,7 +343,6 @@
     <string name="ext_installed">Установлено</string>
     <string name="ext_untrusted">Ненадёжное</string>
     <string name="ext_uninstall">Удалить</string>
-    <string name="ext_preferences">Настройки</string>
     <string name="ext_available">Доступно</string>
     <string name="untrusted_extension">Ненадёжное расширение</string>
     <string name="untrusted_extension_message">Это расширение было подписано ненадёжным сертификатом и не было активировано. 
@@ -353,7 +352,6 @@
 \nДоверяя этому сертификату, вы принимаете эти риски.</string>
     <string name="ext_version_info">Версия: %1$s</string>
     <string name="ext_language_info">Язык: %1$s</string>
-    <string name="ext_empty_preferences">У этого расширения нет настроек</string>
     <string name="pref_double_tap_anim_speed">Скорость анимации при двойном нажатии</string>
     <string name="double_tap_anim_speed_0">Без анимации</string>
     <string name="double_tap_anim_speed_normal">Нормальная</string>
@@ -367,7 +365,6 @@
     <string name="download_custom">Другое кол-во</string>
     <string name="migration_info">Нажмите, чтобы выбрать источник для миграции</string>
     <string name="migration_dialog_what_to_include">Выберите данные для включения</string>
-    <string name="select">Выбрать</string>
     <string name="migrate">Мигрировать</string>
     <string name="copy">Копировать</string>
     <string name="ext_trust">Надёжное</string>
@@ -421,12 +418,12 @@
     <string name="label_more">Еще</string>
     <string name="action_sort_latest_chapter">Последняя глава</string>
     <string name="action_view_chapters">Посмотреть главы</string>
-    <string name="action_cancel_all">Отменить все</string>
-    <string name="pref_theme_mode">Тема приложения</string>
-    <string name="theme_light">Светлая</string>
-    <string name="theme_dark">Темная</string>
+    <string name="action_cancel_all">Отменить всё</string>
+    <string name="pref_theme_mode">Тёмный режим</string>
+    <string name="theme_light">Выключено</string>
+    <string name="theme_dark">Включено</string>
     <string name="theme_system">Системная</string>
-    <string name="pref_theme_dark">Темный вариант</string>
+    <string name="pref_theme_dark">Тёмная тема</string>
     <string name="theme_dark_default">По умолчанию</string>
     <string name="theme_dark_blue">Темно-синяя</string>
     <string name="theme_dark_amoled">AMOLED черный</string>
@@ -466,7 +463,7 @@
         <item quantity="few">Найденны новые главы для %d тайтлов</item>
         <item quantity="many">Найденны новые главы для %d тайтлов</item>
     </plurals>
-    <string name="notices">Заметки о ранних версиях</string>
+    <string name="notices">Заметка о ранних версиях</string>
     <string name="notification_check_updates">Проверка наличия новых глав</string>
     <string name="updating_library">Обновления библиотеки</string>
     <string name="http_error_hint">Проверить страницу в WebView</string>
@@ -487,7 +484,7 @@
     <string name="hide_notification_content">Скрыть содержимое уведомления</string>
     <string name="secure_screen_summary">Скрыть содержимое приложения, при переключении на другие приложения, и блокировании скриншотов</string>
     <string name="theme_light_blue">Бело-синяя</string>
-    <string name="pref_theme_light">Белый вариант</string>
+    <string name="pref_theme_light">Белая тема</string>
     <string name="action_oldest">Старейший</string>
     <string name="action_newest">Новейший</string>
     <string name="action_move_to_top">В начало</string>
@@ -578,4 +575,26 @@
     </plurals>
     <string name="unofficial_extension_message">Это расширение не входит в официальный список расширений Tachiyomi.</string>
     <string name="ext_unofficial">Неофициальное</string>
+    <string name="sort_by_upload_date">По дате загрузки</string>
+    <string name="label_data">Данные</string>
+    <string name="backup_restore_missing_sources">Отсутствующие источники:</string>
+    <string name="invalid_backup_file_missing_manga">Бэпап не содержит мангу.</string>
+    <string name="invalid_backup_file_missing_data">В файле отсутствуют данные.</string>
+    <string name="invalid_backup_file">Неверный файл бэкапа</string>
+    <string name="tracker_not_logged_in">Не зарегистрирован в: %1$s</string>
+    <string name="source_not_found_name">Источник не найден: %1$s</string>
+    <string name="pref_library_update_error_notification">Показывать уведомления об ошибках обновления</string>
+    <string name="pref_library_update_refresh_metadata_summary">Проверка на наличие новой обложки и деталей при обновлении библиотеки</string>
+    <string name="pref_library_update_refresh_metadata">Автоматически обновлять метаданные</string>
+    <string name="action_display_comfortable_grid">Удобная сетка</string>
+    <string name="action_migrate">Мигрировать</string>
+    <string name="tabs_header">Вкладки</string>
+    <string name="badges_header">Значки</string>
+    <string name="action_display_show_tabs">Показывать вкладки категорий</string>
+    <string name="page_list_empty_error">Страницы не найдены</string>
+    <string name="action_enable_all">Включить всё</string>
+    <string name="action_disable_all">Выключить всё</string>
+    <string name="pref_show_reading_mode_summary">Кратко отобразить текущий режим когда читалка открыта</string>
+    <string name="pref_show_reading_mode">Показать режим чтения</string>
+    <string name="enabled">Включено</string>
 </resources>

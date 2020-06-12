@@ -6,9 +6,9 @@
     <string name="history">歷史記錄</string>
     <string name="label_settings">設定</string>
     <string name="label_download_queue">下載佇列</string>
-    <string name="label_library">我的書櫃</string>
-    <string name="label_recent_manga">近期閱讀</string>
-    <string name="label_recent_updates">新書上架</string>
+    <string name="label_library">書櫃</string>
+    <string name="label_recent_manga">記錄</string>
+    <string name="label_recent_updates">新刊</string>
     <string name="label_categories">分類</string>
     <string name="label_backup">備份</string>
     <string name="label_migration">來源遷移</string>
@@ -58,9 +58,9 @@
     <string name="action_move">移動</string>
     <string name="action_open_in_browser">在瀏覽器中開啟</string>
     <string name="action_open_in_web_view">在 WebView 中開啟</string>
-    <string name="action_display_mode">更改顯示模式</string>
+    <string name="action_display_mode">顯示模式</string>
     <string name="action_display">檢視</string>
-    <string name="action_display_grid">格狀</string>
+    <string name="action_display_grid">密集格狀</string>
     <string name="action_display_list">清單</string>
     <string name="action_display_download_badge">已下載標記</string>
     <string name="action_cancel">取消</string>
@@ -105,7 +105,7 @@
     <string name="pref_update_only_non_completed">僅更新連載中的漫畫</string>
     <string name="pref_start_screen">起始畫面</string>
     <string name="pref_language">語言</string>
-    <string name="system_default">系統預設</string>
+    <string name="system_default">預設</string>
     <string name="default_category">預設分類</string>
     <string name="default_category_summary">總是詢問</string>
     <string name="ext_update">更新</string>
@@ -199,9 +199,7 @@
     <string name="download_notifier_download_paused">下載已暫停</string>
     <string name="pref_library_columns">書櫃欄位數目</string>
     <string name="ext_details">詳情</string>
-    <string name="ext_preferences">偏好設定</string>
     <string name="ext_available">可用的套件</string>
-    <string name="ext_empty_preferences">這個擴充元件未提供可用的偏好設定</string>
     <string name="pref_lock_orientation">鎖定螢幕方向</string>
     <string name="pref_page_transitions">翻頁轉場動畫</string>
     <string name="pref_crop_borders">邊緣裁剪</string>
@@ -307,7 +305,6 @@
     <string name="track_status">狀態</string>
     <string name="options">選項</string>
     <string name="decode_image_error">無法解碼該圖片</string>
-    <string name="select">選擇</string>
     <string name="notification_first_add_to_library">請先將漫畫收藏至書櫃再進行更新</string>
     <string name="notification_not_connected_to_ac_title">已取消同步</string>
     <string name="notification_not_connected_to_ac_body">尚未接上電源</string>
@@ -359,11 +356,11 @@
     <string name="pref_auto_update_manga_sync">閱讀完後同步章節</string>
     <string name="ext_trust">信任</string>
     <string name="ext_untrusted">不信任</string>
-    <string name="untrusted_extension">不信任的擴充元件</string>
-    <string name="untrusted_extension_message">這個擴充元件的憑證並不可靠，且尚未被啟用。 
-\n 
-\n惡意的擴充元件可能讀取或儲存任何在Tachiyomi中的登錄憑證、或著執行任意的程式碼。 
-\n 
+    <string name="untrusted_extension">不信任的擴充套件</string>
+    <string name="untrusted_extension_message">這個擴充套件的憑證並不可靠，且尚未被啟用。
+\n
+\n惡意的擴充套件可能存取任何在 Tachiyomi 中的登錄憑證，或執行任意的程式碼。
+\n
 \n信任這個憑證，即代表你願意承擔上述的風險。</string>
     <string name="last_read_chapter">最後閱讀的章節</string>
     <string name="pref_backup_slots">最大自動備份數</string>
@@ -403,8 +400,61 @@
     <string name="action_webview_back">返回</string>
     <string name="action_webview_forward">向前</string>
     <string name="action_webview_refresh">重新整理</string>
-    <string name="pref_category_library">資料庫</string>
+    <string name="pref_category_library">書櫃</string>
     <string name="invalid_download_dir">下載路徑無法使用</string>
     <string name="ext_obsolete">過舊</string>
-    <string name="obsolete_extension_message">這個擴充元件已無法使用。</string>
+    <string name="obsolete_extension_message">這個擴充套件已無法使用。</string>
+    <string name="channel_backup_restore">備份與還原</string>
+    <string name="theme_light_blue">淺藍</string>
+    <string name="theme_dark_blue">深藍</string>
+    <string name="theme_dark_amoled">全黑 (AMOLED)</string>
+    <string name="pref_theme_dark">深色主題</string>
+    <string name="theme_light_default">預設</string>
+    <string name="pref_theme_light">淺色主題</string>
+    <string name="theme_light">關閉</string>
+    <string name="theme_system">遵循系統</string>
+    <string name="theme_dark_default">預設</string>
+    <string name="pref_theme_mode">深色模式</string>
+    <string name="theme_dark">開啟</string>
+    <string name="pref_date_format">日期格式</string>
+    <string name="pref_confirm_exit">離開應用程式時需確認</string>
+    <string name="confirm_exit">再按一次以離開</string>
+    <string name="downloaded_only_summary">將套用至你書櫃中的漫畫</string>
+    <string name="label_downloaded_only">僅限下載內容</string>
+    <string name="notices">預覽版本公告</string>
+    <string name="licenses">開放原始碼授權</string>
+    <string name="website">網站</string>
+    <string name="changelog">更新日誌</string>
+    <string name="check_for_updates">檢查更新</string>
+    <string name="label_more">其他</string>
+    <string name="manga_info_expand">顯示更多資訊</string>
+    <plurals name="lock_after_mins">
+        <item quantity="one">1 分鐘後</item>
+        <item quantity="other">%1$s 分鐘後</item>
+    </plurals>
+    <string name="lock_never">永不</string>
+    <string name="lock_always">立即</string>
+    <string name="lock_when_idle">閒置時鎖定</string>
+    <string name="unlock_app">解除鎖定 Tachiyomi</string>
+    <string name="lock_with_biometrics">使用生物辨識鎖定</string>
+    <string name="secure_screen_summary">在切換應用程式時隱藏程式內容，並禁止擷取螢幕畫面</string>
+    <string name="secure_screen">防窺畫面</string>
+    <string name="pref_category_security">安全性</string>
+    <string name="hide_notification_content">隱藏通知內容</string>
+    <string name="pref_manage_notifications">管理通知設定</string>
+    <string name="pref_enable_automatic_extension_updates">自動檢查擴充套件是否有更新</string>
+    <string name="channel_ext_updates">擴充套件可供更新</string>
+    <plurals name="update_check_notification_ext_updates">
+        <item quantity="one">有可用的擴充套件更新</item>
+        <item quantity="other">%d 個擴充套件可更新</item>
+    </plurals>
+    <string name="action_display_show_tabs">顯示分類頁籤</string>
+    <string name="tabs_header">頁籤</string>
+    <string name="gray_background">灰色</string>
+    <string name="pref_category_display">檢視</string>
+    <string name="action_display_comfortable_grid">鬆散格狀</string>
+    <string name="pref_category_for_this_series">適用於這套叢書</string>
+    <string name="pref_category_reading">翻閱</string>
+    <string name="pref_category_library_categories">分類</string>
+    <string name="pref_category_library_update">更新</string>
 </resources>

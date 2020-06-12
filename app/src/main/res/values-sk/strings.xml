@@ -127,7 +127,6 @@
     <string name="ext_trust">Dôverovať</string>
     <string name="ext_untrusted">Odobrať dôveru</string>
     <string name="ext_uninstall">Odinštalovať</string>
-    <string name="ext_preferences">Preferencie</string>
     <string name="ext_available">K dispozícii</string>
     <string name="untrusted_extension">Nedôveryhodné rozšírenie</string>
     <string name="untrusted_extension_message">Toto rozšírenie bolo podpísané nedôveryhodným certifikátom a nebolo aktivované.
@@ -137,7 +136,6 @@
 \nDôverovaním tohto certifikátu akceptujete tieto riziká.</string>
     <string name="ext_version_info">Verzia: %1$s</string>
     <string name="ext_language_info">Jazyk: %1$s</string>
-    <string name="ext_empty_preferences">Nie sú k dispozícii žiadne preferencie na úpravu pre toto rozšírenie</string>
     <string name="pref_fullscreen">Na celú obrazovku</string>
     <string name="pref_lock_orientation">Zamknúť orientáciu</string>
     <string name="pref_page_transitions">Prechod stránok</string>
@@ -363,7 +361,6 @@
     <string name="transition_pages_error">Chyba pri načítání stránok: %1$s</string>
     <string name="migration_info">Klepnutím vyberte zdroj, z ktorého chcete migrovať</string>
     <string name="migration_dialog_what_to_include">Vyberte data, ktoré chcete zahrnúť</string>
-    <string name="select">Vybrať</string>
     <string name="migrate">Migrovať</string>
     <string name="copy">Kopírovať</string>
     <string name="download_queue_error">Kapitoly sa nepodarilo stiahnuť. Môžete to skúsiť znova v sekcii sťahovania</string>

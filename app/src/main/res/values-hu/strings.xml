@@ -154,7 +154,6 @@
     <string name="label_extensions">Bővítmények</string>
     <string name="ext_untrusted">Nem megbízható</string>
     <string name="ext_uninstall">Eltávolítás</string>
-    <string name="ext_preferences">Preferenciák</string>
     <string name="all_lang">Összes</string>
     <string name="label_extension_info">Bővítmény információ</string>
     <string name="ext_details">Részletek</string>

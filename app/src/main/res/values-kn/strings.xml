@@ -25,14 +25,14 @@
     <string name="theme_dark_amoled">ಗಾಢವಾದ್ ಕಪ್ಪು</string>
     <string name="theme_dark_blue">ಗಾಢವಾದ್ ನೀಲಿ</string>
     <string name="theme_dark_default">ಡೀಫಾಲ್ಟ್</string>
-    <string name="pref_theme_dark">ಡಾರ್ಕ್ ಥೀಮ್ ವೈವಿಧ್ಯತೆಗಳು</string>
+    <string name="pref_theme_dark">ಡಾರ್ಕ್ ಥೀಮ್</string>
     <string name="theme_light_blue">ತಿಳಿ ನೀಲಿ</string>
     <string name="theme_light_default">ಡೀಫಾಲ್ಟ್</string>
-    <string name="pref_theme_light">ಲೈಟ್ ಥೀಮ್ ವೈವಿಧ್ಯತೆಗಳು</string>
+    <string name="pref_theme_light">ಲೈಟ್ ಥೀಮ್</string>
     <string name="theme_system">ಸಿಸ್ಟಮ್ ಅನುಕರಿಸಿ</string>
-    <string name="theme_dark">ಡಾರ್ಕ್ ಥೀಮ್</string>
-    <string name="theme_light">ಲೈಟ್ ಥೀಮ್</string>
-    <string name="pref_theme_mode">ಅಪ್ಲಿಕೇಶನ್ ಥೀಮ್</string>
+    <string name="theme_dark">ಆನ್</string>
+    <string name="theme_light">ಆಫ</string>
+    <string name="pref_theme_mode">ಡಾರ್ಕ್ ಮೋಡ್</string>
     <string name="pref_category_about">ಅಪ್ಲಿಕೇಶನ್ ಬಗ್ಗೆ</string>
     <string name="pref_category_advanced">ಸುಧಾರಿತ</string>
     <string name="pref_category_tracking">ಟ್ರ್ಯಾಕಿಂಗ್</string>
@@ -70,7 +70,7 @@
     <string name="action_display_unread_badge">ಓದದ್ ಗುರುತುಗಳು</string>
     <string name="action_display_download_badge">ಡೌನಲೋಡ್ ಗುರುತುಗಳು</string>
     <string name="action_display_list">ಪಟ್ಟಿ</string>
-    <string name="action_display_grid">ಗ್ರಿಡ್</string>
+    <string name="action_display_grid">ಕಾಂಪ್ಯಾಕ್ಟ್ ಗ್ರಿಡ್</string>
     <string name="action_display">ಪ್ರದರ್ಶೀಸು</string>
     <string name="action_display_mode">ಪ್ರದರ್ಶನ ರೀತಿ</string>
     <string name="action_open_in_web_view">ವೆಬ್‌ವೀಕ್ಷಣೆಯಲ್ಲಿ ತೆರೆಯಿರಿ</string>
@@ -255,7 +255,6 @@
     <string name="pref_lock_orientation">ಲಾಕ್ ದೃಷ್ಟಿಕೋನ</string>
     <string name="pref_cutout_short">ಕಟೌಟ್ ಆದಂತಹ ಪ್ರದೇಶದಲ್ಲಿ ವಿಷಯವನ್ನು ತೋರಿಸಿ</string>
     <string name="pref_fullscreen">ಪೂರ್ಣ ಪರದೆ</string>
-    <string name="ext_empty_preferences">ಈ ವಿಸ್ತರಣೆಗೆ ತಿದ್ದಲು ಯಾವುದೇ ಆದ್ಯತೆಗಳಿಲ್ಲ</string>
     <string name="ext_version_info">ಆವೃತ್ತಿ: %1$s</string>
     <string name="ext_language_info">ಭಾಷೆ: %1$s</string>
     <string name="obsolete_extension_message">ಈ ವಿಸ್ತರಣೆ ಇನ್ನು ಮುಂದೆ ಲಭ್ಯವಿಲ್ಲ.</string>
@@ -266,7 +265,6 @@
 \nಈ ಪ್ರಮಾಣಪತ್ರವನ್ನು ನಂಬುವ ಮೂಲಕ ನೀವು ಈ ಅಪಾಯಗಳನ್ನು ಸ್ವೀಕರಿಸುತ್ತೀರಿ.</string>
     <string name="untrusted_extension">ವಿಶ್ವಾಸಾರ್ಹವಲ್ಲದ ವಿಸ್ತರಣೆ</string>
     <string name="ext_available">ಲಭ್ಯವಿರುವ</string>
-    <string name="ext_preferences">ಆದ್ಯತೆಗಳು</string>
     <string name="ext_uninstall">ಅನ್ಇನ್ಸ್ಟಾಲ್</string>
     <string name="ext_untrusted">ವಿಶ್ವಾಸಾರ್ಹವಲ್ಲ</string>
     <string name="ext_trust">ನ೦ಬು</string>
@@ -375,7 +373,6 @@
     <string name="download_queue_error">ಅಧ್ಯಾಯಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಡೌನ್‌ಲೋಡ್‌ಗಳ ವಿಭಾಗದಲ್ಲಿ ನೀವು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಬಹುದು</string>
     <string name="copy">ನಕಲಿಸಿ</string>
     <string name="migrate">ಸ್ಥಳಾಂತರಿಸಿ</string>
-    <string name="select">ಆಯ್ಕೆ ಮಾಡಿ</string>
     <string name="migration_selection_prompt">ಮಾಂಗಾ ಸ್ಥಳಾಂತರಗೊಳಿಸಲು ಮೂಲವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
     <string name="migration_dialog_what_to_include">ಸೇರಿಸಲು ಡೇಟಾವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="migration_info">ಮಾಂಗಾ ಸ್ಥಳಾಂತರಗೊಳಿಸಲು ಮೂಲವನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ ಆಯ್ಕೆ ಮಾಡಿ</string>
@@ -539,7 +536,7 @@
     <string name="pref_refresh_library_covers">ಗ್ರಂಥಾಲಯದ ಮಾಂಗಾ ಕವರ್‌ಗಳನ್ನು ರಿಫ್ರೆಶ್ ಮಾಡಿ</string>
     <string name="clear_database_completed">ನಮೂದುಗಳನ್ನು ಅಳಿಸಲಾಗಿದೆ</string>
     <string name="clear_database_confirmation">ನೀವು ಖಚಿತವಾಗಿರುವಿರಾ\? ಅಧ್ಯಾಯಗಳು ಗ್ರಂಥಾಲಯೇತರ ಮಾಂಗಾದ ಓದು ಮತ್ತು ಪ್ರಗತಿ ಕಳೆದುಹೋಗುತ್ತದೆ</string>
-    <string name="pref_clear_database_summary">ನಿಮ್ಮ ಗ್ರಂಥಾಲಯದಲ್ಲಿ ಇಲ್ಲದ ಮಾಂಗಾ ಮತ್ತು ಅಧ್ಯಾಯಗಳನ್ನು ಅಳಿಸಿ</string>
+    <string name="pref_clear_database_summary">ನಿಮ್ಮ ಗ್ರಂಥಾಲಯದಲ್ಲಿ ಇಲ್ಲದ ಮಾಂಗಾದ ಇತಿಹಾಸವನ್ನು ಅಳಿಸಿ</string>
     <string name="pref_clear_database">ಡೇಟಾಬೇಸ್ ತೆರವುಗೊಳಿಸಿ</string>
     <string name="choices_reset">ಡೈಲಾಗ್ ಆಯ್ಕೆಗಳನ್ನು ಮರುಹೊಂದಿಸಿ</string>
     <string name="cookies_cleared">ಕುಕೀಗಳನ್ನು ತೆರವುಗೊಳಿಸಲಾಗಿದೆ</string>
@@ -565,4 +562,26 @@
     </plurals>
     <string name="unofficial_extension_message">ಈ ವಿಸ್ತರಣೆಯು ಅಧಿಕೃತ ತಚಿಯೋಮಿ ವಿಸ್ತರಣೆಗಳ ಪಟ್ಟಿಯಿಂದಲ್ಲ.</string>
     <string name="ext_unofficial">ಅನಧಿಕೃತ</string>
+    <string name="sort_by_upload_date">ಅಪ್‌ಲೋಡ್ ದಿನಾಂಕದ ಮೂಲಕ</string>
+    <string name="label_data">ಡೇಟಾ</string>
+    <string name="backup_restore_missing_sources">ಕಾಣೆಯಾದ ಮೂಲಗಳು:</string>
+    <string name="invalid_backup_file_missing_manga">ಬ್ಯಾಕಪ್ ಯಾವುದೇ ಮಾಂಗಾವನ್ನು ಹೊಂದಿಲ್ಲ.</string>
+    <string name="invalid_backup_file_missing_data">ಫೈಲ್ ಡೇಟಾ ಕಾಣೆಯಾಗಿದೆ.</string>
+    <string name="invalid_backup_file">ಬ್ಯಾಕಪ್ ಫೈಲ್ ಅಮಾನ್ಯವಾಗಿದೆ</string>
+    <string name="tracker_not_logged_in">ಲಾಗ್ ಇನ್ ಆಗಿಲ್ಲ: %1$s</string>
+    <string name="source_not_found_name">ಮೂಲ ಕಂಡುಬಂದಿಲ್ಲ: %1$s</string>
+    <string name="pref_library_update_error_notification">ನವೀಕರಣ ದೋಷಗಳ ಅಧಿಸೂಚನೆಗಳನ್ನು ತೋರಿಸಿ</string>
+    <string name="pref_library_update_refresh_metadata_summary">ಗ್ರಂಥಾಲಯವನ್ನು ನವೀಕರಿಸುವಾಗ ಹೊಸ ಕವರ್ ಮತ್ತು ವಿವರಗಳಿಗಾಗಿ ಪರಿಶೀಲಿಸಿ</string>
+    <string name="pref_library_update_refresh_metadata">ಮೆಟಾಡೇಟಾವನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ರಿಫ್ರೆಶ್ ಮಾಡಿ</string>
+    <string name="action_migrate">ಮೂಲ ಸ್ಥಳಾಂತರ</string>
+    <string name="page_list_empty_error">ಯಾವುದೇ ಪುಟಗಳು ಸಿಕ್ಕಿಲ್ಲ</string>
+    <string name="tabs_header">ಟ್ಯಾಬ್‌ಗಳು</string>
+    <string name="badges_header">ಬ್ಯಾಡ್ಜ್‌ಗಳು</string>
+    <string name="pref_show_reading_mode_summary">ರೀಡರ್ ತೆರೆದಾಗ ಪ್ರಸ್ತುತ ಮೋಡ್ ಅನ್ನು ಸಂಕ್ಷಿಪ್ತವಾಗಿ ತೋರಿಸಿ</string>
+    <string name="pref_show_reading_mode">ಓದುವ ರೀತಿ ತೋರಿಸಿ</string>
+    <string name="enabled">ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
+    <string name="action_display_show_tabs">ವರ್ಗ ಟ್ಯಾಬ್‌ಗಳನ್ನು ತೋರಿಸಿ</string>
+    <string name="action_display_comfortable_grid">ಆರಾಮದಾಯಕ ಗ್ರಿಡ್</string>
+    <string name="action_disable_all">ಎಲ್ಲವನ್ನೂ ನಿಷ್ಕ್ರಿಯೆಗೊಳಿಸಿ</string>
+    <string name="action_enable_all">ಎಲ್ಲವನ್ನೂ ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
 </resources>

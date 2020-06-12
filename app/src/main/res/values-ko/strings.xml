@@ -116,7 +116,6 @@
     <string name="ext_trust">신뢰</string>
     <string name="ext_untrusted">신뢰되지않음</string>
     <string name="ext_uninstall">삭제</string>
-    <string name="ext_preferences">설정</string>
     <string name="ext_available">이용 가능</string>
     <string name="untrusted_extension">신뢰할 수 없는 확장기능</string>
     <string name="untrusted_extension_message">이 확장기능은 신뢰할 수 없는 인증서로 서명되있으며 활성화 되지 않았습니다.
@@ -126,7 +125,6 @@
 \n이 인증서를 신뢰함으로써 이런 위험들을 감수합니다.</string>
     <string name="ext_version_info">버전: %1$s</string>
     <string name="ext_language_info">언어: %1$s</string>
-    <string name="ext_empty_preferences">이 확장기능에 대한 설정이 없습니다</string>
     <string name="pref_fullscreen">전체화면</string>
     <string name="pref_lock_orientation">회전 잠금</string>
     <string name="pref_double_tap_anim_speed">더블 탭 애니메이션 속도</string>
@@ -278,7 +276,6 @@
     <string name="transition_no_previous">이전 챕터가 없습니다</string>
     <string name="transition_pages_loading">페이지 로딩중…</string>
     <string name="transition_pages_error">페이지 로딩 실패: %1$s</string>
-    <string name="select">선택</string>
     <string name="notification_update_progress">업데이트 진행중: %1$d/%2$d</string>
     <string name="notification_new_chapters">새로운 챕터 발견</string>
     <string name="notification_cover_update_failed">표지 업데이트 실패</string>

@@ -342,7 +342,6 @@
     <string name="ext_trust">Đáng tin cậy</string>
     <string name="ext_untrusted">Không đáng tin cậy</string>
     <string name="ext_uninstall">Gỡ cài đặt</string>
-    <string name="ext_preferences">Yêu thích</string>
     <string name="ext_available">Có sẵn</string>
     <string name="untrusted_extension">Tiện ích mở rộng không đáng tin cậy</string>
     <string name="untrusted_extension_message">Tiện ích bổ sung này được đăng ký bằng chứng chỉ không đáng tin cậy và chưa được kích hoạt. 
@@ -352,7 +351,6 @@
 \nBạn sẽ chấp nhận những rủi ro khi tin tưởng chứng chỉ này.</string>
     <string name="ext_version_info">Phiên bản: %1$s</string>
     <string name="ext_language_info">Ngôn ngữ: %1$s</string>
-    <string name="ext_empty_preferences">Không có tùy chọn để sửa chữa cho tiện ích bổ sung này</string>
     <string name="pref_double_tap_anim_speed">Double tap tốc độ hình ảnh động</string>
     <string name="pref_crop_borders">Cắt viền</string>
     <string name="pref_read_with_volume_keys_inverted">Đảo ngược phím âm lượng</string>
@@ -413,7 +411,6 @@
     <string name="transition_pages_error">Tải trang thất bại: %1$s</string>
     <string name="migration_info">Nhấn để chọn nguồn di chuyển từ</string>
     <string name="migration_dialog_what_to_include">Chọn dữ liệu bao gồm</string>
-    <string name="select">Chọn</string>
     <string name="migrate">Di chuyển</string>
     <string name="copy">Sao chép</string>
     <string name="information_empty_category">Không có danh mục. Nhấn vào dấu cộng để tạo một nhóm từ thư viện.</string>

@@ -51,7 +51,7 @@
     <string name="action_open_in_browser">Ouvrir dans le navigateur</string>
     <string name="action_display_mode">Mode d\'affichage</string>
     <string name="action_display">Affichage</string>
-    <string name="action_display_grid">Grille</string>
+    <string name="action_display_grid">Grille compacte</string>
     <string name="action_display_list">Liste</string>
     <string name="action_cancel">Annuler</string>
     <string name="action_sort">Trier</string>
@@ -154,7 +154,7 @@
     <string name="cookies_cleared">Cookies effacés</string>
     <string name="choices_reset">Réinitialiser les choix</string>
     <string name="pref_clear_database">Effacer base de données</string>
-    <string name="pref_clear_database_summary">Supprimer les mangas et chapitres non présents dans la bibliothèque</string>
+    <string name="pref_clear_database_summary">Supprimer l\'historique des séries qui ne sont pas dans la bibliothèque</string>
     <string name="clear_database_completed">Entrées supprimées</string>
     <!-- About section -->
     <string name="version">Version</string>
@@ -373,7 +373,6 @@
     <string name="ext_installing">En cours d\'installation</string>
     <string name="ext_installed">Installée</string>
     <string name="ext_uninstall">Désinstaller</string>
-    <string name="ext_preferences">Préférences</string>
     <string name="ext_available">Disponible</string>
     <string name="untrusted_extension">Extension non reconnue</string>
     <string name="untrusted_extension_message">Cette extension a été signé avec un certificat non reconnu et n\'a pas été activée. 
@@ -383,7 +382,6 @@
 \nEn faisant confiance à ce certificat vous acceptez ces risques.</string>
     <string name="ext_version_info">Version : %1$s</string>
     <string name="ext_language_info">Langue : %1$s</string>
-    <string name="ext_empty_preferences">Aucune préférence n\'est disponible pour cette extension</string>
     <string name="pref_double_tap_anim_speed">Vitesse d\'animation du double-clic</string>
     <string name="double_tap_anim_speed_0">Sans animation</string>
     <string name="double_tap_anim_speed_normal">Normale</string>
@@ -402,8 +400,7 @@
     <string name="track_author">Auteur</string>
     <string name="url_not_set">L\'URL du manga n\'a pas été définie, veuillez cliquer sur le titre et sélectionner à nouveau le manga</string>
     <string name="migration_dialog_what_to_include">Sélectionner les données à inclure</string>
-    <string name="select">Sélectionner</string>
-    <string name="label_migration">Migration de source</string>
+    <string name="label_migration">Migration</string>
     <string name="label_extension_info">Information complémentaire</string>
     <string name="all_lang">Toutes</string>
     <string name="ext_trust">Fiable</string>
@@ -456,11 +453,11 @@
     <string name="action_sort_latest_chapter">Dernier chapitre</string>
     <string name="action_view_chapters">Voir les chapitres</string>
     <string name="action_cancel_all">Tout annuler</string>
-    <string name="pref_theme_mode">Thème</string>
-    <string name="theme_light">Clair</string>
-    <string name="theme_dark">Sombre</string>
+    <string name="pref_theme_mode">Mode sombre</string>
+    <string name="theme_light">Désactivé</string>
+    <string name="theme_dark">Activé</string>
     <string name="theme_system">Par défaut du système</string>
-    <string name="pref_theme_dark">Variantes du thème sombre</string>
+    <string name="pref_theme_dark">Thème sombre</string>
     <string name="theme_dark_default">Par défaut</string>
     <string name="theme_dark_blue">Bleu foncé</string>
     <string name="theme_dark_amoled">Noir AMOLED</string>
@@ -514,7 +511,7 @@
     <string name="action_newest">Plus récent</string>
     <string name="action_oldest">Plus ancien</string>
     <string name="notices">Notes de version</string>
-    <string name="pref_theme_light">Variante du thème clair</string>
+    <string name="pref_theme_light">Thème clair</string>
     <string name="action_move_to_top">Déplacer au début</string>
     <string name="action_move_to_bottom">Déplacer à la fin</string>
     <string name="channel_ext_updates">Mises à jour d\'extension</string>
@@ -598,4 +595,26 @@
         <item quantity="one">1 mise à jour a échoué</item>
         <item quantity="other">%1$d mises à jour ont échoués</item>
     </plurals>
+    <string name="tracker_not_logged_in">Non connecté à : %1$s</string>
+    <string name="pref_library_update_refresh_metadata_summary">Vérifier s\'il y a une nouvelle couverture ou synopsis lors des mises à jour de la bibliothèque</string>
+    <string name="sort_by_upload_date">Par date de téléchargement</string>
+    <string name="label_data">Donnée</string>
+    <string name="backup_restore_missing_sources">Sources manquantes :</string>
+    <string name="invalid_backup_file_missing_manga">La sauvegarde ne contient aucune série.</string>
+    <string name="invalid_backup_file_missing_data">Données manquante dans le fichier.</string>
+    <string name="invalid_backup_file">Fichier de sauvegarde invalide</string>
+    <string name="source_not_found_name">Source introuvable : %1$s</string>
+    <string name="pref_library_update_error_notification">Afficher les notifications d\'erreurs de mise à jour</string>
+    <string name="pref_library_update_refresh_metadata">Actualiser automatiquement les métadonnées</string>
+    <string name="action_migrate">Migrer</string>
+    <string name="action_display_comfortable_grid">Grille espacée</string>
+    <string name="tabs_header">Onglets</string>
+    <string name="badges_header">Badges</string>
+    <string name="action_display_show_tabs">Afficher les onglets des catégories</string>
+    <string name="page_list_empty_error">Aucune page trouvée</string>
+    <string name="action_disable_all">Tout désactiver</string>
+    <string name="action_enable_all">Tout activer</string>
+    <string name="enabled">Activé</string>
+    <string name="pref_show_reading_mode_summary">Afficher la liste des modes de lecture lorsque le lecteur est ouvert</string>
+    <string name="pref_show_reading_mode">Afficher le mode de lecture</string>
 </resources>
