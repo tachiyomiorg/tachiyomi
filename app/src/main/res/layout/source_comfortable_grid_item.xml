@@ -28,57 +28,19 @@
                 tools:ignore="ContentDescription"
                 tools:src="@mipmap/ic_launcher" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
+                android:id="@+id/badges"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="7dp"
-                tools:layout_editor_absoluteY="7dp">
-
-                <TextView
-                    android:id="@+id/unread_text"
-                    style="@style/TextAppearance.Regular.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@color/colorAccentDark"
-                    android:paddingStart="3dp"
-                    android:paddingTop="1dp"
-                    android:paddingEnd="3dp"
-                    android:paddingBottom="1dp"
-                    android:textColor="@color/md_white_1000"
-                    android:visibility="gone"
-                    app:layout_constraintStart_toEndOf="@+id/download_text"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="120"
-                    tools:visibility="visible" />
-
-                <TextView
-                    android:id="@+id/download_text"
-                    style="@style/TextAppearance.Regular.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@color/md_red_500"
-                    android:paddingStart="3dp"
-                    android:paddingTop="1dp"
-                    android:paddingEnd="3dp"
-                    android:paddingBottom="1dp"
-                    android:textColor="@color/md_white_1000"
-                    android:visibility="gone"
-                    app:layout_constraintStart_toEndOf="@+id/local_text"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="120"
-                    tools:visibility="visible" />
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/rounded_rectangle">
 
                 <TextView
                     android:id="@+id/local_text"
                     style="@style/TextAppearance.Regular.Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="4dp"
                     android:background="@color/md_teal_500"
                     android:paddingStart="3dp"
                     android:paddingTop="1dp"
@@ -87,11 +49,39 @@
                     android:text="@string/local_source_badge"
                     android:textColor="@color/md_white_1000"
                     android:visibility="gone"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     tools:visibility="visible" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/unread_text"
+                    style="@style/TextAppearance.Regular.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccentDark"
+                    android:paddingStart="3dp"
+                    android:paddingTop="1dp"
+                    android:paddingEnd="3dp"
+                    android:paddingBottom="1dp"
+                    android:textColor="@color/md_white_1000"
+                    android:visibility="gone"
+                    tools:text="120"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/download_text"
+                    style="@style/TextAppearance.Regular.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/md_red_500"
+                    android:paddingStart="3dp"
+                    android:paddingTop="1dp"
+                    android:paddingEnd="3dp"
+                    android:paddingBottom="1dp"
+                    android:textColor="@color/md_white_1000"
+                    android:visibility="gone"
+                    tools:text="120"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
 
             <ProgressBar
                 android:id="@+id/progress"

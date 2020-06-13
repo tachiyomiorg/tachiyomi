@@ -91,7 +91,7 @@ class MangaInfoController(private val fromSource: Boolean = false) :
     override fun onViewCreated(view: View) {
         super.onViewCreated(view)
 
-        // Setting this via XML doesn't work
+        // For rounded corners
         binding.mangaCover.clipToOutline = true
 
         binding.btnFavorite.clicks()

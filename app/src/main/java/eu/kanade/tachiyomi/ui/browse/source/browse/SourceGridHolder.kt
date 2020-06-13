@@ -40,7 +40,7 @@ open class SourceGridHolder(private val view: View, private val adapter: Flexibl
     }
 
     override fun setImage(manga: Manga) {
-        // Setting this via XML doesn't work
+        // For rounded corners
         card.clipToOutline = true
 
         GlideApp.with(view.context).clear(thumbnail)
