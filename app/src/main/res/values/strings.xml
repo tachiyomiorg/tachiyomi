@@ -205,7 +205,6 @@
 
       <!-- Extension section -->
     <string name="all_lang">All</string>
-    <string name="ext_details">Details</string>
     <string name="ext_updates_pending">Updates pending</string>
     <string name="ext_update">Update</string>
     <string name="ext_obsolete">Obsolete</string>

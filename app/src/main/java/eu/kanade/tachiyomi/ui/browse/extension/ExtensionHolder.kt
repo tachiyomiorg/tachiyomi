@@ -8,7 +8,6 @@ import eu.kanade.tachiyomi.extension.model.InstallStep
 import eu.kanade.tachiyomi.ui.base.holder.BaseFlexibleViewHolder
 import eu.kanade.tachiyomi.ui.base.holder.SlicedHolder
 import eu.kanade.tachiyomi.util.system.LocaleHelper
-import eu.kanade.tachiyomi.util.system.getResourceColor
 import io.github.mthli.slice.Slice
 import kotlinx.android.synthetic.main.extension_card_item.card
 import kotlinx.android.synthetic.main.extension_card_item.ext_button
@@ -16,6 +15,7 @@ import kotlinx.android.synthetic.main.extension_card_item.ext_title
 import kotlinx.android.synthetic.main.extension_card_item.image
 import kotlinx.android.synthetic.main.extension_card_item.lang
 import kotlinx.android.synthetic.main.extension_card_item.version
+import kotlinx.android.synthetic.main.extension_card_item.warning
 
 class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
     BaseFlexibleViewHolder(view, adapter),
@@ -38,13 +38,14 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
         val extension = item.extension
         setCardEdges(item)
 
-        // Set source name
         ext_title.text = extension.name
         version.text = extension.versionName
-        lang.text = if (extension !is Extension.Untrusted) {
-            LocaleHelper.getSourceDisplayName(extension.lang, itemView.context)
-        } else {
-            itemView.context.getString(R.string.ext_untrusted).toUpperCase()
+        lang.text = LocaleHelper.getSourceDisplayName(extension.lang, itemView.context)
+        warning.text = when {
+            extension is Extension.Untrusted -> itemView.context.getString(R.string.ext_untrusted).toUpperCase()
+            extension is Extension.Installed && extension.isObsolete -> itemView.context.getString(R.string.ext_obsolete).toUpperCase()
+            extension is Extension.Installed && extension.isUnofficial -> itemView.context.getString(R.string.ext_unofficial).toUpperCase()
+            else -> null
         }
 
         GlideApp.with(itemView.context).clear(image)
@@ -62,8 +63,6 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
     fun bindButton(item: ExtensionItem) = with(ext_button) {
         isEnabled = true
         isClickable = true
-
-        setTextColor(context.getResourceColor(R.attr.colorAccent))
 
         val extension = item.extension
 
@@ -87,16 +86,8 @@ class ExtensionHolder(view: View, override val adapter: ExtensionAdapter) :
                 extension.hasUpdate -> {
                     setText(R.string.ext_update)
                 }
-                extension.isObsolete -> {
-                    setTextColor(context.getResourceColor(R.attr.colorError))
-                    setText(R.string.ext_obsolete)
-                }
-                extension.isUnofficial -> {
-                    setTextColor(context.getResourceColor(R.attr.colorError))
-                    setText(R.string.ext_unofficial)
-                }
                 else -> {
-                    setText(R.string.ext_details)
+                    setText(R.string.action_settings)
                 }
             }
         } else if (extension is Extension.Untrusted) {
