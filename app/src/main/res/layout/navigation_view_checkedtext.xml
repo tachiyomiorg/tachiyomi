@@ -15,6 +15,6 @@
         android:drawablePadding="@dimen/material_component_lists_icon_left_padding"
         android:gravity="center_vertical|start"
         android:maxLines="1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>
