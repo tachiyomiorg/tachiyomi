@@ -265,10 +265,19 @@ class LibraryPresenter(
      * value.
      */
     private fun getLibraryMangasObservable(): Observable<LibraryMap> {
-        val libraryDisplayMode = preferences.libraryDisplayMode()
+        val defaultLibraryDisplayMode = preferences.libraryDisplayMode()
+        val shouldSetFromCategory = preferences.categorisedDisplaySettings()
         return db.getLibraryMangas().asRxObservable()
             .map { list ->
-                list.map { LibraryItem(it, libraryDisplayMode) }.groupBy { it.manga.category }
+                list.map {
+                    // Display mode based on user preference: take it from global library setting or category
+                    LibraryItem(
+                        it,
+                        if (shouldSetFromCategory.get()) {
+                            preferences.getCategoryDisplayPreference(it.category)
+                        } else defaultLibraryDisplayMode
+                    )
+                }.groupBy { it.manga.category }
             }
     }
 

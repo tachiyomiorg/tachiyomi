@@ -141,6 +141,8 @@ object PreferenceKeys {
 
     const val defaultCategory = "default_category"
 
+    const val categorisedDisplaySettings = "categorised_display_settings"
+
     const val skipRead = "skip_read"
 
     const val skipFiltered = "skip_filtered"

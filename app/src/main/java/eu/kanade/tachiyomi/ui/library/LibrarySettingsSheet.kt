@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import com.tfcporciuncula.flow.Preference
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.PreferenceValues.DisplayMode
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -15,6 +16,16 @@ class LibrarySettingsSheet(
     activity: Activity,
     onGroupClickListener: (ExtendedNavigationView.Group) -> Unit
 ) : TabbedBottomSheetDialog(activity) {
+
+    /**
+     * adjusts selected button to match real state.
+     * @param currentCategory ID of currently shown category
+     */
+    fun show(currentCategory: Int) {
+        display.currentCategory = currentCategory
+        display.adjustDisplaySelection()
+        super.show()
+    }
 
     val filters: Filter
     private val sort: Sort
@@ -177,8 +188,15 @@ class LibrarySettingsSheet(
     inner class Display @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
         Settings(context, attrs) {
 
+        private val displayGroup: DisplayGroup
+        private val badgeGroup: BadgeGroup
+        private val tabsGroup: TabsGroup
+
         init {
-            setGroups(listOf(DisplayGroup(), BadgeGroup(), TabsGroup()))
+            displayGroup = DisplayGroup()
+            badgeGroup = BadgeGroup()
+            tabsGroup = TabsGroup()
+            setGroups(listOf(displayGroup, badgeGroup, tabsGroup))
         }
 
         inner class DisplayGroup : Group {
@@ -192,10 +210,8 @@ class LibrarySettingsSheet(
             override val footer = null
 
             override fun initModels() {
-                val mode = preferences.libraryDisplayMode().get()
-                compactGrid.checked = mode == DisplayMode.COMPACT_GRID
-                comfortableGrid.checked = mode == DisplayMode.COMFORTABLE_GRID
-                list.checked = mode == DisplayMode.LIST
+                val mode = getDisplayModePreference()
+                setGroupSelections(mode.get())
             }
 
             override fun onItemClicked(item: Item) {
@@ -205,7 +221,7 @@ class LibrarySettingsSheet(
                 item.group.items.forEach { (it as Item.Radio).checked = false }
                 item.checked = true
 
-                preferences.libraryDisplayMode().set(
+                getDisplayModePreference().set(
                     when (item) {
                         compactGrid -> DisplayMode.COMPACT_GRID
                         comfortableGrid -> DisplayMode.COMFORTABLE_GRID
@@ -215,6 +231,13 @@ class LibrarySettingsSheet(
                 )
 
                 item.group.items.forEach { adapter.notifyItemChanged(it) }
+            }
+
+            // Sets display group selections based on given mode
+            fun setGroupSelections(mode: DisplayMode) {
+                compactGrid.checked = mode == DisplayMode.COMPACT_GRID
+                comfortableGrid.checked = mode == DisplayMode.COMFORTABLE_GRID
+                list.checked = mode == DisplayMode.LIST
             }
         }
 
@@ -262,6 +285,20 @@ class LibrarySettingsSheet(
                 adapter.notifyItemChanged(item)
             }
         }
+
+        // Refreshes Display Setting selections
+        fun adjustDisplaySelection() {
+            val mode = getDisplayModePreference()
+            displayGroup.setGroupSelections(mode.get())
+            displayGroup.items.forEach { adapter.notifyItemChanged(it) }
+        }
+
+        // Gets user preference of currently selected display mode at current category
+        private fun getDisplayModePreference(): Preference<DisplayMode> {
+            return if (preferences.categorisedDisplaySettings().get() && currentCategory != -1) {
+                preferences.getCategoryDisplayPreference(currentCategory)
+            } else preferences.libraryDisplayMode()
+        }
     }
 
     open inner class Settings(context: Context, attrs: AttributeSet?) :
@@ -274,6 +311,8 @@ class LibrarySettingsSheet(
          * Click listener to notify the parent fragment when an item from a group is clicked.
          */
         var onGroupClicked: (Group) -> Unit = {}
+
+        var currentCategory: Int = -1
 
         fun setGroups(groups: List<Group>) {
             adapter = Adapter(groups.map { it.createItems() }.flatten())

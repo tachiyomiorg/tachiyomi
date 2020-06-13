@@ -15,6 +15,7 @@ import eu.davidea.flexibleadapter.SelectableAdapter
 import eu.davidea.flexibleadapter.helpers.UndoHelper
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Category
+import eu.kanade.tachiyomi.data.preference.PreferencesHelper
 import eu.kanade.tachiyomi.databinding.CategoriesControllerBinding
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.main.offsetAppbarHeight
@@ -22,6 +23,8 @@ import eu.kanade.tachiyomi.util.system.toast
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.view.clicks
+import uy.kohesive.injekt.Injekt
+import uy.kohesive.injekt.api.get
 
 /**
  * Controller to manage the categories for the users' library.
@@ -35,6 +38,11 @@ class CategoryController :
     CategoryCreateDialog.Listener,
     CategoryRenameDialog.Listener,
     UndoHelper.OnActionListener {
+
+    /**
+     * Preferences helper necessary to apply changes.
+     */
+     val preferences: PreferencesHelper = Injekt.get()
 
     /**
      * Object used to show ActionMode toolbar.
@@ -179,6 +187,10 @@ class CategoryController :
 
         when (item.itemId) {
             R.id.action_delete -> {
+                adapter.selectedPositions.forEach {
+                    adapter.getItem(it)?.category?.id?.let { it1 -> preferences.getCategoryDisplayPreference(it1).delete() }
+                }
+
                 undoHelper = UndoHelper(adapter, this)
                 undoHelper?.start(
                     adapter.selectedPositions, view!!,

@@ -227,6 +227,11 @@ class PreferencesHelper(val context: Context) {
 
     fun defaultCategory() = prefs.getInt(Keys.defaultCategory, -1)
 
+    fun categorisedDisplaySettings() = flowPrefs.getBoolean(Keys.categorisedDisplaySettings, false)
+
+    fun getCategoryDisplayPreference(categoryId: Int) =
+        getEnumPreferenceFromMap(Keys.categorisedDisplaySettings, categoryId.toString(), libraryDisplayMode().get())
+
     fun skipRead() = prefs.getBoolean(Keys.skipRead, false)
 
     fun skipFiltered() = prefs.getBoolean(Keys.skipFiltered, true)
@@ -234,4 +239,8 @@ class PreferencesHelper(val context: Context) {
     fun migrateFlags() = flowPrefs.getInt("migrate_flags", Int.MAX_VALUE)
 
     fun trustedSignatures() = flowPrefs.getStringSet("trusted_signatures", emptySet())
+
+    // Helper function to store Enum maps as preferences.
+    private inline fun <reified E : Enum<E>> getEnumPreferenceFromMap(preferenceKey: String, mapKey: String, default: E): Preference<E> =
+        flowPrefs.getEnum(preferenceKey + "_" + mapKey, defaultValue = default)
 }
