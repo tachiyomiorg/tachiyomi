@@ -284,6 +284,11 @@ class ChaptersController :
             }
             actionMode?.invalidate()
         }
+
+        val context = view?.context
+        if (context != null && chapters.any { it.read }) {
+            binding.fab.text = context.getString(R.string.action_resume)
+        }
     }
 
     private fun fetchChaptersFromSource(manualFetch: Boolean = false) {

@@ -76,6 +76,7 @@
     <string name="action_next_chapter">Next chapter</string>
     <string name="action_retry">Retry</string>
     <string name="action_remove">Remove</string>
+    <string name="action_start">Start</string>
     <string name="action_resume">Resume</string>
     <string name="action_move">Move</string>
     <string name="action_open_in_browser">Open in browser</string>
