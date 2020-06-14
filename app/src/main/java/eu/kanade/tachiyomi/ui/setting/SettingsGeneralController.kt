@@ -67,7 +67,7 @@ class SettingsGeneralController : SettingsController() {
                 val langs = mutableListOf<Pair<String, String>>()
                 langs += Pair("", "${context.getString(R.string.system_default)} (${LocaleHelper.getDisplayName("")})")
                 langs += arrayOf(
-                    "ar", "bg", "bn", "ca", "cs", "de", "el", "en-US", "en-GB", "es", "fr", "he",
+                    "ar", "bg", "bn", "ca", "cs", "de", "el", "en-US", "en-GB", "es", "fr", "ka", "he",
                     "hi", "hr", "hu", "in", "it", "ja", "ko", "lv", "ms", "nb-rNO", "nl", "pl", "pt",
                     "pt-BR", "ro", "ru", "sc", "sr", "sv", "th", "tl", "tr", "uk", "vi", "zh-rCN"
                 )
