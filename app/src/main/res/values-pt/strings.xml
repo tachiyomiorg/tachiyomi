@@ -84,7 +84,7 @@
     <string name="pref_page_transitions">Animar transições de página</string>
     <string name="pref_show_page_number">Mostrar número de página</string>
     <string name="pref_custom_brightness">Usar brilho personalizado</string>
-    <string name="pref_keep_screen_on">Manter ecrã ligado</string>
+    <string name="pref_keep_screen_on">Manter o ecrã ligado</string>
     <string name="pref_reader_navigation">Navegação</string>
     <string name="pref_read_with_volume_keys">Teclas de Volume</string>
     <string name="pref_read_with_tapping">Toque</string>
@@ -137,7 +137,7 @@
     <string name="pref_clear_cookies">Limpar cookies</string>
     <string name="cookies_cleared">Cookies limpos</string>
     <string name="pref_clear_database">Limpar base de dados</string>
-    <string name="pref_clear_database_summary">Eliminar mangás e capítulos não presentes na biblioteca</string>
+    <string name="pref_clear_database_summary">Elimina o histórico de mangás e capítulos não presentes na biblioteca</string>
     <string name="clear_database_confirmation">Tem certeza\? O progresso de capítulos e mangás de fora da biblioteca será perdido</string>
     <string name="clear_database_completed">Eliminar entradas</string>
     <!-- About section -->
@@ -170,8 +170,6 @@
     <string name="unknown">Desconhecido</string>
     <string name="licensed">Licenciado</string>
     <string name="remove_from_library">Remover da biblioteca</string>
-    <string name="manga_info_author_label">Autor</string>
-    <string name="manga_info_artist_label">Artistas</string>
     <string name="manga_info_chapters_label">Capítulos</string>
     <string name="manga_info_status_label">Estado</string>
     <string name="manga_info_source_label">Fonte</string>
@@ -277,7 +275,7 @@
     <string name="action_close">Fechar</string>
     <string name="action_move">Mover</string>
     <string name="action_display">Mostrar</string>
-    <string name="action_display_grid">Grelha</string>
+    <string name="action_display_grid">Grelha compacta</string>
     <string name="action_display_list">Lista</string>
     <string name="action_share">Partilhar</string>
     <string name="action_save">Guardar</string>
@@ -295,15 +293,13 @@
     <string name="app_not_available">Aplicação não disponível</string>
     <string name="default_category">Categoria padrão</string>
     <string name="default_category_summary">Sempre perguntar</string>
-    <string name="ext_details">Detalhes</string>
     <string name="ext_update">Atualização</string>
     <string name="ext_install">Instalar</string>
     <string name="ext_pending">Pendente</string>
-    <string name="ext_downloading">Fazendo download</string>
+    <string name="ext_downloading">A transferir</string>
     <string name="ext_installing">Instalando</string>
     <string name="ext_installed">Instalado</string>
     <string name="ext_uninstall">Desinstalar</string>
-    <string name="ext_preferences">Preferências</string>
     <string name="ext_available">Disponível</string>
     <string name="untrusted_extension">Extensão não confiável</string>
     <string name="untrusted_extension_message">Esta extensão possui um certificado não confiável e não foi ativada. 
@@ -313,7 +309,6 @@
 \nAo confiar neste certificado serão aceites estes riscos.</string>
     <string name="ext_version_info">Versão: %1$s</string>
     <string name="ext_language_info">Linguagem: %1$s</string>
-    <string name="ext_empty_preferences">Não há preferências editáveis para esta extensão</string>
     <string name="pref_crop_borders">Cortar bordas</string>
     <string name="pref_custom_color_filter">Usar filtro de cor personalizado</string>
     <string name="pref_read_with_volume_keys_inverted">Inverter botões de volume</string>
@@ -333,13 +328,13 @@
     <string name="source_not_found">Fonte não encontrada</string>
     <string name="restoring_backup">Restaurando backup</string>
     <string name="creating_backup">Criando backup</string>
-    <string name="label_migration">Migração de fonte</string>
+    <string name="label_migration">Migrar</string>
     <string name="action_reset">Reiniciar</string>
     <string name="action_open_log">Abrir registro</string>
     <string name="pref_category_tracking">Listas</string>
     <string name="all_lang">Tudo</string>
     <string name="pref_double_tap_anim_speed">Velocidade animação dois toques</string>
-    <string name="pager_viewer">Paginado</string>
+    <string name="pager_viewer">Paginação</string>
     <string name="color_filter_r_value">R</string>
     <string name="pref_download_new_categories">Categorias para incluir na transferência</string>
     <string name="pref_backup_directory">Localização dos Backups</string>
@@ -409,7 +404,6 @@
     <string name="transition_pages_error">Falha ao carregar páginas: %1$s</string>
     <string name="migration_info">Toque para selecionar a fonte da qual migrar</string>
     <string name="migration_dialog_what_to_include">Selecione dados para incluir</string>
-    <string name="select">Selecionar</string>
     <string name="migrate">Migrar</string>
     <string name="copy">Copiar</string>
     <string name="notification_cover_update_failed">Erro ao atualizar a capa</string>
@@ -452,11 +446,11 @@
     <string name="action_sort_latest_chapter">Capítulo mais recente</string>
     <string name="action_view_chapters">Ver Capítulos</string>
     <string name="action_cancel_all">Cancelar tudo</string>
-    <string name="pref_theme_mode">Tema da aplicação</string>
-    <string name="theme_light">Claro</string>
-    <string name="theme_dark">Escuro</string>
+    <string name="pref_theme_mode">Modo escuro</string>
+    <string name="theme_light">Desativado</string>
+    <string name="theme_dark">Ativado</string>
     <string name="theme_system">Seguir o do sistema</string>
-    <string name="pref_theme_dark">Variação do tema escuro</string>
+    <string name="pref_theme_dark">Tema escuro</string>
     <string name="theme_dark_default">Padrão</string>
     <string name="theme_dark_blue">Azul escuro</string>
     <string name="theme_dark_amoled">Preto AMOLED</string>
@@ -499,7 +493,7 @@
     </plurals>
     <string name="notices">Avisos de build de preview</string>
     <string name="changelog">Registro de mudanças</string>
-    <string name="pref_theme_light">Variação do tema claro</string>
+    <string name="pref_theme_light">Tema claro</string>
     <string name="theme_light_default">Padrão</string>
     <string name="theme_light_blue">Azul claro</string>
     <string name="action_menu">Menu</string>
@@ -588,4 +582,32 @@
     </plurals>
     <string name="pref_refresh_library_covers">Atualizar capas das mangás da biblioteca</string>
     <string name="tracking_info">Sincronização unidirecional para atualizar o progresso dos capítulos nos serviços de monitorização. Defina a monitorização para entradas individuais das mangás em suas abas de monitorização.</string>
+    <string name="unofficial_extension_message">Esta extensão não vem da lista oficial de extensões do Tachiyomi.</string>
+    <string name="pref_show_reading_mode_summary">Mostra brevemente o modo atual quando o leitor é aberto</string>
+    <string name="page_list_empty_error">Nenhuma página encontrada</string>
+    <plurals name="notification_update_error">
+        <item quantity="one">1 atualização falhou</item>
+        <item quantity="other">%1$d atualizações falharam</item>
+    </plurals>
+    <string name="sort_by_upload_date">Por data de envio</string>
+    <string name="tabs_header">Abas</string>
+    <string name="badges_header">Distintivos</string>
+    <string name="label_data">Dados</string>
+    <string name="backup_restore_missing_sources">Fontes ausentes:</string>
+    <string name="invalid_backup_file_missing_manga">Backup não contem manga.</string>
+    <string name="invalid_backup_file_missing_data">Faltam dados no backup.</string>
+    <string name="invalid_backup_file">Ficheiro backup invalido</string>
+    <string name="tracker_not_logged_in">Não autenticado: %1$s</string>
+    <string name="source_not_found_name">Fonte não encontrada: %1$s</string>
+    <string name="pref_show_reading_mode">Mostrar modo de leitura</string>
+    <string name="enabled">Ativado</string>
+    <string name="ext_unofficial">Não oficial</string>
+    <string name="pref_library_update_error_notification">Notificar erros de atualizações</string>
+    <string name="pref_library_update_refresh_metadata_summary">Procurar nova capa e detalhes quando a biblioteca atualizar</string>
+    <string name="pref_library_update_refresh_metadata">Automáticamente atualizar metadados</string>
+    <string name="action_display_show_tabs">Mostrar abas de categoria</string>
+    <string name="action_display_comfortable_grid">Grelha confortável</string>
+    <string name="action_migrate">Migrar</string>
+    <string name="action_disable_all">Desativar todas</string>
+    <string name="action_enable_all">Ativar todas</string>
 </resources>

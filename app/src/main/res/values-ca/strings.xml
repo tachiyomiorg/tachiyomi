@@ -13,7 +13,7 @@
     <string name="label_recent_updates">Novetats</string>
     <string name="label_categories">Categories</string>
     <string name="label_backup">Còpia de seguretat</string>
-    <string name="label_migration">Migració de fonts</string>
+    <string name="label_migration">Migració</string>
     <string name="label_extensions">Extensions</string>
     <string name="label_extension_info">Informació de l\'extensió</string>
     <string name="action_settings">Configuració</string>
@@ -61,7 +61,7 @@
     <string name="action_open_in_browser">Obre al navegador</string>
     <string name="action_display_mode">Mode de visualització</string>
     <string name="action_display">Mostra</string>
-    <string name="action_display_grid">Graella</string>
+    <string name="action_display_grid">Graella compacta</string>
     <string name="action_display_list">Llista</string>
     <string name="action_display_download_badge">Icones de baixada</string>
     <string name="action_cancel">Cancel·la</string>
@@ -114,7 +114,6 @@
     <string name="default_category">Categoria per defecte</string>
     <string name="default_category_summary">Demana-ho sempre</string>
     <string name="all_lang">Tot</string>
-    <string name="ext_details">Detalls</string>
     <string name="ext_update">Actualitza</string>
     <string name="ext_install">Instal·la</string>
     <string name="ext_pending">Pendent</string>
@@ -124,7 +123,6 @@
     <string name="ext_trust">Confia-hi</string>
     <string name="ext_untrusted">No és de confiança</string>
     <string name="ext_uninstall">Desinstal·la</string>
-    <string name="ext_preferences">Preferències</string>
     <string name="ext_available">Disponible</string>
     <string name="untrusted_extension">Extensió no fiable</string>
     <string name="untrusted_extension_message">Aquesta extensió s\'ha signat amb un certificat que no és de confiança i no s\'ha activat. 
@@ -134,7 +132,6 @@
 \nSi confieu en aquest certificat, accepteu aquests riscos.</string>
     <string name="ext_version_info">Versió: %1$s</string>
     <string name="ext_language_info">Llengua: %1$s</string>
-    <string name="ext_empty_preferences">No hi ha preferències editables en aquesta extensió</string>
     <string name="pref_fullscreen">Pantalla completa</string>
     <string name="pref_lock_orientation">Bloca l\'orientació</string>
     <string name="pref_page_transitions">Anima les transicions de pàgina</string>
@@ -223,7 +220,7 @@
     <string name="cookies_cleared">S\'han esborrat les galetes</string>
     <string name="choices_reset">Reinicia les eleccions de les finestres</string>
     <string name="pref_clear_database">Buida la base de dades</string>
-    <string name="pref_clear_database_summary">Suprimeix el manga i els capítols que no siguin a la biblioteca</string>
+    <string name="pref_clear_database_summary">Suprimeix l\'historial del manga que no sigui a la biblioteca</string>
     <string name="clear_database_confirmation">N\'esteu segur\? Es perdrà el progrés i els capítols llegits del manga que no sigui a la biblioteca</string>
     <string name="clear_database_completed">S\'han suprimit les entrades</string>
     <string name="pref_refresh_library_tracking">Refresca el seguiment</string>
@@ -266,8 +263,6 @@
     <string name="manga_info_full_title_label">Títol</string>
     <string name="manga_added_library">S\'ha afegit a la biblioteca</string>
     <string name="manga_removed_library">S\'ha eliminat de la biblioteca</string>
-    <string name="manga_info_author_label">Autor</string>
-    <string name="manga_info_artist_label">Artista</string>
     <string name="manga_info_chapters_label">Capítols</string>
     <string name="manga_info_status_label">Estat</string>
     <string name="manga_info_source_label">Font</string>
@@ -345,7 +340,6 @@
     <string name="transition_pages_error">No s\'han pogut carregar les pàgines: %1$s</string>
     <string name="migration_info">Premeu per a seleccionar la font de la qual voleu migrar</string>
     <string name="migration_dialog_what_to_include">Seleccioneu les dades a incloure</string>
-    <string name="select">Selecciona</string>
     <string name="migrate">Migra</string>
     <string name="copy">Copia</string>
     <string name="download_queue_error">No s\'han pogut baixar capítols. Podeu tornar-ho a provar a la secció de baixades</string>
@@ -422,11 +416,11 @@
     <string name="action_sort_latest_chapter">Darrer capítol</string>
     <string name="action_view_chapters">Mostra els capítols</string>
     <string name="action_cancel_all">Cancel·la-ho tot</string>
-    <string name="pref_theme_mode">Tema de l\'aplicació</string>
-    <string name="theme_light">Clar</string>
-    <string name="theme_dark">Fosc</string>
+    <string name="pref_theme_mode">Mode fosc</string>
+    <string name="theme_light">Desactivat</string>
+    <string name="theme_dark">Activat</string>
     <string name="theme_system">Per defecte del sistema</string>
-    <string name="pref_theme_dark">Variant del tema fosc</string>
+    <string name="pref_theme_dark">Tema fosc</string>
     <string name="theme_dark_default">Per defecte</string>
     <string name="theme_dark_blue">Blau fosc</string>
     <string name="theme_dark_amoled">Negre AMOLED</string>
@@ -474,7 +468,7 @@
     </plurals>
     <string name="notices">Avisos de compilacions de previsualització</string>
     <string name="changelog">Registre de canvis</string>
-    <string name="pref_theme_light">Variant del tema clar</string>
+    <string name="pref_theme_light">Tema clar</string>
     <string name="theme_light_default">Per defecte</string>
     <string name="theme_light_blue">Blau clar</string>
     <string name="action_menu">Menú</string>
@@ -564,4 +558,24 @@
     </plurals>
     <string name="unofficial_extension_message">Aquesta extensió no pertany a la llista d\'extensions oficials del Tachiyomi.</string>
     <string name="ext_unofficial">No oficial</string>
+    <string name="sort_by_upload_date">Per data de pujada</string>
+    <string name="label_data">Dades</string>
+    <string name="backup_restore_missing_sources">Manquen fonts:</string>
+    <string name="invalid_backup_file_missing_manga">La còpia de seguretat no conté cap manga.</string>
+    <string name="invalid_backup_file_missing_data">Manquen dades al fitxer.</string>
+    <string name="invalid_backup_file">Fitxer de còpia de seguretat invàlid</string>
+    <string name="tracker_not_logged_in">Sessió no iniciada: %1$s</string>
+    <string name="source_not_found_name">La font no s\'ha trobat: %1$s</string>
+    <string name="pref_library_update_error_notification">Mostra notificacions dels errors d\'actualització</string>
+    <string name="pref_library_update_refresh_metadata_summary">Comprova si hi ha noves portades o detalls en actualitzar la biblioteca</string>
+    <string name="pref_library_update_refresh_metadata">Refresca les metadades automàticament</string>
+    <string name="action_display_comfortable_grid">Graella confortable</string>
+    <string name="action_migrate">Migra</string>
+    <string name="tabs_header">Pestanyes</string>
+    <string name="badges_header">Icones</string>
+    <string name="action_display_show_tabs">Mostra les pestanyes de les categories</string>
+    <string name="page_list_empty_error">No s\'ha trobat cap pàgina</string>
+    <string name="action_disable_all">Desactiva-ho tot</string>
+    <string name="action_enable_all">Activa-ho tot</string>
+    <string name="enabled">Activat</string>
 </resources>

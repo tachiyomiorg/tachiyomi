@@ -107,7 +107,7 @@
     <string name="pref_fullscreen">Vollbild</string>
     <string name="pref_lock_orientation">Bildschirm nicht drehen</string>
     <string name="pref_page_transitions">Animierte Seitenübergänge</string>
-    <string name="pref_show_page_number">Seitennummer zeigen</string>
+    <string name="pref_show_page_number">Seitennummer anzeigen</string>
     <string name="pref_crop_borders">Rand abschneiden</string>
     <string name="pref_custom_brightness">Eigene Helligkeit festlegen</string>
     <string name="pref_custom_color_filter">Eigenen Farbfilter nutzen</string>
@@ -187,7 +187,7 @@
     <string name="cookies_cleared">Cookies gelöscht</string>
     <string name="choices_reset">Standardantworten zurücksetzen</string>
     <string name="pref_clear_database">Datenbank leeren</string>
-    <string name="pref_clear_database_summary">Manga und Kapitel löschen, die nicht in der Bibliothek sind</string>
+    <string name="pref_clear_database_summary">Verlauf für Manga löschen, die nicht in deiner Bibliothek gespeichert sind</string>
     <string name="clear_database_confirmation">Bist du sicher\? Gelesene Kapitel und der Fortschritt von Manga, die nicht in der Bibliothek sind gehen verloren</string>
     <string name="clear_database_completed">Einträge gelöscht</string>
     <string name="pref_refresh_library_tracking">Tracking aktualisieren</string>
@@ -222,8 +222,6 @@
     <string name="unknown">Unbekannt</string>
     <string name="licensed">Lizenziert</string>
     <string name="remove_from_library">Aus Bibliothek entfernen</string>
-    <string name="manga_info_author_label">Autor</string>
-    <string name="manga_info_artist_label">Künstler</string>
     <string name="manga_info_chapters_label">Kapitel</string>
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Quelle</string>
@@ -330,11 +328,10 @@
     <string name="action_display_download_badge">Downloadzähler</string>
     <string name="local_source_badge">Lokal</string>
     <string name="information_empty_category">Keine Kategorien vorhanden. Tippe auf die Plus-Schaltfläche, um eine Kategorie zum Sortieren deiner Bibliothek zu erstellen.</string>
-    <string name="label_migration">Quellenmigration</string>
+    <string name="label_migration">Migrieren</string>
     <string name="label_extensions">Erweiterungen</string>
     <string name="label_extension_info">Erweiterungsinformationen</string>
     <string name="all_lang">Alle</string>
-    <string name="ext_details">Details</string>
     <string name="ext_update">Aktualisieren</string>
     <string name="ext_install">Installieren</string>
     <string name="ext_pending">Anstehend</string>
@@ -342,7 +339,6 @@
     <string name="ext_installing">Wird installiert</string>
     <string name="ext_installed">Installiert</string>
     <string name="ext_uninstall">Deinstallieren</string>
-    <string name="ext_preferences">Einstellungen</string>
     <string name="ext_available">Verfügbar</string>
     <string name="untrusted_extension_message">Diese Erweiterung ist mit einem nicht vertrauenswürdigen Zertifikat unterschrieben und wurde nicht aktiviert.
 \n
@@ -351,7 +347,6 @@
 \nDurch das Vertrauen dieses Zertifikats akzeptieren Sie diese Risiken.</string>
     <string name="ext_version_info">Version: %1$s</string>
     <string name="ext_language_info">Sprache: %1$s</string>
-    <string name="ext_empty_preferences">Keine änderbaren Einstellungen für diese Erweiterung</string>
     <string name="double_tap_anim_speed_0">Keine Animation</string>
     <string name="double_tap_anim_speed_normal">Normal</string>
     <string name="double_tap_anim_speed_fast">Schnell</string>
@@ -360,7 +355,6 @@
     <string name="manga_removed_library">Aus der Bibliothek entfernt</string>
     <string name="copied_to_clipboard">In die Zwischenablage kopiert:
 \n%1$s</string>
-    <string name="select">Auswählen</string>
     <string name="migrate">Migrieren</string>
     <string name="copy">Kopieren</string>
     <string name="ext_trust">Vertrauen</string>
@@ -422,9 +416,9 @@
     <string name="action_sort_latest_chapter">Neueste Kapitel</string>
     <string name="action_view_chapters">Kapitel anzeigen</string>
     <string name="action_cancel_all">Alle abbrechen</string>
-    <string name="pref_theme_mode">App-Design</string>
-    <string name="theme_light">Hell</string>
-    <string name="theme_dark">Dunkel</string>
+    <string name="pref_theme_mode">Dunkelmodus</string>
+    <string name="theme_light">Aus</string>
+    <string name="theme_dark">An</string>
     <string name="theme_system">Systemeinstellung</string>
     <string name="pref_theme_dark">Dunkeldesign</string>
     <string name="theme_dark_default">Standard</string>
@@ -556,12 +550,35 @@
         <item quantity="other">Erledigt in %1$s mit %2$s Fehlern</item>
     </plurals>
     <string name="action_display_unread_badge">Ungelesenzähler</string>
-    <string name="tracking_info">Einweg-Synchronisation zum aktualisieren vom Kapitelfortschritt in Trackingdiensten. Richte Tracking für einzelne Manga über ihren Tracking-Tab ein.</string>
+    <string name="tracking_info">Einweg-Synchronisation zum Aktualisieren der Kapitelfortschritte in den Trackingdiensten. Richte Tracking für einzelne Manga über deren jeweiligen Tracking-Tab ein.</string>
     <string name="pref_refresh_library_covers">Bibliotheksmangacover aktualisieren</string>
     <plurals name="notification_update_error">
-        <item quantity="one">1 Update fehlgeschlagen</item>
-        <item quantity="other">%1$d Updates fehlgeschlagen</item>
+        <item quantity="one">Eine Aktualisierung fehlgeschlagen</item>
+        <item quantity="other">%1$d Aktualisierungen fehlgeschlagen</item>
     </plurals>
     <string name="unofficial_extension_message">Diese Erweiterung stammt nicht von der offiziellen Tachiyomi-Erweiterungsliste.</string>
     <string name="ext_unofficial">Inoffiziell</string>
+    <string name="sort_by_upload_date">Nach Upload-Datum</string>
+    <string name="label_data">Daten</string>
+    <string name="backup_restore_missing_sources">Fehlende Quellen:</string>
+    <string name="invalid_backup_file_missing_manga">Backup beinhaltet keinerlei Manga.</string>
+    <string name="invalid_backup_file_missing_data">Der Datei fehlen Daten.</string>
+    <string name="invalid_backup_file">Ungültige Backupdatei</string>
+    <string name="tracker_not_logged_in">Nicht eingeloggt: %1$s</string>
+    <string name="source_not_found_name">Quelle nicht gefunden: %1$s</string>
+    <string name="pref_library_update_error_notification">Aktualisierungsfehler-Benachrichtigungen anzeigen</string>
+    <string name="pref_library_update_refresh_metadata_summary">Auf neue Cover und Details überprüfen, wenn die Bibliothek aktualisiert wird</string>
+    <string name="pref_library_update_refresh_metadata">Metadaten automatisch aktualisieren</string>
+    <string name="action_migrate">Migrieren</string>
+    <string name="action_display_comfortable_grid">Komfortable Kacheln</string>
+    <string name="tabs_header">Tabs</string>
+    <string name="badges_header">Abzeichen</string>
+    <string name="action_display_show_tabs">Kategorientabs anzeigen</string>
+    <string name="page_list_empty_error">Keine Seiten gefunden</string>
+    <string name="action_disable_all">Alles deaktivieren</string>
+    <string name="action_enable_all">Alles aktivieren</string>
+    <string name="enabled">Aktiviert</string>
+    <string name="pref_show_reading_mode_summary">Kurz den aktuellen Modus anzeigen, wenn der Reader geöffnet wird</string>
+    <string name="pref_show_reading_mode">Lesemodus anzeigen</string>
+    <string name="action_start">Starten</string>
 </resources>

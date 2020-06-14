@@ -68,7 +68,6 @@
     <string name="download_queue_error">לא ניתן היה להוריד פרקים. אתה יכול לנסות שוב בדף ההורדות</string>
     <string name="copy">העתק</string>
     <string name="migrate">הגר</string>
-    <string name="select">בחר</string>
     <string name="migration_selection_prompt">בחר מקור שברצונך להגר ממנו</string>
     <string name="migration_dialog_what_to_include">בחר נתונים כדי לכלול</string>
     <string name="migration_info">הקש כדי לבחור את המקור שתרצה לעבור ממנו</string>
@@ -144,8 +143,6 @@
     <string name="manga_info_genres_label">סגנון</string>
     <string name="manga_info_source_label">מקור</string>
     <string name="manga_info_chapters_label">פרקים</string>
-    <string name="manga_info_artist_label">אומן</string>
-    <string name="manga_info_author_label">מחבר</string>
     <string name="manga_added_library">נוסף לספרייה</string>
     <string name="remove_from_library">הסר מהספרייה</string>
     <string name="manga_removed_library">הוסר מהספרייה</string>
@@ -200,7 +197,6 @@
     <string name="ext_install">התקן</string>
     <string name="ext_update">עדכון</string>
     <string name="ext_updates_pending">עדכונים ממתינים</string>
-    <string name="ext_details">פרטים</string>
     <string name="all_lang">הכל</string>
     <string name="all">הכל</string>
     <string name="pref_library_update_categories">קטגוריות שיש לכלול בעדכון כללי</string>
@@ -415,7 +411,6 @@
     <string name="pref_lock_orientation">נעל כיוון מסך</string>
     <string name="pref_cutout_short">הצג תוכן באזור החתוך</string>
     <string name="pref_enable_automatic_extension_updates">בדוק אם קיימים עדכונים עבור תוספים</string>
-    <string name="ext_empty_preferences">אין אפשרויות לעריכה עבור תוסף זה</string>
     <string name="untrusted_extension">תוסף לא מאומת</string>
     <string name="obsolete_extension_message">תוסף זה אינו זמין עוד.</string>
     <string name="pref_fullscreen">מסך מלא</string>

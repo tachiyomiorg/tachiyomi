@@ -58,7 +58,7 @@
     <string name="action_open_in_browser">ब्राउज़र में खोलें</string>
     <string name="action_display_mode">प्रदर्शन प्रणाली</string>
     <string name="action_display">प्रदर्शन</string>
-    <string name="action_display_grid">ग्रिड</string>
+    <string name="action_display_grid">कॉम्पैक्ट ग्रिड</string>
     <string name="action_display_list">सूची</string>
     <string name="action_display_download_badge">डाउनलोड बैज</string>
     <string name="action_cancel">रद्द करें</string>
@@ -193,7 +193,7 @@
     <string name="cookies_cleared">कुकीज़ को साफ़ किया हुआ</string>
     <string name="choices_reset">डायलॉग विकल्प रीसेट करें</string>
     <string name="pref_clear_database">डेटाबेस साफ़ करें</string>
-    <string name="pref_clear_database_summary">मैंगा और अध्याय जो आपकी लाइब्रेरी में नहीं हैं हटाएं</string>
+    <string name="pref_clear_database_summary">मैंगा जो आपकी लाइब्रेरी में सहेजे नहीं हैं उनका इतिहास हटाएं</string>
     <string name="clear_database_confirmation">क्या आपको यकीन है? अध्यायों और गैर-पुस्तकालय मंगा की प्रगति को खो दिया जाएगा</string>
     <string name="clear_database_completed">प्रविष्टियां हटाई गईं</string>
     <string name="pref_refresh_library_tracking">रिफ्रेश ट्रैकिंग</string>
@@ -233,8 +233,6 @@
     <string name="unknown">अज्ञात</string>
     <string name="licensed">लाइसेंस प्राप्त</string>
     <string name="remove_from_library">लाइब्रेरी से निकालें</string>
-    <string name="manga_info_author_label">लेखक</string>
-    <string name="manga_info_artist_label">कलाकार</string>
     <string name="manga_info_chapters_label">अध्याय</string>
     <string name="manga_info_status_label">स्थिति</string>
     <string name="manga_info_source_label">स्रोत</string>
@@ -330,11 +328,10 @@
     <string name="channel_common">सामान्य</string>
     <string name="channel_library">पुस्तकालय</string>
     <string name="channel_downloader">डाउनलोडर</string>
-    <string name="label_migration">स्रोत प्रवास</string>
+    <string name="label_migration">प्रवास</string>
     <string name="label_extensions">विस्तार</string>
     <string name="label_extension_info">विस्तार की जानकारी</string>
     <string name="all_lang">सभी</string>
-    <string name="ext_details">विवरण</string>
     <string name="ext_update">अद्यतन</string>
     <string name="ext_install">स्थापित करें</string>
     <string name="ext_pending">अपूर्ण</string>
@@ -344,7 +341,6 @@
     <string name="ext_trust">भरोसा</string>
     <string name="ext_untrusted">अविश्वस्त</string>
     <string name="ext_uninstall">स्थापना रद्द करें</string>
-    <string name="ext_preferences">पसंद</string>
     <string name="ext_available">उपलब्ध</string>
     <string name="untrusted_extension">अविश्वस्त एक्सटेंशन</string>
     <string name="untrusted_extension_message">यह एक्सटेंशन एक अविश्वस्त प्रमाणपत्र के साथ हस्ताक्षरित हुआ था और सक्रिय नहीं हुआ था। 
@@ -352,7 +348,6 @@
 \nइस प्रमाणपत्र पर विश्वास करके आप इन जोखिमों को स्वीकार करते हैं।</string>
     <string name="ext_version_info">संस्करण: %1$s</string>
     <string name="ext_language_info">भाषा: %1$s</string>
-    <string name="ext_empty_preferences">एक्सटेंशन के लिए कोई प्राथमिकताएं संपादित नहीं हैं</string>
     <string name="pref_double_tap_anim_speed">डबल टैप एनीमेशन गति</string>
     <string name="double_tap_anim_speed_0">कोई एनीमेशन नहीं</string>
     <string name="double_tap_anim_speed_normal">साधारण</string>
@@ -366,7 +361,6 @@
     <string name="download_custom">कस्टम</string>
     <string name="migration_info">से माइग्रेट करने के लिए स्रोत का चयन करने के लिए टैप करें</string>
     <string name="migration_dialog_what_to_include">शामिल करने के लिए डेटा का चयन करें</string>
-    <string name="select">चयन</string>
     <string name="migrate">प्रवास</string>
     <string name="copy">नकल</string>
     <string name="pager_viewer">पृष्ठांकित</string>
@@ -420,11 +414,11 @@
     <string name="action_sort_latest_chapter">नवीनतम अध्याय</string>
     <string name="action_view_chapters">अध्याय देखें</string>
     <string name="action_cancel_all">सब रद्द करो</string>
-    <string name="pref_theme_mode">ऐप थीम</string>
-    <string name="theme_light">सफ़ेद थीम</string>
-    <string name="theme_dark">काली थीम</string>
+    <string name="pref_theme_mode">डार्क मोड</string>
+    <string name="theme_light">बंद</string>
+    <string name="theme_dark">चालू करे</string>
     <string name="theme_system">सिस्टम का पालन करें</string>
-    <string name="pref_theme_dark">डार्क थीम संस्करण</string>
+    <string name="pref_theme_dark">डार्क थीम</string>
     <string name="theme_dark_default">डिफ़ॉल्ट</string>
     <string name="theme_dark_blue">गहरा नीला</string>
     <string name="theme_dark_amoled">अलौकिक गहरी थीम</string>
@@ -472,7 +466,7 @@
     </plurals>
     <string name="notices">पूर्वावलोकन बनाएँ नोटिस</string>
     <string name="changelog">बदलाव लॉग</string>
-    <string name="pref_theme_light">लाइट थीम वैरिएंट</string>
+    <string name="pref_theme_light">लाइट थीम</string>
     <string name="theme_light_default">डिफ़ॉल्ट</string>
     <string name="theme_light_blue">हल्का नीला</string>
     <string name="action_menu">मेन्यू</string>
@@ -562,4 +556,26 @@
     </plurals>
     <string name="unofficial_extension_message">यह एक्सटेंशन आधिकारिक तचियोमी एक्सटेंशन सूची से नहीं है।</string>
     <string name="ext_unofficial">अनौपचारिक</string>
+    <string name="sort_by_upload_date">अपलोड तिथि द्वारा</string>
+    <string name="label_data">डेटा</string>
+    <string name="backup_restore_missing_sources">अनुपलब्ध स्रोत:</string>
+    <string name="invalid_backup_file_missing_manga">बैकअप में कोई मंगा नहीं होता है।</string>
+    <string name="invalid_backup_file_missing_data">फाइल में डेटा गायब है।</string>
+    <string name="invalid_backup_file">अमान्य बैकअप फ़ाइल</string>
+    <string name="tracker_not_logged_in">लॉग इन नहीं है: %1$s</string>
+    <string name="source_not_found_name">स्रोत नहीं मिला: %1$s</string>
+    <string name="pref_library_update_error_notification">अद्यतन त्रुटियों की सूचनाएँ दिखाएँ</string>
+    <string name="pref_library_update_refresh_metadata_summary">लाइब्रेरी को अपडेट करते समय नए कवर और विवरण की जांच करें</string>
+    <string name="pref_library_update_refresh_metadata">मेटाडेटा को स्वचालित रूप से ताज़ा करें</string>
+    <string name="action_migrate">प्रवास</string>
+    <string name="tabs_header">टैब</string>
+    <string name="badges_header">बैज</string>
+    <string name="action_display_show_tabs">श्रेणी टैब दिखाएं</string>
+    <string name="action_display_comfortable_grid">आरामदायक ग्रिड</string>
+    <string name="page_list_empty_error">कोई पृष्ठ नहीं मिला</string>
+    <string name="action_disable_all">सभी को अक्षम करें</string>
+    <string name="action_enable_all">सभी को सक्षम करें</string>
+    <string name="enabled">सक्षम करें</string>
+    <string name="pref_show_reading_mode_summary">पाठक के खुलने पर संक्षेप में वर्तमान मोड दिखाएं</string>
+    <string name="pref_show_reading_mode">रीडिंग मोड दिखाएं</string>
 </resources>

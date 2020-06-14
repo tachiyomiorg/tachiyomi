@@ -12,7 +12,7 @@
     <string name="label_recent_updates">Oppdateringer</string>
     <string name="label_categories">Kategorier</string>
     <string name="label_backup">Sikkerhetskopi</string>
-    <string name="label_migration">Kildeflytting</string>
+    <string name="label_migration">Flytt</string>
     <string name="label_extensions">Utvidelser</string>
     <string name="label_extension_info">Utvidelsesinfo</string>
     <string name="action_settings">Innstillinger</string>
@@ -41,8 +41,8 @@
     <string name="action_add_category">Legg til kategori</string>
     <string name="action_edit_categories">Rediger kategorier</string>
     <string name="action_rename_category">Gi kategori nytt navn</string>
-    <string name="action_move_category">Flytt til kategorier</string>
-    <string name="action_edit_cover">Rediger omslagsbildet</string>
+    <string name="action_move_category">Sett kategorier</string>
+    <string name="action_edit_cover">Rediger omslag</string>
     <string name="action_sort_up">Sorter oppover</string>
     <string name="action_sort_down">Sorter nedover</string>
     <string name="action_show_downloaded">Nedlastet</string>
@@ -59,7 +59,7 @@
     <string name="action_open_in_browser">Åpne i nettleser</string>
     <string name="action_display_mode">Visningsmodus</string>
     <string name="action_display">Vis</string>
-    <string name="action_display_grid">Rutenett</string>
+    <string name="action_display_grid">Kompakt rutenett</string>
     <string name="action_display_list">Liste</string>
     <string name="action_cancel">Avbryt</string>
     <string name="action_sort">Sorter</string>
@@ -101,7 +101,6 @@
     <string name="default_category">Forvalgt kategori</string>
     <string name="default_category_summary">Alltid spør</string>
     <string name="all_lang">Alle</string>
-    <string name="ext_details">Detaljer</string>
     <string name="ext_update">Oppdater</string>
     <string name="ext_install">Installer</string>
     <string name="ext_pending">Ventende</string>
@@ -111,7 +110,6 @@
     <string name="ext_trust">Tillit</string>
     <string name="ext_untrusted">Ubetrodd</string>
     <string name="ext_uninstall">Avinstaller</string>
-    <string name="ext_preferences">Innstillinger</string>
     <string name="ext_available">Tilgjengelig</string>
     <string name="untrusted_extension">Ubetrodd utvidelse</string>
     <string name="ext_version_info">Versjon: %1$s</string>
@@ -146,7 +144,7 @@
     <string name="pref_reader_theme">Bakgrunnsfarge</string>
     <string name="white_background">Hvit</string>
     <string name="black_background">Svart</string>
-    <string name="pref_viewer_type">Forvalgt framviser</string>
+    <string name="pref_viewer_type">Forvalgt lesemodus</string>
     <string name="default_viewer">Forvalg</string>
     <string name="left_to_right_viewer">Venstre til høyre</string>
     <string name="right_to_left_viewer">Høyre til venstre</string>
@@ -257,8 +255,6 @@
     <string name="manga_info_full_title_label">Tittel</string>
     <string name="manga_added_library">Lagt til i biblioteket</string>
     <string name="manga_removed_library">Fjernet fra bibliotek</string>
-    <string name="manga_info_author_label">Forfatter</string>
-    <string name="manga_info_artist_label">Artist</string>
     <string name="manga_info_chapters_label">Kapittel</string>
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Kilde</string>
@@ -276,7 +272,7 @@
     <string name="chapter_error">Feil</string>
     <string name="chapter_paused">Pauset</string>
     <string name="fetch_chapters_error">Kunne ikke hente kapittel</string>
-    <string name="show_title">Tittel</string>
+    <string name="show_title">Kildetittel</string>
     <string name="show_chapter_number">Kapittelnummer</string>
     <string name="sorting_mode">Sorteringsmodus</string>
     <string name="sort_by_source">Etter kilde</string>
@@ -323,7 +319,7 @@
     <string name="chapter_subtitle">Kapittel %1$s</string>
     <string name="no_next_chapter">Fant ikke neste kapittel</string>
     <string name="no_previous_chapter">Fant ikke forrige kapittel</string>
-    <string name="decode_image_error">Kunne ikke dekode bildet</string>
+    <string name="decode_image_error">Kunne ikke laste inn bildet</string>
     <string name="transition_finished">Fullført:</string>
     <string name="transition_current">Nåværende:</string>
     <string name="transition_next">Neste:</string>
@@ -333,7 +329,6 @@
     <string name="transition_pages_loading">Laster inn sider…</string>
     <string name="transition_pages_error">Klarte ikke å laste inn sider: %1$s</string>
     <string name="migration_dialog_what_to_include">Velg data å inkludere</string>
-    <string name="select">Velg</string>
     <string name="migrate">Migrer</string>
     <string name="copy">Kopier</string>
     <string name="channel_library">Bibliotek</string>
@@ -353,7 +348,6 @@
 \nEn skadelig utvidelse kan lese innloggingsdetaljer lagret i Tachiyomi, eller kjøre ukjent kode.
 \n
 \nVed å godta dette sertifikatet aksepterer du overstående risikoer.</string>
-    <string name="ext_empty_preferences">Ingen preferanser å redigere for denne utvidelsen</string>
     <string name="pref_double_tap_anim_speed">Animasjonshastighet ved dobbelklikk</string>
     <string name="pager_viewer">Sideleser</string>
     <string name="backup_restore_content">Gjenoppretting bruker kilde for å hente data, mobilkostnader kan tilkomme.
@@ -377,12 +371,12 @@
     <string name="update_check_notification_download_in_progress">Laster ned…</string>
     <string name="update_check_notification_download_complete">Nedlasting ferdig</string>
     <string name="update_check_notification_download_error">Feil ved nedlasting</string>
-    <string name="update_check_notification_update_available">Oppdatering tilgjengelig</string>
+    <string name="update_check_notification_update_available">Ny versjon tilgjengelig!</string>
     <string name="description_backdrop">Bakgrunnsbilde av manga</string>
     <string name="description_cover">Omslag til manga</string>
     <string name="information_no_downloads">Ingen nedlastinger</string>
-    <string name="information_no_recent">Ingen nylige kapittel</string>
-    <string name="information_no_recent_manga">Ingen nylig lest manga</string>
+    <string name="information_no_recent">Ingen nylige oppdateringer</string>
+    <string name="information_no_recent_manga">Ingenting lest nylig</string>
     <string name="information_empty_library">Biblioteket ditt er tomt,legg til serier i biblioteket ditt fra katalogene.</string>
     <string name="information_empty_category">Du har ingen kategorier. Trykk på pluss-knappen for å lage en for å organisere ditt bibliotek.</string>
     <string name="download_notifier_downloader_title">Nedlaster</string>
@@ -420,11 +414,11 @@
     <string name="label_more">Mer</string>
     <string name="action_view_chapters">Vis kapitler</string>
     <string name="action_cancel_all">Avbryt alle</string>
-    <string name="pref_theme_mode">Drakt</string>
-    <string name="theme_light">Lys</string>
-    <string name="theme_dark">Mørk</string>
+    <string name="pref_theme_mode">Mørk</string>
+    <string name="theme_light">Av</string>
+    <string name="theme_dark">På</string>
     <string name="theme_system">System</string>
-    <string name="pref_theme_dark">Mørkt draktvalg</string>
+    <string name="pref_theme_dark">Mørk</string>
     <string name="theme_dark_default">Forvalg</string>
     <string name="theme_dark_blue">Mørkeblå</string>
     <string name="theme_dark_amoled">AMOLED-sort</string>
@@ -453,7 +447,7 @@
     <string name="webtoon_side_padding_10">10%</string>
     <string name="theme_light_blue">Lyseblå</string>
     <string name="theme_light_default">Forvalg</string>
-    <string name="pref_theme_light">Lys draktvariant</string>
+    <string name="pref_theme_light">Lys</string>
     <string name="action_move_to_bottom">Flytt til bunnen</string>
     <string name="action_move_to_top">Flytt til toppen</string>
     <string name="action_oldest">Eldste</string>
@@ -487,4 +481,25 @@
     <string name="action_reorganize_by">Sorter etter</string>
     <string name="confirm_exit">Trykk \"Tilbake\" igjen for å avslutte</string>
     <string name="label_downloaded_only">Kun nedlastet</string>
+    <string name="ext_unofficial">Uoffisiell</string>
+    <string name="error_invalid_date_supplied">Ugyldig dato angitt</string>
+    <string name="viewer">Lesemodus</string>
+    <string name="channel_backup_restore_complete">Fullført</string>
+    <string name="channel_backup_restore_progress">Framdrift</string>
+    <string name="information_cloudflare_bypass_failure">Klarte ikke å omgå Cloudflare</string>
+    <string name="updating_library">Oppdaterer bibliotek</string>
+    <string name="page_list_empty_error">Fant ingen sider</string>
+    <string name="sort_by_upload_date">Etter opplastingsdato</string>
+    <string name="last_used_source">Sist brukt</string>
+    <string name="tabs_header">Faner</string>
+    <string name="restore_duration">%02d min, %02d sek</string>
+    <string name="backup_restore_missing_sources">Manglende kilder:</string>
+    <string name="gray_background">Grå</string>
+    <plurals name="num_categories">
+        <item quantity="one">%d kategori</item>
+        <item quantity="other">%d kateogrier</item>
+    </plurals>
+    <string name="action_display_show_tabs">Vis kategorifaner</string>
+    <string name="action_display_comfortable_grid">Komfortabelt rutenett</string>
+    <string name="action_migrate">Flytt</string>
 </resources>

@@ -6,7 +6,7 @@
     <string name="history">Historia</string>
     <string name="label_settings">Ustawienia</string>
     <string name="label_download_queue">Kolejka pobierania</string>
-    <string name="label_recent_manga">Ostatnie</string>
+    <string name="label_recent_manga">Historia</string>
     <string name="action_settings">Ustawienia</string>
     <string name="action_filter">Filtrowanie</string>
     <string name="action_filter_downloaded">Pobrane</string>
@@ -54,7 +54,7 @@
     <string name="action_open_in_browser">Otwórz w przeglądarce</string>
     <string name="action_display_mode">Tryb wyświetlania</string>
     <string name="action_display">Widok</string>
-    <string name="action_display_grid">Siatka</string>
+    <string name="action_display_grid">Kompaktowa siatka</string>
     <string name="action_display_list">Lista</string>
     <string name="action_cancel">Anuluj</string>
     <string name="action_sort">Sortuj</string>
@@ -74,8 +74,6 @@
     <string name="pref_category_about">O aplikacji</string>
     <string name="pref_library_columns">Ilość okładek w rzędzie</string>
     <string name="remove_from_library">Usuń z biblioteki</string>
-    <string name="manga_info_author_label">Autor</string>
-    <string name="manga_info_artist_label">Rysownik</string>
     <string name="manga_info_source_label">Źródło</string>
     <string name="manga_info_genres_label">Gatunki</string>
     <string name="manga_chapter_no_title">Brak tytułu</string>
@@ -259,13 +257,14 @@
     <string name="cache_delete_error">Podczas czyszczenia cache wystąpił błąd</string>
     <string name="pref_clear_cookies">Usuń ciasteczka</string>
     <string name="cookies_cleared">Ciasteczka usunięte</string>
-    <string name="pref_clear_database_summary">Usuń mangi i rozdziały, których nie ma w twojej bibliotece</string>
+    <string name="pref_clear_database_summary">Usuń historię mang, których nie ma w twojej bibliotece</string>
     <string name="pref_clear_database">Wyczyść bazę danych</string>
     <string name="pref_enable_acra">Wysyłaj raporty o awariach</string>
     <string name="pref_acra_summary">Pomaga naprawiać błędy. Żadne wrażliwe dane nie będą wysyłane</string>
     <string name="backup_created">Kopia zapasowa utworzona</string>
     <string name="restore_completed">Przywracanie ukończone</string>
     <string name="backup_restore_content">Przywracanie używa źródeł do pobierania danych, operator może naliczać dodatkowe opłaty. 
+\n
 \nPrzed przywróceniem upewnij się, że zainstalowane są odpowiednie rozszerzenia i że zalogowano się do źródeł i usług śledzenia.</string>
     <string name="choices_reset">Resetuj wybory okien dialogowych</string>
     <string name="clear_database_confirmation">Na pewno? Przeczytane rozdziały i postęp w mangach spoza biblioteki zostaną utracone</string>
@@ -331,7 +330,6 @@
     <string name="information_empty_category">Nie masz żadnych kategorii. Dotknij plusa, aby je utworzyć i zorganizować swoją bibliotekę.</string>
     <string name="label_extensions">Rozszerzenia</string>
     <string name="all_lang">Wszystkie</string>
-    <string name="ext_details">Szczegóły</string>
     <string name="ext_install">Zainstaluj</string>
     <string name="ext_pending">Oczekujące</string>
     <string name="ext_downloading">Pobieranie</string>
@@ -347,7 +345,7 @@
     <string name="manga_info_full_title_label">Tytuł</string>
     <string name="manga_added_library">Dodano do biblioteki</string>
     <string name="manga_removed_library">Usunięto z biblioteki</string>
-    <string name="label_migration">Migracja źródła</string>
+    <string name="label_migration">Migracja</string>
     <string name="copied_to_clipboard">Skopiowano do schowka:
 \n %1$s</string>
     <string name="copy">Kopiuj</string>
@@ -355,7 +353,6 @@
     <string name="ext_update">Aktualizuj</string>
     <string name="ext_trust">Ufaj</string>
     <string name="ext_untrusted">Niezaufane</string>
-    <string name="ext_preferences">Preferencje</string>
     <string name="ext_available">Dostępne</string>
     <string name="untrusted_extension">Niezaufane rozszerzenie</string>
     <string name="untrusted_extension_message">To rozszerzenie było podpisane niezaufanym certyfikatem i nie zostało aktywowane. 
@@ -363,12 +360,10 @@
 \nZłośliwe rozszerzenie może odczytać dane logowania przechowywane w Tachiyomi albo uruchomić złośliwy kod. 
 \n 
 \nPoprzez zaufanie temu rozszerzeniu potwierdzasz, że rozumiesz zagrożenie.</string>
-    <string name="ext_empty_preferences">To rozszerzenie nie ma preferencji do edycji</string>
     <string name="custom_download">Pobierz wybraną ilość</string>
     <string name="download_custom">Własna ilość</string>
     <string name="migration_info">Tapnij aby zaznaczyć źródło z którego emigrować</string>
     <string name="migration_dialog_what_to_include">Zaznacz dane do zawarcia</string>
-    <string name="select">Zaznacz</string>
     <string name="migrate">Migruj</string>
     <string name="pager_viewer">Widok stron</string>
     <string name="source_not_installed">Nie zainstalowano źródła %1$s</string>
@@ -447,14 +442,14 @@
     <string name="theme_dark_amoled">Czarny AMOLED</string>
     <string name="theme_dark_blue">Ciemnoniebieski</string>
     <string name="theme_dark_default">Domyślny</string>
-    <string name="pref_theme_dark">Wariant ciemnego motywu</string>
+    <string name="pref_theme_dark">Ciemny motyw</string>
     <string name="theme_light_blue">Jasnoniebieski</string>
     <string name="theme_light_default">Domyślny</string>
-    <string name="pref_theme_light">Wariant jasnego motywu</string>
+    <string name="pref_theme_light">Jasny motyw</string>
     <string name="theme_system">Systemowy</string>
-    <string name="theme_dark">Ciemny</string>
-    <string name="theme_light">Jasny</string>
-    <string name="pref_theme_mode">Motyw aplikacji</string>
+    <string name="theme_dark">Włącz</string>
+    <string name="theme_light">Wyłącz</string>
+    <string name="pref_theme_mode">Ciemny motyw</string>
     <string name="action_move_to_bottom">Przenieś na dół</string>
     <string name="action_move_to_top">Przenieś na górę</string>
     <string name="action_oldest">Najstarsze</string>
@@ -580,4 +575,26 @@
     </plurals>
     <string name="unofficial_extension_message">Te rozszerzenie nie jest na liście oficjalnych rozszerzeń Tachiyomi.</string>
     <string name="ext_unofficial">Nieoficjalne</string>
+    <string name="sort_by_upload_date">Po dacie dodania</string>
+    <string name="label_data">Dane</string>
+    <string name="backup_restore_missing_sources">Brakujące źródła:</string>
+    <string name="invalid_backup_file_missing_manga">Kopia zapasowa nie zawiera żadnych mang.</string>
+    <string name="invalid_backup_file_missing_data">W pliku brakuje danych.</string>
+    <string name="invalid_backup_file">Nieprawidłowy plik kopii zapasowej</string>
+    <string name="tracker_not_logged_in">Nie zalogowano do: %1$s</string>
+    <string name="source_not_found_name">Nie znaleziono źródła: %1$s</string>
+    <string name="pref_library_update_error_notification">Pokaż powiadomienia o błędach aktualizacji</string>
+    <string name="pref_library_update_refresh_metadata_summary">Sprawdź, czy są nowe okładki i opisy podczas aktualizowania biblioteki</string>
+    <string name="pref_library_update_refresh_metadata">Automatycznie odświeżaj metadane</string>
+    <string name="action_display_comfortable_grid">Wygodna siatka</string>
+    <string name="action_migrate">Migracja</string>
+    <string name="page_list_empty_error">Nie znaleziono żadnych stron</string>
+    <string name="tabs_header">Karty</string>
+    <string name="badges_header">Plakietki</string>
+    <string name="action_display_show_tabs">Pokaż karty kategorii</string>
+    <string name="action_disable_all">Wyłącz wszystkie</string>
+    <string name="action_enable_all">Włącz wszystkie</string>
+    <string name="enabled">Włączone</string>
+    <string name="pref_show_reading_mode_summary">Po otwarciu aplikacji pokaż aktualny tryb czytania</string>
+    <string name="pref_show_reading_mode">Tryb czytania</string>
 </resources>

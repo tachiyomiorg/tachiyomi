@@ -51,7 +51,6 @@
     <string name="transition_pages_error">Sivujen lataus epäonnistui: %1$s</string>
     <string name="migration_info">Kosketa valitaksesi lähde josta vaihdetaan</string>
     <string name="migration_dialog_what_to_include">Valitse sisällytettävä tieto</string>
-    <string name="select">Valitse</string>
     <string name="migrate">Vaihda</string>
     <string name="copy">Kopioi</string>
     <string name="download_queue_error">Lukujen lataaminen epäonnistui. Voit yrittää uudelleen lataukset-osiossa</string>
@@ -94,7 +93,7 @@
     <string name="channel_library">Kirjasto</string>
     <string name="channel_downloader">Lataaja</string>
     <string name="label_backup">Varmuuskopio</string>
-    <string name="label_migration">Lähteen vaihtaminen</string>
+    <string name="label_migration">Siirrä</string>
     <string name="label_extensions">Laajennukset</string>
     <string name="label_extension_info">Laajennuksen tiedot</string>
     <string name="action_filter">Suodatus</string>
@@ -129,7 +128,7 @@
     <string name="action_open_in_web_view">Avaa WebViewissä</string>
     <string name="action_display_mode">Näkymä</string>
     <string name="action_display">Näkymä</string>
-    <string name="action_display_grid">Ruudukko</string>
+    <string name="action_display_grid">Kompakti ruudukko</string>
     <string name="action_display_list">Lista</string>
     <string name="action_display_download_badge">Näytä ladattujen määrä</string>
     <string name="action_cancel">Peruuta</string>
@@ -181,7 +180,6 @@
     <string name="default_category">Oletus kategoria</string>
     <string name="default_category_summary">Kysy aina</string>
     <string name="all_lang">Kaikki</string>
-    <string name="ext_details">Tiedot</string>
     <string name="ext_update">Päivitä</string>
     <string name="ext_install">Asenna</string>
     <string name="ext_pending">Odotetaan</string>
@@ -191,7 +189,6 @@
     <string name="ext_trust">Luota</string>
     <string name="ext_untrusted">Luottamaton</string>
     <string name="ext_uninstall">Poista asennus</string>
-    <string name="ext_preferences">Asetukset</string>
     <string name="ext_available">Saatavilla</string>
     <string name="untrusted_extension">Luottamattomat laajennukset</string>
     <string name="untrusted_extension_message">Tämä laajennus on allekirjoitettu luottamattomalla sertifikaatilla ja sitä ei ole aktivoitu.
@@ -200,8 +197,7 @@
 \n
 \nLuottamalla tähän sertifikaattiin hyväksyt nämä riskit.</string>
     <string name="ext_version_info">Versio: %1$s</string>
-    <string name="ext_language_info">"Kieli:  %1$s"</string>
-    <string name="ext_empty_preferences">Laajennuksella ei ole muokattavia asetuksia</string>
+    <string name="ext_language_info">Kieli: %1$s</string>
     <string name="pref_fullscreen">Koko näyttö</string>
     <string name="pref_lock_orientation">Lukitse näkymän suunta</string>
     <string name="pref_page_transitions">Animoi sivusiirtymät</string>
@@ -289,7 +285,7 @@
     <string name="cookies_cleared">Keksit tyhjennetty</string>
     <string name="choices_reset">Dialogien valintojen resetointi</string>
     <string name="pref_clear_database">Tyhjennä tietokanta</string>
-    <string name="pref_clear_database_summary">Poista sarjat ja luvut jotka eivät ole kirjastossa</string>
+    <string name="pref_clear_database_summary">Poista mangan historia, jota ei ole tallennettu kirjastoosi</string>
     <string name="clear_database_confirmation">Oletko varma\? Luetut luvut ja eteneminen poistetaan muista kun kirjastossa olevista sarjoista</string>
     <string name="clear_database_completed">Tiedot poistettu</string>
     <string name="pref_refresh_library_tracking">Päivitä seuranta</string>
@@ -325,7 +321,7 @@
     <string name="chapter_downloaded">Ladattu</string>
     <string name="chapter_queued">Jonossa</string>
     <string name="chapter_downloading">Ladataan</string>
-    <string name="chapter_downloading_progress">"Ladataan  (%1$d/%2$d)"</string>
+    <string name="chapter_downloading_progress">Ladataan (%1$d/%2$d)</string>
     <string name="chapter_error">Virhe</string>
     <string name="chapter_paused">Pysäytetty</string>
     <string name="fetch_chapters_error">Lukujen hakeminen epäonnistui</string>
@@ -369,8 +365,6 @@
     <string name="manga_info_full_title_label">Nimike</string>
     <string name="manga_added_library">Lisätty kirjastoon</string>
     <string name="manga_removed_library">Poistettu kirjastosta</string>
-    <string name="manga_info_author_label">Kirjailija</string>
-    <string name="manga_info_artist_label">Artisti</string>
     <string name="manga_info_chapters_label">Luvut</string>
     <string name="manga_info_status_label">Tila</string>
     <string name="manga_info_source_label">Lähde</string>
@@ -422,11 +416,11 @@
     <string name="action_sort_latest_chapter">Viimeisin luku</string>
     <string name="action_view_chapters">Näytä luvut</string>
     <string name="action_cancel_all">Peruuta kaikki</string>
-    <string name="pref_theme_mode">Sovelluksen teema</string>
-    <string name="theme_light">Vaalea</string>
-    <string name="theme_dark">Tumma</string>
+    <string name="pref_theme_mode">Pimeä tila</string>
+    <string name="theme_light">Pois päältä</string>
+    <string name="theme_dark">Päällä</string>
     <string name="theme_system">Seuraa järjestelmää</string>
-    <string name="pref_theme_dark">Tumman teeman variantti</string>
+    <string name="pref_theme_dark">Tumma teema</string>
     <string name="theme_dark_default">Oletus</string>
     <string name="theme_dark_blue">Tummansininen</string>
     <string name="theme_dark_amoled">AMOLED musta</string>
@@ -474,7 +468,7 @@
     </plurals>
     <string name="notices">Esikatsele koontiversion ilmoituksia</string>
     <string name="changelog">Muutoshistoria</string>
-    <string name="pref_theme_light">Vaalean teeman variantti</string>
+    <string name="pref_theme_light">Vaalea teema</string>
     <string name="theme_light_default">Oletus</string>
     <string name="theme_light_blue">Vaaleansininen</string>
     <string name="action_menu">Valikko</string>
@@ -564,4 +558,27 @@
     </plurals>
     <string name="unofficial_extension_message">Tämä laajennus ei ole virallisesta Tachiyomi-laajennusluettelosta.</string>
     <string name="ext_unofficial">Epävirallinen</string>
+    <string name="sort_by_upload_date">Latauspäivämäärän mukaan</string>
+    <string name="label_data">Tiedot</string>
+    <string name="backup_restore_missing_sources">Puuttuvat lähteet:</string>
+    <string name="invalid_backup_file_missing_manga">Varmuuskopio ei sisällä mangaa.</string>
+    <string name="invalid_backup_file_missing_data">Tiedostosta puuttuu tietoja.</string>
+    <string name="invalid_backup_file">Virheellinen varmuuskopio</string>
+    <string name="tracker_not_logged_in">Et ole kirjautunut sisään: %1$s</string>
+    <string name="source_not_found_name">Lähdettä ei löytynyt: %1$s</string>
+    <string name="pref_library_update_error_notification">Näytä päivitysvirheilmoitukset</string>
+    <string name="pref_library_update_refresh_metadata_summary">Tarkista uusi kansi ja tiedot päivitettäessä kirjastoa</string>
+    <string name="pref_library_update_refresh_metadata">Päivitä metatiedot automaattisesti</string>
+    <string name="action_migrate">Siirrä</string>
+    <string name="action_display_comfortable_grid">Mukava ruudukko</string>
+    <string name="tabs_header">Välilehdet</string>
+    <string name="badges_header">Merkit</string>
+    <string name="action_display_show_tabs">Näytä kategorioiden välilehdet</string>
+    <string name="page_list_empty_error">Sivuja ei löytynyt</string>
+    <string name="action_disable_all">Poista kaikki käytöstä</string>
+    <string name="action_enable_all">Ota kaikki käyttöön</string>
+    <string name="enabled">Käytössä</string>
+    <string name="pref_show_reading_mode_summary">Näytä nykyinen tila lyhyesti, kun lukija avataan</string>
+    <string name="pref_show_reading_mode">Näytä lukutila</string>
+    <string name="action_start">Aloita</string>
 </resources>

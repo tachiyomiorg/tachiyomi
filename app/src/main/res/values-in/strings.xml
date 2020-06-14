@@ -6,14 +6,14 @@
     <string name="track">Pelacakan</string>
     <string name="history">Riwayat</string>
     <string name="label_settings">Pengaturan</string>
-    <string name="label_download_queue">Sedang diunduh</string>
+    <string name="label_download_queue">Antrian unduhan</string>
     <string name="label_library">Perpustakaan</string>
     <string name="label_recent_manga">Riwayat</string>
     <string name="label_recent_updates">Pembaruan</string>
     <string name="label_categories">Kategori</string>
     <string name="label_backup">Cadangan</string>
     <string name="action_settings">Pengaturan</string>
-    <string name="action_filter">Filter</string>
+    <string name="action_filter">Saring</string>
     <string name="action_filter_downloaded">Terunduh</string>
     <string name="action_filter_bookmarked">Tertandai</string>
     <string name="action_filter_unread">Belum dibaca</string>
@@ -67,7 +67,7 @@
     <string name="action_open_log">Buka log</string>
     <string name="action_create">Buat</string>
     <string name="name">Nama</string>
-    <string name="action_display_grid">Jaring</string>
+    <string name="action_display_grid">Grid kompak</string>
     <string name="action_restore">Pulihkan</string>
     <string name="loading">Memuat…</string>
     <string name="app_not_available">App tidak tersedia</string>
@@ -96,7 +96,7 @@
     <string name="pref_library_update_categories">Kategori untuk disertakan dalam pembaruan global</string>
     <string name="all">Semua</string>
     <string name="pref_library_update_restriction">Pembatasan pembaruan perpustakaan</string>
-    <string name="pref_library_update_restriction_summary">Syarat-syarat melaksanakan pembaruan</string>
+    <string name="pref_library_update_restriction_summary">Perbaharui hanya ketika kondisi terpenuhi</string>
     <string name="wifi">Wi-Fi</string>
     <string name="charging">Sedang mengisi daya</string>
     <string name="pref_update_only_non_completed">Perbarui manga yang masih belum tamat saja</string>
@@ -189,7 +189,7 @@
     <string name="cookies_cleared">Kuki terhapus</string>
     <string name="choices_reset">Atur kembali semula seluruh pilihan dialog</string>
     <string name="pref_clear_database">Hapus database</string>
-    <string name="pref_clear_database_summary">Hapus manga dan bab yang tidak disimpan dalam perpustakaan Anda</string>
+    <string name="pref_clear_database_summary">Hapus riwayat manga yang tidak disimpan di perpustakaan Anda</string>
     <string name="clear_database_confirmation">Apakah Anda yakin\? Bab bacaan dan progres manga yang tidak disimpan dalam perpustakaan akan hilang</string>
     <string name="clear_database_completed">Entri dihapus</string>
     <string name="pref_refresh_library_tracking">Segarkan pelacakan metadata</string>
@@ -224,8 +224,6 @@
     <string name="unknown">Tidak diketahui</string>
     <string name="licensed">Berlisensi</string>
     <string name="remove_from_library">Hapus dari perpustakaan</string>
-    <string name="manga_info_author_label">Penulis</string>
-    <string name="manga_info_artist_label">Artis</string>
     <string name="manga_info_chapters_label">Bab</string>
     <string name="manga_info_status_label">Status</string>
     <string name="manga_info_source_label">Sumber</string>
@@ -329,12 +327,11 @@
     <string name="channel_common">Umum</string>
     <string name="channel_library">Perpustakaan</string>
     <string name="channel_downloader">Pengunduh</string>
-    <string name="information_empty_category">Anda tidak memiliki kategori. Tekan tombol tambah untuk menambahkan kategori baru untuk mengatur perpustakaan Anda.</string>
-    <string name="label_migration">Pindah sumber</string>
+    <string name="information_empty_category">Anda belum memiliki kategori. Tekan tombol tambah untuk menambahkan kategori baru untuk mengatur perpustakaan Anda.</string>
+    <string name="label_migration">Migrasi</string>
     <string name="label_extensions">Ekstensi</string>
     <string name="label_extension_info">Info ekstensi</string>
     <string name="all_lang">Semua</string>
-    <string name="ext_details">Detail</string>
     <string name="ext_update">Perbaharui</string>
     <string name="ext_install">Pasang</string>
     <string name="ext_pending">Tertunda</string>
@@ -344,7 +341,6 @@
     <string name="ext_trust">Percaya</string>
     <string name="ext_untrusted">Tidak terpercaya</string>
     <string name="ext_uninstall">Copot</string>
-    <string name="ext_preferences">Preferensi</string>
     <string name="ext_available">Tersedia</string>
     <string name="untrusted_extension">Ekstensi tidak terpercaya</string>
     <string name="untrusted_extension_message">Ektensi ini telah ditanda tangani dengan sertifikat yang tidak terpercaya dan belum aktif.
@@ -354,7 +350,6 @@
 \nDengan mempercayai sertifikat ini anda menyetujui resiko tersebut.</string>
     <string name="ext_version_info">Versi: %1$s</string>
     <string name="ext_language_info">Bahasa: %1$s</string>
-    <string name="ext_empty_preferences">Pengaturan tidak tersedia untuk ekstensi ini</string>
     <string name="pref_double_tap_anim_speed">Kecepatan animasi dua ketukan</string>
     <string name="double_tap_anim_speed_0">Tanpa animasi</string>
     <string name="double_tap_anim_speed_normal">Normal</string>
@@ -368,7 +363,6 @@
     <string name="download_custom">Kustom</string>
     <string name="migration_info">Ketuk untuk memilih sumber awal</string>
     <string name="migration_dialog_what_to_include">Pilih data yang ikut dipindah</string>
-    <string name="select">Pilih</string>
     <string name="migrate">Pindah</string>
     <string name="copy">Salin</string>
     <string name="pager_viewer">Halaman</string>
@@ -413,9 +407,9 @@
     <string name="action_sort_latest_chapter">Bab terbaru</string>
     <string name="action_view_chapters">Lihat bab</string>
     <string name="action_cancel_all">Batalkan semua</string>
-    <string name="pref_theme_mode">Tema aplikasi</string>
-    <string name="theme_light">Terang</string>
-    <string name="theme_dark">Gelap</string>
+    <string name="pref_theme_mode">Mode gelap</string>
+    <string name="theme_light">Mati</string>
+    <string name="theme_dark">Nyala</string>
     <string name="theme_system">Ikuti sistem</string>
     <string name="theme_dark_blue">Biru gelap</string>
     <string name="theme_dark_amoled">Hitam AMOLED</string>
@@ -445,9 +439,9 @@
     <string name="secure_screen_summary">Sembunyikan konten aplikasi saat berpindah aplikasi dan blokir tangkapan layar</string>
     <string name="hide_notification_content">Sembunyikan konten notifikasi</string>
     <string name="pref_always_show_chapter_transition">Selalu tampilkan transisi bab</string>
-    <string name="pref_theme_dark">Variasi tema gelap</string>
+    <string name="pref_theme_dark">Tema gelap</string>
     <string name="theme_dark_default">Gelap standar</string>
-    <string name="pref_theme_light">Variasi tema terang</string>
+    <string name="pref_theme_light">Tema terang</string>
     <string name="logout">Keluar</string>
     <string name="logout_success">Anda sudah keluar</string>
     <string name="currently_reading">Sedang dibaca</string>
@@ -500,7 +494,7 @@
     <string name="http_error_hint">Cek halaman web dalam tampilan web</string>
     <string name="licenses">Lisensi terbuka</string>
     <string name="restoring_backup_error">Gagal memulihkan data dari cadangan</string>
-    <string name="creating_backup_error">Gagal membuat cadangan data.</string>
+    <string name="creating_backup_error">Pencadangan data gagal</string>
     <string name="webtoon_side_padding_10">10%</string>
     <string name="webtoon_side_padding_0">Tidak ada</string>
     <string name="pref_webtoon_side_padding">Pinggiran samping</string>
@@ -555,4 +549,26 @@
     </plurals>
     <string name="unofficial_extension_message">Ekstensi ini bukan dari daftar resmi Tachiyomi.</string>
     <string name="ext_unofficial">Tidak resmi</string>
+    <string name="pref_library_update_refresh_metadata_summary">Periksa sampul dan detail baru saat memperbarui perpustakaan</string>
+    <string name="pref_library_update_refresh_metadata">Menyegarkan metadata secara otomatis</string>
+    <string name="action_migrate">Migrasi</string>
+    <string name="label_data">Data</string>
+    <string name="backup_restore_missing_sources">Kehilangan sumber:</string>
+    <string name="invalid_backup_file_missing_manga">Cadangan tidak berisi manga apapun.</string>
+    <string name="invalid_backup_file_missing_data">File tidak memiliki data.</string>
+    <string name="invalid_backup_file">File cadangan tidak valid</string>
+    <string name="tracker_not_logged_in">Belum masuk dalam: %1$s</string>
+    <string name="source_not_found_name">Sumber tidak ditemukan: %1$s</string>
+    <string name="sort_by_upload_date">Berdasarkan tanggal pengunggahan</string>
+    <string name="pref_library_update_error_notification">Tampilkan notifikasi pembaruan yang gagal</string>
+    <string name="action_display_comfortable_grid">Grid yang nyaman</string>
+    <string name="tabs_header">Tab</string>
+    <string name="badges_header">Penanda</string>
+    <string name="action_display_show_tabs">Tampilkan tab kategori</string>
+    <string name="page_list_empty_error">Halaman tidak ditemukan</string>
+    <string name="action_disable_all">Nonaktifkan semua</string>
+    <string name="action_enable_all">Izinkan semua</string>
+    <string name="pref_show_reading_mode_summary">Perlihatkan mode saat ini secara singkat ketika pembaca dibuka</string>
+    <string name="pref_show_reading_mode">Tampilkan mode membaca</string>
+    <string name="enabled">Diaktifkan</string>
 </resources>
