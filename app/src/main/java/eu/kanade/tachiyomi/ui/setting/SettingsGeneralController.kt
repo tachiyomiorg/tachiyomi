@@ -66,10 +66,12 @@ class SettingsGeneralController : SettingsController() {
 
                 val langs = mutableListOf<Pair<String, String>>()
                 langs += Pair("", "${context.getString(R.string.system_default)} (${LocaleHelper.getDisplayName("")})")
+                // Due to compatibility issues:
+                // - Hebrew: `he` is copied into `iw` at build time
                 langs += arrayOf(
-                    "ar", "bg", "bn", "ca", "cs", "de", "el", "en-US", "en-GB", "es", "fr", "ka", "he",
-                    "hi", "hr", "hu", "in", "it", "ja", "ko", "lv", "ms", "nb-rNO", "nl", "pl", "pt",
-                    "pt-BR", "ro", "ru", "sc", "sr", "sv", "th", "tl", "tr", "uk", "vi", "zh-rCN"
+                    "ar", "be", "bg", "bn", "ca", "cs", "de", "el", "es", "es-419", "en-US", "en-GB", "fi", "fr", "he",
+                    "hi", "hr", "hu", "in", "it", "ja", "ka-rGE", "kn", "ko", "lv", "mr", "ms", "nb-rNO", "nl", "pl", "pt",
+                    "pt-BR", "ro", "ru", "sc", "sk", "sr", "sv", "th", "tl", "tr", "uk", "ur-rPK", "vi", "zh-rCN", "zh-rTW"
                 )
                     .map {
                         Pair(it, LocaleHelper.getDisplayName(it))
