@@ -13,7 +13,7 @@
     <string name="label_recent_updates">Güncellemeler</string>
     <string name="label_categories">Kategoriler</string>
     <string name="label_backup">Yedekleme</string>
-    <string name="label_migration">Kaynak taşıma</string>
+    <string name="label_migration">Taşın</string>
     <string name="label_extensions">Eklentiler</string>
     <string name="label_extension_info">Eklenti bilgisi</string>
     <string name="action_settings">Ayarlar</string>
@@ -61,7 +61,7 @@
     <string name="action_open_in_browser">Tarayıcıda aç</string>
     <string name="action_display_mode">Görüntüleme kipi</string>
     <string name="action_display">Görüntüleme</string>
-    <string name="action_display_grid">Izgara</string>
+    <string name="action_display_grid">Kompakt ızgara</string>
     <string name="action_display_list">Liste</string>
     <string name="action_display_download_badge">Rozetleri indir</string>
     <string name="action_cancel">İptal</string>
@@ -114,7 +114,6 @@
     <string name="default_category">Öntanımlı kategori</string>
     <string name="default_category_summary">Her zaman sor</string>
     <string name="all_lang">Tümü</string>
-    <string name="ext_details">Ayrıntılar</string>
     <string name="ext_update">Güncelle</string>
     <string name="ext_install">Kur</string>
     <string name="ext_pending">Beklemede</string>
@@ -124,7 +123,6 @@
     <string name="ext_trust">Güven</string>
     <string name="ext_untrusted">Güvenilmeyen</string>
     <string name="ext_uninstall">Kaldır</string>
-    <string name="ext_preferences">Tercihler</string>
     <string name="ext_available">Kullanılabilir</string>
     <string name="untrusted_extension">Güvenilmeyen uzantı</string>
     <string name="untrusted_extension_message">Bu uzantı güvenilmeyen bir sertifika ile imzalanmış ve etkinleştirilmedi. 
@@ -134,7 +132,6 @@
 \nBu sertifikaya güvenerek bu riskleri kabul etmiş oluyorsunuz.</string>
     <string name="ext_version_info">Sürüm: %1$s</string>
     <string name="ext_language_info">Dil: %1$s</string>
-    <string name="ext_empty_preferences">Bu uzantı için düzenlenebilecek tercih yok</string>
     <string name="pref_fullscreen">Tam Ekran</string>
     <string name="pref_lock_orientation">Yönlendirmeyi sabitle</string>
     <string name="pref_page_transitions">Sayfa geçişlerini canladır</string>
@@ -148,7 +145,7 @@
     <string name="pref_read_with_volume_keys">Ses tuşları</string>
     <string name="pref_read_with_volume_keys_inverted">Ters ses tuşları</string>
     <string name="pref_read_with_tapping">Dokunarak</string>
-    <string name="pref_reader_theme">Art alan rengi</string>
+    <string name="pref_reader_theme">Arka plan rengi</string>
     <string name="white_background">Beyaz</string>
     <string name="black_background">Siyah</string>
     <string name="pref_viewer_type">Öntanımlı okuma kipi</string>
@@ -206,7 +203,7 @@
     <string name="pref_backup_service_category">Kendiliğinden yedekleme</string>
     <string name="pref_backup_interval">Yedekleme sıklığı</string>
     <string name="pref_backup_slots">Maksimum yedek</string>
-    <string name="source_not_found">"Kaynak bulunamadı "</string>
+    <string name="source_not_found">Kaynak bulunamadı</string>
     <string name="backup_created">Yedek oluşturuldu</string>
     <string name="restore_completed">Geri yükleme tamamlandı</string>
     <string name="backup_restore_content">Geri yükleme veriyi almak için kaynakları kullanır, taşıyıcı ücreti uygulanabilir. 
@@ -223,7 +220,7 @@
     <string name="cookies_cleared">Çerezler temizlendi</string>
     <string name="choices_reset">İletişim kutusu seçimlerini temizle</string>
     <string name="pref_clear_database">Veritabanını temizle</string>
-    <string name="pref_clear_database_summary">Kitaplığınızda olmayan manga ve bölümleri silin</string>
+    <string name="pref_clear_database_summary">Kitaplığınıza kaydedilmeyen mangaların geçmiş bilgisini sil</string>
     <string name="clear_database_confirmation">Emin misiniz? Kitaplıkta olmayan mangaların okunmuş bölümleri ve ilerlemesi kaybolacak</string>
     <string name="clear_database_completed">Girdileri silindi</string>
     <string name="pref_refresh_library_tracking">İzlemeyi yenile</string>
@@ -266,8 +263,6 @@
     <string name="manga_info_full_title_label">Başlık</string>
     <string name="manga_added_library">Kitaplığa eklendi</string>
     <string name="manga_removed_library">Kitaplıktan kaldırıldı</string>
-    <string name="manga_info_author_label">Yazar</string>
-    <string name="manga_info_artist_label">Sanatçı</string>
     <string name="manga_info_chapters_label">Bölümler</string>
     <string name="manga_info_status_label">Durum</string>
     <string name="manga_info_source_label">Kaynak</string>
@@ -337,7 +332,6 @@
     <string name="confirm_set_image_as_cover">Bu görsel kapak resmi olarak kullanılsın mı\?</string>
     <string name="migration_info">Taşınılacak kaynağı seçmek için dokunun</string>
     <string name="migration_dialog_what_to_include">Eklenecek veriyi seç</string>
-    <string name="select">Seç</string>
     <string name="migrate">Taşın</string>
     <string name="copy">Kopyala</string>
     <string name="download_queue_error">Bölümler indirilemedi. İndirmeler bölümünden yeniden deneyebilirsiniz</string>
@@ -422,11 +416,11 @@
     <string name="action_sort_latest_chapter">Son bölüm</string>
     <string name="action_view_chapters">Bölümleri görüntüle</string>
     <string name="action_cancel_all">Hepsini iptal et</string>
-    <string name="pref_theme_mode">Uygulama teması</string>
-    <string name="theme_light">Aydınlık</string>
-    <string name="theme_dark">Karanlık</string>
+    <string name="pref_theme_mode">Karanlık kip</string>
+    <string name="theme_light">Kapalı</string>
+    <string name="theme_dark">Açık</string>
     <string name="theme_system">Sisteme uy</string>
-    <string name="pref_theme_dark">Karanlık tema çeşidi</string>
+    <string name="pref_theme_dark">Karanlık tema</string>
     <string name="theme_dark_default">Öntanımlı</string>
     <string name="theme_dark_blue">Koyu mavi</string>
     <string name="theme_dark_amoled">AMOLED siyah</string>
@@ -464,7 +458,7 @@
     <string name="hide_notification_content">Bildirim içeriğini gizle</string>
     <string name="notification_check_updates">Yeni bölümler aranıyor</string>
     <string name="pref_disable_battery_optimization">Pil iyileştirmeyi devre dışı bırak</string>
-    <string name="pref_disable_battery_optimization_summary">Arkaplan kitaplık güncellemelerine ve yedeklemelerine yardım eder</string>
+    <string name="pref_disable_battery_optimization_summary">Arka plan kitaplık güncellemelerine ve yedeklemelerine yardım eder</string>
     <string name="battery_optimization_disabled">Pil iyileştirme zaten devre dışı</string>
     <string name="email">Eposta adresi</string>
     <string name="pref_always_show_chapter_transition">Bölüm geçişini her zaman göster</string>
@@ -474,7 +468,7 @@
     </plurals>
     <string name="notices">Derleme notlarını göster</string>
     <string name="changelog">Değişiklikler</string>
-    <string name="pref_theme_light">Aydınlık tema çeşidi</string>
+    <string name="pref_theme_light">Aydınlık tema</string>
     <string name="theme_light_default">Öntanımlı</string>
     <string name="theme_light_blue">Açık mavi</string>
     <string name="action_menu">Menü</string>
@@ -564,4 +558,27 @@
     </plurals>
     <string name="unofficial_extension_message">Bu uzantı resmi Tachiyomi uzantıları listesinden değil.</string>
     <string name="ext_unofficial">Resmi olmayan</string>
+    <string name="sort_by_upload_date">Yükleme tarihine göre</string>
+    <string name="label_data">Veri</string>
+    <string name="backup_restore_missing_sources">Eksik kaynaklar:</string>
+    <string name="invalid_backup_file_missing_manga">Yedek bir manga içermiyor.</string>
+    <string name="invalid_backup_file_missing_data">Dosyada veri eksik.</string>
+    <string name="invalid_backup_file">Geçersiz yedekleme dosyası</string>
+    <string name="tracker_not_logged_in">Giriş yapılmadı: %1$s</string>
+    <string name="source_not_found_name">Kaynak bulunamadı: %1$s</string>
+    <string name="pref_library_update_error_notification">Güncelleme hataları bildirimlerini göster</string>
+    <string name="pref_library_update_refresh_metadata_summary">Kitaplığı güncellerken yeni kapağı ve ayrıntıları denetle</string>
+    <string name="pref_library_update_refresh_metadata">Üst veriyi kendiliğinden yenile</string>
+    <string name="action_migrate">Taşın</string>
+    <string name="action_display_comfortable_grid">Rahat ızgara</string>
+    <string name="tabs_header">Sekmeler</string>
+    <string name="badges_header">Rozetler</string>
+    <string name="action_display_show_tabs">Kategori sekmelerini göster</string>
+    <string name="page_list_empty_error">Sayfa bulunamadı</string>
+    <string name="action_disable_all">Tümünü devre dışı bırak</string>
+    <string name="action_enable_all">Tümünü etkinleştir</string>
+    <string name="enabled">Etkin</string>
+    <string name="pref_show_reading_mode_summary">Okuyucu açılınca, kısaca o anki kipi göster</string>
+    <string name="pref_show_reading_mode">Okuma kipini göster</string>
+    <string name="action_start">Başlat</string>
 </resources>

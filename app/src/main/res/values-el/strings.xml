@@ -13,7 +13,7 @@
     <string name="label_recent_updates">Ενημερώσεις</string>
     <string name="label_categories">Κατηγορίες</string>
     <string name="label_backup">Αντίγραφο ασφάλειας</string>
-    <string name="label_migration">Μεταφορά πηγής</string>
+    <string name="label_migration">Μεταφορά</string>
     <string name="label_extensions">Επεκτάσεις</string>
     <string name="label_extension_info">Πληροφορίες επέκτασης</string>
     <string name="action_settings">Ρυθμίσεις</string>
@@ -61,7 +61,7 @@
     <string name="action_open_in_browser">Άνοιγμα σε πρόγραμμα περιήγησης</string>
     <string name="action_display_mode">Λειτουργία προβολής</string>
     <string name="action_display">Προβολή</string>
-    <string name="action_display_grid">Πλέγμα</string>
+    <string name="action_display_grid">Συμπαγές πλέγμα</string>
     <string name="action_display_list">Λίστα</string>
     <string name="action_display_download_badge">Σήματα ληφθέντων</string>
     <string name="action_cancel">Ακύρωση</string>
@@ -114,7 +114,6 @@
     <string name="default_category">Προεπιλεγμένη κατηγορία</string>
     <string name="default_category_summary">Ερώτηση πάντα</string>
     <string name="all_lang">Όλα</string>
-    <string name="ext_details">Λεπτομέρειες</string>
     <string name="ext_update">Ενημέρωση</string>
     <string name="ext_install">Εγκατάσταση</string>
     <string name="ext_pending">Αναμονή</string>
@@ -124,7 +123,6 @@
     <string name="ext_trust">Εμπιστέψου</string>
     <string name="ext_untrusted">Μη αξιόπιστο</string>
     <string name="ext_uninstall">Απεγκατάσταση</string>
-    <string name="ext_preferences">Προτιμήσεις</string>
     <string name="ext_available">Διαθέσιμο</string>
     <string name="untrusted_extension">Μη αξιόπιστη επέκταση</string>
     <string name="untrusted_extension_message">Αυτή η επέκταση υπογράφηκε με μη αξιόπιστο πιστοποιητικό και δεν ενεργοποιήθηκε.
@@ -134,7 +132,6 @@
 \nΕμπιστεύοντας αυτό το πιστοποιητικό αποδέχεστε αυτούς τους κινδύνους.</string>
     <string name="ext_version_info">Έκδοση: %1$s</string>
     <string name="ext_language_info">Γλώσσα: %1$s</string>
-    <string name="ext_empty_preferences">Δεν υπάρχουν προτιμήσεις για επεξεργασία για αυτήν την επέκταση</string>
     <string name="pref_fullscreen">Πλήρης οθόνη</string>
     <string name="pref_lock_orientation">Κλείδωμα περιστροφής</string>
     <string name="pref_page_transitions">Ζωντανή μετάβαση σελίδας</string>
@@ -206,7 +203,7 @@
     <string name="pref_backup_service_category">Αυτόματα αντίγραφα ασφαλείας</string>
     <string name="pref_backup_interval">Συχνότητα αντίγραφου ασφάλειας</string>
     <string name="pref_backup_slots">Μέγιστα αντίγραφα ασφαλείας</string>
-    <string name="source_not_found">"Δεν βρέθηκε πηγή "</string>
+    <string name="source_not_found">Δεν βρέθηκε πηγή</string>
     <string name="backup_created">Δημιουργήθηκε αντίγραφο ασφαλείας</string>
     <string name="restore_completed">Η επαναφορά ολοκληρώθηκε</string>
     <string name="backup_restore_content">Η επαναφορά χρησιμοποιεί τις πηγές για τη λήψη δεδομένων, ενδέχεται να ισχύουν χρεώσεις φορέα.
@@ -223,7 +220,7 @@
     <string name="cookies_cleared">Τα cookies διαγράφηκαν</string>
     <string name="choices_reset">Οι επιλογές διαλόγου επαναφέρθηκαν</string>
     <string name="pref_clear_database">Καθαρισμός βάσης δεδομένων</string>
-    <string name="pref_clear_database_summary">Διαγραφή manga και κεφαλαίων που δεν περιλαμβάνονται στη βιβλιοθήκη σας</string>
+    <string name="pref_clear_database_summary">Διαγραφή ιστορικού για manga που δεν είναι αποθηκευμένα στη βιβλιοθήκη σας</string>
     <string name="clear_database_confirmation">Είστε σίγουροι; Τα διαβασμένα κεφάλαια και η πρόοδος των manga εκτός βιβλιοθήκης θα χαθεί</string>
     <string name="clear_database_completed">Οι καταχωρίσεις διαγράφηκαν</string>
     <string name="pref_refresh_library_tracking">Ανανέωση παρακολούθησης</string>
@@ -266,8 +263,6 @@
     <string name="manga_info_full_title_label">Τίτλος</string>
     <string name="manga_added_library">Προστέθηκε στη βιβλιοθήκη</string>
     <string name="manga_removed_library">Αφαιρέθηκε από τη βιβλιοθήκη</string>
-    <string name="manga_info_author_label">Συγγραφέας</string>
-    <string name="manga_info_artist_label">Καλλιτέχνης</string>
     <string name="manga_info_chapters_label">Κεφάλαια</string>
     <string name="manga_info_status_label">Κατάσταση</string>
     <string name="manga_info_source_label">Πηγή</string>
@@ -345,7 +340,6 @@
     <string name="transition_pages_error">Η φόρτωση σελίδων απέτυχε: %1$s</string>
     <string name="migration_info">Πατήστε για να επιλέξετε την πηγή από την οποία θα μεταφέρετε</string>
     <string name="migration_dialog_what_to_include">Επιλέξτε τα δεδομένα που θέλετε να συμπεριλάβετε</string>
-    <string name="select">Επιλογή</string>
     <string name="migrate">Μεταφορά</string>
     <string name="copy">Αντιγραφή</string>
     <string name="download_queue_error">Δεν ήταν δυνατή η λήψη κεφαλαίων. Μπορείτε να δοκιμάσετε ξανά στο τμήμα λήψεων</string>
@@ -503,14 +497,14 @@
     <string name="theme_dark_amoled">AMOLED μαύρο</string>
     <string name="theme_dark_blue">Σκούρο μπλε</string>
     <string name="theme_dark_default">Προεπιλογή</string>
-    <string name="pref_theme_dark">Παραλλαγή σκοτεινού θέματος</string>
+    <string name="pref_theme_dark">Σκοτεινό θέμα</string>
     <string name="theme_light_blue">Γαλάζιο</string>
     <string name="theme_light_default">Προεπιλογή</string>
-    <string name="pref_theme_light">Παραλλαγή φωτεινού θέματος</string>
+    <string name="pref_theme_light">Φωτεινό θέμα</string>
     <string name="theme_system">Ακολουθήστε το σύστημα</string>
-    <string name="theme_dark">Σκοτεινό</string>
-    <string name="theme_light">Φωτεινό</string>
-    <string name="pref_theme_mode">Θέμα εφαρμογής</string>
+    <string name="theme_dark">Ενεργοποιημένο</string>
+    <string name="theme_light">Απενεργοποιημένο</string>
+    <string name="pref_theme_mode">Σκοτεινή λειτουργία</string>
     <string name="action_move_to_bottom">Μετακίνηση στον πάτο</string>
     <string name="action_move_to_top">Μετακίνηση στην κορυφή</string>
     <string name="action_cancel_all">Ακύρωση όλων</string>
@@ -564,4 +558,27 @@
     </plurals>
     <string name="unofficial_extension_message">Αυτή η επέκταση δεν προέρχεται από την επίσημη λίστα επεκτάσεων Tachiyomi.</string>
     <string name="ext_unofficial">Ανεπίσημη</string>
+    <string name="sort_by_upload_date">Από ημερομηνία μεταφόρτωσης</string>
+    <string name="label_data">Δεδομένα</string>
+    <string name="backup_restore_missing_sources">Πηγές που λείπουν:</string>
+    <string name="invalid_backup_file_missing_manga">Το αντίγραφο ασφαλείας δεν περιέχει manga.</string>
+    <string name="invalid_backup_file_missing_data">Λείπουν δεδομένα από το αρχείο.</string>
+    <string name="invalid_backup_file">Μη έγκυρο αρχείο αντιγράφου ασφαλείας</string>
+    <string name="tracker_not_logged_in">Δεν έχετε συνδεθεί: %1$s</string>
+    <string name="source_not_found_name">Η πηγή δεν βρέθηκε: %1$s</string>
+    <string name="pref_library_update_error_notification">Εμφάνιση ειδοποιήσεων για σφάλματα ενημέρωσης</string>
+    <string name="pref_library_update_refresh_metadata_summary">Έλεγχος για νέο εξώφυλλο και λεπτομέρειες κατά την ενημέρωση της βιβλιοθήκης</string>
+    <string name="pref_library_update_refresh_metadata">Αυτόματη ανανέωση μεταδεδομένων</string>
+    <string name="action_migrate">Μεταφορά</string>
+    <string name="action_display_comfortable_grid">Άνετο πλέγμα</string>
+    <string name="tabs_header">Καρτέλες</string>
+    <string name="badges_header">Σήματα</string>
+    <string name="action_display_show_tabs">Εμφάνιση καρτελών κατηγοριών</string>
+    <string name="page_list_empty_error">Δεν βρέθηκαν σελίδες</string>
+    <string name="action_disable_all">Απενεργοποίηση όλων</string>
+    <string name="action_enable_all">Ενεργοποίηση όλων</string>
+    <string name="enabled">Ενεργοποιημένο</string>
+    <string name="pref_show_reading_mode_summary">Σύντομη εμφάνιση της τρέχουσας κατάστασης λειτουργίας κατά το άνοιγμα του προγράμματος ανάγνωσης</string>
+    <string name="pref_show_reading_mode">Εμφάνιση λειτουργίας ανάγνωσης</string>
+    <string name="action_start">Έναρξη</string>
 </resources>
