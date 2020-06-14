@@ -542,5 +542,5 @@
     <string name="ext_preferences">პარამეტრები</string>
     <string name="filter_mode_overlay">გადაფარება</string>
     <string name="description_backdrop">მანგის ფონური ილუსტრაცია</string>
-    <string name="information_cloudflare_bypass_failure">"ვერ მოხერხდა CloudFlare-ს "</string>
+    <string name="information_cloudflare_bypass_failure">ვერ მოხერხდა CloudFlare-ს შემოვლა</string>
 </resources>
