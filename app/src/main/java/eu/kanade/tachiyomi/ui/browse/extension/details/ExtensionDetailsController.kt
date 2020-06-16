@@ -114,17 +114,14 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         preferenceScreen = screen
 
         val isMultiSource = extension.sources.size > 1
+        val isMultiLangSingleSource = isMultiSource && extension.sources.map { it.name }.distinct().size == 1
 
         with(screen) {
             extension.sources
                 .groupBy { (it as CatalogueSource).lang }
                 .toSortedMap(compareBy { LocaleHelper.getSourceDisplayName(it, context) })
                 .forEach {
-                    preferenceCategory {
-                        if (isMultiSource) {
-                            title = LocaleHelper.getSourceDisplayName(it.key, context)
-                        }
-
+                    val preferenceBlock = {
                         it.value
                             .sortedWith(compareBy({ !it.isEnabled() }, { it.name }))
                             .forEach { source ->
@@ -132,10 +129,9 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
 
                                 val block: (@DSL SwitchPreferenceCompat).() -> Unit = {
                                     key = getSourceKey(source.id)
-                                    title = if (isMultiSource) {
-                                        source.toString()
-                                    } else {
-                                        context.getString(R.string.enabled)
+                                    title = when {
+                                        isMultiSource && !isMultiLangSingleSource -> source.toString()
+                                        else -> LocaleHelper.getSourceDisplayName(it.key, context)
                                     }
                                     isPersistent = false
                                     isChecked = source.isEnabled()
@@ -170,6 +166,16 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                                     switchPreference(block)
                                 }
                             }
+                    }
+
+                    if (isMultiSource && !isMultiLangSingleSource) {
+                        preferenceCategory {
+                            title = LocaleHelper.getSourceDisplayName(it.key, context)
+
+                            preferenceBlock()
+                        }
+                    } else {
+                        preferenceBlock()
                     }
                 }
         }
