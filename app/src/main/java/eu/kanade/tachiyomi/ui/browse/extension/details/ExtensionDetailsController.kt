@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.browse.extension
+package eu.kanade.tachiyomi.ui.browse.extension.details
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -30,6 +30,7 @@ import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
+import eu.kanade.tachiyomi.ui.browse.extension.getApplicationIcon
 import eu.kanade.tachiyomi.util.preference.DSL
 import eu.kanade.tachiyomi.util.preference.onChange
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
@@ -160,7 +161,9 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                                     switchSettingsPreference {
                                         block()
                                         onSettingsClick = View.OnClickListener {
-                                            router.pushController(SourcePreferencesController(source.id).withFadeTransaction())
+                                            router.pushController(
+                                                SourcePreferencesController(source.id).withFadeTransaction()
+                                            )
                                         }
                                     }
                                 } else {

@@ -1,4 +1,4 @@
-package eu.kanade.tachiyomi.ui.browse.extension
+package eu.kanade.tachiyomi.ui.browse.extension.details
 
 import android.annotation.SuppressLint
 import android.content.Context
