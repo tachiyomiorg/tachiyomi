@@ -1,116 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/extension_warning_banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:background="?attr/colorError"
         android:gravity="center"
         android:padding="16dp"
         android:textColor="?attr/colorOnError"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
-    <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:elevation="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/extension_prefs_recycler"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/extension_warning_banner" />
+        android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/extension_icon"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="16dp"
-        android:elevation="3dp"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="@id/extension_pkg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/extension_warning_banner" />
+        <ImageView
+            android:id="@+id/extension_icon"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="@id/extension_pkg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/extension_title"
-        style="@style/TextAppearance.Regular.SubHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:elevation="3dp"
-        app:layout_constraintStart_toEndOf="@id/extension_icon"
-        app:layout_constraintTop_toBottomOf="@id/extension_warning_banner"
-        tools:text="Tachiyomi: Extension" />
+        <TextView
+            android:id="@+id/extension_title"
+            style="@style/TextAppearance.Regular.SubHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:elevation="3dp"
+            app:layout_constraintStart_toEndOf="@id/extension_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Tachiyomi: Extension" />
 
-    <TextView
-        android:id="@+id/extension_version"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:elevation="3dp"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="@id/extension_title"
-        app:layout_constraintTop_toBottomOf="@id/extension_title"
-        tools:text="Version: 1.0.0" />
+        <TextView
+            android:id="@+id/extension_version"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:elevation="3dp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/extension_title"
+            app:layout_constraintTop_toBottomOf="@id/extension_title"
+            tools:text="Version: 1.0.0" />
 
-    <TextView
-        android:id="@+id/extension_lang"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:elevation="3dp"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="@id/extension_title"
-        app:layout_constraintTop_toBottomOf="@id/extension_version"
-        tools:text="Language: English" />
+        <TextView
+            android:id="@+id/extension_lang"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:elevation="3dp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/extension_title"
+            app:layout_constraintTop_toBottomOf="@id/extension_version"
+            tools:text="Language: English" />
 
-    <TextView
-        android:id="@+id/extension_pkg"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:elevation="3dp"
-        android:ellipsize="middle"
-        android:singleLine="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/extension_title"
-        app:layout_constraintTop_toBottomOf="@id/extension_lang"
-        tools:text="eu.kanade.tachiyomi.extension.en.myext" />
+        <TextView
+            android:id="@+id/extension_pkg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="3dp"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/extension_title"
+            app:layout_constraintTop_toBottomOf="@id/extension_lang"
+            tools:text="eu.kanade.tachiyomi.extension.en.myext" />
 
-    <Button
-        android:id="@+id/extension_uninstall_button"
-        style="@style/Theme.Widget.Button.FilledAccent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:paddingStart="32dp"
-        android:paddingEnd="32dp"
-        android:text="@string/ext_uninstall"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/extension_lang" />
+        <Button
+            android:id="@+id/extension_uninstall_button"
+            style="@style/Theme.Widget.Button.FilledAccent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
+            android:text="@string/ext_uninstall"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/extension_lang" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/extension_prefs_recycler"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/extension_uninstall_button" />
+        android:layout_weight="1" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
