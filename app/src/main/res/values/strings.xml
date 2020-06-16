@@ -522,7 +522,6 @@
     <string name="track_type">Type</string>
     <string name="track_author">Author</string>
     <string name="error_invalid_date_supplied">Invalid date supplied</string>
-    <string name="url_not_set">Manga URL not set, please click title and select manga again</string>
 
     <!-- Category activity -->
     <string name="error_category_exists">A category with this name already exists!</string>
@@ -633,7 +632,6 @@
     </plurals>
 
     <!--Content Description-->
-    <string name="description_backdrop">Backdrop image of manga</string>
     <string name="description_cover">Cover of manga</string>
 
     <!-- Information Text -->
