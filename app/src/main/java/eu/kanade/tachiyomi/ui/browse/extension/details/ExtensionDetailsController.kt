@@ -19,6 +19,7 @@ import androidx.preference.SwitchPreferenceCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.MergeAdapter
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.preference.EmptyPreferenceDataStore
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -31,17 +32,14 @@ import eu.kanade.tachiyomi.source.getPreferenceKey
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
-import eu.kanade.tachiyomi.ui.browse.extension.getApplicationIcon
 import eu.kanade.tachiyomi.util.preference.DSL
 import eu.kanade.tachiyomi.util.preference.onChange
 import eu.kanade.tachiyomi.util.preference.preferenceCategory
 import eu.kanade.tachiyomi.util.preference.switchPreference
 import eu.kanade.tachiyomi.util.preference.switchSettingsPreference
 import eu.kanade.tachiyomi.util.system.LocaleHelper
-import eu.kanade.tachiyomi.util.view.visible
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import reactivecircus.flowbinding.android.view.clicks
 import uy.kohesive.injekt.injectLazy
 
 @SuppressLint("RestrictedApi")
@@ -84,30 +82,15 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
         val extension = presenter.extension ?: return
         val context = view.context
 
-        extension.getApplicationIcon(context)?.let { binding.extensionIcon.setImageDrawable(it) }
-        binding.extensionTitle.text = extension.name
-        binding.extensionVersion.text = context.getString(R.string.ext_version_info, extension.versionName)
-        binding.extensionLang.text = context.getString(R.string.ext_language_info, LocaleHelper.getSourceDisplayName(extension.lang, context))
-        binding.extensionPkg.text = extension.pkgName
-
-        binding.extensionUninstallButton.clicks()
-            .onEach { presenter.uninstallExtension() }
-            .launchIn(scope)
-
-        if (extension.isObsolete) {
-            binding.extensionWarningBanner.visible()
-            binding.extensionWarningBanner.setText(R.string.obsolete_extension_message)
-        }
-
-        if (extension.isUnofficial) {
-            binding.extensionWarningBanner.visible()
-            binding.extensionWarningBanner.setText(R.string.unofficial_extension_message)
-        }
-
-        initPreferences(context, extension)
+        binding.extensionPrefsRecycler.layoutManager = LinearLayoutManager(context)
+        binding.extensionPrefsRecycler.adapter = MergeAdapter(
+            ExtensionDetailsHeaderAdapter(presenter),
+            initPreferencesAdapter(context, extension)
+        )
+        binding.extensionPrefsRecycler.addItemDecoration(DividerItemDecoration(context, VERTICAL))
     }
 
-    private fun initPreferences(context: Context, extension: Extension.Installed) {
+    private fun initPreferencesAdapter(context: Context, extension: Extension.Installed): PreferenceGroupAdapter {
         val themedContext = getPreferenceThemeContext()
         val manager = PreferenceManager(themedContext)
         manager.preferenceDataStore = EmptyPreferenceDataStore()
@@ -181,9 +164,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                 }
         }
 
-        binding.extensionPrefsRecycler.layoutManager = LinearLayoutManager(context)
-        binding.extensionPrefsRecycler.adapter = PreferenceGroupAdapter(screen)
-        binding.extensionPrefsRecycler.addItemDecoration(DividerItemDecoration(context, VERTICAL))
+        return PreferenceGroupAdapter(screen)
     }
 
     override fun onDestroyView(view: View) {
