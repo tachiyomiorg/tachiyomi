@@ -78,17 +78,17 @@ class SourceFilterController : SettingsController() {
      * @param group the language category.
      */
     private fun addLanguageSources(group: PreferenceGroup, sources: List<HttpSource>) {
-        val hiddenCatalogues = preferences.hiddenCatalogues().get()
+        val disabledSourceIds = preferences.disabledSources().get()
 
         sources
-            .sortedBy { it.id.toString() in hiddenCatalogues }
+            .sortedBy { it.id.toString() in disabledSourceIds }
             .map { source ->
                 CheckBoxPreference(group.context).apply {
                     val id = source.id.toString()
                     title = source.name
                     key = source.getPreferenceKey()
                     isPersistent = false
-                    isChecked = id !in hiddenCatalogues
+                    isChecked = id !in disabledSourceIds
 
                     val sourceIcon = source.icon()
                     if (sourceIcon != null) {
@@ -97,9 +97,9 @@ class SourceFilterController : SettingsController() {
 
                     onChange { newValue ->
                         val checked = newValue as Boolean
-                        val current = preferences.hiddenCatalogues().get()
+                        val current = preferences.disabledSources().get()
 
-                        preferences.hiddenCatalogues().set(
+                        preferences.disabledSources().set(
                             if (checked) {
                                 current - id
                             } else {

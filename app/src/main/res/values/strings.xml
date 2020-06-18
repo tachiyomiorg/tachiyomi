@@ -90,7 +90,7 @@
     <string name="action_display_download_badge">Download badges</string>
     <string name="action_display_unread_badge">Unread badges</string>
     <string name="action_display_show_tabs">Show category tabs</string>
-    <string name="action_hide">Hide</string>
+    <string name="action_disable">Disable</string>
     <string name="action_pin">Pin</string>
     <string name="action_unpin">Unpin</string>
     <string name="action_cancel">Cancel</string>

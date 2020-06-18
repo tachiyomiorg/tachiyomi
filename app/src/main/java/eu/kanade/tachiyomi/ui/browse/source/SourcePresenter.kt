@@ -58,7 +58,7 @@ class SourcePresenter(
         sourceSubscription?.unsubscribe()
 
         val pinnedSources = mutableListOf<SourceItem>()
-        val pinnedCatalogues = preferences.pinnedCatalogues().get()
+        val pinnedSourceIds = preferences.pinnedSources().get()
 
         val map = TreeMap<String, MutableList<CatalogueSource>> { d1, d2 ->
             // Catalogues without a lang defined will be placed at the end
@@ -72,7 +72,7 @@ class SourcePresenter(
         var sourceItems = byLang.flatMap {
             val langItem = LangItem(it.key)
             it.value.map { source ->
-                if (source.id.toString() in pinnedCatalogues) {
+                if (source.id.toString() in pinnedSourceIds) {
                     pinnedSources.add(SourceItem(source, LangItem(PINNED_KEY)))
                 }
 
@@ -90,10 +90,10 @@ class SourcePresenter(
 
     private fun loadLastUsedSource() {
         // Immediate initial load
-        preferences.lastUsedCatalogueSource().get().let { updateLastUsedSource(it) }
+        preferences.lastUsedSource().get().let { updateLastUsedSource(it) }
 
         // Subsequent updates
-        preferences.lastUsedCatalogueSource().asFlow()
+        preferences.lastUsedSource().asFlow()
             .drop(1)
             .onStart { delay(500) }
             .distinctUntilChanged()
@@ -119,11 +119,11 @@ class SourcePresenter(
      */
     private fun getEnabledSources(): List<CatalogueSource> {
         val languages = preferences.enabledLanguages().get()
-        val hiddenCatalogues = preferences.hiddenCatalogues().get()
+        val disabledSourceIds = preferences.disabledSources().get()
 
         return sourceManager.getCatalogueSources()
             .filter { it.lang in languages }
-            .filterNot { it.id.toString() in hiddenCatalogues }
+            .filterNot { it.id.toString() in disabledSourceIds }
             .sortedBy { "(${it.lang}) ${it.name}" } +
             sourceManager.get(LocalSource.ID) as LocalSource
     }
