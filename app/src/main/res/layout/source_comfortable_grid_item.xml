@@ -41,14 +41,29 @@
                     style="@style/TextAppearance.Regular.Caption"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/md_teal_500"
+                    android:background="@color/pale_green"
                     android:paddingStart="3dp"
                     android:paddingTop="1dp"
                     android:paddingEnd="3dp"
                     android:paddingBottom="1dp"
                     android:text="@string/local_source_badge"
-                    android:textColor="@color/md_white_1000"
+                    android:textColor="@color/md_black_1000"
                     android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/download_text"
+                    style="@style/TextAppearance.Regular.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/pale_green"
+                    android:paddingStart="3dp"
+                    android:paddingTop="1dp"
+                    android:paddingEnd="3dp"
+                    android:paddingBottom="1dp"
+                    android:textColor="@color/md_black_1000"
+                    android:visibility="gone"
+                    tools:text="120"
                     tools:visibility="visible" />
 
                 <TextView
@@ -57,21 +72,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/colorAccentDark"
-                    android:paddingStart="3dp"
-                    android:paddingTop="1dp"
-                    android:paddingEnd="3dp"
-                    android:paddingBottom="1dp"
-                    android:textColor="@color/md_white_1000"
-                    android:visibility="gone"
-                    tools:text="120"
-                    tools:visibility="visible" />
-
-                <TextView
-                    android:id="@+id/download_text"
-                    style="@style/TextAppearance.Regular.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/md_red_500"
                     android:paddingStart="3dp"
                     android:paddingTop="1dp"
                     android:paddingEnd="3dp"
