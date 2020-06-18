@@ -27,6 +27,7 @@ import eu.kanade.tachiyomi.extension.model.Extension
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.ConfigurableSource
 import eu.kanade.tachiyomi.source.Source
+import eu.kanade.tachiyomi.source.getPreferenceKey
 import eu.kanade.tachiyomi.ui.base.controller.NoToolbarElevationController
 import eu.kanade.tachiyomi.ui.base.controller.NucleusController
 import eu.kanade.tachiyomi.ui.base.controller.withFadeTransaction
@@ -128,7 +129,7 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
                                 val sourcePrefs = mutableListOf<Preference>()
 
                                 val block: (@DSL SwitchPreferenceCompat).() -> Unit = {
-                                    key = getSourceKey(source.id)
+                                    key = source.getPreferenceKey()
                                     title = when {
                                         isMultiSource && !isMultiLangSingleSource -> source.toString()
                                         else -> LocaleHelper.getSourceDisplayName(it.key, context)
@@ -224,10 +225,6 @@ class ExtensionDetailsController(bundle: Bundle? = null) :
 
     private fun Source.isEnabled(): Boolean {
         return id.toString() !in preferences.hiddenCatalogues().get()
-    }
-
-    private fun getSourceKey(sourceId: Long): String {
-        return "source_$sourceId"
     }
 
     private fun getPreferenceThemeContext(): Context {

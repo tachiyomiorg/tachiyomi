@@ -1,12 +1,17 @@
 package eu.kanade.tachiyomi.ui.browse.source
 
 import android.graphics.drawable.Drawable
+import androidx.preference.CheckBoxPreference
+import androidx.preference.PreferenceGroup
 import androidx.preference.PreferenceScreen
 import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.source.SourceManager
+import eu.kanade.tachiyomi.source.getPreferenceKey
+import eu.kanade.tachiyomi.source.icon
+import eu.kanade.tachiyomi.source.online.HttpSource
 import eu.kanade.tachiyomi.ui.setting.SettingsController
 import eu.kanade.tachiyomi.util.preference.onChange
-import eu.kanade.tachiyomi.util.preference.switchPreference
+import eu.kanade.tachiyomi.util.preference.switchPreferenceCategory
 import eu.kanade.tachiyomi.util.preference.titleRes
 import eu.kanade.tachiyomi.util.system.LocaleHelper
 import java.util.TreeMap
@@ -27,25 +32,36 @@ class SourceFilterController : SettingsController() {
         val sourcesByLang = onlineSources.groupByTo(TreeMap(), { it.lang })
 
         // Order first by active languages, then inactive ones
-        val orderedLangs = sourcesByLang.keys.sortedWith(compareBy({ it !in activeLangsCodes }, { LocaleHelper.getSourceDisplayName(it, context) }))
+        val orderedLangs = sourcesByLang.keys.sortedWith(
+            compareBy(
+                { it !in activeLangsCodes },
+                { LocaleHelper.getSourceDisplayName(it, context) }
+            )
+        )
 
         orderedLangs.forEach { lang ->
-            switchPreference {
+            val sources = sourcesByLang[lang].orEmpty().sortedBy { it.name }
+
+            // Create a preference group and set initial state and change listener
+            switchPreferenceCategory {
                 preferenceScreen.addPreference(this)
                 title = LocaleHelper.getSourceDisplayName(lang, context)
                 isPersistent = false
-                isChecked = lang in activeLangsCodes
+                if (lang in activeLangsCodes) {
+                    setChecked(true)
+                    addLanguageSources(this, sources)
+                }
 
                 onChange { newValue ->
                     val checked = newValue as Boolean
                     val current = preferences.enabledLanguages().get()
-                    preferences.enabledLanguages().set(
-                        if (!checked) {
-                            current - lang
-                        } else {
-                            current + lang
-                        }
-                    )
+                    if (!checked) {
+                        preferences.enabledLanguages().set(current - lang)
+                        removeAll()
+                    } else {
+                        preferences.enabledLanguages().set(current + lang)
+                        addLanguageSources(this, sources)
+                    }
                     true
                 }
             }
@@ -54,5 +70,47 @@ class SourceFilterController : SettingsController() {
 
     override fun setDivider(divider: Drawable?) {
         super.setDivider(null)
+    }
+
+    /**
+     * Adds the source list for the given group (language).
+     *
+     * @param group the language category.
+     */
+    private fun addLanguageSources(group: PreferenceGroup, sources: List<HttpSource>) {
+        val hiddenCatalogues = preferences.hiddenCatalogues().get()
+
+        sources
+            .sortedBy { it.id.toString() in hiddenCatalogues }
+            .map { source ->
+                CheckBoxPreference(group.context).apply {
+                    val id = source.id.toString()
+                    title = source.name
+                    key = source.getPreferenceKey()
+                    isPersistent = false
+                    isChecked = id !in hiddenCatalogues
+
+                    val sourceIcon = source.icon()
+                    if (sourceIcon != null) {
+                        icon = sourceIcon
+                    }
+
+                    onChange { newValue ->
+                        val checked = newValue as Boolean
+                        val current = preferences.hiddenCatalogues().get()
+
+                        preferences.hiddenCatalogues().set(
+                            if (checked) {
+                                current - id
+                            } else {
+                                current + id
+                            }
+                        )
+
+                        true
+                    }
+                }
+            }
+            .forEach { group.addPreference(it) }
     }
 }
