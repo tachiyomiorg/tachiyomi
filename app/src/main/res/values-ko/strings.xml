@@ -270,7 +270,7 @@
     <string name="transition_current">현재:</string>
     <string name="transition_next">다음:</string>
     <string name="transition_previous">이전:</string>
-    <string name="transition_no_next">다움 챕터가 없습니다</string>
+    <string name="transition_no_next">다음 챕터가 없습니다</string>
     <string name="transition_no_previous">이전 챕터가 없습니다</string>
     <string name="transition_pages_loading">페이지 로딩중…</string>
     <string name="transition_pages_error">페이지 로딩 실패: %1$s</string>
