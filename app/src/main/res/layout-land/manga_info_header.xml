@@ -17,7 +17,8 @@
         app:layout_constraintDimensionRatio="h,3:2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:src="@mipmap/ic_launcher" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/info_scrollview"
@@ -38,7 +39,7 @@
                 style="@style/TextAppearance.Medium.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:text="@string/manga_info_full_title_label"
                 android:textIsSelectable="false"
                 app:autoSizeMaxTextSize="20sp"
@@ -163,7 +164,8 @@
                 app:layout_constraintBottom_toTopOf="@id/manga_genres_tags_wrapper"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/manga_summary_label" />
+                app:layout_constraintTop_toBottomOf="@id/manga_summary_label"
+                tools:text="Summary" />
 
             <FrameLayout
                 android:id="@+id/manga_genres_tags_wrapper"

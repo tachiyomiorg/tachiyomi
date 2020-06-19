@@ -12,7 +12,7 @@ import eu.kanade.tachiyomi.R
 import eu.kanade.tachiyomi.data.database.models.Manga
 import eu.kanade.tachiyomi.data.glide.GlideApp
 import eu.kanade.tachiyomi.data.glide.toMangaThumbnail
-import eu.kanade.tachiyomi.databinding.MangaInfoControllerBinding
+import eu.kanade.tachiyomi.databinding.MangaInfoHeaderBinding
 import eu.kanade.tachiyomi.source.Source
 import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.source.model.SManga
@@ -42,12 +42,12 @@ class MangaInfoHeaderAdapter(
     private var source: Source? = null
 
     private val scope = CoroutineScope(Job() + Dispatchers.Main)
-    private lateinit var binding: MangaInfoControllerBinding
+    private lateinit var binding: MangaInfoHeaderBinding
 
     private var initialLoad: Boolean = true
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeaderViewHolder {
-        binding = MangaInfoControllerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding = MangaInfoHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HeaderViewHolder(binding.root)
     }
 
