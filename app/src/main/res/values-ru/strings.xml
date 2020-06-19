@@ -83,7 +83,6 @@
     <string name="default_columns">По умолчанию</string>
     <string name="default_viewer">По умолчанию</string>
     <string name="description">Описание</string>
-    <string name="description_backdrop">Фоновое изображение манги</string>
     <string name="description_cover">Обложка манги</string>
     <string name="dialog_with_checkbox_remove_description">Это действие удалит дату прочтения главы. Вы уверены?</string>
     <string name="dialog_with_checkbox_reset">Сбросить все главы для этой манги</string>
@@ -112,7 +111,7 @@
     <string name="file_select_cover">Выбрать обложку</string>
     <string name="file_select_icon">Выбрать ярлык</string>
     <string name="fourth_to_last">Четвёртая от прочитанной главы</string>
-    <string name="information_empty_library">Ваша библиотека пуста, добавьте тайтлы в библиотеку из Поиска.</string>
+    <string name="information_empty_library">Ваша библиотека пуста. Добавьте тайтлы в библиотеку из Поиска.</string>
     <string name="information_no_downloads">Нет загрузок</string>
     <string name="information_no_recent">Нет новых обновлений</string>
     <string name="information_no_recent_manga">Нет ничего прочитаного за последнее время</string>
@@ -137,10 +136,6 @@
     <string name="manga_chapters_tab">Главы</string>
     <string name="manga_detail_tab">Информация</string>
     <string name="manga_download">Загрузить</string>
-    <string name="manga_info_chapters_label">Главы</string>
-    <string name="manga_info_genres_label">Жанры</string>
-    <string name="manga_info_status_label">Статус</string>
-    <string name="manga_info_source_label">Источник</string>
     <string name="manga_not_in_db">Эта манга удалена из базы данных.</string>
     <string name="manga_tracking_tab">Отслеживать</string>
     <string name="name">Название</string>
@@ -372,7 +367,6 @@
     <string name="track_start_date">Начато</string>
     <string name="track_type">Тип</string>
     <string name="track_author">Автор</string>
-    <string name="url_not_set">Ссылка манги не установлена, пожалуйста нажмите на заголовок и выберите мангу снова</string>
     <string name="transition_finished">Закончено:</string>
     <string name="transition_current">Текущий:</string>
     <string name="transition_next">Следующий:</string>
@@ -487,7 +481,6 @@
     <string name="action_move_to_top">В начало</string>
     <string name="action_move_to_bottom">В конец</string>
     <string name="action_reorganize_by">Переупорядочить</string>
-    <string name="action_hide">Спрятать</string>
     <string name="action_sort_last_checked">Последняя проверенная</string>
     <string name="channel_ext_updates">Обновления расширений</string>
     <string name="unlock_app">Разблокировать Tachiyomi</string>
@@ -523,8 +516,6 @@
     <string name="error_invalid_date_supplied">Неправильная указанная дата</string>
     <string name="track_finished_reading_date">Дата окончания прочтения</string>
     <string name="track_started_reading_date">Дата начала прочтения</string>
-    <string name="manga_info_latest_data_label">Обновлено</string>
-    <string name="manga_info_last_chapter_label">Последняя глава</string>
     <string name="local_source_help_guide">Локальное руководство источника</string>
     <string name="last_used_source">Последний использованный</string>
     <string name="downloaded_only_summary">Фильтровать всю мангу в вашей библиотеке</string>
@@ -593,5 +584,6 @@
     <string name="action_disable_all">Выключить всё</string>
     <string name="pref_show_reading_mode_summary">Кратко отобразить текущий режим когда читалка открыта</string>
     <string name="pref_show_reading_mode">Показать режим чтения</string>
-    <string name="enabled">Включено</string>
+    <string name="action_start">Начать</string>
+    <string name="loader_not_implemented_error">Источник не найден</string>
 </resources>

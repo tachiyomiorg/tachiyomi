@@ -187,7 +187,7 @@
     <string name="creating_backup">बैकअप बनाना</string>
     <string name="pref_clear_chapter_cache">अध्याय कैश साफ़ करें</string>
     <string name="used_cache">उपयोग किया गया: %1$s</string>
-    <string name="cache_deleted">"कैश साफ़ किया गया  %1$d फ़ाइलों को हटा दिया गया है"</string>
+    <string name="cache_deleted">कैश साफ़ किया गया %1$d फ़ाइलों को हटा दिया गया है</string>
     <string name="cache_delete_error">कैश साफ़ करने के दौरान एक त्रुटि हुई</string>
     <string name="pref_clear_cookies">कुकीज़ को साफ़ करें</string>
     <string name="cookies_cleared">कुकीज़ को साफ़ किया हुआ</string>
@@ -233,10 +233,6 @@
     <string name="unknown">अज्ञात</string>
     <string name="licensed">लाइसेंस प्राप्त</string>
     <string name="remove_from_library">लाइब्रेरी से निकालें</string>
-    <string name="manga_info_chapters_label">अध्याय</string>
-    <string name="manga_info_status_label">स्थिति</string>
-    <string name="manga_info_source_label">स्रोत</string>
-    <string name="manga_info_genres_label">शैलियां</string>
     <string name="delete_downloads_for_manga">डाउनलोड किए गए अध्याय हटाएं?</string>
     <string name="manga_chapters_tab">अध्याय</string>
     <string name="manga_chapter_no_title">कोई शीर्षक नहीं</string>
@@ -310,12 +306,11 @@
     <string name="update_check_notification_download_complete">डाउनलोड सम्पन्न हुआ</string>
     <string name="update_check_notification_download_error">डाउनलोड त्रुटि</string>
     <string name="update_check_notification_update_available">नया संस्करण उपलब्ध है!</string>
-    <string name="description_backdrop">मैंगा की पृष्ठभूमि छवि</string>
     <string name="description_cover">मंगा का आवरण</string>
     <string name="information_no_downloads">कोई डाउनलोड नहीं है</string>
     <string name="information_no_recent">कोई हालिया अपडेट नहीं</string>
     <string name="information_no_recent_manga">हाल ही में कुछ भी नहीं पढ़ा</string>
-    <string name="information_empty_library">आपका पुस्तकालय खाली है, स्रोतों से अपने पुस्तकालय में श्रृंखला जोड़ें।</string>
+    <string name="information_empty_library">आपका पुस्तकालय खाली है़ें। स्रोतों से अपने पुस्तकालय में श्रृंखला जोड़ें।</string>
     <string name="information_empty_category">आपके पास कोई श्रेणियां नहीं हैं अपने पुस्तकालय के आयोजन के लिए एक बनाने के लिए प्लस बटन को दबाएं।</string>
     <string name="download_notifier_downloader_title">डाउनलोडर</string>
     <string name="download_notifier_title_error">त्रुटि</string>
@@ -344,7 +339,9 @@
     <string name="ext_available">उपलब्ध</string>
     <string name="untrusted_extension">अविश्वस्त एक्सटेंशन</string>
     <string name="untrusted_extension_message">यह एक्सटेंशन एक अविश्वस्त प्रमाणपत्र के साथ हस्ताक्षरित हुआ था और सक्रिय नहीं हुआ था। 
+\n
 \nदुर्भावनापूर्ण विस्तार, किसी भी लॉगिन क्रेडेंशियल्स को तचीयोमी में संग्रहीत या मनमाना कोड निष्पादित कर सकता है 
+\n
 \nइस प्रमाणपत्र पर विश्वास करके आप इन जोखिमों को स्वीकार करते हैं।</string>
     <string name="ext_version_info">संस्करण: %1$s</string>
     <string name="ext_language_info">भाषा: %1$s</string>
@@ -370,7 +367,6 @@
     <string name="track_start_date">शुरू कर दिया है</string>
     <string name="track_type">प्रकार</string>
     <string name="track_author">लेखक</string>
-    <string name="url_not_set">मंगा यूआरएल सेट नहीं, कृपया शीर्षक पर क्लिक करें और मंगा का चयन फिर से करें</string>
     <string name="transition_finished">समाप्त:</string>
     <string name="transition_current">प्रचलित:</string>
     <string name="transition_next">अगला:</string>
@@ -452,7 +448,6 @@
         <item quantity="one">अध्याय %1 $ s और 1 अधिक</item>
         <item quantity="other">अध्याय %1 $ s और % 2$ s अधिक</item>
     </plurals>
-    <string name="action_hide">छिपाएं</string>
     <string name="hide_notification_content">अधिसूचना सामग्री छुपाएं</string>
     <string name="notification_check_updates">नए अध्यायों के लिए जांच</string>
     <string name="pref_disable_battery_optimization">बैटरी अनुकूलन को अक्षम करना</string>
@@ -524,8 +519,6 @@
     <string name="check_for_updates">अद्यतन के लिए जाँच</string>
     <string name="local_source_help_guide">स्थानीय स्रोत गाइड</string>
     <string name="restore_duration">%02d मिनट,%02d सेकंड</string>
-    <string name="manga_info_latest_data_label">अद्यतन</string>
-    <string name="manga_info_last_chapter_label">पिछले अध्याय</string>
     <string name="downloaded_only_summary">अपने पुस्तकालय में सभी मंगा फ़िल्टर करे</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 शेष</item>
@@ -575,7 +568,9 @@
     <string name="page_list_empty_error">कोई पृष्ठ नहीं मिला</string>
     <string name="action_disable_all">सभी को अक्षम करें</string>
     <string name="action_enable_all">सभी को सक्षम करें</string>
-    <string name="enabled">सक्षम करें</string>
     <string name="pref_show_reading_mode_summary">पाठक के खुलने पर संक्षेप में वर्तमान मोड दिखाएं</string>
     <string name="pref_show_reading_mode">रीडिंग मोड दिखाएं</string>
+    <string name="loader_not_implemented_error">स्रोत नहीं मिला</string>
+    <string name="action_disable">बंद करें</string>
+    <string name="action_start">प्रारंभ</string>
 </resources>

@@ -66,7 +66,6 @@
     <string name="action_display_download_badge">გადმოწერის ნიშნაკი</string>
     <string name="action_display_unread_badge">წაუკითხავების ნიშნაკი</string>
     <string name="action_display_show_tabs">კატეგორიის ჩანართების ჩვენება</string>
-    <string name="action_hide">დამალვა</string>
     <string name="action_cancel">გააუქმე</string>
     <string name="action_cancel_all">გააუქმე ყველა</string>
     <string name="action_sort">დალაგება</string>
@@ -151,7 +150,6 @@
     <string name="all">ყველა</string>
     <string name="all_lang">ყველა</string>
     <string name="pref_library_update_categories">კატეგორიები გლობალურ განახლებაში შესაყვანად</string>
-    <string name="ext_details">დეტალები</string>
     <string name="ext_update">განაცლება</string>
     <string name="ext_install">დაინსტალირება</string>
     <string name="ext_installing">ინსტალირდება</string>
@@ -164,7 +162,6 @@
     <string name="ext_version_info">ვერსია: %1$s</string>
     <string name="ext_language_info">ენა: %1$s</string>
     <string name="pref_fullscreen">მთლიან ეკრანზე</string>
-    <string name="enabled">ჩართული</string>
     <string name="pref_cutout_short">კონტენტის ჩვენება ჩამოჭრილ ადგილზე</string>
     <string name="pref_lock_orientation">ორიენტაციის დაფიქსირება</string>
     <string name="pref_page_transitions">გვერდის გადასვლების ანიმირება</string>
@@ -340,14 +337,6 @@
     <string name="manga_info_full_title_label">სათაური</string>
     <string name="manga_added_library">დამატებულია ბიბლიოთეკაში</string>
     <string name="manga_removed_library">წაშლილია ბიბლიოთეკიდან</string>
-    <string name="manga_info_author_label">ავტორი</string>
-    <string name="manga_info_artist_label">არტისტი</string>
-    <string name="manga_info_chapters_label">თავები</string>
-    <string name="manga_info_last_chapter_label">ბოლო თავი</string>
-    <string name="manga_info_latest_data_label">განახლებული</string>
-    <string name="manga_info_status_label">სტატუსი</string>
-    <string name="manga_info_source_label">წყარო</string>
-    <string name="manga_info_genres_label">ჟანრები</string>
     <string name="manga_info_expand">მეტი ინფორმაციის ჩვენება</string>
     <string name="manga_info_collapse">ნაკლები ინფორმაციის ჩვენება</string>
     <string name="delete_downloads_for_manga">გადმოწერილი თავების წაშლა</string>
@@ -401,7 +390,6 @@
     <string name="track_type">ტიპი</string>
     <string name="track_author">ავტორი</string>
     <string name="error_invalid_date_supplied">არასწორი თარიღი</string>
-    <string name="url_not_set">მანგას URL არ არის დასეტილი, გთხოვთ შეამოწმოთ სათაური და აირჩიეთ მანგა ისევ</string>
     <string name="error_category_exists">კატეგორია მოცემული სახელით უკვე არსებობს!</string>
     <string name="snack_categories_deleted">კატეგორიები წაიშალა</string>
     <string name="dialog_with_checkbox_remove_description">ეს წაშლის ამ თავის წაკითხვის თარიღს. დარწმუნებული ხართ?</string>
@@ -537,10 +525,6 @@
     <string name="backup_restore_content">აღდგენა იყენებს წყაროებს მონაცემების გადმოსაწერად.\\n\\nდარწმუნდი რომ გაქვს დაინსტალირებული ყველა საჭირო დამატება და ხარ დალოგინებული წყაროებში და თვალყურის სადევნებელ სერვისებში ააღდგენამდე.</string>
     <string name="pref_refresh_library_tracking_summary">ანახლებს სტატუსს, შეფასებას და ბოლო თავს წაკითხულს თვალყურის სადევნებელ სერვისებიდან</string>
     <string name="download_notifier_page_ready_error">გვერდი ვერ ჩაიტვირთა</string>
-    <string name="select">ამორჩევა</string>
-    <string name="ext_empty_preferences">ამ გაფართოებას არ აქვს პარამეტრები</string>
-    <string name="ext_preferences">პარამეტრები</string>
     <string name="filter_mode_overlay">გადაფარება</string>
-    <string name="description_backdrop">მანგის ფონური ილუსტრაცია</string>
     <string name="information_cloudflare_bypass_failure">ვერ მოხერხდა CloudFlare-ს შემოვლა</string>
 </resources>

@@ -191,10 +191,6 @@
     <string name="unknown">Sconosciuto</string>
     <string name="licensed">Concesso in licenza</string>
     <string name="remove_from_library">Rimuovi dalla libreria</string>
-    <string name="manga_info_chapters_label">Capitoli</string>
-    <string name="manga_info_status_label">Stato</string>
-    <string name="manga_info_source_label">Fonte</string>
-    <string name="manga_info_genres_label">Generi</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Capitoli</string>
     <string name="manga_chapter_no_title">Senza titolo</string>
@@ -279,7 +275,6 @@
     <string name="update_check_notification_download_error">Errore di download</string>
     <string name="update_check_notification_update_available">Aggiornamento disponibile!</string>
     <!--Content Description-->
-    <string name="description_backdrop">Immagine di sfondo del manga</string>
     <string name="description_cover">Copertina del manga</string>
     <!-- Information Text -->
     <string name="information_no_downloads">Nessun download</string>
@@ -396,7 +391,6 @@
     <string name="track_start_date">Iniziato</string>
     <string name="track_type">Tipo</string>
     <string name="track_author">Autore</string>
-    <string name="url_not_set">L\'URL del manga non è impostato, clicca sul titolo e selezionalo ancora</string>
     <string name="snack_categories_deleted">Categorie rimosse</string>
     <string name="migration_info">Tocca per selezionare la sorgente dalla quale migrare</string>
     <string name="migration_dialog_what_to_include">Seleziona i dati da includere</string>
@@ -477,7 +471,6 @@
     <string name="secure_screen_summary">Nascondi i contenuti dell\'app quando cambi applicazione e blocca gli screenshot</string>
     <string name="pref_category_display">Visualizzazione</string>
     <string name="action_reorganize_by">Riordina</string>
-    <string name="action_hide">Nascondi</string>
     <string name="channel_ext_updates">Aggiornamenti estensione</string>
     <plurals name="update_check_notification_ext_updates">
         <item quantity="one">Aggiornamento estensione disponibile</item>
@@ -559,8 +552,6 @@
     <string name="information_webview_required">È necessaria l\'app WebView per Tachiyomi</string>
     <string name="viewer">Modalità di lettura</string>
     <string name="pref_category_for_this_series">Per questa serie</string>
-    <string name="manga_info_latest_data_label">Aggiornato</string>
-    <string name="manga_info_last_chapter_label">Ultimo capitolo</string>
     <string name="local_source_help_guide">Guida alle fonti locali</string>
     <string name="last_used_source">Ultimo usato</string>
     <plurals name="download_queue_summary">
@@ -610,5 +601,4 @@
     <string name="action_migrate">Trasferire</string>
     <string name="action_disable_all">Disabilita tutto</string>
     <string name="action_enable_all">Abilita tutto</string>
-    <string name="enabled">Abilitato</string>
 </resources>

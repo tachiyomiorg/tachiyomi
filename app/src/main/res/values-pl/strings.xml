@@ -74,8 +74,6 @@
     <string name="pref_category_about">O aplikacji</string>
     <string name="pref_library_columns">Ilość okładek w rzędzie</string>
     <string name="remove_from_library">Usuń z biblioteki</string>
-    <string name="manga_info_source_label">Źródło</string>
-    <string name="manga_info_genres_label">Gatunki</string>
     <string name="manga_chapter_no_title">Brak tytułu</string>
     <string name="display_mode_chapter">Rozdział %1$s</string>
     <string name="chapter_error">Błąd</string>
@@ -277,8 +275,6 @@
     <string name="ongoing">Nieukończone</string>
     <string name="unknown">Nieznane</string>
     <string name="licensed">Licencjonowane</string>
-    <string name="manga_info_chapters_label">Rozdziały</string>
-    <string name="manga_info_status_label">Status</string>
     <string name="delete_downloads_for_manga">Usunąć pobrane rozdziały?</string>
     <string name="manga_chapters_tab">Rozdziały</string>
     <string name="chapter_downloaded">Pobrany</string>
@@ -305,7 +301,6 @@
     <string name="notification_first_add_to_library">Zanim to zrobisz, dodaj tę mangę do biblioteki</string>
     <string name="file_select_backup">Wybierz plik kopii zapasowej</string>
     <string name="file_select_icon">Wybierz ikonę skrótu</string>
-    <string name="description_backdrop">Obrazek tła mangi</string>
     <string name="description_cover">Okładka mangi</string>
     <string name="information_no_downloads">Brak pobieranych rozdziałów</string>
     <string name="information_no_recent">Brak ostatnio zaktualizowanych</string>
@@ -372,7 +367,6 @@
     <string name="track_start_date">Rozpoczęto</string>
     <string name="track_type">Typ</string>
     <string name="track_author">Autor</string>
-    <string name="url_not_set">URL nie jest ustawiony, kliknij tytuł i wybierz mangę jeszcze raz</string>
     <string name="transition_finished">Przeczytany:</string>
     <string name="transition_current">Obecny:</string>
     <string name="transition_next">Następny:</string>
@@ -456,7 +450,6 @@
     <string name="action_newest">Najnowsze</string>
     <string name="action_reorganize_by">Zmień kolejność</string>
     <string name="action_cancel_all">Anuluj wszystko</string>
-    <string name="action_hide">Ukryj</string>
     <string name="action_select_inverse">Odwróć zaznaczenie</string>
     <string name="action_sort_latest_chapter">Ostatni rozdział</string>
     <string name="action_sort_last_checked">Ostatnio sprawdzane</string>
@@ -468,7 +461,6 @@
     <string name="pref_category_for_this_series">Dla tej serii</string>
     <string name="error_invalid_date_supplied">Podano nieprawidłową datę</string>
     <string name="manga_info_collapse">Pokaż mniej informacji</string>
-    <string name="manga_info_last_chapter_label">Ostatni rozdział</string>
     <string name="add_to_library">Dodaj do biblioteki</string>
     <string name="http_error_hint">Sprawdź stronę w WebView</string>
     <string name="email">Adres e-mail</string>
@@ -543,7 +535,6 @@
     <string name="track_finished_reading_date">Data zakończenia czytania</string>
     <string name="track_started_reading_date">Data rozpoczęcia czytania</string>
     <string name="manga_info_about_label">Opis</string>
-    <string name="manga_info_latest_data_label">Zaktualizowano</string>
     <string name="local_source_help_guide">Przeglądarka lokalnych źródeł</string>
     <plurals name="download_queue_summary">
         <item quantity="one">Pozostał %1$s</item>
@@ -594,7 +585,6 @@
     <string name="action_display_show_tabs">Pokaż karty kategorii</string>
     <string name="action_disable_all">Wyłącz wszystkie</string>
     <string name="action_enable_all">Włącz wszystkie</string>
-    <string name="enabled">Włączone</string>
     <string name="pref_show_reading_mode_summary">Po otwarciu aplikacji pokaż aktualny tryb czytania</string>
     <string name="pref_show_reading_mode">Tryb czytania</string>
 </resources>

@@ -223,10 +223,6 @@
     <string name="unknown">Desconhecido</string>
     <string name="licensed">Licenciado</string>
     <string name="remove_from_library">Remover da biblioteca</string>
-    <string name="manga_info_chapters_label">Capítulos</string>
-    <string name="manga_info_status_label">Estado</string>
-    <string name="manga_info_source_label">Fonte</string>
-    <string name="manga_info_genres_label">Gêneros</string>
     <string name="delete_downloads_for_manga">Excluir os capítulos disponíveis offline\?</string>
     <string name="manga_chapters_tab">Capítulos</string>
     <string name="manga_chapter_no_title">Sem título</string>
@@ -300,12 +296,11 @@
     <string name="update_check_notification_download_complete">Download concluído</string>
     <string name="update_check_notification_download_error">Erro ao fazer download</string>
     <string name="update_check_notification_update_available">Nova versão disponível!</string>
-    <string name="description_backdrop">Imagem de fundo do mangá</string>
     <string name="description_cover">Capa do mangá</string>
     <string name="information_no_downloads">Nenhum download</string>
     <string name="information_no_recent">Sem atualizações recentes</string>
     <string name="information_no_recent_manga">Nada lido recentemente</string>
-    <string name="information_empty_library">A sua biblioteca está vazia, adicione séries à sua biblioteca em Navegar.</string>
+    <string name="information_empty_library">A sua biblioteca está vazia. Adicione séries à sua biblioteca em Navegar.</string>
     <string name="download_notifier_downloader_title">Gerenciador de downloads</string>
     <string name="download_notifier_title_error">Erro</string>
     <string name="download_notifier_unknown_error">Não foi possível realizar o download do capítulo devido a um erro inesperado</string>
@@ -372,7 +367,6 @@
     <string name="track_start_date">Começado</string>
     <string name="track_type">Tipo</string>
     <string name="track_author">Autor</string>
-    <string name="url_not_set">URL do mangá não definida, por favor clique no título e selecione o mangá novamente</string>
     <string name="transition_finished">Concluído:</string>
     <string name="transition_current">Atual:</string>
     <string name="transition_next">Próximo:</string>
@@ -454,7 +448,6 @@
         <item quantity="one">Capítulos %1$s e mais 1</item>
         <item quantity="other">Capítulos %1$s e mais %2$d</item>
     </plurals>
-    <string name="action_hide">Ocultar</string>
     <string name="hide_notification_content">Ocultar conteúdo da notificação</string>
     <string name="notification_check_updates">Verificando por novos capítulos</string>
     <string name="pref_disable_battery_optimization">Desativar a otimização de bateria</string>
@@ -496,7 +489,7 @@
     <string name="webtoon_side_padding_15">15%</string>
     <string name="webtoon_side_padding_10">10%</string>
     <string name="webtoon_side_padding_0">Nenhum</string>
-    <string name="pref_webtoon_side_padding">Espaçamento lateral</string>
+    <string name="pref_webtoon_side_padding">Margem lateral</string>
     <string name="pinned_sources">Fixado</string>
     <string name="action_unpin">Desafixar</string>
     <string name="action_pin">Fixar</string>
@@ -526,8 +519,6 @@
     <string name="check_for_updates">Procurar por atualizações</string>
     <string name="local_source_help_guide">Guia sobre a fonte local</string>
     <string name="restore_duration">%02d min e %02d seg</string>
-    <string name="manga_info_last_chapter_label">Capítulo mais recente</string>
-    <string name="manga_info_latest_data_label">Última atualização</string>
     <string name="downloaded_only_summary">Filtra todos os mangás em sua biblioteca</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 restante</item>
@@ -577,8 +568,10 @@
     <string name="page_list_empty_error">Nenhuma página encontrada</string>
     <string name="action_disable_all">Desativar todos</string>
     <string name="action_enable_all">Ativar todos</string>
-    <string name="enabled">Ativado</string>
     <string name="pref_show_reading_mode_summary">Mostra de forma resumida o modo atual quando o leitor for aberto</string>
     <string name="pref_show_reading_mode">Mostrar o modo de leitura</string>
     <string name="action_start">Iniciar</string>
+    <string name="loader_not_implemented_error">Fonte não encontrada</string>
+    <string name="action_disable">Desativar</string>
+    <string name="action_sort_descending">Decrescente</string>
 </resources>

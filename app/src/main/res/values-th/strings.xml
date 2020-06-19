@@ -262,10 +262,6 @@
     <string name="manga_info_full_title_label">ชื่อเรื่อง</string>
     <string name="manga_added_library">เพิ่มไปยังห้องสมุด</string>
     <string name="manga_removed_library">ลบออกจากห้องสมุด</string>
-    <string name="manga_info_chapters_label">บท</string>
-    <string name="manga_info_status_label">สถานะ</string>
-    <string name="manga_info_source_label">แหล่ง</string>
-    <string name="manga_info_genres_label">ชนิด</string>
     <string name="delete_downloads_for_manga">ลบบทที่ดาวน์โหลดมาหรือไม่\?</string>
     <string name="copied_to_clipboard">%1$s ถูกคัดลอกไปยังคลิปบอร์ด</string>
     <string name="source_not_installed">ไม่ได้ติดตั้ง: %1$s</string>
@@ -319,7 +315,6 @@
     <string name="track_start_date">เริ่มต้นแล้ว</string>
     <string name="track_type">ชนิด</string>
     <string name="track_author">ผู้เขียน</string>
-    <string name="url_not_set">ไม่ได้ตั้งค่า URL ของมังงะ โปรดคลิกที่ชื่อและเลือกมังงะอีกครั้ง</string>
     <string name="error_category_exists">หมวดหมู่ที่มีชื่อนี้มีอยู่แล้ว!</string>
     <string name="snack_categories_deleted">หมวดหมู่ถูกลบ</string>
     <string name="dialog_with_checkbox_remove_description">สิ่งนี้จะลบวันที่อ่านของบทนี้ คุณแน่ใจไหม\?</string>
@@ -373,7 +368,6 @@
     <string name="update_check_notification_download_complete">ดาวน์โหลดเสร็จสิ้น</string>
     <string name="update_check_notification_download_error">ดาวน์โหลดเกิดข้อผิดพลาด</string>
     <string name="update_check_notification_update_available">อัปเดตที่มีอยู่</string>
-    <string name="description_backdrop">ภาพฉากหลังของมังงะ</string>
     <string name="description_cover">ปกของมังงะ</string>
     <string name="information_no_downloads">ไม่มีการดาวน์โหลด</string>
     <string name="information_no_recent">ไม่มีบทล่าสุด</string>

@@ -219,9 +219,6 @@
     <string name="manga_info_full_title_label">제목</string>
     <string name="manga_added_library">서제에 추가됨</string>
     <string name="manga_removed_library">서재에서 제거됨</string>
-    <string name="manga_info_chapters_label">챕터</string>
-    <string name="manga_info_status_label">상태</string>
-    <string name="manga_info_genres_label">장르</string>
     <string name="delete_downloads_for_manga">다운로드된 챕터를 삭제합니까\?</string>
     <string name="source_not_installed">소스 미설치: %1$s</string>
     <string name="manga_chapters_tab">챕터</string>
@@ -346,7 +343,6 @@
     <string name="browse">찾아보기</string>
     <string name="manga_not_in_db">이 만화는 데이터베이스에서 제거되었습니다!</string>
     <string name="licensed">판권작</string>
-    <string name="manga_info_source_label">소스</string>
     <string name="copied_to_clipboard">클립보드에 %1$s 복사됨</string>
     <string name="manga_chapter_no_title">제목 없음</string>
     <string name="chapter_queued">대기중</string>
@@ -362,7 +358,6 @@
     <string name="repeating">다시 읽는 중</string>
     <string name="track_start_date">시작 일자</string>
     <string name="track_type">종류</string>
-    <string name="url_not_set">만화 URL이 설정 되지 않았습니다. 제목을 클릭하고 만화를 다시 선택해주세요</string>
     <string name="error_category_exists">같은 이름을 가진 카테고리가 이미 존재합니다!</string>
     <string name="page_downloaded">페이지가 %1$s로 복사됨</string>
     <string name="migration_info">탭하여 이동할 소스 선택</string>
@@ -371,7 +366,6 @@
     <string name="copy">복사</string>
     <string name="download_queue_error">챕터 다운로드 도중 오류가 발생했습니다. 다운로드 섹션에서 다시시도 할 수 있습니다</string>
     <string name="notification_first_add_to_library">이 행동을 하기 전 서재에 만화를 추가해주세요</string>
-    <string name="description_backdrop">만화의 배경 이미지</string>
     <string name="information_empty_library">서재가 비어있습니다. 카탈로그에서 만화 시리즈를 서재에 추가 할 수 있습니다.</string>
     <string name="information_empty_category">카테고리가 없습니다. 서재 구성을 위해 + 버튼을 눌러 생성하세요.</string>
     <string name="download_notifier_page_error">페이지가 폴더에서 누락됨</string>

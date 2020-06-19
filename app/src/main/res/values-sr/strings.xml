@@ -263,10 +263,6 @@
     <string name="manga_info_full_title_label">Ime</string>
     <string name="manga_added_library">Dodato u biblioteku</string>
     <string name="manga_removed_library">Uklonjeno iz biblioteke</string>
-    <string name="manga_info_chapters_label">Poglavlja</string>
-    <string name="manga_info_status_label">Status</string>
-    <string name="manga_info_source_label">Izvor</string>
-    <string name="manga_info_genres_label">Žanr</string>
     <string name="delete_downloads_for_manga">Obriši preuzeta poglavlja\?</string>
     <string name="copied_to_clipboard">Kopirano
 \n%1$s</string>
@@ -341,7 +337,6 @@
     <string name="ext_updates_pending">Apdejti koji čekaju</string>
     <string name="unlock_app">Otključaj Tachiyomi</string>
     <string name="pref_category_display">Prikaži</string>
-    <string name="action_hide">Sakri</string>
     <string name="hide_notification_content">Sakri notifikacije</string>
     <string name="pref_disable_battery_optimization">Isključi optimizaciju korišćenja baterije</string>
     <string name="battery_optimization_disabled">Optimizacija potročnje baterije je već isključena</string>
@@ -422,7 +417,6 @@
     <string name="dialog_with_checkbox_remove_description">Ovo će ukloniti datum čitanja ovog poglavlja. Da li ste sigurni\?</string>
     <string name="snack_categories_deleted">Kategorija obrisana</string>
     <string name="error_category_exists">Kategorija sa ovim imenom već postoji!</string>
-    <string name="url_not_set">Manga URL nije postavljen, kliknite na naslov i ponovo odaberite mangu</string>
     <string name="error_invalid_date_supplied">Netačni datum je unet</string>
     <string name="track_author">Autor</string>
     <string name="track_type">Tip</string>
@@ -448,8 +442,6 @@
     <string name="manga_info_collapse">Prikazi manje informacija</string>
     <string name="manga_info_expand">Prikazi više informacija</string>
     <string name="manga_info_about_label">Info</string>
-    <string name="manga_info_latest_data_label">Ažurirano</string>
-    <string name="manga_info_last_chapter_label">Zadnje poglavlje</string>
     <string name="in_library">U biblioteci</string>
     <string name="add_to_library">Dodaj u biblioteku</string>
     <string name="local_source_help_guide">Vodič za lokalni izvor</string>
@@ -486,7 +478,6 @@
     <string name="information_webview_required">WebView je potreban za Tachiyomi</string>
     <string name="information_cloudflare_bypass_failure">Neuspelo zaobilaženje Cloudflare</string>
     <string name="description_cover">Naslovna slika mange</string>
-    <string name="description_backdrop">Pozadinska slika mange</string>
     <plurals name="update_check_notification_ext_updates">
         <item quantity="one">Dostupno je ažuriranje proširenja</item>
         <item quantity="few">%d dostupnih ispravki za proširenje</item>

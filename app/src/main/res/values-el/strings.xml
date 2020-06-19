@@ -263,10 +263,6 @@
     <string name="manga_info_full_title_label">Τίτλος</string>
     <string name="manga_added_library">Προστέθηκε στη βιβλιοθήκη</string>
     <string name="manga_removed_library">Αφαιρέθηκε από τη βιβλιοθήκη</string>
-    <string name="manga_info_chapters_label">Κεφάλαια</string>
-    <string name="manga_info_status_label">Κατάσταση</string>
-    <string name="manga_info_source_label">Πηγή</string>
-    <string name="manga_info_genres_label">Είδη</string>
     <string name="delete_downloads_for_manga">Να διαγραφούν τα κεφάλαια που έχουν ληφθεί;</string>
     <string name="copied_to_clipboard">Αντιγράφηκε στο πρόχειρο:
 \n%1$s</string>
@@ -309,7 +305,6 @@
     <string name="track_start_date">Ξεκίνησε</string>
     <string name="track_type">Τύπος</string>
     <string name="track_author">Συγγραφέας</string>
-    <string name="url_not_set">Το URL Manga δεν έχει οριστεί, κάντε κλικ στον τίτλο και επιλέξτε ξανά το manga</string>
     <string name="error_category_exists">Μια κατηγορία με αυτό το όνομα υπάρχει ήδη!</string>
     <string name="snack_categories_deleted">Οι κατηγορίες διαγράφηκαν</string>
     <string name="dialog_with_checkbox_remove_description">Αυτό θα αφαιρέσει την ημερομηνία ανάγνωσης αυτού του κεφαλαίου. Είστε σίγουροι;</string>
@@ -363,12 +358,11 @@
     <string name="update_check_notification_download_complete">Η λήψη ολοκληρώθηκε</string>
     <string name="update_check_notification_download_error">Σφάλμα λήψης</string>
     <string name="update_check_notification_update_available">Υπάρχει διαθέσιμη ενημέρωση!</string>
-    <string name="description_backdrop">Εικόνα παρασκηνίου του manga</string>
     <string name="description_cover">Εξώφυλλο manga</string>
     <string name="information_no_downloads">Δεν υπάρχουν λήψεις</string>
     <string name="information_no_recent">Δεν υπάρχουν πρόσφατες ενημερώσεις</string>
     <string name="information_no_recent_manga">Τίποτα δεν διαβάστηκε πρόσφατα</string>
-    <string name="information_empty_library">Η βιβλιοθήκη σας είναι κενή, προσθέστε σειρές στη βιβλιοθήκη σας από την Αναζήτηση.</string>
+    <string name="information_empty_library">Η βιβλιοθήκη σας είναι κενή. Προσθέστε σειρές στη βιβλιοθήκη σας από την Αναζήτηση.</string>
     <string name="information_empty_category">Δεν έχετε κατηγορίες. Πατήστε το κουμπί συν για να δημιουργήσετε μία για την οργάνωση της βιβλιοθήκης σας.</string>
     <string name="download_notifier_downloader_title">Πρόγραμμα λήψης</string>
     <string name="download_notifier_title_error">Σφάλμα</string>
@@ -510,7 +504,6 @@
     <string name="action_cancel_all">Ακύρωση όλων</string>
     <string name="action_unpin">Ξεκαρφίτσωμα</string>
     <string name="action_pin">Καρφίτσωμα</string>
-    <string name="action_hide">Απόκρυψη</string>
     <string name="action_view_chapters">Προβολή κεφαλαίων</string>
     <string name="action_sort_latest_chapter">Νεότερο κεφάλαιο</string>
     <string name="action_sort_last_checked">Ελέγχθηκε τελευταία φορά</string>
@@ -526,8 +519,6 @@
         <item quantity="one">Κεφάλαια %1$s και 1 ακόμη</item>
         <item quantity="other">Κεφάλαια %1$s και %2$d ακόμη</item>
     </plurals>
-    <string name="manga_info_latest_data_label">Ενημερώθηκε</string>
-    <string name="manga_info_last_chapter_label">Τελευταίο κεφάλαιο</string>
     <string name="downloaded_only_summary">Φιλτράρει όλα τα manga στη βιβλιοθήκη σας</string>
     <string name="pref_search_pinned_sources_only">Να περιέχονται μόνο καρφιτσωμένες πηγές</string>
     <plurals name="download_queue_summary">
@@ -577,8 +568,9 @@
     <string name="page_list_empty_error">Δεν βρέθηκαν σελίδες</string>
     <string name="action_disable_all">Απενεργοποίηση όλων</string>
     <string name="action_enable_all">Ενεργοποίηση όλων</string>
-    <string name="enabled">Ενεργοποιημένο</string>
     <string name="pref_show_reading_mode_summary">Σύντομη εμφάνιση της τρέχουσας κατάστασης λειτουργίας κατά το άνοιγμα του προγράμματος ανάγνωσης</string>
     <string name="pref_show_reading_mode">Εμφάνιση λειτουργίας ανάγνωσης</string>
     <string name="action_start">Έναρξη</string>
+    <string name="loader_not_implemented_error">Δεν βρέθηκε πηγή</string>
+    <string name="action_disable">Απενεργοποίηση</string>
 </resources>

@@ -263,10 +263,6 @@
     <string name="manga_info_full_title_label">Заголовок</string>
     <string name="manga_added_library">Додати до бібліотеки</string>
     <string name="manga_removed_library">Видалено з бібліотеки</string>
-    <string name="manga_info_chapters_label">Глави</string>
-    <string name="manga_info_status_label">Статус</string>
-    <string name="manga_info_source_label">Джерело</string>
-    <string name="manga_info_genres_label">Жанри</string>
     <string name="delete_downloads_for_manga">Видаляти завантажені глави\?</string>
     <string name="copied_to_clipboard">Скопійовано до буферу
 \n%1$s</string>
@@ -309,7 +305,6 @@
     <string name="track_start_date">Розпочато</string>
     <string name="track_type">Тип</string>
     <string name="track_author">Автор</string>
-    <string name="url_not_set">URL-адреса манги не встановлена, натисніть заголовок та виберіть мангу знову</string>
     <string name="error_category_exists">Категорія з таким іменем вже існує!</string>
     <string name="snack_categories_deleted">Категорію видалено</string>
     <string name="dialog_with_checkbox_remove_description">Ця дія видалить дату прочитання глави. Ви впевнені\?</string>
@@ -345,7 +340,7 @@
     <string name="download_queue_error">Сталась помилка при завантаженні глав. Спробуйте ще раз у розділі завантаження</string>
     <string name="notification_update_progress">Стан оновлення: %1$d/%2$d</string>
     <string name="notification_new_chapters">Знайдено нові глави</string>
-    <string name="notification_cover_update_failed">"Не вдалось оновити обкладинку "</string>
+    <string name="notification_cover_update_failed">Не вдалось оновити обкладинку</string>
     <string name="notification_first_add_to_library">Будь ласка, додайте мангу до своєї бібліотеки перед тим як робити це</string>
     <string name="notification_not_connected_to_ac_title">Синхронізацію скасовано</string>
     <string name="notification_not_connected_to_ac_body">Не заряджається</string>
@@ -363,7 +358,6 @@
     <string name="update_check_notification_download_complete">Завантаження завершено</string>
     <string name="update_check_notification_download_error">Помилка завантаження</string>
     <string name="update_check_notification_update_available">Доступна нова версія!</string>
-    <string name="description_backdrop">Фонове зображення манги</string>
     <string name="description_cover">Обкладинка манги</string>
     <string name="information_no_downloads">Немає завантажень</string>
     <string name="information_no_recent">Без оновлень</string>
@@ -376,7 +370,7 @@
     <string name="download_notifier_page_error">Сторінка відсутня у каталозі</string>
     <string name="download_notifier_page_ready_error">Сторінку не завантажено</string>
     <string name="download_notifier_text_only_wifi">Немає Wi-Fi підключення</string>
-    <string name="download_notifier_no_network">"Немає мережевого з`єднання "</string>
+    <string name="download_notifier_no_network">Немає мережевого з`єднання</string>
     <string name="download_notifier_download_paused">Завантаження призупинено</string>
     <string name="channel_common">Звичайний</string>
     <string name="channel_library">Бібліотека</string>
@@ -457,7 +451,6 @@
         <item quantity="few">Глави %1$s та %2$d більше</item>
         <item quantity="many">Глави %1$s та %2$d більше</item>
     </plurals>
-    <string name="action_hide">Приховати</string>
     <string name="hide_notification_content">Приховати вміст сповіщення</string>
     <string name="notification_check_updates">Перевірка нових глав</string>
     <string name="pref_disable_battery_optimization">Вимкнути збереження батареї</string>
@@ -534,8 +527,6 @@
     <string name="action_migrate">Мігрувати</string>
     <string name="track_started_reading_date">Дата початку читання</string>
     <string name="sort_by_upload_date">За датою завантаження</string>
-    <string name="manga_info_latest_data_label">Оновлено</string>
-    <string name="manga_info_last_chapter_label">Остання глава</string>
     <string name="local_source_help_guide">Посібник місцевого джерела</string>
     <string name="last_used_source">Останній використаний</string>
     <string name="tabs_header">Вкладки</string>
@@ -590,7 +581,7 @@
     <string name="page_list_empty_error">Сторінки не знайдено</string>
     <string name="action_disable_all">Вимкнути все</string>
     <string name="action_enable_all">Увімкнути все</string>
-    <string name="enabled">Ввімкнено</string>
     <string name="pref_show_reading_mode_summary">Стисло відобразити поточний режим, коли читалку відкрито</string>
     <string name="pref_show_reading_mode">Показати режим читання</string>
+    <string name="action_start">Розпочати</string>
 </resources>

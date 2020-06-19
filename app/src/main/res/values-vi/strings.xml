@@ -197,10 +197,6 @@
     <string name="unknown">Không rõ</string>
     <string name="licensed">Đã được mua bản quyền</string>
     <string name="remove_from_library">Gỡ bỏ khỏi thư viện</string>
-    <string name="manga_info_chapters_label">Số chương</string>
-    <string name="manga_info_status_label">Trạng thái</string>
-    <string name="manga_info_source_label">Nguồn truyện</string>
-    <string name="manga_info_genres_label">Thể loại</string>
     <!-- Manga chapters fragment -->
     <string name="manga_chapters_tab">Danh sách chương</string>
     <string name="manga_chapter_no_title">Không có tiêu đề</string>
@@ -290,7 +286,6 @@
     <string name="update_check_notification_download_error">Lỗi khi tải xuống</string>
     <string name="update_check_notification_update_available">Có cập nhật mới!</string>
     <!--Content Description-->
-    <string name="description_backdrop">Ảnh nền của truyện</string>
     <string name="description_cover">Ảnh bìa của truyện</string>
     <!-- Information Text -->
     <string name="information_no_downloads">Không có tải xuống</string>
@@ -397,7 +392,6 @@
     <string name="track_start_date">Đã bắt đầu</string>
     <string name="track_type">Loại</string>
     <string name="track_author">Tác giả</string>
-    <string name="url_not_set">Đường dẫn truyện chưa được thiết lập, vui lòng nhấn vào tiêu đề và chọn lại truyện một lần nữa</string>
     <string name="transition_finished">Đã đọc xong:</string>
     <string name="transition_current">Đang đọc:</string>
     <string name="transition_next">Chương kế:</string>
@@ -501,7 +495,6 @@
     <string name="action_newest">Mới nhất</string>
     <string name="action_reorganize_by">Sắp xếp lại</string>
     <string name="action_cancel_all">Huỷ bỏ tất cả</string>
-    <string name="action_hide">Ẩn</string>
     <string name="action_view_chapters">Xem các chương</string>
     <string name="action_select_inverse">Đảo ngược lựa chọn</string>
     <string name="action_sort_latest_chapter">Chương mới nhất</string>

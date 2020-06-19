@@ -255,10 +255,6 @@
     <string name="manga_info_full_title_label">Tittel</string>
     <string name="manga_added_library">Lagt til i biblioteket</string>
     <string name="manga_removed_library">Fjernet fra bibliotek</string>
-    <string name="manga_info_chapters_label">Kapittel</string>
-    <string name="manga_info_status_label">Status</string>
-    <string name="manga_info_source_label">Kilde</string>
-    <string name="manga_info_genres_label">Sjangere</string>
     <string name="delete_downloads_for_manga">Slett nedlastede kapittel\?</string>
     <string name="copied_to_clipboard">%1$s kopiert til utklippstavle</string>
     <string name="source_not_installed">Kilde ikke installert: %1$s</string>
@@ -300,7 +296,6 @@
     <string name="track_start_date">Startet</string>
     <string name="track_type">Type</string>
     <string name="track_author">Forfatter</string>
-    <string name="url_not_set">Manga-nettadresse ikke satt, klikk tittel og velg manga igjen</string>
     <string name="error_category_exists">En kategori ved dette navnet finnes allerede.</string>
     <string name="snack_categories_deleted">Kategorier slettet</string>
     <string name="dialog_with_checkbox_remove_description">Lesningsdato for dette kapittelet vil bli fjernet. Er du sikker\?</string>
@@ -372,7 +367,6 @@
     <string name="update_check_notification_download_complete">Nedlasting ferdig</string>
     <string name="update_check_notification_download_error">Feil ved nedlasting</string>
     <string name="update_check_notification_update_available">Ny versjon tilgjengelig!</string>
-    <string name="description_backdrop">Bakgrunnsbilde av manga</string>
     <string name="description_cover">Omslag til manga</string>
     <string name="information_no_downloads">Ingen nedlastinger</string>
     <string name="information_no_recent">Ingen nylige oppdateringer</string>
@@ -436,7 +430,6 @@
     <string name="channel_new_chapters">Kapitteloppdateringer</string>
     <string name="unlock_app">Lås opp Tachiyomi</string>
     <string name="notification_chapters_single">Kapittel %1$s</string>
-    <string name="action_hide">Skjul</string>
     <string name="email">E-postadresse</string>
     <string name="in_library">I bibliotek</string>
     <string name="add_to_library">Legg til i bibliotek</string>

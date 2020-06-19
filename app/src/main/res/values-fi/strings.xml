@@ -74,13 +74,12 @@
     <string name="update_check_notification_download_complete">Lataus valmis</string>
     <string name="update_check_notification_download_error">Latausvirhe</string>
     <string name="update_check_notification_update_available">Uusi versio saatavilla!</string>
-    <string name="description_backdrop">Sarjan taustakuva</string>
     <string name="description_cover">Sarjan kansikuva</string>
     <string name="information_no_downloads">Ei latauksia</string>
     <string name="information_no_recent">Ei viimeisimpiä päivityksiä</string>
     <string name="information_no_recent_manga">Ei mitään luettu viime aikoina</string>
-    <string name="information_empty_library">Kirjasto on tyhjä, lisää sarjoja kirjastoon selaa-kohdasta.</string>
-    <string name="information_empty_category">Sinulla ei ole kategorioita. Paina plus-nappia luodaksesi uuden kategorian kirjastosi järjestelemiseksi.</string>
+    <string name="information_empty_library">Kirjastosi on tyhjä. Lisää sarjoja kirjastoosi Selaa-kohdasta.</string>
+    <string name="information_empty_category">Sinulla ei ole kategorioita. Napauta pluspainiketta, jos haluat luoda sellaisen kirjaston järjestämistä varten.</string>
     <string name="download_notifier_downloader_title">Lataaja</string>
     <string name="download_notifier_title_error">Virhe</string>
     <string name="download_notifier_unknown_error">Lukua ei voitu ladata odottamattoman virheen vuoksi</string>
@@ -341,7 +340,6 @@
     <string name="track_start_date">Aloitettu</string>
     <string name="track_type">Tyyppi</string>
     <string name="track_author">Kirjailija</string>
-    <string name="url_not_set">Sarjan URL-osoitetta ei ole asetettu, näpäytä nimikettä ja valitse sarja uudelleen</string>
     <string name="error_category_exists">Tämän niminen kategoria on jo olemassa!</string>
     <string name="snack_categories_deleted">Kategoriat poistettu</string>
     <string name="saving_picture">Tallennetaan kuvaa</string>
@@ -365,10 +363,6 @@
     <string name="manga_info_full_title_label">Nimike</string>
     <string name="manga_added_library">Lisätty kirjastoon</string>
     <string name="manga_removed_library">Poistettu kirjastosta</string>
-    <string name="manga_info_chapters_label">Luvut</string>
-    <string name="manga_info_status_label">Tila</string>
-    <string name="manga_info_source_label">Lähde</string>
-    <string name="manga_info_genres_label">Lajityypit</string>
     <string name="manga_chapters_tab">Luvut</string>
     <string name="custom_download">Lataa muokautettu määrä</string>
     <string name="download_1">Seuraava luku</string>
@@ -450,7 +444,6 @@
         <item quantity="one">Luku %1$s ja 1 lisää</item>
         <item quantity="other">Luvut %1$s ja %2$d lisää</item>
     </plurals>
-    <string name="action_hide">Piilota</string>
     <string name="hide_notification_content">Piilota ilmoitusten sisältö</string>
     <string name="notification_check_updates">Etsitään uusia lukuja</string>
     <string name="lock_when_idle">Lukitse käyttämättömänä</string>
@@ -526,8 +519,6 @@
     <string name="last_used_source">Viimeksi käytetty</string>
     <string name="local_source_help_guide">Paikallinen lähdeopas</string>
     <string name="restore_duration">%02d min, %02d sek</string>
-    <string name="manga_info_latest_data_label">Päivitetty</string>
-    <string name="manga_info_last_chapter_label">Viimeisin luku</string>
     <string name="downloaded_only_summary">Suodattaa kaikki sarjat kirjastossasi</string>
     <plurals name="download_queue_summary">
         <item quantity="one">1 jäljellä</item>
@@ -577,8 +568,9 @@
     <string name="page_list_empty_error">Sivuja ei löytynyt</string>
     <string name="action_disable_all">Poista kaikki käytöstä</string>
     <string name="action_enable_all">Ota kaikki käyttöön</string>
-    <string name="enabled">Käytössä</string>
     <string name="pref_show_reading_mode_summary">Näytä nykyinen tila lyhyesti, kun lukija avataan</string>
     <string name="pref_show_reading_mode">Näytä lukutila</string>
     <string name="action_start">Aloita</string>
+    <string name="loader_not_implemented_error">Lähdettä ei löytynyt</string>
+    <string name="action_disable">Poista käytöstä</string>
 </resources>

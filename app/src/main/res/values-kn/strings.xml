@@ -66,7 +66,6 @@
     <string name="action_cancel">ರದ್ದುಮಾಡಿ</string>
     <string name="action_unpin">ತೆಗೆದುಹಾಕಿ</string>
     <string name="action_pin">ಚುಚ್ಚು</string>
-    <string name="action_hide">ಮುಚ್ಚಿಡು</string>
     <string name="action_display_unread_badge">ಓದದ್ ಗುರುತುಗಳು</string>
     <string name="action_display_download_badge">ಡೌನಲೋಡ್ ಗುರುತುಗಳು</string>
     <string name="action_display_list">ಪಟ್ಟಿ</string>
@@ -328,7 +327,6 @@
     <string name="information_webview_required">ತಚಿಯೋಮಿಗೆ ವೆಬ್‌ವೀಕ್ಷಣೆ ಅಗತ್ಯವಿದೆ</string>
     <string name="information_cloudflare_bypass_failure">ಕ್ಲೌಡ್‌ಫ್ಲೇರ್ ಅನ್ನು ಬೈಪಾಸ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
     <string name="description_cover">ಮಾಂಗಾದ ಕವರ್</string>
-    <string name="description_backdrop">ಮಾಂಗಾದ ಹಿನ್ನೆಲೆ ಚಿತ್ರ</string>
     <plurals name="update_check_notification_ext_updates">
         <item quantity="one">ವಿಸ್ತರಣೆ ನವೀಕರಣ ಲಭ್ಯವಿದೆ</item>
         <item quantity="other">%d ವಿಸ್ತರಣೆ ನವೀಕರಣಗಳು ಲಭ್ಯವಿದೆ</item>
@@ -406,7 +404,6 @@
     <string name="dialog_with_checkbox_remove_description">ಇದು ಈ ಅಧ್ಯಾಯದ ಓದುವ ದಿನಾಂಕವನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ. ನೀವು ಖಚಿತವಾಗಿರುವಿರಾ\?</string>
     <string name="snack_categories_deleted">ವರ್ಗಗಳನ್ನು ಅಳಿಸಲಾಗಿದೆ</string>
     <string name="error_category_exists">ಈ ಹೆಸರಿನ ವರ್ಗವು ಈಗಾಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ!</string>
-    <string name="url_not_set">ಮಾಂಗಾ URL ಅನ್ನು ಹೊಂದಿಸಲಾಗಿಲ್ಲ, ದಯವಿಟ್ಟು ಶೀರ್ಷಿಕೆಯನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿ ಮತ್ತು ಮತ್ತೆ ಮಾಂಗಾ ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="error_invalid_date_supplied">ಅಮಾನ್ಯ ದಿನಾಂಕವನ್ನು ಒದಗಿಸಲಾಗಿದೆ</string>
     <string name="track_author">ಲೇಖಕ</string>
     <string name="track_type">ಮಾದರಿ</string>
@@ -459,12 +456,6 @@
     <string name="manga_info_collapse">ಕಡಿಮೆ ಮಾಹಿತಿಯನ್ನು ತೋರಿಸಿ</string>
     <string name="manga_info_about_label">ಇದರ ಬಗ್ಗೆ</string>
     <string name="manga_info_expand">ಹೆಚ್ಚಿನ ಮಾಹಿತಿಯನ್ನು ತೋರಿಸಿ</string>
-    <string name="manga_info_genres_label">ಪ್ರಕಾರಗಳು</string>
-    <string name="manga_info_source_label">ಮೂಲ</string>
-    <string name="manga_info_status_label">ಸ್ಥಿತಿ</string>
-    <string name="manga_info_latest_data_label">ನವೀಕರಿಸಲಾಗಿದೆ</string>
-    <string name="manga_info_last_chapter_label">ಕೊನೆಯ ಅಧ್ಯಾಯ</string>
-    <string name="manga_info_chapters_label">ಅಧ್ಯಾಯಗಳು</string>
     <string name="manga_removed_library">ಗ್ರಂಥಾಲಯದಿಂದ ತೆಗೆದುಹಾಕಲಾಗಿದೆ</string>
     <string name="manga_added_library">ಗ್ರಂಥಾಲಯಕ್ಕೆ ಸೇರಿಸಲಾಗಿದೆ</string>
     <string name="manga_info_full_title_label">ಶೀರ್ಷಿಕೆ</string>
@@ -576,9 +567,9 @@
     <string name="badges_header">ಬ್ಯಾಡ್ಜ್‌ಗಳು</string>
     <string name="pref_show_reading_mode_summary">ರೀಡರ್ ತೆರೆದಾಗ ಪ್ರಸ್ತುತ ಮೋಡ್ ಅನ್ನು ಸಂಕ್ಷಿಪ್ತವಾಗಿ ತೋರಿಸಿ</string>
     <string name="pref_show_reading_mode">ಓದುವ ರೀತಿ ತೋರಿಸಿ</string>
-    <string name="enabled">ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
     <string name="action_display_show_tabs">ವರ್ಗ ಟ್ಯಾಬ್‌ಗಳನ್ನು ತೋರಿಸಿ</string>
     <string name="action_display_comfortable_grid">ಆರಾಮದಾಯಕ ಗ್ರಿಡ್</string>
     <string name="action_disable_all">ಎಲ್ಲವನ್ನೂ ನಿಷ್ಕ್ರಿಯೆಗೊಳಿಸಿ</string>
     <string name="action_enable_all">ಎಲ್ಲವನ್ನೂ ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
+    <string name="action_start">ಪ್ರಾರಂಭ</string>
 </resources>

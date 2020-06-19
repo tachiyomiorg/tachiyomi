@@ -263,10 +263,6 @@
     <string name="manga_info_full_title_label">标题</string>
     <string name="manga_added_library">已添加至书架</string>
     <string name="manga_removed_library">已移出书架</string>
-    <string name="manga_info_chapters_label">章节</string>
-    <string name="manga_info_status_label">状态</string>
-    <string name="manga_info_source_label">图源</string>
-    <string name="manga_info_genres_label">类型</string>
     <string name="delete_downloads_for_manga">删除已下载的章节？</string>
     <string name="copied_to_clipboard">复制到剪贴板：
 \n「%1$s」</string>
@@ -309,7 +305,6 @@
     <string name="track_start_date">已开始</string>
     <string name="track_type">类型</string>
     <string name="track_author">作者</string>
-    <string name="url_not_set">漫画链接不存在，请点击标题再次选择漫画</string>
     <string name="error_category_exists">已有名称相同的分类！</string>
     <string name="snack_categories_deleted">分类已删除</string>
     <string name="dialog_with_checkbox_remove_description">这将会清除此章节的阅读日期，确定吗？</string>
@@ -363,12 +358,11 @@
     <string name="update_check_notification_download_complete">下载完成</string>
     <string name="update_check_notification_download_error">下载失败</string>
     <string name="update_check_notification_update_available">有可用的新版本！</string>
-    <string name="description_backdrop">漫画背景</string>
     <string name="description_cover">漫画封面</string>
     <string name="information_no_downloads">没有下载中的任务</string>
     <string name="information_no_recent">没有最近更新</string>
     <string name="information_no_recent_manga">最近什么也没读</string>
-    <string name="information_empty_library">你的书架为空，可从「浏览」里添加漫画至书架。</string>
+    <string name="information_empty_library">你的书架为空，从「浏览」里添加漫画至书架。</string>
     <string name="information_empty_category">你还没有分类。点击右下方的加号按钮创建一个分类以管理书架。</string>
     <string name="download_notifier_downloader_title">下载</string>
     <string name="download_notifier_title_error">错误</string>
@@ -440,7 +434,6 @@
     <string name="pref_category_display">显示</string>
     <string name="pref_theme_dark">深色主题</string>
     <string name="channel_new_chapters">章节更新</string>
-    <string name="action_hide">隐藏</string>
     <string name="hide_notification_content">隐藏通知内容</string>
     <string name="lock_with_biometrics">启用生物识别锁定</string>
     <string name="pref_cutout_short">在刘海屏区域显示内容</string>
@@ -516,8 +509,6 @@
     <string name="channel_backup_restore_complete">完成</string>
     <string name="channel_backup_restore_progress">进度</string>
     <string name="recent_manga_time">第 %1$s 章 - %2$s</string>
-    <string name="manga_info_latest_data_label">更新日期</string>
-    <string name="manga_info_last_chapter_label">最新章节</string>
     <string name="local_source_help_guide">本地图源指南</string>
     <string name="last_used_source">上次浏览</string>
     <plurals name="download_queue_summary">
@@ -568,8 +559,9 @@
     <string name="page_list_empty_error">没有找到页面</string>
     <string name="action_disable_all">禁用全部</string>
     <string name="action_enable_all">启用全部</string>
-    <string name="enabled">已启用</string>
     <string name="pref_show_reading_mode_summary">当阅读器打开时，短暂显示当前模式</string>
     <string name="pref_show_reading_mode">显示阅读模式</string>
     <string name="action_start">开始</string>
+    <string name="loader_not_implemented_error">未找到源</string>
+    <string name="action_disable">禁用</string>
 </resources>
