@@ -458,12 +458,6 @@
     <string name="manga_info_full_title_label">Title</string>
     <string name="manga_added_library">Added to library</string>
     <string name="manga_removed_library">Removed from library</string>
-    <string name="manga_info_chapters_label">Chapters</string>
-    <string name="manga_info_last_chapter_label">Last chapter</string>
-    <string name="manga_info_latest_data_label">Updated</string>
-    <string name="manga_info_status_label">Status</string>
-    <string name="manga_info_source_label">Source</string>
-    <string name="manga_info_genres_label">Genres</string>
     <string name="manga_info_about_label">About</string>
     <string name="manga_info_expand">Show more info</string>
     <string name="manga_info_collapse">Show less info</string>

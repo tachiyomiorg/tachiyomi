@@ -1,11 +1,13 @@
 package eu.kanade.tachiyomi.ui.manga.chapter
 
 import android.os.Bundle
-import com.jakewharton.rxrelay.BehaviorRelay
 import com.jakewharton.rxrelay.PublishRelay
+import eu.kanade.tachiyomi.data.cache.CoverCache
 import eu.kanade.tachiyomi.data.database.DatabaseHelper
+import eu.kanade.tachiyomi.data.database.models.Category
 import eu.kanade.tachiyomi.data.database.models.Chapter
 import eu.kanade.tachiyomi.data.database.models.Manga
+import eu.kanade.tachiyomi.data.database.models.MangaCategory
 import eu.kanade.tachiyomi.data.download.DownloadManager
 import eu.kanade.tachiyomi.data.download.model.Download
 import eu.kanade.tachiyomi.data.preference.PreferencesHelper
@@ -14,8 +16,9 @@ import eu.kanade.tachiyomi.ui.base.presenter.BasePresenter
 import eu.kanade.tachiyomi.util.chapter.syncChaptersWithSource
 import eu.kanade.tachiyomi.util.isLocal
 import eu.kanade.tachiyomi.util.lang.isNullOrUnsubscribed
+import eu.kanade.tachiyomi.util.prepUpdateCover
+import eu.kanade.tachiyomi.util.removeCovers
 import eu.kanade.tachiyomi.util.shouldDownloadNewChapters
-import java.util.Date
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -24,16 +27,20 @@ import timber.log.Timber
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
-class ChaptersPresenter(
+class MangaInfoChaptersPresenter(
     val manga: Manga,
     val source: Source,
-    private val chapterCountRelay: BehaviorRelay<Float>,
-    private val lastUpdateRelay: BehaviorRelay<Date>,
     private val mangaFavoriteRelay: PublishRelay<Boolean>,
     val preferences: PreferencesHelper = Injekt.get(),
     private val db: DatabaseHelper = Injekt.get(),
-    private val downloadManager: DownloadManager = Injekt.get()
-) : BasePresenter<ChaptersController>() {
+    private val downloadManager: DownloadManager = Injekt.get(),
+    private val coverCache: CoverCache = Injekt.get()
+) : BasePresenter<MangaInfoChaptersController>() {
+
+    /**
+     * Subscription to update the manga from the source.
+     */
+    private var fetchMangaSubscription: Subscription? = null
 
     /**
      * List of chapters of the manga. It's always unfiltered and unsorted.
@@ -67,10 +74,24 @@ class ChaptersPresenter(
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
 
+        // Manga info - start
+
+        getMangaObservable()
+            .subscribeLatestCache({ view, manga -> view.onNextMangaInfo(manga, source) })
+
+        // Update favorite status
+        mangaFavoriteRelay.observeOn(AndroidSchedulers.mainThread())
+            .subscribe { setFavorite(it) }
+            .apply { add(this) }
+
         // Prepare the relay.
         chaptersRelay.flatMap { applyChapterFilters(it) }
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeLatestCache(ChaptersController::onNextChapters) { _, error -> Timber.e(error) }
+            .subscribeLatestCache(MangaInfoChaptersController::onNextChapters) { _, error -> Timber.e(error) }
+
+        // Manga info - end
+
+        // Chapters list - start
 
         // Add the subscription that retrieves the chapters from the database, keeps subscribed to
         // changes, and sends the list of chapters to the relay.
@@ -89,24 +110,122 @@ class ChaptersPresenter(
 
                     // Listen for download status changes
                     observeDownloads()
-
-                    // Emit the number of chapters to the info tab.
-                    chapterCountRelay.call(
-                        chapters.maxBy { it.chapter_number }?.chapter_number
-                            ?: 0f
-                    )
-
-                    // Emit the upload date of the most recent chapter
-                    lastUpdateRelay.call(
-                        Date(
-                            chapters.maxBy { it.date_upload }?.date_upload
-                                ?: 0
-                        )
-                    )
                 }
                 .subscribe { chaptersRelay.call(it) }
         )
+
+        // Chapters list - end
     }
+
+    // Manga info - start
+
+    private fun getMangaObservable(): Observable<Manga> {
+        return db.getManga(manga.url, manga.source).asRxObservable()
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    /**
+     * Fetch manga information from source.
+     */
+    fun fetchMangaFromSource(manualFetch: Boolean = false) {
+        if (!fetchMangaSubscription.isNullOrUnsubscribed()) return
+        fetchMangaSubscription = Observable.defer { source.fetchMangaDetails(manga) }
+            .map { networkManga ->
+                manga.prepUpdateCover(coverCache, networkManga, manualFetch)
+                manga.copyFrom(networkManga)
+                manga.initialized = true
+                db.insertManga(manga).executeAsBlocking()
+                manga
+            }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeFirst(
+                { view, _ ->
+                    view.onFetchMangaInfoDone()
+                },
+                MangaInfoChaptersController::onFetchMangaInfoError
+            )
+    }
+
+    /**
+     * Update favorite status of manga, (removes / adds) manga (to / from) library.
+     *
+     * @return the new status of the manga.
+     */
+    fun toggleFavorite(): Boolean {
+        manga.favorite = !manga.favorite
+        if (!manga.favorite) {
+            manga.removeCovers(coverCache)
+        }
+        db.insertManga(manga).executeAsBlocking()
+        return manga.favorite
+    }
+
+    private fun setFavorite(favorite: Boolean) {
+        if (manga.favorite == favorite) {
+            return
+        }
+        toggleFavorite()
+    }
+
+    /**
+     * Returns true if the manga has any downloads.
+     */
+    fun hasDownloads(): Boolean {
+        return downloadManager.getDownloadCount(manga) > 0
+    }
+
+    /**
+     * Deletes all the downloads for the manga.
+     */
+    fun deleteDownloads() {
+        downloadManager.deleteManga(manga, source)
+    }
+
+    /**
+     * Get user categories.
+     *
+     * @return List of categories, not including the default category
+     */
+    fun getCategories(): List<Category> {
+        return db.getCategories().executeAsBlocking()
+    }
+
+    /**
+     * Gets the category id's the manga is in, if the manga is not in a category, returns the default id.
+     *
+     * @param manga the manga to get categories from.
+     * @return Array of category ids the manga is in, if none returns default id
+     */
+    fun getMangaCategoryIds(manga: Manga): Array<Int> {
+        val categories = db.getCategoriesForManga(manga).executeAsBlocking()
+        return categories.mapNotNull { it.id }.toTypedArray()
+    }
+
+    /**
+     * Move the given manga to categories.
+     *
+     * @param manga the manga to move.
+     * @param categories the selected categories.
+     */
+    fun moveMangaToCategories(manga: Manga, categories: List<Category>) {
+        val mc = categories.filter { it.id != 0 }.map { MangaCategory.create(manga, it) }
+        db.setMangaCategories(mc, listOf(manga))
+    }
+
+    /**
+     * Move the given manga to the category.
+     *
+     * @param manga the manga to move.
+     * @param category the selected category, or null for default category.
+     */
+    fun moveMangaToCategory(manga: Manga, category: Category?) {
+        moveMangaToCategories(manga, listOfNotNull(category))
+    }
+
+    // Manga info - end
+
+    // Chapters list - start
 
     private fun observeDownloads() {
         observeDownloadsSubscription?.let { remove(it) }
@@ -114,7 +233,7 @@ class ChaptersPresenter(
             .observeOn(AndroidSchedulers.mainThread())
             .filter { download -> download.manga.id == manga.id }
             .doOnNext { onDownloadStatusChange(it) }
-            .subscribeLatestCache(ChaptersController::onChapterStatusChange) { _, error ->
+            .subscribeLatestCache(MangaInfoChaptersController::onChapterStatusChange) { _, error ->
                 Timber.e(error)
             }
     }
@@ -167,7 +286,7 @@ class ChaptersPresenter(
                 { view, _ ->
                     view.onFetchChaptersDone()
                 },
-                ChaptersController::onFetchChaptersError
+                MangaInfoChaptersController::onFetchChaptersError
             )
     }
 
@@ -297,7 +416,7 @@ class ChaptersPresenter(
                 { view, _ ->
                     view.onChaptersDeleted(chapters)
                 },
-                ChaptersController::onChaptersDeletedError
+                MangaInfoChaptersController::onChaptersDeletedError
             )
     }
 
@@ -446,4 +565,6 @@ class ChaptersPresenter(
     fun sortDescending(): Boolean {
         return manga.sortDescending()
     }
+
+    // Chapters list - end
 }

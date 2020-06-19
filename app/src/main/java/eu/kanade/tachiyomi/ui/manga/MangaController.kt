@@ -24,11 +24,9 @@ import eu.kanade.tachiyomi.source.SourceManager
 import eu.kanade.tachiyomi.ui.base.controller.RxController
 import eu.kanade.tachiyomi.ui.base.controller.TabbedController
 import eu.kanade.tachiyomi.ui.base.controller.requestPermissionsSafe
-import eu.kanade.tachiyomi.ui.manga.chapter.ChaptersController
-import eu.kanade.tachiyomi.ui.manga.info.MangaInfoController
+import eu.kanade.tachiyomi.ui.manga.chapter.MangaInfoChaptersController
 import eu.kanade.tachiyomi.ui.manga.track.TrackController
 import eu.kanade.tachiyomi.util.system.toast
-import java.util.Date
 import kotlinx.android.synthetic.main.main_activity.tabs
 import rx.Subscription
 import uy.kohesive.injekt.Injekt
@@ -65,10 +63,6 @@ class MangaController : RxController<PagerControllerBinding>, TabbedController {
 
     val fromSource = args.getBoolean(FROM_SOURCE_EXTRA, false)
 
-    val lastUpdateRelay: BehaviorRelay<Date> = BehaviorRelay.create()
-
-    val chapterCountRelay: BehaviorRelay<Float> = BehaviorRelay.create()
-
     val mangaFavoriteRelay: PublishRelay<Boolean> = PublishRelay.create()
 
     private val trackingIconRelay: BehaviorRelay<Boolean> = BehaviorRelay.create()
@@ -92,17 +86,12 @@ class MangaController : RxController<PagerControllerBinding>, TabbedController {
         requestPermissionsSafe(arrayOf(WRITE_EXTERNAL_STORAGE), 301)
 
         adapter = MangaDetailAdapter()
-        binding.pager.offscreenPageLimit = 3
         binding.pager.adapter = adapter
-
-        if (!fromSource) {
-            binding.pager.currentItem = CHAPTERS_CONTROLLER
-        }
     }
 
     override fun onDestroyView(view: View) {
-        super.onDestroyView(view)
         adapter = null
+        super.onDestroyView(view)
     }
 
     override fun onChangeStarted(handler: ControllerChangeHandler, type: ControllerChangeType) {
@@ -150,14 +139,13 @@ class MangaController : RxController<PagerControllerBinding>, TabbedController {
 
     private inner class MangaDetailAdapter : RouterPagerAdapter(this@MangaController) {
 
-        private val tabCount = if (Injekt.get<TrackManager>().hasLoggedServices()) 3 else 2
-
         private val tabTitles = listOf(
-            R.string.manga_detail_tab,
             R.string.manga_chapters_tab,
             R.string.manga_tracking_tab
         )
             .map { resources!!.getString(it) }
+
+        private val tabCount = tabTitles.size - if (Injekt.get<TrackManager>().hasLoggedServices()) 0 else 1
 
         override fun getCount(): Int {
             return tabCount
@@ -166,8 +154,7 @@ class MangaController : RxController<PagerControllerBinding>, TabbedController {
         override fun configureRouter(router: Router, position: Int) {
             if (!router.hasRootController()) {
                 val controller = when (position) {
-                    INFO_CONTROLLER -> MangaInfoController(fromSource)
-                    CHAPTERS_CONTROLLER -> ChaptersController()
+                    INFO_CHAPTERS_CONTROLLER -> MangaInfoChaptersController(fromSource)
                     TRACK_CONTROLLER -> TrackController()
                     else -> error("Wrong position $position")
                 }
@@ -184,8 +171,7 @@ class MangaController : RxController<PagerControllerBinding>, TabbedController {
         const val FROM_SOURCE_EXTRA = "from_source"
         const val MANGA_EXTRA = "manga"
 
-        const val INFO_CONTROLLER = 0
-        const val CHAPTERS_CONTROLLER = 1
-        const val TRACK_CONTROLLER = 2
+        const val INFO_CHAPTERS_CONTROLLER = 0
+        const val TRACK_CONTROLLER = 1
     }
 }

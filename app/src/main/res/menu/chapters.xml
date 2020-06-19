@@ -95,4 +95,9 @@
                 android:title="@string/download_all" />
         </menu>
     </item>
+
+    <item
+        android:id="@+id/action_migrate"
+        android:title="@string/action_migrate"
+        app:showAsAction="never" />
 </menu>
